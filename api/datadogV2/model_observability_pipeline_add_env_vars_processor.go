@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineAddEnvVarsProcessor The `add_env_vars` processor adds environment variable values to log events.
 type ObservabilityPipelineAddEnvVarsProcessor struct {
@@ -23,9 +27,10 @@ type ObservabilityPipelineAddEnvVarsProcessor struct {
 	// A list of environment variable mappings to apply to log fields.
 	Variables []ObservabilityPipelineAddEnvVarsProcessorVariable `json:"variables"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineAddEnvVarsProcessor instantiates a new ObservabilityPipelineAddEnvVarsProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewObservabilityPipelineAddEnvVarsProcessorWithDefaults() *ObservabilityPip
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineAddEnvVarsProcessor) GetId() string {
 	if o == nil {
@@ -73,6 +77,7 @@ func (o *ObservabilityPipelineAddEnvVarsProcessor) GetIdOk() (*string, bool) {
 func (o *ObservabilityPipelineAddEnvVarsProcessor) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineAddEnvVarsProcessor) GetInclude() string {
@@ -97,6 +102,7 @@ func (o *ObservabilityPipelineAddEnvVarsProcessor) SetInclude(v string) {
 	o.Include = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineAddEnvVarsProcessor) GetInputs() []string {
 	if o == nil {
@@ -119,6 +125,7 @@ func (o *ObservabilityPipelineAddEnvVarsProcessor) GetInputsOk() (*[]string, boo
 func (o *ObservabilityPipelineAddEnvVarsProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineAddEnvVarsProcessor) GetType() ObservabilityPipelineAddEnvVarsProcessorType {
@@ -143,6 +150,7 @@ func (o *ObservabilityPipelineAddEnvVarsProcessor) SetType(v ObservabilityPipeli
 	o.Type = v
 }
 
+
 // GetVariables returns the Variables field value.
 func (o *ObservabilityPipelineAddEnvVarsProcessor) GetVariables() []ObservabilityPipelineAddEnvVarsProcessorVariable {
 	if o == nil {
@@ -166,6 +174,8 @@ func (o *ObservabilityPipelineAddEnvVarsProcessor) SetVariables(v []Observabilit
 	o.Variables = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineAddEnvVarsProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -187,10 +197,10 @@ func (o ObservabilityPipelineAddEnvVarsProcessor) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineAddEnvVarsProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id        *string                                             `json:"id"`
-		Include   *string                                             `json:"include"`
-		Inputs    *[]string                                           `json:"inputs"`
-		Type      *ObservabilityPipelineAddEnvVarsProcessorType       `json:"type"`
+		Id *string `json:"id"`
+		Include *string `json:"include"`
+		Inputs *[]string `json:"inputs"`
+		Type *ObservabilityPipelineAddEnvVarsProcessorType `json:"type"`
 		Variables *[]ObservabilityPipelineAddEnvVarsProcessorVariable `json:"variables"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -213,7 +223,7 @@ func (o *ObservabilityPipelineAddEnvVarsProcessor) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "include", "inputs", "type", "variables"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "include", "inputs", "type", "variables",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceLevelObjectiveRequest A service level objective object includes a service level indicator, thresholds
 // for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
@@ -56,9 +60,10 @@ type ServiceLevelObjectiveRequest struct {
 	// threshold.
 	WarningThreshold *float64 `json:"warning_threshold,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceLevelObjectiveRequest instantiates a new ServiceLevelObjectiveRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -79,7 +84,6 @@ func NewServiceLevelObjectiveRequestWithDefaults() *ServiceLevelObjectiveRequest
 	this := ServiceLevelObjectiveRequest{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ServiceLevelObjectiveRequest) GetDescription() string {
 	if o == nil || o.Description.Get() == nil {
@@ -93,7 +97,7 @@ func (o *ServiceLevelObjectiveRequest) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *ServiceLevelObjectiveRequest) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -108,7 +112,6 @@ func (o *ServiceLevelObjectiveRequest) HasDescription() bool {
 func (o *ServiceLevelObjectiveRequest) SetDescription(v string) {
 	o.Description.Set(&v)
 }
-
 // SetDescriptionNil sets the value for Description to be an explicit nil.
 func (o *ServiceLevelObjectiveRequest) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -118,6 +121,7 @@ func (o *ServiceLevelObjectiveRequest) SetDescriptionNil() {
 func (o *ServiceLevelObjectiveRequest) UnsetDescription() {
 	o.Description.Unset()
 }
+
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *ServiceLevelObjectiveRequest) GetGroups() []string {
@@ -147,6 +151,7 @@ func (o *ServiceLevelObjectiveRequest) SetGroups(v []string) {
 	o.Groups = v
 }
 
+
 // GetMonitorIds returns the MonitorIds field value if set, zero value otherwise.
 func (o *ServiceLevelObjectiveRequest) GetMonitorIds() []int64 {
 	if o == nil || o.MonitorIds == nil {
@@ -175,6 +180,7 @@ func (o *ServiceLevelObjectiveRequest) SetMonitorIds(v []int64) {
 	o.MonitorIds = v
 }
 
+
 // GetName returns the Name field value.
 func (o *ServiceLevelObjectiveRequest) GetName() string {
 	if o == nil {
@@ -197,6 +203,7 @@ func (o *ServiceLevelObjectiveRequest) GetNameOk() (*string, bool) {
 func (o *ServiceLevelObjectiveRequest) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *ServiceLevelObjectiveRequest) GetQuery() ServiceLevelObjectiveQuery {
@@ -226,6 +233,7 @@ func (o *ServiceLevelObjectiveRequest) SetQuery(v ServiceLevelObjectiveQuery) {
 	o.Query = &v
 }
 
+
 // GetSliSpecification returns the SliSpecification field value if set, zero value otherwise.
 func (o *ServiceLevelObjectiveRequest) GetSliSpecification() SLOSliSpec {
 	if o == nil || o.SliSpecification == nil {
@@ -253,6 +261,7 @@ func (o *ServiceLevelObjectiveRequest) HasSliSpecification() bool {
 func (o *ServiceLevelObjectiveRequest) SetSliSpecification(v SLOSliSpec) {
 	o.SliSpecification = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ServiceLevelObjectiveRequest) GetTags() []string {
@@ -282,6 +291,7 @@ func (o *ServiceLevelObjectiveRequest) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTargetThreshold returns the TargetThreshold field value if set, zero value otherwise.
 func (o *ServiceLevelObjectiveRequest) GetTargetThreshold() float64 {
 	if o == nil || o.TargetThreshold == nil {
@@ -310,6 +320,7 @@ func (o *ServiceLevelObjectiveRequest) SetTargetThreshold(v float64) {
 	o.TargetThreshold = &v
 }
 
+
 // GetThresholds returns the Thresholds field value.
 func (o *ServiceLevelObjectiveRequest) GetThresholds() []SLOThreshold {
 	if o == nil {
@@ -332,6 +343,7 @@ func (o *ServiceLevelObjectiveRequest) GetThresholdsOk() (*[]SLOThreshold, bool)
 func (o *ServiceLevelObjectiveRequest) SetThresholds(v []SLOThreshold) {
 	o.Thresholds = v
 }
+
 
 // GetTimeframe returns the Timeframe field value if set, zero value otherwise.
 func (o *ServiceLevelObjectiveRequest) GetTimeframe() SLOTimeframe {
@@ -361,6 +373,7 @@ func (o *ServiceLevelObjectiveRequest) SetTimeframe(v SLOTimeframe) {
 	o.Timeframe = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ServiceLevelObjectiveRequest) GetType() SLOType {
 	if o == nil {
@@ -383,6 +396,7 @@ func (o *ServiceLevelObjectiveRequest) GetTypeOk() (*SLOType, bool) {
 func (o *ServiceLevelObjectiveRequest) SetType(v SLOType) {
 	o.Type = v
 }
+
 
 // GetWarningThreshold returns the WarningThreshold field value if set, zero value otherwise.
 func (o *ServiceLevelObjectiveRequest) GetWarningThreshold() float64 {
@@ -411,6 +425,8 @@ func (o *ServiceLevelObjectiveRequest) HasWarningThreshold() bool {
 func (o *ServiceLevelObjectiveRequest) SetWarningThreshold(v float64) {
 	o.WarningThreshold = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceLevelObjectiveRequest) MarshalJSON() ([]byte, error) {
@@ -458,18 +474,18 @@ func (o ServiceLevelObjectiveRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceLevelObjectiveRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description      datadog.NullableString      `json:"description,omitempty"`
-		Groups           []string                    `json:"groups,omitempty"`
-		MonitorIds       []int64                     `json:"monitor_ids,omitempty"`
-		Name             *string                     `json:"name"`
-		Query            *ServiceLevelObjectiveQuery `json:"query,omitempty"`
-		SliSpecification *SLOSliSpec                 `json:"sli_specification,omitempty"`
-		Tags             []string                    `json:"tags,omitempty"`
-		TargetThreshold  *float64                    `json:"target_threshold,omitempty"`
-		Thresholds       *[]SLOThreshold             `json:"thresholds"`
-		Timeframe        *SLOTimeframe               `json:"timeframe,omitempty"`
-		Type             *SLOType                    `json:"type"`
-		WarningThreshold *float64                    `json:"warning_threshold,omitempty"`
+		Description datadog.NullableString `json:"description,omitempty"`
+		Groups []string `json:"groups,omitempty"`
+		MonitorIds []int64 `json:"monitor_ids,omitempty"`
+		Name *string `json:"name"`
+		Query *ServiceLevelObjectiveQuery `json:"query,omitempty"`
+		SliSpecification *SLOSliSpec `json:"sli_specification,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		TargetThreshold *float64 `json:"target_threshold,omitempty"`
+		Thresholds *[]SLOThreshold `json:"thresholds"`
+		Timeframe *SLOTimeframe `json:"timeframe,omitempty"`
+		Type *SLOType `json:"type"`
+		WarningThreshold *float64 `json:"warning_threshold,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -485,7 +501,7 @@ func (o *ServiceLevelObjectiveRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "groups", "monitor_ids", "name", "query", "sli_specification", "tags", "target_threshold", "thresholds", "timeframe", "type", "warning_threshold"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "groups", "monitor_ids", "name", "query", "sli_specification", "tags", "target_threshold", "thresholds", "timeframe", "type", "warning_threshold",  })
 	} else {
 		return err
 	}
@@ -495,7 +511,7 @@ func (o *ServiceLevelObjectiveRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Groups = all.Groups
 	o.MonitorIds = all.MonitorIds
 	o.Name = *all.Name
-	if all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Query = all.Query
@@ -503,7 +519,7 @@ func (o *ServiceLevelObjectiveRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	o.TargetThreshold = all.TargetThreshold
 	o.Thresholds = *all.Thresholds
-	if all.Timeframe != nil && !all.Timeframe.IsValid() {
+	if all.Timeframe != nil &&!all.Timeframe.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Timeframe = all.Timeframe

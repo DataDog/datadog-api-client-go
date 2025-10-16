@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AsanaCredentials - The definition of the `AsanaCredentials` object.
 type AsanaCredentials struct {
@@ -56,6 +62,7 @@ func (obj AsanaCredentials) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.AsanaAccessToken)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj AsanaCredentials) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *AsanaCredentials) GetActualInstance() interface{} {
+func (obj *AsanaCredentials) GetActualInstance() (interface{}) {
 	if obj.AsanaAccessToken != nil {
 		return obj.AsanaAccessToken
 	}
+
 
 	// all schemas are nil
 	return nil

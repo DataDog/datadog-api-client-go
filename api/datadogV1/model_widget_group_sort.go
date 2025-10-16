@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetGroupSort The group to sort the widget by.
 type WidgetGroupSort struct {
@@ -19,9 +23,10 @@ type WidgetGroupSort struct {
 	// Set the sort type to group.
 	Type GroupType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWidgetGroupSort instantiates a new WidgetGroupSort object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewWidgetGroupSortWithDefaults() *WidgetGroupSort {
 	this := WidgetGroupSort{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *WidgetGroupSort) GetName() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *WidgetGroupSort) GetNameOk() (*string, bool) {
 func (o *WidgetGroupSort) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetOrder returns the Order field value.
 func (o *WidgetGroupSort) GetOrder() WidgetSort {
@@ -89,6 +94,7 @@ func (o *WidgetGroupSort) SetOrder(v WidgetSort) {
 	o.Order = v
 }
 
+
 // GetType returns the Type field value.
 func (o *WidgetGroupSort) GetType() GroupType {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *WidgetGroupSort) SetType(v GroupType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o WidgetGroupSort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o WidgetGroupSort) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetGroupSort) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name  *string     `json:"name"`
+		Name *string `json:"name"`
 		Order *WidgetSort `json:"order"`
-		Type  *GroupType  `json:"type"`
+		Type *GroupType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *WidgetGroupSort) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "order", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "order", "type",  })
 	} else {
 		return err
 	}

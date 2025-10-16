@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Metadata The metadata related to this request.
 type Metadata struct {
@@ -19,9 +23,10 @@ type Metadata struct {
 	// Total number of entities across all pages.
 	Total int64 `json:"total"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetadata instantiates a new Metadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewMetadataWithDefaults() *Metadata {
 	this := Metadata{}
 	return &this
 }
-
 // GetCount returns the Count field value.
 func (o *Metadata) GetCount() int64 {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *Metadata) GetCountOk() (*int64, bool) {
 func (o *Metadata) SetCount(v int64) {
 	o.Count = v
 }
+
 
 // GetToken returns the Token field value.
 func (o *Metadata) GetToken() string {
@@ -89,6 +94,7 @@ func (o *Metadata) SetToken(v string) {
 	o.Token = v
 }
 
+
 // GetTotal returns the Total field value.
 func (o *Metadata) GetTotal() int64 {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *Metadata) SetTotal(v int64) {
 	o.Total = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o Metadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o Metadata) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Metadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Count *int64  `json:"count"`
+		Count *int64 `json:"count"`
 		Token *string `json:"token"`
-		Total *int64  `json:"total"`
+		Total *int64 `json:"total"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *Metadata) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"count", "token", "total"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "count", "token", "total",  })
 	} else {
 		return err
 	}

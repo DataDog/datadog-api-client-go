@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScheduleUpdateRequestDataAttributes Defines the updatable attributes for a schedule, such as name, time zone, and layers.
 type ScheduleUpdateRequestDataAttributes struct {
@@ -19,9 +23,10 @@ type ScheduleUpdateRequestDataAttributes struct {
 	// The time zone used when interpreting rotation times.
 	TimeZone string `json:"time_zone"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScheduleUpdateRequestDataAttributes instantiates a new ScheduleUpdateRequestDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewScheduleUpdateRequestDataAttributesWithDefaults() *ScheduleUpdateRequest
 	this := ScheduleUpdateRequestDataAttributes{}
 	return &this
 }
-
 // GetLayers returns the Layers field value.
 func (o *ScheduleUpdateRequestDataAttributes) GetLayers() []ScheduleUpdateRequestDataAttributesLayersItems {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *ScheduleUpdateRequestDataAttributes) GetLayersOk() (*[]ScheduleUpdateRe
 func (o *ScheduleUpdateRequestDataAttributes) SetLayers(v []ScheduleUpdateRequestDataAttributesLayersItems) {
 	o.Layers = v
 }
+
 
 // GetName returns the Name field value.
 func (o *ScheduleUpdateRequestDataAttributes) GetName() string {
@@ -89,6 +94,7 @@ func (o *ScheduleUpdateRequestDataAttributes) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetTimeZone returns the TimeZone field value.
 func (o *ScheduleUpdateRequestDataAttributes) GetTimeZone() string {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *ScheduleUpdateRequestDataAttributes) SetTimeZone(v string) {
 	o.TimeZone = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ScheduleUpdateRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o ScheduleUpdateRequestDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ScheduleUpdateRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Layers   *[]ScheduleUpdateRequestDataAttributesLayersItems `json:"layers"`
-		Name     *string                                           `json:"name"`
-		TimeZone *string                                           `json:"time_zone"`
+		Layers *[]ScheduleUpdateRequestDataAttributesLayersItems `json:"layers"`
+		Name *string `json:"name"`
+		TimeZone *string `json:"time_zone"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *ScheduleUpdateRequestDataAttributes) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"layers", "name", "time_zone"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "layers", "name", "time_zone",  })
 	} else {
 		return err
 	}

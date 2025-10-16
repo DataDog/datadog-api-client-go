@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PatchTableRequestDataAttributesSchemaFieldsItems The definition of `PatchTableRequestDataAttributesSchemaFieldsItems` object.
 type PatchTableRequestDataAttributesSchemaFieldsItems struct {
@@ -17,9 +21,10 @@ type PatchTableRequestDataAttributesSchemaFieldsItems struct {
 	// The field type for reference table schema fields.
 	Type ReferenceTableSchemaFieldType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPatchTableRequestDataAttributesSchemaFieldsItems instantiates a new PatchTableRequestDataAttributesSchemaFieldsItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewPatchTableRequestDataAttributesSchemaFieldsItemsWithDefaults() *PatchTab
 	this := PatchTableRequestDataAttributesSchemaFieldsItems{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *PatchTableRequestDataAttributesSchemaFieldsItems) GetName() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *PatchTableRequestDataAttributesSchemaFieldsItems) GetNameOk() (*string,
 func (o *PatchTableRequestDataAttributesSchemaFieldsItems) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetType returns the Type field value.
 func (o *PatchTableRequestDataAttributesSchemaFieldsItems) GetType() ReferenceTableSchemaFieldType {
@@ -86,6 +91,8 @@ func (o *PatchTableRequestDataAttributesSchemaFieldsItems) SetType(v ReferenceTa
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o PatchTableRequestDataAttributesSchemaFieldsItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o PatchTableRequestDataAttributesSchemaFieldsItems) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *PatchTableRequestDataAttributesSchemaFieldsItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name *string                        `json:"name"`
+		Name *string `json:"name"`
 		Type *ReferenceTableSchemaFieldType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *PatchTableRequestDataAttributesSchemaFieldsItems) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "type",  })
 	} else {
 		return err
 	}

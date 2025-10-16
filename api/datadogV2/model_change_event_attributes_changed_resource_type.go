@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ChangeEventAttributesChangedResourceType The type of the changed resource.
 type ChangeEventAttributesChangedResourceType string
 
 // List of ChangeEventAttributesChangedResourceType.
 const (
-	CHANGEEVENTATTRIBUTESCHANGEDRESOURCETYPE_FEATURE_FLAG  ChangeEventAttributesChangedResourceType = "feature_flag"
+	CHANGEEVENTATTRIBUTESCHANGEDRESOURCETYPE_FEATURE_FLAG ChangeEventAttributesChangedResourceType = "feature_flag"
 	CHANGEEVENTATTRIBUTESCHANGEDRESOURCETYPE_CONFIGURATION ChangeEventAttributesChangedResourceType = "configuration"
 )
 

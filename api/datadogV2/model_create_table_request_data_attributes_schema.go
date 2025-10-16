@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateTableRequestDataAttributesSchema The definition of `CreateTableRequestDataAttributesSchema` object.
 type CreateTableRequestDataAttributesSchema struct {
@@ -17,9 +21,10 @@ type CreateTableRequestDataAttributesSchema struct {
 	// List of field names that serve as primary keys for the table. Only one primary key is supported, and it is used as an ID to retrieve rows.
 	PrimaryKeys []string `json:"primary_keys"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateTableRequestDataAttributesSchema instantiates a new CreateTableRequestDataAttributesSchema object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewCreateTableRequestDataAttributesSchemaWithDefaults() *CreateTableRequest
 	this := CreateTableRequestDataAttributesSchema{}
 	return &this
 }
-
 // GetFields returns the Fields field value.
 func (o *CreateTableRequestDataAttributesSchema) GetFields() []CreateTableRequestDataAttributesSchemaFieldsItems {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *CreateTableRequestDataAttributesSchema) GetFieldsOk() (*[]CreateTableRe
 func (o *CreateTableRequestDataAttributesSchema) SetFields(v []CreateTableRequestDataAttributesSchemaFieldsItems) {
 	o.Fields = v
 }
+
 
 // GetPrimaryKeys returns the PrimaryKeys field value.
 func (o *CreateTableRequestDataAttributesSchema) GetPrimaryKeys() []string {
@@ -86,6 +91,8 @@ func (o *CreateTableRequestDataAttributesSchema) SetPrimaryKeys(v []string) {
 	o.PrimaryKeys = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateTableRequestDataAttributesSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o CreateTableRequestDataAttributesSchema) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateTableRequestDataAttributesSchema) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Fields      *[]CreateTableRequestDataAttributesSchemaFieldsItems `json:"fields"`
-		PrimaryKeys *[]string                                            `json:"primary_keys"`
+		Fields *[]CreateTableRequestDataAttributesSchemaFieldsItems `json:"fields"`
+		PrimaryKeys *[]string `json:"primary_keys"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *CreateTableRequestDataAttributesSchema) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"fields", "primary_keys"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "fields", "primary_keys",  })
 	} else {
 		return err
 	}

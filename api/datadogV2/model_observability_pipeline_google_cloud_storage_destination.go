@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineGoogleCloudStorageDestination The `google_cloud_storage` destination stores logs in a Google Cloud Storage (GCS) bucket.
 // It requires a bucket name, GCP authentication, and metadata fields.
@@ -32,9 +36,10 @@ type ObservabilityPipelineGoogleCloudStorageDestination struct {
 	// The destination type. Always `google_cloud_storage`.
 	Type ObservabilityPipelineGoogleCloudStorageDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineGoogleCloudStorageDestination instantiates a new ObservabilityPipelineGoogleCloudStorageDestination object.
 // This constructor will assign default values to properties that have it defined,
@@ -61,7 +66,6 @@ func NewObservabilityPipelineGoogleCloudStorageDestinationWithDefaults() *Observ
 	this.Type = typeVar
 	return &this
 }
-
 // GetAcl returns the Acl field value.
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetAcl() ObservabilityPipelineGoogleCloudStorageDestinationAcl {
 	if o == nil {
@@ -84,6 +88,7 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetAclOk() (*Observ
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetAcl(v ObservabilityPipelineGoogleCloudStorageDestinationAcl) {
 	o.Acl = v
 }
+
 
 // GetAuth returns the Auth field value.
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetAuth() ObservabilityPipelineGcpAuth {
@@ -108,6 +113,7 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetAuth(v Observabi
 	o.Auth = v
 }
 
+
 // GetBucket returns the Bucket field value.
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetBucket() string {
 	if o == nil {
@@ -130,6 +136,7 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetBucketOk() (*str
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetBucket(v string) {
 	o.Bucket = v
 }
+
 
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetId() string {
@@ -154,6 +161,7 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetInputs() []string {
 	if o == nil {
@@ -176,6 +184,7 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetInputsOk() (*[]s
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetKeyPrefix returns the KeyPrefix field value if set, zero value otherwise.
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetKeyPrefix() string {
@@ -205,6 +214,7 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetKeyPrefix(v stri
 	o.KeyPrefix = &v
 }
 
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetMetadata() []ObservabilityPipelineMetadataEntry {
 	if o == nil || o.Metadata == nil {
@@ -233,6 +243,7 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetMetadata(v []Obs
 	o.Metadata = v
 }
 
+
 // GetStorageClass returns the StorageClass field value.
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetStorageClass() ObservabilityPipelineGoogleCloudStorageDestinationStorageClass {
 	if o == nil {
@@ -256,6 +267,7 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetStorageClass(v O
 	o.StorageClass = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetType() ObservabilityPipelineGoogleCloudStorageDestinationType {
 	if o == nil {
@@ -278,6 +290,8 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetTypeOk() (*Obser
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetType(v ObservabilityPipelineGoogleCloudStorageDestinationType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineGoogleCloudStorageDestination) MarshalJSON() ([]byte, error) {
@@ -308,15 +322,15 @@ func (o ObservabilityPipelineGoogleCloudStorageDestination) MarshalJSON() ([]byt
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Acl          *ObservabilityPipelineGoogleCloudStorageDestinationAcl          `json:"acl"`
-		Auth         *ObservabilityPipelineGcpAuth                                   `json:"auth"`
-		Bucket       *string                                                         `json:"bucket"`
-		Id           *string                                                         `json:"id"`
-		Inputs       *[]string                                                       `json:"inputs"`
-		KeyPrefix    *string                                                         `json:"key_prefix,omitempty"`
-		Metadata     []ObservabilityPipelineMetadataEntry                            `json:"metadata,omitempty"`
+		Acl *ObservabilityPipelineGoogleCloudStorageDestinationAcl `json:"acl"`
+		Auth *ObservabilityPipelineGcpAuth `json:"auth"`
+		Bucket *string `json:"bucket"`
+		Id *string `json:"id"`
+		Inputs *[]string `json:"inputs"`
+		KeyPrefix *string `json:"key_prefix,omitempty"`
+		Metadata []ObservabilityPipelineMetadataEntry `json:"metadata,omitempty"`
 		StorageClass *ObservabilityPipelineGoogleCloudStorageDestinationStorageClass `json:"storage_class"`
-		Type         *ObservabilityPipelineGoogleCloudStorageDestinationType         `json:"type"`
+		Type *ObservabilityPipelineGoogleCloudStorageDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -344,7 +358,7 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) UnmarshalJSON(bytes
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"acl", "auth", "bucket", "id", "inputs", "key_prefix", "metadata", "storage_class", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "acl", "auth", "bucket", "id", "inputs", "key_prefix", "metadata", "storage_class", "type",  })
 	} else {
 		return err
 	}

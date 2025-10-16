@@ -2,25 +2,29 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleTypeRead The rule type.
 type SecurityMonitoringRuleTypeRead string
 
 // List of SecurityMonitoringRuleTypeRead.
 const (
-	SECURITYMONITORINGRULETYPEREAD_LOG_DETECTION                SecurityMonitoringRuleTypeRead = "log_detection"
+	SECURITYMONITORINGRULETYPEREAD_LOG_DETECTION SecurityMonitoringRuleTypeRead = "log_detection"
 	SECURITYMONITORINGRULETYPEREAD_INFRASTRUCTURE_CONFIGURATION SecurityMonitoringRuleTypeRead = "infrastructure_configuration"
-	SECURITYMONITORINGRULETYPEREAD_WORKLOAD_SECURITY            SecurityMonitoringRuleTypeRead = "workload_security"
-	SECURITYMONITORINGRULETYPEREAD_CLOUD_CONFIGURATION          SecurityMonitoringRuleTypeRead = "cloud_configuration"
-	SECURITYMONITORINGRULETYPEREAD_APPLICATION_SECURITY         SecurityMonitoringRuleTypeRead = "application_security"
-	SECURITYMONITORINGRULETYPEREAD_API_SECURITY                 SecurityMonitoringRuleTypeRead = "api_security"
+	SECURITYMONITORINGRULETYPEREAD_WORKLOAD_SECURITY SecurityMonitoringRuleTypeRead = "workload_security"
+	SECURITYMONITORINGRULETYPEREAD_CLOUD_CONFIGURATION SecurityMonitoringRuleTypeRead = "cloud_configuration"
+	SECURITYMONITORINGRULETYPEREAD_APPLICATION_SECURITY SecurityMonitoringRuleTypeRead = "application_security"
+	SECURITYMONITORINGRULETYPEREAD_API_SECURITY SecurityMonitoringRuleTypeRead = "api_security"
 )
 
 var allowedSecurityMonitoringRuleTypeReadEnumValues = []SecurityMonitoringRuleTypeRead{

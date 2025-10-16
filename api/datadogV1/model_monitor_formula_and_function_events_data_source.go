@@ -2,28 +2,32 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorFormulaAndFunctionEventsDataSource Data source for event platform-based queries.
 type MonitorFormulaAndFunctionEventsDataSource string
 
 // List of MonitorFormulaAndFunctionEventsDataSource.
 const (
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_RUM              MonitorFormulaAndFunctionEventsDataSource = "rum"
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES     MonitorFormulaAndFunctionEventsDataSource = "ci_pipelines"
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_TESTS         MonitorFormulaAndFunctionEventsDataSource = "ci_tests"
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_AUDIT            MonitorFormulaAndFunctionEventsDataSource = "audit"
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS           MonitorFormulaAndFunctionEventsDataSource = "events"
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS             MonitorFormulaAndFunctionEventsDataSource = "logs"
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_SPANS            MonitorFormulaAndFunctionEventsDataSource = "spans"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_RUM MonitorFormulaAndFunctionEventsDataSource = "rum"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES MonitorFormulaAndFunctionEventsDataSource = "ci_pipelines"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_TESTS MonitorFormulaAndFunctionEventsDataSource = "ci_tests"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_AUDIT MonitorFormulaAndFunctionEventsDataSource = "audit"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS MonitorFormulaAndFunctionEventsDataSource = "events"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS MonitorFormulaAndFunctionEventsDataSource = "logs"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_SPANS MonitorFormulaAndFunctionEventsDataSource = "spans"
 	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_DATABASE_QUERIES MonitorFormulaAndFunctionEventsDataSource = "database_queries"
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_NETWORK          MonitorFormulaAndFunctionEventsDataSource = "network"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_NETWORK MonitorFormulaAndFunctionEventsDataSource = "network"
 )
 
 var allowedMonitorFormulaAndFunctionEventsDataSourceEnumValues = []MonitorFormulaAndFunctionEventsDataSource{

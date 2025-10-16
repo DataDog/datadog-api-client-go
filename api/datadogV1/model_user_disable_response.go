@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UserDisableResponse Array of user disabled for a given organization.
 type UserDisableResponse struct {
 	// Information pertaining to a user disabled for a given organization.
 	Message *string `json:"message,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUserDisableResponse instantiates a new UserDisableResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewUserDisableResponseWithDefaults() *UserDisableResponse {
 	this := UserDisableResponse{}
 	return &this
 }
-
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *UserDisableResponse) GetMessage() string {
 	if o == nil || o.Message == nil {
@@ -62,6 +68,8 @@ func (o *UserDisableResponse) SetMessage(v string) {
 	o.Message = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UserDisableResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *UserDisableResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"message"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "message",  })
 	} else {
 		return err
 	}

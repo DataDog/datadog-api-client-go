@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentTypeRelationships The incident type's resource relationships.
 type IncidentTypeRelationships struct {
@@ -21,9 +27,10 @@ type IncidentTypeRelationships struct {
 	// A reference to a Zoom configuration resource.
 	ZoomConfiguration NullableZoomConfigurationReference `json:"zoom_configuration,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentTypeRelationships instantiates a new IncidentTypeRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewIncidentTypeRelationshipsWithDefaults() *IncidentTypeRelationships {
 	this := IncidentTypeRelationships{}
 	return &this
 }
-
 // GetCreatedByUser returns the CreatedByUser field value if set, zero value otherwise.
 func (o *IncidentTypeRelationships) GetCreatedByUser() RelationshipToUser {
 	if o == nil || o.CreatedByUser == nil {
@@ -70,6 +76,7 @@ func (o *IncidentTypeRelationships) SetCreatedByUser(v RelationshipToUser) {
 	o.CreatedByUser = &v
 }
 
+
 // GetGoogleMeetConfiguration returns the GoogleMeetConfiguration field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentTypeRelationships) GetGoogleMeetConfiguration() GoogleMeetConfigurationReference {
 	if o == nil || o.GoogleMeetConfiguration.Get() == nil {
@@ -83,7 +90,7 @@ func (o *IncidentTypeRelationships) GetGoogleMeetConfiguration() GoogleMeetConfi
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentTypeRelationships) GetGoogleMeetConfigurationOk() (*GoogleMeetConfigurationReference, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.GoogleMeetConfiguration.Get(), o.GoogleMeetConfiguration.IsSet()
@@ -98,7 +105,6 @@ func (o *IncidentTypeRelationships) HasGoogleMeetConfiguration() bool {
 func (o *IncidentTypeRelationships) SetGoogleMeetConfiguration(v GoogleMeetConfigurationReference) {
 	o.GoogleMeetConfiguration.Set(&v)
 }
-
 // SetGoogleMeetConfigurationNil sets the value for GoogleMeetConfiguration to be an explicit nil.
 func (o *IncidentTypeRelationships) SetGoogleMeetConfigurationNil() {
 	o.GoogleMeetConfiguration.Set(nil)
@@ -108,6 +114,7 @@ func (o *IncidentTypeRelationships) SetGoogleMeetConfigurationNil() {
 func (o *IncidentTypeRelationships) UnsetGoogleMeetConfiguration() {
 	o.GoogleMeetConfiguration.Unset()
 }
+
 
 // GetLastModifiedByUser returns the LastModifiedByUser field value if set, zero value otherwise.
 func (o *IncidentTypeRelationships) GetLastModifiedByUser() RelationshipToUser {
@@ -137,6 +144,7 @@ func (o *IncidentTypeRelationships) SetLastModifiedByUser(v RelationshipToUser) 
 	o.LastModifiedByUser = &v
 }
 
+
 // GetMicrosoftTeamsConfiguration returns the MicrosoftTeamsConfiguration field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentTypeRelationships) GetMicrosoftTeamsConfiguration() MicrosoftTeamsConfigurationReference {
 	if o == nil || o.MicrosoftTeamsConfiguration.Get() == nil {
@@ -150,7 +158,7 @@ func (o *IncidentTypeRelationships) GetMicrosoftTeamsConfiguration() MicrosoftTe
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentTypeRelationships) GetMicrosoftTeamsConfigurationOk() (*MicrosoftTeamsConfigurationReference, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.MicrosoftTeamsConfiguration.Get(), o.MicrosoftTeamsConfiguration.IsSet()
@@ -165,7 +173,6 @@ func (o *IncidentTypeRelationships) HasMicrosoftTeamsConfiguration() bool {
 func (o *IncidentTypeRelationships) SetMicrosoftTeamsConfiguration(v MicrosoftTeamsConfigurationReference) {
 	o.MicrosoftTeamsConfiguration.Set(&v)
 }
-
 // SetMicrosoftTeamsConfigurationNil sets the value for MicrosoftTeamsConfiguration to be an explicit nil.
 func (o *IncidentTypeRelationships) SetMicrosoftTeamsConfigurationNil() {
 	o.MicrosoftTeamsConfiguration.Set(nil)
@@ -175,6 +182,7 @@ func (o *IncidentTypeRelationships) SetMicrosoftTeamsConfigurationNil() {
 func (o *IncidentTypeRelationships) UnsetMicrosoftTeamsConfiguration() {
 	o.MicrosoftTeamsConfiguration.Unset()
 }
+
 
 // GetZoomConfiguration returns the ZoomConfiguration field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentTypeRelationships) GetZoomConfiguration() ZoomConfigurationReference {
@@ -189,7 +197,7 @@ func (o *IncidentTypeRelationships) GetZoomConfiguration() ZoomConfigurationRefe
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentTypeRelationships) GetZoomConfigurationOk() (*ZoomConfigurationReference, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ZoomConfiguration.Get(), o.ZoomConfiguration.IsSet()
@@ -204,7 +212,6 @@ func (o *IncidentTypeRelationships) HasZoomConfiguration() bool {
 func (o *IncidentTypeRelationships) SetZoomConfiguration(v ZoomConfigurationReference) {
 	o.ZoomConfiguration.Set(&v)
 }
-
 // SetZoomConfigurationNil sets the value for ZoomConfiguration to be an explicit nil.
 func (o *IncidentTypeRelationships) SetZoomConfigurationNil() {
 	o.ZoomConfiguration.Set(nil)
@@ -214,6 +221,8 @@ func (o *IncidentTypeRelationships) SetZoomConfigurationNil() {
 func (o *IncidentTypeRelationships) UnsetZoomConfiguration() {
 	o.ZoomConfiguration.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentTypeRelationships) MarshalJSON() ([]byte, error) {
@@ -246,29 +255,29 @@ func (o IncidentTypeRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTypeRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedByUser               *RelationshipToUser                          `json:"created_by_user,omitempty"`
-		GoogleMeetConfiguration     NullableGoogleMeetConfigurationReference     `json:"google_meet_configuration,omitempty"`
-		LastModifiedByUser          *RelationshipToUser                          `json:"last_modified_by_user,omitempty"`
+		CreatedByUser *RelationshipToUser `json:"created_by_user,omitempty"`
+		GoogleMeetConfiguration NullableGoogleMeetConfigurationReference `json:"google_meet_configuration,omitempty"`
+		LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
 		MicrosoftTeamsConfiguration NullableMicrosoftTeamsConfigurationReference `json:"microsoft_teams_configuration,omitempty"`
-		ZoomConfiguration           NullableZoomConfigurationReference           `json:"zoom_configuration,omitempty"`
+		ZoomConfiguration NullableZoomConfigurationReference `json:"zoom_configuration,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_by_user", "google_meet_configuration", "last_modified_by_user", "microsoft_teams_configuration", "zoom_configuration"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_by_user", "google_meet_configuration", "last_modified_by_user", "microsoft_teams_configuration", "zoom_configuration",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.CreatedByUser != nil && all.CreatedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CreatedByUser != nil && all.CreatedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CreatedByUser = all.CreatedByUser
 	o.GoogleMeetConfiguration = all.GoogleMeetConfiguration
-	if all.LastModifiedByUser != nil && all.LastModifiedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LastModifiedByUser != nil && all.LastModifiedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LastModifiedByUser = all.LastModifiedByUser

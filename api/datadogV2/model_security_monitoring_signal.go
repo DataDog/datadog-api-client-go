@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringSignal Object description of a security signal.
 type SecurityMonitoringSignal struct {
@@ -18,9 +24,10 @@ type SecurityMonitoringSignal struct {
 	// The type of event.
 	Type *SecurityMonitoringSignalType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringSignal instantiates a new SecurityMonitoringSignal object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +49,6 @@ func NewSecurityMonitoringSignalWithDefaults() *SecurityMonitoringSignal {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignal) GetAttributes() SecurityMonitoringSignalAttributes {
 	if o == nil || o.Attributes == nil {
@@ -70,6 +76,7 @@ func (o *SecurityMonitoringSignal) HasAttributes() bool {
 func (o *SecurityMonitoringSignal) SetAttributes(v SecurityMonitoringSignalAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignal) GetId() string {
@@ -99,6 +106,7 @@ func (o *SecurityMonitoringSignal) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignal) GetType() SecurityMonitoringSignalType {
 	if o == nil || o.Type == nil {
@@ -127,6 +135,8 @@ func (o *SecurityMonitoringSignal) SetType(v SecurityMonitoringSignalType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringSignal) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -153,26 +163,26 @@ func (o SecurityMonitoringSignal) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringSignal) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *SecurityMonitoringSignalAttributes `json:"attributes,omitempty"`
-		Id         *string                             `json:"id,omitempty"`
-		Type       *SecurityMonitoringSignalType       `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *SecurityMonitoringSignalType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

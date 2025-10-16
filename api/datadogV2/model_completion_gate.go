@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CompletionGate Used to create conditions before running subsequent actions.
 type CompletionGate struct {
@@ -17,9 +21,10 @@ type CompletionGate struct {
 	// The definition of `RetryStrategy` object.
 	RetryStrategy RetryStrategy `json:"retryStrategy"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCompletionGate instantiates a new CompletionGate object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewCompletionGateWithDefaults() *CompletionGate {
 	this := CompletionGate{}
 	return &this
 }
-
 // GetCompletionCondition returns the CompletionCondition field value.
 func (o *CompletionGate) GetCompletionCondition() CompletionCondition {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *CompletionGate) GetCompletionConditionOk() (*CompletionCondition, bool)
 func (o *CompletionGate) SetCompletionCondition(v CompletionCondition) {
 	o.CompletionCondition = v
 }
+
 
 // GetRetryStrategy returns the RetryStrategy field value.
 func (o *CompletionGate) GetRetryStrategy() RetryStrategy {
@@ -86,6 +91,8 @@ func (o *CompletionGate) SetRetryStrategy(v RetryStrategy) {
 	o.RetryStrategy = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CompletionGate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o CompletionGate) MarshalJSON() ([]byte, error) {
 func (o *CompletionGate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CompletionCondition *CompletionCondition `json:"completionCondition"`
-		RetryStrategy       *RetryStrategy       `json:"retryStrategy"`
+		RetryStrategy *RetryStrategy `json:"retryStrategy"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *CompletionGate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"completionCondition", "retryStrategy"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "completionCondition", "retryStrategy",  })
 	} else {
 		return err
 	}

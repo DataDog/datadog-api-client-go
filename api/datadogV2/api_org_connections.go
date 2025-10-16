@@ -2,15 +2,19 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"bytes"
 	_context "context"
+	_fmt "fmt"
+	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-	"github.com/google/uuid"
 )
 
 // OrgConnectionsApi service type
@@ -20,10 +24,12 @@ type OrgConnectionsApi datadog.Service
 // Create a new org connection between the current org and a target org.
 func (a *OrgConnectionsApi) CreateOrgConnections(ctx _context.Context, body OrgConnectionCreateRequest) (OrgConnectionResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue OrgConnectionResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  OrgConnectionResponse
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OrgConnectionsApi.CreateOrgConnections")
 	if err != nil {
@@ -38,21 +44,23 @@ func (a *OrgConnectionsApi) CreateOrgConnections(ctx _context.Context, body OrgC
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	if a.Client.Cfg.DelegatedTokenConfig != nil {
-		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-	} else {
-		datadog.SetAuthKeys(
-			ctx,
-			&localVarHeaderParams,
-			[2]string{"apiKeyAuth", "DD-API-KEY"},
-			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-		)
-	}
+		if a.Client.Cfg.DelegatedTokenConfig != nil {
+			err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+		} else {
+        datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	 } 
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -70,10 +78,11 @@ func (a *OrgConnectionsApi) CreateOrgConnections(ctx _context.Context, body OrgC
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 409||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -87,7 +96,7 @@ func (a *OrgConnectionsApi) CreateOrgConnections(ctx _context.Context, body OrgC
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -100,9 +109,11 @@ func (a *OrgConnectionsApi) CreateOrgConnections(ctx _context.Context, body OrgC
 // Delete an existing org connection.
 func (a *OrgConnectionsApi) DeleteOrgConnections(ctx _context.Context, connectionId uuid.UUID) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OrgConnectionsApi.DeleteOrgConnections")
 	if err != nil {
@@ -115,21 +126,22 @@ func (a *OrgConnectionsApi) DeleteOrgConnections(ctx _context.Context, connectio
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "*/*"
+	localVarHeaderParams["Accept"] =  "*/*"
 
-	if a.Client.Cfg.DelegatedTokenConfig != nil {
-		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-		if err != nil {
-			return nil, err
-		}
-	} else {
-		datadog.SetAuthKeys(
-			ctx,
-			&localVarHeaderParams,
-			[2]string{"apiKeyAuth", "DD-API-KEY"},
-			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-		)
-	}
+	
+		if a.Client.Cfg.DelegatedTokenConfig != nil {
+			err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+			if err != nil {
+				return nil, err
+			}
+		} else {
+        datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	 } 
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
@@ -147,10 +159,11 @@ func (a *OrgConnectionsApi) DeleteOrgConnections(ctx _context.Context, connectio
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -166,10 +179,10 @@ func (a *OrgConnectionsApi) DeleteOrgConnections(ctx _context.Context, connectio
 
 // ListOrgConnectionsOptionalParameters holds optional parameters for ListOrgConnections.
 type ListOrgConnectionsOptionalParameters struct {
-	SinkOrgId   *string
+	SinkOrgId *string
 	SourceOrgId *string
-	Limit       *int64
-	Offset      *int64
+	Limit *int64
+	Offset *int64
 }
 
 // NewListOrgConnectionsOptionalParameters creates an empty struct for parameters.
@@ -177,25 +190,21 @@ func NewListOrgConnectionsOptionalParameters() *ListOrgConnectionsOptionalParame
 	this := ListOrgConnectionsOptionalParameters{}
 	return &this
 }
-
 // WithSinkOrgId sets the corresponding parameter name and returns the struct.
 func (r *ListOrgConnectionsOptionalParameters) WithSinkOrgId(sinkOrgId string) *ListOrgConnectionsOptionalParameters {
 	r.SinkOrgId = &sinkOrgId
 	return r
 }
-
 // WithSourceOrgId sets the corresponding parameter name and returns the struct.
 func (r *ListOrgConnectionsOptionalParameters) WithSourceOrgId(sourceOrgId string) *ListOrgConnectionsOptionalParameters {
 	r.SourceOrgId = &sourceOrgId
 	return r
 }
-
 // WithLimit sets the corresponding parameter name and returns the struct.
 func (r *ListOrgConnectionsOptionalParameters) WithLimit(limit int64) *ListOrgConnectionsOptionalParameters {
 	r.Limit = &limit
 	return r
 }
-
 // WithOffset sets the corresponding parameter name and returns the struct.
 func (r *ListOrgConnectionsOptionalParameters) WithOffset(offset int64) *ListOrgConnectionsOptionalParameters {
 	r.Offset = &offset
@@ -206,18 +215,20 @@ func (r *ListOrgConnectionsOptionalParameters) WithOffset(offset int64) *ListOrg
 // Returns a list of org connections.
 func (a *OrgConnectionsApi) ListOrgConnections(ctx _context.Context, o ...ListOrgConnectionsOptionalParameters) (OrgConnectionListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue OrgConnectionListResponse
-		optionalParams      ListOrgConnectionsOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  OrgConnectionListResponse
+		optionalParams ListOrgConnectionsOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListOrgConnectionsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListOrgConnectionsOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OrgConnectionsApi.ListOrgConnections")
 	if err != nil {
@@ -243,19 +254,20 @@ func (a *OrgConnectionsApi) ListOrgConnections(ctx _context.Context, o ...ListOr
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	if a.Client.Cfg.DelegatedTokenConfig != nil {
-		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-	} else {
-		datadog.SetAuthKeys(
-			ctx,
-			&localVarHeaderParams,
-			[2]string{"apiKeyAuth", "DD-API-KEY"},
-			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-		)
-	}
+	
+		if a.Client.Cfg.DelegatedTokenConfig != nil {
+			err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+		} else {
+        datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	 } 
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -273,10 +285,11 @@ func (a *OrgConnectionsApi) ListOrgConnections(ctx _context.Context, o ...ListOr
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -290,7 +303,7 @@ func (a *OrgConnectionsApi) ListOrgConnections(ctx _context.Context, o ...ListOr
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -303,10 +316,12 @@ func (a *OrgConnectionsApi) ListOrgConnections(ctx _context.Context, o ...ListOr
 // Update an existing org connection.
 func (a *OrgConnectionsApi) UpdateOrgConnections(ctx _context.Context, connectionId uuid.UUID, body OrgConnectionUpdateRequest) (OrgConnectionResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPatch
-		localVarPostBody    interface{}
-		localVarReturnValue OrgConnectionResponse
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarReturnValue  OrgConnectionResponse
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OrgConnectionsApi.UpdateOrgConnections")
 	if err != nil {
@@ -322,21 +337,23 @@ func (a *OrgConnectionsApi) UpdateOrgConnections(ctx _context.Context, connectio
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	if a.Client.Cfg.DelegatedTokenConfig != nil {
-		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-	} else {
-		datadog.SetAuthKeys(
-			ctx,
-			&localVarHeaderParams,
-			[2]string{"apiKeyAuth", "DD-API-KEY"},
-			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-		)
-	}
+		if a.Client.Cfg.DelegatedTokenConfig != nil {
+			err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+		} else {
+        datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	 } 
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -354,10 +371,11 @@ func (a *OrgConnectionsApi) UpdateOrgConnections(ctx _context.Context, connectio
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 401||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -371,7 +389,7 @@ func (a *OrgConnectionsApi) UpdateOrgConnections(ctx _context.Context, connectio
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

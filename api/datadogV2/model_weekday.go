@@ -2,26 +2,30 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Weekday A day of the week.
 type Weekday string
 
 // List of Weekday.
 const (
-	WEEKDAY_MONDAY    Weekday = "monday"
-	WEEKDAY_TUESDAY   Weekday = "tuesday"
+	WEEKDAY_MONDAY Weekday = "monday"
+	WEEKDAY_TUESDAY Weekday = "tuesday"
 	WEEKDAY_WEDNESDAY Weekday = "wednesday"
-	WEEKDAY_THURSDAY  Weekday = "thursday"
-	WEEKDAY_FRIDAY    Weekday = "friday"
-	WEEKDAY_SATURDAY  Weekday = "saturday"
-	WEEKDAY_SUNDAY    Weekday = "sunday"
+	WEEKDAY_THURSDAY Weekday = "thursday"
+	WEEKDAY_FRIDAY Weekday = "friday"
+	WEEKDAY_SATURDAY Weekday = "saturday"
+	WEEKDAY_SUNDAY Weekday = "sunday"
 )
 
 var allowedWeekdayEnumValues = []Weekday{

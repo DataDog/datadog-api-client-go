@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ArbitraryRuleResponseDataAttributesStrategy The definition of `ArbitraryRuleResponseDataAttributesStrategy` object.
 type ArbitraryRuleResponseDataAttributesStrategy struct {
@@ -31,9 +35,10 @@ type ArbitraryRuleResponseDataAttributesStrategy struct {
 	// The `strategy` `method`.
 	Method string `json:"method"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewArbitraryRuleResponseDataAttributesStrategy instantiates a new ArbitraryRuleResponseDataAttributesStrategy object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewArbitraryRuleResponseDataAttributesStrategyWithDefaults() *ArbitraryRule
 	this := ArbitraryRuleResponseDataAttributesStrategy{}
 	return &this
 }
-
 // GetAllocatedBy returns the AllocatedBy field value if set, zero value otherwise.
 func (o *ArbitraryRuleResponseDataAttributesStrategy) GetAllocatedBy() []ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems {
 	if o == nil || o.AllocatedBy == nil {
@@ -80,6 +84,7 @@ func (o *ArbitraryRuleResponseDataAttributesStrategy) HasAllocatedBy() bool {
 func (o *ArbitraryRuleResponseDataAttributesStrategy) SetAllocatedBy(v []ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems) {
 	o.AllocatedBy = v
 }
+
 
 // GetAllocatedByFilters returns the AllocatedByFilters field value if set, zero value otherwise.
 func (o *ArbitraryRuleResponseDataAttributesStrategy) GetAllocatedByFilters() []ArbitraryRuleResponseDataAttributesStrategyAllocatedByFiltersItems {
@@ -109,6 +114,7 @@ func (o *ArbitraryRuleResponseDataAttributesStrategy) SetAllocatedByFilters(v []
 	o.AllocatedByFilters = v
 }
 
+
 // GetAllocatedByTagKeys returns the AllocatedByTagKeys field value if set, zero value otherwise.
 func (o *ArbitraryRuleResponseDataAttributesStrategy) GetAllocatedByTagKeys() []string {
 	if o == nil || o.AllocatedByTagKeys == nil {
@@ -136,6 +142,7 @@ func (o *ArbitraryRuleResponseDataAttributesStrategy) HasAllocatedByTagKeys() bo
 func (o *ArbitraryRuleResponseDataAttributesStrategy) SetAllocatedByTagKeys(v []string) {
 	o.AllocatedByTagKeys = v
 }
+
 
 // GetBasedOnCosts returns the BasedOnCosts field value if set, zero value otherwise.
 func (o *ArbitraryRuleResponseDataAttributesStrategy) GetBasedOnCosts() []ArbitraryRuleResponseDataAttributesStrategyBasedOnCostsItems {
@@ -165,6 +172,7 @@ func (o *ArbitraryRuleResponseDataAttributesStrategy) SetBasedOnCosts(v []Arbitr
 	o.BasedOnCosts = v
 }
 
+
 // GetBasedOnTimeseries returns the BasedOnTimeseries field value if set, zero value otherwise.
 func (o *ArbitraryRuleResponseDataAttributesStrategy) GetBasedOnTimeseries() map[string]interface{} {
 	if o == nil || o.BasedOnTimeseries == nil {
@@ -192,6 +200,7 @@ func (o *ArbitraryRuleResponseDataAttributesStrategy) HasBasedOnTimeseries() boo
 func (o *ArbitraryRuleResponseDataAttributesStrategy) SetBasedOnTimeseries(v map[string]interface{}) {
 	o.BasedOnTimeseries = v
 }
+
 
 // GetEvaluateGroupedByFilters returns the EvaluateGroupedByFilters field value if set, zero value otherwise.
 func (o *ArbitraryRuleResponseDataAttributesStrategy) GetEvaluateGroupedByFilters() []ArbitraryRuleResponseDataAttributesStrategyEvaluateGroupedByFiltersItems {
@@ -221,6 +230,7 @@ func (o *ArbitraryRuleResponseDataAttributesStrategy) SetEvaluateGroupedByFilter
 	o.EvaluateGroupedByFilters = v
 }
 
+
 // GetEvaluateGroupedByTagKeys returns the EvaluateGroupedByTagKeys field value if set, zero value otherwise.
 func (o *ArbitraryRuleResponseDataAttributesStrategy) GetEvaluateGroupedByTagKeys() []string {
 	if o == nil || o.EvaluateGroupedByTagKeys == nil {
@@ -248,6 +258,7 @@ func (o *ArbitraryRuleResponseDataAttributesStrategy) HasEvaluateGroupedByTagKey
 func (o *ArbitraryRuleResponseDataAttributesStrategy) SetEvaluateGroupedByTagKeys(v []string) {
 	o.EvaluateGroupedByTagKeys = v
 }
+
 
 // GetGranularity returns the Granularity field value if set, zero value otherwise.
 func (o *ArbitraryRuleResponseDataAttributesStrategy) GetGranularity() string {
@@ -277,6 +288,7 @@ func (o *ArbitraryRuleResponseDataAttributesStrategy) SetGranularity(v string) {
 	o.Granularity = &v
 }
 
+
 // GetMethod returns the Method field value.
 func (o *ArbitraryRuleResponseDataAttributesStrategy) GetMethod() string {
 	if o == nil {
@@ -299,6 +311,8 @@ func (o *ArbitraryRuleResponseDataAttributesStrategy) GetMethodOk() (*string, bo
 func (o *ArbitraryRuleResponseDataAttributesStrategy) SetMethod(v string) {
 	o.Method = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ArbitraryRuleResponseDataAttributesStrategy) MarshalJSON() ([]byte, error) {
@@ -341,15 +355,15 @@ func (o ArbitraryRuleResponseDataAttributesStrategy) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *ArbitraryRuleResponseDataAttributesStrategy) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AllocatedBy              []ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems              `json:"allocated_by,omitempty"`
-		AllocatedByFilters       []ArbitraryRuleResponseDataAttributesStrategyAllocatedByFiltersItems       `json:"allocated_by_filters,omitempty"`
-		AllocatedByTagKeys       []string                                                                   `json:"allocated_by_tag_keys,omitempty"`
-		BasedOnCosts             []ArbitraryRuleResponseDataAttributesStrategyBasedOnCostsItems             `json:"based_on_costs,omitempty"`
-		BasedOnTimeseries        map[string]interface{}                                                     `json:"based_on_timeseries,omitempty"`
+		AllocatedBy []ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems `json:"allocated_by,omitempty"`
+		AllocatedByFilters []ArbitraryRuleResponseDataAttributesStrategyAllocatedByFiltersItems `json:"allocated_by_filters,omitempty"`
+		AllocatedByTagKeys []string `json:"allocated_by_tag_keys,omitempty"`
+		BasedOnCosts []ArbitraryRuleResponseDataAttributesStrategyBasedOnCostsItems `json:"based_on_costs,omitempty"`
+		BasedOnTimeseries map[string]interface{} `json:"based_on_timeseries,omitempty"`
 		EvaluateGroupedByFilters []ArbitraryRuleResponseDataAttributesStrategyEvaluateGroupedByFiltersItems `json:"evaluate_grouped_by_filters,omitempty"`
-		EvaluateGroupedByTagKeys []string                                                                   `json:"evaluate_grouped_by_tag_keys,omitempty"`
-		Granularity              *string                                                                    `json:"granularity,omitempty"`
-		Method                   *string                                                                    `json:"method"`
+		EvaluateGroupedByTagKeys []string `json:"evaluate_grouped_by_tag_keys,omitempty"`
+		Granularity *string `json:"granularity,omitempty"`
+		Method *string `json:"method"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -359,7 +373,7 @@ func (o *ArbitraryRuleResponseDataAttributesStrategy) UnmarshalJSON(bytes []byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allocated_by", "allocated_by_filters", "allocated_by_tag_keys", "based_on_costs", "based_on_timeseries", "evaluate_grouped_by_filters", "evaluate_grouped_by_tag_keys", "granularity", "method"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "allocated_by", "allocated_by_filters", "allocated_by_tag_keys", "based_on_costs", "based_on_timeseries", "evaluate_grouped_by_filters", "evaluate_grouped_by_tag_keys", "granularity", "method",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudConfigurationRegoRule Rule details.
 type CloudConfigurationRegoRule struct {
@@ -17,9 +21,10 @@ type CloudConfigurationRegoRule struct {
 	// List of resource types that will be evaluated upon. Must have at least one element.
 	ResourceTypes []string `json:"resourceTypes"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudConfigurationRegoRule instantiates a new CloudConfigurationRegoRule object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewCloudConfigurationRegoRuleWithDefaults() *CloudConfigurationRegoRule {
 	this := CloudConfigurationRegoRule{}
 	return &this
 }
-
 // GetPolicy returns the Policy field value.
 func (o *CloudConfigurationRegoRule) GetPolicy() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *CloudConfigurationRegoRule) GetPolicyOk() (*string, bool) {
 func (o *CloudConfigurationRegoRule) SetPolicy(v string) {
 	o.Policy = v
 }
+
 
 // GetResourceTypes returns the ResourceTypes field value.
 func (o *CloudConfigurationRegoRule) GetResourceTypes() []string {
@@ -86,6 +91,8 @@ func (o *CloudConfigurationRegoRule) SetResourceTypes(v []string) {
 	o.ResourceTypes = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudConfigurationRegoRule) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o CloudConfigurationRegoRule) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudConfigurationRegoRule) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Policy        *string   `json:"policy"`
+		Policy *string `json:"policy"`
 		ResourceTypes *[]string `json:"resourceTypes"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *CloudConfigurationRegoRule) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"policy", "resourceTypes"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "policy", "resourceTypes",  })
 	} else {
 		return err
 	}

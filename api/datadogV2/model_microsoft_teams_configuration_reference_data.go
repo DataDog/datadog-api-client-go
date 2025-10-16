@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MicrosoftTeamsConfigurationReferenceData The Microsoft Teams configuration relationship data object.
 type MicrosoftTeamsConfigurationReferenceData struct {
@@ -17,9 +21,10 @@ type MicrosoftTeamsConfigurationReferenceData struct {
 	// The type of the Microsoft Teams configuration.
 	Type string `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMicrosoftTeamsConfigurationReferenceData instantiates a new MicrosoftTeamsConfigurationReferenceData object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewMicrosoftTeamsConfigurationReferenceDataWithDefaults() *MicrosoftTeamsCo
 	this := MicrosoftTeamsConfigurationReferenceData{}
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *MicrosoftTeamsConfigurationReferenceData) GetId() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *MicrosoftTeamsConfigurationReferenceData) GetIdOk() (*string, bool) {
 func (o *MicrosoftTeamsConfigurationReferenceData) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *MicrosoftTeamsConfigurationReferenceData) GetType() string {
@@ -86,6 +91,8 @@ func (o *MicrosoftTeamsConfigurationReferenceData) SetType(v string) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MicrosoftTeamsConfigurationReferenceData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o MicrosoftTeamsConfigurationReferenceData) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *MicrosoftTeamsConfigurationReferenceData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string `json:"id"`
+		Id *string `json:"id"`
 		Type *string `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *MicrosoftTeamsConfigurationReferenceData) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}
@@ -131,7 +138,6 @@ func (o *MicrosoftTeamsConfigurationReferenceData) UnmarshalJSON(bytes []byte) (
 
 	return nil
 }
-
 // NullableMicrosoftTeamsConfigurationReferenceData handles when a null is used for MicrosoftTeamsConfigurationReferenceData.
 type NullableMicrosoftTeamsConfigurationReferenceData struct {
 	value *MicrosoftTeamsConfigurationReferenceData

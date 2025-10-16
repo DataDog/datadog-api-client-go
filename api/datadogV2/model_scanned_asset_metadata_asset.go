@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScannedAssetMetadataAsset The asset of a scanned asset metadata.
 type ScannedAssetMetadataAsset struct {
@@ -17,9 +21,10 @@ type ScannedAssetMetadataAsset struct {
 	// The cloud asset type
 	Type CloudAssetType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScannedAssetMetadataAsset instantiates a new ScannedAssetMetadataAsset object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewScannedAssetMetadataAssetWithDefaults() *ScannedAssetMetadataAsset {
 	this := ScannedAssetMetadataAsset{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *ScannedAssetMetadataAsset) GetName() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ScannedAssetMetadataAsset) GetNameOk() (*string, bool) {
 func (o *ScannedAssetMetadataAsset) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ScannedAssetMetadataAsset) GetType() CloudAssetType {
@@ -86,6 +91,8 @@ func (o *ScannedAssetMetadataAsset) SetType(v CloudAssetType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ScannedAssetMetadataAsset) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o ScannedAssetMetadataAsset) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ScannedAssetMetadataAsset) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name *string         `json:"name"`
+		Name *string `json:"name"`
 		Type *CloudAssetType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *ScannedAssetMetadataAsset) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "type",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ItemApiPayloadMetaPage Pagination information for a collection of datastore items.
 type ItemApiPayloadMetaPage struct {
@@ -17,9 +23,10 @@ type ItemApiPayloadMetaPage struct {
 	// The total number of items that match the current filter criteria.
 	TotalFilteredCount *int64 `json:"totalFilteredCount,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewItemApiPayloadMetaPage instantiates a new ItemApiPayloadMetaPage object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewItemApiPayloadMetaPageWithDefaults() *ItemApiPayloadMetaPage {
 	this := ItemApiPayloadMetaPage{}
 	return &this
 }
-
 // GetHasMore returns the HasMore field value if set, zero value otherwise.
 func (o *ItemApiPayloadMetaPage) GetHasMore() bool {
 	if o == nil || o.HasMore == nil {
@@ -65,6 +71,7 @@ func (o *ItemApiPayloadMetaPage) HasHasMore() bool {
 func (o *ItemApiPayloadMetaPage) SetHasMore(v bool) {
 	o.HasMore = &v
 }
+
 
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
 func (o *ItemApiPayloadMetaPage) GetTotalCount() int64 {
@@ -94,6 +101,7 @@ func (o *ItemApiPayloadMetaPage) SetTotalCount(v int64) {
 	o.TotalCount = &v
 }
 
+
 // GetTotalFilteredCount returns the TotalFilteredCount field value if set, zero value otherwise.
 func (o *ItemApiPayloadMetaPage) GetTotalFilteredCount() int64 {
 	if o == nil || o.TotalFilteredCount == nil {
@@ -122,6 +130,8 @@ func (o *ItemApiPayloadMetaPage) SetTotalFilteredCount(v int64) {
 	o.TotalFilteredCount = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ItemApiPayloadMetaPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,8 +157,8 @@ func (o ItemApiPayloadMetaPage) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ItemApiPayloadMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		HasMore            *bool  `json:"hasMore,omitempty"`
-		TotalCount         *int64 `json:"totalCount,omitempty"`
+		HasMore *bool `json:"hasMore,omitempty"`
+		TotalCount *int64 `json:"totalCount,omitempty"`
 		TotalFilteredCount *int64 `json:"totalFilteredCount,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,7 +166,7 @@ func (o *ItemApiPayloadMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"hasMore", "totalCount", "totalFilteredCount"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "hasMore", "totalCount", "totalFilteredCount",  })
 	} else {
 		return err
 	}

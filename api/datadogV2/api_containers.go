@@ -2,10 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"bytes"
 	_context "context"
+	_fmt "fmt"
+	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -18,9 +23,9 @@ type ContainersApi datadog.Service
 // ListContainersOptionalParameters holds optional parameters for ListContainers.
 type ListContainersOptionalParameters struct {
 	FilterTags *string
-	GroupBy    *string
-	Sort       *string
-	PageSize   *int32
+	GroupBy *string
+	Sort *string
+	PageSize *int32
 	PageCursor *string
 }
 
@@ -29,31 +34,26 @@ func NewListContainersOptionalParameters() *ListContainersOptionalParameters {
 	this := ListContainersOptionalParameters{}
 	return &this
 }
-
 // WithFilterTags sets the corresponding parameter name and returns the struct.
 func (r *ListContainersOptionalParameters) WithFilterTags(filterTags string) *ListContainersOptionalParameters {
 	r.FilterTags = &filterTags
 	return r
 }
-
 // WithGroupBy sets the corresponding parameter name and returns the struct.
 func (r *ListContainersOptionalParameters) WithGroupBy(groupBy string) *ListContainersOptionalParameters {
 	r.GroupBy = &groupBy
 	return r
 }
-
 // WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListContainersOptionalParameters) WithSort(sort string) *ListContainersOptionalParameters {
 	r.Sort = &sort
 	return r
 }
-
 // WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListContainersOptionalParameters) WithPageSize(pageSize int32) *ListContainersOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-
 // WithPageCursor sets the corresponding parameter name and returns the struct.
 func (r *ListContainersOptionalParameters) WithPageCursor(pageCursor string) *ListContainersOptionalParameters {
 	r.PageCursor = &pageCursor
@@ -64,18 +64,20 @@ func (r *ListContainersOptionalParameters) WithPageCursor(pageCursor string) *Li
 // Get all containers for your organization.
 func (a *ContainersApi) ListContainers(ctx _context.Context, o ...ListContainersOptionalParameters) (ContainersResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue ContainersResponse
-		optionalParams      ListContainersOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  ContainersResponse
+		optionalParams ListContainersOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListContainersOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListContainersOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ContainersApi.ListContainers")
 	if err != nil {
@@ -104,19 +106,20 @@ func (a *ContainersApi) ListContainers(ctx _context.Context, o ...ListContainers
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	if a.Client.Cfg.DelegatedTokenConfig != nil {
-		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-	} else {
-		datadog.SetAuthKeys(
-			ctx,
-			&localVarHeaderParams,
-			[2]string{"apiKeyAuth", "DD-API-KEY"},
-			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-		)
-	}
+	
+		if a.Client.Cfg.DelegatedTokenConfig != nil {
+			err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+		} else {
+        datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	 } 
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -134,10 +137,11 @@ func (a *ContainersApi) ListContainers(ctx _context.Context, o ...ListContainers
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -151,7 +155,7 @@ func (a *ContainersApi) ListContainers(ctx _context.Context, o ...ListContainers
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -159,7 +163,6 @@ func (a *ContainersApi) ListContainers(ctx _context.Context, o ...ListContainers
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 // ListContainersWithPagination provides a paginated version of ListContainers returning a channel with all items.
 func (a *ContainersApi) ListContainersWithPagination(ctx _context.Context, o ...ListContainersOptionalParameters) (<-chan datadog.PaginationResult[ContainerItem], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -191,8 +194,8 @@ func (a *ContainersApi) ListContainersWithPagination(ctx _context.Context, o ...
 				select {
 				case items <- datadog.PaginationResult[ContainerItem]{Item: item, Error: nil}:
 				case <-ctx.Done():
-					close(items)
-					return
+				close(items)
+				return
 				}
 			}
 			if len(results) < int(pageSize_) {

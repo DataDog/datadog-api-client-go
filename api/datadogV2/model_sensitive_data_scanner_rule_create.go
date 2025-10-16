@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerRuleCreate Data related to the creation of a rule.
 type SensitiveDataScannerRuleCreate struct {
@@ -19,9 +23,10 @@ type SensitiveDataScannerRuleCreate struct {
 	// Sensitive Data Scanner rule type.
 	Type SensitiveDataScannerRuleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerRuleCreate instantiates a new SensitiveDataScannerRuleCreate object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewSensitiveDataScannerRuleCreateWithDefaults() *SensitiveDataScannerRuleCr
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *SensitiveDataScannerRuleCreate) GetAttributes() SensitiveDataScannerRuleAttributes {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *SensitiveDataScannerRuleCreate) GetAttributesOk() (*SensitiveDataScanne
 func (o *SensitiveDataScannerRuleCreate) SetAttributes(v SensitiveDataScannerRuleAttributes) {
 	o.Attributes = v
 }
+
 
 // GetRelationships returns the Relationships field value.
 func (o *SensitiveDataScannerRuleCreate) GetRelationships() SensitiveDataScannerRuleRelationships {
@@ -91,6 +96,7 @@ func (o *SensitiveDataScannerRuleCreate) SetRelationships(v SensitiveDataScanner
 	o.Relationships = v
 }
 
+
 // GetType returns the Type field value.
 func (o *SensitiveDataScannerRuleCreate) GetType() SensitiveDataScannerRuleType {
 	if o == nil {
@@ -114,6 +120,8 @@ func (o *SensitiveDataScannerRuleCreate) SetType(v SensitiveDataScannerRuleType)
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerRuleCreate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -133,9 +141,9 @@ func (o SensitiveDataScannerRuleCreate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerRuleCreate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *SensitiveDataScannerRuleAttributes    `json:"attributes"`
+		Attributes *SensitiveDataScannerRuleAttributes `json:"attributes"`
 		Relationships *SensitiveDataScannerRuleRelationships `json:"relationships"`
-		Type          *SensitiveDataScannerRuleType          `json:"type"`
+		Type *SensitiveDataScannerRuleType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -151,7 +159,7 @@ func (o *SensitiveDataScannerRuleCreate) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "relationships", "type",  })
 	} else {
 		return err
 	}

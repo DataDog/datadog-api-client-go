@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSRegionsIncludeOnly Include only these regions.
 type AWSRegionsIncludeOnly struct {
 	// Include only these regions.
 	IncludeOnly []string `json:"include_only"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSRegionsIncludeOnly instantiates a new AWSRegionsIncludeOnly object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewAWSRegionsIncludeOnlyWithDefaults() *AWSRegionsIncludeOnly {
 	this := AWSRegionsIncludeOnly{}
 	return &this
 }
-
 // GetIncludeOnly returns the IncludeOnly field value.
 func (o *AWSRegionsIncludeOnly) GetIncludeOnly() []string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *AWSRegionsIncludeOnly) GetIncludeOnlyOk() (*[]string, bool) {
 func (o *AWSRegionsIncludeOnly) SetIncludeOnly(v []string) {
 	o.IncludeOnly = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSRegionsIncludeOnly) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *AWSRegionsIncludeOnly) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"include_only"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "include_only",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineOcsfMapperProcessorMappingMapping - Defines a single mapping rule for transforming logs into the OCSF schema.
 type ObservabilityPipelineOcsfMapperProcessorMappingMapping struct {
@@ -30,7 +36,7 @@ func (obj *ObservabilityPipelineOcsfMapperProcessorMappingMapping) UnmarshalJSON
 	if err == nil {
 		if obj.ObservabilityPipelineOcsfMappingLibrary != nil {
 			jsonObservabilityPipelineOcsfMappingLibrary, _ := datadog.Marshal(obj.ObservabilityPipelineOcsfMappingLibrary)
-			if string(jsonObservabilityPipelineOcsfMappingLibrary) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonObservabilityPipelineOcsfMappingLibrary) == "{}" && string(data) != "{}"  { // empty struct
 				obj.ObservabilityPipelineOcsfMappingLibrary = nil
 			} else {
 				match++
@@ -56,6 +62,7 @@ func (obj ObservabilityPipelineOcsfMapperProcessorMappingMapping) MarshalJSON() 
 		return datadog.Marshal(&obj.ObservabilityPipelineOcsfMappingLibrary)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj ObservabilityPipelineOcsfMapperProcessorMappingMapping) MarshalJSON() 
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ObservabilityPipelineOcsfMapperProcessorMappingMapping) GetActualInstance() interface{} {
+func (obj *ObservabilityPipelineOcsfMapperProcessorMappingMapping) GetActualInstance() (interface{}) {
 	if obj.ObservabilityPipelineOcsfMappingLibrary != nil {
 		return obj.ObservabilityPipelineOcsfMappingLibrary
 	}
+
 
 	// all schemas are nil
 	return nil

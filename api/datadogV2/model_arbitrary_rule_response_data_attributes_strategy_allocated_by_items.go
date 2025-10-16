@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems The definition of `ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems` object.
 type ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems struct {
@@ -17,9 +21,10 @@ type ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems struct {
 	// The `items` `percentage`. The numeric value format should be a 32bit float value.
 	Percentage float64 `json:"percentage"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewArbitraryRuleResponseDataAttributesStrategyAllocatedByItems instantiates a new ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewArbitraryRuleResponseDataAttributesStrategyAllocatedByItemsWithDefaults(
 	this := ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems{}
 	return &this
 }
-
 // GetAllocatedTags returns the AllocatedTags field value.
 func (o *ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems) GetAllocatedTags() []ArbitraryRuleResponseDataAttributesStrategyAllocatedByItemsAllocatedTagsItems {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems) GetAllocat
 func (o *ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems) SetAllocatedTags(v []ArbitraryRuleResponseDataAttributesStrategyAllocatedByItemsAllocatedTagsItems) {
 	o.AllocatedTags = v
 }
+
 
 // GetPercentage returns the Percentage field value.
 func (o *ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems) GetPercentage() float64 {
@@ -86,6 +91,8 @@ func (o *ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems) SetPercent
 	o.Percentage = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems) MarshalJSON
 func (o *ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AllocatedTags *[]ArbitraryRuleResponseDataAttributesStrategyAllocatedByItemsAllocatedTagsItems `json:"allocated_tags"`
-		Percentage    *float64                                                                         `json:"percentage"`
+		Percentage *float64 `json:"percentage"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *ArbitraryRuleResponseDataAttributesStrategyAllocatedByItems) UnmarshalJ
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allocated_tags", "percentage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "allocated_tags", "percentage",  })
 	} else {
 		return err
 	}

@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsAPIErrorResponse Response returned by the Logs API when errors occur.
 type LogsAPIErrorResponse struct {
 	// Error returned by the Logs API
 	Error *LogsAPIError `json:"error,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsAPIErrorResponse instantiates a new LogsAPIErrorResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewLogsAPIErrorResponseWithDefaults() *LogsAPIErrorResponse {
 	this := LogsAPIErrorResponse{}
 	return &this
 }
-
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *LogsAPIErrorResponse) GetError() LogsAPIError {
 	if o == nil || o.Error == nil {
@@ -62,6 +68,8 @@ func (o *LogsAPIErrorResponse) SetError(v LogsAPIError) {
 	o.Error = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsAPIErrorResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *LogsAPIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"error"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "error",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Error != nil && all.Error.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Error != nil && all.Error.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Error = all.Error

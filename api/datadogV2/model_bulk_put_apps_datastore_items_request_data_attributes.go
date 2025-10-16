@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // BulkPutAppsDatastoreItemsRequestDataAttributes Configuration for bulk inserting multiple items into a datastore.
 type BulkPutAppsDatastoreItemsRequestDataAttributes struct {
@@ -17,9 +21,10 @@ type BulkPutAppsDatastoreItemsRequestDataAttributes struct {
 	// An array of items to add to the datastore, where each item is a set of key-value pairs representing the item's data. Up to 100 items can be updated in a single request.
 	Values []map[string]interface{} `json:"values"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewBulkPutAppsDatastoreItemsRequestDataAttributes instantiates a new BulkPutAppsDatastoreItemsRequestDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewBulkPutAppsDatastoreItemsRequestDataAttributesWithDefaults() *BulkPutApp
 	this := BulkPutAppsDatastoreItemsRequestDataAttributes{}
 	return &this
 }
-
 // GetConflictMode returns the ConflictMode field value if set, zero value otherwise.
 func (o *BulkPutAppsDatastoreItemsRequestDataAttributes) GetConflictMode() DatastoreItemConflictMode {
 	if o == nil || o.ConflictMode == nil {
@@ -67,6 +71,7 @@ func (o *BulkPutAppsDatastoreItemsRequestDataAttributes) SetConflictMode(v Datas
 	o.ConflictMode = &v
 }
 
+
 // GetValues returns the Values field value.
 func (o *BulkPutAppsDatastoreItemsRequestDataAttributes) GetValues() []map[string]interface{} {
 	if o == nil {
@@ -90,6 +95,8 @@ func (o *BulkPutAppsDatastoreItemsRequestDataAttributes) SetValues(v []map[strin
 	o.Values = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o BulkPutAppsDatastoreItemsRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o BulkPutAppsDatastoreItemsRequestDataAttributes) MarshalJSON() ([]byte, e
 func (o *BulkPutAppsDatastoreItemsRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ConflictMode *DatastoreItemConflictMode `json:"conflict_mode,omitempty"`
-		Values       *[]map[string]interface{}  `json:"values"`
+		Values *[]map[string]interface{} `json:"values"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,13 +128,13 @@ func (o *BulkPutAppsDatastoreItemsRequestDataAttributes) UnmarshalJSON(bytes []b
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"conflict_mode", "values"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "conflict_mode", "values",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.ConflictMode != nil && !all.ConflictMode.IsValid() {
+	if all.ConflictMode != nil &&!all.ConflictMode.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ConflictMode = all.ConflictMode

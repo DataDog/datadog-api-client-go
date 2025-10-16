@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineCrowdStrikeNextGenSiemDestinationEncoding Encoding format for log events.
 type ObservabilityPipelineCrowdStrikeNextGenSiemDestinationEncoding string
 
 // List of ObservabilityPipelineCrowdStrikeNextGenSiemDestinationEncoding.
 const (
-	OBSERVABILITYPIPELINECROWDSTRIKENEXTGENSIEMDESTINATIONENCODING_JSON        ObservabilityPipelineCrowdStrikeNextGenSiemDestinationEncoding = "json"
+	OBSERVABILITYPIPELINECROWDSTRIKENEXTGENSIEMDESTINATIONENCODING_JSON ObservabilityPipelineCrowdStrikeNextGenSiemDestinationEncoding = "json"
 	OBSERVABILITYPIPELINECROWDSTRIKENEXTGENSIEMDESTINATIONENCODING_RAW_MESSAGE ObservabilityPipelineCrowdStrikeNextGenSiemDestinationEncoding = "raw_message"
 )
 

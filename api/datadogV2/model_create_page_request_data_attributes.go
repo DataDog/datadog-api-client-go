@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreatePageRequestDataAttributes Details about the On-Call Page you want to create.
 type CreatePageRequestDataAttributes struct {
@@ -23,9 +27,10 @@ type CreatePageRequestDataAttributes struct {
 	// On-Call Page urgency level.
 	Urgency PageUrgency `json:"urgency"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreatePageRequestDataAttributes instantiates a new CreatePageRequestDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewCreatePageRequestDataAttributesWithDefaults() *CreatePageRequestDataAttr
 	this.Urgency = urgency
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CreatePageRequestDataAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -76,6 +80,7 @@ func (o *CreatePageRequestDataAttributes) HasDescription() bool {
 func (o *CreatePageRequestDataAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *CreatePageRequestDataAttributes) GetTags() []string {
@@ -105,6 +110,7 @@ func (o *CreatePageRequestDataAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTarget returns the Target field value.
 func (o *CreatePageRequestDataAttributes) GetTarget() CreatePageRequestDataAttributesTarget {
 	if o == nil {
@@ -127,6 +133,7 @@ func (o *CreatePageRequestDataAttributes) GetTargetOk() (*CreatePageRequestDataA
 func (o *CreatePageRequestDataAttributes) SetTarget(v CreatePageRequestDataAttributesTarget) {
 	o.Target = v
 }
+
 
 // GetTitle returns the Title field value.
 func (o *CreatePageRequestDataAttributes) GetTitle() string {
@@ -151,6 +158,7 @@ func (o *CreatePageRequestDataAttributes) SetTitle(v string) {
 	o.Title = v
 }
 
+
 // GetUrgency returns the Urgency field value.
 func (o *CreatePageRequestDataAttributes) GetUrgency() PageUrgency {
 	if o == nil {
@@ -173,6 +181,8 @@ func (o *CreatePageRequestDataAttributes) GetUrgencyOk() (*PageUrgency, bool) {
 func (o *CreatePageRequestDataAttributes) SetUrgency(v PageUrgency) {
 	o.Urgency = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CreatePageRequestDataAttributes) MarshalJSON() ([]byte, error) {
@@ -199,11 +209,11 @@ func (o CreatePageRequestDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CreatePageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description *string                                `json:"description,omitempty"`
-		Tags        []string                               `json:"tags,omitempty"`
-		Target      *CreatePageRequestDataAttributesTarget `json:"target"`
-		Title       *string                                `json:"title"`
-		Urgency     *PageUrgency                           `json:"urgency"`
+		Description *string `json:"description,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Target *CreatePageRequestDataAttributesTarget `json:"target"`
+		Title *string `json:"title"`
+		Urgency *PageUrgency `json:"urgency"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -219,7 +229,7 @@ func (o *CreatePageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "tags", "target", "title", "urgency"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "tags", "target", "title", "urgency",  })
 	} else {
 		return err
 	}

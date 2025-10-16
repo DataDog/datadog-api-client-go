@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineAmazonS3Source The `amazon_s3` source ingests logs from an Amazon S3 bucket.
 // It supports AWS authentication and TLS encryption.
@@ -25,9 +29,10 @@ type ObservabilityPipelineAmazonS3Source struct {
 	// The source type. Always `amazon_s3`.
 	Type ObservabilityPipelineAmazonS3SourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineAmazonS3Source instantiates a new ObservabilityPipelineAmazonS3Source object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewObservabilityPipelineAmazonS3SourceWithDefaults() *ObservabilityPipeline
 	this.Type = typeVar
 	return &this
 }
-
 // GetAuth returns the Auth field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonS3Source) GetAuth() ObservabilityPipelineAwsAuth {
 	if o == nil || o.Auth == nil {
@@ -79,6 +83,7 @@ func (o *ObservabilityPipelineAmazonS3Source) SetAuth(v ObservabilityPipelineAws
 	o.Auth = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineAmazonS3Source) GetId() string {
 	if o == nil {
@@ -102,6 +107,7 @@ func (o *ObservabilityPipelineAmazonS3Source) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetRegion returns the Region field value.
 func (o *ObservabilityPipelineAmazonS3Source) GetRegion() string {
 	if o == nil {
@@ -124,6 +130,7 @@ func (o *ObservabilityPipelineAmazonS3Source) GetRegionOk() (*string, bool) {
 func (o *ObservabilityPipelineAmazonS3Source) SetRegion(v string) {
 	o.Region = v
 }
+
 
 // GetTls returns the Tls field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonS3Source) GetTls() ObservabilityPipelineTls {
@@ -153,6 +160,7 @@ func (o *ObservabilityPipelineAmazonS3Source) SetTls(v ObservabilityPipelineTls)
 	o.Tls = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineAmazonS3Source) GetType() ObservabilityPipelineAmazonS3SourceType {
 	if o == nil {
@@ -175,6 +183,8 @@ func (o *ObservabilityPipelineAmazonS3Source) GetTypeOk() (*ObservabilityPipelin
 func (o *ObservabilityPipelineAmazonS3Source) SetType(v ObservabilityPipelineAmazonS3SourceType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineAmazonS3Source) MarshalJSON() ([]byte, error) {
@@ -201,11 +211,11 @@ func (o ObservabilityPipelineAmazonS3Source) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineAmazonS3Source) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Auth   *ObservabilityPipelineAwsAuth            `json:"auth,omitempty"`
-		Id     *string                                  `json:"id"`
-		Region *string                                  `json:"region"`
-		Tls    *ObservabilityPipelineTls                `json:"tls,omitempty"`
-		Type   *ObservabilityPipelineAmazonS3SourceType `json:"type"`
+		Auth *ObservabilityPipelineAwsAuth `json:"auth,omitempty"`
+		Id *string `json:"id"`
+		Region *string `json:"region"`
+		Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
+		Type *ObservabilityPipelineAmazonS3SourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -221,19 +231,19 @@ func (o *ObservabilityPipelineAmazonS3Source) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "id", "region", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "auth", "id", "region", "tls", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Auth != nil && all.Auth.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Auth != nil && all.Auth.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Auth = all.Auth
 	o.Id = *all.Id
 	o.Region = *all.Region
-	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tls = all.Tls

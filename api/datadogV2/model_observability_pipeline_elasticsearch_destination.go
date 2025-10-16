@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineElasticsearchDestination The `elasticsearch` destination writes logs to an Elasticsearch cluster.
 type ObservabilityPipelineElasticsearchDestination struct {
@@ -23,9 +27,10 @@ type ObservabilityPipelineElasticsearchDestination struct {
 	// The destination type. The value should always be `elasticsearch`.
 	Type ObservabilityPipelineElasticsearchDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineElasticsearchDestination instantiates a new ObservabilityPipelineElasticsearchDestination object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewObservabilityPipelineElasticsearchDestinationWithDefaults() *Observabili
 	this.Type = typeVar
 	return &this
 }
-
 // GetApiVersion returns the ApiVersion field value if set, zero value otherwise.
 func (o *ObservabilityPipelineElasticsearchDestination) GetApiVersion() ObservabilityPipelineElasticsearchDestinationApiVersion {
 	if o == nil || o.ApiVersion == nil {
@@ -76,6 +80,7 @@ func (o *ObservabilityPipelineElasticsearchDestination) HasApiVersion() bool {
 func (o *ObservabilityPipelineElasticsearchDestination) SetApiVersion(v ObservabilityPipelineElasticsearchDestinationApiVersion) {
 	o.ApiVersion = &v
 }
+
 
 // GetBulkIndex returns the BulkIndex field value if set, zero value otherwise.
 func (o *ObservabilityPipelineElasticsearchDestination) GetBulkIndex() string {
@@ -105,6 +110,7 @@ func (o *ObservabilityPipelineElasticsearchDestination) SetBulkIndex(v string) {
 	o.BulkIndex = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineElasticsearchDestination) GetId() string {
 	if o == nil {
@@ -127,6 +133,7 @@ func (o *ObservabilityPipelineElasticsearchDestination) GetIdOk() (*string, bool
 func (o *ObservabilityPipelineElasticsearchDestination) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineElasticsearchDestination) GetInputs() []string {
@@ -151,6 +158,7 @@ func (o *ObservabilityPipelineElasticsearchDestination) SetInputs(v []string) {
 	o.Inputs = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineElasticsearchDestination) GetType() ObservabilityPipelineElasticsearchDestinationType {
 	if o == nil {
@@ -173,6 +181,8 @@ func (o *ObservabilityPipelineElasticsearchDestination) GetTypeOk() (*Observabil
 func (o *ObservabilityPipelineElasticsearchDestination) SetType(v ObservabilityPipelineElasticsearchDestinationType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineElasticsearchDestination) MarshalJSON() ([]byte, error) {
@@ -200,10 +210,10 @@ func (o ObservabilityPipelineElasticsearchDestination) MarshalJSON() ([]byte, er
 func (o *ObservabilityPipelineElasticsearchDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ApiVersion *ObservabilityPipelineElasticsearchDestinationApiVersion `json:"api_version,omitempty"`
-		BulkIndex  *string                                                  `json:"bulk_index,omitempty"`
-		Id         *string                                                  `json:"id"`
-		Inputs     *[]string                                                `json:"inputs"`
-		Type       *ObservabilityPipelineElasticsearchDestinationType       `json:"type"`
+		BulkIndex *string `json:"bulk_index,omitempty"`
+		Id *string `json:"id"`
+		Inputs *[]string `json:"inputs"`
+		Type *ObservabilityPipelineElasticsearchDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -219,13 +229,13 @@ func (o *ObservabilityPipelineElasticsearchDestination) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_version", "bulk_index", "id", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_version", "bulk_index", "id", "inputs", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.ApiVersion != nil && !all.ApiVersion.IsValid() {
+	if all.ApiVersion != nil &&!all.ApiVersion.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ApiVersion = all.ApiVersion

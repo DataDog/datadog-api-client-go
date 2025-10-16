@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GcpScanOptionsInputUpdateDataAttributes Attributes for updating GCP scan options configuration.
 type GcpScanOptionsInputUpdateDataAttributes struct {
@@ -15,9 +21,10 @@ type GcpScanOptionsInputUpdateDataAttributes struct {
 	// Indicates if scanning for vulnerabilities in hosts is enabled.
 	VulnHostOs *bool `json:"vuln_host_os,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGcpScanOptionsInputUpdateDataAttributes instantiates a new GcpScanOptionsInputUpdateDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewGcpScanOptionsInputUpdateDataAttributesWithDefaults() *GcpScanOptionsInp
 	this := GcpScanOptionsInputUpdateDataAttributes{}
 	return &this
 }
-
 // GetVulnContainersOs returns the VulnContainersOs field value if set, zero value otherwise.
 func (o *GcpScanOptionsInputUpdateDataAttributes) GetVulnContainersOs() bool {
 	if o == nil || o.VulnContainersOs == nil {
@@ -63,6 +69,7 @@ func (o *GcpScanOptionsInputUpdateDataAttributes) HasVulnContainersOs() bool {
 func (o *GcpScanOptionsInputUpdateDataAttributes) SetVulnContainersOs(v bool) {
 	o.VulnContainersOs = &v
 }
+
 
 // GetVulnHostOs returns the VulnHostOs field value if set, zero value otherwise.
 func (o *GcpScanOptionsInputUpdateDataAttributes) GetVulnHostOs() bool {
@@ -92,6 +99,8 @@ func (o *GcpScanOptionsInputUpdateDataAttributes) SetVulnHostOs(v bool) {
 	o.VulnHostOs = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o GcpScanOptionsInputUpdateDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o GcpScanOptionsInputUpdateDataAttributes) MarshalJSON() ([]byte, error) {
 func (o *GcpScanOptionsInputUpdateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		VulnContainersOs *bool `json:"vuln_containers_os,omitempty"`
-		VulnHostOs       *bool `json:"vuln_host_os,omitempty"`
+		VulnHostOs *bool `json:"vuln_host_os,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"vuln_containers_os", "vuln_host_os"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "vuln_containers_os", "vuln_host_os",  })
 	} else {
 		return err
 	}

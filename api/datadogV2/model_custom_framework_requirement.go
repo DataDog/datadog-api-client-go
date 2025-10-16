@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomFrameworkRequirement Framework Requirement.
 type CustomFrameworkRequirement struct {
@@ -17,9 +21,10 @@ type CustomFrameworkRequirement struct {
 	// Requirement Name.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomFrameworkRequirement instantiates a new CustomFrameworkRequirement object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewCustomFrameworkRequirementWithDefaults() *CustomFrameworkRequirement {
 	this := CustomFrameworkRequirement{}
 	return &this
 }
-
 // GetControls returns the Controls field value.
 func (o *CustomFrameworkRequirement) GetControls() []CustomFrameworkControl {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *CustomFrameworkRequirement) GetControlsOk() (*[]CustomFrameworkControl,
 func (o *CustomFrameworkRequirement) SetControls(v []CustomFrameworkControl) {
 	o.Controls = v
 }
+
 
 // GetName returns the Name field value.
 func (o *CustomFrameworkRequirement) GetName() string {
@@ -86,6 +91,8 @@ func (o *CustomFrameworkRequirement) SetName(v string) {
 	o.Name = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomFrameworkRequirement) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o CustomFrameworkRequirement) MarshalJSON() ([]byte, error) {
 func (o *CustomFrameworkRequirement) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Controls *[]CustomFrameworkControl `json:"controls"`
-		Name     *string                   `json:"name"`
+		Name *string `json:"name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *CustomFrameworkRequirement) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"controls", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "controls", "name",  })
 	} else {
 		return err
 	}

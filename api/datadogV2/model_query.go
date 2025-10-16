@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Query - A data query used by an app. This can take the form of an external action, a data transformation, or a state variable.
 type Query struct {
-	ActionQuery   *ActionQuery
+	ActionQuery *ActionQuery
 	DataTransform *DataTransform
 	StateVariable *StateVariable
 
@@ -104,13 +110,16 @@ func (obj Query) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.ActionQuery)
 	}
 
+
 	if obj.DataTransform != nil {
 		return datadog.Marshal(&obj.DataTransform)
 	}
 
+
 	if obj.StateVariable != nil {
 		return datadog.Marshal(&obj.StateVariable)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj Query) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *Query) GetActualInstance() interface{} {
+func (obj *Query) GetActualInstance() (interface{}) {
 	if obj.ActionQuery != nil {
 		return obj.ActionQuery
 	}
+
 
 	if obj.DataTransform != nil {
 		return obj.DataTransform
 	}
 
+
 	if obj.StateVariable != nil {
 		return obj.StateVariable
 	}
+
 
 	// all schemas are nil
 	return nil

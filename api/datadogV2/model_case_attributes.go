@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CaseAttributes Case resource attributes
 type CaseAttributes struct {
@@ -39,9 +43,10 @@ type CaseAttributes struct {
 	// Case type
 	Type *CaseType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCaseAttributes instantiates a new CaseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -63,7 +68,6 @@ func NewCaseAttributesWithDefaults() *CaseAttributes {
 	this.Priority = &priority
 	return &this
 }
-
 // GetArchivedAt returns the ArchivedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CaseAttributes) GetArchivedAt() time.Time {
 	if o == nil || o.ArchivedAt.Get() == nil {
@@ -77,7 +81,7 @@ func (o *CaseAttributes) GetArchivedAt() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CaseAttributes) GetArchivedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ArchivedAt.Get(), o.ArchivedAt.IsSet()
@@ -92,7 +96,6 @@ func (o *CaseAttributes) HasArchivedAt() bool {
 func (o *CaseAttributes) SetArchivedAt(v time.Time) {
 	o.ArchivedAt.Set(&v)
 }
-
 // SetArchivedAtNil sets the value for ArchivedAt to be an explicit nil.
 func (o *CaseAttributes) SetArchivedAtNil() {
 	o.ArchivedAt.Set(nil)
@@ -102,6 +105,7 @@ func (o *CaseAttributes) SetArchivedAtNil() {
 func (o *CaseAttributes) UnsetArchivedAt() {
 	o.ArchivedAt.Unset()
 }
+
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *CaseAttributes) GetAttributes() map[string][]string {
@@ -131,6 +135,7 @@ func (o *CaseAttributes) SetAttributes(v map[string][]string) {
 	o.Attributes = v
 }
 
+
 // GetClosedAt returns the ClosedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CaseAttributes) GetClosedAt() time.Time {
 	if o == nil || o.ClosedAt.Get() == nil {
@@ -144,7 +149,7 @@ func (o *CaseAttributes) GetClosedAt() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CaseAttributes) GetClosedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ClosedAt.Get(), o.ClosedAt.IsSet()
@@ -159,7 +164,6 @@ func (o *CaseAttributes) HasClosedAt() bool {
 func (o *CaseAttributes) SetClosedAt(v time.Time) {
 	o.ClosedAt.Set(&v)
 }
-
 // SetClosedAtNil sets the value for ClosedAt to be an explicit nil.
 func (o *CaseAttributes) SetClosedAtNil() {
 	o.ClosedAt.Set(nil)
@@ -169,6 +173,7 @@ func (o *CaseAttributes) SetClosedAtNil() {
 func (o *CaseAttributes) UnsetClosedAt() {
 	o.ClosedAt.Unset()
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *CaseAttributes) GetCreatedAt() time.Time {
@@ -198,6 +203,7 @@ func (o *CaseAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CaseAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -226,6 +232,7 @@ func (o *CaseAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetJiraIssue returns the JiraIssue field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CaseAttributes) GetJiraIssue() JiraIssue {
 	if o == nil || o.JiraIssue.Get() == nil {
@@ -239,7 +246,7 @@ func (o *CaseAttributes) GetJiraIssue() JiraIssue {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CaseAttributes) GetJiraIssueOk() (*JiraIssue, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.JiraIssue.Get(), o.JiraIssue.IsSet()
@@ -254,7 +261,6 @@ func (o *CaseAttributes) HasJiraIssue() bool {
 func (o *CaseAttributes) SetJiraIssue(v JiraIssue) {
 	o.JiraIssue.Set(&v)
 }
-
 // SetJiraIssueNil sets the value for JiraIssue to be an explicit nil.
 func (o *CaseAttributes) SetJiraIssueNil() {
 	o.JiraIssue.Set(nil)
@@ -264,6 +270,7 @@ func (o *CaseAttributes) SetJiraIssueNil() {
 func (o *CaseAttributes) UnsetJiraIssue() {
 	o.JiraIssue.Unset()
 }
+
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *CaseAttributes) GetKey() string {
@@ -293,6 +300,7 @@ func (o *CaseAttributes) SetKey(v string) {
 	o.Key = &v
 }
 
+
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CaseAttributes) GetModifiedAt() time.Time {
 	if o == nil || o.ModifiedAt.Get() == nil {
@@ -306,7 +314,7 @@ func (o *CaseAttributes) GetModifiedAt() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CaseAttributes) GetModifiedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ModifiedAt.Get(), o.ModifiedAt.IsSet()
@@ -321,7 +329,6 @@ func (o *CaseAttributes) HasModifiedAt() bool {
 func (o *CaseAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt.Set(&v)
 }
-
 // SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil.
 func (o *CaseAttributes) SetModifiedAtNil() {
 	o.ModifiedAt.Set(nil)
@@ -331,6 +338,7 @@ func (o *CaseAttributes) SetModifiedAtNil() {
 func (o *CaseAttributes) UnsetModifiedAt() {
 	o.ModifiedAt.Unset()
 }
+
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
 func (o *CaseAttributes) GetPriority() CasePriority {
@@ -360,6 +368,7 @@ func (o *CaseAttributes) SetPriority(v CasePriority) {
 	o.Priority = &v
 }
 
+
 // GetServiceNowTicket returns the ServiceNowTicket field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CaseAttributes) GetServiceNowTicket() ServiceNowTicket {
 	if o == nil || o.ServiceNowTicket.Get() == nil {
@@ -373,7 +382,7 @@ func (o *CaseAttributes) GetServiceNowTicket() ServiceNowTicket {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CaseAttributes) GetServiceNowTicketOk() (*ServiceNowTicket, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ServiceNowTicket.Get(), o.ServiceNowTicket.IsSet()
@@ -388,7 +397,6 @@ func (o *CaseAttributes) HasServiceNowTicket() bool {
 func (o *CaseAttributes) SetServiceNowTicket(v ServiceNowTicket) {
 	o.ServiceNowTicket.Set(&v)
 }
-
 // SetServiceNowTicketNil sets the value for ServiceNowTicket to be an explicit nil.
 func (o *CaseAttributes) SetServiceNowTicketNil() {
 	o.ServiceNowTicket.Set(nil)
@@ -398,6 +406,7 @@ func (o *CaseAttributes) SetServiceNowTicketNil() {
 func (o *CaseAttributes) UnsetServiceNowTicket() {
 	o.ServiceNowTicket.Unset()
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *CaseAttributes) GetStatus() CaseStatus {
@@ -427,6 +436,7 @@ func (o *CaseAttributes) SetStatus(v CaseStatus) {
 	o.Status = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *CaseAttributes) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -455,6 +465,7 @@ func (o *CaseAttributes) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CaseAttributes) GetType() CaseType {
 	if o == nil || o.Type == nil {
@@ -482,6 +493,8 @@ func (o *CaseAttributes) HasType() bool {
 func (o *CaseAttributes) SetType(v CaseType) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CaseAttributes) MarshalJSON() ([]byte, error) {
@@ -542,26 +555,26 @@ func (o CaseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CaseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ArchivedAt       datadog.NullableTime     `json:"archived_at,omitempty"`
-		Attributes       map[string][]string      `json:"attributes,omitempty"`
-		ClosedAt         datadog.NullableTime     `json:"closed_at,omitempty"`
-		CreatedAt        *time.Time               `json:"created_at,omitempty"`
-		Description      *string                  `json:"description,omitempty"`
-		JiraIssue        NullableJiraIssue        `json:"jira_issue,omitempty"`
-		Key              *string                  `json:"key,omitempty"`
-		ModifiedAt       datadog.NullableTime     `json:"modified_at,omitempty"`
-		Priority         *CasePriority            `json:"priority,omitempty"`
+		ArchivedAt datadog.NullableTime `json:"archived_at,omitempty"`
+		Attributes map[string][]string `json:"attributes,omitempty"`
+		ClosedAt datadog.NullableTime `json:"closed_at,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		Description *string `json:"description,omitempty"`
+		JiraIssue NullableJiraIssue `json:"jira_issue,omitempty"`
+		Key *string `json:"key,omitempty"`
+		ModifiedAt datadog.NullableTime `json:"modified_at,omitempty"`
+		Priority *CasePriority `json:"priority,omitempty"`
 		ServiceNowTicket NullableServiceNowTicket `json:"service_now_ticket,omitempty"`
-		Status           *CaseStatus              `json:"status,omitempty"`
-		Title            *string                  `json:"title,omitempty"`
-		Type             *CaseType                `json:"type,omitempty"`
+		Status *CaseStatus `json:"status,omitempty"`
+		Title *string `json:"title,omitempty"`
+		Type *CaseType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "attributes", "closed_at", "created_at", "description", "jira_issue", "key", "modified_at", "priority", "service_now_ticket", "status", "title", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "archived_at", "attributes", "closed_at", "created_at", "description", "jira_issue", "key", "modified_at", "priority", "service_now_ticket", "status", "title", "type",  })
 	} else {
 		return err
 	}
@@ -575,19 +588,19 @@ func (o *CaseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.JiraIssue = all.JiraIssue
 	o.Key = all.Key
 	o.ModifiedAt = all.ModifiedAt
-	if all.Priority != nil && !all.Priority.IsValid() {
+	if all.Priority != nil &&!all.Priority.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Priority = all.Priority
 	}
 	o.ServiceNowTicket = all.ServiceNowTicket
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status
 	}
 	o.Title = all.Title
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

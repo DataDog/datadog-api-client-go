@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssuesSearchResponse Search issues response payload.
 type IssuesSearchResponse struct {
@@ -15,9 +21,10 @@ type IssuesSearchResponse struct {
 	// Array of resources related to the search results.
 	Included []IssuesSearchResultIncluded `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssuesSearchResponse instantiates a new IssuesSearchResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewIssuesSearchResponseWithDefaults() *IssuesSearchResponse {
 	this := IssuesSearchResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *IssuesSearchResponse) GetData() []IssuesSearchResult {
 	if o == nil || o.Data == nil {
@@ -63,6 +69,7 @@ func (o *IssuesSearchResponse) HasData() bool {
 func (o *IssuesSearchResponse) SetData(v []IssuesSearchResult) {
 	o.Data = v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *IssuesSearchResponse) GetIncluded() []IssuesSearchResultIncluded {
@@ -92,6 +99,8 @@ func (o *IssuesSearchResponse) SetIncluded(v []IssuesSearchResultIncluded) {
 	o.Included = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IssuesSearchResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o IssuesSearchResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IssuesSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     []IssuesSearchResult         `json:"data,omitempty"`
+		Data []IssuesSearchResult `json:"data,omitempty"`
 		Included []IssuesSearchResultIncluded `json:"included,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *IssuesSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "included",  })
 	} else {
 		return err
 	}

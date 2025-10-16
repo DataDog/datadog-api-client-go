@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentSearchResponseFacetsData Facet data for incidents returned by a search query.
 type IncidentSearchResponseFacetsData struct {
@@ -33,9 +39,10 @@ type IncidentSearchResponseFacetsData struct {
 	// Facet data for incident time to resolve metrics.
 	TimeToResolve []IncidentSearchResponseNumericFacetData `json:"time_to_resolve,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentSearchResponseFacetsData instantiates a new IncidentSearchResponseFacetsData object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +60,6 @@ func NewIncidentSearchResponseFacetsDataWithDefaults() *IncidentSearchResponseFa
 	this := IncidentSearchResponseFacetsData{}
 	return &this
 }
-
 // GetCommander returns the Commander field value if set, zero value otherwise.
 func (o *IncidentSearchResponseFacetsData) GetCommander() []IncidentSearchResponseUserFacetData {
 	if o == nil || o.Commander == nil {
@@ -81,6 +87,7 @@ func (o *IncidentSearchResponseFacetsData) HasCommander() bool {
 func (o *IncidentSearchResponseFacetsData) SetCommander(v []IncidentSearchResponseUserFacetData) {
 	o.Commander = v
 }
+
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *IncidentSearchResponseFacetsData) GetCreatedBy() []IncidentSearchResponseUserFacetData {
@@ -110,6 +117,7 @@ func (o *IncidentSearchResponseFacetsData) SetCreatedBy(v []IncidentSearchRespon
 	o.CreatedBy = v
 }
 
+
 // GetFields returns the Fields field value if set, zero value otherwise.
 func (o *IncidentSearchResponseFacetsData) GetFields() []IncidentSearchResponsePropertyFieldFacetData {
 	if o == nil || o.Fields == nil {
@@ -137,6 +145,7 @@ func (o *IncidentSearchResponseFacetsData) HasFields() bool {
 func (o *IncidentSearchResponseFacetsData) SetFields(v []IncidentSearchResponsePropertyFieldFacetData) {
 	o.Fields = v
 }
+
 
 // GetImpact returns the Impact field value if set, zero value otherwise.
 func (o *IncidentSearchResponseFacetsData) GetImpact() []IncidentSearchResponseFieldFacetData {
@@ -166,6 +175,7 @@ func (o *IncidentSearchResponseFacetsData) SetImpact(v []IncidentSearchResponseF
 	o.Impact = v
 }
 
+
 // GetLastModifiedBy returns the LastModifiedBy field value if set, zero value otherwise.
 func (o *IncidentSearchResponseFacetsData) GetLastModifiedBy() []IncidentSearchResponseUserFacetData {
 	if o == nil || o.LastModifiedBy == nil {
@@ -193,6 +203,7 @@ func (o *IncidentSearchResponseFacetsData) HasLastModifiedBy() bool {
 func (o *IncidentSearchResponseFacetsData) SetLastModifiedBy(v []IncidentSearchResponseUserFacetData) {
 	o.LastModifiedBy = v
 }
+
 
 // GetPostmortem returns the Postmortem field value if set, zero value otherwise.
 func (o *IncidentSearchResponseFacetsData) GetPostmortem() []IncidentSearchResponseFieldFacetData {
@@ -222,6 +233,7 @@ func (o *IncidentSearchResponseFacetsData) SetPostmortem(v []IncidentSearchRespo
 	o.Postmortem = v
 }
 
+
 // GetResponder returns the Responder field value if set, zero value otherwise.
 func (o *IncidentSearchResponseFacetsData) GetResponder() []IncidentSearchResponseUserFacetData {
 	if o == nil || o.Responder == nil {
@@ -249,6 +261,7 @@ func (o *IncidentSearchResponseFacetsData) HasResponder() bool {
 func (o *IncidentSearchResponseFacetsData) SetResponder(v []IncidentSearchResponseUserFacetData) {
 	o.Responder = v
 }
+
 
 // GetSeverity returns the Severity field value if set, zero value otherwise.
 func (o *IncidentSearchResponseFacetsData) GetSeverity() []IncidentSearchResponseFieldFacetData {
@@ -278,6 +291,7 @@ func (o *IncidentSearchResponseFacetsData) SetSeverity(v []IncidentSearchRespons
 	o.Severity = v
 }
 
+
 // GetState returns the State field value if set, zero value otherwise.
 func (o *IncidentSearchResponseFacetsData) GetState() []IncidentSearchResponseFieldFacetData {
 	if o == nil || o.State == nil {
@@ -305,6 +319,7 @@ func (o *IncidentSearchResponseFacetsData) HasState() bool {
 func (o *IncidentSearchResponseFacetsData) SetState(v []IncidentSearchResponseFieldFacetData) {
 	o.State = v
 }
+
 
 // GetTimeToRepair returns the TimeToRepair field value if set, zero value otherwise.
 func (o *IncidentSearchResponseFacetsData) GetTimeToRepair() []IncidentSearchResponseNumericFacetData {
@@ -334,6 +349,7 @@ func (o *IncidentSearchResponseFacetsData) SetTimeToRepair(v []IncidentSearchRes
 	o.TimeToRepair = v
 }
 
+
 // GetTimeToResolve returns the TimeToResolve field value if set, zero value otherwise.
 func (o *IncidentSearchResponseFacetsData) GetTimeToResolve() []IncidentSearchResponseNumericFacetData {
 	if o == nil || o.TimeToResolve == nil {
@@ -361,6 +377,8 @@ func (o *IncidentSearchResponseFacetsData) HasTimeToResolve() bool {
 func (o *IncidentSearchResponseFacetsData) SetTimeToResolve(v []IncidentSearchResponseNumericFacetData) {
 	o.TimeToResolve = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentSearchResponseFacetsData) MarshalJSON() ([]byte, error) {
@@ -411,24 +429,24 @@ func (o IncidentSearchResponseFacetsData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentSearchResponseFacetsData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Commander      []IncidentSearchResponseUserFacetData          `json:"commander,omitempty"`
-		CreatedBy      []IncidentSearchResponseUserFacetData          `json:"created_by,omitempty"`
-		Fields         []IncidentSearchResponsePropertyFieldFacetData `json:"fields,omitempty"`
-		Impact         []IncidentSearchResponseFieldFacetData         `json:"impact,omitempty"`
-		LastModifiedBy []IncidentSearchResponseUserFacetData          `json:"last_modified_by,omitempty"`
-		Postmortem     []IncidentSearchResponseFieldFacetData         `json:"postmortem,omitempty"`
-		Responder      []IncidentSearchResponseUserFacetData          `json:"responder,omitempty"`
-		Severity       []IncidentSearchResponseFieldFacetData         `json:"severity,omitempty"`
-		State          []IncidentSearchResponseFieldFacetData         `json:"state,omitempty"`
-		TimeToRepair   []IncidentSearchResponseNumericFacetData       `json:"time_to_repair,omitempty"`
-		TimeToResolve  []IncidentSearchResponseNumericFacetData       `json:"time_to_resolve,omitempty"`
+		Commander []IncidentSearchResponseUserFacetData `json:"commander,omitempty"`
+		CreatedBy []IncidentSearchResponseUserFacetData `json:"created_by,omitempty"`
+		Fields []IncidentSearchResponsePropertyFieldFacetData `json:"fields,omitempty"`
+		Impact []IncidentSearchResponseFieldFacetData `json:"impact,omitempty"`
+		LastModifiedBy []IncidentSearchResponseUserFacetData `json:"last_modified_by,omitempty"`
+		Postmortem []IncidentSearchResponseFieldFacetData `json:"postmortem,omitempty"`
+		Responder []IncidentSearchResponseUserFacetData `json:"responder,omitempty"`
+		Severity []IncidentSearchResponseFieldFacetData `json:"severity,omitempty"`
+		State []IncidentSearchResponseFieldFacetData `json:"state,omitempty"`
+		TimeToRepair []IncidentSearchResponseNumericFacetData `json:"time_to_repair,omitempty"`
+		TimeToResolve []IncidentSearchResponseNumericFacetData `json:"time_to_resolve,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"commander", "created_by", "fields", "impact", "last_modified_by", "postmortem", "responder", "severity", "state", "time_to_repair", "time_to_resolve"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "commander", "created_by", "fields", "impact", "last_modified_by", "postmortem", "responder", "severity", "state", "time_to_repair", "time_to_resolve",  })
 	} else {
 		return err
 	}

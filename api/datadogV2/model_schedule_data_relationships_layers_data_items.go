@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScheduleDataRelationshipsLayersDataItems Relates a layer to this schedule, identified by `id` and `type` (must be `layers`).
 type ScheduleDataRelationshipsLayersDataItems struct {
@@ -17,9 +21,10 @@ type ScheduleDataRelationshipsLayersDataItems struct {
 	// Layers resource type.
 	Type ScheduleDataRelationshipsLayersDataItemsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScheduleDataRelationshipsLayersDataItems instantiates a new ScheduleDataRelationshipsLayersDataItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewScheduleDataRelationshipsLayersDataItemsWithDefaults() *ScheduleDataRela
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *ScheduleDataRelationshipsLayersDataItems) GetId() string {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *ScheduleDataRelationshipsLayersDataItems) GetIdOk() (*string, bool) {
 func (o *ScheduleDataRelationshipsLayersDataItems) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ScheduleDataRelationshipsLayersDataItems) GetType() ScheduleDataRelationshipsLayersDataItemsType {
@@ -88,6 +93,8 @@ func (o *ScheduleDataRelationshipsLayersDataItems) SetType(v ScheduleDataRelatio
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ScheduleDataRelationshipsLayersDataItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -106,7 +113,7 @@ func (o ScheduleDataRelationshipsLayersDataItems) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *ScheduleDataRelationshipsLayersDataItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                                       `json:"id"`
+		Id *string `json:"id"`
 		Type *ScheduleDataRelationshipsLayersDataItemsType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -120,7 +127,7 @@ func (o *ScheduleDataRelationshipsLayersDataItems) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}

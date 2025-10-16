@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsComputeType The type of compute
 type LogsComputeType string
@@ -16,7 +20,7 @@ type LogsComputeType string
 // List of LogsComputeType.
 const (
 	LOGSCOMPUTETYPE_TIMESERIES LogsComputeType = "timeseries"
-	LOGSCOMPUTETYPE_TOTAL      LogsComputeType = "total"
+	LOGSCOMPUTETYPE_TOTAL LogsComputeType = "total"
 )
 
 var allowedLogsComputeTypeEnumValues = []LogsComputeType{

@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EscalationPolicyDataRelationshipsSteps Defines the relationship to a collection of steps within an escalation policy. Contains an array of step data references.
 type EscalationPolicyDataRelationshipsSteps struct {
 	// An array of references to the steps defined in this escalation policy.
 	Data []EscalationPolicyDataRelationshipsStepsDataItems `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEscalationPolicyDataRelationshipsSteps instantiates a new EscalationPolicyDataRelationshipsSteps object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewEscalationPolicyDataRelationshipsStepsWithDefaults() *EscalationPolicyDa
 	this := EscalationPolicyDataRelationshipsSteps{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *EscalationPolicyDataRelationshipsSteps) GetData() []EscalationPolicyDataRelationshipsStepsDataItems {
 	if o == nil || o.Data == nil {
@@ -62,6 +68,8 @@ func (o *EscalationPolicyDataRelationshipsSteps) SetData(v []EscalationPolicyDat
 	o.Data = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EscalationPolicyDataRelationshipsSteps) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *EscalationPolicyDataRelationshipsSteps) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

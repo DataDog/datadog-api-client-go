@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppEventAttributes JSON object containing all event attributes and their associated values.
 type CIAppEventAttributes struct {
@@ -17,9 +23,10 @@ type CIAppEventAttributes struct {
 	// Test run level.
 	TestLevel *CIAppTestLevel `json:"test_level,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCIAppEventAttributes instantiates a new CIAppEventAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewCIAppEventAttributesWithDefaults() *CIAppEventAttributes {
 	this := CIAppEventAttributes{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *CIAppEventAttributes) GetAttributes() map[string]interface{} {
 	if o == nil || o.Attributes == nil {
@@ -65,6 +71,7 @@ func (o *CIAppEventAttributes) HasAttributes() bool {
 func (o *CIAppEventAttributes) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *CIAppEventAttributes) GetTags() []string {
@@ -94,6 +101,7 @@ func (o *CIAppEventAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTestLevel returns the TestLevel field value if set, zero value otherwise.
 func (o *CIAppEventAttributes) GetTestLevel() CIAppTestLevel {
 	if o == nil || o.TestLevel == nil {
@@ -122,6 +130,8 @@ func (o *CIAppEventAttributes) SetTestLevel(v CIAppTestLevel) {
 	o.TestLevel = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppEventAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,15 +158,15 @@ func (o CIAppEventAttributes) MarshalJSON() ([]byte, error) {
 func (o *CIAppEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes map[string]interface{} `json:"attributes,omitempty"`
-		Tags       []string               `json:"tags,omitempty"`
-		TestLevel  *CIAppTestLevel        `json:"test_level,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		TestLevel *CIAppTestLevel `json:"test_level,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "tags", "test_level"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "tags", "test_level",  })
 	} else {
 		return err
 	}
@@ -164,7 +174,7 @@ func (o *CIAppEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Attributes = all.Attributes
 	o.Tags = all.Tags
-	if all.TestLevel != nil && !all.TestLevel.IsValid() {
+	if all.TestLevel != nil &&!all.TestLevel.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TestLevel = all.TestLevel

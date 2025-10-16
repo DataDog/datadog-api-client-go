@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentUserAttributes Attributes of user object returned by the API.
 type IncidentUserAttributes struct {
@@ -21,9 +27,10 @@ type IncidentUserAttributes struct {
 	// UUID of the user.
 	Uuid *string `json:"uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentUserAttributes instantiates a new IncidentUserAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewIncidentUserAttributesWithDefaults() *IncidentUserAttributes {
 	this := IncidentUserAttributes{}
 	return &this
 }
-
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *IncidentUserAttributes) GetEmail() string {
 	if o == nil || o.Email == nil {
@@ -69,6 +75,7 @@ func (o *IncidentUserAttributes) HasEmail() bool {
 func (o *IncidentUserAttributes) SetEmail(v string) {
 	o.Email = &v
 }
+
 
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *IncidentUserAttributes) GetHandle() string {
@@ -98,6 +105,7 @@ func (o *IncidentUserAttributes) SetHandle(v string) {
 	o.Handle = &v
 }
 
+
 // GetIcon returns the Icon field value if set, zero value otherwise.
 func (o *IncidentUserAttributes) GetIcon() string {
 	if o == nil || o.Icon == nil {
@@ -126,6 +134,7 @@ func (o *IncidentUserAttributes) SetIcon(v string) {
 	o.Icon = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentUserAttributes) GetName() string {
 	if o == nil || o.Name.Get() == nil {
@@ -139,7 +148,7 @@ func (o *IncidentUserAttributes) GetName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentUserAttributes) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Name.Get(), o.Name.IsSet()
@@ -154,7 +163,6 @@ func (o *IncidentUserAttributes) HasName() bool {
 func (o *IncidentUserAttributes) SetName(v string) {
 	o.Name.Set(&v)
 }
-
 // SetNameNil sets the value for Name to be an explicit nil.
 func (o *IncidentUserAttributes) SetNameNil() {
 	o.Name.Set(nil)
@@ -164,6 +172,7 @@ func (o *IncidentUserAttributes) SetNameNil() {
 func (o *IncidentUserAttributes) UnsetName() {
 	o.Name.Unset()
 }
+
 
 // GetUuid returns the Uuid field value if set, zero value otherwise.
 func (o *IncidentUserAttributes) GetUuid() string {
@@ -192,6 +201,8 @@ func (o *IncidentUserAttributes) HasUuid() bool {
 func (o *IncidentUserAttributes) SetUuid(v string) {
 	o.Uuid = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentUserAttributes) MarshalJSON() ([]byte, error) {
@@ -224,18 +235,18 @@ func (o IncidentUserAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentUserAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Email  *string                `json:"email,omitempty"`
-		Handle *string                `json:"handle,omitempty"`
-		Icon   *string                `json:"icon,omitempty"`
-		Name   datadog.NullableString `json:"name,omitempty"`
-		Uuid   *string                `json:"uuid,omitempty"`
+		Email *string `json:"email,omitempty"`
+		Handle *string `json:"handle,omitempty"`
+		Icon *string `json:"icon,omitempty"`
+		Name datadog.NullableString `json:"name,omitempty"`
+		Uuid *string `json:"uuid,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"email", "handle", "icon", "name", "uuid"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "email", "handle", "icon", "name", "uuid",  })
 	} else {
 		return err
 	}

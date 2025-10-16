@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DataTransformProperties The properties of the data transformer.
 type DataTransformProperties struct {
 	// A JavaScript function that returns the transformed data.
 	Outputs *string `json:"outputs,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDataTransformProperties instantiates a new DataTransformProperties object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewDataTransformPropertiesWithDefaults() *DataTransformProperties {
 	this := DataTransformProperties{}
 	return &this
 }
-
 // GetOutputs returns the Outputs field value if set, zero value otherwise.
 func (o *DataTransformProperties) GetOutputs() string {
 	if o == nil || o.Outputs == nil {
@@ -62,6 +68,8 @@ func (o *DataTransformProperties) SetOutputs(v string) {
 	o.Outputs = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DataTransformProperties) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *DataTransformProperties) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"outputs"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "outputs",  })
 	} else {
 		return err
 	}

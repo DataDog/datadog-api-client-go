@@ -2,17 +2,23 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessorScope - Determines which parts of the log the pattern-matching rule should be applied to.
 type ObservabilityPipelineSensitiveDataScannerProcessorScope struct {
 	ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude *ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude
 	ObservabilityPipelineSensitiveDataScannerProcessorScopeExclude *ObservabilityPipelineSensitiveDataScannerProcessorScopeExclude
-	ObservabilityPipelineSensitiveDataScannerProcessorScopeAll     *ObservabilityPipelineSensitiveDataScannerProcessorScopeAll
+	ObservabilityPipelineSensitiveDataScannerProcessorScopeAll *ObservabilityPipelineSensitiveDataScannerProcessorScopeAll
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -104,13 +110,16 @@ func (obj ObservabilityPipelineSensitiveDataScannerProcessorScope) MarshalJSON()
 		return datadog.Marshal(&obj.ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude)
 	}
 
+
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessorScopeExclude != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSensitiveDataScannerProcessorScopeExclude)
 	}
 
+
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessorScopeAll != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSensitiveDataScannerProcessorScopeAll)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj ObservabilityPipelineSensitiveDataScannerProcessorScope) MarshalJSON()
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ObservabilityPipelineSensitiveDataScannerProcessorScope) GetActualInstance() interface{} {
+func (obj *ObservabilityPipelineSensitiveDataScannerProcessorScope) GetActualInstance() (interface{}) {
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude != nil {
 		return obj.ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude
 	}
+
 
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessorScopeExclude != nil {
 		return obj.ObservabilityPipelineSensitiveDataScannerProcessorScopeExclude
 	}
 
+
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessorScopeAll != nil {
 		return obj.ObservabilityPipelineSensitiveDataScannerProcessorScopeAll
 	}
+
 
 	// all schemas are nil
 	return nil

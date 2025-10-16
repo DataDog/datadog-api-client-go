@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleCaseActionOptions Options for the rule action
 type SecurityMonitoringRuleCaseActionOptions struct {
@@ -17,9 +23,10 @@ type SecurityMonitoringRuleCaseActionOptions struct {
 	// Used with the case action of type 'user_behavior'. The value specified in this field is applied as a risk tag to all users affected by the rule.
 	UserBehaviorName *string `json:"userBehaviorName,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringRuleCaseActionOptions instantiates a new SecurityMonitoringRuleCaseActionOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewSecurityMonitoringRuleCaseActionOptionsWithDefaults() *SecurityMonitorin
 	this := SecurityMonitoringRuleCaseActionOptions{}
 	return &this
 }
-
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleCaseActionOptions) GetDuration() int64 {
 	if o == nil || o.Duration == nil {
@@ -65,6 +71,7 @@ func (o *SecurityMonitoringRuleCaseActionOptions) HasDuration() bool {
 func (o *SecurityMonitoringRuleCaseActionOptions) SetDuration(v int64) {
 	o.Duration = &v
 }
+
 
 // GetFlaggedIpType returns the FlaggedIpType field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleCaseActionOptions) GetFlaggedIpType() SecurityMonitoringRuleCaseActionOptionsFlaggedIPType {
@@ -94,6 +101,7 @@ func (o *SecurityMonitoringRuleCaseActionOptions) SetFlaggedIpType(v SecurityMon
 	o.FlaggedIpType = &v
 }
 
+
 // GetUserBehaviorName returns the UserBehaviorName field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleCaseActionOptions) GetUserBehaviorName() string {
 	if o == nil || o.UserBehaviorName == nil {
@@ -122,6 +130,8 @@ func (o *SecurityMonitoringRuleCaseActionOptions) SetUserBehaviorName(v string) 
 	o.UserBehaviorName = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleCaseActionOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,23 +157,23 @@ func (o SecurityMonitoringRuleCaseActionOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleCaseActionOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Duration         *int64                                                `json:"duration,omitempty"`
-		FlaggedIpType    *SecurityMonitoringRuleCaseActionOptionsFlaggedIPType `json:"flaggedIPType,omitempty"`
-		UserBehaviorName *string                                               `json:"userBehaviorName,omitempty"`
+		Duration *int64 `json:"duration,omitempty"`
+		FlaggedIpType *SecurityMonitoringRuleCaseActionOptionsFlaggedIPType `json:"flaggedIPType,omitempty"`
+		UserBehaviorName *string `json:"userBehaviorName,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"duration", "flaggedIPType", "userBehaviorName"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "duration", "flaggedIPType", "userBehaviorName",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Duration = all.Duration
-	if all.FlaggedIpType != nil && !all.FlaggedIpType.IsValid() {
+	if all.FlaggedIpType != nil &&!all.FlaggedIpType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.FlaggedIpType = all.FlaggedIpType

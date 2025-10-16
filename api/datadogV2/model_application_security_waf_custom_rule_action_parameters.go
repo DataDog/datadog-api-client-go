@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleActionParameters The definition of `ApplicationSecurityWafCustomRuleActionParameters` object.
 type ApplicationSecurityWafCustomRuleActionParameters struct {
@@ -15,9 +21,10 @@ type ApplicationSecurityWafCustomRuleActionParameters struct {
 	// The status code to return when the WAF custom rule triggers.
 	StatusCode *int64 `json:"status_code,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafCustomRuleActionParameters instantiates a new ApplicationSecurityWafCustomRuleActionParameters object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewApplicationSecurityWafCustomRuleActionParametersWithDefaults() *Applicat
 	this.StatusCode = &statusCode
 	return &this
 }
-
 // GetLocation returns the Location field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleActionParameters) GetLocation() string {
 	if o == nil || o.Location == nil {
@@ -67,6 +73,7 @@ func (o *ApplicationSecurityWafCustomRuleActionParameters) HasLocation() bool {
 func (o *ApplicationSecurityWafCustomRuleActionParameters) SetLocation(v string) {
 	o.Location = &v
 }
+
 
 // GetStatusCode returns the StatusCode field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleActionParameters) GetStatusCode() int64 {
@@ -96,6 +103,8 @@ func (o *ApplicationSecurityWafCustomRuleActionParameters) SetStatusCode(v int64
 	o.StatusCode = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafCustomRuleActionParameters) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -118,15 +127,15 @@ func (o ApplicationSecurityWafCustomRuleActionParameters) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationSecurityWafCustomRuleActionParameters) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Location   *string `json:"location,omitempty"`
-		StatusCode *int64  `json:"status_code,omitempty"`
+		Location *string `json:"location,omitempty"`
+		StatusCode *int64 `json:"status_code,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"location", "status_code"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "location", "status_code",  })
 	} else {
 		return err
 	}

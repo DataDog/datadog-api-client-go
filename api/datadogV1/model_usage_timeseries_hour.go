@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageTimeseriesHour The hourly usage of timeseries.
 type UsageTimeseriesHour struct {
@@ -25,9 +29,10 @@ type UsageTimeseriesHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageTimeseriesHour instantiates a new UsageTimeseriesHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewUsageTimeseriesHourWithDefaults() *UsageTimeseriesHour {
 	this := UsageTimeseriesHour{}
 	return &this
 }
-
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageTimeseriesHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -73,6 +77,7 @@ func (o *UsageTimeseriesHour) HasHour() bool {
 func (o *UsageTimeseriesHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
+
 
 // GetNumCustomInputTimeseries returns the NumCustomInputTimeseries field value if set, zero value otherwise.
 func (o *UsageTimeseriesHour) GetNumCustomInputTimeseries() int64 {
@@ -102,6 +107,7 @@ func (o *UsageTimeseriesHour) SetNumCustomInputTimeseries(v int64) {
 	o.NumCustomInputTimeseries = &v
 }
 
+
 // GetNumCustomOutputTimeseries returns the NumCustomOutputTimeseries field value if set, zero value otherwise.
 func (o *UsageTimeseriesHour) GetNumCustomOutputTimeseries() int64 {
 	if o == nil || o.NumCustomOutputTimeseries == nil {
@@ -129,6 +135,7 @@ func (o *UsageTimeseriesHour) HasNumCustomOutputTimeseries() bool {
 func (o *UsageTimeseriesHour) SetNumCustomOutputTimeseries(v int64) {
 	o.NumCustomOutputTimeseries = &v
 }
+
 
 // GetNumCustomTimeseries returns the NumCustomTimeseries field value if set, zero value otherwise.
 func (o *UsageTimeseriesHour) GetNumCustomTimeseries() int64 {
@@ -158,6 +165,7 @@ func (o *UsageTimeseriesHour) SetNumCustomTimeseries(v int64) {
 	o.NumCustomTimeseries = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageTimeseriesHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -186,6 +194,7 @@ func (o *UsageTimeseriesHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageTimeseriesHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -213,6 +222,8 @@ func (o *UsageTimeseriesHour) HasPublicId() bool {
 func (o *UsageTimeseriesHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageTimeseriesHour) MarshalJSON() ([]byte, error) {
@@ -252,19 +263,19 @@ func (o UsageTimeseriesHour) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageTimeseriesHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Hour                      *time.Time `json:"hour,omitempty"`
-		NumCustomInputTimeseries  *int64     `json:"num_custom_input_timeseries,omitempty"`
-		NumCustomOutputTimeseries *int64     `json:"num_custom_output_timeseries,omitempty"`
-		NumCustomTimeseries       *int64     `json:"num_custom_timeseries,omitempty"`
-		OrgName                   *string    `json:"org_name,omitempty"`
-		PublicId                  *string    `json:"public_id,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		NumCustomInputTimeseries *int64 `json:"num_custom_input_timeseries,omitempty"`
+		NumCustomOutputTimeseries *int64 `json:"num_custom_output_timeseries,omitempty"`
+		NumCustomTimeseries *int64 `json:"num_custom_timeseries,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"hour", "num_custom_input_timeseries", "num_custom_output_timeseries", "num_custom_timeseries", "org_name", "public_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "hour", "num_custom_input_timeseries", "num_custom_output_timeseries", "num_custom_timeseries", "org_name", "public_id",  })
 	} else {
 		return err
 	}

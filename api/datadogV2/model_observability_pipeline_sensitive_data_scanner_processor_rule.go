@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessorRule Defines a rule for detecting sensitive data, including matching pattern, scope, and the action to take.
 type ObservabilityPipelineSensitiveDataScannerProcessorRule struct {
@@ -25,9 +29,10 @@ type ObservabilityPipelineSensitiveDataScannerProcessorRule struct {
 	// Tags assigned to this rule for filtering and classification.
 	Tags []string `json:"tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSensitiveDataScannerProcessorRule instantiates a new ObservabilityPipelineSensitiveDataScannerProcessorRule object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewObservabilityPipelineSensitiveDataScannerProcessorRuleWithDefaults() *Ob
 	this := ObservabilityPipelineSensitiveDataScannerProcessorRule{}
 	return &this
 }
-
 // GetKeywordOptions returns the KeywordOptions field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) GetKeywordOptions() ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions {
 	if o == nil || o.KeywordOptions == nil {
@@ -79,6 +83,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) SetKeywordOptio
 	o.KeywordOptions = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) GetName() string {
 	if o == nil {
@@ -101,6 +106,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) GetNameOk() (*s
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetOnMatch returns the OnMatch field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) GetOnMatch() ObservabilityPipelineSensitiveDataScannerProcessorAction {
@@ -125,6 +131,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) SetOnMatch(v Ob
 	o.OnMatch = v
 }
 
+
 // GetPattern returns the Pattern field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) GetPattern() ObservabilityPipelineSensitiveDataScannerProcessorPattern {
 	if o == nil {
@@ -147,6 +154,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) GetPatternOk() 
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) SetPattern(v ObservabilityPipelineSensitiveDataScannerProcessorPattern) {
 	o.Pattern = v
 }
+
 
 // GetScope returns the Scope field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) GetScope() ObservabilityPipelineSensitiveDataScannerProcessorScope {
@@ -171,6 +179,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) SetScope(v Obse
 	o.Scope = v
 }
 
+
 // GetTags returns the Tags field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) GetTags() []string {
 	if o == nil {
@@ -193,6 +202,8 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) GetTagsOk() (*[
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) SetTags(v []string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSensitiveDataScannerProcessorRule) MarshalJSON() ([]byte, error) {
@@ -219,11 +230,11 @@ func (o ObservabilityPipelineSensitiveDataScannerProcessorRule) MarshalJSON() ([
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		KeywordOptions *ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions `json:"keyword_options,omitempty"`
-		Name           *string                                                           `json:"name"`
-		OnMatch        *ObservabilityPipelineSensitiveDataScannerProcessorAction         `json:"on_match"`
-		Pattern        *ObservabilityPipelineSensitiveDataScannerProcessorPattern        `json:"pattern"`
-		Scope          *ObservabilityPipelineSensitiveDataScannerProcessorScope          `json:"scope"`
-		Tags           *[]string                                                         `json:"tags"`
+		Name *string `json:"name"`
+		OnMatch *ObservabilityPipelineSensitiveDataScannerProcessorAction `json:"on_match"`
+		Pattern *ObservabilityPipelineSensitiveDataScannerProcessorPattern `json:"pattern"`
+		Scope *ObservabilityPipelineSensitiveDataScannerProcessorScope `json:"scope"`
+		Tags *[]string `json:"tags"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -245,13 +256,13 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorRule) UnmarshalJSON(b
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"keyword_options", "name", "on_match", "pattern", "scope", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "keyword_options", "name", "on_match", "pattern", "scope", "tags",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.KeywordOptions != nil && all.KeywordOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.KeywordOptions != nil && all.KeywordOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.KeywordOptions = all.KeywordOptions

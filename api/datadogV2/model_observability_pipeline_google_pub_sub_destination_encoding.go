@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineGooglePubSubDestinationEncoding Encoding format for log events.
 type ObservabilityPipelineGooglePubSubDestinationEncoding string
 
 // List of ObservabilityPipelineGooglePubSubDestinationEncoding.
 const (
-	OBSERVABILITYPIPELINEGOOGLEPUBSUBDESTINATIONENCODING_JSON        ObservabilityPipelineGooglePubSubDestinationEncoding = "json"
+	OBSERVABILITYPIPELINEGOOGLEPUBSUBDESTINATIONENCODING_JSON ObservabilityPipelineGooglePubSubDestinationEncoding = "json"
 	OBSERVABILITYPIPELINEGOOGLEPUBSUBDESTINATIONENCODING_RAW_MESSAGE ObservabilityPipelineGooglePubSubDestinationEncoding = "raw_message"
 )
 

@@ -2,24 +2,28 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsArchiveStorageClassS3Type The storage class where the archive will be stored.
 type LogsArchiveStorageClassS3Type string
 
 // List of LogsArchiveStorageClassS3Type.
 const (
-	LOGSARCHIVESTORAGECLASSS3TYPE_STANDARD            LogsArchiveStorageClassS3Type = "STANDARD"
-	LOGSARCHIVESTORAGECLASSS3TYPE_STANDARD_IA         LogsArchiveStorageClassS3Type = "STANDARD_IA"
-	LOGSARCHIVESTORAGECLASSS3TYPE_ONEZONE_IA          LogsArchiveStorageClassS3Type = "ONEZONE_IA"
+	LOGSARCHIVESTORAGECLASSS3TYPE_STANDARD LogsArchiveStorageClassS3Type = "STANDARD"
+	LOGSARCHIVESTORAGECLASSS3TYPE_STANDARD_IA LogsArchiveStorageClassS3Type = "STANDARD_IA"
+	LOGSARCHIVESTORAGECLASSS3TYPE_ONEZONE_IA LogsArchiveStorageClassS3Type = "ONEZONE_IA"
 	LOGSARCHIVESTORAGECLASSS3TYPE_INTELLIGENT_TIERING LogsArchiveStorageClassS3Type = "INTELLIGENT_TIERING"
-	LOGSARCHIVESTORAGECLASSS3TYPE_GLACIER_IR          LogsArchiveStorageClassS3Type = "GLACIER_IR"
+	LOGSARCHIVESTORAGECLASSS3TYPE_GLACIER_IR LogsArchiveStorageClassS3Type = "GLACIER_IR"
 )
 
 var allowedLogsArchiveStorageClassS3TypeEnumValues = []LogsArchiveStorageClassS3Type{

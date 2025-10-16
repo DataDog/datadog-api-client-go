@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MSTeamsIntegrationMetadataTeamsItem Item in the Microsoft Teams integration metadata teams array.
 type MSTeamsIntegrationMetadataTeamsItem struct {
@@ -21,9 +25,10 @@ type MSTeamsIntegrationMetadataTeamsItem struct {
 	// URL redirecting to the Microsoft Teams channel.
 	RedirectUrl string `json:"redirect_url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMSTeamsIntegrationMetadataTeamsItem instantiates a new MSTeamsIntegrationMetadataTeamsItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewMSTeamsIntegrationMetadataTeamsItemWithDefaults() *MSTeamsIntegrationMet
 	this := MSTeamsIntegrationMetadataTeamsItem{}
 	return &this
 }
-
 // GetMsChannelId returns the MsChannelId field value.
 func (o *MSTeamsIntegrationMetadataTeamsItem) GetMsChannelId() string {
 	if o == nil {
@@ -68,6 +72,7 @@ func (o *MSTeamsIntegrationMetadataTeamsItem) GetMsChannelIdOk() (*string, bool)
 func (o *MSTeamsIntegrationMetadataTeamsItem) SetMsChannelId(v string) {
 	o.MsChannelId = v
 }
+
 
 // GetMsChannelName returns the MsChannelName field value.
 func (o *MSTeamsIntegrationMetadataTeamsItem) GetMsChannelName() string {
@@ -92,6 +97,7 @@ func (o *MSTeamsIntegrationMetadataTeamsItem) SetMsChannelName(v string) {
 	o.MsChannelName = v
 }
 
+
 // GetMsTenantId returns the MsTenantId field value.
 func (o *MSTeamsIntegrationMetadataTeamsItem) GetMsTenantId() string {
 	if o == nil {
@@ -114,6 +120,7 @@ func (o *MSTeamsIntegrationMetadataTeamsItem) GetMsTenantIdOk() (*string, bool) 
 func (o *MSTeamsIntegrationMetadataTeamsItem) SetMsTenantId(v string) {
 	o.MsTenantId = v
 }
+
 
 // GetRedirectUrl returns the RedirectUrl field value.
 func (o *MSTeamsIntegrationMetadataTeamsItem) GetRedirectUrl() string {
@@ -138,6 +145,8 @@ func (o *MSTeamsIntegrationMetadataTeamsItem) SetRedirectUrl(v string) {
 	o.RedirectUrl = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MSTeamsIntegrationMetadataTeamsItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -158,10 +167,10 @@ func (o MSTeamsIntegrationMetadataTeamsItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MSTeamsIntegrationMetadataTeamsItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		MsChannelId   *string `json:"ms_channel_id"`
+		MsChannelId *string `json:"ms_channel_id"`
 		MsChannelName *string `json:"ms_channel_name"`
-		MsTenantId    *string `json:"ms_tenant_id"`
-		RedirectUrl   *string `json:"redirect_url"`
+		MsTenantId *string `json:"ms_tenant_id"`
+		RedirectUrl *string `json:"redirect_url"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -180,7 +189,7 @@ func (o *MSTeamsIntegrationMetadataTeamsItem) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"ms_channel_id", "ms_channel_name", "ms_tenant_id", "redirect_url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "ms_channel_id", "ms_channel_name", "ms_tenant_id", "redirect_url",  })
 	} else {
 		return err
 	}

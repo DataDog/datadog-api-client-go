@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SplitConfigSortCompute Defines the metric and aggregation used as the sort value.
 type SplitConfigSortCompute struct {
@@ -17,9 +21,10 @@ type SplitConfigSortCompute struct {
 	// The metric to use for sorting graphs.
 	Metric string `json:"metric"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSplitConfigSortCompute instantiates a new SplitConfigSortCompute object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSplitConfigSortComputeWithDefaults() *SplitConfigSortCompute {
 	this := SplitConfigSortCompute{}
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value.
 func (o *SplitConfigSortCompute) GetAggregation() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *SplitConfigSortCompute) GetAggregationOk() (*string, bool) {
 func (o *SplitConfigSortCompute) SetAggregation(v string) {
 	o.Aggregation = v
 }
+
 
 // GetMetric returns the Metric field value.
 func (o *SplitConfigSortCompute) GetMetric() string {
@@ -86,6 +91,8 @@ func (o *SplitConfigSortCompute) SetMetric(v string) {
 	o.Metric = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SplitConfigSortCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o SplitConfigSortCompute) MarshalJSON() ([]byte, error) {
 func (o *SplitConfigSortCompute) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Aggregation *string `json:"aggregation"`
-		Metric      *string `json:"metric"`
+		Metric *string `json:"metric"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *SplitConfigSortCompute) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "metric"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation", "metric",  })
 	} else {
 		return err
 	}

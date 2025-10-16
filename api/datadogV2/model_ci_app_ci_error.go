@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppCIError Contains information of the CI error.
 type CIAppCIError struct {
@@ -19,9 +25,10 @@ type CIAppCIError struct {
 	// Short description of the error type.
 	Type datadog.NullableString `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCIAppCIError instantiates a new CIAppCIError object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewCIAppCIErrorWithDefaults() *CIAppCIError {
 	this := CIAppCIError{}
 	return &this
 }
-
 // GetDomain returns the Domain field value if set, zero value otherwise.
 func (o *CIAppCIError) GetDomain() CIAppCIErrorDomain {
 	if o == nil || o.Domain == nil {
@@ -68,6 +74,7 @@ func (o *CIAppCIError) SetDomain(v CIAppCIErrorDomain) {
 	o.Domain = &v
 }
 
+
 // GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppCIError) GetMessage() string {
 	if o == nil || o.Message.Get() == nil {
@@ -81,7 +88,7 @@ func (o *CIAppCIError) GetMessage() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppCIError) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Message.Get(), o.Message.IsSet()
@@ -96,7 +103,6 @@ func (o *CIAppCIError) HasMessage() bool {
 func (o *CIAppCIError) SetMessage(v string) {
 	o.Message.Set(&v)
 }
-
 // SetMessageNil sets the value for Message to be an explicit nil.
 func (o *CIAppCIError) SetMessageNil() {
 	o.Message.Set(nil)
@@ -106,6 +112,7 @@ func (o *CIAppCIError) SetMessageNil() {
 func (o *CIAppCIError) UnsetMessage() {
 	o.Message.Unset()
 }
+
 
 // GetStack returns the Stack field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppCIError) GetStack() string {
@@ -120,7 +127,7 @@ func (o *CIAppCIError) GetStack() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppCIError) GetStackOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Stack.Get(), o.Stack.IsSet()
@@ -135,7 +142,6 @@ func (o *CIAppCIError) HasStack() bool {
 func (o *CIAppCIError) SetStack(v string) {
 	o.Stack.Set(&v)
 }
-
 // SetStackNil sets the value for Stack to be an explicit nil.
 func (o *CIAppCIError) SetStackNil() {
 	o.Stack.Set(nil)
@@ -145,6 +151,7 @@ func (o *CIAppCIError) SetStackNil() {
 func (o *CIAppCIError) UnsetStack() {
 	o.Stack.Unset()
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppCIError) GetType() string {
@@ -159,7 +166,7 @@ func (o *CIAppCIError) GetType() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppCIError) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Type.Get(), o.Type.IsSet()
@@ -174,7 +181,6 @@ func (o *CIAppCIError) HasType() bool {
 func (o *CIAppCIError) SetType(v string) {
 	o.Type.Set(&v)
 }
-
 // SetTypeNil sets the value for Type to be an explicit nil.
 func (o *CIAppCIError) SetTypeNil() {
 	o.Type.Set(nil)
@@ -184,6 +190,8 @@ func (o *CIAppCIError) SetTypeNil() {
 func (o *CIAppCIError) UnsetType() {
 	o.Type.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppCIError) MarshalJSON() ([]byte, error) {
@@ -213,23 +221,23 @@ func (o CIAppCIError) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppCIError) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Domain  *CIAppCIErrorDomain    `json:"domain,omitempty"`
+		Domain *CIAppCIErrorDomain `json:"domain,omitempty"`
 		Message datadog.NullableString `json:"message,omitempty"`
-		Stack   datadog.NullableString `json:"stack,omitempty"`
-		Type    datadog.NullableString `json:"type,omitempty"`
+		Stack datadog.NullableString `json:"stack,omitempty"`
+		Type datadog.NullableString `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"domain", "message", "stack", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "domain", "message", "stack", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Domain != nil && !all.Domain.IsValid() {
+	if all.Domain != nil &&!all.Domain.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Domain = all.Domain
@@ -248,7 +256,6 @@ func (o *CIAppCIError) UnmarshalJSON(bytes []byte) (err error) {
 
 	return nil
 }
-
 // NullableCIAppCIError handles when a null is used for CIAppCIError.
 type NullableCIAppCIError struct {
 	value *CIAppCIError

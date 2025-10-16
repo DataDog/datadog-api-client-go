@@ -2,21 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAssertion - Object describing the assertions type, their associated operator,
 // which property they apply, and upon which target.
 type SyntheticsAssertion struct {
-	SyntheticsAssertionTarget           *SyntheticsAssertionTarget
-	SyntheticsAssertionBodyHashTarget   *SyntheticsAssertionBodyHashTarget
-	SyntheticsAssertionJSONPathTarget   *SyntheticsAssertionJSONPathTarget
+	SyntheticsAssertionTarget *SyntheticsAssertionTarget
+	SyntheticsAssertionBodyHashTarget *SyntheticsAssertionBodyHashTarget
+	SyntheticsAssertionJSONPathTarget *SyntheticsAssertionJSONPathTarget
 	SyntheticsAssertionJSONSchemaTarget *SyntheticsAssertionJSONSchemaTarget
-	SyntheticsAssertionXPathTarget      *SyntheticsAssertionXPathTarget
-	SyntheticsAssertionJavascript       *SyntheticsAssertionJavascript
+	SyntheticsAssertionXPathTarget *SyntheticsAssertionXPathTarget
+	SyntheticsAssertionJavascript *SyntheticsAssertionJavascript
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -177,25 +183,31 @@ func (obj SyntheticsAssertion) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SyntheticsAssertionTarget)
 	}
 
+
 	if obj.SyntheticsAssertionBodyHashTarget != nil {
 		return datadog.Marshal(&obj.SyntheticsAssertionBodyHashTarget)
 	}
+
 
 	if obj.SyntheticsAssertionJSONPathTarget != nil {
 		return datadog.Marshal(&obj.SyntheticsAssertionJSONPathTarget)
 	}
 
+
 	if obj.SyntheticsAssertionJSONSchemaTarget != nil {
 		return datadog.Marshal(&obj.SyntheticsAssertionJSONSchemaTarget)
 	}
+
 
 	if obj.SyntheticsAssertionXPathTarget != nil {
 		return datadog.Marshal(&obj.SyntheticsAssertionXPathTarget)
 	}
 
+
 	if obj.SyntheticsAssertionJavascript != nil {
 		return datadog.Marshal(&obj.SyntheticsAssertionJavascript)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -204,30 +216,36 @@ func (obj SyntheticsAssertion) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SyntheticsAssertion) GetActualInstance() interface{} {
+func (obj *SyntheticsAssertion) GetActualInstance() (interface{}) {
 	if obj.SyntheticsAssertionTarget != nil {
 		return obj.SyntheticsAssertionTarget
 	}
+
 
 	if obj.SyntheticsAssertionBodyHashTarget != nil {
 		return obj.SyntheticsAssertionBodyHashTarget
 	}
 
+
 	if obj.SyntheticsAssertionJSONPathTarget != nil {
 		return obj.SyntheticsAssertionJSONPathTarget
 	}
+
 
 	if obj.SyntheticsAssertionJSONSchemaTarget != nil {
 		return obj.SyntheticsAssertionJSONSchemaTarget
 	}
 
+
 	if obj.SyntheticsAssertionXPathTarget != nil {
 		return obj.SyntheticsAssertionXPathTarget
 	}
 
+
 	if obj.SyntheticsAssertionJavascript != nil {
 		return obj.SyntheticsAssertionJavascript
 	}
+
 
 	// all schemas are nil
 	return nil

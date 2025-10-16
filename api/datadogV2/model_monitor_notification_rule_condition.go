@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorNotificationRuleCondition Conditions for `conditional_recipients`.
 type MonitorNotificationRuleCondition struct {
@@ -17,9 +21,10 @@ type MonitorNotificationRuleCondition struct {
 	// The scope to which the monitor applied.
 	Scope string `json:"scope"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorNotificationRuleCondition instantiates a new MonitorNotificationRuleCondition object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewMonitorNotificationRuleConditionWithDefaults() *MonitorNotificationRuleC
 	this := MonitorNotificationRuleCondition{}
 	return &this
 }
-
 // GetRecipients returns the Recipients field value.
 func (o *MonitorNotificationRuleCondition) GetRecipients() []string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *MonitorNotificationRuleCondition) GetRecipientsOk() (*[]string, bool) {
 func (o *MonitorNotificationRuleCondition) SetRecipients(v []string) {
 	o.Recipients = v
 }
+
 
 // GetScope returns the Scope field value.
 func (o *MonitorNotificationRuleCondition) GetScope() string {
@@ -86,6 +91,8 @@ func (o *MonitorNotificationRuleCondition) SetScope(v string) {
 	o.Scope = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorNotificationRuleCondition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o MonitorNotificationRuleCondition) MarshalJSON() ([]byte, error) {
 func (o *MonitorNotificationRuleCondition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Recipients *[]string `json:"recipients"`
-		Scope      *string   `json:"scope"`
+		Scope *string `json:"scope"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *MonitorNotificationRuleCondition) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"recipients", "scope"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "recipients", "scope",  })
 	} else {
 		return err
 	}

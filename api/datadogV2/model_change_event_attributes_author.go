@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ChangeEventAttributesAuthor The entity that made the change.
 type ChangeEventAttributesAuthor struct {
@@ -15,9 +21,10 @@ type ChangeEventAttributesAuthor struct {
 	// The type of the author.
 	Type *ChangeEventAttributesAuthorType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewChangeEventAttributesAuthor instantiates a new ChangeEventAttributesAuthor object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewChangeEventAttributesAuthorWithDefaults() *ChangeEventAttributesAuthor {
 	this := ChangeEventAttributesAuthor{}
 	return &this
 }
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ChangeEventAttributesAuthor) GetName() string {
 	if o == nil || o.Name == nil {
@@ -63,6 +69,7 @@ func (o *ChangeEventAttributesAuthor) HasName() bool {
 func (o *ChangeEventAttributesAuthor) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ChangeEventAttributesAuthor) GetType() ChangeEventAttributesAuthorType {
@@ -92,6 +99,8 @@ func (o *ChangeEventAttributesAuthor) SetType(v ChangeEventAttributesAuthorType)
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ChangeEventAttributesAuthor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o ChangeEventAttributesAuthor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ChangeEventAttributesAuthor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name *string                          `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 		Type *ChangeEventAttributesAuthorType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,14 +131,14 @@ func (o *ChangeEventAttributesAuthor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Name = all.Name
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

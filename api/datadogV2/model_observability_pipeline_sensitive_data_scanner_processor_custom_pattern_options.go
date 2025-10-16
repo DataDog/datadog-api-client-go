@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOptions Options for defining a custom regex pattern.
 type ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOptions struct {
 	// A regular expression used to detect sensitive values. Must be a valid regex.
 	Rule string `json:"rule"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOptions instantiates a new ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOptionsWi
 	this := ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOptions{}
 	return &this
 }
-
 // GetRule returns the Rule field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOptions) GetRule() string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOptions)
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOptions) SetRule(v string) {
 	o.Rule = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOptions) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOptions)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"rule"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "rule",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricsScalarQuery An individual scalar metrics query.
 type MetricsScalarQuery struct {
@@ -21,9 +25,10 @@ type MetricsScalarQuery struct {
 	// A classic metrics query string.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricsScalarQuery instantiates a new MetricsScalarQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewMetricsScalarQueryWithDefaults() *MetricsScalarQuery {
 	this.DataSource = dataSource
 	return &this
 }
-
 // GetAggregator returns the Aggregator field value.
 func (o *MetricsScalarQuery) GetAggregator() MetricsAggregator {
 	if o == nil {
@@ -72,6 +76,7 @@ func (o *MetricsScalarQuery) SetAggregator(v MetricsAggregator) {
 	o.Aggregator = v
 }
 
+
 // GetDataSource returns the DataSource field value.
 func (o *MetricsScalarQuery) GetDataSource() MetricsDataSource {
 	if o == nil {
@@ -94,6 +99,7 @@ func (o *MetricsScalarQuery) GetDataSourceOk() (*MetricsDataSource, bool) {
 func (o *MetricsScalarQuery) SetDataSource(v MetricsDataSource) {
 	o.DataSource = v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MetricsScalarQuery) GetName() string {
@@ -123,6 +129,7 @@ func (o *MetricsScalarQuery) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetQuery returns the Query field value.
 func (o *MetricsScalarQuery) GetQuery() string {
 	if o == nil {
@@ -145,6 +152,8 @@ func (o *MetricsScalarQuery) GetQueryOk() (*string, bool) {
 func (o *MetricsScalarQuery) SetQuery(v string) {
 	o.Query = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricsScalarQuery) MarshalJSON() ([]byte, error) {
@@ -170,8 +179,8 @@ func (o *MetricsScalarQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Aggregator *MetricsAggregator `json:"aggregator"`
 		DataSource *MetricsDataSource `json:"data_source"`
-		Name       *string            `json:"name,omitempty"`
-		Query      *string            `json:"query"`
+		Name *string `json:"name,omitempty"`
+		Query *string `json:"query"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -187,7 +196,7 @@ func (o *MetricsScalarQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregator", "data_source", "name", "query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregator", "data_source", "name", "query",  })
 	} else {
 		return err
 	}

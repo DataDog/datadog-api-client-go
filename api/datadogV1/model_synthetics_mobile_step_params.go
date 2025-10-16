@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsMobileStepParams The parameters of a mobile step.
 type SyntheticsMobileStepParams struct {
@@ -37,9 +43,10 @@ type SyntheticsMobileStepParams struct {
 	// Amount to scroll by on the `y` axis for a `scroll` step type.
 	Y *float64 `json:"y,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsMobileStepParams instantiates a new SyntheticsMobileStepParams object.
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +64,6 @@ func NewSyntheticsMobileStepParamsWithDefaults() *SyntheticsMobileStepParams {
 	this := SyntheticsMobileStepParams{}
 	return &this
 }
-
 // GetCheck returns the Check field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParams) GetCheck() SyntheticsCheckType {
 	if o == nil || o.Check == nil {
@@ -85,6 +91,7 @@ func (o *SyntheticsMobileStepParams) HasCheck() bool {
 func (o *SyntheticsMobileStepParams) SetCheck(v SyntheticsCheckType) {
 	o.Check = &v
 }
+
 
 // GetDelay returns the Delay field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParams) GetDelay() int64 {
@@ -114,6 +121,7 @@ func (o *SyntheticsMobileStepParams) SetDelay(v int64) {
 	o.Delay = &v
 }
 
+
 // GetDirection returns the Direction field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParams) GetDirection() SyntheticsMobileStepParamsDirection {
 	if o == nil || o.Direction == nil {
@@ -141,6 +149,7 @@ func (o *SyntheticsMobileStepParams) HasDirection() bool {
 func (o *SyntheticsMobileStepParams) SetDirection(v SyntheticsMobileStepParamsDirection) {
 	o.Direction = &v
 }
+
 
 // GetElement returns the Element field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParams) GetElement() SyntheticsMobileStepParamsElement {
@@ -170,6 +179,7 @@ func (o *SyntheticsMobileStepParams) SetElement(v SyntheticsMobileStepParamsElem
 	o.Element = &v
 }
 
+
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParams) GetEnabled() bool {
 	if o == nil || o.Enabled == nil {
@@ -197,6 +207,7 @@ func (o *SyntheticsMobileStepParams) HasEnabled() bool {
 func (o *SyntheticsMobileStepParams) SetEnabled(v bool) {
 	o.Enabled = &v
 }
+
 
 // GetMaxScrolls returns the MaxScrolls field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParams) GetMaxScrolls() int64 {
@@ -226,6 +237,7 @@ func (o *SyntheticsMobileStepParams) SetMaxScrolls(v int64) {
 	o.MaxScrolls = &v
 }
 
+
 // GetPositions returns the Positions field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParams) GetPositions() []SyntheticsMobileStepParamsPositionsItems {
 	if o == nil || o.Positions == nil {
@@ -253,6 +265,7 @@ func (o *SyntheticsMobileStepParams) HasPositions() bool {
 func (o *SyntheticsMobileStepParams) SetPositions(v []SyntheticsMobileStepParamsPositionsItems) {
 	o.Positions = v
 }
+
 
 // GetSubtestPublicId returns the SubtestPublicId field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParams) GetSubtestPublicId() string {
@@ -282,6 +295,7 @@ func (o *SyntheticsMobileStepParams) SetSubtestPublicId(v string) {
 	o.SubtestPublicId = &v
 }
 
+
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParams) GetValue() SyntheticsMobileStepParamsValue {
 	if o == nil || o.Value == nil {
@@ -309,6 +323,7 @@ func (o *SyntheticsMobileStepParams) HasValue() bool {
 func (o *SyntheticsMobileStepParams) SetValue(v SyntheticsMobileStepParamsValue) {
 	o.Value = &v
 }
+
 
 // GetVariable returns the Variable field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParams) GetVariable() SyntheticsMobileStepParamsVariable {
@@ -338,6 +353,7 @@ func (o *SyntheticsMobileStepParams) SetVariable(v SyntheticsMobileStepParamsVar
 	o.Variable = &v
 }
 
+
 // GetWithEnter returns the WithEnter field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParams) GetWithEnter() bool {
 	if o == nil || o.WithEnter == nil {
@@ -365,6 +381,7 @@ func (o *SyntheticsMobileStepParams) HasWithEnter() bool {
 func (o *SyntheticsMobileStepParams) SetWithEnter(v bool) {
 	o.WithEnter = &v
 }
+
 
 // GetX returns the X field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParams) GetX() float64 {
@@ -394,6 +411,7 @@ func (o *SyntheticsMobileStepParams) SetX(v float64) {
 	o.X = &v
 }
 
+
 // GetY returns the Y field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParams) GetY() float64 {
 	if o == nil || o.Y == nil {
@@ -421,6 +439,8 @@ func (o *SyntheticsMobileStepParams) HasY() bool {
 func (o *SyntheticsMobileStepParams) SetY(v float64) {
 	o.Y = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsMobileStepParams) MarshalJSON() ([]byte, error) {
@@ -477,43 +497,43 @@ func (o SyntheticsMobileStepParams) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsMobileStepParams) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Check           *SyntheticsCheckType                       `json:"check,omitempty"`
-		Delay           *int64                                     `json:"delay,omitempty"`
-		Direction       *SyntheticsMobileStepParamsDirection       `json:"direction,omitempty"`
-		Element         *SyntheticsMobileStepParamsElement         `json:"element,omitempty"`
-		Enabled         *bool                                      `json:"enabled,omitempty"`
-		MaxScrolls      *int64                                     `json:"maxScrolls,omitempty"`
-		Positions       []SyntheticsMobileStepParamsPositionsItems `json:"positions,omitempty"`
-		SubtestPublicId *string                                    `json:"subtestPublicId,omitempty"`
-		Value           *SyntheticsMobileStepParamsValue           `json:"value,omitempty"`
-		Variable        *SyntheticsMobileStepParamsVariable        `json:"variable,omitempty"`
-		WithEnter       *bool                                      `json:"withEnter,omitempty"`
-		X               *float64                                   `json:"x,omitempty"`
-		Y               *float64                                   `json:"y,omitempty"`
+		Check *SyntheticsCheckType `json:"check,omitempty"`
+		Delay *int64 `json:"delay,omitempty"`
+		Direction *SyntheticsMobileStepParamsDirection `json:"direction,omitempty"`
+		Element *SyntheticsMobileStepParamsElement `json:"element,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
+		MaxScrolls *int64 `json:"maxScrolls,omitempty"`
+		Positions []SyntheticsMobileStepParamsPositionsItems `json:"positions,omitempty"`
+		SubtestPublicId *string `json:"subtestPublicId,omitempty"`
+		Value *SyntheticsMobileStepParamsValue `json:"value,omitempty"`
+		Variable *SyntheticsMobileStepParamsVariable `json:"variable,omitempty"`
+		WithEnter *bool `json:"withEnter,omitempty"`
+		X *float64 `json:"x,omitempty"`
+		Y *float64 `json:"y,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"check", "delay", "direction", "element", "enabled", "maxScrolls", "positions", "subtestPublicId", "value", "variable", "withEnter", "x", "y"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "check", "delay", "direction", "element", "enabled", "maxScrolls", "positions", "subtestPublicId", "value", "variable", "withEnter", "x", "y",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Check != nil && !all.Check.IsValid() {
+	if all.Check != nil &&!all.Check.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Check = all.Check
 	}
 	o.Delay = all.Delay
-	if all.Direction != nil && !all.Direction.IsValid() {
+	if all.Direction != nil &&!all.Direction.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Direction = all.Direction
 	}
-	if all.Element != nil && all.Element.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Element != nil && all.Element.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Element = all.Element
@@ -522,7 +542,7 @@ func (o *SyntheticsMobileStepParams) UnmarshalJSON(bytes []byte) (err error) {
 	o.Positions = all.Positions
 	o.SubtestPublicId = all.SubtestPublicId
 	o.Value = all.Value
-	if all.Variable != nil && all.Variable.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Variable != nil && all.Variable.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Variable = all.Variable

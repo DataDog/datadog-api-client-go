@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamsResponseMetaPagination Teams response metadata.
 type TeamsResponseMetaPagination struct {
@@ -27,9 +33,10 @@ type TeamsResponseMetaPagination struct {
 	// Offset type.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTeamsResponseMetaPagination instantiates a new TeamsResponseMetaPagination object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +54,6 @@ func NewTeamsResponseMetaPaginationWithDefaults() *TeamsResponseMetaPagination {
 	this := TeamsResponseMetaPagination{}
 	return &this
 }
-
 // GetFirstOffset returns the FirstOffset field value if set, zero value otherwise.
 func (o *TeamsResponseMetaPagination) GetFirstOffset() int64 {
 	if o == nil || o.FirstOffset == nil {
@@ -75,6 +81,7 @@ func (o *TeamsResponseMetaPagination) HasFirstOffset() bool {
 func (o *TeamsResponseMetaPagination) SetFirstOffset(v int64) {
 	o.FirstOffset = &v
 }
+
 
 // GetLastOffset returns the LastOffset field value if set, zero value otherwise.
 func (o *TeamsResponseMetaPagination) GetLastOffset() int64 {
@@ -104,6 +111,7 @@ func (o *TeamsResponseMetaPagination) SetLastOffset(v int64) {
 	o.LastOffset = &v
 }
 
+
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *TeamsResponseMetaPagination) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
@@ -131,6 +139,7 @@ func (o *TeamsResponseMetaPagination) HasLimit() bool {
 func (o *TeamsResponseMetaPagination) SetLimit(v int64) {
 	o.Limit = &v
 }
+
 
 // GetNextOffset returns the NextOffset field value if set, zero value otherwise.
 func (o *TeamsResponseMetaPagination) GetNextOffset() int64 {
@@ -160,6 +169,7 @@ func (o *TeamsResponseMetaPagination) SetNextOffset(v int64) {
 	o.NextOffset = &v
 }
 
+
 // GetOffset returns the Offset field value if set, zero value otherwise.
 func (o *TeamsResponseMetaPagination) GetOffset() int64 {
 	if o == nil || o.Offset == nil {
@@ -187,6 +197,7 @@ func (o *TeamsResponseMetaPagination) HasOffset() bool {
 func (o *TeamsResponseMetaPagination) SetOffset(v int64) {
 	o.Offset = &v
 }
+
 
 // GetPrevOffset returns the PrevOffset field value if set, zero value otherwise.
 func (o *TeamsResponseMetaPagination) GetPrevOffset() int64 {
@@ -216,6 +227,7 @@ func (o *TeamsResponseMetaPagination) SetPrevOffset(v int64) {
 	o.PrevOffset = &v
 }
 
+
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *TeamsResponseMetaPagination) GetTotal() int64 {
 	if o == nil || o.Total == nil {
@@ -244,6 +256,7 @@ func (o *TeamsResponseMetaPagination) SetTotal(v int64) {
 	o.Total = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *TeamsResponseMetaPagination) GetType() string {
 	if o == nil || o.Type == nil {
@@ -271,6 +284,8 @@ func (o *TeamsResponseMetaPagination) HasType() bool {
 func (o *TeamsResponseMetaPagination) SetType(v string) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamsResponseMetaPagination) MarshalJSON() ([]byte, error) {
@@ -312,21 +327,21 @@ func (o TeamsResponseMetaPagination) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamsResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		FirstOffset *int64  `json:"first_offset,omitempty"`
-		LastOffset  *int64  `json:"last_offset,omitempty"`
-		Limit       *int64  `json:"limit,omitempty"`
-		NextOffset  *int64  `json:"next_offset,omitempty"`
-		Offset      *int64  `json:"offset,omitempty"`
-		PrevOffset  *int64  `json:"prev_offset,omitempty"`
-		Total       *int64  `json:"total,omitempty"`
-		Type        *string `json:"type,omitempty"`
+		FirstOffset *int64 `json:"first_offset,omitempty"`
+		LastOffset *int64 `json:"last_offset,omitempty"`
+		Limit *int64 `json:"limit,omitempty"`
+		NextOffset *int64 `json:"next_offset,omitempty"`
+		Offset *int64 `json:"offset,omitempty"`
+		PrevOffset *int64 `json:"prev_offset,omitempty"`
+		Total *int64 `json:"total,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"first_offset", "last_offset", "limit", "next_offset", "offset", "prev_offset", "total", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "first_offset", "last_offset", "limit", "next_offset", "offset", "prev_offset", "total", "type",  })
 	} else {
 		return err
 	}

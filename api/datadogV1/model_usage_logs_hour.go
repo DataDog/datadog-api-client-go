@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageLogsHour Hour usage for logs.
 type UsageLogsHour struct {
@@ -35,9 +39,10 @@ type UsageLogsHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageLogsHour instantiates a new UsageLogsHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +60,6 @@ func NewUsageLogsHourWithDefaults() *UsageLogsHour {
 	this := UsageLogsHour{}
 	return &this
 }
-
 // GetBillableIngestedBytes returns the BillableIngestedBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageLogsHour) GetBillableIngestedBytes() int64 {
 	if o == nil || o.BillableIngestedBytes.Get() == nil {
@@ -69,7 +73,7 @@ func (o *UsageLogsHour) GetBillableIngestedBytes() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLogsHour) GetBillableIngestedBytesOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.BillableIngestedBytes.Get(), o.BillableIngestedBytes.IsSet()
@@ -84,7 +88,6 @@ func (o *UsageLogsHour) HasBillableIngestedBytes() bool {
 func (o *UsageLogsHour) SetBillableIngestedBytes(v int64) {
 	o.BillableIngestedBytes.Set(&v)
 }
-
 // SetBillableIngestedBytesNil sets the value for BillableIngestedBytes to be an explicit nil.
 func (o *UsageLogsHour) SetBillableIngestedBytesNil() {
 	o.BillableIngestedBytes.Set(nil)
@@ -94,6 +97,7 @@ func (o *UsageLogsHour) SetBillableIngestedBytesNil() {
 func (o *UsageLogsHour) UnsetBillableIngestedBytes() {
 	o.BillableIngestedBytes.Unset()
 }
+
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageLogsHour) GetHour() time.Time {
@@ -123,6 +127,7 @@ func (o *UsageLogsHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetIndexedEventsCount returns the IndexedEventsCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageLogsHour) GetIndexedEventsCount() int64 {
 	if o == nil || o.IndexedEventsCount.Get() == nil {
@@ -136,7 +141,7 @@ func (o *UsageLogsHour) GetIndexedEventsCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLogsHour) GetIndexedEventsCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.IndexedEventsCount.Get(), o.IndexedEventsCount.IsSet()
@@ -151,7 +156,6 @@ func (o *UsageLogsHour) HasIndexedEventsCount() bool {
 func (o *UsageLogsHour) SetIndexedEventsCount(v int64) {
 	o.IndexedEventsCount.Set(&v)
 }
-
 // SetIndexedEventsCountNil sets the value for IndexedEventsCount to be an explicit nil.
 func (o *UsageLogsHour) SetIndexedEventsCountNil() {
 	o.IndexedEventsCount.Set(nil)
@@ -161,6 +165,7 @@ func (o *UsageLogsHour) SetIndexedEventsCountNil() {
 func (o *UsageLogsHour) UnsetIndexedEventsCount() {
 	o.IndexedEventsCount.Unset()
 }
+
 
 // GetIngestedEventsBytes returns the IngestedEventsBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageLogsHour) GetIngestedEventsBytes() int64 {
@@ -175,7 +180,7 @@ func (o *UsageLogsHour) GetIngestedEventsBytes() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLogsHour) GetIngestedEventsBytesOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.IngestedEventsBytes.Get(), o.IngestedEventsBytes.IsSet()
@@ -190,7 +195,6 @@ func (o *UsageLogsHour) HasIngestedEventsBytes() bool {
 func (o *UsageLogsHour) SetIngestedEventsBytes(v int64) {
 	o.IngestedEventsBytes.Set(&v)
 }
-
 // SetIngestedEventsBytesNil sets the value for IngestedEventsBytes to be an explicit nil.
 func (o *UsageLogsHour) SetIngestedEventsBytesNil() {
 	o.IngestedEventsBytes.Set(nil)
@@ -200,6 +204,7 @@ func (o *UsageLogsHour) SetIngestedEventsBytesNil() {
 func (o *UsageLogsHour) UnsetIngestedEventsBytes() {
 	o.IngestedEventsBytes.Unset()
 }
+
 
 // GetLogsForwardingEventsBytes returns the LogsForwardingEventsBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageLogsHour) GetLogsForwardingEventsBytes() int64 {
@@ -214,7 +219,7 @@ func (o *UsageLogsHour) GetLogsForwardingEventsBytes() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLogsHour) GetLogsForwardingEventsBytesOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.LogsForwardingEventsBytes.Get(), o.LogsForwardingEventsBytes.IsSet()
@@ -229,7 +234,6 @@ func (o *UsageLogsHour) HasLogsForwardingEventsBytes() bool {
 func (o *UsageLogsHour) SetLogsForwardingEventsBytes(v int64) {
 	o.LogsForwardingEventsBytes.Set(&v)
 }
-
 // SetLogsForwardingEventsBytesNil sets the value for LogsForwardingEventsBytes to be an explicit nil.
 func (o *UsageLogsHour) SetLogsForwardingEventsBytesNil() {
 	o.LogsForwardingEventsBytes.Set(nil)
@@ -239,6 +243,7 @@ func (o *UsageLogsHour) SetLogsForwardingEventsBytesNil() {
 func (o *UsageLogsHour) UnsetLogsForwardingEventsBytes() {
 	o.LogsForwardingEventsBytes.Unset()
 }
+
 
 // GetLogsLiveIndexedCount returns the LogsLiveIndexedCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageLogsHour) GetLogsLiveIndexedCount() int64 {
@@ -253,7 +258,7 @@ func (o *UsageLogsHour) GetLogsLiveIndexedCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLogsHour) GetLogsLiveIndexedCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.LogsLiveIndexedCount.Get(), o.LogsLiveIndexedCount.IsSet()
@@ -268,7 +273,6 @@ func (o *UsageLogsHour) HasLogsLiveIndexedCount() bool {
 func (o *UsageLogsHour) SetLogsLiveIndexedCount(v int64) {
 	o.LogsLiveIndexedCount.Set(&v)
 }
-
 // SetLogsLiveIndexedCountNil sets the value for LogsLiveIndexedCount to be an explicit nil.
 func (o *UsageLogsHour) SetLogsLiveIndexedCountNil() {
 	o.LogsLiveIndexedCount.Set(nil)
@@ -278,6 +282,7 @@ func (o *UsageLogsHour) SetLogsLiveIndexedCountNil() {
 func (o *UsageLogsHour) UnsetLogsLiveIndexedCount() {
 	o.LogsLiveIndexedCount.Unset()
 }
+
 
 // GetLogsLiveIngestedBytes returns the LogsLiveIngestedBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageLogsHour) GetLogsLiveIngestedBytes() int64 {
@@ -292,7 +297,7 @@ func (o *UsageLogsHour) GetLogsLiveIngestedBytes() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLogsHour) GetLogsLiveIngestedBytesOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.LogsLiveIngestedBytes.Get(), o.LogsLiveIngestedBytes.IsSet()
@@ -307,7 +312,6 @@ func (o *UsageLogsHour) HasLogsLiveIngestedBytes() bool {
 func (o *UsageLogsHour) SetLogsLiveIngestedBytes(v int64) {
 	o.LogsLiveIngestedBytes.Set(&v)
 }
-
 // SetLogsLiveIngestedBytesNil sets the value for LogsLiveIngestedBytes to be an explicit nil.
 func (o *UsageLogsHour) SetLogsLiveIngestedBytesNil() {
 	o.LogsLiveIngestedBytes.Set(nil)
@@ -317,6 +321,7 @@ func (o *UsageLogsHour) SetLogsLiveIngestedBytesNil() {
 func (o *UsageLogsHour) UnsetLogsLiveIngestedBytes() {
 	o.LogsLiveIngestedBytes.Unset()
 }
+
 
 // GetLogsRehydratedIndexedCount returns the LogsRehydratedIndexedCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageLogsHour) GetLogsRehydratedIndexedCount() int64 {
@@ -331,7 +336,7 @@ func (o *UsageLogsHour) GetLogsRehydratedIndexedCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLogsHour) GetLogsRehydratedIndexedCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.LogsRehydratedIndexedCount.Get(), o.LogsRehydratedIndexedCount.IsSet()
@@ -346,7 +351,6 @@ func (o *UsageLogsHour) HasLogsRehydratedIndexedCount() bool {
 func (o *UsageLogsHour) SetLogsRehydratedIndexedCount(v int64) {
 	o.LogsRehydratedIndexedCount.Set(&v)
 }
-
 // SetLogsRehydratedIndexedCountNil sets the value for LogsRehydratedIndexedCount to be an explicit nil.
 func (o *UsageLogsHour) SetLogsRehydratedIndexedCountNil() {
 	o.LogsRehydratedIndexedCount.Set(nil)
@@ -356,6 +360,7 @@ func (o *UsageLogsHour) SetLogsRehydratedIndexedCountNil() {
 func (o *UsageLogsHour) UnsetLogsRehydratedIndexedCount() {
 	o.LogsRehydratedIndexedCount.Unset()
 }
+
 
 // GetLogsRehydratedIngestedBytes returns the LogsRehydratedIngestedBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageLogsHour) GetLogsRehydratedIngestedBytes() int64 {
@@ -370,7 +375,7 @@ func (o *UsageLogsHour) GetLogsRehydratedIngestedBytes() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageLogsHour) GetLogsRehydratedIngestedBytesOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.LogsRehydratedIngestedBytes.Get(), o.LogsRehydratedIngestedBytes.IsSet()
@@ -385,7 +390,6 @@ func (o *UsageLogsHour) HasLogsRehydratedIngestedBytes() bool {
 func (o *UsageLogsHour) SetLogsRehydratedIngestedBytes(v int64) {
 	o.LogsRehydratedIngestedBytes.Set(&v)
 }
-
 // SetLogsRehydratedIngestedBytesNil sets the value for LogsRehydratedIngestedBytes to be an explicit nil.
 func (o *UsageLogsHour) SetLogsRehydratedIngestedBytesNil() {
 	o.LogsRehydratedIngestedBytes.Set(nil)
@@ -395,6 +399,7 @@ func (o *UsageLogsHour) SetLogsRehydratedIngestedBytesNil() {
 func (o *UsageLogsHour) UnsetLogsRehydratedIngestedBytes() {
 	o.LogsRehydratedIngestedBytes.Unset()
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageLogsHour) GetOrgName() string {
@@ -424,6 +429,7 @@ func (o *UsageLogsHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageLogsHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -451,6 +457,8 @@ func (o *UsageLogsHour) HasPublicId() bool {
 func (o *UsageLogsHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageLogsHour) MarshalJSON() ([]byte, error) {
@@ -505,24 +513,24 @@ func (o UsageLogsHour) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageLogsHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BillableIngestedBytes       datadog.NullableInt64 `json:"billable_ingested_bytes,omitempty"`
-		Hour                        *time.Time            `json:"hour,omitempty"`
-		IndexedEventsCount          datadog.NullableInt64 `json:"indexed_events_count,omitempty"`
-		IngestedEventsBytes         datadog.NullableInt64 `json:"ingested_events_bytes,omitempty"`
-		LogsForwardingEventsBytes   datadog.NullableInt64 `json:"logs_forwarding_events_bytes,omitempty"`
-		LogsLiveIndexedCount        datadog.NullableInt64 `json:"logs_live_indexed_count,omitempty"`
-		LogsLiveIngestedBytes       datadog.NullableInt64 `json:"logs_live_ingested_bytes,omitempty"`
-		LogsRehydratedIndexedCount  datadog.NullableInt64 `json:"logs_rehydrated_indexed_count,omitempty"`
+		BillableIngestedBytes datadog.NullableInt64 `json:"billable_ingested_bytes,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		IndexedEventsCount datadog.NullableInt64 `json:"indexed_events_count,omitempty"`
+		IngestedEventsBytes datadog.NullableInt64 `json:"ingested_events_bytes,omitempty"`
+		LogsForwardingEventsBytes datadog.NullableInt64 `json:"logs_forwarding_events_bytes,omitempty"`
+		LogsLiveIndexedCount datadog.NullableInt64 `json:"logs_live_indexed_count,omitempty"`
+		LogsLiveIngestedBytes datadog.NullableInt64 `json:"logs_live_ingested_bytes,omitempty"`
+		LogsRehydratedIndexedCount datadog.NullableInt64 `json:"logs_rehydrated_indexed_count,omitempty"`
 		LogsRehydratedIngestedBytes datadog.NullableInt64 `json:"logs_rehydrated_ingested_bytes,omitempty"`
-		OrgName                     *string               `json:"org_name,omitempty"`
-		PublicId                    *string               `json:"public_id,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"billable_ingested_bytes", "hour", "indexed_events_count", "ingested_events_bytes", "logs_forwarding_events_bytes", "logs_live_indexed_count", "logs_live_ingested_bytes", "logs_rehydrated_indexed_count", "logs_rehydrated_ingested_bytes", "org_name", "public_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "billable_ingested_bytes", "hour", "indexed_events_count", "ingested_events_bytes", "logs_forwarding_events_bytes", "logs_live_indexed_count", "logs_live_ingested_bytes", "logs_rehydrated_indexed_count", "logs_rehydrated_ingested_bytes", "org_name", "public_id",  })
 	} else {
 		return err
 	}

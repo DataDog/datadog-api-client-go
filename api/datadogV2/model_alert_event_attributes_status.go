@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AlertEventAttributesStatus The status of the alert.
 type AlertEventAttributesStatus string
 
 // List of AlertEventAttributesStatus.
 const (
-	ALERTEVENTATTRIBUTESSTATUS_WARN  AlertEventAttributesStatus = "warn"
+	ALERTEVENTATTRIBUTESSTATUS_WARN AlertEventAttributesStatus = "warn"
 	ALERTEVENTATTRIBUTESSTATUS_ERROR AlertEventAttributesStatus = "error"
-	ALERTEVENTATTRIBUTESSTATUS_OK    AlertEventAttributesStatus = "ok"
+	ALERTEVENTATTRIBUTESSTATUS_OK AlertEventAttributesStatus = "ok"
 )
 
 var allowedAlertEventAttributesStatusEnumValues = []AlertEventAttributesStatus{

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomDestinationForwardDestinationMicrosoftSentinel The Microsoft Sentinel destination.
 type CustomDestinationForwardDestinationMicrosoftSentinel struct {
@@ -25,9 +29,10 @@ type CustomDestinationForwardDestinationMicrosoftSentinel struct {
 	// Type of the Microsoft Sentinel destination.
 	Type CustomDestinationForwardDestinationMicrosoftSentinelType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomDestinationForwardDestinationMicrosoftSentinel instantiates a new CustomDestinationForwardDestinationMicrosoftSentinel object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewCustomDestinationForwardDestinationMicrosoftSentinelWithDefaults() *Cust
 	this.Type = typeVar
 	return &this
 }
-
 // GetClientId returns the ClientId field value.
 func (o *CustomDestinationForwardDestinationMicrosoftSentinel) GetClientId() string {
 	if o == nil {
@@ -76,6 +80,7 @@ func (o *CustomDestinationForwardDestinationMicrosoftSentinel) GetClientIdOk() (
 func (o *CustomDestinationForwardDestinationMicrosoftSentinel) SetClientId(v string) {
 	o.ClientId = v
 }
+
 
 // GetDataCollectionEndpoint returns the DataCollectionEndpoint field value.
 func (o *CustomDestinationForwardDestinationMicrosoftSentinel) GetDataCollectionEndpoint() string {
@@ -100,6 +105,7 @@ func (o *CustomDestinationForwardDestinationMicrosoftSentinel) SetDataCollection
 	o.DataCollectionEndpoint = v
 }
 
+
 // GetDataCollectionRuleId returns the DataCollectionRuleId field value.
 func (o *CustomDestinationForwardDestinationMicrosoftSentinel) GetDataCollectionRuleId() string {
 	if o == nil {
@@ -122,6 +128,7 @@ func (o *CustomDestinationForwardDestinationMicrosoftSentinel) GetDataCollection
 func (o *CustomDestinationForwardDestinationMicrosoftSentinel) SetDataCollectionRuleId(v string) {
 	o.DataCollectionRuleId = v
 }
+
 
 // GetStreamName returns the StreamName field value.
 func (o *CustomDestinationForwardDestinationMicrosoftSentinel) GetStreamName() string {
@@ -146,6 +153,7 @@ func (o *CustomDestinationForwardDestinationMicrosoftSentinel) SetStreamName(v s
 	o.StreamName = v
 }
 
+
 // GetTenantId returns the TenantId field value.
 func (o *CustomDestinationForwardDestinationMicrosoftSentinel) GetTenantId() string {
 	if o == nil {
@@ -168,6 +176,7 @@ func (o *CustomDestinationForwardDestinationMicrosoftSentinel) GetTenantIdOk() (
 func (o *CustomDestinationForwardDestinationMicrosoftSentinel) SetTenantId(v string) {
 	o.TenantId = v
 }
+
 
 // GetType returns the Type field value.
 func (o *CustomDestinationForwardDestinationMicrosoftSentinel) GetType() CustomDestinationForwardDestinationMicrosoftSentinelType {
@@ -192,6 +201,8 @@ func (o *CustomDestinationForwardDestinationMicrosoftSentinel) SetType(v CustomD
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomDestinationForwardDestinationMicrosoftSentinel) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -214,12 +225,12 @@ func (o CustomDestinationForwardDestinationMicrosoftSentinel) MarshalJSON() ([]b
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomDestinationForwardDestinationMicrosoftSentinel) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ClientId               *string                                                   `json:"client_id"`
-		DataCollectionEndpoint *string                                                   `json:"data_collection_endpoint"`
-		DataCollectionRuleId   *string                                                   `json:"data_collection_rule_id"`
-		StreamName             *string                                                   `json:"stream_name"`
-		TenantId               *string                                                   `json:"tenant_id"`
-		Type                   *CustomDestinationForwardDestinationMicrosoftSentinelType `json:"type"`
+		ClientId *string `json:"client_id"`
+		DataCollectionEndpoint *string `json:"data_collection_endpoint"`
+		DataCollectionRuleId *string `json:"data_collection_rule_id"`
+		StreamName *string `json:"stream_name"`
+		TenantId *string `json:"tenant_id"`
+		Type *CustomDestinationForwardDestinationMicrosoftSentinelType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -244,7 +255,7 @@ func (o *CustomDestinationForwardDestinationMicrosoftSentinel) UnmarshalJSON(byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"client_id", "data_collection_endpoint", "data_collection_rule_id", "stream_name", "tenant_id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "client_id", "data_collection_endpoint", "data_collection_rule_id", "stream_name", "tenant_id", "type",  })
 	} else {
 		return err
 	}

@@ -2,19 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSocketSourceFraming - Framing method configuration for the socket source.
 type ObservabilityPipelineSocketSourceFraming struct {
-	ObservabilityPipelineSocketSourceFramingNewlineDelimited   *ObservabilityPipelineSocketSourceFramingNewlineDelimited
-	ObservabilityPipelineSocketSourceFramingBytes              *ObservabilityPipelineSocketSourceFramingBytes
+	ObservabilityPipelineSocketSourceFramingNewlineDelimited *ObservabilityPipelineSocketSourceFramingNewlineDelimited
+	ObservabilityPipelineSocketSourceFramingBytes *ObservabilityPipelineSocketSourceFramingBytes
 	ObservabilityPipelineSocketSourceFramingCharacterDelimited *ObservabilityPipelineSocketSourceFramingCharacterDelimited
-	ObservabilityPipelineSocketSourceFramingOctetCounting      *ObservabilityPipelineSocketSourceFramingOctetCounting
-	ObservabilityPipelineSocketSourceFramingChunkedGelf        *ObservabilityPipelineSocketSourceFramingChunkedGelf
+	ObservabilityPipelineSocketSourceFramingOctetCounting *ObservabilityPipelineSocketSourceFramingOctetCounting
+	ObservabilityPipelineSocketSourceFramingChunkedGelf *ObservabilityPipelineSocketSourceFramingChunkedGelf
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -152,21 +158,26 @@ func (obj ObservabilityPipelineSocketSourceFraming) MarshalJSON() ([]byte, error
 		return datadog.Marshal(&obj.ObservabilityPipelineSocketSourceFramingNewlineDelimited)
 	}
 
+
 	if obj.ObservabilityPipelineSocketSourceFramingBytes != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSocketSourceFramingBytes)
 	}
+
 
 	if obj.ObservabilityPipelineSocketSourceFramingCharacterDelimited != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSocketSourceFramingCharacterDelimited)
 	}
 
+
 	if obj.ObservabilityPipelineSocketSourceFramingOctetCounting != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSocketSourceFramingOctetCounting)
 	}
 
+
 	if obj.ObservabilityPipelineSocketSourceFramingChunkedGelf != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSocketSourceFramingChunkedGelf)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -175,26 +186,31 @@ func (obj ObservabilityPipelineSocketSourceFraming) MarshalJSON() ([]byte, error
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ObservabilityPipelineSocketSourceFraming) GetActualInstance() interface{} {
+func (obj *ObservabilityPipelineSocketSourceFraming) GetActualInstance() (interface{}) {
 	if obj.ObservabilityPipelineSocketSourceFramingNewlineDelimited != nil {
 		return obj.ObservabilityPipelineSocketSourceFramingNewlineDelimited
 	}
+
 
 	if obj.ObservabilityPipelineSocketSourceFramingBytes != nil {
 		return obj.ObservabilityPipelineSocketSourceFramingBytes
 	}
 
+
 	if obj.ObservabilityPipelineSocketSourceFramingCharacterDelimited != nil {
 		return obj.ObservabilityPipelineSocketSourceFramingCharacterDelimited
 	}
+
 
 	if obj.ObservabilityPipelineSocketSourceFramingOctetCounting != nil {
 		return obj.ObservabilityPipelineSocketSourceFramingOctetCounting
 	}
 
+
 	if obj.ObservabilityPipelineSocketSourceFramingChunkedGelf != nil {
 		return obj.ObservabilityPipelineSocketSourceFramingChunkedGelf
 	}
+
 
 	// all schemas are nil
 	return nil

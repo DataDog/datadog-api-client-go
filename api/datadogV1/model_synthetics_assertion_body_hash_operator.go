@@ -2,21 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAssertionBodyHashOperator Assertion operator to apply.
 type SyntheticsAssertionBodyHashOperator string
 
 // List of SyntheticsAssertionBodyHashOperator.
 const (
-	SYNTHETICSASSERTIONBODYHASHOPERATOR_MD5    SyntheticsAssertionBodyHashOperator = "md5"
-	SYNTHETICSASSERTIONBODYHASHOPERATOR_SHA1   SyntheticsAssertionBodyHashOperator = "sha1"
+	SYNTHETICSASSERTIONBODYHASHOPERATOR_MD5 SyntheticsAssertionBodyHashOperator = "md5"
+	SYNTHETICSASSERTIONBODYHASHOPERATOR_SHA1 SyntheticsAssertionBodyHashOperator = "sha1"
 	SYNTHETICSASSERTIONBODYHASHOPERATOR_SHA256 SyntheticsAssertionBodyHashOperator = "sha256"
 )
 

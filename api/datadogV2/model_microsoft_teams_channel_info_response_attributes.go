@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MicrosoftTeamsChannelInfoResponseAttributes Channel attributes.
 type MicrosoftTeamsChannelInfoResponseAttributes struct {
@@ -17,9 +23,10 @@ type MicrosoftTeamsChannelInfoResponseAttributes struct {
 	// Tenant id.
 	TenantId *string `json:"tenant_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMicrosoftTeamsChannelInfoResponseAttributes instantiates a new MicrosoftTeamsChannelInfoResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewMicrosoftTeamsChannelInfoResponseAttributesWithDefaults() *MicrosoftTeam
 	this := MicrosoftTeamsChannelInfoResponseAttributes{}
 	return &this
 }
-
 // GetIsPrimary returns the IsPrimary field value if set, zero value otherwise.
 func (o *MicrosoftTeamsChannelInfoResponseAttributes) GetIsPrimary() bool {
 	if o == nil || o.IsPrimary == nil {
@@ -65,6 +71,7 @@ func (o *MicrosoftTeamsChannelInfoResponseAttributes) HasIsPrimary() bool {
 func (o *MicrosoftTeamsChannelInfoResponseAttributes) SetIsPrimary(v bool) {
 	o.IsPrimary = &v
 }
+
 
 // GetTeamId returns the TeamId field value if set, zero value otherwise.
 func (o *MicrosoftTeamsChannelInfoResponseAttributes) GetTeamId() string {
@@ -94,6 +101,7 @@ func (o *MicrosoftTeamsChannelInfoResponseAttributes) SetTeamId(v string) {
 	o.TeamId = &v
 }
 
+
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
 func (o *MicrosoftTeamsChannelInfoResponseAttributes) GetTenantId() string {
 	if o == nil || o.TenantId == nil {
@@ -122,6 +130,8 @@ func (o *MicrosoftTeamsChannelInfoResponseAttributes) SetTenantId(v string) {
 	o.TenantId = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MicrosoftTeamsChannelInfoResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o MicrosoftTeamsChannelInfoResponseAttributes) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *MicrosoftTeamsChannelInfoResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		IsPrimary *bool   `json:"is_primary,omitempty"`
-		TeamId    *string `json:"team_id,omitempty"`
-		TenantId  *string `json:"tenant_id,omitempty"`
+		IsPrimary *bool `json:"is_primary,omitempty"`
+		TeamId *string `json:"team_id,omitempty"`
+		TenantId *string `json:"tenant_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"is_primary", "team_id", "tenant_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "is_primary", "team_id", "tenant_id",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineQuotaProcessorLimit The maximum amount of data or number of events allowed before the quota is enforced. Can be specified in bytes or events.
 type ObservabilityPipelineQuotaProcessorLimit struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineQuotaProcessorLimit struct {
 	// The limit for quota enforcement.
 	Limit int64 `json:"limit"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineQuotaProcessorLimit instantiates a new ObservabilityPipelineQuotaProcessorLimit object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineQuotaProcessorLimitWithDefaults() *ObservabilityPip
 	this := ObservabilityPipelineQuotaProcessorLimit{}
 	return &this
 }
-
 // GetEnforce returns the Enforce field value.
 func (o *ObservabilityPipelineQuotaProcessorLimit) GetEnforce() ObservabilityPipelineQuotaProcessorLimitEnforceType {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineQuotaProcessorLimit) GetEnforceOk() (*Observabilit
 func (o *ObservabilityPipelineQuotaProcessorLimit) SetEnforce(v ObservabilityPipelineQuotaProcessorLimitEnforceType) {
 	o.Enforce = v
 }
+
 
 // GetLimit returns the Limit field value.
 func (o *ObservabilityPipelineQuotaProcessorLimit) GetLimit() int64 {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineQuotaProcessorLimit) SetLimit(v int64) {
 	o.Limit = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineQuotaProcessorLimit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o ObservabilityPipelineQuotaProcessorLimit) MarshalJSON() ([]byte, error) 
 func (o *ObservabilityPipelineQuotaProcessorLimit) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Enforce *ObservabilityPipelineQuotaProcessorLimitEnforceType `json:"enforce"`
-		Limit   *int64                                               `json:"limit"`
+		Limit *int64 `json:"limit"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineQuotaProcessorLimit) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enforce", "limit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "enforce", "limit",  })
 	} else {
 		return err
 	}

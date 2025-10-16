@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GCPUsageCostConfigPostRequestAttributes Attributes for Google Cloud Usage Cost config post request.
 type GCPUsageCostConfigPostRequestAttributes struct {
@@ -25,9 +29,10 @@ type GCPUsageCostConfigPostRequestAttributes struct {
 	// The unique Google Cloud service account email.
 	ServiceAccount string `json:"service_account"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGCPUsageCostConfigPostRequestAttributes instantiates a new GCPUsageCostConfigPostRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewGCPUsageCostConfigPostRequestAttributesWithDefaults() *GCPUsageCostConfi
 	this := GCPUsageCostConfigPostRequestAttributes{}
 	return &this
 }
-
 // GetBillingAccountId returns the BillingAccountId field value.
 func (o *GCPUsageCostConfigPostRequestAttributes) GetBillingAccountId() string {
 	if o == nil {
@@ -73,6 +77,7 @@ func (o *GCPUsageCostConfigPostRequestAttributes) GetBillingAccountIdOk() (*stri
 func (o *GCPUsageCostConfigPostRequestAttributes) SetBillingAccountId(v string) {
 	o.BillingAccountId = v
 }
+
 
 // GetBucketName returns the BucketName field value.
 func (o *GCPUsageCostConfigPostRequestAttributes) GetBucketName() string {
@@ -97,6 +102,7 @@ func (o *GCPUsageCostConfigPostRequestAttributes) SetBucketName(v string) {
 	o.BucketName = v
 }
 
+
 // GetExportDatasetName returns the ExportDatasetName field value.
 func (o *GCPUsageCostConfigPostRequestAttributes) GetExportDatasetName() string {
 	if o == nil {
@@ -119,6 +125,7 @@ func (o *GCPUsageCostConfigPostRequestAttributes) GetExportDatasetNameOk() (*str
 func (o *GCPUsageCostConfigPostRequestAttributes) SetExportDatasetName(v string) {
 	o.ExportDatasetName = v
 }
+
 
 // GetExportPrefix returns the ExportPrefix field value if set, zero value otherwise.
 func (o *GCPUsageCostConfigPostRequestAttributes) GetExportPrefix() string {
@@ -148,6 +155,7 @@ func (o *GCPUsageCostConfigPostRequestAttributes) SetExportPrefix(v string) {
 	o.ExportPrefix = &v
 }
 
+
 // GetExportProjectName returns the ExportProjectName field value.
 func (o *GCPUsageCostConfigPostRequestAttributes) GetExportProjectName() string {
 	if o == nil {
@@ -171,6 +179,7 @@ func (o *GCPUsageCostConfigPostRequestAttributes) SetExportProjectName(v string)
 	o.ExportProjectName = v
 }
 
+
 // GetServiceAccount returns the ServiceAccount field value.
 func (o *GCPUsageCostConfigPostRequestAttributes) GetServiceAccount() string {
 	if o == nil {
@@ -193,6 +202,8 @@ func (o *GCPUsageCostConfigPostRequestAttributes) GetServiceAccountOk() (*string
 func (o *GCPUsageCostConfigPostRequestAttributes) SetServiceAccount(v string) {
 	o.ServiceAccount = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o GCPUsageCostConfigPostRequestAttributes) MarshalJSON() ([]byte, error) {
@@ -218,12 +229,12 @@ func (o GCPUsageCostConfigPostRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GCPUsageCostConfigPostRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BillingAccountId  *string `json:"billing_account_id"`
-		BucketName        *string `json:"bucket_name"`
+		BillingAccountId *string `json:"billing_account_id"`
+		BucketName *string `json:"bucket_name"`
 		ExportDatasetName *string `json:"export_dataset_name"`
-		ExportPrefix      *string `json:"export_prefix,omitempty"`
+		ExportPrefix *string `json:"export_prefix,omitempty"`
 		ExportProjectName *string `json:"export_project_name"`
-		ServiceAccount    *string `json:"service_account"`
+		ServiceAccount *string `json:"service_account"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -245,7 +256,7 @@ func (o *GCPUsageCostConfigPostRequestAttributes) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"billing_account_id", "bucket_name", "export_dataset_name", "export_prefix", "export_project_name", "service_account"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "billing_account_id", "bucket_name", "export_dataset_name", "export_prefix", "export_project_name", "service_account",  })
 	} else {
 		return err
 	}

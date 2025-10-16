@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsMobileStepParamsDirection The direction of the scroll for a `scrollToElement` step type.
 type SyntheticsMobileStepParamsDirection string
 
 // List of SyntheticsMobileStepParamsDirection.
 const (
-	SYNTHETICSMOBILESTEPPARAMSDIRECTION_UP    SyntheticsMobileStepParamsDirection = "up"
-	SYNTHETICSMOBILESTEPPARAMSDIRECTION_DOWN  SyntheticsMobileStepParamsDirection = "down"
-	SYNTHETICSMOBILESTEPPARAMSDIRECTION_LEFT  SyntheticsMobileStepParamsDirection = "left"
+	SYNTHETICSMOBILESTEPPARAMSDIRECTION_UP SyntheticsMobileStepParamsDirection = "up"
+	SYNTHETICSMOBILESTEPPARAMSDIRECTION_DOWN SyntheticsMobileStepParamsDirection = "down"
+	SYNTHETICSMOBILESTEPPARAMSDIRECTION_LEFT SyntheticsMobileStepParamsDirection = "left"
 	SYNTHETICSMOBILESTEPPARAMSDIRECTION_RIGHT SyntheticsMobileStepParamsDirection = "right"
 )
 

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsMetricCreateAttributes The object describing the Datadog log-based metric to create.
 type LogsMetricCreateAttributes struct {
@@ -19,9 +23,10 @@ type LogsMetricCreateAttributes struct {
 	// The rules for the group by.
 	GroupBy []LogsMetricGroupBy `json:"group_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsMetricCreateAttributes instantiates a new LogsMetricCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewLogsMetricCreateAttributesWithDefaults() *LogsMetricCreateAttributes {
 	this := LogsMetricCreateAttributes{}
 	return &this
 }
-
 // GetCompute returns the Compute field value.
 func (o *LogsMetricCreateAttributes) GetCompute() LogsMetricCompute {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *LogsMetricCreateAttributes) GetComputeOk() (*LogsMetricCompute, bool) {
 func (o *LogsMetricCreateAttributes) SetCompute(v LogsMetricCompute) {
 	o.Compute = v
 }
+
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *LogsMetricCreateAttributes) GetFilter() LogsMetricFilter {
@@ -92,6 +97,7 @@ func (o *LogsMetricCreateAttributes) SetFilter(v LogsMetricFilter) {
 	o.Filter = &v
 }
 
+
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *LogsMetricCreateAttributes) GetGroupBy() []LogsMetricGroupBy {
 	if o == nil || o.GroupBy == nil {
@@ -120,6 +126,8 @@ func (o *LogsMetricCreateAttributes) SetGroupBy(v []LogsMetricGroupBy) {
 	o.GroupBy = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsMetricCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -143,8 +151,8 @@ func (o LogsMetricCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Compute *LogsMetricCompute  `json:"compute"`
-		Filter  *LogsMetricFilter   `json:"filter,omitempty"`
+		Compute *LogsMetricCompute `json:"compute"`
+		Filter *LogsMetricFilter `json:"filter,omitempty"`
 		GroupBy []LogsMetricGroupBy `json:"group_by,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -155,7 +163,7 @@ func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "filter", "group_by"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "compute", "filter", "group_by",  })
 	} else {
 		return err
 	}
@@ -165,7 +173,7 @@ func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Compute = *all.Compute
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter

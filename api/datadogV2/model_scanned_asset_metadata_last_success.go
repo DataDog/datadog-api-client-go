@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScannedAssetMetadataLastSuccess Metadata for the last successful scan of an asset.
 type ScannedAssetMetadataLastSuccess struct {
@@ -19,9 +23,10 @@ type ScannedAssetMetadataLastSuccess struct {
 	// The timestamp of the last success scan of the asset.
 	Timestamp string `json:"timestamp"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScannedAssetMetadataLastSuccess instantiates a new ScannedAssetMetadataLastSuccess object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewScannedAssetMetadataLastSuccessWithDefaults() *ScannedAssetMetadataLastS
 	this := ScannedAssetMetadataLastSuccess{}
 	return &this
 }
-
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *ScannedAssetMetadataLastSuccess) GetEnv() string {
 	if o == nil || o.Env == nil {
@@ -68,6 +72,7 @@ func (o *ScannedAssetMetadataLastSuccess) HasEnv() bool {
 func (o *ScannedAssetMetadataLastSuccess) SetEnv(v string) {
 	o.Env = &v
 }
+
 
 // GetOrigin returns the Origin field value if set, zero value otherwise.
 func (o *ScannedAssetMetadataLastSuccess) GetOrigin() []string {
@@ -97,6 +102,7 @@ func (o *ScannedAssetMetadataLastSuccess) SetOrigin(v []string) {
 	o.Origin = v
 }
 
+
 // GetTimestamp returns the Timestamp field value.
 func (o *ScannedAssetMetadataLastSuccess) GetTimestamp() string {
 	if o == nil {
@@ -119,6 +125,8 @@ func (o *ScannedAssetMetadataLastSuccess) GetTimestampOk() (*string, bool) {
 func (o *ScannedAssetMetadataLastSuccess) SetTimestamp(v string) {
 	o.Timestamp = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ScannedAssetMetadataLastSuccess) MarshalJSON() ([]byte, error) {
@@ -143,9 +151,9 @@ func (o ScannedAssetMetadataLastSuccess) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ScannedAssetMetadataLastSuccess) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Env       *string  `json:"env,omitempty"`
-		Origin    []string `json:"origin,omitempty"`
-		Timestamp *string  `json:"timestamp"`
+		Env *string `json:"env,omitempty"`
+		Origin []string `json:"origin,omitempty"`
+		Timestamp *string `json:"timestamp"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,7 +163,7 @@ func (o *ScannedAssetMetadataLastSuccess) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"env", "origin", "timestamp"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "env", "origin", "timestamp",  })
 	} else {
 		return err
 	}

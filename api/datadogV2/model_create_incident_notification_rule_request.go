@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateIncidentNotificationRuleRequest Create request for a notification rule.
 type CreateIncidentNotificationRuleRequest struct {
 	// Notification rule data for a create request.
 	Data IncidentNotificationRuleCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateIncidentNotificationRuleRequest instantiates a new CreateIncidentNotificationRuleRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewCreateIncidentNotificationRuleRequestWithDefaults() *CreateIncidentNotif
 	this := CreateIncidentNotificationRuleRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *CreateIncidentNotificationRuleRequest) GetData() IncidentNotificationRuleCreateData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *CreateIncidentNotificationRuleRequest) GetDataOk() (*IncidentNotificati
 func (o *CreateIncidentNotificationRuleRequest) SetData(v IncidentNotificationRuleCreateData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateIncidentNotificationRuleRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *CreateIncidentNotificationRuleRequest) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

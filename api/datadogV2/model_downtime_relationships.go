@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeRelationships All relationships associated with downtime.
 type DowntimeRelationships struct {
@@ -15,9 +21,10 @@ type DowntimeRelationships struct {
 	// The monitor identified by the downtime.
 	Monitor *DowntimeRelationshipsMonitor `json:"monitor,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDowntimeRelationships instantiates a new DowntimeRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewDowntimeRelationshipsWithDefaults() *DowntimeRelationships {
 	this := DowntimeRelationships{}
 	return &this
 }
-
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *DowntimeRelationships) GetCreatedBy() DowntimeRelationshipsCreatedBy {
 	if o == nil || o.CreatedBy == nil {
@@ -63,6 +69,7 @@ func (o *DowntimeRelationships) HasCreatedBy() bool {
 func (o *DowntimeRelationships) SetCreatedBy(v DowntimeRelationshipsCreatedBy) {
 	o.CreatedBy = &v
 }
+
 
 // GetMonitor returns the Monitor field value if set, zero value otherwise.
 func (o *DowntimeRelationships) GetMonitor() DowntimeRelationshipsMonitor {
@@ -92,6 +99,8 @@ func (o *DowntimeRelationships) SetMonitor(v DowntimeRelationshipsMonitor) {
 	o.Monitor = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,24 +124,24 @@ func (o DowntimeRelationships) MarshalJSON() ([]byte, error) {
 func (o *DowntimeRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CreatedBy *DowntimeRelationshipsCreatedBy `json:"created_by,omitempty"`
-		Monitor   *DowntimeRelationshipsMonitor   `json:"monitor,omitempty"`
+		Monitor *DowntimeRelationshipsMonitor `json:"monitor,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_by", "monitor"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_by", "monitor",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.CreatedBy != nil && all.CreatedBy.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CreatedBy != nil && all.CreatedBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CreatedBy = all.CreatedBy
-	if all.Monitor != nil && all.Monitor.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Monitor != nil && all.Monitor.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Monitor = all.Monitor

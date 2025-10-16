@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
-	"github.com/google/uuid"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ActionQuery An action query. This query type is used to trigger an action, such as sending a HTTP request.
 type ActionQuery struct {
@@ -25,9 +27,10 @@ type ActionQuery struct {
 	// The action query type.
 	Type ActionQueryType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewActionQuery instantiates a new ActionQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +54,6 @@ func NewActionQueryWithDefaults() *ActionQuery {
 	this.Type = typeVar
 	return &this
 }
-
 // GetEvents returns the Events field value if set, zero value otherwise.
 func (o *ActionQuery) GetEvents() []AppBuilderEvent {
 	if o == nil || o.Events == nil {
@@ -80,6 +82,7 @@ func (o *ActionQuery) SetEvents(v []AppBuilderEvent) {
 	o.Events = v
 }
 
+
 // GetId returns the Id field value.
 func (o *ActionQuery) GetId() uuid.UUID {
 	if o == nil {
@@ -102,6 +105,7 @@ func (o *ActionQuery) GetIdOk() (*uuid.UUID, bool) {
 func (o *ActionQuery) SetId(v uuid.UUID) {
 	o.Id = v
 }
+
 
 // GetName returns the Name field value.
 func (o *ActionQuery) GetName() string {
@@ -126,6 +130,7 @@ func (o *ActionQuery) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetProperties returns the Properties field value.
 func (o *ActionQuery) GetProperties() ActionQueryProperties {
 	if o == nil {
@@ -148,6 +153,7 @@ func (o *ActionQuery) GetPropertiesOk() (*ActionQueryProperties, bool) {
 func (o *ActionQuery) SetProperties(v ActionQueryProperties) {
 	o.Properties = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ActionQuery) GetType() ActionQueryType {
@@ -172,6 +178,8 @@ func (o *ActionQuery) SetType(v ActionQueryType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ActionQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -195,11 +203,11 @@ func (o ActionQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ActionQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Events     []AppBuilderEvent      `json:"events,omitempty"`
-		Id         *uuid.UUID             `json:"id"`
-		Name       *string                `json:"name"`
+		Events []AppBuilderEvent `json:"events,omitempty"`
+		Id *uuid.UUID `json:"id"`
+		Name *string `json:"name"`
 		Properties *ActionQueryProperties `json:"properties"`
-		Type       *ActionQueryType       `json:"type"`
+		Type *ActionQueryType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -218,7 +226,7 @@ func (o *ActionQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"events", "id", "name", "properties", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "events", "id", "name", "properties", "type",  })
 	} else {
 		return err
 	}

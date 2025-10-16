@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ActionQueryDebounceInMs - The minimum time in milliseconds that must pass before the query can be triggered again. This is useful for preventing accidental double-clicks from triggering the query multiple times.
 type ActionQueryDebounceInMs struct {
 	Float64 *float64
-	String  *string
+	String *string
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -80,9 +86,11 @@ func (obj ActionQueryDebounceInMs) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.Float64)
 	}
 
+
 	if obj.String != nil {
 		return datadog.Marshal(&obj.String)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj ActionQueryDebounceInMs) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ActionQueryDebounceInMs) GetActualInstance() interface{} {
+func (obj *ActionQueryDebounceInMs) GetActualInstance() (interface{}) {
 	if obj.Float64 != nil {
 		return obj.Float64
 	}
 
+
 	if obj.String != nil {
 		return obj.String
 	}
+
 
 	// all schemas are nil
 	return nil

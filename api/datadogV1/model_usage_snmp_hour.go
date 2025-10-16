@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageSNMPHour The number of SNMP devices for each hour for a given organization.
 type UsageSNMPHour struct {
@@ -21,9 +25,10 @@ type UsageSNMPHour struct {
 	// Contains the number of SNMP devices.
 	SnmpDevices datadog.NullableInt64 `json:"snmp_devices,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageSNMPHour instantiates a new UsageSNMPHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewUsageSNMPHourWithDefaults() *UsageSNMPHour {
 	this := UsageSNMPHour{}
 	return &this
 }
-
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageSNMPHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -69,6 +73,7 @@ func (o *UsageSNMPHour) HasHour() bool {
 func (o *UsageSNMPHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageSNMPHour) GetOrgName() string {
@@ -98,6 +103,7 @@ func (o *UsageSNMPHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageSNMPHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -126,6 +132,7 @@ func (o *UsageSNMPHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
 // GetSnmpDevices returns the SnmpDevices field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageSNMPHour) GetSnmpDevices() int64 {
 	if o == nil || o.SnmpDevices.Get() == nil {
@@ -139,7 +146,7 @@ func (o *UsageSNMPHour) GetSnmpDevices() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSNMPHour) GetSnmpDevicesOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.SnmpDevices.Get(), o.SnmpDevices.IsSet()
@@ -154,7 +161,6 @@ func (o *UsageSNMPHour) HasSnmpDevices() bool {
 func (o *UsageSNMPHour) SetSnmpDevices(v int64) {
 	o.SnmpDevices.Set(&v)
 }
-
 // SetSnmpDevicesNil sets the value for SnmpDevices to be an explicit nil.
 func (o *UsageSNMPHour) SetSnmpDevicesNil() {
 	o.SnmpDevices.Set(nil)
@@ -164,6 +170,8 @@ func (o *UsageSNMPHour) SetSnmpDevicesNil() {
 func (o *UsageSNMPHour) UnsetSnmpDevices() {
 	o.SnmpDevices.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageSNMPHour) MarshalJSON() ([]byte, error) {
@@ -197,9 +205,9 @@ func (o UsageSNMPHour) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageSNMPHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Hour        *time.Time            `json:"hour,omitempty"`
-		OrgName     *string               `json:"org_name,omitempty"`
-		PublicId    *string               `json:"public_id,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 		SnmpDevices datadog.NullableInt64 `json:"snmp_devices,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -207,7 +215,7 @@ func (o *UsageSNMPHour) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"hour", "org_name", "public_id", "snmp_devices"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "hour", "org_name", "public_id", "snmp_devices",  })
 	} else {
 		return err
 	}

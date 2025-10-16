@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeScheduleUpdateRequest - Schedule for the downtime.
 type DowntimeScheduleUpdateRequest struct {
-	DowntimeScheduleRecurrencesUpdateRequest   *DowntimeScheduleRecurrencesUpdateRequest
+	DowntimeScheduleRecurrencesUpdateRequest *DowntimeScheduleRecurrencesUpdateRequest
 	DowntimeScheduleOneTimeCreateUpdateRequest *DowntimeScheduleOneTimeCreateUpdateRequest
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -36,7 +42,7 @@ func (obj *DowntimeScheduleUpdateRequest) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.DowntimeScheduleRecurrencesUpdateRequest != nil && obj.DowntimeScheduleRecurrencesUpdateRequest.UnparsedObject == nil {
 			jsonDowntimeScheduleRecurrencesUpdateRequest, _ := datadog.Marshal(obj.DowntimeScheduleRecurrencesUpdateRequest)
-			if string(jsonDowntimeScheduleRecurrencesUpdateRequest) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonDowntimeScheduleRecurrencesUpdateRequest) == "{}" && string(data) != "{}"  { // empty struct
 				obj.DowntimeScheduleRecurrencesUpdateRequest = nil
 			} else {
 				match++
@@ -53,7 +59,7 @@ func (obj *DowntimeScheduleUpdateRequest) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.DowntimeScheduleOneTimeCreateUpdateRequest != nil && obj.DowntimeScheduleOneTimeCreateUpdateRequest.UnparsedObject == nil {
 			jsonDowntimeScheduleOneTimeCreateUpdateRequest, _ := datadog.Marshal(obj.DowntimeScheduleOneTimeCreateUpdateRequest)
-			if string(jsonDowntimeScheduleOneTimeCreateUpdateRequest) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonDowntimeScheduleOneTimeCreateUpdateRequest) == "{}" && string(data) != "{}"  { // empty struct
 				obj.DowntimeScheduleOneTimeCreateUpdateRequest = nil
 			} else {
 				match++
@@ -80,9 +86,11 @@ func (obj DowntimeScheduleUpdateRequest) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.DowntimeScheduleRecurrencesUpdateRequest)
 	}
 
+
 	if obj.DowntimeScheduleOneTimeCreateUpdateRequest != nil {
 		return datadog.Marshal(&obj.DowntimeScheduleOneTimeCreateUpdateRequest)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj DowntimeScheduleUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *DowntimeScheduleUpdateRequest) GetActualInstance() interface{} {
+func (obj *DowntimeScheduleUpdateRequest) GetActualInstance() (interface{}) {
 	if obj.DowntimeScheduleRecurrencesUpdateRequest != nil {
 		return obj.DowntimeScheduleRecurrencesUpdateRequest
 	}
 
+
 	if obj.DowntimeScheduleOneTimeCreateUpdateRequest != nil {
 		return obj.DowntimeScheduleOneTimeCreateUpdateRequest
 	}
+
 
 	// all schemas are nil
 	return nil

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ChangeEventCustomAttributes Change event attributes.
 type ChangeEventCustomAttributes struct {
@@ -29,6 +33,7 @@ type ChangeEventCustomAttributes struct {
 	UnparsedObject map[string]interface{} `json:"-"`
 }
 
+
 // NewChangeEventCustomAttributes instantiates a new ChangeEventCustomAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -46,7 +51,6 @@ func NewChangeEventCustomAttributesWithDefaults() *ChangeEventCustomAttributes {
 	this := ChangeEventCustomAttributes{}
 	return &this
 }
-
 // GetAuthor returns the Author field value if set, zero value otherwise.
 func (o *ChangeEventCustomAttributes) GetAuthor() ChangeEventCustomAttributesAuthor {
 	if o == nil || o.Author == nil {
@@ -74,6 +78,7 @@ func (o *ChangeEventCustomAttributes) HasAuthor() bool {
 func (o *ChangeEventCustomAttributes) SetAuthor(v ChangeEventCustomAttributesAuthor) {
 	o.Author = &v
 }
+
 
 // GetChangeMetadata returns the ChangeMetadata field value if set, zero value otherwise.
 func (o *ChangeEventCustomAttributes) GetChangeMetadata() map[string]interface{} {
@@ -103,6 +108,7 @@ func (o *ChangeEventCustomAttributes) SetChangeMetadata(v map[string]interface{}
 	o.ChangeMetadata = v
 }
 
+
 // GetChangedResource returns the ChangedResource field value.
 func (o *ChangeEventCustomAttributes) GetChangedResource() ChangeEventCustomAttributesChangedResource {
 	if o == nil {
@@ -125,6 +131,7 @@ func (o *ChangeEventCustomAttributes) GetChangedResourceOk() (*ChangeEventCustom
 func (o *ChangeEventCustomAttributes) SetChangedResource(v ChangeEventCustomAttributesChangedResource) {
 	o.ChangedResource = v
 }
+
 
 // GetImpactedResources returns the ImpactedResources field value if set, zero value otherwise.
 func (o *ChangeEventCustomAttributes) GetImpactedResources() []ChangeEventCustomAttributesImpactedResourcesItems {
@@ -154,6 +161,7 @@ func (o *ChangeEventCustomAttributes) SetImpactedResources(v []ChangeEventCustom
 	o.ImpactedResources = v
 }
 
+
 // GetNewValue returns the NewValue field value if set, zero value otherwise.
 func (o *ChangeEventCustomAttributes) GetNewValue() map[string]interface{} {
 	if o == nil || o.NewValue == nil {
@@ -181,6 +189,7 @@ func (o *ChangeEventCustomAttributes) HasNewValue() bool {
 func (o *ChangeEventCustomAttributes) SetNewValue(v map[string]interface{}) {
 	o.NewValue = v
 }
+
 
 // GetPrevValue returns the PrevValue field value if set, zero value otherwise.
 func (o *ChangeEventCustomAttributes) GetPrevValue() map[string]interface{} {
@@ -210,6 +219,8 @@ func (o *ChangeEventCustomAttributes) SetPrevValue(v map[string]interface{}) {
 	o.PrevValue = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ChangeEventCustomAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -238,12 +249,12 @@ func (o ChangeEventCustomAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ChangeEventCustomAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Author            *ChangeEventCustomAttributesAuthor                  `json:"author,omitempty"`
-		ChangeMetadata    map[string]interface{}                              `json:"change_metadata,omitempty"`
-		ChangedResource   *ChangeEventCustomAttributesChangedResource         `json:"changed_resource"`
+		Author *ChangeEventCustomAttributesAuthor `json:"author,omitempty"`
+		ChangeMetadata map[string]interface{} `json:"change_metadata,omitempty"`
+		ChangedResource *ChangeEventCustomAttributesChangedResource `json:"changed_resource"`
 		ImpactedResources []ChangeEventCustomAttributesImpactedResourcesItems `json:"impacted_resources,omitempty"`
-		NewValue          map[string]interface{}                              `json:"new_value,omitempty"`
-		PrevValue         map[string]interface{}                              `json:"prev_value,omitempty"`
+		NewValue map[string]interface{} `json:"new_value,omitempty"`
+		PrevValue map[string]interface{} `json:"prev_value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -253,7 +264,7 @@ func (o *ChangeEventCustomAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Author = all.Author

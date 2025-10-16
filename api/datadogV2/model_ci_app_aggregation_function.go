@@ -2,35 +2,39 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppAggregationFunction An aggregation function.
 type CIAppAggregationFunction string
 
 // List of CIAppAggregationFunction.
 const (
-	CIAPPAGGREGATIONFUNCTION_COUNT         CIAppAggregationFunction = "count"
-	CIAPPAGGREGATIONFUNCTION_CARDINALITY   CIAppAggregationFunction = "cardinality"
+	CIAPPAGGREGATIONFUNCTION_COUNT CIAppAggregationFunction = "count"
+	CIAPPAGGREGATIONFUNCTION_CARDINALITY CIAppAggregationFunction = "cardinality"
 	CIAPPAGGREGATIONFUNCTION_PERCENTILE_75 CIAppAggregationFunction = "pc75"
 	CIAPPAGGREGATIONFUNCTION_PERCENTILE_90 CIAppAggregationFunction = "pc90"
 	CIAPPAGGREGATIONFUNCTION_PERCENTILE_95 CIAppAggregationFunction = "pc95"
 	CIAPPAGGREGATIONFUNCTION_PERCENTILE_98 CIAppAggregationFunction = "pc98"
 	CIAPPAGGREGATIONFUNCTION_PERCENTILE_99 CIAppAggregationFunction = "pc99"
-	CIAPPAGGREGATIONFUNCTION_SUM           CIAppAggregationFunction = "sum"
-	CIAPPAGGREGATIONFUNCTION_MIN           CIAppAggregationFunction = "min"
-	CIAPPAGGREGATIONFUNCTION_MAX           CIAppAggregationFunction = "max"
-	CIAPPAGGREGATIONFUNCTION_AVG           CIAppAggregationFunction = "avg"
-	CIAPPAGGREGATIONFUNCTION_MEDIAN        CIAppAggregationFunction = "median"
-	CIAPPAGGREGATIONFUNCTION_LATEST        CIAppAggregationFunction = "latest"
-	CIAPPAGGREGATIONFUNCTION_EARLIEST      CIAppAggregationFunction = "earliest"
+	CIAPPAGGREGATIONFUNCTION_SUM CIAppAggregationFunction = "sum"
+	CIAPPAGGREGATIONFUNCTION_MIN CIAppAggregationFunction = "min"
+	CIAPPAGGREGATIONFUNCTION_MAX CIAppAggregationFunction = "max"
+	CIAPPAGGREGATIONFUNCTION_AVG CIAppAggregationFunction = "avg"
+	CIAPPAGGREGATIONFUNCTION_MEDIAN CIAppAggregationFunction = "median"
+	CIAPPAGGREGATIONFUNCTION_LATEST CIAppAggregationFunction = "latest"
+	CIAPPAGGREGATIONFUNCTION_EARLIEST CIAppAggregationFunction = "earliest"
 	CIAPPAGGREGATIONFUNCTION_MOST_FREQUENT CIAppAggregationFunction = "most_frequent"
-	CIAPPAGGREGATIONFUNCTION_DELTA         CIAppAggregationFunction = "delta"
+	CIAPPAGGREGATIONFUNCTION_DELTA CIAppAggregationFunction = "delta"
 )
 
 var allowedCIAppAggregationFunctionEnumValues = []CIAppAggregationFunction{

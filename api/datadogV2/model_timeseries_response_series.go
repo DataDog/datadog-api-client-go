@@ -2,13 +2,19 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
 
-// TimeseriesResponseSeries
+
+// TimeseriesResponseSeries 
 type TimeseriesResponseSeries struct {
 	// List of tags that apply to a single response value.
 	GroupTags []string `json:"group_tags,omitempty"`
@@ -20,9 +26,10 @@ type TimeseriesResponseSeries struct {
 	// If the second element is not present, the API returns null.
 	Unit []Unit `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTimeseriesResponseSeries instantiates a new TimeseriesResponseSeries object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +47,6 @@ func NewTimeseriesResponseSeriesWithDefaults() *TimeseriesResponseSeries {
 	this := TimeseriesResponseSeries{}
 	return &this
 }
-
 // GetGroupTags returns the GroupTags field value if set, zero value otherwise.
 func (o *TimeseriesResponseSeries) GetGroupTags() []string {
 	if o == nil || o.GroupTags == nil {
@@ -68,6 +74,7 @@ func (o *TimeseriesResponseSeries) HasGroupTags() bool {
 func (o *TimeseriesResponseSeries) SetGroupTags(v []string) {
 	o.GroupTags = v
 }
+
 
 // GetQueryIndex returns the QueryIndex field value if set, zero value otherwise.
 func (o *TimeseriesResponseSeries) GetQueryIndex() int32 {
@@ -97,9 +104,10 @@ func (o *TimeseriesResponseSeries) SetQueryIndex(v int32) {
 	o.QueryIndex = &v
 }
 
+
 // GetUnit returns the Unit field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *TimeseriesResponseSeries) GetUnit() []Unit {
-	if o == nil {
+	if o == nil  {
 		var ret []Unit
 		return ret
 	}
@@ -126,6 +134,8 @@ func (o *TimeseriesResponseSeries) SetUnit(v []Unit) {
 	o.Unit = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TimeseriesResponseSeries) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -151,16 +161,16 @@ func (o TimeseriesResponseSeries) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TimeseriesResponseSeries) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		GroupTags  []string `json:"group_tags,omitempty"`
-		QueryIndex *int32   `json:"query_index,omitempty"`
-		Unit       []Unit   `json:"unit,omitempty"`
+		GroupTags []string `json:"group_tags,omitempty"`
+		QueryIndex *int32 `json:"query_index,omitempty"`
+		Unit []Unit `json:"unit,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"group_tags", "query_index", "unit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "group_tags", "query_index", "unit",  })
 	} else {
 		return err
 	}

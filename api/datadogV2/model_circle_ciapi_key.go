@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CircleCIAPIKey The definition of the `CircleCIAPIKey` object.
 type CircleCIAPIKey struct {
@@ -17,9 +21,10 @@ type CircleCIAPIKey struct {
 	// The definition of the `CircleCIAPIKey` object.
 	Type CircleCIAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCircleCIAPIKey instantiates a new CircleCIAPIKey object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewCircleCIAPIKeyWithDefaults() *CircleCIAPIKey {
 	this := CircleCIAPIKey{}
 	return &this
 }
-
 // GetApiToken returns the ApiToken field value.
 func (o *CircleCIAPIKey) GetApiToken() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *CircleCIAPIKey) GetApiTokenOk() (*string, bool) {
 func (o *CircleCIAPIKey) SetApiToken(v string) {
 	o.ApiToken = v
 }
+
 
 // GetType returns the Type field value.
 func (o *CircleCIAPIKey) GetType() CircleCIAPIKeyType {
@@ -86,6 +91,8 @@ func (o *CircleCIAPIKey) SetType(v CircleCIAPIKeyType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CircleCIAPIKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o CircleCIAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CircleCIAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string             `json:"api_token"`
-		Type     *CircleCIAPIKeyType `json:"type"`
+		ApiToken *string `json:"api_token"`
+		Type *CircleCIAPIKeyType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *CircleCIAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_token", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_token", "type",  })
 	} else {
 		return err
 	}

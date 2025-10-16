@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestOptionsMonitorOptions Object containing the options for a Synthetic test as a monitor
 // (for example, renotification).
@@ -21,9 +27,10 @@ type SyntheticsTestOptionsMonitorOptions struct {
 	// The number of times to renotify if the test is still failing.
 	RenotifyOccurrences *int64 `json:"renotify_occurrences,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsTestOptionsMonitorOptions instantiates a new SyntheticsTestOptionsMonitorOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewSyntheticsTestOptionsMonitorOptionsWithDefaults() *SyntheticsTestOptions
 	this := SyntheticsTestOptionsMonitorOptions{}
 	return &this
 }
-
 // GetEscalationMessage returns the EscalationMessage field value if set, zero value otherwise.
 func (o *SyntheticsTestOptionsMonitorOptions) GetEscalationMessage() string {
 	if o == nil || o.EscalationMessage == nil {
@@ -69,6 +75,7 @@ func (o *SyntheticsTestOptionsMonitorOptions) HasEscalationMessage() bool {
 func (o *SyntheticsTestOptionsMonitorOptions) SetEscalationMessage(v string) {
 	o.EscalationMessage = &v
 }
+
 
 // GetNotificationPresetName returns the NotificationPresetName field value if set, zero value otherwise.
 func (o *SyntheticsTestOptionsMonitorOptions) GetNotificationPresetName() SyntheticsTestOptionsMonitorOptionsNotificationPresetName {
@@ -98,6 +105,7 @@ func (o *SyntheticsTestOptionsMonitorOptions) SetNotificationPresetName(v Synthe
 	o.NotificationPresetName = &v
 }
 
+
 // GetRenotifyInterval returns the RenotifyInterval field value if set, zero value otherwise.
 func (o *SyntheticsTestOptionsMonitorOptions) GetRenotifyInterval() int64 {
 	if o == nil || o.RenotifyInterval == nil {
@@ -125,6 +133,7 @@ func (o *SyntheticsTestOptionsMonitorOptions) HasRenotifyInterval() bool {
 func (o *SyntheticsTestOptionsMonitorOptions) SetRenotifyInterval(v int64) {
 	o.RenotifyInterval = &v
 }
+
 
 // GetRenotifyOccurrences returns the RenotifyOccurrences field value if set, zero value otherwise.
 func (o *SyntheticsTestOptionsMonitorOptions) GetRenotifyOccurrences() int64 {
@@ -154,6 +163,8 @@ func (o *SyntheticsTestOptionsMonitorOptions) SetRenotifyOccurrences(v int64) {
 	o.RenotifyOccurrences = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTestOptionsMonitorOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -182,24 +193,24 @@ func (o SyntheticsTestOptionsMonitorOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestOptionsMonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EscalationMessage      *string                                                    `json:"escalation_message,omitempty"`
+		EscalationMessage *string `json:"escalation_message,omitempty"`
 		NotificationPresetName *SyntheticsTestOptionsMonitorOptionsNotificationPresetName `json:"notification_preset_name,omitempty"`
-		RenotifyInterval       *int64                                                     `json:"renotify_interval,omitempty"`
-		RenotifyOccurrences    *int64                                                     `json:"renotify_occurrences,omitempty"`
+		RenotifyInterval *int64 `json:"renotify_interval,omitempty"`
+		RenotifyOccurrences *int64 `json:"renotify_occurrences,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"escalation_message", "notification_preset_name", "renotify_interval", "renotify_occurrences"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "escalation_message", "notification_preset_name", "renotify_interval", "renotify_occurrences",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.EscalationMessage = all.EscalationMessage
-	if all.NotificationPresetName != nil && !all.NotificationPresetName.IsValid() {
+	if all.NotificationPresetName != nil &&!all.NotificationPresetName.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.NotificationPresetName = all.NotificationPresetName

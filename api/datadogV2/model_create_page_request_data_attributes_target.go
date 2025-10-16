@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreatePageRequestDataAttributesTarget Information about the target to notify (such as a team or user).
 type CreatePageRequestDataAttributesTarget struct {
@@ -15,9 +21,10 @@ type CreatePageRequestDataAttributesTarget struct {
 	// The kind of target, `team_id` | `team_handle` | `user_id`.
 	Type *OnCallPageTargetType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreatePageRequestDataAttributesTarget instantiates a new CreatePageRequestDataAttributesTarget object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewCreatePageRequestDataAttributesTargetWithDefaults() *CreatePageRequestDa
 	this := CreatePageRequestDataAttributesTarget{}
 	return &this
 }
-
 // GetIdentifier returns the Identifier field value if set, zero value otherwise.
 func (o *CreatePageRequestDataAttributesTarget) GetIdentifier() string {
 	if o == nil || o.Identifier == nil {
@@ -63,6 +69,7 @@ func (o *CreatePageRequestDataAttributesTarget) HasIdentifier() bool {
 func (o *CreatePageRequestDataAttributesTarget) SetIdentifier(v string) {
 	o.Identifier = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CreatePageRequestDataAttributesTarget) GetType() OnCallPageTargetType {
@@ -92,6 +99,8 @@ func (o *CreatePageRequestDataAttributesTarget) SetType(v OnCallPageTargetType) 
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreatePageRequestDataAttributesTarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,22 +123,22 @@ func (o CreatePageRequestDataAttributesTarget) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CreatePageRequestDataAttributesTarget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Identifier *string               `json:"identifier,omitempty"`
-		Type       *OnCallPageTargetType `json:"type,omitempty"`
+		Identifier *string `json:"identifier,omitempty"`
+		Type *OnCallPageTargetType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"identifier", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "identifier", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Identifier = all.Identifier
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

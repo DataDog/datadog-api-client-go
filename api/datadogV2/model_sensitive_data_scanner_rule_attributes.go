@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerRuleAttributes Attributes of the Sensitive Data Scanner rule.
 type SensitiveDataScannerRuleAttributes struct {
@@ -35,9 +41,10 @@ type SensitiveDataScannerRuleAttributes struct {
 	// Object describing how the scanned event will be replaced.
 	TextReplacement *SensitiveDataScannerTextReplacement `json:"text_replacement,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerRuleAttributes instantiates a new SensitiveDataScannerRuleAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +62,6 @@ func NewSensitiveDataScannerRuleAttributesWithDefaults() *SensitiveDataScannerRu
 	this := SensitiveDataScannerRuleAttributes{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -83,6 +89,7 @@ func (o *SensitiveDataScannerRuleAttributes) HasDescription() bool {
 func (o *SensitiveDataScannerRuleAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetExcludedNamespaces returns the ExcludedNamespaces field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleAttributes) GetExcludedNamespaces() []string {
@@ -112,6 +119,7 @@ func (o *SensitiveDataScannerRuleAttributes) SetExcludedNamespaces(v []string) {
 	o.ExcludedNamespaces = v
 }
 
+
 // GetIncludedKeywordConfiguration returns the IncludedKeywordConfiguration field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleAttributes) GetIncludedKeywordConfiguration() SensitiveDataScannerIncludedKeywordConfiguration {
 	if o == nil || o.IncludedKeywordConfiguration == nil {
@@ -139,6 +147,7 @@ func (o *SensitiveDataScannerRuleAttributes) HasIncludedKeywordConfiguration() b
 func (o *SensitiveDataScannerRuleAttributes) SetIncludedKeywordConfiguration(v SensitiveDataScannerIncludedKeywordConfiguration) {
 	o.IncludedKeywordConfiguration = &v
 }
+
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleAttributes) GetIsEnabled() bool {
@@ -168,6 +177,7 @@ func (o *SensitiveDataScannerRuleAttributes) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -195,6 +205,7 @@ func (o *SensitiveDataScannerRuleAttributes) HasName() bool {
 func (o *SensitiveDataScannerRuleAttributes) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetNamespaces returns the Namespaces field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleAttributes) GetNamespaces() []string {
@@ -224,6 +235,7 @@ func (o *SensitiveDataScannerRuleAttributes) SetNamespaces(v []string) {
 	o.Namespaces = v
 }
 
+
 // GetPattern returns the Pattern field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleAttributes) GetPattern() string {
 	if o == nil || o.Pattern == nil {
@@ -251,6 +263,7 @@ func (o *SensitiveDataScannerRuleAttributes) HasPattern() bool {
 func (o *SensitiveDataScannerRuleAttributes) SetPattern(v string) {
 	o.Pattern = &v
 }
+
 
 // GetPriority returns the Priority field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleAttributes) GetPriority() int64 {
@@ -280,6 +293,7 @@ func (o *SensitiveDataScannerRuleAttributes) SetPriority(v int64) {
 	o.Priority = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -308,6 +322,7 @@ func (o *SensitiveDataScannerRuleAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTextReplacement returns the TextReplacement field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleAttributes) GetTextReplacement() SensitiveDataScannerTextReplacement {
 	if o == nil || o.TextReplacement == nil {
@@ -335,6 +350,8 @@ func (o *SensitiveDataScannerRuleAttributes) HasTextReplacement() bool {
 func (o *SensitiveDataScannerRuleAttributes) SetTextReplacement(v SensitiveDataScannerTextReplacement) {
 	o.TextReplacement = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerRuleAttributes) MarshalJSON() ([]byte, error) {
@@ -382,23 +399,23 @@ func (o SensitiveDataScannerRuleAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description                  *string                                           `json:"description,omitempty"`
-		ExcludedNamespaces           []string                                          `json:"excluded_namespaces,omitempty"`
+		Description *string `json:"description,omitempty"`
+		ExcludedNamespaces []string `json:"excluded_namespaces,omitempty"`
 		IncludedKeywordConfiguration *SensitiveDataScannerIncludedKeywordConfiguration `json:"included_keyword_configuration,omitempty"`
-		IsEnabled                    *bool                                             `json:"is_enabled,omitempty"`
-		Name                         *string                                           `json:"name,omitempty"`
-		Namespaces                   []string                                          `json:"namespaces,omitempty"`
-		Pattern                      *string                                           `json:"pattern,omitempty"`
-		Priority                     *int64                                            `json:"priority,omitempty"`
-		Tags                         []string                                          `json:"tags,omitempty"`
-		TextReplacement              *SensitiveDataScannerTextReplacement              `json:"text_replacement,omitempty"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Namespaces []string `json:"namespaces,omitempty"`
+		Pattern *string `json:"pattern,omitempty"`
+		Priority *int64 `json:"priority,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		TextReplacement *SensitiveDataScannerTextReplacement `json:"text_replacement,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "excluded_namespaces", "included_keyword_configuration", "is_enabled", "name", "namespaces", "pattern", "priority", "tags", "text_replacement"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "excluded_namespaces", "included_keyword_configuration", "is_enabled", "name", "namespaces", "pattern", "priority", "tags", "text_replacement",  })
 	} else {
 		return err
 	}
@@ -406,7 +423,7 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 	hasInvalidField := false
 	o.Description = all.Description
 	o.ExcludedNamespaces = all.ExcludedNamespaces
-	if all.IncludedKeywordConfiguration != nil && all.IncludedKeywordConfiguration.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.IncludedKeywordConfiguration != nil && all.IncludedKeywordConfiguration.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.IncludedKeywordConfiguration = all.IncludedKeywordConfiguration
@@ -416,7 +433,7 @@ func (o *SensitiveDataScannerRuleAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.Pattern = all.Pattern
 	o.Priority = all.Priority
 	o.Tags = all.Tags
-	if all.TextReplacement != nil && all.TextReplacement.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.TextReplacement != nil && all.TextReplacement.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.TextReplacement = all.TextReplacement

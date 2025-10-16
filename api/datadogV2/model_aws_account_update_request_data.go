@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSAccountUpdateRequestData AWS Account Update Request data.
 type AWSAccountUpdateRequestData struct {
@@ -21,9 +25,10 @@ type AWSAccountUpdateRequestData struct {
 	// AWS Account resource type.
 	Type AWSAccountType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSAccountUpdateRequestData instantiates a new AWSAccountUpdateRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewAWSAccountUpdateRequestDataWithDefaults() *AWSAccountUpdateRequestData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *AWSAccountUpdateRequestData) GetAttributes() AWSAccountUpdateRequestAttributes {
 	if o == nil {
@@ -68,6 +72,7 @@ func (o *AWSAccountUpdateRequestData) GetAttributesOk() (*AWSAccountUpdateReques
 func (o *AWSAccountUpdateRequestData) SetAttributes(v AWSAccountUpdateRequestAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AWSAccountUpdateRequestData) GetId() string {
@@ -97,6 +102,7 @@ func (o *AWSAccountUpdateRequestData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *AWSAccountUpdateRequestData) GetType() AWSAccountType {
 	if o == nil {
@@ -120,6 +126,8 @@ func (o *AWSAccountUpdateRequestData) SetType(v AWSAccountType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSAccountUpdateRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -142,8 +150,8 @@ func (o AWSAccountUpdateRequestData) MarshalJSON() ([]byte, error) {
 func (o *AWSAccountUpdateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *AWSAccountUpdateRequestAttributes `json:"attributes"`
-		Id         *string                            `json:"id,omitempty"`
-		Type       *AWSAccountType                    `json:"type"`
+		Id *string `json:"id,omitempty"`
+		Type *AWSAccountType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -156,7 +164,7 @@ func (o *AWSAccountUpdateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

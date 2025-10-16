@@ -2,13 +2,12 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-//go:build cgo
 
+//go:build cgo
 package datadog
 
 import (
 	"bytes"
-
 	"github.com/DataDog/zstd"
 )
 

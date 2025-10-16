@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppResponsePage Paging attributes.
 type CIAppResponsePage struct {
 	// The cursor to use to get the next results, if any. To make the next request, use the same parameters with the addition of `page[cursor]`.
 	After *string `json:"after,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCIAppResponsePage instantiates a new CIAppResponsePage object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewCIAppResponsePageWithDefaults() *CIAppResponsePage {
 	this := CIAppResponsePage{}
 	return &this
 }
-
 // GetAfter returns the After field value if set, zero value otherwise.
 func (o *CIAppResponsePage) GetAfter() string {
 	if o == nil || o.After == nil {
@@ -62,6 +68,8 @@ func (o *CIAppResponsePage) SetAfter(v string) {
 	o.After = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppResponsePage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *CIAppResponsePage) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"after"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "after",  })
 	} else {
 		return err
 	}

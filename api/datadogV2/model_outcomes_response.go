@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OutcomesResponse Scorecard outcomes - the result of a rule for a service.
 type OutcomesResponse struct {
@@ -17,9 +23,10 @@ type OutcomesResponse struct {
 	// Links attributes.
 	Links *OutcomesResponseLinks `json:"links,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOutcomesResponse instantiates a new OutcomesResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewOutcomesResponseWithDefaults() *OutcomesResponse {
 	this := OutcomesResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *OutcomesResponse) GetData() []OutcomesResponseDataItem {
 	if o == nil || o.Data == nil {
@@ -65,6 +71,7 @@ func (o *OutcomesResponse) HasData() bool {
 func (o *OutcomesResponse) SetData(v []OutcomesResponseDataItem) {
 	o.Data = v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *OutcomesResponse) GetIncluded() []OutcomesResponseIncludedItem {
@@ -94,6 +101,7 @@ func (o *OutcomesResponse) SetIncluded(v []OutcomesResponseIncludedItem) {
 	o.Included = v
 }
 
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *OutcomesResponse) GetLinks() OutcomesResponseLinks {
 	if o == nil || o.Links == nil {
@@ -122,6 +130,8 @@ func (o *OutcomesResponse) SetLinks(v OutcomesResponseLinks) {
 	o.Links = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OutcomesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o OutcomesResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OutcomesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     []OutcomesResponseDataItem     `json:"data,omitempty"`
+		Data []OutcomesResponseDataItem `json:"data,omitempty"`
 		Included []OutcomesResponseIncludedItem `json:"included,omitempty"`
-		Links    *OutcomesResponseLinks         `json:"links,omitempty"`
+		Links *OutcomesResponseLinks `json:"links,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "links"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "included", "links",  })
 	} else {
 		return err
 	}
@@ -164,7 +174,7 @@ func (o *OutcomesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Data = all.Data
 	o.Included = all.Included
-	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Links = all.Links

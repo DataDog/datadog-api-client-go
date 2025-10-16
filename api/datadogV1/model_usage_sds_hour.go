@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageSDSHour Sensitive Data Scanner usage for a given organization for a given hour.
 type UsageSDSHour struct {
@@ -29,9 +33,10 @@ type UsageSDSHour struct {
 	// The total number of bytes scanned across all usage types by the Sensitive Data Scanner from the start of the given hour’s month until the given hour.
 	TotalScannedBytes datadog.NullableInt64 `json:"total_scanned_bytes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageSDSHour instantiates a new UsageSDSHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +54,6 @@ func NewUsageSDSHourWithDefaults() *UsageSDSHour {
 	this := UsageSDSHour{}
 	return &this
 }
-
 // GetApmScannedBytes returns the ApmScannedBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageSDSHour) GetApmScannedBytes() int64 {
 	if o == nil || o.ApmScannedBytes.Get() == nil {
@@ -63,7 +67,7 @@ func (o *UsageSDSHour) GetApmScannedBytes() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSDSHour) GetApmScannedBytesOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ApmScannedBytes.Get(), o.ApmScannedBytes.IsSet()
@@ -78,7 +82,6 @@ func (o *UsageSDSHour) HasApmScannedBytes() bool {
 func (o *UsageSDSHour) SetApmScannedBytes(v int64) {
 	o.ApmScannedBytes.Set(&v)
 }
-
 // SetApmScannedBytesNil sets the value for ApmScannedBytes to be an explicit nil.
 func (o *UsageSDSHour) SetApmScannedBytesNil() {
 	o.ApmScannedBytes.Set(nil)
@@ -88,6 +91,7 @@ func (o *UsageSDSHour) SetApmScannedBytesNil() {
 func (o *UsageSDSHour) UnsetApmScannedBytes() {
 	o.ApmScannedBytes.Unset()
 }
+
 
 // GetEventsScannedBytes returns the EventsScannedBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageSDSHour) GetEventsScannedBytes() int64 {
@@ -102,7 +106,7 @@ func (o *UsageSDSHour) GetEventsScannedBytes() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSDSHour) GetEventsScannedBytesOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.EventsScannedBytes.Get(), o.EventsScannedBytes.IsSet()
@@ -117,7 +121,6 @@ func (o *UsageSDSHour) HasEventsScannedBytes() bool {
 func (o *UsageSDSHour) SetEventsScannedBytes(v int64) {
 	o.EventsScannedBytes.Set(&v)
 }
-
 // SetEventsScannedBytesNil sets the value for EventsScannedBytes to be an explicit nil.
 func (o *UsageSDSHour) SetEventsScannedBytesNil() {
 	o.EventsScannedBytes.Set(nil)
@@ -127,6 +130,7 @@ func (o *UsageSDSHour) SetEventsScannedBytesNil() {
 func (o *UsageSDSHour) UnsetEventsScannedBytes() {
 	o.EventsScannedBytes.Unset()
 }
+
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageSDSHour) GetHour() time.Time {
@@ -156,6 +160,7 @@ func (o *UsageSDSHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetLogsScannedBytes returns the LogsScannedBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageSDSHour) GetLogsScannedBytes() int64 {
 	if o == nil || o.LogsScannedBytes.Get() == nil {
@@ -169,7 +174,7 @@ func (o *UsageSDSHour) GetLogsScannedBytes() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSDSHour) GetLogsScannedBytesOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.LogsScannedBytes.Get(), o.LogsScannedBytes.IsSet()
@@ -184,7 +189,6 @@ func (o *UsageSDSHour) HasLogsScannedBytes() bool {
 func (o *UsageSDSHour) SetLogsScannedBytes(v int64) {
 	o.LogsScannedBytes.Set(&v)
 }
-
 // SetLogsScannedBytesNil sets the value for LogsScannedBytes to be an explicit nil.
 func (o *UsageSDSHour) SetLogsScannedBytesNil() {
 	o.LogsScannedBytes.Set(nil)
@@ -194,6 +198,7 @@ func (o *UsageSDSHour) SetLogsScannedBytesNil() {
 func (o *UsageSDSHour) UnsetLogsScannedBytes() {
 	o.LogsScannedBytes.Unset()
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageSDSHour) GetOrgName() string {
@@ -223,6 +228,7 @@ func (o *UsageSDSHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageSDSHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -251,6 +257,7 @@ func (o *UsageSDSHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
 // GetRumScannedBytes returns the RumScannedBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageSDSHour) GetRumScannedBytes() int64 {
 	if o == nil || o.RumScannedBytes.Get() == nil {
@@ -264,7 +271,7 @@ func (o *UsageSDSHour) GetRumScannedBytes() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSDSHour) GetRumScannedBytesOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.RumScannedBytes.Get(), o.RumScannedBytes.IsSet()
@@ -279,7 +286,6 @@ func (o *UsageSDSHour) HasRumScannedBytes() bool {
 func (o *UsageSDSHour) SetRumScannedBytes(v int64) {
 	o.RumScannedBytes.Set(&v)
 }
-
 // SetRumScannedBytesNil sets the value for RumScannedBytes to be an explicit nil.
 func (o *UsageSDSHour) SetRumScannedBytesNil() {
 	o.RumScannedBytes.Set(nil)
@@ -289,6 +295,7 @@ func (o *UsageSDSHour) SetRumScannedBytesNil() {
 func (o *UsageSDSHour) UnsetRumScannedBytes() {
 	o.RumScannedBytes.Unset()
 }
+
 
 // GetTotalScannedBytes returns the TotalScannedBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageSDSHour) GetTotalScannedBytes() int64 {
@@ -303,7 +310,7 @@ func (o *UsageSDSHour) GetTotalScannedBytes() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSDSHour) GetTotalScannedBytesOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.TotalScannedBytes.Get(), o.TotalScannedBytes.IsSet()
@@ -318,7 +325,6 @@ func (o *UsageSDSHour) HasTotalScannedBytes() bool {
 func (o *UsageSDSHour) SetTotalScannedBytes(v int64) {
 	o.TotalScannedBytes.Set(&v)
 }
-
 // SetTotalScannedBytesNil sets the value for TotalScannedBytes to be an explicit nil.
 func (o *UsageSDSHour) SetTotalScannedBytesNil() {
 	o.TotalScannedBytes.Set(nil)
@@ -328,6 +334,8 @@ func (o *UsageSDSHour) SetTotalScannedBytesNil() {
 func (o *UsageSDSHour) UnsetTotalScannedBytes() {
 	o.TotalScannedBytes.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageSDSHour) MarshalJSON() ([]byte, error) {
@@ -373,21 +381,21 @@ func (o UsageSDSHour) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageSDSHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApmScannedBytes    datadog.NullableInt64 `json:"apm_scanned_bytes,omitempty"`
+		ApmScannedBytes datadog.NullableInt64 `json:"apm_scanned_bytes,omitempty"`
 		EventsScannedBytes datadog.NullableInt64 `json:"events_scanned_bytes,omitempty"`
-		Hour               *time.Time            `json:"hour,omitempty"`
-		LogsScannedBytes   datadog.NullableInt64 `json:"logs_scanned_bytes,omitempty"`
-		OrgName            *string               `json:"org_name,omitempty"`
-		PublicId           *string               `json:"public_id,omitempty"`
-		RumScannedBytes    datadog.NullableInt64 `json:"rum_scanned_bytes,omitempty"`
-		TotalScannedBytes  datadog.NullableInt64 `json:"total_scanned_bytes,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		LogsScannedBytes datadog.NullableInt64 `json:"logs_scanned_bytes,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
+		RumScannedBytes datadog.NullableInt64 `json:"rum_scanned_bytes,omitempty"`
+		TotalScannedBytes datadog.NullableInt64 `json:"total_scanned_bytes,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"apm_scanned_bytes", "events_scanned_bytes", "hour", "logs_scanned_bytes", "org_name", "public_id", "rum_scanned_bytes", "total_scanned_bytes"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "apm_scanned_bytes", "events_scanned_bytes", "hour", "logs_scanned_bytes", "org_name", "public_id", "rum_scanned_bytes", "total_scanned_bytes",  })
 	} else {
 		return err
 	}

@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamOnCallRespondersIncluded - Represents an union of related resources included in the response, such as users and escalation steps.
 type TeamOnCallRespondersIncluded struct {
-	User       *User
+	User *User
 	Escalation *Escalation
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -36,7 +42,7 @@ func (obj *TeamOnCallRespondersIncluded) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.User != nil && obj.User.UnparsedObject == nil {
 			jsonUser, _ := datadog.Marshal(obj.User)
-			if string(jsonUser) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonUser) == "{}" && string(data) != "{}"  { // empty struct
 				obj.User = nil
 			} else {
 				match++
@@ -80,9 +86,11 @@ func (obj TeamOnCallRespondersIncluded) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.User)
 	}
 
+
 	if obj.Escalation != nil {
 		return datadog.Marshal(&obj.Escalation)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj TeamOnCallRespondersIncluded) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *TeamOnCallRespondersIncluded) GetActualInstance() interface{} {
+func (obj *TeamOnCallRespondersIncluded) GetActualInstance() (interface{}) {
 	if obj.User != nil {
 		return obj.User
 	}
 
+
 	if obj.Escalation != nil {
 		return obj.Escalation
 	}
+
 
 	// all schemas are nil
 	return nil

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineHttpClientSource The `http_client` source scrapes logs from HTTP endpoints at regular intervals.
 type ObservabilityPipelineHttpClientSource struct {
@@ -27,9 +31,10 @@ type ObservabilityPipelineHttpClientSource struct {
 	// The source type. The value should always be `http_client`.
 	Type ObservabilityPipelineHttpClientSourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineHttpClientSource instantiates a new ObservabilityPipelineHttpClientSource object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewObservabilityPipelineHttpClientSourceWithDefaults() *ObservabilityPipeli
 	this.Type = typeVar
 	return &this
 }
-
 // GetAuthStrategy returns the AuthStrategy field value if set, zero value otherwise.
 func (o *ObservabilityPipelineHttpClientSource) GetAuthStrategy() ObservabilityPipelineHttpClientSourceAuthStrategy {
 	if o == nil || o.AuthStrategy == nil {
@@ -81,6 +85,7 @@ func (o *ObservabilityPipelineHttpClientSource) SetAuthStrategy(v ObservabilityP
 	o.AuthStrategy = &v
 }
 
+
 // GetDecoding returns the Decoding field value.
 func (o *ObservabilityPipelineHttpClientSource) GetDecoding() ObservabilityPipelineDecoding {
 	if o == nil {
@@ -104,6 +109,7 @@ func (o *ObservabilityPipelineHttpClientSource) SetDecoding(v ObservabilityPipel
 	o.Decoding = v
 }
 
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineHttpClientSource) GetId() string {
 	if o == nil {
@@ -126,6 +132,7 @@ func (o *ObservabilityPipelineHttpClientSource) GetIdOk() (*string, bool) {
 func (o *ObservabilityPipelineHttpClientSource) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetScrapeIntervalSecs returns the ScrapeIntervalSecs field value if set, zero value otherwise.
 func (o *ObservabilityPipelineHttpClientSource) GetScrapeIntervalSecs() int64 {
@@ -155,6 +162,7 @@ func (o *ObservabilityPipelineHttpClientSource) SetScrapeIntervalSecs(v int64) {
 	o.ScrapeIntervalSecs = &v
 }
 
+
 // GetScrapeTimeoutSecs returns the ScrapeTimeoutSecs field value if set, zero value otherwise.
 func (o *ObservabilityPipelineHttpClientSource) GetScrapeTimeoutSecs() int64 {
 	if o == nil || o.ScrapeTimeoutSecs == nil {
@@ -182,6 +190,7 @@ func (o *ObservabilityPipelineHttpClientSource) HasScrapeTimeoutSecs() bool {
 func (o *ObservabilityPipelineHttpClientSource) SetScrapeTimeoutSecs(v int64) {
 	o.ScrapeTimeoutSecs = &v
 }
+
 
 // GetTls returns the Tls field value if set, zero value otherwise.
 func (o *ObservabilityPipelineHttpClientSource) GetTls() ObservabilityPipelineTls {
@@ -211,6 +220,7 @@ func (o *ObservabilityPipelineHttpClientSource) SetTls(v ObservabilityPipelineTl
 	o.Tls = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineHttpClientSource) GetType() ObservabilityPipelineHttpClientSourceType {
 	if o == nil {
@@ -233,6 +243,8 @@ func (o *ObservabilityPipelineHttpClientSource) GetTypeOk() (*ObservabilityPipel
 func (o *ObservabilityPipelineHttpClientSource) SetType(v ObservabilityPipelineHttpClientSourceType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineHttpClientSource) MarshalJSON() ([]byte, error) {
@@ -265,13 +277,13 @@ func (o ObservabilityPipelineHttpClientSource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineHttpClientSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AuthStrategy       *ObservabilityPipelineHttpClientSourceAuthStrategy `json:"auth_strategy,omitempty"`
-		Decoding           *ObservabilityPipelineDecoding                     `json:"decoding"`
-		Id                 *string                                            `json:"id"`
-		ScrapeIntervalSecs *int64                                             `json:"scrape_interval_secs,omitempty"`
-		ScrapeTimeoutSecs  *int64                                             `json:"scrape_timeout_secs,omitempty"`
-		Tls                *ObservabilityPipelineTls                          `json:"tls,omitempty"`
-		Type               *ObservabilityPipelineHttpClientSourceType         `json:"type"`
+		AuthStrategy *ObservabilityPipelineHttpClientSourceAuthStrategy `json:"auth_strategy,omitempty"`
+		Decoding *ObservabilityPipelineDecoding `json:"decoding"`
+		Id *string `json:"id"`
+		ScrapeIntervalSecs *int64 `json:"scrape_interval_secs,omitempty"`
+		ScrapeTimeoutSecs *int64 `json:"scrape_timeout_secs,omitempty"`
+		Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
+		Type *ObservabilityPipelineHttpClientSourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -287,13 +299,13 @@ func (o *ObservabilityPipelineHttpClientSource) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth_strategy", "decoding", "id", "scrape_interval_secs", "scrape_timeout_secs", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "auth_strategy", "decoding", "id", "scrape_interval_secs", "scrape_timeout_secs", "tls", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.AuthStrategy != nil && !all.AuthStrategy.IsValid() {
+	if all.AuthStrategy != nil &&!all.AuthStrategy.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.AuthStrategy = all.AuthStrategy
@@ -306,7 +318,7 @@ func (o *ObservabilityPipelineHttpClientSource) UnmarshalJSON(bytes []byte) (err
 	o.Id = *all.Id
 	o.ScrapeIntervalSecs = all.ScrapeIntervalSecs
 	o.ScrapeTimeoutSecs = all.ScrapeTimeoutSecs
-	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tls = all.Tls

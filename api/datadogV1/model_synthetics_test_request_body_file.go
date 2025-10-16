@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestRequestBodyFile Object describing a file to be used as part of the request in the test.
 type SyntheticsTestRequestBodyFile struct {
@@ -23,9 +29,10 @@ type SyntheticsTestRequestBodyFile struct {
 	// Type of the file.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsTestRequestBodyFile instantiates a new SyntheticsTestRequestBodyFile object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +50,6 @@ func NewSyntheticsTestRequestBodyFileWithDefaults() *SyntheticsTestRequestBodyFi
 	this := SyntheticsTestRequestBodyFile{}
 	return &this
 }
-
 // GetBucketKey returns the BucketKey field value if set, zero value otherwise.
 func (o *SyntheticsTestRequestBodyFile) GetBucketKey() string {
 	if o == nil || o.BucketKey == nil {
@@ -71,6 +77,7 @@ func (o *SyntheticsTestRequestBodyFile) HasBucketKey() bool {
 func (o *SyntheticsTestRequestBodyFile) SetBucketKey(v string) {
 	o.BucketKey = &v
 }
+
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *SyntheticsTestRequestBodyFile) GetContent() string {
@@ -100,6 +107,7 @@ func (o *SyntheticsTestRequestBodyFile) SetContent(v string) {
 	o.Content = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SyntheticsTestRequestBodyFile) GetName() string {
 	if o == nil || o.Name == nil {
@@ -127,6 +135,7 @@ func (o *SyntheticsTestRequestBodyFile) HasName() bool {
 func (o *SyntheticsTestRequestBodyFile) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetOriginalFileName returns the OriginalFileName field value if set, zero value otherwise.
 func (o *SyntheticsTestRequestBodyFile) GetOriginalFileName() string {
@@ -156,6 +165,7 @@ func (o *SyntheticsTestRequestBodyFile) SetOriginalFileName(v string) {
 	o.OriginalFileName = &v
 }
 
+
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *SyntheticsTestRequestBodyFile) GetSize() int64 {
 	if o == nil || o.Size == nil {
@@ -184,6 +194,7 @@ func (o *SyntheticsTestRequestBodyFile) SetSize(v int64) {
 	o.Size = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SyntheticsTestRequestBodyFile) GetType() string {
 	if o == nil || o.Type == nil {
@@ -211,6 +222,8 @@ func (o *SyntheticsTestRequestBodyFile) HasType() bool {
 func (o *SyntheticsTestRequestBodyFile) SetType(v string) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTestRequestBodyFile) MarshalJSON() ([]byte, error) {
@@ -246,19 +259,19 @@ func (o SyntheticsTestRequestBodyFile) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestRequestBodyFile) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BucketKey        *string `json:"bucketKey,omitempty"`
-		Content          *string `json:"content,omitempty"`
-		Name             *string `json:"name,omitempty"`
+		BucketKey *string `json:"bucketKey,omitempty"`
+		Content *string `json:"content,omitempty"`
+		Name *string `json:"name,omitempty"`
 		OriginalFileName *string `json:"originalFileName,omitempty"`
-		Size             *int64  `json:"size,omitempty"`
-		Type             *string `json:"type,omitempty"`
+		Size *int64 `json:"size,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"bucketKey", "content", "name", "originalFileName", "size", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "bucketKey", "content", "name", "originalFileName", "size", "type",  })
 	} else {
 		return err
 	}

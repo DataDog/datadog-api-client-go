@@ -2,13 +2,13 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	"github.com/google/uuid"
 )
@@ -17,19 +17,20 @@ func main() {
 	// there is a valid "app" in the system
 	AppDataID := uuid.MustParse(os.Getenv("APP_DATA_ID"))
 
+
 	body := datadogV2.DeleteAppsRequest{
-		Data: []datadogV2.DeleteAppsRequestDataItems{
-			{
-				Id:   AppDataID,
-				Type: datadogV2.APPDEFINITIONTYPE_APPDEFINITIONS,
-			},
-		},
-	}
+Data: []datadogV2.DeleteAppsRequestDataItems{
+{
+Id: AppDataID,
+Type: datadogV2.APPDEFINITIONTYPE_APPDEFINITIONS,
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAppBuilderApi(apiClient)
-	resp, r, err := api.DeleteApps(ctx, body)
+	resp, r, err := api.DeleteApps(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AppBuilderApi.DeleteApps`: %v\n", err)

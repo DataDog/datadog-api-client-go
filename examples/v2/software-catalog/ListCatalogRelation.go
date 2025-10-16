@@ -2,14 +2,15 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -17,7 +18,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSoftwareCatalogApi(apiClient)
-	resp, r, err := api.ListCatalogRelation(ctx, *datadogV2.NewListCatalogRelationOptionalParameters())
+	resp, r, err := api.ListCatalogRelation(ctx, *datadogV2.NewListCatalogRelationOptionalParameters(), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SoftwareCatalogApi.ListCatalogRelation`: %v\n", err)

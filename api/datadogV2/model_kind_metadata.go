@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // KindMetadata Kind metadata.
 type KindMetadata struct {
@@ -15,9 +21,10 @@ type KindMetadata struct {
 	// The modification time.
 	ModifiedAt *string `json:"modifiedAt,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewKindMetadata instantiates a new KindMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewKindMetadataWithDefaults() *KindMetadata {
 	this := KindMetadata{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *KindMetadata) GetCreatedAt() string {
 	if o == nil || o.CreatedAt == nil {
@@ -63,6 +69,7 @@ func (o *KindMetadata) HasCreatedAt() bool {
 func (o *KindMetadata) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *KindMetadata) GetModifiedAt() string {
@@ -92,6 +99,8 @@ func (o *KindMetadata) SetModifiedAt(v string) {
 	o.ModifiedAt = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o KindMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o KindMetadata) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *KindMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt  *string `json:"createdAt,omitempty"`
+		CreatedAt *string `json:"createdAt,omitempty"`
 		ModifiedAt *string `json:"modifiedAt,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *KindMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "modifiedAt"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "createdAt", "modifiedAt",  })
 	} else {
 		return err
 	}

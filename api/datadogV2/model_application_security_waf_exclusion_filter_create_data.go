@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafExclusionFilterCreateData Object for creating a single WAF exclusion filter.
 type ApplicationSecurityWafExclusionFilterCreateData struct {
@@ -17,9 +21,10 @@ type ApplicationSecurityWafExclusionFilterCreateData struct {
 	// Type of the resource. The value should always be `exclusion_filter`.
 	Type ApplicationSecurityWafExclusionFilterType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafExclusionFilterCreateData instantiates a new ApplicationSecurityWafExclusionFilterCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewApplicationSecurityWafExclusionFilterCreateDataWithDefaults() *Applicati
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *ApplicationSecurityWafExclusionFilterCreateData) GetAttributes() ApplicationSecurityWafExclusionFilterCreateAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *ApplicationSecurityWafExclusionFilterCreateData) GetAttributesOk() (*Ap
 func (o *ApplicationSecurityWafExclusionFilterCreateData) SetAttributes(v ApplicationSecurityWafExclusionFilterCreateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ApplicationSecurityWafExclusionFilterCreateData) GetType() ApplicationSecurityWafExclusionFilterType {
@@ -88,6 +93,8 @@ func (o *ApplicationSecurityWafExclusionFilterCreateData) SetType(v ApplicationS
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafExclusionFilterCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o ApplicationSecurityWafExclusionFilterCreateData) MarshalJSON() ([]byte, 
 func (o *ApplicationSecurityWafExclusionFilterCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *ApplicationSecurityWafExclusionFilterCreateAttributes `json:"attributes"`
-		Type       *ApplicationSecurityWafExclusionFilterType             `json:"type"`
+		Type *ApplicationSecurityWafExclusionFilterType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *ApplicationSecurityWafExclusionFilterCreateData) UnmarshalJSON(bytes []
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

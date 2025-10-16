@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ReferenceTableCreateSourceType The source type for creating reference table data. Only these source types can be created through this API.
 type ReferenceTableCreateSourceType string
@@ -16,9 +20,9 @@ type ReferenceTableCreateSourceType string
 // List of ReferenceTableCreateSourceType.
 const (
 	REFERENCETABLECREATESOURCETYPE_LOCAL_FILE ReferenceTableCreateSourceType = "LOCAL_FILE"
-	REFERENCETABLECREATESOURCETYPE_S3         ReferenceTableCreateSourceType = "S3"
-	REFERENCETABLECREATESOURCETYPE_GCS        ReferenceTableCreateSourceType = "GCS"
-	REFERENCETABLECREATESOURCETYPE_AZURE      ReferenceTableCreateSourceType = "AZURE"
+	REFERENCETABLECREATESOURCETYPE_S3 ReferenceTableCreateSourceType = "S3"
+	REFERENCETABLECREATESOURCETYPE_GCS ReferenceTableCreateSourceType = "GCS"
+	REFERENCETABLECREATESOURCETYPE_AZURE ReferenceTableCreateSourceType = "AZURE"
 )
 
 var allowedReferenceTableCreateSourceTypeEnumValues = []ReferenceTableCreateSourceType{

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SAMLAssertionAttributeAttributes Key/Value pair of attributes used in SAML assertion attributes.
 type SAMLAssertionAttributeAttributes struct {
@@ -15,9 +21,10 @@ type SAMLAssertionAttributeAttributes struct {
 	// Value portion of a key/value pair of the attribute sent from the Identity Provider.
 	AttributeValue *string `json:"attribute_value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSAMLAssertionAttributeAttributes instantiates a new SAMLAssertionAttributeAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSAMLAssertionAttributeAttributesWithDefaults() *SAMLAssertionAttributeAt
 	this := SAMLAssertionAttributeAttributes{}
 	return &this
 }
-
 // GetAttributeKey returns the AttributeKey field value if set, zero value otherwise.
 func (o *SAMLAssertionAttributeAttributes) GetAttributeKey() string {
 	if o == nil || o.AttributeKey == nil {
@@ -63,6 +69,7 @@ func (o *SAMLAssertionAttributeAttributes) HasAttributeKey() bool {
 func (o *SAMLAssertionAttributeAttributes) SetAttributeKey(v string) {
 	o.AttributeKey = &v
 }
+
 
 // GetAttributeValue returns the AttributeValue field value if set, zero value otherwise.
 func (o *SAMLAssertionAttributeAttributes) GetAttributeValue() string {
@@ -92,6 +99,8 @@ func (o *SAMLAssertionAttributeAttributes) SetAttributeValue(v string) {
 	o.AttributeValue = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SAMLAssertionAttributeAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o SAMLAssertionAttributeAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SAMLAssertionAttributeAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AttributeKey   *string `json:"attribute_key,omitempty"`
+		AttributeKey *string `json:"attribute_key,omitempty"`
 		AttributeValue *string `json:"attribute_value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *SAMLAssertionAttributeAttributes) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attribute_key", "attribute_value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attribute_key", "attribute_value",  })
 	} else {
 		return err
 	}

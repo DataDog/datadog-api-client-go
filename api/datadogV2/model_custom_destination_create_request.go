@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomDestinationCreateRequest The custom destination.
 type CustomDestinationCreateRequest struct {
 	// The definition of a custom destination.
 	Data *CustomDestinationCreateRequestDefinition `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomDestinationCreateRequest instantiates a new CustomDestinationCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewCustomDestinationCreateRequestWithDefaults() *CustomDestinationCreateReq
 	this := CustomDestinationCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *CustomDestinationCreateRequest) GetData() CustomDestinationCreateRequestDefinition {
 	if o == nil || o.Data == nil {
@@ -62,6 +68,8 @@ func (o *CustomDestinationCreateRequest) SetData(v CustomDestinationCreateReques
 	o.Data = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomDestinationCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *CustomDestinationCreateRequest) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Data = all.Data

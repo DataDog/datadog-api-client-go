@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SharedDashboardUpdateRequest Update a shared dashboard's settings.
 type SharedDashboardUpdateRequest struct {
@@ -36,9 +40,10 @@ type SharedDashboardUpdateRequest struct {
 	// The viewing preferences for a shared dashboard.
 	ViewingPreferences *ViewingPreferences `json:"viewing_preferences,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSharedDashboardUpdateRequest instantiates a new SharedDashboardUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +61,6 @@ func NewSharedDashboardUpdateRequestWithDefaults() *SharedDashboardUpdateRequest
 	this := SharedDashboardUpdateRequest{}
 	return &this
 }
-
 // GetEmbeddableDomains returns the EmbeddableDomains field value if set, zero value otherwise.
 func (o *SharedDashboardUpdateRequest) GetEmbeddableDomains() []string {
 	if o == nil || o.EmbeddableDomains == nil {
@@ -85,6 +89,7 @@ func (o *SharedDashboardUpdateRequest) SetEmbeddableDomains(v []string) {
 	o.EmbeddableDomains = v
 }
 
+
 // GetExpiration returns the Expiration field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SharedDashboardUpdateRequest) GetExpiration() time.Time {
 	if o == nil || o.Expiration.Get() == nil {
@@ -98,7 +103,7 @@ func (o *SharedDashboardUpdateRequest) GetExpiration() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SharedDashboardUpdateRequest) GetExpirationOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Expiration.Get(), o.Expiration.IsSet()
@@ -113,7 +118,6 @@ func (o *SharedDashboardUpdateRequest) HasExpiration() bool {
 func (o *SharedDashboardUpdateRequest) SetExpiration(v time.Time) {
 	o.Expiration.Set(&v)
 }
-
 // SetExpirationNil sets the value for Expiration to be an explicit nil.
 func (o *SharedDashboardUpdateRequest) SetExpirationNil() {
 	o.Expiration.Set(nil)
@@ -123,6 +127,7 @@ func (o *SharedDashboardUpdateRequest) SetExpirationNil() {
 func (o *SharedDashboardUpdateRequest) UnsetExpiration() {
 	o.Expiration.Unset()
 }
+
 
 // GetGlobalTime returns the GlobalTime field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SharedDashboardUpdateRequest) GetGlobalTime() SharedDashboardUpdateRequestGlobalTime {
@@ -137,7 +142,7 @@ func (o *SharedDashboardUpdateRequest) GetGlobalTime() SharedDashboardUpdateRequ
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SharedDashboardUpdateRequest) GetGlobalTimeOk() (*SharedDashboardUpdateRequestGlobalTime, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.GlobalTime.Get(), o.GlobalTime.IsSet()
@@ -152,7 +157,6 @@ func (o *SharedDashboardUpdateRequest) HasGlobalTime() bool {
 func (o *SharedDashboardUpdateRequest) SetGlobalTime(v SharedDashboardUpdateRequestGlobalTime) {
 	o.GlobalTime.Set(&v)
 }
-
 // SetGlobalTimeNil sets the value for GlobalTime to be an explicit nil.
 func (o *SharedDashboardUpdateRequest) SetGlobalTimeNil() {
 	o.GlobalTime.Set(nil)
@@ -162,6 +166,7 @@ func (o *SharedDashboardUpdateRequest) SetGlobalTimeNil() {
 func (o *SharedDashboardUpdateRequest) UnsetGlobalTime() {
 	o.GlobalTime.Unset()
 }
+
 
 // GetGlobalTimeSelectableEnabled returns the GlobalTimeSelectableEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SharedDashboardUpdateRequest) GetGlobalTimeSelectableEnabled() bool {
@@ -176,7 +181,7 @@ func (o *SharedDashboardUpdateRequest) GetGlobalTimeSelectableEnabled() bool {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SharedDashboardUpdateRequest) GetGlobalTimeSelectableEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.GlobalTimeSelectableEnabled.Get(), o.GlobalTimeSelectableEnabled.IsSet()
@@ -191,7 +196,6 @@ func (o *SharedDashboardUpdateRequest) HasGlobalTimeSelectableEnabled() bool {
 func (o *SharedDashboardUpdateRequest) SetGlobalTimeSelectableEnabled(v bool) {
 	o.GlobalTimeSelectableEnabled.Set(&v)
 }
-
 // SetGlobalTimeSelectableEnabledNil sets the value for GlobalTimeSelectableEnabled to be an explicit nil.
 func (o *SharedDashboardUpdateRequest) SetGlobalTimeSelectableEnabledNil() {
 	o.GlobalTimeSelectableEnabled.Set(nil)
@@ -201,6 +205,7 @@ func (o *SharedDashboardUpdateRequest) SetGlobalTimeSelectableEnabledNil() {
 func (o *SharedDashboardUpdateRequest) UnsetGlobalTimeSelectableEnabled() {
 	o.GlobalTimeSelectableEnabled.Unset()
 }
+
 
 // GetInvitees returns the Invitees field value if set, zero value otherwise.
 func (o *SharedDashboardUpdateRequest) GetInvitees() []SharedDashboardInviteesItems {
@@ -230,9 +235,10 @@ func (o *SharedDashboardUpdateRequest) SetInvitees(v []SharedDashboardInviteesIt
 	o.Invitees = v
 }
 
+
 // GetSelectableTemplateVars returns the SelectableTemplateVars field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SharedDashboardUpdateRequest) GetSelectableTemplateVars() []SelectableTemplateVariableItems {
-	if o == nil {
+	if o == nil  {
 		var ret []SelectableTemplateVariableItems
 		return ret
 	}
@@ -259,6 +265,7 @@ func (o *SharedDashboardUpdateRequest) SetSelectableTemplateVars(v []SelectableT
 	o.SelectableTemplateVars = v
 }
 
+
 // GetShareList returns the ShareList field value if set, zero value otherwise (both if not set or set to explicit null).
 // Deprecated
 func (o *SharedDashboardUpdateRequest) GetShareList() []string {
@@ -274,7 +281,7 @@ func (o *SharedDashboardUpdateRequest) GetShareList() []string {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 // Deprecated
 func (o *SharedDashboardUpdateRequest) GetShareListOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ShareList.Get(), o.ShareList.IsSet()
@@ -290,7 +297,6 @@ func (o *SharedDashboardUpdateRequest) HasShareList() bool {
 func (o *SharedDashboardUpdateRequest) SetShareList(v []string) {
 	o.ShareList.Set(&v)
 }
-
 // SetShareListNil sets the value for ShareList to be an explicit nil.
 func (o *SharedDashboardUpdateRequest) SetShareListNil() {
 	o.ShareList.Set(nil)
@@ -300,6 +306,7 @@ func (o *SharedDashboardUpdateRequest) SetShareListNil() {
 func (o *SharedDashboardUpdateRequest) UnsetShareList() {
 	o.ShareList.Unset()
 }
+
 
 // GetShareType returns the ShareType field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SharedDashboardUpdateRequest) GetShareType() DashboardShareType {
@@ -314,7 +321,7 @@ func (o *SharedDashboardUpdateRequest) GetShareType() DashboardShareType {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SharedDashboardUpdateRequest) GetShareTypeOk() (*DashboardShareType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ShareType.Get(), o.ShareType.IsSet()
@@ -329,7 +336,6 @@ func (o *SharedDashboardUpdateRequest) HasShareType() bool {
 func (o *SharedDashboardUpdateRequest) SetShareType(v DashboardShareType) {
 	o.ShareType.Set(&v)
 }
-
 // SetShareTypeNil sets the value for ShareType to be an explicit nil.
 func (o *SharedDashboardUpdateRequest) SetShareTypeNil() {
 	o.ShareType.Set(nil)
@@ -339,6 +345,7 @@ func (o *SharedDashboardUpdateRequest) SetShareTypeNil() {
 func (o *SharedDashboardUpdateRequest) UnsetShareType() {
 	o.ShareType.Unset()
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SharedDashboardUpdateRequest) GetStatus() SharedDashboardStatus {
@@ -368,6 +375,7 @@ func (o *SharedDashboardUpdateRequest) SetStatus(v SharedDashboardStatus) {
 	o.Status = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *SharedDashboardUpdateRequest) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -396,6 +404,7 @@ func (o *SharedDashboardUpdateRequest) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetViewingPreferences returns the ViewingPreferences field value if set, zero value otherwise.
 func (o *SharedDashboardUpdateRequest) GetViewingPreferences() ViewingPreferences {
 	if o == nil || o.ViewingPreferences == nil {
@@ -423,6 +432,8 @@ func (o *SharedDashboardUpdateRequest) HasViewingPreferences() bool {
 func (o *SharedDashboardUpdateRequest) SetViewingPreferences(v ViewingPreferences) {
 	o.ViewingPreferences = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SharedDashboardUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -473,24 +484,24 @@ func (o SharedDashboardUpdateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SharedDashboardUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EmbeddableDomains           []string                                       `json:"embeddable_domains,omitempty"`
-		Expiration                  datadog.NullableTime                           `json:"expiration,omitempty"`
-		GlobalTime                  NullableSharedDashboardUpdateRequestGlobalTime `json:"global_time,omitempty"`
-		GlobalTimeSelectableEnabled datadog.NullableBool                           `json:"global_time_selectable_enabled,omitempty"`
-		Invitees                    []SharedDashboardInviteesItems                 `json:"invitees,omitempty"`
-		SelectableTemplateVars      []SelectableTemplateVariableItems              `json:"selectable_template_vars,omitempty"`
-		ShareList                   datadog.NullableList[string]                   `json:"share_list,omitempty"`
-		ShareType                   NullableDashboardShareType                     `json:"share_type,omitempty"`
-		Status                      *SharedDashboardStatus                         `json:"status,omitempty"`
-		Title                       *string                                        `json:"title,omitempty"`
-		ViewingPreferences          *ViewingPreferences                            `json:"viewing_preferences,omitempty"`
+		EmbeddableDomains []string `json:"embeddable_domains,omitempty"`
+		Expiration datadog.NullableTime `json:"expiration,omitempty"`
+		GlobalTime NullableSharedDashboardUpdateRequestGlobalTime `json:"global_time,omitempty"`
+		GlobalTimeSelectableEnabled datadog.NullableBool `json:"global_time_selectable_enabled,omitempty"`
+		Invitees []SharedDashboardInviteesItems `json:"invitees,omitempty"`
+		SelectableTemplateVars []SelectableTemplateVariableItems `json:"selectable_template_vars,omitempty"`
+		ShareList datadog.NullableList[string] `json:"share_list,omitempty"`
+		ShareType NullableDashboardShareType `json:"share_type,omitempty"`
+		Status *SharedDashboardStatus `json:"status,omitempty"`
+		Title *string `json:"title,omitempty"`
+		ViewingPreferences *ViewingPreferences `json:"viewing_preferences,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"embeddable_domains", "expiration", "global_time", "global_time_selectable_enabled", "invitees", "selectable_template_vars", "share_list", "share_type", "status", "title", "viewing_preferences"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "embeddable_domains", "expiration", "global_time", "global_time_selectable_enabled", "invitees", "selectable_template_vars", "share_list", "share_type", "status", "title", "viewing_preferences",  })
 	} else {
 		return err
 	}
@@ -508,13 +519,13 @@ func (o *SharedDashboardUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.ShareType = all.ShareType
 	}
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status
 	}
 	o.Title = all.Title
-	if all.ViewingPreferences != nil && all.ViewingPreferences.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ViewingPreferences != nil && all.ViewingPreferences.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ViewingPreferences = all.ViewingPreferences

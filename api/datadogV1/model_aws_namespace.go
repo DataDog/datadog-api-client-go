@@ -2,27 +2,31 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSNamespace The namespace associated with the tag filter entry.
 type AWSNamespace string
 
 // List of AWSNamespace.
 const (
-	AWSNAMESPACE_ELB             AWSNamespace = "elb"
+	AWSNAMESPACE_ELB AWSNamespace = "elb"
 	AWSNAMESPACE_APPLICATION_ELB AWSNamespace = "application_elb"
-	AWSNAMESPACE_SQS             AWSNamespace = "sqs"
-	AWSNAMESPACE_RDS             AWSNamespace = "rds"
-	AWSNAMESPACE_CUSTOM          AWSNamespace = "custom"
-	AWSNAMESPACE_NETWORK_ELB     AWSNamespace = "network_elb"
-	AWSNAMESPACE_LAMBDA          AWSNamespace = "lambda"
-	AWSNAMESPACE_STEP_FUNCTIONS  AWSNamespace = "step_functions"
+	AWSNAMESPACE_SQS AWSNamespace = "sqs"
+	AWSNAMESPACE_RDS AWSNamespace = "rds"
+	AWSNAMESPACE_CUSTOM AWSNamespace = "custom"
+	AWSNAMESPACE_NETWORK_ELB AWSNamespace = "network_elb"
+	AWSNAMESPACE_LAMBDA AWSNamespace = "lambda"
+	AWSNAMESPACE_STEP_FUNCTIONS AWSNamespace = "step_functions"
 )
 
 var allowedAWSNamespaceEnumValues = []AWSNamespace{

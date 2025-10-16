@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // BillingDimensionsMappingBodyItemAttributes Mapping of billing dimensions to endpoint keys.
 type BillingDimensionsMappingBodyItemAttributes struct {
@@ -19,9 +23,10 @@ type BillingDimensionsMappingBodyItemAttributes struct {
 	// Month in ISO-8601 format, UTC, and precise to the second: `[YYYY-MM-DDThh:mm:ss]`.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewBillingDimensionsMappingBodyItemAttributes instantiates a new BillingDimensionsMappingBodyItemAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewBillingDimensionsMappingBodyItemAttributesWithDefaults() *BillingDimensi
 	this := BillingDimensionsMappingBodyItemAttributes{}
 	return &this
 }
-
 // GetEndpoints returns the Endpoints field value if set, zero value otherwise.
 func (o *BillingDimensionsMappingBodyItemAttributes) GetEndpoints() []BillingDimensionsMappingBodyItemAttributesEndpointsItems {
 	if o == nil || o.Endpoints == nil {
@@ -67,6 +71,7 @@ func (o *BillingDimensionsMappingBodyItemAttributes) HasEndpoints() bool {
 func (o *BillingDimensionsMappingBodyItemAttributes) SetEndpoints(v []BillingDimensionsMappingBodyItemAttributesEndpointsItems) {
 	o.Endpoints = v
 }
+
 
 // GetInAppLabel returns the InAppLabel field value if set, zero value otherwise.
 func (o *BillingDimensionsMappingBodyItemAttributes) GetInAppLabel() string {
@@ -96,6 +101,7 @@ func (o *BillingDimensionsMappingBodyItemAttributes) SetInAppLabel(v string) {
 	o.InAppLabel = &v
 }
 
+
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *BillingDimensionsMappingBodyItemAttributes) GetTimestamp() time.Time {
 	if o == nil || o.Timestamp == nil {
@@ -123,6 +129,8 @@ func (o *BillingDimensionsMappingBodyItemAttributes) HasTimestamp() bool {
 func (o *BillingDimensionsMappingBodyItemAttributes) SetTimestamp(v time.Time) {
 	o.Timestamp = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o BillingDimensionsMappingBodyItemAttributes) MarshalJSON() ([]byte, error) {
@@ -153,16 +161,16 @@ func (o BillingDimensionsMappingBodyItemAttributes) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *BillingDimensionsMappingBodyItemAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Endpoints  []BillingDimensionsMappingBodyItemAttributesEndpointsItems `json:"endpoints,omitempty"`
-		InAppLabel *string                                                    `json:"in_app_label,omitempty"`
-		Timestamp  *time.Time                                                 `json:"timestamp,omitempty"`
+		Endpoints []BillingDimensionsMappingBodyItemAttributesEndpointsItems `json:"endpoints,omitempty"`
+		InAppLabel *string `json:"in_app_label,omitempty"`
+		Timestamp *time.Time `json:"timestamp,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"endpoints", "in_app_label", "timestamp"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "endpoints", "in_app_label", "timestamp",  })
 	} else {
 		return err
 	}

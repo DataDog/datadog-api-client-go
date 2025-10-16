@@ -2,18 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScheduleDataIncludedItem - Any additional resources related to this schedule, such as teams and layers.
 type ScheduleDataIncludedItem struct {
-	TeamReference  *TeamReference
-	Layer          *Layer
+	TeamReference *TeamReference
+	Layer *Layer
 	ScheduleMember *ScheduleMember
-	ScheduleUser   *ScheduleUser
+	ScheduleUser *ScheduleUser
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -128,17 +134,21 @@ func (obj ScheduleDataIncludedItem) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.TeamReference)
 	}
 
+
 	if obj.Layer != nil {
 		return datadog.Marshal(&obj.Layer)
 	}
+
 
 	if obj.ScheduleMember != nil {
 		return datadog.Marshal(&obj.ScheduleMember)
 	}
 
+
 	if obj.ScheduleUser != nil {
 		return datadog.Marshal(&obj.ScheduleUser)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -147,22 +157,26 @@ func (obj ScheduleDataIncludedItem) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ScheduleDataIncludedItem) GetActualInstance() interface{} {
+func (obj *ScheduleDataIncludedItem) GetActualInstance() (interface{}) {
 	if obj.TeamReference != nil {
 		return obj.TeamReference
 	}
+
 
 	if obj.Layer != nil {
 		return obj.Layer
 	}
 
+
 	if obj.ScheduleMember != nil {
 		return obj.ScheduleMember
 	}
 
+
 	if obj.ScheduleUser != nil {
 		return obj.ScheduleUser
 	}
+
 
 	// all schemas are nil
 	return nil

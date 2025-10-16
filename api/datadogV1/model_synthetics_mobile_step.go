@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsMobileStep The steps used in a Synthetic mobile test.
 type SyntheticsMobileStep struct {
@@ -31,9 +35,10 @@ type SyntheticsMobileStep struct {
 	// Step type used in your mobile Synthetic test.
 	Type SyntheticsMobileStepType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsMobileStep instantiates a new SyntheticsMobileStep object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewSyntheticsMobileStepWithDefaults() *SyntheticsMobileStep {
 	this := SyntheticsMobileStep{}
 	return &this
 }
-
 // GetAllowFailure returns the AllowFailure field value if set, zero value otherwise.
 func (o *SyntheticsMobileStep) GetAllowFailure() bool {
 	if o == nil || o.AllowFailure == nil {
@@ -82,6 +86,7 @@ func (o *SyntheticsMobileStep) HasAllowFailure() bool {
 func (o *SyntheticsMobileStep) SetAllowFailure(v bool) {
 	o.AllowFailure = &v
 }
+
 
 // GetHasNewStepElement returns the HasNewStepElement field value if set, zero value otherwise.
 func (o *SyntheticsMobileStep) GetHasNewStepElement() bool {
@@ -111,6 +116,7 @@ func (o *SyntheticsMobileStep) SetHasNewStepElement(v bool) {
 	o.HasNewStepElement = &v
 }
 
+
 // GetIsCritical returns the IsCritical field value if set, zero value otherwise.
 func (o *SyntheticsMobileStep) GetIsCritical() bool {
 	if o == nil || o.IsCritical == nil {
@@ -139,6 +145,7 @@ func (o *SyntheticsMobileStep) SetIsCritical(v bool) {
 	o.IsCritical = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *SyntheticsMobileStep) GetName() string {
 	if o == nil {
@@ -161,6 +168,7 @@ func (o *SyntheticsMobileStep) GetNameOk() (*string, bool) {
 func (o *SyntheticsMobileStep) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetNoScreenshot returns the NoScreenshot field value if set, zero value otherwise.
 func (o *SyntheticsMobileStep) GetNoScreenshot() bool {
@@ -190,6 +198,7 @@ func (o *SyntheticsMobileStep) SetNoScreenshot(v bool) {
 	o.NoScreenshot = &v
 }
 
+
 // GetParams returns the Params field value.
 func (o *SyntheticsMobileStep) GetParams() SyntheticsMobileStepParams {
 	if o == nil {
@@ -212,6 +221,7 @@ func (o *SyntheticsMobileStep) GetParamsOk() (*SyntheticsMobileStepParams, bool)
 func (o *SyntheticsMobileStep) SetParams(v SyntheticsMobileStepParams) {
 	o.Params = v
 }
+
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *SyntheticsMobileStep) GetPublicId() string {
@@ -241,6 +251,7 @@ func (o *SyntheticsMobileStep) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
 // GetTimeout returns the Timeout field value if set, zero value otherwise.
 func (o *SyntheticsMobileStep) GetTimeout() int64 {
 	if o == nil || o.Timeout == nil {
@@ -269,6 +280,7 @@ func (o *SyntheticsMobileStep) SetTimeout(v int64) {
 	o.Timeout = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *SyntheticsMobileStep) GetType() SyntheticsMobileStepType {
 	if o == nil {
@@ -291,6 +303,8 @@ func (o *SyntheticsMobileStep) GetTypeOk() (*SyntheticsMobileStepType, bool) {
 func (o *SyntheticsMobileStep) SetType(v SyntheticsMobileStepType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsMobileStep) MarshalJSON() ([]byte, error) {
@@ -329,15 +343,15 @@ func (o SyntheticsMobileStep) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsMobileStep) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AllowFailure      *bool                       `json:"allowFailure,omitempty"`
-		HasNewStepElement *bool                       `json:"hasNewStepElement,omitempty"`
-		IsCritical        *bool                       `json:"isCritical,omitempty"`
-		Name              *string                     `json:"name"`
-		NoScreenshot      *bool                       `json:"noScreenshot,omitempty"`
-		Params            *SyntheticsMobileStepParams `json:"params"`
-		PublicId          *string                     `json:"publicId,omitempty"`
-		Timeout           *int64                      `json:"timeout,omitempty"`
-		Type              *SyntheticsMobileStepType   `json:"type"`
+		AllowFailure *bool `json:"allowFailure,omitempty"`
+		HasNewStepElement *bool `json:"hasNewStepElement,omitempty"`
+		IsCritical *bool `json:"isCritical,omitempty"`
+		Name *string `json:"name"`
+		NoScreenshot *bool `json:"noScreenshot,omitempty"`
+		Params *SyntheticsMobileStepParams `json:"params"`
+		PublicId *string `json:"publicId,omitempty"`
+		Timeout *int64 `json:"timeout,omitempty"`
+		Type *SyntheticsMobileStepType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -353,7 +367,7 @@ func (o *SyntheticsMobileStep) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allowFailure", "hasNewStepElement", "isCritical", "name", "noScreenshot", "params", "publicId", "timeout", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "allowFailure", "hasNewStepElement", "isCritical", "name", "noScreenshot", "params", "publicId", "timeout", "type",  })
 	} else {
 		return err
 	}

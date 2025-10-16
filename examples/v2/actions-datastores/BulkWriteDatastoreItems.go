@@ -2,42 +2,44 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	// there is a valid "datastore" in the system
 	DatastoreDataID := os.Getenv("DATASTORE_DATA_ID")
 
+
 	body := datadogV2.BulkPutAppsDatastoreItemsRequest{
-		Data: &datadogV2.BulkPutAppsDatastoreItemsRequestData{
-			Attributes: &datadogV2.BulkPutAppsDatastoreItemsRequestDataAttributes{
-				Values: []map[string]interface{}{
-					{
-						"id":   "cust_3141",
-						"name": "Johnathan",
-					},
-					{
-						"id":   "cust_3142",
-						"name": "Mary",
-					},
-				},
-			},
-			Type: datadogV2.DATASTOREITEMSDATATYPE_ITEMS,
-		},
-	}
+Data: &datadogV2.BulkPutAppsDatastoreItemsRequestData{
+Attributes: &datadogV2.BulkPutAppsDatastoreItemsRequestDataAttributes{
+Values: []map[string]interface{}{
+{
+"id": "cust_3141",
+"name": "Johnathan",
+},
+{
+"id": "cust_3142",
+"name": "Mary",
+},
+},
+},
+Type: datadogV2.DATASTOREITEMSDATATYPE_ITEMS,
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewActionsDatastoresApi(apiClient)
-	resp, r, err := api.BulkWriteDatastoreItems(ctx, DatastoreDataID, body)
+	resp, r, err := api.BulkWriteDatastoreItems(ctx, DatastoreDataID, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ActionsDatastoresApi.BulkWriteDatastoreItems`: %v\n", err)

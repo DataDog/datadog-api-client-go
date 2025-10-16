@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Advisory Advisory.
 type Advisory struct {
@@ -19,9 +23,10 @@ type Advisory struct {
 	// Advisory Datadog severity.
 	Severity *string `json:"severity,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAdvisory instantiates a new Advisory object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewAdvisoryWithDefaults() *Advisory {
 	this := Advisory{}
 	return &this
 }
-
 // GetBaseSeverity returns the BaseSeverity field value.
 func (o *Advisory) GetBaseSeverity() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *Advisory) SetBaseSeverity(v string) {
 	o.BaseSeverity = v
 }
 
+
 // GetId returns the Id field value.
 func (o *Advisory) GetId() string {
 	if o == nil {
@@ -87,6 +92,7 @@ func (o *Advisory) GetIdOk() (*string, bool) {
 func (o *Advisory) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetSeverity returns the Severity field value if set, zero value otherwise.
 func (o *Advisory) GetSeverity() string {
@@ -116,6 +122,8 @@ func (o *Advisory) SetSeverity(v string) {
 	o.Severity = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o Advisory) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -138,8 +146,8 @@ func (o Advisory) MarshalJSON() ([]byte, error) {
 func (o *Advisory) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		BaseSeverity *string `json:"base_severity"`
-		Id           *string `json:"id"`
-		Severity     *string `json:"severity,omitempty"`
+		Id *string `json:"id"`
+		Severity *string `json:"severity,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *Advisory) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"base_severity", "id", "severity"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "base_severity", "id", "severity",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionV2Opsgenie Opsgenie integration for the service.
 type ServiceDefinitionV2Opsgenie struct {
@@ -17,9 +21,10 @@ type ServiceDefinitionV2Opsgenie struct {
 	// Opsgenie service url.
 	ServiceUrl string `json:"service-url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceDefinitionV2Opsgenie instantiates a new ServiceDefinitionV2Opsgenie object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewServiceDefinitionV2OpsgenieWithDefaults() *ServiceDefinitionV2Opsgenie {
 	this := ServiceDefinitionV2Opsgenie{}
 	return &this
 }
-
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Opsgenie) GetRegion() ServiceDefinitionV2OpsgenieRegion {
 	if o == nil || o.Region == nil {
@@ -67,6 +71,7 @@ func (o *ServiceDefinitionV2Opsgenie) SetRegion(v ServiceDefinitionV2OpsgenieReg
 	o.Region = &v
 }
 
+
 // GetServiceUrl returns the ServiceUrl field value.
 func (o *ServiceDefinitionV2Opsgenie) GetServiceUrl() string {
 	if o == nil {
@@ -90,6 +95,8 @@ func (o *ServiceDefinitionV2Opsgenie) SetServiceUrl(v string) {
 	o.ServiceUrl = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceDefinitionV2Opsgenie) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,8 +117,8 @@ func (o ServiceDefinitionV2Opsgenie) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV2Opsgenie) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Region     *ServiceDefinitionV2OpsgenieRegion `json:"region,omitempty"`
-		ServiceUrl *string                            `json:"service-url"`
+		Region *ServiceDefinitionV2OpsgenieRegion `json:"region,omitempty"`
+		ServiceUrl *string `json:"service-url"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,13 +128,13 @@ func (o *ServiceDefinitionV2Opsgenie) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"region", "service-url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "region", "service-url",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Region != nil && !all.Region.IsValid() {
+	if all.Region != nil &&!all.Region.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Region = all.Region

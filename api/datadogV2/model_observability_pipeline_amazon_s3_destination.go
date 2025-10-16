@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineAmazonS3Destination The `amazon_s3` destination sends your logs in Datadog-rehydratable format to an Amazon S3 bucket for archiving.
 type ObservabilityPipelineAmazonS3Destination struct {
@@ -32,9 +36,10 @@ type ObservabilityPipelineAmazonS3Destination struct {
 	// The destination type. Always `amazon_s3`.
 	Type ObservabilityPipelineAmazonS3DestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineAmazonS3Destination instantiates a new ObservabilityPipelineAmazonS3Destination object.
 // This constructor will assign default values to properties that have it defined,
@@ -60,7 +65,6 @@ func NewObservabilityPipelineAmazonS3DestinationWithDefaults() *ObservabilityPip
 	this.Type = typeVar
 	return &this
 }
-
 // GetAuth returns the Auth field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonS3Destination) GetAuth() ObservabilityPipelineAwsAuth {
 	if o == nil || o.Auth == nil {
@@ -89,6 +93,7 @@ func (o *ObservabilityPipelineAmazonS3Destination) SetAuth(v ObservabilityPipeli
 	o.Auth = &v
 }
 
+
 // GetBucket returns the Bucket field value.
 func (o *ObservabilityPipelineAmazonS3Destination) GetBucket() string {
 	if o == nil {
@@ -111,6 +116,7 @@ func (o *ObservabilityPipelineAmazonS3Destination) GetBucketOk() (*string, bool)
 func (o *ObservabilityPipelineAmazonS3Destination) SetBucket(v string) {
 	o.Bucket = v
 }
+
 
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineAmazonS3Destination) GetId() string {
@@ -135,6 +141,7 @@ func (o *ObservabilityPipelineAmazonS3Destination) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineAmazonS3Destination) GetInputs() []string {
 	if o == nil {
@@ -157,6 +164,7 @@ func (o *ObservabilityPipelineAmazonS3Destination) GetInputsOk() (*[]string, boo
 func (o *ObservabilityPipelineAmazonS3Destination) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetKeyPrefix returns the KeyPrefix field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonS3Destination) GetKeyPrefix() string {
@@ -186,6 +194,7 @@ func (o *ObservabilityPipelineAmazonS3Destination) SetKeyPrefix(v string) {
 	o.KeyPrefix = &v
 }
 
+
 // GetRegion returns the Region field value.
 func (o *ObservabilityPipelineAmazonS3Destination) GetRegion() string {
 	if o == nil {
@@ -209,6 +218,7 @@ func (o *ObservabilityPipelineAmazonS3Destination) SetRegion(v string) {
 	o.Region = v
 }
 
+
 // GetStorageClass returns the StorageClass field value.
 func (o *ObservabilityPipelineAmazonS3Destination) GetStorageClass() ObservabilityPipelineAmazonS3DestinationStorageClass {
 	if o == nil {
@@ -231,6 +241,7 @@ func (o *ObservabilityPipelineAmazonS3Destination) GetStorageClassOk() (*Observa
 func (o *ObservabilityPipelineAmazonS3Destination) SetStorageClass(v ObservabilityPipelineAmazonS3DestinationStorageClass) {
 	o.StorageClass = v
 }
+
 
 // GetTls returns the Tls field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonS3Destination) GetTls() ObservabilityPipelineTls {
@@ -260,6 +271,7 @@ func (o *ObservabilityPipelineAmazonS3Destination) SetTls(v ObservabilityPipelin
 	o.Tls = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineAmazonS3Destination) GetType() ObservabilityPipelineAmazonS3DestinationType {
 	if o == nil {
@@ -282,6 +294,8 @@ func (o *ObservabilityPipelineAmazonS3Destination) GetTypeOk() (*ObservabilityPi
 func (o *ObservabilityPipelineAmazonS3Destination) SetType(v ObservabilityPipelineAmazonS3DestinationType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineAmazonS3Destination) MarshalJSON() ([]byte, error) {
@@ -314,15 +328,15 @@ func (o ObservabilityPipelineAmazonS3Destination) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineAmazonS3Destination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Auth         *ObservabilityPipelineAwsAuth                         `json:"auth,omitempty"`
-		Bucket       *string                                               `json:"bucket"`
-		Id           *string                                               `json:"id"`
-		Inputs       *[]string                                             `json:"inputs"`
-		KeyPrefix    *string                                               `json:"key_prefix,omitempty"`
-		Region       *string                                               `json:"region"`
+		Auth *ObservabilityPipelineAwsAuth `json:"auth,omitempty"`
+		Bucket *string `json:"bucket"`
+		Id *string `json:"id"`
+		Inputs *[]string `json:"inputs"`
+		KeyPrefix *string `json:"key_prefix,omitempty"`
+		Region *string `json:"region"`
 		StorageClass *ObservabilityPipelineAmazonS3DestinationStorageClass `json:"storage_class"`
-		Tls          *ObservabilityPipelineTls                             `json:"tls,omitempty"`
-		Type         *ObservabilityPipelineAmazonS3DestinationType         `json:"type"`
+		Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
+		Type *ObservabilityPipelineAmazonS3DestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -347,13 +361,13 @@ func (o *ObservabilityPipelineAmazonS3Destination) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "bucket", "id", "inputs", "key_prefix", "region", "storage_class", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "auth", "bucket", "id", "inputs", "key_prefix", "region", "storage_class", "tls", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Auth != nil && all.Auth.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Auth != nil && all.Auth.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Auth = all.Auth
@@ -367,7 +381,7 @@ func (o *ObservabilityPipelineAmazonS3Destination) UnmarshalJSON(bytes []byte) (
 	} else {
 		o.StorageClass = *all.StorageClass
 	}
-	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tls = all.Tls

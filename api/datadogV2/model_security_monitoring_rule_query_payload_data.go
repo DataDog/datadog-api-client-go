@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleQueryPayloadData Payload used to test the rule query.
 type SecurityMonitoringRuleQueryPayloadData struct {
@@ -21,9 +27,10 @@ type SecurityMonitoringRuleQueryPayloadData struct {
 	// The name of the application or service generating the data.
 	Service *string `json:"service,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringRuleQueryPayloadData instantiates a new SecurityMonitoringRuleQueryPayloadData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewSecurityMonitoringRuleQueryPayloadDataWithDefaults() *SecurityMonitoring
 	this := SecurityMonitoringRuleQueryPayloadData{}
 	return &this
 }
-
 // GetDdsource returns the Ddsource field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleQueryPayloadData) GetDdsource() string {
 	if o == nil || o.Ddsource == nil {
@@ -69,6 +75,7 @@ func (o *SecurityMonitoringRuleQueryPayloadData) HasDdsource() bool {
 func (o *SecurityMonitoringRuleQueryPayloadData) SetDdsource(v string) {
 	o.Ddsource = &v
 }
+
 
 // GetDdtags returns the Ddtags field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleQueryPayloadData) GetDdtags() string {
@@ -98,6 +105,7 @@ func (o *SecurityMonitoringRuleQueryPayloadData) SetDdtags(v string) {
 	o.Ddtags = &v
 }
 
+
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleQueryPayloadData) GetHostname() string {
 	if o == nil || o.Hostname == nil {
@@ -125,6 +133,7 @@ func (o *SecurityMonitoringRuleQueryPayloadData) HasHostname() bool {
 func (o *SecurityMonitoringRuleQueryPayloadData) SetHostname(v string) {
 	o.Hostname = &v
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleQueryPayloadData) GetMessage() string {
@@ -154,6 +163,7 @@ func (o *SecurityMonitoringRuleQueryPayloadData) SetMessage(v string) {
 	o.Message = &v
 }
 
+
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleQueryPayloadData) GetService() string {
 	if o == nil || o.Service == nil {
@@ -181,6 +191,8 @@ func (o *SecurityMonitoringRuleQueryPayloadData) HasService() bool {
 func (o *SecurityMonitoringRuleQueryPayloadData) SetService(v string) {
 	o.Service = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleQueryPayloadData) MarshalJSON() ([]byte, error) {
@@ -214,17 +226,17 @@ func (o SecurityMonitoringRuleQueryPayloadData) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleQueryPayloadData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Ddsource *string `json:"ddsource,omitempty"`
-		Ddtags   *string `json:"ddtags,omitempty"`
+		Ddtags *string `json:"ddtags,omitempty"`
 		Hostname *string `json:"hostname,omitempty"`
-		Message  *string `json:"message,omitempty"`
-		Service  *string `json:"service,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Service *string `json:"service,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"ddsource", "ddtags", "hostname", "message", "service"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "ddsource", "ddtags", "hostname", "message", "service",  })
 	} else {
 		return err
 	}

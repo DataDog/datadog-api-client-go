@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerGetConfigIncludedItem - An object related to the configuration.
 type SensitiveDataScannerGetConfigIncludedItem struct {
-	SensitiveDataScannerRuleIncludedItem  *SensitiveDataScannerRuleIncludedItem
+	SensitiveDataScannerRuleIncludedItem *SensitiveDataScannerRuleIncludedItem
 	SensitiveDataScannerGroupIncludedItem *SensitiveDataScannerGroupIncludedItem
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -36,7 +42,7 @@ func (obj *SensitiveDataScannerGetConfigIncludedItem) UnmarshalJSON(data []byte)
 	if err == nil {
 		if obj.SensitiveDataScannerRuleIncludedItem != nil && obj.SensitiveDataScannerRuleIncludedItem.UnparsedObject == nil {
 			jsonSensitiveDataScannerRuleIncludedItem, _ := datadog.Marshal(obj.SensitiveDataScannerRuleIncludedItem)
-			if string(jsonSensitiveDataScannerRuleIncludedItem) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonSensitiveDataScannerRuleIncludedItem) == "{}" && string(data) != "{}"  { // empty struct
 				obj.SensitiveDataScannerRuleIncludedItem = nil
 			} else {
 				match++
@@ -53,7 +59,7 @@ func (obj *SensitiveDataScannerGetConfigIncludedItem) UnmarshalJSON(data []byte)
 	if err == nil {
 		if obj.SensitiveDataScannerGroupIncludedItem != nil && obj.SensitiveDataScannerGroupIncludedItem.UnparsedObject == nil {
 			jsonSensitiveDataScannerGroupIncludedItem, _ := datadog.Marshal(obj.SensitiveDataScannerGroupIncludedItem)
-			if string(jsonSensitiveDataScannerGroupIncludedItem) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonSensitiveDataScannerGroupIncludedItem) == "{}" && string(data) != "{}"  { // empty struct
 				obj.SensitiveDataScannerGroupIncludedItem = nil
 			} else {
 				match++
@@ -80,9 +86,11 @@ func (obj SensitiveDataScannerGetConfigIncludedItem) MarshalJSON() ([]byte, erro
 		return datadog.Marshal(&obj.SensitiveDataScannerRuleIncludedItem)
 	}
 
+
 	if obj.SensitiveDataScannerGroupIncludedItem != nil {
 		return datadog.Marshal(&obj.SensitiveDataScannerGroupIncludedItem)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj SensitiveDataScannerGetConfigIncludedItem) MarshalJSON() ([]byte, erro
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SensitiveDataScannerGetConfigIncludedItem) GetActualInstance() interface{} {
+func (obj *SensitiveDataScannerGetConfigIncludedItem) GetActualInstance() (interface{}) {
 	if obj.SensitiveDataScannerRuleIncludedItem != nil {
 		return obj.SensitiveDataScannerRuleIncludedItem
 	}
 
+
 	if obj.SensitiveDataScannerGroupIncludedItem != nil {
 		return obj.SensitiveDataScannerGroupIncludedItem
 	}
+
 
 	// all schemas are nil
 	return nil

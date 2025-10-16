@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListEntityCatalogResponse List entity response.
 type ListEntityCatalogResponse struct {
@@ -19,9 +25,10 @@ type ListEntityCatalogResponse struct {
 	// Entity metadata.
 	Meta *EntityResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListEntityCatalogResponse instantiates a new ListEntityCatalogResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewListEntityCatalogResponseWithDefaults() *ListEntityCatalogResponse {
 	this := ListEntityCatalogResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *ListEntityCatalogResponse) GetData() []EntityData {
 	if o == nil || o.Data == nil {
@@ -67,6 +73,7 @@ func (o *ListEntityCatalogResponse) HasData() bool {
 func (o *ListEntityCatalogResponse) SetData(v []EntityData) {
 	o.Data = v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *ListEntityCatalogResponse) GetIncluded() []ListEntityCatalogResponseIncludedItem {
@@ -96,6 +103,7 @@ func (o *ListEntityCatalogResponse) SetIncluded(v []ListEntityCatalogResponseInc
 	o.Included = v
 }
 
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ListEntityCatalogResponse) GetLinks() ListEntityCatalogResponseLinks {
 	if o == nil || o.Links == nil {
@@ -123,6 +131,7 @@ func (o *ListEntityCatalogResponse) HasLinks() bool {
 func (o *ListEntityCatalogResponse) SetLinks(v ListEntityCatalogResponseLinks) {
 	o.Links = &v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *ListEntityCatalogResponse) GetMeta() EntityResponseMeta {
@@ -152,6 +161,8 @@ func (o *ListEntityCatalogResponse) SetMeta(v EntityResponseMeta) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListEntityCatalogResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,17 +191,17 @@ func (o ListEntityCatalogResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListEntityCatalogResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     []EntityData                            `json:"data,omitempty"`
+		Data []EntityData `json:"data,omitempty"`
 		Included []ListEntityCatalogResponseIncludedItem `json:"included,omitempty"`
-		Links    *ListEntityCatalogResponseLinks         `json:"links,omitempty"`
-		Meta     *EntityResponseMeta                     `json:"meta,omitempty"`
+		Links *ListEntityCatalogResponseLinks `json:"links,omitempty"`
+		Meta *EntityResponseMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "links", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "included", "links", "meta",  })
 	} else {
 		return err
 	}
@@ -198,11 +209,11 @@ func (o *ListEntityCatalogResponse) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Data = all.Data
 	o.Included = all.Included
-	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Links = all.Links
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

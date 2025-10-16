@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SplitGraphWidgetDefinition The split graph widget allows you to create repeating units of a graph - one for each value in a group (for example: one per service)
 type SplitGraphWidgetDefinition struct {
@@ -27,9 +31,10 @@ type SplitGraphWidgetDefinition struct {
 	// Type of the split graph widget
 	Type SplitGraphWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSplitGraphWidgetDefinition instantiates a new SplitGraphWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewSplitGraphWidgetDefinitionWithDefaults() *SplitGraphWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetHasUniformYAxes returns the HasUniformYAxes field value if set, zero value otherwise.
 func (o *SplitGraphWidgetDefinition) GetHasUniformYAxes() bool {
 	if o == nil || o.HasUniformYAxes == nil {
@@ -82,6 +86,7 @@ func (o *SplitGraphWidgetDefinition) SetHasUniformYAxes(v bool) {
 	o.HasUniformYAxes = &v
 }
 
+
 // GetSize returns the Size field value.
 func (o *SplitGraphWidgetDefinition) GetSize() SplitGraphVizSize {
 	if o == nil {
@@ -104,6 +109,7 @@ func (o *SplitGraphWidgetDefinition) GetSizeOk() (*SplitGraphVizSize, bool) {
 func (o *SplitGraphWidgetDefinition) SetSize(v SplitGraphVizSize) {
 	o.Size = v
 }
+
 
 // GetSourceWidgetDefinition returns the SourceWidgetDefinition field value.
 func (o *SplitGraphWidgetDefinition) GetSourceWidgetDefinition() SplitGraphSourceWidgetDefinition {
@@ -128,6 +134,7 @@ func (o *SplitGraphWidgetDefinition) SetSourceWidgetDefinition(v SplitGraphSourc
 	o.SourceWidgetDefinition = v
 }
 
+
 // GetSplitConfig returns the SplitConfig field value.
 func (o *SplitGraphWidgetDefinition) GetSplitConfig() SplitConfig {
 	if o == nil {
@@ -150,6 +157,7 @@ func (o *SplitGraphWidgetDefinition) GetSplitConfigOk() (*SplitConfig, bool) {
 func (o *SplitGraphWidgetDefinition) SetSplitConfig(v SplitConfig) {
 	o.SplitConfig = v
 }
+
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *SplitGraphWidgetDefinition) GetTime() WidgetTime {
@@ -179,6 +187,7 @@ func (o *SplitGraphWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *SplitGraphWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -207,6 +216,7 @@ func (o *SplitGraphWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *SplitGraphWidgetDefinition) GetType() SplitGraphWidgetDefinitionType {
 	if o == nil {
@@ -229,6 +239,8 @@ func (o *SplitGraphWidgetDefinition) GetTypeOk() (*SplitGraphWidgetDefinitionTyp
 func (o *SplitGraphWidgetDefinition) SetType(v SplitGraphWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SplitGraphWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -259,13 +271,13 @@ func (o SplitGraphWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SplitGraphWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		HasUniformYAxes        *bool                             `json:"has_uniform_y_axes,omitempty"`
-		Size                   *SplitGraphVizSize                `json:"size"`
+		HasUniformYAxes *bool `json:"has_uniform_y_axes,omitempty"`
+		Size *SplitGraphVizSize `json:"size"`
 		SourceWidgetDefinition *SplitGraphSourceWidgetDefinition `json:"source_widget_definition"`
-		SplitConfig            *SplitConfig                      `json:"split_config"`
-		Time                   *WidgetTime                       `json:"time,omitempty"`
-		Title                  *string                           `json:"title,omitempty"`
-		Type                   *SplitGraphWidgetDefinitionType   `json:"type"`
+		SplitConfig *SplitConfig `json:"split_config"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		Type *SplitGraphWidgetDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -284,7 +296,7 @@ func (o *SplitGraphWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"has_uniform_y_axes", "size", "source_widget_definition", "split_config", "time", "title", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "has_uniform_y_axes", "size", "source_widget_definition", "split_config", "time", "title", "type",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DependencyLocation Static library vulnerability location.
 type DependencyLocation struct {
@@ -23,9 +27,10 @@ type DependencyLocation struct {
 	// Location line start.
 	LineStart int64 `json:"line_start"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDependencyLocation instantiates a new DependencyLocation object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewDependencyLocationWithDefaults() *DependencyLocation {
 	this := DependencyLocation{}
 	return &this
 }
-
 // GetColumnEnd returns the ColumnEnd field value.
 func (o *DependencyLocation) GetColumnEnd() int64 {
 	if o == nil {
@@ -71,6 +75,7 @@ func (o *DependencyLocation) GetColumnEndOk() (*int64, bool) {
 func (o *DependencyLocation) SetColumnEnd(v int64) {
 	o.ColumnEnd = v
 }
+
 
 // GetColumnStart returns the ColumnStart field value.
 func (o *DependencyLocation) GetColumnStart() int64 {
@@ -95,6 +100,7 @@ func (o *DependencyLocation) SetColumnStart(v int64) {
 	o.ColumnStart = v
 }
 
+
 // GetFileName returns the FileName field value.
 func (o *DependencyLocation) GetFileName() string {
 	if o == nil {
@@ -117,6 +123,7 @@ func (o *DependencyLocation) GetFileNameOk() (*string, bool) {
 func (o *DependencyLocation) SetFileName(v string) {
 	o.FileName = v
 }
+
 
 // GetLineEnd returns the LineEnd field value.
 func (o *DependencyLocation) GetLineEnd() int64 {
@@ -141,6 +148,7 @@ func (o *DependencyLocation) SetLineEnd(v int64) {
 	o.LineEnd = v
 }
 
+
 // GetLineStart returns the LineStart field value.
 func (o *DependencyLocation) GetLineStart() int64 {
 	if o == nil {
@@ -164,6 +172,8 @@ func (o *DependencyLocation) SetLineStart(v int64) {
 	o.LineStart = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DependencyLocation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -185,11 +195,11 @@ func (o DependencyLocation) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DependencyLocation) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ColumnEnd   *int64  `json:"column_end"`
-		ColumnStart *int64  `json:"column_start"`
-		FileName    *string `json:"file_name"`
-		LineEnd     *int64  `json:"line_end"`
-		LineStart   *int64  `json:"line_start"`
+		ColumnEnd *int64 `json:"column_end"`
+		ColumnStart *int64 `json:"column_start"`
+		FileName *string `json:"file_name"`
+		LineEnd *int64 `json:"line_end"`
+		LineStart *int64 `json:"line_start"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -211,7 +221,7 @@ func (o *DependencyLocation) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"column_end", "column_start", "file_name", "line_end", "line_start"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "column_end", "column_start", "file_name", "line_end", "line_start",  })
 	} else {
 		return err
 	}

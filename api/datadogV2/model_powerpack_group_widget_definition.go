@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PowerpackGroupWidgetDefinition Powerpack group widget object.
 type PowerpackGroupWidgetDefinition struct {
@@ -23,9 +27,10 @@ type PowerpackGroupWidgetDefinition struct {
 	// Widgets inside the powerpack.
 	Widgets []PowerpackInnerWidgets `json:"widgets"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPowerpackGroupWidgetDefinition instantiates a new PowerpackGroupWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewPowerpackGroupWidgetDefinitionWithDefaults() *PowerpackGroupWidgetDefini
 	this := PowerpackGroupWidgetDefinition{}
 	return &this
 }
-
 // GetLayoutType returns the LayoutType field value.
 func (o *PowerpackGroupWidgetDefinition) GetLayoutType() string {
 	if o == nil {
@@ -69,6 +73,7 @@ func (o *PowerpackGroupWidgetDefinition) GetLayoutTypeOk() (*string, bool) {
 func (o *PowerpackGroupWidgetDefinition) SetLayoutType(v string) {
 	o.LayoutType = v
 }
+
 
 // GetShowTitle returns the ShowTitle field value if set, zero value otherwise.
 func (o *PowerpackGroupWidgetDefinition) GetShowTitle() bool {
@@ -98,6 +103,7 @@ func (o *PowerpackGroupWidgetDefinition) SetShowTitle(v bool) {
 	o.ShowTitle = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *PowerpackGroupWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -126,6 +132,7 @@ func (o *PowerpackGroupWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *PowerpackGroupWidgetDefinition) GetType() string {
 	if o == nil {
@@ -149,6 +156,7 @@ func (o *PowerpackGroupWidgetDefinition) SetType(v string) {
 	o.Type = v
 }
 
+
 // GetWidgets returns the Widgets field value.
 func (o *PowerpackGroupWidgetDefinition) GetWidgets() []PowerpackInnerWidgets {
 	if o == nil {
@@ -171,6 +179,8 @@ func (o *PowerpackGroupWidgetDefinition) GetWidgetsOk() (*[]PowerpackInnerWidget
 func (o *PowerpackGroupWidgetDefinition) SetWidgets(v []PowerpackInnerWidgets) {
 	o.Widgets = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o PowerpackGroupWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -197,11 +207,11 @@ func (o PowerpackGroupWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PowerpackGroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		LayoutType *string                  `json:"layout_type"`
-		ShowTitle  *bool                    `json:"show_title,omitempty"`
-		Title      *string                  `json:"title,omitempty"`
-		Type       *string                  `json:"type"`
-		Widgets    *[]PowerpackInnerWidgets `json:"widgets"`
+		LayoutType *string `json:"layout_type"`
+		ShowTitle *bool `json:"show_title,omitempty"`
+		Title *string `json:"title,omitempty"`
+		Type *string `json:"type"`
+		Widgets *[]PowerpackInnerWidgets `json:"widgets"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -217,7 +227,7 @@ func (o *PowerpackGroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"layout_type", "show_title", "title", "type", "widgets"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "layout_type", "show_title", "title", "type", "widgets",  })
 	} else {
 		return err
 	}

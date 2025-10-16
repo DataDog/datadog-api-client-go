@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UserResponseRelationships Relationships of the user object returned by the API.
 type UserResponseRelationships struct {
@@ -19,9 +25,10 @@ type UserResponseRelationships struct {
 	// Relationship to roles.
 	Roles *RelationshipToRoles `json:"roles,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUserResponseRelationships instantiates a new UserResponseRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewUserResponseRelationshipsWithDefaults() *UserResponseRelationships {
 	this := UserResponseRelationships{}
 	return &this
 }
-
 // GetOrg returns the Org field value if set, zero value otherwise.
 func (o *UserResponseRelationships) GetOrg() RelationshipToOrganization {
 	if o == nil || o.Org == nil {
@@ -67,6 +73,7 @@ func (o *UserResponseRelationships) HasOrg() bool {
 func (o *UserResponseRelationships) SetOrg(v RelationshipToOrganization) {
 	o.Org = &v
 }
+
 
 // GetOtherOrgs returns the OtherOrgs field value if set, zero value otherwise.
 func (o *UserResponseRelationships) GetOtherOrgs() RelationshipToOrganizations {
@@ -96,6 +103,7 @@ func (o *UserResponseRelationships) SetOtherOrgs(v RelationshipToOrganizations) 
 	o.OtherOrgs = &v
 }
 
+
 // GetOtherUsers returns the OtherUsers field value if set, zero value otherwise.
 func (o *UserResponseRelationships) GetOtherUsers() RelationshipToUsers {
 	if o == nil || o.OtherUsers == nil {
@@ -123,6 +131,7 @@ func (o *UserResponseRelationships) HasOtherUsers() bool {
 func (o *UserResponseRelationships) SetOtherUsers(v RelationshipToUsers) {
 	o.OtherUsers = &v
 }
+
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *UserResponseRelationships) GetRoles() RelationshipToRoles {
@@ -152,6 +161,8 @@ func (o *UserResponseRelationships) SetRoles(v RelationshipToRoles) {
 	o.Roles = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UserResponseRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,35 +191,35 @@ func (o UserResponseRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UserResponseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Org        *RelationshipToOrganization  `json:"org,omitempty"`
-		OtherOrgs  *RelationshipToOrganizations `json:"other_orgs,omitempty"`
-		OtherUsers *RelationshipToUsers         `json:"other_users,omitempty"`
-		Roles      *RelationshipToRoles         `json:"roles,omitempty"`
+		Org *RelationshipToOrganization `json:"org,omitempty"`
+		OtherOrgs *RelationshipToOrganizations `json:"other_orgs,omitempty"`
+		OtherUsers *RelationshipToUsers `json:"other_users,omitempty"`
+		Roles *RelationshipToRoles `json:"roles,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"org", "other_orgs", "other_users", "roles"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "org", "other_orgs", "other_users", "roles",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Org != nil && all.Org.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Org != nil && all.Org.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Org = all.Org
-	if all.OtherOrgs != nil && all.OtherOrgs.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.OtherOrgs != nil && all.OtherOrgs.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.OtherOrgs = all.OtherOrgs
-	if all.OtherUsers != nil && all.OtherUsers.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.OtherUsers != nil && all.OtherUsers.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.OtherUsers = all.OtherUsers
-	if all.Roles != nil && all.Roles.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Roles != nil && all.Roles.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Roles = all.Roles

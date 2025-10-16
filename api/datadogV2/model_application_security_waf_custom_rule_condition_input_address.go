@@ -2,40 +2,44 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleConditionInputAddress Input from the request on which the condition should apply.
 type ApplicationSecurityWafCustomRuleConditionInputAddress string
 
 // List of ApplicationSecurityWafCustomRuleConditionInputAddress.
 const (
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_DB_STATEMENT                ApplicationSecurityWafCustomRuleConditionInputAddress = "server.db.statement"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_IO_FS_FILE                  ApplicationSecurityWafCustomRuleConditionInputAddress = "server.io.fs.file"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_IO_NET_URL                  ApplicationSecurityWafCustomRuleConditionInputAddress = "server.io.net.url"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_SYS_SHELL_CMD               ApplicationSecurityWafCustomRuleConditionInputAddress = "server.sys.shell.cmd"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_METHOD              ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.method"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_URI_RAW             ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.uri.raw"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_PATH_PARAMS         ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.path_params"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_QUERY               ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.query"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_HEADERS_NO_COOKIES  ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.headers.no_cookies"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_COOKIES             ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.cookies"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_TRAILERS            ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.trailers"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_BODY                ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.body"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_RESPONSE_STATUS             ApplicationSecurityWafCustomRuleConditionInputAddress = "server.response.status"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_DB_STATEMENT ApplicationSecurityWafCustomRuleConditionInputAddress = "server.db.statement"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_IO_FS_FILE ApplicationSecurityWafCustomRuleConditionInputAddress = "server.io.fs.file"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_IO_NET_URL ApplicationSecurityWafCustomRuleConditionInputAddress = "server.io.net.url"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_SYS_SHELL_CMD ApplicationSecurityWafCustomRuleConditionInputAddress = "server.sys.shell.cmd"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_METHOD ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.method"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_URI_RAW ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.uri.raw"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_PATH_PARAMS ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.path_params"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_QUERY ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.query"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_HEADERS_NO_COOKIES ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.headers.no_cookies"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_COOKIES ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.cookies"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_TRAILERS ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.trailers"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_REQUEST_BODY ApplicationSecurityWafCustomRuleConditionInputAddress = "server.request.body"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_RESPONSE_STATUS ApplicationSecurityWafCustomRuleConditionInputAddress = "server.response.status"
 	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_RESPONSE_HEADERS_NO_COOKIES ApplicationSecurityWafCustomRuleConditionInputAddress = "server.response.headers.no_cookies"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_RESPONSE_TRAILERS           ApplicationSecurityWafCustomRuleConditionInputAddress = "server.response.trailers"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_GRPC_SERVER_REQUEST_METADATA       ApplicationSecurityWafCustomRuleConditionInputAddress = "grpc.server.request.metadata"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_GRPC_SERVER_REQUEST_MESSAGE        ApplicationSecurityWafCustomRuleConditionInputAddress = "grpc.server.request.message"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_GRPC_SERVER_METHOD                 ApplicationSecurityWafCustomRuleConditionInputAddress = "grpc.server.method"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_GRAPHQL_SERVER_ALL_RESOLVERS       ApplicationSecurityWafCustomRuleConditionInputAddress = "graphql.server.all_resolvers"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_USR_ID                             ApplicationSecurityWafCustomRuleConditionInputAddress = "usr.id"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_HTTP_CLIENT_IP                     ApplicationSecurityWafCustomRuleConditionInputAddress = "http.client_ip"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_SERVER_RESPONSE_TRAILERS ApplicationSecurityWafCustomRuleConditionInputAddress = "server.response.trailers"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_GRPC_SERVER_REQUEST_METADATA ApplicationSecurityWafCustomRuleConditionInputAddress = "grpc.server.request.metadata"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_GRPC_SERVER_REQUEST_MESSAGE ApplicationSecurityWafCustomRuleConditionInputAddress = "grpc.server.request.message"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_GRPC_SERVER_METHOD ApplicationSecurityWafCustomRuleConditionInputAddress = "grpc.server.method"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_GRAPHQL_SERVER_ALL_RESOLVERS ApplicationSecurityWafCustomRuleConditionInputAddress = "graphql.server.all_resolvers"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_USR_ID ApplicationSecurityWafCustomRuleConditionInputAddress = "usr.id"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONINPUTADDRESS_HTTP_CLIENT_IP ApplicationSecurityWafCustomRuleConditionInputAddress = "http.client_ip"
 )
 
 var allowedApplicationSecurityWafCustomRuleConditionInputAddressEnumValues = []ApplicationSecurityWafCustomRuleConditionInputAddress{

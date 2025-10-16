@@ -2,21 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentImpactRelatedObject A reference to a resource related to an incident impact.
 type IncidentImpactRelatedObject string
 
 // List of IncidentImpactRelatedObject.
 const (
-	INCIDENTIMPACTRELATEDOBJECT_INCIDENT              IncidentImpactRelatedObject = "incident"
-	INCIDENTIMPACTRELATEDOBJECT_CREATED_BY_USER       IncidentImpactRelatedObject = "created_by_user"
+	INCIDENTIMPACTRELATEDOBJECT_INCIDENT IncidentImpactRelatedObject = "incident"
+	INCIDENTIMPACTRELATEDOBJECT_CREATED_BY_USER IncidentImpactRelatedObject = "created_by_user"
 	INCIDENTIMPACTRELATEDOBJECT_LAST_MODIFIED_BY_USER IncidentImpactRelatedObject = "last_modified_by_user"
 )
 

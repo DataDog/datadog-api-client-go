@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOTimeSliceSpec A time-slice SLI specification.
 type SLOTimeSliceSpec struct {
@@ -18,6 +22,7 @@ type SLOTimeSliceSpec struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewSLOTimeSliceSpec instantiates a new SLOTimeSliceSpec object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewSLOTimeSliceSpecWithDefaults() *SLOTimeSliceSpec {
 	this := SLOTimeSliceSpec{}
 	return &this
 }
-
 // GetTimeSlice returns the TimeSlice field value.
 func (o *SLOTimeSliceSpec) GetTimeSlice() SLOTimeSliceCondition {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *SLOTimeSliceSpec) GetTimeSliceOk() (*SLOTimeSliceCondition, bool) {
 func (o *SLOTimeSliceSpec) SetTimeSlice(v SLOTimeSliceCondition) {
 	o.TimeSlice = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOTimeSliceSpec) MarshalJSON() ([]byte, error) {

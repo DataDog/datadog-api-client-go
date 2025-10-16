@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MicrosoftTeamsTenantBasedHandleRequestData Tenant-based handle data from a response.
 type MicrosoftTeamsTenantBasedHandleRequestData struct {
@@ -17,9 +21,10 @@ type MicrosoftTeamsTenantBasedHandleRequestData struct {
 	// Specifies the tenant-based handle resource type.
 	Type MicrosoftTeamsTenantBasedHandleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMicrosoftTeamsTenantBasedHandleRequestData instantiates a new MicrosoftTeamsTenantBasedHandleRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewMicrosoftTeamsTenantBasedHandleRequestDataWithDefaults() *MicrosoftTeams
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *MicrosoftTeamsTenantBasedHandleRequestData) GetAttributes() MicrosoftTeamsTenantBasedHandleRequestAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *MicrosoftTeamsTenantBasedHandleRequestData) GetAttributesOk() (*Microso
 func (o *MicrosoftTeamsTenantBasedHandleRequestData) SetAttributes(v MicrosoftTeamsTenantBasedHandleRequestAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *MicrosoftTeamsTenantBasedHandleRequestData) GetType() MicrosoftTeamsTenantBasedHandleType {
@@ -88,6 +93,8 @@ func (o *MicrosoftTeamsTenantBasedHandleRequestData) SetType(v MicrosoftTeamsTen
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MicrosoftTeamsTenantBasedHandleRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o MicrosoftTeamsTenantBasedHandleRequestData) MarshalJSON() ([]byte, error
 func (o *MicrosoftTeamsTenantBasedHandleRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *MicrosoftTeamsTenantBasedHandleRequestAttributes `json:"attributes"`
-		Type       *MicrosoftTeamsTenantBasedHandleType              `json:"type"`
+		Type *MicrosoftTeamsTenantBasedHandleType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *MicrosoftTeamsTenantBasedHandleRequestData) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

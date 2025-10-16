@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssueTeamAttributes Object containing the information of a team.
 type IssueTeamAttributes struct {
@@ -17,9 +23,10 @@ type IssueTeamAttributes struct {
 	// A brief summary of the team, derived from its description.
 	Summary *string `json:"summary,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssueTeamAttributes instantiates a new IssueTeamAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewIssueTeamAttributesWithDefaults() *IssueTeamAttributes {
 	this := IssueTeamAttributes{}
 	return &this
 }
-
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *IssueTeamAttributes) GetHandle() string {
 	if o == nil || o.Handle == nil {
@@ -65,6 +71,7 @@ func (o *IssueTeamAttributes) HasHandle() bool {
 func (o *IssueTeamAttributes) SetHandle(v string) {
 	o.Handle = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *IssueTeamAttributes) GetName() string {
@@ -94,6 +101,7 @@ func (o *IssueTeamAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSummary returns the Summary field value if set, zero value otherwise.
 func (o *IssueTeamAttributes) GetSummary() string {
 	if o == nil || o.Summary == nil {
@@ -122,6 +130,8 @@ func (o *IssueTeamAttributes) SetSummary(v string) {
 	o.Summary = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IssueTeamAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,8 +157,8 @@ func (o IssueTeamAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IssueTeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Handle  *string `json:"handle,omitempty"`
-		Name    *string `json:"name,omitempty"`
+		Handle *string `json:"handle,omitempty"`
+		Name *string `json:"name,omitempty"`
 		Summary *string `json:"summary,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,7 +166,7 @@ func (o *IssueTeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"handle", "name", "summary"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "handle", "name", "summary",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CVSS Vulnerability severity.
 type CVSS struct {
@@ -19,9 +23,10 @@ type CVSS struct {
 	// Vulnerability CVSS vector.
 	Vector string `json:"vector"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCVSS instantiates a new CVSS object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewCVSSWithDefaults() *CVSS {
 	this := CVSS{}
 	return &this
 }
-
 // GetScore returns the Score field value.
 func (o *CVSS) GetScore() float64 {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *CVSS) GetScoreOk() (*float64, bool) {
 func (o *CVSS) SetScore(v float64) {
 	o.Score = v
 }
+
 
 // GetSeverity returns the Severity field value.
 func (o *CVSS) GetSeverity() VulnerabilitySeverity {
@@ -89,6 +94,7 @@ func (o *CVSS) SetSeverity(v VulnerabilitySeverity) {
 	o.Severity = v
 }
 
+
 // GetVector returns the Vector field value.
 func (o *CVSS) GetVector() string {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *CVSS) SetVector(v string) {
 	o.Vector = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CVSS) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o CVSS) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CVSS) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Score    *float64               `json:"score"`
+		Score *float64 `json:"score"`
 		Severity *VulnerabilitySeverity `json:"severity"`
-		Vector   *string                `json:"vector"`
+		Vector *string `json:"vector"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *CVSS) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"score", "severity", "vector"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "score", "severity", "vector",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationKeyResponse Response for retrieving an application key.
 type ApplicationKeyResponse struct {
@@ -15,9 +21,10 @@ type ApplicationKeyResponse struct {
 	// Array of objects related to the application key.
 	Included []ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationKeyResponse instantiates a new ApplicationKeyResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewApplicationKeyResponseWithDefaults() *ApplicationKeyResponse {
 	this := ApplicationKeyResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *ApplicationKeyResponse) GetData() FullApplicationKey {
 	if o == nil || o.Data == nil {
@@ -63,6 +69,7 @@ func (o *ApplicationKeyResponse) HasData() bool {
 func (o *ApplicationKeyResponse) SetData(v FullApplicationKey) {
 	o.Data = &v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *ApplicationKeyResponse) GetIncluded() []ApplicationKeyResponseIncludedItem {
@@ -92,6 +99,8 @@ func (o *ApplicationKeyResponse) SetIncluded(v []ApplicationKeyResponseIncludedI
 	o.Included = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationKeyResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o ApplicationKeyResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     *FullApplicationKey                  `json:"data,omitempty"`
+		Data *FullApplicationKey `json:"data,omitempty"`
 		Included []ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,13 +131,13 @@ func (o *ApplicationKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "included",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Data = all.Data

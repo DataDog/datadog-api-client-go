@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WorkflowTriggerWrapper Schema for a Workflow-based trigger.
 type WorkflowTriggerWrapper struct {
@@ -17,9 +21,10 @@ type WorkflowTriggerWrapper struct {
 	// Trigger a workflow from the Datadog UI. Only required if no other trigger exists.
 	WorkflowTrigger interface{} `json:"workflowTrigger"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWorkflowTriggerWrapper instantiates a new WorkflowTriggerWrapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewWorkflowTriggerWrapperWithDefaults() *WorkflowTriggerWrapper {
 	this := WorkflowTriggerWrapper{}
 	return &this
 }
-
 // GetStartStepNames returns the StartStepNames field value if set, zero value otherwise.
 func (o *WorkflowTriggerWrapper) GetStartStepNames() []string {
 	if o == nil || o.StartStepNames == nil {
@@ -67,6 +71,7 @@ func (o *WorkflowTriggerWrapper) SetStartStepNames(v []string) {
 	o.StartStepNames = v
 }
 
+
 // GetWorkflowTrigger returns the WorkflowTrigger field value.
 func (o *WorkflowTriggerWrapper) GetWorkflowTrigger() interface{} {
 	if o == nil {
@@ -90,6 +95,8 @@ func (o *WorkflowTriggerWrapper) SetWorkflowTrigger(v interface{}) {
 	o.WorkflowTrigger = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o WorkflowTriggerWrapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,7 +117,7 @@ func (o WorkflowTriggerWrapper) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WorkflowTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		StartStepNames  []string     `json:"startStepNames,omitempty"`
+		StartStepNames []string `json:"startStepNames,omitempty"`
 		WorkflowTrigger *interface{} `json:"workflowTrigger"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -121,7 +128,7 @@ func (o *WorkflowTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"startStepNames", "workflowTrigger"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "startStepNames", "workflowTrigger",  })
 	} else {
 		return err
 	}

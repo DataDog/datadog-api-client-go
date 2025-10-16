@@ -2,38 +2,44 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ActionConnectionIntegrationUpdate - The definition of `ActionConnectionIntegrationUpdate` object.
 type ActionConnectionIntegrationUpdate struct {
-	AWSIntegrationUpdate          *AWSIntegrationUpdate
-	AnthropicIntegrationUpdate    *AnthropicIntegrationUpdate
-	AsanaIntegrationUpdate        *AsanaIntegrationUpdate
-	AzureIntegrationUpdate        *AzureIntegrationUpdate
-	CircleCIIntegrationUpdate     *CircleCIIntegrationUpdate
-	ClickupIntegrationUpdate      *ClickupIntegrationUpdate
-	CloudflareIntegrationUpdate   *CloudflareIntegrationUpdate
-	ConfigCatIntegrationUpdate    *ConfigCatIntegrationUpdate
-	DatadogIntegrationUpdate      *DatadogIntegrationUpdate
-	FastlyIntegrationUpdate       *FastlyIntegrationUpdate
+	AWSIntegrationUpdate *AWSIntegrationUpdate
+	AnthropicIntegrationUpdate *AnthropicIntegrationUpdate
+	AsanaIntegrationUpdate *AsanaIntegrationUpdate
+	AzureIntegrationUpdate *AzureIntegrationUpdate
+	CircleCIIntegrationUpdate *CircleCIIntegrationUpdate
+	ClickupIntegrationUpdate *ClickupIntegrationUpdate
+	CloudflareIntegrationUpdate *CloudflareIntegrationUpdate
+	ConfigCatIntegrationUpdate *ConfigCatIntegrationUpdate
+	DatadogIntegrationUpdate *DatadogIntegrationUpdate
+	FastlyIntegrationUpdate *FastlyIntegrationUpdate
 	FreshserviceIntegrationUpdate *FreshserviceIntegrationUpdate
-	GCPIntegrationUpdate          *GCPIntegrationUpdate
-	GeminiIntegrationUpdate       *GeminiIntegrationUpdate
-	GitlabIntegrationUpdate       *GitlabIntegrationUpdate
-	GreyNoiseIntegrationUpdate    *GreyNoiseIntegrationUpdate
-	HTTPIntegrationUpdate         *HTTPIntegrationUpdate
+	GCPIntegrationUpdate *GCPIntegrationUpdate
+	GeminiIntegrationUpdate *GeminiIntegrationUpdate
+	GitlabIntegrationUpdate *GitlabIntegrationUpdate
+	GreyNoiseIntegrationUpdate *GreyNoiseIntegrationUpdate
+	HTTPIntegrationUpdate *HTTPIntegrationUpdate
 	LaunchDarklyIntegrationUpdate *LaunchDarklyIntegrationUpdate
-	NotionIntegrationUpdate       *NotionIntegrationUpdate
-	OktaIntegrationUpdate         *OktaIntegrationUpdate
-	OpenAIIntegrationUpdate       *OpenAIIntegrationUpdate
-	ServiceNowIntegrationUpdate   *ServiceNowIntegrationUpdate
-	SplitIntegrationUpdate        *SplitIntegrationUpdate
-	StatsigIntegrationUpdate      *StatsigIntegrationUpdate
-	VirusTotalIntegrationUpdate   *VirusTotalIntegrationUpdate
+	NotionIntegrationUpdate *NotionIntegrationUpdate
+	OktaIntegrationUpdate *OktaIntegrationUpdate
+	OpenAIIntegrationUpdate *OpenAIIntegrationUpdate
+	ServiceNowIntegrationUpdate *ServiceNowIntegrationUpdate
+	SplitIntegrationUpdate *SplitIntegrationUpdate
+	StatsigIntegrationUpdate *StatsigIntegrationUpdate
+	VirusTotalIntegrationUpdate *VirusTotalIntegrationUpdate
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -608,97 +614,121 @@ func (obj ActionConnectionIntegrationUpdate) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.AWSIntegrationUpdate)
 	}
 
+
 	if obj.AnthropicIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.AnthropicIntegrationUpdate)
 	}
+
 
 	if obj.AsanaIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.AsanaIntegrationUpdate)
 	}
 
+
 	if obj.AzureIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.AzureIntegrationUpdate)
 	}
+
 
 	if obj.CircleCIIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.CircleCIIntegrationUpdate)
 	}
 
+
 	if obj.ClickupIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.ClickupIntegrationUpdate)
 	}
+
 
 	if obj.CloudflareIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.CloudflareIntegrationUpdate)
 	}
 
+
 	if obj.ConfigCatIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.ConfigCatIntegrationUpdate)
 	}
+
 
 	if obj.DatadogIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.DatadogIntegrationUpdate)
 	}
 
+
 	if obj.FastlyIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.FastlyIntegrationUpdate)
 	}
+
 
 	if obj.FreshserviceIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.FreshserviceIntegrationUpdate)
 	}
 
+
 	if obj.GCPIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.GCPIntegrationUpdate)
 	}
+
 
 	if obj.GeminiIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.GeminiIntegrationUpdate)
 	}
 
+
 	if obj.GitlabIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.GitlabIntegrationUpdate)
 	}
+
 
 	if obj.GreyNoiseIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.GreyNoiseIntegrationUpdate)
 	}
 
+
 	if obj.HTTPIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.HTTPIntegrationUpdate)
 	}
+
 
 	if obj.LaunchDarklyIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.LaunchDarklyIntegrationUpdate)
 	}
 
+
 	if obj.NotionIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.NotionIntegrationUpdate)
 	}
+
 
 	if obj.OktaIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.OktaIntegrationUpdate)
 	}
 
+
 	if obj.OpenAIIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.OpenAIIntegrationUpdate)
 	}
+
 
 	if obj.ServiceNowIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.ServiceNowIntegrationUpdate)
 	}
 
+
 	if obj.SplitIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.SplitIntegrationUpdate)
 	}
+
 
 	if obj.StatsigIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.StatsigIntegrationUpdate)
 	}
 
+
 	if obj.VirusTotalIntegrationUpdate != nil {
 		return datadog.Marshal(&obj.VirusTotalIntegrationUpdate)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -707,102 +737,126 @@ func (obj ActionConnectionIntegrationUpdate) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ActionConnectionIntegrationUpdate) GetActualInstance() interface{} {
+func (obj *ActionConnectionIntegrationUpdate) GetActualInstance() (interface{}) {
 	if obj.AWSIntegrationUpdate != nil {
 		return obj.AWSIntegrationUpdate
 	}
+
 
 	if obj.AnthropicIntegrationUpdate != nil {
 		return obj.AnthropicIntegrationUpdate
 	}
 
+
 	if obj.AsanaIntegrationUpdate != nil {
 		return obj.AsanaIntegrationUpdate
 	}
+
 
 	if obj.AzureIntegrationUpdate != nil {
 		return obj.AzureIntegrationUpdate
 	}
 
+
 	if obj.CircleCIIntegrationUpdate != nil {
 		return obj.CircleCIIntegrationUpdate
 	}
+
 
 	if obj.ClickupIntegrationUpdate != nil {
 		return obj.ClickupIntegrationUpdate
 	}
 
+
 	if obj.CloudflareIntegrationUpdate != nil {
 		return obj.CloudflareIntegrationUpdate
 	}
+
 
 	if obj.ConfigCatIntegrationUpdate != nil {
 		return obj.ConfigCatIntegrationUpdate
 	}
 
+
 	if obj.DatadogIntegrationUpdate != nil {
 		return obj.DatadogIntegrationUpdate
 	}
+
 
 	if obj.FastlyIntegrationUpdate != nil {
 		return obj.FastlyIntegrationUpdate
 	}
 
+
 	if obj.FreshserviceIntegrationUpdate != nil {
 		return obj.FreshserviceIntegrationUpdate
 	}
+
 
 	if obj.GCPIntegrationUpdate != nil {
 		return obj.GCPIntegrationUpdate
 	}
 
+
 	if obj.GeminiIntegrationUpdate != nil {
 		return obj.GeminiIntegrationUpdate
 	}
+
 
 	if obj.GitlabIntegrationUpdate != nil {
 		return obj.GitlabIntegrationUpdate
 	}
 
+
 	if obj.GreyNoiseIntegrationUpdate != nil {
 		return obj.GreyNoiseIntegrationUpdate
 	}
+
 
 	if obj.HTTPIntegrationUpdate != nil {
 		return obj.HTTPIntegrationUpdate
 	}
 
+
 	if obj.LaunchDarklyIntegrationUpdate != nil {
 		return obj.LaunchDarklyIntegrationUpdate
 	}
+
 
 	if obj.NotionIntegrationUpdate != nil {
 		return obj.NotionIntegrationUpdate
 	}
 
+
 	if obj.OktaIntegrationUpdate != nil {
 		return obj.OktaIntegrationUpdate
 	}
+
 
 	if obj.OpenAIIntegrationUpdate != nil {
 		return obj.OpenAIIntegrationUpdate
 	}
 
+
 	if obj.ServiceNowIntegrationUpdate != nil {
 		return obj.ServiceNowIntegrationUpdate
 	}
+
 
 	if obj.SplitIntegrationUpdate != nil {
 		return obj.SplitIntegrationUpdate
 	}
 
+
 	if obj.StatsigIntegrationUpdate != nil {
 		return obj.StatsigIntegrationUpdate
 	}
 
+
 	if obj.VirusTotalIntegrationUpdate != nil {
 		return obj.VirusTotalIntegrationUpdate
 	}
+
 
 	// all schemas are nil
 	return nil

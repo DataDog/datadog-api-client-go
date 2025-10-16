@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppTestsAggregateRequest The object sent with the request to retrieve aggregation buckets of test events from your organization.
 type CIAppTestsAggregateRequest struct {
@@ -20,9 +26,10 @@ type CIAppTestsAggregateRequest struct {
 	// Only supply timezone or time offset, not both. Otherwise, the query fails.
 	Options *CIAppQueryOptions `json:"options,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCIAppTestsAggregateRequest instantiates a new CIAppTestsAggregateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +47,6 @@ func NewCIAppTestsAggregateRequestWithDefaults() *CIAppTestsAggregateRequest {
 	this := CIAppTestsAggregateRequest{}
 	return &this
 }
-
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *CIAppTestsAggregateRequest) GetCompute() []CIAppCompute {
 	if o == nil || o.Compute == nil {
@@ -68,6 +74,7 @@ func (o *CIAppTestsAggregateRequest) HasCompute() bool {
 func (o *CIAppTestsAggregateRequest) SetCompute(v []CIAppCompute) {
 	o.Compute = v
 }
+
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *CIAppTestsAggregateRequest) GetFilter() CIAppTestsQueryFilter {
@@ -97,6 +104,7 @@ func (o *CIAppTestsAggregateRequest) SetFilter(v CIAppTestsQueryFilter) {
 	o.Filter = &v
 }
 
+
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *CIAppTestsAggregateRequest) GetGroupBy() []CIAppTestsGroupBy {
 	if o == nil || o.GroupBy == nil {
@@ -124,6 +132,7 @@ func (o *CIAppTestsAggregateRequest) HasGroupBy() bool {
 func (o *CIAppTestsAggregateRequest) SetGroupBy(v []CIAppTestsGroupBy) {
 	o.GroupBy = v
 }
+
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *CIAppTestsAggregateRequest) GetOptions() CIAppQueryOptions {
@@ -153,6 +162,8 @@ func (o *CIAppTestsAggregateRequest) SetOptions(v CIAppQueryOptions) {
 	o.Options = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppTestsAggregateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -181,29 +192,29 @@ func (o CIAppTestsAggregateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppTestsAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Compute []CIAppCompute         `json:"compute,omitempty"`
-		Filter  *CIAppTestsQueryFilter `json:"filter,omitempty"`
-		GroupBy []CIAppTestsGroupBy    `json:"group_by,omitempty"`
-		Options *CIAppQueryOptions     `json:"options,omitempty"`
+		Compute []CIAppCompute `json:"compute,omitempty"`
+		Filter *CIAppTestsQueryFilter `json:"filter,omitempty"`
+		GroupBy []CIAppTestsGroupBy `json:"group_by,omitempty"`
+		Options *CIAppQueryOptions `json:"options,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "filter", "group_by", "options"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "compute", "filter", "group_by", "options",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Compute = all.Compute
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter
 	o.GroupBy = all.GroupBy
-	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Options = all.Options

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeResponse Downtiming gives you greater control over monitor notifications by
 // allowing you to globally exclude scopes from alerting.
@@ -18,9 +24,10 @@ type DowntimeResponse struct {
 	// Array of objects related to the downtime that the user requested.
 	Included []DowntimeResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDowntimeResponse instantiates a new DowntimeResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +45,6 @@ func NewDowntimeResponseWithDefaults() *DowntimeResponse {
 	this := DowntimeResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *DowntimeResponse) GetData() DowntimeResponseData {
 	if o == nil || o.Data == nil {
@@ -66,6 +72,7 @@ func (o *DowntimeResponse) HasData() bool {
 func (o *DowntimeResponse) SetData(v DowntimeResponseData) {
 	o.Data = &v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *DowntimeResponse) GetIncluded() []DowntimeResponseIncludedItem {
@@ -95,6 +102,8 @@ func (o *DowntimeResponse) SetIncluded(v []DowntimeResponseIncludedItem) {
 	o.Included = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -117,7 +126,7 @@ func (o DowntimeResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     *DowntimeResponseData          `json:"data,omitempty"`
+		Data *DowntimeResponseData `json:"data,omitempty"`
 		Included []DowntimeResponseIncludedItem `json:"included,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -125,13 +134,13 @@ func (o *DowntimeResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "included",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Data = all.Data

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerSamplings Sampling configurations for the Scanning Group.
 type SensitiveDataScannerSamplings struct {
@@ -15,9 +21,10 @@ type SensitiveDataScannerSamplings struct {
 	// Rate at which data in product type will be scanned, as a percentage.
 	Rate *float64 `json:"rate,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerSamplings instantiates a new SensitiveDataScannerSamplings object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewSensitiveDataScannerSamplingsWithDefaults() *SensitiveDataScannerSamplin
 	this.Product = &product
 	return &this
 }
-
 // GetProduct returns the Product field value if set, zero value otherwise.
 func (o *SensitiveDataScannerSamplings) GetProduct() SensitiveDataScannerProduct {
 	if o == nil || o.Product == nil {
@@ -67,6 +73,7 @@ func (o *SensitiveDataScannerSamplings) HasProduct() bool {
 func (o *SensitiveDataScannerSamplings) SetProduct(v SensitiveDataScannerProduct) {
 	o.Product = &v
 }
+
 
 // GetRate returns the Rate field value if set, zero value otherwise.
 func (o *SensitiveDataScannerSamplings) GetRate() float64 {
@@ -96,6 +103,8 @@ func (o *SensitiveDataScannerSamplings) SetRate(v float64) {
 	o.Rate = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerSamplings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -119,20 +128,20 @@ func (o SensitiveDataScannerSamplings) MarshalJSON() ([]byte, error) {
 func (o *SensitiveDataScannerSamplings) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Product *SensitiveDataScannerProduct `json:"product,omitempty"`
-		Rate    *float64                     `json:"rate,omitempty"`
+		Rate *float64 `json:"rate,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"product", "rate"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "product", "rate",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Product != nil && !all.Product.IsValid() {
+	if all.Product != nil &&!all.Product.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Product = all.Product

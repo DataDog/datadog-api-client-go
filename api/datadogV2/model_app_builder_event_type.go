@@ -2,26 +2,30 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AppBuilderEventType The response to the event.
 type AppBuilderEventType string
 
 // List of AppBuilderEventType.
 const (
-	APPBUILDEREVENTTYPE_CUSTOM                AppBuilderEventType = "custom"
-	APPBUILDEREVENTTYPE_SETCOMPONENTSTATE     AppBuilderEventType = "setComponentState"
-	APPBUILDEREVENTTYPE_TRIGGERQUERY          AppBuilderEventType = "triggerQuery"
-	APPBUILDEREVENTTYPE_OPENMODAL             AppBuilderEventType = "openModal"
-	APPBUILDEREVENTTYPE_CLOSEMODAL            AppBuilderEventType = "closeModal"
-	APPBUILDEREVENTTYPE_OPENURL               AppBuilderEventType = "openUrl"
-	APPBUILDEREVENTTYPE_DOWNLOADFILE          AppBuilderEventType = "downloadFile"
+	APPBUILDEREVENTTYPE_CUSTOM AppBuilderEventType = "custom"
+	APPBUILDEREVENTTYPE_SETCOMPONENTSTATE AppBuilderEventType = "setComponentState"
+	APPBUILDEREVENTTYPE_TRIGGERQUERY AppBuilderEventType = "triggerQuery"
+	APPBUILDEREVENTTYPE_OPENMODAL AppBuilderEventType = "openModal"
+	APPBUILDEREVENTTYPE_CLOSEMODAL AppBuilderEventType = "closeModal"
+	APPBUILDEREVENTTYPE_OPENURL AppBuilderEventType = "openUrl"
+	APPBUILDEREVENTTYPE_DOWNLOADFILE AppBuilderEventType = "downloadFile"
 	APPBUILDEREVENTTYPE_SETSTATEVARIABLEVALUE AppBuilderEventType = "setStateVariableValue"
 )
 

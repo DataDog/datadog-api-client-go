@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogQueryDefinitionGroupBySort Define a sorting method.
 type LogQueryDefinitionGroupBySort struct {
@@ -19,9 +23,10 @@ type LogQueryDefinitionGroupBySort struct {
 	// Widget sorting methods.
 	Order WidgetSort `json:"order"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogQueryDefinitionGroupBySort instantiates a new LogQueryDefinitionGroupBySort object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewLogQueryDefinitionGroupBySortWithDefaults() *LogQueryDefinitionGroupBySo
 	this := LogQueryDefinitionGroupBySort{}
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value.
 func (o *LogQueryDefinitionGroupBySort) GetAggregation() string {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *LogQueryDefinitionGroupBySort) GetAggregationOk() (*string, bool) {
 func (o *LogQueryDefinitionGroupBySort) SetAggregation(v string) {
 	o.Aggregation = v
 }
+
 
 // GetFacet returns the Facet field value if set, zero value otherwise.
 func (o *LogQueryDefinitionGroupBySort) GetFacet() string {
@@ -93,6 +98,7 @@ func (o *LogQueryDefinitionGroupBySort) SetFacet(v string) {
 	o.Facet = &v
 }
 
+
 // GetOrder returns the Order field value.
 func (o *LogQueryDefinitionGroupBySort) GetOrder() WidgetSort {
 	if o == nil {
@@ -116,6 +122,8 @@ func (o *LogQueryDefinitionGroupBySort) SetOrder(v WidgetSort) {
 	o.Order = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogQueryDefinitionGroupBySort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -137,9 +145,9 @@ func (o LogQueryDefinitionGroupBySort) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogQueryDefinitionGroupBySort) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Aggregation *string     `json:"aggregation"`
-		Facet       *string     `json:"facet,omitempty"`
-		Order       *WidgetSort `json:"order"`
+		Aggregation *string `json:"aggregation"`
+		Facet *string `json:"facet,omitempty"`
+		Order *WidgetSort `json:"order"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *LogQueryDefinitionGroupBySort) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "facet", "order"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation", "facet", "order",  })
 	} else {
 		return err
 	}

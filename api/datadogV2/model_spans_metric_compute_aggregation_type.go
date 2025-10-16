@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SpansMetricComputeAggregationType The type of aggregation to use.
 type SpansMetricComputeAggregationType string
 
 // List of SpansMetricComputeAggregationType.
 const (
-	SPANSMETRICCOMPUTEAGGREGATIONTYPE_COUNT        SpansMetricComputeAggregationType = "count"
+	SPANSMETRICCOMPUTEAGGREGATIONTYPE_COUNT SpansMetricComputeAggregationType = "count"
 	SPANSMETRICCOMPUTEAGGREGATIONTYPE_DISTRIBUTION SpansMetricComputeAggregationType = "distribution"
 )
 

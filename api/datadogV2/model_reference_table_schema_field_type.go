@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ReferenceTableSchemaFieldType The field type for reference table schema fields.
 type ReferenceTableSchemaFieldType string
@@ -16,7 +20,7 @@ type ReferenceTableSchemaFieldType string
 // List of ReferenceTableSchemaFieldType.
 const (
 	REFERENCETABLESCHEMAFIELDTYPE_STRING ReferenceTableSchemaFieldType = "STRING"
-	REFERENCETABLESCHEMAFIELDTYPE_INT32  ReferenceTableSchemaFieldType = "INT32"
+	REFERENCETABLESCHEMAFIELDTYPE_INT32 ReferenceTableSchemaFieldType = "INT32"
 )
 
 var allowedReferenceTableSchemaFieldTypeEnumValues = []ReferenceTableSchemaFieldType{

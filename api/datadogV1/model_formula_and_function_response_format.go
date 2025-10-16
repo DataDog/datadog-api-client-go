@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FormulaAndFunctionResponseFormat Timeseries, scalar, or event list response. Event list response formats are supported by Geomap widgets.
 type FormulaAndFunctionResponseFormat string
@@ -16,7 +20,7 @@ type FormulaAndFunctionResponseFormat string
 // List of FormulaAndFunctionResponseFormat.
 const (
 	FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES FormulaAndFunctionResponseFormat = "timeseries"
-	FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR     FormulaAndFunctionResponseFormat = "scalar"
+	FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR FormulaAndFunctionResponseFormat = "scalar"
 	FORMULAANDFUNCTIONRESPONSEFORMAT_EVENT_LIST FormulaAndFunctionResponseFormat = "event_list"
 )
 

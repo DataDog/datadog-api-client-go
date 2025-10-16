@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeScheduleOneTimeCreateUpdateRequest A one-time downtime definition.
 type DowntimeScheduleOneTimeCreateUpdateRequest struct {
@@ -21,6 +25,7 @@ type DowntimeScheduleOneTimeCreateUpdateRequest struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewDowntimeScheduleOneTimeCreateUpdateRequest instantiates a new DowntimeScheduleOneTimeCreateUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewDowntimeScheduleOneTimeCreateUpdateRequestWithDefaults() *DowntimeSchedu
 	this := DowntimeScheduleOneTimeCreateUpdateRequest{}
 	return &this
 }
-
 // GetEnd returns the End field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DowntimeScheduleOneTimeCreateUpdateRequest) GetEnd() time.Time {
 	if o == nil || o.End.Get() == nil {
@@ -52,7 +56,7 @@ func (o *DowntimeScheduleOneTimeCreateUpdateRequest) GetEnd() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeScheduleOneTimeCreateUpdateRequest) GetEndOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.End.Get(), o.End.IsSet()
@@ -67,7 +71,6 @@ func (o *DowntimeScheduleOneTimeCreateUpdateRequest) HasEnd() bool {
 func (o *DowntimeScheduleOneTimeCreateUpdateRequest) SetEnd(v time.Time) {
 	o.End.Set(&v)
 }
-
 // SetEndNil sets the value for End to be an explicit nil.
 func (o *DowntimeScheduleOneTimeCreateUpdateRequest) SetEndNil() {
 	o.End.Set(nil)
@@ -77,6 +80,7 @@ func (o *DowntimeScheduleOneTimeCreateUpdateRequest) SetEndNil() {
 func (o *DowntimeScheduleOneTimeCreateUpdateRequest) UnsetEnd() {
 	o.End.Unset()
 }
+
 
 // GetStart returns the Start field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DowntimeScheduleOneTimeCreateUpdateRequest) GetStart() time.Time {
@@ -91,7 +95,7 @@ func (o *DowntimeScheduleOneTimeCreateUpdateRequest) GetStart() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeScheduleOneTimeCreateUpdateRequest) GetStartOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Start.Get(), o.Start.IsSet()
@@ -106,7 +110,6 @@ func (o *DowntimeScheduleOneTimeCreateUpdateRequest) HasStart() bool {
 func (o *DowntimeScheduleOneTimeCreateUpdateRequest) SetStart(v time.Time) {
 	o.Start.Set(&v)
 }
-
 // SetStartNil sets the value for Start to be an explicit nil.
 func (o *DowntimeScheduleOneTimeCreateUpdateRequest) SetStartNil() {
 	o.Start.Set(nil)
@@ -116,6 +119,8 @@ func (o *DowntimeScheduleOneTimeCreateUpdateRequest) SetStartNil() {
 func (o *DowntimeScheduleOneTimeCreateUpdateRequest) UnsetStart() {
 	o.Start.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeScheduleOneTimeCreateUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -135,7 +140,7 @@ func (o DowntimeScheduleOneTimeCreateUpdateRequest) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeScheduleOneTimeCreateUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		End   datadog.NullableTime `json:"end,omitempty"`
+		End datadog.NullableTime `json:"end,omitempty"`
 		Start datadog.NullableTime `json:"start,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {

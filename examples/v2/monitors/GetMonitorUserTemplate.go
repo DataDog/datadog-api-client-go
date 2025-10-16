@@ -2,26 +2,28 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	// there is a valid "monitor_user_template" in the system
 	MonitorUserTemplateDataID := os.Getenv("MONITOR_USER_TEMPLATE_DATA_ID")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.GetMonitorUserTemplate", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMonitorsApi(apiClient)
-	resp, r, err := api.GetMonitorUserTemplate(ctx, MonitorUserTemplateDataID, *datadogV2.NewGetMonitorUserTemplateOptionalParameters())
+	resp, r, err := api.GetMonitorUserTemplate(ctx, MonitorUserTemplateDataID, *datadogV2.NewGetMonitorUserTemplateOptionalParameters(), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.GetMonitorUserTemplate`: %v\n", err)

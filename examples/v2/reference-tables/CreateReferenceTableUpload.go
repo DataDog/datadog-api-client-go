@@ -2,37 +2,38 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV2.CreateUploadRequest{
-		Data: &datadogV2.CreateUploadRequestData{
-			Attributes: &datadogV2.CreateUploadRequestDataAttributes{
-				Headers: []string{
-					"id",
-					"name",
-					"value",
-				},
-				TableName: "test_upload_table_Example-Reference-Table",
-				PartCount: 1,
-				PartSize:  1024,
-			},
-			Type: datadogV2.CREATEUPLOADREQUESTDATATYPE_UPLOAD,
-		},
-	}
+Data: &datadogV2.CreateUploadRequestData{
+Attributes: &datadogV2.CreateUploadRequestDataAttributes{
+Headers: []string{
+"id",
+"name",
+"value",
+},
+TableName: "test_upload_table_Example-Reference-Table",
+PartCount: 1,
+PartSize: 1024,
+},
+Type: datadogV2.CREATEUPLOADREQUESTDATATYPE_UPLOAD,
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewReferenceTablesApi(apiClient)
-	resp, r, err := api.CreateReferenceTableUpload(ctx, body)
+	resp, r, err := api.CreateReferenceTableUpload(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ReferenceTablesApi.CreateReferenceTableUpload`: %v\n", err)

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SBOMComponentLicenseType The SBOM component license type.
 type SBOMComponentLicenseType string
@@ -16,13 +20,13 @@ type SBOMComponentLicenseType string
 // List of SBOMComponentLicenseType.
 const (
 	SBOMCOMPONENTLICENSETYPE_NETWORK_STRONG_COPYLEFT SBOMComponentLicenseType = "network_strong_copyleft"
-	SBOMCOMPONENTLICENSETYPE_NON_STANDARD_COPYLEFT   SBOMComponentLicenseType = "non_standard_copyleft"
-	SBOMCOMPONENTLICENSETYPE_OTHER_NON_FREE          SBOMComponentLicenseType = "other_non_free"
-	SBOMCOMPONENTLICENSETYPE_OTHER_NON_STANDARD      SBOMComponentLicenseType = "other_non_standard"
-	SBOMCOMPONENTLICENSETYPE_PERMISSIVE              SBOMComponentLicenseType = "permissive"
-	SBOMCOMPONENTLICENSETYPE_PUBLIC_DOMAIN           SBOMComponentLicenseType = "public_domain"
-	SBOMCOMPONENTLICENSETYPE_STRONG_COPYLEFT         SBOMComponentLicenseType = "strong_copyleft"
-	SBOMCOMPONENTLICENSETYPE_WEAK_COPYLEFT           SBOMComponentLicenseType = "weak_copyleft"
+	SBOMCOMPONENTLICENSETYPE_NON_STANDARD_COPYLEFT SBOMComponentLicenseType = "non_standard_copyleft"
+	SBOMCOMPONENTLICENSETYPE_OTHER_NON_FREE SBOMComponentLicenseType = "other_non_free"
+	SBOMCOMPONENTLICENSETYPE_OTHER_NON_STANDARD SBOMComponentLicenseType = "other_non_standard"
+	SBOMCOMPONENTLICENSETYPE_PERMISSIVE SBOMComponentLicenseType = "permissive"
+	SBOMCOMPONENTLICENSETYPE_PUBLIC_DOMAIN SBOMComponentLicenseType = "public_domain"
+	SBOMCOMPONENTLICENSETYPE_STRONG_COPYLEFT SBOMComponentLicenseType = "strong_copyleft"
+	SBOMCOMPONENTLICENSETYPE_WEAK_COPYLEFT SBOMComponentLicenseType = "weak_copyleft"
 )
 
 var allowedSBOMComponentLicenseTypeEnumValues = []SBOMComponentLicenseType{

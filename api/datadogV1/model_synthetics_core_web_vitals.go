@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsCoreWebVitals Core Web Vitals attached to a browser test step.
 type SyntheticsCoreWebVitals struct {
@@ -17,9 +23,10 @@ type SyntheticsCoreWebVitals struct {
 	// URL attached to the metrics.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsCoreWebVitals instantiates a new SyntheticsCoreWebVitals object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewSyntheticsCoreWebVitalsWithDefaults() *SyntheticsCoreWebVitals {
 	this := SyntheticsCoreWebVitals{}
 	return &this
 }
-
 // GetCls returns the Cls field value if set, zero value otherwise.
 func (o *SyntheticsCoreWebVitals) GetCls() float64 {
 	if o == nil || o.Cls == nil {
@@ -65,6 +71,7 @@ func (o *SyntheticsCoreWebVitals) HasCls() bool {
 func (o *SyntheticsCoreWebVitals) SetCls(v float64) {
 	o.Cls = &v
 }
+
 
 // GetLcp returns the Lcp field value if set, zero value otherwise.
 func (o *SyntheticsCoreWebVitals) GetLcp() float64 {
@@ -94,6 +101,7 @@ func (o *SyntheticsCoreWebVitals) SetLcp(v float64) {
 	o.Lcp = &v
 }
 
+
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *SyntheticsCoreWebVitals) GetUrl() string {
 	if o == nil || o.Url == nil {
@@ -122,6 +130,8 @@ func (o *SyntheticsCoreWebVitals) SetUrl(v string) {
 	o.Url = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsCoreWebVitals) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -149,14 +159,14 @@ func (o *SyntheticsCoreWebVitals) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Cls *float64 `json:"cls,omitempty"`
 		Lcp *float64 `json:"lcp,omitempty"`
-		Url *string  `json:"url,omitempty"`
+		Url *string `json:"url,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cls", "lcp", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cls", "lcp", "url",  })
 	} else {
 		return err
 	}

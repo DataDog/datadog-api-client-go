@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventsResponseMetadata The metadata associated with a request.
 type EventsResponseMetadata struct {
@@ -22,9 +28,10 @@ type EventsResponseMetadata struct {
 	// warnings are present in the response.
 	Warnings []EventsWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEventsResponseMetadata instantiates a new EventsResponseMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +49,6 @@ func NewEventsResponseMetadataWithDefaults() *EventsResponseMetadata {
 	this := EventsResponseMetadata{}
 	return &this
 }
-
 // GetElapsed returns the Elapsed field value if set, zero value otherwise.
 func (o *EventsResponseMetadata) GetElapsed() int64 {
 	if o == nil || o.Elapsed == nil {
@@ -70,6 +76,7 @@ func (o *EventsResponseMetadata) HasElapsed() bool {
 func (o *EventsResponseMetadata) SetElapsed(v int64) {
 	o.Elapsed = &v
 }
+
 
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *EventsResponseMetadata) GetPage() EventsResponseMetadataPage {
@@ -99,6 +106,7 @@ func (o *EventsResponseMetadata) SetPage(v EventsResponseMetadataPage) {
 	o.Page = &v
 }
 
+
 // GetRequestId returns the RequestId field value if set, zero value otherwise.
 func (o *EventsResponseMetadata) GetRequestId() string {
 	if o == nil || o.RequestId == nil {
@@ -126,6 +134,7 @@ func (o *EventsResponseMetadata) HasRequestId() bool {
 func (o *EventsResponseMetadata) SetRequestId(v string) {
 	o.RequestId = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *EventsResponseMetadata) GetStatus() string {
@@ -155,6 +164,7 @@ func (o *EventsResponseMetadata) SetStatus(v string) {
 	o.Status = &v
 }
 
+
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
 func (o *EventsResponseMetadata) GetWarnings() []EventsWarning {
 	if o == nil || o.Warnings == nil {
@@ -182,6 +192,8 @@ func (o *EventsResponseMetadata) HasWarnings() bool {
 func (o *EventsResponseMetadata) SetWarnings(v []EventsWarning) {
 	o.Warnings = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EventsResponseMetadata) MarshalJSON() ([]byte, error) {
@@ -214,25 +226,25 @@ func (o EventsResponseMetadata) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EventsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Elapsed   *int64                      `json:"elapsed,omitempty"`
-		Page      *EventsResponseMetadataPage `json:"page,omitempty"`
-		RequestId *string                     `json:"request_id,omitempty"`
-		Status    *string                     `json:"status,omitempty"`
-		Warnings  []EventsWarning             `json:"warnings,omitempty"`
+		Elapsed *int64 `json:"elapsed,omitempty"`
+		Page *EventsResponseMetadataPage `json:"page,omitempty"`
+		RequestId *string `json:"request_id,omitempty"`
+		Status *string `json:"status,omitempty"`
+		Warnings []EventsWarning `json:"warnings,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"elapsed", "page", "request_id", "status", "warnings"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "elapsed", "page", "request_id", "status", "warnings",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Elapsed = all.Elapsed
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Page = all.Page

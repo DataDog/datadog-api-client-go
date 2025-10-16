@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes Workflows Webhook handle attributes.
 type MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes struct {
@@ -17,9 +21,10 @@ type MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes struct {
 	// Workflows Webhook URL.
 	Url string `json:"url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMicrosoftTeamsWorkflowsWebhookHandleRequestAttributes instantiates a new MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewMicrosoftTeamsWorkflowsWebhookHandleRequestAttributesWithDefaults() *Mic
 	this := MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes) GetName() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes) GetNameOk() (*st
 func (o *MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetUrl returns the Url field value.
 func (o *MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes) GetUrl() string {
@@ -86,6 +91,8 @@ func (o *MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes) SetUrl(v string)
 	o.Url = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes) MarshalJSON() ([]
 func (o *MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Name *string `json:"name"`
-		Url  *string `json:"url"`
+		Url *string `json:"url"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes) UnmarshalJSON(by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "url",  })
 	} else {
 		return err
 	}

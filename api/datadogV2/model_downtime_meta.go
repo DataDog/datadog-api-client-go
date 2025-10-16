@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeMeta Pagination metadata returned by the API.
 type DowntimeMeta struct {
 	// Object containing the total filtered count.
 	Page *DowntimeMetaPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDowntimeMeta instantiates a new DowntimeMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewDowntimeMetaWithDefaults() *DowntimeMeta {
 	this := DowntimeMeta{}
 	return &this
 }
-
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *DowntimeMeta) GetPage() DowntimeMetaPage {
 	if o == nil || o.Page == nil {
@@ -62,6 +68,8 @@ func (o *DowntimeMeta) SetPage(v DowntimeMetaPage) {
 	o.Page = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *DowntimeMeta) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"page"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "page",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Page = all.Page

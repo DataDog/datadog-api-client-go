@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssuesSearchResultAttributes Object containing the information of a search result.
 type IssuesSearchResultAttributes struct {
@@ -17,9 +23,10 @@ type IssuesSearchResultAttributes struct {
 	// Total count of errors that match the issue over the queried time window.
 	TotalCount *int64 `json:"total_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssuesSearchResultAttributes instantiates a new IssuesSearchResultAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewIssuesSearchResultAttributesWithDefaults() *IssuesSearchResultAttributes
 	this := IssuesSearchResultAttributes{}
 	return &this
 }
-
 // GetImpactedSessions returns the ImpactedSessions field value if set, zero value otherwise.
 func (o *IssuesSearchResultAttributes) GetImpactedSessions() int64 {
 	if o == nil || o.ImpactedSessions == nil {
@@ -65,6 +71,7 @@ func (o *IssuesSearchResultAttributes) HasImpactedSessions() bool {
 func (o *IssuesSearchResultAttributes) SetImpactedSessions(v int64) {
 	o.ImpactedSessions = &v
 }
+
 
 // GetImpactedUsers returns the ImpactedUsers field value if set, zero value otherwise.
 func (o *IssuesSearchResultAttributes) GetImpactedUsers() int64 {
@@ -94,6 +101,7 @@ func (o *IssuesSearchResultAttributes) SetImpactedUsers(v int64) {
 	o.ImpactedUsers = &v
 }
 
+
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
 func (o *IssuesSearchResultAttributes) GetTotalCount() int64 {
 	if o == nil || o.TotalCount == nil {
@@ -122,6 +130,8 @@ func (o *IssuesSearchResultAttributes) SetTotalCount(v int64) {
 	o.TotalCount = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IssuesSearchResultAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,15 +158,15 @@ func (o IssuesSearchResultAttributes) MarshalJSON() ([]byte, error) {
 func (o *IssuesSearchResultAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ImpactedSessions *int64 `json:"impacted_sessions,omitempty"`
-		ImpactedUsers    *int64 `json:"impacted_users,omitempty"`
-		TotalCount       *int64 `json:"total_count,omitempty"`
+		ImpactedUsers *int64 `json:"impacted_users,omitempty"`
+		TotalCount *int64 `json:"total_count,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"impacted_sessions", "impacted_users", "total_count"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "impacted_sessions", "impacted_users", "total_count",  })
 	} else {
 		return err
 	}

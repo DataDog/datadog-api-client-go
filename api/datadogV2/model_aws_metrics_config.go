@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSMetricsConfig AWS Metrics Collection config.
 type AWSMetricsConfig struct {
@@ -23,9 +29,10 @@ type AWSMetricsConfig struct {
 	// AWS Metrics collection tag filters list. Defaults to `[]`.
 	TagFilters []AWSNamespaceTagFilter `json:"tag_filters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSMetricsConfig instantiates a new AWSMetricsConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +50,6 @@ func NewAWSMetricsConfigWithDefaults() *AWSMetricsConfig {
 	this := AWSMetricsConfig{}
 	return &this
 }
-
 // GetAutomuteEnabled returns the AutomuteEnabled field value if set, zero value otherwise.
 func (o *AWSMetricsConfig) GetAutomuteEnabled() bool {
 	if o == nil || o.AutomuteEnabled == nil {
@@ -71,6 +77,7 @@ func (o *AWSMetricsConfig) HasAutomuteEnabled() bool {
 func (o *AWSMetricsConfig) SetAutomuteEnabled(v bool) {
 	o.AutomuteEnabled = &v
 }
+
 
 // GetCollectCloudwatchAlarms returns the CollectCloudwatchAlarms field value if set, zero value otherwise.
 func (o *AWSMetricsConfig) GetCollectCloudwatchAlarms() bool {
@@ -100,6 +107,7 @@ func (o *AWSMetricsConfig) SetCollectCloudwatchAlarms(v bool) {
 	o.CollectCloudwatchAlarms = &v
 }
 
+
 // GetCollectCustomMetrics returns the CollectCustomMetrics field value if set, zero value otherwise.
 func (o *AWSMetricsConfig) GetCollectCustomMetrics() bool {
 	if o == nil || o.CollectCustomMetrics == nil {
@@ -127,6 +135,7 @@ func (o *AWSMetricsConfig) HasCollectCustomMetrics() bool {
 func (o *AWSMetricsConfig) SetCollectCustomMetrics(v bool) {
 	o.CollectCustomMetrics = &v
 }
+
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *AWSMetricsConfig) GetEnabled() bool {
@@ -156,6 +165,7 @@ func (o *AWSMetricsConfig) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
 // GetNamespaceFilters returns the NamespaceFilters field value if set, zero value otherwise.
 func (o *AWSMetricsConfig) GetNamespaceFilters() AWSNamespaceFilters {
 	if o == nil || o.NamespaceFilters == nil {
@@ -184,6 +194,7 @@ func (o *AWSMetricsConfig) SetNamespaceFilters(v AWSNamespaceFilters) {
 	o.NamespaceFilters = &v
 }
 
+
 // GetTagFilters returns the TagFilters field value if set, zero value otherwise.
 func (o *AWSMetricsConfig) GetTagFilters() []AWSNamespaceTagFilter {
 	if o == nil || o.TagFilters == nil {
@@ -211,6 +222,8 @@ func (o *AWSMetricsConfig) HasTagFilters() bool {
 func (o *AWSMetricsConfig) SetTagFilters(v []AWSNamespaceTagFilter) {
 	o.TagFilters = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSMetricsConfig) MarshalJSON() ([]byte, error) {
@@ -246,19 +259,19 @@ func (o AWSMetricsConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSMetricsConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AutomuteEnabled         *bool                   `json:"automute_enabled,omitempty"`
-		CollectCloudwatchAlarms *bool                   `json:"collect_cloudwatch_alarms,omitempty"`
-		CollectCustomMetrics    *bool                   `json:"collect_custom_metrics,omitempty"`
-		Enabled                 *bool                   `json:"enabled,omitempty"`
-		NamespaceFilters        *AWSNamespaceFilters    `json:"namespace_filters,omitempty"`
-		TagFilters              []AWSNamespaceTagFilter `json:"tag_filters,omitempty"`
+		AutomuteEnabled *bool `json:"automute_enabled,omitempty"`
+		CollectCloudwatchAlarms *bool `json:"collect_cloudwatch_alarms,omitempty"`
+		CollectCustomMetrics *bool `json:"collect_custom_metrics,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
+		NamespaceFilters *AWSNamespaceFilters `json:"namespace_filters,omitempty"`
+		TagFilters []AWSNamespaceTagFilter `json:"tag_filters,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"automute_enabled", "collect_cloudwatch_alarms", "collect_custom_metrics", "enabled", "namespace_filters", "tag_filters"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "automute_enabled", "collect_cloudwatch_alarms", "collect_custom_metrics", "enabled", "namespace_filters", "tag_filters",  })
 	} else {
 		return err
 	}

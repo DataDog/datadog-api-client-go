@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
 	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Deployment The version of the app that was published.
 type Deployment struct {
@@ -21,9 +25,10 @@ type Deployment struct {
 	// The deployment type.
 	Type *AppDeploymentType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDeployment instantiates a new Deployment object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewDeploymentWithDefaults() *Deployment {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *Deployment) GetAttributes() DeploymentAttributes {
 	if o == nil || o.Attributes == nil {
@@ -73,6 +77,7 @@ func (o *Deployment) HasAttributes() bool {
 func (o *Deployment) SetAttributes(v DeploymentAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Deployment) GetId() uuid.UUID {
@@ -102,6 +107,7 @@ func (o *Deployment) SetId(v uuid.UUID) {
 	o.Id = &v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *Deployment) GetMeta() DeploymentMetadata {
 	if o == nil || o.Meta == nil {
@@ -130,6 +136,7 @@ func (o *Deployment) SetMeta(v DeploymentMetadata) {
 	o.Meta = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *Deployment) GetType() AppDeploymentType {
 	if o == nil || o.Type == nil {
@@ -157,6 +164,8 @@ func (o *Deployment) HasType() bool {
 func (o *Deployment) SetType(v AppDeploymentType) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o Deployment) MarshalJSON() ([]byte, error) {
@@ -187,31 +196,31 @@ func (o Deployment) MarshalJSON() ([]byte, error) {
 func (o *Deployment) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *DeploymentAttributes `json:"attributes,omitempty"`
-		Id         *uuid.UUID            `json:"id,omitempty"`
-		Meta       *DeploymentMetadata   `json:"meta,omitempty"`
-		Type       *AppDeploymentType    `json:"type,omitempty"`
+		Id *uuid.UUID `json:"id,omitempty"`
+		Meta *DeploymentMetadata `json:"meta,omitempty"`
+		Type *AppDeploymentType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "meta", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "meta", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

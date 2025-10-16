@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MicrosoftTeamsWorkflowsWebhookResponseAttributes Workflows Webhook handle attributes.
 type MicrosoftTeamsWorkflowsWebhookResponseAttributes struct {
 	// Workflows Webhook handle name.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMicrosoftTeamsWorkflowsWebhookResponseAttributes instantiates a new MicrosoftTeamsWorkflowsWebhookResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewMicrosoftTeamsWorkflowsWebhookResponseAttributesWithDefaults() *Microsof
 	this := MicrosoftTeamsWorkflowsWebhookResponseAttributes{}
 	return &this
 }
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MicrosoftTeamsWorkflowsWebhookResponseAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -62,6 +68,8 @@ func (o *MicrosoftTeamsWorkflowsWebhookResponseAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MicrosoftTeamsWorkflowsWebhookResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *MicrosoftTeamsWorkflowsWebhookResponseAttributes) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name",  })
 	} else {
 		return err
 	}

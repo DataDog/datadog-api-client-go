@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelinePipelineKafkaSourceSaslMechanism SASL mechanism used for Kafka authentication.
 type ObservabilityPipelinePipelineKafkaSourceSaslMechanism string
 
 // List of ObservabilityPipelinePipelineKafkaSourceSaslMechanism.
 const (
-	OBSERVABILITYPIPELINEPIPELINEKAFKASOURCESASLMECHANISM_PLAIN               ObservabilityPipelinePipelineKafkaSourceSaslMechanism = "PLAIN"
+	OBSERVABILITYPIPELINEPIPELINEKAFKASOURCESASLMECHANISM_PLAIN ObservabilityPipelinePipelineKafkaSourceSaslMechanism = "PLAIN"
 	OBSERVABILITYPIPELINEPIPELINEKAFKASOURCESASLMECHANISM_SCRAMNOT_SHANOT_256 ObservabilityPipelinePipelineKafkaSourceSaslMechanism = "SCRAM-SHA-256"
 	OBSERVABILITYPIPELINEPIPELINEKAFKASOURCESASLMECHANISM_SCRAMNOT_SHANOT_512 ObservabilityPipelinePipelineKafkaSourceSaslMechanism = "SCRAM-SHA-512"
 )

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOSliSpec - A generic SLI specification. This is currently used for time-slice SLOs only.
 type SLOSliSpec struct {
@@ -56,6 +62,7 @@ func (obj SLOSliSpec) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SLOTimeSliceSpec)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj SLOSliSpec) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SLOSliSpec) GetActualInstance() interface{} {
+func (obj *SLOSliSpec) GetActualInstance() (interface{}) {
 	if obj.SLOTimeSliceSpec != nil {
 		return obj.SLOTimeSliceSpec
 	}
+
 
 	// all schemas are nil
 	return nil

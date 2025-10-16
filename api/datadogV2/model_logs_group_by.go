@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsGroupBy A group by rule
 type LogsGroupBy struct {
@@ -27,9 +31,10 @@ type LogsGroupBy struct {
 	// A resulting object to put the given computes in over all the matching records.
 	Total *LogsGroupByTotal `json:"total,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsGroupBy instantiates a new LogsGroupBy object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewLogsGroupByWithDefaults() *LogsGroupBy {
 	this.Limit = &limit
 	return &this
 }
-
 // GetFacet returns the Facet field value.
 func (o *LogsGroupBy) GetFacet() string {
 	if o == nil {
@@ -75,6 +79,7 @@ func (o *LogsGroupBy) GetFacetOk() (*string, bool) {
 func (o *LogsGroupBy) SetFacet(v string) {
 	o.Facet = v
 }
+
 
 // GetHistogram returns the Histogram field value if set, zero value otherwise.
 func (o *LogsGroupBy) GetHistogram() LogsGroupByHistogram {
@@ -104,6 +109,7 @@ func (o *LogsGroupBy) SetHistogram(v LogsGroupByHistogram) {
 	o.Histogram = &v
 }
 
+
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *LogsGroupBy) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
@@ -131,6 +137,7 @@ func (o *LogsGroupBy) HasLimit() bool {
 func (o *LogsGroupBy) SetLimit(v int64) {
 	o.Limit = &v
 }
+
 
 // GetMissing returns the Missing field value if set, zero value otherwise.
 func (o *LogsGroupBy) GetMissing() LogsGroupByMissing {
@@ -160,6 +167,7 @@ func (o *LogsGroupBy) SetMissing(v LogsGroupByMissing) {
 	o.Missing = &v
 }
 
+
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *LogsGroupBy) GetSort() LogsAggregateSort {
 	if o == nil || o.Sort == nil {
@@ -188,6 +196,7 @@ func (o *LogsGroupBy) SetSort(v LogsAggregateSort) {
 	o.Sort = &v
 }
 
+
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *LogsGroupBy) GetTotal() LogsGroupByTotal {
 	if o == nil || o.Total == nil {
@@ -215,6 +224,8 @@ func (o *LogsGroupBy) HasTotal() bool {
 func (o *LogsGroupBy) SetTotal(v LogsGroupByTotal) {
 	o.Total = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsGroupBy) MarshalJSON() ([]byte, error) {
@@ -248,12 +259,12 @@ func (o LogsGroupBy) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Facet     *string               `json:"facet"`
+		Facet *string `json:"facet"`
 		Histogram *LogsGroupByHistogram `json:"histogram,omitempty"`
-		Limit     *int64                `json:"limit,omitempty"`
-		Missing   *LogsGroupByMissing   `json:"missing,omitempty"`
-		Sort      *LogsAggregateSort    `json:"sort,omitempty"`
-		Total     *LogsGroupByTotal     `json:"total,omitempty"`
+		Limit *int64 `json:"limit,omitempty"`
+		Missing *LogsGroupByMissing `json:"missing,omitempty"`
+		Sort *LogsAggregateSort `json:"sort,omitempty"`
+		Total *LogsGroupByTotal `json:"total,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -263,20 +274,20 @@ func (o *LogsGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"facet", "histogram", "limit", "missing", "sort", "total"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "facet", "histogram", "limit", "missing", "sort", "total",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Facet = *all.Facet
-	if all.Histogram != nil && all.Histogram.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Histogram != nil && all.Histogram.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Histogram = all.Histogram
 	o.Limit = all.Limit
 	o.Missing = all.Missing
-	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Sort = all.Sort

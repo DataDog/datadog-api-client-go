@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsArrayProcessorOperationSelect Operation that finds an object in a `source` array using a `filter`, and then extracts a specific value into the `target` attribute.
 type LogsArrayProcessorOperationSelect struct {
@@ -23,9 +27,10 @@ type LogsArrayProcessorOperationSelect struct {
 	// Key of the value to extract from the matching element.
 	ValueToExtract string `json:"value_to_extract"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsArrayProcessorOperationSelect instantiates a new LogsArrayProcessorOperationSelect object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewLogsArrayProcessorOperationSelectWithDefaults() *LogsArrayProcessorOpera
 	this := LogsArrayProcessorOperationSelect{}
 	return &this
 }
-
 // GetFilter returns the Filter field value.
 func (o *LogsArrayProcessorOperationSelect) GetFilter() string {
 	if o == nil {
@@ -71,6 +75,7 @@ func (o *LogsArrayProcessorOperationSelect) GetFilterOk() (*string, bool) {
 func (o *LogsArrayProcessorOperationSelect) SetFilter(v string) {
 	o.Filter = v
 }
+
 
 // GetSource returns the Source field value.
 func (o *LogsArrayProcessorOperationSelect) GetSource() string {
@@ -95,6 +100,7 @@ func (o *LogsArrayProcessorOperationSelect) SetSource(v string) {
 	o.Source = v
 }
 
+
 // GetTarget returns the Target field value.
 func (o *LogsArrayProcessorOperationSelect) GetTarget() string {
 	if o == nil {
@@ -117,6 +123,7 @@ func (o *LogsArrayProcessorOperationSelect) GetTargetOk() (*string, bool) {
 func (o *LogsArrayProcessorOperationSelect) SetTarget(v string) {
 	o.Target = v
 }
+
 
 // GetType returns the Type field value.
 func (o *LogsArrayProcessorOperationSelect) GetType() LogsArrayProcessorOperationSelectType {
@@ -141,6 +148,7 @@ func (o *LogsArrayProcessorOperationSelect) SetType(v LogsArrayProcessorOperatio
 	o.Type = v
 }
 
+
 // GetValueToExtract returns the ValueToExtract field value.
 func (o *LogsArrayProcessorOperationSelect) GetValueToExtract() string {
 	if o == nil {
@@ -164,6 +172,8 @@ func (o *LogsArrayProcessorOperationSelect) SetValueToExtract(v string) {
 	o.ValueToExtract = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsArrayProcessorOperationSelect) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -185,11 +195,11 @@ func (o LogsArrayProcessorOperationSelect) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArrayProcessorOperationSelect) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Filter         *string                                `json:"filter"`
-		Source         *string                                `json:"source"`
-		Target         *string                                `json:"target"`
-		Type           *LogsArrayProcessorOperationSelectType `json:"type"`
-		ValueToExtract *string                                `json:"value_to_extract"`
+		Filter *string `json:"filter"`
+		Source *string `json:"source"`
+		Target *string `json:"target"`
+		Type *LogsArrayProcessorOperationSelectType `json:"type"`
+		ValueToExtract *string `json:"value_to_extract"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -211,7 +221,7 @@ func (o *LogsArrayProcessorOperationSelect) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "source", "target", "type", "value_to_extract"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "filter", "source", "target", "type", "value_to_extract",  })
 	} else {
 		return err
 	}

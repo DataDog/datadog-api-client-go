@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AwsCURConfigAttributes Attributes for An AWS CUR config.
 type AwsCURConfigAttributes struct {
@@ -38,9 +42,10 @@ type AwsCURConfigAttributes struct {
 	// The timestamp when the AWS CUR config status was updated.
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAwsCURConfigAttributes instantiates a new AwsCURConfigAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -64,7 +69,6 @@ func NewAwsCURConfigAttributesWithDefaults() *AwsCURConfigAttributes {
 	this := AwsCURConfigAttributes{}
 	return &this
 }
-
 // GetAccountFilters returns the AccountFilters field value if set, zero value otherwise.
 func (o *AwsCURConfigAttributes) GetAccountFilters() AccountFilteringConfig {
 	if o == nil || o.AccountFilters == nil {
@@ -93,6 +97,7 @@ func (o *AwsCURConfigAttributes) SetAccountFilters(v AccountFilteringConfig) {
 	o.AccountFilters = &v
 }
 
+
 // GetAccountId returns the AccountId field value.
 func (o *AwsCURConfigAttributes) GetAccountId() string {
 	if o == nil {
@@ -115,6 +120,7 @@ func (o *AwsCURConfigAttributes) GetAccountIdOk() (*string, bool) {
 func (o *AwsCURConfigAttributes) SetAccountId(v string) {
 	o.AccountId = v
 }
+
 
 // GetBucketName returns the BucketName field value.
 func (o *AwsCURConfigAttributes) GetBucketName() string {
@@ -139,6 +145,7 @@ func (o *AwsCURConfigAttributes) SetBucketName(v string) {
 	o.BucketName = v
 }
 
+
 // GetBucketRegion returns the BucketRegion field value.
 func (o *AwsCURConfigAttributes) GetBucketRegion() string {
 	if o == nil {
@@ -161,6 +168,7 @@ func (o *AwsCURConfigAttributes) GetBucketRegionOk() (*string, bool) {
 func (o *AwsCURConfigAttributes) SetBucketRegion(v string) {
 	o.BucketRegion = v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *AwsCURConfigAttributes) GetCreatedAt() string {
@@ -190,6 +198,7 @@ func (o *AwsCURConfigAttributes) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
 
+
 // GetErrorMessages returns the ErrorMessages field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AwsCURConfigAttributes) GetErrorMessages() []string {
 	if o == nil || o.ErrorMessages.Get() == nil {
@@ -203,7 +212,7 @@ func (o *AwsCURConfigAttributes) GetErrorMessages() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *AwsCURConfigAttributes) GetErrorMessagesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ErrorMessages.Get(), o.ErrorMessages.IsSet()
@@ -218,7 +227,6 @@ func (o *AwsCURConfigAttributes) HasErrorMessages() bool {
 func (o *AwsCURConfigAttributes) SetErrorMessages(v []string) {
 	o.ErrorMessages.Set(&v)
 }
-
 // SetErrorMessagesNil sets the value for ErrorMessages to be an explicit nil.
 func (o *AwsCURConfigAttributes) SetErrorMessagesNil() {
 	o.ErrorMessages.Set(nil)
@@ -228,6 +236,7 @@ func (o *AwsCURConfigAttributes) SetErrorMessagesNil() {
 func (o *AwsCURConfigAttributes) UnsetErrorMessages() {
 	o.ErrorMessages.Unset()
 }
+
 
 // GetMonths returns the Months field value if set, zero value otherwise.
 // Deprecated
@@ -260,6 +269,7 @@ func (o *AwsCURConfigAttributes) SetMonths(v int32) {
 	o.Months = &v
 }
 
+
 // GetReportName returns the ReportName field value.
 func (o *AwsCURConfigAttributes) GetReportName() string {
 	if o == nil {
@@ -282,6 +292,7 @@ func (o *AwsCURConfigAttributes) GetReportNameOk() (*string, bool) {
 func (o *AwsCURConfigAttributes) SetReportName(v string) {
 	o.ReportName = v
 }
+
 
 // GetReportPrefix returns the ReportPrefix field value.
 func (o *AwsCURConfigAttributes) GetReportPrefix() string {
@@ -306,6 +317,7 @@ func (o *AwsCURConfigAttributes) SetReportPrefix(v string) {
 	o.ReportPrefix = v
 }
 
+
 // GetStatus returns the Status field value.
 func (o *AwsCURConfigAttributes) GetStatus() string {
 	if o == nil {
@@ -328,6 +340,7 @@ func (o *AwsCURConfigAttributes) GetStatusOk() (*string, bool) {
 func (o *AwsCURConfigAttributes) SetStatus(v string) {
 	o.Status = v
 }
+
 
 // GetStatusUpdatedAt returns the StatusUpdatedAt field value if set, zero value otherwise.
 func (o *AwsCURConfigAttributes) GetStatusUpdatedAt() string {
@@ -357,6 +370,7 @@ func (o *AwsCURConfigAttributes) SetStatusUpdatedAt(v string) {
 	o.StatusUpdatedAt = &v
 }
 
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *AwsCURConfigAttributes) GetUpdatedAt() string {
 	if o == nil || o.UpdatedAt == nil {
@@ -384,6 +398,8 @@ func (o *AwsCURConfigAttributes) HasUpdatedAt() bool {
 func (o *AwsCURConfigAttributes) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AwsCURConfigAttributes) MarshalJSON() ([]byte, error) {
@@ -425,18 +441,18 @@ func (o AwsCURConfigAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AwsCURConfigAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountFilters  *AccountFilteringConfig      `json:"account_filters,omitempty"`
-		AccountId       *string                      `json:"account_id"`
-		BucketName      *string                      `json:"bucket_name"`
-		BucketRegion    *string                      `json:"bucket_region"`
-		CreatedAt       *string                      `json:"created_at,omitempty"`
-		ErrorMessages   datadog.NullableList[string] `json:"error_messages,omitempty"`
-		Months          *int32                       `json:"months,omitempty"`
-		ReportName      *string                      `json:"report_name"`
-		ReportPrefix    *string                      `json:"report_prefix"`
-		Status          *string                      `json:"status"`
-		StatusUpdatedAt *string                      `json:"status_updated_at,omitempty"`
-		UpdatedAt       *string                      `json:"updated_at,omitempty"`
+		AccountFilters *AccountFilteringConfig `json:"account_filters,omitempty"`
+		AccountId *string `json:"account_id"`
+		BucketName *string `json:"bucket_name"`
+		BucketRegion *string `json:"bucket_region"`
+		CreatedAt *string `json:"created_at,omitempty"`
+		ErrorMessages datadog.NullableList[string] `json:"error_messages,omitempty"`
+		Months *int32 `json:"months,omitempty"`
+		ReportName *string `json:"report_name"`
+		ReportPrefix *string `json:"report_prefix"`
+		Status *string `json:"status"`
+		StatusUpdatedAt *string `json:"status_updated_at,omitempty"`
+		UpdatedAt *string `json:"updated_at,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -461,13 +477,13 @@ func (o *AwsCURConfigAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_filters", "account_id", "bucket_name", "bucket_region", "created_at", "error_messages", "months", "report_name", "report_prefix", "status", "status_updated_at", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "account_filters", "account_id", "bucket_name", "bucket_region", "created_at", "error_messages", "months", "report_name", "report_prefix", "status", "status_updated_at", "updated_at",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.AccountFilters != nil && all.AccountFilters.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.AccountFilters != nil && all.AccountFilters.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.AccountFilters = all.AccountFilters

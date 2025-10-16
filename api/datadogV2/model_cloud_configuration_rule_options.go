@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudConfigurationRuleOptions Options on cloud configuration rules.
 type CloudConfigurationRuleOptions struct {
@@ -16,9 +20,10 @@ type CloudConfigurationRuleOptions struct {
 	// Fields `resourceType` and `regoRule` are mandatory when managing custom `cloud_configuration` rules.
 	ComplianceRuleOptions CloudConfigurationComplianceRuleOptions `json:"complianceRuleOptions"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudConfigurationRuleOptions instantiates a new CloudConfigurationRuleOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewCloudConfigurationRuleOptionsWithDefaults() *CloudConfigurationRuleOptio
 	this := CloudConfigurationRuleOptions{}
 	return &this
 }
-
 // GetComplianceRuleOptions returns the ComplianceRuleOptions field value.
 func (o *CloudConfigurationRuleOptions) GetComplianceRuleOptions() CloudConfigurationComplianceRuleOptions {
 	if o == nil {
@@ -60,6 +64,8 @@ func (o *CloudConfigurationRuleOptions) GetComplianceRuleOptionsOk() (*CloudConf
 func (o *CloudConfigurationRuleOptions) SetComplianceRuleOptions(v CloudConfigurationComplianceRuleOptions) {
 	o.ComplianceRuleOptions = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudConfigurationRuleOptions) MarshalJSON() ([]byte, error) {
@@ -88,7 +94,7 @@ func (o *CloudConfigurationRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"complianceRuleOptions"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "complianceRuleOptions",  })
 	} else {
 		return err
 	}

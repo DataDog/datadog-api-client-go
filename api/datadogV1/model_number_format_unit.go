@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NumberFormatUnit - Number format unit.
 type NumberFormatUnit struct {
 	NumberFormatUnitCanonical *NumberFormatUnitCanonical
-	NumberFormatUnitCustom    *NumberFormatUnitCustom
+	NumberFormatUnitCustom *NumberFormatUnitCustom
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -36,7 +42,7 @@ func (obj *NumberFormatUnit) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.NumberFormatUnitCanonical != nil && obj.NumberFormatUnitCanonical.UnparsedObject == nil {
 			jsonNumberFormatUnitCanonical, _ := datadog.Marshal(obj.NumberFormatUnitCanonical)
-			if string(jsonNumberFormatUnitCanonical) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonNumberFormatUnitCanonical) == "{}" && string(data) != "{}"  { // empty struct
 				obj.NumberFormatUnitCanonical = nil
 			} else {
 				match++
@@ -53,7 +59,7 @@ func (obj *NumberFormatUnit) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.NumberFormatUnitCustom != nil && obj.NumberFormatUnitCustom.UnparsedObject == nil {
 			jsonNumberFormatUnitCustom, _ := datadog.Marshal(obj.NumberFormatUnitCustom)
-			if string(jsonNumberFormatUnitCustom) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonNumberFormatUnitCustom) == "{}" && string(data) != "{}"  { // empty struct
 				obj.NumberFormatUnitCustom = nil
 			} else {
 				match++
@@ -80,9 +86,11 @@ func (obj NumberFormatUnit) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.NumberFormatUnitCanonical)
 	}
 
+
 	if obj.NumberFormatUnitCustom != nil {
 		return datadog.Marshal(&obj.NumberFormatUnitCustom)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj NumberFormatUnit) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *NumberFormatUnit) GetActualInstance() interface{} {
+func (obj *NumberFormatUnit) GetActualInstance() (interface{}) {
 	if obj.NumberFormatUnitCanonical != nil {
 		return obj.NumberFormatUnitCanonical
 	}
 
+
 	if obj.NumberFormatUnitCustom != nil {
 		return obj.NumberFormatUnitCustom
 	}
+
 
 	// all schemas are nil
 	return nil

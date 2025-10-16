@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotebookMarkdownCellAttributes The attributes of a notebook `markdown` cell.
 type NotebookMarkdownCellAttributes struct {
 	// Text in a notebook is formatted with [Markdown](https://daringfireball.net/projects/markdown/), which enables the use of headings, subheadings, links, images, lists, and code blocks.
 	Definition NotebookMarkdownCellDefinition `json:"definition"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewNotebookMarkdownCellAttributes instantiates a new NotebookMarkdownCellAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewNotebookMarkdownCellAttributesWithDefaults() *NotebookMarkdownCellAttrib
 	this := NotebookMarkdownCellAttributes{}
 	return &this
 }
-
 // GetDefinition returns the Definition field value.
 func (o *NotebookMarkdownCellAttributes) GetDefinition() NotebookMarkdownCellDefinition {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *NotebookMarkdownCellAttributes) GetDefinitionOk() (*NotebookMarkdownCel
 func (o *NotebookMarkdownCellAttributes) SetDefinition(v NotebookMarkdownCellDefinition) {
 	o.Definition = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebookMarkdownCellAttributes) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *NotebookMarkdownCellAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"definition"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "definition",  })
 	} else {
 		return err
 	}

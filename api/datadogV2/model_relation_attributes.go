@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RelationAttributes Relation attributes.
 type RelationAttributes struct {
@@ -17,9 +23,10 @@ type RelationAttributes struct {
 	// Supported relation types.
 	Type *RelationType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRelationAttributes instantiates a new RelationAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewRelationAttributesWithDefaults() *RelationAttributes {
 	this := RelationAttributes{}
 	return &this
 }
-
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *RelationAttributes) GetFrom() RelationEntity {
 	if o == nil || o.From == nil {
@@ -65,6 +71,7 @@ func (o *RelationAttributes) HasFrom() bool {
 func (o *RelationAttributes) SetFrom(v RelationEntity) {
 	o.From = &v
 }
+
 
 // GetTo returns the To field value if set, zero value otherwise.
 func (o *RelationAttributes) GetTo() RelationEntity {
@@ -94,6 +101,7 @@ func (o *RelationAttributes) SetTo(v RelationEntity) {
 	o.To = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *RelationAttributes) GetType() RelationType {
 	if o == nil || o.Type == nil {
@@ -122,6 +130,8 @@ func (o *RelationAttributes) SetType(v RelationType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,29 +158,29 @@ func (o RelationAttributes) MarshalJSON() ([]byte, error) {
 func (o *RelationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		From *RelationEntity `json:"from,omitempty"`
-		To   *RelationEntity `json:"to,omitempty"`
-		Type *RelationType   `json:"type,omitempty"`
+		To *RelationEntity `json:"to,omitempty"`
+		Type *RelationType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"from", "to", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "from", "to", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.From != nil && all.From.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.From != nil && all.From.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.From = all.From
-	if all.To != nil && all.To.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.To != nil && all.To.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.To = all.To
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

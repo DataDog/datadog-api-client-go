@@ -2,23 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOTimeSliceComparator The comparator used to compare the SLI value to the threshold.
 type SLOTimeSliceComparator string
 
 // List of SLOTimeSliceComparator.
 const (
-	SLOTIMESLICECOMPARATOR_GREATER       SLOTimeSliceComparator = ">"
+	SLOTIMESLICECOMPARATOR_GREATER SLOTimeSliceComparator = ">"
 	SLOTIMESLICECOMPARATOR_GREATER_EQUAL SLOTimeSliceComparator = ">="
-	SLOTIMESLICECOMPARATOR_LESS          SLOTimeSliceComparator = "<"
-	SLOTIMESLICECOMPARATOR_LESS_EQUAL    SLOTimeSliceComparator = "<="
+	SLOTIMESLICECOMPARATOR_LESS SLOTimeSliceComparator = "<"
+	SLOTIMESLICECOMPARATOR_LESS_EQUAL SLOTimeSliceComparator = "<="
 )
 
 var allowedSLOTimeSliceComparatorEnumValues = []SLOTimeSliceComparator{

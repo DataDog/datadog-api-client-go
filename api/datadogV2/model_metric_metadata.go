@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricMetadata Metadata for the metric.
 type MetricMetadata struct {
 	// Metric origin information.
 	Origin *MetricOrigin `json:"origin,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricMetadata instantiates a new MetricMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewMetricMetadataWithDefaults() *MetricMetadata {
 	this := MetricMetadata{}
 	return &this
 }
-
 // GetOrigin returns the Origin field value if set, zero value otherwise.
 func (o *MetricMetadata) GetOrigin() MetricOrigin {
 	if o == nil || o.Origin == nil {
@@ -62,6 +68,8 @@ func (o *MetricMetadata) SetOrigin(v MetricOrigin) {
 	o.Origin = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *MetricMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"origin"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "origin",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Origin != nil && all.Origin.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Origin != nil && all.Origin.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Origin = all.Origin

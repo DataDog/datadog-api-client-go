@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FreshserviceAPIKeyUpdate The definition of the `FreshserviceAPIKey` object.
 type FreshserviceAPIKeyUpdate struct {
@@ -19,9 +23,10 @@ type FreshserviceAPIKeyUpdate struct {
 	// The definition of the `FreshserviceAPIKey` object.
 	Type FreshserviceAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFreshserviceAPIKeyUpdate instantiates a new FreshserviceAPIKeyUpdate object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewFreshserviceAPIKeyUpdateWithDefaults() *FreshserviceAPIKeyUpdate {
 	this := FreshserviceAPIKeyUpdate{}
 	return &this
 }
-
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
 func (o *FreshserviceAPIKeyUpdate) GetApiKey() string {
 	if o == nil || o.ApiKey == nil {
@@ -68,6 +72,7 @@ func (o *FreshserviceAPIKeyUpdate) HasApiKey() bool {
 func (o *FreshserviceAPIKeyUpdate) SetApiKey(v string) {
 	o.ApiKey = &v
 }
+
 
 // GetDomain returns the Domain field value if set, zero value otherwise.
 func (o *FreshserviceAPIKeyUpdate) GetDomain() string {
@@ -97,6 +102,7 @@ func (o *FreshserviceAPIKeyUpdate) SetDomain(v string) {
 	o.Domain = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *FreshserviceAPIKeyUpdate) GetType() FreshserviceAPIKeyType {
 	if o == nil {
@@ -119,6 +125,8 @@ func (o *FreshserviceAPIKeyUpdate) GetTypeOk() (*FreshserviceAPIKeyType, bool) {
 func (o *FreshserviceAPIKeyUpdate) SetType(v FreshserviceAPIKeyType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FreshserviceAPIKeyUpdate) MarshalJSON() ([]byte, error) {
@@ -143,9 +151,9 @@ func (o FreshserviceAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FreshserviceAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string                 `json:"api_key,omitempty"`
-		Domain *string                 `json:"domain,omitempty"`
-		Type   *FreshserviceAPIKeyType `json:"type"`
+		ApiKey *string `json:"api_key,omitempty"`
+		Domain *string `json:"domain,omitempty"`
+		Type *FreshserviceAPIKeyType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,7 +163,7 @@ func (o *FreshserviceAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "domain", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_key", "domain", "type",  })
 	} else {
 		return err
 	}

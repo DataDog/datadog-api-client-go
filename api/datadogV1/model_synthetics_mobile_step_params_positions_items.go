@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsMobileStepParamsPositionsItems A description of a single position for a `flick` step type.
 type SyntheticsMobileStepParamsPositionsItems struct {
@@ -15,9 +21,10 @@ type SyntheticsMobileStepParamsPositionsItems struct {
 	// The `y` position for the flick.
 	Y *float64 `json:"y,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsMobileStepParamsPositionsItems instantiates a new SyntheticsMobileStepParamsPositionsItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSyntheticsMobileStepParamsPositionsItemsWithDefaults() *SyntheticsMobile
 	this := SyntheticsMobileStepParamsPositionsItems{}
 	return &this
 }
-
 // GetX returns the X field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParamsPositionsItems) GetX() float64 {
 	if o == nil || o.X == nil {
@@ -64,6 +70,7 @@ func (o *SyntheticsMobileStepParamsPositionsItems) SetX(v float64) {
 	o.X = &v
 }
 
+
 // GetY returns the Y field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParamsPositionsItems) GetY() float64 {
 	if o == nil || o.Y == nil {
@@ -91,6 +98,8 @@ func (o *SyntheticsMobileStepParamsPositionsItems) HasY() bool {
 func (o *SyntheticsMobileStepParamsPositionsItems) SetY(v float64) {
 	o.Y = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsMobileStepParamsPositionsItems) MarshalJSON() ([]byte, error) {
@@ -122,7 +131,7 @@ func (o *SyntheticsMobileStepParamsPositionsItems) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"x", "y"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "x", "y",  })
 	} else {
 		return err
 	}

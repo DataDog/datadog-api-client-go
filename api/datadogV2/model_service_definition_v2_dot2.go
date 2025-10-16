@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionV2Dot2 Service definition v2.2 for providing service metadata and integrations.
 type ServiceDefinitionV2Dot2 struct {
@@ -43,9 +47,10 @@ type ServiceDefinitionV2Dot2 struct {
 	// The type of service.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceDefinitionV2Dot2 instantiates a new ServiceDefinitionV2Dot2 object.
 // This constructor will assign default values to properties that have it defined,
@@ -67,7 +72,6 @@ func NewServiceDefinitionV2Dot2WithDefaults() *ServiceDefinitionV2Dot2 {
 	this.SchemaVersion = schemaVersion
 	return &this
 }
-
 // GetApplication returns the Application field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot2) GetApplication() string {
 	if o == nil || o.Application == nil {
@@ -95,6 +99,7 @@ func (o *ServiceDefinitionV2Dot2) HasApplication() bool {
 func (o *ServiceDefinitionV2Dot2) SetApplication(v string) {
 	o.Application = &v
 }
+
 
 // GetCiPipelineFingerprints returns the CiPipelineFingerprints field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot2) GetCiPipelineFingerprints() []string {
@@ -124,6 +129,7 @@ func (o *ServiceDefinitionV2Dot2) SetCiPipelineFingerprints(v []string) {
 	o.CiPipelineFingerprints = v
 }
 
+
 // GetContacts returns the Contacts field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot2) GetContacts() []ServiceDefinitionV2Dot2Contact {
 	if o == nil || o.Contacts == nil {
@@ -152,6 +158,7 @@ func (o *ServiceDefinitionV2Dot2) SetContacts(v []ServiceDefinitionV2Dot2Contact
 	o.Contacts = v
 }
 
+
 // GetDdService returns the DdService field value.
 func (o *ServiceDefinitionV2Dot2) GetDdService() string {
 	if o == nil {
@@ -174,6 +181,7 @@ func (o *ServiceDefinitionV2Dot2) GetDdServiceOk() (*string, bool) {
 func (o *ServiceDefinitionV2Dot2) SetDdService(v string) {
 	o.DdService = v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot2) GetDescription() string {
@@ -203,6 +211,7 @@ func (o *ServiceDefinitionV2Dot2) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot2) GetExtensions() map[string]interface{} {
 	if o == nil || o.Extensions == nil {
@@ -230,6 +239,7 @@ func (o *ServiceDefinitionV2Dot2) HasExtensions() bool {
 func (o *ServiceDefinitionV2Dot2) SetExtensions(v map[string]interface{}) {
 	o.Extensions = v
 }
+
 
 // GetIntegrations returns the Integrations field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot2) GetIntegrations() ServiceDefinitionV2Dot2Integrations {
@@ -259,6 +269,7 @@ func (o *ServiceDefinitionV2Dot2) SetIntegrations(v ServiceDefinitionV2Dot2Integ
 	o.Integrations = &v
 }
 
+
 // GetLanguages returns the Languages field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot2) GetLanguages() []string {
 	if o == nil || o.Languages == nil {
@@ -286,6 +297,7 @@ func (o *ServiceDefinitionV2Dot2) HasLanguages() bool {
 func (o *ServiceDefinitionV2Dot2) SetLanguages(v []string) {
 	o.Languages = v
 }
+
 
 // GetLifecycle returns the Lifecycle field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot2) GetLifecycle() string {
@@ -315,6 +327,7 @@ func (o *ServiceDefinitionV2Dot2) SetLifecycle(v string) {
 	o.Lifecycle = &v
 }
 
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot2) GetLinks() []ServiceDefinitionV2Dot2Link {
 	if o == nil || o.Links == nil {
@@ -343,6 +356,7 @@ func (o *ServiceDefinitionV2Dot2) SetLinks(v []ServiceDefinitionV2Dot2Link) {
 	o.Links = v
 }
 
+
 // GetSchemaVersion returns the SchemaVersion field value.
 func (o *ServiceDefinitionV2Dot2) GetSchemaVersion() ServiceDefinitionV2Dot2Version {
 	if o == nil {
@@ -365,6 +379,7 @@ func (o *ServiceDefinitionV2Dot2) GetSchemaVersionOk() (*ServiceDefinitionV2Dot2
 func (o *ServiceDefinitionV2Dot2) SetSchemaVersion(v ServiceDefinitionV2Dot2Version) {
 	o.SchemaVersion = v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot2) GetTags() []string {
@@ -394,6 +409,7 @@ func (o *ServiceDefinitionV2Dot2) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTeam returns the Team field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot2) GetTeam() string {
 	if o == nil || o.Team == nil {
@@ -421,6 +437,7 @@ func (o *ServiceDefinitionV2Dot2) HasTeam() bool {
 func (o *ServiceDefinitionV2Dot2) SetTeam(v string) {
 	o.Team = &v
 }
+
 
 // GetTier returns the Tier field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot2) GetTier() string {
@@ -450,6 +467,7 @@ func (o *ServiceDefinitionV2Dot2) SetTier(v string) {
 	o.Tier = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot2) GetType() string {
 	if o == nil || o.Type == nil {
@@ -477,6 +495,8 @@ func (o *ServiceDefinitionV2Dot2) HasType() bool {
 func (o *ServiceDefinitionV2Dot2) SetType(v string) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceDefinitionV2Dot2) MarshalJSON() ([]byte, error) {
@@ -535,21 +555,21 @@ func (o ServiceDefinitionV2Dot2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV2Dot2) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Application            *string                              `json:"application,omitempty"`
-		CiPipelineFingerprints []string                             `json:"ci-pipeline-fingerprints,omitempty"`
-		Contacts               []ServiceDefinitionV2Dot2Contact     `json:"contacts,omitempty"`
-		DdService              *string                              `json:"dd-service"`
-		Description            *string                              `json:"description,omitempty"`
-		Extensions             map[string]interface{}               `json:"extensions,omitempty"`
-		Integrations           *ServiceDefinitionV2Dot2Integrations `json:"integrations,omitempty"`
-		Languages              []string                             `json:"languages,omitempty"`
-		Lifecycle              *string                              `json:"lifecycle,omitempty"`
-		Links                  []ServiceDefinitionV2Dot2Link        `json:"links,omitempty"`
-		SchemaVersion          *ServiceDefinitionV2Dot2Version      `json:"schema-version"`
-		Tags                   []string                             `json:"tags,omitempty"`
-		Team                   *string                              `json:"team,omitempty"`
-		Tier                   *string                              `json:"tier,omitempty"`
-		Type                   *string                              `json:"type,omitempty"`
+		Application *string `json:"application,omitempty"`
+		CiPipelineFingerprints []string `json:"ci-pipeline-fingerprints,omitempty"`
+		Contacts []ServiceDefinitionV2Dot2Contact `json:"contacts,omitempty"`
+		DdService *string `json:"dd-service"`
+		Description *string `json:"description,omitempty"`
+		Extensions map[string]interface{} `json:"extensions,omitempty"`
+		Integrations *ServiceDefinitionV2Dot2Integrations `json:"integrations,omitempty"`
+		Languages []string `json:"languages,omitempty"`
+		Lifecycle *string `json:"lifecycle,omitempty"`
+		Links []ServiceDefinitionV2Dot2Link `json:"links,omitempty"`
+		SchemaVersion *ServiceDefinitionV2Dot2Version `json:"schema-version"`
+		Tags []string `json:"tags,omitempty"`
+		Team *string `json:"team,omitempty"`
+		Tier *string `json:"tier,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -562,7 +582,7 @@ func (o *ServiceDefinitionV2Dot2) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"application", "ci-pipeline-fingerprints", "contacts", "dd-service", "description", "extensions", "integrations", "languages", "lifecycle", "links", "schema-version", "tags", "team", "tier", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "application", "ci-pipeline-fingerprints", "contacts", "dd-service", "description", "extensions", "integrations", "languages", "lifecycle", "links", "schema-version", "tags", "team", "tier", "type",  })
 	} else {
 		return err
 	}
@@ -574,7 +594,7 @@ func (o *ServiceDefinitionV2Dot2) UnmarshalJSON(bytes []byte) (err error) {
 	o.DdService = *all.DdService
 	o.Description = all.Description
 	o.Extensions = all.Extensions
-	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Integrations = all.Integrations

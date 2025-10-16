@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionV2Dot1Integrations Third party integrations that Datadog supports.
 type ServiceDefinitionV2Dot1Integrations struct {
@@ -15,9 +21,10 @@ type ServiceDefinitionV2Dot1Integrations struct {
 	// PagerDuty integration for the service.
 	Pagerduty *ServiceDefinitionV2Dot1Pagerduty `json:"pagerduty,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceDefinitionV2Dot1Integrations instantiates a new ServiceDefinitionV2Dot1Integrations object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewServiceDefinitionV2Dot1IntegrationsWithDefaults() *ServiceDefinitionV2Do
 	this := ServiceDefinitionV2Dot1Integrations{}
 	return &this
 }
-
 // GetOpsgenie returns the Opsgenie field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot1Integrations) GetOpsgenie() ServiceDefinitionV2Dot1Opsgenie {
 	if o == nil || o.Opsgenie == nil {
@@ -63,6 +69,7 @@ func (o *ServiceDefinitionV2Dot1Integrations) HasOpsgenie() bool {
 func (o *ServiceDefinitionV2Dot1Integrations) SetOpsgenie(v ServiceDefinitionV2Dot1Opsgenie) {
 	o.Opsgenie = &v
 }
+
 
 // GetPagerduty returns the Pagerduty field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot1Integrations) GetPagerduty() ServiceDefinitionV2Dot1Pagerduty {
@@ -92,6 +99,8 @@ func (o *ServiceDefinitionV2Dot1Integrations) SetPagerduty(v ServiceDefinitionV2
 	o.Pagerduty = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceDefinitionV2Dot1Integrations) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o ServiceDefinitionV2Dot1Integrations) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV2Dot1Integrations) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Opsgenie  *ServiceDefinitionV2Dot1Opsgenie  `json:"opsgenie,omitempty"`
+		Opsgenie *ServiceDefinitionV2Dot1Opsgenie `json:"opsgenie,omitempty"`
 		Pagerduty *ServiceDefinitionV2Dot1Pagerduty `json:"pagerduty,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,17 +131,17 @@ func (o *ServiceDefinitionV2Dot1Integrations) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"opsgenie", "pagerduty"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "opsgenie", "pagerduty",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Opsgenie != nil && all.Opsgenie.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Opsgenie != nil && all.Opsgenie.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Opsgenie = all.Opsgenie
-	if all.Pagerduty != nil && all.Pagerduty.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Pagerduty != nil && all.Pagerduty.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Pagerduty = all.Pagerduty

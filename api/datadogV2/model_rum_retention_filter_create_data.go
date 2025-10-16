@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RumRetentionFilterCreateData The new RUM retention filter properties to create.
 type RumRetentionFilterCreateData struct {
@@ -17,9 +21,10 @@ type RumRetentionFilterCreateData struct {
 	// The type of the resource. The value should always be retention_filters.
 	Type RumRetentionFilterType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRumRetentionFilterCreateData instantiates a new RumRetentionFilterCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewRumRetentionFilterCreateDataWithDefaults() *RumRetentionFilterCreateData
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *RumRetentionFilterCreateData) GetAttributes() RumRetentionFilterCreateAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *RumRetentionFilterCreateData) GetAttributesOk() (*RumRetentionFilterCre
 func (o *RumRetentionFilterCreateData) SetAttributes(v RumRetentionFilterCreateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *RumRetentionFilterCreateData) GetType() RumRetentionFilterType {
@@ -88,6 +93,8 @@ func (o *RumRetentionFilterCreateData) SetType(v RumRetentionFilterType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RumRetentionFilterCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o RumRetentionFilterCreateData) MarshalJSON() ([]byte, error) {
 func (o *RumRetentionFilterCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *RumRetentionFilterCreateAttributes `json:"attributes"`
-		Type       *RumRetentionFilterType             `json:"type"`
+		Type *RumRetentionFilterType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *RumRetentionFilterCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

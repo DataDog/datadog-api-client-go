@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerConfigRequest Group reorder request.
 type SensitiveDataScannerConfigRequest struct {
@@ -17,9 +21,10 @@ type SensitiveDataScannerConfigRequest struct {
 	// Meta payload containing information about the API.
 	Meta SensitiveDataScannerMetaVersionOnly `json:"meta"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerConfigRequest instantiates a new SensitiveDataScannerConfigRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSensitiveDataScannerConfigRequestWithDefaults() *SensitiveDataScannerCon
 	this := SensitiveDataScannerConfigRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *SensitiveDataScannerConfigRequest) GetData() SensitiveDataScannerReorderConfig {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *SensitiveDataScannerConfigRequest) GetDataOk() (*SensitiveDataScannerRe
 func (o *SensitiveDataScannerConfigRequest) SetData(v SensitiveDataScannerReorderConfig) {
 	o.Data = v
 }
+
 
 // GetMeta returns the Meta field value.
 func (o *SensitiveDataScannerConfigRequest) GetMeta() SensitiveDataScannerMetaVersionOnly {
@@ -86,6 +91,8 @@ func (o *SensitiveDataScannerConfigRequest) SetMeta(v SensitiveDataScannerMetaVe
 	o.Meta = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerConfigRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o SensitiveDataScannerConfigRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerConfigRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *SensitiveDataScannerReorderConfig   `json:"data"`
+		Data *SensitiveDataScannerReorderConfig `json:"data"`
 		Meta *SensitiveDataScannerMetaVersionOnly `json:"meta"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *SensitiveDataScannerConfigRequest) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}

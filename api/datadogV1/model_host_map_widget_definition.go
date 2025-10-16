@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HostMapWidgetDefinition The host map widget graphs any metric across your hosts using the same visualization available from the main Host Map page.
 type HostMapWidgetDefinition struct {
@@ -39,9 +43,10 @@ type HostMapWidgetDefinition struct {
 	// Type of the host map widget.
 	Type HostMapWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHostMapWidgetDefinition instantiates a new HostMapWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -63,7 +68,6 @@ func NewHostMapWidgetDefinitionWithDefaults() *HostMapWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 	if o == nil || o.CustomLinks == nil {
@@ -91,6 +95,7 @@ func (o *HostMapWidgetDefinition) HasCustomLinks() bool {
 func (o *HostMapWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = v
 }
+
 
 // GetGroup returns the Group field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinition) GetGroup() []string {
@@ -120,6 +125,7 @@ func (o *HostMapWidgetDefinition) SetGroup(v []string) {
 	o.Group = v
 }
 
+
 // GetNoGroupHosts returns the NoGroupHosts field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinition) GetNoGroupHosts() bool {
 	if o == nil || o.NoGroupHosts == nil {
@@ -147,6 +153,7 @@ func (o *HostMapWidgetDefinition) HasNoGroupHosts() bool {
 func (o *HostMapWidgetDefinition) SetNoGroupHosts(v bool) {
 	o.NoGroupHosts = &v
 }
+
 
 // GetNoMetricHosts returns the NoMetricHosts field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinition) GetNoMetricHosts() bool {
@@ -176,6 +183,7 @@ func (o *HostMapWidgetDefinition) SetNoMetricHosts(v bool) {
 	o.NoMetricHosts = &v
 }
 
+
 // GetNodeType returns the NodeType field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinition) GetNodeType() WidgetNodeType {
 	if o == nil || o.NodeType == nil {
@@ -203,6 +211,7 @@ func (o *HostMapWidgetDefinition) HasNodeType() bool {
 func (o *HostMapWidgetDefinition) SetNodeType(v WidgetNodeType) {
 	o.NodeType = &v
 }
+
 
 // GetNotes returns the Notes field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinition) GetNotes() string {
@@ -232,6 +241,7 @@ func (o *HostMapWidgetDefinition) SetNotes(v string) {
 	o.Notes = &v
 }
 
+
 // GetRequests returns the Requests field value.
 func (o *HostMapWidgetDefinition) GetRequests() HostMapWidgetDefinitionRequests {
 	if o == nil {
@@ -254,6 +264,7 @@ func (o *HostMapWidgetDefinition) GetRequestsOk() (*HostMapWidgetDefinitionReque
 func (o *HostMapWidgetDefinition) SetRequests(v HostMapWidgetDefinitionRequests) {
 	o.Requests = v
 }
+
 
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinition) GetScope() []string {
@@ -283,6 +294,7 @@ func (o *HostMapWidgetDefinition) SetScope(v []string) {
 	o.Scope = v
 }
 
+
 // GetStyle returns the Style field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinition) GetStyle() HostMapWidgetDefinitionStyle {
 	if o == nil || o.Style == nil {
@@ -310,6 +322,7 @@ func (o *HostMapWidgetDefinition) HasStyle() bool {
 func (o *HostMapWidgetDefinition) SetStyle(v HostMapWidgetDefinitionStyle) {
 	o.Style = &v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinition) GetTitle() string {
@@ -339,6 +352,7 @@ func (o *HostMapWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -366,6 +380,7 @@ func (o *HostMapWidgetDefinition) HasTitleAlign() bool {
 func (o *HostMapWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
+
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinition) GetTitleSize() string {
@@ -395,6 +410,7 @@ func (o *HostMapWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *HostMapWidgetDefinition) GetType() HostMapWidgetDefinitionType {
 	if o == nil {
@@ -417,6 +433,8 @@ func (o *HostMapWidgetDefinition) GetTypeOk() (*HostMapWidgetDefinitionType, boo
 func (o *HostMapWidgetDefinition) SetType(v HostMapWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o HostMapWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -469,19 +487,19 @@ func (o HostMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomLinks   []WidgetCustomLink               `json:"custom_links,omitempty"`
-		Group         []string                         `json:"group,omitempty"`
-		NoGroupHosts  *bool                            `json:"no_group_hosts,omitempty"`
-		NoMetricHosts *bool                            `json:"no_metric_hosts,omitempty"`
-		NodeType      *WidgetNodeType                  `json:"node_type,omitempty"`
-		Notes         *string                          `json:"notes,omitempty"`
-		Requests      *HostMapWidgetDefinitionRequests `json:"requests"`
-		Scope         []string                         `json:"scope,omitempty"`
-		Style         *HostMapWidgetDefinitionStyle    `json:"style,omitempty"`
-		Title         *string                          `json:"title,omitempty"`
-		TitleAlign    *WidgetTextAlign                 `json:"title_align,omitempty"`
-		TitleSize     *string                          `json:"title_size,omitempty"`
-		Type          *HostMapWidgetDefinitionType     `json:"type"`
+		CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
+		Group []string `json:"group,omitempty"`
+		NoGroupHosts *bool `json:"no_group_hosts,omitempty"`
+		NoMetricHosts *bool `json:"no_metric_hosts,omitempty"`
+		NodeType *WidgetNodeType `json:"node_type,omitempty"`
+		Notes *string `json:"notes,omitempty"`
+		Requests *HostMapWidgetDefinitionRequests `json:"requests"`
+		Scope []string `json:"scope,omitempty"`
+		Style *HostMapWidgetDefinitionStyle `json:"style,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type *HostMapWidgetDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -494,7 +512,7 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom_links", "group", "no_group_hosts", "no_metric_hosts", "node_type", "notes", "requests", "scope", "style", "title", "title_align", "title_size", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "custom_links", "group", "no_group_hosts", "no_metric_hosts", "node_type", "notes", "requests", "scope", "style", "title", "title_align", "title_size", "type",  })
 	} else {
 		return err
 	}
@@ -504,7 +522,7 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Group = all.Group
 	o.NoGroupHosts = all.NoGroupHosts
 	o.NoMetricHosts = all.NoMetricHosts
-	if all.NodeType != nil && !all.NodeType.IsValid() {
+	if all.NodeType != nil &&!all.NodeType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.NodeType = all.NodeType
@@ -515,12 +533,12 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Requests = *all.Requests
 	o.Scope = all.Scope
-	if all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Style = all.Style
 	o.Title = all.Title
-	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
+	if all.TitleAlign != nil &&!all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign

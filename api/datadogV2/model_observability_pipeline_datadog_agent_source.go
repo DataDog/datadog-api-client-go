@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineDatadogAgentSource The `datadog_agent` source collects logs from the Datadog Agent.
 type ObservabilityPipelineDatadogAgentSource struct {
@@ -19,9 +23,10 @@ type ObservabilityPipelineDatadogAgentSource struct {
 	// The source type. The value should always be `datadog_agent`.
 	Type ObservabilityPipelineDatadogAgentSourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineDatadogAgentSource instantiates a new ObservabilityPipelineDatadogAgentSource object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewObservabilityPipelineDatadogAgentSourceWithDefaults() *ObservabilityPipe
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineDatadogAgentSource) GetId() string {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *ObservabilityPipelineDatadogAgentSource) GetIdOk() (*string, bool) {
 func (o *ObservabilityPipelineDatadogAgentSource) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetTls returns the Tls field value if set, zero value otherwise.
 func (o *ObservabilityPipelineDatadogAgentSource) GetTls() ObservabilityPipelineTls {
@@ -95,6 +100,7 @@ func (o *ObservabilityPipelineDatadogAgentSource) SetTls(v ObservabilityPipeline
 	o.Tls = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineDatadogAgentSource) GetType() ObservabilityPipelineDatadogAgentSourceType {
 	if o == nil {
@@ -118,6 +124,8 @@ func (o *ObservabilityPipelineDatadogAgentSource) SetType(v ObservabilityPipelin
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineDatadogAgentSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -139,8 +147,8 @@ func (o ObservabilityPipelineDatadogAgentSource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineDatadogAgentSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                                      `json:"id"`
-		Tls  *ObservabilityPipelineTls                    `json:"tls,omitempty"`
+		Id *string `json:"id"`
+		Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
 		Type *ObservabilityPipelineDatadogAgentSourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -154,14 +162,14 @@ func (o *ObservabilityPipelineDatadogAgentSource) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "tls", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Id = *all.Id
-	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tls = all.Tls

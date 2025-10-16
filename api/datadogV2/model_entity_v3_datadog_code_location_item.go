@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityV3DatadogCodeLocationItem Code location item.
 type EntityV3DatadogCodeLocationItem struct {
@@ -17,6 +23,7 @@ type EntityV3DatadogCodeLocationItem struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityV3DatadogCodeLocationItem instantiates a new EntityV3DatadogCodeLocationItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -34,7 +41,6 @@ func NewEntityV3DatadogCodeLocationItemWithDefaults() *EntityV3DatadogCodeLocati
 	this := EntityV3DatadogCodeLocationItem{}
 	return &this
 }
-
 // GetPaths returns the Paths field value if set, zero value otherwise.
 func (o *EntityV3DatadogCodeLocationItem) GetPaths() []string {
 	if o == nil || o.Paths == nil {
@@ -62,6 +68,7 @@ func (o *EntityV3DatadogCodeLocationItem) HasPaths() bool {
 func (o *EntityV3DatadogCodeLocationItem) SetPaths(v []string) {
 	o.Paths = v
 }
+
 
 // GetRepositoryUrl returns the RepositoryUrl field value if set, zero value otherwise.
 func (o *EntityV3DatadogCodeLocationItem) GetRepositoryUrl() string {
@@ -91,6 +98,8 @@ func (o *EntityV3DatadogCodeLocationItem) SetRepositoryUrl(v string) {
 	o.RepositoryUrl = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3DatadogCodeLocationItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -109,8 +118,8 @@ func (o EntityV3DatadogCodeLocationItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityV3DatadogCodeLocationItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Paths         []string `json:"paths,omitempty"`
-		RepositoryUrl *string  `json:"repositoryURL,omitempty"`
+		Paths []string `json:"paths,omitempty"`
+		RepositoryUrl *string `json:"repositoryURL,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

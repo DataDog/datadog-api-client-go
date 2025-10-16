@@ -2,23 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetOrderBy What to order by.
 type WidgetOrderBy string
 
 // List of WidgetOrderBy.
 const (
-	WIDGETORDERBY_CHANGE  WidgetOrderBy = "change"
-	WIDGETORDERBY_NAME    WidgetOrderBy = "name"
+	WIDGETORDERBY_CHANGE WidgetOrderBy = "change"
+	WIDGETORDERBY_NAME WidgetOrderBy = "name"
 	WIDGETORDERBY_PRESENT WidgetOrderBy = "present"
-	WIDGETORDERBY_PAST    WidgetOrderBy = "past"
+	WIDGETORDERBY_PAST WidgetOrderBy = "past"
 )
 
 var allowedWidgetOrderByEnumValues = []WidgetOrderBy{

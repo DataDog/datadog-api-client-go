@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ChangeEventAttributesImpactedResourcesItem A uniquely identified resource.
 type ChangeEventAttributesImpactedResourcesItem struct {
@@ -15,9 +21,10 @@ type ChangeEventAttributesImpactedResourcesItem struct {
 	// The type of the impacted resource.
 	Type *ChangeEventAttributesImpactedResourcesItemType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewChangeEventAttributesImpactedResourcesItem instantiates a new ChangeEventAttributesImpactedResourcesItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewChangeEventAttributesImpactedResourcesItemWithDefaults() *ChangeEventAtt
 	this := ChangeEventAttributesImpactedResourcesItem{}
 	return &this
 }
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ChangeEventAttributesImpactedResourcesItem) GetName() string {
 	if o == nil || o.Name == nil {
@@ -63,6 +69,7 @@ func (o *ChangeEventAttributesImpactedResourcesItem) HasName() bool {
 func (o *ChangeEventAttributesImpactedResourcesItem) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ChangeEventAttributesImpactedResourcesItem) GetType() ChangeEventAttributesImpactedResourcesItemType {
@@ -92,6 +99,8 @@ func (o *ChangeEventAttributesImpactedResourcesItem) SetType(v ChangeEventAttrib
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ChangeEventAttributesImpactedResourcesItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o ChangeEventAttributesImpactedResourcesItem) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *ChangeEventAttributesImpactedResourcesItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name *string                                         `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 		Type *ChangeEventAttributesImpactedResourcesItemType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,14 +131,14 @@ func (o *ChangeEventAttributesImpactedResourcesItem) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Name = all.Name
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

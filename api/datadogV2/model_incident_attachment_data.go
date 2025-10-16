@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentAttachmentData A single incident attachment.
 type IncidentAttachmentData struct {
@@ -21,9 +25,10 @@ type IncidentAttachmentData struct {
 	// The incident attachment resource type.
 	Type IncidentAttachmentType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentAttachmentData instantiates a new IncidentAttachmentData object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewIncidentAttachmentDataWithDefaults() *IncidentAttachmentData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *IncidentAttachmentData) GetAttributes() IncidentAttachmentAttributes {
 	if o == nil {
@@ -70,6 +74,7 @@ func (o *IncidentAttachmentData) GetAttributesOk() (*IncidentAttachmentAttribute
 func (o *IncidentAttachmentData) SetAttributes(v IncidentAttachmentAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *IncidentAttachmentData) GetId() string {
@@ -94,6 +99,7 @@ func (o *IncidentAttachmentData) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetRelationships returns the Relationships field value.
 func (o *IncidentAttachmentData) GetRelationships() IncidentAttachmentRelationships {
 	if o == nil {
@@ -116,6 +122,7 @@ func (o *IncidentAttachmentData) GetRelationshipsOk() (*IncidentAttachmentRelati
 func (o *IncidentAttachmentData) SetRelationships(v IncidentAttachmentRelationships) {
 	o.Relationships = v
 }
+
 
 // GetType returns the Type field value.
 func (o *IncidentAttachmentData) GetType() IncidentAttachmentType {
@@ -140,6 +147,8 @@ func (o *IncidentAttachmentData) SetType(v IncidentAttachmentType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentAttachmentData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -160,10 +169,10 @@ func (o IncidentAttachmentData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentAttachmentData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *IncidentAttachmentAttributes    `json:"attributes"`
-		Id            *string                          `json:"id"`
+		Attributes *IncidentAttachmentAttributes `json:"attributes"`
+		Id *string `json:"id"`
 		Relationships *IncidentAttachmentRelationships `json:"relationships"`
-		Type          *IncidentAttachmentType          `json:"type"`
+		Type *IncidentAttachmentType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -182,7 +191,7 @@ func (o *IncidentAttachmentData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "relationships", "type",  })
 	} else {
 		return err
 	}

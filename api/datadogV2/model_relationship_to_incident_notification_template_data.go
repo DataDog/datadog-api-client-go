@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
-	"github.com/google/uuid"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RelationshipToIncidentNotificationTemplateData The notification template relationship data.
 type RelationshipToIncidentNotificationTemplateData struct {
@@ -19,9 +21,10 @@ type RelationshipToIncidentNotificationTemplateData struct {
 	// Notification templates resource type.
 	Type IncidentNotificationTemplateType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRelationshipToIncidentNotificationTemplateData instantiates a new RelationshipToIncidentNotificationTemplateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +44,6 @@ func NewRelationshipToIncidentNotificationTemplateDataWithDefaults() *Relationsh
 	this := RelationshipToIncidentNotificationTemplateData{}
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *RelationshipToIncidentNotificationTemplateData) GetId() uuid.UUID {
 	if o == nil {
@@ -64,6 +66,7 @@ func (o *RelationshipToIncidentNotificationTemplateData) GetIdOk() (*uuid.UUID, 
 func (o *RelationshipToIncidentNotificationTemplateData) SetId(v uuid.UUID) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *RelationshipToIncidentNotificationTemplateData) GetType() IncidentNotificationTemplateType {
@@ -88,6 +91,8 @@ func (o *RelationshipToIncidentNotificationTemplateData) SetType(v IncidentNotif
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationshipToIncidentNotificationTemplateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -106,7 +111,7 @@ func (o RelationshipToIncidentNotificationTemplateData) MarshalJSON() ([]byte, e
 // UnmarshalJSON deserializes the given payload.
 func (o *RelationshipToIncidentNotificationTemplateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *uuid.UUID                        `json:"id"`
+		Id *uuid.UUID `json:"id"`
 		Type *IncidentNotificationTemplateType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -120,7 +125,7 @@ func (o *RelationshipToIncidentNotificationTemplateData) UnmarshalJSON(bytes []b
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}

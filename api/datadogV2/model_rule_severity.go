@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RuleSeverity Severity of a security rule.
 type RuleSeverity string
@@ -16,11 +20,11 @@ type RuleSeverity string
 // List of RuleSeverity.
 const (
 	RULESEVERITY_CRITICAL RuleSeverity = "critical"
-	RULESEVERITY_HIGH     RuleSeverity = "high"
-	RULESEVERITY_MEDIUM   RuleSeverity = "medium"
-	RULESEVERITY_LOW      RuleSeverity = "low"
-	RULESEVERITY_UNKNOWN  RuleSeverity = "unknown"
-	RULESEVERITY_INFO     RuleSeverity = "info"
+	RULESEVERITY_HIGH RuleSeverity = "high"
+	RULESEVERITY_MEDIUM RuleSeverity = "medium"
+	RULESEVERITY_LOW RuleSeverity = "low"
+	RULESEVERITY_UNKNOWN RuleSeverity = "unknown"
+	RULESEVERITY_INFO RuleSeverity = "info"
 )
 
 var allowedRuleSeverityEnumValues = []RuleSeverity{

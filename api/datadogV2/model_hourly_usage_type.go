@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HourlyUsageType Usage type that is being measured.
 type HourlyUsageType string
 
 // List of HourlyUsageType.
 const (
-	HOURLYUSAGETYPE_APP_SEC_HOST_COUNT                       HourlyUsageType = "app_sec_host_count"
+	HOURLYUSAGETYPE_APP_SEC_HOST_COUNT HourlyUsageType = "app_sec_host_count"
 	HOURLYUSAGETYPE_OBSERVABILITY_PIPELINES_BYTES_PROCESSSED HourlyUsageType = "observability_pipelines_bytes_processed"
-	HOURLYUSAGETYPE_LAMBDA_TRACED_INVOCATIONS_COUNT          HourlyUsageType = "lambda_traced_invocations_count"
+	HOURLYUSAGETYPE_LAMBDA_TRACED_INVOCATIONS_COUNT HourlyUsageType = "lambda_traced_invocations_count"
 )
 
 var allowedHourlyUsageTypeEnumValues = []HourlyUsageType{

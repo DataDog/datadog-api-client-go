@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DataDeletionResponseItemAttributes Deletion attribute for data deletion response.
 type DataDeletionResponseItemAttributes struct {
@@ -39,9 +43,10 @@ type DataDeletionResponseItemAttributes struct {
 	// Update time of the deletion request.
 	UpdatedAt string `json:"updated_at"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDataDeletionResponseItemAttributes instantiates a new DataDeletionResponseItemAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -71,7 +76,6 @@ func NewDataDeletionResponseItemAttributesWithDefaults() *DataDeletionResponseIt
 	this := DataDeletionResponseItemAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value.
 func (o *DataDeletionResponseItemAttributes) GetCreatedAt() string {
 	if o == nil {
@@ -94,6 +98,7 @@ func (o *DataDeletionResponseItemAttributes) GetCreatedAtOk() (*string, bool) {
 func (o *DataDeletionResponseItemAttributes) SetCreatedAt(v string) {
 	o.CreatedAt = v
 }
+
 
 // GetCreatedBy returns the CreatedBy field value.
 func (o *DataDeletionResponseItemAttributes) GetCreatedBy() string {
@@ -118,6 +123,7 @@ func (o *DataDeletionResponseItemAttributes) SetCreatedBy(v string) {
 	o.CreatedBy = v
 }
 
+
 // GetFromTime returns the FromTime field value.
 func (o *DataDeletionResponseItemAttributes) GetFromTime() int64 {
 	if o == nil {
@@ -140,6 +146,7 @@ func (o *DataDeletionResponseItemAttributes) GetFromTimeOk() (*int64, bool) {
 func (o *DataDeletionResponseItemAttributes) SetFromTime(v int64) {
 	o.FromTime = v
 }
+
 
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
 func (o *DataDeletionResponseItemAttributes) GetIndexes() []string {
@@ -169,6 +176,7 @@ func (o *DataDeletionResponseItemAttributes) SetIndexes(v []string) {
 	o.Indexes = v
 }
 
+
 // GetIsCreated returns the IsCreated field value.
 func (o *DataDeletionResponseItemAttributes) GetIsCreated() bool {
 	if o == nil {
@@ -191,6 +199,7 @@ func (o *DataDeletionResponseItemAttributes) GetIsCreatedOk() (*bool, bool) {
 func (o *DataDeletionResponseItemAttributes) SetIsCreated(v bool) {
 	o.IsCreated = v
 }
+
 
 // GetOrgId returns the OrgId field value.
 func (o *DataDeletionResponseItemAttributes) GetOrgId() int64 {
@@ -215,6 +224,7 @@ func (o *DataDeletionResponseItemAttributes) SetOrgId(v int64) {
 	o.OrgId = v
 }
 
+
 // GetProduct returns the Product field value.
 func (o *DataDeletionResponseItemAttributes) GetProduct() string {
 	if o == nil {
@@ -237,6 +247,7 @@ func (o *DataDeletionResponseItemAttributes) GetProductOk() (*string, bool) {
 func (o *DataDeletionResponseItemAttributes) SetProduct(v string) {
 	o.Product = v
 }
+
 
 // GetQuery returns the Query field value.
 func (o *DataDeletionResponseItemAttributes) GetQuery() string {
@@ -261,6 +272,7 @@ func (o *DataDeletionResponseItemAttributes) SetQuery(v string) {
 	o.Query = v
 }
 
+
 // GetStartingAt returns the StartingAt field value.
 func (o *DataDeletionResponseItemAttributes) GetStartingAt() string {
 	if o == nil {
@@ -283,6 +295,7 @@ func (o *DataDeletionResponseItemAttributes) GetStartingAtOk() (*string, bool) {
 func (o *DataDeletionResponseItemAttributes) SetStartingAt(v string) {
 	o.StartingAt = v
 }
+
 
 // GetStatus returns the Status field value.
 func (o *DataDeletionResponseItemAttributes) GetStatus() string {
@@ -307,6 +320,7 @@ func (o *DataDeletionResponseItemAttributes) SetStatus(v string) {
 	o.Status = v
 }
 
+
 // GetToTime returns the ToTime field value.
 func (o *DataDeletionResponseItemAttributes) GetToTime() int64 {
 	if o == nil {
@@ -329,6 +343,7 @@ func (o *DataDeletionResponseItemAttributes) GetToTimeOk() (*int64, bool) {
 func (o *DataDeletionResponseItemAttributes) SetToTime(v int64) {
 	o.ToTime = v
 }
+
 
 // GetTotalUnrestricted returns the TotalUnrestricted field value.
 func (o *DataDeletionResponseItemAttributes) GetTotalUnrestricted() int64 {
@@ -353,6 +368,7 @@ func (o *DataDeletionResponseItemAttributes) SetTotalUnrestricted(v int64) {
 	o.TotalUnrestricted = v
 }
 
+
 // GetUpdatedAt returns the UpdatedAt field value.
 func (o *DataDeletionResponseItemAttributes) GetUpdatedAt() string {
 	if o == nil {
@@ -375,6 +391,8 @@ func (o *DataDeletionResponseItemAttributes) GetUpdatedAtOk() (*string, bool) {
 func (o *DataDeletionResponseItemAttributes) SetUpdatedAt(v string) {
 	o.UpdatedAt = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DataDeletionResponseItemAttributes) MarshalJSON() ([]byte, error) {
@@ -407,19 +425,19 @@ func (o DataDeletionResponseItemAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DataDeletionResponseItemAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt         *string  `json:"created_at"`
-		CreatedBy         *string  `json:"created_by"`
-		FromTime          *int64   `json:"from_time"`
-		Indexes           []string `json:"indexes,omitempty"`
-		IsCreated         *bool    `json:"is_created"`
-		OrgId             *int64   `json:"org_id"`
-		Product           *string  `json:"product"`
-		Query             *string  `json:"query"`
-		StartingAt        *string  `json:"starting_at"`
-		Status            *string  `json:"status"`
-		ToTime            *int64   `json:"to_time"`
-		TotalUnrestricted *int64   `json:"total_unrestricted"`
-		UpdatedAt         *string  `json:"updated_at"`
+		CreatedAt *string `json:"created_at"`
+		CreatedBy *string `json:"created_by"`
+		FromTime *int64 `json:"from_time"`
+		Indexes []string `json:"indexes,omitempty"`
+		IsCreated *bool `json:"is_created"`
+		OrgId *int64 `json:"org_id"`
+		Product *string `json:"product"`
+		Query *string `json:"query"`
+		StartingAt *string `json:"starting_at"`
+		Status *string `json:"status"`
+		ToTime *int64 `json:"to_time"`
+		TotalUnrestricted *int64 `json:"total_unrestricted"`
+		UpdatedAt *string `json:"updated_at"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -462,7 +480,7 @@ func (o *DataDeletionResponseItemAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "from_time", "indexes", "is_created", "org_id", "product", "query", "starting_at", "status", "to_time", "total_unrestricted", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_at", "created_by", "from_time", "indexes", "is_created", "org_id", "product", "query", "starting_at", "status", "to_time", "total_unrestricted", "updated_at",  })
 	} else {
 		return err
 	}

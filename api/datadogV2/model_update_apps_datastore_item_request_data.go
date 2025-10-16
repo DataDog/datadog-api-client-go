@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpdateAppsDatastoreItemRequestData Data wrapper containing the item identifier and the changes to apply during the update operation.
 type UpdateAppsDatastoreItemRequestData struct {
@@ -19,9 +23,10 @@ type UpdateAppsDatastoreItemRequestData struct {
 	// The resource type for datastore items.
 	Type UpdateAppsDatastoreItemRequestDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUpdateAppsDatastoreItemRequestData instantiates a new UpdateAppsDatastoreItemRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewUpdateAppsDatastoreItemRequestDataWithDefaults() *UpdateAppsDatastoreIte
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *UpdateAppsDatastoreItemRequestData) GetAttributes() UpdateAppsDatastoreItemRequestDataAttributes {
 	if o == nil || o.Attributes == nil {
@@ -70,6 +74,7 @@ func (o *UpdateAppsDatastoreItemRequestData) HasAttributes() bool {
 func (o *UpdateAppsDatastoreItemRequestData) SetAttributes(v UpdateAppsDatastoreItemRequestDataAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *UpdateAppsDatastoreItemRequestData) GetId() string {
@@ -99,6 +104,7 @@ func (o *UpdateAppsDatastoreItemRequestData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *UpdateAppsDatastoreItemRequestData) GetType() UpdateAppsDatastoreItemRequestDataType {
 	if o == nil {
@@ -121,6 +127,8 @@ func (o *UpdateAppsDatastoreItemRequestData) GetTypeOk() (*UpdateAppsDatastoreIt
 func (o *UpdateAppsDatastoreItemRequestData) SetType(v UpdateAppsDatastoreItemRequestDataType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateAppsDatastoreItemRequestData) MarshalJSON() ([]byte, error) {
@@ -146,8 +154,8 @@ func (o UpdateAppsDatastoreItemRequestData) MarshalJSON() ([]byte, error) {
 func (o *UpdateAppsDatastoreItemRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *UpdateAppsDatastoreItemRequestDataAttributes `json:"attributes,omitempty"`
-		Id         *string                                       `json:"id,omitempty"`
-		Type       *UpdateAppsDatastoreItemRequestDataType       `json:"type"`
+		Id *string `json:"id,omitempty"`
+		Type *UpdateAppsDatastoreItemRequestDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -157,13 +165,13 @@ func (o *UpdateAppsDatastoreItemRequestData) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

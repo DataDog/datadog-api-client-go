@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssueUpdateStateRequestData Update issue state request.
 type IssueUpdateStateRequestData struct {
@@ -19,9 +23,10 @@ type IssueUpdateStateRequestData struct {
 	// Type of the object.
 	Type IssueUpdateStateRequestDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssueUpdateStateRequestData instantiates a new IssueUpdateStateRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewIssueUpdateStateRequestDataWithDefaults() *IssueUpdateStateRequestData {
 	this := IssueUpdateStateRequestData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *IssueUpdateStateRequestData) GetAttributes() IssueUpdateStateRequestDataAttributes {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *IssueUpdateStateRequestData) GetAttributesOk() (*IssueUpdateStateReques
 func (o *IssueUpdateStateRequestData) SetAttributes(v IssueUpdateStateRequestDataAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *IssueUpdateStateRequestData) GetId() string {
@@ -89,6 +94,7 @@ func (o *IssueUpdateStateRequestData) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetType returns the Type field value.
 func (o *IssueUpdateStateRequestData) GetType() IssueUpdateStateRequestDataType {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *IssueUpdateStateRequestData) SetType(v IssueUpdateStateRequestDataType)
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IssueUpdateStateRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -132,8 +140,8 @@ func (o IssueUpdateStateRequestData) MarshalJSON() ([]byte, error) {
 func (o *IssueUpdateStateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *IssueUpdateStateRequestDataAttributes `json:"attributes"`
-		Id         *string                                `json:"id"`
-		Type       *IssueUpdateStateRequestDataType       `json:"type"`
+		Id *string `json:"id"`
+		Type *IssueUpdateStateRequestDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *IssueUpdateStateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

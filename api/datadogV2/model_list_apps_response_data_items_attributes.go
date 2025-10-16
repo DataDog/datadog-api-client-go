@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListAppsResponseDataItemsAttributes Basic information about the app such as name, description, and tags.
 type ListAppsResponseDataItemsAttributes struct {
@@ -21,9 +27,10 @@ type ListAppsResponseDataItemsAttributes struct {
 	// A list of tags for the app, which can be used to filter apps.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListAppsResponseDataItemsAttributes instantiates a new ListAppsResponseDataItemsAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewListAppsResponseDataItemsAttributesWithDefaults() *ListAppsResponseDataI
 	this := ListAppsResponseDataItemsAttributes{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *ListAppsResponseDataItemsAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -69,6 +75,7 @@ func (o *ListAppsResponseDataItemsAttributes) HasDescription() bool {
 func (o *ListAppsResponseDataItemsAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetFavorite returns the Favorite field value if set, zero value otherwise.
 func (o *ListAppsResponseDataItemsAttributes) GetFavorite() bool {
@@ -98,6 +105,7 @@ func (o *ListAppsResponseDataItemsAttributes) SetFavorite(v bool) {
 	o.Favorite = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ListAppsResponseDataItemsAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -125,6 +133,7 @@ func (o *ListAppsResponseDataItemsAttributes) HasName() bool {
 func (o *ListAppsResponseDataItemsAttributes) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetSelfService returns the SelfService field value if set, zero value otherwise.
 func (o *ListAppsResponseDataItemsAttributes) GetSelfService() bool {
@@ -154,6 +163,7 @@ func (o *ListAppsResponseDataItemsAttributes) SetSelfService(v bool) {
 	o.SelfService = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ListAppsResponseDataItemsAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -181,6 +191,8 @@ func (o *ListAppsResponseDataItemsAttributes) HasTags() bool {
 func (o *ListAppsResponseDataItemsAttributes) SetTags(v []string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ListAppsResponseDataItemsAttributes) MarshalJSON() ([]byte, error) {
@@ -213,18 +225,18 @@ func (o ListAppsResponseDataItemsAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListAppsResponseDataItemsAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description *string  `json:"description,omitempty"`
-		Favorite    *bool    `json:"favorite,omitempty"`
-		Name        *string  `json:"name,omitempty"`
-		SelfService *bool    `json:"selfService,omitempty"`
-		Tags        []string `json:"tags,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Favorite *bool `json:"favorite,omitempty"`
+		Name *string `json:"name,omitempty"`
+		SelfService *bool `json:"selfService,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "favorite", "name", "selfService", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "favorite", "name", "selfService", "tags",  })
 	} else {
 		return err
 	}

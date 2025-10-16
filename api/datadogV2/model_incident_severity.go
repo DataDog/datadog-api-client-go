@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentSeverity The incident severity.
 type IncidentSeverity string
@@ -16,12 +20,12 @@ type IncidentSeverity string
 // List of IncidentSeverity.
 const (
 	INCIDENTSEVERITY_UNKNOWN IncidentSeverity = "UNKNOWN"
-	INCIDENTSEVERITY_SEV_0   IncidentSeverity = "SEV-0"
-	INCIDENTSEVERITY_SEV_1   IncidentSeverity = "SEV-1"
-	INCIDENTSEVERITY_SEV_2   IncidentSeverity = "SEV-2"
-	INCIDENTSEVERITY_SEV_3   IncidentSeverity = "SEV-3"
-	INCIDENTSEVERITY_SEV_4   IncidentSeverity = "SEV-4"
-	INCIDENTSEVERITY_SEV_5   IncidentSeverity = "SEV-5"
+	INCIDENTSEVERITY_SEV_0 IncidentSeverity = "SEV-0"
+	INCIDENTSEVERITY_SEV_1 IncidentSeverity = "SEV-1"
+	INCIDENTSEVERITY_SEV_2 IncidentSeverity = "SEV-2"
+	INCIDENTSEVERITY_SEV_3 IncidentSeverity = "SEV-3"
+	INCIDENTSEVERITY_SEV_4 IncidentSeverity = "SEV-4"
+	INCIDENTSEVERITY_SEV_5 IncidentSeverity = "SEV-5"
 )
 
 var allowedIncidentSeverityEnumValues = []IncidentSeverity{

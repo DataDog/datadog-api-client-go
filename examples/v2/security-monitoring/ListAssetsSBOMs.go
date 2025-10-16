@@ -2,14 +2,15 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -18,7 +19,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.ListAssetsSBOMs", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.ListAssetsSBOMs(ctx, *datadogV2.NewListAssetsSBOMsOptionalParameters().WithFilterPackageName("pandas").WithFilterAssetType(datadogV2.ASSETTYPE_SERVICE))
+	resp, r, err := api.ListAssetsSBOMs(ctx, *datadogV2.NewListAssetsSBOMsOptionalParameters().WithFilterPackageName("pandas").WithFilterAssetType(datadogV2.ASSETTYPE_SERVICE), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListAssetsSBOMs`: %v\n", err)

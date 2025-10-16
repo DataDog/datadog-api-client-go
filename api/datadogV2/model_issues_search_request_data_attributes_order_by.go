@@ -2,23 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssuesSearchRequestDataAttributesOrderBy The attribute to sort the search results by.
 type IssuesSearchRequestDataAttributesOrderBy string
 
 // List of IssuesSearchRequestDataAttributesOrderBy.
 const (
-	ISSUESSEARCHREQUESTDATAATTRIBUTESORDERBY_TOTAL_COUNT       IssuesSearchRequestDataAttributesOrderBy = "TOTAL_COUNT"
-	ISSUESSEARCHREQUESTDATAATTRIBUTESORDERBY_FIRST_SEEN        IssuesSearchRequestDataAttributesOrderBy = "FIRST_SEEN"
+	ISSUESSEARCHREQUESTDATAATTRIBUTESORDERBY_TOTAL_COUNT IssuesSearchRequestDataAttributesOrderBy = "TOTAL_COUNT"
+	ISSUESSEARCHREQUESTDATAATTRIBUTESORDERBY_FIRST_SEEN IssuesSearchRequestDataAttributesOrderBy = "FIRST_SEEN"
 	ISSUESSEARCHREQUESTDATAATTRIBUTESORDERBY_IMPACTED_SESSIONS IssuesSearchRequestDataAttributesOrderBy = "IMPACTED_SESSIONS"
-	ISSUESSEARCHREQUESTDATAATTRIBUTESORDERBY_PRIORITY          IssuesSearchRequestDataAttributesOrderBy = "PRIORITY"
+	ISSUESSEARCHREQUESTDATAATTRIBUTESORDERBY_PRIORITY IssuesSearchRequestDataAttributesOrderBy = "PRIORITY"
 )
 
 var allowedIssuesSearchRequestDataAttributesOrderByEnumValues = []IssuesSearchRequestDataAttributesOrderBy{

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineGenerateMetricsProcessor The `generate_datadog_metrics` processor creates custom metrics from logs and sends them to Datadog.
 // Metrics can be counters, gauges, or distributions and optionally grouped by log fields.
@@ -24,9 +28,10 @@ type ObservabilityPipelineGenerateMetricsProcessor struct {
 	// The processor type. Always `generate_datadog_metrics`.
 	Type ObservabilityPipelineGenerateMetricsProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineGenerateMetricsProcessor instantiates a new ObservabilityPipelineGenerateMetricsProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +56,6 @@ func NewObservabilityPipelineGenerateMetricsProcessorWithDefaults() *Observabili
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) GetId() string {
 	if o == nil {
@@ -74,6 +78,7 @@ func (o *ObservabilityPipelineGenerateMetricsProcessor) GetIdOk() (*string, bool
 func (o *ObservabilityPipelineGenerateMetricsProcessor) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) GetInclude() string {
@@ -98,6 +103,7 @@ func (o *ObservabilityPipelineGenerateMetricsProcessor) SetInclude(v string) {
 	o.Include = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) GetInputs() []string {
 	if o == nil {
@@ -120,6 +126,7 @@ func (o *ObservabilityPipelineGenerateMetricsProcessor) GetInputsOk() (*[]string
 func (o *ObservabilityPipelineGenerateMetricsProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetMetrics returns the Metrics field value.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) GetMetrics() []ObservabilityPipelineGeneratedMetric {
@@ -144,6 +151,7 @@ func (o *ObservabilityPipelineGenerateMetricsProcessor) SetMetrics(v []Observabi
 	o.Metrics = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) GetType() ObservabilityPipelineGenerateMetricsProcessorType {
 	if o == nil {
@@ -167,6 +175,8 @@ func (o *ObservabilityPipelineGenerateMetricsProcessor) SetType(v ObservabilityP
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineGenerateMetricsProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -188,11 +198,11 @@ func (o ObservabilityPipelineGenerateMetricsProcessor) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id      *string                                            `json:"id"`
-		Include *string                                            `json:"include"`
-		Inputs  *[]string                                          `json:"inputs"`
-		Metrics *[]ObservabilityPipelineGeneratedMetric            `json:"metrics"`
-		Type    *ObservabilityPipelineGenerateMetricsProcessorType `json:"type"`
+		Id *string `json:"id"`
+		Include *string `json:"include"`
+		Inputs *[]string `json:"inputs"`
+		Metrics *[]ObservabilityPipelineGeneratedMetric `json:"metrics"`
+		Type *ObservabilityPipelineGenerateMetricsProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -214,7 +224,7 @@ func (o *ObservabilityPipelineGenerateMetricsProcessor) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "include", "inputs", "metrics", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "include", "inputs", "metrics", "type",  })
 	} else {
 		return err
 	}

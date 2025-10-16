@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScheduleCreateRequestDataAttributesLayersItems Describes a schedule layer, including rotation intervals, members, restrictions, and timeline settings.
 type ScheduleCreateRequestDataAttributesLayersItems struct {
@@ -28,9 +31,10 @@ type ScheduleCreateRequestDataAttributesLayersItems struct {
 	// The date/time when the rotation for this layer starts (in ISO 8601).
 	RotationStart time.Time `json:"rotation_start"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScheduleCreateRequestDataAttributesLayersItems instantiates a new ScheduleCreateRequestDataAttributesLayersItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +57,6 @@ func NewScheduleCreateRequestDataAttributesLayersItemsWithDefaults() *ScheduleCr
 	this := ScheduleCreateRequestDataAttributesLayersItems{}
 	return &this
 }
-
 // GetEffectiveDate returns the EffectiveDate field value.
 func (o *ScheduleCreateRequestDataAttributesLayersItems) GetEffectiveDate() time.Time {
 	if o == nil {
@@ -76,6 +79,7 @@ func (o *ScheduleCreateRequestDataAttributesLayersItems) GetEffectiveDateOk() (*
 func (o *ScheduleCreateRequestDataAttributesLayersItems) SetEffectiveDate(v time.Time) {
 	o.EffectiveDate = v
 }
+
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
 func (o *ScheduleCreateRequestDataAttributesLayersItems) GetEndDate() time.Time {
@@ -105,6 +109,7 @@ func (o *ScheduleCreateRequestDataAttributesLayersItems) SetEndDate(v time.Time)
 	o.EndDate = &v
 }
 
+
 // GetInterval returns the Interval field value.
 func (o *ScheduleCreateRequestDataAttributesLayersItems) GetInterval() LayerAttributesInterval {
 	if o == nil {
@@ -127,6 +132,7 @@ func (o *ScheduleCreateRequestDataAttributesLayersItems) GetIntervalOk() (*Layer
 func (o *ScheduleCreateRequestDataAttributesLayersItems) SetInterval(v LayerAttributesInterval) {
 	o.Interval = v
 }
+
 
 // GetMembers returns the Members field value.
 func (o *ScheduleCreateRequestDataAttributesLayersItems) GetMembers() []ScheduleRequestDataAttributesLayersItemsMembersItems {
@@ -151,6 +157,7 @@ func (o *ScheduleCreateRequestDataAttributesLayersItems) SetMembers(v []Schedule
 	o.Members = v
 }
 
+
 // GetName returns the Name field value.
 func (o *ScheduleCreateRequestDataAttributesLayersItems) GetName() string {
 	if o == nil {
@@ -173,6 +180,7 @@ func (o *ScheduleCreateRequestDataAttributesLayersItems) GetNameOk() (*string, b
 func (o *ScheduleCreateRequestDataAttributesLayersItems) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetRestrictions returns the Restrictions field value if set, zero value otherwise.
 func (o *ScheduleCreateRequestDataAttributesLayersItems) GetRestrictions() []TimeRestriction {
@@ -202,6 +210,7 @@ func (o *ScheduleCreateRequestDataAttributesLayersItems) SetRestrictions(v []Tim
 	o.Restrictions = v
 }
 
+
 // GetRotationStart returns the RotationStart field value.
 func (o *ScheduleCreateRequestDataAttributesLayersItems) GetRotationStart() time.Time {
 	if o == nil {
@@ -224,6 +233,8 @@ func (o *ScheduleCreateRequestDataAttributesLayersItems) GetRotationStartOk() (*
 func (o *ScheduleCreateRequestDataAttributesLayersItems) SetRotationStart(v time.Time) {
 	o.RotationStart = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ScheduleCreateRequestDataAttributesLayersItems) MarshalJSON() ([]byte, error) {
@@ -264,13 +275,13 @@ func (o ScheduleCreateRequestDataAttributesLayersItems) MarshalJSON() ([]byte, e
 // UnmarshalJSON deserializes the given payload.
 func (o *ScheduleCreateRequestDataAttributesLayersItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EffectiveDate *time.Time                                              `json:"effective_date"`
-		EndDate       *time.Time                                              `json:"end_date,omitempty"`
-		Interval      *LayerAttributesInterval                                `json:"interval"`
-		Members       *[]ScheduleRequestDataAttributesLayersItemsMembersItems `json:"members"`
-		Name          *string                                                 `json:"name"`
-		Restrictions  []TimeRestriction                                       `json:"restrictions,omitempty"`
-		RotationStart *time.Time                                              `json:"rotation_start"`
+		EffectiveDate *time.Time `json:"effective_date"`
+		EndDate *time.Time `json:"end_date,omitempty"`
+		Interval *LayerAttributesInterval `json:"interval"`
+		Members *[]ScheduleRequestDataAttributesLayersItemsMembersItems `json:"members"`
+		Name *string `json:"name"`
+		Restrictions []TimeRestriction `json:"restrictions,omitempty"`
+		RotationStart *time.Time `json:"rotation_start"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -292,7 +303,7 @@ func (o *ScheduleCreateRequestDataAttributesLayersItems) UnmarshalJSON(bytes []b
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"effective_date", "end_date", "interval", "members", "name", "restrictions", "rotation_start"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "effective_date", "end_date", "interval", "members", "name", "restrictions", "rotation_start",  })
 	} else {
 		return err
 	}

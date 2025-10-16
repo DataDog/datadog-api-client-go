@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSAuthConfigKeys AWS Authentication config to integrate your account using an access key pair.
 type AWSAuthConfigKeys struct {
@@ -17,9 +21,10 @@ type AWSAuthConfigKeys struct {
 	// AWS Secret Access Key.
 	SecretAccessKey *string `json:"secret_access_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSAuthConfigKeys instantiates a new AWSAuthConfigKeys object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewAWSAuthConfigKeysWithDefaults() *AWSAuthConfigKeys {
 	this := AWSAuthConfigKeys{}
 	return &this
 }
-
 // GetAccessKeyId returns the AccessKeyId field value.
 func (o *AWSAuthConfigKeys) GetAccessKeyId() string {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *AWSAuthConfigKeys) GetAccessKeyIdOk() (*string, bool) {
 func (o *AWSAuthConfigKeys) SetAccessKeyId(v string) {
 	o.AccessKeyId = v
 }
+
 
 // GetSecretAccessKey returns the SecretAccessKey field value if set, zero value otherwise.
 func (o *AWSAuthConfigKeys) GetSecretAccessKey() string {
@@ -90,6 +95,8 @@ func (o *AWSAuthConfigKeys) SetSecretAccessKey(v string) {
 	o.SecretAccessKey = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSAuthConfigKeys) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,7 +117,7 @@ func (o AWSAuthConfigKeys) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSAuthConfigKeys) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccessKeyId     *string `json:"access_key_id"`
+		AccessKeyId *string `json:"access_key_id"`
 		SecretAccessKey *string `json:"secret_access_key,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -121,7 +128,7 @@ func (o *AWSAuthConfigKeys) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"access_key_id", "secret_access_key"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "access_key_id", "secret_access_key",  })
 	} else {
 		return err
 	}

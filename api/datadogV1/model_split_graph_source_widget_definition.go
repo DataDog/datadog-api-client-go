@@ -2,23 +2,29 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SplitGraphSourceWidgetDefinition - The original widget we are splitting on.
 type SplitGraphSourceWidgetDefinition struct {
-	ChangeWidgetDefinition      *ChangeWidgetDefinition
-	GeomapWidgetDefinition      *GeomapWidgetDefinition
-	QueryValueWidgetDefinition  *QueryValueWidgetDefinition
+	ChangeWidgetDefinition *ChangeWidgetDefinition
+	GeomapWidgetDefinition *GeomapWidgetDefinition
+	QueryValueWidgetDefinition *QueryValueWidgetDefinition
 	ScatterPlotWidgetDefinition *ScatterPlotWidgetDefinition
-	SunburstWidgetDefinition    *SunburstWidgetDefinition
-	TableWidgetDefinition       *TableWidgetDefinition
-	TimeseriesWidgetDefinition  *TimeseriesWidgetDefinition
-	ToplistWidgetDefinition     *ToplistWidgetDefinition
-	TreeMapWidgetDefinition     *TreeMapWidgetDefinition
+	SunburstWidgetDefinition *SunburstWidgetDefinition
+	TableWidgetDefinition *TableWidgetDefinition
+	TimeseriesWidgetDefinition *TimeseriesWidgetDefinition
+	ToplistWidgetDefinition *ToplistWidgetDefinition
+	TreeMapWidgetDefinition *TreeMapWidgetDefinition
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -248,37 +254,46 @@ func (obj SplitGraphSourceWidgetDefinition) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.ChangeWidgetDefinition)
 	}
 
+
 	if obj.GeomapWidgetDefinition != nil {
 		return datadog.Marshal(&obj.GeomapWidgetDefinition)
 	}
+
 
 	if obj.QueryValueWidgetDefinition != nil {
 		return datadog.Marshal(&obj.QueryValueWidgetDefinition)
 	}
 
+
 	if obj.ScatterPlotWidgetDefinition != nil {
 		return datadog.Marshal(&obj.ScatterPlotWidgetDefinition)
 	}
+
 
 	if obj.SunburstWidgetDefinition != nil {
 		return datadog.Marshal(&obj.SunburstWidgetDefinition)
 	}
 
+
 	if obj.TableWidgetDefinition != nil {
 		return datadog.Marshal(&obj.TableWidgetDefinition)
 	}
+
 
 	if obj.TimeseriesWidgetDefinition != nil {
 		return datadog.Marshal(&obj.TimeseriesWidgetDefinition)
 	}
 
+
 	if obj.ToplistWidgetDefinition != nil {
 		return datadog.Marshal(&obj.ToplistWidgetDefinition)
 	}
 
+
 	if obj.TreeMapWidgetDefinition != nil {
 		return datadog.Marshal(&obj.TreeMapWidgetDefinition)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -287,42 +302,51 @@ func (obj SplitGraphSourceWidgetDefinition) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SplitGraphSourceWidgetDefinition) GetActualInstance() interface{} {
+func (obj *SplitGraphSourceWidgetDefinition) GetActualInstance() (interface{}) {
 	if obj.ChangeWidgetDefinition != nil {
 		return obj.ChangeWidgetDefinition
 	}
+
 
 	if obj.GeomapWidgetDefinition != nil {
 		return obj.GeomapWidgetDefinition
 	}
 
+
 	if obj.QueryValueWidgetDefinition != nil {
 		return obj.QueryValueWidgetDefinition
 	}
+
 
 	if obj.ScatterPlotWidgetDefinition != nil {
 		return obj.ScatterPlotWidgetDefinition
 	}
 
+
 	if obj.SunburstWidgetDefinition != nil {
 		return obj.SunburstWidgetDefinition
 	}
+
 
 	if obj.TableWidgetDefinition != nil {
 		return obj.TableWidgetDefinition
 	}
 
+
 	if obj.TimeseriesWidgetDefinition != nil {
 		return obj.TimeseriesWidgetDefinition
 	}
+
 
 	if obj.ToplistWidgetDefinition != nil {
 		return obj.ToplistWidgetDefinition
 	}
 
+
 	if obj.TreeMapWidgetDefinition != nil {
 		return obj.TreeMapWidgetDefinition
 	}
+
 
 	// all schemas are nil
 	return nil

@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UserResponse A Datadog User.
 type UserResponse struct {
 	// Create, edit, and disable users.
 	User *User `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUserResponse instantiates a new UserResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewUserResponseWithDefaults() *UserResponse {
 	this := UserResponse{}
 	return &this
 }
-
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *UserResponse) GetUser() User {
 	if o == nil || o.User == nil {
@@ -62,6 +68,8 @@ func (o *UserResponse) SetUser(v User) {
 	o.User = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UserResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *UserResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"user"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "user",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.User != nil && all.User.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.User != nil && all.User.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.User = all.User

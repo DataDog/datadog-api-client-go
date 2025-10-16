@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamPermissionSettingUpdateAttributes Team permission setting update attributes
 type TeamPermissionSettingUpdateAttributes struct {
 	// What type of user is allowed to perform the specified action
 	Value *TeamPermissionSettingValue `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTeamPermissionSettingUpdateAttributes instantiates a new TeamPermissionSettingUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewTeamPermissionSettingUpdateAttributesWithDefaults() *TeamPermissionSetti
 	this := TeamPermissionSettingUpdateAttributes{}
 	return &this
 }
-
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *TeamPermissionSettingUpdateAttributes) GetValue() TeamPermissionSettingValue {
 	if o == nil || o.Value == nil {
@@ -62,6 +68,8 @@ func (o *TeamPermissionSettingUpdateAttributes) SetValue(v TeamPermissionSetting
 	o.Value = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamPermissionSettingUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *TeamPermissionSettingUpdateAttributes) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "value",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Value != nil && !all.Value.IsValid() {
+	if all.Value != nil &&!all.Value.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Value = all.Value

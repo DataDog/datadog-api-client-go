@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpdateWorkflowRequest A request object for updating an existing workflow.
 type UpdateWorkflowRequest struct {
 	// Data related to the workflow being updated.
 	Data WorkflowDataUpdate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUpdateWorkflowRequest instantiates a new UpdateWorkflowRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewUpdateWorkflowRequestWithDefaults() *UpdateWorkflowRequest {
 	this := UpdateWorkflowRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *UpdateWorkflowRequest) GetData() WorkflowDataUpdate {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *UpdateWorkflowRequest) GetDataOk() (*WorkflowDataUpdate, bool) {
 func (o *UpdateWorkflowRequest) SetData(v WorkflowDataUpdate) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateWorkflowRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *UpdateWorkflowRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

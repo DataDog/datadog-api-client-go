@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityV3DatadogPerformance Performance stats association.
 type EntityV3DatadogPerformance struct {
@@ -15,6 +21,7 @@ type EntityV3DatadogPerformance struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityV3DatadogPerformance instantiates a new EntityV3DatadogPerformance object.
 // This constructor will assign default values to properties that have it defined,
@@ -32,7 +39,6 @@ func NewEntityV3DatadogPerformanceWithDefaults() *EntityV3DatadogPerformance {
 	this := EntityV3DatadogPerformance{}
 	return &this
 }
-
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *EntityV3DatadogPerformance) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -60,6 +66,8 @@ func (o *EntityV3DatadogPerformance) HasTags() bool {
 func (o *EntityV3DatadogPerformance) SetTags(v []string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3DatadogPerformance) MarshalJSON() ([]byte, error) {

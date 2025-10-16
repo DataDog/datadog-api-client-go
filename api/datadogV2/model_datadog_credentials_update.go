@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DatadogCredentialsUpdate - The definition of the `DatadogCredentialsUpdate` object.
 type DatadogCredentialsUpdate struct {
@@ -56,6 +62,7 @@ func (obj DatadogCredentialsUpdate) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.DatadogAPIKeyUpdate)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj DatadogCredentialsUpdate) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *DatadogCredentialsUpdate) GetActualInstance() interface{} {
+func (obj *DatadogCredentialsUpdate) GetActualInstance() (interface{}) {
 	if obj.DatadogAPIKeyUpdate != nil {
 		return obj.DatadogAPIKeyUpdate
 	}
+
 
 	// all schemas are nil
 	return nil

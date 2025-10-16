@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineEnrichmentTableFileSchemaItems Describes a single column and its type in an enrichment table schema.
 type ObservabilityPipelineEnrichmentTableFileSchemaItems struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineEnrichmentTableFileSchemaItems struct {
 	// Declares allowed data types for enrichment table columns.
 	Type ObservabilityPipelineEnrichmentTableFileSchemaItemsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineEnrichmentTableFileSchemaItems instantiates a new ObservabilityPipelineEnrichmentTableFileSchemaItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineEnrichmentTableFileSchemaItemsWithDefaults() *Obser
 	this := ObservabilityPipelineEnrichmentTableFileSchemaItems{}
 	return &this
 }
-
 // GetColumn returns the Column field value.
 func (o *ObservabilityPipelineEnrichmentTableFileSchemaItems) GetColumn() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineEnrichmentTableFileSchemaItems) GetColumnOk() (*st
 func (o *ObservabilityPipelineEnrichmentTableFileSchemaItems) SetColumn(v string) {
 	o.Column = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineEnrichmentTableFileSchemaItems) GetType() ObservabilityPipelineEnrichmentTableFileSchemaItemsType {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineEnrichmentTableFileSchemaItems) SetType(v Observab
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineEnrichmentTableFileSchemaItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o ObservabilityPipelineEnrichmentTableFileSchemaItems) MarshalJSON() ([]by
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineEnrichmentTableFileSchemaItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Column *string                                                  `json:"column"`
-		Type   *ObservabilityPipelineEnrichmentTableFileSchemaItemsType `json:"type"`
+		Column *string `json:"column"`
+		Type *ObservabilityPipelineEnrichmentTableFileSchemaItemsType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineEnrichmentTableFileSchemaItems) UnmarshalJSON(byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"column", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "column", "type",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssueCaseInsight Insight of the case.
 type IssueCaseInsight struct {
@@ -17,9 +23,10 @@ type IssueCaseInsight struct {
 	// Type of the insight.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssueCaseInsight instantiates a new IssueCaseInsight object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewIssueCaseInsightWithDefaults() *IssueCaseInsight {
 	this := IssueCaseInsight{}
 	return &this
 }
-
 // GetRef returns the Ref field value if set, zero value otherwise.
 func (o *IssueCaseInsight) GetRef() string {
 	if o == nil || o.Ref == nil {
@@ -65,6 +71,7 @@ func (o *IssueCaseInsight) HasRef() bool {
 func (o *IssueCaseInsight) SetRef(v string) {
 	o.Ref = &v
 }
+
 
 // GetResourceId returns the ResourceId field value if set, zero value otherwise.
 func (o *IssueCaseInsight) GetResourceId() string {
@@ -94,6 +101,7 @@ func (o *IssueCaseInsight) SetResourceId(v string) {
 	o.ResourceId = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *IssueCaseInsight) GetType() string {
 	if o == nil || o.Type == nil {
@@ -122,6 +130,8 @@ func (o *IssueCaseInsight) SetType(v string) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IssueCaseInsight) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o IssueCaseInsight) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IssueCaseInsight) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Ref        *string `json:"ref,omitempty"`
+		Ref *string `json:"ref,omitempty"`
 		ResourceId *string `json:"resource_id,omitempty"`
-		Type       *string `json:"type,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"ref", "resource_id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "ref", "resource_id", "type",  })
 	} else {
 		return err
 	}

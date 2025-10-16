@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricsAndMetricTagConfigurationsResponse Response object that includes metrics and metric tag configurations.
 type MetricsAndMetricTagConfigurationsResponse struct {
@@ -17,9 +23,10 @@ type MetricsAndMetricTagConfigurationsResponse struct {
 	// Response metadata object.
 	Meta *MetricPaginationMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricsAndMetricTagConfigurationsResponse instantiates a new MetricsAndMetricTagConfigurationsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewMetricsAndMetricTagConfigurationsResponseWithDefaults() *MetricsAndMetri
 	this := MetricsAndMetricTagConfigurationsResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *MetricsAndMetricTagConfigurationsResponse) GetData() []MetricsAndMetricTagConfigurations {
 	if o == nil || o.Data == nil {
@@ -65,6 +71,7 @@ func (o *MetricsAndMetricTagConfigurationsResponse) HasData() bool {
 func (o *MetricsAndMetricTagConfigurationsResponse) SetData(v []MetricsAndMetricTagConfigurations) {
 	o.Data = v
 }
+
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *MetricsAndMetricTagConfigurationsResponse) GetLinks() MetricsListResponseLinks {
@@ -94,6 +101,7 @@ func (o *MetricsAndMetricTagConfigurationsResponse) SetLinks(v MetricsListRespon
 	o.Links = &v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *MetricsAndMetricTagConfigurationsResponse) GetMeta() MetricPaginationMeta {
 	if o == nil || o.Meta == nil {
@@ -122,6 +130,8 @@ func (o *MetricsAndMetricTagConfigurationsResponse) SetMeta(v MetricPaginationMe
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricsAndMetricTagConfigurationsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,27 +157,27 @@ func (o MetricsAndMetricTagConfigurationsResponse) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricsAndMetricTagConfigurationsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data  []MetricsAndMetricTagConfigurations `json:"data,omitempty"`
-		Links *MetricsListResponseLinks           `json:"links,omitempty"`
-		Meta  *MetricPaginationMeta               `json:"meta,omitempty"`
+		Data []MetricsAndMetricTagConfigurations `json:"data,omitempty"`
+		Links *MetricsListResponseLinks `json:"links,omitempty"`
+		Meta *MetricPaginationMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "links", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "links", "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = all.Data
-	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Links = all.Links
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

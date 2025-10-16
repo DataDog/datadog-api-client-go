@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FormulaAndFunctionCloudCostQueryDefinition A formula and functions Cloud Cost query.
 type FormulaAndFunctionCloudCostQueryDefinition struct {
@@ -23,9 +27,10 @@ type FormulaAndFunctionCloudCostQueryDefinition struct {
 	// Query for Cloud Cost data.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFormulaAndFunctionCloudCostQueryDefinition instantiates a new FormulaAndFunctionCloudCostQueryDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewFormulaAndFunctionCloudCostQueryDefinitionWithDefaults() *FormulaAndFunc
 	this := FormulaAndFunctionCloudCostQueryDefinition{}
 	return &this
 }
-
 // GetAggregator returns the Aggregator field value if set, zero value otherwise.
 func (o *FormulaAndFunctionCloudCostQueryDefinition) GetAggregator() WidgetAggregator {
 	if o == nil || o.Aggregator == nil {
@@ -74,6 +78,7 @@ func (o *FormulaAndFunctionCloudCostQueryDefinition) HasAggregator() bool {
 func (o *FormulaAndFunctionCloudCostQueryDefinition) SetAggregator(v WidgetAggregator) {
 	o.Aggregator = &v
 }
+
 
 // GetCrossOrgUuids returns the CrossOrgUuids field value if set, zero value otherwise.
 func (o *FormulaAndFunctionCloudCostQueryDefinition) GetCrossOrgUuids() []string {
@@ -103,6 +108,7 @@ func (o *FormulaAndFunctionCloudCostQueryDefinition) SetCrossOrgUuids(v []string
 	o.CrossOrgUuids = v
 }
 
+
 // GetDataSource returns the DataSource field value.
 func (o *FormulaAndFunctionCloudCostQueryDefinition) GetDataSource() FormulaAndFunctionCloudCostDataSource {
 	if o == nil {
@@ -125,6 +131,7 @@ func (o *FormulaAndFunctionCloudCostQueryDefinition) GetDataSourceOk() (*Formula
 func (o *FormulaAndFunctionCloudCostQueryDefinition) SetDataSource(v FormulaAndFunctionCloudCostDataSource) {
 	o.DataSource = v
 }
+
 
 // GetName returns the Name field value.
 func (o *FormulaAndFunctionCloudCostQueryDefinition) GetName() string {
@@ -149,6 +156,7 @@ func (o *FormulaAndFunctionCloudCostQueryDefinition) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetQuery returns the Query field value.
 func (o *FormulaAndFunctionCloudCostQueryDefinition) GetQuery() string {
 	if o == nil {
@@ -171,6 +179,8 @@ func (o *FormulaAndFunctionCloudCostQueryDefinition) GetQueryOk() (*string, bool
 func (o *FormulaAndFunctionCloudCostQueryDefinition) SetQuery(v string) {
 	o.Query = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FormulaAndFunctionCloudCostQueryDefinition) MarshalJSON() ([]byte, error) {
@@ -197,11 +207,11 @@ func (o FormulaAndFunctionCloudCostQueryDefinition) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionCloudCostQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Aggregator    *WidgetAggregator                      `json:"aggregator,omitempty"`
-		CrossOrgUuids []string                               `json:"cross_org_uuids,omitempty"`
-		DataSource    *FormulaAndFunctionCloudCostDataSource `json:"data_source"`
-		Name          *string                                `json:"name"`
-		Query         *string                                `json:"query"`
+		Aggregator *WidgetAggregator `json:"aggregator,omitempty"`
+		CrossOrgUuids []string `json:"cross_org_uuids,omitempty"`
+		DataSource *FormulaAndFunctionCloudCostDataSource `json:"data_source"`
+		Name *string `json:"name"`
+		Query *string `json:"query"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -217,13 +227,13 @@ func (o *FormulaAndFunctionCloudCostQueryDefinition) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregator", "cross_org_uuids", "data_source", "name", "query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregator", "cross_org_uuids", "data_source", "name", "query",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Aggregator != nil && !all.Aggregator.IsValid() {
+	if all.Aggregator != nil &&!all.Aggregator.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Aggregator = all.Aggregator

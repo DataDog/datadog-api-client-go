@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // VirusTotalAPIKey The definition of the `VirusTotalAPIKey` object.
 type VirusTotalAPIKey struct {
@@ -17,9 +21,10 @@ type VirusTotalAPIKey struct {
 	// The definition of the `VirusTotalAPIKey` object.
 	Type VirusTotalAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewVirusTotalAPIKey instantiates a new VirusTotalAPIKey object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewVirusTotalAPIKeyWithDefaults() *VirusTotalAPIKey {
 	this := VirusTotalAPIKey{}
 	return &this
 }
-
 // GetApiKey returns the ApiKey field value.
 func (o *VirusTotalAPIKey) GetApiKey() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *VirusTotalAPIKey) GetApiKeyOk() (*string, bool) {
 func (o *VirusTotalAPIKey) SetApiKey(v string) {
 	o.ApiKey = v
 }
+
 
 // GetType returns the Type field value.
 func (o *VirusTotalAPIKey) GetType() VirusTotalAPIKeyType {
@@ -86,6 +91,8 @@ func (o *VirusTotalAPIKey) SetType(v VirusTotalAPIKeyType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o VirusTotalAPIKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o VirusTotalAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *VirusTotalAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string               `json:"api_key"`
-		Type   *VirusTotalAPIKeyType `json:"type"`
+		ApiKey *string `json:"api_key"`
+		Type *VirusTotalAPIKeyType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *VirusTotalAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_key", "type",  })
 	} else {
 		return err
 	}

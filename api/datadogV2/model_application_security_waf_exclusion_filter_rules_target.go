@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafExclusionFilterRulesTarget Target WAF rules based either on an identifier or tags.
 type ApplicationSecurityWafExclusionFilterRulesTarget struct {
@@ -15,9 +21,10 @@ type ApplicationSecurityWafExclusionFilterRulesTarget struct {
 	// Target multiple WAF rules based on their tags.
 	Tags *ApplicationSecurityWafExclusionFilterRulesTargetTags `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafExclusionFilterRulesTarget instantiates a new ApplicationSecurityWafExclusionFilterRulesTarget object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewApplicationSecurityWafExclusionFilterRulesTargetWithDefaults() *Applicat
 	this := ApplicationSecurityWafExclusionFilterRulesTarget{}
 	return &this
 }
-
 // GetRuleId returns the RuleId field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafExclusionFilterRulesTarget) GetRuleId() string {
 	if o == nil || o.RuleId == nil {
@@ -63,6 +69,7 @@ func (o *ApplicationSecurityWafExclusionFilterRulesTarget) HasRuleId() bool {
 func (o *ApplicationSecurityWafExclusionFilterRulesTarget) SetRuleId(v string) {
 	o.RuleId = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafExclusionFilterRulesTarget) GetTags() ApplicationSecurityWafExclusionFilterRulesTargetTags {
@@ -92,6 +99,8 @@ func (o *ApplicationSecurityWafExclusionFilterRulesTarget) SetTags(v Application
 	o.Tags = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafExclusionFilterRulesTarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,22 +123,22 @@ func (o ApplicationSecurityWafExclusionFilterRulesTarget) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationSecurityWafExclusionFilterRulesTarget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		RuleId *string                                               `json:"rule_id,omitempty"`
-		Tags   *ApplicationSecurityWafExclusionFilterRulesTargetTags `json:"tags,omitempty"`
+		RuleId *string `json:"rule_id,omitempty"`
+		Tags *ApplicationSecurityWafExclusionFilterRulesTargetTags `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"rule_id", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "rule_id", "tags",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.RuleId = all.RuleId
-	if all.Tags != nil && all.Tags.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tags != nil && all.Tags.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tags = all.Tags

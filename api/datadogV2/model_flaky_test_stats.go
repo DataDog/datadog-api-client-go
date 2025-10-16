@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FlakyTestStats Test statistics for the flaky test.
 type FlakyTestStats struct {
 	// The failure rate percentage of the test for the past 7 days. This is the number of failed test runs divided by the total number of test runs (excluding skipped test runs).
 	FailureRatePct datadog.NullableFloat64 `json:"failure_rate_pct,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFlakyTestStats instantiates a new FlakyTestStats object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewFlakyTestStatsWithDefaults() *FlakyTestStats {
 	this := FlakyTestStats{}
 	return &this
 }
-
 // GetFailureRatePct returns the FailureRatePct field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FlakyTestStats) GetFailureRatePct() float64 {
 	if o == nil || o.FailureRatePct.Get() == nil {
@@ -47,7 +53,7 @@ func (o *FlakyTestStats) GetFailureRatePct() float64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *FlakyTestStats) GetFailureRatePctOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.FailureRatePct.Get(), o.FailureRatePct.IsSet()
@@ -62,7 +68,6 @@ func (o *FlakyTestStats) HasFailureRatePct() bool {
 func (o *FlakyTestStats) SetFailureRatePct(v float64) {
 	o.FailureRatePct.Set(&v)
 }
-
 // SetFailureRatePctNil sets the value for FailureRatePct to be an explicit nil.
 func (o *FlakyTestStats) SetFailureRatePctNil() {
 	o.FailureRatePct.Set(nil)
@@ -72,6 +77,8 @@ func (o *FlakyTestStats) SetFailureRatePctNil() {
 func (o *FlakyTestStats) UnsetFailureRatePct() {
 	o.FailureRatePct.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FlakyTestStats) MarshalJSON() ([]byte, error) {
@@ -99,7 +106,7 @@ func (o *FlakyTestStats) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"failure_rate_pct"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "failure_rate_pct",  })
 	} else {
 		return err
 	}

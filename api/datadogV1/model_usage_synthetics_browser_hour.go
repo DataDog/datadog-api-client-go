@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageSyntheticsBrowserHour Number of Synthetics Browser tests run for each hour for a given organization.
 type UsageSyntheticsBrowserHour struct {
@@ -21,9 +25,10 @@ type UsageSyntheticsBrowserHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageSyntheticsBrowserHour instantiates a new UsageSyntheticsBrowserHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewUsageSyntheticsBrowserHourWithDefaults() *UsageSyntheticsBrowserHour {
 	this := UsageSyntheticsBrowserHour{}
 	return &this
 }
-
 // GetBrowserCheckCallsCount returns the BrowserCheckCallsCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageSyntheticsBrowserHour) GetBrowserCheckCallsCount() int64 {
 	if o == nil || o.BrowserCheckCallsCount.Get() == nil {
@@ -55,7 +59,7 @@ func (o *UsageSyntheticsBrowserHour) GetBrowserCheckCallsCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageSyntheticsBrowserHour) GetBrowserCheckCallsCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.BrowserCheckCallsCount.Get(), o.BrowserCheckCallsCount.IsSet()
@@ -70,7 +74,6 @@ func (o *UsageSyntheticsBrowserHour) HasBrowserCheckCallsCount() bool {
 func (o *UsageSyntheticsBrowserHour) SetBrowserCheckCallsCount(v int64) {
 	o.BrowserCheckCallsCount.Set(&v)
 }
-
 // SetBrowserCheckCallsCountNil sets the value for BrowserCheckCallsCount to be an explicit nil.
 func (o *UsageSyntheticsBrowserHour) SetBrowserCheckCallsCountNil() {
 	o.BrowserCheckCallsCount.Set(nil)
@@ -80,6 +83,7 @@ func (o *UsageSyntheticsBrowserHour) SetBrowserCheckCallsCountNil() {
 func (o *UsageSyntheticsBrowserHour) UnsetBrowserCheckCallsCount() {
 	o.BrowserCheckCallsCount.Unset()
 }
+
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageSyntheticsBrowserHour) GetHour() time.Time {
@@ -109,6 +113,7 @@ func (o *UsageSyntheticsBrowserHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageSyntheticsBrowserHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -137,6 +142,7 @@ func (o *UsageSyntheticsBrowserHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageSyntheticsBrowserHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -164,6 +170,8 @@ func (o *UsageSyntheticsBrowserHour) HasPublicId() bool {
 func (o *UsageSyntheticsBrowserHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageSyntheticsBrowserHour) MarshalJSON() ([]byte, error) {
@@ -198,16 +206,16 @@ func (o UsageSyntheticsBrowserHour) MarshalJSON() ([]byte, error) {
 func (o *UsageSyntheticsBrowserHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		BrowserCheckCallsCount datadog.NullableInt64 `json:"browser_check_calls_count,omitempty"`
-		Hour                   *time.Time            `json:"hour,omitempty"`
-		OrgName                *string               `json:"org_name,omitempty"`
-		PublicId               *string               `json:"public_id,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"browser_check_calls_count", "hour", "org_name", "public_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "browser_check_calls_count", "hour", "org_name", "public_id",  })
 	} else {
 		return err
 	}

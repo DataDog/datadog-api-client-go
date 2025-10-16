@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageLambdaResponse Response containing the number of Lambda functions and sum of the invocations of all Lambda functions
 // for each hour for a given organization.
@@ -14,9 +20,10 @@ type UsageLambdaResponse struct {
 	// Get hourly usage for Lambda.
 	Usage []UsageLambdaHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageLambdaResponse instantiates a new UsageLambdaResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -34,7 +41,6 @@ func NewUsageLambdaResponseWithDefaults() *UsageLambdaResponse {
 	this := UsageLambdaResponse{}
 	return &this
 }
-
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageLambdaResponse) GetUsage() []UsageLambdaHour {
 	if o == nil || o.Usage == nil {
@@ -63,6 +69,8 @@ func (o *UsageLambdaResponse) SetUsage(v []UsageLambdaHour) {
 	o.Usage = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageLambdaResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -89,7 +97,7 @@ func (o *UsageLambdaResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"usage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "usage",  })
 	} else {
 		return err
 	}

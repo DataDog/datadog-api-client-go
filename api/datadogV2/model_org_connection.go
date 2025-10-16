@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
-	"github.com/google/uuid"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OrgConnection An org connection.
 type OrgConnection struct {
@@ -23,9 +25,10 @@ type OrgConnection struct {
 	// Org connection type.
 	Type OrgConnectionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOrgConnection instantiates a new OrgConnection object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +50,6 @@ func NewOrgConnectionWithDefaults() *OrgConnection {
 	this := OrgConnection{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *OrgConnection) GetAttributes() OrgConnectionAttributes {
 	if o == nil {
@@ -70,6 +72,7 @@ func (o *OrgConnection) GetAttributesOk() (*OrgConnectionAttributes, bool) {
 func (o *OrgConnection) SetAttributes(v OrgConnectionAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *OrgConnection) GetId() uuid.UUID {
@@ -94,6 +97,7 @@ func (o *OrgConnection) SetId(v uuid.UUID) {
 	o.Id = v
 }
 
+
 // GetRelationships returns the Relationships field value.
 func (o *OrgConnection) GetRelationships() OrgConnectionRelationships {
 	if o == nil {
@@ -116,6 +120,7 @@ func (o *OrgConnection) GetRelationshipsOk() (*OrgConnectionRelationships, bool)
 func (o *OrgConnection) SetRelationships(v OrgConnectionRelationships) {
 	o.Relationships = v
 }
+
 
 // GetType returns the Type field value.
 func (o *OrgConnection) GetType() OrgConnectionType {
@@ -140,6 +145,8 @@ func (o *OrgConnection) SetType(v OrgConnectionType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OrgConnection) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -160,10 +167,10 @@ func (o OrgConnection) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OrgConnection) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *OrgConnectionAttributes    `json:"attributes"`
-		Id            *uuid.UUID                  `json:"id"`
+		Attributes *OrgConnectionAttributes `json:"attributes"`
+		Id *uuid.UUID `json:"id"`
 		Relationships *OrgConnectionRelationships `json:"relationships"`
-		Type          *OrgConnectionType          `json:"type"`
+		Type *OrgConnectionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -182,7 +189,7 @@ func (o *OrgConnection) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "relationships", "type",  })
 	} else {
 		return err
 	}

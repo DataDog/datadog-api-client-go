@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamRoutingRulesDataRelationshipsRulesDataItems Defines a relationship item to link a routing rule by its ID and type.
 type TeamRoutingRulesDataRelationshipsRulesDataItems struct {
@@ -17,9 +21,10 @@ type TeamRoutingRulesDataRelationshipsRulesDataItems struct {
 	// Indicates that the resource is of type 'team_routing_rules'.
 	Type TeamRoutingRulesDataRelationshipsRulesDataItemsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTeamRoutingRulesDataRelationshipsRulesDataItems instantiates a new TeamRoutingRulesDataRelationshipsRulesDataItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewTeamRoutingRulesDataRelationshipsRulesDataItemsWithDefaults() *TeamRouti
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *TeamRoutingRulesDataRelationshipsRulesDataItems) GetId() string {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *TeamRoutingRulesDataRelationshipsRulesDataItems) GetIdOk() (*string, bo
 func (o *TeamRoutingRulesDataRelationshipsRulesDataItems) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *TeamRoutingRulesDataRelationshipsRulesDataItems) GetType() TeamRoutingRulesDataRelationshipsRulesDataItemsType {
@@ -88,6 +93,8 @@ func (o *TeamRoutingRulesDataRelationshipsRulesDataItems) SetType(v TeamRoutingR
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamRoutingRulesDataRelationshipsRulesDataItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -106,7 +113,7 @@ func (o TeamRoutingRulesDataRelationshipsRulesDataItems) MarshalJSON() ([]byte, 
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamRoutingRulesDataRelationshipsRulesDataItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                                              `json:"id"`
+		Id *string `json:"id"`
 		Type *TeamRoutingRulesDataRelationshipsRulesDataItemsType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -120,7 +127,7 @@ func (o *TeamRoutingRulesDataRelationshipsRulesDataItems) UnmarshalJSON(bytes []
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}

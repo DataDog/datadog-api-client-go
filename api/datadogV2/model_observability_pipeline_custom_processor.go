@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineCustomProcessor The `custom_processor` processor transforms events using [Vector Remap Language (VRL)](https://vector.dev/docs/reference/vrl/) scripts with advanced filtering capabilities.
 type ObservabilityPipelineCustomProcessor struct {
@@ -23,9 +27,10 @@ type ObservabilityPipelineCustomProcessor struct {
 	// The processor type. The value should always be `custom_processor`.
 	Type ObservabilityPipelineCustomProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineCustomProcessor instantiates a new ObservabilityPipelineCustomProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewObservabilityPipelineCustomProcessorWithDefaults() *ObservabilityPipelin
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineCustomProcessor) GetId() string {
 	if o == nil {
@@ -75,6 +79,7 @@ func (o *ObservabilityPipelineCustomProcessor) GetIdOk() (*string, bool) {
 func (o *ObservabilityPipelineCustomProcessor) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineCustomProcessor) GetInclude() string {
@@ -99,6 +104,7 @@ func (o *ObservabilityPipelineCustomProcessor) SetInclude(v string) {
 	o.Include = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineCustomProcessor) GetInputs() []string {
 	if o == nil {
@@ -121,6 +127,7 @@ func (o *ObservabilityPipelineCustomProcessor) GetInputsOk() (*[]string, bool) {
 func (o *ObservabilityPipelineCustomProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetRemaps returns the Remaps field value.
 func (o *ObservabilityPipelineCustomProcessor) GetRemaps() []ObservabilityPipelineCustomProcessorRemap {
@@ -145,6 +152,7 @@ func (o *ObservabilityPipelineCustomProcessor) SetRemaps(v []ObservabilityPipeli
 	o.Remaps = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineCustomProcessor) GetType() ObservabilityPipelineCustomProcessorType {
 	if o == nil {
@@ -168,6 +176,8 @@ func (o *ObservabilityPipelineCustomProcessor) SetType(v ObservabilityPipelineCu
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineCustomProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -189,11 +199,11 @@ func (o ObservabilityPipelineCustomProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineCustomProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id      *string                                      `json:"id"`
-		Include *string                                      `json:"include"`
-		Inputs  *[]string                                    `json:"inputs"`
-		Remaps  *[]ObservabilityPipelineCustomProcessorRemap `json:"remaps"`
-		Type    *ObservabilityPipelineCustomProcessorType    `json:"type"`
+		Id *string `json:"id"`
+		Include *string `json:"include"`
+		Inputs *[]string `json:"inputs"`
+		Remaps *[]ObservabilityPipelineCustomProcessorRemap `json:"remaps"`
+		Type *ObservabilityPipelineCustomProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -215,7 +225,7 @@ func (o *ObservabilityPipelineCustomProcessor) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "include", "inputs", "remaps", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "include", "inputs", "remaps", "type",  })
 	} else {
 		return err
 	}

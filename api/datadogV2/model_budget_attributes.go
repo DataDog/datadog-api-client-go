@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // BudgetAttributes The attributes of a budget.
 type BudgetAttributes struct {
@@ -33,9 +39,10 @@ type BudgetAttributes struct {
 	// The id of the user that created the budget.
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewBudgetAttributes instantiates a new BudgetAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +60,6 @@ func NewBudgetAttributesWithDefaults() *BudgetAttributes {
 	this := BudgetAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *BudgetAttributes) GetCreatedAt() int64 {
 	if o == nil || o.CreatedAt == nil {
@@ -81,6 +87,7 @@ func (o *BudgetAttributes) HasCreatedAt() bool {
 func (o *BudgetAttributes) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
+
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *BudgetAttributes) GetCreatedBy() string {
@@ -110,6 +117,7 @@ func (o *BudgetAttributes) SetCreatedBy(v string) {
 	o.CreatedBy = &v
 }
 
+
 // GetEndMonth returns the EndMonth field value if set, zero value otherwise.
 func (o *BudgetAttributes) GetEndMonth() int64 {
 	if o == nil || o.EndMonth == nil {
@@ -137,6 +145,7 @@ func (o *BudgetAttributes) HasEndMonth() bool {
 func (o *BudgetAttributes) SetEndMonth(v int64) {
 	o.EndMonth = &v
 }
+
 
 // GetEntries returns the Entries field value if set, zero value otherwise.
 func (o *BudgetAttributes) GetEntries() []BudgetEntry {
@@ -166,6 +175,7 @@ func (o *BudgetAttributes) SetEntries(v []BudgetEntry) {
 	o.Entries = v
 }
 
+
 // GetMetricsQuery returns the MetricsQuery field value if set, zero value otherwise.
 func (o *BudgetAttributes) GetMetricsQuery() string {
 	if o == nil || o.MetricsQuery == nil {
@@ -193,6 +203,7 @@ func (o *BudgetAttributes) HasMetricsQuery() bool {
 func (o *BudgetAttributes) SetMetricsQuery(v string) {
 	o.MetricsQuery = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *BudgetAttributes) GetName() string {
@@ -222,6 +233,7 @@ func (o *BudgetAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *BudgetAttributes) GetOrgId() int64 {
 	if o == nil || o.OrgId == nil {
@@ -249,6 +261,7 @@ func (o *BudgetAttributes) HasOrgId() bool {
 func (o *BudgetAttributes) SetOrgId(v int64) {
 	o.OrgId = &v
 }
+
 
 // GetStartMonth returns the StartMonth field value if set, zero value otherwise.
 func (o *BudgetAttributes) GetStartMonth() int64 {
@@ -278,6 +291,7 @@ func (o *BudgetAttributes) SetStartMonth(v int64) {
 	o.StartMonth = &v
 }
 
+
 // GetTotalAmount returns the TotalAmount field value if set, zero value otherwise.
 func (o *BudgetAttributes) GetTotalAmount() float64 {
 	if o == nil || o.TotalAmount == nil {
@@ -305,6 +319,7 @@ func (o *BudgetAttributes) HasTotalAmount() bool {
 func (o *BudgetAttributes) SetTotalAmount(v float64) {
 	o.TotalAmount = &v
 }
+
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *BudgetAttributes) GetUpdatedAt() int64 {
@@ -334,6 +349,7 @@ func (o *BudgetAttributes) SetUpdatedAt(v int64) {
 	o.UpdatedAt = &v
 }
 
+
 // GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise.
 func (o *BudgetAttributes) GetUpdatedBy() string {
 	if o == nil || o.UpdatedBy == nil {
@@ -361,6 +377,8 @@ func (o *BudgetAttributes) HasUpdatedBy() bool {
 func (o *BudgetAttributes) SetUpdatedBy(v string) {
 	o.UpdatedBy = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o BudgetAttributes) MarshalJSON() ([]byte, error) {
@@ -411,24 +429,24 @@ func (o BudgetAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *BudgetAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt    *int64        `json:"created_at,omitempty"`
-		CreatedBy    *string       `json:"created_by,omitempty"`
-		EndMonth     *int64        `json:"end_month,omitempty"`
-		Entries      []BudgetEntry `json:"entries,omitempty"`
-		MetricsQuery *string       `json:"metrics_query,omitempty"`
-		Name         *string       `json:"name,omitempty"`
-		OrgId        *int64        `json:"org_id,omitempty"`
-		StartMonth   *int64        `json:"start_month,omitempty"`
-		TotalAmount  *float64      `json:"total_amount,omitempty"`
-		UpdatedAt    *int64        `json:"updated_at,omitempty"`
-		UpdatedBy    *string       `json:"updated_by,omitempty"`
+		CreatedAt *int64 `json:"created_at,omitempty"`
+		CreatedBy *string `json:"created_by,omitempty"`
+		EndMonth *int64 `json:"end_month,omitempty"`
+		Entries []BudgetEntry `json:"entries,omitempty"`
+		MetricsQuery *string `json:"metrics_query,omitempty"`
+		Name *string `json:"name,omitempty"`
+		OrgId *int64 `json:"org_id,omitempty"`
+		StartMonth *int64 `json:"start_month,omitempty"`
+		TotalAmount *float64 `json:"total_amount,omitempty"`
+		UpdatedAt *int64 `json:"updated_at,omitempty"`
+		UpdatedBy *string `json:"updated_by,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "end_month", "entries", "metrics_query", "name", "org_id", "start_month", "total_amount", "updated_at", "updated_by"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_at", "created_by", "end_month", "entries", "metrics_query", "name", "org_id", "start_month", "total_amount", "updated_at", "updated_by",  })
 	} else {
 		return err
 	}

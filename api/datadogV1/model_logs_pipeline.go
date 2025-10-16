@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsPipeline Pipelines and processors operate on incoming logs,
 // parsing and transforming them into structured attributes for easier querying.
@@ -35,9 +39,10 @@ type LogsPipeline struct {
 	// Type of pipeline.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsPipeline instantiates a new LogsPipeline object.
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +61,6 @@ func NewLogsPipelineWithDefaults() *LogsPipeline {
 	this := LogsPipeline{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *LogsPipeline) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -84,6 +88,7 @@ func (o *LogsPipeline) HasDescription() bool {
 func (o *LogsPipeline) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *LogsPipeline) GetFilter() LogsFilter {
@@ -113,6 +118,7 @@ func (o *LogsPipeline) SetFilter(v LogsFilter) {
 	o.Filter = &v
 }
 
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *LogsPipeline) GetId() string {
 	if o == nil || o.Id == nil {
@@ -140,6 +146,7 @@ func (o *LogsPipeline) HasId() bool {
 func (o *LogsPipeline) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsPipeline) GetIsEnabled() bool {
@@ -169,6 +176,7 @@ func (o *LogsPipeline) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
+
 // GetIsReadOnly returns the IsReadOnly field value if set, zero value otherwise.
 func (o *LogsPipeline) GetIsReadOnly() bool {
 	if o == nil || o.IsReadOnly == nil {
@@ -197,6 +205,7 @@ func (o *LogsPipeline) SetIsReadOnly(v bool) {
 	o.IsReadOnly = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *LogsPipeline) GetName() string {
 	if o == nil {
@@ -219,6 +228,7 @@ func (o *LogsPipeline) GetNameOk() (*string, bool) {
 func (o *LogsPipeline) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetProcessors returns the Processors field value if set, zero value otherwise.
 func (o *LogsPipeline) GetProcessors() []LogsProcessor {
@@ -248,6 +258,7 @@ func (o *LogsPipeline) SetProcessors(v []LogsProcessor) {
 	o.Processors = v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *LogsPipeline) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -276,6 +287,7 @@ func (o *LogsPipeline) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *LogsPipeline) GetType() string {
 	if o == nil || o.Type == nil {
@@ -303,6 +315,8 @@ func (o *LogsPipeline) HasType() bool {
 func (o *LogsPipeline) SetType(v string) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsPipeline) MarshalJSON() ([]byte, error) {
@@ -345,15 +359,15 @@ func (o LogsPipeline) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description *string         `json:"description,omitempty"`
-		Filter      *LogsFilter     `json:"filter,omitempty"`
-		Id          *string         `json:"id,omitempty"`
-		IsEnabled   *bool           `json:"is_enabled,omitempty"`
-		IsReadOnly  *bool           `json:"is_read_only,omitempty"`
-		Name        *string         `json:"name"`
-		Processors  []LogsProcessor `json:"processors,omitempty"`
-		Tags        []string        `json:"tags,omitempty"`
-		Type        *string         `json:"type,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Filter *LogsFilter `json:"filter,omitempty"`
+		Id *string `json:"id,omitempty"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		IsReadOnly *bool `json:"is_read_only,omitempty"`
+		Name *string `json:"name"`
+		Processors []LogsProcessor `json:"processors,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -363,14 +377,14 @@ func (o *LogsPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "filter", "id", "is_enabled", "is_read_only", "name", "processors", "tags", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "filter", "id", "is_enabled", "is_read_only", "name", "processors", "tags", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Description = all.Description
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter

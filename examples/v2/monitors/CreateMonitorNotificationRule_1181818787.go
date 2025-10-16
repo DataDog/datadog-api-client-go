@@ -2,47 +2,48 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV2.MonitorNotificationRuleCreateRequest{
-		Data: datadogV2.MonitorNotificationRuleCreateRequestData{
-			Attributes: datadogV2.MonitorNotificationRuleAttributes{
-				Filter: &datadogV2.MonitorNotificationRuleFilter{
-					MonitorNotificationRuleFilterTags: &datadogV2.MonitorNotificationRuleFilterTags{
-						Tags: []string{
-							"test:example-monitor",
-						},
-					}},
-				Name: "test rule",
-				ConditionalRecipients: &datadogV2.MonitorNotificationRuleConditionalRecipients{
-					Conditions: []datadogV2.MonitorNotificationRuleCondition{
-						{
-							Scope: "transition_type:is_alert",
-							Recipients: []string{
-								"slack-test-channel",
-								"jira-test",
-							},
-						},
-					},
-				},
-			},
-			Type: datadogV2.MONITORNOTIFICATIONRULERESOURCETYPE_MONITOR_NOTIFICATION_RULE.Ptr(),
-		},
-	}
+Data: datadogV2.MonitorNotificationRuleCreateRequestData{
+Attributes: datadogV2.MonitorNotificationRuleAttributes{
+Filter: &datadogV2.MonitorNotificationRuleFilter{
+MonitorNotificationRuleFilterTags: &datadogV2.MonitorNotificationRuleFilterTags{
+Tags: []string{
+"test:example-monitor",
+},
+}},
+Name: "test rule",
+ConditionalRecipients: &datadogV2.MonitorNotificationRuleConditionalRecipients{
+Conditions: []datadogV2.MonitorNotificationRuleCondition{
+{
+Scope: "transition_type:is_alert",
+Recipients: []string{
+"slack-test-channel",
+"jira-test",
+},
+},
+},
+},
+},
+Type: datadogV2.MONITORNOTIFICATIONRULERESOURCETYPE_MONITOR_NOTIFICATION_RULE.Ptr(),
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMonitorsApi(apiClient)
-	resp, r, err := api.CreateMonitorNotificationRule(ctx, body)
+	resp, r, err := api.CreateMonitorNotificationRule(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.CreateMonitorNotificationRule`: %v\n", err)

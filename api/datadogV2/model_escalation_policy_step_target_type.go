@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EscalationPolicyStepTargetType Specifies the type of escalation target (example `users`, `schedules`, or `teams`).
 type EscalationPolicyStepTargetType string
 
 // List of EscalationPolicyStepTargetType.
 const (
-	ESCALATIONPOLICYSTEPTARGETTYPE_USERS     EscalationPolicyStepTargetType = "users"
+	ESCALATIONPOLICYSTEPTARGETTYPE_USERS EscalationPolicyStepTargetType = "users"
 	ESCALATIONPOLICYSTEPTARGETTYPE_SCHEDULES EscalationPolicyStepTargetType = "schedules"
-	ESCALATIONPOLICYSTEPTARGETTYPE_TEAMS     EscalationPolicyStepTargetType = "teams"
+	ESCALATIONPOLICYSTEPTARGETTYPE_TEAMS EscalationPolicyStepTargetType = "teams"
 )
 
 var allowedEscalationPolicyStepTargetTypeEnumValues = []EscalationPolicyStepTargetType{

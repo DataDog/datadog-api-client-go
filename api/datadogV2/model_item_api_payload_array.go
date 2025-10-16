@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ItemApiPayloadArray A collection of datastore items with pagination and schema metadata.
 type ItemApiPayloadArray struct {
@@ -17,9 +21,10 @@ type ItemApiPayloadArray struct {
 	// Additional metadata about a collection of datastore items, including pagination and schema information.
 	Meta *ItemApiPayloadMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewItemApiPayloadArray instantiates a new ItemApiPayloadArray object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewItemApiPayloadArrayWithDefaults() *ItemApiPayloadArray {
 	this := ItemApiPayloadArray{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *ItemApiPayloadArray) GetData() []ItemApiPayloadData {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *ItemApiPayloadArray) GetDataOk() (*[]ItemApiPayloadData, bool) {
 func (o *ItemApiPayloadArray) SetData(v []ItemApiPayloadData) {
 	o.Data = v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *ItemApiPayloadArray) GetMeta() ItemApiPayloadMeta {
@@ -90,6 +95,8 @@ func (o *ItemApiPayloadArray) SetMeta(v ItemApiPayloadMeta) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ItemApiPayloadArray) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o ItemApiPayloadArray) MarshalJSON() ([]byte, error) {
 func (o *ItemApiPayloadArray) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data *[]ItemApiPayloadData `json:"data"`
-		Meta *ItemApiPayloadMeta   `json:"meta,omitempty"`
+		Meta *ItemApiPayloadMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,14 +128,14 @@ func (o *ItemApiPayloadArray) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = *all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

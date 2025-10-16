@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ZoomConfigurationReference A reference to a Zoom configuration resource.
 type ZoomConfigurationReference struct {
 	// The Zoom configuration relationship data object.
 	Data NullableZoomConfigurationReferenceData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewZoomConfigurationReference instantiates a new ZoomConfigurationReference object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewZoomConfigurationReferenceWithDefaults() *ZoomConfigurationReference {
 	this := ZoomConfigurationReference{}
 	return &this
 }
-
 // GetData returns the Data field value.
 // If the value is explicit nil, the zero value for ZoomConfigurationReferenceData will be returned.
 func (o *ZoomConfigurationReference) GetData() ZoomConfigurationReferenceData {
@@ -61,6 +65,8 @@ func (o *ZoomConfigurationReference) GetDataOk() (*ZoomConfigurationReferenceDat
 func (o *ZoomConfigurationReference) SetData(v ZoomConfigurationReferenceData) {
 	o.Data.Set(&v)
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ZoomConfigurationReference) MarshalJSON() ([]byte, error) {
@@ -89,7 +95,7 @@ func (o *ZoomConfigurationReference) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}
@@ -101,7 +107,6 @@ func (o *ZoomConfigurationReference) UnmarshalJSON(bytes []byte) (err error) {
 
 	return nil
 }
-
 // NullableZoomConfigurationReference handles when a null is used for ZoomConfigurationReference.
 type NullableZoomConfigurationReference struct {
 	value *ZoomConfigurationReference

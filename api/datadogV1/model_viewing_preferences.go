@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ViewingPreferences The viewing preferences for a shared dashboard.
 type ViewingPreferences struct {
@@ -15,9 +21,10 @@ type ViewingPreferences struct {
 	// The theme of the shared dashboard view. "system" follows your system's default viewing theme.
 	Theme *ViewingPreferencesTheme `json:"theme,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewViewingPreferences instantiates a new ViewingPreferences object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewViewingPreferencesWithDefaults() *ViewingPreferences {
 	this := ViewingPreferences{}
 	return &this
 }
-
 // GetHighDensity returns the HighDensity field value if set, zero value otherwise.
 func (o *ViewingPreferences) GetHighDensity() bool {
 	if o == nil || o.HighDensity == nil {
@@ -63,6 +69,7 @@ func (o *ViewingPreferences) HasHighDensity() bool {
 func (o *ViewingPreferences) SetHighDensity(v bool) {
 	o.HighDensity = &v
 }
+
 
 // GetTheme returns the Theme field value if set, zero value otherwise.
 func (o *ViewingPreferences) GetTheme() ViewingPreferencesTheme {
@@ -92,6 +99,8 @@ func (o *ViewingPreferences) SetTheme(v ViewingPreferencesTheme) {
 	o.Theme = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ViewingPreferences) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,22 +123,22 @@ func (o ViewingPreferences) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ViewingPreferences) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		HighDensity *bool                    `json:"high_density,omitempty"`
-		Theme       *ViewingPreferencesTheme `json:"theme,omitempty"`
+		HighDensity *bool `json:"high_density,omitempty"`
+		Theme *ViewingPreferencesTheme `json:"theme,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"high_density", "theme"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "high_density", "theme",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.HighDensity = all.HighDensity
-	if all.Theme != nil && !all.Theme.IsValid() {
+	if all.Theme != nil &&!all.Theme.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Theme = all.Theme

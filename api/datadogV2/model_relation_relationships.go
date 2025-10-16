@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RelationRelationships Relation relationships.
 type RelationRelationships struct {
@@ -15,9 +21,10 @@ type RelationRelationships struct {
 	// Relation to entity.
 	ToEntity *RelationToEntity `json:"toEntity,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRelationRelationships instantiates a new RelationRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewRelationRelationshipsWithDefaults() *RelationRelationships {
 	this := RelationRelationships{}
 	return &this
 }
-
 // GetFromEntity returns the FromEntity field value if set, zero value otherwise.
 func (o *RelationRelationships) GetFromEntity() RelationToEntity {
 	if o == nil || o.FromEntity == nil {
@@ -63,6 +69,7 @@ func (o *RelationRelationships) HasFromEntity() bool {
 func (o *RelationRelationships) SetFromEntity(v RelationToEntity) {
 	o.FromEntity = &v
 }
+
 
 // GetToEntity returns the ToEntity field value if set, zero value otherwise.
 func (o *RelationRelationships) GetToEntity() RelationToEntity {
@@ -92,6 +99,8 @@ func (o *RelationRelationships) SetToEntity(v RelationToEntity) {
 	o.ToEntity = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,24 +124,24 @@ func (o RelationRelationships) MarshalJSON() ([]byte, error) {
 func (o *RelationRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		FromEntity *RelationToEntity `json:"fromEntity,omitempty"`
-		ToEntity   *RelationToEntity `json:"toEntity,omitempty"`
+		ToEntity *RelationToEntity `json:"toEntity,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"fromEntity", "toEntity"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "fromEntity", "toEntity",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.FromEntity != nil && all.FromEntity.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.FromEntity != nil && all.FromEntity.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.FromEntity = all.FromEntity
-	if all.ToEntity != nil && all.ToEntity.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ToEntity != nil && all.ToEntity.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ToEntity = all.ToEntity

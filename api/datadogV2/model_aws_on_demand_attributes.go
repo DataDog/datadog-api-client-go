@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AwsOnDemandAttributes Attributes for the AWS on demand task.
 type AwsOnDemandAttributes struct {
@@ -22,9 +28,10 @@ type AwsOnDemandAttributes struct {
 	// ABORTED: the scan has been aborted after a period of time due to technical reasons, such as resource not found, insufficient permissions, or the absence of a configured scanner.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAwsOnDemandAttributes instantiates a new AwsOnDemandAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +49,6 @@ func NewAwsOnDemandAttributesWithDefaults() *AwsOnDemandAttributes {
 	this := AwsOnDemandAttributes{}
 	return &this
 }
-
 // GetArn returns the Arn field value if set, zero value otherwise.
 func (o *AwsOnDemandAttributes) GetArn() string {
 	if o == nil || o.Arn == nil {
@@ -70,6 +76,7 @@ func (o *AwsOnDemandAttributes) HasArn() bool {
 func (o *AwsOnDemandAttributes) SetArn(v string) {
 	o.Arn = &v
 }
+
 
 // GetAssignedAt returns the AssignedAt field value if set, zero value otherwise.
 func (o *AwsOnDemandAttributes) GetAssignedAt() string {
@@ -99,6 +106,7 @@ func (o *AwsOnDemandAttributes) SetAssignedAt(v string) {
 	o.AssignedAt = &v
 }
 
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *AwsOnDemandAttributes) GetCreatedAt() string {
 	if o == nil || o.CreatedAt == nil {
@@ -126,6 +134,7 @@ func (o *AwsOnDemandAttributes) HasCreatedAt() bool {
 func (o *AwsOnDemandAttributes) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *AwsOnDemandAttributes) GetStatus() string {
@@ -155,6 +164,8 @@ func (o *AwsOnDemandAttributes) SetStatus(v string) {
 	o.Status = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AwsOnDemandAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -183,17 +194,17 @@ func (o AwsOnDemandAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AwsOnDemandAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Arn        *string `json:"arn,omitempty"`
+		Arn *string `json:"arn,omitempty"`
 		AssignedAt *string `json:"assigned_at,omitempty"`
-		CreatedAt  *string `json:"created_at,omitempty"`
-		Status     *string `json:"status,omitempty"`
+		CreatedAt *string `json:"created_at,omitempty"`
+		Status *string `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"arn", "assigned_at", "created_at", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "arn", "assigned_at", "created_at", "status",  })
 	} else {
 		return err
 	}

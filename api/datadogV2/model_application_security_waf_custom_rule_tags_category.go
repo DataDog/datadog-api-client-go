@@ -2,21 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleTagsCategory The category of the WAF Rule, can be either `business_logic`, `attack_attempt` or `security_response`.
 type ApplicationSecurityWafCustomRuleTagsCategory string
 
 // List of ApplicationSecurityWafCustomRuleTagsCategory.
 const (
-	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_ATTACK_ATTEMPT    ApplicationSecurityWafCustomRuleTagsCategory = "attack_attempt"
-	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_BUSINESS_LOGIC    ApplicationSecurityWafCustomRuleTagsCategory = "business_logic"
+	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_ATTACK_ATTEMPT ApplicationSecurityWafCustomRuleTagsCategory = "attack_attempt"
+	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_BUSINESS_LOGIC ApplicationSecurityWafCustomRuleTagsCategory = "business_logic"
 	APPLICATIONSECURITYWAFCUSTOMRULETAGSCATEGORY_SECURITY_RESPONSE ApplicationSecurityWafCustomRuleTagsCategory = "security_response"
 )
 

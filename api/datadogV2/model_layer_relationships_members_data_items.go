@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LayerRelationshipsMembersDataItems Represents a single member object in a layer's `members` array, referencing
 // a unique Datadog user ID.
@@ -18,9 +22,10 @@ type LayerRelationshipsMembersDataItems struct {
 	// Members resource type.
 	Type LayerRelationshipsMembersDataItemsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLayerRelationshipsMembersDataItems instantiates a new LayerRelationshipsMembersDataItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewLayerRelationshipsMembersDataItemsWithDefaults() *LayerRelationshipsMemb
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *LayerRelationshipsMembersDataItems) GetId() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *LayerRelationshipsMembersDataItems) GetIdOk() (*string, bool) {
 func (o *LayerRelationshipsMembersDataItems) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *LayerRelationshipsMembersDataItems) GetType() LayerRelationshipsMembersDataItemsType {
@@ -89,6 +94,8 @@ func (o *LayerRelationshipsMembersDataItems) SetType(v LayerRelationshipsMembers
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LayerRelationshipsMembersDataItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o LayerRelationshipsMembersDataItems) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LayerRelationshipsMembersDataItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                                 `json:"id"`
+		Id *string `json:"id"`
 		Type *LayerRelationshipsMembersDataItemsType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -121,7 +128,7 @@ func (o *LayerRelationshipsMembersDataItems) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}

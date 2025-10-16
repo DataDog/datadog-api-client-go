@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AnthropicCredentials - The definition of the `AnthropicCredentials` object.
 type AnthropicCredentials struct {
@@ -56,6 +62,7 @@ func (obj AnthropicCredentials) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.AnthropicAPIKey)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj AnthropicCredentials) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *AnthropicCredentials) GetActualInstance() interface{} {
+func (obj *AnthropicCredentials) GetActualInstance() (interface{}) {
 	if obj.AnthropicAPIKey != nil {
 		return obj.AnthropicAPIKey
 	}
+
 
 	// all schemas are nil
 	return nil

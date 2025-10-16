@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssueRelationships Relationship between the issue and an assignee, case and/or teams.
 type IssueRelationships struct {
@@ -17,9 +23,10 @@ type IssueRelationships struct {
 	// Relationship between the issue and teams.
 	TeamOwners *IssueTeamOwnersRelationship `json:"team_owners,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssueRelationships instantiates a new IssueRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewIssueRelationshipsWithDefaults() *IssueRelationships {
 	this := IssueRelationships{}
 	return &this
 }
-
 // GetAssignee returns the Assignee field value if set, zero value otherwise.
 func (o *IssueRelationships) GetAssignee() IssueAssigneeRelationship {
 	if o == nil || o.Assignee == nil {
@@ -65,6 +71,7 @@ func (o *IssueRelationships) HasAssignee() bool {
 func (o *IssueRelationships) SetAssignee(v IssueAssigneeRelationship) {
 	o.Assignee = &v
 }
+
 
 // GetCase returns the Case field value if set, zero value otherwise.
 func (o *IssueRelationships) GetCase() IssueCaseRelationship {
@@ -94,6 +101,7 @@ func (o *IssueRelationships) SetCase(v IssueCaseRelationship) {
 	o.Case = &v
 }
 
+
 // GetTeamOwners returns the TeamOwners field value if set, zero value otherwise.
 func (o *IssueRelationships) GetTeamOwners() IssueTeamOwnersRelationship {
 	if o == nil || o.TeamOwners == nil {
@@ -122,6 +130,8 @@ func (o *IssueRelationships) SetTeamOwners(v IssueTeamOwnersRelationship) {
 	o.TeamOwners = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IssueRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,8 +157,8 @@ func (o IssueRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IssueRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Assignee   *IssueAssigneeRelationship   `json:"assignee,omitempty"`
-		Case       *IssueCaseRelationship       `json:"case,omitempty"`
+		Assignee *IssueAssigneeRelationship `json:"assignee,omitempty"`
+		Case *IssueCaseRelationship `json:"case,omitempty"`
 		TeamOwners *IssueTeamOwnersRelationship `json:"team_owners,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,21 +166,21 @@ func (o *IssueRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assignee", "case", "team_owners"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "assignee", "case", "team_owners",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Assignee != nil && all.Assignee.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Assignee != nil && all.Assignee.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Assignee = all.Assignee
-	if all.Case != nil && all.Case.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Case != nil && all.Case.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Case = all.Case
-	if all.TeamOwners != nil && all.TeamOwners.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.TeamOwners != nil && all.TeamOwners.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.TeamOwners = all.TeamOwners

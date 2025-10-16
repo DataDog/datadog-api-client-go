@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineParseGrokProcessorRuleMatchRule Defines a Grok parsing rule, which extracts structured fields from log content using named Grok patterns.
 // Each rule must have a unique name and a valid Datadog Grok pattern that will be applied to the source field.
@@ -18,9 +22,10 @@ type ObservabilityPipelineParseGrokProcessorRuleMatchRule struct {
 	// The definition of the Grok rule.
 	Rule string `json:"rule"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineParseGrokProcessorRuleMatchRule instantiates a new ObservabilityPipelineParseGrokProcessorRuleMatchRule object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewObservabilityPipelineParseGrokProcessorRuleMatchRuleWithDefaults() *Obse
 	this := ObservabilityPipelineParseGrokProcessorRuleMatchRule{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *ObservabilityPipelineParseGrokProcessorRuleMatchRule) GetName() string {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *ObservabilityPipelineParseGrokProcessorRuleMatchRule) SetName(v string)
 	o.Name = v
 }
 
+
 // GetRule returns the Rule field value.
 func (o *ObservabilityPipelineParseGrokProcessorRuleMatchRule) GetRule() string {
 	if o == nil {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineParseGrokProcessorRuleMatchRule) GetRuleOk() (*str
 func (o *ObservabilityPipelineParseGrokProcessorRuleMatchRule) SetRule(v string) {
 	o.Rule = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineParseGrokProcessorRuleMatchRule) MarshalJSON() ([]byte, error) {
@@ -119,7 +126,7 @@ func (o *ObservabilityPipelineParseGrokProcessorRuleMatchRule) UnmarshalJSON(byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "rule"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "rule",  })
 	} else {
 		return err
 	}

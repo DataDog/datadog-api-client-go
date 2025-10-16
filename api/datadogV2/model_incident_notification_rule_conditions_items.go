@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentNotificationRuleConditionsItems A condition that must be met to trigger the notification rule.
 type IncidentNotificationRuleConditionsItems struct {
@@ -17,9 +21,10 @@ type IncidentNotificationRuleConditionsItems struct {
 	// The value(s) to compare against. Multiple values are `ORed` together.
 	Values []string `json:"values"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentNotificationRuleConditionsItems instantiates a new IncidentNotificationRuleConditionsItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewIncidentNotificationRuleConditionsItemsWithDefaults() *IncidentNotificat
 	this := IncidentNotificationRuleConditionsItems{}
 	return &this
 }
-
 // GetField returns the Field field value.
 func (o *IncidentNotificationRuleConditionsItems) GetField() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *IncidentNotificationRuleConditionsItems) GetFieldOk() (*string, bool) {
 func (o *IncidentNotificationRuleConditionsItems) SetField(v string) {
 	o.Field = v
 }
+
 
 // GetValues returns the Values field value.
 func (o *IncidentNotificationRuleConditionsItems) GetValues() []string {
@@ -86,6 +91,8 @@ func (o *IncidentNotificationRuleConditionsItems) SetValues(v []string) {
 	o.Values = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentNotificationRuleConditionsItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o IncidentNotificationRuleConditionsItems) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentNotificationRuleConditionsItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Field  *string   `json:"field"`
+		Field *string `json:"field"`
 		Values *[]string `json:"values"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *IncidentNotificationRuleConditionsItems) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"field", "values"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "field", "values",  })
 	} else {
 		return err
 	}

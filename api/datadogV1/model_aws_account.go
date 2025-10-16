@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSAccount Returns the AWS account associated with this integration.
 type AWSAccount struct {
@@ -45,9 +51,10 @@ type AWSAccount struct {
 	// Your AWS secret access key. Only required if your AWS account is a GovCloud or China account.
 	SecretAccessKey *string `json:"secret_access_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSAccount instantiates a new AWSAccount object.
 // This constructor will assign default values to properties that have it defined,
@@ -81,7 +88,6 @@ func NewAWSAccountWithDefaults() *AWSAccount {
 	this.ResourceCollectionEnabled = &resourceCollectionEnabled
 	return &this
 }
-
 // GetAccessKeyId returns the AccessKeyId field value if set, zero value otherwise.
 func (o *AWSAccount) GetAccessKeyId() string {
 	if o == nil || o.AccessKeyId == nil {
@@ -109,6 +115,7 @@ func (o *AWSAccount) HasAccessKeyId() bool {
 func (o *AWSAccount) SetAccessKeyId(v string) {
 	o.AccessKeyId = &v
 }
+
 
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
 func (o *AWSAccount) GetAccountId() string {
@@ -138,6 +145,7 @@ func (o *AWSAccount) SetAccountId(v string) {
 	o.AccountId = &v
 }
 
+
 // GetAccountSpecificNamespaceRules returns the AccountSpecificNamespaceRules field value if set, zero value otherwise.
 func (o *AWSAccount) GetAccountSpecificNamespaceRules() map[string]bool {
 	if o == nil || o.AccountSpecificNamespaceRules == nil {
@@ -165,6 +173,7 @@ func (o *AWSAccount) HasAccountSpecificNamespaceRules() bool {
 func (o *AWSAccount) SetAccountSpecificNamespaceRules(v map[string]bool) {
 	o.AccountSpecificNamespaceRules = v
 }
+
 
 // GetCspmResourceCollectionEnabled returns the CspmResourceCollectionEnabled field value if set, zero value otherwise.
 func (o *AWSAccount) GetCspmResourceCollectionEnabled() bool {
@@ -194,6 +203,7 @@ func (o *AWSAccount) SetCspmResourceCollectionEnabled(v bool) {
 	o.CspmResourceCollectionEnabled = &v
 }
 
+
 // GetExcludedRegions returns the ExcludedRegions field value if set, zero value otherwise.
 func (o *AWSAccount) GetExcludedRegions() []string {
 	if o == nil || o.ExcludedRegions == nil {
@@ -221,6 +231,7 @@ func (o *AWSAccount) HasExcludedRegions() bool {
 func (o *AWSAccount) SetExcludedRegions(v []string) {
 	o.ExcludedRegions = v
 }
+
 
 // GetExtendedResourceCollectionEnabled returns the ExtendedResourceCollectionEnabled field value if set, zero value otherwise.
 func (o *AWSAccount) GetExtendedResourceCollectionEnabled() bool {
@@ -250,6 +261,7 @@ func (o *AWSAccount) SetExtendedResourceCollectionEnabled(v bool) {
 	o.ExtendedResourceCollectionEnabled = &v
 }
 
+
 // GetFilterTags returns the FilterTags field value if set, zero value otherwise.
 func (o *AWSAccount) GetFilterTags() []string {
 	if o == nil || o.FilterTags == nil {
@@ -277,6 +289,7 @@ func (o *AWSAccount) HasFilterTags() bool {
 func (o *AWSAccount) SetFilterTags(v []string) {
 	o.FilterTags = v
 }
+
 
 // GetHostTags returns the HostTags field value if set, zero value otherwise.
 func (o *AWSAccount) GetHostTags() []string {
@@ -306,6 +319,7 @@ func (o *AWSAccount) SetHostTags(v []string) {
 	o.HostTags = v
 }
 
+
 // GetMetricsCollectionEnabled returns the MetricsCollectionEnabled field value if set, zero value otherwise.
 func (o *AWSAccount) GetMetricsCollectionEnabled() bool {
 	if o == nil || o.MetricsCollectionEnabled == nil {
@@ -333,6 +347,7 @@ func (o *AWSAccount) HasMetricsCollectionEnabled() bool {
 func (o *AWSAccount) SetMetricsCollectionEnabled(v bool) {
 	o.MetricsCollectionEnabled = &v
 }
+
 
 // GetResourceCollectionEnabled returns the ResourceCollectionEnabled field value if set, zero value otherwise.
 // Deprecated
@@ -365,6 +380,7 @@ func (o *AWSAccount) SetResourceCollectionEnabled(v bool) {
 	o.ResourceCollectionEnabled = &v
 }
 
+
 // GetRoleName returns the RoleName field value if set, zero value otherwise.
 func (o *AWSAccount) GetRoleName() string {
 	if o == nil || o.RoleName == nil {
@@ -393,6 +409,7 @@ func (o *AWSAccount) SetRoleName(v string) {
 	o.RoleName = &v
 }
 
+
 // GetSecretAccessKey returns the SecretAccessKey field value if set, zero value otherwise.
 func (o *AWSAccount) GetSecretAccessKey() string {
 	if o == nil || o.SecretAccessKey == nil {
@@ -420,6 +437,8 @@ func (o *AWSAccount) HasSecretAccessKey() bool {
 func (o *AWSAccount) SetSecretAccessKey(v string) {
 	o.SecretAccessKey = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSAccount) MarshalJSON() ([]byte, error) {
@@ -473,25 +492,25 @@ func (o AWSAccount) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccessKeyId                       *string         `json:"access_key_id,omitempty"`
-		AccountId                         *string         `json:"account_id,omitempty"`
-		AccountSpecificNamespaceRules     map[string]bool `json:"account_specific_namespace_rules,omitempty"`
-		CspmResourceCollectionEnabled     *bool           `json:"cspm_resource_collection_enabled,omitempty"`
-		ExcludedRegions                   []string        `json:"excluded_regions,omitempty"`
-		ExtendedResourceCollectionEnabled *bool           `json:"extended_resource_collection_enabled,omitempty"`
-		FilterTags                        []string        `json:"filter_tags,omitempty"`
-		HostTags                          []string        `json:"host_tags,omitempty"`
-		MetricsCollectionEnabled          *bool           `json:"metrics_collection_enabled,omitempty"`
-		ResourceCollectionEnabled         *bool           `json:"resource_collection_enabled,omitempty"`
-		RoleName                          *string         `json:"role_name,omitempty"`
-		SecretAccessKey                   *string         `json:"secret_access_key,omitempty"`
+		AccessKeyId *string `json:"access_key_id,omitempty"`
+		AccountId *string `json:"account_id,omitempty"`
+		AccountSpecificNamespaceRules map[string]bool `json:"account_specific_namespace_rules,omitempty"`
+		CspmResourceCollectionEnabled *bool `json:"cspm_resource_collection_enabled,omitempty"`
+		ExcludedRegions []string `json:"excluded_regions,omitempty"`
+		ExtendedResourceCollectionEnabled *bool `json:"extended_resource_collection_enabled,omitempty"`
+		FilterTags []string `json:"filter_tags,omitempty"`
+		HostTags []string `json:"host_tags,omitempty"`
+		MetricsCollectionEnabled *bool `json:"metrics_collection_enabled,omitempty"`
+		ResourceCollectionEnabled *bool `json:"resource_collection_enabled,omitempty"`
+		RoleName *string `json:"role_name,omitempty"`
+		SecretAccessKey *string `json:"secret_access_key,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"access_key_id", "account_id", "account_specific_namespace_rules", "cspm_resource_collection_enabled", "excluded_regions", "extended_resource_collection_enabled", "filter_tags", "host_tags", "metrics_collection_enabled", "resource_collection_enabled", "role_name", "secret_access_key"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "access_key_id", "account_id", "account_specific_namespace_rules", "cspm_resource_collection_enabled", "excluded_regions", "extended_resource_collection_enabled", "filter_tags", "host_tags", "metrics_collection_enabled", "resource_collection_enabled", "role_name", "secret_access_key",  })
 	} else {
 		return err
 	}

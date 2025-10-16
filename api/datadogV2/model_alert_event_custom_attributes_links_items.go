@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AlertEventCustomAttributesLinksItems A link.
 type AlertEventCustomAttributesLinksItems struct {
@@ -21,6 +25,7 @@ type AlertEventCustomAttributesLinksItems struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewAlertEventCustomAttributesLinksItems instantiates a new AlertEventCustomAttributesLinksItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewAlertEventCustomAttributesLinksItemsWithDefaults() *AlertEventCustomAttr
 	this := AlertEventCustomAttributesLinksItems{}
 	return &this
 }
-
 // GetCategory returns the Category field value.
 func (o *AlertEventCustomAttributesLinksItems) GetCategory() AlertEventCustomAttributesLinksItemsCategory {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *AlertEventCustomAttributesLinksItems) GetCategoryOk() (*AlertEventCusto
 func (o *AlertEventCustomAttributesLinksItems) SetCategory(v AlertEventCustomAttributesLinksItemsCategory) {
 	o.Category = v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *AlertEventCustomAttributesLinksItems) GetTitle() string {
@@ -92,6 +97,7 @@ func (o *AlertEventCustomAttributesLinksItems) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetUrl returns the Url field value.
 func (o *AlertEventCustomAttributesLinksItems) GetUrl() string {
 	if o == nil {
@@ -115,6 +121,8 @@ func (o *AlertEventCustomAttributesLinksItems) SetUrl(v string) {
 	o.Url = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AlertEventCustomAttributesLinksItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -133,8 +141,8 @@ func (o AlertEventCustomAttributesLinksItems) MarshalJSON() ([]byte, error) {
 func (o *AlertEventCustomAttributesLinksItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Category *AlertEventCustomAttributesLinksItemsCategory `json:"category"`
-		Title    *string                                       `json:"title,omitempty"`
-		Url      *string                                       `json:"url"`
+		Title *string `json:"title,omitempty"`
+		Url *string `json:"url"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

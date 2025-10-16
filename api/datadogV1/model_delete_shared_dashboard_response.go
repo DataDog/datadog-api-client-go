@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DeleteSharedDashboardResponse Response containing token of deleted shared dashboard.
 type DeleteSharedDashboardResponse struct {
 	// Token associated with the shared dashboard that was revoked.
 	DeletedPublicDashboardToken *string `json:"deleted_public_dashboard_token,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDeleteSharedDashboardResponse instantiates a new DeleteSharedDashboardResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewDeleteSharedDashboardResponseWithDefaults() *DeleteSharedDashboardRespon
 	this := DeleteSharedDashboardResponse{}
 	return &this
 }
-
 // GetDeletedPublicDashboardToken returns the DeletedPublicDashboardToken field value if set, zero value otherwise.
 func (o *DeleteSharedDashboardResponse) GetDeletedPublicDashboardToken() string {
 	if o == nil || o.DeletedPublicDashboardToken == nil {
@@ -62,6 +68,8 @@ func (o *DeleteSharedDashboardResponse) SetDeletedPublicDashboardToken(v string)
 	o.DeletedPublicDashboardToken = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DeleteSharedDashboardResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *DeleteSharedDashboardResponse) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"deleted_public_dashboard_token"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "deleted_public_dashboard_token",  })
 	} else {
 		return err
 	}

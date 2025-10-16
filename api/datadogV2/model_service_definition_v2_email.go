@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionV2Email Service owner's email.
 type ServiceDefinitionV2Email struct {
@@ -19,9 +23,10 @@ type ServiceDefinitionV2Email struct {
 	// Contact type.
 	Type ServiceDefinitionV2EmailType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceDefinitionV2Email instantiates a new ServiceDefinitionV2Email object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewServiceDefinitionV2EmailWithDefaults() *ServiceDefinitionV2Email {
 	this := ServiceDefinitionV2Email{}
 	return &this
 }
-
 // GetContact returns the Contact field value.
 func (o *ServiceDefinitionV2Email) GetContact() string {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *ServiceDefinitionV2Email) GetContactOk() (*string, bool) {
 func (o *ServiceDefinitionV2Email) SetContact(v string) {
 	o.Contact = v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Email) GetName() string {
@@ -93,6 +98,7 @@ func (o *ServiceDefinitionV2Email) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ServiceDefinitionV2Email) GetType() ServiceDefinitionV2EmailType {
 	if o == nil {
@@ -116,6 +122,8 @@ func (o *ServiceDefinitionV2Email) SetType(v ServiceDefinitionV2EmailType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceDefinitionV2Email) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -137,9 +145,9 @@ func (o ServiceDefinitionV2Email) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV2Email) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Contact *string                       `json:"contact"`
-		Name    *string                       `json:"name,omitempty"`
-		Type    *ServiceDefinitionV2EmailType `json:"type"`
+		Contact *string `json:"contact"`
+		Name *string `json:"name,omitempty"`
+		Type *ServiceDefinitionV2EmailType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *ServiceDefinitionV2Email) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"contact", "name", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "contact", "name", "type",  })
 	} else {
 		return err
 	}

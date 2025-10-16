@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SortDirection The direction to sort by.
 type SortDirection string
@@ -16,7 +20,7 @@ type SortDirection string
 // List of SortDirection.
 const (
 	SORTDIRECTION_DESC SortDirection = "desc"
-	SORTDIRECTION_ASC  SortDirection = "asc"
+	SORTDIRECTION_ASC SortDirection = "asc"
 )
 
 var allowedSortDirectionEnumValues = []SortDirection{

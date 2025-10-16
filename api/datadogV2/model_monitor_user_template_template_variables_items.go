@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorUserTemplateTemplateVariablesItems List of objects representing template variables on the monitor which can have selectable values.
 type MonitorUserTemplateTemplateVariablesItems struct {
@@ -23,6 +27,7 @@ type MonitorUserTemplateTemplateVariablesItems struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorUserTemplateTemplateVariablesItems instantiates a new MonitorUserTemplateTemplateVariablesItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewMonitorUserTemplateTemplateVariablesItemsWithDefaults() *MonitorUserTemp
 	this := MonitorUserTemplateTemplateVariablesItems{}
 	return &this
 }
-
 // GetAvailableValues returns the AvailableValues field value if set, zero value otherwise.
 func (o *MonitorUserTemplateTemplateVariablesItems) GetAvailableValues() []string {
 	if o == nil || o.AvailableValues == nil {
@@ -69,6 +73,7 @@ func (o *MonitorUserTemplateTemplateVariablesItems) HasAvailableValues() bool {
 func (o *MonitorUserTemplateTemplateVariablesItems) SetAvailableValues(v []string) {
 	o.AvailableValues = v
 }
+
 
 // GetDefaults returns the Defaults field value if set, zero value otherwise.
 func (o *MonitorUserTemplateTemplateVariablesItems) GetDefaults() []string {
@@ -98,6 +103,7 @@ func (o *MonitorUserTemplateTemplateVariablesItems) SetDefaults(v []string) {
 	o.Defaults = v
 }
 
+
 // GetName returns the Name field value.
 func (o *MonitorUserTemplateTemplateVariablesItems) GetName() string {
 	if o == nil {
@@ -120,6 +126,7 @@ func (o *MonitorUserTemplateTemplateVariablesItems) GetNameOk() (*string, bool) 
 func (o *MonitorUserTemplateTemplateVariablesItems) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetTagKey returns the TagKey field value if set, zero value otherwise.
 func (o *MonitorUserTemplateTemplateVariablesItems) GetTagKey() string {
@@ -149,6 +156,8 @@ func (o *MonitorUserTemplateTemplateVariablesItems) SetTagKey(v string) {
 	o.TagKey = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorUserTemplateTemplateVariablesItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -172,9 +181,9 @@ func (o MonitorUserTemplateTemplateVariablesItems) MarshalJSON() ([]byte, error)
 func (o *MonitorUserTemplateTemplateVariablesItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AvailableValues []string `json:"available_values,omitempty"`
-		Defaults        []string `json:"defaults,omitempty"`
-		Name            *string  `json:"name"`
-		TagKey          *string  `json:"tag_key,omitempty"`
+		Defaults []string `json:"defaults,omitempty"`
+		Name *string `json:"name"`
+		TagKey *string `json:"tag_key,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

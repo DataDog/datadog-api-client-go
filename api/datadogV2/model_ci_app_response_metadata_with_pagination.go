@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppResponseMetadataWithPagination The metadata associated with a request.
 type CIAppResponseMetadataWithPagination struct {
@@ -22,9 +28,10 @@ type CIAppResponseMetadataWithPagination struct {
 	// warnings are present in the response.
 	Warnings []CIAppWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCIAppResponseMetadataWithPagination instantiates a new CIAppResponseMetadataWithPagination object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +49,6 @@ func NewCIAppResponseMetadataWithPaginationWithDefaults() *CIAppResponseMetadata
 	this := CIAppResponseMetadataWithPagination{}
 	return &this
 }
-
 // GetElapsed returns the Elapsed field value if set, zero value otherwise.
 func (o *CIAppResponseMetadataWithPagination) GetElapsed() int64 {
 	if o == nil || o.Elapsed == nil {
@@ -70,6 +76,7 @@ func (o *CIAppResponseMetadataWithPagination) HasElapsed() bool {
 func (o *CIAppResponseMetadataWithPagination) SetElapsed(v int64) {
 	o.Elapsed = &v
 }
+
 
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *CIAppResponseMetadataWithPagination) GetPage() CIAppResponsePage {
@@ -99,6 +106,7 @@ func (o *CIAppResponseMetadataWithPagination) SetPage(v CIAppResponsePage) {
 	o.Page = &v
 }
 
+
 // GetRequestId returns the RequestId field value if set, zero value otherwise.
 func (o *CIAppResponseMetadataWithPagination) GetRequestId() string {
 	if o == nil || o.RequestId == nil {
@@ -126,6 +134,7 @@ func (o *CIAppResponseMetadataWithPagination) HasRequestId() bool {
 func (o *CIAppResponseMetadataWithPagination) SetRequestId(v string) {
 	o.RequestId = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *CIAppResponseMetadataWithPagination) GetStatus() CIAppResponseStatus {
@@ -155,6 +164,7 @@ func (o *CIAppResponseMetadataWithPagination) SetStatus(v CIAppResponseStatus) {
 	o.Status = &v
 }
 
+
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
 func (o *CIAppResponseMetadataWithPagination) GetWarnings() []CIAppWarning {
 	if o == nil || o.Warnings == nil {
@@ -182,6 +192,8 @@ func (o *CIAppResponseMetadataWithPagination) HasWarnings() bool {
 func (o *CIAppResponseMetadataWithPagination) SetWarnings(v []CIAppWarning) {
 	o.Warnings = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppResponseMetadataWithPagination) MarshalJSON() ([]byte, error) {
@@ -214,30 +226,30 @@ func (o CIAppResponseMetadataWithPagination) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppResponseMetadataWithPagination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Elapsed   *int64               `json:"elapsed,omitempty"`
-		Page      *CIAppResponsePage   `json:"page,omitempty"`
-		RequestId *string              `json:"request_id,omitempty"`
-		Status    *CIAppResponseStatus `json:"status,omitempty"`
-		Warnings  []CIAppWarning       `json:"warnings,omitempty"`
+		Elapsed *int64 `json:"elapsed,omitempty"`
+		Page *CIAppResponsePage `json:"page,omitempty"`
+		RequestId *string `json:"request_id,omitempty"`
+		Status *CIAppResponseStatus `json:"status,omitempty"`
+		Warnings []CIAppWarning `json:"warnings,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"elapsed", "page", "request_id", "status", "warnings"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "elapsed", "page", "request_id", "status", "warnings",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Elapsed = all.Elapsed
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Page = all.Page
 	o.RequestId = all.RequestId
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

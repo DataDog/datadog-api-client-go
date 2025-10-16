@@ -2,24 +2,28 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotebookMetadataType Metadata type of the notebook.
 type NotebookMetadataType string
 
 // List of NotebookMetadataType.
 const (
-	NOTEBOOKMETADATATYPE_POSTMORTEM    NotebookMetadataType = "postmortem"
-	NOTEBOOKMETADATATYPE_RUNBOOK       NotebookMetadataType = "runbook"
+	NOTEBOOKMETADATATYPE_POSTMORTEM NotebookMetadataType = "postmortem"
+	NOTEBOOKMETADATATYPE_RUNBOOK NotebookMetadataType = "runbook"
 	NOTEBOOKMETADATATYPE_INVESTIGATION NotebookMetadataType = "investigation"
 	NOTEBOOKMETADATATYPE_DOCUMENTATION NotebookMetadataType = "documentation"
-	NOTEBOOKMETADATATYPE_REPORT        NotebookMetadataType = "report"
+	NOTEBOOKMETADATATYPE_REPORT NotebookMetadataType = "report"
 )
 
 var allowedNotebookMetadataTypeEnumValues = []NotebookMetadataType{
@@ -70,7 +74,6 @@ func (v NotebookMetadataType) IsValid() bool {
 func (v NotebookMetadataType) Ptr() *NotebookMetadataType {
 	return &v
 }
-
 // NullableNotebookMetadataType handles when a null is used for NotebookMetadataType.
 type NullableNotebookMetadataType struct {
 	value *NotebookMetadataType

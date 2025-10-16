@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScheduleTriggerWrapper Schema for a Schedule-based trigger.
 type ScheduleTriggerWrapper struct {
@@ -17,9 +21,10 @@ type ScheduleTriggerWrapper struct {
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScheduleTriggerWrapper instantiates a new ScheduleTriggerWrapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewScheduleTriggerWrapperWithDefaults() *ScheduleTriggerWrapper {
 	this := ScheduleTriggerWrapper{}
 	return &this
 }
-
 // GetScheduleTrigger returns the ScheduleTrigger field value.
 func (o *ScheduleTriggerWrapper) GetScheduleTrigger() ScheduleTrigger {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *ScheduleTriggerWrapper) GetScheduleTriggerOk() (*ScheduleTrigger, bool)
 func (o *ScheduleTriggerWrapper) SetScheduleTrigger(v ScheduleTrigger) {
 	o.ScheduleTrigger = v
 }
+
 
 // GetStartStepNames returns the StartStepNames field value if set, zero value otherwise.
 func (o *ScheduleTriggerWrapper) GetStartStepNames() []string {
@@ -90,6 +95,8 @@ func (o *ScheduleTriggerWrapper) SetStartStepNames(v []string) {
 	o.StartStepNames = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ScheduleTriggerWrapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o ScheduleTriggerWrapper) MarshalJSON() ([]byte, error) {
 func (o *ScheduleTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ScheduleTrigger *ScheduleTrigger `json:"scheduleTrigger"`
-		StartStepNames  []string         `json:"startStepNames,omitempty"`
+		StartStepNames []string `json:"startStepNames,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *ScheduleTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"scheduleTrigger", "startStepNames"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "scheduleTrigger", "startStepNames",  })
 	} else {
 		return err
 	}

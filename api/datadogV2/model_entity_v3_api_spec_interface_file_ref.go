@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityV3APISpecInterfaceFileRef The definition of `EntityV3APISpecInterfaceFileRef` object.
 type EntityV3APISpecInterfaceFileRef struct {
@@ -15,6 +21,7 @@ type EntityV3APISpecInterfaceFileRef struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityV3APISpecInterfaceFileRef instantiates a new EntityV3APISpecInterfaceFileRef object.
 // This constructor will assign default values to properties that have it defined,
@@ -32,7 +39,6 @@ func NewEntityV3APISpecInterfaceFileRefWithDefaults() *EntityV3APISpecInterfaceF
 	this := EntityV3APISpecInterfaceFileRef{}
 	return &this
 }
-
 // GetFileRef returns the FileRef field value if set, zero value otherwise.
 func (o *EntityV3APISpecInterfaceFileRef) GetFileRef() string {
 	if o == nil || o.FileRef == nil {
@@ -60,6 +66,8 @@ func (o *EntityV3APISpecInterfaceFileRef) HasFileRef() bool {
 func (o *EntityV3APISpecInterfaceFileRef) SetFileRef(v string) {
 	o.FileRef = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3APISpecInterfaceFileRef) MarshalJSON() ([]byte, error) {

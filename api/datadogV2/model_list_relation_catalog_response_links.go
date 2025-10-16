@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListRelationCatalogResponseLinks List relation response links.
 type ListRelationCatalogResponseLinks struct {
@@ -17,9 +23,10 @@ type ListRelationCatalogResponseLinks struct {
 	// Current link.
 	Self *string `json:"self,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListRelationCatalogResponseLinks instantiates a new ListRelationCatalogResponseLinks object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewListRelationCatalogResponseLinksWithDefaults() *ListRelationCatalogRespo
 	this := ListRelationCatalogResponseLinks{}
 	return &this
 }
-
 // GetNext returns the Next field value if set, zero value otherwise.
 func (o *ListRelationCatalogResponseLinks) GetNext() string {
 	if o == nil || o.Next == nil {
@@ -65,6 +71,7 @@ func (o *ListRelationCatalogResponseLinks) HasNext() bool {
 func (o *ListRelationCatalogResponseLinks) SetNext(v string) {
 	o.Next = &v
 }
+
 
 // GetPrevious returns the Previous field value if set, zero value otherwise.
 func (o *ListRelationCatalogResponseLinks) GetPrevious() string {
@@ -94,6 +101,7 @@ func (o *ListRelationCatalogResponseLinks) SetPrevious(v string) {
 	o.Previous = &v
 }
 
+
 // GetSelf returns the Self field value if set, zero value otherwise.
 func (o *ListRelationCatalogResponseLinks) GetSelf() string {
 	if o == nil || o.Self == nil {
@@ -122,6 +130,8 @@ func (o *ListRelationCatalogResponseLinks) SetSelf(v string) {
 	o.Self = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListRelationCatalogResponseLinks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o ListRelationCatalogResponseLinks) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListRelationCatalogResponseLinks) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Next     *string `json:"next,omitempty"`
+		Next *string `json:"next,omitempty"`
 		Previous *string `json:"previous,omitempty"`
-		Self     *string `json:"self,omitempty"`
+		Self *string `json:"self,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"next", "previous", "self"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "next", "previous", "self",  })
 	} else {
 		return err
 	}

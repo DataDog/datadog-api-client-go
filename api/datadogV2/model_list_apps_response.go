@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListAppsResponse A paginated list of apps matching the specified filters and sorting.
 type ListAppsResponse struct {
@@ -17,9 +23,10 @@ type ListAppsResponse struct {
 	// Pagination metadata.
 	Meta *ListAppsResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListAppsResponse instantiates a new ListAppsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewListAppsResponseWithDefaults() *ListAppsResponse {
 	this := ListAppsResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *ListAppsResponse) GetData() []ListAppsResponseDataItems {
 	if o == nil || o.Data == nil {
@@ -65,6 +71,7 @@ func (o *ListAppsResponse) HasData() bool {
 func (o *ListAppsResponse) SetData(v []ListAppsResponseDataItems) {
 	o.Data = v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *ListAppsResponse) GetIncluded() []Deployment {
@@ -94,6 +101,7 @@ func (o *ListAppsResponse) SetIncluded(v []Deployment) {
 	o.Included = v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *ListAppsResponse) GetMeta() ListAppsResponseMeta {
 	if o == nil || o.Meta == nil {
@@ -122,6 +130,8 @@ func (o *ListAppsResponse) SetMeta(v ListAppsResponseMeta) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListAppsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o ListAppsResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListAppsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     []ListAppsResponseDataItems `json:"data,omitempty"`
-		Included []Deployment                `json:"included,omitempty"`
-		Meta     *ListAppsResponseMeta       `json:"meta,omitempty"`
+		Data []ListAppsResponseDataItems `json:"data,omitempty"`
+		Included []Deployment `json:"included,omitempty"`
+		Meta *ListAppsResponseMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "included", "meta",  })
 	} else {
 		return err
 	}
@@ -164,7 +174,7 @@ func (o *ListAppsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Data = all.Data
 	o.Included = all.Included
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

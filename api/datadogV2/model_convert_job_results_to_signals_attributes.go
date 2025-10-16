@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ConvertJobResultsToSignalsAttributes Attributes for converting historical job results to signals.
 type ConvertJobResultsToSignalsAttributes struct {
@@ -23,9 +27,10 @@ type ConvertJobResultsToSignalsAttributes struct {
 	// Severity of the Security Signal.
 	SignalSeverity SecurityMonitoringRuleSeverity `json:"signalSeverity"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewConvertJobResultsToSignalsAttributes instantiates a new ConvertJobResultsToSignalsAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewConvertJobResultsToSignalsAttributesWithDefaults() *ConvertJobResultsToS
 	this := ConvertJobResultsToSignalsAttributes{}
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ConvertJobResultsToSignalsAttributes) GetId() string {
 	if o == nil || o.Id == nil {
@@ -76,6 +80,7 @@ func (o *ConvertJobResultsToSignalsAttributes) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetJobResultIds returns the JobResultIds field value.
 func (o *ConvertJobResultsToSignalsAttributes) GetJobResultIds() []string {
 	if o == nil {
@@ -98,6 +103,7 @@ func (o *ConvertJobResultsToSignalsAttributes) GetJobResultIdsOk() (*[]string, b
 func (o *ConvertJobResultsToSignalsAttributes) SetJobResultIds(v []string) {
 	o.JobResultIds = v
 }
+
 
 // GetNotifications returns the Notifications field value.
 func (o *ConvertJobResultsToSignalsAttributes) GetNotifications() []string {
@@ -122,6 +128,7 @@ func (o *ConvertJobResultsToSignalsAttributes) SetNotifications(v []string) {
 	o.Notifications = v
 }
 
+
 // GetSignalMessage returns the SignalMessage field value.
 func (o *ConvertJobResultsToSignalsAttributes) GetSignalMessage() string {
 	if o == nil {
@@ -144,6 +151,7 @@ func (o *ConvertJobResultsToSignalsAttributes) GetSignalMessageOk() (*string, bo
 func (o *ConvertJobResultsToSignalsAttributes) SetSignalMessage(v string) {
 	o.SignalMessage = v
 }
+
 
 // GetSignalSeverity returns the SignalSeverity field value.
 func (o *ConvertJobResultsToSignalsAttributes) GetSignalSeverity() SecurityMonitoringRuleSeverity {
@@ -168,6 +176,8 @@ func (o *ConvertJobResultsToSignalsAttributes) SetSignalSeverity(v SecurityMonit
 	o.SignalSeverity = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ConvertJobResultsToSignalsAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -191,10 +201,10 @@ func (o ConvertJobResultsToSignalsAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ConvertJobResultsToSignalsAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id             *string                         `json:"id,omitempty"`
-		JobResultIds   *[]string                       `json:"jobResultIds"`
-		Notifications  *[]string                       `json:"notifications"`
-		SignalMessage  *string                         `json:"signalMessage"`
+		Id *string `json:"id,omitempty"`
+		JobResultIds *[]string `json:"jobResultIds"`
+		Notifications *[]string `json:"notifications"`
+		SignalMessage *string `json:"signalMessage"`
 		SignalSeverity *SecurityMonitoringRuleSeverity `json:"signalSeverity"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -214,7 +224,7 @@ func (o *ConvertJobResultsToSignalsAttributes) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "jobResultIds", "notifications", "signalMessage", "signalSeverity"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "jobResultIds", "notifications", "signalMessage", "signalSeverity",  })
 	} else {
 		return err
 	}

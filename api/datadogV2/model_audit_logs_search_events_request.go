@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AuditLogsSearchEventsRequest The request for a Audit Logs events list.
 type AuditLogsSearchEventsRequest struct {
@@ -20,9 +26,10 @@ type AuditLogsSearchEventsRequest struct {
 	// Sort parameters when querying events.
 	Sort *AuditLogsSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAuditLogsSearchEventsRequest instantiates a new AuditLogsSearchEventsRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +47,6 @@ func NewAuditLogsSearchEventsRequestWithDefaults() *AuditLogsSearchEventsRequest
 	this := AuditLogsSearchEventsRequest{}
 	return &this
 }
-
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *AuditLogsSearchEventsRequest) GetFilter() AuditLogsQueryFilter {
 	if o == nil || o.Filter == nil {
@@ -68,6 +74,7 @@ func (o *AuditLogsSearchEventsRequest) HasFilter() bool {
 func (o *AuditLogsSearchEventsRequest) SetFilter(v AuditLogsQueryFilter) {
 	o.Filter = &v
 }
+
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *AuditLogsSearchEventsRequest) GetOptions() AuditLogsQueryOptions {
@@ -97,6 +104,7 @@ func (o *AuditLogsSearchEventsRequest) SetOptions(v AuditLogsQueryOptions) {
 	o.Options = &v
 }
 
+
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *AuditLogsSearchEventsRequest) GetPage() AuditLogsQueryPageOptions {
 	if o == nil || o.Page == nil {
@@ -124,6 +132,7 @@ func (o *AuditLogsSearchEventsRequest) HasPage() bool {
 func (o *AuditLogsSearchEventsRequest) SetPage(v AuditLogsQueryPageOptions) {
 	o.Page = &v
 }
+
 
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *AuditLogsSearchEventsRequest) GetSort() AuditLogsSort {
@@ -153,6 +162,8 @@ func (o *AuditLogsSearchEventsRequest) SetSort(v AuditLogsSort) {
 	o.Sort = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AuditLogsSearchEventsRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -181,35 +192,35 @@ func (o AuditLogsSearchEventsRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AuditLogsSearchEventsRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Filter  *AuditLogsQueryFilter      `json:"filter,omitempty"`
-		Options *AuditLogsQueryOptions     `json:"options,omitempty"`
-		Page    *AuditLogsQueryPageOptions `json:"page,omitempty"`
-		Sort    *AuditLogsSort             `json:"sort,omitempty"`
+		Filter *AuditLogsQueryFilter `json:"filter,omitempty"`
+		Options *AuditLogsQueryOptions `json:"options,omitempty"`
+		Page *AuditLogsQueryPageOptions `json:"page,omitempty"`
+		Sort *AuditLogsSort `json:"sort,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "options", "page", "sort"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "filter", "options", "page", "sort",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter
-	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Options = all.Options
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Page = all.Page
-	if all.Sort != nil && !all.Sort.IsValid() {
+	if all.Sort != nil &&!all.Sort.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Sort = all.Sort

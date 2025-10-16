@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorConfigPolicyPolicy - Configuration for the policy.
 type MonitorConfigPolicyPolicy struct {
@@ -30,7 +36,7 @@ func (obj *MonitorConfigPolicyPolicy) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.MonitorConfigPolicyTagPolicy != nil && obj.MonitorConfigPolicyTagPolicy.UnparsedObject == nil {
 			jsonMonitorConfigPolicyTagPolicy, _ := datadog.Marshal(obj.MonitorConfigPolicyTagPolicy)
-			if string(jsonMonitorConfigPolicyTagPolicy) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonMonitorConfigPolicyTagPolicy) == "{}" && string(data) != "{}"  { // empty struct
 				obj.MonitorConfigPolicyTagPolicy = nil
 			} else {
 				match++
@@ -56,6 +62,7 @@ func (obj MonitorConfigPolicyPolicy) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.MonitorConfigPolicyTagPolicy)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj MonitorConfigPolicyPolicy) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *MonitorConfigPolicyPolicy) GetActualInstance() interface{} {
+func (obj *MonitorConfigPolicyPolicy) GetActualInstance() (interface{}) {
 	if obj.MonitorConfigPolicyTagPolicy != nil {
 		return obj.MonitorConfigPolicyTagPolicy
 	}
+
 
 	// all schemas are nil
 	return nil

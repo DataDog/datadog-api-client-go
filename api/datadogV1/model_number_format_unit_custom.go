@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NumberFormatUnitCustom Custom unit.
 type NumberFormatUnitCustom struct {
@@ -15,9 +21,10 @@ type NumberFormatUnitCustom struct {
 	// The type of custom unit.
 	Type *NumberFormatUnitCustomType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewNumberFormatUnitCustom instantiates a new NumberFormatUnitCustom object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewNumberFormatUnitCustomWithDefaults() *NumberFormatUnitCustom {
 	this := NumberFormatUnitCustom{}
 	return &this
 }
-
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *NumberFormatUnitCustom) GetLabel() string {
 	if o == nil || o.Label == nil {
@@ -63,6 +69,7 @@ func (o *NumberFormatUnitCustom) HasLabel() bool {
 func (o *NumberFormatUnitCustom) SetLabel(v string) {
 	o.Label = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *NumberFormatUnitCustom) GetType() NumberFormatUnitCustomType {
@@ -92,6 +99,8 @@ func (o *NumberFormatUnitCustom) SetType(v NumberFormatUnitCustomType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o NumberFormatUnitCustom) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,22 +123,22 @@ func (o NumberFormatUnitCustom) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NumberFormatUnitCustom) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Label *string                     `json:"label,omitempty"`
-		Type  *NumberFormatUnitCustomType `json:"type,omitempty"`
+		Label *string `json:"label,omitempty"`
+		Type *NumberFormatUnitCustomType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"label", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "label", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Label = all.Label
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

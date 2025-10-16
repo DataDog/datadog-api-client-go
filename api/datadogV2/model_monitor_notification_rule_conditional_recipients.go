@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorNotificationRuleConditionalRecipients Use conditional recipients to define different recipients for different situations.
 type MonitorNotificationRuleConditionalRecipients struct {
@@ -17,9 +21,10 @@ type MonitorNotificationRuleConditionalRecipients struct {
 	// A list of recipients to notify. Uses the same format as the monitor `message` field. Must not start with an '@'.
 	FallbackRecipients []string `json:"fallback_recipients,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorNotificationRuleConditionalRecipients instantiates a new MonitorNotificationRuleConditionalRecipients object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewMonitorNotificationRuleConditionalRecipientsWithDefaults() *MonitorNotif
 	this := MonitorNotificationRuleConditionalRecipients{}
 	return &this
 }
-
 // GetConditions returns the Conditions field value.
 func (o *MonitorNotificationRuleConditionalRecipients) GetConditions() []MonitorNotificationRuleCondition {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *MonitorNotificationRuleConditionalRecipients) GetConditionsOk() (*[]Mon
 func (o *MonitorNotificationRuleConditionalRecipients) SetConditions(v []MonitorNotificationRuleCondition) {
 	o.Conditions = v
 }
+
 
 // GetFallbackRecipients returns the FallbackRecipients field value if set, zero value otherwise.
 func (o *MonitorNotificationRuleConditionalRecipients) GetFallbackRecipients() []string {
@@ -90,6 +95,8 @@ func (o *MonitorNotificationRuleConditionalRecipients) SetFallbackRecipients(v [
 	o.FallbackRecipients = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorNotificationRuleConditionalRecipients) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,8 +117,8 @@ func (o MonitorNotificationRuleConditionalRecipients) MarshalJSON() ([]byte, err
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorNotificationRuleConditionalRecipients) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Conditions         *[]MonitorNotificationRuleCondition `json:"conditions"`
-		FallbackRecipients []string                            `json:"fallback_recipients,omitempty"`
+		Conditions *[]MonitorNotificationRuleCondition `json:"conditions"`
+		FallbackRecipients []string `json:"fallback_recipients,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *MonitorNotificationRuleConditionalRecipients) UnmarshalJSON(bytes []byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"conditions", "fallback_recipients"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "conditions", "fallback_recipients",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OpenAICredentials - The definition of the `OpenAICredentials` object.
 type OpenAICredentials struct {
@@ -56,6 +62,7 @@ func (obj OpenAICredentials) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.OpenAIAPIKey)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj OpenAICredentials) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *OpenAICredentials) GetActualInstance() interface{} {
+func (obj *OpenAICredentials) GetActualInstance() (interface{}) {
 	if obj.OpenAIAPIKey != nil {
 		return obj.OpenAIAPIKey
 	}
+
 
 	// all schemas are nil
 	return nil

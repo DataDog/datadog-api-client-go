@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RunHistoricalJobRequestAttributes Run a historical job request.
 type RunHistoricalJobRequestAttributes struct {
@@ -17,9 +23,10 @@ type RunHistoricalJobRequestAttributes struct {
 	// Definition of a historical job.
 	JobDefinition *JobDefinition `json:"jobDefinition,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRunHistoricalJobRequestAttributes instantiates a new RunHistoricalJobRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewRunHistoricalJobRequestAttributesWithDefaults() *RunHistoricalJobRequest
 	this := RunHistoricalJobRequestAttributes{}
 	return &this
 }
-
 // GetFromRule returns the FromRule field value if set, zero value otherwise.
 func (o *RunHistoricalJobRequestAttributes) GetFromRule() JobDefinitionFromRule {
 	if o == nil || o.FromRule == nil {
@@ -65,6 +71,7 @@ func (o *RunHistoricalJobRequestAttributes) HasFromRule() bool {
 func (o *RunHistoricalJobRequestAttributes) SetFromRule(v JobDefinitionFromRule) {
 	o.FromRule = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *RunHistoricalJobRequestAttributes) GetId() string {
@@ -94,6 +101,7 @@ func (o *RunHistoricalJobRequestAttributes) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetJobDefinition returns the JobDefinition field value if set, zero value otherwise.
 func (o *RunHistoricalJobRequestAttributes) GetJobDefinition() JobDefinition {
 	if o == nil || o.JobDefinition == nil {
@@ -122,6 +130,8 @@ func (o *RunHistoricalJobRequestAttributes) SetJobDefinition(v JobDefinition) {
 	o.JobDefinition = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RunHistoricalJobRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,27 +157,27 @@ func (o RunHistoricalJobRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RunHistoricalJobRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		FromRule      *JobDefinitionFromRule `json:"fromRule,omitempty"`
-		Id            *string                `json:"id,omitempty"`
-		JobDefinition *JobDefinition         `json:"jobDefinition,omitempty"`
+		FromRule *JobDefinitionFromRule `json:"fromRule,omitempty"`
+		Id *string `json:"id,omitempty"`
+		JobDefinition *JobDefinition `json:"jobDefinition,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"fromRule", "id", "jobDefinition"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "fromRule", "id", "jobDefinition",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.FromRule != nil && all.FromRule.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.FromRule != nil && all.FromRule.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.FromRule = all.FromRule
 	o.Id = all.Id
-	if all.JobDefinition != nil && all.JobDefinition.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.JobDefinition != nil && all.JobDefinition.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.JobDefinition = all.JobDefinition

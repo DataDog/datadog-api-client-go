@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleNewValueOptionsLearningThreshold A number of occurrences after which signals will be generated for values that weren't learned.
 type SecurityMonitoringRuleNewValueOptionsLearningThreshold int32
@@ -16,7 +20,7 @@ type SecurityMonitoringRuleNewValueOptionsLearningThreshold int32
 // List of SecurityMonitoringRuleNewValueOptionsLearningThreshold.
 const (
 	SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGTHRESHOLD_ZERO_OCCURRENCES SecurityMonitoringRuleNewValueOptionsLearningThreshold = 0
-	SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGTHRESHOLD_ONE_OCCURRENCE   SecurityMonitoringRuleNewValueOptionsLearningThreshold = 1
+	SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGTHRESHOLD_ONE_OCCURRENCE SecurityMonitoringRuleNewValueOptionsLearningThreshold = 1
 )
 
 var allowedSecurityMonitoringRuleNewValueOptionsLearningThresholdEnumValues = []SecurityMonitoringRuleNewValueOptionsLearningThreshold{

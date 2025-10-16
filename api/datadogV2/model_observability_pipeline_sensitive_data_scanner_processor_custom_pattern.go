@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern Defines a custom regex-based pattern for identifying sensitive data in logs.
 type ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern struct {
 	// Indicates a custom regular expression is used for matching.
 	Type ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSensitiveDataScannerProcessorCustomPattern instantiates a new ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineSensitiveDataScannerProcessorCustomPatternWithDefau
 	this := ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern{}
 	return &this
 }
-
 // GetOptions returns the Options field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern) GetOptions() ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOptions {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern) GetOpt
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern) SetOptions(v ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOptions) {
 	o.Options = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern) GetType() ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternType {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern) SetTyp
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern) Marshal
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Options *ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternOptions `json:"options"`
-		Type    *ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternType    `json:"type"`
+		Type *ObservabilityPipelineSensitiveDataScannerProcessorCustomPatternType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern) Unmars
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"options", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "options", "type",  })
 	} else {
 		return err
 	}

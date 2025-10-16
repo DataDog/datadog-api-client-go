@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RetentionFilterAllType The type of retention filter.
 type RetentionFilterAllType string
 
 // List of RetentionFilterAllType.
 const (
-	RETENTIONFILTERALLTYPE_SPANS_SAMPLING_PROCESSOR        RetentionFilterAllType = "spans-sampling-processor"
+	RETENTIONFILTERALLTYPE_SPANS_SAMPLING_PROCESSOR RetentionFilterAllType = "spans-sampling-processor"
 	RETENTIONFILTERALLTYPE_SPANS_ERRORS_SAMPLING_PROCESSOR RetentionFilterAllType = "spans-errors-sampling-processor"
 	RETENTIONFILTERALLTYPE_SPANS_APPSEC_SAMPLING_PROCESSOR RetentionFilterAllType = "spans-appsec-sampling-processor"
 )

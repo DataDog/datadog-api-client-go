@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GeomapWidgetDefinitionStyle The style to apply to the widget.
 type GeomapWidgetDefinitionStyle struct {
@@ -17,9 +21,10 @@ type GeomapWidgetDefinitionStyle struct {
 	// Whether to flip the palette tones.
 	PaletteFlip bool `json:"palette_flip"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGeomapWidgetDefinitionStyle instantiates a new GeomapWidgetDefinitionStyle object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewGeomapWidgetDefinitionStyleWithDefaults() *GeomapWidgetDefinitionStyle {
 	this := GeomapWidgetDefinitionStyle{}
 	return &this
 }
-
 // GetPalette returns the Palette field value.
 func (o *GeomapWidgetDefinitionStyle) GetPalette() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *GeomapWidgetDefinitionStyle) GetPaletteOk() (*string, bool) {
 func (o *GeomapWidgetDefinitionStyle) SetPalette(v string) {
 	o.Palette = v
 }
+
 
 // GetPaletteFlip returns the PaletteFlip field value.
 func (o *GeomapWidgetDefinitionStyle) GetPaletteFlip() bool {
@@ -86,6 +91,8 @@ func (o *GeomapWidgetDefinitionStyle) SetPaletteFlip(v bool) {
 	o.PaletteFlip = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o GeomapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o GeomapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Palette     *string `json:"palette"`
-		PaletteFlip *bool   `json:"palette_flip"`
+		Palette *string `json:"palette"`
+		PaletteFlip *bool `json:"palette_flip"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"palette", "palette_flip"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "palette", "palette_flip",  })
 	} else {
 		return err
 	}

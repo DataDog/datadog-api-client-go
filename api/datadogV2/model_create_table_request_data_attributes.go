@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateTableRequestDataAttributes The definition of `CreateTableRequestDataAttributes` object.
 type CreateTableRequestDataAttributes struct {
@@ -25,9 +29,10 @@ type CreateTableRequestDataAttributes struct {
 	// The tags of the reference table.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateTableRequestDataAttributes instantiates a new CreateTableRequestDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewCreateTableRequestDataAttributesWithDefaults() *CreateTableRequestDataAt
 	this := CreateTableRequestDataAttributes{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CreateTableRequestDataAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -76,6 +80,7 @@ func (o *CreateTableRequestDataAttributes) HasDescription() bool {
 func (o *CreateTableRequestDataAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetFileMetadata returns the FileMetadata field value if set, zero value otherwise.
 func (o *CreateTableRequestDataAttributes) GetFileMetadata() CreateTableRequestDataAttributesFileMetadata {
@@ -105,6 +110,7 @@ func (o *CreateTableRequestDataAttributes) SetFileMetadata(v CreateTableRequestD
 	o.FileMetadata = &v
 }
 
+
 // GetSchema returns the Schema field value.
 func (o *CreateTableRequestDataAttributes) GetSchema() CreateTableRequestDataAttributesSchema {
 	if o == nil {
@@ -127,6 +133,7 @@ func (o *CreateTableRequestDataAttributes) GetSchemaOk() (*CreateTableRequestDat
 func (o *CreateTableRequestDataAttributes) SetSchema(v CreateTableRequestDataAttributesSchema) {
 	o.Schema = v
 }
+
 
 // GetSource returns the Source field value.
 func (o *CreateTableRequestDataAttributes) GetSource() ReferenceTableCreateSourceType {
@@ -151,6 +158,7 @@ func (o *CreateTableRequestDataAttributes) SetSource(v ReferenceTableCreateSourc
 	o.Source = v
 }
 
+
 // GetTableName returns the TableName field value.
 func (o *CreateTableRequestDataAttributes) GetTableName() string {
 	if o == nil {
@@ -173,6 +181,7 @@ func (o *CreateTableRequestDataAttributes) GetTableNameOk() (*string, bool) {
 func (o *CreateTableRequestDataAttributes) SetTableName(v string) {
 	o.TableName = v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *CreateTableRequestDataAttributes) GetTags() []string {
@@ -202,6 +211,8 @@ func (o *CreateTableRequestDataAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateTableRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -230,12 +241,12 @@ func (o CreateTableRequestDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateTableRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description  *string                                       `json:"description,omitempty"`
+		Description *string `json:"description,omitempty"`
 		FileMetadata *CreateTableRequestDataAttributesFileMetadata `json:"file_metadata,omitempty"`
-		Schema       *CreateTableRequestDataAttributesSchema       `json:"schema"`
-		Source       *ReferenceTableCreateSourceType               `json:"source"`
-		TableName    *string                                       `json:"table_name"`
-		Tags         []string                                      `json:"tags,omitempty"`
+		Schema *CreateTableRequestDataAttributesSchema `json:"schema"`
+		Source *ReferenceTableCreateSourceType `json:"source"`
+		TableName *string `json:"table_name"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -251,7 +262,7 @@ func (o *CreateTableRequestDataAttributes) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "file_metadata", "schema", "source", "table_name", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "file_metadata", "schema", "source", "table_name", "tags",  })
 	} else {
 		return err
 	}

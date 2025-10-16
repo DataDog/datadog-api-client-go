@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LaunchDarklyCredentialsUpdate - The definition of the `LaunchDarklyCredentialsUpdate` object.
 type LaunchDarklyCredentialsUpdate struct {
@@ -56,6 +62,7 @@ func (obj LaunchDarklyCredentialsUpdate) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.LaunchDarklyAPIKeyUpdate)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj LaunchDarklyCredentialsUpdate) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *LaunchDarklyCredentialsUpdate) GetActualInstance() interface{} {
+func (obj *LaunchDarklyCredentialsUpdate) GetActualInstance() (interface{}) {
 	if obj.LaunchDarklyAPIKeyUpdate != nil {
 		return obj.LaunchDarklyAPIKeyUpdate
 	}
+
 
 	// all schemas are nil
 	return nil

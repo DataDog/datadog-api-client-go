@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestCiOptions CI/CD options for a Synthetic test.
 type SyntheticsTestCiOptions struct {
 	// Execution rule for a Synthetic test.
 	ExecutionRule SyntheticsTestExecutionRule `json:"executionRule"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsTestCiOptions instantiates a new SyntheticsTestCiOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewSyntheticsTestCiOptionsWithDefaults() *SyntheticsTestCiOptions {
 	this := SyntheticsTestCiOptions{}
 	return &this
 }
-
 // GetExecutionRule returns the ExecutionRule field value.
 func (o *SyntheticsTestCiOptions) GetExecutionRule() SyntheticsTestExecutionRule {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *SyntheticsTestCiOptions) GetExecutionRuleOk() (*SyntheticsTestExecution
 func (o *SyntheticsTestCiOptions) SetExecutionRule(v SyntheticsTestExecutionRule) {
 	o.ExecutionRule = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTestCiOptions) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *SyntheticsTestCiOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"executionRule"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "executionRule",  })
 	} else {
 		return err
 	}

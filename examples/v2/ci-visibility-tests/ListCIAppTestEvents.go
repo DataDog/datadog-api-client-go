@@ -2,15 +2,15 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
-	"time"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -18,7 +18,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCIVisibilityTestsApi(apiClient)
-	resp, r, err := api.ListCIAppTestEvents(ctx, *datadogV2.NewListCIAppTestEventsOptionalParameters().WithFilterQuery("@test.service:web-ui-tests").WithFilterFrom(time.Now().Add(time.Second * -30)).WithFilterTo(time.Now()).WithPageLimit(5))
+	resp, r, err := api.ListCIAppTestEvents(ctx, *datadogV2.NewListCIAppTestEventsOptionalParameters().WithFilterQuery("@test.service:web-ui-tests").WithFilterFrom(time.Now().Add(time.Second*-30)).WithFilterTo(time.Now()).WithPageLimit(5), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CIVisibilityTestsApi.ListCIAppTestEvents`: %v\n", err)

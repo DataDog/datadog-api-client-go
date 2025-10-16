@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LayerRelationships Holds references to objects related to the Layer entity, such as its members.
 type LayerRelationships struct {
 	// Holds an array of references to the members of a Layer, each containing member IDs.
 	Members *LayerRelationshipsMembers `json:"members,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLayerRelationships instantiates a new LayerRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewLayerRelationshipsWithDefaults() *LayerRelationships {
 	this := LayerRelationships{}
 	return &this
 }
-
 // GetMembers returns the Members field value if set, zero value otherwise.
 func (o *LayerRelationships) GetMembers() LayerRelationshipsMembers {
 	if o == nil || o.Members == nil {
@@ -62,6 +68,8 @@ func (o *LayerRelationships) SetMembers(v LayerRelationshipsMembers) {
 	o.Members = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LayerRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *LayerRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"members"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "members",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Members != nil && all.Members.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Members != nil && all.Members.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Members = all.Members

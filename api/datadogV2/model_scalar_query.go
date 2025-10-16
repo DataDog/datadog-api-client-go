@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScalarQuery - An individual scalar query to one of the basic Datadog data sources.
 type ScalarQuery struct {
 	MetricsScalarQuery *MetricsScalarQuery
-	EventsScalarQuery  *EventsScalarQuery
+	EventsScalarQuery *EventsScalarQuery
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -80,9 +86,11 @@ func (obj ScalarQuery) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.MetricsScalarQuery)
 	}
 
+
 	if obj.EventsScalarQuery != nil {
 		return datadog.Marshal(&obj.EventsScalarQuery)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj ScalarQuery) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ScalarQuery) GetActualInstance() interface{} {
+func (obj *ScalarQuery) GetActualInstance() (interface{}) {
 	if obj.MetricsScalarQuery != nil {
 		return obj.MetricsScalarQuery
 	}
 
+
 	if obj.EventsScalarQuery != nil {
 		return obj.EventsScalarQuery
 	}
+
 
 	// all schemas are nil
 	return nil

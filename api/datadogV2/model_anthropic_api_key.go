@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AnthropicAPIKey The definition of the `AnthropicAPIKey` object.
 type AnthropicAPIKey struct {
@@ -17,9 +21,10 @@ type AnthropicAPIKey struct {
 	// The definition of the `AnthropicAPIKey` object.
 	Type AnthropicAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAnthropicAPIKey instantiates a new AnthropicAPIKey object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewAnthropicAPIKeyWithDefaults() *AnthropicAPIKey {
 	this := AnthropicAPIKey{}
 	return &this
 }
-
 // GetApiToken returns the ApiToken field value.
 func (o *AnthropicAPIKey) GetApiToken() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *AnthropicAPIKey) GetApiTokenOk() (*string, bool) {
 func (o *AnthropicAPIKey) SetApiToken(v string) {
 	o.ApiToken = v
 }
+
 
 // GetType returns the Type field value.
 func (o *AnthropicAPIKey) GetType() AnthropicAPIKeyType {
@@ -86,6 +91,8 @@ func (o *AnthropicAPIKey) SetType(v AnthropicAPIKeyType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AnthropicAPIKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o AnthropicAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AnthropicAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string              `json:"api_token"`
-		Type     *AnthropicAPIKeyType `json:"type"`
+		ApiToken *string `json:"api_token"`
+		Type *AnthropicAPIKeyType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *AnthropicAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_token", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_token", "type",  })
 	} else {
 		return err
 	}

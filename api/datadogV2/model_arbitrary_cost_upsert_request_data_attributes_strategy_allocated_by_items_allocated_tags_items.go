@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocatedTagsItems The definition of `ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocatedTagsItems` object.
 type ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocatedTagsItems struct {
@@ -17,9 +21,10 @@ type ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocatedTa
 	// The `items` `value`.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocatedTagsItems instantiates a new ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocatedTagsItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocate
 	this := ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocatedTagsItems{}
 	return &this
 }
-
 // GetKey returns the Key field value.
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocatedTagsItems) GetKey() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocat
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocatedTagsItems) SetKey(v string) {
 	o.Key = v
 }
+
 
 // GetValue returns the Value field value.
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocatedTagsItems) GetValue() string {
@@ -86,6 +91,8 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocat
 	o.Value = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocatedTagsItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocate
 // UnmarshalJSON deserializes the given payload.
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocatedTagsItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Key   *string `json:"key"`
+		Key *string `json:"key"`
 		Value *string `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocat
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"key", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "key", "value",  })
 	} else {
 		return err
 	}

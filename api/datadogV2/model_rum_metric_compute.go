@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RumMetricCompute The compute rule to compute the rum-based metric.
 type RumMetricCompute struct {
@@ -21,9 +25,10 @@ type RumMetricCompute struct {
 	// Only present when `aggregation_type` is `distribution`.
 	Path *string `json:"path,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRumMetricCompute instantiates a new RumMetricCompute object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewRumMetricComputeWithDefaults() *RumMetricCompute {
 	this := RumMetricCompute{}
 	return &this
 }
-
 // GetAggregationType returns the AggregationType field value.
 func (o *RumMetricCompute) GetAggregationType() RumMetricComputeAggregationType {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *RumMetricCompute) GetAggregationTypeOk() (*RumMetricComputeAggregationT
 func (o *RumMetricCompute) SetAggregationType(v RumMetricComputeAggregationType) {
 	o.AggregationType = v
 }
+
 
 // GetIncludePercentiles returns the IncludePercentiles field value if set, zero value otherwise.
 func (o *RumMetricCompute) GetIncludePercentiles() bool {
@@ -94,6 +99,7 @@ func (o *RumMetricCompute) SetIncludePercentiles(v bool) {
 	o.IncludePercentiles = &v
 }
 
+
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *RumMetricCompute) GetPath() string {
 	if o == nil || o.Path == nil {
@@ -122,6 +128,8 @@ func (o *RumMetricCompute) SetPath(v string) {
 	o.Path = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RumMetricCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -145,9 +153,9 @@ func (o RumMetricCompute) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RumMetricCompute) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AggregationType    *RumMetricComputeAggregationType `json:"aggregation_type"`
-		IncludePercentiles *bool                            `json:"include_percentiles,omitempty"`
-		Path               *string                          `json:"path,omitempty"`
+		AggregationType *RumMetricComputeAggregationType `json:"aggregation_type"`
+		IncludePercentiles *bool `json:"include_percentiles,omitempty"`
+		Path *string `json:"path,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -157,7 +165,7 @@ func (o *RumMetricCompute) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation_type", "include_percentiles", "path"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation_type", "include_percentiles", "path",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AzureStorageDestination The `azure_storage` destination forwards logs to an Azure Blob Storage container.
 type AzureStorageDestination struct {
@@ -23,9 +27,10 @@ type AzureStorageDestination struct {
 	// The destination type. The value should always be `azure_storage`.
 	Type AzureStorageDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAzureStorageDestination instantiates a new AzureStorageDestination object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +54,6 @@ func NewAzureStorageDestinationWithDefaults() *AzureStorageDestination {
 	this.Type = typeVar
 	return &this
 }
-
 // GetBlobPrefix returns the BlobPrefix field value if set, zero value otherwise.
 func (o *AzureStorageDestination) GetBlobPrefix() string {
 	if o == nil || o.BlobPrefix == nil {
@@ -78,6 +82,7 @@ func (o *AzureStorageDestination) SetBlobPrefix(v string) {
 	o.BlobPrefix = &v
 }
 
+
 // GetContainerName returns the ContainerName field value.
 func (o *AzureStorageDestination) GetContainerName() string {
 	if o == nil {
@@ -100,6 +105,7 @@ func (o *AzureStorageDestination) GetContainerNameOk() (*string, bool) {
 func (o *AzureStorageDestination) SetContainerName(v string) {
 	o.ContainerName = v
 }
+
 
 // GetId returns the Id field value.
 func (o *AzureStorageDestination) GetId() string {
@@ -124,6 +130,7 @@ func (o *AzureStorageDestination) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *AzureStorageDestination) GetInputs() []string {
 	if o == nil {
@@ -146,6 +153,7 @@ func (o *AzureStorageDestination) GetInputsOk() (*[]string, bool) {
 func (o *AzureStorageDestination) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetType returns the Type field value.
 func (o *AzureStorageDestination) GetType() AzureStorageDestinationType {
@@ -170,6 +178,8 @@ func (o *AzureStorageDestination) SetType(v AzureStorageDestinationType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AzureStorageDestination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -193,11 +203,11 @@ func (o AzureStorageDestination) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AzureStorageDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BlobPrefix    *string                      `json:"blob_prefix,omitempty"`
-		ContainerName *string                      `json:"container_name"`
-		Id            *string                      `json:"id"`
-		Inputs        *[]string                    `json:"inputs"`
-		Type          *AzureStorageDestinationType `json:"type"`
+		BlobPrefix *string `json:"blob_prefix,omitempty"`
+		ContainerName *string `json:"container_name"`
+		Id *string `json:"id"`
+		Inputs *[]string `json:"inputs"`
+		Type *AzureStorageDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -216,7 +226,7 @@ func (o *AzureStorageDestination) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"blob_prefix", "container_name", "id", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "blob_prefix", "container_name", "id", "inputs", "type",  })
 	} else {
 		return err
 	}

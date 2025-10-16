@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventCreateResponseAttributesAttributesEvt JSON object of event system attributes.
 type EventCreateResponseAttributesAttributesEvt struct {
@@ -16,9 +22,10 @@ type EventCreateResponseAttributesAttributesEvt struct {
 	// A unique identifier for the event. You can use this identifier to query or reference the event.
 	Uid *string `json:"uid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEventCreateResponseAttributesAttributesEvt instantiates a new EventCreateResponseAttributesAttributesEvt object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +43,6 @@ func NewEventCreateResponseAttributesAttributesEvtWithDefaults() *EventCreateRes
 	this := EventCreateResponseAttributesAttributesEvt{}
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 // Deprecated
 func (o *EventCreateResponseAttributesAttributesEvt) GetId() string {
@@ -68,6 +74,7 @@ func (o *EventCreateResponseAttributesAttributesEvt) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetUid returns the Uid field value if set, zero value otherwise.
 func (o *EventCreateResponseAttributesAttributesEvt) GetUid() string {
 	if o == nil || o.Uid == nil {
@@ -96,6 +103,8 @@ func (o *EventCreateResponseAttributesAttributesEvt) SetUid(v string) {
 	o.Uid = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EventCreateResponseAttributesAttributesEvt) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -118,7 +127,7 @@ func (o EventCreateResponseAttributesAttributesEvt) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *EventCreateResponseAttributesAttributesEvt) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id  *string `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Uid *string `json:"uid,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -126,7 +135,7 @@ func (o *EventCreateResponseAttributesAttributesEvt) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "uid"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "uid",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsCITest Configuration for Continuous Testing.
 type SyntheticsCITest struct {
@@ -43,9 +47,10 @@ type SyntheticsCITest struct {
 	// The version number of the Synthetic test version to trigger.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsCITest instantiates a new SyntheticsCITest object.
 // This constructor will assign default values to properties that have it defined,
@@ -64,7 +69,6 @@ func NewSyntheticsCITestWithDefaults() *SyntheticsCITest {
 	this := SyntheticsCITest{}
 	return &this
 }
-
 // GetAllowInsecureCertificates returns the AllowInsecureCertificates field value if set, zero value otherwise.
 func (o *SyntheticsCITest) GetAllowInsecureCertificates() bool {
 	if o == nil || o.AllowInsecureCertificates == nil {
@@ -92,6 +96,7 @@ func (o *SyntheticsCITest) HasAllowInsecureCertificates() bool {
 func (o *SyntheticsCITest) SetAllowInsecureCertificates(v bool) {
 	o.AllowInsecureCertificates = &v
 }
+
 
 // GetBasicAuth returns the BasicAuth field value if set, zero value otherwise.
 func (o *SyntheticsCITest) GetBasicAuth() SyntheticsBasicAuth {
@@ -121,6 +126,7 @@ func (o *SyntheticsCITest) SetBasicAuth(v SyntheticsBasicAuth) {
 	o.BasicAuth = &v
 }
 
+
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *SyntheticsCITest) GetBody() string {
 	if o == nil || o.Body == nil {
@@ -148,6 +154,7 @@ func (o *SyntheticsCITest) HasBody() bool {
 func (o *SyntheticsCITest) SetBody(v string) {
 	o.Body = &v
 }
+
 
 // GetBodyType returns the BodyType field value if set, zero value otherwise.
 func (o *SyntheticsCITest) GetBodyType() string {
@@ -177,6 +184,7 @@ func (o *SyntheticsCITest) SetBodyType(v string) {
 	o.BodyType = &v
 }
 
+
 // GetCookies returns the Cookies field value if set, zero value otherwise.
 func (o *SyntheticsCITest) GetCookies() string {
 	if o == nil || o.Cookies == nil {
@@ -204,6 +212,7 @@ func (o *SyntheticsCITest) HasCookies() bool {
 func (o *SyntheticsCITest) SetCookies(v string) {
 	o.Cookies = &v
 }
+
 
 // GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.
 func (o *SyntheticsCITest) GetDeviceIds() []string {
@@ -233,6 +242,7 @@ func (o *SyntheticsCITest) SetDeviceIds(v []string) {
 	o.DeviceIds = v
 }
 
+
 // GetFollowRedirects returns the FollowRedirects field value if set, zero value otherwise.
 func (o *SyntheticsCITest) GetFollowRedirects() bool {
 	if o == nil || o.FollowRedirects == nil {
@@ -260,6 +270,7 @@ func (o *SyntheticsCITest) HasFollowRedirects() bool {
 func (o *SyntheticsCITest) SetFollowRedirects(v bool) {
 	o.FollowRedirects = &v
 }
+
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
 func (o *SyntheticsCITest) GetHeaders() map[string]string {
@@ -289,6 +300,7 @@ func (o *SyntheticsCITest) SetHeaders(v map[string]string) {
 	o.Headers = v
 }
 
+
 // GetLocations returns the Locations field value if set, zero value otherwise.
 func (o *SyntheticsCITest) GetLocations() []string {
 	if o == nil || o.Locations == nil {
@@ -316,6 +328,7 @@ func (o *SyntheticsCITest) HasLocations() bool {
 func (o *SyntheticsCITest) SetLocations(v []string) {
 	o.Locations = v
 }
+
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *SyntheticsCITest) GetMetadata() SyntheticsCIBatchMetadata {
@@ -345,6 +358,7 @@ func (o *SyntheticsCITest) SetMetadata(v SyntheticsCIBatchMetadata) {
 	o.Metadata = &v
 }
 
+
 // GetPublicId returns the PublicId field value.
 func (o *SyntheticsCITest) GetPublicId() string {
 	if o == nil {
@@ -367,6 +381,7 @@ func (o *SyntheticsCITest) GetPublicIdOk() (*string, bool) {
 func (o *SyntheticsCITest) SetPublicId(v string) {
 	o.PublicId = v
 }
+
 
 // GetRetry returns the Retry field value if set, zero value otherwise.
 func (o *SyntheticsCITest) GetRetry() SyntheticsTestOptionsRetry {
@@ -396,6 +411,7 @@ func (o *SyntheticsCITest) SetRetry(v SyntheticsTestOptionsRetry) {
 	o.Retry = &v
 }
 
+
 // GetStartUrl returns the StartUrl field value if set, zero value otherwise.
 func (o *SyntheticsCITest) GetStartUrl() string {
 	if o == nil || o.StartUrl == nil {
@@ -423,6 +439,7 @@ func (o *SyntheticsCITest) HasStartUrl() bool {
 func (o *SyntheticsCITest) SetStartUrl(v string) {
 	o.StartUrl = &v
 }
+
 
 // GetVariables returns the Variables field value if set, zero value otherwise.
 func (o *SyntheticsCITest) GetVariables() map[string]string {
@@ -452,6 +469,7 @@ func (o *SyntheticsCITest) SetVariables(v map[string]string) {
 	o.Variables = v
 }
 
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *SyntheticsCITest) GetVersion() int64 {
 	if o == nil || o.Version == nil {
@@ -479,6 +497,8 @@ func (o *SyntheticsCITest) HasVersion() bool {
 func (o *SyntheticsCITest) SetVersion(v int64) {
 	o.Version = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsCITest) MarshalJSON() ([]byte, error) {
@@ -539,21 +559,21 @@ func (o SyntheticsCITest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AllowInsecureCertificates *bool                       `json:"allowInsecureCertificates,omitempty"`
-		BasicAuth                 *SyntheticsBasicAuth        `json:"basicAuth,omitempty"`
-		Body                      *string                     `json:"body,omitempty"`
-		BodyType                  *string                     `json:"bodyType,omitempty"`
-		Cookies                   *string                     `json:"cookies,omitempty"`
-		DeviceIds                 []string                    `json:"deviceIds,omitempty"`
-		FollowRedirects           *bool                       `json:"followRedirects,omitempty"`
-		Headers                   map[string]string           `json:"headers,omitempty"`
-		Locations                 []string                    `json:"locations,omitempty"`
-		Metadata                  *SyntheticsCIBatchMetadata  `json:"metadata,omitempty"`
-		PublicId                  *string                     `json:"public_id"`
-		Retry                     *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
-		StartUrl                  *string                     `json:"startUrl,omitempty"`
-		Variables                 map[string]string           `json:"variables,omitempty"`
-		Version                   *int64                      `json:"version,omitempty"`
+		AllowInsecureCertificates *bool `json:"allowInsecureCertificates,omitempty"`
+		BasicAuth *SyntheticsBasicAuth `json:"basicAuth,omitempty"`
+		Body *string `json:"body,omitempty"`
+		BodyType *string `json:"bodyType,omitempty"`
+		Cookies *string `json:"cookies,omitempty"`
+		DeviceIds []string `json:"deviceIds,omitempty"`
+		FollowRedirects *bool `json:"followRedirects,omitempty"`
+		Headers map[string]string `json:"headers,omitempty"`
+		Locations []string `json:"locations,omitempty"`
+		Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
+		PublicId *string `json:"public_id"`
+		Retry *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
+		StartUrl *string `json:"startUrl,omitempty"`
+		Variables map[string]string `json:"variables,omitempty"`
+		Version *int64 `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -563,7 +583,7 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allowInsecureCertificates", "basicAuth", "body", "bodyType", "cookies", "deviceIds", "followRedirects", "headers", "locations", "metadata", "public_id", "retry", "startUrl", "variables", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "allowInsecureCertificates", "basicAuth", "body", "bodyType", "cookies", "deviceIds", "followRedirects", "headers", "locations", "metadata", "public_id", "retry", "startUrl", "variables", "version",  })
 	} else {
 		return err
 	}
@@ -578,12 +598,12 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 	o.FollowRedirects = all.FollowRedirects
 	o.Headers = all.Headers
 	o.Locations = all.Locations
-	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Metadata = all.Metadata
 	o.PublicId = *all.PublicId
-	if all.Retry != nil && all.Retry.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Retry != nil && all.Retry.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Retry = all.Retry

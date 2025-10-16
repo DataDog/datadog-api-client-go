@@ -2,25 +2,29 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ReferenceTableSortType Sort field and direction for reference tables. Use field name for ascending, prefix with "-" for descending.
 type ReferenceTableSortType string
 
 // List of ReferenceTableSortType.
 const (
-	REFERENCETABLESORTTYPE_UPDATED_AT       ReferenceTableSortType = "updated_at"
-	REFERENCETABLESORTTYPE_TABLE_NAME       ReferenceTableSortType = "table_name"
-	REFERENCETABLESORTTYPE_STATUS           ReferenceTableSortType = "status"
+	REFERENCETABLESORTTYPE_UPDATED_AT ReferenceTableSortType = "updated_at"
+	REFERENCETABLESORTTYPE_TABLE_NAME ReferenceTableSortType = "table_name"
+	REFERENCETABLESORTTYPE_STATUS ReferenceTableSortType = "status"
 	REFERENCETABLESORTTYPE_MINUS_UPDATED_AT ReferenceTableSortType = "-updated_at"
 	REFERENCETABLESORTTYPE_MINUS_TABLE_NAME ReferenceTableSortType = "-table_name"
-	REFERENCETABLESORTTYPE_MINUS_STATUS     ReferenceTableSortType = "-status"
+	REFERENCETABLESORTTYPE_MINUS_STATUS ReferenceTableSortType = "-status"
 )
 
 var allowedReferenceTableSortTypeEnumValues = []ReferenceTableSortType{

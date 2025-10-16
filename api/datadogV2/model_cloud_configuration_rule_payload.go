@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudConfigurationRulePayload The payload of a cloud configuration rule.
 type CloudConfigurationRulePayload struct {
@@ -35,9 +39,10 @@ type CloudConfigurationRulePayload struct {
 	// The rule type.
 	Type *CloudConfigurationRuleType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudConfigurationRulePayload instantiates a new CloudConfigurationRulePayload object.
 // This constructor will assign default values to properties that have it defined,
@@ -61,7 +66,6 @@ func NewCloudConfigurationRulePayloadWithDefaults() *CloudConfigurationRulePaylo
 	this := CloudConfigurationRulePayload{}
 	return &this
 }
-
 // GetCases returns the Cases field value.
 func (o *CloudConfigurationRulePayload) GetCases() []CloudConfigurationRuleCaseCreate {
 	if o == nil {
@@ -85,6 +89,7 @@ func (o *CloudConfigurationRulePayload) SetCases(v []CloudConfigurationRuleCaseC
 	o.Cases = v
 }
 
+
 // GetComplianceSignalOptions returns the ComplianceSignalOptions field value.
 func (o *CloudConfigurationRulePayload) GetComplianceSignalOptions() CloudConfigurationRuleComplianceSignalOptions {
 	if o == nil {
@@ -107,6 +112,7 @@ func (o *CloudConfigurationRulePayload) GetComplianceSignalOptionsOk() (*CloudCo
 func (o *CloudConfigurationRulePayload) SetComplianceSignalOptions(v CloudConfigurationRuleComplianceSignalOptions) {
 	o.ComplianceSignalOptions = v
 }
+
 
 // GetCustomMessage returns the CustomMessage field value if set, zero value otherwise.
 func (o *CloudConfigurationRulePayload) GetCustomMessage() string {
@@ -136,6 +142,7 @@ func (o *CloudConfigurationRulePayload) SetCustomMessage(v string) {
 	o.CustomMessage = &v
 }
 
+
 // GetCustomName returns the CustomName field value if set, zero value otherwise.
 func (o *CloudConfigurationRulePayload) GetCustomName() string {
 	if o == nil || o.CustomName == nil {
@@ -163,6 +170,7 @@ func (o *CloudConfigurationRulePayload) HasCustomName() bool {
 func (o *CloudConfigurationRulePayload) SetCustomName(v string) {
 	o.CustomName = &v
 }
+
 
 // GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *CloudConfigurationRulePayload) GetFilters() []SecurityMonitoringFilter {
@@ -192,6 +200,7 @@ func (o *CloudConfigurationRulePayload) SetFilters(v []SecurityMonitoringFilter)
 	o.Filters = v
 }
 
+
 // GetIsEnabled returns the IsEnabled field value.
 func (o *CloudConfigurationRulePayload) GetIsEnabled() bool {
 	if o == nil {
@@ -214,6 +223,7 @@ func (o *CloudConfigurationRulePayload) GetIsEnabledOk() (*bool, bool) {
 func (o *CloudConfigurationRulePayload) SetIsEnabled(v bool) {
 	o.IsEnabled = v
 }
+
 
 // GetMessage returns the Message field value.
 func (o *CloudConfigurationRulePayload) GetMessage() string {
@@ -238,6 +248,7 @@ func (o *CloudConfigurationRulePayload) SetMessage(v string) {
 	o.Message = v
 }
 
+
 // GetName returns the Name field value.
 func (o *CloudConfigurationRulePayload) GetName() string {
 	if o == nil {
@@ -261,6 +272,7 @@ func (o *CloudConfigurationRulePayload) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetOptions returns the Options field value.
 func (o *CloudConfigurationRulePayload) GetOptions() CloudConfigurationRuleOptions {
 	if o == nil {
@@ -283,6 +295,7 @@ func (o *CloudConfigurationRulePayload) GetOptionsOk() (*CloudConfigurationRuleO
 func (o *CloudConfigurationRulePayload) SetOptions(v CloudConfigurationRuleOptions) {
 	o.Options = v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *CloudConfigurationRulePayload) GetTags() []string {
@@ -312,6 +325,7 @@ func (o *CloudConfigurationRulePayload) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CloudConfigurationRulePayload) GetType() CloudConfigurationRuleType {
 	if o == nil || o.Type == nil {
@@ -339,6 +353,8 @@ func (o *CloudConfigurationRulePayload) HasType() bool {
 func (o *CloudConfigurationRulePayload) SetType(v CloudConfigurationRuleType) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudConfigurationRulePayload) MarshalJSON() ([]byte, error) {
@@ -377,17 +393,17 @@ func (o CloudConfigurationRulePayload) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudConfigurationRulePayload) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Cases                   *[]CloudConfigurationRuleCaseCreate            `json:"cases"`
+		Cases *[]CloudConfigurationRuleCaseCreate `json:"cases"`
 		ComplianceSignalOptions *CloudConfigurationRuleComplianceSignalOptions `json:"complianceSignalOptions"`
-		CustomMessage           *string                                        `json:"customMessage,omitempty"`
-		CustomName              *string                                        `json:"customName,omitempty"`
-		Filters                 []SecurityMonitoringFilter                     `json:"filters,omitempty"`
-		IsEnabled               *bool                                          `json:"isEnabled"`
-		Message                 *string                                        `json:"message"`
-		Name                    *string                                        `json:"name"`
-		Options                 *CloudConfigurationRuleOptions                 `json:"options"`
-		Tags                    []string                                       `json:"tags,omitempty"`
-		Type                    *CloudConfigurationRuleType                    `json:"type,omitempty"`
+		CustomMessage *string `json:"customMessage,omitempty"`
+		CustomName *string `json:"customName,omitempty"`
+		Filters []SecurityMonitoringFilter `json:"filters,omitempty"`
+		IsEnabled *bool `json:"isEnabled"`
+		Message *string `json:"message"`
+		Name *string `json:"name"`
+		Options *CloudConfigurationRuleOptions `json:"options"`
+		Tags []string `json:"tags,omitempty"`
+		Type *CloudConfigurationRuleType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -412,7 +428,7 @@ func (o *CloudConfigurationRulePayload) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cases", "complianceSignalOptions", "customMessage", "customName", "filters", "isEnabled", "message", "name", "options", "tags", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cases", "complianceSignalOptions", "customMessage", "customName", "filters", "isEnabled", "message", "name", "options", "tags", "type",  })
 	} else {
 		return err
 	}
@@ -434,7 +450,7 @@ func (o *CloudConfigurationRulePayload) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	o.Options = *all.Options
 	o.Tags = all.Tags
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

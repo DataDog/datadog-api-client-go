@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DatastoreItemConflictMode How to handle conflicts when inserting items that already exist in the datastore.
 type DatastoreItemConflictMode string
 
 // List of DatastoreItemConflictMode.
 const (
-	DATASTOREITEMCONFLICTMODE_FAIL_ON_CONFLICT      DatastoreItemConflictMode = "fail_on_conflict"
+	DATASTOREITEMCONFLICTMODE_FAIL_ON_CONFLICT DatastoreItemConflictMode = "fail_on_conflict"
 	DATASTOREITEMCONFLICTMODE_OVERWRITE_ON_CONFLICT DatastoreItemConflictMode = "overwrite_on_conflict"
 )
 

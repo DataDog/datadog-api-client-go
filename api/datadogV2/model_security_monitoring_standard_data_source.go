@@ -2,26 +2,30 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringStandardDataSource Source of events, either logs, audit trail, or Datadog events.
 type SecurityMonitoringStandardDataSource string
 
 // List of SecurityMonitoringStandardDataSource.
 const (
-	SECURITYMONITORINGSTANDARDDATASOURCE_LOGS             SecurityMonitoringStandardDataSource = "logs"
-	SECURITYMONITORINGSTANDARDDATASOURCE_AUDIT            SecurityMonitoringStandardDataSource = "audit"
-	SECURITYMONITORINGSTANDARDDATASOURCE_APP_SEC_SPANS    SecurityMonitoringStandardDataSource = "app_sec_spans"
-	SECURITYMONITORINGSTANDARDDATASOURCE_SPANS            SecurityMonitoringStandardDataSource = "spans"
+	SECURITYMONITORINGSTANDARDDATASOURCE_LOGS SecurityMonitoringStandardDataSource = "logs"
+	SECURITYMONITORINGSTANDARDDATASOURCE_AUDIT SecurityMonitoringStandardDataSource = "audit"
+	SECURITYMONITORINGSTANDARDDATASOURCE_APP_SEC_SPANS SecurityMonitoringStandardDataSource = "app_sec_spans"
+	SECURITYMONITORINGSTANDARDDATASOURCE_SPANS SecurityMonitoringStandardDataSource = "spans"
 	SECURITYMONITORINGSTANDARDDATASOURCE_SECURITY_RUNTIME SecurityMonitoringStandardDataSource = "security_runtime"
-	SECURITYMONITORINGSTANDARDDATASOURCE_NETWORK          SecurityMonitoringStandardDataSource = "network"
-	SECURITYMONITORINGSTANDARDDATASOURCE_EVENTS           SecurityMonitoringStandardDataSource = "events"
+	SECURITYMONITORINGSTANDARDDATASOURCE_NETWORK SecurityMonitoringStandardDataSource = "network"
+	SECURITYMONITORINGSTANDARDDATASOURCE_EVENTS SecurityMonitoringStandardDataSource = "events"
 )
 
 var allowedSecurityMonitoringStandardDataSourceEnumValues = []SecurityMonitoringStandardDataSource{

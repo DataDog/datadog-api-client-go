@@ -2,23 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsGlobalVariableParseTestOptionsType Type of value to extract from a test for a Synthetic global variable.
 type SyntheticsGlobalVariableParseTestOptionsType string
 
 // List of SyntheticsGlobalVariableParseTestOptionsType.
 const (
-	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY        SyntheticsGlobalVariableParseTestOptionsType = "http_body"
-	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER      SyntheticsGlobalVariableParseTestOptionsType = "http_header"
+	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY SyntheticsGlobalVariableParseTestOptionsType = "http_body"
+	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER SyntheticsGlobalVariableParseTestOptionsType = "http_header"
 	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_STATUS_CODE SyntheticsGlobalVariableParseTestOptionsType = "http_status_code"
-	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_LOCAL_VARIABLE   SyntheticsGlobalVariableParseTestOptionsType = "local_variable"
+	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_LOCAL_VARIABLE SyntheticsGlobalVariableParseTestOptionsType = "local_variable"
 )
 
 var allowedSyntheticsGlobalVariableParseTestOptionsTypeEnumValues = []SyntheticsGlobalVariableParseTestOptionsType{

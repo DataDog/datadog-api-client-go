@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsUptime Object containing the uptime information.
 type SyntheticsUptime struct {
@@ -25,9 +31,10 @@ type SyntheticsUptime struct {
 	// The overall uptime.
 	Uptime *float64 `json:"uptime,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsUptime instantiates a new SyntheticsUptime object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,10 +52,9 @@ func NewSyntheticsUptimeWithDefaults() *SyntheticsUptime {
 	this := SyntheticsUptime{}
 	return &this
 }
-
 // GetErrors returns the Errors field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SyntheticsUptime) GetErrors() []SLOHistoryResponseErrorWithType {
-	if o == nil {
+	if o == nil  {
 		var ret []SLOHistoryResponseErrorWithType
 		return ret
 	}
@@ -74,6 +80,7 @@ func (o *SyntheticsUptime) HasErrors() bool {
 func (o *SyntheticsUptime) SetErrors(v []SLOHistoryResponseErrorWithType) {
 	o.Errors = v
 }
+
 
 // GetGroup returns the Group field value if set, zero value otherwise.
 func (o *SyntheticsUptime) GetGroup() string {
@@ -103,6 +110,7 @@ func (o *SyntheticsUptime) SetGroup(v string) {
 	o.Group = &v
 }
 
+
 // GetHistory returns the History field value if set, zero value otherwise.
 func (o *SyntheticsUptime) GetHistory() [][]float64 {
 	if o == nil || o.History == nil {
@@ -130,6 +138,7 @@ func (o *SyntheticsUptime) HasHistory() bool {
 func (o *SyntheticsUptime) SetHistory(v [][]float64) {
 	o.History = v
 }
+
 
 // GetSpanPrecision returns the SpanPrecision field value if set, zero value otherwise.
 func (o *SyntheticsUptime) GetSpanPrecision() float64 {
@@ -159,6 +168,7 @@ func (o *SyntheticsUptime) SetSpanPrecision(v float64) {
 	o.SpanPrecision = &v
 }
 
+
 // GetUptime returns the Uptime field value if set, zero value otherwise.
 func (o *SyntheticsUptime) GetUptime() float64 {
 	if o == nil || o.Uptime == nil {
@@ -186,6 +196,8 @@ func (o *SyntheticsUptime) HasUptime() bool {
 func (o *SyntheticsUptime) SetUptime(v float64) {
 	o.Uptime = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsUptime) MarshalJSON() ([]byte, error) {
@@ -218,18 +230,18 @@ func (o SyntheticsUptime) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsUptime) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Errors        []SLOHistoryResponseErrorWithType `json:"errors,omitempty"`
-		Group         *string                           `json:"group,omitempty"`
-		History       [][]float64                       `json:"history,omitempty"`
-		SpanPrecision *float64                          `json:"span_precision,omitempty"`
-		Uptime        *float64                          `json:"uptime,omitempty"`
+		Errors []SLOHistoryResponseErrorWithType `json:"errors,omitempty"`
+		Group *string `json:"group,omitempty"`
+		History [][]float64 `json:"history,omitempty"`
+		SpanPrecision *float64 `json:"span_precision,omitempty"`
+		Uptime *float64 `json:"uptime,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"errors", "group", "history", "span_precision", "uptime"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "errors", "group", "history", "span_precision", "uptime",  })
 	} else {
 		return err
 	}

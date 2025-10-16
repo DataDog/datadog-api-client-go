@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ItemApiPayloadMeta Additional metadata about a collection of datastore items, including pagination and schema information.
 type ItemApiPayloadMeta struct {
@@ -15,9 +21,10 @@ type ItemApiPayloadMeta struct {
 	// Schema information about the datastore, including its primary key and field definitions.
 	Schema *ItemApiPayloadMetaSchema `json:"schema,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewItemApiPayloadMeta instantiates a new ItemApiPayloadMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewItemApiPayloadMetaWithDefaults() *ItemApiPayloadMeta {
 	this := ItemApiPayloadMeta{}
 	return &this
 }
-
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *ItemApiPayloadMeta) GetPage() ItemApiPayloadMetaPage {
 	if o == nil || o.Page == nil {
@@ -63,6 +69,7 @@ func (o *ItemApiPayloadMeta) HasPage() bool {
 func (o *ItemApiPayloadMeta) SetPage(v ItemApiPayloadMetaPage) {
 	o.Page = &v
 }
+
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *ItemApiPayloadMeta) GetSchema() ItemApiPayloadMetaSchema {
@@ -92,6 +99,8 @@ func (o *ItemApiPayloadMeta) SetSchema(v ItemApiPayloadMetaSchema) {
 	o.Schema = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ItemApiPayloadMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o ItemApiPayloadMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ItemApiPayloadMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Page   *ItemApiPayloadMetaPage   `json:"page,omitempty"`
+		Page *ItemApiPayloadMetaPage `json:"page,omitempty"`
 		Schema *ItemApiPayloadMetaSchema `json:"schema,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,17 +131,17 @@ func (o *ItemApiPayloadMeta) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"page", "schema"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "page", "schema",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Page = all.Page
-	if all.Schema != nil && all.Schema.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Schema != nil && all.Schema.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Schema = all.Schema

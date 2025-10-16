@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsMobileStepParamsElementUserLocatorValuesItems A single user locator object.
 type SyntheticsMobileStepParamsElementUserLocatorValuesItems struct {
@@ -15,9 +21,10 @@ type SyntheticsMobileStepParamsElementUserLocatorValuesItems struct {
 	// Value of a user locator.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsMobileStepParamsElementUserLocatorValuesItems instantiates a new SyntheticsMobileStepParamsElementUserLocatorValuesItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSyntheticsMobileStepParamsElementUserLocatorValuesItemsWithDefaults() *S
 	this := SyntheticsMobileStepParamsElementUserLocatorValuesItems{}
 	return &this
 }
-
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParamsElementUserLocatorValuesItems) GetType() SyntheticsMobileStepParamsElementUserLocatorValuesItemsType {
 	if o == nil || o.Type == nil {
@@ -63,6 +69,7 @@ func (o *SyntheticsMobileStepParamsElementUserLocatorValuesItems) HasType() bool
 func (o *SyntheticsMobileStepParamsElementUserLocatorValuesItems) SetType(v SyntheticsMobileStepParamsElementUserLocatorValuesItemsType) {
 	o.Type = &v
 }
+
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParamsElementUserLocatorValuesItems) GetValue() string {
@@ -92,6 +99,8 @@ func (o *SyntheticsMobileStepParamsElementUserLocatorValuesItems) SetValue(v str
 	o.Value = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsMobileStepParamsElementUserLocatorValuesItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,21 +123,21 @@ func (o SyntheticsMobileStepParamsElementUserLocatorValuesItems) MarshalJSON() (
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsMobileStepParamsElementUserLocatorValuesItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Type  *SyntheticsMobileStepParamsElementUserLocatorValuesItemsType `json:"type,omitempty"`
-		Value *string                                                      `json:"value,omitempty"`
+		Type *SyntheticsMobileStepParamsElementUserLocatorValuesItemsType `json:"type,omitempty"`
+		Value *string `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"type", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "type", "value",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
-	"github.com/google/uuid"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DataTransform A data transformer, which is custom JavaScript code that executes and transforms data when its inputs change.
 type DataTransform struct {
@@ -23,9 +25,10 @@ type DataTransform struct {
 	// The data transform type.
 	Type DataTransformType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDataTransform instantiates a new DataTransform object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +52,6 @@ func NewDataTransformWithDefaults() *DataTransform {
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *DataTransform) GetId() uuid.UUID {
 	if o == nil {
@@ -72,6 +74,7 @@ func (o *DataTransform) GetIdOk() (*uuid.UUID, bool) {
 func (o *DataTransform) SetId(v uuid.UUID) {
 	o.Id = v
 }
+
 
 // GetName returns the Name field value.
 func (o *DataTransform) GetName() string {
@@ -96,6 +99,7 @@ func (o *DataTransform) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetProperties returns the Properties field value.
 func (o *DataTransform) GetProperties() DataTransformProperties {
 	if o == nil {
@@ -118,6 +122,7 @@ func (o *DataTransform) GetPropertiesOk() (*DataTransformProperties, bool) {
 func (o *DataTransform) SetProperties(v DataTransformProperties) {
 	o.Properties = v
 }
+
 
 // GetType returns the Type field value.
 func (o *DataTransform) GetType() DataTransformType {
@@ -142,6 +147,8 @@ func (o *DataTransform) SetType(v DataTransformType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DataTransform) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -162,10 +169,10 @@ func (o DataTransform) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DataTransform) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id         *uuid.UUID               `json:"id"`
-		Name       *string                  `json:"name"`
+		Id *uuid.UUID `json:"id"`
+		Name *string `json:"name"`
 		Properties *DataTransformProperties `json:"properties"`
-		Type       *DataTransformType       `json:"type"`
+		Type *DataTransformType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -184,7 +191,7 @@ func (o *DataTransform) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "name", "properties", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "name", "properties", "type",  })
 	} else {
 		return err
 	}

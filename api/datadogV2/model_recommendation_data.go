@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RecommendationData JSON:API resource object for SPA Recommendation. Includes type, optional ID, and resource attributes with structured recommendations.
 type RecommendationData struct {
@@ -19,9 +23,10 @@ type RecommendationData struct {
 	// JSON:API resource type for Spark Pod Autosizing recommendations. Identifies the Recommendation resource returned by SPA.
 	Type RecommendationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRecommendationData instantiates a new RecommendationData object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewRecommendationDataWithDefaults() *RecommendationData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *RecommendationData) GetAttributes() RecommendationAttributes {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *RecommendationData) GetAttributesOk() (*RecommendationAttributes, bool)
 func (o *RecommendationData) SetAttributes(v RecommendationAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *RecommendationData) GetId() string {
@@ -95,6 +100,7 @@ func (o *RecommendationData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *RecommendationData) GetType() RecommendationType {
 	if o == nil {
@@ -118,6 +124,8 @@ func (o *RecommendationData) SetType(v RecommendationType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RecommendationData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -140,8 +148,8 @@ func (o RecommendationData) MarshalJSON() ([]byte, error) {
 func (o *RecommendationData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *RecommendationAttributes `json:"attributes"`
-		Id         *string                   `json:"id,omitempty"`
-		Type       *RecommendationType       `json:"type"`
+		Id *string `json:"id,omitempty"`
+		Type *RecommendationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -154,7 +162,7 @@ func (o *RecommendationData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

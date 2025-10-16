@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RulesetRespData The definition of `RulesetRespData` object.
 type RulesetRespData struct {
@@ -19,9 +23,10 @@ type RulesetRespData struct {
 	// Ruleset resource type.
 	Type RulesetRespDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRulesetRespData instantiates a new RulesetRespData object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewRulesetRespDataWithDefaults() *RulesetRespData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *RulesetRespData) GetAttributes() RulesetRespDataAttributes {
 	if o == nil || o.Attributes == nil {
@@ -70,6 +74,7 @@ func (o *RulesetRespData) HasAttributes() bool {
 func (o *RulesetRespData) SetAttributes(v RulesetRespDataAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *RulesetRespData) GetId() string {
@@ -99,6 +104,7 @@ func (o *RulesetRespData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *RulesetRespData) GetType() RulesetRespDataType {
 	if o == nil {
@@ -121,6 +127,8 @@ func (o *RulesetRespData) GetTypeOk() (*RulesetRespDataType, bool) {
 func (o *RulesetRespData) SetType(v RulesetRespDataType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RulesetRespData) MarshalJSON() ([]byte, error) {
@@ -146,8 +154,8 @@ func (o RulesetRespData) MarshalJSON() ([]byte, error) {
 func (o *RulesetRespData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *RulesetRespDataAttributes `json:"attributes,omitempty"`
-		Id         *string                    `json:"id,omitempty"`
-		Type       *RulesetRespDataType       `json:"type"`
+		Id *string `json:"id,omitempty"`
+		Type *RulesetRespDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -157,13 +165,13 @@ func (o *RulesetRespData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

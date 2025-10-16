@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // V2Event An event object.
 type V2Event struct {
@@ -17,9 +23,10 @@ type V2Event struct {
 	// Entity type.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewV2Event instantiates a new V2Event object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewV2EventWithDefaults() *V2Event {
 	this := V2Event{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *V2Event) GetAttributes() V2EventAttributes {
 	if o == nil || o.Attributes == nil {
@@ -65,6 +71,7 @@ func (o *V2Event) HasAttributes() bool {
 func (o *V2Event) SetAttributes(v V2EventAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *V2Event) GetId() string {
@@ -94,6 +101,7 @@ func (o *V2Event) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *V2Event) GetType() string {
 	if o == nil || o.Type == nil {
@@ -122,6 +130,8 @@ func (o *V2Event) SetType(v string) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o V2Event) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,21 +158,21 @@ func (o V2Event) MarshalJSON() ([]byte, error) {
 func (o *V2Event) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *V2EventAttributes `json:"attributes,omitempty"`
-		Id         *string            `json:"id,omitempty"`
-		Type       *string            `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

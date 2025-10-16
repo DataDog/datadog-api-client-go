@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleAction The definition of `ApplicationSecurityWafCustomRuleAction` object.
 type ApplicationSecurityWafCustomRuleAction struct {
@@ -15,9 +21,10 @@ type ApplicationSecurityWafCustomRuleAction struct {
 	// The definition of `ApplicationSecurityWafCustomRuleActionParameters` object.
 	Parameters *ApplicationSecurityWafCustomRuleActionParameters `json:"parameters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafCustomRuleAction instantiates a new ApplicationSecurityWafCustomRuleAction object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewApplicationSecurityWafCustomRuleActionWithDefaults() *ApplicationSecurit
 	this.Action = &action
 	return &this
 }
-
 // GetAction returns the Action field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleAction) GetAction() ApplicationSecurityWafCustomRuleActionAction {
 	if o == nil || o.Action == nil {
@@ -67,6 +73,7 @@ func (o *ApplicationSecurityWafCustomRuleAction) HasAction() bool {
 func (o *ApplicationSecurityWafCustomRuleAction) SetAction(v ApplicationSecurityWafCustomRuleActionAction) {
 	o.Action = &v
 }
+
 
 // GetParameters returns the Parameters field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleAction) GetParameters() ApplicationSecurityWafCustomRuleActionParameters {
@@ -96,6 +103,8 @@ func (o *ApplicationSecurityWafCustomRuleAction) SetParameters(v ApplicationSecu
 	o.Parameters = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafCustomRuleAction) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -118,7 +127,7 @@ func (o ApplicationSecurityWafCustomRuleAction) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationSecurityWafCustomRuleAction) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Action     *ApplicationSecurityWafCustomRuleActionAction     `json:"action,omitempty"`
+		Action *ApplicationSecurityWafCustomRuleActionAction `json:"action,omitempty"`
 		Parameters *ApplicationSecurityWafCustomRuleActionParameters `json:"parameters,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -126,18 +135,18 @@ func (o *ApplicationSecurityWafCustomRuleAction) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"action", "parameters"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "action", "parameters",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Action != nil && !all.Action.IsValid() {
+	if all.Action != nil &&!all.Action.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Action = all.Action
 	}
-	if all.Parameters != nil && all.Parameters.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Parameters != nil && all.Parameters.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Parameters = all.Parameters

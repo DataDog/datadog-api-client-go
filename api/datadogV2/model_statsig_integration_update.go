@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // StatsigIntegrationUpdate The definition of the `StatsigIntegrationUpdate` object.
 type StatsigIntegrationUpdate struct {
@@ -17,9 +21,10 @@ type StatsigIntegrationUpdate struct {
 	// The definition of the `StatsigIntegrationType` object.
 	Type StatsigIntegrationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewStatsigIntegrationUpdate instantiates a new StatsigIntegrationUpdate object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewStatsigIntegrationUpdateWithDefaults() *StatsigIntegrationUpdate {
 	this := StatsigIntegrationUpdate{}
 	return &this
 }
-
 // GetCredentials returns the Credentials field value if set, zero value otherwise.
 func (o *StatsigIntegrationUpdate) GetCredentials() StatsigCredentialsUpdate {
 	if o == nil || o.Credentials == nil {
@@ -67,6 +71,7 @@ func (o *StatsigIntegrationUpdate) SetCredentials(v StatsigCredentialsUpdate) {
 	o.Credentials = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *StatsigIntegrationUpdate) GetType() StatsigIntegrationType {
 	if o == nil {
@@ -90,6 +95,8 @@ func (o *StatsigIntegrationUpdate) SetType(v StatsigIntegrationType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o StatsigIntegrationUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o StatsigIntegrationUpdate) MarshalJSON() ([]byte, error) {
 func (o *StatsigIntegrationUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Credentials *StatsigCredentialsUpdate `json:"credentials,omitempty"`
-		Type        *StatsigIntegrationType   `json:"type"`
+		Type *StatsigIntegrationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *StatsigIntegrationUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"credentials", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "credentials", "type",  })
 	} else {
 		return err
 	}

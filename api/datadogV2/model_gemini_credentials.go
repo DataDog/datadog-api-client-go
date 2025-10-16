@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GeminiCredentials - The definition of the `GeminiCredentials` object.
 type GeminiCredentials struct {
@@ -56,6 +62,7 @@ func (obj GeminiCredentials) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.GeminiAPIKey)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj GeminiCredentials) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *GeminiCredentials) GetActualInstance() interface{} {
+func (obj *GeminiCredentials) GetActualInstance() (interface{}) {
 	if obj.GeminiAPIKey != nil {
 		return obj.GeminiAPIKey
 	}
+
 
 	// all schemas are nil
 	return nil

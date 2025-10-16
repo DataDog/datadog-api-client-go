@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ContainerImageItem - Possible Container Image models.
 type ContainerImageItem struct {
-	ContainerImage      *ContainerImage
+	ContainerImage *ContainerImage
 	ContainerImageGroup *ContainerImageGroup
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -36,7 +42,7 @@ func (obj *ContainerImageItem) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.ContainerImage != nil && obj.ContainerImage.UnparsedObject == nil {
 			jsonContainerImage, _ := datadog.Marshal(obj.ContainerImage)
-			if string(jsonContainerImage) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonContainerImage) == "{}" && string(data) != "{}"  { // empty struct
 				obj.ContainerImage = nil
 			} else {
 				match++
@@ -53,7 +59,7 @@ func (obj *ContainerImageItem) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.ContainerImageGroup != nil && obj.ContainerImageGroup.UnparsedObject == nil {
 			jsonContainerImageGroup, _ := datadog.Marshal(obj.ContainerImageGroup)
-			if string(jsonContainerImageGroup) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonContainerImageGroup) == "{}" && string(data) != "{}"  { // empty struct
 				obj.ContainerImageGroup = nil
 			} else {
 				match++
@@ -80,9 +86,11 @@ func (obj ContainerImageItem) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.ContainerImage)
 	}
 
+
 	if obj.ContainerImageGroup != nil {
 		return datadog.Marshal(&obj.ContainerImageGroup)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj ContainerImageItem) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ContainerImageItem) GetActualInstance() interface{} {
+func (obj *ContainerImageItem) GetActualInstance() (interface{}) {
 	if obj.ContainerImage != nil {
 		return obj.ContainerImage
 	}
 
+
 	if obj.ContainerImageGroup != nil {
 		return obj.ContainerImageGroup
 	}
+
 
 	// all schemas are nil
 	return nil

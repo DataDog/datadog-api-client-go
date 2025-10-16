@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateTableRequestDataAttributesFileMetadataCloudStorage Cloud storage file metadata for create requests. Both access_details and sync_enabled are required.
 type CreateTableRequestDataAttributesFileMetadataCloudStorage struct {
@@ -19,6 +23,7 @@ type CreateTableRequestDataAttributesFileMetadataCloudStorage struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateTableRequestDataAttributesFileMetadataCloudStorage instantiates a new CreateTableRequestDataAttributesFileMetadataCloudStorage object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewCreateTableRequestDataAttributesFileMetadataCloudStorageWithDefaults() *
 	this := CreateTableRequestDataAttributesFileMetadataCloudStorage{}
 	return &this
 }
-
 // GetAccessDetails returns the AccessDetails field value.
 func (o *CreateTableRequestDataAttributesFileMetadataCloudStorage) GetAccessDetails() CreateTableRequestDataAttributesFileMetadataOneOfAccessDetails {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *CreateTableRequestDataAttributesFileMetadataCloudStorage) GetAccessDeta
 func (o *CreateTableRequestDataAttributesFileMetadataCloudStorage) SetAccessDetails(v CreateTableRequestDataAttributesFileMetadataOneOfAccessDetails) {
 	o.AccessDetails = v
 }
+
 
 // GetSyncEnabled returns the SyncEnabled field value.
 func (o *CreateTableRequestDataAttributesFileMetadataCloudStorage) GetSyncEnabled() bool {
@@ -85,6 +90,8 @@ func (o *CreateTableRequestDataAttributesFileMetadataCloudStorage) SetSyncEnable
 	o.SyncEnabled = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateTableRequestDataAttributesFileMetadataCloudStorage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -100,7 +107,7 @@ func (o CreateTableRequestDataAttributesFileMetadataCloudStorage) MarshalJSON() 
 func (o *CreateTableRequestDataAttributesFileMetadataCloudStorage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AccessDetails *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetails `json:"access_details"`
-		SyncEnabled   *bool                                                           `json:"sync_enabled"`
+		SyncEnabled *bool `json:"sync_enabled"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

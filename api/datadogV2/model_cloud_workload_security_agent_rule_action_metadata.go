@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudWorkloadSecurityAgentRuleActionMetadata The metadata action applied on the scope matching the rule
 type CloudWorkloadSecurityAgentRuleActionMetadata struct {
@@ -17,9 +23,10 @@ type CloudWorkloadSecurityAgentRuleActionMetadata struct {
 	// The short image of the metadata action
 	ShortImage *string `json:"short_image,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudWorkloadSecurityAgentRuleActionMetadata instantiates a new CloudWorkloadSecurityAgentRuleActionMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewCloudWorkloadSecurityAgentRuleActionMetadataWithDefaults() *CloudWorkloa
 	this := CloudWorkloadSecurityAgentRuleActionMetadata{}
 	return &this
 }
-
 // GetImageTag returns the ImageTag field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleActionMetadata) GetImageTag() string {
 	if o == nil || o.ImageTag == nil {
@@ -65,6 +71,7 @@ func (o *CloudWorkloadSecurityAgentRuleActionMetadata) HasImageTag() bool {
 func (o *CloudWorkloadSecurityAgentRuleActionMetadata) SetImageTag(v string) {
 	o.ImageTag = &v
 }
+
 
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleActionMetadata) GetService() string {
@@ -94,6 +101,7 @@ func (o *CloudWorkloadSecurityAgentRuleActionMetadata) SetService(v string) {
 	o.Service = &v
 }
 
+
 // GetShortImage returns the ShortImage field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleActionMetadata) GetShortImage() string {
 	if o == nil || o.ShortImage == nil {
@@ -122,6 +130,8 @@ func (o *CloudWorkloadSecurityAgentRuleActionMetadata) SetShortImage(v string) {
 	o.ShortImage = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudWorkloadSecurityAgentRuleActionMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,8 +157,8 @@ func (o CloudWorkloadSecurityAgentRuleActionMetadata) MarshalJSON() ([]byte, err
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRuleActionMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ImageTag   *string `json:"image_tag,omitempty"`
-		Service    *string `json:"service,omitempty"`
+		ImageTag *string `json:"image_tag,omitempty"`
+		Service *string `json:"service,omitempty"`
 		ShortImage *string `json:"short_image,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,7 +166,7 @@ func (o *CloudWorkloadSecurityAgentRuleActionMetadata) UnmarshalJSON(bytes []byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"image_tag", "service", "short_image"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "image_tag", "service", "short_image",  })
 	} else {
 		return err
 	}

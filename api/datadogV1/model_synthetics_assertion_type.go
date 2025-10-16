@@ -2,38 +2,42 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAssertionType Type of the assertion.
 type SyntheticsAssertionType string
 
 // List of SyntheticsAssertionType.
 const (
-	SYNTHETICSASSERTIONTYPE_BODY                    SyntheticsAssertionType = "body"
-	SYNTHETICSASSERTIONTYPE_HEADER                  SyntheticsAssertionType = "header"
-	SYNTHETICSASSERTIONTYPE_STATUS_CODE             SyntheticsAssertionType = "statusCode"
-	SYNTHETICSASSERTIONTYPE_CERTIFICATE             SyntheticsAssertionType = "certificate"
-	SYNTHETICSASSERTIONTYPE_RESPONSE_TIME           SyntheticsAssertionType = "responseTime"
-	SYNTHETICSASSERTIONTYPE_PROPERTY                SyntheticsAssertionType = "property"
-	SYNTHETICSASSERTIONTYPE_RECORD_EVERY            SyntheticsAssertionType = "recordEvery"
-	SYNTHETICSASSERTIONTYPE_RECORD_SOME             SyntheticsAssertionType = "recordSome"
-	SYNTHETICSASSERTIONTYPE_TLS_VERSION             SyntheticsAssertionType = "tlsVersion"
-	SYNTHETICSASSERTIONTYPE_MIN_TLS_VERSION         SyntheticsAssertionType = "minTlsVersion"
-	SYNTHETICSASSERTIONTYPE_LATENCY                 SyntheticsAssertionType = "latency"
-	SYNTHETICSASSERTIONTYPE_PACKET_LOSS_PERCENTAGE  SyntheticsAssertionType = "packetLossPercentage"
-	SYNTHETICSASSERTIONTYPE_PACKETS_RECEIVED        SyntheticsAssertionType = "packetsReceived"
-	SYNTHETICSASSERTIONTYPE_NETWORK_HOP             SyntheticsAssertionType = "networkHop"
-	SYNTHETICSASSERTIONTYPE_RECEIVED_MESSAGE        SyntheticsAssertionType = "receivedMessage"
+	SYNTHETICSASSERTIONTYPE_BODY SyntheticsAssertionType = "body"
+	SYNTHETICSASSERTIONTYPE_HEADER SyntheticsAssertionType = "header"
+	SYNTHETICSASSERTIONTYPE_STATUS_CODE SyntheticsAssertionType = "statusCode"
+	SYNTHETICSASSERTIONTYPE_CERTIFICATE SyntheticsAssertionType = "certificate"
+	SYNTHETICSASSERTIONTYPE_RESPONSE_TIME SyntheticsAssertionType = "responseTime"
+	SYNTHETICSASSERTIONTYPE_PROPERTY SyntheticsAssertionType = "property"
+	SYNTHETICSASSERTIONTYPE_RECORD_EVERY SyntheticsAssertionType = "recordEvery"
+	SYNTHETICSASSERTIONTYPE_RECORD_SOME SyntheticsAssertionType = "recordSome"
+	SYNTHETICSASSERTIONTYPE_TLS_VERSION SyntheticsAssertionType = "tlsVersion"
+	SYNTHETICSASSERTIONTYPE_MIN_TLS_VERSION SyntheticsAssertionType = "minTlsVersion"
+	SYNTHETICSASSERTIONTYPE_LATENCY SyntheticsAssertionType = "latency"
+	SYNTHETICSASSERTIONTYPE_PACKET_LOSS_PERCENTAGE SyntheticsAssertionType = "packetLossPercentage"
+	SYNTHETICSASSERTIONTYPE_PACKETS_RECEIVED SyntheticsAssertionType = "packetsReceived"
+	SYNTHETICSASSERTIONTYPE_NETWORK_HOP SyntheticsAssertionType = "networkHop"
+	SYNTHETICSASSERTIONTYPE_RECEIVED_MESSAGE SyntheticsAssertionType = "receivedMessage"
 	SYNTHETICSASSERTIONTYPE_GRPC_HEALTHCHECK_STATUS SyntheticsAssertionType = "grpcHealthcheckStatus"
-	SYNTHETICSASSERTIONTYPE_GRPC_METADATA           SyntheticsAssertionType = "grpcMetadata"
-	SYNTHETICSASSERTIONTYPE_GRPC_PROTO              SyntheticsAssertionType = "grpcProto"
-	SYNTHETICSASSERTIONTYPE_CONNECTION              SyntheticsAssertionType = "connection"
+	SYNTHETICSASSERTIONTYPE_GRPC_METADATA SyntheticsAssertionType = "grpcMetadata"
+	SYNTHETICSASSERTIONTYPE_GRPC_PROTO SyntheticsAssertionType = "grpcProto"
+	SYNTHETICSASSERTIONTYPE_CONNECTION SyntheticsAssertionType = "connection"
 )
 
 var allowedSyntheticsAssertionTypeEnumValues = []SyntheticsAssertionType{

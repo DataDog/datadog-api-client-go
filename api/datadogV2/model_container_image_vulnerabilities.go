@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ContainerImageVulnerabilities Vulnerability counts associated with the Container Image.
 type ContainerImageVulnerabilities struct {
@@ -25,9 +31,10 @@ type ContainerImageVulnerabilities struct {
 	// Number of vulnerabilities with an unknown CVSS severity.
 	Unknown *int64 `json:"unknown,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewContainerImageVulnerabilities instantiates a new ContainerImageVulnerabilities object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +52,6 @@ func NewContainerImageVulnerabilitiesWithDefaults() *ContainerImageVulnerabiliti
 	this := ContainerImageVulnerabilities{}
 	return &this
 }
-
 // GetAssetId returns the AssetId field value if set, zero value otherwise.
 func (o *ContainerImageVulnerabilities) GetAssetId() string {
 	if o == nil || o.AssetId == nil {
@@ -73,6 +79,7 @@ func (o *ContainerImageVulnerabilities) HasAssetId() bool {
 func (o *ContainerImageVulnerabilities) SetAssetId(v string) {
 	o.AssetId = &v
 }
+
 
 // GetCritical returns the Critical field value if set, zero value otherwise.
 func (o *ContainerImageVulnerabilities) GetCritical() int64 {
@@ -102,6 +109,7 @@ func (o *ContainerImageVulnerabilities) SetCritical(v int64) {
 	o.Critical = &v
 }
 
+
 // GetHigh returns the High field value if set, zero value otherwise.
 func (o *ContainerImageVulnerabilities) GetHigh() int64 {
 	if o == nil || o.High == nil {
@@ -129,6 +137,7 @@ func (o *ContainerImageVulnerabilities) HasHigh() bool {
 func (o *ContainerImageVulnerabilities) SetHigh(v int64) {
 	o.High = &v
 }
+
 
 // GetLow returns the Low field value if set, zero value otherwise.
 func (o *ContainerImageVulnerabilities) GetLow() int64 {
@@ -158,6 +167,7 @@ func (o *ContainerImageVulnerabilities) SetLow(v int64) {
 	o.Low = &v
 }
 
+
 // GetMedium returns the Medium field value if set, zero value otherwise.
 func (o *ContainerImageVulnerabilities) GetMedium() int64 {
 	if o == nil || o.Medium == nil {
@@ -185,6 +195,7 @@ func (o *ContainerImageVulnerabilities) HasMedium() bool {
 func (o *ContainerImageVulnerabilities) SetMedium(v int64) {
 	o.Medium = &v
 }
+
 
 // GetNone returns the None field value if set, zero value otherwise.
 func (o *ContainerImageVulnerabilities) GetNone() int64 {
@@ -214,6 +225,7 @@ func (o *ContainerImageVulnerabilities) SetNone(v int64) {
 	o.None = &v
 }
 
+
 // GetUnknown returns the Unknown field value if set, zero value otherwise.
 func (o *ContainerImageVulnerabilities) GetUnknown() int64 {
 	if o == nil || o.Unknown == nil {
@@ -241,6 +253,8 @@ func (o *ContainerImageVulnerabilities) HasUnknown() bool {
 func (o *ContainerImageVulnerabilities) SetUnknown(v int64) {
 	o.Unknown = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ContainerImageVulnerabilities) MarshalJSON() ([]byte, error) {
@@ -279,20 +293,20 @@ func (o ContainerImageVulnerabilities) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ContainerImageVulnerabilities) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AssetId  *string `json:"asset_id,omitempty"`
-		Critical *int64  `json:"critical,omitempty"`
-		High     *int64  `json:"high,omitempty"`
-		Low      *int64  `json:"low,omitempty"`
-		Medium   *int64  `json:"medium,omitempty"`
-		None     *int64  `json:"none,omitempty"`
-		Unknown  *int64  `json:"unknown,omitempty"`
+		AssetId *string `json:"asset_id,omitempty"`
+		Critical *int64 `json:"critical,omitempty"`
+		High *int64 `json:"high,omitempty"`
+		Low *int64 `json:"low,omitempty"`
+		Medium *int64 `json:"medium,omitempty"`
+		None *int64 `json:"none,omitempty"`
+		Unknown *int64 `json:"unknown,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"asset_id", "critical", "high", "low", "medium", "none", "unknown"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "asset_id", "critical", "high", "low", "medium", "none", "unknown",  })
 	} else {
 		return err
 	}

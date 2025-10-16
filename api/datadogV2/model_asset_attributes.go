@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AssetAttributes The JSON:API attributes of the asset.
 type AssetAttributes struct {
@@ -29,9 +33,10 @@ type AssetAttributes struct {
 	// Asset version.
 	Version *AssetVersion `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAssetAttributes instantiates a new AssetAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewAssetAttributesWithDefaults() *AssetAttributes {
 	this := AssetAttributes{}
 	return &this
 }
-
 // GetArch returns the Arch field value if set, zero value otherwise.
 func (o *AssetAttributes) GetArch() string {
 	if o == nil || o.Arch == nil {
@@ -82,6 +86,7 @@ func (o *AssetAttributes) SetArch(v string) {
 	o.Arch = &v
 }
 
+
 // GetEnvironments returns the Environments field value.
 func (o *AssetAttributes) GetEnvironments() []string {
 	if o == nil {
@@ -105,6 +110,7 @@ func (o *AssetAttributes) SetEnvironments(v []string) {
 	o.Environments = v
 }
 
+
 // GetName returns the Name field value.
 func (o *AssetAttributes) GetName() string {
 	if o == nil {
@@ -127,6 +133,7 @@ func (o *AssetAttributes) GetNameOk() (*string, bool) {
 func (o *AssetAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetOperatingSystem returns the OperatingSystem field value if set, zero value otherwise.
 func (o *AssetAttributes) GetOperatingSystem() AssetOperatingSystem {
@@ -156,6 +163,7 @@ func (o *AssetAttributes) SetOperatingSystem(v AssetOperatingSystem) {
 	o.OperatingSystem = &v
 }
 
+
 // GetRisks returns the Risks field value.
 func (o *AssetAttributes) GetRisks() AssetRisks {
 	if o == nil {
@@ -178,6 +186,7 @@ func (o *AssetAttributes) GetRisksOk() (*AssetRisks, bool) {
 func (o *AssetAttributes) SetRisks(v AssetRisks) {
 	o.Risks = v
 }
+
 
 // GetTeams returns the Teams field value if set, zero value otherwise.
 func (o *AssetAttributes) GetTeams() []string {
@@ -207,6 +216,7 @@ func (o *AssetAttributes) SetTeams(v []string) {
 	o.Teams = v
 }
 
+
 // GetType returns the Type field value.
 func (o *AssetAttributes) GetType() AssetType {
 	if o == nil {
@@ -229,6 +239,7 @@ func (o *AssetAttributes) GetTypeOk() (*AssetType, bool) {
 func (o *AssetAttributes) SetType(v AssetType) {
 	o.Type = v
 }
+
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *AssetAttributes) GetVersion() AssetVersion {
@@ -257,6 +268,8 @@ func (o *AssetAttributes) HasVersion() bool {
 func (o *AssetAttributes) SetVersion(v AssetVersion) {
 	o.Version = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AssetAttributes) MarshalJSON() ([]byte, error) {
@@ -290,14 +303,14 @@ func (o AssetAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AssetAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Arch            *string               `json:"arch,omitempty"`
-		Environments    *[]string             `json:"environments"`
-		Name            *string               `json:"name"`
+		Arch *string `json:"arch,omitempty"`
+		Environments *[]string `json:"environments"`
+		Name *string `json:"name"`
 		OperatingSystem *AssetOperatingSystem `json:"operating_system,omitempty"`
-		Risks           *AssetRisks           `json:"risks"`
-		Teams           []string              `json:"teams,omitempty"`
-		Type            *AssetType            `json:"type"`
-		Version         *AssetVersion         `json:"version,omitempty"`
+		Risks *AssetRisks `json:"risks"`
+		Teams []string `json:"teams,omitempty"`
+		Type *AssetType `json:"type"`
+		Version *AssetVersion `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -316,7 +329,7 @@ func (o *AssetAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"arch", "environments", "name", "operating_system", "risks", "teams", "type", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "arch", "environments", "name", "operating_system", "risks", "teams", "type", "version",  })
 	} else {
 		return err
 	}
@@ -325,7 +338,7 @@ func (o *AssetAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Arch = all.Arch
 	o.Environments = *all.Environments
 	o.Name = *all.Name
-	if all.OperatingSystem != nil && all.OperatingSystem.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.OperatingSystem != nil && all.OperatingSystem.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.OperatingSystem = all.OperatingSystem
@@ -339,7 +352,7 @@ func (o *AssetAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.Type = *all.Type
 	}
-	if all.Version != nil && all.Version.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Version != nil && all.Version.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Version = all.Version

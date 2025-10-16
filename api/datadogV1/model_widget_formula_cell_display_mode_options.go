@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetFormulaCellDisplayModeOptions Cell display mode options for the widget formula. (only if `cell_display_mode` is set to `trend`).
 type WidgetFormulaCellDisplayModeOptions struct {
@@ -15,9 +21,10 @@ type WidgetFormulaCellDisplayModeOptions struct {
 	// Y scale for the cell display mode options.
 	YScale *WidgetFormulaCellDisplayModeOptionsYScale `json:"y_scale,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWidgetFormulaCellDisplayModeOptions instantiates a new WidgetFormulaCellDisplayModeOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewWidgetFormulaCellDisplayModeOptionsWithDefaults() *WidgetFormulaCellDisp
 	this := WidgetFormulaCellDisplayModeOptions{}
 	return &this
 }
-
 // GetTrendType returns the TrendType field value if set, zero value otherwise.
 func (o *WidgetFormulaCellDisplayModeOptions) GetTrendType() WidgetFormulaCellDisplayModeOptionsTrendType {
 	if o == nil || o.TrendType == nil {
@@ -63,6 +69,7 @@ func (o *WidgetFormulaCellDisplayModeOptions) HasTrendType() bool {
 func (o *WidgetFormulaCellDisplayModeOptions) SetTrendType(v WidgetFormulaCellDisplayModeOptionsTrendType) {
 	o.TrendType = &v
 }
+
 
 // GetYScale returns the YScale field value if set, zero value otherwise.
 func (o *WidgetFormulaCellDisplayModeOptions) GetYScale() WidgetFormulaCellDisplayModeOptionsYScale {
@@ -92,6 +99,8 @@ func (o *WidgetFormulaCellDisplayModeOptions) SetYScale(v WidgetFormulaCellDispl
 	o.YScale = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o WidgetFormulaCellDisplayModeOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,25 +124,25 @@ func (o WidgetFormulaCellDisplayModeOptions) MarshalJSON() ([]byte, error) {
 func (o *WidgetFormulaCellDisplayModeOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		TrendType *WidgetFormulaCellDisplayModeOptionsTrendType `json:"trend_type,omitempty"`
-		YScale    *WidgetFormulaCellDisplayModeOptionsYScale    `json:"y_scale,omitempty"`
+		YScale *WidgetFormulaCellDisplayModeOptionsYScale `json:"y_scale,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"trend_type", "y_scale"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "trend_type", "y_scale",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.TrendType != nil && !all.TrendType.IsValid() {
+	if all.TrendType != nil &&!all.TrendType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TrendType = all.TrendType
 	}
-	if all.YScale != nil && !all.YScale.IsValid() {
+	if all.YScale != nil &&!all.YScale.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.YScale = all.YScale

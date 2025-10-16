@@ -2,14 +2,15 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -17,7 +18,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewOnCallApi(apiClient)
-	resp, r, err := api.GetOnCallTeamRoutingRules(ctx, "27590dae-47be-4a7d-9abf-8f4e45124020", *datadogV2.NewGetOnCallTeamRoutingRulesOptionalParameters())
+	resp, r, err := api.GetOnCallTeamRoutingRules(ctx, "27590dae-47be-4a7d-9abf-8f4e45124020", *datadogV2.NewGetOnCallTeamRoutingRulesOptionalParameters(), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OnCallApi.GetOnCallTeamRoutingRules`: %v\n", err)

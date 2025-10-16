@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RelationResponseMeta Relation response metadata.
 type RelationResponseMeta struct {
@@ -15,9 +21,10 @@ type RelationResponseMeta struct {
 	// Total included data count.
 	IncludeCount *int64 `json:"includeCount,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRelationResponseMeta instantiates a new RelationResponseMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewRelationResponseMetaWithDefaults() *RelationResponseMeta {
 	this := RelationResponseMeta{}
 	return &this
 }
-
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *RelationResponseMeta) GetCount() int64 {
 	if o == nil || o.Count == nil {
@@ -63,6 +69,7 @@ func (o *RelationResponseMeta) HasCount() bool {
 func (o *RelationResponseMeta) SetCount(v int64) {
 	o.Count = &v
 }
+
 
 // GetIncludeCount returns the IncludeCount field value if set, zero value otherwise.
 func (o *RelationResponseMeta) GetIncludeCount() int64 {
@@ -92,6 +99,8 @@ func (o *RelationResponseMeta) SetIncludeCount(v int64) {
 	o.IncludeCount = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o RelationResponseMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RelationResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Count        *int64 `json:"count,omitempty"`
+		Count *int64 `json:"count,omitempty"`
 		IncludeCount *int64 `json:"includeCount,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *RelationResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"count", "includeCount"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "count", "includeCount",  })
 	} else {
 		return err
 	}

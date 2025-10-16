@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Selectors Selectors are used to filter security issues for which notifications should be generated.
 // Users can specify rule severities, rule types, a query to filter security issues on tags and attributes, and the trigger source.
@@ -24,9 +28,10 @@ type Selectors struct {
 	// while notification rules based on security vulnerabilities need to use the trigger source "security_findings".
 	TriggerSource TriggerSource `json:"trigger_source"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSelectors instantiates a new Selectors object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewSelectorsWithDefaults() *Selectors {
 	this := Selectors{}
 	return &this
 }
-
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *Selectors) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -73,6 +77,7 @@ func (o *Selectors) HasQuery() bool {
 func (o *Selectors) SetQuery(v string) {
 	o.Query = &v
 }
+
 
 // GetRuleTypes returns the RuleTypes field value if set, zero value otherwise.
 func (o *Selectors) GetRuleTypes() []RuleTypesItems {
@@ -102,6 +107,7 @@ func (o *Selectors) SetRuleTypes(v []RuleTypesItems) {
 	o.RuleTypes = v
 }
 
+
 // GetSeverities returns the Severities field value if set, zero value otherwise.
 func (o *Selectors) GetSeverities() []RuleSeverity {
 	if o == nil || o.Severities == nil {
@@ -130,6 +136,7 @@ func (o *Selectors) SetSeverities(v []RuleSeverity) {
 	o.Severities = v
 }
 
+
 // GetTriggerSource returns the TriggerSource field value.
 func (o *Selectors) GetTriggerSource() TriggerSource {
 	if o == nil {
@@ -152,6 +159,8 @@ func (o *Selectors) GetTriggerSourceOk() (*TriggerSource, bool) {
 func (o *Selectors) SetTriggerSource(v TriggerSource) {
 	o.TriggerSource = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o Selectors) MarshalJSON() ([]byte, error) {
@@ -179,10 +188,10 @@ func (o Selectors) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Selectors) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Query         *string          `json:"query,omitempty"`
-		RuleTypes     []RuleTypesItems `json:"rule_types,omitempty"`
-		Severities    []RuleSeverity   `json:"severities,omitempty"`
-		TriggerSource *TriggerSource   `json:"trigger_source"`
+		Query *string `json:"query,omitempty"`
+		RuleTypes []RuleTypesItems `json:"rule_types,omitempty"`
+		Severities []RuleSeverity `json:"severities,omitempty"`
+		TriggerSource *TriggerSource `json:"trigger_source"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -192,7 +201,7 @@ func (o *Selectors) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"query", "rule_types", "severities", "trigger_source"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "query", "rule_types", "severities", "trigger_source",  })
 	} else {
 		return err
 	}

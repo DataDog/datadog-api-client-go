@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FindingStatus The status of the finding.
 type FindingStatus string
@@ -16,10 +20,10 @@ type FindingStatus string
 // List of FindingStatus.
 const (
 	FINDINGSTATUS_CRITICAL FindingStatus = "critical"
-	FINDINGSTATUS_HIGH     FindingStatus = "high"
-	FINDINGSTATUS_MEDIUM   FindingStatus = "medium"
-	FINDINGSTATUS_LOW      FindingStatus = "low"
-	FINDINGSTATUS_INFO     FindingStatus = "info"
+	FINDINGSTATUS_HIGH FindingStatus = "high"
+	FINDINGSTATUS_MEDIUM FindingStatus = "medium"
+	FINDINGSTATUS_LOW FindingStatus = "low"
+	FINDINGSTATUS_INFO FindingStatus = "info"
 )
 
 var allowedFindingStatusEnumValues = []FindingStatus{

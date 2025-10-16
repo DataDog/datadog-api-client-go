@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScheduleCreateRequestData The core data wrapper for creating a schedule, encompassing attributes, relationships, and the resource type.
 type ScheduleCreateRequestData struct {
@@ -19,9 +23,10 @@ type ScheduleCreateRequestData struct {
 	// Schedules resource type.
 	Type ScheduleCreateRequestDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScheduleCreateRequestData instantiates a new ScheduleCreateRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewScheduleCreateRequestDataWithDefaults() *ScheduleCreateRequestData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *ScheduleCreateRequestData) GetAttributes() ScheduleCreateRequestDataAttributes {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *ScheduleCreateRequestData) GetAttributesOk() (*ScheduleCreateRequestDat
 func (o *ScheduleCreateRequestData) SetAttributes(v ScheduleCreateRequestDataAttributes) {
 	o.Attributes = v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *ScheduleCreateRequestData) GetRelationships() ScheduleCreateRequestDataRelationships {
@@ -95,6 +100,7 @@ func (o *ScheduleCreateRequestData) SetRelationships(v ScheduleCreateRequestData
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ScheduleCreateRequestData) GetType() ScheduleCreateRequestDataType {
 	if o == nil {
@@ -118,6 +124,8 @@ func (o *ScheduleCreateRequestData) SetType(v ScheduleCreateRequestDataType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ScheduleCreateRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -139,9 +147,9 @@ func (o ScheduleCreateRequestData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ScheduleCreateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *ScheduleCreateRequestDataAttributes    `json:"attributes"`
+		Attributes *ScheduleCreateRequestDataAttributes `json:"attributes"`
 		Relationships *ScheduleCreateRequestDataRelationships `json:"relationships,omitempty"`
-		Type          *ScheduleCreateRequestDataType          `json:"type"`
+		Type *ScheduleCreateRequestDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -154,7 +162,7 @@ func (o *ScheduleCreateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "relationships", "type",  })
 	} else {
 		return err
 	}
@@ -164,7 +172,7 @@ func (o *ScheduleCreateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceNowIntegrationUpdate The definition of the `ServiceNowIntegrationUpdate` object.
 type ServiceNowIntegrationUpdate struct {
@@ -17,9 +21,10 @@ type ServiceNowIntegrationUpdate struct {
 	// The definition of the `ServiceNowIntegrationType` object.
 	Type ServiceNowIntegrationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceNowIntegrationUpdate instantiates a new ServiceNowIntegrationUpdate object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewServiceNowIntegrationUpdateWithDefaults() *ServiceNowIntegrationUpdate {
 	this := ServiceNowIntegrationUpdate{}
 	return &this
 }
-
 // GetCredentials returns the Credentials field value if set, zero value otherwise.
 func (o *ServiceNowIntegrationUpdate) GetCredentials() ServiceNowCredentialsUpdate {
 	if o == nil || o.Credentials == nil {
@@ -67,6 +71,7 @@ func (o *ServiceNowIntegrationUpdate) SetCredentials(v ServiceNowCredentialsUpda
 	o.Credentials = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ServiceNowIntegrationUpdate) GetType() ServiceNowIntegrationType {
 	if o == nil {
@@ -90,6 +95,8 @@ func (o *ServiceNowIntegrationUpdate) SetType(v ServiceNowIntegrationType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceNowIntegrationUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o ServiceNowIntegrationUpdate) MarshalJSON() ([]byte, error) {
 func (o *ServiceNowIntegrationUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Credentials *ServiceNowCredentialsUpdate `json:"credentials,omitempty"`
-		Type        *ServiceNowIntegrationType   `json:"type"`
+		Type *ServiceNowIntegrationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *ServiceNowIntegrationUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"credentials", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "credentials", "type",  })
 	} else {
 		return err
 	}

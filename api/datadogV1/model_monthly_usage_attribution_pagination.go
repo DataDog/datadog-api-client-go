@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonthlyUsageAttributionPagination The metadata for the current pagination.
 type MonthlyUsageAttributionPagination struct {
 	// The cursor to use to get the next results, if any. To make the next request, use the same parameters with the addition of the `next_record_id`.
 	NextRecordId datadog.NullableString `json:"next_record_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonthlyUsageAttributionPagination instantiates a new MonthlyUsageAttributionPagination object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewMonthlyUsageAttributionPaginationWithDefaults() *MonthlyUsageAttribution
 	this := MonthlyUsageAttributionPagination{}
 	return &this
 }
-
 // GetNextRecordId returns the NextRecordId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonthlyUsageAttributionPagination) GetNextRecordId() string {
 	if o == nil || o.NextRecordId.Get() == nil {
@@ -47,7 +53,7 @@ func (o *MonthlyUsageAttributionPagination) GetNextRecordId() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonthlyUsageAttributionPagination) GetNextRecordIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.NextRecordId.Get(), o.NextRecordId.IsSet()
@@ -62,7 +68,6 @@ func (o *MonthlyUsageAttributionPagination) HasNextRecordId() bool {
 func (o *MonthlyUsageAttributionPagination) SetNextRecordId(v string) {
 	o.NextRecordId.Set(&v)
 }
-
 // SetNextRecordIdNil sets the value for NextRecordId to be an explicit nil.
 func (o *MonthlyUsageAttributionPagination) SetNextRecordIdNil() {
 	o.NextRecordId.Set(nil)
@@ -72,6 +77,8 @@ func (o *MonthlyUsageAttributionPagination) SetNextRecordIdNil() {
 func (o *MonthlyUsageAttributionPagination) UnsetNextRecordId() {
 	o.NextRecordId.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MonthlyUsageAttributionPagination) MarshalJSON() ([]byte, error) {
@@ -99,7 +106,7 @@ func (o *MonthlyUsageAttributionPagination) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"next_record_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "next_record_id",  })
 	} else {
 		return err
 	}

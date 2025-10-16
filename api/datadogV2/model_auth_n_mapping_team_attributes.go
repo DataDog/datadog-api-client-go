@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AuthNMappingTeamAttributes Team attributes.
 type AuthNMappingTeamAttributes struct {
@@ -25,9 +31,10 @@ type AuthNMappingTeamAttributes struct {
 	// The number of users belonging to the team
 	UserCount *int32 `json:"user_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAuthNMappingTeamAttributes instantiates a new AuthNMappingTeamAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +52,6 @@ func NewAuthNMappingTeamAttributesWithDefaults() *AuthNMappingTeamAttributes {
 	this := AuthNMappingTeamAttributes{}
 	return &this
 }
-
 // GetAvatar returns the Avatar field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AuthNMappingTeamAttributes) GetAvatar() string {
 	if o == nil || o.Avatar.Get() == nil {
@@ -59,7 +65,7 @@ func (o *AuthNMappingTeamAttributes) GetAvatar() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *AuthNMappingTeamAttributes) GetAvatarOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Avatar.Get(), o.Avatar.IsSet()
@@ -74,7 +80,6 @@ func (o *AuthNMappingTeamAttributes) HasAvatar() bool {
 func (o *AuthNMappingTeamAttributes) SetAvatar(v string) {
 	o.Avatar.Set(&v)
 }
-
 // SetAvatarNil sets the value for Avatar to be an explicit nil.
 func (o *AuthNMappingTeamAttributes) SetAvatarNil() {
 	o.Avatar.Set(nil)
@@ -84,6 +89,7 @@ func (o *AuthNMappingTeamAttributes) SetAvatarNil() {
 func (o *AuthNMappingTeamAttributes) UnsetAvatar() {
 	o.Avatar.Unset()
 }
+
 
 // GetBanner returns the Banner field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AuthNMappingTeamAttributes) GetBanner() int64 {
@@ -98,7 +104,7 @@ func (o *AuthNMappingTeamAttributes) GetBanner() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *AuthNMappingTeamAttributes) GetBannerOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Banner.Get(), o.Banner.IsSet()
@@ -113,7 +119,6 @@ func (o *AuthNMappingTeamAttributes) HasBanner() bool {
 func (o *AuthNMappingTeamAttributes) SetBanner(v int64) {
 	o.Banner.Set(&v)
 }
-
 // SetBannerNil sets the value for Banner to be an explicit nil.
 func (o *AuthNMappingTeamAttributes) SetBannerNil() {
 	o.Banner.Set(nil)
@@ -123,6 +128,7 @@ func (o *AuthNMappingTeamAttributes) SetBannerNil() {
 func (o *AuthNMappingTeamAttributes) UnsetBanner() {
 	o.Banner.Unset()
 }
+
 
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *AuthNMappingTeamAttributes) GetHandle() string {
@@ -152,6 +158,7 @@ func (o *AuthNMappingTeamAttributes) SetHandle(v string) {
 	o.Handle = &v
 }
 
+
 // GetLinkCount returns the LinkCount field value if set, zero value otherwise.
 func (o *AuthNMappingTeamAttributes) GetLinkCount() int32 {
 	if o == nil || o.LinkCount == nil {
@@ -179,6 +186,7 @@ func (o *AuthNMappingTeamAttributes) HasLinkCount() bool {
 func (o *AuthNMappingTeamAttributes) SetLinkCount(v int32) {
 	o.LinkCount = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *AuthNMappingTeamAttributes) GetName() string {
@@ -208,6 +216,7 @@ func (o *AuthNMappingTeamAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSummary returns the Summary field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AuthNMappingTeamAttributes) GetSummary() string {
 	if o == nil || o.Summary.Get() == nil {
@@ -221,7 +230,7 @@ func (o *AuthNMappingTeamAttributes) GetSummary() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *AuthNMappingTeamAttributes) GetSummaryOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Summary.Get(), o.Summary.IsSet()
@@ -236,7 +245,6 @@ func (o *AuthNMappingTeamAttributes) HasSummary() bool {
 func (o *AuthNMappingTeamAttributes) SetSummary(v string) {
 	o.Summary.Set(&v)
 }
-
 // SetSummaryNil sets the value for Summary to be an explicit nil.
 func (o *AuthNMappingTeamAttributes) SetSummaryNil() {
 	o.Summary.Set(nil)
@@ -246,6 +254,7 @@ func (o *AuthNMappingTeamAttributes) SetSummaryNil() {
 func (o *AuthNMappingTeamAttributes) UnsetSummary() {
 	o.Summary.Unset()
 }
+
 
 // GetUserCount returns the UserCount field value if set, zero value otherwise.
 func (o *AuthNMappingTeamAttributes) GetUserCount() int32 {
@@ -274,6 +283,8 @@ func (o *AuthNMappingTeamAttributes) HasUserCount() bool {
 func (o *AuthNMappingTeamAttributes) SetUserCount(v int32) {
 	o.UserCount = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AuthNMappingTeamAttributes) MarshalJSON() ([]byte, error) {
@@ -312,20 +323,20 @@ func (o AuthNMappingTeamAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AuthNMappingTeamAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Avatar    datadog.NullableString `json:"avatar,omitempty"`
-		Banner    datadog.NullableInt64  `json:"banner,omitempty"`
-		Handle    *string                `json:"handle,omitempty"`
-		LinkCount *int32                 `json:"link_count,omitempty"`
-		Name      *string                `json:"name,omitempty"`
-		Summary   datadog.NullableString `json:"summary,omitempty"`
-		UserCount *int32                 `json:"user_count,omitempty"`
+		Avatar datadog.NullableString `json:"avatar,omitempty"`
+		Banner datadog.NullableInt64 `json:"banner,omitempty"`
+		Handle *string `json:"handle,omitempty"`
+		LinkCount *int32 `json:"link_count,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Summary datadog.NullableString `json:"summary,omitempty"`
+		UserCount *int32 `json:"user_count,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"avatar", "banner", "handle", "link_count", "name", "summary", "user_count"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "avatar", "banner", "handle", "link_count", "name", "summary", "user_count",  })
 	} else {
 		return err
 	}

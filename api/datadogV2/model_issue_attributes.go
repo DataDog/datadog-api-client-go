@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssueAttributes Object containing the information of an issue.
 type IssueAttributes struct {
@@ -37,9 +43,10 @@ type IssueAttributes struct {
 	// State of the issue
 	State *IssueState `json:"state,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssueAttributes instantiates a new IssueAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +64,6 @@ func NewIssueAttributesWithDefaults() *IssueAttributes {
 	this := IssueAttributes{}
 	return &this
 }
-
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
 func (o *IssueAttributes) GetErrorMessage() string {
 	if o == nil || o.ErrorMessage == nil {
@@ -85,6 +91,7 @@ func (o *IssueAttributes) HasErrorMessage() bool {
 func (o *IssueAttributes) SetErrorMessage(v string) {
 	o.ErrorMessage = &v
 }
+
 
 // GetErrorType returns the ErrorType field value if set, zero value otherwise.
 func (o *IssueAttributes) GetErrorType() string {
@@ -114,6 +121,7 @@ func (o *IssueAttributes) SetErrorType(v string) {
 	o.ErrorType = &v
 }
 
+
 // GetFilePath returns the FilePath field value if set, zero value otherwise.
 func (o *IssueAttributes) GetFilePath() string {
 	if o == nil || o.FilePath == nil {
@@ -141,6 +149,7 @@ func (o *IssueAttributes) HasFilePath() bool {
 func (o *IssueAttributes) SetFilePath(v string) {
 	o.FilePath = &v
 }
+
 
 // GetFirstSeen returns the FirstSeen field value if set, zero value otherwise.
 func (o *IssueAttributes) GetFirstSeen() int64 {
@@ -170,6 +179,7 @@ func (o *IssueAttributes) SetFirstSeen(v int64) {
 	o.FirstSeen = &v
 }
 
+
 // GetFirstSeenVersion returns the FirstSeenVersion field value if set, zero value otherwise.
 func (o *IssueAttributes) GetFirstSeenVersion() string {
 	if o == nil || o.FirstSeenVersion == nil {
@@ -197,6 +207,7 @@ func (o *IssueAttributes) HasFirstSeenVersion() bool {
 func (o *IssueAttributes) SetFirstSeenVersion(v string) {
 	o.FirstSeenVersion = &v
 }
+
 
 // GetFunctionName returns the FunctionName field value if set, zero value otherwise.
 func (o *IssueAttributes) GetFunctionName() string {
@@ -226,6 +237,7 @@ func (o *IssueAttributes) SetFunctionName(v string) {
 	o.FunctionName = &v
 }
 
+
 // GetIsCrash returns the IsCrash field value if set, zero value otherwise.
 func (o *IssueAttributes) GetIsCrash() bool {
 	if o == nil || o.IsCrash == nil {
@@ -253,6 +265,7 @@ func (o *IssueAttributes) HasIsCrash() bool {
 func (o *IssueAttributes) SetIsCrash(v bool) {
 	o.IsCrash = &v
 }
+
 
 // GetLanguages returns the Languages field value if set, zero value otherwise.
 func (o *IssueAttributes) GetLanguages() []IssueLanguage {
@@ -282,6 +295,7 @@ func (o *IssueAttributes) SetLanguages(v []IssueLanguage) {
 	o.Languages = v
 }
 
+
 // GetLastSeen returns the LastSeen field value if set, zero value otherwise.
 func (o *IssueAttributes) GetLastSeen() int64 {
 	if o == nil || o.LastSeen == nil {
@@ -309,6 +323,7 @@ func (o *IssueAttributes) HasLastSeen() bool {
 func (o *IssueAttributes) SetLastSeen(v int64) {
 	o.LastSeen = &v
 }
+
 
 // GetLastSeenVersion returns the LastSeenVersion field value if set, zero value otherwise.
 func (o *IssueAttributes) GetLastSeenVersion() string {
@@ -338,6 +353,7 @@ func (o *IssueAttributes) SetLastSeenVersion(v string) {
 	o.LastSeenVersion = &v
 }
 
+
 // GetPlatform returns the Platform field value if set, zero value otherwise.
 func (o *IssueAttributes) GetPlatform() IssuePlatform {
 	if o == nil || o.Platform == nil {
@@ -365,6 +381,7 @@ func (o *IssueAttributes) HasPlatform() bool {
 func (o *IssueAttributes) SetPlatform(v IssuePlatform) {
 	o.Platform = &v
 }
+
 
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *IssueAttributes) GetService() string {
@@ -394,6 +411,7 @@ func (o *IssueAttributes) SetService(v string) {
 	o.Service = &v
 }
 
+
 // GetState returns the State field value if set, zero value otherwise.
 func (o *IssueAttributes) GetState() IssueState {
 	if o == nil || o.State == nil {
@@ -421,6 +439,8 @@ func (o *IssueAttributes) HasState() bool {
 func (o *IssueAttributes) SetState(v IssueState) {
 	o.State = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IssueAttributes) MarshalJSON() ([]byte, error) {
@@ -477,26 +497,26 @@ func (o IssueAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IssueAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ErrorMessage     *string         `json:"error_message,omitempty"`
-		ErrorType        *string         `json:"error_type,omitempty"`
-		FilePath         *string         `json:"file_path,omitempty"`
-		FirstSeen        *int64          `json:"first_seen,omitempty"`
-		FirstSeenVersion *string         `json:"first_seen_version,omitempty"`
-		FunctionName     *string         `json:"function_name,omitempty"`
-		IsCrash          *bool           `json:"is_crash,omitempty"`
-		Languages        []IssueLanguage `json:"languages,omitempty"`
-		LastSeen         *int64          `json:"last_seen,omitempty"`
-		LastSeenVersion  *string         `json:"last_seen_version,omitempty"`
-		Platform         *IssuePlatform  `json:"platform,omitempty"`
-		Service          *string         `json:"service,omitempty"`
-		State            *IssueState     `json:"state,omitempty"`
+		ErrorMessage *string `json:"error_message,omitempty"`
+		ErrorType *string `json:"error_type,omitempty"`
+		FilePath *string `json:"file_path,omitempty"`
+		FirstSeen *int64 `json:"first_seen,omitempty"`
+		FirstSeenVersion *string `json:"first_seen_version,omitempty"`
+		FunctionName *string `json:"function_name,omitempty"`
+		IsCrash *bool `json:"is_crash,omitempty"`
+		Languages []IssueLanguage `json:"languages,omitempty"`
+		LastSeen *int64 `json:"last_seen,omitempty"`
+		LastSeenVersion *string `json:"last_seen_version,omitempty"`
+		Platform *IssuePlatform `json:"platform,omitempty"`
+		Service *string `json:"service,omitempty"`
+		State *IssueState `json:"state,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"error_message", "error_type", "file_path", "first_seen", "first_seen_version", "function_name", "is_crash", "languages", "last_seen", "last_seen_version", "platform", "service", "state"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "error_message", "error_type", "file_path", "first_seen", "first_seen_version", "function_name", "is_crash", "languages", "last_seen", "last_seen_version", "platform", "service", "state",  })
 	} else {
 		return err
 	}
@@ -512,13 +532,13 @@ func (o *IssueAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Languages = all.Languages
 	o.LastSeen = all.LastSeen
 	o.LastSeenVersion = all.LastSeenVersion
-	if all.Platform != nil && !all.Platform.IsValid() {
+	if all.Platform != nil &&!all.Platform.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Platform = all.Platform
 	}
 	o.Service = all.Service
-	if all.State != nil && !all.State.IsValid() {
+	if all.State != nil &&!all.State.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.State = all.State

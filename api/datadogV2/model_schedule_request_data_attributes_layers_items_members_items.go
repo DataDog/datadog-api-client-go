@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScheduleRequestDataAttributesLayersItemsMembersItems Defines a single member within a schedule layer, including the reference to the underlying user.
 type ScheduleRequestDataAttributesLayersItemsMembersItems struct {
 	// Identifies the user participating in this layer as a single object with an `id`.
 	User *ScheduleRequestDataAttributesLayersItemsMembersItemsUser `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScheduleRequestDataAttributesLayersItemsMembersItems instantiates a new ScheduleRequestDataAttributesLayersItemsMembersItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewScheduleRequestDataAttributesLayersItemsMembersItemsWithDefaults() *Sche
 	this := ScheduleRequestDataAttributesLayersItemsMembersItems{}
 	return &this
 }
-
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *ScheduleRequestDataAttributesLayersItemsMembersItems) GetUser() ScheduleRequestDataAttributesLayersItemsMembersItemsUser {
 	if o == nil || o.User == nil {
@@ -62,6 +68,8 @@ func (o *ScheduleRequestDataAttributesLayersItemsMembersItems) SetUser(v Schedul
 	o.User = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ScheduleRequestDataAttributesLayersItemsMembersItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *ScheduleRequestDataAttributesLayersItemsMembersItems) UnmarshalJSON(byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"user"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "user",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.User != nil && all.User.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.User != nil && all.User.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.User = all.User

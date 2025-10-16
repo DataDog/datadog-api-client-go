@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // APITriggerWrapper Schema for an API-based trigger.
 type APITriggerWrapper struct {
@@ -17,9 +21,10 @@ type APITriggerWrapper struct {
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAPITriggerWrapper instantiates a new APITriggerWrapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewAPITriggerWrapperWithDefaults() *APITriggerWrapper {
 	this := APITriggerWrapper{}
 	return &this
 }
-
 // GetApiTrigger returns the ApiTrigger field value.
 func (o *APITriggerWrapper) GetApiTrigger() APITrigger {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *APITriggerWrapper) GetApiTriggerOk() (*APITrigger, bool) {
 func (o *APITriggerWrapper) SetApiTrigger(v APITrigger) {
 	o.ApiTrigger = v
 }
+
 
 // GetStartStepNames returns the StartStepNames field value if set, zero value otherwise.
 func (o *APITriggerWrapper) GetStartStepNames() []string {
@@ -90,6 +95,8 @@ func (o *APITriggerWrapper) SetStartStepNames(v []string) {
 	o.StartStepNames = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o APITriggerWrapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,8 +117,8 @@ func (o APITriggerWrapper) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *APITriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiTrigger     *APITrigger `json:"apiTrigger"`
-		StartStepNames []string    `json:"startStepNames,omitempty"`
+		ApiTrigger *APITrigger `json:"apiTrigger"`
+		StartStepNames []string `json:"startStepNames,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *APITriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"apiTrigger", "startStepNames"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "apiTrigger", "startStepNames",  })
 	} else {
 		return err
 	}

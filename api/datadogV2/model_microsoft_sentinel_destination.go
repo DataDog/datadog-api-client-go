@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MicrosoftSentinelDestination The `microsoft_sentinel` destination forwards logs to Microsoft Sentinel.
 type MicrosoftSentinelDestination struct {
@@ -27,9 +31,10 @@ type MicrosoftSentinelDestination struct {
 	// The destination type. The value should always be `microsoft_sentinel`.
 	Type MicrosoftSentinelDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMicrosoftSentinelDestination instantiates a new MicrosoftSentinelDestination object.
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +61,6 @@ func NewMicrosoftSentinelDestinationWithDefaults() *MicrosoftSentinelDestination
 	this.Type = typeVar
 	return &this
 }
-
 // GetClientId returns the ClientId field value.
 func (o *MicrosoftSentinelDestination) GetClientId() string {
 	if o == nil {
@@ -79,6 +83,7 @@ func (o *MicrosoftSentinelDestination) GetClientIdOk() (*string, bool) {
 func (o *MicrosoftSentinelDestination) SetClientId(v string) {
 	o.ClientId = v
 }
+
 
 // GetDcrImmutableId returns the DcrImmutableId field value.
 func (o *MicrosoftSentinelDestination) GetDcrImmutableId() string {
@@ -103,6 +108,7 @@ func (o *MicrosoftSentinelDestination) SetDcrImmutableId(v string) {
 	o.DcrImmutableId = v
 }
 
+
 // GetId returns the Id field value.
 func (o *MicrosoftSentinelDestination) GetId() string {
 	if o == nil {
@@ -125,6 +131,7 @@ func (o *MicrosoftSentinelDestination) GetIdOk() (*string, bool) {
 func (o *MicrosoftSentinelDestination) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetInputs returns the Inputs field value.
 func (o *MicrosoftSentinelDestination) GetInputs() []string {
@@ -149,6 +156,7 @@ func (o *MicrosoftSentinelDestination) SetInputs(v []string) {
 	o.Inputs = v
 }
 
+
 // GetTable returns the Table field value.
 func (o *MicrosoftSentinelDestination) GetTable() string {
 	if o == nil {
@@ -171,6 +179,7 @@ func (o *MicrosoftSentinelDestination) GetTableOk() (*string, bool) {
 func (o *MicrosoftSentinelDestination) SetTable(v string) {
 	o.Table = v
 }
+
 
 // GetTenantId returns the TenantId field value.
 func (o *MicrosoftSentinelDestination) GetTenantId() string {
@@ -195,6 +204,7 @@ func (o *MicrosoftSentinelDestination) SetTenantId(v string) {
 	o.TenantId = v
 }
 
+
 // GetType returns the Type field value.
 func (o *MicrosoftSentinelDestination) GetType() MicrosoftSentinelDestinationType {
 	if o == nil {
@@ -217,6 +227,8 @@ func (o *MicrosoftSentinelDestination) GetTypeOk() (*MicrosoftSentinelDestinatio
 func (o *MicrosoftSentinelDestination) SetType(v MicrosoftSentinelDestinationType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MicrosoftSentinelDestination) MarshalJSON() ([]byte, error) {
@@ -241,13 +253,13 @@ func (o MicrosoftSentinelDestination) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MicrosoftSentinelDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ClientId       *string                           `json:"client_id"`
-		DcrImmutableId *string                           `json:"dcr_immutable_id"`
-		Id             *string                           `json:"id"`
-		Inputs         *[]string                         `json:"inputs"`
-		Table          *string                           `json:"table"`
-		TenantId       *string                           `json:"tenant_id"`
-		Type           *MicrosoftSentinelDestinationType `json:"type"`
+		ClientId *string `json:"client_id"`
+		DcrImmutableId *string `json:"dcr_immutable_id"`
+		Id *string `json:"id"`
+		Inputs *[]string `json:"inputs"`
+		Table *string `json:"table"`
+		TenantId *string `json:"tenant_id"`
+		Type *MicrosoftSentinelDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -275,7 +287,7 @@ func (o *MicrosoftSentinelDestination) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"client_id", "dcr_immutable_id", "id", "inputs", "table", "tenant_id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "client_id", "dcr_immutable_id", "id", "inputs", "table", "tenant_id", "type",  })
 	} else {
 		return err
 	}

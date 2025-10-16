@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HostMuteResponse Response with the list of muted host for your organization.
 type HostMuteResponse struct {
@@ -19,9 +25,10 @@ type HostMuteResponse struct {
 	// Message associated with the mute.
 	Message *string `json:"message,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHostMuteResponse instantiates a new HostMuteResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewHostMuteResponseWithDefaults() *HostMuteResponse {
 	this := HostMuteResponse{}
 	return &this
 }
-
 // GetAction returns the Action field value if set, zero value otherwise.
 func (o *HostMuteResponse) GetAction() string {
 	if o == nil || o.Action == nil {
@@ -67,6 +73,7 @@ func (o *HostMuteResponse) HasAction() bool {
 func (o *HostMuteResponse) SetAction(v string) {
 	o.Action = &v
 }
+
 
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *HostMuteResponse) GetEnd() int64 {
@@ -96,6 +103,7 @@ func (o *HostMuteResponse) SetEnd(v int64) {
 	o.End = &v
 }
 
+
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *HostMuteResponse) GetHostname() string {
 	if o == nil || o.Hostname == nil {
@@ -123,6 +131,7 @@ func (o *HostMuteResponse) HasHostname() bool {
 func (o *HostMuteResponse) SetHostname(v string) {
 	o.Hostname = &v
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *HostMuteResponse) GetMessage() string {
@@ -152,6 +161,8 @@ func (o *HostMuteResponse) SetMessage(v string) {
 	o.Message = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o HostMuteResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,17 +191,17 @@ func (o HostMuteResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HostMuteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Action   *string `json:"action,omitempty"`
-		End      *int64  `json:"end,omitempty"`
+		Action *string `json:"action,omitempty"`
+		End *int64 `json:"end,omitempty"`
 		Hostname *string `json:"hostname,omitempty"`
-		Message  *string `json:"message,omitempty"`
+		Message *string `json:"message,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"action", "end", "hostname", "message"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "action", "end", "hostname", "message",  })
 	} else {
 		return err
 	}

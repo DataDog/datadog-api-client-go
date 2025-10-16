@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorFormulaAndFunctionCostQueryDefinition A formula and functions cost query.
 type MonitorFormulaAndFunctionCostQueryDefinition struct {
@@ -21,9 +25,10 @@ type MonitorFormulaAndFunctionCostQueryDefinition struct {
 	// The monitor query.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorFormulaAndFunctionCostQueryDefinition instantiates a new MonitorFormulaAndFunctionCostQueryDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewMonitorFormulaAndFunctionCostQueryDefinitionWithDefaults() *MonitorFormu
 	this := MonitorFormulaAndFunctionCostQueryDefinition{}
 	return &this
 }
-
 // GetAggregator returns the Aggregator field value if set, zero value otherwise.
 func (o *MonitorFormulaAndFunctionCostQueryDefinition) GetAggregator() MonitorFormulaAndFunctionCostAggregator {
 	if o == nil || o.Aggregator == nil {
@@ -73,6 +77,7 @@ func (o *MonitorFormulaAndFunctionCostQueryDefinition) SetAggregator(v MonitorFo
 	o.Aggregator = &v
 }
 
+
 // GetDataSource returns the DataSource field value.
 func (o *MonitorFormulaAndFunctionCostQueryDefinition) GetDataSource() MonitorFormulaAndFunctionCostDataSource {
 	if o == nil {
@@ -95,6 +100,7 @@ func (o *MonitorFormulaAndFunctionCostQueryDefinition) GetDataSourceOk() (*Monit
 func (o *MonitorFormulaAndFunctionCostQueryDefinition) SetDataSource(v MonitorFormulaAndFunctionCostDataSource) {
 	o.DataSource = v
 }
+
 
 // GetName returns the Name field value.
 func (o *MonitorFormulaAndFunctionCostQueryDefinition) GetName() string {
@@ -119,6 +125,7 @@ func (o *MonitorFormulaAndFunctionCostQueryDefinition) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetQuery returns the Query field value.
 func (o *MonitorFormulaAndFunctionCostQueryDefinition) GetQuery() string {
 	if o == nil {
@@ -141,6 +148,8 @@ func (o *MonitorFormulaAndFunctionCostQueryDefinition) GetQueryOk() (*string, bo
 func (o *MonitorFormulaAndFunctionCostQueryDefinition) SetQuery(v string) {
 	o.Query = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorFormulaAndFunctionCostQueryDefinition) MarshalJSON() ([]byte, error) {
@@ -166,8 +175,8 @@ func (o *MonitorFormulaAndFunctionCostQueryDefinition) UnmarshalJSON(bytes []byt
 	all := struct {
 		Aggregator *MonitorFormulaAndFunctionCostAggregator `json:"aggregator,omitempty"`
 		DataSource *MonitorFormulaAndFunctionCostDataSource `json:"data_source"`
-		Name       *string                                  `json:"name"`
-		Query      *string                                  `json:"query"`
+		Name *string `json:"name"`
+		Query *string `json:"query"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -183,13 +192,13 @@ func (o *MonitorFormulaAndFunctionCostQueryDefinition) UnmarshalJSON(bytes []byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregator", "data_source", "name", "query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregator", "data_source", "name", "query",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Aggregator != nil && !all.Aggregator.IsValid() {
+	if all.Aggregator != nil &&!all.Aggregator.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Aggregator = all.Aggregator

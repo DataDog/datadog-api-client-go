@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsMobileStepType Step type used in your mobile Synthetic test.
 type SyntheticsMobileStepType string
@@ -17,21 +21,21 @@ type SyntheticsMobileStepType string
 const (
 	SYNTHETICSMOBILESTEPTYPE_ASSERTELEMENTCONTENT SyntheticsMobileStepType = "assertElementContent"
 	SYNTHETICSMOBILESTEPTYPE_ASSERTSCREENCONTAINS SyntheticsMobileStepType = "assertScreenContains"
-	SYNTHETICSMOBILESTEPTYPE_ASSERTSCREENLACKS    SyntheticsMobileStepType = "assertScreenLacks"
-	SYNTHETICSMOBILESTEPTYPE_DOUBLETAP            SyntheticsMobileStepType = "doubleTap"
-	SYNTHETICSMOBILESTEPTYPE_EXTRACTVARIABLE      SyntheticsMobileStepType = "extractVariable"
-	SYNTHETICSMOBILESTEPTYPE_FLICK                SyntheticsMobileStepType = "flick"
-	SYNTHETICSMOBILESTEPTYPE_OPENDEEPLINK         SyntheticsMobileStepType = "openDeeplink"
-	SYNTHETICSMOBILESTEPTYPE_PLAYSUBTEST          SyntheticsMobileStepType = "playSubTest"
-	SYNTHETICSMOBILESTEPTYPE_PRESSBACK            SyntheticsMobileStepType = "pressBack"
-	SYNTHETICSMOBILESTEPTYPE_RESTARTAPPLICATION   SyntheticsMobileStepType = "restartApplication"
-	SYNTHETICSMOBILESTEPTYPE_ROTATE               SyntheticsMobileStepType = "rotate"
-	SYNTHETICSMOBILESTEPTYPE_SCROLL               SyntheticsMobileStepType = "scroll"
-	SYNTHETICSMOBILESTEPTYPE_SCROLLTOELEMENT      SyntheticsMobileStepType = "scrollToElement"
-	SYNTHETICSMOBILESTEPTYPE_TAP                  SyntheticsMobileStepType = "tap"
-	SYNTHETICSMOBILESTEPTYPE_TOGGLEWIFI           SyntheticsMobileStepType = "toggleWiFi"
-	SYNTHETICSMOBILESTEPTYPE_TYPETEXT             SyntheticsMobileStepType = "typeText"
-	SYNTHETICSMOBILESTEPTYPE_WAIT                 SyntheticsMobileStepType = "wait"
+	SYNTHETICSMOBILESTEPTYPE_ASSERTSCREENLACKS SyntheticsMobileStepType = "assertScreenLacks"
+	SYNTHETICSMOBILESTEPTYPE_DOUBLETAP SyntheticsMobileStepType = "doubleTap"
+	SYNTHETICSMOBILESTEPTYPE_EXTRACTVARIABLE SyntheticsMobileStepType = "extractVariable"
+	SYNTHETICSMOBILESTEPTYPE_FLICK SyntheticsMobileStepType = "flick"
+	SYNTHETICSMOBILESTEPTYPE_OPENDEEPLINK SyntheticsMobileStepType = "openDeeplink"
+	SYNTHETICSMOBILESTEPTYPE_PLAYSUBTEST SyntheticsMobileStepType = "playSubTest"
+	SYNTHETICSMOBILESTEPTYPE_PRESSBACK SyntheticsMobileStepType = "pressBack"
+	SYNTHETICSMOBILESTEPTYPE_RESTARTAPPLICATION SyntheticsMobileStepType = "restartApplication"
+	SYNTHETICSMOBILESTEPTYPE_ROTATE SyntheticsMobileStepType = "rotate"
+	SYNTHETICSMOBILESTEPTYPE_SCROLL SyntheticsMobileStepType = "scroll"
+	SYNTHETICSMOBILESTEPTYPE_SCROLLTOELEMENT SyntheticsMobileStepType = "scrollToElement"
+	SYNTHETICSMOBILESTEPTYPE_TAP SyntheticsMobileStepType = "tap"
+	SYNTHETICSMOBILESTEPTYPE_TOGGLEWIFI SyntheticsMobileStepType = "toggleWiFi"
+	SYNTHETICSMOBILESTEPTYPE_TYPETEXT SyntheticsMobileStepType = "typeText"
+	SYNTHETICSMOBILESTEPTYPE_WAIT SyntheticsMobileStepType = "wait"
 )
 
 var allowedSyntheticsMobileStepTypeEnumValues = []SyntheticsMobileStepType{

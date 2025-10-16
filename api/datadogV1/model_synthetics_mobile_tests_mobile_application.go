@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsMobileTestsMobileApplication Mobile application for mobile synthetics test.
 type SyntheticsMobileTestsMobileApplication struct {
@@ -19,9 +23,10 @@ type SyntheticsMobileTestsMobileApplication struct {
 	// Reference type for the mobile application for a mobile synthetics test.
 	ReferenceType SyntheticsMobileTestsMobileApplicationReferenceType `json:"referenceType"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsMobileTestsMobileApplication instantiates a new SyntheticsMobileTestsMobileApplication object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewSyntheticsMobileTestsMobileApplicationWithDefaults() *SyntheticsMobileTe
 	this := SyntheticsMobileTestsMobileApplication{}
 	return &this
 }
-
 // GetApplicationId returns the ApplicationId field value.
 func (o *SyntheticsMobileTestsMobileApplication) GetApplicationId() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *SyntheticsMobileTestsMobileApplication) GetApplicationIdOk() (*string, 
 func (o *SyntheticsMobileTestsMobileApplication) SetApplicationId(v string) {
 	o.ApplicationId = v
 }
+
 
 // GetReferenceId returns the ReferenceId field value.
 func (o *SyntheticsMobileTestsMobileApplication) GetReferenceId() string {
@@ -89,6 +94,7 @@ func (o *SyntheticsMobileTestsMobileApplication) SetReferenceId(v string) {
 	o.ReferenceId = v
 }
 
+
 // GetReferenceType returns the ReferenceType field value.
 func (o *SyntheticsMobileTestsMobileApplication) GetReferenceType() SyntheticsMobileTestsMobileApplicationReferenceType {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *SyntheticsMobileTestsMobileApplication) SetReferenceType(v SyntheticsMo
 	o.ReferenceType = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsMobileTestsMobileApplication) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,8 +139,8 @@ func (o SyntheticsMobileTestsMobileApplication) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsMobileTestsMobileApplication) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApplicationId *string                                              `json:"applicationId"`
-		ReferenceId   *string                                              `json:"referenceId"`
+		ApplicationId *string `json:"applicationId"`
+		ReferenceId *string `json:"referenceId"`
 		ReferenceType *SyntheticsMobileTestsMobileApplicationReferenceType `json:"referenceType"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -149,7 +157,7 @@ func (o *SyntheticsMobileTestsMobileApplication) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"applicationId", "referenceId", "referenceType"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "applicationId", "referenceId", "referenceType",  })
 	} else {
 		return err
 	}

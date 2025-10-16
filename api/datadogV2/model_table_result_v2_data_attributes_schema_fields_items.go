@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TableResultV2DataAttributesSchemaFieldsItems The definition of `TableResultV2DataAttributesSchemaFieldsItems` object.
 type TableResultV2DataAttributesSchemaFieldsItems struct {
@@ -17,9 +21,10 @@ type TableResultV2DataAttributesSchemaFieldsItems struct {
 	// The field type for reference table schema fields.
 	Type ReferenceTableSchemaFieldType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTableResultV2DataAttributesSchemaFieldsItems instantiates a new TableResultV2DataAttributesSchemaFieldsItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewTableResultV2DataAttributesSchemaFieldsItemsWithDefaults() *TableResultV
 	this := TableResultV2DataAttributesSchemaFieldsItems{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *TableResultV2DataAttributesSchemaFieldsItems) GetName() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *TableResultV2DataAttributesSchemaFieldsItems) GetNameOk() (*string, boo
 func (o *TableResultV2DataAttributesSchemaFieldsItems) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetType returns the Type field value.
 func (o *TableResultV2DataAttributesSchemaFieldsItems) GetType() ReferenceTableSchemaFieldType {
@@ -86,6 +91,8 @@ func (o *TableResultV2DataAttributesSchemaFieldsItems) SetType(v ReferenceTableS
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TableResultV2DataAttributesSchemaFieldsItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o TableResultV2DataAttributesSchemaFieldsItems) MarshalJSON() ([]byte, err
 // UnmarshalJSON deserializes the given payload.
 func (o *TableResultV2DataAttributesSchemaFieldsItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name *string                        `json:"name"`
+		Name *string `json:"name"`
 		Type *ReferenceTableSchemaFieldType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *TableResultV2DataAttributesSchemaFieldsItems) UnmarshalJSON(bytes []byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "type",  })
 	} else {
 		return err
 	}

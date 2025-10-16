@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSocketDestinationFraming - Framing method configuration.
 type ObservabilityPipelineSocketDestinationFraming struct {
-	ObservabilityPipelineSocketDestinationFramingNewlineDelimited   *ObservabilityPipelineSocketDestinationFramingNewlineDelimited
-	ObservabilityPipelineSocketDestinationFramingBytes              *ObservabilityPipelineSocketDestinationFramingBytes
+	ObservabilityPipelineSocketDestinationFramingNewlineDelimited *ObservabilityPipelineSocketDestinationFramingNewlineDelimited
+	ObservabilityPipelineSocketDestinationFramingBytes *ObservabilityPipelineSocketDestinationFramingBytes
 	ObservabilityPipelineSocketDestinationFramingCharacterDelimited *ObservabilityPipelineSocketDestinationFramingCharacterDelimited
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -104,13 +110,16 @@ func (obj ObservabilityPipelineSocketDestinationFraming) MarshalJSON() ([]byte, 
 		return datadog.Marshal(&obj.ObservabilityPipelineSocketDestinationFramingNewlineDelimited)
 	}
 
+
 	if obj.ObservabilityPipelineSocketDestinationFramingBytes != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSocketDestinationFramingBytes)
 	}
 
+
 	if obj.ObservabilityPipelineSocketDestinationFramingCharacterDelimited != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSocketDestinationFramingCharacterDelimited)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj ObservabilityPipelineSocketDestinationFraming) MarshalJSON() ([]byte, 
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ObservabilityPipelineSocketDestinationFraming) GetActualInstance() interface{} {
+func (obj *ObservabilityPipelineSocketDestinationFraming) GetActualInstance() (interface{}) {
 	if obj.ObservabilityPipelineSocketDestinationFramingNewlineDelimited != nil {
 		return obj.ObservabilityPipelineSocketDestinationFramingNewlineDelimited
 	}
+
 
 	if obj.ObservabilityPipelineSocketDestinationFramingBytes != nil {
 		return obj.ObservabilityPipelineSocketDestinationFramingBytes
 	}
 
+
 	if obj.ObservabilityPipelineSocketDestinationFramingCharacterDelimited != nil {
 		return obj.ObservabilityPipelineSocketDestinationFramingCharacterDelimited
 	}
+
 
 	// all schemas are nil
 	return nil

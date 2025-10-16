@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // APIKeyUpdateAttributes Attributes used to update an API Key.
 type APIKeyUpdateAttributes struct {
@@ -19,9 +23,10 @@ type APIKeyUpdateAttributes struct {
 	// The APIKeyUpdateAttributes remote_config_read_enabled.
 	RemoteConfigReadEnabled *bool `json:"remote_config_read_enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAPIKeyUpdateAttributes instantiates a new APIKeyUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewAPIKeyUpdateAttributesWithDefaults() *APIKeyUpdateAttributes {
 	this := APIKeyUpdateAttributes{}
 	return &this
 }
-
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *APIKeyUpdateAttributes) GetCategory() string {
 	if o == nil || o.Category == nil {
@@ -69,6 +73,7 @@ func (o *APIKeyUpdateAttributes) SetCategory(v string) {
 	o.Category = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *APIKeyUpdateAttributes) GetName() string {
 	if o == nil {
@@ -91,6 +96,7 @@ func (o *APIKeyUpdateAttributes) GetNameOk() (*string, bool) {
 func (o *APIKeyUpdateAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetRemoteConfigReadEnabled returns the RemoteConfigReadEnabled field value if set, zero value otherwise.
 func (o *APIKeyUpdateAttributes) GetRemoteConfigReadEnabled() bool {
@@ -120,6 +126,8 @@ func (o *APIKeyUpdateAttributes) SetRemoteConfigReadEnabled(v bool) {
 	o.RemoteConfigReadEnabled = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o APIKeyUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -143,9 +151,9 @@ func (o APIKeyUpdateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *APIKeyUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Category                *string `json:"category,omitempty"`
-		Name                    *string `json:"name"`
-		RemoteConfigReadEnabled *bool   `json:"remote_config_read_enabled,omitempty"`
+		Category *string `json:"category,omitempty"`
+		Name *string `json:"name"`
+		RemoteConfigReadEnabled *bool `json:"remote_config_read_enabled,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,7 +163,7 @@ func (o *APIKeyUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"category", "name", "remote_config_read_enabled"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "category", "name", "remote_config_read_enabled",  })
 	} else {
 		return err
 	}

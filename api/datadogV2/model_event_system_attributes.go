@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventSystemAttributes JSON object of event system attributes.
 type EventSystemAttributes struct {
@@ -21,9 +27,10 @@ type EventSystemAttributes struct {
 	// A unique identifier for the event. You can use this identifier to query or reference the event.
 	Uid *string `json:"uid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEventSystemAttributes instantiates a new EventSystemAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewEventSystemAttributesWithDefaults() *EventSystemAttributes {
 	this := EventSystemAttributes{}
 	return &this
 }
-
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *EventSystemAttributes) GetCategory() EventSystemAttributesCategory {
 	if o == nil || o.Category == nil {
@@ -69,6 +75,7 @@ func (o *EventSystemAttributes) HasCategory() bool {
 func (o *EventSystemAttributes) SetCategory(v EventSystemAttributesCategory) {
 	o.Category = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *EventSystemAttributes) GetId() string {
@@ -98,6 +105,7 @@ func (o *EventSystemAttributes) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetIntegrationId returns the IntegrationId field value if set, zero value otherwise.
 func (o *EventSystemAttributes) GetIntegrationId() EventSystemAttributesIntegrationId {
 	if o == nil || o.IntegrationId == nil {
@@ -125,6 +133,7 @@ func (o *EventSystemAttributes) HasIntegrationId() bool {
 func (o *EventSystemAttributes) SetIntegrationId(v EventSystemAttributesIntegrationId) {
 	o.IntegrationId = &v
 }
+
 
 // GetSourceId returns the SourceId field value if set, zero value otherwise.
 func (o *EventSystemAttributes) GetSourceId() int64 {
@@ -154,6 +163,7 @@ func (o *EventSystemAttributes) SetSourceId(v int64) {
 	o.SourceId = &v
 }
 
+
 // GetUid returns the Uid field value if set, zero value otherwise.
 func (o *EventSystemAttributes) GetUid() string {
 	if o == nil || o.Uid == nil {
@@ -181,6 +191,8 @@ func (o *EventSystemAttributes) HasUid() bool {
 func (o *EventSystemAttributes) SetUid(v string) {
 	o.Uid = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EventSystemAttributes) MarshalJSON() ([]byte, error) {
@@ -213,30 +225,30 @@ func (o EventSystemAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EventSystemAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Category      *EventSystemAttributesCategory      `json:"category,omitempty"`
-		Id            *string                             `json:"id,omitempty"`
+		Category *EventSystemAttributesCategory `json:"category,omitempty"`
+		Id *string `json:"id,omitempty"`
 		IntegrationId *EventSystemAttributesIntegrationId `json:"integration_id,omitempty"`
-		SourceId      *int64                              `json:"source_id,omitempty"`
-		Uid           *string                             `json:"uid,omitempty"`
+		SourceId *int64 `json:"source_id,omitempty"`
+		Uid *string `json:"uid,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"category", "id", "integration_id", "source_id", "uid"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "category", "id", "integration_id", "source_id", "uid",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Category != nil && !all.Category.IsValid() {
+	if all.Category != nil &&!all.Category.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Category = all.Category
 	}
 	o.Id = all.Id
-	if all.IntegrationId != nil && !all.IntegrationId.IsValid() {
+	if all.IntegrationId != nil &&!all.IntegrationId.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.IntegrationId = all.IntegrationId

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // KindAttributes Kind attributes.
 type KindAttributes struct {
@@ -17,9 +23,10 @@ type KindAttributes struct {
 	// The kind name.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewKindAttributes instantiates a new KindAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewKindAttributesWithDefaults() *KindAttributes {
 	this := KindAttributes{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *KindAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -65,6 +71,7 @@ func (o *KindAttributes) HasDescription() bool {
 func (o *KindAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *KindAttributes) GetDisplayName() string {
@@ -94,6 +101,7 @@ func (o *KindAttributes) SetDisplayName(v string) {
 	o.DisplayName = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *KindAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -122,6 +130,8 @@ func (o *KindAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o KindAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -149,14 +159,14 @@ func (o *KindAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Description *string `json:"description,omitempty"`
 		DisplayName *string `json:"displayName,omitempty"`
-		Name        *string `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "displayName", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "displayName", "name",  })
 	} else {
 		return err
 	}

@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestOptionsMonitorOptionsNotificationPresetName The name of the preset for the notification for the monitor.
 type SyntheticsTestOptionsMonitorOptionsNotificationPresetName string
 
 // List of SyntheticsTestOptionsMonitorOptionsNotificationPresetName.
 const (
-	SYNTHETICSTESTOPTIONSMONITOROPTIONSNOTIFICATIONPRESETNAME_SHOW_ALL     SyntheticsTestOptionsMonitorOptionsNotificationPresetName = "show_all"
-	SYNTHETICSTESTOPTIONSMONITOROPTIONSNOTIFICATIONPRESETNAME_HIDE_ALL     SyntheticsTestOptionsMonitorOptionsNotificationPresetName = "hide_all"
-	SYNTHETICSTESTOPTIONSMONITOROPTIONSNOTIFICATIONPRESETNAME_HIDE_QUERY   SyntheticsTestOptionsMonitorOptionsNotificationPresetName = "hide_query"
+	SYNTHETICSTESTOPTIONSMONITOROPTIONSNOTIFICATIONPRESETNAME_SHOW_ALL SyntheticsTestOptionsMonitorOptionsNotificationPresetName = "show_all"
+	SYNTHETICSTESTOPTIONSMONITOROPTIONSNOTIFICATIONPRESETNAME_HIDE_ALL SyntheticsTestOptionsMonitorOptionsNotificationPresetName = "hide_all"
+	SYNTHETICSTESTOPTIONSMONITOROPTIONSNOTIFICATIONPRESETNAME_HIDE_QUERY SyntheticsTestOptionsMonitorOptionsNotificationPresetName = "hide_query"
 	SYNTHETICSTESTOPTIONSMONITOROPTIONSNOTIFICATIONPRESETNAME_HIDE_HANDLES SyntheticsTestOptionsMonitorOptionsNotificationPresetName = "hide_handles"
 )
 

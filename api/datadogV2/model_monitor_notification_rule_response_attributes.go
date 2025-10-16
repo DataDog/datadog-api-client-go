@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorNotificationRuleResponseAttributes Attributes of the monitor notification rule.
 type MonitorNotificationRuleResponseAttributes struct {
@@ -25,9 +29,10 @@ type MonitorNotificationRuleResponseAttributes struct {
 	// A list of recipients to notify. Uses the same format as the monitor `message` field. Must not start with an '@'.
 	Recipients []string `json:"recipients,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorNotificationRuleResponseAttributes instantiates a new MonitorNotificationRuleResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewMonitorNotificationRuleResponseAttributesWithDefaults() *MonitorNotifica
 	this := MonitorNotificationRuleResponseAttributes{}
 	return &this
 }
-
 // GetConditionalRecipients returns the ConditionalRecipients field value if set, zero value otherwise.
 func (o *MonitorNotificationRuleResponseAttributes) GetConditionalRecipients() MonitorNotificationRuleConditionalRecipients {
 	if o == nil || o.ConditionalRecipients == nil {
@@ -73,6 +77,7 @@ func (o *MonitorNotificationRuleResponseAttributes) HasConditionalRecipients() b
 func (o *MonitorNotificationRuleResponseAttributes) SetConditionalRecipients(v MonitorNotificationRuleConditionalRecipients) {
 	o.ConditionalRecipients = &v
 }
+
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *MonitorNotificationRuleResponseAttributes) GetCreated() time.Time {
@@ -102,6 +107,7 @@ func (o *MonitorNotificationRuleResponseAttributes) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
+
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *MonitorNotificationRuleResponseAttributes) GetFilter() MonitorNotificationRuleFilter {
 	if o == nil || o.Filter == nil {
@@ -129,6 +135,7 @@ func (o *MonitorNotificationRuleResponseAttributes) HasFilter() bool {
 func (o *MonitorNotificationRuleResponseAttributes) SetFilter(v MonitorNotificationRuleFilter) {
 	o.Filter = &v
 }
+
 
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *MonitorNotificationRuleResponseAttributes) GetModified() time.Time {
@@ -158,6 +165,7 @@ func (o *MonitorNotificationRuleResponseAttributes) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MonitorNotificationRuleResponseAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -186,6 +194,7 @@ func (o *MonitorNotificationRuleResponseAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetRecipients returns the Recipients field value if set, zero value otherwise.
 func (o *MonitorNotificationRuleResponseAttributes) GetRecipients() []string {
 	if o == nil || o.Recipients == nil {
@@ -213,6 +222,8 @@ func (o *MonitorNotificationRuleResponseAttributes) HasRecipients() bool {
 func (o *MonitorNotificationRuleResponseAttributes) SetRecipients(v []string) {
 	o.Recipients = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorNotificationRuleResponseAttributes) MarshalJSON() ([]byte, error) {
@@ -257,24 +268,24 @@ func (o MonitorNotificationRuleResponseAttributes) MarshalJSON() ([]byte, error)
 func (o *MonitorNotificationRuleResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ConditionalRecipients *MonitorNotificationRuleConditionalRecipients `json:"conditional_recipients,omitempty"`
-		Created               *time.Time                                    `json:"created,omitempty"`
-		Filter                *MonitorNotificationRuleFilter                `json:"filter,omitempty"`
-		Modified              *time.Time                                    `json:"modified,omitempty"`
-		Name                  *string                                       `json:"name,omitempty"`
-		Recipients            []string                                      `json:"recipients,omitempty"`
+		Created *time.Time `json:"created,omitempty"`
+		Filter *MonitorNotificationRuleFilter `json:"filter,omitempty"`
+		Modified *time.Time `json:"modified,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Recipients []string `json:"recipients,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"conditional_recipients", "created", "filter", "modified", "name", "recipients"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "conditional_recipients", "created", "filter", "modified", "name", "recipients",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.ConditionalRecipients != nil && all.ConditionalRecipients.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ConditionalRecipients != nil && all.ConditionalRecipients.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ConditionalRecipients = all.ConditionalRecipients

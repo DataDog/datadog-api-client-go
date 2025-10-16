@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsMobileStepParamsValue - Values used in the step for in multiple step types.
 type SyntheticsMobileStepParamsValue struct {
@@ -80,9 +86,11 @@ func (obj SyntheticsMobileStepParamsValue) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SyntheticsMobileStepParamsValueString)
 	}
 
+
 	if obj.SyntheticsMobileStepParamsValueNumber != nil {
 		return datadog.Marshal(&obj.SyntheticsMobileStepParamsValueNumber)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj SyntheticsMobileStepParamsValue) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SyntheticsMobileStepParamsValue) GetActualInstance() interface{} {
+func (obj *SyntheticsMobileStepParamsValue) GetActualInstance() (interface{}) {
 	if obj.SyntheticsMobileStepParamsValueString != nil {
 		return obj.SyntheticsMobileStepParamsValueString
 	}
 
+
 	if obj.SyntheticsMobileStepParamsValueNumber != nil {
 		return obj.SyntheticsMobileStepParamsValueNumber
 	}
+
 
 	// all schemas are nil
 	return nil

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsMobileStepParamsElement Information about the element used for a step.
 type SyntheticsMobileStepParamsElement struct {
@@ -27,9 +33,10 @@ type SyntheticsMobileStepParamsElement struct {
 	// Name of the view of the element.
 	ViewName *string `json:"viewName,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsMobileStepParamsElement instantiates a new SyntheticsMobileStepParamsElement object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +54,6 @@ func NewSyntheticsMobileStepParamsElementWithDefaults() *SyntheticsMobileStepPar
 	this := SyntheticsMobileStepParamsElement{}
 	return &this
 }
-
 // GetContext returns the Context field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParamsElement) GetContext() string {
 	if o == nil || o.Context == nil {
@@ -75,6 +81,7 @@ func (o *SyntheticsMobileStepParamsElement) HasContext() bool {
 func (o *SyntheticsMobileStepParamsElement) SetContext(v string) {
 	o.Context = &v
 }
+
 
 // GetContextType returns the ContextType field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParamsElement) GetContextType() SyntheticsMobileStepParamsElementContextType {
@@ -104,6 +111,7 @@ func (o *SyntheticsMobileStepParamsElement) SetContextType(v SyntheticsMobileSte
 	o.ContextType = &v
 }
 
+
 // GetElementDescription returns the ElementDescription field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParamsElement) GetElementDescription() string {
 	if o == nil || o.ElementDescription == nil {
@@ -131,6 +139,7 @@ func (o *SyntheticsMobileStepParamsElement) HasElementDescription() bool {
 func (o *SyntheticsMobileStepParamsElement) SetElementDescription(v string) {
 	o.ElementDescription = &v
 }
+
 
 // GetMultiLocator returns the MultiLocator field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParamsElement) GetMultiLocator() interface{} {
@@ -160,6 +169,7 @@ func (o *SyntheticsMobileStepParamsElement) SetMultiLocator(v interface{}) {
 	o.MultiLocator = v
 }
 
+
 // GetRelativePosition returns the RelativePosition field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParamsElement) GetRelativePosition() SyntheticsMobileStepParamsElementRelativePosition {
 	if o == nil || o.RelativePosition == nil {
@@ -187,6 +197,7 @@ func (o *SyntheticsMobileStepParamsElement) HasRelativePosition() bool {
 func (o *SyntheticsMobileStepParamsElement) SetRelativePosition(v SyntheticsMobileStepParamsElementRelativePosition) {
 	o.RelativePosition = &v
 }
+
 
 // GetTextContent returns the TextContent field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParamsElement) GetTextContent() string {
@@ -216,6 +227,7 @@ func (o *SyntheticsMobileStepParamsElement) SetTextContent(v string) {
 	o.TextContent = &v
 }
 
+
 // GetUserLocator returns the UserLocator field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParamsElement) GetUserLocator() SyntheticsMobileStepParamsElementUserLocator {
 	if o == nil || o.UserLocator == nil {
@@ -244,6 +256,7 @@ func (o *SyntheticsMobileStepParamsElement) SetUserLocator(v SyntheticsMobileSte
 	o.UserLocator = &v
 }
 
+
 // GetViewName returns the ViewName field value if set, zero value otherwise.
 func (o *SyntheticsMobileStepParamsElement) GetViewName() string {
 	if o == nil || o.ViewName == nil {
@@ -271,6 +284,8 @@ func (o *SyntheticsMobileStepParamsElement) HasViewName() bool {
 func (o *SyntheticsMobileStepParamsElement) SetViewName(v string) {
 	o.ViewName = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsMobileStepParamsElement) MarshalJSON() ([]byte, error) {
@@ -312,40 +327,40 @@ func (o SyntheticsMobileStepParamsElement) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsMobileStepParamsElement) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Context            *string                                            `json:"context,omitempty"`
-		ContextType        *SyntheticsMobileStepParamsElementContextType      `json:"contextType,omitempty"`
-		ElementDescription *string                                            `json:"elementDescription,omitempty"`
-		MultiLocator       interface{}                                        `json:"multiLocator,omitempty"`
-		RelativePosition   *SyntheticsMobileStepParamsElementRelativePosition `json:"relativePosition,omitempty"`
-		TextContent        *string                                            `json:"textContent,omitempty"`
-		UserLocator        *SyntheticsMobileStepParamsElementUserLocator      `json:"userLocator,omitempty"`
-		ViewName           *string                                            `json:"viewName,omitempty"`
+		Context *string `json:"context,omitempty"`
+		ContextType *SyntheticsMobileStepParamsElementContextType `json:"contextType,omitempty"`
+		ElementDescription *string `json:"elementDescription,omitempty"`
+		MultiLocator interface{} `json:"multiLocator,omitempty"`
+		RelativePosition *SyntheticsMobileStepParamsElementRelativePosition `json:"relativePosition,omitempty"`
+		TextContent *string `json:"textContent,omitempty"`
+		UserLocator *SyntheticsMobileStepParamsElementUserLocator `json:"userLocator,omitempty"`
+		ViewName *string `json:"viewName,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"context", "contextType", "elementDescription", "multiLocator", "relativePosition", "textContent", "userLocator", "viewName"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "context", "contextType", "elementDescription", "multiLocator", "relativePosition", "textContent", "userLocator", "viewName",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Context = all.Context
-	if all.ContextType != nil && !all.ContextType.IsValid() {
+	if all.ContextType != nil &&!all.ContextType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ContextType = all.ContextType
 	}
 	o.ElementDescription = all.ElementDescription
 	o.MultiLocator = all.MultiLocator
-	if all.RelativePosition != nil && all.RelativePosition.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RelativePosition != nil && all.RelativePosition.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RelativePosition = all.RelativePosition
 	o.TextContent = all.TextContent
-	if all.UserLocator != nil && all.UserLocator.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.UserLocator != nil && all.UserLocator.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.UserLocator = all.UserLocator

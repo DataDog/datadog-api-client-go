@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineGeneratedMetricIncrementByField Strategy that increments a generated metric based on the value of a log field.
 type ObservabilityPipelineGeneratedMetricIncrementByField struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineGeneratedMetricIncrementByField struct {
 	// Uses a numeric field in the log event as the metric increment.
 	Strategy ObservabilityPipelineGeneratedMetricIncrementByFieldStrategy `json:"strategy"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineGeneratedMetricIncrementByField instantiates a new ObservabilityPipelineGeneratedMetricIncrementByField object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineGeneratedMetricIncrementByFieldWithDefaults() *Obse
 	this := ObservabilityPipelineGeneratedMetricIncrementByField{}
 	return &this
 }
-
 // GetField returns the Field field value.
 func (o *ObservabilityPipelineGeneratedMetricIncrementByField) GetField() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineGeneratedMetricIncrementByField) GetFieldOk() (*st
 func (o *ObservabilityPipelineGeneratedMetricIncrementByField) SetField(v string) {
 	o.Field = v
 }
+
 
 // GetStrategy returns the Strategy field value.
 func (o *ObservabilityPipelineGeneratedMetricIncrementByField) GetStrategy() ObservabilityPipelineGeneratedMetricIncrementByFieldStrategy {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineGeneratedMetricIncrementByField) SetStrategy(v Obs
 	o.Strategy = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineGeneratedMetricIncrementByField) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o ObservabilityPipelineGeneratedMetricIncrementByField) MarshalJSON() ([]b
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineGeneratedMetricIncrementByField) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Field    *string                                                       `json:"field"`
+		Field *string `json:"field"`
 		Strategy *ObservabilityPipelineGeneratedMetricIncrementByFieldStrategy `json:"strategy"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineGeneratedMetricIncrementByField) UnmarshalJSON(byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"field", "strategy"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "field", "strategy",  })
 	} else {
 		return err
 	}

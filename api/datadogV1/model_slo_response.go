@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOResponse A service level objective response containing a single service level objective.
 type SLOResponse struct {
@@ -17,9 +23,10 @@ type SLOResponse struct {
 	// used.
 	Errors []string `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSLOResponse instantiates a new SLOResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewSLOResponseWithDefaults() *SLOResponse {
 	this := SLOResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *SLOResponse) GetData() SLOResponseData {
 	if o == nil || o.Data == nil {
@@ -65,6 +71,7 @@ func (o *SLOResponse) HasData() bool {
 func (o *SLOResponse) SetData(v SLOResponseData) {
 	o.Data = &v
 }
+
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *SLOResponse) GetErrors() []string {
@@ -94,6 +101,8 @@ func (o *SLOResponse) SetErrors(v []string) {
 	o.Errors = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -116,21 +125,21 @@ func (o SLOResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data   *SLOResponseData `json:"data,omitempty"`
-		Errors []string         `json:"errors,omitempty"`
+		Data *SLOResponseData `json:"data,omitempty"`
+		Errors []string `json:"errors,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "errors"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "errors",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Data = all.Data

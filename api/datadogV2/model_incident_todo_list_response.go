@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentTodoListResponse Response with a list of incident todos.
 type IncidentTodoListResponse struct {
@@ -19,9 +23,10 @@ type IncidentTodoListResponse struct {
 	// The metadata object containing pagination metadata.
 	Meta *IncidentResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentTodoListResponse instantiates a new IncidentTodoListResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewIncidentTodoListResponseWithDefaults() *IncidentTodoListResponse {
 	this := IncidentTodoListResponse{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *IncidentTodoListResponse) GetData() []IncidentTodoResponseData {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *IncidentTodoListResponse) GetDataOk() (*[]IncidentTodoResponseData, boo
 func (o *IncidentTodoListResponse) SetData(v []IncidentTodoResponseData) {
 	o.Data = v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *IncidentTodoListResponse) GetIncluded() []IncidentTodoResponseIncludedItem {
@@ -92,6 +97,7 @@ func (o *IncidentTodoListResponse) SetIncluded(v []IncidentTodoResponseIncludedI
 	o.Included = v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *IncidentTodoListResponse) GetMeta() IncidentResponseMeta {
 	if o == nil || o.Meta == nil {
@@ -120,6 +126,8 @@ func (o *IncidentTodoListResponse) SetMeta(v IncidentResponseMeta) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentTodoListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -143,9 +151,9 @@ func (o IncidentTodoListResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTodoListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     *[]IncidentTodoResponseData        `json:"data"`
+		Data *[]IncidentTodoResponseData `json:"data"`
 		Included []IncidentTodoResponseIncludedItem `json:"included,omitempty"`
-		Meta     *IncidentResponseMeta              `json:"meta,omitempty"`
+		Meta *IncidentResponseMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,7 +163,7 @@ func (o *IncidentTodoListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "included", "meta",  })
 	} else {
 		return err
 	}
@@ -163,7 +171,7 @@ func (o *IncidentTodoListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Data = *all.Data
 	o.Included = all.Included
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

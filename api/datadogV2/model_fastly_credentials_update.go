@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FastlyCredentialsUpdate - The definition of the `FastlyCredentialsUpdate` object.
 type FastlyCredentialsUpdate struct {
@@ -56,6 +62,7 @@ func (obj FastlyCredentialsUpdate) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.FastlyAPIKeyUpdate)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj FastlyCredentialsUpdate) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *FastlyCredentialsUpdate) GetActualInstance() interface{} {
+func (obj *FastlyCredentialsUpdate) GetActualInstance() (interface{}) {
 	if obj.FastlyAPIKeyUpdate != nil {
 		return obj.FastlyAPIKeyUpdate
 	}
+
 
 	// all schemas are nil
 	return nil

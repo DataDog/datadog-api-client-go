@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SpansAggregateBucketValueTimeseriesPoint A timeseries point.
 type SpansAggregateBucketValueTimeseriesPoint struct {
@@ -15,9 +21,10 @@ type SpansAggregateBucketValueTimeseriesPoint struct {
 	// The value for this point.
 	Value *float64 `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSpansAggregateBucketValueTimeseriesPoint instantiates a new SpansAggregateBucketValueTimeseriesPoint object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSpansAggregateBucketValueTimeseriesPointWithDefaults() *SpansAggregateBu
 	this := SpansAggregateBucketValueTimeseriesPoint{}
 	return &this
 }
-
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *SpansAggregateBucketValueTimeseriesPoint) GetTime() string {
 	if o == nil || o.Time == nil {
@@ -63,6 +69,7 @@ func (o *SpansAggregateBucketValueTimeseriesPoint) HasTime() bool {
 func (o *SpansAggregateBucketValueTimeseriesPoint) SetTime(v string) {
 	o.Time = &v
 }
+
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *SpansAggregateBucketValueTimeseriesPoint) GetValue() float64 {
@@ -92,6 +99,8 @@ func (o *SpansAggregateBucketValueTimeseriesPoint) SetValue(v float64) {
 	o.Value = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SpansAggregateBucketValueTimeseriesPoint) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o SpansAggregateBucketValueTimeseriesPoint) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *SpansAggregateBucketValueTimeseriesPoint) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Time  *string  `json:"time,omitempty"`
+		Time *string `json:"time,omitempty"`
 		Value *float64 `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *SpansAggregateBucketValueTimeseriesPoint) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"time", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "time", "value",  })
 	} else {
 		return err
 	}

@@ -2,28 +2,32 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionV2LinkType Link type.
 type ServiceDefinitionV2LinkType string
 
 // List of ServiceDefinitionV2LinkType.
 const (
-	SERVICEDEFINITIONV2LINKTYPE_DOC       ServiceDefinitionV2LinkType = "doc"
-	SERVICEDEFINITIONV2LINKTYPE_WIKI      ServiceDefinitionV2LinkType = "wiki"
-	SERVICEDEFINITIONV2LINKTYPE_RUNBOOK   ServiceDefinitionV2LinkType = "runbook"
-	SERVICEDEFINITIONV2LINKTYPE_URL       ServiceDefinitionV2LinkType = "url"
-	SERVICEDEFINITIONV2LINKTYPE_REPO      ServiceDefinitionV2LinkType = "repo"
+	SERVICEDEFINITIONV2LINKTYPE_DOC ServiceDefinitionV2LinkType = "doc"
+	SERVICEDEFINITIONV2LINKTYPE_WIKI ServiceDefinitionV2LinkType = "wiki"
+	SERVICEDEFINITIONV2LINKTYPE_RUNBOOK ServiceDefinitionV2LinkType = "runbook"
+	SERVICEDEFINITIONV2LINKTYPE_URL ServiceDefinitionV2LinkType = "url"
+	SERVICEDEFINITIONV2LINKTYPE_REPO ServiceDefinitionV2LinkType = "repo"
 	SERVICEDEFINITIONV2LINKTYPE_DASHBOARD ServiceDefinitionV2LinkType = "dashboard"
-	SERVICEDEFINITIONV2LINKTYPE_ONCALL    ServiceDefinitionV2LinkType = "oncall"
-	SERVICEDEFINITIONV2LINKTYPE_CODE      ServiceDefinitionV2LinkType = "code"
-	SERVICEDEFINITIONV2LINKTYPE_LINK      ServiceDefinitionV2LinkType = "link"
+	SERVICEDEFINITIONV2LINKTYPE_ONCALL ServiceDefinitionV2LinkType = "oncall"
+	SERVICEDEFINITIONV2LINKTYPE_CODE ServiceDefinitionV2LinkType = "code"
+	SERVICEDEFINITIONV2LINKTYPE_LINK ServiceDefinitionV2LinkType = "link"
 )
 
 var allowedServiceDefinitionV2LinkTypeEnumValues = []ServiceDefinitionV2LinkType{

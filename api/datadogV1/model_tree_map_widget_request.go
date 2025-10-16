@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TreeMapWidgetRequest An updated treemap widget.
 type TreeMapWidgetRequest struct {
@@ -19,9 +25,10 @@ type TreeMapWidgetRequest struct {
 	// Timeseries, scalar, or event list response. Event list response formats are supported by Geomap widgets.
 	ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTreeMapWidgetRequest instantiates a new TreeMapWidgetRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewTreeMapWidgetRequestWithDefaults() *TreeMapWidgetRequest {
 	this := TreeMapWidgetRequest{}
 	return &this
 }
-
 // GetFormulas returns the Formulas field value if set, zero value otherwise.
 func (o *TreeMapWidgetRequest) GetFormulas() []WidgetFormula {
 	if o == nil || o.Formulas == nil {
@@ -67,6 +73,7 @@ func (o *TreeMapWidgetRequest) HasFormulas() bool {
 func (o *TreeMapWidgetRequest) SetFormulas(v []WidgetFormula) {
 	o.Formulas = v
 }
+
 
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *TreeMapWidgetRequest) GetQ() string {
@@ -96,6 +103,7 @@ func (o *TreeMapWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
 
+
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *TreeMapWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
 	if o == nil || o.Queries == nil {
@@ -123,6 +131,7 @@ func (o *TreeMapWidgetRequest) HasQueries() bool {
 func (o *TreeMapWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) {
 	o.Queries = v
 }
+
 
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
 func (o *TreeMapWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
@@ -152,6 +161,8 @@ func (o *TreeMapWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFor
 	o.ResponseFormat = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TreeMapWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,17 +191,17 @@ func (o TreeMapWidgetRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TreeMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Formulas       []WidgetFormula                     `json:"formulas,omitempty"`
-		Q              *string                             `json:"q,omitempty"`
-		Queries        []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat *FormulaAndFunctionResponseFormat   `json:"response_format,omitempty"`
+		Formulas []WidgetFormula `json:"formulas,omitempty"`
+		Q *string `json:"q,omitempty"`
+		Queries []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"formulas", "q", "queries", "response_format"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "formulas", "q", "queries", "response_format",  })
 	} else {
 		return err
 	}
@@ -199,7 +210,7 @@ func (o *TreeMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Formulas = all.Formulas
 	o.Q = all.Q
 	o.Queries = all.Queries
-	if all.ResponseFormat != nil && !all.ResponseFormat.IsValid() {
+	if all.ResponseFormat != nil &&!all.ResponseFormat.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ResponseFormat = all.ResponseFormat

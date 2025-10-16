@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RUMProductAnalyticsRetentionScale Product Analytics retention scale configuration.
 type RUMProductAnalyticsRetentionScale struct {
@@ -15,9 +21,10 @@ type RUMProductAnalyticsRetentionScale struct {
 	// Controls the retention policy for Product Analytics data derived from RUM events.
 	State *RUMProductAnalyticsRetentionState `json:"state,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRUMProductAnalyticsRetentionScale instantiates a new RUMProductAnalyticsRetentionScale object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewRUMProductAnalyticsRetentionScaleWithDefaults() *RUMProductAnalyticsRete
 	this := RUMProductAnalyticsRetentionScale{}
 	return &this
 }
-
 // GetLastModifiedAt returns the LastModifiedAt field value if set, zero value otherwise.
 func (o *RUMProductAnalyticsRetentionScale) GetLastModifiedAt() int64 {
 	if o == nil || o.LastModifiedAt == nil {
@@ -63,6 +69,7 @@ func (o *RUMProductAnalyticsRetentionScale) HasLastModifiedAt() bool {
 func (o *RUMProductAnalyticsRetentionScale) SetLastModifiedAt(v int64) {
 	o.LastModifiedAt = &v
 }
+
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *RUMProductAnalyticsRetentionScale) GetState() RUMProductAnalyticsRetentionState {
@@ -92,6 +99,8 @@ func (o *RUMProductAnalyticsRetentionScale) SetState(v RUMProductAnalyticsRetent
 	o.State = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMProductAnalyticsRetentionScale) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,22 +123,22 @@ func (o RUMProductAnalyticsRetentionScale) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMProductAnalyticsRetentionScale) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		LastModifiedAt *int64                             `json:"last_modified_at,omitempty"`
-		State          *RUMProductAnalyticsRetentionState `json:"state,omitempty"`
+		LastModifiedAt *int64 `json:"last_modified_at,omitempty"`
+		State *RUMProductAnalyticsRetentionState `json:"state,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"last_modified_at", "state"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "last_modified_at", "state",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.LastModifiedAt = all.LastModifiedAt
-	if all.State != nil && !all.State.IsValid() {
+	if all.State != nil &&!all.State.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.State = all.State

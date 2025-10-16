@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentResponseRelationships The incident's relationships from a response.
 type IncidentResponseRelationships struct {
@@ -29,9 +35,10 @@ type IncidentResponseRelationships struct {
 	// Relationship to incident user defined fields.
 	UserDefinedFields *RelationshipToIncidentUserDefinedFields `json:"user_defined_fields,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentResponseRelationships instantiates a new IncidentResponseRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +56,6 @@ func NewIncidentResponseRelationshipsWithDefaults() *IncidentResponseRelationshi
 	this := IncidentResponseRelationships{}
 	return &this
 }
-
 // GetAttachments returns the Attachments field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetAttachments() RelationshipToIncidentAttachment {
 	if o == nil || o.Attachments == nil {
@@ -78,6 +84,7 @@ func (o *IncidentResponseRelationships) SetAttachments(v RelationshipToIncidentA
 	o.Attachments = &v
 }
 
+
 // GetCommanderUser returns the CommanderUser field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentResponseRelationships) GetCommanderUser() NullableRelationshipToUser {
 	if o == nil || o.CommanderUser.Get() == nil {
@@ -91,7 +98,7 @@ func (o *IncidentResponseRelationships) GetCommanderUser() NullableRelationshipT
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseRelationships) GetCommanderUserOk() (*NullableRelationshipToUser, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.CommanderUser.Get(), o.CommanderUser.IsSet()
@@ -106,7 +113,6 @@ func (o *IncidentResponseRelationships) HasCommanderUser() bool {
 func (o *IncidentResponseRelationships) SetCommanderUser(v NullableRelationshipToUser) {
 	o.CommanderUser.Set(&v)
 }
-
 // SetCommanderUserNil sets the value for CommanderUser to be an explicit nil.
 func (o *IncidentResponseRelationships) SetCommanderUserNil() {
 	o.CommanderUser.Set(nil)
@@ -116,6 +122,7 @@ func (o *IncidentResponseRelationships) SetCommanderUserNil() {
 func (o *IncidentResponseRelationships) UnsetCommanderUser() {
 	o.CommanderUser.Unset()
 }
+
 
 // GetCreatedByUser returns the CreatedByUser field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetCreatedByUser() RelationshipToUser {
@@ -145,6 +152,7 @@ func (o *IncidentResponseRelationships) SetCreatedByUser(v RelationshipToUser) {
 	o.CreatedByUser = &v
 }
 
+
 // GetDeclaredByUser returns the DeclaredByUser field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetDeclaredByUser() RelationshipToUser {
 	if o == nil || o.DeclaredByUser == nil {
@@ -172,6 +180,7 @@ func (o *IncidentResponseRelationships) HasDeclaredByUser() bool {
 func (o *IncidentResponseRelationships) SetDeclaredByUser(v RelationshipToUser) {
 	o.DeclaredByUser = &v
 }
+
 
 // GetImpacts returns the Impacts field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetImpacts() RelationshipToIncidentImpacts {
@@ -201,6 +210,7 @@ func (o *IncidentResponseRelationships) SetImpacts(v RelationshipToIncidentImpac
 	o.Impacts = &v
 }
 
+
 // GetIntegrations returns the Integrations field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetIntegrations() RelationshipToIncidentIntegrationMetadatas {
 	if o == nil || o.Integrations == nil {
@@ -228,6 +238,7 @@ func (o *IncidentResponseRelationships) HasIntegrations() bool {
 func (o *IncidentResponseRelationships) SetIntegrations(v RelationshipToIncidentIntegrationMetadatas) {
 	o.Integrations = &v
 }
+
 
 // GetLastModifiedByUser returns the LastModifiedByUser field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetLastModifiedByUser() RelationshipToUser {
@@ -257,6 +268,7 @@ func (o *IncidentResponseRelationships) SetLastModifiedByUser(v RelationshipToUs
 	o.LastModifiedByUser = &v
 }
 
+
 // GetResponders returns the Responders field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetResponders() RelationshipToIncidentResponders {
 	if o == nil || o.Responders == nil {
@@ -285,6 +297,7 @@ func (o *IncidentResponseRelationships) SetResponders(v RelationshipToIncidentRe
 	o.Responders = &v
 }
 
+
 // GetUserDefinedFields returns the UserDefinedFields field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetUserDefinedFields() RelationshipToIncidentUserDefinedFields {
 	if o == nil || o.UserDefinedFields == nil {
@@ -312,6 +325,8 @@ func (o *IncidentResponseRelationships) HasUserDefinedFields() bool {
 func (o *IncidentResponseRelationships) SetUserDefinedFields(v RelationshipToIncidentUserDefinedFields) {
 	o.UserDefinedFields = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentResponseRelationships) MarshalJSON() ([]byte, error) {
@@ -356,57 +371,57 @@ func (o IncidentResponseRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentResponseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attachments        *RelationshipToIncidentAttachment           `json:"attachments,omitempty"`
-		CommanderUser      NullableNullableRelationshipToUser          `json:"commander_user,omitempty"`
-		CreatedByUser      *RelationshipToUser                         `json:"created_by_user,omitempty"`
-		DeclaredByUser     *RelationshipToUser                         `json:"declared_by_user,omitempty"`
-		Impacts            *RelationshipToIncidentImpacts              `json:"impacts,omitempty"`
-		Integrations       *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
-		LastModifiedByUser *RelationshipToUser                         `json:"last_modified_by_user,omitempty"`
-		Responders         *RelationshipToIncidentResponders           `json:"responders,omitempty"`
-		UserDefinedFields  *RelationshipToIncidentUserDefinedFields    `json:"user_defined_fields,omitempty"`
+		Attachments *RelationshipToIncidentAttachment `json:"attachments,omitempty"`
+		CommanderUser NullableNullableRelationshipToUser `json:"commander_user,omitempty"`
+		CreatedByUser *RelationshipToUser `json:"created_by_user,omitempty"`
+		DeclaredByUser *RelationshipToUser `json:"declared_by_user,omitempty"`
+		Impacts *RelationshipToIncidentImpacts `json:"impacts,omitempty"`
+		Integrations *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
+		LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
+		Responders *RelationshipToIncidentResponders `json:"responders,omitempty"`
+		UserDefinedFields *RelationshipToIncidentUserDefinedFields `json:"user_defined_fields,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attachments", "commander_user", "created_by_user", "declared_by_user", "impacts", "integrations", "last_modified_by_user", "responders", "user_defined_fields"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attachments", "commander_user", "created_by_user", "declared_by_user", "impacts", "integrations", "last_modified_by_user", "responders", "user_defined_fields",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attachments != nil && all.Attachments.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attachments != nil && all.Attachments.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attachments = all.Attachments
 	o.CommanderUser = all.CommanderUser
-	if all.CreatedByUser != nil && all.CreatedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CreatedByUser != nil && all.CreatedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CreatedByUser = all.CreatedByUser
-	if all.DeclaredByUser != nil && all.DeclaredByUser.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.DeclaredByUser != nil && all.DeclaredByUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.DeclaredByUser = all.DeclaredByUser
-	if all.Impacts != nil && all.Impacts.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Impacts != nil && all.Impacts.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Impacts = all.Impacts
-	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Integrations = all.Integrations
-	if all.LastModifiedByUser != nil && all.LastModifiedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LastModifiedByUser != nil && all.LastModifiedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LastModifiedByUser = all.LastModifiedByUser
-	if all.Responders != nil && all.Responders.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Responders != nil && all.Responders.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Responders = all.Responders
-	if all.UserDefinedFields != nil && all.UserDefinedFields.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.UserDefinedFields != nil && all.UserDefinedFields.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.UserDefinedFields = all.UserDefinedFields

@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ComponentGridPropertiesIsVisible - Whether the grid component and its children are visible. If a string, it must be a valid JavaScript expression that evaluates to a boolean.
 type ComponentGridPropertiesIsVisible struct {
 	String *string
-	Bool   *bool
+	Bool *bool
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -80,9 +86,11 @@ func (obj ComponentGridPropertiesIsVisible) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.String)
 	}
 
+
 	if obj.Bool != nil {
 		return datadog.Marshal(&obj.Bool)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj ComponentGridPropertiesIsVisible) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ComponentGridPropertiesIsVisible) GetActualInstance() interface{} {
+func (obj *ComponentGridPropertiesIsVisible) GetActualInstance() (interface{}) {
 	if obj.String != nil {
 		return obj.String
 	}
 
+
 	if obj.Bool != nil {
 		return obj.Bool
 	}
+
 
 	// all schemas are nil
 	return nil

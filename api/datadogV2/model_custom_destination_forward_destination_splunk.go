@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomDestinationForwardDestinationSplunk The Splunk HTTP Event Collector (HEC) destination.
 type CustomDestinationForwardDestinationSplunk struct {
@@ -20,9 +24,10 @@ type CustomDestinationForwardDestinationSplunk struct {
 	// Type of the Splunk HTTP Event Collector (HEC) destination.
 	Type CustomDestinationForwardDestinationSplunkType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomDestinationForwardDestinationSplunk instantiates a new CustomDestinationForwardDestinationSplunk object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewCustomDestinationForwardDestinationSplunkWithDefaults() *CustomDestinati
 	this.Type = typeVar
 	return &this
 }
-
 // GetAccessToken returns the AccessToken field value.
 func (o *CustomDestinationForwardDestinationSplunk) GetAccessToken() string {
 	if o == nil {
@@ -68,6 +72,7 @@ func (o *CustomDestinationForwardDestinationSplunk) GetAccessTokenOk() (*string,
 func (o *CustomDestinationForwardDestinationSplunk) SetAccessToken(v string) {
 	o.AccessToken = v
 }
+
 
 // GetEndpoint returns the Endpoint field value.
 func (o *CustomDestinationForwardDestinationSplunk) GetEndpoint() string {
@@ -92,6 +97,7 @@ func (o *CustomDestinationForwardDestinationSplunk) SetEndpoint(v string) {
 	o.Endpoint = v
 }
 
+
 // GetType returns the Type field value.
 func (o *CustomDestinationForwardDestinationSplunk) GetType() CustomDestinationForwardDestinationSplunkType {
 	if o == nil {
@@ -115,6 +121,8 @@ func (o *CustomDestinationForwardDestinationSplunk) SetType(v CustomDestinationF
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomDestinationForwardDestinationSplunk) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -134,9 +142,9 @@ func (o CustomDestinationForwardDestinationSplunk) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomDestinationForwardDestinationSplunk) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccessToken *string                                        `json:"access_token"`
-		Endpoint    *string                                        `json:"endpoint"`
-		Type        *CustomDestinationForwardDestinationSplunkType `json:"type"`
+		AccessToken *string `json:"access_token"`
+		Endpoint *string `json:"endpoint"`
+		Type *CustomDestinationForwardDestinationSplunkType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *CustomDestinationForwardDestinationSplunk) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"access_token", "endpoint", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "access_token", "endpoint", "type",  })
 	} else {
 		return err
 	}

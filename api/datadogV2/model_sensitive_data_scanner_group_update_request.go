@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerGroupUpdateRequest Update group request.
 type SensitiveDataScannerGroupUpdateRequest struct {
@@ -17,9 +21,10 @@ type SensitiveDataScannerGroupUpdateRequest struct {
 	// Meta payload containing information about the API.
 	Meta SensitiveDataScannerMetaVersionOnly `json:"meta"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerGroupUpdateRequest instantiates a new SensitiveDataScannerGroupUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSensitiveDataScannerGroupUpdateRequestWithDefaults() *SensitiveDataScann
 	this := SensitiveDataScannerGroupUpdateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *SensitiveDataScannerGroupUpdateRequest) GetData() SensitiveDataScannerGroupUpdate {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *SensitiveDataScannerGroupUpdateRequest) GetDataOk() (*SensitiveDataScan
 func (o *SensitiveDataScannerGroupUpdateRequest) SetData(v SensitiveDataScannerGroupUpdate) {
 	o.Data = v
 }
+
 
 // GetMeta returns the Meta field value.
 func (o *SensitiveDataScannerGroupUpdateRequest) GetMeta() SensitiveDataScannerMetaVersionOnly {
@@ -86,6 +91,8 @@ func (o *SensitiveDataScannerGroupUpdateRequest) SetMeta(v SensitiveDataScannerM
 	o.Meta = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerGroupUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o SensitiveDataScannerGroupUpdateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerGroupUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *SensitiveDataScannerGroupUpdate     `json:"data"`
+		Data *SensitiveDataScannerGroupUpdate `json:"data"`
 		Meta *SensitiveDataScannerMetaVersionOnly `json:"meta"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *SensitiveDataScannerGroupUpdateRequest) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSentinelOneDestination The `sentinel_one` destination sends logs to SentinelOne.
 type ObservabilityPipelineSentinelOneDestination struct {
@@ -21,9 +25,10 @@ type ObservabilityPipelineSentinelOneDestination struct {
 	// The destination type. The value should always be `sentinel_one`.
 	Type ObservabilityPipelineSentinelOneDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSentinelOneDestination instantiates a new ObservabilityPipelineSentinelOneDestination object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewObservabilityPipelineSentinelOneDestinationWithDefaults() *Observability
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineSentinelOneDestination) GetId() string {
 	if o == nil {
@@ -70,6 +74,7 @@ func (o *ObservabilityPipelineSentinelOneDestination) GetIdOk() (*string, bool) 
 func (o *ObservabilityPipelineSentinelOneDestination) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineSentinelOneDestination) GetInputs() []string {
@@ -94,6 +99,7 @@ func (o *ObservabilityPipelineSentinelOneDestination) SetInputs(v []string) {
 	o.Inputs = v
 }
 
+
 // GetRegion returns the Region field value.
 func (o *ObservabilityPipelineSentinelOneDestination) GetRegion() ObservabilityPipelineSentinelOneDestinationRegion {
 	if o == nil {
@@ -116,6 +122,7 @@ func (o *ObservabilityPipelineSentinelOneDestination) GetRegionOk() (*Observabil
 func (o *ObservabilityPipelineSentinelOneDestination) SetRegion(v ObservabilityPipelineSentinelOneDestinationRegion) {
 	o.Region = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineSentinelOneDestination) GetType() ObservabilityPipelineSentinelOneDestinationType {
@@ -140,6 +147,8 @@ func (o *ObservabilityPipelineSentinelOneDestination) SetType(v ObservabilityPip
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSentinelOneDestination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -160,10 +169,10 @@ func (o ObservabilityPipelineSentinelOneDestination) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSentinelOneDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id     *string                                            `json:"id"`
-		Inputs *[]string                                          `json:"inputs"`
+		Id *string `json:"id"`
+		Inputs *[]string `json:"inputs"`
 		Region *ObservabilityPipelineSentinelOneDestinationRegion `json:"region"`
-		Type   *ObservabilityPipelineSentinelOneDestinationType   `json:"type"`
+		Type *ObservabilityPipelineSentinelOneDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -182,7 +191,7 @@ func (o *ObservabilityPipelineSentinelOneDestination) UnmarshalJSON(bytes []byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "inputs", "region", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "inputs", "region", "type",  })
 	} else {
 		return err
 	}

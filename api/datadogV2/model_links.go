@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Links The JSON:API links related to pagination.
 type Links struct {
@@ -23,9 +27,10 @@ type Links struct {
 	// Request link.
 	Self string `json:"self"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLinks instantiates a new Links object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewLinksWithDefaults() *Links {
 	this := Links{}
 	return &this
 }
-
 // GetFirst returns the First field value.
 func (o *Links) GetFirst() string {
 	if o == nil {
@@ -70,6 +74,7 @@ func (o *Links) SetFirst(v string) {
 	o.First = v
 }
 
+
 // GetLast returns the Last field value.
 func (o *Links) GetLast() string {
 	if o == nil {
@@ -92,6 +97,7 @@ func (o *Links) GetLastOk() (*string, bool) {
 func (o *Links) SetLast(v string) {
 	o.Last = v
 }
+
 
 // GetNext returns the Next field value if set, zero value otherwise.
 func (o *Links) GetNext() string {
@@ -121,6 +127,7 @@ func (o *Links) SetNext(v string) {
 	o.Next = &v
 }
 
+
 // GetPrevious returns the Previous field value if set, zero value otherwise.
 func (o *Links) GetPrevious() string {
 	if o == nil || o.Previous == nil {
@@ -149,6 +156,7 @@ func (o *Links) SetPrevious(v string) {
 	o.Previous = &v
 }
 
+
 // GetSelf returns the Self field value.
 func (o *Links) GetSelf() string {
 	if o == nil {
@@ -171,6 +179,8 @@ func (o *Links) GetSelfOk() (*string, bool) {
 func (o *Links) SetSelf(v string) {
 	o.Self = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o Links) MarshalJSON() ([]byte, error) {
@@ -197,11 +207,11 @@ func (o Links) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Links) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		First    *string `json:"first"`
-		Last     *string `json:"last"`
-		Next     *string `json:"next,omitempty"`
+		First *string `json:"first"`
+		Last *string `json:"last"`
+		Next *string `json:"next,omitempty"`
 		Previous *string `json:"previous,omitempty"`
-		Self     *string `json:"self"`
+		Self *string `json:"self"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -217,7 +227,7 @@ func (o *Links) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"first", "last", "next", "previous", "self"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "first", "last", "next", "previous", "self",  })
 	} else {
 		return err
 	}

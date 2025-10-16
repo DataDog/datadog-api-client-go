@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ActionConnectionData Data related to the connection.
 type ActionConnectionData struct {
@@ -19,9 +23,10 @@ type ActionConnectionData struct {
 	// The definition of `ActionConnectionDataType` object.
 	Type ActionConnectionDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewActionConnectionData instantiates a new ActionConnectionData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewActionConnectionDataWithDefaults() *ActionConnectionData {
 	this := ActionConnectionData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *ActionConnectionData) GetAttributes() ActionConnectionAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *ActionConnectionData) GetAttributesOk() (*ActionConnectionAttributes, b
 func (o *ActionConnectionData) SetAttributes(v ActionConnectionAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ActionConnectionData) GetId() string {
@@ -93,6 +98,7 @@ func (o *ActionConnectionData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ActionConnectionData) GetType() ActionConnectionDataType {
 	if o == nil {
@@ -116,6 +122,8 @@ func (o *ActionConnectionData) SetType(v ActionConnectionDataType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ActionConnectionData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -138,8 +146,8 @@ func (o ActionConnectionData) MarshalJSON() ([]byte, error) {
 func (o *ActionConnectionData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *ActionConnectionAttributes `json:"attributes"`
-		Id         *string                     `json:"id,omitempty"`
-		Type       *ActionConnectionDataType   `json:"type"`
+		Id *string `json:"id,omitempty"`
+		Type *ActionConnectionDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *ActionConnectionData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

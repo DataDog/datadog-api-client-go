@@ -2,10 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"bytes"
 	_context "context"
+	_fmt "fmt"
+	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -17,11 +22,11 @@ type CloudNetworkMonitoringApi datadog.Service
 
 // GetAggregatedConnectionsOptionalParameters holds optional parameters for GetAggregatedConnections.
 type GetAggregatedConnectionsOptionalParameters struct {
-	From    *int64
-	To      *int64
+	From *int64
+	To *int64
 	GroupBy *string
-	Tags    *string
-	Limit   *int32
+	Tags *string
+	Limit *int32
 }
 
 // NewGetAggregatedConnectionsOptionalParameters creates an empty struct for parameters.
@@ -29,31 +34,26 @@ func NewGetAggregatedConnectionsOptionalParameters() *GetAggregatedConnectionsOp
 	this := GetAggregatedConnectionsOptionalParameters{}
 	return &this
 }
-
 // WithFrom sets the corresponding parameter name and returns the struct.
 func (r *GetAggregatedConnectionsOptionalParameters) WithFrom(from int64) *GetAggregatedConnectionsOptionalParameters {
 	r.From = &from
 	return r
 }
-
 // WithTo sets the corresponding parameter name and returns the struct.
 func (r *GetAggregatedConnectionsOptionalParameters) WithTo(to int64) *GetAggregatedConnectionsOptionalParameters {
 	r.To = &to
 	return r
 }
-
 // WithGroupBy sets the corresponding parameter name and returns the struct.
 func (r *GetAggregatedConnectionsOptionalParameters) WithGroupBy(groupBy string) *GetAggregatedConnectionsOptionalParameters {
 	r.GroupBy = &groupBy
 	return r
 }
-
 // WithTags sets the corresponding parameter name and returns the struct.
 func (r *GetAggregatedConnectionsOptionalParameters) WithTags(tags string) *GetAggregatedConnectionsOptionalParameters {
 	r.Tags = &tags
 	return r
 }
-
 // WithLimit sets the corresponding parameter name and returns the struct.
 func (r *GetAggregatedConnectionsOptionalParameters) WithLimit(limit int32) *GetAggregatedConnectionsOptionalParameters {
 	r.Limit = &limit
@@ -64,18 +64,20 @@ func (r *GetAggregatedConnectionsOptionalParameters) WithLimit(limit int32) *Get
 // Get all aggregated connections.
 func (a *CloudNetworkMonitoringApi) GetAggregatedConnections(ctx _context.Context, o ...GetAggregatedConnectionsOptionalParameters) (SingleAggregatedConnectionResponseArray, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SingleAggregatedConnectionResponseArray
-		optionalParams      GetAggregatedConnectionsOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SingleAggregatedConnectionResponseArray
+		optionalParams GetAggregatedConnectionsOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetAggregatedConnectionsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type GetAggregatedConnectionsOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudNetworkMonitoringApi.GetAggregatedConnections")
 	if err != nil {
@@ -104,19 +106,20 @@ func (a *CloudNetworkMonitoringApi) GetAggregatedConnections(ctx _context.Contex
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	if a.Client.Cfg.DelegatedTokenConfig != nil {
-		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-	} else {
-		datadog.SetAuthKeys(
-			ctx,
-			&localVarHeaderParams,
-			[2]string{"apiKeyAuth", "DD-API-KEY"},
-			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-		)
-	}
+	
+		if a.Client.Cfg.DelegatedTokenConfig != nil {
+			err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+		} else {
+        datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	 } 
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -134,10 +137,11 @@ func (a *CloudNetworkMonitoringApi) GetAggregatedConnections(ctx _context.Contex
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -151,7 +155,7 @@ func (a *CloudNetworkMonitoringApi) GetAggregatedConnections(ctx _context.Contex
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -162,11 +166,11 @@ func (a *CloudNetworkMonitoringApi) GetAggregatedConnections(ctx _context.Contex
 
 // GetAggregatedDnsOptionalParameters holds optional parameters for GetAggregatedDns.
 type GetAggregatedDnsOptionalParameters struct {
-	From    *int64
-	To      *int64
+	From *int64
+	To *int64
 	GroupBy *string
-	Tags    *string
-	Limit   *int32
+	Tags *string
+	Limit *int32
 }
 
 // NewGetAggregatedDnsOptionalParameters creates an empty struct for parameters.
@@ -174,31 +178,26 @@ func NewGetAggregatedDnsOptionalParameters() *GetAggregatedDnsOptionalParameters
 	this := GetAggregatedDnsOptionalParameters{}
 	return &this
 }
-
 // WithFrom sets the corresponding parameter name and returns the struct.
 func (r *GetAggregatedDnsOptionalParameters) WithFrom(from int64) *GetAggregatedDnsOptionalParameters {
 	r.From = &from
 	return r
 }
-
 // WithTo sets the corresponding parameter name and returns the struct.
 func (r *GetAggregatedDnsOptionalParameters) WithTo(to int64) *GetAggregatedDnsOptionalParameters {
 	r.To = &to
 	return r
 }
-
 // WithGroupBy sets the corresponding parameter name and returns the struct.
 func (r *GetAggregatedDnsOptionalParameters) WithGroupBy(groupBy string) *GetAggregatedDnsOptionalParameters {
 	r.GroupBy = &groupBy
 	return r
 }
-
 // WithTags sets the corresponding parameter name and returns the struct.
 func (r *GetAggregatedDnsOptionalParameters) WithTags(tags string) *GetAggregatedDnsOptionalParameters {
 	r.Tags = &tags
 	return r
 }
-
 // WithLimit sets the corresponding parameter name and returns the struct.
 func (r *GetAggregatedDnsOptionalParameters) WithLimit(limit int32) *GetAggregatedDnsOptionalParameters {
 	r.Limit = &limit
@@ -209,18 +208,20 @@ func (r *GetAggregatedDnsOptionalParameters) WithLimit(limit int32) *GetAggregat
 // Get all aggregated DNS traffic.
 func (a *CloudNetworkMonitoringApi) GetAggregatedDns(ctx _context.Context, o ...GetAggregatedDnsOptionalParameters) (SingleAggregatedDnsResponseArray, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SingleAggregatedDnsResponseArray
-		optionalParams      GetAggregatedDnsOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SingleAggregatedDnsResponseArray
+		optionalParams GetAggregatedDnsOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetAggregatedDnsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type GetAggregatedDnsOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudNetworkMonitoringApi.GetAggregatedDns")
 	if err != nil {
@@ -249,19 +250,20 @@ func (a *CloudNetworkMonitoringApi) GetAggregatedDns(ctx _context.Context, o ...
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	if a.Client.Cfg.DelegatedTokenConfig != nil {
-		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-	} else {
-		datadog.SetAuthKeys(
-			ctx,
-			&localVarHeaderParams,
-			[2]string{"apiKeyAuth", "DD-API-KEY"},
-			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-		)
-	}
+	
+		if a.Client.Cfg.DelegatedTokenConfig != nil {
+			err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+		} else {
+        datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	 } 
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -279,10 +281,11 @@ func (a *CloudNetworkMonitoringApi) GetAggregatedDns(ctx _context.Context, o ...
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -296,7 +299,7 @@ func (a *CloudNetworkMonitoringApi) GetAggregatedDns(ctx _context.Context, o ...
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

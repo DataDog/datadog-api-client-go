@@ -2,31 +2,35 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SpansAggregationFunction An aggregation function.
 type SpansAggregationFunction string
 
 // List of SpansAggregationFunction.
 const (
-	SPANSAGGREGATIONFUNCTION_COUNT         SpansAggregationFunction = "count"
-	SPANSAGGREGATIONFUNCTION_CARDINALITY   SpansAggregationFunction = "cardinality"
+	SPANSAGGREGATIONFUNCTION_COUNT SpansAggregationFunction = "count"
+	SPANSAGGREGATIONFUNCTION_CARDINALITY SpansAggregationFunction = "cardinality"
 	SPANSAGGREGATIONFUNCTION_PERCENTILE_75 SpansAggregationFunction = "pc75"
 	SPANSAGGREGATIONFUNCTION_PERCENTILE_90 SpansAggregationFunction = "pc90"
 	SPANSAGGREGATIONFUNCTION_PERCENTILE_95 SpansAggregationFunction = "pc95"
 	SPANSAGGREGATIONFUNCTION_PERCENTILE_98 SpansAggregationFunction = "pc98"
 	SPANSAGGREGATIONFUNCTION_PERCENTILE_99 SpansAggregationFunction = "pc99"
-	SPANSAGGREGATIONFUNCTION_SUM           SpansAggregationFunction = "sum"
-	SPANSAGGREGATIONFUNCTION_MIN           SpansAggregationFunction = "min"
-	SPANSAGGREGATIONFUNCTION_MAX           SpansAggregationFunction = "max"
-	SPANSAGGREGATIONFUNCTION_AVG           SpansAggregationFunction = "avg"
-	SPANSAGGREGATIONFUNCTION_MEDIAN        SpansAggregationFunction = "median"
+	SPANSAGGREGATIONFUNCTION_SUM SpansAggregationFunction = "sum"
+	SPANSAGGREGATIONFUNCTION_MIN SpansAggregationFunction = "min"
+	SPANSAGGREGATIONFUNCTION_MAX SpansAggregationFunction = "max"
+	SPANSAGGREGATIONFUNCTION_AVG SpansAggregationFunction = "avg"
+	SPANSAGGREGATIONFUNCTION_MEDIAN SpansAggregationFunction = "median"
 )
 
 var allowedSpansAggregationFunctionEnumValues = []SpansAggregationFunction{

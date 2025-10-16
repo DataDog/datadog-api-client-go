@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessorActionHash Configuration for hashing matched sensitive values.
 type ObservabilityPipelineSensitiveDataScannerProcessorActionHash struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineSensitiveDataScannerProcessorActionHash struct {
 	// The `ObservabilityPipelineSensitiveDataScannerProcessorActionHash` `options`.
 	Options interface{} `json:"options,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSensitiveDataScannerProcessorActionHash instantiates a new ObservabilityPipelineSensitiveDataScannerProcessorActionHash object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewObservabilityPipelineSensitiveDataScannerProcessorActionHashWithDefaults
 	this := ObservabilityPipelineSensitiveDataScannerProcessorActionHash{}
 	return &this
 }
-
 // GetAction returns the Action field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionHash) GetAction() ObservabilityPipelineSensitiveDataScannerProcessorActionHashAction {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionHash) GetAction
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionHash) SetAction(v ObservabilityPipelineSensitiveDataScannerProcessorActionHashAction) {
 	o.Action = v
 }
+
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionHash) GetOptions() interface{} {
@@ -90,6 +95,8 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionHash) SetOption
 	o.Options = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSensitiveDataScannerProcessorActionHash) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,8 +117,8 @@ func (o ObservabilityPipelineSensitiveDataScannerProcessorActionHash) MarshalJSO
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionHash) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Action  *ObservabilityPipelineSensitiveDataScannerProcessorActionHashAction `json:"action"`
-		Options interface{}                                                         `json:"options,omitempty"`
+		Action *ObservabilityPipelineSensitiveDataScannerProcessorActionHashAction `json:"action"`
+		Options interface{} `json:"options,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionHash) Unmarshal
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"action", "options"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "action", "options",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineEnrichmentTableFileKeyItems Defines how to map log fields to enrichment table columns during lookups.
 type ObservabilityPipelineEnrichmentTableFileKeyItems struct {
@@ -19,9 +23,10 @@ type ObservabilityPipelineEnrichmentTableFileKeyItems struct {
 	// The `items` `field`.
 	Field string `json:"field"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineEnrichmentTableFileKeyItems instantiates a new ObservabilityPipelineEnrichmentTableFileKeyItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewObservabilityPipelineEnrichmentTableFileKeyItemsWithDefaults() *Observab
 	this := ObservabilityPipelineEnrichmentTableFileKeyItems{}
 	return &this
 }
-
 // GetColumn returns the Column field value.
 func (o *ObservabilityPipelineEnrichmentTableFileKeyItems) GetColumn() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *ObservabilityPipelineEnrichmentTableFileKeyItems) GetColumnOk() (*strin
 func (o *ObservabilityPipelineEnrichmentTableFileKeyItems) SetColumn(v string) {
 	o.Column = v
 }
+
 
 // GetComparison returns the Comparison field value.
 func (o *ObservabilityPipelineEnrichmentTableFileKeyItems) GetComparison() ObservabilityPipelineEnrichmentTableFileKeyItemsComparison {
@@ -89,6 +94,7 @@ func (o *ObservabilityPipelineEnrichmentTableFileKeyItems) SetComparison(v Obser
 	o.Comparison = v
 }
 
+
 // GetField returns the Field field value.
 func (o *ObservabilityPipelineEnrichmentTableFileKeyItems) GetField() string {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *ObservabilityPipelineEnrichmentTableFileKeyItems) SetField(v string) {
 	o.Field = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineEnrichmentTableFileKeyItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o ObservabilityPipelineEnrichmentTableFileKeyItems) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineEnrichmentTableFileKeyItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Column     *string                                                     `json:"column"`
+		Column *string `json:"column"`
 		Comparison *ObservabilityPipelineEnrichmentTableFileKeyItemsComparison `json:"comparison"`
-		Field      *string                                                     `json:"field"`
+		Field *string `json:"field"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *ObservabilityPipelineEnrichmentTableFileKeyItems) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"column", "comparison", "field"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "column", "comparison", "field",  })
 	} else {
 		return err
 	}

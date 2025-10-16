@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsDecoderProcessor The decoder processor decodes any source attribute containing a
 // base64/base16-encoded UTF-8/ASCII string back to its original value, storing the
@@ -29,9 +33,10 @@ type LogsDecoderProcessor struct {
 	// Type of logs decoder processor.
 	Type LogsDecoderProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsDecoderProcessor instantiates a new LogsDecoderProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -60,7 +65,6 @@ func NewLogsDecoderProcessorWithDefaults() *LogsDecoderProcessor {
 	this.Type = typeVar
 	return &this
 }
-
 // GetBinaryToTextEncoding returns the BinaryToTextEncoding field value.
 func (o *LogsDecoderProcessor) GetBinaryToTextEncoding() LogsDecoderProcessorBinaryToTextEncoding {
 	if o == nil {
@@ -84,6 +88,7 @@ func (o *LogsDecoderProcessor) SetBinaryToTextEncoding(v LogsDecoderProcessorBin
 	o.BinaryToTextEncoding = v
 }
 
+
 // GetInputRepresentation returns the InputRepresentation field value.
 func (o *LogsDecoderProcessor) GetInputRepresentation() LogsDecoderProcessorInputRepresentation {
 	if o == nil {
@@ -106,6 +111,7 @@ func (o *LogsDecoderProcessor) GetInputRepresentationOk() (*LogsDecoderProcessor
 func (o *LogsDecoderProcessor) SetInputRepresentation(v LogsDecoderProcessorInputRepresentation) {
 	o.InputRepresentation = v
 }
+
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsDecoderProcessor) GetIsEnabled() bool {
@@ -135,6 +141,7 @@ func (o *LogsDecoderProcessor) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsDecoderProcessor) GetName() string {
 	if o == nil || o.Name == nil {
@@ -163,6 +170,7 @@ func (o *LogsDecoderProcessor) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSource returns the Source field value.
 func (o *LogsDecoderProcessor) GetSource() string {
 	if o == nil {
@@ -185,6 +193,7 @@ func (o *LogsDecoderProcessor) GetSourceOk() (*string, bool) {
 func (o *LogsDecoderProcessor) SetSource(v string) {
 	o.Source = v
 }
+
 
 // GetTarget returns the Target field value.
 func (o *LogsDecoderProcessor) GetTarget() string {
@@ -209,6 +218,7 @@ func (o *LogsDecoderProcessor) SetTarget(v string) {
 	o.Target = v
 }
 
+
 // GetType returns the Type field value.
 func (o *LogsDecoderProcessor) GetType() LogsDecoderProcessorType {
 	if o == nil {
@@ -231,6 +241,8 @@ func (o *LogsDecoderProcessor) GetTypeOk() (*LogsDecoderProcessorType, bool) {
 func (o *LogsDecoderProcessor) SetType(v LogsDecoderProcessorType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsDecoderProcessor) MarshalJSON() ([]byte, error) {
@@ -260,12 +272,12 @@ func (o LogsDecoderProcessor) MarshalJSON() ([]byte, error) {
 func (o *LogsDecoderProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		BinaryToTextEncoding *LogsDecoderProcessorBinaryToTextEncoding `json:"binary_to_text_encoding"`
-		InputRepresentation  *LogsDecoderProcessorInputRepresentation  `json:"input_representation"`
-		IsEnabled            *bool                                     `json:"is_enabled,omitempty"`
-		Name                 *string                                   `json:"name,omitempty"`
-		Source               *string                                   `json:"source"`
-		Target               *string                                   `json:"target"`
-		Type                 *LogsDecoderProcessorType                 `json:"type"`
+		InputRepresentation *LogsDecoderProcessorInputRepresentation `json:"input_representation"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Source *string `json:"source"`
+		Target *string `json:"target"`
+		Type *LogsDecoderProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -287,7 +299,7 @@ func (o *LogsDecoderProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"binary_to_text_encoding", "input_representation", "is_enabled", "name", "source", "target", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "binary_to_text_encoding", "input_representation", "is_enabled", "name", "source", "target", "type",  })
 	} else {
 		return err
 	}

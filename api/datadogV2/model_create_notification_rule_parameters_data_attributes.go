@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateNotificationRuleParametersDataAttributes Attributes of the notification rule create request.
 type CreateNotificationRuleParametersDataAttributes struct {
@@ -31,9 +35,10 @@ type CreateNotificationRuleParametersDataAttributes struct {
 	// is done.
 	TimeAggregation *int64 `json:"time_aggregation,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateNotificationRuleParametersDataAttributes instantiates a new CreateNotificationRuleParametersDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewCreateNotificationRuleParametersDataAttributesWithDefaults() *CreateNoti
 	this := CreateNotificationRuleParametersDataAttributes{}
 	return &this
 }
-
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *CreateNotificationRuleParametersDataAttributes) GetEnabled() bool {
 	if o == nil || o.Enabled == nil {
@@ -83,6 +87,7 @@ func (o *CreateNotificationRuleParametersDataAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *CreateNotificationRuleParametersDataAttributes) GetName() string {
 	if o == nil {
@@ -105,6 +110,7 @@ func (o *CreateNotificationRuleParametersDataAttributes) GetNameOk() (*string, b
 func (o *CreateNotificationRuleParametersDataAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetSelectors returns the Selectors field value.
 func (o *CreateNotificationRuleParametersDataAttributes) GetSelectors() Selectors {
@@ -129,6 +135,7 @@ func (o *CreateNotificationRuleParametersDataAttributes) SetSelectors(v Selector
 	o.Selectors = v
 }
 
+
 // GetTargets returns the Targets field value.
 func (o *CreateNotificationRuleParametersDataAttributes) GetTargets() []string {
 	if o == nil {
@@ -151,6 +158,7 @@ func (o *CreateNotificationRuleParametersDataAttributes) GetTargetsOk() (*[]stri
 func (o *CreateNotificationRuleParametersDataAttributes) SetTargets(v []string) {
 	o.Targets = v
 }
+
 
 // GetTimeAggregation returns the TimeAggregation field value if set, zero value otherwise.
 func (o *CreateNotificationRuleParametersDataAttributes) GetTimeAggregation() int64 {
@@ -180,6 +188,8 @@ func (o *CreateNotificationRuleParametersDataAttributes) SetTimeAggregation(v in
 	o.TimeAggregation = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateNotificationRuleParametersDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -205,11 +215,11 @@ func (o CreateNotificationRuleParametersDataAttributes) MarshalJSON() ([]byte, e
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateNotificationRuleParametersDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enabled         *bool      `json:"enabled,omitempty"`
-		Name            *string    `json:"name"`
-		Selectors       *Selectors `json:"selectors"`
-		Targets         *[]string  `json:"targets"`
-		TimeAggregation *int64     `json:"time_aggregation,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
+		Name *string `json:"name"`
+		Selectors *Selectors `json:"selectors"`
+		Targets *[]string `json:"targets"`
+		TimeAggregation *int64 `json:"time_aggregation,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -225,7 +235,7 @@ func (o *CreateNotificationRuleParametersDataAttributes) UnmarshalJSON(bytes []b
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "name", "selectors", "targets", "time_aggregation"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "enabled", "name", "selectors", "targets", "time_aggregation",  })
 	} else {
 		return err
 	}

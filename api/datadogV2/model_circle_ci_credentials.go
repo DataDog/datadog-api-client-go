@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CircleCICredentials - The definition of the `CircleCICredentials` object.
 type CircleCICredentials struct {
@@ -56,6 +62,7 @@ func (obj CircleCICredentials) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.CircleCIAPIKey)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj CircleCICredentials) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *CircleCICredentials) GetActualInstance() interface{} {
+func (obj *CircleCICredentials) GetActualInstance() (interface{}) {
 	if obj.CircleCIAPIKey != nil {
 		return obj.CircleCIAPIKey
 	}
+
 
 	// all schemas are nil
 	return nil

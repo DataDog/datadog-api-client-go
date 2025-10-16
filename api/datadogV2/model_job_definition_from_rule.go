@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // JobDefinitionFromRule Definition of a historical job based on a security monitoring rule.
 type JobDefinitionFromRule struct {
@@ -23,9 +27,10 @@ type JobDefinitionFromRule struct {
 	// Ending time of data analyzed by the job.
 	To int64 `json:"to"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewJobDefinitionFromRule instantiates a new JobDefinitionFromRule object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewJobDefinitionFromRuleWithDefaults() *JobDefinitionFromRule {
 	this := JobDefinitionFromRule{}
 	return &this
 }
-
 // GetFrom returns the From field value.
 func (o *JobDefinitionFromRule) GetFrom() int64 {
 	if o == nil {
@@ -70,6 +74,7 @@ func (o *JobDefinitionFromRule) GetFromOk() (*int64, bool) {
 func (o *JobDefinitionFromRule) SetFrom(v int64) {
 	o.From = v
 }
+
 
 // GetId returns the Id field value.
 func (o *JobDefinitionFromRule) GetId() string {
@@ -94,6 +99,7 @@ func (o *JobDefinitionFromRule) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetIndex returns the Index field value.
 func (o *JobDefinitionFromRule) GetIndex() string {
 	if o == nil {
@@ -116,6 +122,7 @@ func (o *JobDefinitionFromRule) GetIndexOk() (*string, bool) {
 func (o *JobDefinitionFromRule) SetIndex(v string) {
 	o.Index = v
 }
+
 
 // GetNotifications returns the Notifications field value if set, zero value otherwise.
 func (o *JobDefinitionFromRule) GetNotifications() []string {
@@ -145,6 +152,7 @@ func (o *JobDefinitionFromRule) SetNotifications(v []string) {
 	o.Notifications = v
 }
 
+
 // GetTo returns the To field value.
 func (o *JobDefinitionFromRule) GetTo() int64 {
 	if o == nil {
@@ -167,6 +175,8 @@ func (o *JobDefinitionFromRule) GetToOk() (*int64, bool) {
 func (o *JobDefinitionFromRule) SetTo(v int64) {
 	o.To = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o JobDefinitionFromRule) MarshalJSON() ([]byte, error) {
@@ -191,11 +201,11 @@ func (o JobDefinitionFromRule) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *JobDefinitionFromRule) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		From          *int64   `json:"from"`
-		Id            *string  `json:"id"`
-		Index         *string  `json:"index"`
+		From *int64 `json:"from"`
+		Id *string `json:"id"`
+		Index *string `json:"index"`
 		Notifications []string `json:"notifications,omitempty"`
-		To            *int64   `json:"to"`
+		To *int64 `json:"to"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -214,7 +224,7 @@ func (o *JobDefinitionFromRule) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"from", "id", "index", "notifications", "to"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "from", "id", "index", "notifications", "to",  })
 	} else {
 		return err
 	}

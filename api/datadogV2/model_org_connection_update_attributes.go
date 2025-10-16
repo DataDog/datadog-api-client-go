@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OrgConnectionUpdateAttributes Attributes for updating an org connection.
 type OrgConnectionUpdateAttributes struct {
 	// Updated list of connection types.
 	ConnectionTypes []OrgConnectionTypeEnum `json:"connection_types"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOrgConnectionUpdateAttributes instantiates a new OrgConnectionUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewOrgConnectionUpdateAttributesWithDefaults() *OrgConnectionUpdateAttribut
 	this := OrgConnectionUpdateAttributes{}
 	return &this
 }
-
 // GetConnectionTypes returns the ConnectionTypes field value.
 func (o *OrgConnectionUpdateAttributes) GetConnectionTypes() []OrgConnectionTypeEnum {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *OrgConnectionUpdateAttributes) GetConnectionTypesOk() (*[]OrgConnection
 func (o *OrgConnectionUpdateAttributes) SetConnectionTypes(v []OrgConnectionTypeEnum) {
 	o.ConnectionTypes = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o OrgConnectionUpdateAttributes) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *OrgConnectionUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"connection_types"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "connection_types",  })
 	} else {
 		return err
 	}

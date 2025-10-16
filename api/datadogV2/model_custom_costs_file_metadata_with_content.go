@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomCostsFileMetadataWithContent Schema of a cost file's metadata.
 type CustomCostsFileMetadataWithContent struct {
@@ -29,9 +35,10 @@ type CustomCostsFileMetadataWithContent struct {
 	// Metadata of the user that has uploaded the Custom Costs file.
 	UploadedBy *CustomCostsUser `json:"uploaded_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomCostsFileMetadataWithContent instantiates a new CustomCostsFileMetadataWithContent object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +56,6 @@ func NewCustomCostsFileMetadataWithContentWithDefaults() *CustomCostsFileMetadat
 	this := CustomCostsFileMetadataWithContent{}
 	return &this
 }
-
 // GetBilledCost returns the BilledCost field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadataWithContent) GetBilledCost() float64 {
 	if o == nil || o.BilledCost == nil {
@@ -77,6 +83,7 @@ func (o *CustomCostsFileMetadataWithContent) HasBilledCost() bool {
 func (o *CustomCostsFileMetadataWithContent) SetBilledCost(v float64) {
 	o.BilledCost = &v
 }
+
 
 // GetBillingCurrency returns the BillingCurrency field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadataWithContent) GetBillingCurrency() string {
@@ -106,6 +113,7 @@ func (o *CustomCostsFileMetadataWithContent) SetBillingCurrency(v string) {
 	o.BillingCurrency = &v
 }
 
+
 // GetChargePeriod returns the ChargePeriod field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadataWithContent) GetChargePeriod() CustomCostsFileUsageChargePeriod {
 	if o == nil || o.ChargePeriod == nil {
@@ -133,6 +141,7 @@ func (o *CustomCostsFileMetadataWithContent) HasChargePeriod() bool {
 func (o *CustomCostsFileMetadataWithContent) SetChargePeriod(v CustomCostsFileUsageChargePeriod) {
 	o.ChargePeriod = &v
 }
+
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadataWithContent) GetContent() []CustomCostsFileLineItem {
@@ -162,6 +171,7 @@ func (o *CustomCostsFileMetadataWithContent) SetContent(v []CustomCostsFileLineI
 	o.Content = v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadataWithContent) GetName() string {
 	if o == nil || o.Name == nil {
@@ -189,6 +199,7 @@ func (o *CustomCostsFileMetadataWithContent) HasName() bool {
 func (o *CustomCostsFileMetadataWithContent) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetProviderNames returns the ProviderNames field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadataWithContent) GetProviderNames() []string {
@@ -218,6 +229,7 @@ func (o *CustomCostsFileMetadataWithContent) SetProviderNames(v []string) {
 	o.ProviderNames = v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadataWithContent) GetStatus() string {
 	if o == nil || o.Status == nil {
@@ -245,6 +257,7 @@ func (o *CustomCostsFileMetadataWithContent) HasStatus() bool {
 func (o *CustomCostsFileMetadataWithContent) SetStatus(v string) {
 	o.Status = &v
 }
+
 
 // GetUploadedAt returns the UploadedAt field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadataWithContent) GetUploadedAt() float64 {
@@ -274,6 +287,7 @@ func (o *CustomCostsFileMetadataWithContent) SetUploadedAt(v float64) {
 	o.UploadedAt = &v
 }
 
+
 // GetUploadedBy returns the UploadedBy field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadataWithContent) GetUploadedBy() CustomCostsUser {
 	if o == nil || o.UploadedBy == nil {
@@ -301,6 +315,8 @@ func (o *CustomCostsFileMetadataWithContent) HasUploadedBy() bool {
 func (o *CustomCostsFileMetadataWithContent) SetUploadedBy(v CustomCostsUser) {
 	o.UploadedBy = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomCostsFileMetadataWithContent) MarshalJSON() ([]byte, error) {
@@ -345,22 +361,22 @@ func (o CustomCostsFileMetadataWithContent) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomCostsFileMetadataWithContent) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BilledCost      *float64                          `json:"billed_cost,omitempty"`
-		BillingCurrency *string                           `json:"billing_currency,omitempty"`
-		ChargePeriod    *CustomCostsFileUsageChargePeriod `json:"charge_period,omitempty"`
-		Content         []CustomCostsFileLineItem         `json:"content,omitempty"`
-		Name            *string                           `json:"name,omitempty"`
-		ProviderNames   []string                          `json:"provider_names,omitempty"`
-		Status          *string                           `json:"status,omitempty"`
-		UploadedAt      *float64                          `json:"uploaded_at,omitempty"`
-		UploadedBy      *CustomCostsUser                  `json:"uploaded_by,omitempty"`
+		BilledCost *float64 `json:"billed_cost,omitempty"`
+		BillingCurrency *string `json:"billing_currency,omitempty"`
+		ChargePeriod *CustomCostsFileUsageChargePeriod `json:"charge_period,omitempty"`
+		Content []CustomCostsFileLineItem `json:"content,omitempty"`
+		Name *string `json:"name,omitempty"`
+		ProviderNames []string `json:"provider_names,omitempty"`
+		Status *string `json:"status,omitempty"`
+		UploadedAt *float64 `json:"uploaded_at,omitempty"`
+		UploadedBy *CustomCostsUser `json:"uploaded_by,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"billed_cost", "billing_currency", "charge_period", "content", "name", "provider_names", "status", "uploaded_at", "uploaded_by"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "billed_cost", "billing_currency", "charge_period", "content", "name", "provider_names", "status", "uploaded_at", "uploaded_by",  })
 	} else {
 		return err
 	}
@@ -368,7 +384,7 @@ func (o *CustomCostsFileMetadataWithContent) UnmarshalJSON(bytes []byte) (err er
 	hasInvalidField := false
 	o.BilledCost = all.BilledCost
 	o.BillingCurrency = all.BillingCurrency
-	if all.ChargePeriod != nil && all.ChargePeriod.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ChargePeriod != nil && all.ChargePeriod.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ChargePeriod = all.ChargePeriod
@@ -377,7 +393,7 @@ func (o *CustomCostsFileMetadataWithContent) UnmarshalJSON(bytes []byte) (err er
 	o.ProviderNames = all.ProviderNames
 	o.Status = all.Status
 	o.UploadedAt = all.UploadedAt
-	if all.UploadedBy != nil && all.UploadedBy.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.UploadedBy != nil && all.UploadedBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.UploadedBy = all.UploadedBy

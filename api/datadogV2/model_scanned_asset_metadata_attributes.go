@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScannedAssetMetadataAttributes The attributes of a scanned asset metadata.
 type ScannedAssetMetadataAttributes struct {
@@ -19,9 +23,10 @@ type ScannedAssetMetadataAttributes struct {
 	// Metadata for the last successful scan of an asset.
 	LastSuccess ScannedAssetMetadataLastSuccess `json:"last_success"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScannedAssetMetadataAttributes instantiates a new ScannedAssetMetadataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewScannedAssetMetadataAttributesWithDefaults() *ScannedAssetMetadataAttrib
 	this := ScannedAssetMetadataAttributes{}
 	return &this
 }
-
 // GetAsset returns the Asset field value.
 func (o *ScannedAssetMetadataAttributes) GetAsset() ScannedAssetMetadataAsset {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *ScannedAssetMetadataAttributes) GetAssetOk() (*ScannedAssetMetadataAsse
 func (o *ScannedAssetMetadataAttributes) SetAsset(v ScannedAssetMetadataAsset) {
 	o.Asset = v
 }
+
 
 // GetFirstSuccessTimestamp returns the FirstSuccessTimestamp field value.
 func (o *ScannedAssetMetadataAttributes) GetFirstSuccessTimestamp() string {
@@ -89,6 +94,7 @@ func (o *ScannedAssetMetadataAttributes) SetFirstSuccessTimestamp(v string) {
 	o.FirstSuccessTimestamp = v
 }
 
+
 // GetLastSuccess returns the LastSuccess field value.
 func (o *ScannedAssetMetadataAttributes) GetLastSuccess() ScannedAssetMetadataLastSuccess {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *ScannedAssetMetadataAttributes) SetLastSuccess(v ScannedAssetMetadataLa
 	o.LastSuccess = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ScannedAssetMetadataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o ScannedAssetMetadataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ScannedAssetMetadataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Asset                 *ScannedAssetMetadataAsset       `json:"asset"`
-		FirstSuccessTimestamp *string                          `json:"first_success_timestamp"`
-		LastSuccess           *ScannedAssetMetadataLastSuccess `json:"last_success"`
+		Asset *ScannedAssetMetadataAsset `json:"asset"`
+		FirstSuccessTimestamp *string `json:"first_success_timestamp"`
+		LastSuccess *ScannedAssetMetadataLastSuccess `json:"last_success"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *ScannedAssetMetadataAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"asset", "first_success_timestamp", "last_success"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "asset", "first_success_timestamp", "last_success",  })
 	} else {
 		return err
 	}

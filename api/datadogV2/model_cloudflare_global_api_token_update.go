@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudflareGlobalAPITokenUpdate The definition of the `CloudflareGlobalAPIToken` object.
 type CloudflareGlobalAPITokenUpdate struct {
@@ -19,9 +23,10 @@ type CloudflareGlobalAPITokenUpdate struct {
 	// The definition of the `CloudflareGlobalAPIToken` object.
 	Type CloudflareGlobalAPITokenType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudflareGlobalAPITokenUpdate instantiates a new CloudflareGlobalAPITokenUpdate object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewCloudflareGlobalAPITokenUpdateWithDefaults() *CloudflareGlobalAPITokenUp
 	this := CloudflareGlobalAPITokenUpdate{}
 	return &this
 }
-
 // GetAuthEmail returns the AuthEmail field value if set, zero value otherwise.
 func (o *CloudflareGlobalAPITokenUpdate) GetAuthEmail() string {
 	if o == nil || o.AuthEmail == nil {
@@ -68,6 +72,7 @@ func (o *CloudflareGlobalAPITokenUpdate) HasAuthEmail() bool {
 func (o *CloudflareGlobalAPITokenUpdate) SetAuthEmail(v string) {
 	o.AuthEmail = &v
 }
+
 
 // GetGlobalApiKey returns the GlobalApiKey field value if set, zero value otherwise.
 func (o *CloudflareGlobalAPITokenUpdate) GetGlobalApiKey() string {
@@ -97,6 +102,7 @@ func (o *CloudflareGlobalAPITokenUpdate) SetGlobalApiKey(v string) {
 	o.GlobalApiKey = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *CloudflareGlobalAPITokenUpdate) GetType() CloudflareGlobalAPITokenType {
 	if o == nil {
@@ -119,6 +125,8 @@ func (o *CloudflareGlobalAPITokenUpdate) GetTypeOk() (*CloudflareGlobalAPITokenT
 func (o *CloudflareGlobalAPITokenUpdate) SetType(v CloudflareGlobalAPITokenType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudflareGlobalAPITokenUpdate) MarshalJSON() ([]byte, error) {
@@ -143,9 +151,9 @@ func (o CloudflareGlobalAPITokenUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudflareGlobalAPITokenUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AuthEmail    *string                       `json:"auth_email,omitempty"`
-		GlobalApiKey *string                       `json:"global_api_key,omitempty"`
-		Type         *CloudflareGlobalAPITokenType `json:"type"`
+		AuthEmail *string `json:"auth_email,omitempty"`
+		GlobalApiKey *string `json:"global_api_key,omitempty"`
+		Type *CloudflareGlobalAPITokenType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,7 +163,7 @@ func (o *CloudflareGlobalAPITokenUpdate) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth_email", "global_api_key", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "auth_email", "global_api_key", "type",  })
 	} else {
 		return err
 	}

@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ArbitraryRuleResponseDataAttributes The definition of `ArbitraryRuleResponseDataAttributes` object.
 type ArbitraryRuleResponseDataAttributes struct {
@@ -40,9 +43,10 @@ type ArbitraryRuleResponseDataAttributes struct {
 	// The `attributes` `version`.
 	Version int32 `json:"version"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewArbitraryRuleResponseDataAttributes instantiates a new ArbitraryRuleResponseDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -71,7 +75,6 @@ func NewArbitraryRuleResponseDataAttributesWithDefaults() *ArbitraryRuleResponse
 	this := ArbitraryRuleResponseDataAttributes{}
 	return &this
 }
-
 // GetCostsToAllocate returns the CostsToAllocate field value.
 func (o *ArbitraryRuleResponseDataAttributes) GetCostsToAllocate() []ArbitraryRuleResponseDataAttributesCostsToAllocateItems {
 	if o == nil {
@@ -94,6 +97,7 @@ func (o *ArbitraryRuleResponseDataAttributes) GetCostsToAllocateOk() (*[]Arbitra
 func (o *ArbitraryRuleResponseDataAttributes) SetCostsToAllocate(v []ArbitraryRuleResponseDataAttributesCostsToAllocateItems) {
 	o.CostsToAllocate = v
 }
+
 
 // GetCreated returns the Created field value.
 func (o *ArbitraryRuleResponseDataAttributes) GetCreated() time.Time {
@@ -118,6 +122,7 @@ func (o *ArbitraryRuleResponseDataAttributes) SetCreated(v time.Time) {
 	o.Created = v
 }
 
+
 // GetEnabled returns the Enabled field value.
 func (o *ArbitraryRuleResponseDataAttributes) GetEnabled() bool {
 	if o == nil {
@@ -140,6 +145,7 @@ func (o *ArbitraryRuleResponseDataAttributes) GetEnabledOk() (*bool, bool) {
 func (o *ArbitraryRuleResponseDataAttributes) SetEnabled(v bool) {
 	o.Enabled = v
 }
+
 
 // GetLastModifiedUserUuid returns the LastModifiedUserUuid field value.
 func (o *ArbitraryRuleResponseDataAttributes) GetLastModifiedUserUuid() string {
@@ -164,6 +170,7 @@ func (o *ArbitraryRuleResponseDataAttributes) SetLastModifiedUserUuid(v string) 
 	o.LastModifiedUserUuid = v
 }
 
+
 // GetOrderId returns the OrderId field value.
 func (o *ArbitraryRuleResponseDataAttributes) GetOrderId() int64 {
 	if o == nil {
@@ -186,6 +193,7 @@ func (o *ArbitraryRuleResponseDataAttributes) GetOrderIdOk() (*int64, bool) {
 func (o *ArbitraryRuleResponseDataAttributes) SetOrderId(v int64) {
 	o.OrderId = v
 }
+
 
 // GetProcessingStatus returns the ProcessingStatus field value if set, zero value otherwise.
 func (o *ArbitraryRuleResponseDataAttributes) GetProcessingStatus() string {
@@ -215,6 +223,7 @@ func (o *ArbitraryRuleResponseDataAttributes) SetProcessingStatus(v string) {
 	o.ProcessingStatus = &v
 }
 
+
 // GetProvider returns the Provider field value.
 func (o *ArbitraryRuleResponseDataAttributes) GetProvider() []string {
 	if o == nil {
@@ -237,6 +246,7 @@ func (o *ArbitraryRuleResponseDataAttributes) GetProviderOk() (*[]string, bool) 
 func (o *ArbitraryRuleResponseDataAttributes) SetProvider(v []string) {
 	o.Provider = v
 }
+
 
 // GetRejected returns the Rejected field value if set, zero value otherwise.
 func (o *ArbitraryRuleResponseDataAttributes) GetRejected() bool {
@@ -266,6 +276,7 @@ func (o *ArbitraryRuleResponseDataAttributes) SetRejected(v bool) {
 	o.Rejected = &v
 }
 
+
 // GetRuleName returns the RuleName field value.
 func (o *ArbitraryRuleResponseDataAttributes) GetRuleName() string {
 	if o == nil {
@@ -288,6 +299,7 @@ func (o *ArbitraryRuleResponseDataAttributes) GetRuleNameOk() (*string, bool) {
 func (o *ArbitraryRuleResponseDataAttributes) SetRuleName(v string) {
 	o.RuleName = v
 }
+
 
 // GetStrategy returns the Strategy field value.
 func (o *ArbitraryRuleResponseDataAttributes) GetStrategy() ArbitraryRuleResponseDataAttributesStrategy {
@@ -312,6 +324,7 @@ func (o *ArbitraryRuleResponseDataAttributes) SetStrategy(v ArbitraryRuleRespons
 	o.Strategy = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ArbitraryRuleResponseDataAttributes) GetType() string {
 	if o == nil {
@@ -334,6 +347,7 @@ func (o *ArbitraryRuleResponseDataAttributes) GetTypeOk() (*string, bool) {
 func (o *ArbitraryRuleResponseDataAttributes) SetType(v string) {
 	o.Type = v
 }
+
 
 // GetUpdated returns the Updated field value.
 func (o *ArbitraryRuleResponseDataAttributes) GetUpdated() time.Time {
@@ -358,6 +372,7 @@ func (o *ArbitraryRuleResponseDataAttributes) SetUpdated(v time.Time) {
 	o.Updated = v
 }
 
+
 // GetVersion returns the Version field value.
 func (o *ArbitraryRuleResponseDataAttributes) GetVersion() int32 {
 	if o == nil {
@@ -380,6 +395,8 @@ func (o *ArbitraryRuleResponseDataAttributes) GetVersionOk() (*int32, bool) {
 func (o *ArbitraryRuleResponseDataAttributes) SetVersion(v int32) {
 	o.Version = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ArbitraryRuleResponseDataAttributes) MarshalJSON() ([]byte, error) {
@@ -422,19 +439,19 @@ func (o ArbitraryRuleResponseDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ArbitraryRuleResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CostsToAllocate      *[]ArbitraryRuleResponseDataAttributesCostsToAllocateItems `json:"costs_to_allocate"`
-		Created              *time.Time                                                 `json:"created"`
-		Enabled              *bool                                                      `json:"enabled"`
-		LastModifiedUserUuid *string                                                    `json:"last_modified_user_uuid"`
-		OrderId              *int64                                                     `json:"order_id"`
-		ProcessingStatus     *string                                                    `json:"processing_status,omitempty"`
-		Provider             *[]string                                                  `json:"provider"`
-		Rejected             *bool                                                      `json:"rejected,omitempty"`
-		RuleName             *string                                                    `json:"rule_name"`
-		Strategy             *ArbitraryRuleResponseDataAttributesStrategy               `json:"strategy"`
-		Type                 *string                                                    `json:"type"`
-		Updated              *time.Time                                                 `json:"updated"`
-		Version              *int32                                                     `json:"version"`
+		CostsToAllocate *[]ArbitraryRuleResponseDataAttributesCostsToAllocateItems `json:"costs_to_allocate"`
+		Created *time.Time `json:"created"`
+		Enabled *bool `json:"enabled"`
+		LastModifiedUserUuid *string `json:"last_modified_user_uuid"`
+		OrderId *int64 `json:"order_id"`
+		ProcessingStatus *string `json:"processing_status,omitempty"`
+		Provider *[]string `json:"provider"`
+		Rejected *bool `json:"rejected,omitempty"`
+		RuleName *string `json:"rule_name"`
+		Strategy *ArbitraryRuleResponseDataAttributesStrategy `json:"strategy"`
+		Type *string `json:"type"`
+		Updated *time.Time `json:"updated"`
+		Version *int32 `json:"version"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -474,7 +491,7 @@ func (o *ArbitraryRuleResponseDataAttributes) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"costs_to_allocate", "created", "enabled", "last_modified_user_uuid", "order_id", "processing_status", "provider", "rejected", "rule_name", "strategy", "type", "updated", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "costs_to_allocate", "created", "enabled", "last_modified_user_uuid", "order_id", "processing_status", "provider", "rejected", "rule_name", "strategy", "type", "updated", "version",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerGroupCreate Data related to the creation of a group.
 type SensitiveDataScannerGroupCreate struct {
@@ -19,9 +23,10 @@ type SensitiveDataScannerGroupCreate struct {
 	// Sensitive Data Scanner group type.
 	Type SensitiveDataScannerGroupType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerGroupCreate instantiates a new SensitiveDataScannerGroupCreate object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewSensitiveDataScannerGroupCreateWithDefaults() *SensitiveDataScannerGroup
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *SensitiveDataScannerGroupCreate) GetAttributes() SensitiveDataScannerGroupAttributes {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *SensitiveDataScannerGroupCreate) GetAttributesOk() (*SensitiveDataScann
 func (o *SensitiveDataScannerGroupCreate) SetAttributes(v SensitiveDataScannerGroupAttributes) {
 	o.Attributes = v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *SensitiveDataScannerGroupCreate) GetRelationships() SensitiveDataScannerGroupRelationships {
@@ -95,6 +100,7 @@ func (o *SensitiveDataScannerGroupCreate) SetRelationships(v SensitiveDataScanne
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *SensitiveDataScannerGroupCreate) GetType() SensitiveDataScannerGroupType {
 	if o == nil {
@@ -118,6 +124,8 @@ func (o *SensitiveDataScannerGroupCreate) SetType(v SensitiveDataScannerGroupTyp
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerGroupCreate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -139,9 +147,9 @@ func (o SensitiveDataScannerGroupCreate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerGroupCreate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *SensitiveDataScannerGroupAttributes    `json:"attributes"`
+		Attributes *SensitiveDataScannerGroupAttributes `json:"attributes"`
 		Relationships *SensitiveDataScannerGroupRelationships `json:"relationships,omitempty"`
-		Type          *SensitiveDataScannerGroupType          `json:"type"`
+		Type *SensitiveDataScannerGroupType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -154,7 +162,7 @@ func (o *SensitiveDataScannerGroupCreate) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "relationships", "type",  })
 	} else {
 		return err
 	}
@@ -164,7 +172,7 @@ func (o *SensitiveDataScannerGroupCreate) UnmarshalJSON(bytes []byte) (err error
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

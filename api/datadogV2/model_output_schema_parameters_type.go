@@ -2,27 +2,31 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OutputSchemaParametersType The definition of `OutputSchemaParametersType` object.
 type OutputSchemaParametersType string
 
 // List of OutputSchemaParametersType.
 const (
-	OUTPUTSCHEMAPARAMETERSTYPE_STRING        OutputSchemaParametersType = "STRING"
-	OUTPUTSCHEMAPARAMETERSTYPE_NUMBER        OutputSchemaParametersType = "NUMBER"
-	OUTPUTSCHEMAPARAMETERSTYPE_BOOLEAN       OutputSchemaParametersType = "BOOLEAN"
-	OUTPUTSCHEMAPARAMETERSTYPE_OBJECT        OutputSchemaParametersType = "OBJECT"
-	OUTPUTSCHEMAPARAMETERSTYPE_ARRAY_STRING  OutputSchemaParametersType = "ARRAY_STRING"
-	OUTPUTSCHEMAPARAMETERSTYPE_ARRAY_NUMBER  OutputSchemaParametersType = "ARRAY_NUMBER"
+	OUTPUTSCHEMAPARAMETERSTYPE_STRING OutputSchemaParametersType = "STRING"
+	OUTPUTSCHEMAPARAMETERSTYPE_NUMBER OutputSchemaParametersType = "NUMBER"
+	OUTPUTSCHEMAPARAMETERSTYPE_BOOLEAN OutputSchemaParametersType = "BOOLEAN"
+	OUTPUTSCHEMAPARAMETERSTYPE_OBJECT OutputSchemaParametersType = "OBJECT"
+	OUTPUTSCHEMAPARAMETERSTYPE_ARRAY_STRING OutputSchemaParametersType = "ARRAY_STRING"
+	OUTPUTSCHEMAPARAMETERSTYPE_ARRAY_NUMBER OutputSchemaParametersType = "ARRAY_NUMBER"
 	OUTPUTSCHEMAPARAMETERSTYPE_ARRAY_BOOLEAN OutputSchemaParametersType = "ARRAY_BOOLEAN"
-	OUTPUTSCHEMAPARAMETERSTYPE_ARRAY_OBJECT  OutputSchemaParametersType = "ARRAY_OBJECT"
+	OUTPUTSCHEMAPARAMETERSTYPE_ARRAY_OBJECT OutputSchemaParametersType = "ARRAY_OBJECT"
 )
 
 var allowedOutputSchemaParametersTypeEnumValues = []OutputSchemaParametersType{

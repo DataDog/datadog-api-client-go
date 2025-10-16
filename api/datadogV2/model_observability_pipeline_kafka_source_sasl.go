@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineKafkaSourceSasl Specifies the SASL mechanism for authenticating with a Kafka cluster.
 type ObservabilityPipelineKafkaSourceSasl struct {
 	// SASL mechanism used for Kafka authentication.
 	Mechanism *ObservabilityPipelinePipelineKafkaSourceSaslMechanism `json:"mechanism,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineKafkaSourceSasl instantiates a new ObservabilityPipelineKafkaSourceSasl object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewObservabilityPipelineKafkaSourceSaslWithDefaults() *ObservabilityPipelin
 	this := ObservabilityPipelineKafkaSourceSasl{}
 	return &this
 }
-
 // GetMechanism returns the Mechanism field value if set, zero value otherwise.
 func (o *ObservabilityPipelineKafkaSourceSasl) GetMechanism() ObservabilityPipelinePipelineKafkaSourceSaslMechanism {
 	if o == nil || o.Mechanism == nil {
@@ -62,6 +68,8 @@ func (o *ObservabilityPipelineKafkaSourceSasl) SetMechanism(v ObservabilityPipel
 	o.Mechanism = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineKafkaSourceSasl) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *ObservabilityPipelineKafkaSourceSasl) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"mechanism"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "mechanism",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Mechanism != nil && !all.Mechanism.IsValid() {
+	if all.Mechanism != nil &&!all.Mechanism.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Mechanism = all.Mechanism

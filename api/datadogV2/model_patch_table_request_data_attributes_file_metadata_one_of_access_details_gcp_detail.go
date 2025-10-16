@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail The definition of `PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail` object.
 type PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail struct {
@@ -19,9 +25,10 @@ type PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail stru
 	// The email of the GCP service account.
 	GcpServiceAccountEmail *string `json:"gcp_service_account_email,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail instantiates a new PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewPatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetailWi
 	this := PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail{}
 	return &this
 }
-
 // GetFilePath returns the FilePath field value if set, zero value otherwise.
 func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) GetFilePath() string {
 	if o == nil || o.FilePath == nil {
@@ -67,6 +73,7 @@ func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail)
 func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) SetFilePath(v string) {
 	o.FilePath = &v
 }
+
 
 // GetGcpBucketName returns the GcpBucketName field value if set, zero value otherwise.
 func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) GetGcpBucketName() string {
@@ -96,6 +103,7 @@ func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail)
 	o.GcpBucketName = &v
 }
 
+
 // GetGcpProjectId returns the GcpProjectId field value if set, zero value otherwise.
 func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) GetGcpProjectId() string {
 	if o == nil || o.GcpProjectId == nil {
@@ -123,6 +131,7 @@ func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail)
 func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) SetGcpProjectId(v string) {
 	o.GcpProjectId = &v
 }
+
 
 // GetGcpServiceAccountEmail returns the GcpServiceAccountEmail field value if set, zero value otherwise.
 func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) GetGcpServiceAccountEmail() string {
@@ -152,6 +161,8 @@ func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail)
 	o.GcpServiceAccountEmail = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,9 +191,9 @@ func (o PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) 
 // UnmarshalJSON deserializes the given payload.
 func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		FilePath               *string `json:"file_path,omitempty"`
-		GcpBucketName          *string `json:"gcp_bucket_name,omitempty"`
-		GcpProjectId           *string `json:"gcp_project_id,omitempty"`
+		FilePath *string `json:"file_path,omitempty"`
+		GcpBucketName *string `json:"gcp_bucket_name,omitempty"`
+		GcpProjectId *string `json:"gcp_project_id,omitempty"`
 		GcpServiceAccountEmail *string `json:"gcp_service_account_email,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -190,7 +201,7 @@ func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"file_path", "gcp_bucket_name", "gcp_project_id", "gcp_service_account_email"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "file_path", "gcp_bucket_name", "gcp_project_id", "gcp_service_account_email",  })
 	} else {
 		return err
 	}

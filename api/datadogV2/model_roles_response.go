@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RolesResponse Response containing information about multiple roles.
 type RolesResponse struct {
@@ -15,9 +21,10 @@ type RolesResponse struct {
 	// Object describing meta attributes of response.
 	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRolesResponse instantiates a new RolesResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewRolesResponseWithDefaults() *RolesResponse {
 	this := RolesResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *RolesResponse) GetData() []Role {
 	if o == nil || o.Data == nil {
@@ -63,6 +69,7 @@ func (o *RolesResponse) HasData() bool {
 func (o *RolesResponse) SetData(v []Role) {
 	o.Data = v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *RolesResponse) GetMeta() ResponseMetaAttributes {
@@ -92,6 +99,8 @@ func (o *RolesResponse) SetMeta(v ResponseMetaAttributes) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RolesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o RolesResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RolesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data []Role                  `json:"data,omitempty"`
+		Data []Role `json:"data,omitempty"`
 		Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,14 +131,14 @@ func (o *RolesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IPAllowlistAttributes Attributes of the IP allowlist.
 type IPAllowlistAttributes struct {
@@ -15,9 +21,10 @@ type IPAllowlistAttributes struct {
 	// Array of entries in the IP allowlist.
 	Entries []IPAllowlistEntry `json:"entries,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIPAllowlistAttributes instantiates a new IPAllowlistAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewIPAllowlistAttributesWithDefaults() *IPAllowlistAttributes {
 	this := IPAllowlistAttributes{}
 	return &this
 }
-
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *IPAllowlistAttributes) GetEnabled() bool {
 	if o == nil || o.Enabled == nil {
@@ -63,6 +69,7 @@ func (o *IPAllowlistAttributes) HasEnabled() bool {
 func (o *IPAllowlistAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
+
 
 // GetEntries returns the Entries field value if set, zero value otherwise.
 func (o *IPAllowlistAttributes) GetEntries() []IPAllowlistEntry {
@@ -92,6 +99,8 @@ func (o *IPAllowlistAttributes) SetEntries(v []IPAllowlistEntry) {
 	o.Entries = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IPAllowlistAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o IPAllowlistAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IPAllowlistAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enabled *bool              `json:"enabled,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
 		Entries []IPAllowlistEntry `json:"entries,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *IPAllowlistAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "entries"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "enabled", "entries",  })
 	} else {
 		return err
 	}

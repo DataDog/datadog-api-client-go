@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DashboardBulkDeleteRequest Dashboard bulk delete request body.
 type DashboardBulkDeleteRequest struct {
 	// List of dashboard bulk action request data objects.
 	Data []DashboardBulkActionData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDashboardBulkDeleteRequest instantiates a new DashboardBulkDeleteRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewDashboardBulkDeleteRequestWithDefaults() *DashboardBulkDeleteRequest {
 	this := DashboardBulkDeleteRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *DashboardBulkDeleteRequest) GetData() []DashboardBulkActionData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *DashboardBulkDeleteRequest) GetDataOk() (*[]DashboardBulkActionData, bo
 func (o *DashboardBulkDeleteRequest) SetData(v []DashboardBulkActionData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DashboardBulkDeleteRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *DashboardBulkDeleteRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

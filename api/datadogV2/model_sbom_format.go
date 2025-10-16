@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SBOMFormat The SBOM standard
 type SBOMFormat string
@@ -16,7 +20,7 @@ type SBOMFormat string
 // List of SBOMFormat.
 const (
 	SBOMFORMAT_CYCLONEDX SBOMFormat = "CycloneDX"
-	SBOMFORMAT_SPDX      SBOMFormat = "SPDX"
+	SBOMFORMAT_SPDX SBOMFormat = "SPDX"
 )
 
 var allowedSBOMFormatEnumValues = []SBOMFormat{

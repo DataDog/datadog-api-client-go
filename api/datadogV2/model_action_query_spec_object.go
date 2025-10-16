@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ActionQuerySpecObject The action query spec object.
 type ActionQuerySpecObject struct {
@@ -21,9 +25,10 @@ type ActionQuerySpecObject struct {
 	// The inputs to the action query. These are the values that are passed to the action when it is triggered.
 	Inputs *ActionQuerySpecInputs `json:"inputs,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewActionQuerySpecObject instantiates a new ActionQuerySpecObject object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewActionQuerySpecObjectWithDefaults() *ActionQuerySpecObject {
 	this := ActionQuerySpecObject{}
 	return &this
 }
-
 // GetConnectionGroup returns the ConnectionGroup field value if set, zero value otherwise.
 func (o *ActionQuerySpecObject) GetConnectionGroup() ActionQuerySpecConnectionGroup {
 	if o == nil || o.ConnectionGroup == nil {
@@ -70,6 +74,7 @@ func (o *ActionQuerySpecObject) HasConnectionGroup() bool {
 func (o *ActionQuerySpecObject) SetConnectionGroup(v ActionQuerySpecConnectionGroup) {
 	o.ConnectionGroup = &v
 }
+
 
 // GetConnectionId returns the ConnectionId field value if set, zero value otherwise.
 func (o *ActionQuerySpecObject) GetConnectionId() string {
@@ -99,6 +104,7 @@ func (o *ActionQuerySpecObject) SetConnectionId(v string) {
 	o.ConnectionId = &v
 }
 
+
 // GetFqn returns the Fqn field value.
 func (o *ActionQuerySpecObject) GetFqn() string {
 	if o == nil {
@@ -121,6 +127,7 @@ func (o *ActionQuerySpecObject) GetFqnOk() (*string, bool) {
 func (o *ActionQuerySpecObject) SetFqn(v string) {
 	o.Fqn = v
 }
+
 
 // GetInputs returns the Inputs field value if set, zero value otherwise.
 func (o *ActionQuerySpecObject) GetInputs() ActionQuerySpecInputs {
@@ -150,6 +157,8 @@ func (o *ActionQuerySpecObject) SetInputs(v ActionQuerySpecInputs) {
 	o.Inputs = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ActionQuerySpecObject) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -177,9 +186,9 @@ func (o ActionQuerySpecObject) MarshalJSON() ([]byte, error) {
 func (o *ActionQuerySpecObject) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ConnectionGroup *ActionQuerySpecConnectionGroup `json:"connectionGroup,omitempty"`
-		ConnectionId    *string                         `json:"connectionId,omitempty"`
-		Fqn             *string                         `json:"fqn"`
-		Inputs          *ActionQuerySpecInputs          `json:"inputs,omitempty"`
+		ConnectionId *string `json:"connectionId,omitempty"`
+		Fqn *string `json:"fqn"`
+		Inputs *ActionQuerySpecInputs `json:"inputs,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -189,13 +198,13 @@ func (o *ActionQuerySpecObject) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"connectionGroup", "connectionId", "fqn", "inputs"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "connectionGroup", "connectionId", "fqn", "inputs",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.ConnectionGroup != nil && all.ConnectionGroup.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ConnectionGroup != nil && all.ConnectionGroup.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ConnectionGroup = all.ConnectionGroup

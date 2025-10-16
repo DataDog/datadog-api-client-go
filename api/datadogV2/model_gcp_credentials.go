@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GCPCredentials - The definition of the `GCPCredentials` object.
 type GCPCredentials struct {
@@ -56,6 +62,7 @@ func (obj GCPCredentials) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.GCPServiceAccount)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj GCPCredentials) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *GCPCredentials) GetActualInstance() interface{} {
+func (obj *GCPCredentials) GetActualInstance() (interface{}) {
 	if obj.GCPServiceAccount != nil {
 		return obj.GCPServiceAccount
 	}
+
 
 	// all schemas are nil
 	return nil

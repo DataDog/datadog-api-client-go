@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WorkflowDataRelationships The definition of `WorkflowDataRelationships` object.
 type WorkflowDataRelationships struct {
@@ -15,9 +21,10 @@ type WorkflowDataRelationships struct {
 	// The definition of `WorkflowUserRelationship` object.
 	Owner *WorkflowUserRelationship `json:"owner,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWorkflowDataRelationships instantiates a new WorkflowDataRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewWorkflowDataRelationshipsWithDefaults() *WorkflowDataRelationships {
 	this := WorkflowDataRelationships{}
 	return &this
 }
-
 // GetCreator returns the Creator field value if set, zero value otherwise.
 func (o *WorkflowDataRelationships) GetCreator() WorkflowUserRelationship {
 	if o == nil || o.Creator == nil {
@@ -63,6 +69,7 @@ func (o *WorkflowDataRelationships) HasCreator() bool {
 func (o *WorkflowDataRelationships) SetCreator(v WorkflowUserRelationship) {
 	o.Creator = &v
 }
+
 
 // GetOwner returns the Owner field value if set, zero value otherwise.
 func (o *WorkflowDataRelationships) GetOwner() WorkflowUserRelationship {
@@ -92,6 +99,8 @@ func (o *WorkflowDataRelationships) SetOwner(v WorkflowUserRelationship) {
 	o.Owner = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o WorkflowDataRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,24 +124,24 @@ func (o WorkflowDataRelationships) MarshalJSON() ([]byte, error) {
 func (o *WorkflowDataRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Creator *WorkflowUserRelationship `json:"creator,omitempty"`
-		Owner   *WorkflowUserRelationship `json:"owner,omitempty"`
+		Owner *WorkflowUserRelationship `json:"owner,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"creator", "owner"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "creator", "owner",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Creator = all.Creator
-	if all.Owner != nil && all.Owner.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Owner != nil && all.Owner.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Owner = all.Owner

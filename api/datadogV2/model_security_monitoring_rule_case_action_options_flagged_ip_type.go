@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleCaseActionOptionsFlaggedIPType Used with the case action of type 'flag_ip'. The value specified in this field is applied as a flag to the IP addresses.
 type SecurityMonitoringRuleCaseActionOptionsFlaggedIPType string
@@ -16,7 +20,7 @@ type SecurityMonitoringRuleCaseActionOptionsFlaggedIPType string
 // List of SecurityMonitoringRuleCaseActionOptionsFlaggedIPType.
 const (
 	SECURITYMONITORINGRULECASEACTIONOPTIONSFLAGGEDIPTYPE_SUSPICIOUS SecurityMonitoringRuleCaseActionOptionsFlaggedIPType = "SUSPICIOUS"
-	SECURITYMONITORINGRULECASEACTIONOPTIONSFLAGGEDIPTYPE_FLAGGED    SecurityMonitoringRuleCaseActionOptionsFlaggedIPType = "FLAGGED"
+	SECURITYMONITORINGRULECASEACTIONOPTIONSFLAGGEDIPTYPE_FLAGGED SecurityMonitoringRuleCaseActionOptionsFlaggedIPType = "FLAGGED"
 )
 
 var allowedSecurityMonitoringRuleCaseActionOptionsFlaggedIPTypeEnumValues = []SecurityMonitoringRuleCaseActionOptionsFlaggedIPType{

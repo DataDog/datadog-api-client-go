@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TableResultV2DataAttributes The definition of `TableResultV2DataAttributes` object.
 type TableResultV2DataAttributes struct {
@@ -33,9 +39,10 @@ type TableResultV2DataAttributes struct {
 	// The timestamp of the last update to the reference table in ISO 8601 format.
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTableResultV2DataAttributes instantiates a new TableResultV2DataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +60,6 @@ func NewTableResultV2DataAttributesWithDefaults() *TableResultV2DataAttributes {
 	this := TableResultV2DataAttributes{}
 	return &this
 }
-
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributes) GetCreatedBy() string {
 	if o == nil || o.CreatedBy == nil {
@@ -81,6 +87,7 @@ func (o *TableResultV2DataAttributes) HasCreatedBy() bool {
 func (o *TableResultV2DataAttributes) SetCreatedBy(v string) {
 	o.CreatedBy = &v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributes) GetDescription() string {
@@ -110,6 +117,7 @@ func (o *TableResultV2DataAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetFileMetadata returns the FileMetadata field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributes) GetFileMetadata() TableResultV2DataAttributesFileMetadata {
 	if o == nil || o.FileMetadata == nil {
@@ -137,6 +145,7 @@ func (o *TableResultV2DataAttributes) HasFileMetadata() bool {
 func (o *TableResultV2DataAttributes) SetFileMetadata(v TableResultV2DataAttributesFileMetadata) {
 	o.FileMetadata = &v
 }
+
 
 // GetLastUpdatedBy returns the LastUpdatedBy field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributes) GetLastUpdatedBy() string {
@@ -166,6 +175,7 @@ func (o *TableResultV2DataAttributes) SetLastUpdatedBy(v string) {
 	o.LastUpdatedBy = &v
 }
 
+
 // GetRowCount returns the RowCount field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributes) GetRowCount() int64 {
 	if o == nil || o.RowCount == nil {
@@ -193,6 +203,7 @@ func (o *TableResultV2DataAttributes) HasRowCount() bool {
 func (o *TableResultV2DataAttributes) SetRowCount(v int64) {
 	o.RowCount = &v
 }
+
 
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributes) GetSchema() TableResultV2DataAttributesSchema {
@@ -222,6 +233,7 @@ func (o *TableResultV2DataAttributes) SetSchema(v TableResultV2DataAttributesSch
 	o.Schema = &v
 }
 
+
 // GetSource returns the Source field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributes) GetSource() ReferenceTableSourceType {
 	if o == nil || o.Source == nil {
@@ -249,6 +261,7 @@ func (o *TableResultV2DataAttributes) HasSource() bool {
 func (o *TableResultV2DataAttributes) SetSource(v ReferenceTableSourceType) {
 	o.Source = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributes) GetStatus() string {
@@ -278,6 +291,7 @@ func (o *TableResultV2DataAttributes) SetStatus(v string) {
 	o.Status = &v
 }
 
+
 // GetTableName returns the TableName field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributes) GetTableName() string {
 	if o == nil || o.TableName == nil {
@@ -305,6 +319,7 @@ func (o *TableResultV2DataAttributes) HasTableName() bool {
 func (o *TableResultV2DataAttributes) SetTableName(v string) {
 	o.TableName = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributes) GetTags() []string {
@@ -334,6 +349,7 @@ func (o *TableResultV2DataAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributes) GetUpdatedAt() string {
 	if o == nil || o.UpdatedAt == nil {
@@ -361,6 +377,8 @@ func (o *TableResultV2DataAttributes) HasUpdatedAt() bool {
 func (o *TableResultV2DataAttributes) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TableResultV2DataAttributes) MarshalJSON() ([]byte, error) {
@@ -411,24 +429,24 @@ func (o TableResultV2DataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TableResultV2DataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedBy     *string                                  `json:"created_by,omitempty"`
-		Description   *string                                  `json:"description,omitempty"`
-		FileMetadata  *TableResultV2DataAttributesFileMetadata `json:"file_metadata,omitempty"`
-		LastUpdatedBy *string                                  `json:"last_updated_by,omitempty"`
-		RowCount      *int64                                   `json:"row_count,omitempty"`
-		Schema        *TableResultV2DataAttributesSchema       `json:"schema,omitempty"`
-		Source        *ReferenceTableSourceType                `json:"source,omitempty"`
-		Status        *string                                  `json:"status,omitempty"`
-		TableName     *string                                  `json:"table_name,omitempty"`
-		Tags          []string                                 `json:"tags,omitempty"`
-		UpdatedAt     *string                                  `json:"updated_at,omitempty"`
+		CreatedBy *string `json:"created_by,omitempty"`
+		Description *string `json:"description,omitempty"`
+		FileMetadata *TableResultV2DataAttributesFileMetadata `json:"file_metadata,omitempty"`
+		LastUpdatedBy *string `json:"last_updated_by,omitempty"`
+		RowCount *int64 `json:"row_count,omitempty"`
+		Schema *TableResultV2DataAttributesSchema `json:"schema,omitempty"`
+		Source *ReferenceTableSourceType `json:"source,omitempty"`
+		Status *string `json:"status,omitempty"`
+		TableName *string `json:"table_name,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		UpdatedAt *string `json:"updated_at,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_by", "description", "file_metadata", "last_updated_by", "row_count", "schema", "source", "status", "table_name", "tags", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_by", "description", "file_metadata", "last_updated_by", "row_count", "schema", "source", "status", "table_name", "tags", "updated_at",  })
 	} else {
 		return err
 	}
@@ -439,11 +457,11 @@ func (o *TableResultV2DataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.FileMetadata = all.FileMetadata
 	o.LastUpdatedBy = all.LastUpdatedBy
 	o.RowCount = all.RowCount
-	if all.Schema != nil && all.Schema.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Schema != nil && all.Schema.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Schema = all.Schema
-	if all.Source != nil && !all.Source.IsValid() {
+	if all.Source != nil &&!all.Source.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Source = all.Source

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MatchingDowntime Object describing a downtime that matches this monitor.
 type MatchingDowntime struct {
@@ -23,9 +27,10 @@ type MatchingDowntime struct {
 	// POSIX timestamp to start the downtime.
 	Start *int64 `json:"start,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMatchingDowntime instantiates a new MatchingDowntime object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewMatchingDowntimeWithDefaults() *MatchingDowntime {
 	this := MatchingDowntime{}
 	return &this
 }
-
 // GetEnd returns the End field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MatchingDowntime) GetEnd() int64 {
 	if o == nil || o.End.Get() == nil {
@@ -58,7 +62,7 @@ func (o *MatchingDowntime) GetEnd() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MatchingDowntime) GetEndOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.End.Get(), o.End.IsSet()
@@ -73,7 +77,6 @@ func (o *MatchingDowntime) HasEnd() bool {
 func (o *MatchingDowntime) SetEnd(v int64) {
 	o.End.Set(&v)
 }
-
 // SetEndNil sets the value for End to be an explicit nil.
 func (o *MatchingDowntime) SetEndNil() {
 	o.End.Set(nil)
@@ -83,6 +86,7 @@ func (o *MatchingDowntime) SetEndNil() {
 func (o *MatchingDowntime) UnsetEnd() {
 	o.End.Unset()
 }
+
 
 // GetId returns the Id field value.
 func (o *MatchingDowntime) GetId() int64 {
@@ -106,6 +110,7 @@ func (o *MatchingDowntime) GetIdOk() (*int64, bool) {
 func (o *MatchingDowntime) SetId(v int64) {
 	o.Id = v
 }
+
 
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *MatchingDowntime) GetScope() []string {
@@ -135,6 +140,7 @@ func (o *MatchingDowntime) SetScope(v []string) {
 	o.Scope = v
 }
 
+
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *MatchingDowntime) GetStart() int64 {
 	if o == nil || o.Start == nil {
@@ -163,6 +169,8 @@ func (o *MatchingDowntime) SetStart(v int64) {
 	o.Start = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MatchingDowntime) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -189,10 +197,10 @@ func (o MatchingDowntime) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MatchingDowntime) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		End   datadog.NullableInt64 `json:"end,omitempty"`
-		Id    *int64                `json:"id"`
-		Scope []string              `json:"scope,omitempty"`
-		Start *int64                `json:"start,omitempty"`
+		End datadog.NullableInt64 `json:"end,omitempty"`
+		Id *int64 `json:"id"`
+		Scope []string `json:"scope,omitempty"`
+		Start *int64 `json:"start,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -202,7 +210,7 @@ func (o *MatchingDowntime) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"end", "id", "scope", "start"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "end", "id", "scope", "start",  })
 	} else {
 		return err
 	}

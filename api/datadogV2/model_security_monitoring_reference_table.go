@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringReferenceTable Reference tables used in the queries.
 type SecurityMonitoringReferenceTable struct {
@@ -21,9 +27,10 @@ type SecurityMonitoringReferenceTable struct {
 	// The name of the reference table.
 	TableName *string `json:"tableName,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringReferenceTable instantiates a new SecurityMonitoringReferenceTable object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewSecurityMonitoringReferenceTableWithDefaults() *SecurityMonitoringRefere
 	this := SecurityMonitoringReferenceTable{}
 	return &this
 }
-
 // GetCheckPresence returns the CheckPresence field value if set, zero value otherwise.
 func (o *SecurityMonitoringReferenceTable) GetCheckPresence() bool {
 	if o == nil || o.CheckPresence == nil {
@@ -69,6 +75,7 @@ func (o *SecurityMonitoringReferenceTable) HasCheckPresence() bool {
 func (o *SecurityMonitoringReferenceTable) SetCheckPresence(v bool) {
 	o.CheckPresence = &v
 }
+
 
 // GetColumnName returns the ColumnName field value if set, zero value otherwise.
 func (o *SecurityMonitoringReferenceTable) GetColumnName() string {
@@ -98,6 +105,7 @@ func (o *SecurityMonitoringReferenceTable) SetColumnName(v string) {
 	o.ColumnName = &v
 }
 
+
 // GetLogFieldPath returns the LogFieldPath field value if set, zero value otherwise.
 func (o *SecurityMonitoringReferenceTable) GetLogFieldPath() string {
 	if o == nil || o.LogFieldPath == nil {
@@ -125,6 +133,7 @@ func (o *SecurityMonitoringReferenceTable) HasLogFieldPath() bool {
 func (o *SecurityMonitoringReferenceTable) SetLogFieldPath(v string) {
 	o.LogFieldPath = &v
 }
+
 
 // GetRuleQueryName returns the RuleQueryName field value if set, zero value otherwise.
 func (o *SecurityMonitoringReferenceTable) GetRuleQueryName() string {
@@ -154,6 +163,7 @@ func (o *SecurityMonitoringReferenceTable) SetRuleQueryName(v string) {
 	o.RuleQueryName = &v
 }
 
+
 // GetTableName returns the TableName field value if set, zero value otherwise.
 func (o *SecurityMonitoringReferenceTable) GetTableName() string {
 	if o == nil || o.TableName == nil {
@@ -181,6 +191,8 @@ func (o *SecurityMonitoringReferenceTable) HasTableName() bool {
 func (o *SecurityMonitoringReferenceTable) SetTableName(v string) {
 	o.TableName = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringReferenceTable) MarshalJSON() ([]byte, error) {
@@ -213,18 +225,18 @@ func (o SecurityMonitoringReferenceTable) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringReferenceTable) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CheckPresence *bool   `json:"checkPresence,omitempty"`
-		ColumnName    *string `json:"columnName,omitempty"`
-		LogFieldPath  *string `json:"logFieldPath,omitempty"`
+		CheckPresence *bool `json:"checkPresence,omitempty"`
+		ColumnName *string `json:"columnName,omitempty"`
+		LogFieldPath *string `json:"logFieldPath,omitempty"`
 		RuleQueryName *string `json:"ruleQueryName,omitempty"`
-		TableName     *string `json:"tableName,omitempty"`
+		TableName *string `json:"tableName,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"checkPresence", "columnName", "logFieldPath", "ruleQueryName", "tableName"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "checkPresence", "columnName", "logFieldPath", "ruleQueryName", "tableName",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageBillableSummaryBody Response with properties for each aggregated usage type.
 type UsageBillableSummaryBody struct {
@@ -31,9 +35,10 @@ type UsageBillableSummaryBody struct {
 	// Units pertaining to the usage.
 	UsageUnit *string `json:"usage_unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageBillableSummaryBody instantiates a new UsageBillableSummaryBody object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +56,6 @@ func NewUsageBillableSummaryBodyWithDefaults() *UsageBillableSummaryBody {
 	this := UsageBillableSummaryBody{}
 	return &this
 }
-
 // GetAccountBillableUsage returns the AccountBillableUsage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetAccountBillableUsage() int64 {
 	if o == nil || o.AccountBillableUsage == nil {
@@ -79,6 +83,7 @@ func (o *UsageBillableSummaryBody) HasAccountBillableUsage() bool {
 func (o *UsageBillableSummaryBody) SetAccountBillableUsage(v int64) {
 	o.AccountBillableUsage = &v
 }
+
 
 // GetAccountCommittedUsage returns the AccountCommittedUsage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetAccountCommittedUsage() int64 {
@@ -108,6 +113,7 @@ func (o *UsageBillableSummaryBody) SetAccountCommittedUsage(v int64) {
 	o.AccountCommittedUsage = &v
 }
 
+
 // GetAccountOnDemandUsage returns the AccountOnDemandUsage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetAccountOnDemandUsage() int64 {
 	if o == nil || o.AccountOnDemandUsage == nil {
@@ -135,6 +141,7 @@ func (o *UsageBillableSummaryBody) HasAccountOnDemandUsage() bool {
 func (o *UsageBillableSummaryBody) SetAccountOnDemandUsage(v int64) {
 	o.AccountOnDemandUsage = &v
 }
+
 
 // GetElapsedUsageHours returns the ElapsedUsageHours field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetElapsedUsageHours() int64 {
@@ -164,6 +171,7 @@ func (o *UsageBillableSummaryBody) SetElapsedUsageHours(v int64) {
 	o.ElapsedUsageHours = &v
 }
 
+
 // GetFirstBillableUsageHour returns the FirstBillableUsageHour field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetFirstBillableUsageHour() time.Time {
 	if o == nil || o.FirstBillableUsageHour == nil {
@@ -191,6 +199,7 @@ func (o *UsageBillableSummaryBody) HasFirstBillableUsageHour() bool {
 func (o *UsageBillableSummaryBody) SetFirstBillableUsageHour(v time.Time) {
 	o.FirstBillableUsageHour = &v
 }
+
 
 // GetLastBillableUsageHour returns the LastBillableUsageHour field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetLastBillableUsageHour() time.Time {
@@ -220,6 +229,7 @@ func (o *UsageBillableSummaryBody) SetLastBillableUsageHour(v time.Time) {
 	o.LastBillableUsageHour = &v
 }
 
+
 // GetOrgBillableUsage returns the OrgBillableUsage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetOrgBillableUsage() int64 {
 	if o == nil || o.OrgBillableUsage == nil {
@@ -247,6 +257,7 @@ func (o *UsageBillableSummaryBody) HasOrgBillableUsage() bool {
 func (o *UsageBillableSummaryBody) SetOrgBillableUsage(v int64) {
 	o.OrgBillableUsage = &v
 }
+
 
 // GetPercentageInAccount returns the PercentageInAccount field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetPercentageInAccount() float64 {
@@ -276,6 +287,7 @@ func (o *UsageBillableSummaryBody) SetPercentageInAccount(v float64) {
 	o.PercentageInAccount = &v
 }
 
+
 // GetUsageUnit returns the UsageUnit field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetUsageUnit() string {
 	if o == nil || o.UsageUnit == nil {
@@ -303,6 +315,8 @@ func (o *UsageBillableSummaryBody) HasUsageUnit() bool {
 func (o *UsageBillableSummaryBody) SetUsageUnit(v string) {
 	o.UsageUnit = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
@@ -355,22 +369,22 @@ func (o UsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageBillableSummaryBody) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountBillableUsage   *int64     `json:"account_billable_usage,omitempty"`
-		AccountCommittedUsage  *int64     `json:"account_committed_usage,omitempty"`
-		AccountOnDemandUsage   *int64     `json:"account_on_demand_usage,omitempty"`
-		ElapsedUsageHours      *int64     `json:"elapsed_usage_hours,omitempty"`
+		AccountBillableUsage *int64 `json:"account_billable_usage,omitempty"`
+		AccountCommittedUsage *int64 `json:"account_committed_usage,omitempty"`
+		AccountOnDemandUsage *int64 `json:"account_on_demand_usage,omitempty"`
+		ElapsedUsageHours *int64 `json:"elapsed_usage_hours,omitempty"`
 		FirstBillableUsageHour *time.Time `json:"first_billable_usage_hour,omitempty"`
-		LastBillableUsageHour  *time.Time `json:"last_billable_usage_hour,omitempty"`
-		OrgBillableUsage       *int64     `json:"org_billable_usage,omitempty"`
-		PercentageInAccount    *float64   `json:"percentage_in_account,omitempty"`
-		UsageUnit              *string    `json:"usage_unit,omitempty"`
+		LastBillableUsageHour *time.Time `json:"last_billable_usage_hour,omitempty"`
+		OrgBillableUsage *int64 `json:"org_billable_usage,omitempty"`
+		PercentageInAccount *float64 `json:"percentage_in_account,omitempty"`
+		UsageUnit *string `json:"usage_unit,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_billable_usage", "account_committed_usage", "account_on_demand_usage", "elapsed_usage_hours", "first_billable_usage_hour", "last_billable_usage_hour", "org_billable_usage", "percentage_in_account", "usage_unit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "account_billable_usage", "account_committed_usage", "account_on_demand_usage", "elapsed_usage_hours", "first_billable_usage_hour", "last_billable_usage_hour", "org_billable_usage", "percentage_in_account", "usage_unit",  })
 	} else {
 		return err
 	}

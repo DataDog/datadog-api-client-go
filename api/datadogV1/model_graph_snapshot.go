@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GraphSnapshot Object representing a graph snapshot.
 type GraphSnapshot struct {
@@ -19,9 +25,10 @@ type GraphSnapshot struct {
 	// URL of your [graph snapshot](https://docs.datadoghq.com/metrics/explorer/#snapshot).
 	SnapshotUrl *string `json:"snapshot_url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGraphSnapshot instantiates a new GraphSnapshot object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewGraphSnapshotWithDefaults() *GraphSnapshot {
 	this := GraphSnapshot{}
 	return &this
 }
-
 // GetGraphDef returns the GraphDef field value if set, zero value otherwise.
 func (o *GraphSnapshot) GetGraphDef() string {
 	if o == nil || o.GraphDef == nil {
@@ -67,6 +73,7 @@ func (o *GraphSnapshot) HasGraphDef() bool {
 func (o *GraphSnapshot) SetGraphDef(v string) {
 	o.GraphDef = &v
 }
+
 
 // GetMetricQuery returns the MetricQuery field value if set, zero value otherwise.
 func (o *GraphSnapshot) GetMetricQuery() string {
@@ -96,6 +103,7 @@ func (o *GraphSnapshot) SetMetricQuery(v string) {
 	o.MetricQuery = &v
 }
 
+
 // GetSnapshotUrl returns the SnapshotUrl field value if set, zero value otherwise.
 func (o *GraphSnapshot) GetSnapshotUrl() string {
 	if o == nil || o.SnapshotUrl == nil {
@@ -124,6 +132,8 @@ func (o *GraphSnapshot) SetSnapshotUrl(v string) {
 	o.SnapshotUrl = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o GraphSnapshot) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -149,7 +159,7 @@ func (o GraphSnapshot) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GraphSnapshot) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		GraphDef    *string `json:"graph_def,omitempty"`
+		GraphDef *string `json:"graph_def,omitempty"`
 		MetricQuery *string `json:"metric_query,omitempty"`
 		SnapshotUrl *string `json:"snapshot_url,omitempty"`
 	}{}
@@ -158,7 +168,7 @@ func (o *GraphSnapshot) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"graph_def", "metric_query", "snapshot_url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "graph_def", "metric_query", "snapshot_url",  })
 	} else {
 		return err
 	}

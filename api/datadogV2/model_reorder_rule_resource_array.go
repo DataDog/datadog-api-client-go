@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ReorderRuleResourceArray The definition of `ReorderRuleResourceArray` object.
 type ReorderRuleResourceArray struct {
 	// The `ReorderRuleResourceArray` `data`.
 	Data []ReorderRuleResourceData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewReorderRuleResourceArray instantiates a new ReorderRuleResourceArray object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewReorderRuleResourceArrayWithDefaults() *ReorderRuleResourceArray {
 	this := ReorderRuleResourceArray{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *ReorderRuleResourceArray) GetData() []ReorderRuleResourceData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *ReorderRuleResourceArray) GetDataOk() (*[]ReorderRuleResourceData, bool
 func (o *ReorderRuleResourceArray) SetData(v []ReorderRuleResourceData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ReorderRuleResourceArray) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *ReorderRuleResourceArray) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

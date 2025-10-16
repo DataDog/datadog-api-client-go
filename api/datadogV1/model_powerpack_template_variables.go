@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PowerpackTemplateVariables Powerpack template variables.
 type PowerpackTemplateVariables struct {
@@ -15,9 +21,10 @@ type PowerpackTemplateVariables struct {
 	// Template variables controlled by the external resource, such as the dashboard this powerpack is on.
 	ControlledExternally []PowerpackTemplateVariableContents `json:"controlled_externally,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPowerpackTemplateVariables instantiates a new PowerpackTemplateVariables object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewPowerpackTemplateVariablesWithDefaults() *PowerpackTemplateVariables {
 	this := PowerpackTemplateVariables{}
 	return &this
 }
-
 // GetControlledByPowerpack returns the ControlledByPowerpack field value if set, zero value otherwise.
 func (o *PowerpackTemplateVariables) GetControlledByPowerpack() []PowerpackTemplateVariableContents {
 	if o == nil || o.ControlledByPowerpack == nil {
@@ -63,6 +69,7 @@ func (o *PowerpackTemplateVariables) HasControlledByPowerpack() bool {
 func (o *PowerpackTemplateVariables) SetControlledByPowerpack(v []PowerpackTemplateVariableContents) {
 	o.ControlledByPowerpack = v
 }
+
 
 // GetControlledExternally returns the ControlledExternally field value if set, zero value otherwise.
 func (o *PowerpackTemplateVariables) GetControlledExternally() []PowerpackTemplateVariableContents {
@@ -92,6 +99,8 @@ func (o *PowerpackTemplateVariables) SetControlledExternally(v []PowerpackTempla
 	o.ControlledExternally = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o PowerpackTemplateVariables) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o PowerpackTemplateVariables) MarshalJSON() ([]byte, error) {
 func (o *PowerpackTemplateVariables) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ControlledByPowerpack []PowerpackTemplateVariableContents `json:"controlled_by_powerpack,omitempty"`
-		ControlledExternally  []PowerpackTemplateVariableContents `json:"controlled_externally,omitempty"`
+		ControlledExternally []PowerpackTemplateVariableContents `json:"controlled_externally,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"controlled_by_powerpack", "controlled_externally"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "controlled_by_powerpack", "controlled_externally",  })
 	} else {
 		return err
 	}

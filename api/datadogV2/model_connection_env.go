@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ConnectionEnv A list of connections or connection groups used in the workflow.
 type ConnectionEnv struct {
@@ -19,9 +23,10 @@ type ConnectionEnv struct {
 	// The definition of `ConnectionEnvEnv` object.
 	Env ConnectionEnvEnv `json:"env"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewConnectionEnv instantiates a new ConnectionEnv object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewConnectionEnvWithDefaults() *ConnectionEnv {
 	this := ConnectionEnv{}
 	return &this
 }
-
 // GetConnectionGroups returns the ConnectionGroups field value if set, zero value otherwise.
 func (o *ConnectionEnv) GetConnectionGroups() []ConnectionGroup {
 	if o == nil || o.ConnectionGroups == nil {
@@ -68,6 +72,7 @@ func (o *ConnectionEnv) HasConnectionGroups() bool {
 func (o *ConnectionEnv) SetConnectionGroups(v []ConnectionGroup) {
 	o.ConnectionGroups = v
 }
+
 
 // GetConnections returns the Connections field value if set, zero value otherwise.
 func (o *ConnectionEnv) GetConnections() []Connection {
@@ -97,6 +102,7 @@ func (o *ConnectionEnv) SetConnections(v []Connection) {
 	o.Connections = v
 }
 
+
 // GetEnv returns the Env field value.
 func (o *ConnectionEnv) GetEnv() ConnectionEnvEnv {
 	if o == nil {
@@ -119,6 +125,8 @@ func (o *ConnectionEnv) GetEnvOk() (*ConnectionEnvEnv, bool) {
 func (o *ConnectionEnv) SetEnv(v ConnectionEnvEnv) {
 	o.Env = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ConnectionEnv) MarshalJSON() ([]byte, error) {
@@ -144,8 +152,8 @@ func (o ConnectionEnv) MarshalJSON() ([]byte, error) {
 func (o *ConnectionEnv) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ConnectionGroups []ConnectionGroup `json:"connectionGroups,omitempty"`
-		Connections      []Connection      `json:"connections,omitempty"`
-		Env              *ConnectionEnvEnv `json:"env"`
+		Connections []Connection `json:"connections,omitempty"`
+		Env *ConnectionEnvEnv `json:"env"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,7 +163,7 @@ func (o *ConnectionEnv) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"connectionGroups", "connections", "env"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "connectionGroups", "connections", "env",  })
 	} else {
 		return err
 	}

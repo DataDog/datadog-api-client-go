@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineMetadataEntry A custom metadata entry.
 type ObservabilityPipelineMetadataEntry struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineMetadataEntry struct {
 	// The metadata value.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineMetadataEntry instantiates a new ObservabilityPipelineMetadataEntry object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineMetadataEntryWithDefaults() *ObservabilityPipelineM
 	this := ObservabilityPipelineMetadataEntry{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *ObservabilityPipelineMetadataEntry) GetName() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineMetadataEntry) GetNameOk() (*string, bool) {
 func (o *ObservabilityPipelineMetadataEntry) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetValue returns the Value field value.
 func (o *ObservabilityPipelineMetadataEntry) GetValue() string {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineMetadataEntry) SetValue(v string) {
 	o.Value = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineMetadataEntry) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o ObservabilityPipelineMetadataEntry) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineMetadataEntry) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name  *string `json:"name"`
+		Name *string `json:"name"`
 		Value *string `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineMetadataEntry) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "value",  })
 	} else {
 		return err
 	}

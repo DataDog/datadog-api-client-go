@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentResponseMetaPagination Pagination properties.
 type IncidentResponseMetaPagination struct {
@@ -17,9 +23,10 @@ type IncidentResponseMetaPagination struct {
 	// Maximum size of pages to return.
 	Size *int64 `json:"size,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentResponseMetaPagination instantiates a new IncidentResponseMetaPagination object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewIncidentResponseMetaPaginationWithDefaults() *IncidentResponseMetaPagina
 	this := IncidentResponseMetaPagination{}
 	return &this
 }
-
 // GetNextOffset returns the NextOffset field value if set, zero value otherwise.
 func (o *IncidentResponseMetaPagination) GetNextOffset() int64 {
 	if o == nil || o.NextOffset == nil {
@@ -65,6 +71,7 @@ func (o *IncidentResponseMetaPagination) HasNextOffset() bool {
 func (o *IncidentResponseMetaPagination) SetNextOffset(v int64) {
 	o.NextOffset = &v
 }
+
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
 func (o *IncidentResponseMetaPagination) GetOffset() int64 {
@@ -94,6 +101,7 @@ func (o *IncidentResponseMetaPagination) SetOffset(v int64) {
 	o.Offset = &v
 }
 
+
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *IncidentResponseMetaPagination) GetSize() int64 {
 	if o == nil || o.Size == nil {
@@ -122,6 +130,8 @@ func (o *IncidentResponseMetaPagination) SetSize(v int64) {
 	o.Size = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentResponseMetaPagination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,15 +158,15 @@ func (o IncidentResponseMetaPagination) MarshalJSON() ([]byte, error) {
 func (o *IncidentResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		NextOffset *int64 `json:"next_offset,omitempty"`
-		Offset     *int64 `json:"offset,omitempty"`
-		Size       *int64 `json:"size,omitempty"`
+		Offset *int64 `json:"offset,omitempty"`
+		Size *int64 `json:"size,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"next_offset", "offset", "size"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "next_offset", "offset", "size",  })
 	} else {
 		return err
 	}

@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsArchiveState The state of the archive.
 type LogsArchiveState string
 
 // List of LogsArchiveState.
 const (
-	LOGSARCHIVESTATE_UNKNOWN             LogsArchiveState = "UNKNOWN"
-	LOGSARCHIVESTATE_WORKING             LogsArchiveState = "WORKING"
-	LOGSARCHIVESTATE_FAILING             LogsArchiveState = "FAILING"
+	LOGSARCHIVESTATE_UNKNOWN LogsArchiveState = "UNKNOWN"
+	LOGSARCHIVESTATE_WORKING LogsArchiveState = "WORKING"
+	LOGSARCHIVESTATE_FAILING LogsArchiveState = "FAILING"
 	LOGSARCHIVESTATE_WORKING_AUTH_LEGACY LogsArchiveState = "WORKING_AUTH_LEGACY"
 )
 

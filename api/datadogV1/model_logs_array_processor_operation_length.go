@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsArrayProcessorOperationLength Operation that computes the length of a `source` array and stores the result in the `target` attribute.
 type LogsArrayProcessorOperationLength struct {
@@ -19,9 +23,10 @@ type LogsArrayProcessorOperationLength struct {
 	// Operation type.
 	Type LogsArrayProcessorOperationLengthType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsArrayProcessorOperationLength instantiates a new LogsArrayProcessorOperationLength object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewLogsArrayProcessorOperationLengthWithDefaults() *LogsArrayProcessorOpera
 	this := LogsArrayProcessorOperationLength{}
 	return &this
 }
-
 // GetSource returns the Source field value.
 func (o *LogsArrayProcessorOperationLength) GetSource() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *LogsArrayProcessorOperationLength) GetSourceOk() (*string, bool) {
 func (o *LogsArrayProcessorOperationLength) SetSource(v string) {
 	o.Source = v
 }
+
 
 // GetTarget returns the Target field value.
 func (o *LogsArrayProcessorOperationLength) GetTarget() string {
@@ -89,6 +94,7 @@ func (o *LogsArrayProcessorOperationLength) SetTarget(v string) {
 	o.Target = v
 }
 
+
 // GetType returns the Type field value.
 func (o *LogsArrayProcessorOperationLength) GetType() LogsArrayProcessorOperationLengthType {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *LogsArrayProcessorOperationLength) SetType(v LogsArrayProcessorOperatio
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsArrayProcessorOperationLength) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o LogsArrayProcessorOperationLength) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArrayProcessorOperationLength) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Source *string                                `json:"source"`
-		Target *string                                `json:"target"`
-		Type   *LogsArrayProcessorOperationLengthType `json:"type"`
+		Source *string `json:"source"`
+		Target *string `json:"target"`
+		Type *LogsArrayProcessorOperationLengthType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *LogsArrayProcessorOperationLength) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"source", "target", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "source", "target", "type",  })
 	} else {
 		return err
 	}

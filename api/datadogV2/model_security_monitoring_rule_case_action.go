@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleCaseAction Action to perform when a signal is triggered. Only available for Application Security rule type.
 type SecurityMonitoringRuleCaseAction struct {
@@ -15,9 +21,10 @@ type SecurityMonitoringRuleCaseAction struct {
 	// The action type.
 	Type *SecurityMonitoringRuleCaseActionType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringRuleCaseAction instantiates a new SecurityMonitoringRuleCaseAction object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSecurityMonitoringRuleCaseActionWithDefaults() *SecurityMonitoringRuleCa
 	this := SecurityMonitoringRuleCaseAction{}
 	return &this
 }
-
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleCaseAction) GetOptions() SecurityMonitoringRuleCaseActionOptions {
 	if o == nil || o.Options == nil {
@@ -63,6 +69,7 @@ func (o *SecurityMonitoringRuleCaseAction) HasOptions() bool {
 func (o *SecurityMonitoringRuleCaseAction) SetOptions(v SecurityMonitoringRuleCaseActionOptions) {
 	o.Options = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleCaseAction) GetType() SecurityMonitoringRuleCaseActionType {
@@ -92,6 +99,8 @@ func (o *SecurityMonitoringRuleCaseAction) SetType(v SecurityMonitoringRuleCaseA
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleCaseAction) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,24 +124,24 @@ func (o SecurityMonitoringRuleCaseAction) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleCaseAction) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Options *SecurityMonitoringRuleCaseActionOptions `json:"options,omitempty"`
-		Type    *SecurityMonitoringRuleCaseActionType    `json:"type,omitempty"`
+		Type *SecurityMonitoringRuleCaseActionType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"options", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "options", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Options = all.Options
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

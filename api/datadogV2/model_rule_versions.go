@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RuleVersions A rule version with a list of updates.
 type RuleVersions struct {
@@ -15,9 +21,10 @@ type RuleVersions struct {
 	// Create a new rule.
 	Rule *SecurityMonitoringRuleResponse `json:"rule,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRuleVersions instantiates a new RuleVersions object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewRuleVersionsWithDefaults() *RuleVersions {
 	this := RuleVersions{}
 	return &this
 }
-
 // GetChanges returns the Changes field value if set, zero value otherwise.
 func (o *RuleVersions) GetChanges() []RuleVersionUpdate {
 	if o == nil || o.Changes == nil {
@@ -63,6 +69,7 @@ func (o *RuleVersions) HasChanges() bool {
 func (o *RuleVersions) SetChanges(v []RuleVersionUpdate) {
 	o.Changes = v
 }
+
 
 // GetRule returns the Rule field value if set, zero value otherwise.
 func (o *RuleVersions) GetRule() SecurityMonitoringRuleResponse {
@@ -92,6 +99,8 @@ func (o *RuleVersions) SetRule(v SecurityMonitoringRuleResponse) {
 	o.Rule = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RuleVersions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,15 +123,15 @@ func (o RuleVersions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RuleVersions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Changes []RuleVersionUpdate             `json:"changes,omitempty"`
-		Rule    *SecurityMonitoringRuleResponse `json:"rule,omitempty"`
+		Changes []RuleVersionUpdate `json:"changes,omitempty"`
+		Rule *SecurityMonitoringRuleResponse `json:"rule,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"changes", "rule"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "changes", "rule",  })
 	} else {
 		return err
 	}

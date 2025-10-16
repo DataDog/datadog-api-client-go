@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudConfigurationComplianceRuleOptions Options for cloud_configuration rules.
 // Fields `resourceType` and `regoRule` are mandatory when managing custom `cloud_configuration` rules.
@@ -19,9 +25,10 @@ type CloudConfigurationComplianceRuleOptions struct {
 	// Main resource type to be checked by the rule. It should be specified again in `regoRule.resourceTypes`.
 	ResourceType *string `json:"resourceType,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudConfigurationComplianceRuleOptions instantiates a new CloudConfigurationComplianceRuleOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewCloudConfigurationComplianceRuleOptionsWithDefaults() *CloudConfiguratio
 	this := CloudConfigurationComplianceRuleOptions{}
 	return &this
 }
-
 // GetComplexRule returns the ComplexRule field value if set, zero value otherwise.
 func (o *CloudConfigurationComplianceRuleOptions) GetComplexRule() bool {
 	if o == nil || o.ComplexRule == nil {
@@ -67,6 +73,7 @@ func (o *CloudConfigurationComplianceRuleOptions) HasComplexRule() bool {
 func (o *CloudConfigurationComplianceRuleOptions) SetComplexRule(v bool) {
 	o.ComplexRule = &v
 }
+
 
 // GetRegoRule returns the RegoRule field value if set, zero value otherwise.
 func (o *CloudConfigurationComplianceRuleOptions) GetRegoRule() CloudConfigurationRegoRule {
@@ -96,6 +103,7 @@ func (o *CloudConfigurationComplianceRuleOptions) SetRegoRule(v CloudConfigurati
 	o.RegoRule = &v
 }
 
+
 // GetResourceType returns the ResourceType field value if set, zero value otherwise.
 func (o *CloudConfigurationComplianceRuleOptions) GetResourceType() string {
 	if o == nil || o.ResourceType == nil {
@@ -124,6 +132,8 @@ func (o *CloudConfigurationComplianceRuleOptions) SetResourceType(v string) {
 	o.ResourceType = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudConfigurationComplianceRuleOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -149,23 +159,23 @@ func (o CloudConfigurationComplianceRuleOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudConfigurationComplianceRuleOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ComplexRule  *bool                       `json:"complexRule,omitempty"`
-		RegoRule     *CloudConfigurationRegoRule `json:"regoRule,omitempty"`
-		ResourceType *string                     `json:"resourceType,omitempty"`
+		ComplexRule *bool `json:"complexRule,omitempty"`
+		RegoRule *CloudConfigurationRegoRule `json:"regoRule,omitempty"`
+		ResourceType *string `json:"resourceType,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"complexRule", "regoRule", "resourceType"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "complexRule", "regoRule", "resourceType",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.ComplexRule = all.ComplexRule
-	if all.RegoRule != nil && all.RegoRule.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RegoRule != nil && all.RegoRule.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RegoRule = all.RegoRule

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RulesetRespDataAttributesModified The definition of `RulesetRespDataAttributesModified` object.
 type RulesetRespDataAttributesModified struct {
@@ -15,9 +21,10 @@ type RulesetRespDataAttributesModified struct {
 	// The `modified` `seconds`.
 	Seconds *int64 `json:"seconds,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRulesetRespDataAttributesModified instantiates a new RulesetRespDataAttributesModified object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewRulesetRespDataAttributesModifiedWithDefaults() *RulesetRespDataAttribut
 	this := RulesetRespDataAttributesModified{}
 	return &this
 }
-
 // GetNanos returns the Nanos field value if set, zero value otherwise.
 func (o *RulesetRespDataAttributesModified) GetNanos() int32 {
 	if o == nil || o.Nanos == nil {
@@ -63,6 +69,7 @@ func (o *RulesetRespDataAttributesModified) HasNanos() bool {
 func (o *RulesetRespDataAttributesModified) SetNanos(v int32) {
 	o.Nanos = &v
 }
+
 
 // GetSeconds returns the Seconds field value if set, zero value otherwise.
 func (o *RulesetRespDataAttributesModified) GetSeconds() int64 {
@@ -92,6 +99,8 @@ func (o *RulesetRespDataAttributesModified) SetSeconds(v int64) {
 	o.Seconds = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RulesetRespDataAttributesModified) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o RulesetRespDataAttributesModified) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RulesetRespDataAttributesModified) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Nanos   *int32 `json:"nanos,omitempty"`
+		Nanos *int32 `json:"nanos,omitempty"`
 		Seconds *int64 `json:"seconds,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *RulesetRespDataAttributesModified) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"nanos", "seconds"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "nanos", "seconds",  })
 	} else {
 		return err
 	}

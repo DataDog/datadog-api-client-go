@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RUMProductAnalyticsRetentionState Controls the retention policy for Product Analytics data derived from RUM events.
 type RUMProductAnalyticsRetentionState string
 
 // List of RUMProductAnalyticsRetentionState.
 const (
-	RUMPRODUCTANALYTICSRETENTIONSTATE_MAX  RUMProductAnalyticsRetentionState = "MAX"
+	RUMPRODUCTANALYTICSRETENTIONSTATE_MAX RUMProductAnalyticsRetentionState = "MAX"
 	RUMPRODUCTANALYTICSRETENTIONSTATE_NONE RUMProductAnalyticsRetentionState = "NONE"
 )
 

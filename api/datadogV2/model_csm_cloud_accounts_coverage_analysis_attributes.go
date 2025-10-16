@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CsmCloudAccountsCoverageAnalysisAttributes CSM Cloud Accounts Coverage Analysis attributes.
 type CsmCloudAccountsCoverageAnalysisAttributes struct {
@@ -21,9 +27,10 @@ type CsmCloudAccountsCoverageAnalysisAttributes struct {
 	// CSM Coverage Analysis.
 	TotalCoverage *CsmCoverageAnalysis `json:"total_coverage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCsmCloudAccountsCoverageAnalysisAttributes instantiates a new CsmCloudAccountsCoverageAnalysisAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewCsmCloudAccountsCoverageAnalysisAttributesWithDefaults() *CsmCloudAccoun
 	this := CsmCloudAccountsCoverageAnalysisAttributes{}
 	return &this
 }
-
 // GetAwsCoverage returns the AwsCoverage field value if set, zero value otherwise.
 func (o *CsmCloudAccountsCoverageAnalysisAttributes) GetAwsCoverage() CsmCoverageAnalysis {
 	if o == nil || o.AwsCoverage == nil {
@@ -69,6 +75,7 @@ func (o *CsmCloudAccountsCoverageAnalysisAttributes) HasAwsCoverage() bool {
 func (o *CsmCloudAccountsCoverageAnalysisAttributes) SetAwsCoverage(v CsmCoverageAnalysis) {
 	o.AwsCoverage = &v
 }
+
 
 // GetAzureCoverage returns the AzureCoverage field value if set, zero value otherwise.
 func (o *CsmCloudAccountsCoverageAnalysisAttributes) GetAzureCoverage() CsmCoverageAnalysis {
@@ -98,6 +105,7 @@ func (o *CsmCloudAccountsCoverageAnalysisAttributes) SetAzureCoverage(v CsmCover
 	o.AzureCoverage = &v
 }
 
+
 // GetGcpCoverage returns the GcpCoverage field value if set, zero value otherwise.
 func (o *CsmCloudAccountsCoverageAnalysisAttributes) GetGcpCoverage() CsmCoverageAnalysis {
 	if o == nil || o.GcpCoverage == nil {
@@ -125,6 +133,7 @@ func (o *CsmCloudAccountsCoverageAnalysisAttributes) HasGcpCoverage() bool {
 func (o *CsmCloudAccountsCoverageAnalysisAttributes) SetGcpCoverage(v CsmCoverageAnalysis) {
 	o.GcpCoverage = &v
 }
+
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *CsmCloudAccountsCoverageAnalysisAttributes) GetOrgId() int64 {
@@ -154,6 +163,7 @@ func (o *CsmCloudAccountsCoverageAnalysisAttributes) SetOrgId(v int64) {
 	o.OrgId = &v
 }
 
+
 // GetTotalCoverage returns the TotalCoverage field value if set, zero value otherwise.
 func (o *CsmCloudAccountsCoverageAnalysisAttributes) GetTotalCoverage() CsmCoverageAnalysis {
 	if o == nil || o.TotalCoverage == nil {
@@ -181,6 +191,8 @@ func (o *CsmCloudAccountsCoverageAnalysisAttributes) HasTotalCoverage() bool {
 func (o *CsmCloudAccountsCoverageAnalysisAttributes) SetTotalCoverage(v CsmCoverageAnalysis) {
 	o.TotalCoverage = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CsmCloudAccountsCoverageAnalysisAttributes) MarshalJSON() ([]byte, error) {
@@ -213,10 +225,10 @@ func (o CsmCloudAccountsCoverageAnalysisAttributes) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *CsmCloudAccountsCoverageAnalysisAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AwsCoverage   *CsmCoverageAnalysis `json:"aws_coverage,omitempty"`
+		AwsCoverage *CsmCoverageAnalysis `json:"aws_coverage,omitempty"`
 		AzureCoverage *CsmCoverageAnalysis `json:"azure_coverage,omitempty"`
-		GcpCoverage   *CsmCoverageAnalysis `json:"gcp_coverage,omitempty"`
-		OrgId         *int64               `json:"org_id,omitempty"`
+		GcpCoverage *CsmCoverageAnalysis `json:"gcp_coverage,omitempty"`
+		OrgId *int64 `json:"org_id,omitempty"`
 		TotalCoverage *CsmCoverageAnalysis `json:"total_coverage,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -224,26 +236,26 @@ func (o *CsmCloudAccountsCoverageAnalysisAttributes) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aws_coverage", "azure_coverage", "gcp_coverage", "org_id", "total_coverage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aws_coverage", "azure_coverage", "gcp_coverage", "org_id", "total_coverage",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.AwsCoverage != nil && all.AwsCoverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.AwsCoverage != nil && all.AwsCoverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.AwsCoverage = all.AwsCoverage
-	if all.AzureCoverage != nil && all.AzureCoverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.AzureCoverage != nil && all.AzureCoverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.AzureCoverage = all.AzureCoverage
-	if all.GcpCoverage != nil && all.GcpCoverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.GcpCoverage != nil && all.GcpCoverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.GcpCoverage = all.GcpCoverage
 	o.OrgId = all.OrgId
-	if all.TotalCoverage != nil && all.TotalCoverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.TotalCoverage != nil && all.TotalCoverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.TotalCoverage = all.TotalCoverage

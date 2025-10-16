@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ActionQueryMockedOutputsObject The mocked outputs of the action query.
 type ActionQueryMockedOutputsObject struct {
@@ -17,9 +21,10 @@ type ActionQueryMockedOutputsObject struct {
 	// The mocked outputs of the action query, serialized as JSON.
 	Outputs *string `json:"outputs,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewActionQueryMockedOutputsObject instantiates a new ActionQueryMockedOutputsObject object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewActionQueryMockedOutputsObjectWithDefaults() *ActionQueryMockedOutputsOb
 	this := ActionQueryMockedOutputsObject{}
 	return &this
 }
-
 // GetEnabled returns the Enabled field value.
 func (o *ActionQueryMockedOutputsObject) GetEnabled() ActionQueryMockedOutputsEnabled {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *ActionQueryMockedOutputsObject) GetEnabledOk() (*ActionQueryMockedOutpu
 func (o *ActionQueryMockedOutputsObject) SetEnabled(v ActionQueryMockedOutputsEnabled) {
 	o.Enabled = v
 }
+
 
 // GetOutputs returns the Outputs field value if set, zero value otherwise.
 func (o *ActionQueryMockedOutputsObject) GetOutputs() string {
@@ -90,6 +95,8 @@ func (o *ActionQueryMockedOutputsObject) SetOutputs(v string) {
 	o.Outputs = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ActionQueryMockedOutputsObject) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o ActionQueryMockedOutputsObject) MarshalJSON() ([]byte, error) {
 func (o *ActionQueryMockedOutputsObject) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Enabled *ActionQueryMockedOutputsEnabled `json:"enabled"`
-		Outputs *string                          `json:"outputs,omitempty"`
+		Outputs *string `json:"outputs,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *ActionQueryMockedOutputsObject) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "outputs"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "enabled", "outputs",  })
 	} else {
 		return err
 	}

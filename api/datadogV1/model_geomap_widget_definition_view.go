@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GeomapWidgetDefinitionView The view of the world that the map should render.
 type GeomapWidgetDefinitionView struct {
 	// The 2-letter ISO code of a country to focus the map on. Or `WORLD`.
 	Focus string `json:"focus"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGeomapWidgetDefinitionView instantiates a new GeomapWidgetDefinitionView object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewGeomapWidgetDefinitionViewWithDefaults() *GeomapWidgetDefinitionView {
 	this := GeomapWidgetDefinitionView{}
 	return &this
 }
-
 // GetFocus returns the Focus field value.
 func (o *GeomapWidgetDefinitionView) GetFocus() string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *GeomapWidgetDefinitionView) GetFocusOk() (*string, bool) {
 func (o *GeomapWidgetDefinitionView) SetFocus(v string) {
 	o.Focus = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o GeomapWidgetDefinitionView) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *GeomapWidgetDefinitionView) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"focus"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "focus",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityV3Metadata The definition of Entity V3 Metadata object.
 type EntityV3Metadata struct {
@@ -40,6 +44,7 @@ type EntityV3Metadata struct {
 	UnparsedObject map[string]interface{} `json:"-"`
 }
 
+
 // NewEntityV3Metadata instantiates a new EntityV3Metadata object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -57,7 +62,6 @@ func NewEntityV3MetadataWithDefaults() *EntityV3Metadata {
 	this := EntityV3Metadata{}
 	return &this
 }
-
 // GetAdditionalOwners returns the AdditionalOwners field value if set, zero value otherwise.
 func (o *EntityV3Metadata) GetAdditionalOwners() []EntityV3MetadataAdditionalOwnersItems {
 	if o == nil || o.AdditionalOwners == nil {
@@ -85,6 +89,7 @@ func (o *EntityV3Metadata) HasAdditionalOwners() bool {
 func (o *EntityV3Metadata) SetAdditionalOwners(v []EntityV3MetadataAdditionalOwnersItems) {
 	o.AdditionalOwners = v
 }
+
 
 // GetContacts returns the Contacts field value if set, zero value otherwise.
 func (o *EntityV3Metadata) GetContacts() []EntityV3MetadataContactsItems {
@@ -114,6 +119,7 @@ func (o *EntityV3Metadata) SetContacts(v []EntityV3MetadataContactsItems) {
 	o.Contacts = v
 }
 
+
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *EntityV3Metadata) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -141,6 +147,7 @@ func (o *EntityV3Metadata) HasDescription() bool {
 func (o *EntityV3Metadata) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *EntityV3Metadata) GetDisplayName() string {
@@ -170,6 +177,7 @@ func (o *EntityV3Metadata) SetDisplayName(v string) {
 	o.DisplayName = &v
 }
 
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *EntityV3Metadata) GetId() string {
 	if o == nil || o.Id == nil {
@@ -197,6 +205,7 @@ func (o *EntityV3Metadata) HasId() bool {
 func (o *EntityV3Metadata) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetInheritFrom returns the InheritFrom field value if set, zero value otherwise.
 func (o *EntityV3Metadata) GetInheritFrom() string {
@@ -226,6 +235,7 @@ func (o *EntityV3Metadata) SetInheritFrom(v string) {
 	o.InheritFrom = &v
 }
 
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *EntityV3Metadata) GetLinks() []EntityV3MetadataLinksItems {
 	if o == nil || o.Links == nil {
@@ -253,6 +263,7 @@ func (o *EntityV3Metadata) HasLinks() bool {
 func (o *EntityV3Metadata) SetLinks(v []EntityV3MetadataLinksItems) {
 	o.Links = v
 }
+
 
 // GetManaged returns the Managed field value if set, zero value otherwise.
 func (o *EntityV3Metadata) GetManaged() map[string]interface{} {
@@ -282,6 +293,7 @@ func (o *EntityV3Metadata) SetManaged(v map[string]interface{}) {
 	o.Managed = v
 }
 
+
 // GetName returns the Name field value.
 func (o *EntityV3Metadata) GetName() string {
 	if o == nil {
@@ -304,6 +316,7 @@ func (o *EntityV3Metadata) GetNameOk() (*string, bool) {
 func (o *EntityV3Metadata) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *EntityV3Metadata) GetNamespace() string {
@@ -333,6 +346,7 @@ func (o *EntityV3Metadata) SetNamespace(v string) {
 	o.Namespace = &v
 }
 
+
 // GetOwner returns the Owner field value if set, zero value otherwise.
 func (o *EntityV3Metadata) GetOwner() string {
 	if o == nil || o.Owner == nil {
@@ -361,6 +375,7 @@ func (o *EntityV3Metadata) SetOwner(v string) {
 	o.Owner = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *EntityV3Metadata) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -388,6 +403,8 @@ func (o *EntityV3Metadata) HasTags() bool {
 func (o *EntityV3Metadata) SetTags(v []string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3Metadata) MarshalJSON() ([]byte, error) {
@@ -436,17 +453,17 @@ func (o EntityV3Metadata) MarshalJSON() ([]byte, error) {
 func (o *EntityV3Metadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AdditionalOwners []EntityV3MetadataAdditionalOwnersItems `json:"additionalOwners,omitempty"`
-		Contacts         []EntityV3MetadataContactsItems         `json:"contacts,omitempty"`
-		Description      *string                                 `json:"description,omitempty"`
-		DisplayName      *string                                 `json:"displayName,omitempty"`
-		Id               *string                                 `json:"id,omitempty"`
-		InheritFrom      *string                                 `json:"inheritFrom,omitempty"`
-		Links            []EntityV3MetadataLinksItems            `json:"links,omitempty"`
-		Managed          map[string]interface{}                  `json:"managed,omitempty"`
-		Name             *string                                 `json:"name"`
-		Namespace        *string                                 `json:"namespace,omitempty"`
-		Owner            *string                                 `json:"owner,omitempty"`
-		Tags             []string                                `json:"tags,omitempty"`
+		Contacts []EntityV3MetadataContactsItems `json:"contacts,omitempty"`
+		Description *string `json:"description,omitempty"`
+		DisplayName *string `json:"displayName,omitempty"`
+		Id *string `json:"id,omitempty"`
+		InheritFrom *string `json:"inheritFrom,omitempty"`
+		Links []EntityV3MetadataLinksItems `json:"links,omitempty"`
+		Managed map[string]interface{} `json:"managed,omitempty"`
+		Name *string `json:"name"`
+		Namespace *string `json:"namespace,omitempty"`
+		Owner *string `json:"owner,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

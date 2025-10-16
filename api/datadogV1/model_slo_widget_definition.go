@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOWidgetDefinition Use the SLO and uptime widget to track your SLOs (Service Level Objectives) and uptime on screenboards and timeboards.
 type SLOWidgetDefinition struct {
@@ -35,9 +39,10 @@ type SLOWidgetDefinition struct {
 	// Type of view displayed by the widget.
 	ViewType string `json:"view_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSLOWidgetDefinition instantiates a new SLOWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -61,7 +66,6 @@ func NewSLOWidgetDefinitionWithDefaults() *SLOWidgetDefinition {
 	this.ViewType = viewType
 	return &this
 }
-
 // GetAdditionalQueryFilters returns the AdditionalQueryFilters field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetAdditionalQueryFilters() string {
 	if o == nil || o.AdditionalQueryFilters == nil {
@@ -89,6 +93,7 @@ func (o *SLOWidgetDefinition) HasAdditionalQueryFilters() bool {
 func (o *SLOWidgetDefinition) SetAdditionalQueryFilters(v string) {
 	o.AdditionalQueryFilters = &v
 }
+
 
 // GetGlobalTimeTarget returns the GlobalTimeTarget field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetGlobalTimeTarget() string {
@@ -118,6 +123,7 @@ func (o *SLOWidgetDefinition) SetGlobalTimeTarget(v string) {
 	o.GlobalTimeTarget = &v
 }
 
+
 // GetShowErrorBudget returns the ShowErrorBudget field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetShowErrorBudget() bool {
 	if o == nil || o.ShowErrorBudget == nil {
@@ -145,6 +151,7 @@ func (o *SLOWidgetDefinition) HasShowErrorBudget() bool {
 func (o *SLOWidgetDefinition) SetShowErrorBudget(v bool) {
 	o.ShowErrorBudget = &v
 }
+
 
 // GetSloId returns the SloId field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetSloId() string {
@@ -174,6 +181,7 @@ func (o *SLOWidgetDefinition) SetSloId(v string) {
 	o.SloId = &v
 }
 
+
 // GetTimeWindows returns the TimeWindows field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetTimeWindows() []WidgetTimeWindows {
 	if o == nil || o.TimeWindows == nil {
@@ -201,6 +209,7 @@ func (o *SLOWidgetDefinition) HasTimeWindows() bool {
 func (o *SLOWidgetDefinition) SetTimeWindows(v []WidgetTimeWindows) {
 	o.TimeWindows = v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetTitle() string {
@@ -230,6 +239,7 @@ func (o *SLOWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -257,6 +267,7 @@ func (o *SLOWidgetDefinition) HasTitleAlign() bool {
 func (o *SLOWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
+
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetTitleSize() string {
@@ -286,6 +297,7 @@ func (o *SLOWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *SLOWidgetDefinition) GetType() SLOWidgetDefinitionType {
 	if o == nil {
@@ -308,6 +320,7 @@ func (o *SLOWidgetDefinition) GetTypeOk() (*SLOWidgetDefinitionType, bool) {
 func (o *SLOWidgetDefinition) SetType(v SLOWidgetDefinitionType) {
 	o.Type = v
 }
+
 
 // GetViewMode returns the ViewMode field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetViewMode() WidgetViewMode {
@@ -337,6 +350,7 @@ func (o *SLOWidgetDefinition) SetViewMode(v WidgetViewMode) {
 	o.ViewMode = &v
 }
 
+
 // GetViewType returns the ViewType field value.
 func (o *SLOWidgetDefinition) GetViewType() string {
 	if o == nil {
@@ -359,6 +373,8 @@ func (o *SLOWidgetDefinition) GetViewTypeOk() (*string, bool) {
 func (o *SLOWidgetDefinition) SetViewType(v string) {
 	o.ViewType = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -405,17 +421,17 @@ func (o SLOWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AdditionalQueryFilters *string                  `json:"additional_query_filters,omitempty"`
-		GlobalTimeTarget       *string                  `json:"global_time_target,omitempty"`
-		ShowErrorBudget        *bool                    `json:"show_error_budget,omitempty"`
-		SloId                  *string                  `json:"slo_id,omitempty"`
-		TimeWindows            []WidgetTimeWindows      `json:"time_windows,omitempty"`
-		Title                  *string                  `json:"title,omitempty"`
-		TitleAlign             *WidgetTextAlign         `json:"title_align,omitempty"`
-		TitleSize              *string                  `json:"title_size,omitempty"`
-		Type                   *SLOWidgetDefinitionType `json:"type"`
-		ViewMode               *WidgetViewMode          `json:"view_mode,omitempty"`
-		ViewType               *string                  `json:"view_type"`
+		AdditionalQueryFilters *string `json:"additional_query_filters,omitempty"`
+		GlobalTimeTarget *string `json:"global_time_target,omitempty"`
+		ShowErrorBudget *bool `json:"show_error_budget,omitempty"`
+		SloId *string `json:"slo_id,omitempty"`
+		TimeWindows []WidgetTimeWindows `json:"time_windows,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type *SLOWidgetDefinitionType `json:"type"`
+		ViewMode *WidgetViewMode `json:"view_mode,omitempty"`
+		ViewType *string `json:"view_type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -428,7 +444,7 @@ func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"additional_query_filters", "global_time_target", "show_error_budget", "slo_id", "time_windows", "title", "title_align", "title_size", "type", "view_mode", "view_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "additional_query_filters", "global_time_target", "show_error_budget", "slo_id", "time_windows", "title", "title_align", "title_size", "type", "view_mode", "view_type",  })
 	} else {
 		return err
 	}
@@ -440,7 +456,7 @@ func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.SloId = all.SloId
 	o.TimeWindows = all.TimeWindows
 	o.Title = all.Title
-	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
+	if all.TitleAlign != nil &&!all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign
@@ -451,7 +467,7 @@ func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.Type = *all.Type
 	}
-	if all.ViewMode != nil && !all.ViewMode.IsValid() {
+	if all.ViewMode != nil &&!all.ViewMode.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ViewMode = all.ViewMode

@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSNewExternalIDResponseAttributes AWS External ID response body.
 type AWSNewExternalIDResponseAttributes struct {
 	// AWS IAM External ID for associated role.
 	ExternalId string `json:"external_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSNewExternalIDResponseAttributes instantiates a new AWSNewExternalIDResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewAWSNewExternalIDResponseAttributesWithDefaults() *AWSNewExternalIDRespon
 	this := AWSNewExternalIDResponseAttributes{}
 	return &this
 }
-
 // GetExternalId returns the ExternalId field value.
 func (o *AWSNewExternalIDResponseAttributes) GetExternalId() string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *AWSNewExternalIDResponseAttributes) GetExternalIdOk() (*string, bool) {
 func (o *AWSNewExternalIDResponseAttributes) SetExternalId(v string) {
 	o.ExternalId = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSNewExternalIDResponseAttributes) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *AWSNewExternalIDResponseAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"external_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "external_id",  })
 	} else {
 		return err
 	}

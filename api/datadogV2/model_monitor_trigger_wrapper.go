@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorTriggerWrapper Schema for a Monitor-based trigger.
 type MonitorTriggerWrapper struct {
@@ -17,9 +21,10 @@ type MonitorTriggerWrapper struct {
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorTriggerWrapper instantiates a new MonitorTriggerWrapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewMonitorTriggerWrapperWithDefaults() *MonitorTriggerWrapper {
 	this := MonitorTriggerWrapper{}
 	return &this
 }
-
 // GetMonitorTrigger returns the MonitorTrigger field value.
 func (o *MonitorTriggerWrapper) GetMonitorTrigger() MonitorTrigger {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *MonitorTriggerWrapper) GetMonitorTriggerOk() (*MonitorTrigger, bool) {
 func (o *MonitorTriggerWrapper) SetMonitorTrigger(v MonitorTrigger) {
 	o.MonitorTrigger = v
 }
+
 
 // GetStartStepNames returns the StartStepNames field value if set, zero value otherwise.
 func (o *MonitorTriggerWrapper) GetStartStepNames() []string {
@@ -90,6 +95,8 @@ func (o *MonitorTriggerWrapper) SetStartStepNames(v []string) {
 	o.StartStepNames = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorTriggerWrapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o MonitorTriggerWrapper) MarshalJSON() ([]byte, error) {
 func (o *MonitorTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		MonitorTrigger *MonitorTrigger `json:"monitorTrigger"`
-		StartStepNames []string        `json:"startStepNames,omitempty"`
+		StartStepNames []string `json:"startStepNames,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *MonitorTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"monitorTrigger", "startStepNames"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "monitorTrigger", "startStepNames",  })
 	} else {
 		return err
 	}

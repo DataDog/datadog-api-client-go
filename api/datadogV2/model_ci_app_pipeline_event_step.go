@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppPipelineEventStep Details of a CI step.
 type CIAppPipelineEventStep struct {
@@ -53,9 +56,10 @@ type CIAppPipelineEventStep struct {
 	// The URL to look at the step in the CI provider UI.
 	Url datadog.NullableString `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCIAppPipelineEventStep instantiates a new CIAppPipelineEventStep object.
 // This constructor will assign default values to properties that have it defined,
@@ -83,7 +87,6 @@ func NewCIAppPipelineEventStepWithDefaults() *CIAppPipelineEventStep {
 	this.Level = level
 	return &this
 }
-
 // GetEnd returns the End field value.
 func (o *CIAppPipelineEventStep) GetEnd() time.Time {
 	if o == nil {
@@ -107,6 +110,7 @@ func (o *CIAppPipelineEventStep) SetEnd(v time.Time) {
 	o.End = v
 }
 
+
 // GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventStep) GetError() CIAppCIError {
 	if o == nil || o.Error.Get() == nil {
@@ -120,7 +124,7 @@ func (o *CIAppPipelineEventStep) GetError() CIAppCIError {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventStep) GetErrorOk() (*CIAppCIError, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Error.Get(), o.Error.IsSet()
@@ -135,7 +139,6 @@ func (o *CIAppPipelineEventStep) HasError() bool {
 func (o *CIAppPipelineEventStep) SetError(v CIAppCIError) {
 	o.Error.Set(&v)
 }
-
 // SetErrorNil sets the value for Error to be an explicit nil.
 func (o *CIAppPipelineEventStep) SetErrorNil() {
 	o.Error.Set(nil)
@@ -145,6 +148,7 @@ func (o *CIAppPipelineEventStep) SetErrorNil() {
 func (o *CIAppPipelineEventStep) UnsetError() {
 	o.Error.Unset()
 }
+
 
 // GetGit returns the Git field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventStep) GetGit() CIAppGitInfo {
@@ -159,7 +163,7 @@ func (o *CIAppPipelineEventStep) GetGit() CIAppGitInfo {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventStep) GetGitOk() (*CIAppGitInfo, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Git.Get(), o.Git.IsSet()
@@ -174,7 +178,6 @@ func (o *CIAppPipelineEventStep) HasGit() bool {
 func (o *CIAppPipelineEventStep) SetGit(v CIAppGitInfo) {
 	o.Git.Set(&v)
 }
-
 // SetGitNil sets the value for Git to be an explicit nil.
 func (o *CIAppPipelineEventStep) SetGitNil() {
 	o.Git.Set(nil)
@@ -184,6 +187,7 @@ func (o *CIAppPipelineEventStep) SetGitNil() {
 func (o *CIAppPipelineEventStep) UnsetGit() {
 	o.Git.Unset()
 }
+
 
 // GetId returns the Id field value.
 func (o *CIAppPipelineEventStep) GetId() string {
@@ -208,6 +212,7 @@ func (o *CIAppPipelineEventStep) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetJobId returns the JobId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventStep) GetJobId() string {
 	if o == nil || o.JobId.Get() == nil {
@@ -221,7 +226,7 @@ func (o *CIAppPipelineEventStep) GetJobId() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventStep) GetJobIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.JobId.Get(), o.JobId.IsSet()
@@ -236,7 +241,6 @@ func (o *CIAppPipelineEventStep) HasJobId() bool {
 func (o *CIAppPipelineEventStep) SetJobId(v string) {
 	o.JobId.Set(&v)
 }
-
 // SetJobIdNil sets the value for JobId to be an explicit nil.
 func (o *CIAppPipelineEventStep) SetJobIdNil() {
 	o.JobId.Set(nil)
@@ -246,6 +250,7 @@ func (o *CIAppPipelineEventStep) SetJobIdNil() {
 func (o *CIAppPipelineEventStep) UnsetJobId() {
 	o.JobId.Unset()
 }
+
 
 // GetJobName returns the JobName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventStep) GetJobName() string {
@@ -260,7 +265,7 @@ func (o *CIAppPipelineEventStep) GetJobName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventStep) GetJobNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.JobName.Get(), o.JobName.IsSet()
@@ -275,7 +280,6 @@ func (o *CIAppPipelineEventStep) HasJobName() bool {
 func (o *CIAppPipelineEventStep) SetJobName(v string) {
 	o.JobName.Set(&v)
 }
-
 // SetJobNameNil sets the value for JobName to be an explicit nil.
 func (o *CIAppPipelineEventStep) SetJobNameNil() {
 	o.JobName.Set(nil)
@@ -285,6 +289,7 @@ func (o *CIAppPipelineEventStep) SetJobNameNil() {
 func (o *CIAppPipelineEventStep) UnsetJobName() {
 	o.JobName.Unset()
 }
+
 
 // GetLevel returns the Level field value.
 func (o *CIAppPipelineEventStep) GetLevel() CIAppPipelineEventStepLevel {
@@ -309,6 +314,7 @@ func (o *CIAppPipelineEventStep) SetLevel(v CIAppPipelineEventStepLevel) {
 	o.Level = v
 }
 
+
 // GetMetrics returns the Metrics field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventStep) GetMetrics() []string {
 	if o == nil || o.Metrics.Get() == nil {
@@ -322,7 +328,7 @@ func (o *CIAppPipelineEventStep) GetMetrics() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventStep) GetMetricsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Metrics.Get(), o.Metrics.IsSet()
@@ -337,7 +343,6 @@ func (o *CIAppPipelineEventStep) HasMetrics() bool {
 func (o *CIAppPipelineEventStep) SetMetrics(v []string) {
 	o.Metrics.Set(&v)
 }
-
 // SetMetricsNil sets the value for Metrics to be an explicit nil.
 func (o *CIAppPipelineEventStep) SetMetricsNil() {
 	o.Metrics.Set(nil)
@@ -347,6 +352,7 @@ func (o *CIAppPipelineEventStep) SetMetricsNil() {
 func (o *CIAppPipelineEventStep) UnsetMetrics() {
 	o.Metrics.Unset()
 }
+
 
 // GetName returns the Name field value.
 func (o *CIAppPipelineEventStep) GetName() string {
@@ -371,6 +377,7 @@ func (o *CIAppPipelineEventStep) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetNode returns the Node field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventStep) GetNode() CIAppHostInfo {
 	if o == nil || o.Node.Get() == nil {
@@ -384,7 +391,7 @@ func (o *CIAppPipelineEventStep) GetNode() CIAppHostInfo {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventStep) GetNodeOk() (*CIAppHostInfo, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Node.Get(), o.Node.IsSet()
@@ -399,7 +406,6 @@ func (o *CIAppPipelineEventStep) HasNode() bool {
 func (o *CIAppPipelineEventStep) SetNode(v CIAppHostInfo) {
 	o.Node.Set(&v)
 }
-
 // SetNodeNil sets the value for Node to be an explicit nil.
 func (o *CIAppPipelineEventStep) SetNodeNil() {
 	o.Node.Set(nil)
@@ -410,9 +416,10 @@ func (o *CIAppPipelineEventStep) UnsetNode() {
 	o.Node.Unset()
 }
 
+
 // GetParameters returns the Parameters field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventStep) GetParameters() map[string]string {
-	if o == nil {
+	if o == nil  {
 		var ret map[string]string
 		return ret
 	}
@@ -439,6 +446,7 @@ func (o *CIAppPipelineEventStep) SetParameters(v map[string]string) {
 	o.Parameters = v
 }
 
+
 // GetPipelineName returns the PipelineName field value.
 func (o *CIAppPipelineEventStep) GetPipelineName() string {
 	if o == nil {
@@ -461,6 +469,7 @@ func (o *CIAppPipelineEventStep) GetPipelineNameOk() (*string, bool) {
 func (o *CIAppPipelineEventStep) SetPipelineName(v string) {
 	o.PipelineName = v
 }
+
 
 // GetPipelineUniqueId returns the PipelineUniqueId field value.
 func (o *CIAppPipelineEventStep) GetPipelineUniqueId() string {
@@ -485,6 +494,7 @@ func (o *CIAppPipelineEventStep) SetPipelineUniqueId(v string) {
 	o.PipelineUniqueId = v
 }
 
+
 // GetStageId returns the StageId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventStep) GetStageId() string {
 	if o == nil || o.StageId.Get() == nil {
@@ -498,7 +508,7 @@ func (o *CIAppPipelineEventStep) GetStageId() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventStep) GetStageIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.StageId.Get(), o.StageId.IsSet()
@@ -513,7 +523,6 @@ func (o *CIAppPipelineEventStep) HasStageId() bool {
 func (o *CIAppPipelineEventStep) SetStageId(v string) {
 	o.StageId.Set(&v)
 }
-
 // SetStageIdNil sets the value for StageId to be an explicit nil.
 func (o *CIAppPipelineEventStep) SetStageIdNil() {
 	o.StageId.Set(nil)
@@ -523,6 +532,7 @@ func (o *CIAppPipelineEventStep) SetStageIdNil() {
 func (o *CIAppPipelineEventStep) UnsetStageId() {
 	o.StageId.Unset()
 }
+
 
 // GetStageName returns the StageName field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventStep) GetStageName() string {
@@ -537,7 +547,7 @@ func (o *CIAppPipelineEventStep) GetStageName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventStep) GetStageNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.StageName.Get(), o.StageName.IsSet()
@@ -552,7 +562,6 @@ func (o *CIAppPipelineEventStep) HasStageName() bool {
 func (o *CIAppPipelineEventStep) SetStageName(v string) {
 	o.StageName.Set(&v)
 }
-
 // SetStageNameNil sets the value for StageName to be an explicit nil.
 func (o *CIAppPipelineEventStep) SetStageNameNil() {
 	o.StageName.Set(nil)
@@ -562,6 +571,7 @@ func (o *CIAppPipelineEventStep) SetStageNameNil() {
 func (o *CIAppPipelineEventStep) UnsetStageName() {
 	o.StageName.Unset()
 }
+
 
 // GetStart returns the Start field value.
 func (o *CIAppPipelineEventStep) GetStart() time.Time {
@@ -586,6 +596,7 @@ func (o *CIAppPipelineEventStep) SetStart(v time.Time) {
 	o.Start = v
 }
 
+
 // GetStatus returns the Status field value.
 func (o *CIAppPipelineEventStep) GetStatus() CIAppPipelineEventStepStatus {
 	if o == nil {
@@ -609,6 +620,7 @@ func (o *CIAppPipelineEventStep) SetStatus(v CIAppPipelineEventStepStatus) {
 	o.Status = v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventStep) GetTags() []string {
 	if o == nil || o.Tags.Get() == nil {
@@ -622,7 +634,7 @@ func (o *CIAppPipelineEventStep) GetTags() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventStep) GetTagsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Tags.Get(), o.Tags.IsSet()
@@ -637,7 +649,6 @@ func (o *CIAppPipelineEventStep) HasTags() bool {
 func (o *CIAppPipelineEventStep) SetTags(v []string) {
 	o.Tags.Set(&v)
 }
-
 // SetTagsNil sets the value for Tags to be an explicit nil.
 func (o *CIAppPipelineEventStep) SetTagsNil() {
 	o.Tags.Set(nil)
@@ -647,6 +658,7 @@ func (o *CIAppPipelineEventStep) SetTagsNil() {
 func (o *CIAppPipelineEventStep) UnsetTags() {
 	o.Tags.Unset()
 }
+
 
 // GetUrl returns the Url field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventStep) GetUrl() string {
@@ -661,7 +673,7 @@ func (o *CIAppPipelineEventStep) GetUrl() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventStep) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Url.Get(), o.Url.IsSet()
@@ -676,7 +688,6 @@ func (o *CIAppPipelineEventStep) HasUrl() bool {
 func (o *CIAppPipelineEventStep) SetUrl(v string) {
 	o.Url.Set(&v)
 }
-
 // SetUrlNil sets the value for Url to be an explicit nil.
 func (o *CIAppPipelineEventStep) SetUrlNil() {
 	o.Url.Set(nil)
@@ -686,6 +697,8 @@ func (o *CIAppPipelineEventStep) SetUrlNil() {
 func (o *CIAppPipelineEventStep) UnsetUrl() {
 	o.Url.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppPipelineEventStep) MarshalJSON() ([]byte, error) {
@@ -752,25 +765,25 @@ func (o CIAppPipelineEventStep) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppPipelineEventStep) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		End              *time.Time                    `json:"end"`
-		Error            NullableCIAppCIError          `json:"error,omitempty"`
-		Git              NullableCIAppGitInfo          `json:"git,omitempty"`
-		Id               *string                       `json:"id"`
-		JobId            datadog.NullableString        `json:"job_id,omitempty"`
-		JobName          datadog.NullableString        `json:"job_name,omitempty"`
-		Level            *CIAppPipelineEventStepLevel  `json:"level"`
-		Metrics          datadog.NullableList[string]  `json:"metrics,omitempty"`
-		Name             *string                       `json:"name"`
-		Node             NullableCIAppHostInfo         `json:"node,omitempty"`
-		Parameters       map[string]string             `json:"parameters,omitempty"`
-		PipelineName     *string                       `json:"pipeline_name"`
-		PipelineUniqueId *string                       `json:"pipeline_unique_id"`
-		StageId          datadog.NullableString        `json:"stage_id,omitempty"`
-		StageName        datadog.NullableString        `json:"stage_name,omitempty"`
-		Start            *time.Time                    `json:"start"`
-		Status           *CIAppPipelineEventStepStatus `json:"status"`
-		Tags             datadog.NullableList[string]  `json:"tags,omitempty"`
-		Url              datadog.NullableString        `json:"url,omitempty"`
+		End *time.Time `json:"end"`
+		Error NullableCIAppCIError `json:"error,omitempty"`
+		Git NullableCIAppGitInfo `json:"git,omitempty"`
+		Id *string `json:"id"`
+		JobId datadog.NullableString `json:"job_id,omitempty"`
+		JobName datadog.NullableString `json:"job_name,omitempty"`
+		Level *CIAppPipelineEventStepLevel `json:"level"`
+		Metrics datadog.NullableList[string] `json:"metrics,omitempty"`
+		Name *string `json:"name"`
+		Node NullableCIAppHostInfo `json:"node,omitempty"`
+		Parameters map[string]string `json:"parameters,omitempty"`
+		PipelineName *string `json:"pipeline_name"`
+		PipelineUniqueId *string `json:"pipeline_unique_id"`
+		StageId datadog.NullableString `json:"stage_id,omitempty"`
+		StageName datadog.NullableString `json:"stage_name,omitempty"`
+		Start *time.Time `json:"start"`
+		Status *CIAppPipelineEventStepStatus `json:"status"`
+		Tags datadog.NullableList[string] `json:"tags,omitempty"`
+		Url datadog.NullableString `json:"url,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -801,7 +814,7 @@ func (o *CIAppPipelineEventStep) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"end", "error", "git", "id", "job_id", "job_name", "level", "metrics", "name", "node", "parameters", "pipeline_name", "pipeline_unique_id", "stage_id", "stage_name", "start", "status", "tags", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "end", "error", "git", "id", "job_id", "job_name", "level", "metrics", "name", "node", "parameters", "pipeline_name", "pipeline_unique_id", "stage_id", "stage_name", "start", "status", "tags", "url",  })
 	} else {
 		return err
 	}

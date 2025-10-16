@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSocketSourceFramingOctetCounting Byte frames according to the octet counting format as per RFC6587.
 type ObservabilityPipelineSocketSourceFramingOctetCounting struct {
 	// Byte frames according to the octet counting format as per RFC6587.
 	Method ObservabilityPipelineSocketSourceFramingOctetCountingMethod `json:"method"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSocketSourceFramingOctetCounting instantiates a new ObservabilityPipelineSocketSourceFramingOctetCounting object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewObservabilityPipelineSocketSourceFramingOctetCountingWithDefaults() *Obs
 	this := ObservabilityPipelineSocketSourceFramingOctetCounting{}
 	return &this
 }
-
 // GetMethod returns the Method field value.
 func (o *ObservabilityPipelineSocketSourceFramingOctetCounting) GetMethod() ObservabilityPipelineSocketSourceFramingOctetCountingMethod {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *ObservabilityPipelineSocketSourceFramingOctetCounting) GetMethodOk() (*
 func (o *ObservabilityPipelineSocketSourceFramingOctetCounting) SetMethod(v ObservabilityPipelineSocketSourceFramingOctetCountingMethod) {
 	o.Method = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSocketSourceFramingOctetCounting) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *ObservabilityPipelineSocketSourceFramingOctetCounting) UnmarshalJSON(by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"method"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "method",  })
 	} else {
 		return err
 	}

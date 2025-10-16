@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OktaAPIToken The definition of the `OktaAPIToken` object.
 type OktaAPIToken struct {
@@ -19,9 +23,10 @@ type OktaAPIToken struct {
 	// The definition of the `OktaAPIToken` object.
 	Type OktaAPITokenType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOktaAPIToken instantiates a new OktaAPIToken object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewOktaAPITokenWithDefaults() *OktaAPIToken {
 	this := OktaAPIToken{}
 	return &this
 }
-
 // GetApiToken returns the ApiToken field value.
 func (o *OktaAPIToken) GetApiToken() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *OktaAPIToken) GetApiTokenOk() (*string, bool) {
 func (o *OktaAPIToken) SetApiToken(v string) {
 	o.ApiToken = v
 }
+
 
 // GetDomain returns the Domain field value.
 func (o *OktaAPIToken) GetDomain() string {
@@ -89,6 +94,7 @@ func (o *OktaAPIToken) SetDomain(v string) {
 	o.Domain = v
 }
 
+
 // GetType returns the Type field value.
 func (o *OktaAPIToken) GetType() OktaAPITokenType {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *OktaAPIToken) SetType(v OktaAPITokenType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OktaAPIToken) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o OktaAPIToken) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OktaAPIToken) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string           `json:"api_token"`
-		Domain   *string           `json:"domain"`
-		Type     *OktaAPITokenType `json:"type"`
+		ApiToken *string `json:"api_token"`
+		Domain *string `json:"domain"`
+		Type *OktaAPITokenType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *OktaAPIToken) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_token", "domain", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_token", "domain", "type",  })
 	} else {
 		return err
 	}

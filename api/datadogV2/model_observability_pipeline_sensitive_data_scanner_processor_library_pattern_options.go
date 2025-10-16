@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions Options for selecting a predefined library pattern and enabling keyword support.
 type ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions str
 	// Whether to augment the pattern with recommended keywords (optional).
 	UseRecommendedKeywords *bool `json:"use_recommended_keywords,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions instantiates a new ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptionsW
 	this := ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions{}
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions) GetId() string {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetUseRecommendedKeywords returns the UseRecommendedKeywords field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions) GetUseRecommendedKeywords() bool {
@@ -90,6 +95,8 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions
 	o.UseRecommendedKeywords = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,8 +117,8 @@ func (o ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions)
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id                     *string `json:"id"`
-		UseRecommendedKeywords *bool   `json:"use_recommended_keywords,omitempty"`
+		Id *string `json:"id"`
+		UseRecommendedKeywords *bool `json:"use_recommended_keywords,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "use_recommended_keywords"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "use_recommended_keywords",  })
 	} else {
 		return err
 	}

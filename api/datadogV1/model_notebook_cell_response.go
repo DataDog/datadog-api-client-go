@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotebookCellResponse The description of a notebook cell response.
 type NotebookCellResponse struct {
@@ -20,9 +24,10 @@ type NotebookCellResponse struct {
 	// Type of the Notebook Cell resource.
 	Type NotebookCellResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewNotebookCellResponse instantiates a new NotebookCellResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewNotebookCellResponseWithDefaults() *NotebookCellResponse {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *NotebookCellResponse) GetAttributes() NotebookCellResponseAttributes {
 	if o == nil {
@@ -68,6 +72,7 @@ func (o *NotebookCellResponse) GetAttributesOk() (*NotebookCellResponseAttribute
 func (o *NotebookCellResponse) SetAttributes(v NotebookCellResponseAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *NotebookCellResponse) GetId() string {
@@ -92,6 +97,7 @@ func (o *NotebookCellResponse) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetType returns the Type field value.
 func (o *NotebookCellResponse) GetType() NotebookCellResourceType {
 	if o == nil {
@@ -115,6 +121,8 @@ func (o *NotebookCellResponse) SetType(v NotebookCellResourceType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebookCellResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -135,8 +143,8 @@ func (o NotebookCellResponse) MarshalJSON() ([]byte, error) {
 func (o *NotebookCellResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *NotebookCellResponseAttributes `json:"attributes"`
-		Id         *string                         `json:"id"`
-		Type       *NotebookCellResourceType       `json:"type"`
+		Id *string `json:"id"`
+		Type *NotebookCellResourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *NotebookCellResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

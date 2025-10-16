@@ -2,10 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"bytes"
 	_context "context"
+	_fmt "fmt"
+	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -19,10 +24,12 @@ type ServiceDefinitionApi datadog.Service
 // Create or update service definition in the Datadog Service Catalog.
 func (a *ServiceDefinitionApi) CreateOrUpdateServiceDefinitions(ctx _context.Context, body ServiceDefinitionsCreateRequest) (ServiceDefinitionCreateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue ServiceDefinitionCreateResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  ServiceDefinitionCreateResponse
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceDefinitionApi.CreateOrUpdateServiceDefinitions")
 	if err != nil {
@@ -37,21 +44,23 @@ func (a *ServiceDefinitionApi) CreateOrUpdateServiceDefinitions(ctx _context.Con
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
 
+	
+
 	// body params
 	localVarPostBody = &body
-	if a.Client.Cfg.DelegatedTokenConfig != nil {
-		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-	} else {
-		datadog.SetAuthKeys(
-			ctx,
-			&localVarHeaderParams,
-			[2]string{"apiKeyAuth", "DD-API-KEY"},
-			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-		)
-	}
+		if a.Client.Cfg.DelegatedTokenConfig != nil {
+			err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+		} else {
+        datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	 } 
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -69,10 +78,11 @@ func (a *ServiceDefinitionApi) CreateOrUpdateServiceDefinitions(ctx _context.Con
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 409||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -86,7 +96,7 @@ func (a *ServiceDefinitionApi) CreateOrUpdateServiceDefinitions(ctx _context.Con
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -99,9 +109,11 @@ func (a *ServiceDefinitionApi) CreateOrUpdateServiceDefinitions(ctx _context.Con
 // Delete a single service definition in the Datadog Service Catalog.
 func (a *ServiceDefinitionApi) DeleteServiceDefinition(ctx _context.Context, serviceName string) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
+
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceDefinitionApi.DeleteServiceDefinition")
 	if err != nil {
@@ -114,21 +126,22 @@ func (a *ServiceDefinitionApi) DeleteServiceDefinition(ctx _context.Context, ser
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	localVarHeaderParams["Accept"] = "*/*"
+	localVarHeaderParams["Accept"] =  "*/*"
 
-	if a.Client.Cfg.DelegatedTokenConfig != nil {
-		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-		if err != nil {
-			return nil, err
-		}
-	} else {
-		datadog.SetAuthKeys(
-			ctx,
-			&localVarHeaderParams,
-			[2]string{"apiKeyAuth", "DD-API-KEY"},
-			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-		)
-	}
+	
+		if a.Client.Cfg.DelegatedTokenConfig != nil {
+			err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+			if err != nil {
+				return nil, err
+			}
+		} else {
+        datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	 } 
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
@@ -146,10 +159,11 @@ func (a *ServiceDefinitionApi) DeleteServiceDefinition(ctx _context.Context, ser
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -173,7 +187,6 @@ func NewGetServiceDefinitionOptionalParameters() *GetServiceDefinitionOptionalPa
 	this := GetServiceDefinitionOptionalParameters{}
 	return &this
 }
-
 // WithSchemaVersion sets the corresponding parameter name and returns the struct.
 func (r *GetServiceDefinitionOptionalParameters) WithSchemaVersion(schemaVersion ServiceDefinitionSchemaVersions) *GetServiceDefinitionOptionalParameters {
 	r.SchemaVersion = &schemaVersion
@@ -184,18 +197,20 @@ func (r *GetServiceDefinitionOptionalParameters) WithSchemaVersion(schemaVersion
 // Get a single service definition from the Datadog Service Catalog.
 func (a *ServiceDefinitionApi) GetServiceDefinition(ctx _context.Context, serviceName string, o ...GetServiceDefinitionOptionalParameters) (ServiceDefinitionGetResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue ServiceDefinitionGetResponse
-		optionalParams      GetServiceDefinitionOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  ServiceDefinitionGetResponse
+		optionalParams GetServiceDefinitionOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetServiceDefinitionOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type GetServiceDefinitionOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceDefinitionApi.GetServiceDefinition")
 	if err != nil {
@@ -213,19 +228,20 @@ func (a *ServiceDefinitionApi) GetServiceDefinition(ctx _context.Context, servic
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	if a.Client.Cfg.DelegatedTokenConfig != nil {
-		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-	} else {
-		datadog.SetAuthKeys(
-			ctx,
-			&localVarHeaderParams,
-			[2]string{"apiKeyAuth", "DD-API-KEY"},
-			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-		)
-	}
+	
+		if a.Client.Cfg.DelegatedTokenConfig != nil {
+			err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+		} else {
+        datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	 } 
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -243,10 +259,11 @@ func (a *ServiceDefinitionApi) GetServiceDefinition(ctx _context.Context, servic
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 409 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 400||localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 404||localVarHTTPResponse.StatusCode == 409||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -260,7 +277,7 @@ func (a *ServiceDefinitionApi) GetServiceDefinition(ctx _context.Context, servic
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -271,8 +288,8 @@ func (a *ServiceDefinitionApi) GetServiceDefinition(ctx _context.Context, servic
 
 // ListServiceDefinitionsOptionalParameters holds optional parameters for ListServiceDefinitions.
 type ListServiceDefinitionsOptionalParameters struct {
-	PageSize      *int64
-	PageNumber    *int64
+	PageSize *int64
+	PageNumber *int64
 	SchemaVersion *ServiceDefinitionSchemaVersions
 }
 
@@ -281,19 +298,16 @@ func NewListServiceDefinitionsOptionalParameters() *ListServiceDefinitionsOption
 	this := ListServiceDefinitionsOptionalParameters{}
 	return &this
 }
-
 // WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListServiceDefinitionsOptionalParameters) WithPageSize(pageSize int64) *ListServiceDefinitionsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-
 // WithPageNumber sets the corresponding parameter name and returns the struct.
 func (r *ListServiceDefinitionsOptionalParameters) WithPageNumber(pageNumber int64) *ListServiceDefinitionsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
-
 // WithSchemaVersion sets the corresponding parameter name and returns the struct.
 func (r *ListServiceDefinitionsOptionalParameters) WithSchemaVersion(schemaVersion ServiceDefinitionSchemaVersions) *ListServiceDefinitionsOptionalParameters {
 	r.SchemaVersion = &schemaVersion
@@ -304,18 +318,20 @@ func (r *ListServiceDefinitionsOptionalParameters) WithSchemaVersion(schemaVersi
 // Get a list of all service definitions from the Datadog Service Catalog.
 func (a *ServiceDefinitionApi) ListServiceDefinitions(ctx _context.Context, o ...ListServiceDefinitionsOptionalParameters) (ServiceDefinitionsListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue ServiceDefinitionsListResponse
-		optionalParams      ListServiceDefinitionsOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  ServiceDefinitionsListResponse
+		optionalParams ListServiceDefinitionsOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListServiceDefinitionsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListServiceDefinitionsOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceDefinitionApi.ListServiceDefinitions")
 	if err != nil {
@@ -338,19 +354,20 @@ func (a *ServiceDefinitionApi) ListServiceDefinitions(ctx _context.Context, o ..
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	if a.Client.Cfg.DelegatedTokenConfig != nil {
-		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-	} else {
-		datadog.SetAuthKeys(
-			ctx,
-			&localVarHeaderParams,
-			[2]string{"apiKeyAuth", "DD-API-KEY"},
-			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-		)
-	}
+	
+		if a.Client.Cfg.DelegatedTokenConfig != nil {
+			err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+		} else {
+        datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	 } 
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -368,10 +385,11 @@ func (a *ServiceDefinitionApi) ListServiceDefinitions(ctx _context.Context, o ..
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -385,7 +403,7 @@ func (a *ServiceDefinitionApi) ListServiceDefinitions(ctx _context.Context, o ..
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -393,7 +411,6 @@ func (a *ServiceDefinitionApi) ListServiceDefinitions(ctx _context.Context, o ..
 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
-
 // ListServiceDefinitionsWithPagination provides a paginated version of ListServiceDefinitions returning a channel with all items.
 func (a *ServiceDefinitionApi) ListServiceDefinitionsWithPagination(ctx _context.Context, o ...ListServiceDefinitionsOptionalParameters) (<-chan datadog.PaginationResult[ServiceDefinitionData], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
@@ -405,7 +422,7 @@ func (a *ServiceDefinitionApi) ListServiceDefinitionsWithPagination(ctx _context
 		pageSize_ = *o[0].PageSize
 	}
 	o[0].PageSize = &pageSize_
-	page_ := int64(0)
+        page_ := int64(0)
 	o[0].PageNumber = &page_
 
 	items := make(chan datadog.PaginationResult[ServiceDefinitionData], pageSize_)
@@ -427,8 +444,8 @@ func (a *ServiceDefinitionApi) ListServiceDefinitionsWithPagination(ctx _context
 				select {
 				case items <- datadog.PaginationResult[ServiceDefinitionData]{Item: item, Error: nil}:
 				case <-ctx.Done():
-					close(items)
-					return
+				close(items)
+				return
 				}
 			}
 			if len(results) < int(pageSize_) {

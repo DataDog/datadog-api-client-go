@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EscalationPolicyStepAttributesAssignment Specifies how this escalation step will assign targets (example `default` or `round-robin`).
 type EscalationPolicyStepAttributesAssignment string
 
 // List of EscalationPolicyStepAttributesAssignment.
 const (
-	ESCALATIONPOLICYSTEPATTRIBUTESASSIGNMENT_DEFAULT     EscalationPolicyStepAttributesAssignment = "default"
+	ESCALATIONPOLICYSTEPATTRIBUTESASSIGNMENT_DEFAULT EscalationPolicyStepAttributesAssignment = "default"
 	ESCALATIONPOLICYSTEPATTRIBUTESASSIGNMENT_ROUND_ROBIN EscalationPolicyStepAttributesAssignment = "round-robin"
 )
 

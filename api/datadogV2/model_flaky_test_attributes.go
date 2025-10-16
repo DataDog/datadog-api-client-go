@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FlakyTestAttributes Attributes of a flaky test.
 type FlakyTestAttributes struct {
@@ -58,9 +64,10 @@ type FlakyTestAttributes struct {
 	// Test statistics for the flaky test.
 	TestStats *FlakyTestStats `json:"test_stats,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFlakyTestAttributes instantiates a new FlakyTestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -78,7 +85,6 @@ func NewFlakyTestAttributesWithDefaults() *FlakyTestAttributes {
 	this := FlakyTestAttributes{}
 	return &this
 }
-
 // GetAttemptToFixId returns the AttemptToFixId field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetAttemptToFixId() string {
 	if o == nil || o.AttemptToFixId == nil {
@@ -106,6 +112,7 @@ func (o *FlakyTestAttributes) HasAttemptToFixId() bool {
 func (o *FlakyTestAttributes) SetAttemptToFixId(v string) {
 	o.AttemptToFixId = &v
 }
+
 
 // GetCodeowners returns the Codeowners field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetCodeowners() []string {
@@ -135,6 +142,7 @@ func (o *FlakyTestAttributes) SetCodeowners(v []string) {
 	o.Codeowners = v
 }
 
+
 // GetEnvs returns the Envs field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetEnvs() []string {
 	if o == nil || o.Envs == nil {
@@ -162,6 +170,7 @@ func (o *FlakyTestAttributes) HasEnvs() bool {
 func (o *FlakyTestAttributes) SetEnvs(v []string) {
 	o.Envs = v
 }
+
 
 // GetFirstFlakedBranch returns the FirstFlakedBranch field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetFirstFlakedBranch() string {
@@ -191,6 +200,7 @@ func (o *FlakyTestAttributes) SetFirstFlakedBranch(v string) {
 	o.FirstFlakedBranch = &v
 }
 
+
 // GetFirstFlakedSha returns the FirstFlakedSha field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetFirstFlakedSha() string {
 	if o == nil || o.FirstFlakedSha == nil {
@@ -218,6 +228,7 @@ func (o *FlakyTestAttributes) HasFirstFlakedSha() bool {
 func (o *FlakyTestAttributes) SetFirstFlakedSha(v string) {
 	o.FirstFlakedSha = &v
 }
+
 
 // GetFirstFlakedTs returns the FirstFlakedTs field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetFirstFlakedTs() int64 {
@@ -247,6 +258,7 @@ func (o *FlakyTestAttributes) SetFirstFlakedTs(v int64) {
 	o.FirstFlakedTs = &v
 }
 
+
 // GetFlakyCategory returns the FlakyCategory field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FlakyTestAttributes) GetFlakyCategory() string {
 	if o == nil || o.FlakyCategory.Get() == nil {
@@ -260,7 +272,7 @@ func (o *FlakyTestAttributes) GetFlakyCategory() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *FlakyTestAttributes) GetFlakyCategoryOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.FlakyCategory.Get(), o.FlakyCategory.IsSet()
@@ -275,7 +287,6 @@ func (o *FlakyTestAttributes) HasFlakyCategory() bool {
 func (o *FlakyTestAttributes) SetFlakyCategory(v string) {
 	o.FlakyCategory.Set(&v)
 }
-
 // SetFlakyCategoryNil sets the value for FlakyCategory to be an explicit nil.
 func (o *FlakyTestAttributes) SetFlakyCategoryNil() {
 	o.FlakyCategory.Set(nil)
@@ -285,6 +296,7 @@ func (o *FlakyTestAttributes) SetFlakyCategoryNil() {
 func (o *FlakyTestAttributes) UnsetFlakyCategory() {
 	o.FlakyCategory.Unset()
 }
+
 
 // GetFlakyState returns the FlakyState field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetFlakyState() FlakyTestAttributesFlakyState {
@@ -314,6 +326,7 @@ func (o *FlakyTestAttributes) SetFlakyState(v FlakyTestAttributesFlakyState) {
 	o.FlakyState = &v
 }
 
+
 // GetLastFlakedBranch returns the LastFlakedBranch field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetLastFlakedBranch() string {
 	if o == nil || o.LastFlakedBranch == nil {
@@ -341,6 +354,7 @@ func (o *FlakyTestAttributes) HasLastFlakedBranch() bool {
 func (o *FlakyTestAttributes) SetLastFlakedBranch(v string) {
 	o.LastFlakedBranch = &v
 }
+
 
 // GetLastFlakedSha returns the LastFlakedSha field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetLastFlakedSha() string {
@@ -370,6 +384,7 @@ func (o *FlakyTestAttributes) SetLastFlakedSha(v string) {
 	o.LastFlakedSha = &v
 }
 
+
 // GetLastFlakedTs returns the LastFlakedTs field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetLastFlakedTs() int64 {
 	if o == nil || o.LastFlakedTs == nil {
@@ -398,6 +413,7 @@ func (o *FlakyTestAttributes) SetLastFlakedTs(v int64) {
 	o.LastFlakedTs = &v
 }
 
+
 // GetModule returns the Module field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FlakyTestAttributes) GetModule() string {
 	if o == nil || o.Module.Get() == nil {
@@ -411,7 +427,7 @@ func (o *FlakyTestAttributes) GetModule() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *FlakyTestAttributes) GetModuleOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Module.Get(), o.Module.IsSet()
@@ -426,7 +442,6 @@ func (o *FlakyTestAttributes) HasModule() bool {
 func (o *FlakyTestAttributes) SetModule(v string) {
 	o.Module.Set(&v)
 }
-
 // SetModuleNil sets the value for Module to be an explicit nil.
 func (o *FlakyTestAttributes) SetModuleNil() {
 	o.Module.Set(nil)
@@ -436,6 +451,7 @@ func (o *FlakyTestAttributes) SetModuleNil() {
 func (o *FlakyTestAttributes) UnsetModule() {
 	o.Module.Unset()
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetName() string {
@@ -465,6 +481,7 @@ func (o *FlakyTestAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetPipelineStats returns the PipelineStats field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetPipelineStats() FlakyTestPipelineStats {
 	if o == nil || o.PipelineStats == nil {
@@ -492,6 +509,7 @@ func (o *FlakyTestAttributes) HasPipelineStats() bool {
 func (o *FlakyTestAttributes) SetPipelineStats(v FlakyTestPipelineStats) {
 	o.PipelineStats = &v
 }
+
 
 // GetServices returns the Services field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetServices() []string {
@@ -521,6 +539,7 @@ func (o *FlakyTestAttributes) SetServices(v []string) {
 	o.Services = v
 }
 
+
 // GetSuite returns the Suite field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetSuite() string {
 	if o == nil || o.Suite == nil {
@@ -548,6 +567,7 @@ func (o *FlakyTestAttributes) HasSuite() bool {
 func (o *FlakyTestAttributes) SetSuite(v string) {
 	o.Suite = &v
 }
+
 
 // GetTestRunMetadata returns the TestRunMetadata field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetTestRunMetadata() FlakyTestRunMetadata {
@@ -577,6 +597,7 @@ func (o *FlakyTestAttributes) SetTestRunMetadata(v FlakyTestRunMetadata) {
 	o.TestRunMetadata = &v
 }
 
+
 // GetTestStats returns the TestStats field value if set, zero value otherwise.
 func (o *FlakyTestAttributes) GetTestStats() FlakyTestStats {
 	if o == nil || o.TestStats == nil {
@@ -604,6 +625,8 @@ func (o *FlakyTestAttributes) HasTestStats() bool {
 func (o *FlakyTestAttributes) SetTestStats(v FlakyTestStats) {
 	o.TestStats = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FlakyTestAttributes) MarshalJSON() ([]byte, error) {
@@ -675,31 +698,31 @@ func (o FlakyTestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FlakyTestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AttemptToFixId    *string                        `json:"attempt_to_fix_id,omitempty"`
-		Codeowners        []string                       `json:"codeowners,omitempty"`
-		Envs              []string                       `json:"envs,omitempty"`
-		FirstFlakedBranch *string                        `json:"first_flaked_branch,omitempty"`
-		FirstFlakedSha    *string                        `json:"first_flaked_sha,omitempty"`
-		FirstFlakedTs     *int64                         `json:"first_flaked_ts,omitempty"`
-		FlakyCategory     datadog.NullableString         `json:"flaky_category,omitempty"`
-		FlakyState        *FlakyTestAttributesFlakyState `json:"flaky_state,omitempty"`
-		LastFlakedBranch  *string                        `json:"last_flaked_branch,omitempty"`
-		LastFlakedSha     *string                        `json:"last_flaked_sha,omitempty"`
-		LastFlakedTs      *int64                         `json:"last_flaked_ts,omitempty"`
-		Module            datadog.NullableString         `json:"module,omitempty"`
-		Name              *string                        `json:"name,omitempty"`
-		PipelineStats     *FlakyTestPipelineStats        `json:"pipeline_stats,omitempty"`
-		Services          []string                       `json:"services,omitempty"`
-		Suite             *string                        `json:"suite,omitempty"`
-		TestRunMetadata   *FlakyTestRunMetadata          `json:"test_run_metadata,omitempty"`
-		TestStats         *FlakyTestStats                `json:"test_stats,omitempty"`
+		AttemptToFixId *string `json:"attempt_to_fix_id,omitempty"`
+		Codeowners []string `json:"codeowners,omitempty"`
+		Envs []string `json:"envs,omitempty"`
+		FirstFlakedBranch *string `json:"first_flaked_branch,omitempty"`
+		FirstFlakedSha *string `json:"first_flaked_sha,omitempty"`
+		FirstFlakedTs *int64 `json:"first_flaked_ts,omitempty"`
+		FlakyCategory datadog.NullableString `json:"flaky_category,omitempty"`
+		FlakyState *FlakyTestAttributesFlakyState `json:"flaky_state,omitempty"`
+		LastFlakedBranch *string `json:"last_flaked_branch,omitempty"`
+		LastFlakedSha *string `json:"last_flaked_sha,omitempty"`
+		LastFlakedTs *int64 `json:"last_flaked_ts,omitempty"`
+		Module datadog.NullableString `json:"module,omitempty"`
+		Name *string `json:"name,omitempty"`
+		PipelineStats *FlakyTestPipelineStats `json:"pipeline_stats,omitempty"`
+		Services []string `json:"services,omitempty"`
+		Suite *string `json:"suite,omitempty"`
+		TestRunMetadata *FlakyTestRunMetadata `json:"test_run_metadata,omitempty"`
+		TestStats *FlakyTestStats `json:"test_stats,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attempt_to_fix_id", "codeowners", "envs", "first_flaked_branch", "first_flaked_sha", "first_flaked_ts", "flaky_category", "flaky_state", "last_flaked_branch", "last_flaked_sha", "last_flaked_ts", "module", "name", "pipeline_stats", "services", "suite", "test_run_metadata", "test_stats"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attempt_to_fix_id", "codeowners", "envs", "first_flaked_branch", "first_flaked_sha", "first_flaked_ts", "flaky_category", "flaky_state", "last_flaked_branch", "last_flaked_sha", "last_flaked_ts", "module", "name", "pipeline_stats", "services", "suite", "test_run_metadata", "test_stats",  })
 	} else {
 		return err
 	}
@@ -712,7 +735,7 @@ func (o *FlakyTestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.FirstFlakedSha = all.FirstFlakedSha
 	o.FirstFlakedTs = all.FirstFlakedTs
 	o.FlakyCategory = all.FlakyCategory
-	if all.FlakyState != nil && !all.FlakyState.IsValid() {
+	if all.FlakyState != nil &&!all.FlakyState.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.FlakyState = all.FlakyState
@@ -722,17 +745,17 @@ func (o *FlakyTestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.LastFlakedTs = all.LastFlakedTs
 	o.Module = all.Module
 	o.Name = all.Name
-	if all.PipelineStats != nil && all.PipelineStats.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.PipelineStats != nil && all.PipelineStats.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.PipelineStats = all.PipelineStats
 	o.Services = all.Services
 	o.Suite = all.Suite
-	if all.TestRunMetadata != nil && all.TestRunMetadata.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.TestRunMetadata != nil && all.TestRunMetadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.TestRunMetadata = all.TestRunMetadata
-	if all.TestStats != nil && all.TestStats.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.TestStats != nil && all.TestStats.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.TestStats = all.TestStats

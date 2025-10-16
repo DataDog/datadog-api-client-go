@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail The definition of `CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail` object.
 type CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail struct {
@@ -23,9 +27,10 @@ type CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail s
 	// The relative file path from the Azure container root to the CSV file.
 	FilePath string `json:"file_path"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail instantiates a new CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewCreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetai
 	this := CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail{}
 	return &this
 }
-
 // GetAzureClientId returns the AzureClientId field value.
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail) GetAzureClientId() string {
 	if o == nil {
@@ -71,6 +75,7 @@ func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDeta
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail) SetAzureClientId(v string) {
 	o.AzureClientId = v
 }
+
 
 // GetAzureContainerName returns the AzureContainerName field value.
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail) GetAzureContainerName() string {
@@ -95,6 +100,7 @@ func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDeta
 	o.AzureContainerName = v
 }
 
+
 // GetAzureStorageAccountName returns the AzureStorageAccountName field value.
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail) GetAzureStorageAccountName() string {
 	if o == nil {
@@ -117,6 +123,7 @@ func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDeta
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail) SetAzureStorageAccountName(v string) {
 	o.AzureStorageAccountName = v
 }
+
 
 // GetAzureTenantId returns the AzureTenantId field value.
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail) GetAzureTenantId() string {
@@ -141,6 +148,7 @@ func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDeta
 	o.AzureTenantId = v
 }
 
+
 // GetFilePath returns the FilePath field value.
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail) GetFilePath() string {
 	if o == nil {
@@ -164,6 +172,8 @@ func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDeta
 	o.FilePath = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -185,11 +195,11 @@ func (o CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetai
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AzureClientId           *string `json:"azure_client_id"`
-		AzureContainerName      *string `json:"azure_container_name"`
+		AzureClientId *string `json:"azure_client_id"`
+		AzureContainerName *string `json:"azure_container_name"`
 		AzureStorageAccountName *string `json:"azure_storage_account_name"`
-		AzureTenantId           *string `json:"azure_tenant_id"`
-		FilePath                *string `json:"file_path"`
+		AzureTenantId *string `json:"azure_tenant_id"`
+		FilePath *string `json:"file_path"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -211,7 +221,7 @@ func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDeta
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"azure_client_id", "azure_container_name", "azure_storage_account_name", "azure_tenant_id", "file_path"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "azure_client_id", "azure_container_name", "azure_storage_account_name", "azure_tenant_id", "file_path",  })
 	} else {
 		return err
 	}

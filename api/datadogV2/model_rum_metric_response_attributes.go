@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RumMetricResponseAttributes The object describing a Datadog rum-based metric.
 type RumMetricResponseAttributes struct {
@@ -21,9 +27,10 @@ type RumMetricResponseAttributes struct {
 	// The rule to count updatable events. Is only set if `event_type` is `session` or `view`.
 	Uniqueness *RumMetricResponseUniqueness `json:"uniqueness,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRumMetricResponseAttributes instantiates a new RumMetricResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewRumMetricResponseAttributesWithDefaults() *RumMetricResponseAttributes {
 	this := RumMetricResponseAttributes{}
 	return &this
 }
-
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *RumMetricResponseAttributes) GetCompute() RumMetricResponseCompute {
 	if o == nil || o.Compute == nil {
@@ -69,6 +75,7 @@ func (o *RumMetricResponseAttributes) HasCompute() bool {
 func (o *RumMetricResponseAttributes) SetCompute(v RumMetricResponseCompute) {
 	o.Compute = &v
 }
+
 
 // GetEventType returns the EventType field value if set, zero value otherwise.
 func (o *RumMetricResponseAttributes) GetEventType() RumMetricEventType {
@@ -98,6 +105,7 @@ func (o *RumMetricResponseAttributes) SetEventType(v RumMetricEventType) {
 	o.EventType = &v
 }
 
+
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *RumMetricResponseAttributes) GetFilter() RumMetricResponseFilter {
 	if o == nil || o.Filter == nil {
@@ -125,6 +133,7 @@ func (o *RumMetricResponseAttributes) HasFilter() bool {
 func (o *RumMetricResponseAttributes) SetFilter(v RumMetricResponseFilter) {
 	o.Filter = &v
 }
+
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *RumMetricResponseAttributes) GetGroupBy() []RumMetricResponseGroupBy {
@@ -154,6 +163,7 @@ func (o *RumMetricResponseAttributes) SetGroupBy(v []RumMetricResponseGroupBy) {
 	o.GroupBy = v
 }
 
+
 // GetUniqueness returns the Uniqueness field value if set, zero value otherwise.
 func (o *RumMetricResponseAttributes) GetUniqueness() RumMetricResponseUniqueness {
 	if o == nil || o.Uniqueness == nil {
@@ -181,6 +191,8 @@ func (o *RumMetricResponseAttributes) HasUniqueness() bool {
 func (o *RumMetricResponseAttributes) SetUniqueness(v RumMetricResponseUniqueness) {
 	o.Uniqueness = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RumMetricResponseAttributes) MarshalJSON() ([]byte, error) {
@@ -213,10 +225,10 @@ func (o RumMetricResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RumMetricResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Compute    *RumMetricResponseCompute    `json:"compute,omitempty"`
-		EventType  *RumMetricEventType          `json:"event_type,omitempty"`
-		Filter     *RumMetricResponseFilter     `json:"filter,omitempty"`
-		GroupBy    []RumMetricResponseGroupBy   `json:"group_by,omitempty"`
+		Compute *RumMetricResponseCompute `json:"compute,omitempty"`
+		EventType *RumMetricEventType `json:"event_type,omitempty"`
+		Filter *RumMetricResponseFilter `json:"filter,omitempty"`
+		GroupBy []RumMetricResponseGroupBy `json:"group_by,omitempty"`
 		Uniqueness *RumMetricResponseUniqueness `json:"uniqueness,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -224,27 +236,27 @@ func (o *RumMetricResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "event_type", "filter", "group_by", "uniqueness"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "compute", "event_type", "filter", "group_by", "uniqueness",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Compute != nil && all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Compute != nil && all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Compute = all.Compute
-	if all.EventType != nil && !all.EventType.IsValid() {
+	if all.EventType != nil &&!all.EventType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.EventType = all.EventType
 	}
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter
 	o.GroupBy = all.GroupBy
-	if all.Uniqueness != nil && all.Uniqueness.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Uniqueness != nil && all.Uniqueness.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Uniqueness = all.Uniqueness

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentNotificationRuleCreateData Notification rule data for a create request.
 type IncidentNotificationRuleCreateData struct {
@@ -19,9 +23,10 @@ type IncidentNotificationRuleCreateData struct {
 	// Notification rules resource type.
 	Type IncidentNotificationRuleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentNotificationRuleCreateData instantiates a new IncidentNotificationRuleCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewIncidentNotificationRuleCreateDataWithDefaults() *IncidentNotificationRu
 	this := IncidentNotificationRuleCreateData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *IncidentNotificationRuleCreateData) GetAttributes() IncidentNotificationRuleCreateAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *IncidentNotificationRuleCreateData) GetAttributesOk() (*IncidentNotific
 func (o *IncidentNotificationRuleCreateData) SetAttributes(v IncidentNotificationRuleCreateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *IncidentNotificationRuleCreateData) GetRelationships() IncidentNotificationRuleCreateDataRelationships {
@@ -93,6 +98,7 @@ func (o *IncidentNotificationRuleCreateData) SetRelationships(v IncidentNotifica
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *IncidentNotificationRuleCreateData) GetType() IncidentNotificationRuleType {
 	if o == nil {
@@ -116,6 +122,8 @@ func (o *IncidentNotificationRuleCreateData) SetType(v IncidentNotificationRuleT
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentNotificationRuleCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -137,9 +145,9 @@ func (o IncidentNotificationRuleCreateData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentNotificationRuleCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *IncidentNotificationRuleCreateAttributes        `json:"attributes"`
+		Attributes *IncidentNotificationRuleCreateAttributes `json:"attributes"`
 		Relationships *IncidentNotificationRuleCreateDataRelationships `json:"relationships,omitempty"`
-		Type          *IncidentNotificationRuleType                    `json:"type"`
+		Type *IncidentNotificationRuleType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *IncidentNotificationRuleCreateData) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "relationships", "type",  })
 	} else {
 		return err
 	}
@@ -162,7 +170,7 @@ func (o *IncidentNotificationRuleCreateData) UnmarshalJSON(bytes []byte) (err er
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

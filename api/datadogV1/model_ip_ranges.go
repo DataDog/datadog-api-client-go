@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IPRanges IP ranges.
 type IPRanges struct {
@@ -37,9 +43,10 @@ type IPRanges struct {
 	// Available prefix information for the Webhook endpoints.
 	Webhooks *IPPrefixesWebhooks `json:"webhooks,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIPRanges instantiates a new IPRanges object.
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +64,6 @@ func NewIPRangesWithDefaults() *IPRanges {
 	this := IPRanges{}
 	return &this
 }
-
 // GetAgents returns the Agents field value if set, zero value otherwise.
 func (o *IPRanges) GetAgents() IPPrefixesAgents {
 	if o == nil || o.Agents == nil {
@@ -85,6 +91,7 @@ func (o *IPRanges) HasAgents() bool {
 func (o *IPRanges) SetAgents(v IPPrefixesAgents) {
 	o.Agents = &v
 }
+
 
 // GetApi returns the Api field value if set, zero value otherwise.
 func (o *IPRanges) GetApi() IPPrefixesAPI {
@@ -114,6 +121,7 @@ func (o *IPRanges) SetApi(v IPPrefixesAPI) {
 	o.Api = &v
 }
 
+
 // GetApm returns the Apm field value if set, zero value otherwise.
 func (o *IPRanges) GetApm() IPPrefixesAPM {
 	if o == nil || o.Apm == nil {
@@ -141,6 +149,7 @@ func (o *IPRanges) HasApm() bool {
 func (o *IPRanges) SetApm(v IPPrefixesAPM) {
 	o.Apm = &v
 }
+
 
 // GetGlobal returns the Global field value if set, zero value otherwise.
 func (o *IPRanges) GetGlobal() IPPrefixesGlobal {
@@ -170,6 +179,7 @@ func (o *IPRanges) SetGlobal(v IPPrefixesGlobal) {
 	o.Global = &v
 }
 
+
 // GetLogs returns the Logs field value if set, zero value otherwise.
 func (o *IPRanges) GetLogs() IPPrefixesLogs {
 	if o == nil || o.Logs == nil {
@@ -197,6 +207,7 @@ func (o *IPRanges) HasLogs() bool {
 func (o *IPRanges) SetLogs(v IPPrefixesLogs) {
 	o.Logs = &v
 }
+
 
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *IPRanges) GetModified() string {
@@ -226,6 +237,7 @@ func (o *IPRanges) SetModified(v string) {
 	o.Modified = &v
 }
 
+
 // GetOrchestrator returns the Orchestrator field value if set, zero value otherwise.
 func (o *IPRanges) GetOrchestrator() IPPrefixesOrchestrator {
 	if o == nil || o.Orchestrator == nil {
@@ -253,6 +265,7 @@ func (o *IPRanges) HasOrchestrator() bool {
 func (o *IPRanges) SetOrchestrator(v IPPrefixesOrchestrator) {
 	o.Orchestrator = &v
 }
+
 
 // GetProcess returns the Process field value if set, zero value otherwise.
 func (o *IPRanges) GetProcess() IPPrefixesProcess {
@@ -282,6 +295,7 @@ func (o *IPRanges) SetProcess(v IPPrefixesProcess) {
 	o.Process = &v
 }
 
+
 // GetRemoteConfiguration returns the RemoteConfiguration field value if set, zero value otherwise.
 func (o *IPRanges) GetRemoteConfiguration() IPPrefixesRemoteConfiguration {
 	if o == nil || o.RemoteConfiguration == nil {
@@ -309,6 +323,7 @@ func (o *IPRanges) HasRemoteConfiguration() bool {
 func (o *IPRanges) SetRemoteConfiguration(v IPPrefixesRemoteConfiguration) {
 	o.RemoteConfiguration = &v
 }
+
 
 // GetSynthetics returns the Synthetics field value if set, zero value otherwise.
 func (o *IPRanges) GetSynthetics() IPPrefixesSynthetics {
@@ -338,6 +353,7 @@ func (o *IPRanges) SetSynthetics(v IPPrefixesSynthetics) {
 	o.Synthetics = &v
 }
 
+
 // GetSyntheticsPrivateLocations returns the SyntheticsPrivateLocations field value if set, zero value otherwise.
 func (o *IPRanges) GetSyntheticsPrivateLocations() IPPrefixesSyntheticsPrivateLocations {
 	if o == nil || o.SyntheticsPrivateLocations == nil {
@@ -365,6 +381,7 @@ func (o *IPRanges) HasSyntheticsPrivateLocations() bool {
 func (o *IPRanges) SetSyntheticsPrivateLocations(v IPPrefixesSyntheticsPrivateLocations) {
 	o.SyntheticsPrivateLocations = &v
 }
+
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *IPRanges) GetVersion() int64 {
@@ -394,6 +411,7 @@ func (o *IPRanges) SetVersion(v int64) {
 	o.Version = &v
 }
 
+
 // GetWebhooks returns the Webhooks field value if set, zero value otherwise.
 func (o *IPRanges) GetWebhooks() IPPrefixesWebhooks {
 	if o == nil || o.Webhooks == nil {
@@ -421,6 +439,8 @@ func (o *IPRanges) HasWebhooks() bool {
 func (o *IPRanges) SetWebhooks(v IPPrefixesWebhooks) {
 	o.Webhooks = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IPRanges) MarshalJSON() ([]byte, error) {
@@ -477,74 +497,74 @@ func (o IPRanges) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IPRanges) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Agents                     *IPPrefixesAgents                     `json:"agents,omitempty"`
-		Api                        *IPPrefixesAPI                        `json:"api,omitempty"`
-		Apm                        *IPPrefixesAPM                        `json:"apm,omitempty"`
-		Global                     *IPPrefixesGlobal                     `json:"global,omitempty"`
-		Logs                       *IPPrefixesLogs                       `json:"logs,omitempty"`
-		Modified                   *string                               `json:"modified,omitempty"`
-		Orchestrator               *IPPrefixesOrchestrator               `json:"orchestrator,omitempty"`
-		Process                    *IPPrefixesProcess                    `json:"process,omitempty"`
-		RemoteConfiguration        *IPPrefixesRemoteConfiguration        `json:"remote-configuration,omitempty"`
-		Synthetics                 *IPPrefixesSynthetics                 `json:"synthetics,omitempty"`
+		Agents *IPPrefixesAgents `json:"agents,omitempty"`
+		Api *IPPrefixesAPI `json:"api,omitempty"`
+		Apm *IPPrefixesAPM `json:"apm,omitempty"`
+		Global *IPPrefixesGlobal `json:"global,omitempty"`
+		Logs *IPPrefixesLogs `json:"logs,omitempty"`
+		Modified *string `json:"modified,omitempty"`
+		Orchestrator *IPPrefixesOrchestrator `json:"orchestrator,omitempty"`
+		Process *IPPrefixesProcess `json:"process,omitempty"`
+		RemoteConfiguration *IPPrefixesRemoteConfiguration `json:"remote-configuration,omitempty"`
+		Synthetics *IPPrefixesSynthetics `json:"synthetics,omitempty"`
 		SyntheticsPrivateLocations *IPPrefixesSyntheticsPrivateLocations `json:"synthetics-private-locations,omitempty"`
-		Version                    *int64                                `json:"version,omitempty"`
-		Webhooks                   *IPPrefixesWebhooks                   `json:"webhooks,omitempty"`
+		Version *int64 `json:"version,omitempty"`
+		Webhooks *IPPrefixesWebhooks `json:"webhooks,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"agents", "api", "apm", "global", "logs", "modified", "orchestrator", "process", "remote-configuration", "synthetics", "synthetics-private-locations", "version", "webhooks"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "agents", "api", "apm", "global", "logs", "modified", "orchestrator", "process", "remote-configuration", "synthetics", "synthetics-private-locations", "version", "webhooks",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Agents != nil && all.Agents.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Agents != nil && all.Agents.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Agents = all.Agents
-	if all.Api != nil && all.Api.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Api != nil && all.Api.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Api = all.Api
-	if all.Apm != nil && all.Apm.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Apm != nil && all.Apm.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Apm = all.Apm
-	if all.Global != nil && all.Global.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Global != nil && all.Global.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Global = all.Global
-	if all.Logs != nil && all.Logs.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Logs != nil && all.Logs.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Logs = all.Logs
 	o.Modified = all.Modified
-	if all.Orchestrator != nil && all.Orchestrator.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Orchestrator != nil && all.Orchestrator.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Orchestrator = all.Orchestrator
-	if all.Process != nil && all.Process.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Process != nil && all.Process.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Process = all.Process
-	if all.RemoteConfiguration != nil && all.RemoteConfiguration.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RemoteConfiguration != nil && all.RemoteConfiguration.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RemoteConfiguration = all.RemoteConfiguration
-	if all.Synthetics != nil && all.Synthetics.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Synthetics != nil && all.Synthetics.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Synthetics = all.Synthetics
-	if all.SyntheticsPrivateLocations != nil && all.SyntheticsPrivateLocations.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SyntheticsPrivateLocations != nil && all.SyntheticsPrivateLocations.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SyntheticsPrivateLocations = all.SyntheticsPrivateLocations
 	o.Version = all.Version
-	if all.Webhooks != nil && all.Webhooks.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Webhooks != nil && all.Webhooks.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Webhooks = all.Webhooks

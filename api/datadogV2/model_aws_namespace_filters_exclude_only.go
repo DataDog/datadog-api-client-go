@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSNamespaceFiltersExcludeOnly Exclude only these namespaces from metrics collection. Defaults to `["AWS/SQS", "AWS/ElasticMapReduce", "AWS/Usage"]`.
 // `AWS/SQS`, `AWS/ElasticMapReduce`, and `AWS/Usage` are excluded by default to reduce your AWS CloudWatch costs from `GetMetricData` API calls.
@@ -17,9 +21,10 @@ type AWSNamespaceFiltersExcludeOnly struct {
 	// `AWS/SQS`, `AWS/ElasticMapReduce`, and `AWS/Usage` are excluded by default to reduce your AWS CloudWatch costs from `GetMetricData` API calls.
 	ExcludeOnly []string `json:"exclude_only"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSNamespaceFiltersExcludeOnly instantiates a new AWSNamespaceFiltersExcludeOnly object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewAWSNamespaceFiltersExcludeOnlyWithDefaults() *AWSNamespaceFiltersExclude
 	this := AWSNamespaceFiltersExcludeOnly{}
 	return &this
 }
-
 // GetExcludeOnly returns the ExcludeOnly field value.
 func (o *AWSNamespaceFiltersExcludeOnly) GetExcludeOnly() []string {
 	if o == nil {
@@ -61,6 +65,8 @@ func (o *AWSNamespaceFiltersExcludeOnly) GetExcludeOnlyOk() (*[]string, bool) {
 func (o *AWSNamespaceFiltersExcludeOnly) SetExcludeOnly(v []string) {
 	o.ExcludeOnly = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSNamespaceFiltersExcludeOnly) MarshalJSON() ([]byte, error) {
@@ -89,7 +95,7 @@ func (o *AWSNamespaceFiltersExcludeOnly) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"exclude_only"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "exclude_only",  })
 	} else {
 		return err
 	}

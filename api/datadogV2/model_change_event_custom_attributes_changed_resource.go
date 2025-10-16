@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ChangeEventCustomAttributesChangedResource A uniquely identified resource.
 type ChangeEventCustomAttributesChangedResource struct {
@@ -19,6 +23,7 @@ type ChangeEventCustomAttributesChangedResource struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewChangeEventCustomAttributesChangedResource instantiates a new ChangeEventCustomAttributesChangedResource object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewChangeEventCustomAttributesChangedResourceWithDefaults() *ChangeEventCus
 	this := ChangeEventCustomAttributesChangedResource{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *ChangeEventCustomAttributesChangedResource) GetName() string {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *ChangeEventCustomAttributesChangedResource) GetNameOk() (*string, bool)
 func (o *ChangeEventCustomAttributesChangedResource) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ChangeEventCustomAttributesChangedResource) GetType() ChangeEventCustomAttributesChangedResourceType {
@@ -85,6 +90,8 @@ func (o *ChangeEventCustomAttributesChangedResource) SetType(v ChangeEventCustom
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ChangeEventCustomAttributesChangedResource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -99,7 +106,7 @@ func (o ChangeEventCustomAttributesChangedResource) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *ChangeEventCustomAttributesChangedResource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name *string                                         `json:"name"`
+		Name *string `json:"name"`
 		Type *ChangeEventCustomAttributesChangedResourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {

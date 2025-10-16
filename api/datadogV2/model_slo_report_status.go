@@ -2,23 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOReportStatus The status of the SLO report job.
 type SLOReportStatus string
 
 // List of SLOReportStatus.
 const (
-	SLOREPORTSTATUS_IN_PROGRESS           SLOReportStatus = "in_progress"
-	SLOREPORTSTATUS_COMPLETED             SLOReportStatus = "completed"
+	SLOREPORTSTATUS_IN_PROGRESS SLOReportStatus = "in_progress"
+	SLOREPORTSTATUS_COMPLETED SLOReportStatus = "completed"
 	SLOREPORTSTATUS_COMPLETED_WITH_ERRORS SLOReportStatus = "completed_with_errors"
-	SLOREPORTSTATUS_FAILED                SLOReportStatus = "failed"
+	SLOREPORTSTATUS_FAILED SLOReportStatus = "failed"
 )
 
 var allowedSLOReportStatusEnumValues = []SLOReportStatus{

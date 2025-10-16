@@ -2,21 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FormulaAndFunctionSLOQueryType Name of the query for use in formulas.
 type FormulaAndFunctionSLOQueryType string
 
 // List of FormulaAndFunctionSLOQueryType.
 const (
-	FORMULAANDFUNCTIONSLOQUERYTYPE_METRIC     FormulaAndFunctionSLOQueryType = "metric"
-	FORMULAANDFUNCTIONSLOQUERYTYPE_MONITOR    FormulaAndFunctionSLOQueryType = "monitor"
+	FORMULAANDFUNCTIONSLOQUERYTYPE_METRIC FormulaAndFunctionSLOQueryType = "metric"
+	FORMULAANDFUNCTIONSLOQUERYTYPE_MONITOR FormulaAndFunctionSLOQueryType = "monitor"
 	FORMULAANDFUNCTIONSLOQUERYTYPE_TIME_SLICE FormulaAndFunctionSLOQueryType = "time_slice"
 )
 

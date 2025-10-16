@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSTagFilterListResponse An array of tag filter rules by `namespace` and tag filter string.
 type AWSTagFilterListResponse struct {
 	// An array of tag filters.
 	Filters []AWSTagFilter `json:"filters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSTagFilterListResponse instantiates a new AWSTagFilterListResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewAWSTagFilterListResponseWithDefaults() *AWSTagFilterListResponse {
 	this := AWSTagFilterListResponse{}
 	return &this
 }
-
 // GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *AWSTagFilterListResponse) GetFilters() []AWSTagFilter {
 	if o == nil || o.Filters == nil {
@@ -62,6 +68,8 @@ func (o *AWSTagFilterListResponse) SetFilters(v []AWSTagFilter) {
 	o.Filters = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSTagFilterListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *AWSTagFilterListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"filters"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "filters",  })
 	} else {
 		return err
 	}

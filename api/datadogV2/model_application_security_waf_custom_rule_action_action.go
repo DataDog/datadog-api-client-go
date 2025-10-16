@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleActionAction Override the default action to take when the WAF custom rule would block.
 type ApplicationSecurityWafCustomRuleActionAction string
@@ -16,7 +20,7 @@ type ApplicationSecurityWafCustomRuleActionAction string
 // List of ApplicationSecurityWafCustomRuleActionAction.
 const (
 	APPLICATIONSECURITYWAFCUSTOMRULEACTIONACTION_REDIRECT_REQUEST ApplicationSecurityWafCustomRuleActionAction = "redirect_request"
-	APPLICATIONSECURITYWAFCUSTOMRULEACTIONACTION_BLOCK_REQUEST    ApplicationSecurityWafCustomRuleActionAction = "block_request"
+	APPLICATIONSECURITYWAFCUSTOMRULEACTIONACTION_BLOCK_REQUEST ApplicationSecurityWafCustomRuleActionAction = "block_request"
 )
 
 var allowedApplicationSecurityWafCustomRuleActionActionEnumValues = []ApplicationSecurityWafCustomRuleActionAction{

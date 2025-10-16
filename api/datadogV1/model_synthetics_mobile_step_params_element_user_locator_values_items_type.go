@@ -2,24 +2,28 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsMobileStepParamsElementUserLocatorValuesItemsType Type of a user locator.
 type SyntheticsMobileStepParamsElementUserLocatorValuesItemsType string
 
 // List of SyntheticsMobileStepParamsElementUserLocatorValuesItemsType.
 const (
-	SYNTHETICSMOBILESTEPPARAMSELEMENTUSERLOCATORVALUESITEMSTYPE_ACCESSIBILITY_ID     SyntheticsMobileStepParamsElementUserLocatorValuesItemsType = "accessibility-id"
-	SYNTHETICSMOBILESTEPPARAMSELEMENTUSERLOCATORVALUESITEMSTYPE_ID                   SyntheticsMobileStepParamsElementUserLocatorValuesItemsType = "id"
+	SYNTHETICSMOBILESTEPPARAMSELEMENTUSERLOCATORVALUESITEMSTYPE_ACCESSIBILITY_ID SyntheticsMobileStepParamsElementUserLocatorValuesItemsType = "accessibility-id"
+	SYNTHETICSMOBILESTEPPARAMSELEMENTUSERLOCATORVALUESITEMSTYPE_ID SyntheticsMobileStepParamsElementUserLocatorValuesItemsType = "id"
 	SYNTHETICSMOBILESTEPPARAMSELEMENTUSERLOCATORVALUESITEMSTYPE_IOS_PREDICATE_STRING SyntheticsMobileStepParamsElementUserLocatorValuesItemsType = "ios-predicate-string"
-	SYNTHETICSMOBILESTEPPARAMSELEMENTUSERLOCATORVALUESITEMSTYPE_IOS_CLASS_CHAIN      SyntheticsMobileStepParamsElementUserLocatorValuesItemsType = "ios-class-chain"
-	SYNTHETICSMOBILESTEPPARAMSELEMENTUSERLOCATORVALUESITEMSTYPE_XPATH                SyntheticsMobileStepParamsElementUserLocatorValuesItemsType = "xpath"
+	SYNTHETICSMOBILESTEPPARAMSELEMENTUSERLOCATORVALUESITEMSTYPE_IOS_CLASS_CHAIN SyntheticsMobileStepParamsElementUserLocatorValuesItemsType = "ios-class-chain"
+	SYNTHETICSMOBILESTEPPARAMSELEMENTUSERLOCATORVALUESITEMSTYPE_XPATH SyntheticsMobileStepParamsElementUserLocatorValuesItemsType = "xpath"
 )
 
 var allowedSyntheticsMobileStepParamsElementUserLocatorValuesItemsTypeEnumValues = []SyntheticsMobileStepParamsElementUserLocatorValuesItemsType{

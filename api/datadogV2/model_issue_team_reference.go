@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssueTeamReference A team that owns the issue.
 type IssueTeamReference struct {
@@ -17,9 +21,10 @@ type IssueTeamReference struct {
 	// Type of the object.
 	Type IssueTeamType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssueTeamReference instantiates a new IssueTeamReference object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewIssueTeamReferenceWithDefaults() *IssueTeamReference {
 	this := IssueTeamReference{}
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *IssueTeamReference) GetId() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *IssueTeamReference) GetIdOk() (*string, bool) {
 func (o *IssueTeamReference) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *IssueTeamReference) GetType() IssueTeamType {
@@ -86,6 +91,8 @@ func (o *IssueTeamReference) SetType(v IssueTeamType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IssueTeamReference) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o IssueTeamReference) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IssueTeamReference) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string        `json:"id"`
+		Id *string `json:"id"`
 		Type *IssueTeamType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *IssueTeamReference) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}

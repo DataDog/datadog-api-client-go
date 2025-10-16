@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OutputSchemaParameters The definition of `OutputSchemaParameters` object.
 type OutputSchemaParameters struct {
@@ -25,9 +29,10 @@ type OutputSchemaParameters struct {
 	// The `OutputSchemaParameters` `value`.
 	Value interface{} `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOutputSchemaParameters instantiates a new OutputSchemaParameters object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewOutputSchemaParametersWithDefaults() *OutputSchemaParameters {
 	this := OutputSchemaParameters{}
 	return &this
 }
-
 // GetDefaultValue returns the DefaultValue field value if set, zero value otherwise.
 func (o *OutputSchemaParameters) GetDefaultValue() interface{} {
 	if o == nil || o.DefaultValue == nil {
@@ -75,6 +79,7 @@ func (o *OutputSchemaParameters) HasDefaultValue() bool {
 func (o *OutputSchemaParameters) SetDefaultValue(v interface{}) {
 	o.DefaultValue = v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *OutputSchemaParameters) GetDescription() string {
@@ -104,6 +109,7 @@ func (o *OutputSchemaParameters) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *OutputSchemaParameters) GetLabel() string {
 	if o == nil || o.Label == nil {
@@ -132,6 +138,7 @@ func (o *OutputSchemaParameters) SetLabel(v string) {
 	o.Label = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *OutputSchemaParameters) GetName() string {
 	if o == nil {
@@ -155,6 +162,7 @@ func (o *OutputSchemaParameters) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetType returns the Type field value.
 func (o *OutputSchemaParameters) GetType() OutputSchemaParametersType {
 	if o == nil {
@@ -177,6 +185,7 @@ func (o *OutputSchemaParameters) GetTypeOk() (*OutputSchemaParametersType, bool)
 func (o *OutputSchemaParameters) SetType(v OutputSchemaParametersType) {
 	o.Type = v
 }
+
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *OutputSchemaParameters) GetValue() interface{} {
@@ -205,6 +214,8 @@ func (o *OutputSchemaParameters) HasValue() bool {
 func (o *OutputSchemaParameters) SetValue(v interface{}) {
 	o.Value = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o OutputSchemaParameters) MarshalJSON() ([]byte, error) {
@@ -236,12 +247,12 @@ func (o OutputSchemaParameters) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OutputSchemaParameters) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DefaultValue interface{}                 `json:"defaultValue,omitempty"`
-		Description  *string                     `json:"description,omitempty"`
-		Label        *string                     `json:"label,omitempty"`
-		Name         *string                     `json:"name"`
-		Type         *OutputSchemaParametersType `json:"type"`
-		Value        interface{}                 `json:"value,omitempty"`
+		DefaultValue interface{} `json:"defaultValue,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Label *string `json:"label,omitempty"`
+		Name *string `json:"name"`
+		Type *OutputSchemaParametersType `json:"type"`
+		Value interface{} `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -254,7 +265,7 @@ func (o *OutputSchemaParameters) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"defaultValue", "description", "label", "name", "type", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "defaultValue", "description", "label", "name", "type", "value",  })
 	} else {
 		return err
 	}

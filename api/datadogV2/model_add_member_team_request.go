@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AddMemberTeamRequest Request to add a member team to super team's hierarchy
 type AddMemberTeamRequest struct {
 	// A member team
 	Data MemberTeam `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAddMemberTeamRequest instantiates a new AddMemberTeamRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewAddMemberTeamRequestWithDefaults() *AddMemberTeamRequest {
 	this := AddMemberTeamRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *AddMemberTeamRequest) GetData() MemberTeam {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *AddMemberTeamRequest) GetDataOk() (*MemberTeam, bool) {
 func (o *AddMemberTeamRequest) SetData(v MemberTeam) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AddMemberTeamRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *AddMemberTeamRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

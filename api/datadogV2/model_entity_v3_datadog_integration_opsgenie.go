@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityV3DatadogIntegrationOpsgenie An Opsgenie integration schema.
 type EntityV3DatadogIntegrationOpsgenie struct {
@@ -19,6 +23,7 @@ type EntityV3DatadogIntegrationOpsgenie struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityV3DatadogIntegrationOpsgenie instantiates a new EntityV3DatadogIntegrationOpsgenie object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewEntityV3DatadogIntegrationOpsgenieWithDefaults() *EntityV3DatadogIntegra
 	this := EntityV3DatadogIntegrationOpsgenie{}
 	return &this
 }
-
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *EntityV3DatadogIntegrationOpsgenie) GetRegion() string {
 	if o == nil || o.Region == nil {
@@ -66,6 +70,7 @@ func (o *EntityV3DatadogIntegrationOpsgenie) SetRegion(v string) {
 	o.Region = &v
 }
 
+
 // GetServiceUrl returns the ServiceUrl field value.
 func (o *EntityV3DatadogIntegrationOpsgenie) GetServiceUrl() string {
 	if o == nil {
@@ -89,6 +94,8 @@ func (o *EntityV3DatadogIntegrationOpsgenie) SetServiceUrl(v string) {
 	o.ServiceUrl = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3DatadogIntegrationOpsgenie) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o EntityV3DatadogIntegrationOpsgenie) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityV3DatadogIntegrationOpsgenie) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Region     *string `json:"region,omitempty"`
+		Region *string `json:"region,omitempty"`
 		ServiceUrl *string `json:"serviceURL"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HTTPCredentialsUpdate - The definition of `HTTPCredentialsUpdate` object.
 type HTTPCredentialsUpdate struct {
@@ -56,6 +62,7 @@ func (obj HTTPCredentialsUpdate) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.HTTPTokenAuthUpdate)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj HTTPCredentialsUpdate) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *HTTPCredentialsUpdate) GetActualInstance() interface{} {
+func (obj *HTTPCredentialsUpdate) GetActualInstance() (interface{}) {
 	if obj.HTTPTokenAuthUpdate != nil {
 		return obj.HTTPTokenAuthUpdate
 	}
+
 
 	// all schemas are nil
 	return nil

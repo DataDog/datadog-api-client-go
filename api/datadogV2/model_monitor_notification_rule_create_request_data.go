@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorNotificationRuleCreateRequestData Object to create a monitor notification rule.
 type MonitorNotificationRuleCreateRequestData struct {
@@ -17,9 +21,10 @@ type MonitorNotificationRuleCreateRequestData struct {
 	// Monitor notification rule resource type.
 	Type *MonitorNotificationRuleResourceType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorNotificationRuleCreateRequestData instantiates a new MonitorNotificationRuleCreateRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewMonitorNotificationRuleCreateRequestDataWithDefaults() *MonitorNotificat
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *MonitorNotificationRuleCreateRequestData) GetAttributes() MonitorNotificationRuleAttributes {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *MonitorNotificationRuleCreateRequestData) GetAttributesOk() (*MonitorNo
 func (o *MonitorNotificationRuleCreateRequestData) SetAttributes(v MonitorNotificationRuleAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MonitorNotificationRuleCreateRequestData) GetType() MonitorNotificationRuleResourceType {
@@ -94,6 +99,8 @@ func (o *MonitorNotificationRuleCreateRequestData) SetType(v MonitorNotification
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorNotificationRuleCreateRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,8 +121,8 @@ func (o MonitorNotificationRuleCreateRequestData) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorNotificationRuleCreateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *MonitorNotificationRuleAttributes   `json:"attributes"`
-		Type       *MonitorNotificationRuleResourceType `json:"type,omitempty"`
+		Attributes *MonitorNotificationRuleAttributes `json:"attributes"`
+		Type *MonitorNotificationRuleResourceType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -125,7 +132,7 @@ func (o *MonitorNotificationRuleCreateRequestData) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}
@@ -135,7 +142,7 @@ func (o *MonitorNotificationRuleCreateRequestData) UnmarshalJSON(bytes []byte) (
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

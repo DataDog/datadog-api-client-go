@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageIngestedSpansHour Ingested spans usage for a given organization for a given hour.
 type UsageIngestedSpansHour struct {
@@ -21,9 +25,10 @@ type UsageIngestedSpansHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageIngestedSpansHour instantiates a new UsageIngestedSpansHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewUsageIngestedSpansHourWithDefaults() *UsageIngestedSpansHour {
 	this := UsageIngestedSpansHour{}
 	return &this
 }
-
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageIngestedSpansHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -70,6 +74,7 @@ func (o *UsageIngestedSpansHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetIngestedEventsBytes returns the IngestedEventsBytes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageIngestedSpansHour) GetIngestedEventsBytes() int64 {
 	if o == nil || o.IngestedEventsBytes.Get() == nil {
@@ -83,7 +88,7 @@ func (o *UsageIngestedSpansHour) GetIngestedEventsBytes() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageIngestedSpansHour) GetIngestedEventsBytesOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.IngestedEventsBytes.Get(), o.IngestedEventsBytes.IsSet()
@@ -98,7 +103,6 @@ func (o *UsageIngestedSpansHour) HasIngestedEventsBytes() bool {
 func (o *UsageIngestedSpansHour) SetIngestedEventsBytes(v int64) {
 	o.IngestedEventsBytes.Set(&v)
 }
-
 // SetIngestedEventsBytesNil sets the value for IngestedEventsBytes to be an explicit nil.
 func (o *UsageIngestedSpansHour) SetIngestedEventsBytesNil() {
 	o.IngestedEventsBytes.Set(nil)
@@ -108,6 +112,7 @@ func (o *UsageIngestedSpansHour) SetIngestedEventsBytesNil() {
 func (o *UsageIngestedSpansHour) UnsetIngestedEventsBytes() {
 	o.IngestedEventsBytes.Unset()
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageIngestedSpansHour) GetOrgName() string {
@@ -137,6 +142,7 @@ func (o *UsageIngestedSpansHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageIngestedSpansHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -164,6 +170,8 @@ func (o *UsageIngestedSpansHour) HasPublicId() bool {
 func (o *UsageIngestedSpansHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageIngestedSpansHour) MarshalJSON() ([]byte, error) {
@@ -197,17 +205,17 @@ func (o UsageIngestedSpansHour) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageIngestedSpansHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Hour                *time.Time            `json:"hour,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
 		IngestedEventsBytes datadog.NullableInt64 `json:"ingested_events_bytes,omitempty"`
-		OrgName             *string               `json:"org_name,omitempty"`
-		PublicId            *string               `json:"public_id,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"hour", "ingested_events_bytes", "org_name", "public_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "hour", "ingested_events_bytes", "org_name", "public_id",  })
 	} else {
 		return err
 	}

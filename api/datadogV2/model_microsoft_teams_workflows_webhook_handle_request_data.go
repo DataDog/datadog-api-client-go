@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MicrosoftTeamsWorkflowsWebhookHandleRequestData Workflows Webhook handle data from a response.
 type MicrosoftTeamsWorkflowsWebhookHandleRequestData struct {
@@ -17,9 +21,10 @@ type MicrosoftTeamsWorkflowsWebhookHandleRequestData struct {
 	// Specifies the Workflows webhook handle resource type.
 	Type MicrosoftTeamsWorkflowsWebhookHandleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMicrosoftTeamsWorkflowsWebhookHandleRequestData instantiates a new MicrosoftTeamsWorkflowsWebhookHandleRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewMicrosoftTeamsWorkflowsWebhookHandleRequestDataWithDefaults() *Microsoft
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *MicrosoftTeamsWorkflowsWebhookHandleRequestData) GetAttributes() MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *MicrosoftTeamsWorkflowsWebhookHandleRequestData) GetAttributesOk() (*Mi
 func (o *MicrosoftTeamsWorkflowsWebhookHandleRequestData) SetAttributes(v MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *MicrosoftTeamsWorkflowsWebhookHandleRequestData) GetType() MicrosoftTeamsWorkflowsWebhookHandleType {
@@ -88,6 +93,8 @@ func (o *MicrosoftTeamsWorkflowsWebhookHandleRequestData) SetType(v MicrosoftTea
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MicrosoftTeamsWorkflowsWebhookHandleRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o MicrosoftTeamsWorkflowsWebhookHandleRequestData) MarshalJSON() ([]byte, 
 func (o *MicrosoftTeamsWorkflowsWebhookHandleRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *MicrosoftTeamsWorkflowsWebhookHandleRequestAttributes `json:"attributes"`
-		Type       *MicrosoftTeamsWorkflowsWebhookHandleType              `json:"type"`
+		Type *MicrosoftTeamsWorkflowsWebhookHandleType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *MicrosoftTeamsWorkflowsWebhookHandleRequestData) UnmarshalJSON(bytes []
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

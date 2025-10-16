@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TimeseriesResponseAttributes The object describing a timeseries response.
 type TimeseriesResponseAttributes struct {
@@ -17,9 +23,10 @@ type TimeseriesResponseAttributes struct {
 	// Array of value-arrays. The index here corresponds to the index in the `formulas` or `queries` array from the request.
 	Values [][]*float64 `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTimeseriesResponseAttributes instantiates a new TimeseriesResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewTimeseriesResponseAttributesWithDefaults() *TimeseriesResponseAttributes
 	this := TimeseriesResponseAttributes{}
 	return &this
 }
-
 // GetSeries returns the Series field value if set, zero value otherwise.
 func (o *TimeseriesResponseAttributes) GetSeries() []TimeseriesResponseSeries {
 	if o == nil || o.Series == nil {
@@ -65,6 +71,7 @@ func (o *TimeseriesResponseAttributes) HasSeries() bool {
 func (o *TimeseriesResponseAttributes) SetSeries(v []TimeseriesResponseSeries) {
 	o.Series = v
 }
+
 
 // GetTimes returns the Times field value if set, zero value otherwise.
 func (o *TimeseriesResponseAttributes) GetTimes() []int64 {
@@ -94,6 +101,7 @@ func (o *TimeseriesResponseAttributes) SetTimes(v []int64) {
 	o.Times = v
 }
 
+
 // GetValues returns the Values field value if set, zero value otherwise.
 func (o *TimeseriesResponseAttributes) GetValues() [][]*float64 {
 	if o == nil || o.Values == nil {
@@ -122,6 +130,8 @@ func (o *TimeseriesResponseAttributes) SetValues(v [][]*float64) {
 	o.Values = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TimeseriesResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,15 +158,15 @@ func (o TimeseriesResponseAttributes) MarshalJSON() ([]byte, error) {
 func (o *TimeseriesResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Series []TimeseriesResponseSeries `json:"series,omitempty"`
-		Times  []int64                    `json:"times,omitempty"`
-		Values [][]*float64               `json:"values,omitempty"`
+		Times []int64 `json:"times,omitempty"`
+		Values [][]*float64 `json:"values,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"series", "times", "values"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "series", "times", "values",  })
 	} else {
 		return err
 	}

@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApiKeyResponse An API key with its associated metadata.
 type ApiKeyResponse struct {
 	// Datadog API key.
 	ApiKey *ApiKey `json:"api_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApiKeyResponse instantiates a new ApiKeyResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewApiKeyResponseWithDefaults() *ApiKeyResponse {
 	this := ApiKeyResponse{}
 	return &this
 }
-
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
 func (o *ApiKeyResponse) GetApiKey() ApiKey {
 	if o == nil || o.ApiKey == nil {
@@ -62,6 +68,8 @@ func (o *ApiKeyResponse) SetApiKey(v ApiKey) {
 	o.ApiKey = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ApiKeyResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *ApiKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_key"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_key",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.ApiKey != nil && all.ApiKey.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApiKey != nil && all.ApiKey.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApiKey = all.ApiKey

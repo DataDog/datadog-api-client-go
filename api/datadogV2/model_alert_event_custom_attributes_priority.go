@@ -2,24 +2,28 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AlertEventCustomAttributesPriority The priority of the alert.
 type AlertEventCustomAttributesPriority string
 
 // List of AlertEventCustomAttributesPriority.
 const (
-	ALERTEVENTCUSTOMATTRIBUTESPRIORITY_PRIORITY_ONE   AlertEventCustomAttributesPriority = "1"
-	ALERTEVENTCUSTOMATTRIBUTESPRIORITY_PRIORITY_TWO   AlertEventCustomAttributesPriority = "2"
+	ALERTEVENTCUSTOMATTRIBUTESPRIORITY_PRIORITY_ONE AlertEventCustomAttributesPriority = "1"
+	ALERTEVENTCUSTOMATTRIBUTESPRIORITY_PRIORITY_TWO AlertEventCustomAttributesPriority = "2"
 	ALERTEVENTCUSTOMATTRIBUTESPRIORITY_PRIORITY_THREE AlertEventCustomAttributesPriority = "3"
-	ALERTEVENTCUSTOMATTRIBUTESPRIORITY_PRIORITY_FOUR  AlertEventCustomAttributesPriority = "4"
-	ALERTEVENTCUSTOMATTRIBUTESPRIORITY_PRIORITY_FIVE  AlertEventCustomAttributesPriority = "5"
+	ALERTEVENTCUSTOMATTRIBUTESPRIORITY_PRIORITY_FOUR AlertEventCustomAttributesPriority = "4"
+	ALERTEVENTCUSTOMATTRIBUTESPRIORITY_PRIORITY_FIVE AlertEventCustomAttributesPriority = "5"
 )
 
 var allowedAlertEventCustomAttributesPriorityEnumValues = []AlertEventCustomAttributesPriority{

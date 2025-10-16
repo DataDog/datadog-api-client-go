@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TableWidgetTextFormatReplaceAll Match All definition.
 type TableWidgetTextFormatReplaceAll struct {
@@ -17,9 +21,10 @@ type TableWidgetTextFormatReplaceAll struct {
 	// Replace All type.
 	With string `json:"with"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTableWidgetTextFormatReplaceAll instantiates a new TableWidgetTextFormatReplaceAll object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewTableWidgetTextFormatReplaceAllWithDefaults() *TableWidgetTextFormatRepl
 	this := TableWidgetTextFormatReplaceAll{}
 	return &this
 }
-
 // GetType returns the Type field value.
 func (o *TableWidgetTextFormatReplaceAll) GetType() TableWidgetTextFormatReplaceAllType {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *TableWidgetTextFormatReplaceAll) GetTypeOk() (*TableWidgetTextFormatRep
 func (o *TableWidgetTextFormatReplaceAll) SetType(v TableWidgetTextFormatReplaceAllType) {
 	o.Type = v
 }
+
 
 // GetWith returns the With field value.
 func (o *TableWidgetTextFormatReplaceAll) GetWith() string {
@@ -86,6 +91,8 @@ func (o *TableWidgetTextFormatReplaceAll) SetWith(v string) {
 	o.With = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TableWidgetTextFormatReplaceAll) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o TableWidgetTextFormatReplaceAll) MarshalJSON() ([]byte, error) {
 func (o *TableWidgetTextFormatReplaceAll) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Type *TableWidgetTextFormatReplaceAllType `json:"type"`
-		With *string                              `json:"with"`
+		With *string `json:"with"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *TableWidgetTextFormatReplaceAll) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"type", "with"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "type", "with",  })
 	} else {
 		return err
 	}

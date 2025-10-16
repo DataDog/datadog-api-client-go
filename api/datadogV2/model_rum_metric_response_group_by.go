@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RumMetricResponseGroupBy A group by rule.
 type RumMetricResponseGroupBy struct {
@@ -15,9 +21,10 @@ type RumMetricResponseGroupBy struct {
 	// Eventual name of the tag that gets created. By default, `path` is used as the tag name.
 	TagName *string `json:"tag_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRumMetricResponseGroupBy instantiates a new RumMetricResponseGroupBy object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewRumMetricResponseGroupByWithDefaults() *RumMetricResponseGroupBy {
 	this := RumMetricResponseGroupBy{}
 	return &this
 }
-
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *RumMetricResponseGroupBy) GetPath() string {
 	if o == nil || o.Path == nil {
@@ -63,6 +69,7 @@ func (o *RumMetricResponseGroupBy) HasPath() bool {
 func (o *RumMetricResponseGroupBy) SetPath(v string) {
 	o.Path = &v
 }
+
 
 // GetTagName returns the TagName field value if set, zero value otherwise.
 func (o *RumMetricResponseGroupBy) GetTagName() string {
@@ -92,6 +99,8 @@ func (o *RumMetricResponseGroupBy) SetTagName(v string) {
 	o.TagName = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RumMetricResponseGroupBy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o RumMetricResponseGroupBy) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RumMetricResponseGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Path    *string `json:"path,omitempty"`
+		Path *string `json:"path,omitempty"`
 		TagName *string `json:"tag_name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *RumMetricResponseGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"path", "tag_name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "path", "tag_name",  })
 	} else {
 		return err
 	}

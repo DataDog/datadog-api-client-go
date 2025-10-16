@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringFilter The rule's suppression filter.
 type SecurityMonitoringFilter struct {
@@ -15,9 +21,10 @@ type SecurityMonitoringFilter struct {
 	// Query for selecting logs to apply the filtering action.
 	Query *string `json:"query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringFilter instantiates a new SecurityMonitoringFilter object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSecurityMonitoringFilterWithDefaults() *SecurityMonitoringFilter {
 	this := SecurityMonitoringFilter{}
 	return &this
 }
-
 // GetAction returns the Action field value if set, zero value otherwise.
 func (o *SecurityMonitoringFilter) GetAction() SecurityMonitoringFilterAction {
 	if o == nil || o.Action == nil {
@@ -63,6 +69,7 @@ func (o *SecurityMonitoringFilter) HasAction() bool {
 func (o *SecurityMonitoringFilter) SetAction(v SecurityMonitoringFilterAction) {
 	o.Action = &v
 }
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *SecurityMonitoringFilter) GetQuery() string {
@@ -92,6 +99,8 @@ func (o *SecurityMonitoringFilter) SetQuery(v string) {
 	o.Query = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,20 +124,20 @@ func (o SecurityMonitoringFilter) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringFilter) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Action *SecurityMonitoringFilterAction `json:"action,omitempty"`
-		Query  *string                         `json:"query,omitempty"`
+		Query *string `json:"query,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"action", "query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "action", "query",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Action != nil && !all.Action.IsValid() {
+	if all.Action != nil &&!all.Action.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Action = all.Action

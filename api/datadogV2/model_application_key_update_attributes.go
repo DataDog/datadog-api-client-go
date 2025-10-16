@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationKeyUpdateAttributes Attributes used to update an application Key.
 type ApplicationKeyUpdateAttributes struct {
@@ -15,9 +21,10 @@ type ApplicationKeyUpdateAttributes struct {
 	// Array of scopes to grant the application key.
 	Scopes datadog.NullableList[string] `json:"scopes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationKeyUpdateAttributes instantiates a new ApplicationKeyUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewApplicationKeyUpdateAttributesWithDefaults() *ApplicationKeyUpdateAttrib
 	this := ApplicationKeyUpdateAttributes{}
 	return &this
 }
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ApplicationKeyUpdateAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -64,6 +70,7 @@ func (o *ApplicationKeyUpdateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetScopes returns the Scopes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApplicationKeyUpdateAttributes) GetScopes() []string {
 	if o == nil || o.Scopes.Get() == nil {
@@ -77,7 +84,7 @@ func (o *ApplicationKeyUpdateAttributes) GetScopes() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *ApplicationKeyUpdateAttributes) GetScopesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Scopes.Get(), o.Scopes.IsSet()
@@ -92,7 +99,6 @@ func (o *ApplicationKeyUpdateAttributes) HasScopes() bool {
 func (o *ApplicationKeyUpdateAttributes) SetScopes(v []string) {
 	o.Scopes.Set(&v)
 }
-
 // SetScopesNil sets the value for Scopes to be an explicit nil.
 func (o *ApplicationKeyUpdateAttributes) SetScopesNil() {
 	o.Scopes.Set(nil)
@@ -102,6 +108,8 @@ func (o *ApplicationKeyUpdateAttributes) SetScopesNil() {
 func (o *ApplicationKeyUpdateAttributes) UnsetScopes() {
 	o.Scopes.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationKeyUpdateAttributes) MarshalJSON() ([]byte, error) {
@@ -125,7 +133,7 @@ func (o ApplicationKeyUpdateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationKeyUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name   *string                      `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 		Scopes datadog.NullableList[string] `json:"scopes,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -133,7 +141,7 @@ func (o *ApplicationKeyUpdateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "scopes"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "scopes",  })
 	} else {
 		return err
 	}

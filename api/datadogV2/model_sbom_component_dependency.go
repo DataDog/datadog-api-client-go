@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SBOMComponentDependency The dependencies of a component of the SBOM.
 type SBOMComponentDependency struct {
@@ -15,9 +21,10 @@ type SBOMComponentDependency struct {
 	// The identifier for the related component.
 	Ref *string `json:"ref,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSBOMComponentDependency instantiates a new SBOMComponentDependency object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSBOMComponentDependencyWithDefaults() *SBOMComponentDependency {
 	this := SBOMComponentDependency{}
 	return &this
 }
-
 // GetDependsOn returns the DependsOn field value if set, zero value otherwise.
 func (o *SBOMComponentDependency) GetDependsOn() []string {
 	if o == nil || o.DependsOn == nil {
@@ -63,6 +69,7 @@ func (o *SBOMComponentDependency) HasDependsOn() bool {
 func (o *SBOMComponentDependency) SetDependsOn(v []string) {
 	o.DependsOn = v
 }
+
 
 // GetRef returns the Ref field value if set, zero value otherwise.
 func (o *SBOMComponentDependency) GetRef() string {
@@ -92,6 +99,8 @@ func (o *SBOMComponentDependency) SetRef(v string) {
 	o.Ref = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SBOMComponentDependency) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o SBOMComponentDependency) MarshalJSON() ([]byte, error) {
 func (o *SBOMComponentDependency) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DependsOn []string `json:"dependsOn,omitempty"`
-		Ref       *string  `json:"ref,omitempty"`
+		Ref *string `json:"ref,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"dependsOn", "ref"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "dependsOn", "ref",  })
 	} else {
 		return err
 	}

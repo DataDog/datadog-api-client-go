@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSAccountCreateRequest AWS Account Create Request body.
 type AWSAccountCreateRequest struct {
 	// AWS Account Create Request data.
 	Data AWSAccountCreateRequestData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSAccountCreateRequest instantiates a new AWSAccountCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewAWSAccountCreateRequestWithDefaults() *AWSAccountCreateRequest {
 	this := AWSAccountCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *AWSAccountCreateRequest) GetData() AWSAccountCreateRequestData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *AWSAccountCreateRequest) GetDataOk() (*AWSAccountCreateRequestData, boo
 func (o *AWSAccountCreateRequest) SetData(v AWSAccountCreateRequestData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSAccountCreateRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *AWSAccountCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

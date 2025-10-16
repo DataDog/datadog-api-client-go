@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSNamespacesResponseAttributes AWS Namespaces response attributes.
 type AWSNamespacesResponseAttributes struct {
 	// AWS CloudWatch namespace.
 	Namespaces []string `json:"namespaces"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSNamespacesResponseAttributes instantiates a new AWSNamespacesResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewAWSNamespacesResponseAttributesWithDefaults() *AWSNamespacesResponseAttr
 	this := AWSNamespacesResponseAttributes{}
 	return &this
 }
-
 // GetNamespaces returns the Namespaces field value.
 func (o *AWSNamespacesResponseAttributes) GetNamespaces() []string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *AWSNamespacesResponseAttributes) GetNamespacesOk() (*[]string, bool) {
 func (o *AWSNamespacesResponseAttributes) SetNamespaces(v []string) {
 	o.Namespaces = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSNamespacesResponseAttributes) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *AWSNamespacesResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"namespaces"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "namespaces",  })
 	} else {
 		return err
 	}

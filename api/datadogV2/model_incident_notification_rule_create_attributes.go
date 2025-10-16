@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentNotificationRuleCreateAttributes The attributes for creating a notification rule.
 type IncidentNotificationRuleCreateAttributes struct {
@@ -25,9 +29,10 @@ type IncidentNotificationRuleCreateAttributes struct {
 	// The visibility of the notification rule.
 	Visibility *IncidentNotificationRuleCreateAttributesVisibility `json:"visibility,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentNotificationRuleCreateAttributes instantiates a new IncidentNotificationRuleCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewIncidentNotificationRuleCreateAttributesWithDefaults() *IncidentNotifica
 	this.Enabled = &enabled
 	return &this
 }
-
 // GetConditions returns the Conditions field value.
 func (o *IncidentNotificationRuleCreateAttributes) GetConditions() []IncidentNotificationRuleConditionsItems {
 	if o == nil {
@@ -75,6 +79,7 @@ func (o *IncidentNotificationRuleCreateAttributes) GetConditionsOk() (*[]Inciden
 func (o *IncidentNotificationRuleCreateAttributes) SetConditions(v []IncidentNotificationRuleConditionsItems) {
 	o.Conditions = v
 }
+
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *IncidentNotificationRuleCreateAttributes) GetEnabled() bool {
@@ -104,6 +109,7 @@ func (o *IncidentNotificationRuleCreateAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
 // GetHandles returns the Handles field value.
 func (o *IncidentNotificationRuleCreateAttributes) GetHandles() []string {
 	if o == nil {
@@ -126,6 +132,7 @@ func (o *IncidentNotificationRuleCreateAttributes) GetHandlesOk() (*[]string, bo
 func (o *IncidentNotificationRuleCreateAttributes) SetHandles(v []string) {
 	o.Handles = v
 }
+
 
 // GetRenotifyOn returns the RenotifyOn field value if set, zero value otherwise.
 func (o *IncidentNotificationRuleCreateAttributes) GetRenotifyOn() []string {
@@ -155,6 +162,7 @@ func (o *IncidentNotificationRuleCreateAttributes) SetRenotifyOn(v []string) {
 	o.RenotifyOn = v
 }
 
+
 // GetTrigger returns the Trigger field value.
 func (o *IncidentNotificationRuleCreateAttributes) GetTrigger() string {
 	if o == nil {
@@ -177,6 +185,7 @@ func (o *IncidentNotificationRuleCreateAttributes) GetTriggerOk() (*string, bool
 func (o *IncidentNotificationRuleCreateAttributes) SetTrigger(v string) {
 	o.Trigger = v
 }
+
 
 // GetVisibility returns the Visibility field value if set, zero value otherwise.
 func (o *IncidentNotificationRuleCreateAttributes) GetVisibility() IncidentNotificationRuleCreateAttributesVisibility {
@@ -206,6 +215,8 @@ func (o *IncidentNotificationRuleCreateAttributes) SetVisibility(v IncidentNotif
 	o.Visibility = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentNotificationRuleCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -234,11 +245,11 @@ func (o IncidentNotificationRuleCreateAttributes) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentNotificationRuleCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Conditions *[]IncidentNotificationRuleConditionsItems          `json:"conditions"`
-		Enabled    *bool                                               `json:"enabled,omitempty"`
-		Handles    *[]string                                           `json:"handles"`
-		RenotifyOn []string                                            `json:"renotify_on,omitempty"`
-		Trigger    *string                                             `json:"trigger"`
+		Conditions *[]IncidentNotificationRuleConditionsItems `json:"conditions"`
+		Enabled *bool `json:"enabled,omitempty"`
+		Handles *[]string `json:"handles"`
+		RenotifyOn []string `json:"renotify_on,omitempty"`
+		Trigger *string `json:"trigger"`
 		Visibility *IncidentNotificationRuleCreateAttributesVisibility `json:"visibility,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -255,7 +266,7 @@ func (o *IncidentNotificationRuleCreateAttributes) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"conditions", "enabled", "handles", "renotify_on", "trigger", "visibility"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "conditions", "enabled", "handles", "renotify_on", "trigger", "visibility",  })
 	} else {
 		return err
 	}
@@ -266,7 +277,7 @@ func (o *IncidentNotificationRuleCreateAttributes) UnmarshalJSON(bytes []byte) (
 	o.Handles = *all.Handles
 	o.RenotifyOn = all.RenotifyOn
 	o.Trigger = *all.Trigger
-	if all.Visibility != nil && !all.Visibility.IsValid() {
+	if all.Visibility != nil &&!all.Visibility.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Visibility = all.Visibility

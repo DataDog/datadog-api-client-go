@@ -2,30 +2,34 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FlakyTestsSearchSort Parameter for sorting flaky test results. The default sort is by ascending Fully Qualified Name (FQN). The FQN is the concatenation of the test module, suite, and name.
 type FlakyTestsSearchSort string
 
 // List of FlakyTestsSearchSort.
 const (
-	FLAKYTESTSSEARCHSORT_FQN_ASCENDING                      FlakyTestsSearchSort = "fqn"
-	FLAKYTESTSSEARCHSORT_FQN_DESCENDING                     FlakyTestsSearchSort = "-fqn"
-	FLAKYTESTSSEARCHSORT_FIRST_FLAKED_ASCENDING             FlakyTestsSearchSort = "first_flaked"
-	FLAKYTESTSSEARCHSORT_FIRST_FLAKED_DESCENDING            FlakyTestsSearchSort = "-first_flaked"
-	FLAKYTESTSSEARCHSORT_LAST_FLAKED_ASCENDING              FlakyTestsSearchSort = "last_flaked"
-	FLAKYTESTSSEARCHSORT_LAST_FLAKED_DESCENDING             FlakyTestsSearchSort = "-last_flaked"
-	FLAKYTESTSSEARCHSORT_FAILURE_RATE_ASCENDING             FlakyTestsSearchSort = "failure_rate"
-	FLAKYTESTSSEARCHSORT_FAILURE_RATE_DESCENDING            FlakyTestsSearchSort = "-failure_rate"
-	FLAKYTESTSSEARCHSORT_PIPELINES_FAILED_ASCENDING         FlakyTestsSearchSort = "pipelines_failed"
-	FLAKYTESTSSEARCHSORT_PIPELINES_FAILED_DESCENDING        FlakyTestsSearchSort = "-pipelines_failed"
-	FLAKYTESTSSEARCHSORT_PIPELINES_DURATION_LOST_ASCENDING  FlakyTestsSearchSort = "pipelines_duration_lost"
+	FLAKYTESTSSEARCHSORT_FQN_ASCENDING FlakyTestsSearchSort = "fqn"
+	FLAKYTESTSSEARCHSORT_FQN_DESCENDING FlakyTestsSearchSort = "-fqn"
+	FLAKYTESTSSEARCHSORT_FIRST_FLAKED_ASCENDING FlakyTestsSearchSort = "first_flaked"
+	FLAKYTESTSSEARCHSORT_FIRST_FLAKED_DESCENDING FlakyTestsSearchSort = "-first_flaked"
+	FLAKYTESTSSEARCHSORT_LAST_FLAKED_ASCENDING FlakyTestsSearchSort = "last_flaked"
+	FLAKYTESTSSEARCHSORT_LAST_FLAKED_DESCENDING FlakyTestsSearchSort = "-last_flaked"
+	FLAKYTESTSSEARCHSORT_FAILURE_RATE_ASCENDING FlakyTestsSearchSort = "failure_rate"
+	FLAKYTESTSSEARCHSORT_FAILURE_RATE_DESCENDING FlakyTestsSearchSort = "-failure_rate"
+	FLAKYTESTSSEARCHSORT_PIPELINES_FAILED_ASCENDING FlakyTestsSearchSort = "pipelines_failed"
+	FLAKYTESTSSEARCHSORT_PIPELINES_FAILED_DESCENDING FlakyTestsSearchSort = "-pipelines_failed"
+	FLAKYTESTSSEARCHSORT_PIPELINES_DURATION_LOST_ASCENDING FlakyTestsSearchSort = "pipelines_duration_lost"
 	FLAKYTESTSSEARCHSORT_PIPELINES_DURATION_LOST_DESCENDING FlakyTestsSearchSort = "-pipelines_duration_lost"
 )
 

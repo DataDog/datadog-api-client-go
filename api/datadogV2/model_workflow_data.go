@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WorkflowData Data related to the workflow.
 type WorkflowData struct {
@@ -21,9 +25,10 @@ type WorkflowData struct {
 	// The definition of `WorkflowDataType` object.
 	Type WorkflowDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWorkflowData instantiates a new WorkflowData object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewWorkflowDataWithDefaults() *WorkflowData {
 	this := WorkflowData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *WorkflowData) GetAttributes() WorkflowDataAttributes {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *WorkflowData) GetAttributesOk() (*WorkflowDataAttributes, bool) {
 func (o *WorkflowData) SetAttributes(v WorkflowDataAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *WorkflowData) GetId() string {
@@ -95,6 +100,7 @@ func (o *WorkflowData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *WorkflowData) GetRelationships() WorkflowDataRelationships {
 	if o == nil || o.Relationships == nil {
@@ -123,6 +129,7 @@ func (o *WorkflowData) SetRelationships(v WorkflowDataRelationships) {
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *WorkflowData) GetType() WorkflowDataType {
 	if o == nil {
@@ -145,6 +152,8 @@ func (o *WorkflowData) GetTypeOk() (*WorkflowDataType, bool) {
 func (o *WorkflowData) SetType(v WorkflowDataType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o WorkflowData) MarshalJSON() ([]byte, error) {
@@ -170,10 +179,10 @@ func (o WorkflowData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WorkflowData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *WorkflowDataAttributes    `json:"attributes"`
-		Id            *string                    `json:"id,omitempty"`
+		Attributes *WorkflowDataAttributes `json:"attributes"`
+		Id *string `json:"id,omitempty"`
 		Relationships *WorkflowDataRelationships `json:"relationships,omitempty"`
-		Type          *WorkflowDataType          `json:"type"`
+		Type *WorkflowDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -186,7 +195,7 @@ func (o *WorkflowData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "relationships", "type",  })
 	} else {
 		return err
 	}
@@ -197,7 +206,7 @@ func (o *WorkflowData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = *all.Attributes
 	o.Id = all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

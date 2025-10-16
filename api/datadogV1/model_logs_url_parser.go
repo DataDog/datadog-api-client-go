@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsURLParser This processor extracts query parameters and other important parameters from a URL.
 type LogsURLParser struct {
@@ -25,9 +29,10 @@ type LogsURLParser struct {
 	// Type of logs URL parser.
 	Type LogsURLParserType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsURLParser instantiates a new LogsURLParser object.
 // This constructor will assign default values to properties that have it defined,
@@ -60,7 +65,6 @@ func NewLogsURLParserWithDefaults() *LogsURLParser {
 	this.Type = typeVar
 	return &this
 }
-
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsURLParser) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -88,6 +92,7 @@ func (o *LogsURLParser) HasIsEnabled() bool {
 func (o *LogsURLParser) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsURLParser) GetName() string {
@@ -117,6 +122,7 @@ func (o *LogsURLParser) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetNormalizeEndingSlashes returns the NormalizeEndingSlashes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogsURLParser) GetNormalizeEndingSlashes() bool {
 	if o == nil || o.NormalizeEndingSlashes.Get() == nil {
@@ -130,7 +136,7 @@ func (o *LogsURLParser) GetNormalizeEndingSlashes() bool {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *LogsURLParser) GetNormalizeEndingSlashesOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.NormalizeEndingSlashes.Get(), o.NormalizeEndingSlashes.IsSet()
@@ -145,7 +151,6 @@ func (o *LogsURLParser) HasNormalizeEndingSlashes() bool {
 func (o *LogsURLParser) SetNormalizeEndingSlashes(v bool) {
 	o.NormalizeEndingSlashes.Set(&v)
 }
-
 // SetNormalizeEndingSlashesNil sets the value for NormalizeEndingSlashes to be an explicit nil.
 func (o *LogsURLParser) SetNormalizeEndingSlashesNil() {
 	o.NormalizeEndingSlashes.Set(nil)
@@ -155,6 +160,7 @@ func (o *LogsURLParser) SetNormalizeEndingSlashesNil() {
 func (o *LogsURLParser) UnsetNormalizeEndingSlashes() {
 	o.NormalizeEndingSlashes.Unset()
 }
+
 
 // GetSources returns the Sources field value.
 func (o *LogsURLParser) GetSources() []string {
@@ -179,6 +185,7 @@ func (o *LogsURLParser) SetSources(v []string) {
 	o.Sources = v
 }
 
+
 // GetTarget returns the Target field value.
 func (o *LogsURLParser) GetTarget() string {
 	if o == nil {
@@ -202,6 +209,7 @@ func (o *LogsURLParser) SetTarget(v string) {
 	o.Target = v
 }
 
+
 // GetType returns the Type field value.
 func (o *LogsURLParser) GetType() LogsURLParserType {
 	if o == nil {
@@ -224,6 +232,8 @@ func (o *LogsURLParser) GetTypeOk() (*LogsURLParserType, bool) {
 func (o *LogsURLParser) SetType(v LogsURLParserType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsURLParser) MarshalJSON() ([]byte, error) {
@@ -253,12 +263,12 @@ func (o LogsURLParser) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsURLParser) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		IsEnabled              *bool                `json:"is_enabled,omitempty"`
-		Name                   *string              `json:"name,omitempty"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		Name *string `json:"name,omitempty"`
 		NormalizeEndingSlashes datadog.NullableBool `json:"normalize_ending_slashes,omitempty"`
-		Sources                *[]string            `json:"sources"`
-		Target                 *string              `json:"target"`
-		Type                   *LogsURLParserType   `json:"type"`
+		Sources *[]string `json:"sources"`
+		Target *string `json:"target"`
+		Type *LogsURLParserType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -274,7 +284,7 @@ func (o *LogsURLParser) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"is_enabled", "name", "normalize_ending_slashes", "sources", "target", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "is_enabled", "name", "normalize_ending_slashes", "sources", "target", "type",  })
 	} else {
 		return err
 	}

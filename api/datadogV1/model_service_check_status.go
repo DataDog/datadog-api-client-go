@@ -2,23 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceCheckStatus The status of a service check. Set to `0` for OK, `1` for warning, `2` for critical, and `3` for unknown.
 type ServiceCheckStatus int32
 
 // List of ServiceCheckStatus.
 const (
-	SERVICECHECKSTATUS_OK       ServiceCheckStatus = 0
-	SERVICECHECKSTATUS_WARNING  ServiceCheckStatus = 1
+	SERVICECHECKSTATUS_OK ServiceCheckStatus = 0
+	SERVICECHECKSTATUS_WARNING ServiceCheckStatus = 1
 	SERVICECHECKSTATUS_CRITICAL ServiceCheckStatus = 2
-	SERVICECHECKSTATUS_UNKNOWN  ServiceCheckStatus = 3
+	SERVICECHECKSTATUS_UNKNOWN ServiceCheckStatus = 3
 )
 
 var allowedServiceCheckStatusEnumValues = []ServiceCheckStatus{

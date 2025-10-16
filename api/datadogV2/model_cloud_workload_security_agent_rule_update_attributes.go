@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudWorkloadSecurityAgentRuleUpdateAttributes Update an existing Cloud Workload Security Agent rule
 type CloudWorkloadSecurityAgentRuleUpdateAttributes struct {
@@ -33,9 +39,10 @@ type CloudWorkloadSecurityAgentRuleUpdateAttributes struct {
 	// Whether the rule is silent.
 	Silent *bool `json:"silent,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudWorkloadSecurityAgentRuleUpdateAttributes instantiates a new CloudWorkloadSecurityAgentRuleUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,10 +60,9 @@ func NewCloudWorkloadSecurityAgentRuleUpdateAttributesWithDefaults() *CloudWorkl
 	this := CloudWorkloadSecurityAgentRuleUpdateAttributes{}
 	return &this
 }
-
 // GetActions returns the Actions field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetActions() []CloudWorkloadSecurityAgentRuleAction {
-	if o == nil {
+	if o == nil  {
 		var ret []CloudWorkloadSecurityAgentRuleAction
 		return ret
 	}
@@ -82,6 +88,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) HasActions() bool {
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) SetActions(v []CloudWorkloadSecurityAgentRuleAction) {
 	o.Actions = v
 }
+
 
 // GetAgentVersion returns the AgentVersion field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetAgentVersion() string {
@@ -111,6 +118,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) SetAgentVersion(v strin
 	o.AgentVersion = &v
 }
 
+
 // GetBlocking returns the Blocking field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetBlocking() []string {
 	if o == nil || o.Blocking == nil {
@@ -138,6 +146,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) HasBlocking() bool {
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) SetBlocking(v []string) {
 	o.Blocking = v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetDescription() string {
@@ -167,6 +176,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) SetDescription(v string
 	o.Description = &v
 }
 
+
 // GetDisabled returns the Disabled field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetDisabled() []string {
 	if o == nil || o.Disabled == nil {
@@ -194,6 +204,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) HasDisabled() bool {
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) SetDisabled(v []string) {
 	o.Disabled = v
 }
+
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetEnabled() bool {
@@ -223,6 +234,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
 // GetExpression returns the Expression field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetExpression() string {
 	if o == nil || o.Expression == nil {
@@ -250,6 +262,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) HasExpression() bool {
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) SetExpression(v string) {
 	o.Expression = &v
 }
+
 
 // GetMonitoring returns the Monitoring field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetMonitoring() []string {
@@ -279,6 +292,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) SetMonitoring(v []strin
 	o.Monitoring = v
 }
 
+
 // GetPolicyId returns the PolicyId field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetPolicyId() string {
 	if o == nil || o.PolicyId == nil {
@@ -306,6 +320,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) HasPolicyId() bool {
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) SetPolicyId(v string) {
 	o.PolicyId = &v
 }
+
 
 // GetProductTags returns the ProductTags field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetProductTags() []string {
@@ -335,6 +350,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) SetProductTags(v []stri
 	o.ProductTags = v
 }
 
+
 // GetSilent returns the Silent field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetSilent() bool {
 	if o == nil || o.Silent == nil {
@@ -362,6 +378,8 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) HasSilent() bool {
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) SetSilent(v bool) {
 	o.Silent = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudWorkloadSecurityAgentRuleUpdateAttributes) MarshalJSON() ([]byte, error) {
@@ -412,24 +430,24 @@ func (o CloudWorkloadSecurityAgentRuleUpdateAttributes) MarshalJSON() ([]byte, e
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Actions      []CloudWorkloadSecurityAgentRuleAction `json:"actions,omitempty"`
-		AgentVersion *string                                `json:"agent_version,omitempty"`
-		Blocking     []string                               `json:"blocking,omitempty"`
-		Description  *string                                `json:"description,omitempty"`
-		Disabled     []string                               `json:"disabled,omitempty"`
-		Enabled      *bool                                  `json:"enabled,omitempty"`
-		Expression   *string                                `json:"expression,omitempty"`
-		Monitoring   []string                               `json:"monitoring,omitempty"`
-		PolicyId     *string                                `json:"policy_id,omitempty"`
-		ProductTags  []string                               `json:"product_tags,omitempty"`
-		Silent       *bool                                  `json:"silent,omitempty"`
+		Actions []CloudWorkloadSecurityAgentRuleAction `json:"actions,omitempty"`
+		AgentVersion *string `json:"agent_version,omitempty"`
+		Blocking []string `json:"blocking,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Disabled []string `json:"disabled,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
+		Expression *string `json:"expression,omitempty"`
+		Monitoring []string `json:"monitoring,omitempty"`
+		PolicyId *string `json:"policy_id,omitempty"`
+		ProductTags []string `json:"product_tags,omitempty"`
+		Silent *bool `json:"silent,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"actions", "agent_version", "blocking", "description", "disabled", "enabled", "expression", "monitoring", "policy_id", "product_tags", "silent"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "actions", "agent_version", "blocking", "description", "disabled", "enabled", "expression", "monitoring", "policy_id", "product_tags", "silent",  })
 	} else {
 		return err
 	}

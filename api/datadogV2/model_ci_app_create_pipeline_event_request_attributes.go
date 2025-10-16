@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppCreatePipelineEventRequestAttributes Attributes of the pipeline event to create.
 type CIAppCreatePipelineEventRequestAttributes struct {
@@ -21,9 +25,10 @@ type CIAppCreatePipelineEventRequestAttributes struct {
 	// If the CI provider is SaaS, use this to differentiate between instances.
 	Service *string `json:"service,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCIAppCreatePipelineEventRequestAttributes instantiates a new CIAppCreatePipelineEventRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewCIAppCreatePipelineEventRequestAttributesWithDefaults() *CIAppCreatePipe
 	this := CIAppCreatePipelineEventRequestAttributes{}
 	return &this
 }
-
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *CIAppCreatePipelineEventRequestAttributes) GetEnv() string {
 	if o == nil || o.Env == nil {
@@ -70,6 +74,7 @@ func (o *CIAppCreatePipelineEventRequestAttributes) HasEnv() bool {
 func (o *CIAppCreatePipelineEventRequestAttributes) SetEnv(v string) {
 	o.Env = &v
 }
+
 
 // GetProviderName returns the ProviderName field value if set, zero value otherwise.
 func (o *CIAppCreatePipelineEventRequestAttributes) GetProviderName() string {
@@ -99,6 +104,7 @@ func (o *CIAppCreatePipelineEventRequestAttributes) SetProviderName(v string) {
 	o.ProviderName = &v
 }
 
+
 // GetResource returns the Resource field value.
 func (o *CIAppCreatePipelineEventRequestAttributes) GetResource() CIAppCreatePipelineEventRequestAttributesResource {
 	if o == nil {
@@ -121,6 +127,7 @@ func (o *CIAppCreatePipelineEventRequestAttributes) GetResourceOk() (*CIAppCreat
 func (o *CIAppCreatePipelineEventRequestAttributes) SetResource(v CIAppCreatePipelineEventRequestAttributesResource) {
 	o.Resource = v
 }
+
 
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *CIAppCreatePipelineEventRequestAttributes) GetService() string {
@@ -150,6 +157,8 @@ func (o *CIAppCreatePipelineEventRequestAttributes) SetService(v string) {
 	o.Service = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppCreatePipelineEventRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -176,10 +185,10 @@ func (o CIAppCreatePipelineEventRequestAttributes) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppCreatePipelineEventRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Env          *string                                            `json:"env,omitempty"`
-		ProviderName *string                                            `json:"provider_name,omitempty"`
-		Resource     *CIAppCreatePipelineEventRequestAttributesResource `json:"resource"`
-		Service      *string                                            `json:"service,omitempty"`
+		Env *string `json:"env,omitempty"`
+		ProviderName *string `json:"provider_name,omitempty"`
+		Resource *CIAppCreatePipelineEventRequestAttributesResource `json:"resource"`
+		Service *string `json:"service,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -189,7 +198,7 @@ func (o *CIAppCreatePipelineEventRequestAttributes) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"env", "provider_name", "resource", "service"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "env", "provider_name", "resource", "service",  })
 	} else {
 		return err
 	}

@@ -2,17 +2,23 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomDestinationResponseForwardDestination - A custom destination's location to forward logs.
 type CustomDestinationResponseForwardDestination struct {
-	CustomDestinationResponseForwardDestinationHttp              *CustomDestinationResponseForwardDestinationHttp
-	CustomDestinationResponseForwardDestinationSplunk            *CustomDestinationResponseForwardDestinationSplunk
-	CustomDestinationResponseForwardDestinationElasticsearch     *CustomDestinationResponseForwardDestinationElasticsearch
+	CustomDestinationResponseForwardDestinationHttp *CustomDestinationResponseForwardDestinationHttp
+	CustomDestinationResponseForwardDestinationSplunk *CustomDestinationResponseForwardDestinationSplunk
+	CustomDestinationResponseForwardDestinationElasticsearch *CustomDestinationResponseForwardDestinationElasticsearch
 	CustomDestinationResponseForwardDestinationMicrosoftSentinel *CustomDestinationResponseForwardDestinationMicrosoftSentinel
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -128,17 +134,21 @@ func (obj CustomDestinationResponseForwardDestination) MarshalJSON() ([]byte, er
 		return datadog.Marshal(&obj.CustomDestinationResponseForwardDestinationHttp)
 	}
 
+
 	if obj.CustomDestinationResponseForwardDestinationSplunk != nil {
 		return datadog.Marshal(&obj.CustomDestinationResponseForwardDestinationSplunk)
 	}
+
 
 	if obj.CustomDestinationResponseForwardDestinationElasticsearch != nil {
 		return datadog.Marshal(&obj.CustomDestinationResponseForwardDestinationElasticsearch)
 	}
 
+
 	if obj.CustomDestinationResponseForwardDestinationMicrosoftSentinel != nil {
 		return datadog.Marshal(&obj.CustomDestinationResponseForwardDestinationMicrosoftSentinel)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -147,22 +157,26 @@ func (obj CustomDestinationResponseForwardDestination) MarshalJSON() ([]byte, er
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *CustomDestinationResponseForwardDestination) GetActualInstance() interface{} {
+func (obj *CustomDestinationResponseForwardDestination) GetActualInstance() (interface{}) {
 	if obj.CustomDestinationResponseForwardDestinationHttp != nil {
 		return obj.CustomDestinationResponseForwardDestinationHttp
 	}
+
 
 	if obj.CustomDestinationResponseForwardDestinationSplunk != nil {
 		return obj.CustomDestinationResponseForwardDestinationSplunk
 	}
 
+
 	if obj.CustomDestinationResponseForwardDestinationElasticsearch != nil {
 		return obj.CustomDestinationResponseForwardDestinationElasticsearch
 	}
 
+
 	if obj.CustomDestinationResponseForwardDestinationMicrosoftSentinel != nil {
 		return obj.CustomDestinationResponseForwardDestinationMicrosoftSentinel
 	}
+
 
 	// all schemas are nil
 	return nil

@@ -2,21 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringSignalState The new triage state of the signal.
 type SecurityMonitoringSignalState string
 
 // List of SecurityMonitoringSignalState.
 const (
-	SECURITYMONITORINGSIGNALSTATE_OPEN         SecurityMonitoringSignalState = "open"
-	SECURITYMONITORINGSIGNALSTATE_ARCHIVED     SecurityMonitoringSignalState = "archived"
+	SECURITYMONITORINGSIGNALSTATE_OPEN SecurityMonitoringSignalState = "open"
+	SECURITYMONITORINGSIGNALSTATE_ARCHIVED SecurityMonitoringSignalState = "archived"
 	SECURITYMONITORINGSIGNALSTATE_UNDER_REVIEW SecurityMonitoringSignalState = "under_review"
 )
 

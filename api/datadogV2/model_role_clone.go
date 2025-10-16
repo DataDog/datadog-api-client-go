@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RoleClone Data for the clone role request.
 type RoleClone struct {
@@ -17,9 +21,10 @@ type RoleClone struct {
 	// Roles type.
 	Type RolesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRoleClone instantiates a new RoleClone object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewRoleCloneWithDefaults() *RoleClone {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *RoleClone) GetAttributes() RoleCloneAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *RoleClone) GetAttributesOk() (*RoleCloneAttributes, bool) {
 func (o *RoleClone) SetAttributes(v RoleCloneAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *RoleClone) GetType() RolesType {
@@ -88,6 +93,8 @@ func (o *RoleClone) SetType(v RolesType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RoleClone) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o RoleClone) MarshalJSON() ([]byte, error) {
 func (o *RoleClone) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *RoleCloneAttributes `json:"attributes"`
-		Type       *RolesType           `json:"type"`
+		Type *RolesType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *RoleClone) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RoleTemplateDataAttributes The definition of `RoleTemplateDataAttributes` object.
 type RoleTemplateDataAttributes struct {
@@ -15,9 +21,10 @@ type RoleTemplateDataAttributes struct {
 	// The `attributes` `name`.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRoleTemplateDataAttributes instantiates a new RoleTemplateDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewRoleTemplateDataAttributesWithDefaults() *RoleTemplateDataAttributes {
 	this := RoleTemplateDataAttributes{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *RoleTemplateDataAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -63,6 +69,7 @@ func (o *RoleTemplateDataAttributes) HasDescription() bool {
 func (o *RoleTemplateDataAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *RoleTemplateDataAttributes) GetName() string {
@@ -92,6 +99,8 @@ func (o *RoleTemplateDataAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RoleTemplateDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o RoleTemplateDataAttributes) MarshalJSON() ([]byte, error) {
 func (o *RoleTemplateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Description *string `json:"description,omitempty"`
-		Name        *string `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "name",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RuleUser User creating or modifying a rule.
 type RuleUser struct {
@@ -15,9 +21,10 @@ type RuleUser struct {
 	// The user name.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRuleUser instantiates a new RuleUser object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewRuleUserWithDefaults() *RuleUser {
 	this := RuleUser{}
 	return &this
 }
-
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *RuleUser) GetHandle() string {
 	if o == nil || o.Handle == nil {
@@ -63,6 +69,7 @@ func (o *RuleUser) HasHandle() bool {
 func (o *RuleUser) SetHandle(v string) {
 	o.Handle = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *RuleUser) GetName() string {
@@ -92,6 +99,8 @@ func (o *RuleUser) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RuleUser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o RuleUser) MarshalJSON() ([]byte, error) {
 func (o *RuleUser) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Handle *string `json:"handle,omitempty"`
-		Name   *string `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"handle", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "handle", "name",  })
 	} else {
 		return err
 	}

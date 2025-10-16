@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentResponseIncludedItem - An object related to an incident that is included in the response.
 type IncidentResponseIncludedItem struct {
-	IncidentUserData       *IncidentUserData
+	IncidentUserData *IncidentUserData
 	IncidentAttachmentData *IncidentAttachmentData
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -36,7 +42,7 @@ func (obj *IncidentResponseIncludedItem) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.IncidentUserData != nil && obj.IncidentUserData.UnparsedObject == nil {
 			jsonIncidentUserData, _ := datadog.Marshal(obj.IncidentUserData)
-			if string(jsonIncidentUserData) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonIncidentUserData) == "{}" && string(data) != "{}"  { // empty struct
 				obj.IncidentUserData = nil
 			} else {
 				match++
@@ -80,9 +86,11 @@ func (obj IncidentResponseIncludedItem) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.IncidentUserData)
 	}
 
+
 	if obj.IncidentAttachmentData != nil {
 		return datadog.Marshal(&obj.IncidentAttachmentData)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj IncidentResponseIncludedItem) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *IncidentResponseIncludedItem) GetActualInstance() interface{} {
+func (obj *IncidentResponseIncludedItem) GetActualInstance() (interface{}) {
 	if obj.IncidentUserData != nil {
 		return obj.IncidentUserData
 	}
 
+
 	if obj.IncidentAttachmentData != nil {
 		return obj.IncidentAttachmentData
 	}
+
 
 	// all schemas are nil
 	return nil

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSumoLogicDestination The `sumo_logic` destination forwards logs to Sumo Logic.
 type ObservabilityPipelineSumoLogicDestination struct {
@@ -29,9 +33,10 @@ type ObservabilityPipelineSumoLogicDestination struct {
 	// The destination type. The value should always be `sumo_logic`.
 	Type ObservabilityPipelineSumoLogicDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSumoLogicDestination instantiates a new ObservabilityPipelineSumoLogicDestination object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewObservabilityPipelineSumoLogicDestinationWithDefaults() *ObservabilityPi
 	this.Type = typeVar
 	return &this
 }
-
 // GetEncoding returns the Encoding field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSumoLogicDestination) GetEncoding() ObservabilityPipelineSumoLogicDestinationEncoding {
 	if o == nil || o.Encoding == nil {
@@ -82,6 +86,7 @@ func (o *ObservabilityPipelineSumoLogicDestination) HasEncoding() bool {
 func (o *ObservabilityPipelineSumoLogicDestination) SetEncoding(v ObservabilityPipelineSumoLogicDestinationEncoding) {
 	o.Encoding = &v
 }
+
 
 // GetHeaderCustomFields returns the HeaderCustomFields field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSumoLogicDestination) GetHeaderCustomFields() []ObservabilityPipelineSumoLogicDestinationHeaderCustomFieldsItem {
@@ -111,6 +116,7 @@ func (o *ObservabilityPipelineSumoLogicDestination) SetHeaderCustomFields(v []Ob
 	o.HeaderCustomFields = v
 }
 
+
 // GetHeaderHostName returns the HeaderHostName field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSumoLogicDestination) GetHeaderHostName() string {
 	if o == nil || o.HeaderHostName == nil {
@@ -138,6 +144,7 @@ func (o *ObservabilityPipelineSumoLogicDestination) HasHeaderHostName() bool {
 func (o *ObservabilityPipelineSumoLogicDestination) SetHeaderHostName(v string) {
 	o.HeaderHostName = &v
 }
+
 
 // GetHeaderSourceCategory returns the HeaderSourceCategory field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSumoLogicDestination) GetHeaderSourceCategory() string {
@@ -167,6 +174,7 @@ func (o *ObservabilityPipelineSumoLogicDestination) SetHeaderSourceCategory(v st
 	o.HeaderSourceCategory = &v
 }
 
+
 // GetHeaderSourceName returns the HeaderSourceName field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSumoLogicDestination) GetHeaderSourceName() string {
 	if o == nil || o.HeaderSourceName == nil {
@@ -195,6 +203,7 @@ func (o *ObservabilityPipelineSumoLogicDestination) SetHeaderSourceName(v string
 	o.HeaderSourceName = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineSumoLogicDestination) GetId() string {
 	if o == nil {
@@ -217,6 +226,7 @@ func (o *ObservabilityPipelineSumoLogicDestination) GetIdOk() (*string, bool) {
 func (o *ObservabilityPipelineSumoLogicDestination) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineSumoLogicDestination) GetInputs() []string {
@@ -241,6 +251,7 @@ func (o *ObservabilityPipelineSumoLogicDestination) SetInputs(v []string) {
 	o.Inputs = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineSumoLogicDestination) GetType() ObservabilityPipelineSumoLogicDestinationType {
 	if o == nil {
@@ -263,6 +274,8 @@ func (o *ObservabilityPipelineSumoLogicDestination) GetTypeOk() (*ObservabilityP
 func (o *ObservabilityPipelineSumoLogicDestination) SetType(v ObservabilityPipelineSumoLogicDestinationType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSumoLogicDestination) MarshalJSON() ([]byte, error) {
@@ -298,14 +311,14 @@ func (o ObservabilityPipelineSumoLogicDestination) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSumoLogicDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Encoding             *ObservabilityPipelineSumoLogicDestinationEncoding                `json:"encoding,omitempty"`
-		HeaderCustomFields   []ObservabilityPipelineSumoLogicDestinationHeaderCustomFieldsItem `json:"header_custom_fields,omitempty"`
-		HeaderHostName       *string                                                           `json:"header_host_name,omitempty"`
-		HeaderSourceCategory *string                                                           `json:"header_source_category,omitempty"`
-		HeaderSourceName     *string                                                           `json:"header_source_name,omitempty"`
-		Id                   *string                                                           `json:"id"`
-		Inputs               *[]string                                                         `json:"inputs"`
-		Type                 *ObservabilityPipelineSumoLogicDestinationType                    `json:"type"`
+		Encoding *ObservabilityPipelineSumoLogicDestinationEncoding `json:"encoding,omitempty"`
+		HeaderCustomFields []ObservabilityPipelineSumoLogicDestinationHeaderCustomFieldsItem `json:"header_custom_fields,omitempty"`
+		HeaderHostName *string `json:"header_host_name,omitempty"`
+		HeaderSourceCategory *string `json:"header_source_category,omitempty"`
+		HeaderSourceName *string `json:"header_source_name,omitempty"`
+		Id *string `json:"id"`
+		Inputs *[]string `json:"inputs"`
+		Type *ObservabilityPipelineSumoLogicDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -321,13 +334,13 @@ func (o *ObservabilityPipelineSumoLogicDestination) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"encoding", "header_custom_fields", "header_host_name", "header_source_category", "header_source_name", "id", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "encoding", "header_custom_fields", "header_host_name", "header_source_category", "header_source_name", "id", "inputs", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Encoding != nil && !all.Encoding.IsValid() {
+	if all.Encoding != nil &&!all.Encoding.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Encoding = all.Encoding

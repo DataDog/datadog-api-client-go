@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomFrameworkWithoutRequirements Framework without requirements.
 type CustomFrameworkWithoutRequirements struct {
@@ -23,9 +27,10 @@ type CustomFrameworkWithoutRequirements struct {
 	// Framework Version
 	Version string `json:"version"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomFrameworkWithoutRequirements instantiates a new CustomFrameworkWithoutRequirements object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewCustomFrameworkWithoutRequirementsWithDefaults() *CustomFrameworkWithout
 	this := CustomFrameworkWithoutRequirements{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CustomFrameworkWithoutRequirements) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -75,6 +79,7 @@ func (o *CustomFrameworkWithoutRequirements) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetHandle returns the Handle field value.
 func (o *CustomFrameworkWithoutRequirements) GetHandle() string {
 	if o == nil {
@@ -97,6 +102,7 @@ func (o *CustomFrameworkWithoutRequirements) GetHandleOk() (*string, bool) {
 func (o *CustomFrameworkWithoutRequirements) SetHandle(v string) {
 	o.Handle = v
 }
+
 
 // GetIconUrl returns the IconUrl field value if set, zero value otherwise.
 func (o *CustomFrameworkWithoutRequirements) GetIconUrl() string {
@@ -126,6 +132,7 @@ func (o *CustomFrameworkWithoutRequirements) SetIconUrl(v string) {
 	o.IconUrl = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *CustomFrameworkWithoutRequirements) GetName() string {
 	if o == nil {
@@ -149,6 +156,7 @@ func (o *CustomFrameworkWithoutRequirements) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetVersion returns the Version field value.
 func (o *CustomFrameworkWithoutRequirements) GetVersion() string {
 	if o == nil {
@@ -171,6 +179,8 @@ func (o *CustomFrameworkWithoutRequirements) GetVersionOk() (*string, bool) {
 func (o *CustomFrameworkWithoutRequirements) SetVersion(v string) {
 	o.Version = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomFrameworkWithoutRequirements) MarshalJSON() ([]byte, error) {
@@ -198,10 +208,10 @@ func (o CustomFrameworkWithoutRequirements) MarshalJSON() ([]byte, error) {
 func (o *CustomFrameworkWithoutRequirements) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Description *string `json:"description,omitempty"`
-		Handle      *string `json:"handle"`
-		IconUrl     *string `json:"icon_url,omitempty"`
-		Name        *string `json:"name"`
-		Version     *string `json:"version"`
+		Handle *string `json:"handle"`
+		IconUrl *string `json:"icon_url,omitempty"`
+		Name *string `json:"name"`
+		Version *string `json:"version"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -217,7 +227,7 @@ func (o *CustomFrameworkWithoutRequirements) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "handle", "icon_url", "name", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "handle", "icon_url", "name", "version",  })
 	} else {
 		return err
 	}

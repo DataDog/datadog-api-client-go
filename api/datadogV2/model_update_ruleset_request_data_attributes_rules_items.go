@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpdateRulesetRequestDataAttributesRulesItems The definition of `UpdateRulesetRequestDataAttributesRulesItems` object.
 type UpdateRulesetRequestDataAttributesRulesItems struct {
@@ -25,9 +29,10 @@ type UpdateRulesetRequestDataAttributesRulesItems struct {
 	// The definition of `UpdateRulesetRequestDataAttributesRulesItemsReferenceTable` object.
 	ReferenceTable NullableUpdateRulesetRequestDataAttributesRulesItemsReferenceTable `json:"reference_table,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUpdateRulesetRequestDataAttributesRulesItems instantiates a new UpdateRulesetRequestDataAttributesRulesItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewUpdateRulesetRequestDataAttributesRulesItemsWithDefaults() *UpdateRulese
 	this := UpdateRulesetRequestDataAttributesRulesItems{}
 	return &this
 }
-
 // GetEnabled returns the Enabled field value.
 func (o *UpdateRulesetRequestDataAttributesRulesItems) GetEnabled() bool {
 	if o == nil {
@@ -71,6 +75,7 @@ func (o *UpdateRulesetRequestDataAttributesRulesItems) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
+
 // GetMapping returns the Mapping field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateRulesetRequestDataAttributesRulesItems) GetMapping() UpdateRulesetRequestDataAttributesRulesItemsMapping {
 	if o == nil || o.Mapping.Get() == nil {
@@ -84,7 +89,7 @@ func (o *UpdateRulesetRequestDataAttributesRulesItems) GetMapping() UpdateRulese
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UpdateRulesetRequestDataAttributesRulesItems) GetMappingOk() (*UpdateRulesetRequestDataAttributesRulesItemsMapping, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Mapping.Get(), o.Mapping.IsSet()
@@ -99,7 +104,6 @@ func (o *UpdateRulesetRequestDataAttributesRulesItems) HasMapping() bool {
 func (o *UpdateRulesetRequestDataAttributesRulesItems) SetMapping(v UpdateRulesetRequestDataAttributesRulesItemsMapping) {
 	o.Mapping.Set(&v)
 }
-
 // SetMappingNil sets the value for Mapping to be an explicit nil.
 func (o *UpdateRulesetRequestDataAttributesRulesItems) SetMappingNil() {
 	o.Mapping.Set(nil)
@@ -110,9 +114,10 @@ func (o *UpdateRulesetRequestDataAttributesRulesItems) UnsetMapping() {
 	o.Mapping.Unset()
 }
 
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateRulesetRequestDataAttributesRulesItems) GetMetadata() map[string]string {
-	if o == nil {
+	if o == nil  {
 		var ret map[string]string
 		return ret
 	}
@@ -139,6 +144,7 @@ func (o *UpdateRulesetRequestDataAttributesRulesItems) SetMetadata(v map[string]
 	o.Metadata = v
 }
 
+
 // GetName returns the Name field value.
 func (o *UpdateRulesetRequestDataAttributesRulesItems) GetName() string {
 	if o == nil {
@@ -162,6 +168,7 @@ func (o *UpdateRulesetRequestDataAttributesRulesItems) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetQuery returns the Query field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateRulesetRequestDataAttributesRulesItems) GetQuery() UpdateRulesetRequestDataAttributesRulesItemsQuery {
 	if o == nil || o.Query.Get() == nil {
@@ -175,7 +182,7 @@ func (o *UpdateRulesetRequestDataAttributesRulesItems) GetQuery() UpdateRulesetR
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UpdateRulesetRequestDataAttributesRulesItems) GetQueryOk() (*UpdateRulesetRequestDataAttributesRulesItemsQuery, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Query.Get(), o.Query.IsSet()
@@ -190,7 +197,6 @@ func (o *UpdateRulesetRequestDataAttributesRulesItems) HasQuery() bool {
 func (o *UpdateRulesetRequestDataAttributesRulesItems) SetQuery(v UpdateRulesetRequestDataAttributesRulesItemsQuery) {
 	o.Query.Set(&v)
 }
-
 // SetQueryNil sets the value for Query to be an explicit nil.
 func (o *UpdateRulesetRequestDataAttributesRulesItems) SetQueryNil() {
 	o.Query.Set(nil)
@@ -200,6 +206,7 @@ func (o *UpdateRulesetRequestDataAttributesRulesItems) SetQueryNil() {
 func (o *UpdateRulesetRequestDataAttributesRulesItems) UnsetQuery() {
 	o.Query.Unset()
 }
+
 
 // GetReferenceTable returns the ReferenceTable field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UpdateRulesetRequestDataAttributesRulesItems) GetReferenceTable() UpdateRulesetRequestDataAttributesRulesItemsReferenceTable {
@@ -214,7 +221,7 @@ func (o *UpdateRulesetRequestDataAttributesRulesItems) GetReferenceTable() Updat
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UpdateRulesetRequestDataAttributesRulesItems) GetReferenceTableOk() (*UpdateRulesetRequestDataAttributesRulesItemsReferenceTable, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ReferenceTable.Get(), o.ReferenceTable.IsSet()
@@ -229,7 +236,6 @@ func (o *UpdateRulesetRequestDataAttributesRulesItems) HasReferenceTable() bool 
 func (o *UpdateRulesetRequestDataAttributesRulesItems) SetReferenceTable(v UpdateRulesetRequestDataAttributesRulesItemsReferenceTable) {
 	o.ReferenceTable.Set(&v)
 }
-
 // SetReferenceTableNil sets the value for ReferenceTable to be an explicit nil.
 func (o *UpdateRulesetRequestDataAttributesRulesItems) SetReferenceTableNil() {
 	o.ReferenceTable.Set(nil)
@@ -239,6 +245,8 @@ func (o *UpdateRulesetRequestDataAttributesRulesItems) SetReferenceTableNil() {
 func (o *UpdateRulesetRequestDataAttributesRulesItems) UnsetReferenceTable() {
 	o.ReferenceTable.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateRulesetRequestDataAttributesRulesItems) MarshalJSON() ([]byte, error) {
@@ -270,11 +278,11 @@ func (o UpdateRulesetRequestDataAttributesRulesItems) MarshalJSON() ([]byte, err
 // UnmarshalJSON deserializes the given payload.
 func (o *UpdateRulesetRequestDataAttributesRulesItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enabled        *bool                                                              `json:"enabled"`
-		Mapping        NullableUpdateRulesetRequestDataAttributesRulesItemsMapping        `json:"mapping,omitempty"`
-		Metadata       map[string]string                                                  `json:"metadata,omitempty"`
-		Name           *string                                                            `json:"name"`
-		Query          NullableUpdateRulesetRequestDataAttributesRulesItemsQuery          `json:"query,omitempty"`
+		Enabled *bool `json:"enabled"`
+		Mapping NullableUpdateRulesetRequestDataAttributesRulesItemsMapping `json:"mapping,omitempty"`
+		Metadata map[string]string `json:"metadata,omitempty"`
+		Name *string `json:"name"`
+		Query NullableUpdateRulesetRequestDataAttributesRulesItemsQuery `json:"query,omitempty"`
 		ReferenceTable NullableUpdateRulesetRequestDataAttributesRulesItemsReferenceTable `json:"reference_table,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -288,7 +296,7 @@ func (o *UpdateRulesetRequestDataAttributesRulesItems) UnmarshalJSON(bytes []byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "mapping", "metadata", "name", "query", "reference_table"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "enabled", "mapping", "metadata", "name", "query", "reference_table",  })
 	} else {
 		return err
 	}

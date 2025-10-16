@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TableRowResourceArray The definition of `TableRowResourceArray` object.
 type TableRowResourceArray struct {
 	// The rows.
 	Data []TableRowResourceData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTableRowResourceArray instantiates a new TableRowResourceArray object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewTableRowResourceArrayWithDefaults() *TableRowResourceArray {
 	this := TableRowResourceArray{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *TableRowResourceArray) GetData() []TableRowResourceData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *TableRowResourceArray) GetDataOk() (*[]TableRowResourceData, bool) {
 func (o *TableRowResourceArray) SetData(v []TableRowResourceData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TableRowResourceArray) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *TableRowResourceArray) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

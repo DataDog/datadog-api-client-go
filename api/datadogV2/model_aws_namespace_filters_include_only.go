@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSNamespaceFiltersIncludeOnly Include only these namespaces.
 type AWSNamespaceFiltersIncludeOnly struct {
 	// Include only these namespaces.
 	IncludeOnly []string `json:"include_only"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSNamespaceFiltersIncludeOnly instantiates a new AWSNamespaceFiltersIncludeOnly object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewAWSNamespaceFiltersIncludeOnlyWithDefaults() *AWSNamespaceFiltersInclude
 	this := AWSNamespaceFiltersIncludeOnly{}
 	return &this
 }
-
 // GetIncludeOnly returns the IncludeOnly field value.
 func (o *AWSNamespaceFiltersIncludeOnly) GetIncludeOnly() []string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *AWSNamespaceFiltersIncludeOnly) GetIncludeOnlyOk() (*[]string, bool) {
 func (o *AWSNamespaceFiltersIncludeOnly) SetIncludeOnly(v []string) {
 	o.IncludeOnly = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSNamespaceFiltersIncludeOnly) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *AWSNamespaceFiltersIncludeOnly) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"include_only"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "include_only",  })
 	} else {
 		return err
 	}

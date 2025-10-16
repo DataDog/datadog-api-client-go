@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSAccountResponseAttributes AWS Account response attributes.
 type AWSAccountResponseAttributes struct {
@@ -37,9 +40,10 @@ type AWSAccountResponseAttributes struct {
 	// AWS Traces Collection config.
 	TracesConfig *AWSTracesConfig `json:"traces_config,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSAccountResponseAttributes instantiates a new AWSAccountResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -58,7 +62,6 @@ func NewAWSAccountResponseAttributesWithDefaults() *AWSAccountResponseAttributes
 	this := AWSAccountResponseAttributes{}
 	return &this
 }
-
 // GetAccountTags returns the AccountTags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AWSAccountResponseAttributes) GetAccountTags() []string {
 	if o == nil || o.AccountTags.Get() == nil {
@@ -72,7 +75,7 @@ func (o *AWSAccountResponseAttributes) GetAccountTags() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *AWSAccountResponseAttributes) GetAccountTagsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.AccountTags.Get(), o.AccountTags.IsSet()
@@ -87,7 +90,6 @@ func (o *AWSAccountResponseAttributes) HasAccountTags() bool {
 func (o *AWSAccountResponseAttributes) SetAccountTags(v []string) {
 	o.AccountTags.Set(&v)
 }
-
 // SetAccountTagsNil sets the value for AccountTags to be an explicit nil.
 func (o *AWSAccountResponseAttributes) SetAccountTagsNil() {
 	o.AccountTags.Set(nil)
@@ -97,6 +99,7 @@ func (o *AWSAccountResponseAttributes) SetAccountTagsNil() {
 func (o *AWSAccountResponseAttributes) UnsetAccountTags() {
 	o.AccountTags.Unset()
 }
+
 
 // GetAuthConfig returns the AuthConfig field value if set, zero value otherwise.
 func (o *AWSAccountResponseAttributes) GetAuthConfig() AWSAuthConfig {
@@ -126,6 +129,7 @@ func (o *AWSAccountResponseAttributes) SetAuthConfig(v AWSAuthConfig) {
 	o.AuthConfig = &v
 }
 
+
 // GetAwsAccountId returns the AwsAccountId field value.
 func (o *AWSAccountResponseAttributes) GetAwsAccountId() string {
 	if o == nil {
@@ -148,6 +152,7 @@ func (o *AWSAccountResponseAttributes) GetAwsAccountIdOk() (*string, bool) {
 func (o *AWSAccountResponseAttributes) SetAwsAccountId(v string) {
 	o.AwsAccountId = v
 }
+
 
 // GetAwsPartition returns the AwsPartition field value if set, zero value otherwise.
 func (o *AWSAccountResponseAttributes) GetAwsPartition() AWSAccountPartition {
@@ -177,6 +182,7 @@ func (o *AWSAccountResponseAttributes) SetAwsPartition(v AWSAccountPartition) {
 	o.AwsPartition = &v
 }
 
+
 // GetAwsRegions returns the AwsRegions field value if set, zero value otherwise.
 func (o *AWSAccountResponseAttributes) GetAwsRegions() AWSRegions {
 	if o == nil || o.AwsRegions == nil {
@@ -204,6 +210,7 @@ func (o *AWSAccountResponseAttributes) HasAwsRegions() bool {
 func (o *AWSAccountResponseAttributes) SetAwsRegions(v AWSRegions) {
 	o.AwsRegions = &v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *AWSAccountResponseAttributes) GetCreatedAt() time.Time {
@@ -233,6 +240,7 @@ func (o *AWSAccountResponseAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+
 // GetLogsConfig returns the LogsConfig field value if set, zero value otherwise.
 func (o *AWSAccountResponseAttributes) GetLogsConfig() AWSLogsConfig {
 	if o == nil || o.LogsConfig == nil {
@@ -260,6 +268,7 @@ func (o *AWSAccountResponseAttributes) HasLogsConfig() bool {
 func (o *AWSAccountResponseAttributes) SetLogsConfig(v AWSLogsConfig) {
 	o.LogsConfig = &v
 }
+
 
 // GetMetricsConfig returns the MetricsConfig field value if set, zero value otherwise.
 func (o *AWSAccountResponseAttributes) GetMetricsConfig() AWSMetricsConfig {
@@ -289,6 +298,7 @@ func (o *AWSAccountResponseAttributes) SetMetricsConfig(v AWSMetricsConfig) {
 	o.MetricsConfig = &v
 }
 
+
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *AWSAccountResponseAttributes) GetModifiedAt() time.Time {
 	if o == nil || o.ModifiedAt == nil {
@@ -316,6 +326,7 @@ func (o *AWSAccountResponseAttributes) HasModifiedAt() bool {
 func (o *AWSAccountResponseAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
+
 
 // GetResourcesConfig returns the ResourcesConfig field value if set, zero value otherwise.
 func (o *AWSAccountResponseAttributes) GetResourcesConfig() AWSResourcesConfig {
@@ -345,6 +356,7 @@ func (o *AWSAccountResponseAttributes) SetResourcesConfig(v AWSResourcesConfig) 
 	o.ResourcesConfig = &v
 }
 
+
 // GetTracesConfig returns the TracesConfig field value if set, zero value otherwise.
 func (o *AWSAccountResponseAttributes) GetTracesConfig() AWSTracesConfig {
 	if o == nil || o.TracesConfig == nil {
@@ -372,6 +384,8 @@ func (o *AWSAccountResponseAttributes) HasTracesConfig() bool {
 func (o *AWSAccountResponseAttributes) SetTracesConfig(v AWSTracesConfig) {
 	o.TracesConfig = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSAccountResponseAttributes) MarshalJSON() ([]byte, error) {
@@ -428,17 +442,17 @@ func (o AWSAccountResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSAccountResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountTags     datadog.NullableList[string] `json:"account_tags,omitempty"`
-		AuthConfig      *AWSAuthConfig               `json:"auth_config,omitempty"`
-		AwsAccountId    *string                      `json:"aws_account_id"`
-		AwsPartition    *AWSAccountPartition         `json:"aws_partition,omitempty"`
-		AwsRegions      *AWSRegions                  `json:"aws_regions,omitempty"`
-		CreatedAt       *time.Time                   `json:"created_at,omitempty"`
-		LogsConfig      *AWSLogsConfig               `json:"logs_config,omitempty"`
-		MetricsConfig   *AWSMetricsConfig            `json:"metrics_config,omitempty"`
-		ModifiedAt      *time.Time                   `json:"modified_at,omitempty"`
-		ResourcesConfig *AWSResourcesConfig          `json:"resources_config,omitempty"`
-		TracesConfig    *AWSTracesConfig             `json:"traces_config,omitempty"`
+		AccountTags datadog.NullableList[string] `json:"account_tags,omitempty"`
+		AuthConfig *AWSAuthConfig `json:"auth_config,omitempty"`
+		AwsAccountId *string `json:"aws_account_id"`
+		AwsPartition *AWSAccountPartition `json:"aws_partition,omitempty"`
+		AwsRegions *AWSRegions `json:"aws_regions,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		LogsConfig *AWSLogsConfig `json:"logs_config,omitempty"`
+		MetricsConfig *AWSMetricsConfig `json:"metrics_config,omitempty"`
+		ModifiedAt *time.Time `json:"modified_at,omitempty"`
+		ResourcesConfig *AWSResourcesConfig `json:"resources_config,omitempty"`
+		TracesConfig *AWSTracesConfig `json:"traces_config,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -448,7 +462,7 @@ func (o *AWSAccountResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_tags", "auth_config", "aws_account_id", "aws_partition", "aws_regions", "created_at", "logs_config", "metrics_config", "modified_at", "resources_config", "traces_config"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "account_tags", "auth_config", "aws_account_id", "aws_partition", "aws_regions", "created_at", "logs_config", "metrics_config", "modified_at", "resources_config", "traces_config",  })
 	} else {
 		return err
 	}
@@ -457,27 +471,27 @@ func (o *AWSAccountResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.AccountTags = all.AccountTags
 	o.AuthConfig = all.AuthConfig
 	o.AwsAccountId = *all.AwsAccountId
-	if all.AwsPartition != nil && !all.AwsPartition.IsValid() {
+	if all.AwsPartition != nil &&!all.AwsPartition.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.AwsPartition = all.AwsPartition
 	}
 	o.AwsRegions = all.AwsRegions
 	o.CreatedAt = all.CreatedAt
-	if all.LogsConfig != nil && all.LogsConfig.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogsConfig != nil && all.LogsConfig.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsConfig = all.LogsConfig
-	if all.MetricsConfig != nil && all.MetricsConfig.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.MetricsConfig != nil && all.MetricsConfig.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.MetricsConfig = all.MetricsConfig
 	o.ModifiedAt = all.ModifiedAt
-	if all.ResourcesConfig != nil && all.ResourcesConfig.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ResourcesConfig != nil && all.ResourcesConfig.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ResourcesConfig = all.ResourcesConfig
-	if all.TracesConfig != nil && all.TracesConfig.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.TracesConfig != nil && all.TracesConfig.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.TracesConfig = all.TracesConfig

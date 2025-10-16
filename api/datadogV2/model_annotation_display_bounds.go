@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AnnotationDisplayBounds The definition of `AnnotationDisplayBounds` object.
 type AnnotationDisplayBounds struct {
@@ -19,9 +25,10 @@ type AnnotationDisplayBounds struct {
 	// The `bounds` `y`.
 	Y *float64 `json:"y,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAnnotationDisplayBounds instantiates a new AnnotationDisplayBounds object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewAnnotationDisplayBoundsWithDefaults() *AnnotationDisplayBounds {
 	this := AnnotationDisplayBounds{}
 	return &this
 }
-
 // GetHeight returns the Height field value if set, zero value otherwise.
 func (o *AnnotationDisplayBounds) GetHeight() float64 {
 	if o == nil || o.Height == nil {
@@ -67,6 +73,7 @@ func (o *AnnotationDisplayBounds) HasHeight() bool {
 func (o *AnnotationDisplayBounds) SetHeight(v float64) {
 	o.Height = &v
 }
+
 
 // GetWidth returns the Width field value if set, zero value otherwise.
 func (o *AnnotationDisplayBounds) GetWidth() float64 {
@@ -96,6 +103,7 @@ func (o *AnnotationDisplayBounds) SetWidth(v float64) {
 	o.Width = &v
 }
 
+
 // GetX returns the X field value if set, zero value otherwise.
 func (o *AnnotationDisplayBounds) GetX() float64 {
 	if o == nil || o.X == nil {
@@ -124,6 +132,7 @@ func (o *AnnotationDisplayBounds) SetX(v float64) {
 	o.X = &v
 }
 
+
 // GetY returns the Y field value if set, zero value otherwise.
 func (o *AnnotationDisplayBounds) GetY() float64 {
 	if o == nil || o.Y == nil {
@@ -151,6 +160,8 @@ func (o *AnnotationDisplayBounds) HasY() bool {
 func (o *AnnotationDisplayBounds) SetY(v float64) {
 	o.Y = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AnnotationDisplayBounds) MarshalJSON() ([]byte, error) {
@@ -181,16 +192,16 @@ func (o AnnotationDisplayBounds) MarshalJSON() ([]byte, error) {
 func (o *AnnotationDisplayBounds) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Height *float64 `json:"height,omitempty"`
-		Width  *float64 `json:"width,omitempty"`
-		X      *float64 `json:"x,omitempty"`
-		Y      *float64 `json:"y,omitempty"`
+		Width *float64 `json:"width,omitempty"`
+		X *float64 `json:"x,omitempty"`
+		Y *float64 `json:"y,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"height", "width", "x", "y"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "height", "width", "x", "y",  })
 	} else {
 		return err
 	}

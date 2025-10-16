@@ -2,23 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleCaseActionType The action type.
 type SecurityMonitoringRuleCaseActionType string
 
 // List of SecurityMonitoringRuleCaseActionType.
 const (
-	SECURITYMONITORINGRULECASEACTIONTYPE_BLOCK_IP      SecurityMonitoringRuleCaseActionType = "block_ip"
-	SECURITYMONITORINGRULECASEACTIONTYPE_BLOCK_USER    SecurityMonitoringRuleCaseActionType = "block_user"
+	SECURITYMONITORINGRULECASEACTIONTYPE_BLOCK_IP SecurityMonitoringRuleCaseActionType = "block_ip"
+	SECURITYMONITORINGRULECASEACTIONTYPE_BLOCK_USER SecurityMonitoringRuleCaseActionType = "block_user"
 	SECURITYMONITORINGRULECASEACTIONTYPE_USER_BEHAVIOR SecurityMonitoringRuleCaseActionType = "user_behavior"
-	SECURITYMONITORINGRULECASEACTIONTYPE_FLAG_IP       SecurityMonitoringRuleCaseActionType = "flag_ip"
+	SECURITYMONITORINGRULECASEACTIONTYPE_FLAG_IP SecurityMonitoringRuleCaseActionType = "flag_ip"
 )
 
 var allowedSecurityMonitoringRuleCaseActionTypeEnumValues = []SecurityMonitoringRuleCaseActionType{

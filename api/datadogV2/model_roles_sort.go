@@ -2,25 +2,29 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RolesSort Sorting options for roles.
 type RolesSort string
 
 // List of RolesSort.
 const (
-	ROLESSORT_NAME_ASCENDING         RolesSort = "name"
-	ROLESSORT_NAME_DESCENDING        RolesSort = "-name"
-	ROLESSORT_MODIFIED_AT_ASCENDING  RolesSort = "modified_at"
+	ROLESSORT_NAME_ASCENDING RolesSort = "name"
+	ROLESSORT_NAME_DESCENDING RolesSort = "-name"
+	ROLESSORT_MODIFIED_AT_ASCENDING RolesSort = "modified_at"
 	ROLESSORT_MODIFIED_AT_DESCENDING RolesSort = "-modified_at"
-	ROLESSORT_USER_COUNT_ASCENDING   RolesSort = "user_count"
-	ROLESSORT_USER_COUNT_DESCENDING  RolesSort = "-user_count"
+	ROLESSORT_USER_COUNT_ASCENDING RolesSort = "user_count"
+	ROLESSORT_USER_COUNT_DESCENDING RolesSort = "-user_count"
 )
 
 var allowedRolesSortEnumValues = []RolesSort{

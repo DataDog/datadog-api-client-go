@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CaseUpdateStatusAttributes Case update status attributes
 type CaseUpdateStatusAttributes struct {
 	// Case status
 	Status CaseStatus `json:"status"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCaseUpdateStatusAttributes instantiates a new CaseUpdateStatusAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewCaseUpdateStatusAttributesWithDefaults() *CaseUpdateStatusAttributes {
 	this := CaseUpdateStatusAttributes{}
 	return &this
 }
-
 // GetStatus returns the Status field value.
 func (o *CaseUpdateStatusAttributes) GetStatus() CaseStatus {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *CaseUpdateStatusAttributes) GetStatusOk() (*CaseStatus, bool) {
 func (o *CaseUpdateStatusAttributes) SetStatus(v CaseStatus) {
 	o.Status = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CaseUpdateStatusAttributes) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *CaseUpdateStatusAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "status",  })
 	} else {
 		return err
 	}

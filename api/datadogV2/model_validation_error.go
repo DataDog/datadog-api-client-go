@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ValidationError Represents a single validation error, including a human-readable title and metadata.
 type ValidationError struct {
@@ -17,9 +21,10 @@ type ValidationError struct {
 	// A short, human-readable summary of the error.
 	Title string `json:"title"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewValidationError instantiates a new ValidationError object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewValidationErrorWithDefaults() *ValidationError {
 	this := ValidationError{}
 	return &this
 }
-
 // GetMeta returns the Meta field value.
 func (o *ValidationError) GetMeta() ValidationErrorMeta {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ValidationError) GetMetaOk() (*ValidationErrorMeta, bool) {
 func (o *ValidationError) SetMeta(v ValidationErrorMeta) {
 	o.Meta = v
 }
+
 
 // GetTitle returns the Title field value.
 func (o *ValidationError) GetTitle() string {
@@ -86,6 +91,8 @@ func (o *ValidationError) SetTitle(v string) {
 	o.Title = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ValidationError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o ValidationError) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ValidationError) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Meta  *ValidationErrorMeta `json:"meta"`
-		Title *string              `json:"title"`
+		Meta *ValidationErrorMeta `json:"meta"`
+		Title *string `json:"title"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *ValidationError) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"meta", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "meta", "title",  })
 	} else {
 		return err
 	}

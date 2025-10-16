@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssuesSearchRequestDataAttributes Object describing a search issue request.
 type IssuesSearchRequestDataAttributes struct {
@@ -25,9 +29,10 @@ type IssuesSearchRequestDataAttributes struct {
 	// Track of the events to query. Either track(s) or persona(s) must be specified.
 	Track *IssuesSearchRequestDataAttributesTrack `json:"track,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssuesSearchRequestDataAttributes instantiates a new IssuesSearchRequestDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewIssuesSearchRequestDataAttributesWithDefaults() *IssuesSearchRequestData
 	this := IssuesSearchRequestDataAttributes{}
 	return &this
 }
-
 // GetFrom returns the From field value.
 func (o *IssuesSearchRequestDataAttributes) GetFrom() int64 {
 	if o == nil {
@@ -71,6 +75,7 @@ func (o *IssuesSearchRequestDataAttributes) GetFromOk() (*int64, bool) {
 func (o *IssuesSearchRequestDataAttributes) SetFrom(v int64) {
 	o.From = v
 }
+
 
 // GetOrderBy returns the OrderBy field value if set, zero value otherwise.
 func (o *IssuesSearchRequestDataAttributes) GetOrderBy() IssuesSearchRequestDataAttributesOrderBy {
@@ -100,6 +105,7 @@ func (o *IssuesSearchRequestDataAttributes) SetOrderBy(v IssuesSearchRequestData
 	o.OrderBy = &v
 }
 
+
 // GetPersona returns the Persona field value if set, zero value otherwise.
 func (o *IssuesSearchRequestDataAttributes) GetPersona() IssuesSearchRequestDataAttributesPersona {
 	if o == nil || o.Persona == nil {
@@ -128,6 +134,7 @@ func (o *IssuesSearchRequestDataAttributes) SetPersona(v IssuesSearchRequestData
 	o.Persona = &v
 }
 
+
 // GetQuery returns the Query field value.
 func (o *IssuesSearchRequestDataAttributes) GetQuery() string {
 	if o == nil {
@@ -151,6 +158,7 @@ func (o *IssuesSearchRequestDataAttributes) SetQuery(v string) {
 	o.Query = v
 }
 
+
 // GetTo returns the To field value.
 func (o *IssuesSearchRequestDataAttributes) GetTo() int64 {
 	if o == nil {
@@ -173,6 +181,7 @@ func (o *IssuesSearchRequestDataAttributes) GetToOk() (*int64, bool) {
 func (o *IssuesSearchRequestDataAttributes) SetTo(v int64) {
 	o.To = v
 }
+
 
 // GetTrack returns the Track field value if set, zero value otherwise.
 func (o *IssuesSearchRequestDataAttributes) GetTrack() IssuesSearchRequestDataAttributesTrack {
@@ -202,6 +211,8 @@ func (o *IssuesSearchRequestDataAttributes) SetTrack(v IssuesSearchRequestDataAt
 	o.Track = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IssuesSearchRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -230,12 +241,12 @@ func (o IssuesSearchRequestDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IssuesSearchRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		From    *int64                                    `json:"from"`
+		From *int64 `json:"from"`
 		OrderBy *IssuesSearchRequestDataAttributesOrderBy `json:"order_by,omitempty"`
 		Persona *IssuesSearchRequestDataAttributesPersona `json:"persona,omitempty"`
-		Query   *string                                   `json:"query"`
-		To      *int64                                    `json:"to"`
-		Track   *IssuesSearchRequestDataAttributesTrack   `json:"track,omitempty"`
+		Query *string `json:"query"`
+		To *int64 `json:"to"`
+		Track *IssuesSearchRequestDataAttributesTrack `json:"track,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -251,26 +262,26 @@ func (o *IssuesSearchRequestDataAttributes) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"from", "order_by", "persona", "query", "to", "track"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "from", "order_by", "persona", "query", "to", "track",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.From = *all.From
-	if all.OrderBy != nil && !all.OrderBy.IsValid() {
+	if all.OrderBy != nil &&!all.OrderBy.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.OrderBy = all.OrderBy
 	}
-	if all.Persona != nil && !all.Persona.IsValid() {
+	if all.Persona != nil &&!all.Persona.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Persona = all.Persona
 	}
 	o.Query = *all.Query
 	o.To = *all.To
-	if all.Track != nil && !all.Track.IsValid() {
+	if all.Track != nil &&!all.Track.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Track = all.Track

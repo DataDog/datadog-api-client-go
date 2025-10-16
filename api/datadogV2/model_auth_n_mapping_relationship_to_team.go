@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AuthNMappingRelationshipToTeam Relationship of AuthN Mapping to a Team.
 type AuthNMappingRelationshipToTeam struct {
 	// Relationship to team.
 	Team RelationshipToTeam `json:"team"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAuthNMappingRelationshipToTeam instantiates a new AuthNMappingRelationshipToTeam object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewAuthNMappingRelationshipToTeamWithDefaults() *AuthNMappingRelationshipTo
 	this := AuthNMappingRelationshipToTeam{}
 	return &this
 }
-
 // GetTeam returns the Team field value.
 func (o *AuthNMappingRelationshipToTeam) GetTeam() RelationshipToTeam {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *AuthNMappingRelationshipToTeam) GetTeamOk() (*RelationshipToTeam, bool)
 func (o *AuthNMappingRelationshipToTeam) SetTeam(v RelationshipToTeam) {
 	o.Team = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AuthNMappingRelationshipToTeam) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *AuthNMappingRelationshipToTeam) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"team"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "team",  })
 	} else {
 		return err
 	}

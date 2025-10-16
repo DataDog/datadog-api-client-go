@@ -2,24 +2,28 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringSignalArchiveReason Reason a signal is archived.
 type SecurityMonitoringSignalArchiveReason string
 
 // List of SecurityMonitoringSignalArchiveReason.
 const (
-	SECURITYMONITORINGSIGNALARCHIVEREASON_NONE                     SecurityMonitoringSignalArchiveReason = "none"
-	SECURITYMONITORINGSIGNALARCHIVEREASON_FALSE_POSITIVE           SecurityMonitoringSignalArchiveReason = "false_positive"
-	SECURITYMONITORINGSIGNALARCHIVEREASON_TESTING_OR_MAINTENANCE   SecurityMonitoringSignalArchiveReason = "testing_or_maintenance"
+	SECURITYMONITORINGSIGNALARCHIVEREASON_NONE SecurityMonitoringSignalArchiveReason = "none"
+	SECURITYMONITORINGSIGNALARCHIVEREASON_FALSE_POSITIVE SecurityMonitoringSignalArchiveReason = "false_positive"
+	SECURITYMONITORINGSIGNALARCHIVEREASON_TESTING_OR_MAINTENANCE SecurityMonitoringSignalArchiveReason = "testing_or_maintenance"
 	SECURITYMONITORINGSIGNALARCHIVEREASON_INVESTIGATED_CASE_OPENED SecurityMonitoringSignalArchiveReason = "investigated_case_opened"
-	SECURITYMONITORINGSIGNALARCHIVEREASON_OTHER                    SecurityMonitoringSignalArchiveReason = "other"
+	SECURITYMONITORINGSIGNALARCHIVEREASON_OTHER SecurityMonitoringSignalArchiveReason = "other"
 )
 
 var allowedSecurityMonitoringSignalArchiveReasonEnumValues = []SecurityMonitoringSignalArchiveReason{

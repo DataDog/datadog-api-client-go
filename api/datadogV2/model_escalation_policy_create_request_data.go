@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EscalationPolicyCreateRequestData Represents the data for creating an escalation policy, including its attributes, relationships, and resource type.
 type EscalationPolicyCreateRequestData struct {
@@ -19,9 +23,10 @@ type EscalationPolicyCreateRequestData struct {
 	// Indicates that the resource is of type `policies`.
 	Type EscalationPolicyCreateRequestDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEscalationPolicyCreateRequestData instantiates a new EscalationPolicyCreateRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewEscalationPolicyCreateRequestDataWithDefaults() *EscalationPolicyCreateR
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *EscalationPolicyCreateRequestData) GetAttributes() EscalationPolicyCreateRequestDataAttributes {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *EscalationPolicyCreateRequestData) GetAttributesOk() (*EscalationPolicy
 func (o *EscalationPolicyCreateRequestData) SetAttributes(v EscalationPolicyCreateRequestDataAttributes) {
 	o.Attributes = v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *EscalationPolicyCreateRequestData) GetRelationships() EscalationPolicyCreateRequestDataRelationships {
@@ -95,6 +100,7 @@ func (o *EscalationPolicyCreateRequestData) SetRelationships(v EscalationPolicyC
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *EscalationPolicyCreateRequestData) GetType() EscalationPolicyCreateRequestDataType {
 	if o == nil {
@@ -118,6 +124,8 @@ func (o *EscalationPolicyCreateRequestData) SetType(v EscalationPolicyCreateRequ
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EscalationPolicyCreateRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -139,9 +147,9 @@ func (o EscalationPolicyCreateRequestData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EscalationPolicyCreateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *EscalationPolicyCreateRequestDataAttributes    `json:"attributes"`
+		Attributes *EscalationPolicyCreateRequestDataAttributes `json:"attributes"`
 		Relationships *EscalationPolicyCreateRequestDataRelationships `json:"relationships,omitempty"`
-		Type          *EscalationPolicyCreateRequestDataType          `json:"type"`
+		Type *EscalationPolicyCreateRequestDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -154,7 +162,7 @@ func (o *EscalationPolicyCreateRequestData) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "relationships", "type",  })
 	} else {
 		return err
 	}
@@ -164,7 +172,7 @@ func (o *EscalationPolicyCreateRequestData) UnmarshalJSON(bytes []byte) (err err
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

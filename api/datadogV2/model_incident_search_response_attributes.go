@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentSearchResponseAttributes Attributes returned by an incident search.
 type IncidentSearchResponseAttributes struct {
@@ -19,9 +23,10 @@ type IncidentSearchResponseAttributes struct {
 	// Number of incidents returned by the search.
 	Total int32 `json:"total"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentSearchResponseAttributes instantiates a new IncidentSearchResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewIncidentSearchResponseAttributesWithDefaults() *IncidentSearchResponseAt
 	this := IncidentSearchResponseAttributes{}
 	return &this
 }
-
 // GetFacets returns the Facets field value.
 func (o *IncidentSearchResponseAttributes) GetFacets() IncidentSearchResponseFacetsData {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *IncidentSearchResponseAttributes) GetFacetsOk() (*IncidentSearchRespons
 func (o *IncidentSearchResponseAttributes) SetFacets(v IncidentSearchResponseFacetsData) {
 	o.Facets = v
 }
+
 
 // GetIncidents returns the Incidents field value.
 func (o *IncidentSearchResponseAttributes) GetIncidents() []IncidentSearchResponseIncidentsData {
@@ -89,6 +94,7 @@ func (o *IncidentSearchResponseAttributes) SetIncidents(v []IncidentSearchRespon
 	o.Incidents = v
 }
 
+
 // GetTotal returns the Total field value.
 func (o *IncidentSearchResponseAttributes) GetTotal() int32 {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *IncidentSearchResponseAttributes) SetTotal(v int32) {
 	o.Total = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentSearchResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o IncidentSearchResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentSearchResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Facets    *IncidentSearchResponseFacetsData      `json:"facets"`
+		Facets *IncidentSearchResponseFacetsData `json:"facets"`
 		Incidents *[]IncidentSearchResponseIncidentsData `json:"incidents"`
-		Total     *int32                                 `json:"total"`
+		Total *int32 `json:"total"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *IncidentSearchResponseAttributes) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"facets", "incidents", "total"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "facets", "incidents", "total",  })
 	} else {
 		return err
 	}

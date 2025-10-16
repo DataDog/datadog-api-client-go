@@ -2,6 +2,7 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadog
 
 import (
@@ -78,10 +79,10 @@ type APIKey struct {
 
 // DelegatedTokenCredentials delegated token authentication to a request passed via context using ContextDelegatedToken.
 type DelegatedTokenCredentials struct {
-	OrgUUID        string
-	DelegatedToken string
-	DelegatedProof string
-	Expiration     time.Time
+	OrgUUID         string
+	DelegatedToken  string
+	DelegatedProof  string
+	Expiration      time.Time
 }
 
 // DelegatedTokenConfig provides cloud provider based authentication configuration.
@@ -115,17 +116,17 @@ type ServerConfigurations []ServerConfiguration
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
-	Host                 string            `json:"host,omitempty"`
-	Scheme               string            `json:"scheme,omitempty"`
-	DefaultHeader        map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent            string            `json:"userAgent,omitempty"`
-	Debug                bool              `json:"debug,omitempty"`
-	Compress             bool              `json:"compress,omitempty"`
-	Servers              ServerConfigurations
-	OperationServers     map[string]ServerConfigurations
-	HTTPClient           *http.Client
-	unstableOperations   map[string]bool
-	RetryConfiguration   RetryConfiguration
+	Host               string            `json:"host,omitempty"`
+	Scheme             string            `json:"scheme,omitempty"`
+	DefaultHeader      map[string]string `json:"defaultHeader,omitempty"`
+	UserAgent          string            `json:"userAgent,omitempty"`
+	Debug              bool              `json:"debug,omitempty"`
+	Compress           bool              `json:"compress,omitempty"`
+	Servers            ServerConfigurations
+	OperationServers   map[string]ServerConfigurations
+	HTTPClient         *http.Client
+	unstableOperations map[string]bool
+	RetryConfiguration RetryConfiguration
 	DelegatedTokenConfig *DelegatedTokenConfig
 }
 
@@ -137,7 +138,6 @@ type RetryConfiguration struct {
 	HTTPRetryTimeout  time.Duration
 	MaxRetries        int
 }
-
 // NewConfiguration returns a new Configuration object.
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
@@ -145,15 +145,15 @@ func NewConfiguration() *Configuration {
 		UserAgent:     GetUserAgent(),
 		Debug:         false,
 		Compress:      true,
-		Servers: ServerConfigurations{
+		Servers:       ServerConfigurations{
 			{
 				URL:         "https://{subdomain}.{site}",
 				Description: "No description provided",
-				Variables: map[string]ServerVariable{
+				Variables:   map[string]ServerVariable{
 					"site": {
 						Description:  "The regional site for Datadog customers.",
 						DefaultValue: "datadoghq.com",
-						EnumValues: []string{
+						EnumValues:   []string{
 							"datadoghq.com",
 							"us3.datadoghq.com",
 							"us5.datadoghq.com",
@@ -172,7 +172,7 @@ func NewConfiguration() *Configuration {
 			{
 				URL:         "{protocol}://{name}",
 				Description: "No description provided",
-				Variables: map[string]ServerVariable{
+				Variables:   map[string]ServerVariable{
 					"name": {
 						Description:  "Full site DNS name.",
 						DefaultValue: "api.datadoghq.com",
@@ -186,7 +186,7 @@ func NewConfiguration() *Configuration {
 			{
 				URL:         "https://{subdomain}.{site}",
 				Description: "No description provided",
-				Variables: map[string]ServerVariable{
+				Variables:   map[string]ServerVariable{
 					"site": {
 						Description:  "Any Datadog deployment.",
 						DefaultValue: "datadoghq.com",
@@ -203,11 +203,11 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "The regional site for Datadog customers.",
 							DefaultValue: "datadoghq.com",
-							EnumValues: []string{
+							EnumValues:   []string{
 								"datadoghq.com",
 								"us3.datadoghq.com",
 								"us5.datadoghq.com",
@@ -226,7 +226,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "{protocol}://{name}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"name": {
 							Description:  "Full site DNS name.",
 							DefaultValue: "ip-ranges.datadoghq.com",
@@ -240,7 +240,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.datadoghq.com",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"subdomain": {
 							Description:  "The subdomain where the API is deployed.",
 							DefaultValue: "ip-ranges",
@@ -252,11 +252,11 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "The regional site for Datadog customers.",
 							DefaultValue: "datadoghq.com",
-							EnumValues: []string{
+							EnumValues:   []string{
 								"datadoghq.com",
 								"us3.datadoghq.com",
 								"us5.datadoghq.com",
@@ -275,7 +275,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "{protocol}://{name}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"name": {
 							Description:  "Full site DNS name.",
 							DefaultValue: "http-intake.logs.datadoghq.com",
@@ -289,7 +289,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "Any Datadog deployment.",
 							DefaultValue: "datadoghq.com",
@@ -305,11 +305,11 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "The regional site for customers.",
 							DefaultValue: "datadoghq.com",
-							EnumValues: []string{
+							EnumValues:   []string{
 								"datadoghq.com",
 								"us3.datadoghq.com",
 								"us5.datadoghq.com",
@@ -327,7 +327,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "{protocol}://{name}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"name": {
 							Description:  "Full site DNS name.",
 							DefaultValue: "event-management-intake.datadoghq.com",
@@ -341,7 +341,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "Any Datadog deployment.",
 							DefaultValue: "datadoghq.com",
@@ -357,11 +357,11 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "The regional site for customers.",
 							DefaultValue: "datadoghq.com",
-							EnumValues: []string{
+							EnumValues:   []string{
 								"datadoghq.com",
 								"us3.datadoghq.com",
 								"us5.datadoghq.com",
@@ -380,7 +380,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "{protocol}://{name}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"name": {
 							Description:  "Full site DNS name.",
 							DefaultValue: "http-intake.logs.datadoghq.com",
@@ -394,7 +394,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "Any Datadog deployment.",
 							DefaultValue: "datadoghq.com",
@@ -410,11 +410,11 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "The globally available endpoint for On-Call.",
 							DefaultValue: "navy.oncall.datadoghq.com",
-							EnumValues: []string{
+							EnumValues:   []string{
 								"lava.oncall.datadoghq.com",
 								"saffron.oncall.datadoghq.com",
 								"navy.oncall.datadoghq.com",
@@ -428,7 +428,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "{protocol}://{name}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"name": {
 							Description:  "Full site DNS name.",
 							DefaultValue: "api.datadoghq.com",
@@ -442,7 +442,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "Any Datadog deployment.",
 							DefaultValue: "datadoghq.com",
@@ -458,11 +458,11 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "The globally available endpoint for On-Call.",
 							DefaultValue: "navy.oncall.datadoghq.com",
-							EnumValues: []string{
+							EnumValues:   []string{
 								"lava.oncall.datadoghq.com",
 								"saffron.oncall.datadoghq.com",
 								"navy.oncall.datadoghq.com",
@@ -476,7 +476,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "{protocol}://{name}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"name": {
 							Description:  "Full site DNS name.",
 							DefaultValue: "api.datadoghq.com",
@@ -490,7 +490,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "Any Datadog deployment.",
 							DefaultValue: "datadoghq.com",
@@ -506,11 +506,11 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "The globally available endpoint for On-Call.",
 							DefaultValue: "navy.oncall.datadoghq.com",
-							EnumValues: []string{
+							EnumValues:   []string{
 								"lava.oncall.datadoghq.com",
 								"saffron.oncall.datadoghq.com",
 								"navy.oncall.datadoghq.com",
@@ -524,7 +524,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "{protocol}://{name}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"name": {
 							Description:  "Full site DNS name.",
 							DefaultValue: "api.datadoghq.com",
@@ -538,7 +538,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "Any Datadog deployment.",
 							DefaultValue: "datadoghq.com",
@@ -554,11 +554,11 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "The globally available endpoint for On-Call.",
 							DefaultValue: "navy.oncall.datadoghq.com",
-							EnumValues: []string{
+							EnumValues:   []string{
 								"lava.oncall.datadoghq.com",
 								"saffron.oncall.datadoghq.com",
 								"navy.oncall.datadoghq.com",
@@ -572,7 +572,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "{protocol}://{name}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"name": {
 							Description:  "Full site DNS name.",
 							DefaultValue: "api.datadoghq.com",
@@ -586,7 +586,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "Any Datadog deployment.",
 							DefaultValue: "datadoghq.com",
@@ -600,114 +600,114 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
-			"v2.CreateOpenAPI":                           false,
-			"v2.DeleteOpenAPI":                           false,
-			"v2.GetOpenAPI":                              false,
-			"v2.ListAPIs":                                false,
-			"v2.UpdateOpenAPI":                           false,
-			"v2.CancelHistoricalJob":                     false,
-			"v2.ConvertJobResultToSignal":                false,
-			"v2.DeleteHistoricalJob":                     false,
-			"v2.GetFinding":                              false,
-			"v2.GetHistoricalJob":                        false,
-			"v2.GetRuleVersionHistory":                   false,
-			"v2.GetSBOM":                                 false,
-			"v2.GetSecurityMonitoringHistsignal":         false,
+			"v2.CreateOpenAPI": false,
+			"v2.DeleteOpenAPI": false,
+			"v2.GetOpenAPI": false,
+			"v2.ListAPIs": false,
+			"v2.UpdateOpenAPI": false,
+			"v2.CancelHistoricalJob": false,
+			"v2.ConvertJobResultToSignal": false,
+			"v2.DeleteHistoricalJob": false,
+			"v2.GetFinding": false,
+			"v2.GetHistoricalJob": false,
+			"v2.GetRuleVersionHistory": false,
+			"v2.GetSBOM": false,
+			"v2.GetSecurityMonitoringHistsignal": false,
 			"v2.GetSecurityMonitoringHistsignalsByJobId": false,
-			"v2.ListAssetsSBOMs":                         false,
-			"v2.ListFindings":                            false,
-			"v2.ListHistoricalJobs":                      false,
-			"v2.ListScannedAssetsMetadata":               false,
-			"v2.ListSecurityMonitoringHistsignals":       false,
-			"v2.ListVulnerabilities":                     false,
-			"v2.ListVulnerableAssets":                    false,
-			"v2.MuteFindings":                            false,
-			"v2.RunHistoricalJob":                        false,
-			"v2.SearchSecurityMonitoringHistsignals":     false,
-			"v2.CreateDataset":                           false,
-			"v2.DeleteDataset":                           false,
-			"v2.GetAllDatasets":                          false,
-			"v2.GetDataset":                              false,
-			"v2.UpdateDataset":                           false,
-			"v2.CancelDataDeletionRequest":               false,
-			"v2.CreateDataDeletionRequest":               false,
-			"v2.GetDataDeletionRequests":                 false,
-			"v2.CreateIncident":                          false,
-			"v2.CreateIncidentImpact":                    false,
-			"v2.CreateIncidentIntegration":               false,
-			"v2.CreateIncidentNotificationRule":          false,
-			"v2.CreateIncidentNotificationTemplate":      false,
-			"v2.CreateIncidentTodo":                      false,
-			"v2.CreateIncidentType":                      false,
-			"v2.DeleteIncident":                          false,
-			"v2.DeleteIncidentImpact":                    false,
-			"v2.DeleteIncidentIntegration":               false,
-			"v2.DeleteIncidentNotificationRule":          false,
-			"v2.DeleteIncidentNotificationTemplate":      false,
-			"v2.DeleteIncidentTodo":                      false,
-			"v2.DeleteIncidentType":                      false,
-			"v2.GetIncident":                             false,
-			"v2.GetIncidentIntegration":                  false,
-			"v2.GetIncidentNotificationRule":             false,
-			"v2.GetIncidentNotificationTemplate":         false,
-			"v2.GetIncidentTodo":                         false,
-			"v2.GetIncidentType":                         false,
-			"v2.ListIncidentAttachments":                 false,
-			"v2.ListIncidentImpacts":                     false,
-			"v2.ListIncidentIntegrations":                false,
-			"v2.ListIncidentNotificationRules":           false,
-			"v2.ListIncidentNotificationTemplates":       false,
-			"v2.ListIncidents":                           false,
-			"v2.ListIncidentTodos":                       false,
-			"v2.ListIncidentTypes":                       false,
-			"v2.SearchIncidents":                         false,
-			"v2.UpdateIncident":                          false,
-			"v2.UpdateIncidentAttachments":               false,
-			"v2.UpdateIncidentIntegration":               false,
-			"v2.UpdateIncidentNotificationRule":          false,
-			"v2.UpdateIncidentNotificationTemplate":      false,
-			"v2.UpdateIncidentTodo":                      false,
-			"v2.UpdateIncidentType":                      false,
-			"v2.CreateMonitorUserTemplate":               false,
-			"v2.DeleteMonitorUserTemplate":               false,
-			"v2.GetMonitorUserTemplate":                  false,
-			"v2.ListMonitorUserTemplates":                false,
-			"v2.UpdateMonitorUserTemplate":               false,
-			"v2.ValidateExistingMonitorUserTemplate":     false,
-			"v2.ValidateMonitorUserTemplate":             false,
-			"v2.ListRoleTemplates":                       false,
-			"v2.CreatePipeline":                          false,
-			"v2.DeletePipeline":                          false,
-			"v2.GetPipeline":                             false,
-			"v2.ListPipelines":                           false,
-			"v2.UpdatePipeline":                          false,
-			"v2.ValidatePipeline":                        false,
-			"v2.CreateScorecardOutcomesBatch":            false,
-			"v2.CreateScorecardRule":                     false,
-			"v2.DeleteScorecardRule":                     false,
-			"v2.ListScorecardOutcomes":                   false,
-			"v2.ListScorecardRules":                      false,
-			"v2.UpdateScorecardOutcomesAsync":            false,
-			"v2.UpdateScorecardRule":                     false,
-			"v2.CreateIncidentService":                   false,
-			"v2.DeleteIncidentService":                   false,
-			"v2.GetIncidentService":                      false,
-			"v2.ListIncidentServices":                    false,
-			"v2.UpdateIncidentService":                   false,
-			"v2.CreateSLOReportJob":                      false,
-			"v2.GetSLOReport":                            false,
-			"v2.GetSLOReportJobStatus":                   false,
-			"v2.GetSPARecommendations":                   false,
-			"v2.AddMemberTeam":                           false,
-			"v2.ListMemberTeams":                         false,
-			"v2.RemoveMemberTeam":                        false,
-			"v2.SyncTeams":                               false,
-			"v2.CreateIncidentTeam":                      false,
-			"v2.DeleteIncidentTeam":                      false,
-			"v2.GetIncidentTeam":                         false,
-			"v2.ListIncidentTeams":                       false,
-			"v2.UpdateIncidentTeam":                      false,
-			"v2.SearchFlakyTests":                        false,
+			"v2.ListAssetsSBOMs": false,
+			"v2.ListFindings": false,
+			"v2.ListHistoricalJobs": false,
+			"v2.ListScannedAssetsMetadata": false,
+			"v2.ListSecurityMonitoringHistsignals": false,
+			"v2.ListVulnerabilities": false,
+			"v2.ListVulnerableAssets": false,
+			"v2.MuteFindings": false,
+			"v2.RunHistoricalJob": false,
+			"v2.SearchSecurityMonitoringHistsignals": false,
+			"v2.CreateDataset": false,
+			"v2.DeleteDataset": false,
+			"v2.GetAllDatasets": false,
+			"v2.GetDataset": false,
+			"v2.UpdateDataset": false,
+			"v2.CancelDataDeletionRequest": false,
+			"v2.CreateDataDeletionRequest": false,
+			"v2.GetDataDeletionRequests": false,
+			"v2.CreateIncident": false,
+			"v2.CreateIncidentImpact": false,
+			"v2.CreateIncidentIntegration": false,
+			"v2.CreateIncidentNotificationRule": false,
+			"v2.CreateIncidentNotificationTemplate": false,
+			"v2.CreateIncidentTodo": false,
+			"v2.CreateIncidentType": false,
+			"v2.DeleteIncident": false,
+			"v2.DeleteIncidentImpact": false,
+			"v2.DeleteIncidentIntegration": false,
+			"v2.DeleteIncidentNotificationRule": false,
+			"v2.DeleteIncidentNotificationTemplate": false,
+			"v2.DeleteIncidentTodo": false,
+			"v2.DeleteIncidentType": false,
+			"v2.GetIncident": false,
+			"v2.GetIncidentIntegration": false,
+			"v2.GetIncidentNotificationRule": false,
+			"v2.GetIncidentNotificationTemplate": false,
+			"v2.GetIncidentTodo": false,
+			"v2.GetIncidentType": false,
+			"v2.ListIncidentAttachments": false,
+			"v2.ListIncidentImpacts": false,
+			"v2.ListIncidentIntegrations": false,
+			"v2.ListIncidentNotificationRules": false,
+			"v2.ListIncidentNotificationTemplates": false,
+			"v2.ListIncidents": false,
+			"v2.ListIncidentTodos": false,
+			"v2.ListIncidentTypes": false,
+			"v2.SearchIncidents": false,
+			"v2.UpdateIncident": false,
+			"v2.UpdateIncidentAttachments": false,
+			"v2.UpdateIncidentIntegration": false,
+			"v2.UpdateIncidentNotificationRule": false,
+			"v2.UpdateIncidentNotificationTemplate": false,
+			"v2.UpdateIncidentTodo": false,
+			"v2.UpdateIncidentType": false,
+			"v2.CreateMonitorUserTemplate": false,
+			"v2.DeleteMonitorUserTemplate": false,
+			"v2.GetMonitorUserTemplate": false,
+			"v2.ListMonitorUserTemplates": false,
+			"v2.UpdateMonitorUserTemplate": false,
+			"v2.ValidateExistingMonitorUserTemplate": false,
+			"v2.ValidateMonitorUserTemplate": false,
+			"v2.ListRoleTemplates": false,
+			"v2.CreatePipeline": false,
+			"v2.DeletePipeline": false,
+			"v2.GetPipeline": false,
+			"v2.ListPipelines": false,
+			"v2.UpdatePipeline": false,
+			"v2.ValidatePipeline": false,
+			"v2.CreateScorecardOutcomesBatch": false,
+			"v2.CreateScorecardRule": false,
+			"v2.DeleteScorecardRule": false,
+			"v2.ListScorecardOutcomes": false,
+			"v2.ListScorecardRules": false,
+			"v2.UpdateScorecardOutcomesAsync": false,
+			"v2.UpdateScorecardRule": false,
+			"v2.CreateIncidentService": false,
+			"v2.DeleteIncidentService": false,
+			"v2.GetIncidentService": false,
+			"v2.ListIncidentServices": false,
+			"v2.UpdateIncidentService": false,
+			"v2.CreateSLOReportJob": false,
+			"v2.GetSLOReport": false,
+			"v2.GetSLOReportJobStatus": false,
+			"v2.GetSPARecommendations": false,
+			"v2.AddMemberTeam": false,
+			"v2.ListMemberTeams": false,
+			"v2.RemoveMemberTeam": false,
+			"v2.SyncTeams": false,
+			"v2.CreateIncidentTeam": false,
+			"v2.DeleteIncidentTeam": false,
+			"v2.GetIncidentTeam": false,
+			"v2.ListIncidentTeams": false,
+			"v2.UpdateIncidentTeam": false,
+			"v2.SearchFlakyTests": false,
 		},
 		RetryConfiguration: RetryConfiguration{
 			EnableRetry:       false,

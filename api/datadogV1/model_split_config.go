@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SplitConfig Encapsulates all user choices about how to split a graph.
 type SplitConfig struct {
@@ -21,9 +25,10 @@ type SplitConfig struct {
 	// Manual selection of tags making split graph widget static
 	StaticSplits [][]SplitVectorEntryItem `json:"static_splits,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSplitConfig instantiates a new SplitConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewSplitConfigWithDefaults() *SplitConfig {
 	this := SplitConfig{}
 	return &this
 }
-
 // GetLimit returns the Limit field value.
 func (o *SplitConfig) GetLimit() int64 {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *SplitConfig) GetLimitOk() (*int64, bool) {
 func (o *SplitConfig) SetLimit(v int64) {
 	o.Limit = v
 }
+
 
 // GetSort returns the Sort field value.
 func (o *SplitConfig) GetSort() SplitSort {
@@ -91,6 +96,7 @@ func (o *SplitConfig) SetSort(v SplitSort) {
 	o.Sort = v
 }
 
+
 // GetSplitDimensions returns the SplitDimensions field value.
 func (o *SplitConfig) GetSplitDimensions() []SplitDimension {
 	if o == nil {
@@ -113,6 +119,7 @@ func (o *SplitConfig) GetSplitDimensionsOk() (*[]SplitDimension, bool) {
 func (o *SplitConfig) SetSplitDimensions(v []SplitDimension) {
 	o.SplitDimensions = v
 }
+
 
 // GetStaticSplits returns the StaticSplits field value if set, zero value otherwise.
 func (o *SplitConfig) GetStaticSplits() [][]SplitVectorEntryItem {
@@ -142,6 +149,8 @@ func (o *SplitConfig) SetStaticSplits(v [][]SplitVectorEntryItem) {
 	o.StaticSplits = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SplitConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -164,10 +173,10 @@ func (o SplitConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SplitConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Limit           *int64                   `json:"limit"`
-		Sort            *SplitSort               `json:"sort"`
-		SplitDimensions *[]SplitDimension        `json:"split_dimensions"`
-		StaticSplits    [][]SplitVectorEntryItem `json:"static_splits,omitempty"`
+		Limit *int64 `json:"limit"`
+		Sort *SplitSort `json:"sort"`
+		SplitDimensions *[]SplitDimension `json:"split_dimensions"`
+		StaticSplits [][]SplitVectorEntryItem `json:"static_splits,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -183,7 +192,7 @@ func (o *SplitConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"limit", "sort", "split_dimensions", "static_splits"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "limit", "sort", "split_dimensions", "static_splits",  })
 	} else {
 		return err
 	}

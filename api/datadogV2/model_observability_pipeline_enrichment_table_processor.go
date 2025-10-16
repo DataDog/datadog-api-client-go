@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineEnrichmentTableProcessor The `enrichment_table` processor enriches logs using a static CSV file or GeoIP database.
 type ObservabilityPipelineEnrichmentTableProcessor struct {
@@ -27,9 +31,10 @@ type ObservabilityPipelineEnrichmentTableProcessor struct {
 	// The processor type. The value should always be `enrichment_table`.
 	Type ObservabilityPipelineEnrichmentTableProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineEnrichmentTableProcessor instantiates a new ObservabilityPipelineEnrichmentTableProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewObservabilityPipelineEnrichmentTableProcessorWithDefaults() *Observabili
 	this.Type = typeVar
 	return &this
 }
-
 // GetFile returns the File field value if set, zero value otherwise.
 func (o *ObservabilityPipelineEnrichmentTableProcessor) GetFile() ObservabilityPipelineEnrichmentTableFile {
 	if o == nil || o.File == nil {
@@ -82,6 +86,7 @@ func (o *ObservabilityPipelineEnrichmentTableProcessor) HasFile() bool {
 func (o *ObservabilityPipelineEnrichmentTableProcessor) SetFile(v ObservabilityPipelineEnrichmentTableFile) {
 	o.File = &v
 }
+
 
 // GetGeoip returns the Geoip field value if set, zero value otherwise.
 func (o *ObservabilityPipelineEnrichmentTableProcessor) GetGeoip() ObservabilityPipelineEnrichmentTableGeoIp {
@@ -111,6 +116,7 @@ func (o *ObservabilityPipelineEnrichmentTableProcessor) SetGeoip(v Observability
 	o.Geoip = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineEnrichmentTableProcessor) GetId() string {
 	if o == nil {
@@ -133,6 +139,7 @@ func (o *ObservabilityPipelineEnrichmentTableProcessor) GetIdOk() (*string, bool
 func (o *ObservabilityPipelineEnrichmentTableProcessor) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineEnrichmentTableProcessor) GetInclude() string {
@@ -157,6 +164,7 @@ func (o *ObservabilityPipelineEnrichmentTableProcessor) SetInclude(v string) {
 	o.Include = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineEnrichmentTableProcessor) GetInputs() []string {
 	if o == nil {
@@ -179,6 +187,7 @@ func (o *ObservabilityPipelineEnrichmentTableProcessor) GetInputsOk() (*[]string
 func (o *ObservabilityPipelineEnrichmentTableProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetTarget returns the Target field value.
 func (o *ObservabilityPipelineEnrichmentTableProcessor) GetTarget() string {
@@ -203,6 +212,7 @@ func (o *ObservabilityPipelineEnrichmentTableProcessor) SetTarget(v string) {
 	o.Target = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineEnrichmentTableProcessor) GetType() ObservabilityPipelineEnrichmentTableProcessorType {
 	if o == nil {
@@ -225,6 +235,8 @@ func (o *ObservabilityPipelineEnrichmentTableProcessor) GetTypeOk() (*Observabil
 func (o *ObservabilityPipelineEnrichmentTableProcessor) SetType(v ObservabilityPipelineEnrichmentTableProcessorType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineEnrichmentTableProcessor) MarshalJSON() ([]byte, error) {
@@ -253,13 +265,13 @@ func (o ObservabilityPipelineEnrichmentTableProcessor) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineEnrichmentTableProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		File    *ObservabilityPipelineEnrichmentTableFile          `json:"file,omitempty"`
-		Geoip   *ObservabilityPipelineEnrichmentTableGeoIp         `json:"geoip,omitempty"`
-		Id      *string                                            `json:"id"`
-		Include *string                                            `json:"include"`
-		Inputs  *[]string                                          `json:"inputs"`
-		Target  *string                                            `json:"target"`
-		Type    *ObservabilityPipelineEnrichmentTableProcessorType `json:"type"`
+		File *ObservabilityPipelineEnrichmentTableFile `json:"file,omitempty"`
+		Geoip *ObservabilityPipelineEnrichmentTableGeoIp `json:"geoip,omitempty"`
+		Id *string `json:"id"`
+		Include *string `json:"include"`
+		Inputs *[]string `json:"inputs"`
+		Target *string `json:"target"`
+		Type *ObservabilityPipelineEnrichmentTableProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -281,17 +293,17 @@ func (o *ObservabilityPipelineEnrichmentTableProcessor) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"file", "geoip", "id", "include", "inputs", "target", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "file", "geoip", "id", "include", "inputs", "target", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.File != nil && all.File.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.File != nil && all.File.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.File = all.File
-	if all.Geoip != nil && all.Geoip.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Geoip != nil && all.Geoip.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Geoip = all.Geoip

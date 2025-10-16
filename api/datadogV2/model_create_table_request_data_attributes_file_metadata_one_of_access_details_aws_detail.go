@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail The definition of `CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail` object.
 type CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail struct {
@@ -19,9 +23,10 @@ type CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail str
 	// The relative file path from the S3 bucket root to the CSV file.
 	FilePath string `json:"file_path"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail instantiates a new CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewCreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetailW
 	this := CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail{}
 	return &this
 }
-
 // GetAwsAccountId returns the AwsAccountId field value.
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail) GetAwsAccountId() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail) SetAwsAccountId(v string) {
 	o.AwsAccountId = v
 }
+
 
 // GetAwsBucketName returns the AwsBucketName field value.
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail) GetAwsBucketName() string {
@@ -89,6 +94,7 @@ func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail
 	o.AwsBucketName = v
 }
 
+
 // GetFilePath returns the FilePath field value.
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail) GetFilePath() string {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail
 	o.FilePath = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail)
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AwsAccountId  *string `json:"aws_account_id"`
+		AwsAccountId *string `json:"aws_account_id"`
 		AwsBucketName *string `json:"aws_bucket_name"`
-		FilePath      *string `json:"file_path"`
+		FilePath *string `json:"file_path"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aws_account_id", "aws_bucket_name", "file_path"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aws_account_id", "aws_bucket_name", "file_path",  })
 	} else {
 		return err
 	}

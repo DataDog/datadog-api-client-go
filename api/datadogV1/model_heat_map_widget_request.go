@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HeatMapWidgetRequest Updated heat map widget.
 type HeatMapWidgetRequest struct {
@@ -37,9 +43,10 @@ type HeatMapWidgetRequest struct {
 	// Widget style definition.
 	Style *WidgetStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHeatMapWidgetRequest instantiates a new HeatMapWidgetRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +64,6 @@ func NewHeatMapWidgetRequestWithDefaults() *HeatMapWidgetRequest {
 	this := HeatMapWidgetRequest{}
 	return &this
 }
-
 // GetApmQuery returns the ApmQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetApmQuery() LogQueryDefinition {
 	if o == nil || o.ApmQuery == nil {
@@ -85,6 +91,7 @@ func (o *HeatMapWidgetRequest) HasApmQuery() bool {
 func (o *HeatMapWidgetRequest) SetApmQuery(v LogQueryDefinition) {
 	o.ApmQuery = &v
 }
+
 
 // GetEventQuery returns the EventQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetEventQuery() EventQueryDefinition {
@@ -114,6 +121,7 @@ func (o *HeatMapWidgetRequest) SetEventQuery(v EventQueryDefinition) {
 	o.EventQuery = &v
 }
 
+
 // GetFormulas returns the Formulas field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetFormulas() []WidgetFormula {
 	if o == nil || o.Formulas == nil {
@@ -141,6 +149,7 @@ func (o *HeatMapWidgetRequest) HasFormulas() bool {
 func (o *HeatMapWidgetRequest) SetFormulas(v []WidgetFormula) {
 	o.Formulas = v
 }
+
 
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetLogQuery() LogQueryDefinition {
@@ -170,6 +179,7 @@ func (o *HeatMapWidgetRequest) SetLogQuery(v LogQueryDefinition) {
 	o.LogQuery = &v
 }
 
+
 // GetNetworkQuery returns the NetworkQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetNetworkQuery() LogQueryDefinition {
 	if o == nil || o.NetworkQuery == nil {
@@ -197,6 +207,7 @@ func (o *HeatMapWidgetRequest) HasNetworkQuery() bool {
 func (o *HeatMapWidgetRequest) SetNetworkQuery(v LogQueryDefinition) {
 	o.NetworkQuery = &v
 }
+
 
 // GetProcessQuery returns the ProcessQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetProcessQuery() ProcessQueryDefinition {
@@ -226,6 +237,7 @@ func (o *HeatMapWidgetRequest) SetProcessQuery(v ProcessQueryDefinition) {
 	o.ProcessQuery = &v
 }
 
+
 // GetProfileMetricsQuery returns the ProfileMetricsQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetProfileMetricsQuery() LogQueryDefinition {
 	if o == nil || o.ProfileMetricsQuery == nil {
@@ -253,6 +265,7 @@ func (o *HeatMapWidgetRequest) HasProfileMetricsQuery() bool {
 func (o *HeatMapWidgetRequest) SetProfileMetricsQuery(v LogQueryDefinition) {
 	o.ProfileMetricsQuery = &v
 }
+
 
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetQ() string {
@@ -282,6 +295,7 @@ func (o *HeatMapWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
 
+
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
 	if o == nil || o.Queries == nil {
@@ -309,6 +323,7 @@ func (o *HeatMapWidgetRequest) HasQueries() bool {
 func (o *HeatMapWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) {
 	o.Queries = v
 }
+
 
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
@@ -338,6 +353,7 @@ func (o *HeatMapWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFor
 	o.ResponseFormat = &v
 }
 
+
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetRumQuery() LogQueryDefinition {
 	if o == nil || o.RumQuery == nil {
@@ -365,6 +381,7 @@ func (o *HeatMapWidgetRequest) HasRumQuery() bool {
 func (o *HeatMapWidgetRequest) SetRumQuery(v LogQueryDefinition) {
 	o.RumQuery = &v
 }
+
 
 // GetSecurityQuery returns the SecurityQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetSecurityQuery() LogQueryDefinition {
@@ -394,6 +411,7 @@ func (o *HeatMapWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
 	o.SecurityQuery = &v
 }
 
+
 // GetStyle returns the Style field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetStyle() WidgetStyle {
 	if o == nil || o.Style == nil {
@@ -421,6 +439,8 @@ func (o *HeatMapWidgetRequest) HasStyle() bool {
 func (o *HeatMapWidgetRequest) SetStyle(v WidgetStyle) {
 	o.Style = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o HeatMapWidgetRequest) MarshalJSON() ([]byte, error) {
@@ -477,72 +497,72 @@ func (o HeatMapWidgetRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HeatMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApmQuery            *LogQueryDefinition                 `json:"apm_query,omitempty"`
-		EventQuery          *EventQueryDefinition               `json:"event_query,omitempty"`
-		Formulas            []WidgetFormula                     `json:"formulas,omitempty"`
-		LogQuery            *LogQueryDefinition                 `json:"log_query,omitempty"`
-		NetworkQuery        *LogQueryDefinition                 `json:"network_query,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition             `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition                 `json:"profile_metrics_query,omitempty"`
-		Q                   *string                             `json:"q,omitempty"`
-		Queries             []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat      *FormulaAndFunctionResponseFormat   `json:"response_format,omitempty"`
-		RumQuery            *LogQueryDefinition                 `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition                 `json:"security_query,omitempty"`
-		Style               *WidgetStyle                        `json:"style,omitempty"`
+		ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+		EventQuery *EventQueryDefinition `json:"event_query,omitempty"`
+		Formulas []WidgetFormula `json:"formulas,omitempty"`
+		LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+		NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+		ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
+		Q *string `json:"q,omitempty"`
+		Queries []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+		RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+		SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+		Style *WidgetStyle `json:"style,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"apm_query", "event_query", "formulas", "log_query", "network_query", "process_query", "profile_metrics_query", "q", "queries", "response_format", "rum_query", "security_query", "style"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "apm_query", "event_query", "formulas", "log_query", "network_query", "process_query", "profile_metrics_query", "q", "queries", "response_format", "rum_query", "security_query", "style",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.ApmQuery != nil && all.ApmQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApmQuery != nil && all.ApmQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApmQuery = all.ApmQuery
-	if all.EventQuery != nil && all.EventQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.EventQuery != nil && all.EventQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.EventQuery = all.EventQuery
 	o.Formulas = all.Formulas
-	if all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogQuery = all.LogQuery
-	if all.NetworkQuery != nil && all.NetworkQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.NetworkQuery != nil && all.NetworkQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.NetworkQuery = all.NetworkQuery
-	if all.ProcessQuery != nil && all.ProcessQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ProcessQuery != nil && all.ProcessQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ProcessQuery = all.ProcessQuery
-	if all.ProfileMetricsQuery != nil && all.ProfileMetricsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ProfileMetricsQuery != nil && all.ProfileMetricsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ProfileMetricsQuery = all.ProfileMetricsQuery
 	o.Q = all.Q
 	o.Queries = all.Queries
-	if all.ResponseFormat != nil && !all.ResponseFormat.IsValid() {
+	if all.ResponseFormat != nil &&!all.ResponseFormat.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ResponseFormat = all.ResponseFormat
 	}
-	if all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RumQuery = all.RumQuery
-	if all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SecurityQuery = all.SecurityQuery
-	if all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Style = all.Style

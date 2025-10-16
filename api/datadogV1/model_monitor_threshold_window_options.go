@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorThresholdWindowOptions Alerting time window options.
 type MonitorThresholdWindowOptions struct {
@@ -15,9 +21,10 @@ type MonitorThresholdWindowOptions struct {
 	// Describes how long a metric must be anomalous before an alert triggers.
 	TriggerWindow datadog.NullableString `json:"trigger_window,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorThresholdWindowOptions instantiates a new MonitorThresholdWindowOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewMonitorThresholdWindowOptionsWithDefaults() *MonitorThresholdWindowOptio
 	this := MonitorThresholdWindowOptions{}
 	return &this
 }
-
 // GetRecoveryWindow returns the RecoveryWindow field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorThresholdWindowOptions) GetRecoveryWindow() string {
 	if o == nil || o.RecoveryWindow.Get() == nil {
@@ -49,7 +55,7 @@ func (o *MonitorThresholdWindowOptions) GetRecoveryWindow() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorThresholdWindowOptions) GetRecoveryWindowOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.RecoveryWindow.Get(), o.RecoveryWindow.IsSet()
@@ -64,7 +70,6 @@ func (o *MonitorThresholdWindowOptions) HasRecoveryWindow() bool {
 func (o *MonitorThresholdWindowOptions) SetRecoveryWindow(v string) {
 	o.RecoveryWindow.Set(&v)
 }
-
 // SetRecoveryWindowNil sets the value for RecoveryWindow to be an explicit nil.
 func (o *MonitorThresholdWindowOptions) SetRecoveryWindowNil() {
 	o.RecoveryWindow.Set(nil)
@@ -74,6 +79,7 @@ func (o *MonitorThresholdWindowOptions) SetRecoveryWindowNil() {
 func (o *MonitorThresholdWindowOptions) UnsetRecoveryWindow() {
 	o.RecoveryWindow.Unset()
 }
+
 
 // GetTriggerWindow returns the TriggerWindow field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorThresholdWindowOptions) GetTriggerWindow() string {
@@ -88,7 +94,7 @@ func (o *MonitorThresholdWindowOptions) GetTriggerWindow() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorThresholdWindowOptions) GetTriggerWindowOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.TriggerWindow.Get(), o.TriggerWindow.IsSet()
@@ -103,7 +109,6 @@ func (o *MonitorThresholdWindowOptions) HasTriggerWindow() bool {
 func (o *MonitorThresholdWindowOptions) SetTriggerWindow(v string) {
 	o.TriggerWindow.Set(&v)
 }
-
 // SetTriggerWindowNil sets the value for TriggerWindow to be an explicit nil.
 func (o *MonitorThresholdWindowOptions) SetTriggerWindowNil() {
 	o.TriggerWindow.Set(nil)
@@ -113,6 +118,8 @@ func (o *MonitorThresholdWindowOptions) SetTriggerWindowNil() {
 func (o *MonitorThresholdWindowOptions) UnsetTriggerWindow() {
 	o.TriggerWindow.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
@@ -137,14 +144,14 @@ func (o MonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
 func (o *MonitorThresholdWindowOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		RecoveryWindow datadog.NullableString `json:"recovery_window,omitempty"`
-		TriggerWindow  datadog.NullableString `json:"trigger_window,omitempty"`
+		TriggerWindow datadog.NullableString `json:"trigger_window,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"recovery_window", "trigger_window"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "recovery_window", "trigger_window",  })
 	} else {
 		return err
 	}

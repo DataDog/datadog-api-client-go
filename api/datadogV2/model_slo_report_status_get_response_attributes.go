@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOReportStatusGetResponseAttributes The attributes portion of the SLO report status response.
 type SLOReportStatusGetResponseAttributes struct {
 	// The status of the SLO report job.
 	Status *SLOReportStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSLOReportStatusGetResponseAttributes instantiates a new SLOReportStatusGetResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewSLOReportStatusGetResponseAttributesWithDefaults() *SLOReportStatusGetRe
 	this := SLOReportStatusGetResponseAttributes{}
 	return &this
 }
-
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SLOReportStatusGetResponseAttributes) GetStatus() SLOReportStatus {
 	if o == nil || o.Status == nil {
@@ -62,6 +68,8 @@ func (o *SLOReportStatusGetResponseAttributes) SetStatus(v SLOReportStatus) {
 	o.Status = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOReportStatusGetResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *SLOReportStatusGetResponseAttributes) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "status",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

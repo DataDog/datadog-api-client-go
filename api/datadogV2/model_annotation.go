@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Annotation A list of annotations used in the workflow. These are like sticky notes for your workflow!
 type Annotation struct {
@@ -19,9 +23,10 @@ type Annotation struct {
 	// The definition of `AnnotationMarkdownTextAnnotation` object.
 	MarkdownTextAnnotation AnnotationMarkdownTextAnnotation `json:"markdownTextAnnotation"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAnnotation instantiates a new Annotation object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewAnnotationWithDefaults() *Annotation {
 	this := Annotation{}
 	return &this
 }
-
 // GetDisplay returns the Display field value.
 func (o *Annotation) GetDisplay() AnnotationDisplay {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *Annotation) GetDisplayOk() (*AnnotationDisplay, bool) {
 func (o *Annotation) SetDisplay(v AnnotationDisplay) {
 	o.Display = v
 }
+
 
 // GetId returns the Id field value.
 func (o *Annotation) GetId() string {
@@ -89,6 +94,7 @@ func (o *Annotation) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetMarkdownTextAnnotation returns the MarkdownTextAnnotation field value.
 func (o *Annotation) GetMarkdownTextAnnotation() AnnotationMarkdownTextAnnotation {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *Annotation) SetMarkdownTextAnnotation(v AnnotationMarkdownTextAnnotatio
 	o.MarkdownTextAnnotation = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o Annotation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,8 +139,8 @@ func (o Annotation) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Annotation) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Display                *AnnotationDisplay                `json:"display"`
-		Id                     *string                           `json:"id"`
+		Display *AnnotationDisplay `json:"display"`
+		Id *string `json:"id"`
 		MarkdownTextAnnotation *AnnotationMarkdownTextAnnotation `json:"markdownTextAnnotation"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -149,7 +157,7 @@ func (o *Annotation) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"display", "id", "markdownTextAnnotation"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "display", "id", "markdownTextAnnotation",  })
 	} else {
 		return err
 	}

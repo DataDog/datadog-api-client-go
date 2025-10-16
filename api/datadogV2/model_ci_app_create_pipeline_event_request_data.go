@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppCreatePipelineEventRequestData Data of the pipeline event to create.
 type CIAppCreatePipelineEventRequestData struct {
@@ -15,9 +21,10 @@ type CIAppCreatePipelineEventRequestData struct {
 	// Type of the event.
 	Type *CIAppCreatePipelineEventRequestDataType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCIAppCreatePipelineEventRequestData instantiates a new CIAppCreatePipelineEventRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewCIAppCreatePipelineEventRequestDataWithDefaults() *CIAppCreatePipelineEv
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *CIAppCreatePipelineEventRequestData) GetAttributes() CIAppCreatePipelineEventRequestAttributes {
 	if o == nil || o.Attributes == nil {
@@ -67,6 +73,7 @@ func (o *CIAppCreatePipelineEventRequestData) HasAttributes() bool {
 func (o *CIAppCreatePipelineEventRequestData) SetAttributes(v CIAppCreatePipelineEventRequestAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CIAppCreatePipelineEventRequestData) GetType() CIAppCreatePipelineEventRequestDataType {
@@ -96,6 +103,8 @@ func (o *CIAppCreatePipelineEventRequestData) SetType(v CIAppCreatePipelineEvent
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppCreatePipelineEventRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -119,24 +128,24 @@ func (o CIAppCreatePipelineEventRequestData) MarshalJSON() ([]byte, error) {
 func (o *CIAppCreatePipelineEventRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *CIAppCreatePipelineEventRequestAttributes `json:"attributes,omitempty"`
-		Type       *CIAppCreatePipelineEventRequestDataType   `json:"type,omitempty"`
+		Type *CIAppCreatePipelineEventRequestDataType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

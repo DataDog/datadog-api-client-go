@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // StatsigCredentialsUpdate - The definition of the `StatsigCredentialsUpdate` object.
 type StatsigCredentialsUpdate struct {
@@ -56,6 +62,7 @@ func (obj StatsigCredentialsUpdate) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.StatsigAPIKeyUpdate)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj StatsigCredentialsUpdate) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *StatsigCredentialsUpdate) GetActualInstance() interface{} {
+func (obj *StatsigCredentialsUpdate) GetActualInstance() (interface{}) {
 	if obj.StatsigAPIKeyUpdate != nil {
 		return obj.StatsigAPIKeyUpdate
 	}
+
 
 	// all schemas are nil
 	return nil

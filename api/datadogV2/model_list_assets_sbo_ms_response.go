@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListAssetsSBOMsResponse The expected response schema when listing assets SBOMs.
 type ListAssetsSBOMsResponse struct {
@@ -19,9 +23,10 @@ type ListAssetsSBOMsResponse struct {
 	// The metadata related to this request.
 	Meta *Metadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListAssetsSBOMsResponse instantiates a new ListAssetsSBOMsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewListAssetsSBOMsResponseWithDefaults() *ListAssetsSBOMsResponse {
 	this := ListAssetsSBOMsResponse{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *ListAssetsSBOMsResponse) GetData() []SBOM {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *ListAssetsSBOMsResponse) GetDataOk() (*[]SBOM, bool) {
 func (o *ListAssetsSBOMsResponse) SetData(v []SBOM) {
 	o.Data = v
 }
+
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ListAssetsSBOMsResponse) GetLinks() Links {
@@ -92,6 +97,7 @@ func (o *ListAssetsSBOMsResponse) SetLinks(v Links) {
 	o.Links = &v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *ListAssetsSBOMsResponse) GetMeta() Metadata {
 	if o == nil || o.Meta == nil {
@@ -120,6 +126,8 @@ func (o *ListAssetsSBOMsResponse) SetMeta(v Metadata) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListAssetsSBOMsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -143,9 +151,9 @@ func (o ListAssetsSBOMsResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListAssetsSBOMsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data  *[]SBOM   `json:"data"`
-		Links *Links    `json:"links,omitempty"`
-		Meta  *Metadata `json:"meta,omitempty"`
+		Data *[]SBOM `json:"data"`
+		Links *Links `json:"links,omitempty"`
+		Meta *Metadata `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,18 +163,18 @@ func (o *ListAssetsSBOMsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "links", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "links", "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = *all.Data
-	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Links = all.Links
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

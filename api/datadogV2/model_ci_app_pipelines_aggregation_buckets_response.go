@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppPipelinesAggregationBucketsResponse The query results.
 type CIAppPipelinesAggregationBucketsResponse struct {
 	// The list of matching buckets, one item per bucket.
 	Buckets []CIAppPipelinesBucketResponse `json:"buckets,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCIAppPipelinesAggregationBucketsResponse instantiates a new CIAppPipelinesAggregationBucketsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewCIAppPipelinesAggregationBucketsResponseWithDefaults() *CIAppPipelinesAg
 	this := CIAppPipelinesAggregationBucketsResponse{}
 	return &this
 }
-
 // GetBuckets returns the Buckets field value if set, zero value otherwise.
 func (o *CIAppPipelinesAggregationBucketsResponse) GetBuckets() []CIAppPipelinesBucketResponse {
 	if o == nil || o.Buckets == nil {
@@ -62,6 +68,8 @@ func (o *CIAppPipelinesAggregationBucketsResponse) SetBuckets(v []CIAppPipelines
 	o.Buckets = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppPipelinesAggregationBucketsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *CIAppPipelinesAggregationBucketsResponse) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"buckets"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "buckets",  })
 	} else {
 		return err
 	}

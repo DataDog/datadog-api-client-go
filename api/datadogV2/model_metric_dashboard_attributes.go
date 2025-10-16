@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricDashboardAttributes Attributes related to the dashboard, including title, popularity, and url.
 type MetricDashboardAttributes struct {
@@ -19,9 +25,10 @@ type MetricDashboardAttributes struct {
 	// URL path of the asset.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricDashboardAttributes instantiates a new MetricDashboardAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewMetricDashboardAttributesWithDefaults() *MetricDashboardAttributes {
 	this := MetricDashboardAttributes{}
 	return &this
 }
-
 // GetPopularity returns the Popularity field value if set, zero value otherwise.
 func (o *MetricDashboardAttributes) GetPopularity() float64 {
 	if o == nil || o.Popularity == nil {
@@ -67,6 +73,7 @@ func (o *MetricDashboardAttributes) HasPopularity() bool {
 func (o *MetricDashboardAttributes) SetPopularity(v float64) {
 	o.Popularity = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MetricDashboardAttributes) GetTags() []string {
@@ -96,6 +103,7 @@ func (o *MetricDashboardAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *MetricDashboardAttributes) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -124,6 +132,7 @@ func (o *MetricDashboardAttributes) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *MetricDashboardAttributes) GetUrl() string {
 	if o == nil || o.Url == nil {
@@ -151,6 +160,8 @@ func (o *MetricDashboardAttributes) HasUrl() bool {
 func (o *MetricDashboardAttributes) SetUrl(v string) {
 	o.Url = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricDashboardAttributes) MarshalJSON() ([]byte, error) {
@@ -181,16 +192,16 @@ func (o MetricDashboardAttributes) MarshalJSON() ([]byte, error) {
 func (o *MetricDashboardAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Popularity *float64 `json:"popularity,omitempty"`
-		Tags       []string `json:"tags,omitempty"`
-		Title      *string  `json:"title,omitempty"`
-		Url        *string  `json:"url,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Title *string `json:"title,omitempty"`
+		Url *string `json:"url,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"popularity", "tags", "title", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "popularity", "tags", "title", "url",  })
 	} else {
 		return err
 	}

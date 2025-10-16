@@ -2,32 +2,33 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV1.SlackIntegrationChannel{
-		Display: &datadogV1.SlackIntegrationChannelDisplay{
-			Message:     datadog.PtrBool(true),
-			MuteButtons: datadog.PtrBool(false),
-			Notified:    datadog.PtrBool(true),
-			Snapshot:    datadog.PtrBool(true),
-			Tags:        datadog.PtrBool(true),
-		},
-		Name: datadog.PtrString("#general"),
-	}
+Display: &datadogV1.SlackIntegrationChannelDisplay{
+Message: datadog.PtrBool(true),
+MuteButtons: datadog.PtrBool(false),
+Notified: datadog.PtrBool(true),
+Snapshot: datadog.PtrBool(true),
+Tags: datadog.PtrBool(true),
+},
+Name: datadog.PtrString("#general"),
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewSlackIntegrationApi(apiClient)
-	resp, r, err := api.CreateSlackIntegrationChannel(ctx, "account_name", body)
+	resp, r, err := api.CreateSlackIntegrationChannel(ctx, "account_name", body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SlackIntegrationApi.CreateSlackIntegrationChannel`: %v\n", err)

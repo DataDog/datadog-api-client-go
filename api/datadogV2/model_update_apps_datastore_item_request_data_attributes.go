@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpdateAppsDatastoreItemRequestDataAttributes Attributes for updating a datastore item, including the item key and changes to apply.
 type UpdateAppsDatastoreItemRequestDataAttributes struct {
@@ -19,9 +23,10 @@ type UpdateAppsDatastoreItemRequestDataAttributes struct {
 	// The primary key that identifies the item to update. Cannot exceed 256 characters.
 	ItemKey string `json:"item_key"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUpdateAppsDatastoreItemRequestDataAttributes instantiates a new UpdateAppsDatastoreItemRequestDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewUpdateAppsDatastoreItemRequestDataAttributesWithDefaults() *UpdateAppsDa
 	this := UpdateAppsDatastoreItemRequestDataAttributes{}
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *UpdateAppsDatastoreItemRequestDataAttributes) GetId() string {
 	if o == nil || o.Id == nil {
@@ -70,6 +74,7 @@ func (o *UpdateAppsDatastoreItemRequestDataAttributes) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetItemChanges returns the ItemChanges field value.
 func (o *UpdateAppsDatastoreItemRequestDataAttributes) GetItemChanges() UpdateAppsDatastoreItemRequestDataAttributesItemChanges {
 	if o == nil {
@@ -92,6 +97,7 @@ func (o *UpdateAppsDatastoreItemRequestDataAttributes) GetItemChangesOk() (*Upda
 func (o *UpdateAppsDatastoreItemRequestDataAttributes) SetItemChanges(v UpdateAppsDatastoreItemRequestDataAttributesItemChanges) {
 	o.ItemChanges = v
 }
+
 
 // GetItemKey returns the ItemKey field value.
 func (o *UpdateAppsDatastoreItemRequestDataAttributes) GetItemKey() string {
@@ -116,6 +122,8 @@ func (o *UpdateAppsDatastoreItemRequestDataAttributes) SetItemKey(v string) {
 	o.ItemKey = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateAppsDatastoreItemRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -137,9 +145,9 @@ func (o UpdateAppsDatastoreItemRequestDataAttributes) MarshalJSON() ([]byte, err
 // UnmarshalJSON deserializes the given payload.
 func (o *UpdateAppsDatastoreItemRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id          *string                                                  `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 		ItemChanges *UpdateAppsDatastoreItemRequestDataAttributesItemChanges `json:"item_changes"`
-		ItemKey     *string                                                  `json:"item_key"`
+		ItemKey *string `json:"item_key"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *UpdateAppsDatastoreItemRequestDataAttributes) UnmarshalJSON(bytes []byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "item_changes", "item_key"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "item_changes", "item_key",  })
 	} else {
 		return err
 	}

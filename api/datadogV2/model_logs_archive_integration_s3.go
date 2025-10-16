@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsArchiveIntegrationS3 The S3 Archive's integration destination.
 type LogsArchiveIntegrationS3 struct {
@@ -17,9 +21,10 @@ type LogsArchiveIntegrationS3 struct {
 	// The path of the integration.
 	RoleName string `json:"role_name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsArchiveIntegrationS3 instantiates a new LogsArchiveIntegrationS3 object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewLogsArchiveIntegrationS3WithDefaults() *LogsArchiveIntegrationS3 {
 	this := LogsArchiveIntegrationS3{}
 	return &this
 }
-
 // GetAccountId returns the AccountId field value.
 func (o *LogsArchiveIntegrationS3) GetAccountId() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *LogsArchiveIntegrationS3) GetAccountIdOk() (*string, bool) {
 func (o *LogsArchiveIntegrationS3) SetAccountId(v string) {
 	o.AccountId = v
 }
+
 
 // GetRoleName returns the RoleName field value.
 func (o *LogsArchiveIntegrationS3) GetRoleName() string {
@@ -86,6 +91,8 @@ func (o *LogsArchiveIntegrationS3) SetRoleName(v string) {
 	o.RoleName = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsArchiveIntegrationS3) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o LogsArchiveIntegrationS3) MarshalJSON() ([]byte, error) {
 func (o *LogsArchiveIntegrationS3) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AccountId *string `json:"account_id"`
-		RoleName  *string `json:"role_name"`
+		RoleName *string `json:"role_name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *LogsArchiveIntegrationS3) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "role_name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "account_id", "role_name",  })
 	} else {
 		return err
 	}

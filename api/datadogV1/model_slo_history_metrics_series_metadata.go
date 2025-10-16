@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOHistoryMetricsSeriesMetadata Query metadata.
 type SLOHistoryMetricsSeriesMetadata struct {
@@ -30,9 +36,10 @@ type SLOHistoryMetricsSeriesMetadata struct {
 	// If a metric query only has one unit object, the second array element is null.
 	Unit []SLOHistoryMetricsSeriesMetadataUnit `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSLOHistoryMetricsSeriesMetadata instantiates a new SLOHistoryMetricsSeriesMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +57,6 @@ func NewSLOHistoryMetricsSeriesMetadataWithDefaults() *SLOHistoryMetricsSeriesMe
 	this := SLOHistoryMetricsSeriesMetadata{}
 	return &this
 }
-
 // GetAggr returns the Aggr field value if set, zero value otherwise.
 // Deprecated
 func (o *SLOHistoryMetricsSeriesMetadata) GetAggr() string {
@@ -81,6 +87,7 @@ func (o *SLOHistoryMetricsSeriesMetadata) HasAggr() bool {
 func (o *SLOHistoryMetricsSeriesMetadata) SetAggr(v string) {
 	o.Aggr = &v
 }
+
 
 // GetExpression returns the Expression field value if set, zero value otherwise.
 // Deprecated
@@ -113,6 +120,7 @@ func (o *SLOHistoryMetricsSeriesMetadata) SetExpression(v string) {
 	o.Expression = &v
 }
 
+
 // GetMetric returns the Metric field value if set, zero value otherwise.
 // Deprecated
 func (o *SLOHistoryMetricsSeriesMetadata) GetMetric() string {
@@ -143,6 +151,7 @@ func (o *SLOHistoryMetricsSeriesMetadata) HasMetric() bool {
 func (o *SLOHistoryMetricsSeriesMetadata) SetMetric(v string) {
 	o.Metric = &v
 }
+
 
 // GetQueryIndex returns the QueryIndex field value if set, zero value otherwise.
 // Deprecated
@@ -175,6 +184,7 @@ func (o *SLOHistoryMetricsSeriesMetadata) SetQueryIndex(v int64) {
 	o.QueryIndex = &v
 }
 
+
 // GetScope returns the Scope field value if set, zero value otherwise.
 // Deprecated
 func (o *SLOHistoryMetricsSeriesMetadata) GetScope() string {
@@ -206,9 +216,10 @@ func (o *SLOHistoryMetricsSeriesMetadata) SetScope(v string) {
 	o.Scope = &v
 }
 
+
 // GetUnit returns the Unit field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOHistoryMetricsSeriesMetadata) GetUnit() []SLOHistoryMetricsSeriesMetadataUnit {
-	if o == nil {
+	if o == nil  {
 		var ret []SLOHistoryMetricsSeriesMetadataUnit
 		return ret
 	}
@@ -234,6 +245,8 @@ func (o *SLOHistoryMetricsSeriesMetadata) HasUnit() bool {
 func (o *SLOHistoryMetricsSeriesMetadata) SetUnit(v []SLOHistoryMetricsSeriesMetadataUnit) {
 	o.Unit = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOHistoryMetricsSeriesMetadata) MarshalJSON() ([]byte, error) {
@@ -269,19 +282,19 @@ func (o SLOHistoryMetricsSeriesMetadata) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOHistoryMetricsSeriesMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Aggr       *string                               `json:"aggr,omitempty"`
-		Expression *string                               `json:"expression,omitempty"`
-		Metric     *string                               `json:"metric,omitempty"`
-		QueryIndex *int64                                `json:"query_index,omitempty"`
-		Scope      *string                               `json:"scope,omitempty"`
-		Unit       []SLOHistoryMetricsSeriesMetadataUnit `json:"unit,omitempty"`
+		Aggr *string `json:"aggr,omitempty"`
+		Expression *string `json:"expression,omitempty"`
+		Metric *string `json:"metric,omitempty"`
+		QueryIndex *int64 `json:"query_index,omitempty"`
+		Scope *string `json:"scope,omitempty"`
+		Unit []SLOHistoryMetricsSeriesMetadataUnit `json:"unit,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggr", "expression", "metric", "query_index", "scope", "unit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggr", "expression", "metric", "query_index", "scope", "unit",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineDatadogTagsProcessor The `datadog_tags` processor includes or excludes specific Datadog tags in your logs.
 type ObservabilityPipelineDatadogTagsProcessor struct {
@@ -27,9 +31,10 @@ type ObservabilityPipelineDatadogTagsProcessor struct {
 	// The processor type. The value should always be `datadog_tags`.
 	Type ObservabilityPipelineDatadogTagsProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineDatadogTagsProcessor instantiates a new ObservabilityPipelineDatadogTagsProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +61,6 @@ func NewObservabilityPipelineDatadogTagsProcessorWithDefaults() *ObservabilityPi
 	this.Type = typeVar
 	return &this
 }
-
 // GetAction returns the Action field value.
 func (o *ObservabilityPipelineDatadogTagsProcessor) GetAction() ObservabilityPipelineDatadogTagsProcessorAction {
 	if o == nil {
@@ -79,6 +83,7 @@ func (o *ObservabilityPipelineDatadogTagsProcessor) GetActionOk() (*Observabilit
 func (o *ObservabilityPipelineDatadogTagsProcessor) SetAction(v ObservabilityPipelineDatadogTagsProcessorAction) {
 	o.Action = v
 }
+
 
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineDatadogTagsProcessor) GetId() string {
@@ -103,6 +108,7 @@ func (o *ObservabilityPipelineDatadogTagsProcessor) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineDatadogTagsProcessor) GetInclude() string {
 	if o == nil {
@@ -125,6 +131,7 @@ func (o *ObservabilityPipelineDatadogTagsProcessor) GetIncludeOk() (*string, boo
 func (o *ObservabilityPipelineDatadogTagsProcessor) SetInclude(v string) {
 	o.Include = v
 }
+
 
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineDatadogTagsProcessor) GetInputs() []string {
@@ -149,6 +156,7 @@ func (o *ObservabilityPipelineDatadogTagsProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
 
+
 // GetKeys returns the Keys field value.
 func (o *ObservabilityPipelineDatadogTagsProcessor) GetKeys() []string {
 	if o == nil {
@@ -171,6 +179,7 @@ func (o *ObservabilityPipelineDatadogTagsProcessor) GetKeysOk() (*[]string, bool
 func (o *ObservabilityPipelineDatadogTagsProcessor) SetKeys(v []string) {
 	o.Keys = v
 }
+
 
 // GetMode returns the Mode field value.
 func (o *ObservabilityPipelineDatadogTagsProcessor) GetMode() ObservabilityPipelineDatadogTagsProcessorMode {
@@ -195,6 +204,7 @@ func (o *ObservabilityPipelineDatadogTagsProcessor) SetMode(v ObservabilityPipel
 	o.Mode = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineDatadogTagsProcessor) GetType() ObservabilityPipelineDatadogTagsProcessorType {
 	if o == nil {
@@ -217,6 +227,8 @@ func (o *ObservabilityPipelineDatadogTagsProcessor) GetTypeOk() (*ObservabilityP
 func (o *ObservabilityPipelineDatadogTagsProcessor) SetType(v ObservabilityPipelineDatadogTagsProcessorType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineDatadogTagsProcessor) MarshalJSON() ([]byte, error) {
@@ -241,13 +253,13 @@ func (o ObservabilityPipelineDatadogTagsProcessor) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineDatadogTagsProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Action  *ObservabilityPipelineDatadogTagsProcessorAction `json:"action"`
-		Id      *string                                          `json:"id"`
-		Include *string                                          `json:"include"`
-		Inputs  *[]string                                        `json:"inputs"`
-		Keys    *[]string                                        `json:"keys"`
-		Mode    *ObservabilityPipelineDatadogTagsProcessorMode   `json:"mode"`
-		Type    *ObservabilityPipelineDatadogTagsProcessorType   `json:"type"`
+		Action *ObservabilityPipelineDatadogTagsProcessorAction `json:"action"`
+		Id *string `json:"id"`
+		Include *string `json:"include"`
+		Inputs *[]string `json:"inputs"`
+		Keys *[]string `json:"keys"`
+		Mode *ObservabilityPipelineDatadogTagsProcessorMode `json:"mode"`
+		Type *ObservabilityPipelineDatadogTagsProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -275,7 +287,7 @@ func (o *ObservabilityPipelineDatadogTagsProcessor) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"action", "id", "include", "inputs", "keys", "mode", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "action", "id", "include", "inputs", "keys", "mode", "type",  })
 	} else {
 		return err
 	}

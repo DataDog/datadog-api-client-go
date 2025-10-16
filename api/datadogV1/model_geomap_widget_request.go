@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GeomapWidgetRequest An updated geomap widget.
 type GeomapWidgetRequest struct {
@@ -31,9 +37,10 @@ type GeomapWidgetRequest struct {
 	// The controls for sorting the widget.
 	Sort *WidgetSortBy `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGeomapWidgetRequest instantiates a new GeomapWidgetRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +58,6 @@ func NewGeomapWidgetRequestWithDefaults() *GeomapWidgetRequest {
 	this := GeomapWidgetRequest{}
 	return &this
 }
-
 // GetColumns returns the Columns field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetColumns() []ListStreamColumn {
 	if o == nil || o.Columns == nil {
@@ -79,6 +85,7 @@ func (o *GeomapWidgetRequest) HasColumns() bool {
 func (o *GeomapWidgetRequest) SetColumns(v []ListStreamColumn) {
 	o.Columns = v
 }
+
 
 // GetFormulas returns the Formulas field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetFormulas() []WidgetFormula {
@@ -108,6 +115,7 @@ func (o *GeomapWidgetRequest) SetFormulas(v []WidgetFormula) {
 	o.Formulas = v
 }
 
+
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetLogQuery() LogQueryDefinition {
 	if o == nil || o.LogQuery == nil {
@@ -135,6 +143,7 @@ func (o *GeomapWidgetRequest) HasLogQuery() bool {
 func (o *GeomapWidgetRequest) SetLogQuery(v LogQueryDefinition) {
 	o.LogQuery = &v
 }
+
 
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetQ() string {
@@ -164,6 +173,7 @@ func (o *GeomapWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
 
+
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
 	if o == nil || o.Queries == nil {
@@ -191,6 +201,7 @@ func (o *GeomapWidgetRequest) HasQueries() bool {
 func (o *GeomapWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) {
 	o.Queries = v
 }
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetQuery() ListStreamQuery {
@@ -220,6 +231,7 @@ func (o *GeomapWidgetRequest) SetQuery(v ListStreamQuery) {
 	o.Query = &v
 }
 
+
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
 	if o == nil || o.ResponseFormat == nil {
@@ -247,6 +259,7 @@ func (o *GeomapWidgetRequest) HasResponseFormat() bool {
 func (o *GeomapWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFormat) {
 	o.ResponseFormat = &v
 }
+
 
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetRumQuery() LogQueryDefinition {
@@ -276,6 +289,7 @@ func (o *GeomapWidgetRequest) SetRumQuery(v LogQueryDefinition) {
 	o.RumQuery = &v
 }
 
+
 // GetSecurityQuery returns the SecurityQuery field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetSecurityQuery() LogQueryDefinition {
 	if o == nil || o.SecurityQuery == nil {
@@ -304,6 +318,7 @@ func (o *GeomapWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
 	o.SecurityQuery = &v
 }
 
+
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetSort() WidgetSortBy {
 	if o == nil || o.Sort == nil {
@@ -331,6 +346,8 @@ func (o *GeomapWidgetRequest) HasSort() bool {
 func (o *GeomapWidgetRequest) SetSort(v WidgetSortBy) {
 	o.Sort = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o GeomapWidgetRequest) MarshalJSON() ([]byte, error) {
@@ -378,23 +395,23 @@ func (o GeomapWidgetRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GeomapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Columns        []ListStreamColumn                  `json:"columns,omitempty"`
-		Formulas       []WidgetFormula                     `json:"formulas,omitempty"`
-		LogQuery       *LogQueryDefinition                 `json:"log_query,omitempty"`
-		Q              *string                             `json:"q,omitempty"`
-		Queries        []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		Query          *ListStreamQuery                    `json:"query,omitempty"`
-		ResponseFormat *FormulaAndFunctionResponseFormat   `json:"response_format,omitempty"`
-		RumQuery       *LogQueryDefinition                 `json:"rum_query,omitempty"`
-		SecurityQuery  *LogQueryDefinition                 `json:"security_query,omitempty"`
-		Sort           *WidgetSortBy                       `json:"sort,omitempty"`
+		Columns []ListStreamColumn `json:"columns,omitempty"`
+		Formulas []WidgetFormula `json:"formulas,omitempty"`
+		LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+		Q *string `json:"q,omitempty"`
+		Queries []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		Query *ListStreamQuery `json:"query,omitempty"`
+		ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+		RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+		SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+		Sort *WidgetSortBy `json:"sort,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"columns", "formulas", "log_query", "q", "queries", "query", "response_format", "rum_query", "security_query", "sort"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "columns", "formulas", "log_query", "q", "queries", "query", "response_format", "rum_query", "security_query", "sort",  })
 	} else {
 		return err
 	}
@@ -402,30 +419,30 @@ func (o *GeomapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Columns = all.Columns
 	o.Formulas = all.Formulas
-	if all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogQuery = all.LogQuery
 	o.Q = all.Q
 	o.Queries = all.Queries
-	if all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Query = all.Query
-	if all.ResponseFormat != nil && !all.ResponseFormat.IsValid() {
+	if all.ResponseFormat != nil &&!all.ResponseFormat.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ResponseFormat = all.ResponseFormat
 	}
-	if all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RumQuery = all.RumQuery
-	if all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SecurityQuery = all.SecurityQuery
-	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Sort = all.Sort

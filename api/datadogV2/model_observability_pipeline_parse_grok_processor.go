@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineParseGrokProcessor The `parse_grok` processor extracts structured fields from unstructured log messages using Grok patterns.
 type ObservabilityPipelineParseGrokProcessor struct {
@@ -25,9 +29,10 @@ type ObservabilityPipelineParseGrokProcessor struct {
 	// The processor type. The value should always be `parse_grok`.
 	Type ObservabilityPipelineParseGrokProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineParseGrokProcessor instantiates a new ObservabilityPipelineParseGrokProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +61,6 @@ func NewObservabilityPipelineParseGrokProcessorWithDefaults() *ObservabilityPipe
 	this.Type = typeVar
 	return &this
 }
-
 // GetDisableLibraryRules returns the DisableLibraryRules field value if set, zero value otherwise.
 func (o *ObservabilityPipelineParseGrokProcessor) GetDisableLibraryRules() bool {
 	if o == nil || o.DisableLibraryRules == nil {
@@ -85,6 +89,7 @@ func (o *ObservabilityPipelineParseGrokProcessor) SetDisableLibraryRules(v bool)
 	o.DisableLibraryRules = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineParseGrokProcessor) GetId() string {
 	if o == nil {
@@ -107,6 +112,7 @@ func (o *ObservabilityPipelineParseGrokProcessor) GetIdOk() (*string, bool) {
 func (o *ObservabilityPipelineParseGrokProcessor) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineParseGrokProcessor) GetInclude() string {
@@ -131,6 +137,7 @@ func (o *ObservabilityPipelineParseGrokProcessor) SetInclude(v string) {
 	o.Include = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineParseGrokProcessor) GetInputs() []string {
 	if o == nil {
@@ -153,6 +160,7 @@ func (o *ObservabilityPipelineParseGrokProcessor) GetInputsOk() (*[]string, bool
 func (o *ObservabilityPipelineParseGrokProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetRules returns the Rules field value.
 func (o *ObservabilityPipelineParseGrokProcessor) GetRules() []ObservabilityPipelineParseGrokProcessorRule {
@@ -177,6 +185,7 @@ func (o *ObservabilityPipelineParseGrokProcessor) SetRules(v []ObservabilityPipe
 	o.Rules = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineParseGrokProcessor) GetType() ObservabilityPipelineParseGrokProcessorType {
 	if o == nil {
@@ -199,6 +208,8 @@ func (o *ObservabilityPipelineParseGrokProcessor) GetTypeOk() (*ObservabilityPip
 func (o *ObservabilityPipelineParseGrokProcessor) SetType(v ObservabilityPipelineParseGrokProcessorType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineParseGrokProcessor) MarshalJSON() ([]byte, error) {
@@ -224,12 +235,12 @@ func (o ObservabilityPipelineParseGrokProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineParseGrokProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DisableLibraryRules *bool                                          `json:"disable_library_rules,omitempty"`
-		Id                  *string                                        `json:"id"`
-		Include             *string                                        `json:"include"`
-		Inputs              *[]string                                      `json:"inputs"`
-		Rules               *[]ObservabilityPipelineParseGrokProcessorRule `json:"rules"`
-		Type                *ObservabilityPipelineParseGrokProcessorType   `json:"type"`
+		DisableLibraryRules *bool `json:"disable_library_rules,omitempty"`
+		Id *string `json:"id"`
+		Include *string `json:"include"`
+		Inputs *[]string `json:"inputs"`
+		Rules *[]ObservabilityPipelineParseGrokProcessorRule `json:"rules"`
+		Type *ObservabilityPipelineParseGrokProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -251,7 +262,7 @@ func (o *ObservabilityPipelineParseGrokProcessor) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"disable_library_rules", "id", "include", "inputs", "rules", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "disable_library_rules", "id", "include", "inputs", "rules", "type",  })
 	} else {
 		return err
 	}

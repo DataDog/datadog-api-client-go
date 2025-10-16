@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentNotificationRule Response with a notification rule.
 type IncidentNotificationRule struct {
@@ -17,9 +21,10 @@ type IncidentNotificationRule struct {
 	// Related objects that are included in the response.
 	Included []IncidentNotificationRuleIncludedItems `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentNotificationRule instantiates a new IncidentNotificationRule object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewIncidentNotificationRuleWithDefaults() *IncidentNotificationRule {
 	this := IncidentNotificationRule{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *IncidentNotificationRule) GetData() IncidentNotificationRuleResponseData {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *IncidentNotificationRule) GetDataOk() (*IncidentNotificationRuleRespons
 func (o *IncidentNotificationRule) SetData(v IncidentNotificationRuleResponseData) {
 	o.Data = v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *IncidentNotificationRule) GetIncluded() []IncidentNotificationRuleIncludedItems {
@@ -90,6 +95,8 @@ func (o *IncidentNotificationRule) SetIncluded(v []IncidentNotificationRuleInclu
 	o.Included = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentNotificationRule) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,7 +117,7 @@ func (o IncidentNotificationRule) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentNotificationRule) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     *IncidentNotificationRuleResponseData   `json:"data"`
+		Data *IncidentNotificationRuleResponseData `json:"data"`
 		Included []IncidentNotificationRuleIncludedItems `json:"included,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -121,7 +128,7 @@ func (o *IncidentNotificationRule) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "included",  })
 	} else {
 		return err
 	}

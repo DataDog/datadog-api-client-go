@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DatastoreTriggerWrapper Schema for a Datastore-based trigger.
 type DatastoreTriggerWrapper struct {
@@ -17,9 +21,10 @@ type DatastoreTriggerWrapper struct {
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDatastoreTriggerWrapper instantiates a new DatastoreTriggerWrapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewDatastoreTriggerWrapperWithDefaults() *DatastoreTriggerWrapper {
 	this := DatastoreTriggerWrapper{}
 	return &this
 }
-
 // GetDatastoreTrigger returns the DatastoreTrigger field value.
 func (o *DatastoreTriggerWrapper) GetDatastoreTrigger() DatastoreTrigger {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *DatastoreTriggerWrapper) GetDatastoreTriggerOk() (*DatastoreTrigger, bo
 func (o *DatastoreTriggerWrapper) SetDatastoreTrigger(v DatastoreTrigger) {
 	o.DatastoreTrigger = v
 }
+
 
 // GetStartStepNames returns the StartStepNames field value if set, zero value otherwise.
 func (o *DatastoreTriggerWrapper) GetStartStepNames() []string {
@@ -90,6 +95,8 @@ func (o *DatastoreTriggerWrapper) SetStartStepNames(v []string) {
 	o.StartStepNames = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DatastoreTriggerWrapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o DatastoreTriggerWrapper) MarshalJSON() ([]byte, error) {
 func (o *DatastoreTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DatastoreTrigger *DatastoreTrigger `json:"datastoreTrigger"`
-		StartStepNames   []string          `json:"startStepNames,omitempty"`
+		StartStepNames []string `json:"startStepNames,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *DatastoreTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"datastoreTrigger", "startStepNames"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "datastoreTrigger", "startStepNames",  })
 	} else {
 		return err
 	}

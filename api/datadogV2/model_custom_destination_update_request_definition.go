@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomDestinationUpdateRequestDefinition The definition of a custom destination.
 type CustomDestinationUpdateRequestDefinition struct {
@@ -19,9 +23,10 @@ type CustomDestinationUpdateRequestDefinition struct {
 	// The type of the resource. The value should always be `custom_destination`.
 	Type CustomDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomDestinationUpdateRequestDefinition instantiates a new CustomDestinationUpdateRequestDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewCustomDestinationUpdateRequestDefinitionWithDefaults() *CustomDestinatio
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *CustomDestinationUpdateRequestDefinition) GetAttributes() CustomDestinationUpdateRequestAttributes {
 	if o == nil || o.Attributes == nil {
@@ -72,6 +76,7 @@ func (o *CustomDestinationUpdateRequestDefinition) SetAttributes(v CustomDestina
 	o.Attributes = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *CustomDestinationUpdateRequestDefinition) GetId() string {
 	if o == nil {
@@ -94,6 +99,7 @@ func (o *CustomDestinationUpdateRequestDefinition) GetIdOk() (*string, bool) {
 func (o *CustomDestinationUpdateRequestDefinition) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *CustomDestinationUpdateRequestDefinition) GetType() CustomDestinationType {
@@ -118,6 +124,8 @@ func (o *CustomDestinationUpdateRequestDefinition) SetType(v CustomDestinationTy
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomDestinationUpdateRequestDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -140,8 +148,8 @@ func (o CustomDestinationUpdateRequestDefinition) MarshalJSON() ([]byte, error) 
 func (o *CustomDestinationUpdateRequestDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *CustomDestinationUpdateRequestAttributes `json:"attributes,omitempty"`
-		Id         *string                                   `json:"id"`
-		Type       *CustomDestinationType                    `json:"type"`
+		Id *string `json:"id"`
+		Type *CustomDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -154,13 +162,13 @@ func (o *CustomDestinationUpdateRequestDefinition) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

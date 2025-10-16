@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PowerpackTemplateVariable Powerpack template variables.
 type PowerpackTemplateVariable struct {
@@ -21,9 +25,10 @@ type PowerpackTemplateVariable struct {
 	// The tag prefix associated with the variable. Only tags with this prefix appear in the variable drop-down.
 	Prefix datadog.NullableString `json:"prefix,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPowerpackTemplateVariable instantiates a new PowerpackTemplateVariable object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewPowerpackTemplateVariableWithDefaults() *PowerpackTemplateVariable {
 	this := PowerpackTemplateVariable{}
 	return &this
 }
-
 // GetAvailableValues returns the AvailableValues field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PowerpackTemplateVariable) GetAvailableValues() []string {
 	if o == nil || o.AvailableValues.Get() == nil {
@@ -56,7 +60,7 @@ func (o *PowerpackTemplateVariable) GetAvailableValues() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *PowerpackTemplateVariable) GetAvailableValuesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.AvailableValues.Get(), o.AvailableValues.IsSet()
@@ -71,7 +75,6 @@ func (o *PowerpackTemplateVariable) HasAvailableValues() bool {
 func (o *PowerpackTemplateVariable) SetAvailableValues(v []string) {
 	o.AvailableValues.Set(&v)
 }
-
 // SetAvailableValuesNil sets the value for AvailableValues to be an explicit nil.
 func (o *PowerpackTemplateVariable) SetAvailableValuesNil() {
 	o.AvailableValues.Set(nil)
@@ -81,6 +84,7 @@ func (o *PowerpackTemplateVariable) SetAvailableValuesNil() {
 func (o *PowerpackTemplateVariable) UnsetAvailableValues() {
 	o.AvailableValues.Unset()
 }
+
 
 // GetDefaults returns the Defaults field value if set, zero value otherwise.
 func (o *PowerpackTemplateVariable) GetDefaults() []string {
@@ -110,6 +114,7 @@ func (o *PowerpackTemplateVariable) SetDefaults(v []string) {
 	o.Defaults = v
 }
 
+
 // GetName returns the Name field value.
 func (o *PowerpackTemplateVariable) GetName() string {
 	if o == nil {
@@ -133,6 +138,7 @@ func (o *PowerpackTemplateVariable) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetPrefix returns the Prefix field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PowerpackTemplateVariable) GetPrefix() string {
 	if o == nil || o.Prefix.Get() == nil {
@@ -146,7 +152,7 @@ func (o *PowerpackTemplateVariable) GetPrefix() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *PowerpackTemplateVariable) GetPrefixOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Prefix.Get(), o.Prefix.IsSet()
@@ -161,7 +167,6 @@ func (o *PowerpackTemplateVariable) HasPrefix() bool {
 func (o *PowerpackTemplateVariable) SetPrefix(v string) {
 	o.Prefix.Set(&v)
 }
-
 // SetPrefixNil sets the value for Prefix to be an explicit nil.
 func (o *PowerpackTemplateVariable) SetPrefixNil() {
 	o.Prefix.Set(nil)
@@ -171,6 +176,8 @@ func (o *PowerpackTemplateVariable) SetPrefixNil() {
 func (o *PowerpackTemplateVariable) UnsetPrefix() {
 	o.Prefix.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o PowerpackTemplateVariable) MarshalJSON() ([]byte, error) {
@@ -199,9 +206,9 @@ func (o PowerpackTemplateVariable) MarshalJSON() ([]byte, error) {
 func (o *PowerpackTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AvailableValues datadog.NullableList[string] `json:"available_values,omitempty"`
-		Defaults        []string                     `json:"defaults,omitempty"`
-		Name            *string                      `json:"name"`
-		Prefix          datadog.NullableString       `json:"prefix,omitempty"`
+		Defaults []string `json:"defaults,omitempty"`
+		Name *string `json:"name"`
+		Prefix datadog.NullableString `json:"prefix,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -211,7 +218,7 @@ func (o *PowerpackTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"available_values", "defaults", "name", "prefix"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "available_values", "defaults", "name", "prefix",  })
 	} else {
 		return err
 	}

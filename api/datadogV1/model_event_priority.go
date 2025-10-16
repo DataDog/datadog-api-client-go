@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventPriority The priority of the event. For example, `normal` or `low`.
 type EventPriority string
@@ -16,7 +20,7 @@ type EventPriority string
 // List of EventPriority.
 const (
 	EVENTPRIORITY_NORMAL EventPriority = "normal"
-	EVENTPRIORITY_LOW    EventPriority = "low"
+	EVENTPRIORITY_LOW EventPriority = "low"
 )
 
 var allowedEventPriorityEnumValues = []EventPriority{
@@ -64,7 +68,6 @@ func (v EventPriority) IsValid() bool {
 func (v EventPriority) Ptr() *EventPriority {
 	return &v
 }
-
 // NullableEventPriority handles when a null is used for EventPriority.
 type NullableEventPriority struct {
 	value *EventPriority

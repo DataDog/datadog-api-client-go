@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TableWidgetTextFormatReplace - Replace rule for the table widget text format.
 type TableWidgetTextFormatReplace struct {
-	TableWidgetTextFormatReplaceAll       *TableWidgetTextFormatReplaceAll
+	TableWidgetTextFormatReplaceAll *TableWidgetTextFormatReplaceAll
 	TableWidgetTextFormatReplaceSubstring *TableWidgetTextFormatReplaceSubstring
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +86,11 @@ func (obj TableWidgetTextFormatReplace) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.TableWidgetTextFormatReplaceAll)
 	}
 
+
 	if obj.TableWidgetTextFormatReplaceSubstring != nil {
 		return datadog.Marshal(&obj.TableWidgetTextFormatReplaceSubstring)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj TableWidgetTextFormatReplace) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *TableWidgetTextFormatReplace) GetActualInstance() interface{} {
+func (obj *TableWidgetTextFormatReplace) GetActualInstance() (interface{}) {
 	if obj.TableWidgetTextFormatReplaceAll != nil {
 		return obj.TableWidgetTextFormatReplaceAll
 	}
 
+
 	if obj.TableWidgetTextFormatReplaceSubstring != nil {
 		return obj.TableWidgetTextFormatReplaceSubstring
 	}
+
 
 	// all schemas are nil
 	return nil

@@ -2,27 +2,31 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DnsMetricKey The metric key for DNS metrics.
 type DnsMetricKey string
 
 // List of DnsMetricKey.
 const (
-	DNSMETRICKEY_DNS_TOTAL_REQUESTS             DnsMetricKey = "dns_total_requests"
-	DNSMETRICKEY_DNS_FAILURES                   DnsMetricKey = "dns_failures"
-	DNSMETRICKEY_DNS_SUCCESSFUL_RESPONSES       DnsMetricKey = "dns_successful_responses"
-	DNSMETRICKEY_DNS_FAILED_RESPONSES           DnsMetricKey = "dns_failed_responses"
-	DNSMETRICKEY_DNS_TIMEOUTS                   DnsMetricKey = "dns_timeouts"
-	DNSMETRICKEY_DNS_RESPONSES_NXDOMAIN         DnsMetricKey = "dns_responses.nxdomain"
-	DNSMETRICKEY_DNS_RESPONSES_SERVFAIL         DnsMetricKey = "dns_responses.servfail"
-	DNSMETRICKEY_DNS_RESPONSES_OTHER            DnsMetricKey = "dns_responses.other"
+	DNSMETRICKEY_DNS_TOTAL_REQUESTS DnsMetricKey = "dns_total_requests"
+	DNSMETRICKEY_DNS_FAILURES DnsMetricKey = "dns_failures"
+	DNSMETRICKEY_DNS_SUCCESSFUL_RESPONSES DnsMetricKey = "dns_successful_responses"
+	DNSMETRICKEY_DNS_FAILED_RESPONSES DnsMetricKey = "dns_failed_responses"
+	DNSMETRICKEY_DNS_TIMEOUTS DnsMetricKey = "dns_timeouts"
+	DNSMETRICKEY_DNS_RESPONSES_NXDOMAIN DnsMetricKey = "dns_responses.nxdomain"
+	DNSMETRICKEY_DNS_RESPONSES_SERVFAIL DnsMetricKey = "dns_responses.servfail"
+	DNSMETRICKEY_DNS_RESPONSES_OTHER DnsMetricKey = "dns_responses.other"
 	DNSMETRICKEY_DNS_SUCCESS_LATENCY_PERCENTILE DnsMetricKey = "dns_success_latency_percentile"
 	DNSMETRICKEY_DNS_FAILURE_LATENCY_PERCENTILE DnsMetricKey = "dns_failure_latency_percentile"
 )

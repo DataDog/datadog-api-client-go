@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SingleAggregatedConnectionResponseDataAttributes Attributes for an aggregated connection.
 type SingleAggregatedConnectionResponseDataAttributes struct {
@@ -35,9 +41,10 @@ type SingleAggregatedConnectionResponseDataAttributes struct {
 	// The number of TCP connections that timed out from the perspective of the operating system. This can indicate general connectivity and latency issues.
 	TcpTimeouts *int64 `json:"tcp_timeouts,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSingleAggregatedConnectionResponseDataAttributes instantiates a new SingleAggregatedConnectionResponseDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +62,6 @@ func NewSingleAggregatedConnectionResponseDataAttributesWithDefaults() *SingleAg
 	this := SingleAggregatedConnectionResponseDataAttributes{}
 	return &this
 }
-
 // GetBytesSentByClient returns the BytesSentByClient field value if set, zero value otherwise.
 func (o *SingleAggregatedConnectionResponseDataAttributes) GetBytesSentByClient() int64 {
 	if o == nil || o.BytesSentByClient == nil {
@@ -83,6 +89,7 @@ func (o *SingleAggregatedConnectionResponseDataAttributes) HasBytesSentByClient(
 func (o *SingleAggregatedConnectionResponseDataAttributes) SetBytesSentByClient(v int64) {
 	o.BytesSentByClient = &v
 }
+
 
 // GetBytesSentByServer returns the BytesSentByServer field value if set, zero value otherwise.
 func (o *SingleAggregatedConnectionResponseDataAttributes) GetBytesSentByServer() int64 {
@@ -112,6 +119,7 @@ func (o *SingleAggregatedConnectionResponseDataAttributes) SetBytesSentByServer(
 	o.BytesSentByServer = &v
 }
 
+
 // GetGroupBys returns the GroupBys field value if set, zero value otherwise.
 func (o *SingleAggregatedConnectionResponseDataAttributes) GetGroupBys() map[string][]string {
 	if o == nil || o.GroupBys == nil {
@@ -139,6 +147,7 @@ func (o *SingleAggregatedConnectionResponseDataAttributes) HasGroupBys() bool {
 func (o *SingleAggregatedConnectionResponseDataAttributes) SetGroupBys(v map[string][]string) {
 	o.GroupBys = v
 }
+
 
 // GetPacketsSentByClient returns the PacketsSentByClient field value if set, zero value otherwise.
 func (o *SingleAggregatedConnectionResponseDataAttributes) GetPacketsSentByClient() int64 {
@@ -168,6 +177,7 @@ func (o *SingleAggregatedConnectionResponseDataAttributes) SetPacketsSentByClien
 	o.PacketsSentByClient = &v
 }
 
+
 // GetPacketsSentByServer returns the PacketsSentByServer field value if set, zero value otherwise.
 func (o *SingleAggregatedConnectionResponseDataAttributes) GetPacketsSentByServer() int64 {
 	if o == nil || o.PacketsSentByServer == nil {
@@ -195,6 +205,7 @@ func (o *SingleAggregatedConnectionResponseDataAttributes) HasPacketsSentByServe
 func (o *SingleAggregatedConnectionResponseDataAttributes) SetPacketsSentByServer(v int64) {
 	o.PacketsSentByServer = &v
 }
+
 
 // GetRttMicroSeconds returns the RttMicroSeconds field value if set, zero value otherwise.
 func (o *SingleAggregatedConnectionResponseDataAttributes) GetRttMicroSeconds() int64 {
@@ -224,6 +235,7 @@ func (o *SingleAggregatedConnectionResponseDataAttributes) SetRttMicroSeconds(v 
 	o.RttMicroSeconds = &v
 }
 
+
 // GetTcpClosedConnections returns the TcpClosedConnections field value if set, zero value otherwise.
 func (o *SingleAggregatedConnectionResponseDataAttributes) GetTcpClosedConnections() int64 {
 	if o == nil || o.TcpClosedConnections == nil {
@@ -251,6 +263,7 @@ func (o *SingleAggregatedConnectionResponseDataAttributes) HasTcpClosedConnectio
 func (o *SingleAggregatedConnectionResponseDataAttributes) SetTcpClosedConnections(v int64) {
 	o.TcpClosedConnections = &v
 }
+
 
 // GetTcpEstablishedConnections returns the TcpEstablishedConnections field value if set, zero value otherwise.
 func (o *SingleAggregatedConnectionResponseDataAttributes) GetTcpEstablishedConnections() int64 {
@@ -280,6 +293,7 @@ func (o *SingleAggregatedConnectionResponseDataAttributes) SetTcpEstablishedConn
 	o.TcpEstablishedConnections = &v
 }
 
+
 // GetTcpRefusals returns the TcpRefusals field value if set, zero value otherwise.
 func (o *SingleAggregatedConnectionResponseDataAttributes) GetTcpRefusals() int64 {
 	if o == nil || o.TcpRefusals == nil {
@@ -307,6 +321,7 @@ func (o *SingleAggregatedConnectionResponseDataAttributes) HasTcpRefusals() bool
 func (o *SingleAggregatedConnectionResponseDataAttributes) SetTcpRefusals(v int64) {
 	o.TcpRefusals = &v
 }
+
 
 // GetTcpResets returns the TcpResets field value if set, zero value otherwise.
 func (o *SingleAggregatedConnectionResponseDataAttributes) GetTcpResets() int64 {
@@ -336,6 +351,7 @@ func (o *SingleAggregatedConnectionResponseDataAttributes) SetTcpResets(v int64)
 	o.TcpResets = &v
 }
 
+
 // GetTcpRetransmits returns the TcpRetransmits field value if set, zero value otherwise.
 func (o *SingleAggregatedConnectionResponseDataAttributes) GetTcpRetransmits() int64 {
 	if o == nil || o.TcpRetransmits == nil {
@@ -364,6 +380,7 @@ func (o *SingleAggregatedConnectionResponseDataAttributes) SetTcpRetransmits(v i
 	o.TcpRetransmits = &v
 }
 
+
 // GetTcpTimeouts returns the TcpTimeouts field value if set, zero value otherwise.
 func (o *SingleAggregatedConnectionResponseDataAttributes) GetTcpTimeouts() int64 {
 	if o == nil || o.TcpTimeouts == nil {
@@ -391,6 +408,8 @@ func (o *SingleAggregatedConnectionResponseDataAttributes) HasTcpTimeouts() bool
 func (o *SingleAggregatedConnectionResponseDataAttributes) SetTcpTimeouts(v int64) {
 	o.TcpTimeouts = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SingleAggregatedConnectionResponseDataAttributes) MarshalJSON() ([]byte, error) {
@@ -444,25 +463,25 @@ func (o SingleAggregatedConnectionResponseDataAttributes) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *SingleAggregatedConnectionResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BytesSentByClient         *int64              `json:"bytes_sent_by_client,omitempty"`
-		BytesSentByServer         *int64              `json:"bytes_sent_by_server,omitempty"`
-		GroupBys                  map[string][]string `json:"group_bys,omitempty"`
-		PacketsSentByClient       *int64              `json:"packets_sent_by_client,omitempty"`
-		PacketsSentByServer       *int64              `json:"packets_sent_by_server,omitempty"`
-		RttMicroSeconds           *int64              `json:"rtt_micro_seconds,omitempty"`
-		TcpClosedConnections      *int64              `json:"tcp_closed_connections,omitempty"`
-		TcpEstablishedConnections *int64              `json:"tcp_established_connections,omitempty"`
-		TcpRefusals               *int64              `json:"tcp_refusals,omitempty"`
-		TcpResets                 *int64              `json:"tcp_resets,omitempty"`
-		TcpRetransmits            *int64              `json:"tcp_retransmits,omitempty"`
-		TcpTimeouts               *int64              `json:"tcp_timeouts,omitempty"`
+		BytesSentByClient *int64 `json:"bytes_sent_by_client,omitempty"`
+		BytesSentByServer *int64 `json:"bytes_sent_by_server,omitempty"`
+		GroupBys map[string][]string `json:"group_bys,omitempty"`
+		PacketsSentByClient *int64 `json:"packets_sent_by_client,omitempty"`
+		PacketsSentByServer *int64 `json:"packets_sent_by_server,omitempty"`
+		RttMicroSeconds *int64 `json:"rtt_micro_seconds,omitempty"`
+		TcpClosedConnections *int64 `json:"tcp_closed_connections,omitempty"`
+		TcpEstablishedConnections *int64 `json:"tcp_established_connections,omitempty"`
+		TcpRefusals *int64 `json:"tcp_refusals,omitempty"`
+		TcpResets *int64 `json:"tcp_resets,omitempty"`
+		TcpRetransmits *int64 `json:"tcp_retransmits,omitempty"`
+		TcpTimeouts *int64 `json:"tcp_timeouts,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"bytes_sent_by_client", "bytes_sent_by_server", "group_bys", "packets_sent_by_client", "packets_sent_by_server", "rtt_micro_seconds", "tcp_closed_connections", "tcp_established_connections", "tcp_refusals", "tcp_resets", "tcp_retransmits", "tcp_timeouts"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "bytes_sent_by_client", "bytes_sent_by_server", "group_bys", "packets_sent_by_client", "packets_sent_by_server", "rtt_micro_seconds", "tcp_closed_connections", "tcp_established_connections", "tcp_refusals", "tcp_resets", "tcp_retransmits", "tcp_timeouts",  })
 	} else {
 		return err
 	}

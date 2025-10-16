@@ -2,30 +2,34 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleConditionOperator Operator to use for the WAF Condition.
 type ApplicationSecurityWafCustomRuleConditionOperator string
 
 // List of ApplicationSecurityWafCustomRuleConditionOperator.
 const (
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_MATCH_REGEX      ApplicationSecurityWafCustomRuleConditionOperator = "match_regex"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_NOT_MATCH_REGEX  ApplicationSecurityWafCustomRuleConditionOperator = "!match_regex"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_PHRASE_MATCH     ApplicationSecurityWafCustomRuleConditionOperator = "phrase_match"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_MATCH_REGEX ApplicationSecurityWafCustomRuleConditionOperator = "match_regex"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_NOT_MATCH_REGEX ApplicationSecurityWafCustomRuleConditionOperator = "!match_regex"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_PHRASE_MATCH ApplicationSecurityWafCustomRuleConditionOperator = "phrase_match"
 	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_NOT_PHRASE_MATCH ApplicationSecurityWafCustomRuleConditionOperator = "!phrase_match"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_IS_XSS           ApplicationSecurityWafCustomRuleConditionOperator = "is_xss"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_IS_SQLI          ApplicationSecurityWafCustomRuleConditionOperator = "is_sqli"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_EXACT_MATCH      ApplicationSecurityWafCustomRuleConditionOperator = "exact_match"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_NOT_EXACT_MATCH  ApplicationSecurityWafCustomRuleConditionOperator = "!exact_match"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_IP_MATCH         ApplicationSecurityWafCustomRuleConditionOperator = "ip_match"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_NOT_IP_MATCH     ApplicationSecurityWafCustomRuleConditionOperator = "!ip_match"
-	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_CAPTURE_DATA     ApplicationSecurityWafCustomRuleConditionOperator = "capture_data"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_IS_XSS ApplicationSecurityWafCustomRuleConditionOperator = "is_xss"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_IS_SQLI ApplicationSecurityWafCustomRuleConditionOperator = "is_sqli"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_EXACT_MATCH ApplicationSecurityWafCustomRuleConditionOperator = "exact_match"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_NOT_EXACT_MATCH ApplicationSecurityWafCustomRuleConditionOperator = "!exact_match"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_IP_MATCH ApplicationSecurityWafCustomRuleConditionOperator = "ip_match"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_NOT_IP_MATCH ApplicationSecurityWafCustomRuleConditionOperator = "!ip_match"
+	APPLICATIONSECURITYWAFCUSTOMRULECONDITIONOPERATOR_CAPTURE_DATA ApplicationSecurityWafCustomRuleConditionOperator = "capture_data"
 )
 
 var allowedApplicationSecurityWafCustomRuleConditionOperatorEnumValues = []ApplicationSecurityWafCustomRuleConditionOperator{

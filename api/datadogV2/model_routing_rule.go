@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RoutingRule Represents a routing rule, including its attributes, relationships, and unique identifier.
 type RoutingRule struct {
@@ -21,9 +25,10 @@ type RoutingRule struct {
 	// Team routing rules resource type.
 	Type RoutingRuleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRoutingRule instantiates a new RoutingRule object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewRoutingRuleWithDefaults() *RoutingRule {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *RoutingRule) GetAttributes() RoutingRuleAttributes {
 	if o == nil || o.Attributes == nil {
@@ -72,6 +76,7 @@ func (o *RoutingRule) HasAttributes() bool {
 func (o *RoutingRule) SetAttributes(v RoutingRuleAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *RoutingRule) GetId() string {
@@ -101,6 +106,7 @@ func (o *RoutingRule) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *RoutingRule) GetRelationships() RoutingRuleRelationships {
 	if o == nil || o.Relationships == nil {
@@ -129,6 +135,7 @@ func (o *RoutingRule) SetRelationships(v RoutingRuleRelationships) {
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *RoutingRule) GetType() RoutingRuleType {
 	if o == nil {
@@ -151,6 +158,8 @@ func (o *RoutingRule) GetTypeOk() (*RoutingRuleType, bool) {
 func (o *RoutingRule) SetType(v RoutingRuleType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RoutingRule) MarshalJSON() ([]byte, error) {
@@ -178,10 +187,10 @@ func (o RoutingRule) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RoutingRule) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *RoutingRuleAttributes    `json:"attributes,omitempty"`
-		Id            *string                   `json:"id,omitempty"`
+		Attributes *RoutingRuleAttributes `json:"attributes,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Relationships *RoutingRuleRelationships `json:"relationships,omitempty"`
-		Type          *RoutingRuleType          `json:"type"`
+		Type *RoutingRuleType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -191,18 +200,18 @@ func (o *RoutingRule) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "relationships", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

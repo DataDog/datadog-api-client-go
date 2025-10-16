@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessor The `sensitive_data_scanner` processor detects and optionally redacts sensitive data in log events.
 type ObservabilityPipelineSensitiveDataScannerProcessor struct {
@@ -23,9 +27,10 @@ type ObservabilityPipelineSensitiveDataScannerProcessor struct {
 	// The processor type. The value should always be `sensitive_data_scanner`.
 	Type ObservabilityPipelineSensitiveDataScannerProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSensitiveDataScannerProcessor instantiates a new ObservabilityPipelineSensitiveDataScannerProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewObservabilityPipelineSensitiveDataScannerProcessorWithDefaults() *Observ
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessor) GetId() string {
 	if o == nil {
@@ -73,6 +77,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessor) GetIdOk() (*string,
 func (o *ObservabilityPipelineSensitiveDataScannerProcessor) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessor) GetInclude() string {
@@ -97,6 +102,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessor) SetInclude(v string
 	o.Include = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessor) GetInputs() []string {
 	if o == nil {
@@ -119,6 +125,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessor) GetInputsOk() (*[]s
 func (o *ObservabilityPipelineSensitiveDataScannerProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetRules returns the Rules field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessor) GetRules() []ObservabilityPipelineSensitiveDataScannerProcessorRule {
@@ -143,6 +150,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessor) SetRules(v []Observ
 	o.Rules = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessor) GetType() ObservabilityPipelineSensitiveDataScannerProcessorType {
 	if o == nil {
@@ -166,6 +174,8 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessor) SetType(v Observabi
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSensitiveDataScannerProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -187,11 +197,11 @@ func (o ObservabilityPipelineSensitiveDataScannerProcessor) MarshalJSON() ([]byt
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id      *string                                                   `json:"id"`
-		Include *string                                                   `json:"include"`
-		Inputs  *[]string                                                 `json:"inputs"`
-		Rules   *[]ObservabilityPipelineSensitiveDataScannerProcessorRule `json:"rules"`
-		Type    *ObservabilityPipelineSensitiveDataScannerProcessorType   `json:"type"`
+		Id *string `json:"id"`
+		Include *string `json:"include"`
+		Inputs *[]string `json:"inputs"`
+		Rules *[]ObservabilityPipelineSensitiveDataScannerProcessorRule `json:"rules"`
+		Type *ObservabilityPipelineSensitiveDataScannerProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -213,7 +223,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessor) UnmarshalJSON(bytes
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "include", "inputs", "rules", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "include", "inputs", "rules", "type",  })
 	} else {
 		return err
 	}

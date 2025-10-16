@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpsertCatalogKindResponse Upsert kind response.
 type UpsertCatalogKindResponse struct {
@@ -15,9 +21,10 @@ type UpsertCatalogKindResponse struct {
 	// Kind response metadata.
 	Meta *KindResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUpsertCatalogKindResponse instantiates a new UpsertCatalogKindResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewUpsertCatalogKindResponseWithDefaults() *UpsertCatalogKindResponse {
 	this := UpsertCatalogKindResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *UpsertCatalogKindResponse) GetData() []KindData {
 	if o == nil || o.Data == nil {
@@ -63,6 +69,7 @@ func (o *UpsertCatalogKindResponse) HasData() bool {
 func (o *UpsertCatalogKindResponse) SetData(v []KindData) {
 	o.Data = v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *UpsertCatalogKindResponse) GetMeta() KindResponseMeta {
@@ -92,6 +99,8 @@ func (o *UpsertCatalogKindResponse) SetMeta(v KindResponseMeta) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UpsertCatalogKindResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o UpsertCatalogKindResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UpsertCatalogKindResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data []KindData        `json:"data,omitempty"`
+		Data []KindData `json:"data,omitempty"`
 		Meta *KindResponseMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,14 +131,14 @@ func (o *UpsertCatalogKindResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

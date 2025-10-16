@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssueCaseAttributes Object containing the information of a case.
 type IssueCaseAttributes struct {
@@ -41,9 +45,10 @@ type IssueCaseAttributes struct {
 	// Type of the case.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssueCaseAttributes instantiates a new IssueCaseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -65,7 +70,6 @@ func NewIssueCaseAttributesWithDefaults() *IssueCaseAttributes {
 	this.Priority = &priority
 	return &this
 }
-
 // GetArchivedAt returns the ArchivedAt field value if set, zero value otherwise.
 func (o *IssueCaseAttributes) GetArchivedAt() time.Time {
 	if o == nil || o.ArchivedAt == nil {
@@ -93,6 +97,7 @@ func (o *IssueCaseAttributes) HasArchivedAt() bool {
 func (o *IssueCaseAttributes) SetArchivedAt(v time.Time) {
 	o.ArchivedAt = &v
 }
+
 
 // GetClosedAt returns the ClosedAt field value if set, zero value otherwise.
 func (o *IssueCaseAttributes) GetClosedAt() time.Time {
@@ -122,6 +127,7 @@ func (o *IssueCaseAttributes) SetClosedAt(v time.Time) {
 	o.ClosedAt = &v
 }
 
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *IssueCaseAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -149,6 +155,7 @@ func (o *IssueCaseAttributes) HasCreatedAt() bool {
 func (o *IssueCaseAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
+
 
 // GetCreationSource returns the CreationSource field value if set, zero value otherwise.
 func (o *IssueCaseAttributes) GetCreationSource() string {
@@ -178,6 +185,7 @@ func (o *IssueCaseAttributes) SetCreationSource(v string) {
 	o.CreationSource = &v
 }
 
+
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *IssueCaseAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -205,6 +213,7 @@ func (o *IssueCaseAttributes) HasDescription() bool {
 func (o *IssueCaseAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetDueDate returns the DueDate field value if set, zero value otherwise.
 func (o *IssueCaseAttributes) GetDueDate() string {
@@ -234,6 +243,7 @@ func (o *IssueCaseAttributes) SetDueDate(v string) {
 	o.DueDate = &v
 }
 
+
 // GetInsights returns the Insights field value if set, zero value otherwise.
 func (o *IssueCaseAttributes) GetInsights() []IssueCaseInsight {
 	if o == nil || o.Insights == nil {
@@ -261,6 +271,7 @@ func (o *IssueCaseAttributes) HasInsights() bool {
 func (o *IssueCaseAttributes) SetInsights(v []IssueCaseInsight) {
 	o.Insights = v
 }
+
 
 // GetJiraIssue returns the JiraIssue field value if set, zero value otherwise.
 func (o *IssueCaseAttributes) GetJiraIssue() IssueCaseJiraIssue {
@@ -290,6 +301,7 @@ func (o *IssueCaseAttributes) SetJiraIssue(v IssueCaseJiraIssue) {
 	o.JiraIssue = &v
 }
 
+
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *IssueCaseAttributes) GetKey() string {
 	if o == nil || o.Key == nil {
@@ -317,6 +329,7 @@ func (o *IssueCaseAttributes) HasKey() bool {
 func (o *IssueCaseAttributes) SetKey(v string) {
 	o.Key = &v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *IssueCaseAttributes) GetModifiedAt() time.Time {
@@ -346,6 +359,7 @@ func (o *IssueCaseAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
+
 // GetPriority returns the Priority field value if set, zero value otherwise.
 func (o *IssueCaseAttributes) GetPriority() CasePriority {
 	if o == nil || o.Priority == nil {
@@ -373,6 +387,7 @@ func (o *IssueCaseAttributes) HasPriority() bool {
 func (o *IssueCaseAttributes) SetPriority(v CasePriority) {
 	o.Priority = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *IssueCaseAttributes) GetStatus() CaseStatus {
@@ -402,6 +417,7 @@ func (o *IssueCaseAttributes) SetStatus(v CaseStatus) {
 	o.Status = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *IssueCaseAttributes) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -430,6 +446,7 @@ func (o *IssueCaseAttributes) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *IssueCaseAttributes) GetType() string {
 	if o == nil || o.Type == nil {
@@ -457,6 +474,8 @@ func (o *IssueCaseAttributes) HasType() bool {
 func (o *IssueCaseAttributes) SetType(v string) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IssueCaseAttributes) MarshalJSON() ([]byte, error) {
@@ -532,27 +551,27 @@ func (o IssueCaseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IssueCaseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ArchivedAt     *time.Time          `json:"archived_at,omitempty"`
-		ClosedAt       *time.Time          `json:"closed_at,omitempty"`
-		CreatedAt      *time.Time          `json:"created_at,omitempty"`
-		CreationSource *string             `json:"creation_source,omitempty"`
-		Description    *string             `json:"description,omitempty"`
-		DueDate        *string             `json:"due_date,omitempty"`
-		Insights       []IssueCaseInsight  `json:"insights,omitempty"`
-		JiraIssue      *IssueCaseJiraIssue `json:"jira_issue,omitempty"`
-		Key            *string             `json:"key,omitempty"`
-		ModifiedAt     *time.Time          `json:"modified_at,omitempty"`
-		Priority       *CasePriority       `json:"priority,omitempty"`
-		Status         *CaseStatus         `json:"status,omitempty"`
-		Title          *string             `json:"title,omitempty"`
-		Type           *string             `json:"type,omitempty"`
+		ArchivedAt *time.Time `json:"archived_at,omitempty"`
+		ClosedAt *time.Time `json:"closed_at,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		CreationSource *string `json:"creation_source,omitempty"`
+		Description *string `json:"description,omitempty"`
+		DueDate *string `json:"due_date,omitempty"`
+		Insights []IssueCaseInsight `json:"insights,omitempty"`
+		JiraIssue *IssueCaseJiraIssue `json:"jira_issue,omitempty"`
+		Key *string `json:"key,omitempty"`
+		ModifiedAt *time.Time `json:"modified_at,omitempty"`
+		Priority *CasePriority `json:"priority,omitempty"`
+		Status *CaseStatus `json:"status,omitempty"`
+		Title *string `json:"title,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "closed_at", "created_at", "creation_source", "description", "due_date", "insights", "jira_issue", "key", "modified_at", "priority", "status", "title", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "archived_at", "closed_at", "created_at", "creation_source", "description", "due_date", "insights", "jira_issue", "key", "modified_at", "priority", "status", "title", "type",  })
 	} else {
 		return err
 	}
@@ -565,18 +584,18 @@ func (o *IssueCaseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Description = all.Description
 	o.DueDate = all.DueDate
 	o.Insights = all.Insights
-	if all.JiraIssue != nil && all.JiraIssue.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.JiraIssue != nil && all.JiraIssue.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.JiraIssue = all.JiraIssue
 	o.Key = all.Key
 	o.ModifiedAt = all.ModifiedAt
-	if all.Priority != nil && !all.Priority.IsValid() {
+	if all.Priority != nil &&!all.Priority.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Priority = all.Priority
 	}
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

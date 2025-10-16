@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventAttributes Object description of attributes from your event.
 type EventAttributes struct {
@@ -55,9 +61,10 @@ type EventAttributes struct {
 	// The event title.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEventAttributes instantiates a new EventAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -75,7 +82,6 @@ func NewEventAttributesWithDefaults() *EventAttributes {
 	this := EventAttributes{}
 	return &this
 }
-
 // GetAggregationKey returns the AggregationKey field value if set, zero value otherwise.
 func (o *EventAttributes) GetAggregationKey() string {
 	if o == nil || o.AggregationKey == nil {
@@ -103,6 +109,7 @@ func (o *EventAttributes) HasAggregationKey() bool {
 func (o *EventAttributes) SetAggregationKey(v string) {
 	o.AggregationKey = &v
 }
+
 
 // GetDateHappened returns the DateHappened field value if set, zero value otherwise.
 func (o *EventAttributes) GetDateHappened() int64 {
@@ -132,6 +139,7 @@ func (o *EventAttributes) SetDateHappened(v int64) {
 	o.DateHappened = &v
 }
 
+
 // GetDeviceName returns the DeviceName field value if set, zero value otherwise.
 func (o *EventAttributes) GetDeviceName() string {
 	if o == nil || o.DeviceName == nil {
@@ -159,6 +167,7 @@ func (o *EventAttributes) HasDeviceName() bool {
 func (o *EventAttributes) SetDeviceName(v string) {
 	o.DeviceName = &v
 }
+
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *EventAttributes) GetDuration() int64 {
@@ -188,6 +197,7 @@ func (o *EventAttributes) SetDuration(v int64) {
 	o.Duration = &v
 }
 
+
 // GetEventObject returns the EventObject field value if set, zero value otherwise.
 func (o *EventAttributes) GetEventObject() string {
 	if o == nil || o.EventObject == nil {
@@ -215,6 +225,7 @@ func (o *EventAttributes) HasEventObject() bool {
 func (o *EventAttributes) SetEventObject(v string) {
 	o.EventObject = &v
 }
+
 
 // GetEvt returns the Evt field value if set, zero value otherwise.
 func (o *EventAttributes) GetEvt() Event {
@@ -244,6 +255,7 @@ func (o *EventAttributes) SetEvt(v Event) {
 	o.Evt = &v
 }
 
+
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *EventAttributes) GetHostname() string {
 	if o == nil || o.Hostname == nil {
@@ -272,6 +284,7 @@ func (o *EventAttributes) SetHostname(v string) {
 	o.Hostname = &v
 }
 
+
 // GetMonitor returns the Monitor field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EventAttributes) GetMonitor() MonitorType {
 	if o == nil || o.Monitor.Get() == nil {
@@ -285,7 +298,7 @@ func (o *EventAttributes) GetMonitor() MonitorType {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *EventAttributes) GetMonitorOk() (*MonitorType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Monitor.Get(), o.Monitor.IsSet()
@@ -300,7 +313,6 @@ func (o *EventAttributes) HasMonitor() bool {
 func (o *EventAttributes) SetMonitor(v MonitorType) {
 	o.Monitor.Set(&v)
 }
-
 // SetMonitorNil sets the value for Monitor to be an explicit nil.
 func (o *EventAttributes) SetMonitorNil() {
 	o.Monitor.Set(nil)
@@ -310,6 +322,7 @@ func (o *EventAttributes) SetMonitorNil() {
 func (o *EventAttributes) UnsetMonitor() {
 	o.Monitor.Unset()
 }
+
 
 // GetMonitorGroups returns the MonitorGroups field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EventAttributes) GetMonitorGroups() []string {
@@ -324,7 +337,7 @@ func (o *EventAttributes) GetMonitorGroups() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *EventAttributes) GetMonitorGroupsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.MonitorGroups.Get(), o.MonitorGroups.IsSet()
@@ -339,7 +352,6 @@ func (o *EventAttributes) HasMonitorGroups() bool {
 func (o *EventAttributes) SetMonitorGroups(v []string) {
 	o.MonitorGroups.Set(&v)
 }
-
 // SetMonitorGroupsNil sets the value for MonitorGroups to be an explicit nil.
 func (o *EventAttributes) SetMonitorGroupsNil() {
 	o.MonitorGroups.Set(nil)
@@ -349,6 +361,7 @@ func (o *EventAttributes) SetMonitorGroupsNil() {
 func (o *EventAttributes) UnsetMonitorGroups() {
 	o.MonitorGroups.Unset()
 }
+
 
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EventAttributes) GetMonitorId() int64 {
@@ -363,7 +376,7 @@ func (o *EventAttributes) GetMonitorId() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *EventAttributes) GetMonitorIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.MonitorId.Get(), o.MonitorId.IsSet()
@@ -378,7 +391,6 @@ func (o *EventAttributes) HasMonitorId() bool {
 func (o *EventAttributes) SetMonitorId(v int64) {
 	o.MonitorId.Set(&v)
 }
-
 // SetMonitorIdNil sets the value for MonitorId to be an explicit nil.
 func (o *EventAttributes) SetMonitorIdNil() {
 	o.MonitorId.Set(nil)
@@ -388,6 +400,7 @@ func (o *EventAttributes) SetMonitorIdNil() {
 func (o *EventAttributes) UnsetMonitorId() {
 	o.MonitorId.Unset()
 }
+
 
 // GetPriority returns the Priority field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EventAttributes) GetPriority() EventPriority {
@@ -402,7 +415,7 @@ func (o *EventAttributes) GetPriority() EventPriority {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *EventAttributes) GetPriorityOk() (*EventPriority, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Priority.Get(), o.Priority.IsSet()
@@ -417,7 +430,6 @@ func (o *EventAttributes) HasPriority() bool {
 func (o *EventAttributes) SetPriority(v EventPriority) {
 	o.Priority.Set(&v)
 }
-
 // SetPriorityNil sets the value for Priority to be an explicit nil.
 func (o *EventAttributes) SetPriorityNil() {
 	o.Priority.Set(nil)
@@ -427,6 +439,7 @@ func (o *EventAttributes) SetPriorityNil() {
 func (o *EventAttributes) UnsetPriority() {
 	o.Priority.Unset()
 }
+
 
 // GetRelatedEventId returns the RelatedEventId field value if set, zero value otherwise.
 func (o *EventAttributes) GetRelatedEventId() int64 {
@@ -456,6 +469,7 @@ func (o *EventAttributes) SetRelatedEventId(v int64) {
 	o.RelatedEventId = &v
 }
 
+
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *EventAttributes) GetService() string {
 	if o == nil || o.Service == nil {
@@ -483,6 +497,7 @@ func (o *EventAttributes) HasService() bool {
 func (o *EventAttributes) SetService(v string) {
 	o.Service = &v
 }
+
 
 // GetSourceTypeName returns the SourceTypeName field value if set, zero value otherwise.
 func (o *EventAttributes) GetSourceTypeName() string {
@@ -512,6 +527,7 @@ func (o *EventAttributes) SetSourceTypeName(v string) {
 	o.SourceTypeName = &v
 }
 
+
 // GetSourcecategory returns the Sourcecategory field value if set, zero value otherwise.
 func (o *EventAttributes) GetSourcecategory() string {
 	if o == nil || o.Sourcecategory == nil {
@@ -539,6 +555,7 @@ func (o *EventAttributes) HasSourcecategory() bool {
 func (o *EventAttributes) SetSourcecategory(v string) {
 	o.Sourcecategory = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *EventAttributes) GetStatus() EventStatusType {
@@ -568,6 +585,7 @@ func (o *EventAttributes) SetStatus(v EventStatusType) {
 	o.Status = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *EventAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -595,6 +613,7 @@ func (o *EventAttributes) HasTags() bool {
 func (o *EventAttributes) SetTags(v []string) {
 	o.Tags = v
 }
+
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *EventAttributes) GetTimestamp() int64 {
@@ -624,6 +643,7 @@ func (o *EventAttributes) SetTimestamp(v int64) {
 	o.Timestamp = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *EventAttributes) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -651,6 +671,8 @@ func (o *EventAttributes) HasTitle() bool {
 func (o *EventAttributes) SetTitle(v string) {
 	o.Title = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EventAttributes) MarshalJSON() ([]byte, error) {
@@ -725,32 +747,32 @@ func (o EventAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AggregationKey *string                      `json:"aggregation_key,omitempty"`
-		DateHappened   *int64                       `json:"date_happened,omitempty"`
-		DeviceName     *string                      `json:"device_name,omitempty"`
-		Duration       *int64                       `json:"duration,omitempty"`
-		EventObject    *string                      `json:"event_object,omitempty"`
-		Evt            *Event                       `json:"evt,omitempty"`
-		Hostname       *string                      `json:"hostname,omitempty"`
-		Monitor        NullableMonitorType          `json:"monitor,omitempty"`
-		MonitorGroups  datadog.NullableList[string] `json:"monitor_groups,omitempty"`
-		MonitorId      datadog.NullableInt64        `json:"monitor_id,omitempty"`
-		Priority       NullableEventPriority        `json:"priority,omitempty"`
-		RelatedEventId *int64                       `json:"related_event_id,omitempty"`
-		Service        *string                      `json:"service,omitempty"`
-		SourceTypeName *string                      `json:"source_type_name,omitempty"`
-		Sourcecategory *string                      `json:"sourcecategory,omitempty"`
-		Status         *EventStatusType             `json:"status,omitempty"`
-		Tags           []string                     `json:"tags,omitempty"`
-		Timestamp      *int64                       `json:"timestamp,omitempty"`
-		Title          *string                      `json:"title,omitempty"`
+		AggregationKey *string `json:"aggregation_key,omitempty"`
+		DateHappened *int64 `json:"date_happened,omitempty"`
+		DeviceName *string `json:"device_name,omitempty"`
+		Duration *int64 `json:"duration,omitempty"`
+		EventObject *string `json:"event_object,omitempty"`
+		Evt *Event `json:"evt,omitempty"`
+		Hostname *string `json:"hostname,omitempty"`
+		Monitor NullableMonitorType `json:"monitor,omitempty"`
+		MonitorGroups datadog.NullableList[string] `json:"monitor_groups,omitempty"`
+		MonitorId datadog.NullableInt64 `json:"monitor_id,omitempty"`
+		Priority NullableEventPriority `json:"priority,omitempty"`
+		RelatedEventId *int64 `json:"related_event_id,omitempty"`
+		Service *string `json:"service,omitempty"`
+		SourceTypeName *string `json:"source_type_name,omitempty"`
+		Sourcecategory *string `json:"sourcecategory,omitempty"`
+		Status *EventStatusType `json:"status,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Timestamp *int64 `json:"timestamp,omitempty"`
+		Title *string `json:"title,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation_key", "date_happened", "device_name", "duration", "event_object", "evt", "hostname", "monitor", "monitor_groups", "monitor_id", "priority", "related_event_id", "service", "source_type_name", "sourcecategory", "status", "tags", "timestamp", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation_key", "date_happened", "device_name", "duration", "event_object", "evt", "hostname", "monitor", "monitor_groups", "monitor_id", "priority", "related_event_id", "service", "source_type_name", "sourcecategory", "status", "tags", "timestamp", "title",  })
 	} else {
 		return err
 	}
@@ -761,7 +783,7 @@ func (o *EventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.DeviceName = all.DeviceName
 	o.Duration = all.Duration
 	o.EventObject = all.EventObject
-	if all.Evt != nil && all.Evt.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Evt != nil && all.Evt.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Evt = all.Evt
@@ -778,7 +800,7 @@ func (o *EventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Service = all.Service
 	o.SourceTypeName = all.SourceTypeName
 	o.Sourcecategory = all.Sourcecategory
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

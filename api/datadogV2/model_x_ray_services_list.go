@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // XRayServicesList - AWS X-Ray services to collect traces from. Defaults to `include_only`.
 type XRayServicesList struct {
-	XRayServicesIncludeAll  *XRayServicesIncludeAll
+	XRayServicesIncludeAll *XRayServicesIncludeAll
 	XRayServicesIncludeOnly *XRayServicesIncludeOnly
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +86,11 @@ func (obj XRayServicesList) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.XRayServicesIncludeAll)
 	}
 
+
 	if obj.XRayServicesIncludeOnly != nil {
 		return datadog.Marshal(&obj.XRayServicesIncludeOnly)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj XRayServicesList) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *XRayServicesList) GetActualInstance() interface{} {
+func (obj *XRayServicesList) GetActualInstance() (interface{}) {
 	if obj.XRayServicesIncludeAll != nil {
 		return obj.XRayServicesIncludeAll
 	}
 
+
 	if obj.XRayServicesIncludeOnly != nil {
 		return obj.XRayServicesIncludeOnly
 	}
+
 
 	// all schemas are nil
 	return nil

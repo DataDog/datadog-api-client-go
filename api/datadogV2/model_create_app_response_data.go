@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
-	"github.com/google/uuid"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateAppResponseData The data object containing the app ID.
 type CreateAppResponseData struct {
@@ -19,9 +21,10 @@ type CreateAppResponseData struct {
 	// The app definition type.
 	Type AppDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateAppResponseData instantiates a new CreateAppResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +46,6 @@ func NewCreateAppResponseDataWithDefaults() *CreateAppResponseData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *CreateAppResponseData) GetId() uuid.UUID {
 	if o == nil {
@@ -66,6 +68,7 @@ func (o *CreateAppResponseData) GetIdOk() (*uuid.UUID, bool) {
 func (o *CreateAppResponseData) SetId(v uuid.UUID) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *CreateAppResponseData) GetType() AppDefinitionType {
@@ -90,6 +93,8 @@ func (o *CreateAppResponseData) SetType(v AppDefinitionType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateAppResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -108,7 +113,7 @@ func (o CreateAppResponseData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateAppResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *uuid.UUID         `json:"id"`
+		Id *uuid.UUID `json:"id"`
 		Type *AppDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +127,7 @@ func (o *CreateAppResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}

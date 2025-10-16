@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PartialApplicationKeyAttributes Attributes of a partial application key.
 type PartialApplicationKeyAttributes struct {
@@ -21,9 +27,10 @@ type PartialApplicationKeyAttributes struct {
 	// Array of scopes to grant the application key.
 	Scopes datadog.NullableList[string] `json:"scopes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPartialApplicationKeyAttributes instantiates a new PartialApplicationKeyAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewPartialApplicationKeyAttributesWithDefaults() *PartialApplicationKeyAttr
 	this := PartialApplicationKeyAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *PartialApplicationKeyAttributes) GetCreatedAt() string {
 	if o == nil || o.CreatedAt == nil {
@@ -69,6 +75,7 @@ func (o *PartialApplicationKeyAttributes) HasCreatedAt() bool {
 func (o *PartialApplicationKeyAttributes) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
+
 
 // GetLast4 returns the Last4 field value if set, zero value otherwise.
 func (o *PartialApplicationKeyAttributes) GetLast4() string {
@@ -98,6 +105,7 @@ func (o *PartialApplicationKeyAttributes) SetLast4(v string) {
 	o.Last4 = &v
 }
 
+
 // GetLastUsedAt returns the LastUsedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PartialApplicationKeyAttributes) GetLastUsedAt() string {
 	if o == nil || o.LastUsedAt.Get() == nil {
@@ -111,7 +119,7 @@ func (o *PartialApplicationKeyAttributes) GetLastUsedAt() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *PartialApplicationKeyAttributes) GetLastUsedAtOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.LastUsedAt.Get(), o.LastUsedAt.IsSet()
@@ -126,7 +134,6 @@ func (o *PartialApplicationKeyAttributes) HasLastUsedAt() bool {
 func (o *PartialApplicationKeyAttributes) SetLastUsedAt(v string) {
 	o.LastUsedAt.Set(&v)
 }
-
 // SetLastUsedAtNil sets the value for LastUsedAt to be an explicit nil.
 func (o *PartialApplicationKeyAttributes) SetLastUsedAtNil() {
 	o.LastUsedAt.Set(nil)
@@ -136,6 +143,7 @@ func (o *PartialApplicationKeyAttributes) SetLastUsedAtNil() {
 func (o *PartialApplicationKeyAttributes) UnsetLastUsedAt() {
 	o.LastUsedAt.Unset()
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PartialApplicationKeyAttributes) GetName() string {
@@ -165,6 +173,7 @@ func (o *PartialApplicationKeyAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetScopes returns the Scopes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PartialApplicationKeyAttributes) GetScopes() []string {
 	if o == nil || o.Scopes.Get() == nil {
@@ -178,7 +187,7 @@ func (o *PartialApplicationKeyAttributes) GetScopes() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *PartialApplicationKeyAttributes) GetScopesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Scopes.Get(), o.Scopes.IsSet()
@@ -193,7 +202,6 @@ func (o *PartialApplicationKeyAttributes) HasScopes() bool {
 func (o *PartialApplicationKeyAttributes) SetScopes(v []string) {
 	o.Scopes.Set(&v)
 }
-
 // SetScopesNil sets the value for Scopes to be an explicit nil.
 func (o *PartialApplicationKeyAttributes) SetScopesNil() {
 	o.Scopes.Set(nil)
@@ -203,6 +211,8 @@ func (o *PartialApplicationKeyAttributes) SetScopesNil() {
 func (o *PartialApplicationKeyAttributes) UnsetScopes() {
 	o.Scopes.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o PartialApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
@@ -235,18 +245,18 @@ func (o PartialApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PartialApplicationKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt  *string                      `json:"created_at,omitempty"`
-		Last4      *string                      `json:"last4,omitempty"`
-		LastUsedAt datadog.NullableString       `json:"last_used_at,omitempty"`
-		Name       *string                      `json:"name,omitempty"`
-		Scopes     datadog.NullableList[string] `json:"scopes,omitempty"`
+		CreatedAt *string `json:"created_at,omitempty"`
+		Last4 *string `json:"last4,omitempty"`
+		LastUsedAt datadog.NullableString `json:"last_used_at,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Scopes datadog.NullableList[string] `json:"scopes,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "last4", "last_used_at", "name", "scopes"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_at", "last4", "last_used_at", "name", "scopes",  })
 	} else {
 		return err
 	}

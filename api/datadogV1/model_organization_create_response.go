@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OrganizationCreateResponse Response object for an organization creation.
 type OrganizationCreateResponse struct {
@@ -19,9 +25,10 @@ type OrganizationCreateResponse struct {
 	// Create, edit, and disable users.
 	User *User `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOrganizationCreateResponse instantiates a new OrganizationCreateResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewOrganizationCreateResponseWithDefaults() *OrganizationCreateResponse {
 	this := OrganizationCreateResponse{}
 	return &this
 }
-
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
 func (o *OrganizationCreateResponse) GetApiKey() ApiKey {
 	if o == nil || o.ApiKey == nil {
@@ -67,6 +73,7 @@ func (o *OrganizationCreateResponse) HasApiKey() bool {
 func (o *OrganizationCreateResponse) SetApiKey(v ApiKey) {
 	o.ApiKey = &v
 }
+
 
 // GetApplicationKey returns the ApplicationKey field value if set, zero value otherwise.
 func (o *OrganizationCreateResponse) GetApplicationKey() ApplicationKey {
@@ -96,6 +103,7 @@ func (o *OrganizationCreateResponse) SetApplicationKey(v ApplicationKey) {
 	o.ApplicationKey = &v
 }
 
+
 // GetOrg returns the Org field value if set, zero value otherwise.
 func (o *OrganizationCreateResponse) GetOrg() Organization {
 	if o == nil || o.Org == nil {
@@ -123,6 +131,7 @@ func (o *OrganizationCreateResponse) HasOrg() bool {
 func (o *OrganizationCreateResponse) SetOrg(v Organization) {
 	o.Org = &v
 }
+
 
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *OrganizationCreateResponse) GetUser() User {
@@ -152,6 +161,8 @@ func (o *OrganizationCreateResponse) SetUser(v User) {
 	o.User = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OrganizationCreateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,35 +191,35 @@ func (o OrganizationCreateResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OrganizationCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey         *ApiKey         `json:"api_key,omitempty"`
+		ApiKey *ApiKey `json:"api_key,omitempty"`
 		ApplicationKey *ApplicationKey `json:"application_key,omitempty"`
-		Org            *Organization   `json:"org,omitempty"`
-		User           *User           `json:"user,omitempty"`
+		Org *Organization `json:"org,omitempty"`
+		User *User `json:"user,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "application_key", "org", "user"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_key", "application_key", "org", "user",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.ApiKey != nil && all.ApiKey.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApiKey != nil && all.ApiKey.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApiKey = all.ApiKey
-	if all.ApplicationKey != nil && all.ApplicationKey.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApplicationKey != nil && all.ApplicationKey.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApplicationKey = all.ApplicationKey
-	if all.Org != nil && all.Org.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Org != nil && all.Org.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Org = all.Org
-	if all.User != nil && all.User.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.User != nil && all.User.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.User = all.User

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsQueryOptions Global query options that are used during the query.
 // Note: These fields are currently deprecated and do not affect the query results.
@@ -18,9 +24,10 @@ type LogsQueryOptions struct {
 	// The timezone can be specified as GMT, UTC, an offset from UTC (like UTC+1), or as a Timezone Database identifier (like America/New_York).
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsQueryOptions instantiates a new LogsQueryOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +49,6 @@ func NewLogsQueryOptionsWithDefaults() *LogsQueryOptions {
 	this.Timezone = &timezone
 	return &this
 }
-
 // GetTimeOffset returns the TimeOffset field value if set, zero value otherwise.
 func (o *LogsQueryOptions) GetTimeOffset() int64 {
 	if o == nil || o.TimeOffset == nil {
@@ -70,6 +76,7 @@ func (o *LogsQueryOptions) HasTimeOffset() bool {
 func (o *LogsQueryOptions) SetTimeOffset(v int64) {
 	o.TimeOffset = &v
 }
+
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *LogsQueryOptions) GetTimezone() string {
@@ -99,6 +106,8 @@ func (o *LogsQueryOptions) SetTimezone(v string) {
 	o.Timezone = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsQueryOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -121,15 +130,15 @@ func (o LogsQueryOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsQueryOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		TimeOffset *int64  `json:"timeOffset,omitempty"`
-		Timezone   *string `json:"timezone,omitempty"`
+		TimeOffset *int64 `json:"timeOffset,omitempty"`
+		Timezone *string `json:"timezone,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"timeOffset", "timezone"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "timeOffset", "timezone",  })
 	} else {
 		return err
 	}

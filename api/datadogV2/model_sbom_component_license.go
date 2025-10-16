@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SBOMComponentLicense The software license of the component of the SBOM.
 type SBOMComponentLicense struct {
 	// The software license of the component of the SBOM.
 	License SBOMComponentLicenseLicense `json:"license"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSBOMComponentLicense instantiates a new SBOMComponentLicense object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewSBOMComponentLicenseWithDefaults() *SBOMComponentLicense {
 	this := SBOMComponentLicense{}
 	return &this
 }
-
 // GetLicense returns the License field value.
 func (o *SBOMComponentLicense) GetLicense() SBOMComponentLicenseLicense {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *SBOMComponentLicense) GetLicenseOk() (*SBOMComponentLicenseLicense, boo
 func (o *SBOMComponentLicense) SetLicense(v SBOMComponentLicenseLicense) {
 	o.License = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SBOMComponentLicense) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *SBOMComponentLicense) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"license"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "license",  })
 	} else {
 		return err
 	}

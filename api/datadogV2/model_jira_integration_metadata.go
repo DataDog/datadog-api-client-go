@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // JiraIntegrationMetadata Incident integration metadata for the Jira integration.
 type JiraIntegrationMetadata struct {
 	// Array of Jira issues in this integration metadata.
 	Issues []JiraIntegrationMetadataIssuesItem `json:"issues"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewJiraIntegrationMetadata instantiates a new JiraIntegrationMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewJiraIntegrationMetadataWithDefaults() *JiraIntegrationMetadata {
 	this := JiraIntegrationMetadata{}
 	return &this
 }
-
 // GetIssues returns the Issues field value.
 func (o *JiraIntegrationMetadata) GetIssues() []JiraIntegrationMetadataIssuesItem {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *JiraIntegrationMetadata) GetIssuesOk() (*[]JiraIntegrationMetadataIssue
 func (o *JiraIntegrationMetadata) SetIssues(v []JiraIntegrationMetadataIssuesItem) {
 	o.Issues = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o JiraIntegrationMetadata) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *JiraIntegrationMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"issues"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "issues",  })
 	} else {
 		return err
 	}

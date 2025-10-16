@@ -2,25 +2,29 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsPatchTestOperationName The operation to perform
 type SyntheticsPatchTestOperationName string
 
 // List of SyntheticsPatchTestOperationName.
 const (
-	SYNTHETICSPATCHTESTOPERATIONNAME_ADD     SyntheticsPatchTestOperationName = "add"
-	SYNTHETICSPATCHTESTOPERATIONNAME_REMOVE  SyntheticsPatchTestOperationName = "remove"
+	SYNTHETICSPATCHTESTOPERATIONNAME_ADD SyntheticsPatchTestOperationName = "add"
+	SYNTHETICSPATCHTESTOPERATIONNAME_REMOVE SyntheticsPatchTestOperationName = "remove"
 	SYNTHETICSPATCHTESTOPERATIONNAME_REPLACE SyntheticsPatchTestOperationName = "replace"
-	SYNTHETICSPATCHTESTOPERATIONNAME_MOVE    SyntheticsPatchTestOperationName = "move"
-	SYNTHETICSPATCHTESTOPERATIONNAME_COPY    SyntheticsPatchTestOperationName = "copy"
-	SYNTHETICSPATCHTESTOPERATIONNAME_TEST    SyntheticsPatchTestOperationName = "test"
+	SYNTHETICSPATCHTESTOPERATIONNAME_MOVE SyntheticsPatchTestOperationName = "move"
+	SYNTHETICSPATCHTESTOPERATIONNAME_COPY SyntheticsPatchTestOperationName = "copy"
+	SYNTHETICSPATCHTESTOPERATIONNAME_TEST SyntheticsPatchTestOperationName = "test"
 )
 
 var allowedSyntheticsPatchTestOperationNameEnumValues = []SyntheticsPatchTestOperationName{

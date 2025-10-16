@@ -2,23 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AccessRole The access role of the user. Options are **st** (standard user), **adm** (admin user), or **ro** (read-only user).
 type AccessRole string
 
 // List of AccessRole.
 const (
-	ACCESSROLE_STANDARD  AccessRole = "st"
-	ACCESSROLE_ADMIN     AccessRole = "adm"
+	ACCESSROLE_STANDARD AccessRole = "st"
+	ACCESSROLE_ADMIN AccessRole = "adm"
 	ACCESSROLE_READ_ONLY AccessRole = "ro"
-	ACCESSROLE_ERROR     AccessRole = "ERROR"
+	ACCESSROLE_ERROR AccessRole = "ERROR"
 )
 
 var allowedAccessRoleEnumValues = []AccessRole{
@@ -68,7 +72,6 @@ func (v AccessRole) IsValid() bool {
 func (v AccessRole) Ptr() *AccessRole {
 	return &v
 }
-
 // NullableAccessRole handles when a null is used for AccessRole.
 type NullableAccessRole struct {
 	value *AccessRole

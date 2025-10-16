@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PowerpackGroupWidgetLayout Powerpack group widget layout.
 type PowerpackGroupWidgetLayout struct {
@@ -21,9 +25,10 @@ type PowerpackGroupWidgetLayout struct {
 	// The position of the widget on the y (vertical) axis. Should be a non-negative integer.
 	Y int64 `json:"y"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPowerpackGroupWidgetLayout instantiates a new PowerpackGroupWidgetLayout object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewPowerpackGroupWidgetLayoutWithDefaults() *PowerpackGroupWidgetLayout {
 	this := PowerpackGroupWidgetLayout{}
 	return &this
 }
-
 // GetHeight returns the Height field value.
 func (o *PowerpackGroupWidgetLayout) GetHeight() int64 {
 	if o == nil {
@@ -68,6 +72,7 @@ func (o *PowerpackGroupWidgetLayout) GetHeightOk() (*int64, bool) {
 func (o *PowerpackGroupWidgetLayout) SetHeight(v int64) {
 	o.Height = v
 }
+
 
 // GetWidth returns the Width field value.
 func (o *PowerpackGroupWidgetLayout) GetWidth() int64 {
@@ -92,6 +97,7 @@ func (o *PowerpackGroupWidgetLayout) SetWidth(v int64) {
 	o.Width = v
 }
 
+
 // GetX returns the X field value.
 func (o *PowerpackGroupWidgetLayout) GetX() int64 {
 	if o == nil {
@@ -114,6 +120,7 @@ func (o *PowerpackGroupWidgetLayout) GetXOk() (*int64, bool) {
 func (o *PowerpackGroupWidgetLayout) SetX(v int64) {
 	o.X = v
 }
+
 
 // GetY returns the Y field value.
 func (o *PowerpackGroupWidgetLayout) GetY() int64 {
@@ -138,6 +145,8 @@ func (o *PowerpackGroupWidgetLayout) SetY(v int64) {
 	o.Y = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o PowerpackGroupWidgetLayout) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -159,9 +168,9 @@ func (o PowerpackGroupWidgetLayout) MarshalJSON() ([]byte, error) {
 func (o *PowerpackGroupWidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Height *int64 `json:"height"`
-		Width  *int64 `json:"width"`
-		X      *int64 `json:"x"`
-		Y      *int64 `json:"y"`
+		Width *int64 `json:"width"`
+		X *int64 `json:"x"`
+		Y *int64 `json:"y"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -180,7 +189,7 @@ func (o *PowerpackGroupWidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"height", "width", "x", "y"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "height", "width", "x", "y",  })
 	} else {
 		return err
 	}

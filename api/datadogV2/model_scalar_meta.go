@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScalarMeta Metadata for the resulting numerical values.
 type ScalarMeta struct {
@@ -16,9 +22,10 @@ type ScalarMeta struct {
 	// If the second element is not present, the API returns null.
 	Unit []Unit `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScalarMeta instantiates a new ScalarMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,10 +43,9 @@ func NewScalarMetaWithDefaults() *ScalarMeta {
 	this := ScalarMeta{}
 	return &this
 }
-
 // GetUnit returns the Unit field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ScalarMeta) GetUnit() []Unit {
-	if o == nil {
+	if o == nil  {
 		var ret []Unit
 		return ret
 	}
@@ -65,6 +71,8 @@ func (o *ScalarMeta) HasUnit() bool {
 func (o *ScalarMeta) SetUnit(v []Unit) {
 	o.Unit = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ScalarMeta) MarshalJSON() ([]byte, error) {
@@ -92,7 +100,7 @@ func (o *ScalarMeta) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"unit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "unit",  })
 	} else {
 		return err
 	}

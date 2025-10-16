@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ChangeEventAttributes Change event attributes.
 type ChangeEventAttributes struct {
@@ -33,9 +39,10 @@ type ChangeEventAttributes struct {
 	// The title of the event.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewChangeEventAttributes instantiates a new ChangeEventAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +60,6 @@ func NewChangeEventAttributesWithDefaults() *ChangeEventAttributes {
 	this := ChangeEventAttributes{}
 	return &this
 }
-
 // GetAggregationKey returns the AggregationKey field value if set, zero value otherwise.
 func (o *ChangeEventAttributes) GetAggregationKey() string {
 	if o == nil || o.AggregationKey == nil {
@@ -81,6 +87,7 @@ func (o *ChangeEventAttributes) HasAggregationKey() bool {
 func (o *ChangeEventAttributes) SetAggregationKey(v string) {
 	o.AggregationKey = &v
 }
+
 
 // GetAuthor returns the Author field value if set, zero value otherwise.
 func (o *ChangeEventAttributes) GetAuthor() ChangeEventAttributesAuthor {
@@ -110,6 +117,7 @@ func (o *ChangeEventAttributes) SetAuthor(v ChangeEventAttributesAuthor) {
 	o.Author = &v
 }
 
+
 // GetChangeMetadata returns the ChangeMetadata field value if set, zero value otherwise.
 func (o *ChangeEventAttributes) GetChangeMetadata() interface{} {
 	if o == nil || o.ChangeMetadata == nil {
@@ -137,6 +145,7 @@ func (o *ChangeEventAttributes) HasChangeMetadata() bool {
 func (o *ChangeEventAttributes) SetChangeMetadata(v interface{}) {
 	o.ChangeMetadata = v
 }
+
 
 // GetChangedResource returns the ChangedResource field value if set, zero value otherwise.
 func (o *ChangeEventAttributes) GetChangedResource() ChangeEventAttributesChangedResource {
@@ -166,6 +175,7 @@ func (o *ChangeEventAttributes) SetChangedResource(v ChangeEventAttributesChange
 	o.ChangedResource = &v
 }
 
+
 // GetEvt returns the Evt field value if set, zero value otherwise.
 func (o *ChangeEventAttributes) GetEvt() EventSystemAttributes {
 	if o == nil || o.Evt == nil {
@@ -193,6 +203,7 @@ func (o *ChangeEventAttributes) HasEvt() bool {
 func (o *ChangeEventAttributes) SetEvt(v EventSystemAttributes) {
 	o.Evt = &v
 }
+
 
 // GetImpactedResources returns the ImpactedResources field value if set, zero value otherwise.
 func (o *ChangeEventAttributes) GetImpactedResources() []ChangeEventAttributesImpactedResourcesItem {
@@ -222,6 +233,7 @@ func (o *ChangeEventAttributes) SetImpactedResources(v []ChangeEventAttributesIm
 	o.ImpactedResources = v
 }
 
+
 // GetNewValue returns the NewValue field value if set, zero value otherwise.
 func (o *ChangeEventAttributes) GetNewValue() interface{} {
 	if o == nil || o.NewValue == nil {
@@ -249,6 +261,7 @@ func (o *ChangeEventAttributes) HasNewValue() bool {
 func (o *ChangeEventAttributes) SetNewValue(v interface{}) {
 	o.NewValue = v
 }
+
 
 // GetPrevValue returns the PrevValue field value if set, zero value otherwise.
 func (o *ChangeEventAttributes) GetPrevValue() interface{} {
@@ -278,6 +291,7 @@ func (o *ChangeEventAttributes) SetPrevValue(v interface{}) {
 	o.PrevValue = v
 }
 
+
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *ChangeEventAttributes) GetService() string {
 	if o == nil || o.Service == nil {
@@ -305,6 +319,7 @@ func (o *ChangeEventAttributes) HasService() bool {
 func (o *ChangeEventAttributes) SetService(v string) {
 	o.Service = &v
 }
+
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *ChangeEventAttributes) GetTimestamp() int64 {
@@ -334,6 +349,7 @@ func (o *ChangeEventAttributes) SetTimestamp(v int64) {
 	o.Timestamp = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *ChangeEventAttributes) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -361,6 +377,8 @@ func (o *ChangeEventAttributes) HasTitle() bool {
 func (o *ChangeEventAttributes) SetTitle(v string) {
 	o.Title = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ChangeEventAttributes) MarshalJSON() ([]byte, error) {
@@ -411,40 +429,40 @@ func (o ChangeEventAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ChangeEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AggregationKey    *string                                      `json:"aggregation_key,omitempty"`
-		Author            *ChangeEventAttributesAuthor                 `json:"author,omitempty"`
-		ChangeMetadata    interface{}                                  `json:"change_metadata,omitempty"`
-		ChangedResource   *ChangeEventAttributesChangedResource        `json:"changed_resource,omitempty"`
-		Evt               *EventSystemAttributes                       `json:"evt,omitempty"`
+		AggregationKey *string `json:"aggregation_key,omitempty"`
+		Author *ChangeEventAttributesAuthor `json:"author,omitempty"`
+		ChangeMetadata interface{} `json:"change_metadata,omitempty"`
+		ChangedResource *ChangeEventAttributesChangedResource `json:"changed_resource,omitempty"`
+		Evt *EventSystemAttributes `json:"evt,omitempty"`
 		ImpactedResources []ChangeEventAttributesImpactedResourcesItem `json:"impacted_resources,omitempty"`
-		NewValue          interface{}                                  `json:"new_value,omitempty"`
-		PrevValue         interface{}                                  `json:"prev_value,omitempty"`
-		Service           *string                                      `json:"service,omitempty"`
-		Timestamp         *int64                                       `json:"timestamp,omitempty"`
-		Title             *string                                      `json:"title,omitempty"`
+		NewValue interface{} `json:"new_value,omitempty"`
+		PrevValue interface{} `json:"prev_value,omitempty"`
+		Service *string `json:"service,omitempty"`
+		Timestamp *int64 `json:"timestamp,omitempty"`
+		Title *string `json:"title,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation_key", "author", "change_metadata", "changed_resource", "evt", "impacted_resources", "new_value", "prev_value", "service", "timestamp", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation_key", "author", "change_metadata", "changed_resource", "evt", "impacted_resources", "new_value", "prev_value", "service", "timestamp", "title",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.AggregationKey = all.AggregationKey
-	if all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Author = all.Author
 	o.ChangeMetadata = all.ChangeMetadata
-	if all.ChangedResource != nil && all.ChangedResource.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ChangedResource != nil && all.ChangedResource.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ChangedResource = all.ChangedResource
-	if all.Evt != nil && all.Evt.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Evt != nil && all.Evt.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Evt = all.Evt

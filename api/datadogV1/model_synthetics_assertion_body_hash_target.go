@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAssertionBodyHashTarget An assertion which targets body hash.
 type SyntheticsAssertionBodyHashTarget struct {
@@ -19,9 +23,10 @@ type SyntheticsAssertionBodyHashTarget struct {
 	// Type of the assertion.
 	Type SyntheticsAssertionBodyHashType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsAssertionBodyHashTarget instantiates a new SyntheticsAssertionBodyHashTarget object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewSyntheticsAssertionBodyHashTargetWithDefaults() *SyntheticsAssertionBody
 	this := SyntheticsAssertionBodyHashTarget{}
 	return &this
 }
-
 // GetOperator returns the Operator field value.
 func (o *SyntheticsAssertionBodyHashTarget) GetOperator() SyntheticsAssertionBodyHashOperator {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *SyntheticsAssertionBodyHashTarget) GetOperatorOk() (*SyntheticsAssertio
 func (o *SyntheticsAssertionBodyHashTarget) SetOperator(v SyntheticsAssertionBodyHashOperator) {
 	o.Operator = v
 }
+
 
 // GetTarget returns the Target field value.
 func (o *SyntheticsAssertionBodyHashTarget) GetTarget() SyntheticsAssertionTargetValue {
@@ -89,6 +94,7 @@ func (o *SyntheticsAssertionBodyHashTarget) SetTarget(v SyntheticsAssertionTarge
 	o.Target = v
 }
 
+
 // GetType returns the Type field value.
 func (o *SyntheticsAssertionBodyHashTarget) GetType() SyntheticsAssertionBodyHashType {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *SyntheticsAssertionBodyHashTarget) SetType(v SyntheticsAssertionBodyHas
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAssertionBodyHashTarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -132,8 +140,8 @@ func (o SyntheticsAssertionBodyHashTarget) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsAssertionBodyHashTarget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Operator *SyntheticsAssertionBodyHashOperator `json:"operator"`
-		Target   *SyntheticsAssertionTargetValue      `json:"target"`
-		Type     *SyntheticsAssertionBodyHashType     `json:"type"`
+		Target *SyntheticsAssertionTargetValue `json:"target"`
+		Type *SyntheticsAssertionBodyHashType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *SyntheticsAssertionBodyHashTarget) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"operator", "target", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "operator", "target", "type",  })
 	} else {
 		return err
 	}

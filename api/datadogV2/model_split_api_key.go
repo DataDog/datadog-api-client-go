@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SplitAPIKey The definition of the `SplitAPIKey` object.
 type SplitAPIKey struct {
@@ -17,9 +21,10 @@ type SplitAPIKey struct {
 	// The definition of the `SplitAPIKey` object.
 	Type SplitAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSplitAPIKey instantiates a new SplitAPIKey object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSplitAPIKeyWithDefaults() *SplitAPIKey {
 	this := SplitAPIKey{}
 	return &this
 }
-
 // GetApiKey returns the ApiKey field value.
 func (o *SplitAPIKey) GetApiKey() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *SplitAPIKey) GetApiKeyOk() (*string, bool) {
 func (o *SplitAPIKey) SetApiKey(v string) {
 	o.ApiKey = v
 }
+
 
 // GetType returns the Type field value.
 func (o *SplitAPIKey) GetType() SplitAPIKeyType {
@@ -86,6 +91,8 @@ func (o *SplitAPIKey) SetType(v SplitAPIKeyType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SplitAPIKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o SplitAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SplitAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string          `json:"api_key"`
-		Type   *SplitAPIKeyType `json:"type"`
+		ApiKey *string `json:"api_key"`
+		Type *SplitAPIKeyType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *SplitAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_key", "type",  })
 	} else {
 		return err
 	}

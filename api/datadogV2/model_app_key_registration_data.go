@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
-	"github.com/google/uuid"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AppKeyRegistrationData Data related to the app key registration.
 type AppKeyRegistrationData struct {
@@ -19,9 +21,10 @@ type AppKeyRegistrationData struct {
 	// The definition of `AppKeyRegistrationDataType` object.
 	Type AppKeyRegistrationDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAppKeyRegistrationData instantiates a new AppKeyRegistrationData object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +43,6 @@ func NewAppKeyRegistrationDataWithDefaults() *AppKeyRegistrationData {
 	this := AppKeyRegistrationData{}
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AppKeyRegistrationData) GetId() uuid.UUID {
 	if o == nil || o.Id == nil {
@@ -69,6 +71,7 @@ func (o *AppKeyRegistrationData) SetId(v uuid.UUID) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *AppKeyRegistrationData) GetType() AppKeyRegistrationDataType {
 	if o == nil {
@@ -92,6 +95,8 @@ func (o *AppKeyRegistrationData) SetType(v AppKeyRegistrationDataType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AppKeyRegistrationData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -112,7 +117,7 @@ func (o AppKeyRegistrationData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AppKeyRegistrationData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *uuid.UUID                  `json:"id,omitempty"`
+		Id *uuid.UUID `json:"id,omitempty"`
 		Type *AppKeyRegistrationDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -123,7 +128,7 @@ func (o *AppKeyRegistrationData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}

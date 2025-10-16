@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleQueryPayload Payload to test a rule query with the expected result.
 type SecurityMonitoringRuleQueryPayload struct {
@@ -17,9 +23,10 @@ type SecurityMonitoringRuleQueryPayload struct {
 	// Payload used to test the rule query.
 	Payload *SecurityMonitoringRuleQueryPayloadData `json:"payload,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringRuleQueryPayload instantiates a new SecurityMonitoringRuleQueryPayload object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewSecurityMonitoringRuleQueryPayloadWithDefaults() *SecurityMonitoringRule
 	this := SecurityMonitoringRuleQueryPayload{}
 	return &this
 }
-
 // GetExpectedResult returns the ExpectedResult field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleQueryPayload) GetExpectedResult() bool {
 	if o == nil || o.ExpectedResult == nil {
@@ -65,6 +71,7 @@ func (o *SecurityMonitoringRuleQueryPayload) HasExpectedResult() bool {
 func (o *SecurityMonitoringRuleQueryPayload) SetExpectedResult(v bool) {
 	o.ExpectedResult = &v
 }
+
 
 // GetIndex returns the Index field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleQueryPayload) GetIndex() int64 {
@@ -94,6 +101,7 @@ func (o *SecurityMonitoringRuleQueryPayload) SetIndex(v int64) {
 	o.Index = &v
 }
 
+
 // GetPayload returns the Payload field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleQueryPayload) GetPayload() SecurityMonitoringRuleQueryPayloadData {
 	if o == nil || o.Payload == nil {
@@ -122,6 +130,8 @@ func (o *SecurityMonitoringRuleQueryPayload) SetPayload(v SecurityMonitoringRule
 	o.Payload = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleQueryPayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o SecurityMonitoringRuleQueryPayload) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleQueryPayload) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ExpectedResult *bool                                   `json:"expectedResult,omitempty"`
-		Index          *int64                                  `json:"index,omitempty"`
-		Payload        *SecurityMonitoringRuleQueryPayloadData `json:"payload,omitempty"`
+		ExpectedResult *bool `json:"expectedResult,omitempty"`
+		Index *int64 `json:"index,omitempty"`
+		Payload *SecurityMonitoringRuleQueryPayloadData `json:"payload,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"expectedResult", "index", "payload"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "expectedResult", "index", "payload",  })
 	} else {
 		return err
 	}
@@ -164,7 +174,7 @@ func (o *SecurityMonitoringRuleQueryPayload) UnmarshalJSON(bytes []byte) (err er
 	hasInvalidField := false
 	o.ExpectedResult = all.ExpectedResult
 	o.Index = all.Index
-	if all.Payload != nil && all.Payload.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Payload != nil && all.Payload.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Payload = all.Payload

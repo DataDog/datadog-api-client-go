@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineDedupeProcessor The `dedupe` processor removes duplicate fields in log events.
 type ObservabilityPipelineDedupeProcessor struct {
@@ -25,9 +29,10 @@ type ObservabilityPipelineDedupeProcessor struct {
 	// The processor type. The value should always be `dedupe`.
 	Type ObservabilityPipelineDedupeProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineDedupeProcessor instantiates a new ObservabilityPipelineDedupeProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewObservabilityPipelineDedupeProcessorWithDefaults() *ObservabilityPipelin
 	this.Type = typeVar
 	return &this
 }
-
 // GetFields returns the Fields field value.
 func (o *ObservabilityPipelineDedupeProcessor) GetFields() []string {
 	if o == nil {
@@ -76,6 +80,7 @@ func (o *ObservabilityPipelineDedupeProcessor) GetFieldsOk() (*[]string, bool) {
 func (o *ObservabilityPipelineDedupeProcessor) SetFields(v []string) {
 	o.Fields = v
 }
+
 
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineDedupeProcessor) GetId() string {
@@ -100,6 +105,7 @@ func (o *ObservabilityPipelineDedupeProcessor) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineDedupeProcessor) GetInclude() string {
 	if o == nil {
@@ -122,6 +128,7 @@ func (o *ObservabilityPipelineDedupeProcessor) GetIncludeOk() (*string, bool) {
 func (o *ObservabilityPipelineDedupeProcessor) SetInclude(v string) {
 	o.Include = v
 }
+
 
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineDedupeProcessor) GetInputs() []string {
@@ -146,6 +153,7 @@ func (o *ObservabilityPipelineDedupeProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
 
+
 // GetMode returns the Mode field value.
 func (o *ObservabilityPipelineDedupeProcessor) GetMode() ObservabilityPipelineDedupeProcessorMode {
 	if o == nil {
@@ -168,6 +176,7 @@ func (o *ObservabilityPipelineDedupeProcessor) GetModeOk() (*ObservabilityPipeli
 func (o *ObservabilityPipelineDedupeProcessor) SetMode(v ObservabilityPipelineDedupeProcessorMode) {
 	o.Mode = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineDedupeProcessor) GetType() ObservabilityPipelineDedupeProcessorType {
@@ -192,6 +201,8 @@ func (o *ObservabilityPipelineDedupeProcessor) SetType(v ObservabilityPipelineDe
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineDedupeProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -214,12 +225,12 @@ func (o ObservabilityPipelineDedupeProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineDedupeProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Fields  *[]string                                 `json:"fields"`
-		Id      *string                                   `json:"id"`
-		Include *string                                   `json:"include"`
-		Inputs  *[]string                                 `json:"inputs"`
-		Mode    *ObservabilityPipelineDedupeProcessorMode `json:"mode"`
-		Type    *ObservabilityPipelineDedupeProcessorType `json:"type"`
+		Fields *[]string `json:"fields"`
+		Id *string `json:"id"`
+		Include *string `json:"include"`
+		Inputs *[]string `json:"inputs"`
+		Mode *ObservabilityPipelineDedupeProcessorMode `json:"mode"`
+		Type *ObservabilityPipelineDedupeProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -244,7 +255,7 @@ func (o *ObservabilityPipelineDedupeProcessor) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"fields", "id", "include", "inputs", "mode", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "fields", "id", "include", "inputs", "mode", "type",  })
 	} else {
 		return err
 	}

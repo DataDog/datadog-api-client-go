@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsPrivateLocation Object containing information about the private location to create.
 type SyntheticsPrivateLocation struct {
@@ -25,9 +29,10 @@ type SyntheticsPrivateLocation struct {
 	// Array of tags attached to the private location.
 	Tags []string `json:"tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsPrivateLocation instantiates a new SyntheticsPrivateLocation object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewSyntheticsPrivateLocationWithDefaults() *SyntheticsPrivateLocation {
 	this := SyntheticsPrivateLocation{}
 	return &this
 }
-
 // GetDescription returns the Description field value.
 func (o *SyntheticsPrivateLocation) GetDescription() string {
 	if o == nil {
@@ -71,6 +75,7 @@ func (o *SyntheticsPrivateLocation) GetDescriptionOk() (*string, bool) {
 func (o *SyntheticsPrivateLocation) SetDescription(v string) {
 	o.Description = v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocation) GetId() string {
@@ -100,6 +105,7 @@ func (o *SyntheticsPrivateLocation) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocation) GetMetadata() SyntheticsPrivateLocationMetadata {
 	if o == nil || o.Metadata == nil {
@@ -128,6 +134,7 @@ func (o *SyntheticsPrivateLocation) SetMetadata(v SyntheticsPrivateLocationMetad
 	o.Metadata = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *SyntheticsPrivateLocation) GetName() string {
 	if o == nil {
@@ -150,6 +157,7 @@ func (o *SyntheticsPrivateLocation) GetNameOk() (*string, bool) {
 func (o *SyntheticsPrivateLocation) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetSecrets returns the Secrets field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocation) GetSecrets() SyntheticsPrivateLocationSecrets {
@@ -179,6 +187,7 @@ func (o *SyntheticsPrivateLocation) SetSecrets(v SyntheticsPrivateLocationSecret
 	o.Secrets = &v
 }
 
+
 // GetTags returns the Tags field value.
 func (o *SyntheticsPrivateLocation) GetTags() []string {
 	if o == nil {
@@ -201,6 +210,8 @@ func (o *SyntheticsPrivateLocation) GetTagsOk() (*[]string, bool) {
 func (o *SyntheticsPrivateLocation) SetTags(v []string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsPrivateLocation) MarshalJSON() ([]byte, error) {
@@ -230,12 +241,12 @@ func (o SyntheticsPrivateLocation) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description *string                            `json:"description"`
-		Id          *string                            `json:"id,omitempty"`
-		Metadata    *SyntheticsPrivateLocationMetadata `json:"metadata,omitempty"`
-		Name        *string                            `json:"name"`
-		Secrets     *SyntheticsPrivateLocationSecrets  `json:"secrets,omitempty"`
-		Tags        *[]string                          `json:"tags"`
+		Description *string `json:"description"`
+		Id *string `json:"id,omitempty"`
+		Metadata *SyntheticsPrivateLocationMetadata `json:"metadata,omitempty"`
+		Name *string `json:"name"`
+		Secrets *SyntheticsPrivateLocationSecrets `json:"secrets,omitempty"`
+		Tags *[]string `json:"tags"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -251,7 +262,7 @@ func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "id", "metadata", "name", "secrets", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "id", "metadata", "name", "secrets", "tags",  })
 	} else {
 		return err
 	}
@@ -259,12 +270,12 @@ func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Description = *all.Description
 	o.Id = all.Id
-	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Metadata = all.Metadata
 	o.Name = *all.Name
-	if all.Secrets != nil && all.Secrets.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Secrets != nil && all.Secrets.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Secrets = all.Secrets

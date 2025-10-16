@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerGroupRelationships Relationships of the group.
 type SensitiveDataScannerGroupRelationships struct {
@@ -15,9 +21,10 @@ type SensitiveDataScannerGroupRelationships struct {
 	// Rules included in the group.
 	Rules *SensitiveDataScannerRuleData `json:"rules,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerGroupRelationships instantiates a new SensitiveDataScannerGroupRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSensitiveDataScannerGroupRelationshipsWithDefaults() *SensitiveDataScann
 	this := SensitiveDataScannerGroupRelationships{}
 	return &this
 }
-
 // GetConfiguration returns the Configuration field value if set, zero value otherwise.
 func (o *SensitiveDataScannerGroupRelationships) GetConfiguration() SensitiveDataScannerConfigurationData {
 	if o == nil || o.Configuration == nil {
@@ -63,6 +69,7 @@ func (o *SensitiveDataScannerGroupRelationships) HasConfiguration() bool {
 func (o *SensitiveDataScannerGroupRelationships) SetConfiguration(v SensitiveDataScannerConfigurationData) {
 	o.Configuration = &v
 }
+
 
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *SensitiveDataScannerGroupRelationships) GetRules() SensitiveDataScannerRuleData {
@@ -92,6 +99,8 @@ func (o *SensitiveDataScannerGroupRelationships) SetRules(v SensitiveDataScanner
 	o.Rules = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerGroupRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,24 +124,24 @@ func (o SensitiveDataScannerGroupRelationships) MarshalJSON() ([]byte, error) {
 func (o *SensitiveDataScannerGroupRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Configuration *SensitiveDataScannerConfigurationData `json:"configuration,omitempty"`
-		Rules         *SensitiveDataScannerRuleData          `json:"rules,omitempty"`
+		Rules *SensitiveDataScannerRuleData `json:"rules,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"configuration", "rules"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "configuration", "rules",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Configuration != nil && all.Configuration.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Configuration != nil && all.Configuration.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Configuration = all.Configuration
-	if all.Rules != nil && all.Rules.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Rules != nil && all.Rules.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Rules = all.Rules

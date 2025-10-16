@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DashboardLayoutType Layout type of the dashboard.
 type DashboardLayoutType string
@@ -16,7 +20,7 @@ type DashboardLayoutType string
 // List of DashboardLayoutType.
 const (
 	DASHBOARDLAYOUTTYPE_ORDERED DashboardLayoutType = "ordered"
-	DASHBOARDLAYOUTTYPE_FREE    DashboardLayoutType = "free"
+	DASHBOARDLAYOUTTYPE_FREE DashboardLayoutType = "free"
 )
 
 var allowedDashboardLayoutTypeEnumValues = []DashboardLayoutType{

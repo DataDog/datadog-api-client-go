@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsPrivateLocationSecrets Secrets for the private location. Only present in the response when creating the private location.
 type SyntheticsPrivateLocationSecrets struct {
@@ -15,9 +21,10 @@ type SyntheticsPrivateLocationSecrets struct {
 	// Private key for the private location.
 	ConfigDecryption *SyntheticsPrivateLocationSecretsConfigDecryption `json:"config_decryption,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsPrivateLocationSecrets instantiates a new SyntheticsPrivateLocationSecrets object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSyntheticsPrivateLocationSecretsWithDefaults() *SyntheticsPrivateLocatio
 	this := SyntheticsPrivateLocationSecrets{}
 	return &this
 }
-
 // GetAuthentication returns the Authentication field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationSecrets) GetAuthentication() SyntheticsPrivateLocationSecretsAuthentication {
 	if o == nil || o.Authentication == nil {
@@ -63,6 +69,7 @@ func (o *SyntheticsPrivateLocationSecrets) HasAuthentication() bool {
 func (o *SyntheticsPrivateLocationSecrets) SetAuthentication(v SyntheticsPrivateLocationSecretsAuthentication) {
 	o.Authentication = &v
 }
+
 
 // GetConfigDecryption returns the ConfigDecryption field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationSecrets) GetConfigDecryption() SyntheticsPrivateLocationSecretsConfigDecryption {
@@ -92,6 +99,8 @@ func (o *SyntheticsPrivateLocationSecrets) SetConfigDecryption(v SyntheticsPriva
 	o.ConfigDecryption = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsPrivateLocationSecrets) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o SyntheticsPrivateLocationSecrets) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsPrivateLocationSecrets) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Authentication   *SyntheticsPrivateLocationSecretsAuthentication   `json:"authentication,omitempty"`
+		Authentication *SyntheticsPrivateLocationSecretsAuthentication `json:"authentication,omitempty"`
 		ConfigDecryption *SyntheticsPrivateLocationSecretsConfigDecryption `json:"config_decryption,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,17 +131,17 @@ func (o *SyntheticsPrivateLocationSecrets) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"authentication", "config_decryption"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "authentication", "config_decryption",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Authentication != nil && all.Authentication.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Authentication != nil && all.Authentication.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Authentication = all.Authentication
-	if all.ConfigDecryption != nil && all.ConfigDecryption.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ConfigDecryption != nil && all.ConfigDecryption.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ConfigDecryption = all.ConfigDecryption

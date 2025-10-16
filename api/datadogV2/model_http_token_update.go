@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HTTPTokenUpdate The definition of `HTTPTokenUpdate` object.
 type HTTPTokenUpdate struct {
@@ -21,9 +25,10 @@ type HTTPTokenUpdate struct {
 	// The `HTTPToken` `value`.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHTTPTokenUpdate instantiates a new HTTPTokenUpdate object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewHTTPTokenUpdateWithDefaults() *HTTPTokenUpdate {
 	this := HTTPTokenUpdate{}
 	return &this
 }
-
 // GetDeleted returns the Deleted field value if set, zero value otherwise.
 func (o *HTTPTokenUpdate) GetDeleted() bool {
 	if o == nil || o.Deleted == nil {
@@ -73,6 +77,7 @@ func (o *HTTPTokenUpdate) SetDeleted(v bool) {
 	o.Deleted = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *HTTPTokenUpdate) GetName() string {
 	if o == nil {
@@ -95,6 +100,7 @@ func (o *HTTPTokenUpdate) GetNameOk() (*string, bool) {
 func (o *HTTPTokenUpdate) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetType returns the Type field value.
 func (o *HTTPTokenUpdate) GetType() TokenType {
@@ -119,6 +125,7 @@ func (o *HTTPTokenUpdate) SetType(v TokenType) {
 	o.Type = v
 }
 
+
 // GetValue returns the Value field value.
 func (o *HTTPTokenUpdate) GetValue() string {
 	if o == nil {
@@ -142,6 +149,8 @@ func (o *HTTPTokenUpdate) SetValue(v string) {
 	o.Value = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o HTTPTokenUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -164,10 +173,10 @@ func (o HTTPTokenUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HTTPTokenUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Deleted *bool      `json:"deleted,omitempty"`
-		Name    *string    `json:"name"`
-		Type    *TokenType `json:"type"`
-		Value   *string    `json:"value"`
+		Deleted *bool `json:"deleted,omitempty"`
+		Name *string `json:"name"`
+		Type *TokenType `json:"type"`
+		Value *string `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -183,7 +192,7 @@ func (o *HTTPTokenUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"deleted", "name", "type", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "deleted", "name", "type", "value",  })
 	} else {
 		return err
 	}

@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateCustomFrameworkRequest Request object to create a custom framework.
 type CreateCustomFrameworkRequest struct {
 	// Contains type and attributes for custom frameworks.
 	Data CustomFrameworkData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateCustomFrameworkRequest instantiates a new CreateCustomFrameworkRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewCreateCustomFrameworkRequestWithDefaults() *CreateCustomFrameworkRequest
 	this := CreateCustomFrameworkRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *CreateCustomFrameworkRequest) GetData() CustomFrameworkData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *CreateCustomFrameworkRequest) GetDataOk() (*CustomFrameworkData, bool) 
 func (o *CreateCustomFrameworkRequest) SetData(v CustomFrameworkData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateCustomFrameworkRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *CreateCustomFrameworkRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

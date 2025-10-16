@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineGeneratedMetric Defines a log-based custom metric, including its name, type, filter, value computation strategy,
 // and optional grouping fields.
@@ -24,9 +28,10 @@ type ObservabilityPipelineGeneratedMetric struct {
 	// Specifies how the value of the generated metric is computed.
 	Value ObservabilityPipelineMetricValue `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineGeneratedMetric instantiates a new ObservabilityPipelineGeneratedMetric object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewObservabilityPipelineGeneratedMetricWithDefaults() *ObservabilityPipelin
 	this := ObservabilityPipelineGeneratedMetric{}
 	return &this
 }
-
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *ObservabilityPipelineGeneratedMetric) GetGroupBy() []string {
 	if o == nil || o.GroupBy == nil {
@@ -77,6 +81,7 @@ func (o *ObservabilityPipelineGeneratedMetric) SetGroupBy(v []string) {
 	o.GroupBy = v
 }
 
+
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineGeneratedMetric) GetInclude() string {
 	if o == nil {
@@ -99,6 +104,7 @@ func (o *ObservabilityPipelineGeneratedMetric) GetIncludeOk() (*string, bool) {
 func (o *ObservabilityPipelineGeneratedMetric) SetInclude(v string) {
 	o.Include = v
 }
+
 
 // GetMetricType returns the MetricType field value.
 func (o *ObservabilityPipelineGeneratedMetric) GetMetricType() ObservabilityPipelineGeneratedMetricMetricType {
@@ -123,6 +129,7 @@ func (o *ObservabilityPipelineGeneratedMetric) SetMetricType(v ObservabilityPipe
 	o.MetricType = v
 }
 
+
 // GetName returns the Name field value.
 func (o *ObservabilityPipelineGeneratedMetric) GetName() string {
 	if o == nil {
@@ -145,6 +152,7 @@ func (o *ObservabilityPipelineGeneratedMetric) GetNameOk() (*string, bool) {
 func (o *ObservabilityPipelineGeneratedMetric) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetValue returns the Value field value.
 func (o *ObservabilityPipelineGeneratedMetric) GetValue() ObservabilityPipelineMetricValue {
@@ -169,6 +177,8 @@ func (o *ObservabilityPipelineGeneratedMetric) SetValue(v ObservabilityPipelineM
 	o.Value = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineGeneratedMetric) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -192,11 +202,11 @@ func (o ObservabilityPipelineGeneratedMetric) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineGeneratedMetric) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		GroupBy    []string                                        `json:"group_by,omitempty"`
-		Include    *string                                         `json:"include"`
+		GroupBy []string `json:"group_by,omitempty"`
+		Include *string `json:"include"`
 		MetricType *ObservabilityPipelineGeneratedMetricMetricType `json:"metric_type"`
-		Name       *string                                         `json:"name"`
-		Value      *ObservabilityPipelineMetricValue               `json:"value"`
+		Name *string `json:"name"`
+		Value *ObservabilityPipelineMetricValue `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -215,7 +225,7 @@ func (o *ObservabilityPipelineGeneratedMetric) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"group_by", "include", "metric_type", "name", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "group_by", "include", "metric_type", "name", "value",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafExclusionFilterScope Deploy on services based on their environment and/or service name.
 type ApplicationSecurityWafExclusionFilterScope struct {
@@ -15,9 +21,10 @@ type ApplicationSecurityWafExclusionFilterScope struct {
 	// Deploy on this service.
 	Service *string `json:"service,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafExclusionFilterScope instantiates a new ApplicationSecurityWafExclusionFilterScope object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewApplicationSecurityWafExclusionFilterScopeWithDefaults() *ApplicationSec
 	this := ApplicationSecurityWafExclusionFilterScope{}
 	return &this
 }
-
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafExclusionFilterScope) GetEnv() string {
 	if o == nil || o.Env == nil {
@@ -63,6 +69,7 @@ func (o *ApplicationSecurityWafExclusionFilterScope) HasEnv() bool {
 func (o *ApplicationSecurityWafExclusionFilterScope) SetEnv(v string) {
 	o.Env = &v
 }
+
 
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafExclusionFilterScope) GetService() string {
@@ -92,6 +99,8 @@ func (o *ApplicationSecurityWafExclusionFilterScope) SetService(v string) {
 	o.Service = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafExclusionFilterScope) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o ApplicationSecurityWafExclusionFilterScope) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationSecurityWafExclusionFilterScope) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Env     *string `json:"env,omitempty"`
+		Env *string `json:"env,omitempty"`
 		Service *string `json:"service,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *ApplicationSecurityWafExclusionFilterScope) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"env", "service"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "env", "service",  })
 	} else {
 		return err
 	}

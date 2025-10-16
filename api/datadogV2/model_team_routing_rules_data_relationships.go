@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamRoutingRulesDataRelationships Specifies relationships for team routing rules, including rule references.
 type TeamRoutingRulesDataRelationships struct {
 	// Holds references to a set of routing rules in a relationship.
 	Rules *TeamRoutingRulesDataRelationshipsRules `json:"rules,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTeamRoutingRulesDataRelationships instantiates a new TeamRoutingRulesDataRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewTeamRoutingRulesDataRelationshipsWithDefaults() *TeamRoutingRulesDataRel
 	this := TeamRoutingRulesDataRelationships{}
 	return &this
 }
-
 // GetRules returns the Rules field value if set, zero value otherwise.
 func (o *TeamRoutingRulesDataRelationships) GetRules() TeamRoutingRulesDataRelationshipsRules {
 	if o == nil || o.Rules == nil {
@@ -62,6 +68,8 @@ func (o *TeamRoutingRulesDataRelationships) SetRules(v TeamRoutingRulesDataRelat
 	o.Rules = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamRoutingRulesDataRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *TeamRoutingRulesDataRelationships) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"rules"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "rules",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Rules != nil && all.Rules.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Rules != nil && all.Rules.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Rules = all.Rules

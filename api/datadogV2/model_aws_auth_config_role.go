@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSAuthConfigRole AWS Authentication config to integrate your account using an IAM role.
 type AWSAuthConfigRole struct {
@@ -17,9 +21,10 @@ type AWSAuthConfigRole struct {
 	// AWS IAM Role name.
 	RoleName string `json:"role_name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSAuthConfigRole instantiates a new AWSAuthConfigRole object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewAWSAuthConfigRoleWithDefaults() *AWSAuthConfigRole {
 	this := AWSAuthConfigRole{}
 	return &this
 }
-
 // GetExternalId returns the ExternalId field value if set, zero value otherwise.
 func (o *AWSAuthConfigRole) GetExternalId() string {
 	if o == nil || o.ExternalId == nil {
@@ -67,6 +71,7 @@ func (o *AWSAuthConfigRole) SetExternalId(v string) {
 	o.ExternalId = &v
 }
 
+
 // GetRoleName returns the RoleName field value.
 func (o *AWSAuthConfigRole) GetRoleName() string {
 	if o == nil {
@@ -90,6 +95,8 @@ func (o *AWSAuthConfigRole) SetRoleName(v string) {
 	o.RoleName = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSAuthConfigRole) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o AWSAuthConfigRole) MarshalJSON() ([]byte, error) {
 func (o *AWSAuthConfigRole) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ExternalId *string `json:"external_id,omitempty"`
-		RoleName   *string `json:"role_name"`
+		RoleName *string `json:"role_name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *AWSAuthConfigRole) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"external_id", "role_name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "external_id", "role_name",  })
 	} else {
 		return err
 	}

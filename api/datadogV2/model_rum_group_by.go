@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RUMGroupBy A group-by rule.
 type RUMGroupBy struct {
@@ -26,9 +30,10 @@ type RUMGroupBy struct {
 	// A resulting object to put the given computes in over all the matching records.
 	Total *RUMGroupByTotal `json:"total,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRUMGroupBy instantiates a new RUMGroupBy object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +56,6 @@ func NewRUMGroupByWithDefaults() *RUMGroupBy {
 	this.Limit = &limit
 	return &this
 }
-
 // GetFacet returns the Facet field value.
 func (o *RUMGroupBy) GetFacet() string {
 	if o == nil {
@@ -74,6 +78,7 @@ func (o *RUMGroupBy) GetFacetOk() (*string, bool) {
 func (o *RUMGroupBy) SetFacet(v string) {
 	o.Facet = v
 }
+
 
 // GetHistogram returns the Histogram field value if set, zero value otherwise.
 func (o *RUMGroupBy) GetHistogram() RUMGroupByHistogram {
@@ -103,6 +108,7 @@ func (o *RUMGroupBy) SetHistogram(v RUMGroupByHistogram) {
 	o.Histogram = &v
 }
 
+
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *RUMGroupBy) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
@@ -130,6 +136,7 @@ func (o *RUMGroupBy) HasLimit() bool {
 func (o *RUMGroupBy) SetLimit(v int64) {
 	o.Limit = &v
 }
+
 
 // GetMissing returns the Missing field value if set, zero value otherwise.
 func (o *RUMGroupBy) GetMissing() RUMGroupByMissing {
@@ -159,6 +166,7 @@ func (o *RUMGroupBy) SetMissing(v RUMGroupByMissing) {
 	o.Missing = &v
 }
 
+
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *RUMGroupBy) GetSort() RUMAggregateSort {
 	if o == nil || o.Sort == nil {
@@ -187,6 +195,7 @@ func (o *RUMGroupBy) SetSort(v RUMAggregateSort) {
 	o.Sort = &v
 }
 
+
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *RUMGroupBy) GetTotal() RUMGroupByTotal {
 	if o == nil || o.Total == nil {
@@ -214,6 +223,8 @@ func (o *RUMGroupBy) HasTotal() bool {
 func (o *RUMGroupBy) SetTotal(v RUMGroupByTotal) {
 	o.Total = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMGroupBy) MarshalJSON() ([]byte, error) {
@@ -247,12 +258,12 @@ func (o RUMGroupBy) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Facet     *string              `json:"facet"`
+		Facet *string `json:"facet"`
 		Histogram *RUMGroupByHistogram `json:"histogram,omitempty"`
-		Limit     *int64               `json:"limit,omitempty"`
-		Missing   *RUMGroupByMissing   `json:"missing,omitempty"`
-		Sort      *RUMAggregateSort    `json:"sort,omitempty"`
-		Total     *RUMGroupByTotal     `json:"total,omitempty"`
+		Limit *int64 `json:"limit,omitempty"`
+		Missing *RUMGroupByMissing `json:"missing,omitempty"`
+		Sort *RUMAggregateSort `json:"sort,omitempty"`
+		Total *RUMGroupByTotal `json:"total,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -262,20 +273,20 @@ func (o *RUMGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"facet", "histogram", "limit", "missing", "sort", "total"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "facet", "histogram", "limit", "missing", "sort", "total",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Facet = *all.Facet
-	if all.Histogram != nil && all.Histogram.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Histogram != nil && all.Histogram.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Histogram = all.Histogram
 	o.Limit = all.Limit
 	o.Missing = all.Missing
-	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Sort = all.Sort

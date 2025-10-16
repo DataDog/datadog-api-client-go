@@ -2,28 +2,32 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricsAggregator The type of aggregation that can be performed on metrics-based queries.
 type MetricsAggregator string
 
 // List of MetricsAggregator.
 const (
-	METRICSAGGREGATOR_AVG        MetricsAggregator = "avg"
-	METRICSAGGREGATOR_MIN        MetricsAggregator = "min"
-	METRICSAGGREGATOR_MAX        MetricsAggregator = "max"
-	METRICSAGGREGATOR_SUM        MetricsAggregator = "sum"
-	METRICSAGGREGATOR_LAST       MetricsAggregator = "last"
+	METRICSAGGREGATOR_AVG MetricsAggregator = "avg"
+	METRICSAGGREGATOR_MIN MetricsAggregator = "min"
+	METRICSAGGREGATOR_MAX MetricsAggregator = "max"
+	METRICSAGGREGATOR_SUM MetricsAggregator = "sum"
+	METRICSAGGREGATOR_LAST MetricsAggregator = "last"
 	METRICSAGGREGATOR_PERCENTILE MetricsAggregator = "percentile"
-	METRICSAGGREGATOR_MEAN       MetricsAggregator = "mean"
-	METRICSAGGREGATOR_L2NORM     MetricsAggregator = "l2norm"
-	METRICSAGGREGATOR_AREA       MetricsAggregator = "area"
+	METRICSAGGREGATOR_MEAN MetricsAggregator = "mean"
+	METRICSAGGREGATOR_L2NORM MetricsAggregator = "l2norm"
+	METRICSAGGREGATOR_AREA MetricsAggregator = "area"
 )
 
 var allowedMetricsAggregatorEnumValues = []MetricsAggregator{

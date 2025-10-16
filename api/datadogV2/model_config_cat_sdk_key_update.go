@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ConfigCatSDKKeyUpdate The definition of the `ConfigCatSDKKey` object.
 type ConfigCatSDKKeyUpdate struct {
@@ -21,9 +25,10 @@ type ConfigCatSDKKeyUpdate struct {
 	// The definition of the `ConfigCatSDKKey` object.
 	Type ConfigCatSDKKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewConfigCatSDKKeyUpdate instantiates a new ConfigCatSDKKeyUpdate object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewConfigCatSDKKeyUpdateWithDefaults() *ConfigCatSDKKeyUpdate {
 	this := ConfigCatSDKKeyUpdate{}
 	return &this
 }
-
 // GetApiPassword returns the ApiPassword field value if set, zero value otherwise.
 func (o *ConfigCatSDKKeyUpdate) GetApiPassword() string {
 	if o == nil || o.ApiPassword == nil {
@@ -70,6 +74,7 @@ func (o *ConfigCatSDKKeyUpdate) HasApiPassword() bool {
 func (o *ConfigCatSDKKeyUpdate) SetApiPassword(v string) {
 	o.ApiPassword = &v
 }
+
 
 // GetApiUsername returns the ApiUsername field value if set, zero value otherwise.
 func (o *ConfigCatSDKKeyUpdate) GetApiUsername() string {
@@ -99,6 +104,7 @@ func (o *ConfigCatSDKKeyUpdate) SetApiUsername(v string) {
 	o.ApiUsername = &v
 }
 
+
 // GetSdkKey returns the SdkKey field value if set, zero value otherwise.
 func (o *ConfigCatSDKKeyUpdate) GetSdkKey() string {
 	if o == nil || o.SdkKey == nil {
@@ -127,6 +133,7 @@ func (o *ConfigCatSDKKeyUpdate) SetSdkKey(v string) {
 	o.SdkKey = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ConfigCatSDKKeyUpdate) GetType() ConfigCatSDKKeyType {
 	if o == nil {
@@ -149,6 +156,8 @@ func (o *ConfigCatSDKKeyUpdate) GetTypeOk() (*ConfigCatSDKKeyType, bool) {
 func (o *ConfigCatSDKKeyUpdate) SetType(v ConfigCatSDKKeyType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ConfigCatSDKKeyUpdate) MarshalJSON() ([]byte, error) {
@@ -176,10 +185,10 @@ func (o ConfigCatSDKKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ConfigCatSDKKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiPassword *string              `json:"api_password,omitempty"`
-		ApiUsername *string              `json:"api_username,omitempty"`
-		SdkKey      *string              `json:"sdk_key,omitempty"`
-		Type        *ConfigCatSDKKeyType `json:"type"`
+		ApiPassword *string `json:"api_password,omitempty"`
+		ApiUsername *string `json:"api_username,omitempty"`
+		SdkKey *string `json:"sdk_key,omitempty"`
+		Type *ConfigCatSDKKeyType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -189,7 +198,7 @@ func (o *ConfigCatSDKKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_password", "api_username", "sdk_key", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_password", "api_username", "sdk_key", "type",  })
 	} else {
 		return err
 	}

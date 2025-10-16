@@ -2,25 +2,29 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationKeysSort Sorting options
 type ApplicationKeysSort string
 
 // List of ApplicationKeysSort.
 const (
-	APPLICATIONKEYSSORT_CREATED_AT_ASCENDING  ApplicationKeysSort = "created_at"
+	APPLICATIONKEYSSORT_CREATED_AT_ASCENDING ApplicationKeysSort = "created_at"
 	APPLICATIONKEYSSORT_CREATED_AT_DESCENDING ApplicationKeysSort = "-created_at"
-	APPLICATIONKEYSSORT_LAST4_ASCENDING       ApplicationKeysSort = "last4"
-	APPLICATIONKEYSSORT_LAST4_DESCENDING      ApplicationKeysSort = "-last4"
-	APPLICATIONKEYSSORT_NAME_ASCENDING        ApplicationKeysSort = "name"
-	APPLICATIONKEYSSORT_NAME_DESCENDING       ApplicationKeysSort = "-name"
+	APPLICATIONKEYSSORT_LAST4_ASCENDING ApplicationKeysSort = "last4"
+	APPLICATIONKEYSSORT_LAST4_DESCENDING ApplicationKeysSort = "-last4"
+	APPLICATIONKEYSSORT_NAME_ASCENDING ApplicationKeysSort = "name"
+	APPLICATIONKEYSSORT_NAME_DESCENDING ApplicationKeysSort = "-name"
 )
 
 var allowedApplicationKeysSortEnumValues = []ApplicationKeysSort{

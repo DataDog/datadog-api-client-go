@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GcpScanOptionsData Single GCP scan options entry.
 type GcpScanOptionsData struct {
@@ -19,9 +23,10 @@ type GcpScanOptionsData struct {
 	// GCP scan options resource type.
 	Type GcpScanOptionsDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGcpScanOptionsData instantiates a new GcpScanOptionsData object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewGcpScanOptionsDataWithDefaults() *GcpScanOptionsData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *GcpScanOptionsData) GetAttributes() GcpScanOptionsDataAttributes {
 	if o == nil || o.Attributes == nil {
@@ -72,6 +76,7 @@ func (o *GcpScanOptionsData) SetAttributes(v GcpScanOptionsDataAttributes) {
 	o.Attributes = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *GcpScanOptionsData) GetId() string {
 	if o == nil {
@@ -94,6 +99,7 @@ func (o *GcpScanOptionsData) GetIdOk() (*string, bool) {
 func (o *GcpScanOptionsData) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *GcpScanOptionsData) GetType() GcpScanOptionsDataType {
@@ -118,6 +124,8 @@ func (o *GcpScanOptionsData) SetType(v GcpScanOptionsDataType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o GcpScanOptionsData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -140,8 +148,8 @@ func (o GcpScanOptionsData) MarshalJSON() ([]byte, error) {
 func (o *GcpScanOptionsData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *GcpScanOptionsDataAttributes `json:"attributes,omitempty"`
-		Id         *string                       `json:"id"`
-		Type       *GcpScanOptionsDataType       `json:"type"`
+		Id *string `json:"id"`
+		Type *GcpScanOptionsDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -154,13 +162,13 @@ func (o *GcpScanOptionsData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsQueryCompute Define computation for a log query.
 type LogsQueryCompute struct {
@@ -19,9 +23,10 @@ type LogsQueryCompute struct {
 	// Define a time interval in seconds.
 	Interval *int64 `json:"interval,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsQueryCompute instantiates a new LogsQueryCompute object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewLogsQueryComputeWithDefaults() *LogsQueryCompute {
 	this := LogsQueryCompute{}
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value.
 func (o *LogsQueryCompute) GetAggregation() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *LogsQueryCompute) GetAggregationOk() (*string, bool) {
 func (o *LogsQueryCompute) SetAggregation(v string) {
 	o.Aggregation = v
 }
+
 
 // GetFacet returns the Facet field value if set, zero value otherwise.
 func (o *LogsQueryCompute) GetFacet() string {
@@ -92,6 +97,7 @@ func (o *LogsQueryCompute) SetFacet(v string) {
 	o.Facet = &v
 }
 
+
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *LogsQueryCompute) GetInterval() int64 {
 	if o == nil || o.Interval == nil {
@@ -120,6 +126,8 @@ func (o *LogsQueryCompute) SetInterval(v int64) {
 	o.Interval = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsQueryCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -144,8 +152,8 @@ func (o LogsQueryCompute) MarshalJSON() ([]byte, error) {
 func (o *LogsQueryCompute) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Aggregation *string `json:"aggregation"`
-		Facet       *string `json:"facet,omitempty"`
-		Interval    *int64  `json:"interval,omitempty"`
+		Facet *string `json:"facet,omitempty"`
+		Interval *int64 `json:"interval,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,7 +163,7 @@ func (o *LogsQueryCompute) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "facet", "interval"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation", "facet", "interval",  })
 	} else {
 		return err
 	}

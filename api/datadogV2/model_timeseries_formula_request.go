@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TimeseriesFormulaRequest A single timeseries query to be executed.
 type TimeseriesFormulaRequest struct {
@@ -17,9 +21,10 @@ type TimeseriesFormulaRequest struct {
 	// The type of the resource. The value should always be timeseries_request.
 	Type TimeseriesFormulaRequestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTimeseriesFormulaRequest instantiates a new TimeseriesFormulaRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewTimeseriesFormulaRequestWithDefaults() *TimeseriesFormulaRequest {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *TimeseriesFormulaRequest) GetAttributes() TimeseriesFormulaRequestAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *TimeseriesFormulaRequest) GetAttributesOk() (*TimeseriesFormulaRequestA
 func (o *TimeseriesFormulaRequest) SetAttributes(v TimeseriesFormulaRequestAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *TimeseriesFormulaRequest) GetType() TimeseriesFormulaRequestType {
@@ -88,6 +93,8 @@ func (o *TimeseriesFormulaRequest) SetType(v TimeseriesFormulaRequestType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TimeseriesFormulaRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o TimeseriesFormulaRequest) MarshalJSON() ([]byte, error) {
 func (o *TimeseriesFormulaRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *TimeseriesFormulaRequestAttributes `json:"attributes"`
-		Type       *TimeseriesFormulaRequestType       `json:"type"`
+		Type *TimeseriesFormulaRequestType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *TimeseriesFormulaRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

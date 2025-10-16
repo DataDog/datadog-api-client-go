@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssueLanguage Programming language associated with the issue.
 type IssueLanguage string
@@ -16,32 +20,32 @@ type IssueLanguage string
 // List of IssueLanguage.
 const (
 	ISSUELANGUAGE_BRIGHTSCRIPT IssueLanguage = "BRIGHTSCRIPT"
-	ISSUELANGUAGE_C            IssueLanguage = "C"
-	ISSUELANGUAGE_C_PLUS_PLUS  IssueLanguage = "C_PLUS_PLUS"
-	ISSUELANGUAGE_C_SHARP      IssueLanguage = "C_SHARP"
-	ISSUELANGUAGE_CLOJURE      IssueLanguage = "CLOJURE"
-	ISSUELANGUAGE_DOT_NET      IssueLanguage = "DOT_NET"
-	ISSUELANGUAGE_ELIXIR       IssueLanguage = "ELIXIR"
-	ISSUELANGUAGE_ERLANG       IssueLanguage = "ERLANG"
-	ISSUELANGUAGE_GO           IssueLanguage = "GO"
-	ISSUELANGUAGE_GROOVY       IssueLanguage = "GROOVY"
-	ISSUELANGUAGE_HASKELL      IssueLanguage = "HASKELL"
-	ISSUELANGUAGE_HCL          IssueLanguage = "HCL"
-	ISSUELANGUAGE_JAVA         IssueLanguage = "JAVA"
-	ISSUELANGUAGE_JAVASCRIPT   IssueLanguage = "JAVASCRIPT"
-	ISSUELANGUAGE_JVM          IssueLanguage = "JVM"
-	ISSUELANGUAGE_KOTLIN       IssueLanguage = "KOTLIN"
-	ISSUELANGUAGE_OBJECTIVE_C  IssueLanguage = "OBJECTIVE_C"
-	ISSUELANGUAGE_PERL         IssueLanguage = "PERL"
-	ISSUELANGUAGE_PHP          IssueLanguage = "PHP"
-	ISSUELANGUAGE_PYTHON       IssueLanguage = "PYTHON"
-	ISSUELANGUAGE_RUBY         IssueLanguage = "RUBY"
-	ISSUELANGUAGE_RUST         IssueLanguage = "RUST"
-	ISSUELANGUAGE_SCALA        IssueLanguage = "SCALA"
-	ISSUELANGUAGE_SWIFT        IssueLanguage = "SWIFT"
-	ISSUELANGUAGE_TERRAFORM    IssueLanguage = "TERRAFORM"
-	ISSUELANGUAGE_TYPESCRIPT   IssueLanguage = "TYPESCRIPT"
-	ISSUELANGUAGE_UNKNOWN      IssueLanguage = "UNKNOWN"
+	ISSUELANGUAGE_C IssueLanguage = "C"
+	ISSUELANGUAGE_C_PLUS_PLUS IssueLanguage = "C_PLUS_PLUS"
+	ISSUELANGUAGE_C_SHARP IssueLanguage = "C_SHARP"
+	ISSUELANGUAGE_CLOJURE IssueLanguage = "CLOJURE"
+	ISSUELANGUAGE_DOT_NET IssueLanguage = "DOT_NET"
+	ISSUELANGUAGE_ELIXIR IssueLanguage = "ELIXIR"
+	ISSUELANGUAGE_ERLANG IssueLanguage = "ERLANG"
+	ISSUELANGUAGE_GO IssueLanguage = "GO"
+	ISSUELANGUAGE_GROOVY IssueLanguage = "GROOVY"
+	ISSUELANGUAGE_HASKELL IssueLanguage = "HASKELL"
+	ISSUELANGUAGE_HCL IssueLanguage = "HCL"
+	ISSUELANGUAGE_JAVA IssueLanguage = "JAVA"
+	ISSUELANGUAGE_JAVASCRIPT IssueLanguage = "JAVASCRIPT"
+	ISSUELANGUAGE_JVM IssueLanguage = "JVM"
+	ISSUELANGUAGE_KOTLIN IssueLanguage = "KOTLIN"
+	ISSUELANGUAGE_OBJECTIVE_C IssueLanguage = "OBJECTIVE_C"
+	ISSUELANGUAGE_PERL IssueLanguage = "PERL"
+	ISSUELANGUAGE_PHP IssueLanguage = "PHP"
+	ISSUELANGUAGE_PYTHON IssueLanguage = "PYTHON"
+	ISSUELANGUAGE_RUBY IssueLanguage = "RUBY"
+	ISSUELANGUAGE_RUST IssueLanguage = "RUST"
+	ISSUELANGUAGE_SCALA IssueLanguage = "SCALA"
+	ISSUELANGUAGE_SWIFT IssueLanguage = "SWIFT"
+	ISSUELANGUAGE_TERRAFORM IssueLanguage = "TERRAFORM"
+	ISSUELANGUAGE_TYPESCRIPT IssueLanguage = "TYPESCRIPT"
+	ISSUELANGUAGE_UNKNOWN IssueLanguage = "UNKNOWN"
 )
 
 var allowedIssueLanguageEnumValues = []IssueLanguage{

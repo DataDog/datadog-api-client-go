@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ChangeEventCustomAttributesAuthorType Author's type.
 type ChangeEventCustomAttributesAuthorType string
 
 // List of ChangeEventCustomAttributesAuthorType.
 const (
-	CHANGEEVENTCUSTOMATTRIBUTESAUTHORTYPE_USER       ChangeEventCustomAttributesAuthorType = "user"
-	CHANGEEVENTCUSTOMATTRIBUTESAUTHORTYPE_SYSTEM     ChangeEventCustomAttributesAuthorType = "system"
-	CHANGEEVENTCUSTOMATTRIBUTESAUTHORTYPE_API        ChangeEventCustomAttributesAuthorType = "api"
+	CHANGEEVENTCUSTOMATTRIBUTESAUTHORTYPE_USER ChangeEventCustomAttributesAuthorType = "user"
+	CHANGEEVENTCUSTOMATTRIBUTESAUTHORTYPE_SYSTEM ChangeEventCustomAttributesAuthorType = "system"
+	CHANGEEVENTCUSTOMATTRIBUTESAUTHORTYPE_API ChangeEventCustomAttributesAuthorType = "api"
 	CHANGEEVENTCUSTOMATTRIBUTESAUTHORTYPE_AUTOMATION ChangeEventCustomAttributesAuthorType = "automation"
 )
 

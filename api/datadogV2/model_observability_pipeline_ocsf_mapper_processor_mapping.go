@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineOcsfMapperProcessorMapping Defines how specific events are transformed to OCSF using a mapping configuration.
 type ObservabilityPipelineOcsfMapperProcessorMapping struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineOcsfMapperProcessorMapping struct {
 	// Defines a single mapping rule for transforming logs into the OCSF schema.
 	Mapping ObservabilityPipelineOcsfMapperProcessorMappingMapping `json:"mapping"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineOcsfMapperProcessorMapping instantiates a new ObservabilityPipelineOcsfMapperProcessorMapping object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineOcsfMapperProcessorMappingWithDefaults() *Observabi
 	this := ObservabilityPipelineOcsfMapperProcessorMapping{}
 	return &this
 }
-
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineOcsfMapperProcessorMapping) GetInclude() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineOcsfMapperProcessorMapping) GetIncludeOk() (*strin
 func (o *ObservabilityPipelineOcsfMapperProcessorMapping) SetInclude(v string) {
 	o.Include = v
 }
+
 
 // GetMapping returns the Mapping field value.
 func (o *ObservabilityPipelineOcsfMapperProcessorMapping) GetMapping() ObservabilityPipelineOcsfMapperProcessorMappingMapping {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineOcsfMapperProcessorMapping) SetMapping(v Observabi
 	o.Mapping = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineOcsfMapperProcessorMapping) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o ObservabilityPipelineOcsfMapperProcessorMapping) MarshalJSON() ([]byte, 
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineOcsfMapperProcessorMapping) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Include *string                                                 `json:"include"`
+		Include *string `json:"include"`
 		Mapping *ObservabilityPipelineOcsfMapperProcessorMappingMapping `json:"mapping"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineOcsfMapperProcessorMapping) UnmarshalJSON(bytes []
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"include", "mapping"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "include", "mapping",  })
 	} else {
 		return err
 	}

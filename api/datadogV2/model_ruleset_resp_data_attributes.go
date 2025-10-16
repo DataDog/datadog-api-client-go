@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RulesetRespDataAttributes The definition of `RulesetRespDataAttributes` object.
 type RulesetRespDataAttributes struct {
@@ -31,9 +35,10 @@ type RulesetRespDataAttributes struct {
 	// The `attributes` `version`.
 	Version int64 `json:"version"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRulesetRespDataAttributes instantiates a new RulesetRespDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -59,7 +64,6 @@ func NewRulesetRespDataAttributesWithDefaults() *RulesetRespDataAttributes {
 	this := RulesetRespDataAttributes{}
 	return &this
 }
-
 // GetCreated returns the Created field value.
 func (o *RulesetRespDataAttributes) GetCreated() RulesetRespDataAttributesCreated {
 	if o == nil {
@@ -82,6 +86,7 @@ func (o *RulesetRespDataAttributes) GetCreatedOk() (*RulesetRespDataAttributesCr
 func (o *RulesetRespDataAttributes) SetCreated(v RulesetRespDataAttributesCreated) {
 	o.Created = v
 }
+
 
 // GetEnabled returns the Enabled field value.
 func (o *RulesetRespDataAttributes) GetEnabled() bool {
@@ -106,6 +111,7 @@ func (o *RulesetRespDataAttributes) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
+
 // GetLastModifiedUserUuid returns the LastModifiedUserUuid field value.
 func (o *RulesetRespDataAttributes) GetLastModifiedUserUuid() string {
 	if o == nil {
@@ -128,6 +134,7 @@ func (o *RulesetRespDataAttributes) GetLastModifiedUserUuidOk() (*string, bool) 
 func (o *RulesetRespDataAttributes) SetLastModifiedUserUuid(v string) {
 	o.LastModifiedUserUuid = v
 }
+
 
 // GetModified returns the Modified field value.
 func (o *RulesetRespDataAttributes) GetModified() RulesetRespDataAttributesModified {
@@ -152,6 +159,7 @@ func (o *RulesetRespDataAttributes) SetModified(v RulesetRespDataAttributesModif
 	o.Modified = v
 }
 
+
 // GetName returns the Name field value.
 func (o *RulesetRespDataAttributes) GetName() string {
 	if o == nil {
@@ -175,6 +183,7 @@ func (o *RulesetRespDataAttributes) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetPosition returns the Position field value.
 func (o *RulesetRespDataAttributes) GetPosition() int32 {
 	if o == nil {
@@ -197,6 +206,7 @@ func (o *RulesetRespDataAttributes) GetPositionOk() (*int32, bool) {
 func (o *RulesetRespDataAttributes) SetPosition(v int32) {
 	o.Position = v
 }
+
 
 // GetProcessingStatus returns the ProcessingStatus field value if set, zero value otherwise.
 func (o *RulesetRespDataAttributes) GetProcessingStatus() string {
@@ -226,6 +236,7 @@ func (o *RulesetRespDataAttributes) SetProcessingStatus(v string) {
 	o.ProcessingStatus = &v
 }
 
+
 // GetRules returns the Rules field value.
 func (o *RulesetRespDataAttributes) GetRules() []RulesetRespDataAttributesRulesItems {
 	if o == nil {
@@ -249,6 +260,7 @@ func (o *RulesetRespDataAttributes) SetRules(v []RulesetRespDataAttributesRulesI
 	o.Rules = v
 }
 
+
 // GetVersion returns the Version field value.
 func (o *RulesetRespDataAttributes) GetVersion() int64 {
 	if o == nil {
@@ -271,6 +283,8 @@ func (o *RulesetRespDataAttributes) GetVersionOk() (*int64, bool) {
 func (o *RulesetRespDataAttributes) SetVersion(v int64) {
 	o.Version = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RulesetRespDataAttributes) MarshalJSON() ([]byte, error) {
@@ -299,15 +313,15 @@ func (o RulesetRespDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RulesetRespDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Created              *RulesetRespDataAttributesCreated      `json:"created"`
-		Enabled              *bool                                  `json:"enabled"`
-		LastModifiedUserUuid *string                                `json:"last_modified_user_uuid"`
-		Modified             *RulesetRespDataAttributesModified     `json:"modified"`
-		Name                 *string                                `json:"name"`
-		Position             *int32                                 `json:"position"`
-		ProcessingStatus     *string                                `json:"processing_status,omitempty"`
-		Rules                *[]RulesetRespDataAttributesRulesItems `json:"rules"`
-		Version              *int64                                 `json:"version"`
+		Created *RulesetRespDataAttributesCreated `json:"created"`
+		Enabled *bool `json:"enabled"`
+		LastModifiedUserUuid *string `json:"last_modified_user_uuid"`
+		Modified *RulesetRespDataAttributesModified `json:"modified"`
+		Name *string `json:"name"`
+		Position *int32 `json:"position"`
+		ProcessingStatus *string `json:"processing_status,omitempty"`
+		Rules *[]RulesetRespDataAttributesRulesItems `json:"rules"`
+		Version *int64 `json:"version"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -338,7 +352,7 @@ func (o *RulesetRespDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created", "enabled", "last_modified_user_uuid", "modified", "name", "position", "processing_status", "rules", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created", "enabled", "last_modified_user_uuid", "modified", "name", "position", "processing_status", "rules", "version",  })
 	} else {
 		return err
 	}

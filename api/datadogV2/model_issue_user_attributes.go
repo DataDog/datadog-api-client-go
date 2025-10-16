@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssueUserAttributes Object containing the information of a user.
 type IssueUserAttributes struct {
@@ -17,9 +23,10 @@ type IssueUserAttributes struct {
 	// Name of the user.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssueUserAttributes instantiates a new IssueUserAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewIssueUserAttributesWithDefaults() *IssueUserAttributes {
 	this := IssueUserAttributes{}
 	return &this
 }
-
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *IssueUserAttributes) GetEmail() string {
 	if o == nil || o.Email == nil {
@@ -65,6 +71,7 @@ func (o *IssueUserAttributes) HasEmail() bool {
 func (o *IssueUserAttributes) SetEmail(v string) {
 	o.Email = &v
 }
+
 
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *IssueUserAttributes) GetHandle() string {
@@ -94,6 +101,7 @@ func (o *IssueUserAttributes) SetHandle(v string) {
 	o.Handle = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *IssueUserAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -122,6 +130,8 @@ func (o *IssueUserAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IssueUserAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o IssueUserAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IssueUserAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Email  *string `json:"email,omitempty"`
+		Email *string `json:"email,omitempty"`
 		Handle *string `json:"handle,omitempty"`
-		Name   *string `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"email", "handle", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "email", "handle", "name",  })
 	} else {
 		return err
 	}

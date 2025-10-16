@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AwsCURConfigPatchRequestAttributes Attributes for AWS CUR config Patch Request.
 type AwsCURConfigPatchRequestAttributes struct {
@@ -15,9 +21,10 @@ type AwsCURConfigPatchRequestAttributes struct {
 	// Whether or not the Cloud Cost Management account is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAwsCURConfigPatchRequestAttributes instantiates a new AwsCURConfigPatchRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewAwsCURConfigPatchRequestAttributesWithDefaults() *AwsCURConfigPatchReque
 	this := AwsCURConfigPatchRequestAttributes{}
 	return &this
 }
-
 // GetAccountFilters returns the AccountFilters field value if set, zero value otherwise.
 func (o *AwsCURConfigPatchRequestAttributes) GetAccountFilters() AccountFilteringConfig {
 	if o == nil || o.AccountFilters == nil {
@@ -63,6 +69,7 @@ func (o *AwsCURConfigPatchRequestAttributes) HasAccountFilters() bool {
 func (o *AwsCURConfigPatchRequestAttributes) SetAccountFilters(v AccountFilteringConfig) {
 	o.AccountFilters = &v
 }
+
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *AwsCURConfigPatchRequestAttributes) GetIsEnabled() bool {
@@ -92,6 +99,8 @@ func (o *AwsCURConfigPatchRequestAttributes) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AwsCURConfigPatchRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,20 +124,20 @@ func (o AwsCURConfigPatchRequestAttributes) MarshalJSON() ([]byte, error) {
 func (o *AwsCURConfigPatchRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AccountFilters *AccountFilteringConfig `json:"account_filters,omitempty"`
-		IsEnabled      *bool                   `json:"is_enabled,omitempty"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_filters", "is_enabled"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "account_filters", "is_enabled",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.AccountFilters != nil && all.AccountFilters.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.AccountFilters != nil && all.AccountFilters.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.AccountFilters = all.AccountFilters

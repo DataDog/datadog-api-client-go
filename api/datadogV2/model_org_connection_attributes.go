@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OrgConnectionAttributes Org connection attributes.
 type OrgConnectionAttributes struct {
@@ -18,9 +21,10 @@ type OrgConnectionAttributes struct {
 	// Timestamp when the connection was created.
 	CreatedAt time.Time `json:"created_at"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOrgConnectionAttributes instantiates a new OrgConnectionAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +44,6 @@ func NewOrgConnectionAttributesWithDefaults() *OrgConnectionAttributes {
 	this := OrgConnectionAttributes{}
 	return &this
 }
-
 // GetConnectionTypes returns the ConnectionTypes field value.
 func (o *OrgConnectionAttributes) GetConnectionTypes() []OrgConnectionTypeEnum {
 	if o == nil {
@@ -63,6 +66,7 @@ func (o *OrgConnectionAttributes) GetConnectionTypesOk() (*[]OrgConnectionTypeEn
 func (o *OrgConnectionAttributes) SetConnectionTypes(v []OrgConnectionTypeEnum) {
 	o.ConnectionTypes = v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value.
 func (o *OrgConnectionAttributes) GetCreatedAt() time.Time {
@@ -87,6 +91,8 @@ func (o *OrgConnectionAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OrgConnectionAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,7 +116,7 @@ func (o OrgConnectionAttributes) MarshalJSON() ([]byte, error) {
 func (o *OrgConnectionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ConnectionTypes *[]OrgConnectionTypeEnum `json:"connection_types"`
-		CreatedAt       *time.Time               `json:"created_at"`
+		CreatedAt *time.Time `json:"created_at"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -123,7 +129,7 @@ func (o *OrgConnectionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"connection_types", "created_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "connection_types", "created_at",  })
 	} else {
 		return err
 	}

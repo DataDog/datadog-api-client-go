@@ -2,14 +2,15 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -18,13 +19,13 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.ListFindings", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, _ := api.ListFindingsWithPagination(ctx, *datadogV2.NewListFindingsOptionalParameters())
+	resp, _ := api.ListFindingsWithPagination(ctx, *datadogV2.NewListFindingsOptionalParameters(), )
 
-	for paginationResult := range resp {
-		if paginationResult.Error != nil {
-			fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListFindings`: %v\n", paginationResult.Error)
-		}
-		responseContent, _ := json.MarshalIndent(paginationResult.Item, "", "  ")
-		fmt.Fprintf(os.Stdout, "%s\n", responseContent)
+        for paginationResult := range resp {
+            if paginationResult.Error != nil {
+                fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListFindings`: %v\n", paginationResult.Error)
+            }
+            responseContent, _ := json.MarshalIndent(paginationResult.Item, "", "  ")
+            fmt.Fprintf(os.Stdout, "%s\n", responseContent)
 	}
 }

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSAccountResponseData AWS Account response data.
 type AWSAccountResponseData struct {
@@ -21,9 +25,10 @@ type AWSAccountResponseData struct {
 	// AWS Account resource type.
 	Type AWSAccountType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSAccountResponseData instantiates a new AWSAccountResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewAWSAccountResponseDataWithDefaults() *AWSAccountResponseData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *AWSAccountResponseData) GetAttributes() AWSAccountResponseAttributes {
 	if o == nil || o.Attributes == nil {
@@ -74,6 +78,7 @@ func (o *AWSAccountResponseData) SetAttributes(v AWSAccountResponseAttributes) {
 	o.Attributes = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *AWSAccountResponseData) GetId() string {
 	if o == nil {
@@ -96,6 +101,7 @@ func (o *AWSAccountResponseData) GetIdOk() (*string, bool) {
 func (o *AWSAccountResponseData) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *AWSAccountResponseData) GetType() AWSAccountType {
@@ -120,6 +126,8 @@ func (o *AWSAccountResponseData) SetType(v AWSAccountType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSAccountResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -142,8 +150,8 @@ func (o AWSAccountResponseData) MarshalJSON() ([]byte, error) {
 func (o *AWSAccountResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *AWSAccountResponseAttributes `json:"attributes,omitempty"`
-		Id         *string                       `json:"id"`
-		Type       *AWSAccountType               `json:"type"`
+		Id *string `json:"id"`
+		Type *AWSAccountType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -156,13 +164,13 @@ func (o *AWSAccountResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

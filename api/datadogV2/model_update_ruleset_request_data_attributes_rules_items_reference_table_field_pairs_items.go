@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems The definition of `UpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems` object.
 type UpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems struct {
@@ -17,9 +21,10 @@ type UpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems s
 	// The `items` `output_key`.
 	OutputKey string `json:"output_key"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems instantiates a new UpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewUpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItem
 	this := UpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems{}
 	return &this
 }
-
 // GetInputColumn returns the InputColumn field value.
 func (o *UpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems) GetInputColumn() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *UpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsIte
 func (o *UpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems) SetInputColumn(v string) {
 	o.InputColumn = v
 }
+
 
 // GetOutputKey returns the OutputKey field value.
 func (o *UpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems) GetOutputKey() string {
@@ -86,6 +91,8 @@ func (o *UpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsIte
 	o.OutputKey = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o UpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItem
 func (o *UpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		InputColumn *string `json:"input_column"`
-		OutputKey   *string `json:"output_key"`
+		OutputKey *string `json:"output_key"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *UpdateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsIte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"input_column", "output_key"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "input_column", "output_key",  })
 	} else {
 		return err
 	}

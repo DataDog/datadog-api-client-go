@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EscalationRelationships Contains the relationships of an escalation object, including its responders.
 type EscalationRelationships struct {
 	// Lists the users involved in a specific step of the escalation policy.
 	Responders *EscalationRelationshipsResponders `json:"responders,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEscalationRelationships instantiates a new EscalationRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewEscalationRelationshipsWithDefaults() *EscalationRelationships {
 	this := EscalationRelationships{}
 	return &this
 }
-
 // GetResponders returns the Responders field value if set, zero value otherwise.
 func (o *EscalationRelationships) GetResponders() EscalationRelationshipsResponders {
 	if o == nil || o.Responders == nil {
@@ -62,6 +68,8 @@ func (o *EscalationRelationships) SetResponders(v EscalationRelationshipsRespond
 	o.Responders = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EscalationRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *EscalationRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"responders"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "responders",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Responders != nil && all.Responders.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Responders != nil && all.Responders.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Responders = all.Responders

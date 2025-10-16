@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafExclusionFilterAttributes Attributes describing a WAF exclusion filter.
 type ApplicationSecurityWafExclusionFilterAttributes struct {
@@ -33,9 +39,10 @@ type ApplicationSecurityWafExclusionFilterAttributes struct {
 	// Generated event search query for traces matching the exclusion filter.
 	SearchQuery *string `json:"search_query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafExclusionFilterAttributes instantiates a new ApplicationSecurityWafExclusionFilterAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +60,6 @@ func NewApplicationSecurityWafExclusionFilterAttributesWithDefaults() *Applicati
 	this := ApplicationSecurityWafExclusionFilterAttributes{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafExclusionFilterAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -81,6 +87,7 @@ func (o *ApplicationSecurityWafExclusionFilterAttributes) HasDescription() bool 
 func (o *ApplicationSecurityWafExclusionFilterAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafExclusionFilterAttributes) GetEnabled() bool {
@@ -110,6 +117,7 @@ func (o *ApplicationSecurityWafExclusionFilterAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
 // GetEventQuery returns the EventQuery field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafExclusionFilterAttributes) GetEventQuery() string {
 	if o == nil || o.EventQuery == nil {
@@ -137,6 +145,7 @@ func (o *ApplicationSecurityWafExclusionFilterAttributes) HasEventQuery() bool {
 func (o *ApplicationSecurityWafExclusionFilterAttributes) SetEventQuery(v string) {
 	o.EventQuery = &v
 }
+
 
 // GetIpList returns the IpList field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafExclusionFilterAttributes) GetIpList() []string {
@@ -166,6 +175,7 @@ func (o *ApplicationSecurityWafExclusionFilterAttributes) SetIpList(v []string) 
 	o.IpList = v
 }
 
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafExclusionFilterAttributes) GetMetadata() ApplicationSecurityWafExclusionFilterMetadata {
 	if o == nil || o.Metadata == nil {
@@ -193,6 +203,7 @@ func (o *ApplicationSecurityWafExclusionFilterAttributes) HasMetadata() bool {
 func (o *ApplicationSecurityWafExclusionFilterAttributes) SetMetadata(v ApplicationSecurityWafExclusionFilterMetadata) {
 	o.Metadata = &v
 }
+
 
 // GetOnMatch returns the OnMatch field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafExclusionFilterAttributes) GetOnMatch() ApplicationSecurityWafExclusionFilterOnMatch {
@@ -222,6 +233,7 @@ func (o *ApplicationSecurityWafExclusionFilterAttributes) SetOnMatch(v Applicati
 	o.OnMatch = &v
 }
 
+
 // GetParameters returns the Parameters field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafExclusionFilterAttributes) GetParameters() []string {
 	if o == nil || o.Parameters == nil {
@@ -249,6 +261,7 @@ func (o *ApplicationSecurityWafExclusionFilterAttributes) HasParameters() bool {
 func (o *ApplicationSecurityWafExclusionFilterAttributes) SetParameters(v []string) {
 	o.Parameters = v
 }
+
 
 // GetPathGlob returns the PathGlob field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafExclusionFilterAttributes) GetPathGlob() string {
@@ -278,6 +291,7 @@ func (o *ApplicationSecurityWafExclusionFilterAttributes) SetPathGlob(v string) 
 	o.PathGlob = &v
 }
 
+
 // GetRulesTarget returns the RulesTarget field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafExclusionFilterAttributes) GetRulesTarget() []ApplicationSecurityWafExclusionFilterRulesTarget {
 	if o == nil || o.RulesTarget == nil {
@@ -305,6 +319,7 @@ func (o *ApplicationSecurityWafExclusionFilterAttributes) HasRulesTarget() bool 
 func (o *ApplicationSecurityWafExclusionFilterAttributes) SetRulesTarget(v []ApplicationSecurityWafExclusionFilterRulesTarget) {
 	o.RulesTarget = v
 }
+
 
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafExclusionFilterAttributes) GetScope() []ApplicationSecurityWafExclusionFilterScope {
@@ -334,6 +349,7 @@ func (o *ApplicationSecurityWafExclusionFilterAttributes) SetScope(v []Applicati
 	o.Scope = v
 }
 
+
 // GetSearchQuery returns the SearchQuery field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafExclusionFilterAttributes) GetSearchQuery() string {
 	if o == nil || o.SearchQuery == nil {
@@ -361,6 +377,8 @@ func (o *ApplicationSecurityWafExclusionFilterAttributes) HasSearchQuery() bool 
 func (o *ApplicationSecurityWafExclusionFilterAttributes) SetSearchQuery(v string) {
 	o.SearchQuery = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafExclusionFilterAttributes) MarshalJSON() ([]byte, error) {
@@ -411,24 +429,24 @@ func (o ApplicationSecurityWafExclusionFilterAttributes) MarshalJSON() ([]byte, 
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationSecurityWafExclusionFilterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description *string                                            `json:"description,omitempty"`
-		Enabled     *bool                                              `json:"enabled,omitempty"`
-		EventQuery  *string                                            `json:"event_query,omitempty"`
-		IpList      []string                                           `json:"ip_list,omitempty"`
-		Metadata    *ApplicationSecurityWafExclusionFilterMetadata     `json:"metadata,omitempty"`
-		OnMatch     *ApplicationSecurityWafExclusionFilterOnMatch      `json:"on_match,omitempty"`
-		Parameters  []string                                           `json:"parameters,omitempty"`
-		PathGlob    *string                                            `json:"path_glob,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
+		EventQuery *string `json:"event_query,omitempty"`
+		IpList []string `json:"ip_list,omitempty"`
+		Metadata *ApplicationSecurityWafExclusionFilterMetadata `json:"metadata,omitempty"`
+		OnMatch *ApplicationSecurityWafExclusionFilterOnMatch `json:"on_match,omitempty"`
+		Parameters []string `json:"parameters,omitempty"`
+		PathGlob *string `json:"path_glob,omitempty"`
 		RulesTarget []ApplicationSecurityWafExclusionFilterRulesTarget `json:"rules_target,omitempty"`
-		Scope       []ApplicationSecurityWafExclusionFilterScope       `json:"scope,omitempty"`
-		SearchQuery *string                                            `json:"search_query,omitempty"`
+		Scope []ApplicationSecurityWafExclusionFilterScope `json:"scope,omitempty"`
+		SearchQuery *string `json:"search_query,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "enabled", "event_query", "ip_list", "metadata", "on_match", "parameters", "path_glob", "rules_target", "scope", "search_query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "enabled", "event_query", "ip_list", "metadata", "on_match", "parameters", "path_glob", "rules_target", "scope", "search_query",  })
 	} else {
 		return err
 	}
@@ -438,11 +456,11 @@ func (o *ApplicationSecurityWafExclusionFilterAttributes) UnmarshalJSON(bytes []
 	o.Enabled = all.Enabled
 	o.EventQuery = all.EventQuery
 	o.IpList = all.IpList
-	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Metadata = all.Metadata
-	if all.OnMatch != nil && !all.OnMatch.IsValid() {
+	if all.OnMatch != nil &&!all.OnMatch.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.OnMatch = all.OnMatch

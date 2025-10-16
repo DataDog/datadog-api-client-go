@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptions Configuration for fully redacting sensitive data.
 type ObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptions struct {
 	// The `ObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptions` `replace`.
 	Replace string `json:"replace"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptions instantiates a new ObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptionsWit
 	this := ObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptions{}
 	return &this
 }
-
 // GetReplace returns the Replace field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptions) GetReplace() string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptions) 
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptions) SetReplace(v string) {
 	o.Replace = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptions) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptions) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"replace"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "replace",  })
 	} else {
 		return err
 	}

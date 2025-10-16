@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSampleProcessor The `sample` processor allows probabilistic sampling of logs at a fixed rate.
 type ObservabilityPipelineSampleProcessor struct {
@@ -25,9 +29,10 @@ type ObservabilityPipelineSampleProcessor struct {
 	// The processor type. The value should always be `sample`.
 	Type ObservabilityPipelineSampleProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSampleProcessor instantiates a new ObservabilityPipelineSampleProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +56,6 @@ func NewObservabilityPipelineSampleProcessorWithDefaults() *ObservabilityPipelin
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineSampleProcessor) GetId() string {
 	if o == nil {
@@ -74,6 +78,7 @@ func (o *ObservabilityPipelineSampleProcessor) GetIdOk() (*string, bool) {
 func (o *ObservabilityPipelineSampleProcessor) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineSampleProcessor) GetInclude() string {
@@ -98,6 +103,7 @@ func (o *ObservabilityPipelineSampleProcessor) SetInclude(v string) {
 	o.Include = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineSampleProcessor) GetInputs() []string {
 	if o == nil {
@@ -120,6 +126,7 @@ func (o *ObservabilityPipelineSampleProcessor) GetInputsOk() (*[]string, bool) {
 func (o *ObservabilityPipelineSampleProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetPercentage returns the Percentage field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSampleProcessor) GetPercentage() float64 {
@@ -149,6 +156,7 @@ func (o *ObservabilityPipelineSampleProcessor) SetPercentage(v float64) {
 	o.Percentage = &v
 }
 
+
 // GetRate returns the Rate field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSampleProcessor) GetRate() int64 {
 	if o == nil || o.Rate == nil {
@@ -177,6 +185,7 @@ func (o *ObservabilityPipelineSampleProcessor) SetRate(v int64) {
 	o.Rate = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineSampleProcessor) GetType() ObservabilityPipelineSampleProcessorType {
 	if o == nil {
@@ -199,6 +208,8 @@ func (o *ObservabilityPipelineSampleProcessor) GetTypeOk() (*ObservabilityPipeli
 func (o *ObservabilityPipelineSampleProcessor) SetType(v ObservabilityPipelineSampleProcessorType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSampleProcessor) MarshalJSON() ([]byte, error) {
@@ -226,12 +237,12 @@ func (o ObservabilityPipelineSampleProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSampleProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id         *string                                   `json:"id"`
-		Include    *string                                   `json:"include"`
-		Inputs     *[]string                                 `json:"inputs"`
-		Percentage *float64                                  `json:"percentage,omitempty"`
-		Rate       *int64                                    `json:"rate,omitempty"`
-		Type       *ObservabilityPipelineSampleProcessorType `json:"type"`
+		Id *string `json:"id"`
+		Include *string `json:"include"`
+		Inputs *[]string `json:"inputs"`
+		Percentage *float64 `json:"percentage,omitempty"`
+		Rate *int64 `json:"rate,omitempty"`
+		Type *ObservabilityPipelineSampleProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -250,7 +261,7 @@ func (o *ObservabilityPipelineSampleProcessor) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "include", "inputs", "percentage", "rate", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "include", "inputs", "percentage", "rate", "type",  })
 	} else {
 		return err
 	}

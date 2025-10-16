@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAssertionTargetValue - Value used by the operator in assertions. Can be either a number or string.
 type SyntheticsAssertionTargetValue struct {
@@ -80,9 +86,11 @@ func (obj SyntheticsAssertionTargetValue) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SyntheticsAssertionTargetValueNumber)
 	}
 
+
 	if obj.SyntheticsAssertionTargetValueString != nil {
 		return datadog.Marshal(&obj.SyntheticsAssertionTargetValueString)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj SyntheticsAssertionTargetValue) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SyntheticsAssertionTargetValue) GetActualInstance() interface{} {
+func (obj *SyntheticsAssertionTargetValue) GetActualInstance() (interface{}) {
 	if obj.SyntheticsAssertionTargetValueNumber != nil {
 		return obj.SyntheticsAssertionTargetValueNumber
 	}
 
+
 	if obj.SyntheticsAssertionTargetValueString != nil {
 		return obj.SyntheticsAssertionTargetValueString
 	}
+
 
 	// all schemas are nil
 	return nil

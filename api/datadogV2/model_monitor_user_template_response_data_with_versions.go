@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorUserTemplateResponseDataWithVersions Monitor user template data.
 type MonitorUserTemplateResponseDataWithVersions struct {
@@ -17,9 +23,10 @@ type MonitorUserTemplateResponseDataWithVersions struct {
 	// Monitor user template resource type.
 	Type *MonitorUserTemplateResourceType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorUserTemplateResponseDataWithVersions instantiates a new MonitorUserTemplateResponseDataWithVersions object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewMonitorUserTemplateResponseDataWithVersionsWithDefaults() *MonitorUserTe
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *MonitorUserTemplateResponseDataWithVersions) GetAttributes() MonitorUserTemplate {
 	if o == nil || o.Attributes == nil {
@@ -69,6 +75,7 @@ func (o *MonitorUserTemplateResponseDataWithVersions) HasAttributes() bool {
 func (o *MonitorUserTemplateResponseDataWithVersions) SetAttributes(v MonitorUserTemplate) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *MonitorUserTemplateResponseDataWithVersions) GetId() string {
@@ -98,6 +105,7 @@ func (o *MonitorUserTemplateResponseDataWithVersions) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MonitorUserTemplateResponseDataWithVersions) GetType() MonitorUserTemplateResourceType {
 	if o == nil || o.Type == nil {
@@ -126,6 +134,8 @@ func (o *MonitorUserTemplateResponseDataWithVersions) SetType(v MonitorUserTempl
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorUserTemplateResponseDataWithVersions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -151,27 +161,27 @@ func (o MonitorUserTemplateResponseDataWithVersions) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorUserTemplateResponseDataWithVersions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *MonitorUserTemplate             `json:"attributes,omitempty"`
-		Id         *string                          `json:"id,omitempty"`
-		Type       *MonitorUserTemplateResourceType `json:"type,omitempty"`
+		Attributes *MonitorUserTemplate `json:"attributes,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *MonitorUserTemplateResourceType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

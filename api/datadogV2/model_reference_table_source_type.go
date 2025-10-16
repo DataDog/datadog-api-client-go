@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ReferenceTableSourceType The source type for reference table data. Includes all possible source types that can appear in responses.
 type ReferenceTableSourceType string
@@ -16,13 +20,13 @@ type ReferenceTableSourceType string
 // List of ReferenceTableSourceType.
 const (
 	REFERENCETABLESOURCETYPE_LOCAL_FILE ReferenceTableSourceType = "LOCAL_FILE"
-	REFERENCETABLESOURCETYPE_S3         ReferenceTableSourceType = "S3"
-	REFERENCETABLESOURCETYPE_GCS        ReferenceTableSourceType = "GCS"
-	REFERENCETABLESOURCETYPE_AZURE      ReferenceTableSourceType = "AZURE"
+	REFERENCETABLESOURCETYPE_S3 ReferenceTableSourceType = "S3"
+	REFERENCETABLESOURCETYPE_GCS ReferenceTableSourceType = "GCS"
+	REFERENCETABLESOURCETYPE_AZURE ReferenceTableSourceType = "AZURE"
 	REFERENCETABLESOURCETYPE_SERVICENOW ReferenceTableSourceType = "SERVICENOW"
 	REFERENCETABLESOURCETYPE_SALESFORCE ReferenceTableSourceType = "SALESFORCE"
 	REFERENCETABLESOURCETYPE_DATABRICKS ReferenceTableSourceType = "DATABRICKS"
-	REFERENCETABLESOURCETYPE_SNOWFLAKE  ReferenceTableSourceType = "SNOWFLAKE"
+	REFERENCETABLESOURCETYPE_SNOWFLAKE ReferenceTableSourceType = "SNOWFLAKE"
 )
 
 var allowedReferenceTableSourceTypeEnumValues = []ReferenceTableSourceType{

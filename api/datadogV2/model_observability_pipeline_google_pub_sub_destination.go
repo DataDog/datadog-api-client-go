@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineGooglePubSubDestination The `google_pubsub` destination publishes logs to a Google Cloud Pub/Sub topic.
 type ObservabilityPipelineGooglePubSubDestination struct {
@@ -29,9 +33,10 @@ type ObservabilityPipelineGooglePubSubDestination struct {
 	// The destination type. The value should always be `google_pubsub`.
 	Type ObservabilityPipelineGooglePubSubDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineGooglePubSubDestination instantiates a new ObservabilityPipelineGooglePubSubDestination object.
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +62,6 @@ func NewObservabilityPipelineGooglePubSubDestinationWithDefaults() *Observabilit
 	this.Type = typeVar
 	return &this
 }
-
 // GetAuth returns the Auth field value if set, zero value otherwise.
 func (o *ObservabilityPipelineGooglePubSubDestination) GetAuth() ObservabilityPipelineGcpAuth {
 	if o == nil || o.Auth == nil {
@@ -86,6 +90,7 @@ func (o *ObservabilityPipelineGooglePubSubDestination) SetAuth(v ObservabilityPi
 	o.Auth = &v
 }
 
+
 // GetEncoding returns the Encoding field value.
 func (o *ObservabilityPipelineGooglePubSubDestination) GetEncoding() ObservabilityPipelineGooglePubSubDestinationEncoding {
 	if o == nil {
@@ -108,6 +113,7 @@ func (o *ObservabilityPipelineGooglePubSubDestination) GetEncodingOk() (*Observa
 func (o *ObservabilityPipelineGooglePubSubDestination) SetEncoding(v ObservabilityPipelineGooglePubSubDestinationEncoding) {
 	o.Encoding = v
 }
+
 
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineGooglePubSubDestination) GetId() string {
@@ -132,6 +138,7 @@ func (o *ObservabilityPipelineGooglePubSubDestination) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineGooglePubSubDestination) GetInputs() []string {
 	if o == nil {
@@ -155,6 +162,7 @@ func (o *ObservabilityPipelineGooglePubSubDestination) SetInputs(v []string) {
 	o.Inputs = v
 }
 
+
 // GetProject returns the Project field value.
 func (o *ObservabilityPipelineGooglePubSubDestination) GetProject() string {
 	if o == nil {
@@ -177,6 +185,7 @@ func (o *ObservabilityPipelineGooglePubSubDestination) GetProjectOk() (*string, 
 func (o *ObservabilityPipelineGooglePubSubDestination) SetProject(v string) {
 	o.Project = v
 }
+
 
 // GetTls returns the Tls field value if set, zero value otherwise.
 func (o *ObservabilityPipelineGooglePubSubDestination) GetTls() ObservabilityPipelineTls {
@@ -206,6 +215,7 @@ func (o *ObservabilityPipelineGooglePubSubDestination) SetTls(v ObservabilityPip
 	o.Tls = &v
 }
 
+
 // GetTopic returns the Topic field value.
 func (o *ObservabilityPipelineGooglePubSubDestination) GetTopic() string {
 	if o == nil {
@@ -229,6 +239,7 @@ func (o *ObservabilityPipelineGooglePubSubDestination) SetTopic(v string) {
 	o.Topic = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineGooglePubSubDestination) GetType() ObservabilityPipelineGooglePubSubDestinationType {
 	if o == nil {
@@ -251,6 +262,8 @@ func (o *ObservabilityPipelineGooglePubSubDestination) GetTypeOk() (*Observabili
 func (o *ObservabilityPipelineGooglePubSubDestination) SetType(v ObservabilityPipelineGooglePubSubDestinationType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineGooglePubSubDestination) MarshalJSON() ([]byte, error) {
@@ -280,14 +293,14 @@ func (o ObservabilityPipelineGooglePubSubDestination) MarshalJSON() ([]byte, err
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineGooglePubSubDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Auth     *ObservabilityPipelineGcpAuth                         `json:"auth,omitempty"`
+		Auth *ObservabilityPipelineGcpAuth `json:"auth,omitempty"`
 		Encoding *ObservabilityPipelineGooglePubSubDestinationEncoding `json:"encoding"`
-		Id       *string                                               `json:"id"`
-		Inputs   *[]string                                             `json:"inputs"`
-		Project  *string                                               `json:"project"`
-		Tls      *ObservabilityPipelineTls                             `json:"tls,omitempty"`
-		Topic    *string                                               `json:"topic"`
-		Type     *ObservabilityPipelineGooglePubSubDestinationType     `json:"type"`
+		Id *string `json:"id"`
+		Inputs *[]string `json:"inputs"`
+		Project *string `json:"project"`
+		Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
+		Topic *string `json:"topic"`
+		Type *ObservabilityPipelineGooglePubSubDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -312,13 +325,13 @@ func (o *ObservabilityPipelineGooglePubSubDestination) UnmarshalJSON(bytes []byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "encoding", "id", "inputs", "project", "tls", "topic", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "auth", "encoding", "id", "inputs", "project", "tls", "topic", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Auth != nil && all.Auth.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Auth != nil && all.Auth.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Auth = all.Auth
@@ -330,7 +343,7 @@ func (o *ObservabilityPipelineGooglePubSubDestination) UnmarshalJSON(bytes []byt
 	o.Id = *all.Id
 	o.Inputs = *all.Inputs
 	o.Project = *all.Project
-	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tls = all.Tls

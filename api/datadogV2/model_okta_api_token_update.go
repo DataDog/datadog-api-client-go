@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OktaAPITokenUpdate The definition of the `OktaAPIToken` object.
 type OktaAPITokenUpdate struct {
@@ -19,9 +23,10 @@ type OktaAPITokenUpdate struct {
 	// The definition of the `OktaAPIToken` object.
 	Type OktaAPITokenType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOktaAPITokenUpdate instantiates a new OktaAPITokenUpdate object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewOktaAPITokenUpdateWithDefaults() *OktaAPITokenUpdate {
 	this := OktaAPITokenUpdate{}
 	return &this
 }
-
 // GetApiToken returns the ApiToken field value if set, zero value otherwise.
 func (o *OktaAPITokenUpdate) GetApiToken() string {
 	if o == nil || o.ApiToken == nil {
@@ -68,6 +72,7 @@ func (o *OktaAPITokenUpdate) HasApiToken() bool {
 func (o *OktaAPITokenUpdate) SetApiToken(v string) {
 	o.ApiToken = &v
 }
+
 
 // GetDomain returns the Domain field value if set, zero value otherwise.
 func (o *OktaAPITokenUpdate) GetDomain() string {
@@ -97,6 +102,7 @@ func (o *OktaAPITokenUpdate) SetDomain(v string) {
 	o.Domain = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *OktaAPITokenUpdate) GetType() OktaAPITokenType {
 	if o == nil {
@@ -119,6 +125,8 @@ func (o *OktaAPITokenUpdate) GetTypeOk() (*OktaAPITokenType, bool) {
 func (o *OktaAPITokenUpdate) SetType(v OktaAPITokenType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o OktaAPITokenUpdate) MarshalJSON() ([]byte, error) {
@@ -143,9 +151,9 @@ func (o OktaAPITokenUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OktaAPITokenUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string           `json:"api_token,omitempty"`
-		Domain   *string           `json:"domain,omitempty"`
-		Type     *OktaAPITokenType `json:"type"`
+		ApiToken *string `json:"api_token,omitempty"`
+		Domain *string `json:"domain,omitempty"`
+		Type *OktaAPITokenType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,7 +163,7 @@ func (o *OktaAPITokenUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_token", "domain", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_token", "domain", "type",  })
 	} else {
 		return err
 	}

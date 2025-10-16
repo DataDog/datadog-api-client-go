@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsArchiveEncryptionS3Type Type of S3 encryption for a destination.
 type LogsArchiveEncryptionS3Type string
@@ -16,8 +20,8 @@ type LogsArchiveEncryptionS3Type string
 // List of LogsArchiveEncryptionS3Type.
 const (
 	LOGSARCHIVEENCRYPTIONS3TYPE_NO_OVERRIDE LogsArchiveEncryptionS3Type = "NO_OVERRIDE"
-	LOGSARCHIVEENCRYPTIONS3TYPE_SSE_S3      LogsArchiveEncryptionS3Type = "SSE_S3"
-	LOGSARCHIVEENCRYPTIONS3TYPE_SSE_KMS     LogsArchiveEncryptionS3Type = "SSE_KMS"
+	LOGSARCHIVEENCRYPTIONS3TYPE_SSE_S3 LogsArchiveEncryptionS3Type = "SSE_S3"
+	LOGSARCHIVEENCRYPTIONS3TYPE_SSE_KMS LogsArchiveEncryptionS3Type = "SSE_KMS"
 )
 
 var allowedLogsArchiveEncryptionS3TypeEnumValues = []LogsArchiveEncryptionS3Type{

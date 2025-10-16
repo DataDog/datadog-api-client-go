@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamRoutingRulesDataRelationshipsRules Holds references to a set of routing rules in a relationship.
 type TeamRoutingRulesDataRelationshipsRules struct {
 	// An array of references to the routing rules associated with this team.
 	Data []TeamRoutingRulesDataRelationshipsRulesDataItems `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTeamRoutingRulesDataRelationshipsRules instantiates a new TeamRoutingRulesDataRelationshipsRules object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewTeamRoutingRulesDataRelationshipsRulesWithDefaults() *TeamRoutingRulesDa
 	this := TeamRoutingRulesDataRelationshipsRules{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *TeamRoutingRulesDataRelationshipsRules) GetData() []TeamRoutingRulesDataRelationshipsRulesDataItems {
 	if o == nil || o.Data == nil {
@@ -62,6 +68,8 @@ func (o *TeamRoutingRulesDataRelationshipsRules) SetData(v []TeamRoutingRulesDat
 	o.Data = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamRoutingRulesDataRelationshipsRules) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *TeamRoutingRulesDataRelationshipsRules) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

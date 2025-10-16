@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ComponentGrid A grid component. The grid component is the root canvas for an app and contains all other components.
 type ComponentGrid struct {
@@ -23,9 +27,10 @@ type ComponentGrid struct {
 	// The grid component type.
 	Type ComponentGridType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewComponentGrid instantiates a new ComponentGrid object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewComponentGridWithDefaults() *ComponentGrid {
 	this.Type = typeVar
 	return &this
 }
-
 // GetEvents returns the Events field value if set, zero value otherwise.
 func (o *ComponentGrid) GetEvents() []AppBuilderEvent {
 	if o == nil || o.Events == nil {
@@ -76,6 +80,7 @@ func (o *ComponentGrid) HasEvents() bool {
 func (o *ComponentGrid) SetEvents(v []AppBuilderEvent) {
 	o.Events = v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ComponentGrid) GetId() string {
@@ -105,6 +110,7 @@ func (o *ComponentGrid) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *ComponentGrid) GetName() string {
 	if o == nil {
@@ -127,6 +133,7 @@ func (o *ComponentGrid) GetNameOk() (*string, bool) {
 func (o *ComponentGrid) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetProperties returns the Properties field value.
 func (o *ComponentGrid) GetProperties() ComponentGridProperties {
@@ -151,6 +158,7 @@ func (o *ComponentGrid) SetProperties(v ComponentGridProperties) {
 	o.Properties = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ComponentGrid) GetType() ComponentGridType {
 	if o == nil {
@@ -173,6 +181,8 @@ func (o *ComponentGrid) GetTypeOk() (*ComponentGridType, bool) {
 func (o *ComponentGrid) SetType(v ComponentGridType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ComponentGrid) MarshalJSON() ([]byte, error) {
@@ -199,11 +209,11 @@ func (o ComponentGrid) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ComponentGrid) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Events     []AppBuilderEvent        `json:"events,omitempty"`
-		Id         *string                  `json:"id,omitempty"`
-		Name       *string                  `json:"name"`
+		Events []AppBuilderEvent `json:"events,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Name *string `json:"name"`
 		Properties *ComponentGridProperties `json:"properties"`
-		Type       *ComponentGridType       `json:"type"`
+		Type *ComponentGridType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -219,7 +229,7 @@ func (o *ComponentGrid) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"events", "id", "name", "properties", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "events", "id", "name", "properties", "type",  })
 	} else {
 		return err
 	}

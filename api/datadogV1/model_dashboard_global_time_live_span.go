@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DashboardGlobalTimeLiveSpan Dashboard global time live_span selection
 type DashboardGlobalTimeLiveSpan string
@@ -16,13 +20,13 @@ type DashboardGlobalTimeLiveSpan string
 // List of DashboardGlobalTimeLiveSpan.
 const (
 	DASHBOARDGLOBALTIMELIVESPAN_PAST_FIFTEEN_MINUTES DashboardGlobalTimeLiveSpan = "15m"
-	DASHBOARDGLOBALTIMELIVESPAN_PAST_ONE_HOUR        DashboardGlobalTimeLiveSpan = "1h"
-	DASHBOARDGLOBALTIMELIVESPAN_PAST_FOUR_HOURS      DashboardGlobalTimeLiveSpan = "4h"
-	DASHBOARDGLOBALTIMELIVESPAN_PAST_ONE_DAY         DashboardGlobalTimeLiveSpan = "1d"
-	DASHBOARDGLOBALTIMELIVESPAN_PAST_TWO_DAYS        DashboardGlobalTimeLiveSpan = "2d"
-	DASHBOARDGLOBALTIMELIVESPAN_PAST_ONE_WEEK        DashboardGlobalTimeLiveSpan = "1w"
-	DASHBOARDGLOBALTIMELIVESPAN_PAST_ONE_MONTH       DashboardGlobalTimeLiveSpan = "1mo"
-	DASHBOARDGLOBALTIMELIVESPAN_PAST_THREE_MONTHS    DashboardGlobalTimeLiveSpan = "3mo"
+	DASHBOARDGLOBALTIMELIVESPAN_PAST_ONE_HOUR DashboardGlobalTimeLiveSpan = "1h"
+	DASHBOARDGLOBALTIMELIVESPAN_PAST_FOUR_HOURS DashboardGlobalTimeLiveSpan = "4h"
+	DASHBOARDGLOBALTIMELIVESPAN_PAST_ONE_DAY DashboardGlobalTimeLiveSpan = "1d"
+	DASHBOARDGLOBALTIMELIVESPAN_PAST_TWO_DAYS DashboardGlobalTimeLiveSpan = "2d"
+	DASHBOARDGLOBALTIMELIVESPAN_PAST_ONE_WEEK DashboardGlobalTimeLiveSpan = "1w"
+	DASHBOARDGLOBALTIMELIVESPAN_PAST_ONE_MONTH DashboardGlobalTimeLiveSpan = "1mo"
+	DASHBOARDGLOBALTIMELIVESPAN_PAST_THREE_MONTHS DashboardGlobalTimeLiveSpan = "3mo"
 )
 
 var allowedDashboardGlobalTimeLiveSpanEnumValues = []DashboardGlobalTimeLiveSpan{

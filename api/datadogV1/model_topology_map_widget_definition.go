@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TopologyMapWidgetDefinition This widget displays a topology of nodes and edges for different data sources. It replaces the service map widget.
 type TopologyMapWidgetDefinition struct {
@@ -25,9 +29,10 @@ type TopologyMapWidgetDefinition struct {
 	// Type of the topology map widget.
 	Type TopologyMapWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTopologyMapWidgetDefinition instantiates a new TopologyMapWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +54,6 @@ func NewTopologyMapWidgetDefinitionWithDefaults() *TopologyMapWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
 func (o *TopologyMapWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 	if o == nil || o.CustomLinks == nil {
@@ -78,6 +82,7 @@ func (o *TopologyMapWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = v
 }
 
+
 // GetRequests returns the Requests field value.
 func (o *TopologyMapWidgetDefinition) GetRequests() []TopologyRequest {
 	if o == nil {
@@ -100,6 +105,7 @@ func (o *TopologyMapWidgetDefinition) GetRequestsOk() (*[]TopologyRequest, bool)
 func (o *TopologyMapWidgetDefinition) SetRequests(v []TopologyRequest) {
 	o.Requests = v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *TopologyMapWidgetDefinition) GetTitle() string {
@@ -129,6 +135,7 @@ func (o *TopologyMapWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *TopologyMapWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -156,6 +163,7 @@ func (o *TopologyMapWidgetDefinition) HasTitleAlign() bool {
 func (o *TopologyMapWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
+
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *TopologyMapWidgetDefinition) GetTitleSize() string {
@@ -185,6 +193,7 @@ func (o *TopologyMapWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *TopologyMapWidgetDefinition) GetType() TopologyMapWidgetDefinitionType {
 	if o == nil {
@@ -207,6 +216,8 @@ func (o *TopologyMapWidgetDefinition) GetTypeOk() (*TopologyMapWidgetDefinitionT
 func (o *TopologyMapWidgetDefinition) SetType(v TopologyMapWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TopologyMapWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -238,12 +249,12 @@ func (o TopologyMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TopologyMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomLinks []WidgetCustomLink               `json:"custom_links,omitempty"`
-		Requests    *[]TopologyRequest               `json:"requests"`
-		Title       *string                          `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign                 `json:"title_align,omitempty"`
-		TitleSize   *string                          `json:"title_size,omitempty"`
-		Type        *TopologyMapWidgetDefinitionType `json:"type"`
+		CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
+		Requests *[]TopologyRequest `json:"requests"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type *TopologyMapWidgetDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -256,7 +267,7 @@ func (o *TopologyMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom_links", "requests", "title", "title_align", "title_size", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "custom_links", "requests", "title", "title_align", "title_size", "type",  })
 	} else {
 		return err
 	}
@@ -265,7 +276,7 @@ func (o *TopologyMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.CustomLinks = all.CustomLinks
 	o.Requests = *all.Requests
 	o.Title = all.Title
-	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
+	if all.TitleAlign != nil &&!all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign

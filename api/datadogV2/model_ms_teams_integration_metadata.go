@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MSTeamsIntegrationMetadata Incident integration metadata for the Microsoft Teams integration.
 type MSTeamsIntegrationMetadata struct {
 	// Array of Microsoft Teams in this integration metadata.
 	Teams []MSTeamsIntegrationMetadataTeamsItem `json:"teams"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMSTeamsIntegrationMetadata instantiates a new MSTeamsIntegrationMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewMSTeamsIntegrationMetadataWithDefaults() *MSTeamsIntegrationMetadata {
 	this := MSTeamsIntegrationMetadata{}
 	return &this
 }
-
 // GetTeams returns the Teams field value.
 func (o *MSTeamsIntegrationMetadata) GetTeams() []MSTeamsIntegrationMetadataTeamsItem {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *MSTeamsIntegrationMetadata) GetTeamsOk() (*[]MSTeamsIntegrationMetadata
 func (o *MSTeamsIntegrationMetadata) SetTeams(v []MSTeamsIntegrationMetadataTeamsItem) {
 	o.Teams = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MSTeamsIntegrationMetadata) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *MSTeamsIntegrationMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"teams"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "teams",  })
 	} else {
 		return err
 	}

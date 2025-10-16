@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FastlyIntegration The definition of the `FastlyIntegration` object.
 type FastlyIntegration struct {
@@ -17,9 +21,10 @@ type FastlyIntegration struct {
 	// The definition of the `FastlyIntegrationType` object.
 	Type FastlyIntegrationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFastlyIntegration instantiates a new FastlyIntegration object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewFastlyIntegrationWithDefaults() *FastlyIntegration {
 	this := FastlyIntegration{}
 	return &this
 }
-
 // GetCredentials returns the Credentials field value.
 func (o *FastlyIntegration) GetCredentials() FastlyCredentials {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *FastlyIntegration) GetCredentialsOk() (*FastlyCredentials, bool) {
 func (o *FastlyIntegration) SetCredentials(v FastlyCredentials) {
 	o.Credentials = v
 }
+
 
 // GetType returns the Type field value.
 func (o *FastlyIntegration) GetType() FastlyIntegrationType {
@@ -86,6 +91,8 @@ func (o *FastlyIntegration) SetType(v FastlyIntegrationType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FastlyIntegration) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o FastlyIntegration) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FastlyIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Credentials *FastlyCredentials     `json:"credentials"`
-		Type        *FastlyIntegrationType `json:"type"`
+		Credentials *FastlyCredentials `json:"credentials"`
+		Type *FastlyIntegrationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *FastlyIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"credentials", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "credentials", "type",  })
 	} else {
 		return err
 	}

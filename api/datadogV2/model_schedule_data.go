@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScheduleData Represents the primary data object for a schedule, linking attributes and relationships.
 type ScheduleData struct {
@@ -21,9 +25,10 @@ type ScheduleData struct {
 	// Schedules resource type.
 	Type ScheduleDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScheduleData instantiates a new ScheduleData object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewScheduleDataWithDefaults() *ScheduleData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *ScheduleData) GetAttributes() ScheduleDataAttributes {
 	if o == nil || o.Attributes == nil {
@@ -72,6 +76,7 @@ func (o *ScheduleData) HasAttributes() bool {
 func (o *ScheduleData) SetAttributes(v ScheduleDataAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ScheduleData) GetId() string {
@@ -101,6 +106,7 @@ func (o *ScheduleData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *ScheduleData) GetRelationships() ScheduleDataRelationships {
 	if o == nil || o.Relationships == nil {
@@ -129,6 +135,7 @@ func (o *ScheduleData) SetRelationships(v ScheduleDataRelationships) {
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ScheduleData) GetType() ScheduleDataType {
 	if o == nil {
@@ -151,6 +158,8 @@ func (o *ScheduleData) GetTypeOk() (*ScheduleDataType, bool) {
 func (o *ScheduleData) SetType(v ScheduleDataType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ScheduleData) MarshalJSON() ([]byte, error) {
@@ -178,10 +187,10 @@ func (o ScheduleData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ScheduleData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *ScheduleDataAttributes    `json:"attributes,omitempty"`
-		Id            *string                    `json:"id,omitempty"`
+		Attributes *ScheduleDataAttributes `json:"attributes,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Relationships *ScheduleDataRelationships `json:"relationships,omitempty"`
-		Type          *ScheduleDataType          `json:"type"`
+		Type *ScheduleDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -191,18 +200,18 @@ func (o *ScheduleData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "relationships", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

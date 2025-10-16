@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DatasetRequest **Datasets Object Constraints**
 // - **Tag limit per dataset**:
@@ -27,9 +31,10 @@ type DatasetRequest struct {
 	// Resource type, always set to `dataset`.
 	Type DatasetType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDatasetRequest instantiates a new DatasetRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +56,6 @@ func NewDatasetRequestWithDefaults() *DatasetRequest {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *DatasetRequest) GetAttributes() DatasetAttributesRequest {
 	if o == nil {
@@ -74,6 +78,7 @@ func (o *DatasetRequest) GetAttributesOk() (*DatasetAttributesRequest, bool) {
 func (o *DatasetRequest) SetAttributes(v DatasetAttributesRequest) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *DatasetRequest) GetType() DatasetType {
@@ -98,6 +103,8 @@ func (o *DatasetRequest) SetType(v DatasetType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DatasetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -117,7 +124,7 @@ func (o DatasetRequest) MarshalJSON() ([]byte, error) {
 func (o *DatasetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *DatasetAttributesRequest `json:"attributes"`
-		Type       *DatasetType              `json:"type"`
+		Type *DatasetType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -130,7 +137,7 @@ func (o *DatasetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

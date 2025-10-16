@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
-	"github.com/google/uuid"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpdateAppRequestData The data object containing the new app definition. Any fields not included in the request remain unchanged.
 type UpdateAppRequestData struct {
@@ -21,9 +23,10 @@ type UpdateAppRequestData struct {
 	// The app definition type.
 	Type AppDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUpdateAppRequestData instantiates a new UpdateAppRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +47,6 @@ func NewUpdateAppRequestDataWithDefaults() *UpdateAppRequestData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *UpdateAppRequestData) GetAttributes() UpdateAppRequestDataAttributes {
 	if o == nil || o.Attributes == nil {
@@ -72,6 +74,7 @@ func (o *UpdateAppRequestData) HasAttributes() bool {
 func (o *UpdateAppRequestData) SetAttributes(v UpdateAppRequestDataAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *UpdateAppRequestData) GetId() uuid.UUID {
@@ -101,6 +104,7 @@ func (o *UpdateAppRequestData) SetId(v uuid.UUID) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *UpdateAppRequestData) GetType() AppDefinitionType {
 	if o == nil {
@@ -123,6 +127,8 @@ func (o *UpdateAppRequestData) GetTypeOk() (*AppDefinitionType, bool) {
 func (o *UpdateAppRequestData) SetType(v AppDefinitionType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateAppRequestData) MarshalJSON() ([]byte, error) {
@@ -148,8 +154,8 @@ func (o UpdateAppRequestData) MarshalJSON() ([]byte, error) {
 func (o *UpdateAppRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *UpdateAppRequestDataAttributes `json:"attributes,omitempty"`
-		Id         *uuid.UUID                      `json:"id,omitempty"`
-		Type       *AppDefinitionType              `json:"type"`
+		Id *uuid.UUID `json:"id,omitempty"`
+		Type *AppDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -159,13 +165,13 @@ func (o *UpdateAppRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

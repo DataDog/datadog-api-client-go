@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TableWidgetDefinition The table visualization is available on timeboards and screenboards. It displays columns of metrics grouped by tag key.
 type TableWidgetDefinition struct {
@@ -29,9 +33,10 @@ type TableWidgetDefinition struct {
 	// Type of the table widget.
 	Type TableWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTableWidgetDefinition instantiates a new TableWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewTableWidgetDefinitionWithDefaults() *TableWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
 func (o *TableWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 	if o == nil || o.CustomLinks == nil {
@@ -81,6 +85,7 @@ func (o *TableWidgetDefinition) HasCustomLinks() bool {
 func (o *TableWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = v
 }
+
 
 // GetHasSearchBar returns the HasSearchBar field value if set, zero value otherwise.
 func (o *TableWidgetDefinition) GetHasSearchBar() TableWidgetHasSearchBar {
@@ -110,6 +115,7 @@ func (o *TableWidgetDefinition) SetHasSearchBar(v TableWidgetHasSearchBar) {
 	o.HasSearchBar = &v
 }
 
+
 // GetRequests returns the Requests field value.
 func (o *TableWidgetDefinition) GetRequests() []TableWidgetRequest {
 	if o == nil {
@@ -132,6 +138,7 @@ func (o *TableWidgetDefinition) GetRequestsOk() (*[]TableWidgetRequest, bool) {
 func (o *TableWidgetDefinition) SetRequests(v []TableWidgetRequest) {
 	o.Requests = v
 }
+
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *TableWidgetDefinition) GetTime() WidgetTime {
@@ -161,6 +168,7 @@ func (o *TableWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *TableWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -188,6 +196,7 @@ func (o *TableWidgetDefinition) HasTitle() bool {
 func (o *TableWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
+
 
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *TableWidgetDefinition) GetTitleAlign() WidgetTextAlign {
@@ -217,6 +226,7 @@ func (o *TableWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
 
+
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *TableWidgetDefinition) GetTitleSize() string {
 	if o == nil || o.TitleSize == nil {
@@ -245,6 +255,7 @@ func (o *TableWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *TableWidgetDefinition) GetType() TableWidgetDefinitionType {
 	if o == nil {
@@ -267,6 +278,8 @@ func (o *TableWidgetDefinition) GetTypeOk() (*TableWidgetDefinitionType, bool) {
 func (o *TableWidgetDefinition) SetType(v TableWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TableWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -304,14 +317,14 @@ func (o TableWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TableWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomLinks  []WidgetCustomLink         `json:"custom_links,omitempty"`
-		HasSearchBar *TableWidgetHasSearchBar   `json:"has_search_bar,omitempty"`
-		Requests     *[]TableWidgetRequest      `json:"requests"`
-		Time         *WidgetTime                `json:"time,omitempty"`
-		Title        *string                    `json:"title,omitempty"`
-		TitleAlign   *WidgetTextAlign           `json:"title_align,omitempty"`
-		TitleSize    *string                    `json:"title_size,omitempty"`
-		Type         *TableWidgetDefinitionType `json:"type"`
+		CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
+		HasSearchBar *TableWidgetHasSearchBar `json:"has_search_bar,omitempty"`
+		Requests *[]TableWidgetRequest `json:"requests"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type *TableWidgetDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -324,14 +337,14 @@ func (o *TableWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom_links", "has_search_bar", "requests", "time", "title", "title_align", "title_size", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "custom_links", "has_search_bar", "requests", "time", "title", "title_align", "title_size", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.CustomLinks = all.CustomLinks
-	if all.HasSearchBar != nil && !all.HasSearchBar.IsValid() {
+	if all.HasSearchBar != nil &&!all.HasSearchBar.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.HasSearchBar = all.HasSearchBar
@@ -339,7 +352,7 @@ func (o *TableWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Requests = *all.Requests
 	o.Time = all.Time
 	o.Title = all.Title
-	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
+	if all.TitleAlign != nil &&!all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign

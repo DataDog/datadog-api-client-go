@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineDecoding The decoding format used to interpret incoming logs.
 type ObservabilityPipelineDecoding string
 
 // List of ObservabilityPipelineDecoding.
 const (
-	OBSERVABILITYPIPELINEDECODING_DECODE_BYTES  ObservabilityPipelineDecoding = "bytes"
-	OBSERVABILITYPIPELINEDECODING_DECODE_GELF   ObservabilityPipelineDecoding = "gelf"
-	OBSERVABILITYPIPELINEDECODING_DECODE_JSON   ObservabilityPipelineDecoding = "json"
+	OBSERVABILITYPIPELINEDECODING_DECODE_BYTES ObservabilityPipelineDecoding = "bytes"
+	OBSERVABILITYPIPELINEDECODING_DECODE_GELF ObservabilityPipelineDecoding = "gelf"
+	OBSERVABILITYPIPELINEDECODING_DECODE_JSON ObservabilityPipelineDecoding = "json"
 	OBSERVABILITYPIPELINEDECODING_DECODE_SYSLOG ObservabilityPipelineDecoding = "syslog"
 )
 

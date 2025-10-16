@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SingleAggregatedDnsResponseDataAttributes Attributes for an aggregated DNS flow.
 type SingleAggregatedDnsResponseDataAttributes struct {
@@ -15,9 +21,10 @@ type SingleAggregatedDnsResponseDataAttributes struct {
 	// Metrics associated with an aggregated DNS flow.
 	Metrics []SingleAggregatedDnsResponseDataAttributesMetricsItems `json:"metrics,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSingleAggregatedDnsResponseDataAttributes instantiates a new SingleAggregatedDnsResponseDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSingleAggregatedDnsResponseDataAttributesWithDefaults() *SingleAggregate
 	this := SingleAggregatedDnsResponseDataAttributes{}
 	return &this
 }
-
 // GetGroupBys returns the GroupBys field value if set, zero value otherwise.
 func (o *SingleAggregatedDnsResponseDataAttributes) GetGroupBys() []SingleAggregatedDnsResponseDataAttributesGroupByItems {
 	if o == nil || o.GroupBys == nil {
@@ -63,6 +69,7 @@ func (o *SingleAggregatedDnsResponseDataAttributes) HasGroupBys() bool {
 func (o *SingleAggregatedDnsResponseDataAttributes) SetGroupBys(v []SingleAggregatedDnsResponseDataAttributesGroupByItems) {
 	o.GroupBys = v
 }
+
 
 // GetMetrics returns the Metrics field value if set, zero value otherwise.
 func (o *SingleAggregatedDnsResponseDataAttributes) GetMetrics() []SingleAggregatedDnsResponseDataAttributesMetricsItems {
@@ -92,6 +99,8 @@ func (o *SingleAggregatedDnsResponseDataAttributes) SetMetrics(v []SingleAggrega
 	o.Metrics = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SingleAggregatedDnsResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o SingleAggregatedDnsResponseDataAttributes) MarshalJSON() ([]byte, error)
 func (o *SingleAggregatedDnsResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		GroupBys []SingleAggregatedDnsResponseDataAttributesGroupByItems `json:"group_bys,omitempty"`
-		Metrics  []SingleAggregatedDnsResponseDataAttributesMetricsItems `json:"metrics,omitempty"`
+		Metrics []SingleAggregatedDnsResponseDataAttributesMetricsItems `json:"metrics,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"group_bys", "metrics"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "group_bys", "metrics",  })
 	} else {
 		return err
 	}

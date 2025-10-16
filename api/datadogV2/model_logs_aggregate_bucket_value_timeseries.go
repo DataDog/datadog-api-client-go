@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsAggregateBucketValueTimeseries A timeseries array
 type LogsAggregateBucketValueTimeseries struct {
@@ -15,6 +21,7 @@ type LogsAggregateBucketValueTimeseries struct {
 	// UnparsedObject contains the raw value of the array if there was an error when deserializing into the struct
 	UnparsedObject []interface{} `json:"-"`
 }
+
 
 // NewLogsAggregateBucketValueTimeseries instantiates a new LogsAggregateBucketValueTimeseries object.
 // This constructor will assign default values to properties that have it defined,

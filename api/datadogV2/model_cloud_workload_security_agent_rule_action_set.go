@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudWorkloadSecurityAgentRuleActionSet The set action applied on the scope matching the rule
 type CloudWorkloadSecurityAgentRuleActionSet struct {
@@ -31,9 +37,10 @@ type CloudWorkloadSecurityAgentRuleActionSet struct {
 	// The value of the set action
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudWorkloadSecurityAgentRuleActionSet instantiates a new CloudWorkloadSecurityAgentRuleActionSet object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +58,6 @@ func NewCloudWorkloadSecurityAgentRuleActionSetWithDefaults() *CloudWorkloadSecu
 	this := CloudWorkloadSecurityAgentRuleActionSet{}
 	return &this
 }
-
 // GetAppend returns the Append field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleActionSet) GetAppend() bool {
 	if o == nil || o.Append == nil {
@@ -79,6 +85,7 @@ func (o *CloudWorkloadSecurityAgentRuleActionSet) HasAppend() bool {
 func (o *CloudWorkloadSecurityAgentRuleActionSet) SetAppend(v bool) {
 	o.Append = &v
 }
+
 
 // GetDefaultValue returns the DefaultValue field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleActionSet) GetDefaultValue() string {
@@ -108,6 +115,7 @@ func (o *CloudWorkloadSecurityAgentRuleActionSet) SetDefaultValue(v string) {
 	o.DefaultValue = &v
 }
 
+
 // GetExpression returns the Expression field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleActionSet) GetExpression() string {
 	if o == nil || o.Expression == nil {
@@ -135,6 +143,7 @@ func (o *CloudWorkloadSecurityAgentRuleActionSet) HasExpression() bool {
 func (o *CloudWorkloadSecurityAgentRuleActionSet) SetExpression(v string) {
 	o.Expression = &v
 }
+
 
 // GetField returns the Field field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleActionSet) GetField() string {
@@ -164,6 +173,7 @@ func (o *CloudWorkloadSecurityAgentRuleActionSet) SetField(v string) {
 	o.Field = &v
 }
 
+
 // GetInherited returns the Inherited field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleActionSet) GetInherited() bool {
 	if o == nil || o.Inherited == nil {
@@ -191,6 +201,7 @@ func (o *CloudWorkloadSecurityAgentRuleActionSet) HasInherited() bool {
 func (o *CloudWorkloadSecurityAgentRuleActionSet) SetInherited(v bool) {
 	o.Inherited = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleActionSet) GetName() string {
@@ -220,6 +231,7 @@ func (o *CloudWorkloadSecurityAgentRuleActionSet) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleActionSet) GetScope() string {
 	if o == nil || o.Scope == nil {
@@ -247,6 +259,7 @@ func (o *CloudWorkloadSecurityAgentRuleActionSet) HasScope() bool {
 func (o *CloudWorkloadSecurityAgentRuleActionSet) SetScope(v string) {
 	o.Scope = &v
 }
+
 
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleActionSet) GetSize() int64 {
@@ -276,6 +289,7 @@ func (o *CloudWorkloadSecurityAgentRuleActionSet) SetSize(v int64) {
 	o.Size = &v
 }
 
+
 // GetTtl returns the Ttl field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleActionSet) GetTtl() int64 {
 	if o == nil || o.Ttl == nil {
@@ -304,6 +318,7 @@ func (o *CloudWorkloadSecurityAgentRuleActionSet) SetTtl(v int64) {
 	o.Ttl = &v
 }
 
+
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleActionSet) GetValue() string {
 	if o == nil || o.Value == nil {
@@ -331,6 +346,8 @@ func (o *CloudWorkloadSecurityAgentRuleActionSet) HasValue() bool {
 func (o *CloudWorkloadSecurityAgentRuleActionSet) SetValue(v string) {
 	o.Value = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudWorkloadSecurityAgentRuleActionSet) MarshalJSON() ([]byte, error) {
@@ -378,23 +395,23 @@ func (o CloudWorkloadSecurityAgentRuleActionSet) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRuleActionSet) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Append       *bool   `json:"append,omitempty"`
+		Append *bool `json:"append,omitempty"`
 		DefaultValue *string `json:"default_value,omitempty"`
-		Expression   *string `json:"expression,omitempty"`
-		Field        *string `json:"field,omitempty"`
-		Inherited    *bool   `json:"inherited,omitempty"`
-		Name         *string `json:"name,omitempty"`
-		Scope        *string `json:"scope,omitempty"`
-		Size         *int64  `json:"size,omitempty"`
-		Ttl          *int64  `json:"ttl,omitempty"`
-		Value        *string `json:"value,omitempty"`
+		Expression *string `json:"expression,omitempty"`
+		Field *string `json:"field,omitempty"`
+		Inherited *bool `json:"inherited,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Scope *string `json:"scope,omitempty"`
+		Size *int64 `json:"size,omitempty"`
+		Ttl *int64 `json:"ttl,omitempty"`
+		Value *string `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"append", "default_value", "expression", "field", "inherited", "name", "scope", "size", "ttl", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "append", "default_value", "expression", "field", "inherited", "name", "scope", "size", "ttl", "value",  })
 	} else {
 		return err
 	}

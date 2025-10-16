@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSocketSourceFramingBytesMethod Byte frames are passed through as-is according to the underlying I/O boundaries (for example, split between messages or stream segments).
 type ObservabilityPipelineSocketSourceFramingBytesMethod string

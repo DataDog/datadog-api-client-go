@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentImpactAttributes The incident impact's attributes.
 type IncidentImpactAttributes struct {
@@ -28,9 +31,10 @@ type IncidentImpactAttributes struct {
 	// Timestamp representing when the impact started.
 	StartAt time.Time `json:"start_at"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentImpactAttributes instantiates a new IncidentImpactAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +54,6 @@ func NewIncidentImpactAttributesWithDefaults() *IncidentImpactAttributes {
 	this := IncidentImpactAttributes{}
 	return &this
 }
-
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *IncidentImpactAttributes) GetCreated() time.Time {
 	if o == nil || o.Created == nil {
@@ -79,6 +82,7 @@ func (o *IncidentImpactAttributes) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
+
 // GetDescription returns the Description field value.
 func (o *IncidentImpactAttributes) GetDescription() string {
 	if o == nil {
@@ -102,6 +106,7 @@ func (o *IncidentImpactAttributes) SetDescription(v string) {
 	o.Description = v
 }
 
+
 // GetEndAt returns the EndAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentImpactAttributes) GetEndAt() time.Time {
 	if o == nil || o.EndAt.Get() == nil {
@@ -115,7 +120,7 @@ func (o *IncidentImpactAttributes) GetEndAt() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentImpactAttributes) GetEndAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.EndAt.Get(), o.EndAt.IsSet()
@@ -130,7 +135,6 @@ func (o *IncidentImpactAttributes) HasEndAt() bool {
 func (o *IncidentImpactAttributes) SetEndAt(v time.Time) {
 	o.EndAt.Set(&v)
 }
-
 // SetEndAtNil sets the value for EndAt to be an explicit nil.
 func (o *IncidentImpactAttributes) SetEndAtNil() {
 	o.EndAt.Set(nil)
@@ -141,9 +145,10 @@ func (o *IncidentImpactAttributes) UnsetEndAt() {
 	o.EndAt.Unset()
 }
 
+
 // GetFields returns the Fields field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentImpactAttributes) GetFields() map[string]interface{} {
-	if o == nil {
+	if o == nil  {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -169,6 +174,7 @@ func (o *IncidentImpactAttributes) HasFields() bool {
 func (o *IncidentImpactAttributes) SetFields(v map[string]interface{}) {
 	o.Fields = v
 }
+
 
 // GetImpactType returns the ImpactType field value if set, zero value otherwise.
 func (o *IncidentImpactAttributes) GetImpactType() string {
@@ -198,6 +204,7 @@ func (o *IncidentImpactAttributes) SetImpactType(v string) {
 	o.ImpactType = &v
 }
 
+
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *IncidentImpactAttributes) GetModified() time.Time {
 	if o == nil || o.Modified == nil {
@@ -226,6 +233,7 @@ func (o *IncidentImpactAttributes) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
+
 // GetStartAt returns the StartAt field value.
 func (o *IncidentImpactAttributes) GetStartAt() time.Time {
 	if o == nil {
@@ -248,6 +256,8 @@ func (o *IncidentImpactAttributes) GetStartAtOk() (*time.Time, bool) {
 func (o *IncidentImpactAttributes) SetStartAt(v time.Time) {
 	o.StartAt = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentImpactAttributes) MarshalJSON() ([]byte, error) {
@@ -294,13 +304,13 @@ func (o IncidentImpactAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentImpactAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Created     *time.Time             `json:"created,omitempty"`
-		Description *string                `json:"description"`
-		EndAt       datadog.NullableTime   `json:"end_at,omitempty"`
-		Fields      map[string]interface{} `json:"fields,omitempty"`
-		ImpactType  *string                `json:"impact_type,omitempty"`
-		Modified    *time.Time             `json:"modified,omitempty"`
-		StartAt     *time.Time             `json:"start_at"`
+		Created *time.Time `json:"created,omitempty"`
+		Description *string `json:"description"`
+		EndAt datadog.NullableTime `json:"end_at,omitempty"`
+		Fields map[string]interface{} `json:"fields,omitempty"`
+		ImpactType *string `json:"impact_type,omitempty"`
+		Modified *time.Time `json:"modified,omitempty"`
+		StartAt *time.Time `json:"start_at"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -313,7 +323,7 @@ func (o *IncidentImpactAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created", "description", "end_at", "fields", "impact_type", "modified", "start_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created", "description", "end_at", "fields", "impact_type", "modified", "start_at",  })
 	} else {
 		return err
 	}

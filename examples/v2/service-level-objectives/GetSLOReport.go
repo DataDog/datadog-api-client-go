@@ -2,13 +2,15 @@
 
 package main
 
+
 import (
 	"context"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -17,7 +19,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.GetSLOReport", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewServiceLevelObjectivesApi(apiClient)
-	resp, r, err := api.GetSLOReport(ctx, "9fb2dc2a-ead0-11ee-a174-9fe3a9d7627f")
+	resp, r, err := api.GetSLOReport(ctx, "9fb2dc2a-ead0-11ee-a174-9fe3a9d7627f", )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.GetSLOReport`: %v\n", err)

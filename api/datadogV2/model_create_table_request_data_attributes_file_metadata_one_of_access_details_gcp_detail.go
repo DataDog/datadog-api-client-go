@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail The definition of `CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail` object.
 type CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail struct {
@@ -21,9 +25,10 @@ type CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail str
 	// The email of the GCP service account.
 	GcpServiceAccountEmail string `json:"gcp_service_account_email"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail instantiates a new CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewCreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetailW
 	this := CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail{}
 	return &this
 }
-
 // GetFilePath returns the FilePath field value.
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) GetFilePath() string {
 	if o == nil {
@@ -68,6 +72,7 @@ func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) SetFilePath(v string) {
 	o.FilePath = v
 }
+
 
 // GetGcpBucketName returns the GcpBucketName field value.
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) GetGcpBucketName() string {
@@ -92,6 +97,7 @@ func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail
 	o.GcpBucketName = v
 }
 
+
 // GetGcpProjectId returns the GcpProjectId field value.
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) GetGcpProjectId() string {
 	if o == nil {
@@ -114,6 +120,7 @@ func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) SetGcpProjectId(v string) {
 	o.GcpProjectId = v
 }
+
 
 // GetGcpServiceAccountEmail returns the GcpServiceAccountEmail field value.
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) GetGcpServiceAccountEmail() string {
@@ -138,6 +145,8 @@ func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail
 	o.GcpServiceAccountEmail = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -158,9 +167,9 @@ func (o CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail)
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		FilePath               *string `json:"file_path"`
-		GcpBucketName          *string `json:"gcp_bucket_name"`
-		GcpProjectId           *string `json:"gcp_project_id"`
+		FilePath *string `json:"file_path"`
+		GcpBucketName *string `json:"gcp_bucket_name"`
+		GcpProjectId *string `json:"gcp_project_id"`
 		GcpServiceAccountEmail *string `json:"gcp_service_account_email"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -180,7 +189,7 @@ func (o *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"file_path", "gcp_bucket_name", "gcp_project_id", "gcp_service_account_email"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "file_path", "gcp_bucket_name", "gcp_project_id", "gcp_service_account_email",  })
 	} else {
 		return err
 	}

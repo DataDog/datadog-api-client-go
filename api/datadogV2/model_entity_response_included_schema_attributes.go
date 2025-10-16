@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityResponseIncludedSchemaAttributes Included schema.
 type EntityResponseIncludedSchemaAttributes struct {
 	// Entity schema v3.
 	Schema *EntityV3 `json:"schema,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityResponseIncludedSchemaAttributes instantiates a new EntityResponseIncludedSchemaAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewEntityResponseIncludedSchemaAttributesWithDefaults() *EntityResponseIncl
 	this := EntityResponseIncludedSchemaAttributes{}
 	return &this
 }
-
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *EntityResponseIncludedSchemaAttributes) GetSchema() EntityV3 {
 	if o == nil || o.Schema == nil {
@@ -62,6 +68,8 @@ func (o *EntityResponseIncludedSchemaAttributes) SetSchema(v EntityV3) {
 	o.Schema = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityResponseIncludedSchemaAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *EntityResponseIncludedSchemaAttributes) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"schema"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "schema",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsConfigVariable Object defining a variable that can be used in your test configuration.
 type SyntheticsConfigVariable struct {
@@ -25,9 +29,10 @@ type SyntheticsConfigVariable struct {
 	// Type of the configuration variable.
 	Type SyntheticsConfigVariableType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsConfigVariable instantiates a new SyntheticsConfigVariable object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewSyntheticsConfigVariableWithDefaults() *SyntheticsConfigVariable {
 	this := SyntheticsConfigVariable{}
 	return &this
 }
-
 // GetExample returns the Example field value if set, zero value otherwise.
 func (o *SyntheticsConfigVariable) GetExample() string {
 	if o == nil || o.Example == nil {
@@ -75,6 +79,7 @@ func (o *SyntheticsConfigVariable) HasExample() bool {
 func (o *SyntheticsConfigVariable) SetExample(v string) {
 	o.Example = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SyntheticsConfigVariable) GetId() string {
@@ -104,6 +109,7 @@ func (o *SyntheticsConfigVariable) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *SyntheticsConfigVariable) GetName() string {
 	if o == nil {
@@ -126,6 +132,7 @@ func (o *SyntheticsConfigVariable) GetNameOk() (*string, bool) {
 func (o *SyntheticsConfigVariable) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetPattern returns the Pattern field value if set, zero value otherwise.
 func (o *SyntheticsConfigVariable) GetPattern() string {
@@ -155,6 +162,7 @@ func (o *SyntheticsConfigVariable) SetPattern(v string) {
 	o.Pattern = &v
 }
 
+
 // GetSecure returns the Secure field value if set, zero value otherwise.
 func (o *SyntheticsConfigVariable) GetSecure() bool {
 	if o == nil || o.Secure == nil {
@@ -183,6 +191,7 @@ func (o *SyntheticsConfigVariable) SetSecure(v bool) {
 	o.Secure = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *SyntheticsConfigVariable) GetType() SyntheticsConfigVariableType {
 	if o == nil {
@@ -205,6 +214,8 @@ func (o *SyntheticsConfigVariable) GetTypeOk() (*SyntheticsConfigVariableType, b
 func (o *SyntheticsConfigVariable) SetType(v SyntheticsConfigVariableType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsConfigVariable) MarshalJSON() ([]byte, error) {
@@ -236,12 +247,12 @@ func (o SyntheticsConfigVariable) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsConfigVariable) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Example *string                       `json:"example,omitempty"`
-		Id      *string                       `json:"id,omitempty"`
-		Name    *string                       `json:"name"`
-		Pattern *string                       `json:"pattern,omitempty"`
-		Secure  *bool                         `json:"secure,omitempty"`
-		Type    *SyntheticsConfigVariableType `json:"type"`
+		Example *string `json:"example,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Name *string `json:"name"`
+		Pattern *string `json:"pattern,omitempty"`
+		Secure *bool `json:"secure,omitempty"`
+		Type *SyntheticsConfigVariableType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -254,7 +265,7 @@ func (o *SyntheticsConfigVariable) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"example", "id", "name", "pattern", "secure", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "example", "id", "name", "pattern", "secure", "type",  })
 	} else {
 		return err
 	}

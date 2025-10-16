@@ -2,25 +2,29 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SpecVersion The version of the CycloneDX specification a BOM conforms to.
 type SpecVersion string
 
 // List of SpecVersion.
 const (
-	SPECVERSION_ONE_ZERO  SpecVersion = "1.0"
-	SPECVERSION_ONE_ONE   SpecVersion = "1.1"
-	SPECVERSION_ONE_TWO   SpecVersion = "1.2"
+	SPECVERSION_ONE_ZERO SpecVersion = "1.0"
+	SPECVERSION_ONE_ONE SpecVersion = "1.1"
+	SPECVERSION_ONE_TWO SpecVersion = "1.2"
 	SPECVERSION_ONE_THREE SpecVersion = "1.3"
-	SPECVERSION_ONE_FOUR  SpecVersion = "1.4"
-	SPECVERSION_ONE_FIVE  SpecVersion = "1.5"
+	SPECVERSION_ONE_FOUR SpecVersion = "1.4"
+	SPECVERSION_ONE_FIVE SpecVersion = "1.5"
 )
 
 var allowedSpecVersionEnumValues = []SpecVersion{

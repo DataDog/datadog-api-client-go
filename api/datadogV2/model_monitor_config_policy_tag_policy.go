@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorConfigPolicyTagPolicy Tag attributes of a monitor configuration policy.
 type MonitorConfigPolicyTagPolicy struct {
@@ -17,9 +23,10 @@ type MonitorConfigPolicyTagPolicy struct {
 	// Valid values for the tag.
 	ValidTagValues []string `json:"valid_tag_values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorConfigPolicyTagPolicy instantiates a new MonitorConfigPolicyTagPolicy object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewMonitorConfigPolicyTagPolicyWithDefaults() *MonitorConfigPolicyTagPolicy
 	this := MonitorConfigPolicyTagPolicy{}
 	return &this
 }
-
 // GetTagKey returns the TagKey field value if set, zero value otherwise.
 func (o *MonitorConfigPolicyTagPolicy) GetTagKey() string {
 	if o == nil || o.TagKey == nil {
@@ -65,6 +71,7 @@ func (o *MonitorConfigPolicyTagPolicy) HasTagKey() bool {
 func (o *MonitorConfigPolicyTagPolicy) SetTagKey(v string) {
 	o.TagKey = &v
 }
+
 
 // GetTagKeyRequired returns the TagKeyRequired field value if set, zero value otherwise.
 func (o *MonitorConfigPolicyTagPolicy) GetTagKeyRequired() bool {
@@ -94,6 +101,7 @@ func (o *MonitorConfigPolicyTagPolicy) SetTagKeyRequired(v bool) {
 	o.TagKeyRequired = &v
 }
 
+
 // GetValidTagValues returns the ValidTagValues field value if set, zero value otherwise.
 func (o *MonitorConfigPolicyTagPolicy) GetValidTagValues() []string {
 	if o == nil || o.ValidTagValues == nil {
@@ -122,6 +130,8 @@ func (o *MonitorConfigPolicyTagPolicy) SetValidTagValues(v []string) {
 	o.ValidTagValues = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorConfigPolicyTagPolicy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,8 +157,8 @@ func (o MonitorConfigPolicyTagPolicy) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorConfigPolicyTagPolicy) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		TagKey         *string  `json:"tag_key,omitempty"`
-		TagKeyRequired *bool    `json:"tag_key_required,omitempty"`
+		TagKey *string `json:"tag_key,omitempty"`
+		TagKeyRequired *bool `json:"tag_key_required,omitempty"`
 		ValidTagValues []string `json:"valid_tag_values,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,7 +166,7 @@ func (o *MonitorConfigPolicyTagPolicy) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"tag_key", "tag_key_required", "valid_tag_values"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "tag_key", "tag_key_required", "valid_tag_values",  })
 	} else {
 		return err
 	}

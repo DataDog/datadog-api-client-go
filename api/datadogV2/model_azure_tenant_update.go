@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AzureTenantUpdate The definition of the `AzureTenant` object.
 type AzureTenantUpdate struct {
@@ -23,9 +27,10 @@ type AzureTenantUpdate struct {
 	// The definition of the `AzureTenant` object.
 	Type AzureTenantType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAzureTenantUpdate instantiates a new AzureTenantUpdate object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewAzureTenantUpdateWithDefaults() *AzureTenantUpdate {
 	this := AzureTenantUpdate{}
 	return &this
 }
-
 // GetAppClientId returns the AppClientId field value if set, zero value otherwise.
 func (o *AzureTenantUpdate) GetAppClientId() string {
 	if o == nil || o.AppClientId == nil {
@@ -72,6 +76,7 @@ func (o *AzureTenantUpdate) HasAppClientId() bool {
 func (o *AzureTenantUpdate) SetAppClientId(v string) {
 	o.AppClientId = &v
 }
+
 
 // GetClientSecret returns the ClientSecret field value if set, zero value otherwise.
 func (o *AzureTenantUpdate) GetClientSecret() string {
@@ -101,6 +106,7 @@ func (o *AzureTenantUpdate) SetClientSecret(v string) {
 	o.ClientSecret = &v
 }
 
+
 // GetCustomScopes returns the CustomScopes field value if set, zero value otherwise.
 func (o *AzureTenantUpdate) GetCustomScopes() string {
 	if o == nil || o.CustomScopes == nil {
@@ -128,6 +134,7 @@ func (o *AzureTenantUpdate) HasCustomScopes() bool {
 func (o *AzureTenantUpdate) SetCustomScopes(v string) {
 	o.CustomScopes = &v
 }
+
 
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
 func (o *AzureTenantUpdate) GetTenantId() string {
@@ -157,6 +164,7 @@ func (o *AzureTenantUpdate) SetTenantId(v string) {
 	o.TenantId = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *AzureTenantUpdate) GetType() AzureTenantType {
 	if o == nil {
@@ -179,6 +187,8 @@ func (o *AzureTenantUpdate) GetTypeOk() (*AzureTenantType, bool) {
 func (o *AzureTenantUpdate) SetType(v AzureTenantType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AzureTenantUpdate) MarshalJSON() ([]byte, error) {
@@ -209,11 +219,11 @@ func (o AzureTenantUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AzureTenantUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AppClientId  *string          `json:"app_client_id,omitempty"`
-		ClientSecret *string          `json:"client_secret,omitempty"`
-		CustomScopes *string          `json:"custom_scopes,omitempty"`
-		TenantId     *string          `json:"tenant_id,omitempty"`
-		Type         *AzureTenantType `json:"type"`
+		AppClientId *string `json:"app_client_id,omitempty"`
+		ClientSecret *string `json:"client_secret,omitempty"`
+		CustomScopes *string `json:"custom_scopes,omitempty"`
+		TenantId *string `json:"tenant_id,omitempty"`
+		Type *AzureTenantType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -223,7 +233,7 @@ func (o *AzureTenantUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"app_client_id", "client_secret", "custom_scopes", "tenant_id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "app_client_id", "client_secret", "custom_scopes", "tenant_id", "type",  })
 	} else {
 		return err
 	}

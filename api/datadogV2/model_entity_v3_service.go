@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityV3Service Schema for service entities.
 type EntityV3Service struct {
@@ -30,6 +34,7 @@ type EntityV3Service struct {
 	UnparsedObject map[string]interface{} `json:"-"`
 }
 
+
 // NewEntityV3Service instantiates a new EntityV3Service object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -49,7 +54,6 @@ func NewEntityV3ServiceWithDefaults() *EntityV3Service {
 	this := EntityV3Service{}
 	return &this
 }
-
 // GetApiVersion returns the ApiVersion field value.
 func (o *EntityV3Service) GetApiVersion() EntityV3APIVersion {
 	if o == nil {
@@ -72,6 +76,7 @@ func (o *EntityV3Service) GetApiVersionOk() (*EntityV3APIVersion, bool) {
 func (o *EntityV3Service) SetApiVersion(v EntityV3APIVersion) {
 	o.ApiVersion = v
 }
+
 
 // GetDatadog returns the Datadog field value if set, zero value otherwise.
 func (o *EntityV3Service) GetDatadog() EntityV3ServiceDatadog {
@@ -101,6 +106,7 @@ func (o *EntityV3Service) SetDatadog(v EntityV3ServiceDatadog) {
 	o.Datadog = &v
 }
 
+
 // GetExtensions returns the Extensions field value if set, zero value otherwise.
 func (o *EntityV3Service) GetExtensions() map[string]interface{} {
 	if o == nil || o.Extensions == nil {
@@ -128,6 +134,7 @@ func (o *EntityV3Service) HasExtensions() bool {
 func (o *EntityV3Service) SetExtensions(v map[string]interface{}) {
 	o.Extensions = v
 }
+
 
 // GetIntegrations returns the Integrations field value if set, zero value otherwise.
 func (o *EntityV3Service) GetIntegrations() EntityV3Integrations {
@@ -157,6 +164,7 @@ func (o *EntityV3Service) SetIntegrations(v EntityV3Integrations) {
 	o.Integrations = &v
 }
 
+
 // GetKind returns the Kind field value.
 func (o *EntityV3Service) GetKind() EntityV3ServiceKind {
 	if o == nil {
@@ -180,6 +188,7 @@ func (o *EntityV3Service) SetKind(v EntityV3ServiceKind) {
 	o.Kind = v
 }
 
+
 // GetMetadata returns the Metadata field value.
 func (o *EntityV3Service) GetMetadata() EntityV3Metadata {
 	if o == nil {
@@ -202,6 +211,7 @@ func (o *EntityV3Service) GetMetadataOk() (*EntityV3Metadata, bool) {
 func (o *EntityV3Service) SetMetadata(v EntityV3Metadata) {
 	o.Metadata = v
 }
+
 
 // GetSpec returns the Spec field value if set, zero value otherwise.
 func (o *EntityV3Service) GetSpec() EntityV3ServiceSpec {
@@ -231,6 +241,8 @@ func (o *EntityV3Service) SetSpec(v EntityV3ServiceSpec) {
 	o.Spec = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3Service) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -258,13 +270,13 @@ func (o EntityV3Service) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityV3Service) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiVersion   *EntityV3APIVersion     `json:"apiVersion"`
-		Datadog      *EntityV3ServiceDatadog `json:"datadog,omitempty"`
-		Extensions   map[string]interface{}  `json:"extensions,omitempty"`
-		Integrations *EntityV3Integrations   `json:"integrations,omitempty"`
-		Kind         *EntityV3ServiceKind    `json:"kind"`
-		Metadata     *EntityV3Metadata       `json:"metadata"`
-		Spec         *EntityV3ServiceSpec    `json:"spec,omitempty"`
+		ApiVersion *EntityV3APIVersion `json:"apiVersion"`
+		Datadog *EntityV3ServiceDatadog `json:"datadog,omitempty"`
+		Extensions map[string]interface{} `json:"extensions,omitempty"`
+		Integrations *EntityV3Integrations `json:"integrations,omitempty"`
+		Kind *EntityV3ServiceKind `json:"kind"`
+		Metadata *EntityV3Metadata `json:"metadata"`
+		Spec *EntityV3ServiceSpec `json:"spec,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -285,12 +297,12 @@ func (o *EntityV3Service) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.ApiVersion = *all.ApiVersion
 	}
-	if all.Datadog != nil && all.Datadog.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Datadog != nil && all.Datadog.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Datadog = all.Datadog
 	o.Extensions = all.Extensions
-	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Integrations = all.Integrations
@@ -303,7 +315,7 @@ func (o *EntityV3Service) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Metadata = *all.Metadata
-	if all.Spec != nil && all.Spec.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Spec != nil && all.Spec.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Spec = all.Spec

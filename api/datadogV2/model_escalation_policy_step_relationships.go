@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EscalationPolicyStepRelationships Represents the relationship of an escalation policy step to its targets.
 type EscalationPolicyStepRelationships struct {
 	// A list of escalation targets for a step
 	Targets *EscalationTargets `json:"targets,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEscalationPolicyStepRelationships instantiates a new EscalationPolicyStepRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewEscalationPolicyStepRelationshipsWithDefaults() *EscalationPolicyStepRel
 	this := EscalationPolicyStepRelationships{}
 	return &this
 }
-
 // GetTargets returns the Targets field value if set, zero value otherwise.
 func (o *EscalationPolicyStepRelationships) GetTargets() EscalationTargets {
 	if o == nil || o.Targets == nil {
@@ -62,6 +68,8 @@ func (o *EscalationPolicyStepRelationships) SetTargets(v EscalationTargets) {
 	o.Targets = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EscalationPolicyStepRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *EscalationPolicyStepRelationships) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"targets"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "targets",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Targets != nil && all.Targets.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Targets != nil && all.Targets.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Targets = all.Targets

@@ -2,21 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TreeMapGroupBy (deprecated) The attribute formerly used to group elements in the widget.
 type TreeMapGroupBy string
 
 // List of TreeMapGroupBy.
 const (
-	TREEMAPGROUPBY_USER    TreeMapGroupBy = "user"
-	TREEMAPGROUPBY_FAMILY  TreeMapGroupBy = "family"
+	TREEMAPGROUPBY_USER TreeMapGroupBy = "user"
+	TREEMAPGROUPBY_FAMILY TreeMapGroupBy = "family"
 	TREEMAPGROUPBY_PROCESS TreeMapGroupBy = "process"
 )
 

@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessorAction - Defines what action to take when sensitive data is matched.
 type ObservabilityPipelineSensitiveDataScannerProcessorAction struct {
-	ObservabilityPipelineSensitiveDataScannerProcessorActionRedact        *ObservabilityPipelineSensitiveDataScannerProcessorActionRedact
-	ObservabilityPipelineSensitiveDataScannerProcessorActionHash          *ObservabilityPipelineSensitiveDataScannerProcessorActionHash
+	ObservabilityPipelineSensitiveDataScannerProcessorActionRedact *ObservabilityPipelineSensitiveDataScannerProcessorActionRedact
+	ObservabilityPipelineSensitiveDataScannerProcessorActionHash *ObservabilityPipelineSensitiveDataScannerProcessorActionHash
 	ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedact *ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedact
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -104,13 +110,16 @@ func (obj ObservabilityPipelineSensitiveDataScannerProcessorAction) MarshalJSON(
 		return datadog.Marshal(&obj.ObservabilityPipelineSensitiveDataScannerProcessorActionRedact)
 	}
 
+
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessorActionHash != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSensitiveDataScannerProcessorActionHash)
 	}
 
+
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedact != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedact)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj ObservabilityPipelineSensitiveDataScannerProcessorAction) MarshalJSON(
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ObservabilityPipelineSensitiveDataScannerProcessorAction) GetActualInstance() interface{} {
+func (obj *ObservabilityPipelineSensitiveDataScannerProcessorAction) GetActualInstance() (interface{}) {
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessorActionRedact != nil {
 		return obj.ObservabilityPipelineSensitiveDataScannerProcessorActionRedact
 	}
+
 
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessorActionHash != nil {
 		return obj.ObservabilityPipelineSensitiveDataScannerProcessorActionHash
 	}
 
+
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedact != nil {
 		return obj.ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedact
 	}
+
 
 	// all schemas are nil
 	return nil

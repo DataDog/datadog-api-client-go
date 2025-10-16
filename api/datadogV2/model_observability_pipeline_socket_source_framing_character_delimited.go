@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSocketSourceFramingCharacterDelimited Byte frames which are delimited by a chosen character.
 type ObservabilityPipelineSocketSourceFramingCharacterDelimited struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineSocketSourceFramingCharacterDelimited struct {
 	// Byte frames which are delimited by a chosen character.
 	Method ObservabilityPipelineSocketSourceFramingCharacterDelimitedMethod `json:"method"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSocketSourceFramingCharacterDelimited instantiates a new ObservabilityPipelineSocketSourceFramingCharacterDelimited object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineSocketSourceFramingCharacterDelimitedWithDefaults()
 	this := ObservabilityPipelineSocketSourceFramingCharacterDelimited{}
 	return &this
 }
-
 // GetDelimiter returns the Delimiter field value.
 func (o *ObservabilityPipelineSocketSourceFramingCharacterDelimited) GetDelimiter() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineSocketSourceFramingCharacterDelimited) GetDelimite
 func (o *ObservabilityPipelineSocketSourceFramingCharacterDelimited) SetDelimiter(v string) {
 	o.Delimiter = v
 }
+
 
 // GetMethod returns the Method field value.
 func (o *ObservabilityPipelineSocketSourceFramingCharacterDelimited) GetMethod() ObservabilityPipelineSocketSourceFramingCharacterDelimitedMethod {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineSocketSourceFramingCharacterDelimited) SetMethod(v
 	o.Method = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSocketSourceFramingCharacterDelimited) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o ObservabilityPipelineSocketSourceFramingCharacterDelimited) MarshalJSON(
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSocketSourceFramingCharacterDelimited) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Delimiter *string                                                           `json:"delimiter"`
-		Method    *ObservabilityPipelineSocketSourceFramingCharacterDelimitedMethod `json:"method"`
+		Delimiter *string `json:"delimiter"`
+		Method *ObservabilityPipelineSocketSourceFramingCharacterDelimitedMethod `json:"method"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineSocketSourceFramingCharacterDelimited) UnmarshalJS
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"delimiter", "method"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "delimiter", "method",  })
 	} else {
 		return err
 	}

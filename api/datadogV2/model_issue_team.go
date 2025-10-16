@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssueTeam A team that owns an issue.
 type IssueTeam struct {
@@ -19,9 +23,10 @@ type IssueTeam struct {
 	// Type of the object.
 	Type IssueTeamType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssueTeam instantiates a new IssueTeam object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewIssueTeamWithDefaults() *IssueTeam {
 	this := IssueTeam{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *IssueTeam) GetAttributes() IssueTeamAttributes {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *IssueTeam) GetAttributesOk() (*IssueTeamAttributes, bool) {
 func (o *IssueTeam) SetAttributes(v IssueTeamAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *IssueTeam) GetId() string {
@@ -89,6 +94,7 @@ func (o *IssueTeam) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetType returns the Type field value.
 func (o *IssueTeam) GetType() IssueTeamType {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *IssueTeam) SetType(v IssueTeamType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IssueTeam) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -132,8 +140,8 @@ func (o IssueTeam) MarshalJSON() ([]byte, error) {
 func (o *IssueTeam) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *IssueTeamAttributes `json:"attributes"`
-		Id         *string              `json:"id"`
-		Type       *IssueTeamType       `json:"type"`
+		Id *string `json:"id"`
+		Type *IssueTeamType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *IssueTeam) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

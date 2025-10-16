@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RoutingRuleAttributes Defines the configurable attributes of a routing rule, such as actions, query, time restriction, and urgency.
 type RoutingRuleAttributes struct {
@@ -19,9 +25,10 @@ type RoutingRuleAttributes struct {
 	// Specifies the level of urgency for a routing rule (low, high, or dynamic).
 	Urgency *Urgency `json:"urgency,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRoutingRuleAttributes instantiates a new RoutingRuleAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewRoutingRuleAttributesWithDefaults() *RoutingRuleAttributes {
 	this := RoutingRuleAttributes{}
 	return &this
 }
-
 // GetActions returns the Actions field value if set, zero value otherwise.
 func (o *RoutingRuleAttributes) GetActions() []RoutingRuleAction {
 	if o == nil || o.Actions == nil {
@@ -67,6 +73,7 @@ func (o *RoutingRuleAttributes) HasActions() bool {
 func (o *RoutingRuleAttributes) SetActions(v []RoutingRuleAction) {
 	o.Actions = v
 }
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *RoutingRuleAttributes) GetQuery() string {
@@ -96,6 +103,7 @@ func (o *RoutingRuleAttributes) SetQuery(v string) {
 	o.Query = &v
 }
 
+
 // GetTimeRestriction returns the TimeRestriction field value if set, zero value otherwise.
 func (o *RoutingRuleAttributes) GetTimeRestriction() TimeRestrictions {
 	if o == nil || o.TimeRestriction == nil {
@@ -123,6 +131,7 @@ func (o *RoutingRuleAttributes) HasTimeRestriction() bool {
 func (o *RoutingRuleAttributes) SetTimeRestriction(v TimeRestrictions) {
 	o.TimeRestriction = &v
 }
+
 
 // GetUrgency returns the Urgency field value if set, zero value otherwise.
 func (o *RoutingRuleAttributes) GetUrgency() Urgency {
@@ -152,6 +161,8 @@ func (o *RoutingRuleAttributes) SetUrgency(v Urgency) {
 	o.Urgency = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RoutingRuleAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,17 +191,17 @@ func (o RoutingRuleAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RoutingRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Actions         []RoutingRuleAction `json:"actions,omitempty"`
-		Query           *string             `json:"query,omitempty"`
-		TimeRestriction *TimeRestrictions   `json:"time_restriction,omitempty"`
-		Urgency         *Urgency            `json:"urgency,omitempty"`
+		Actions []RoutingRuleAction `json:"actions,omitempty"`
+		Query *string `json:"query,omitempty"`
+		TimeRestriction *TimeRestrictions `json:"time_restriction,omitempty"`
+		Urgency *Urgency `json:"urgency,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"actions", "query", "time_restriction", "urgency"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "actions", "query", "time_restriction", "urgency",  })
 	} else {
 		return err
 	}
@@ -198,11 +209,11 @@ func (o *RoutingRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Actions = all.Actions
 	o.Query = all.Query
-	if all.TimeRestriction != nil && all.TimeRestriction.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.TimeRestriction != nil && all.TimeRestriction.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.TimeRestriction = all.TimeRestriction
-	if all.Urgency != nil && !all.Urgency.IsValid() {
+	if all.Urgency != nil &&!all.Urgency.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Urgency = all.Urgency

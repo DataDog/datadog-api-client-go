@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsMobileTestOptions Object describing the extra options for a Synthetic test.
 type SyntheticsMobileTestOptions struct {
@@ -48,9 +52,10 @@ type SyntheticsMobileTestOptions struct {
 	// The level of verbosity for the mobile test. This field can not be set by a user.
 	Verbosity *int32 `json:"verbosity,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsMobileTestOptions instantiates a new SyntheticsMobileTestOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -71,7 +76,6 @@ func NewSyntheticsMobileTestOptionsWithDefaults() *SyntheticsMobileTestOptions {
 	this := SyntheticsMobileTestOptions{}
 	return &this
 }
-
 // GetAllowApplicationCrash returns the AllowApplicationCrash field value if set, zero value otherwise.
 func (o *SyntheticsMobileTestOptions) GetAllowApplicationCrash() bool {
 	if o == nil || o.AllowApplicationCrash == nil {
@@ -99,6 +103,7 @@ func (o *SyntheticsMobileTestOptions) HasAllowApplicationCrash() bool {
 func (o *SyntheticsMobileTestOptions) SetAllowApplicationCrash(v bool) {
 	o.AllowApplicationCrash = &v
 }
+
 
 // GetBindings returns the Bindings field value if set, zero value otherwise.
 func (o *SyntheticsMobileTestOptions) GetBindings() []SyntheticsTestRestrictionPolicyBinding {
@@ -128,6 +133,7 @@ func (o *SyntheticsMobileTestOptions) SetBindings(v []SyntheticsTestRestrictionP
 	o.Bindings = v
 }
 
+
 // GetCi returns the Ci field value if set, zero value otherwise.
 func (o *SyntheticsMobileTestOptions) GetCi() SyntheticsTestCiOptions {
 	if o == nil || o.Ci == nil {
@@ -155,6 +161,7 @@ func (o *SyntheticsMobileTestOptions) HasCi() bool {
 func (o *SyntheticsMobileTestOptions) SetCi(v SyntheticsTestCiOptions) {
 	o.Ci = &v
 }
+
 
 // GetDefaultStepTimeout returns the DefaultStepTimeout field value if set, zero value otherwise.
 func (o *SyntheticsMobileTestOptions) GetDefaultStepTimeout() int32 {
@@ -184,6 +191,7 @@ func (o *SyntheticsMobileTestOptions) SetDefaultStepTimeout(v int32) {
 	o.DefaultStepTimeout = &v
 }
 
+
 // GetDeviceIds returns the DeviceIds field value.
 func (o *SyntheticsMobileTestOptions) GetDeviceIds() []string {
 	if o == nil {
@@ -206,6 +214,7 @@ func (o *SyntheticsMobileTestOptions) GetDeviceIdsOk() (*[]string, bool) {
 func (o *SyntheticsMobileTestOptions) SetDeviceIds(v []string) {
 	o.DeviceIds = v
 }
+
 
 // GetDisableAutoAcceptAlert returns the DisableAutoAcceptAlert field value if set, zero value otherwise.
 func (o *SyntheticsMobileTestOptions) GetDisableAutoAcceptAlert() bool {
@@ -235,6 +244,7 @@ func (o *SyntheticsMobileTestOptions) SetDisableAutoAcceptAlert(v bool) {
 	o.DisableAutoAcceptAlert = &v
 }
 
+
 // GetMinFailureDuration returns the MinFailureDuration field value if set, zero value otherwise.
 func (o *SyntheticsMobileTestOptions) GetMinFailureDuration() int64 {
 	if o == nil || o.MinFailureDuration == nil {
@@ -263,6 +273,7 @@ func (o *SyntheticsMobileTestOptions) SetMinFailureDuration(v int64) {
 	o.MinFailureDuration = &v
 }
 
+
 // GetMobileApplication returns the MobileApplication field value.
 func (o *SyntheticsMobileTestOptions) GetMobileApplication() SyntheticsMobileTestsMobileApplication {
 	if o == nil {
@@ -285,6 +296,7 @@ func (o *SyntheticsMobileTestOptions) GetMobileApplicationOk() (*SyntheticsMobil
 func (o *SyntheticsMobileTestOptions) SetMobileApplication(v SyntheticsMobileTestsMobileApplication) {
 	o.MobileApplication = v
 }
+
 
 // GetMonitorName returns the MonitorName field value if set, zero value otherwise.
 func (o *SyntheticsMobileTestOptions) GetMonitorName() string {
@@ -314,6 +326,7 @@ func (o *SyntheticsMobileTestOptions) SetMonitorName(v string) {
 	o.MonitorName = &v
 }
 
+
 // GetMonitorOptions returns the MonitorOptions field value if set, zero value otherwise.
 func (o *SyntheticsMobileTestOptions) GetMonitorOptions() SyntheticsTestOptionsMonitorOptions {
 	if o == nil || o.MonitorOptions == nil {
@@ -341,6 +354,7 @@ func (o *SyntheticsMobileTestOptions) HasMonitorOptions() bool {
 func (o *SyntheticsMobileTestOptions) SetMonitorOptions(v SyntheticsTestOptionsMonitorOptions) {
 	o.MonitorOptions = &v
 }
+
 
 // GetMonitorPriority returns the MonitorPriority field value if set, zero value otherwise.
 func (o *SyntheticsMobileTestOptions) GetMonitorPriority() int32 {
@@ -370,6 +384,7 @@ func (o *SyntheticsMobileTestOptions) SetMonitorPriority(v int32) {
 	o.MonitorPriority = &v
 }
 
+
 // GetNoScreenshot returns the NoScreenshot field value if set, zero value otherwise.
 func (o *SyntheticsMobileTestOptions) GetNoScreenshot() bool {
 	if o == nil || o.NoScreenshot == nil {
@@ -397,6 +412,7 @@ func (o *SyntheticsMobileTestOptions) HasNoScreenshot() bool {
 func (o *SyntheticsMobileTestOptions) SetNoScreenshot(v bool) {
 	o.NoScreenshot = &v
 }
+
 
 // GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.
 func (o *SyntheticsMobileTestOptions) GetRestrictedRoles() []string {
@@ -426,6 +442,7 @@ func (o *SyntheticsMobileTestOptions) SetRestrictedRoles(v []string) {
 	o.RestrictedRoles = v
 }
 
+
 // GetRetry returns the Retry field value if set, zero value otherwise.
 func (o *SyntheticsMobileTestOptions) GetRetry() SyntheticsTestOptionsRetry {
 	if o == nil || o.Retry == nil {
@@ -453,6 +470,7 @@ func (o *SyntheticsMobileTestOptions) HasRetry() bool {
 func (o *SyntheticsMobileTestOptions) SetRetry(v SyntheticsTestOptionsRetry) {
 	o.Retry = &v
 }
+
 
 // GetScheduling returns the Scheduling field value if set, zero value otherwise.
 func (o *SyntheticsMobileTestOptions) GetScheduling() SyntheticsTestOptionsScheduling {
@@ -482,6 +500,7 @@ func (o *SyntheticsMobileTestOptions) SetScheduling(v SyntheticsTestOptionsSched
 	o.Scheduling = &v
 }
 
+
 // GetTickEvery returns the TickEvery field value.
 func (o *SyntheticsMobileTestOptions) GetTickEvery() int64 {
 	if o == nil {
@@ -504,6 +523,7 @@ func (o *SyntheticsMobileTestOptions) GetTickEveryOk() (*int64, bool) {
 func (o *SyntheticsMobileTestOptions) SetTickEvery(v int64) {
 	o.TickEvery = v
 }
+
 
 // GetVerbosity returns the Verbosity field value if set, zero value otherwise.
 func (o *SyntheticsMobileTestOptions) GetVerbosity() int32 {
@@ -532,6 +552,8 @@ func (o *SyntheticsMobileTestOptions) HasVerbosity() bool {
 func (o *SyntheticsMobileTestOptions) SetVerbosity(v int32) {
 	o.Verbosity = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsMobileTestOptions) MarshalJSON() ([]byte, error) {
@@ -594,23 +616,23 @@ func (o SyntheticsMobileTestOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsMobileTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AllowApplicationCrash  *bool                                    `json:"allowApplicationCrash,omitempty"`
-		Bindings               []SyntheticsTestRestrictionPolicyBinding `json:"bindings,omitempty"`
-		Ci                     *SyntheticsTestCiOptions                 `json:"ci,omitempty"`
-		DefaultStepTimeout     *int32                                   `json:"defaultStepTimeout,omitempty"`
-		DeviceIds              *[]string                                `json:"device_ids"`
-		DisableAutoAcceptAlert *bool                                    `json:"disableAutoAcceptAlert,omitempty"`
-		MinFailureDuration     *int64                                   `json:"min_failure_duration,omitempty"`
-		MobileApplication      *SyntheticsMobileTestsMobileApplication  `json:"mobileApplication"`
-		MonitorName            *string                                  `json:"monitor_name,omitempty"`
-		MonitorOptions         *SyntheticsTestOptionsMonitorOptions     `json:"monitor_options,omitempty"`
-		MonitorPriority        *int32                                   `json:"monitor_priority,omitempty"`
-		NoScreenshot           *bool                                    `json:"noScreenshot,omitempty"`
-		RestrictedRoles        []string                                 `json:"restricted_roles,omitempty"`
-		Retry                  *SyntheticsTestOptionsRetry              `json:"retry,omitempty"`
-		Scheduling             *SyntheticsTestOptionsScheduling         `json:"scheduling,omitempty"`
-		TickEvery              *int64                                   `json:"tick_every"`
-		Verbosity              *int32                                   `json:"verbosity,omitempty"`
+		AllowApplicationCrash *bool `json:"allowApplicationCrash,omitempty"`
+		Bindings []SyntheticsTestRestrictionPolicyBinding `json:"bindings,omitempty"`
+		Ci *SyntheticsTestCiOptions `json:"ci,omitempty"`
+		DefaultStepTimeout *int32 `json:"defaultStepTimeout,omitempty"`
+		DeviceIds *[]string `json:"device_ids"`
+		DisableAutoAcceptAlert *bool `json:"disableAutoAcceptAlert,omitempty"`
+		MinFailureDuration *int64 `json:"min_failure_duration,omitempty"`
+		MobileApplication *SyntheticsMobileTestsMobileApplication `json:"mobileApplication"`
+		MonitorName *string `json:"monitor_name,omitempty"`
+		MonitorOptions *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
+		MonitorPriority *int32 `json:"monitor_priority,omitempty"`
+		NoScreenshot *bool `json:"noScreenshot,omitempty"`
+		RestrictedRoles []string `json:"restricted_roles,omitempty"`
+		Retry *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
+		Scheduling *SyntheticsTestOptionsScheduling `json:"scheduling,omitempty"`
+		TickEvery *int64 `json:"tick_every"`
+		Verbosity *int32 `json:"verbosity,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -626,7 +648,7 @@ func (o *SyntheticsMobileTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allowApplicationCrash", "bindings", "ci", "defaultStepTimeout", "device_ids", "disableAutoAcceptAlert", "min_failure_duration", "mobileApplication", "monitor_name", "monitor_options", "monitor_priority", "noScreenshot", "restricted_roles", "retry", "scheduling", "tick_every", "verbosity"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "allowApplicationCrash", "bindings", "ci", "defaultStepTimeout", "device_ids", "disableAutoAcceptAlert", "min_failure_duration", "mobileApplication", "monitor_name", "monitor_options", "monitor_priority", "noScreenshot", "restricted_roles", "retry", "scheduling", "tick_every", "verbosity",  })
 	} else {
 		return err
 	}
@@ -634,7 +656,7 @@ func (o *SyntheticsMobileTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.AllowApplicationCrash = all.AllowApplicationCrash
 	o.Bindings = all.Bindings
-	if all.Ci != nil && all.Ci.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Ci != nil && all.Ci.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Ci = all.Ci
@@ -647,18 +669,18 @@ func (o *SyntheticsMobileTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.MobileApplication = *all.MobileApplication
 	o.MonitorName = all.MonitorName
-	if all.MonitorOptions != nil && all.MonitorOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.MonitorOptions != nil && all.MonitorOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.MonitorOptions = all.MonitorOptions
 	o.MonitorPriority = all.MonitorPriority
 	o.NoScreenshot = all.NoScreenshot
 	o.RestrictedRoles = all.RestrictedRoles
-	if all.Retry != nil && all.Retry.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Retry != nil && all.Retry.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Retry = all.Retry
-	if all.Scheduling != nil && all.Scheduling.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Scheduling != nil && all.Scheduling.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Scheduling = all.Scheduling

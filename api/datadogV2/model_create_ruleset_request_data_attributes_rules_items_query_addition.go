@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateRulesetRequestDataAttributesRulesItemsQueryAddition The definition of `CreateRulesetRequestDataAttributesRulesItemsQueryAddition` object.
 type CreateRulesetRequestDataAttributesRulesItemsQueryAddition struct {
@@ -17,9 +21,10 @@ type CreateRulesetRequestDataAttributesRulesItemsQueryAddition struct {
 	// The `addition` `value`.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateRulesetRequestDataAttributesRulesItemsQueryAddition instantiates a new CreateRulesetRequestDataAttributesRulesItemsQueryAddition object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewCreateRulesetRequestDataAttributesRulesItemsQueryAdditionWithDefaults() 
 	this := CreateRulesetRequestDataAttributesRulesItemsQueryAddition{}
 	return &this
 }
-
 // GetKey returns the Key field value.
 func (o *CreateRulesetRequestDataAttributesRulesItemsQueryAddition) GetKey() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsQueryAddition) GetKeyOk() (
 func (o *CreateRulesetRequestDataAttributesRulesItemsQueryAddition) SetKey(v string) {
 	o.Key = v
 }
+
 
 // GetValue returns the Value field value.
 func (o *CreateRulesetRequestDataAttributesRulesItemsQueryAddition) GetValue() string {
@@ -86,6 +91,8 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsQueryAddition) SetValue(v s
 	o.Value = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateRulesetRequestDataAttributesRulesItemsQueryAddition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o CreateRulesetRequestDataAttributesRulesItemsQueryAddition) MarshalJSON()
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateRulesetRequestDataAttributesRulesItemsQueryAddition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Key   *string `json:"key"`
+		Key *string `json:"key"`
 		Value *string `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsQueryAddition) UnmarshalJSO
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"key", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "key", "value",  })
 	} else {
 		return err
 	}
@@ -131,7 +138,6 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsQueryAddition) UnmarshalJSO
 
 	return nil
 }
-
 // NullableCreateRulesetRequestDataAttributesRulesItemsQueryAddition handles when a null is used for CreateRulesetRequestDataAttributesRulesItemsQueryAddition.
 type NullableCreateRulesetRequestDataAttributesRulesItemsQueryAddition struct {
 	value *CreateRulesetRequestDataAttributesRulesItemsQueryAddition

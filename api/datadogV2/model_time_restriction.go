@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TimeRestriction Defines a single time restriction rule with start and end times and the applicable weekdays.
 type TimeRestriction struct {
@@ -19,9 +25,10 @@ type TimeRestriction struct {
 	// Specifies the starting time for this restriction.
 	StartTime *string `json:"start_time,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTimeRestriction instantiates a new TimeRestriction object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewTimeRestrictionWithDefaults() *TimeRestriction {
 	this := TimeRestriction{}
 	return &this
 }
-
 // GetEndDay returns the EndDay field value if set, zero value otherwise.
 func (o *TimeRestriction) GetEndDay() Weekday {
 	if o == nil || o.EndDay == nil {
@@ -67,6 +73,7 @@ func (o *TimeRestriction) HasEndDay() bool {
 func (o *TimeRestriction) SetEndDay(v Weekday) {
 	o.EndDay = &v
 }
+
 
 // GetEndTime returns the EndTime field value if set, zero value otherwise.
 func (o *TimeRestriction) GetEndTime() string {
@@ -96,6 +103,7 @@ func (o *TimeRestriction) SetEndTime(v string) {
 	o.EndTime = &v
 }
 
+
 // GetStartDay returns the StartDay field value if set, zero value otherwise.
 func (o *TimeRestriction) GetStartDay() Weekday {
 	if o == nil || o.StartDay == nil {
@@ -123,6 +131,7 @@ func (o *TimeRestriction) HasStartDay() bool {
 func (o *TimeRestriction) SetStartDay(v Weekday) {
 	o.StartDay = &v
 }
+
 
 // GetStartTime returns the StartTime field value if set, zero value otherwise.
 func (o *TimeRestriction) GetStartTime() string {
@@ -152,6 +161,8 @@ func (o *TimeRestriction) SetStartTime(v string) {
 	o.StartTime = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TimeRestriction) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,29 +191,29 @@ func (o TimeRestriction) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TimeRestriction) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EndDay    *Weekday `json:"end_day,omitempty"`
-		EndTime   *string  `json:"end_time,omitempty"`
-		StartDay  *Weekday `json:"start_day,omitempty"`
-		StartTime *string  `json:"start_time,omitempty"`
+		EndDay *Weekday `json:"end_day,omitempty"`
+		EndTime *string `json:"end_time,omitempty"`
+		StartDay *Weekday `json:"start_day,omitempty"`
+		StartTime *string `json:"start_time,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"end_day", "end_time", "start_day", "start_time"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "end_day", "end_time", "start_day", "start_time",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.EndDay != nil && !all.EndDay.IsValid() {
+	if all.EndDay != nil &&!all.EndDay.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.EndDay = all.EndDay
 	}
 	o.EndTime = all.EndTime
-	if all.StartDay != nil && !all.StartDay.IsValid() {
+	if all.StartDay != nil &&!all.StartDay.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.StartDay = all.StartDay

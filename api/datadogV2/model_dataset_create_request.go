@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DatasetCreateRequest Create request for a dataset.
 type DatasetCreateRequest struct {
@@ -25,9 +29,10 @@ type DatasetCreateRequest struct {
 	//   - A tag value used in one dataset cannot be reused in another dataset of the same telemetry type.
 	Data DatasetRequest `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDatasetCreateRequest instantiates a new DatasetCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewDatasetCreateRequestWithDefaults() *DatasetCreateRequest {
 	this := DatasetCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *DatasetCreateRequest) GetData() DatasetRequest {
 	if o == nil {
@@ -69,6 +73,8 @@ func (o *DatasetCreateRequest) GetDataOk() (*DatasetRequest, bool) {
 func (o *DatasetCreateRequest) SetData(v DatasetRequest) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DatasetCreateRequest) MarshalJSON() ([]byte, error) {
@@ -97,7 +103,7 @@ func (o *DatasetCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

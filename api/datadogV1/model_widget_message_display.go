@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetMessageDisplay Amount of log lines to display
 type WidgetMessageDisplay string
 
 // List of WidgetMessageDisplay.
 const (
-	WIDGETMESSAGEDISPLAY_INLINE          WidgetMessageDisplay = "inline"
+	WIDGETMESSAGEDISPLAY_INLINE WidgetMessageDisplay = "inline"
 	WIDGETMESSAGEDISPLAY_EXPANDED_MEDIUM WidgetMessageDisplay = "expanded-md"
-	WIDGETMESSAGEDISPLAY_EXPANDED_LARGE  WidgetMessageDisplay = "expanded-lg"
+	WIDGETMESSAGEDISPLAY_EXPANDED_LARGE WidgetMessageDisplay = "expanded-lg"
 )
 
 var allowedWidgetMessageDisplayEnumValues = []WidgetMessageDisplay{

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineAddEnvVarsProcessorVariable Defines a mapping between an environment variable and a log field.
 type ObservabilityPipelineAddEnvVarsProcessorVariable struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineAddEnvVarsProcessorVariable struct {
 	// The name of the environment variable to read.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineAddEnvVarsProcessorVariable instantiates a new ObservabilityPipelineAddEnvVarsProcessorVariable object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineAddEnvVarsProcessorVariableWithDefaults() *Observab
 	this := ObservabilityPipelineAddEnvVarsProcessorVariable{}
 	return &this
 }
-
 // GetField returns the Field field value.
 func (o *ObservabilityPipelineAddEnvVarsProcessorVariable) GetField() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineAddEnvVarsProcessorVariable) GetFieldOk() (*string
 func (o *ObservabilityPipelineAddEnvVarsProcessorVariable) SetField(v string) {
 	o.Field = v
 }
+
 
 // GetName returns the Name field value.
 func (o *ObservabilityPipelineAddEnvVarsProcessorVariable) GetName() string {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineAddEnvVarsProcessorVariable) SetName(v string) {
 	o.Name = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineAddEnvVarsProcessorVariable) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o ObservabilityPipelineAddEnvVarsProcessorVariable) MarshalJSON() ([]byte,
 func (o *ObservabilityPipelineAddEnvVarsProcessorVariable) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Field *string `json:"field"`
-		Name  *string `json:"name"`
+		Name *string `json:"name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineAddEnvVarsProcessorVariable) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"field", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "field", "name",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DashboardTriggerWrapper Schema for a Dashboard-based trigger.
 type DashboardTriggerWrapper struct {
@@ -17,9 +21,10 @@ type DashboardTriggerWrapper struct {
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDashboardTriggerWrapper instantiates a new DashboardTriggerWrapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewDashboardTriggerWrapperWithDefaults() *DashboardTriggerWrapper {
 	this := DashboardTriggerWrapper{}
 	return &this
 }
-
 // GetDashboardTrigger returns the DashboardTrigger field value.
 func (o *DashboardTriggerWrapper) GetDashboardTrigger() interface{} {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *DashboardTriggerWrapper) GetDashboardTriggerOk() (*interface{}, bool) {
 func (o *DashboardTriggerWrapper) SetDashboardTrigger(v interface{}) {
 	o.DashboardTrigger = v
 }
+
 
 // GetStartStepNames returns the StartStepNames field value if set, zero value otherwise.
 func (o *DashboardTriggerWrapper) GetStartStepNames() []string {
@@ -90,6 +95,8 @@ func (o *DashboardTriggerWrapper) SetStartStepNames(v []string) {
 	o.StartStepNames = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DashboardTriggerWrapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o DashboardTriggerWrapper) MarshalJSON() ([]byte, error) {
 func (o *DashboardTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DashboardTrigger *interface{} `json:"dashboardTrigger"`
-		StartStepNames   []string     `json:"startStepNames,omitempty"`
+		StartStepNames []string `json:"startStepNames,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *DashboardTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"dashboardTrigger", "startStepNames"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "dashboardTrigger", "startStepNames",  })
 	} else {
 		return err
 	}

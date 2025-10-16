@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CsmAgentsAttributes A CSM Agent returned by the API.
 type CsmAgentsAttributes struct {
@@ -45,9 +51,10 @@ type CsmAgentsAttributes struct {
 	// Operating system of the host.
 	Os *string `json:"os,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCsmAgentsAttributes instantiates a new CsmAgentsAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -65,7 +72,6 @@ func NewCsmAgentsAttributesWithDefaults() *CsmAgentsAttributes {
 	this := CsmAgentsAttributes{}
 	return &this
 }
-
 // GetAgentVersion returns the AgentVersion field value if set, zero value otherwise.
 func (o *CsmAgentsAttributes) GetAgentVersion() string {
 	if o == nil || o.AgentVersion == nil {
@@ -93,6 +99,7 @@ func (o *CsmAgentsAttributes) HasAgentVersion() bool {
 func (o *CsmAgentsAttributes) SetAgentVersion(v string) {
 	o.AgentVersion = &v
 }
+
 
 // GetAwsFargate returns the AwsFargate field value if set, zero value otherwise.
 func (o *CsmAgentsAttributes) GetAwsFargate() string {
@@ -122,6 +129,7 @@ func (o *CsmAgentsAttributes) SetAwsFargate(v string) {
 	o.AwsFargate = &v
 }
 
+
 // GetClusterName returns the ClusterName field value if set, zero value otherwise.
 func (o *CsmAgentsAttributes) GetClusterName() []string {
 	if o == nil || o.ClusterName == nil {
@@ -149,6 +157,7 @@ func (o *CsmAgentsAttributes) HasClusterName() bool {
 func (o *CsmAgentsAttributes) SetClusterName(v []string) {
 	o.ClusterName = v
 }
+
 
 // GetDatadogAgent returns the DatadogAgent field value if set, zero value otherwise.
 func (o *CsmAgentsAttributes) GetDatadogAgent() string {
@@ -178,6 +187,7 @@ func (o *CsmAgentsAttributes) SetDatadogAgent(v string) {
 	o.DatadogAgent = &v
 }
 
+
 // GetEcsFargateTaskArn returns the EcsFargateTaskArn field value if set, zero value otherwise.
 func (o *CsmAgentsAttributes) GetEcsFargateTaskArn() string {
 	if o == nil || o.EcsFargateTaskArn == nil {
@@ -206,6 +216,7 @@ func (o *CsmAgentsAttributes) SetEcsFargateTaskArn(v string) {
 	o.EcsFargateTaskArn = &v
 }
 
+
 // GetEnvs returns the Envs field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CsmAgentsAttributes) GetEnvs() []string {
 	if o == nil || o.Envs.Get() == nil {
@@ -219,7 +230,7 @@ func (o *CsmAgentsAttributes) GetEnvs() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CsmAgentsAttributes) GetEnvsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Envs.Get(), o.Envs.IsSet()
@@ -234,7 +245,6 @@ func (o *CsmAgentsAttributes) HasEnvs() bool {
 func (o *CsmAgentsAttributes) SetEnvs(v []string) {
 	o.Envs.Set(&v)
 }
-
 // SetEnvsNil sets the value for Envs to be an explicit nil.
 func (o *CsmAgentsAttributes) SetEnvsNil() {
 	o.Envs.Set(nil)
@@ -244,6 +254,7 @@ func (o *CsmAgentsAttributes) SetEnvsNil() {
 func (o *CsmAgentsAttributes) UnsetEnvs() {
 	o.Envs.Unset()
 }
+
 
 // GetHostId returns the HostId field value if set, zero value otherwise.
 func (o *CsmAgentsAttributes) GetHostId() int64 {
@@ -273,6 +284,7 @@ func (o *CsmAgentsAttributes) SetHostId(v int64) {
 	o.HostId = &v
 }
 
+
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *CsmAgentsAttributes) GetHostname() string {
 	if o == nil || o.Hostname == nil {
@@ -300,6 +312,7 @@ func (o *CsmAgentsAttributes) HasHostname() bool {
 func (o *CsmAgentsAttributes) SetHostname(v string) {
 	o.Hostname = &v
 }
+
 
 // GetInstallMethodInstallerVersion returns the InstallMethodInstallerVersion field value if set, zero value otherwise.
 func (o *CsmAgentsAttributes) GetInstallMethodInstallerVersion() string {
@@ -329,6 +342,7 @@ func (o *CsmAgentsAttributes) SetInstallMethodInstallerVersion(v string) {
 	o.InstallMethodInstallerVersion = &v
 }
 
+
 // GetInstallMethodTool returns the InstallMethodTool field value if set, zero value otherwise.
 func (o *CsmAgentsAttributes) GetInstallMethodTool() string {
 	if o == nil || o.InstallMethodTool == nil {
@@ -357,6 +371,7 @@ func (o *CsmAgentsAttributes) SetInstallMethodTool(v string) {
 	o.InstallMethodTool = &v
 }
 
+
 // GetIsCsmVmContainersEnabled returns the IsCsmVmContainersEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CsmAgentsAttributes) GetIsCsmVmContainersEnabled() bool {
 	if o == nil || o.IsCsmVmContainersEnabled.Get() == nil {
@@ -370,7 +385,7 @@ func (o *CsmAgentsAttributes) GetIsCsmVmContainersEnabled() bool {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CsmAgentsAttributes) GetIsCsmVmContainersEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.IsCsmVmContainersEnabled.Get(), o.IsCsmVmContainersEnabled.IsSet()
@@ -385,7 +400,6 @@ func (o *CsmAgentsAttributes) HasIsCsmVmContainersEnabled() bool {
 func (o *CsmAgentsAttributes) SetIsCsmVmContainersEnabled(v bool) {
 	o.IsCsmVmContainersEnabled.Set(&v)
 }
-
 // SetIsCsmVmContainersEnabledNil sets the value for IsCsmVmContainersEnabled to be an explicit nil.
 func (o *CsmAgentsAttributes) SetIsCsmVmContainersEnabledNil() {
 	o.IsCsmVmContainersEnabled.Set(nil)
@@ -395,6 +409,7 @@ func (o *CsmAgentsAttributes) SetIsCsmVmContainersEnabledNil() {
 func (o *CsmAgentsAttributes) UnsetIsCsmVmContainersEnabled() {
 	o.IsCsmVmContainersEnabled.Unset()
 }
+
 
 // GetIsCsmVmHostsEnabled returns the IsCsmVmHostsEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CsmAgentsAttributes) GetIsCsmVmHostsEnabled() bool {
@@ -409,7 +424,7 @@ func (o *CsmAgentsAttributes) GetIsCsmVmHostsEnabled() bool {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CsmAgentsAttributes) GetIsCsmVmHostsEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.IsCsmVmHostsEnabled.Get(), o.IsCsmVmHostsEnabled.IsSet()
@@ -424,7 +439,6 @@ func (o *CsmAgentsAttributes) HasIsCsmVmHostsEnabled() bool {
 func (o *CsmAgentsAttributes) SetIsCsmVmHostsEnabled(v bool) {
 	o.IsCsmVmHostsEnabled.Set(&v)
 }
-
 // SetIsCsmVmHostsEnabledNil sets the value for IsCsmVmHostsEnabled to be an explicit nil.
 func (o *CsmAgentsAttributes) SetIsCsmVmHostsEnabledNil() {
 	o.IsCsmVmHostsEnabled.Set(nil)
@@ -434,6 +448,7 @@ func (o *CsmAgentsAttributes) SetIsCsmVmHostsEnabledNil() {
 func (o *CsmAgentsAttributes) UnsetIsCsmVmHostsEnabled() {
 	o.IsCsmVmHostsEnabled.Unset()
 }
+
 
 // GetIsCspmEnabled returns the IsCspmEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CsmAgentsAttributes) GetIsCspmEnabled() bool {
@@ -448,7 +463,7 @@ func (o *CsmAgentsAttributes) GetIsCspmEnabled() bool {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CsmAgentsAttributes) GetIsCspmEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.IsCspmEnabled.Get(), o.IsCspmEnabled.IsSet()
@@ -463,7 +478,6 @@ func (o *CsmAgentsAttributes) HasIsCspmEnabled() bool {
 func (o *CsmAgentsAttributes) SetIsCspmEnabled(v bool) {
 	o.IsCspmEnabled.Set(&v)
 }
-
 // SetIsCspmEnabledNil sets the value for IsCspmEnabled to be an explicit nil.
 func (o *CsmAgentsAttributes) SetIsCspmEnabledNil() {
 	o.IsCspmEnabled.Set(nil)
@@ -473,6 +487,7 @@ func (o *CsmAgentsAttributes) SetIsCspmEnabledNil() {
 func (o *CsmAgentsAttributes) UnsetIsCspmEnabled() {
 	o.IsCspmEnabled.Unset()
 }
+
 
 // GetIsCwsEnabled returns the IsCwsEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CsmAgentsAttributes) GetIsCwsEnabled() bool {
@@ -487,7 +502,7 @@ func (o *CsmAgentsAttributes) GetIsCwsEnabled() bool {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CsmAgentsAttributes) GetIsCwsEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.IsCwsEnabled.Get(), o.IsCwsEnabled.IsSet()
@@ -502,7 +517,6 @@ func (o *CsmAgentsAttributes) HasIsCwsEnabled() bool {
 func (o *CsmAgentsAttributes) SetIsCwsEnabled(v bool) {
 	o.IsCwsEnabled.Set(&v)
 }
-
 // SetIsCwsEnabledNil sets the value for IsCwsEnabled to be an explicit nil.
 func (o *CsmAgentsAttributes) SetIsCwsEnabledNil() {
 	o.IsCwsEnabled.Set(nil)
@@ -512,6 +526,7 @@ func (o *CsmAgentsAttributes) SetIsCwsEnabledNil() {
 func (o *CsmAgentsAttributes) UnsetIsCwsEnabled() {
 	o.IsCwsEnabled.Unset()
 }
+
 
 // GetIsCwsRemoteConfigurationEnabled returns the IsCwsRemoteConfigurationEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CsmAgentsAttributes) GetIsCwsRemoteConfigurationEnabled() bool {
@@ -526,7 +541,7 @@ func (o *CsmAgentsAttributes) GetIsCwsRemoteConfigurationEnabled() bool {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CsmAgentsAttributes) GetIsCwsRemoteConfigurationEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.IsCwsRemoteConfigurationEnabled.Get(), o.IsCwsRemoteConfigurationEnabled.IsSet()
@@ -541,7 +556,6 @@ func (o *CsmAgentsAttributes) HasIsCwsRemoteConfigurationEnabled() bool {
 func (o *CsmAgentsAttributes) SetIsCwsRemoteConfigurationEnabled(v bool) {
 	o.IsCwsRemoteConfigurationEnabled.Set(&v)
 }
-
 // SetIsCwsRemoteConfigurationEnabledNil sets the value for IsCwsRemoteConfigurationEnabled to be an explicit nil.
 func (o *CsmAgentsAttributes) SetIsCwsRemoteConfigurationEnabledNil() {
 	o.IsCwsRemoteConfigurationEnabled.Set(nil)
@@ -551,6 +565,7 @@ func (o *CsmAgentsAttributes) SetIsCwsRemoteConfigurationEnabledNil() {
 func (o *CsmAgentsAttributes) UnsetIsCwsRemoteConfigurationEnabled() {
 	o.IsCwsRemoteConfigurationEnabled.Unset()
 }
+
 
 // GetIsRemoteConfigurationEnabled returns the IsRemoteConfigurationEnabled field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CsmAgentsAttributes) GetIsRemoteConfigurationEnabled() bool {
@@ -565,7 +580,7 @@ func (o *CsmAgentsAttributes) GetIsRemoteConfigurationEnabled() bool {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CsmAgentsAttributes) GetIsRemoteConfigurationEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.IsRemoteConfigurationEnabled.Get(), o.IsRemoteConfigurationEnabled.IsSet()
@@ -580,7 +595,6 @@ func (o *CsmAgentsAttributes) HasIsRemoteConfigurationEnabled() bool {
 func (o *CsmAgentsAttributes) SetIsRemoteConfigurationEnabled(v bool) {
 	o.IsRemoteConfigurationEnabled.Set(&v)
 }
-
 // SetIsRemoteConfigurationEnabledNil sets the value for IsRemoteConfigurationEnabled to be an explicit nil.
 func (o *CsmAgentsAttributes) SetIsRemoteConfigurationEnabledNil() {
 	o.IsRemoteConfigurationEnabled.Set(nil)
@@ -590,6 +604,7 @@ func (o *CsmAgentsAttributes) SetIsRemoteConfigurationEnabledNil() {
 func (o *CsmAgentsAttributes) UnsetIsRemoteConfigurationEnabled() {
 	o.IsRemoteConfigurationEnabled.Unset()
 }
+
 
 // GetOs returns the Os field value if set, zero value otherwise.
 func (o *CsmAgentsAttributes) GetOs() string {
@@ -618,6 +633,8 @@ func (o *CsmAgentsAttributes) HasOs() bool {
 func (o *CsmAgentsAttributes) SetOs(v string) {
 	o.Os = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CsmAgentsAttributes) MarshalJSON() ([]byte, error) {
@@ -686,30 +703,30 @@ func (o CsmAgentsAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CsmAgentsAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AgentVersion                    *string                      `json:"agent_version,omitempty"`
-		AwsFargate                      *string                      `json:"aws_fargate,omitempty"`
-		ClusterName                     []string                     `json:"cluster_name,omitempty"`
-		DatadogAgent                    *string                      `json:"datadog_agent,omitempty"`
-		EcsFargateTaskArn               *string                      `json:"ecs_fargate_task_arn,omitempty"`
-		Envs                            datadog.NullableList[string] `json:"envs,omitempty"`
-		HostId                          *int64                       `json:"host_id,omitempty"`
-		Hostname                        *string                      `json:"hostname,omitempty"`
-		InstallMethodInstallerVersion   *string                      `json:"install_method_installer_version,omitempty"`
-		InstallMethodTool               *string                      `json:"install_method_tool,omitempty"`
-		IsCsmVmContainersEnabled        datadog.NullableBool         `json:"is_csm_vm_containers_enabled,omitempty"`
-		IsCsmVmHostsEnabled             datadog.NullableBool         `json:"is_csm_vm_hosts_enabled,omitempty"`
-		IsCspmEnabled                   datadog.NullableBool         `json:"is_cspm_enabled,omitempty"`
-		IsCwsEnabled                    datadog.NullableBool         `json:"is_cws_enabled,omitempty"`
-		IsCwsRemoteConfigurationEnabled datadog.NullableBool         `json:"is_cws_remote_configuration_enabled,omitempty"`
-		IsRemoteConfigurationEnabled    datadog.NullableBool         `json:"is_remote_configuration_enabled,omitempty"`
-		Os                              *string                      `json:"os,omitempty"`
+		AgentVersion *string `json:"agent_version,omitempty"`
+		AwsFargate *string `json:"aws_fargate,omitempty"`
+		ClusterName []string `json:"cluster_name,omitempty"`
+		DatadogAgent *string `json:"datadog_agent,omitempty"`
+		EcsFargateTaskArn *string `json:"ecs_fargate_task_arn,omitempty"`
+		Envs datadog.NullableList[string] `json:"envs,omitempty"`
+		HostId *int64 `json:"host_id,omitempty"`
+		Hostname *string `json:"hostname,omitempty"`
+		InstallMethodInstallerVersion *string `json:"install_method_installer_version,omitempty"`
+		InstallMethodTool *string `json:"install_method_tool,omitempty"`
+		IsCsmVmContainersEnabled datadog.NullableBool `json:"is_csm_vm_containers_enabled,omitempty"`
+		IsCsmVmHostsEnabled datadog.NullableBool `json:"is_csm_vm_hosts_enabled,omitempty"`
+		IsCspmEnabled datadog.NullableBool `json:"is_cspm_enabled,omitempty"`
+		IsCwsEnabled datadog.NullableBool `json:"is_cws_enabled,omitempty"`
+		IsCwsRemoteConfigurationEnabled datadog.NullableBool `json:"is_cws_remote_configuration_enabled,omitempty"`
+		IsRemoteConfigurationEnabled datadog.NullableBool `json:"is_remote_configuration_enabled,omitempty"`
+		Os *string `json:"os,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"agent_version", "aws_fargate", "cluster_name", "datadog_agent", "ecs_fargate_task_arn", "envs", "host_id", "hostname", "install_method_installer_version", "install_method_tool", "is_csm_vm_containers_enabled", "is_csm_vm_hosts_enabled", "is_cspm_enabled", "is_cws_enabled", "is_cws_remote_configuration_enabled", "is_remote_configuration_enabled", "os"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "agent_version", "aws_fargate", "cluster_name", "datadog_agent", "ecs_fargate_task_arn", "envs", "host_id", "hostname", "install_method_installer_version", "install_method_tool", "is_csm_vm_containers_enabled", "is_csm_vm_hosts_enabled", "is_cspm_enabled", "is_cws_enabled", "is_cws_remote_configuration_enabled", "is_remote_configuration_enabled", "os",  })
 	} else {
 		return err
 	}

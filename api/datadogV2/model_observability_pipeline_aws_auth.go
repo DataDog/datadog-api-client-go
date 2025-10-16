@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineAwsAuth AWS authentication credentials used for accessing AWS services such as S3.
 // If omitted, the system’s default credentials are used (for example, the IAM role and environment variables).
@@ -18,9 +24,10 @@ type ObservabilityPipelineAwsAuth struct {
 	// A session identifier used for logging and tracing the assumed role session.
 	SessionName *string `json:"session_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineAwsAuth instantiates a new ObservabilityPipelineAwsAuth object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +45,6 @@ func NewObservabilityPipelineAwsAuthWithDefaults() *ObservabilityPipelineAwsAuth
 	this := ObservabilityPipelineAwsAuth{}
 	return &this
 }
-
 // GetAssumeRole returns the AssumeRole field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAwsAuth) GetAssumeRole() string {
 	if o == nil || o.AssumeRole == nil {
@@ -66,6 +72,7 @@ func (o *ObservabilityPipelineAwsAuth) HasAssumeRole() bool {
 func (o *ObservabilityPipelineAwsAuth) SetAssumeRole(v string) {
 	o.AssumeRole = &v
 }
+
 
 // GetExternalId returns the ExternalId field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAwsAuth) GetExternalId() string {
@@ -95,6 +102,7 @@ func (o *ObservabilityPipelineAwsAuth) SetExternalId(v string) {
 	o.ExternalId = &v
 }
 
+
 // GetSessionName returns the SessionName field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAwsAuth) GetSessionName() string {
 	if o == nil || o.SessionName == nil {
@@ -123,6 +131,8 @@ func (o *ObservabilityPipelineAwsAuth) SetSessionName(v string) {
 	o.SessionName = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineAwsAuth) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,8 +158,8 @@ func (o ObservabilityPipelineAwsAuth) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineAwsAuth) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AssumeRole  *string `json:"assume_role,omitempty"`
-		ExternalId  *string `json:"external_id,omitempty"`
+		AssumeRole *string `json:"assume_role,omitempty"`
+		ExternalId *string `json:"external_id,omitempty"`
 		SessionName *string `json:"session_name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -157,7 +167,7 @@ func (o *ObservabilityPipelineAwsAuth) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assume_role", "external_id", "session_name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "assume_role", "external_id", "session_name",  })
 	} else {
 		return err
 	}

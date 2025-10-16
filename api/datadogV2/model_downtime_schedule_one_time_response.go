@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeScheduleOneTimeResponse A one-time downtime definition.
 type DowntimeScheduleOneTimeResponse struct {
@@ -18,9 +21,10 @@ type DowntimeScheduleOneTimeResponse struct {
 	// ISO-8601 Datetime to start the downtime.
 	Start time.Time `json:"start"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDowntimeScheduleOneTimeResponse instantiates a new DowntimeScheduleOneTimeResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +43,6 @@ func NewDowntimeScheduleOneTimeResponseWithDefaults() *DowntimeScheduleOneTimeRe
 	this := DowntimeScheduleOneTimeResponse{}
 	return &this
 }
-
 // GetEnd returns the End field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DowntimeScheduleOneTimeResponse) GetEnd() time.Time {
 	if o == nil || o.End.Get() == nil {
@@ -53,7 +56,7 @@ func (o *DowntimeScheduleOneTimeResponse) GetEnd() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeScheduleOneTimeResponse) GetEndOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.End.Get(), o.End.IsSet()
@@ -68,7 +71,6 @@ func (o *DowntimeScheduleOneTimeResponse) HasEnd() bool {
 func (o *DowntimeScheduleOneTimeResponse) SetEnd(v time.Time) {
 	o.End.Set(&v)
 }
-
 // SetEndNil sets the value for End to be an explicit nil.
 func (o *DowntimeScheduleOneTimeResponse) SetEndNil() {
 	o.End.Set(nil)
@@ -78,6 +80,7 @@ func (o *DowntimeScheduleOneTimeResponse) SetEndNil() {
 func (o *DowntimeScheduleOneTimeResponse) UnsetEnd() {
 	o.End.Unset()
 }
+
 
 // GetStart returns the Start field value.
 func (o *DowntimeScheduleOneTimeResponse) GetStart() time.Time {
@@ -101,6 +104,8 @@ func (o *DowntimeScheduleOneTimeResponse) GetStartOk() (*time.Time, bool) {
 func (o *DowntimeScheduleOneTimeResponse) SetStart(v time.Time) {
 	o.Start = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeScheduleOneTimeResponse) MarshalJSON() ([]byte, error) {
@@ -126,8 +131,8 @@ func (o DowntimeScheduleOneTimeResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeScheduleOneTimeResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		End   datadog.NullableTime `json:"end,omitempty"`
-		Start *time.Time           `json:"start"`
+		End datadog.NullableTime `json:"end,omitempty"`
+		Start *time.Time `json:"start"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -137,7 +142,7 @@ func (o *DowntimeScheduleOneTimeResponse) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"end", "start"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "end", "start",  })
 	} else {
 		return err
 	}

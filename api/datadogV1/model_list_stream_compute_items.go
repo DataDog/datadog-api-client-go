@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListStreamComputeItems List of facets and aggregations which to compute.
 type ListStreamComputeItems struct {
@@ -17,9 +21,10 @@ type ListStreamComputeItems struct {
 	// Facet name.
 	Facet *string `json:"facet,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListStreamComputeItems instantiates a new ListStreamComputeItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewListStreamComputeItemsWithDefaults() *ListStreamComputeItems {
 	this := ListStreamComputeItems{}
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value.
 func (o *ListStreamComputeItems) GetAggregation() ListStreamComputeAggregation {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *ListStreamComputeItems) GetAggregationOk() (*ListStreamComputeAggregati
 func (o *ListStreamComputeItems) SetAggregation(v ListStreamComputeAggregation) {
 	o.Aggregation = v
 }
+
 
 // GetFacet returns the Facet field value if set, zero value otherwise.
 func (o *ListStreamComputeItems) GetFacet() string {
@@ -90,6 +95,8 @@ func (o *ListStreamComputeItems) SetFacet(v string) {
 	o.Facet = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListStreamComputeItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o ListStreamComputeItems) MarshalJSON() ([]byte, error) {
 func (o *ListStreamComputeItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Aggregation *ListStreamComputeAggregation `json:"aggregation"`
-		Facet       *string                       `json:"facet,omitempty"`
+		Facet *string `json:"facet,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *ListStreamComputeItems) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "facet"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation", "facet",  })
 	} else {
 		return err
 	}

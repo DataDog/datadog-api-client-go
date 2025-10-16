@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SoftwareCatalogTriggerWrapper Schema for a Software Catalog-based trigger.
 type SoftwareCatalogTriggerWrapper struct {
@@ -17,9 +21,10 @@ type SoftwareCatalogTriggerWrapper struct {
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSoftwareCatalogTriggerWrapper instantiates a new SoftwareCatalogTriggerWrapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewSoftwareCatalogTriggerWrapperWithDefaults() *SoftwareCatalogTriggerWrapp
 	this := SoftwareCatalogTriggerWrapper{}
 	return &this
 }
-
 // GetSoftwareCatalogTrigger returns the SoftwareCatalogTrigger field value.
 func (o *SoftwareCatalogTriggerWrapper) GetSoftwareCatalogTrigger() interface{} {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *SoftwareCatalogTriggerWrapper) GetSoftwareCatalogTriggerOk() (*interfac
 func (o *SoftwareCatalogTriggerWrapper) SetSoftwareCatalogTrigger(v interface{}) {
 	o.SoftwareCatalogTrigger = v
 }
+
 
 // GetStartStepNames returns the StartStepNames field value if set, zero value otherwise.
 func (o *SoftwareCatalogTriggerWrapper) GetStartStepNames() []string {
@@ -90,6 +95,8 @@ func (o *SoftwareCatalogTriggerWrapper) SetStartStepNames(v []string) {
 	o.StartStepNames = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SoftwareCatalogTriggerWrapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o SoftwareCatalogTriggerWrapper) MarshalJSON() ([]byte, error) {
 func (o *SoftwareCatalogTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		SoftwareCatalogTrigger *interface{} `json:"softwareCatalogTrigger"`
-		StartStepNames         []string     `json:"startStepNames,omitempty"`
+		StartStepNames []string `json:"startStepNames,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *SoftwareCatalogTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"softwareCatalogTrigger", "startStepNames"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "softwareCatalogTrigger", "startStepNames",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WebhooksIntegrationUpdateRequest Update request of a Webhooks integration object.
 //
@@ -29,9 +35,10 @@ type WebhooksIntegrationUpdateRequest struct {
 	// URL of the webhook.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWebhooksIntegrationUpdateRequest instantiates a new WebhooksIntegrationUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +60,6 @@ func NewWebhooksIntegrationUpdateRequestWithDefaults() *WebhooksIntegrationUpdat
 	this.EncodeAs = &encodeAs
 	return &this
 }
-
 // GetCustomHeaders returns the CustomHeaders field value if set, zero value otherwise.
 func (o *WebhooksIntegrationUpdateRequest) GetCustomHeaders() string {
 	if o == nil || o.CustomHeaders == nil {
@@ -81,6 +87,7 @@ func (o *WebhooksIntegrationUpdateRequest) HasCustomHeaders() bool {
 func (o *WebhooksIntegrationUpdateRequest) SetCustomHeaders(v string) {
 	o.CustomHeaders = &v
 }
+
 
 // GetEncodeAs returns the EncodeAs field value if set, zero value otherwise.
 func (o *WebhooksIntegrationUpdateRequest) GetEncodeAs() WebhooksIntegrationEncoding {
@@ -110,6 +117,7 @@ func (o *WebhooksIntegrationUpdateRequest) SetEncodeAs(v WebhooksIntegrationEnco
 	o.EncodeAs = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *WebhooksIntegrationUpdateRequest) GetName() string {
 	if o == nil || o.Name == nil {
@@ -138,6 +146,7 @@ func (o *WebhooksIntegrationUpdateRequest) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetPayload returns the Payload field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WebhooksIntegrationUpdateRequest) GetPayload() string {
 	if o == nil || o.Payload.Get() == nil {
@@ -151,7 +160,7 @@ func (o *WebhooksIntegrationUpdateRequest) GetPayload() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *WebhooksIntegrationUpdateRequest) GetPayloadOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Payload.Get(), o.Payload.IsSet()
@@ -166,7 +175,6 @@ func (o *WebhooksIntegrationUpdateRequest) HasPayload() bool {
 func (o *WebhooksIntegrationUpdateRequest) SetPayload(v string) {
 	o.Payload.Set(&v)
 }
-
 // SetPayloadNil sets the value for Payload to be an explicit nil.
 func (o *WebhooksIntegrationUpdateRequest) SetPayloadNil() {
 	o.Payload.Set(nil)
@@ -176,6 +184,7 @@ func (o *WebhooksIntegrationUpdateRequest) SetPayloadNil() {
 func (o *WebhooksIntegrationUpdateRequest) UnsetPayload() {
 	o.Payload.Unset()
 }
+
 
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *WebhooksIntegrationUpdateRequest) GetUrl() string {
@@ -204,6 +213,8 @@ func (o *WebhooksIntegrationUpdateRequest) HasUrl() bool {
 func (o *WebhooksIntegrationUpdateRequest) SetUrl(v string) {
 	o.Url = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o WebhooksIntegrationUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -236,25 +247,25 @@ func (o WebhooksIntegrationUpdateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WebhooksIntegrationUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomHeaders *string                      `json:"custom_headers,omitempty"`
-		EncodeAs      *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
-		Name          *string                      `json:"name,omitempty"`
-		Payload       datadog.NullableString       `json:"payload,omitempty"`
-		Url           *string                      `json:"url,omitempty"`
+		CustomHeaders *string `json:"custom_headers,omitempty"`
+		EncodeAs *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Payload datadog.NullableString `json:"payload,omitempty"`
+		Url *string `json:"url,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom_headers", "encode_as", "name", "payload", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "custom_headers", "encode_as", "name", "payload", "url",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.CustomHeaders = all.CustomHeaders
-	if all.EncodeAs != nil && !all.EncodeAs.IsValid() {
+	if all.EncodeAs != nil &&!all.EncodeAs.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.EncodeAs = all.EncodeAs

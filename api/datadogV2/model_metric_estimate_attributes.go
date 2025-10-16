@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricEstimateAttributes Object containing the definition of a metric estimate attribute.
 type MetricEstimateAttributes struct {
@@ -19,9 +23,10 @@ type MetricEstimateAttributes struct {
 	// Estimated cardinality of the metric based on the queried configuration.
 	EstimatedOutputSeries *int64 `json:"estimated_output_series,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricEstimateAttributes instantiates a new MetricEstimateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewMetricEstimateAttributesWithDefaults() *MetricEstimateAttributes {
 	this.EstimateType = &estimateType
 	return &this
 }
-
 // GetEstimateType returns the EstimateType field value if set, zero value otherwise.
 func (o *MetricEstimateAttributes) GetEstimateType() MetricEstimateType {
 	if o == nil || o.EstimateType == nil {
@@ -71,6 +75,7 @@ func (o *MetricEstimateAttributes) HasEstimateType() bool {
 func (o *MetricEstimateAttributes) SetEstimateType(v MetricEstimateType) {
 	o.EstimateType = &v
 }
+
 
 // GetEstimatedAt returns the EstimatedAt field value if set, zero value otherwise.
 func (o *MetricEstimateAttributes) GetEstimatedAt() time.Time {
@@ -100,6 +105,7 @@ func (o *MetricEstimateAttributes) SetEstimatedAt(v time.Time) {
 	o.EstimatedAt = &v
 }
 
+
 // GetEstimatedOutputSeries returns the EstimatedOutputSeries field value if set, zero value otherwise.
 func (o *MetricEstimateAttributes) GetEstimatedOutputSeries() int64 {
 	if o == nil || o.EstimatedOutputSeries == nil {
@@ -127,6 +133,8 @@ func (o *MetricEstimateAttributes) HasEstimatedOutputSeries() bool {
 func (o *MetricEstimateAttributes) SetEstimatedOutputSeries(v int64) {
 	o.EstimatedOutputSeries = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricEstimateAttributes) MarshalJSON() ([]byte, error) {
@@ -157,22 +165,22 @@ func (o MetricEstimateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricEstimateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EstimateType          *MetricEstimateType `json:"estimate_type,omitempty"`
-		EstimatedAt           *time.Time          `json:"estimated_at,omitempty"`
-		EstimatedOutputSeries *int64              `json:"estimated_output_series,omitempty"`
+		EstimateType *MetricEstimateType `json:"estimate_type,omitempty"`
+		EstimatedAt *time.Time `json:"estimated_at,omitempty"`
+		EstimatedOutputSeries *int64 `json:"estimated_output_series,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"estimate_type", "estimated_at", "estimated_output_series"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "estimate_type", "estimated_at", "estimated_output_series",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.EstimateType != nil && !all.EstimateType.IsValid() {
+	if all.EstimateType != nil &&!all.EstimateType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.EstimateType = all.EstimateType

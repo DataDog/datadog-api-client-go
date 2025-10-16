@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerCreateRuleResponse Create rule response.
 type SensitiveDataScannerCreateRuleResponse struct {
@@ -15,9 +21,10 @@ type SensitiveDataScannerCreateRuleResponse struct {
 	// Meta payload containing information about the API.
 	Meta *SensitiveDataScannerMetaVersionOnly `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerCreateRuleResponse instantiates a new SensitiveDataScannerCreateRuleResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSensitiveDataScannerCreateRuleResponseWithDefaults() *SensitiveDataScann
 	this := SensitiveDataScannerCreateRuleResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *SensitiveDataScannerCreateRuleResponse) GetData() SensitiveDataScannerRuleResponse {
 	if o == nil || o.Data == nil {
@@ -63,6 +69,7 @@ func (o *SensitiveDataScannerCreateRuleResponse) HasData() bool {
 func (o *SensitiveDataScannerCreateRuleResponse) SetData(v SensitiveDataScannerRuleResponse) {
 	o.Data = &v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *SensitiveDataScannerCreateRuleResponse) GetMeta() SensitiveDataScannerMetaVersionOnly {
@@ -92,6 +99,8 @@ func (o *SensitiveDataScannerCreateRuleResponse) SetMeta(v SensitiveDataScannerM
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerCreateRuleResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o SensitiveDataScannerCreateRuleResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerCreateRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *SensitiveDataScannerRuleResponse    `json:"data,omitempty"`
+		Data *SensitiveDataScannerRuleResponse `json:"data,omitempty"`
 		Meta *SensitiveDataScannerMetaVersionOnly `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,17 +131,17 @@ func (o *SensitiveDataScannerCreateRuleResponse) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Data = all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

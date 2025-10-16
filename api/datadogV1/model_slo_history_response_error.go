@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOHistoryResponseError A list of errors while querying the history data for the service level objective.
 type SLOHistoryResponseError struct {
 	// Human readable error.
 	Error *string `json:"error,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSLOHistoryResponseError instantiates a new SLOHistoryResponseError object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewSLOHistoryResponseErrorWithDefaults() *SLOHistoryResponseError {
 	this := SLOHistoryResponseError{}
 	return &this
 }
-
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *SLOHistoryResponseError) GetError() string {
 	if o == nil || o.Error == nil {
@@ -62,6 +68,8 @@ func (o *SLOHistoryResponseError) SetError(v string) {
 	o.Error = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOHistoryResponseError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *SLOHistoryResponseError) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"error"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "error",  })
 	} else {
 		return err
 	}

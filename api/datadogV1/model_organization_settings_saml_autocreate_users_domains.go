@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OrganizationSettingsSamlAutocreateUsersDomains Has two properties, `enabled` (boolean) and `domains`, which is a list of domains without the @ symbol.
 type OrganizationSettingsSamlAutocreateUsersDomains struct {
@@ -15,9 +21,10 @@ type OrganizationSettingsSamlAutocreateUsersDomains struct {
 	// Whether or not the automated user creation based on SAML domain is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOrganizationSettingsSamlAutocreateUsersDomains instantiates a new OrganizationSettingsSamlAutocreateUsersDomains object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewOrganizationSettingsSamlAutocreateUsersDomainsWithDefaults() *Organizati
 	this := OrganizationSettingsSamlAutocreateUsersDomains{}
 	return &this
 }
-
 // GetDomains returns the Domains field value if set, zero value otherwise.
 func (o *OrganizationSettingsSamlAutocreateUsersDomains) GetDomains() []string {
 	if o == nil || o.Domains == nil {
@@ -63,6 +69,7 @@ func (o *OrganizationSettingsSamlAutocreateUsersDomains) HasDomains() bool {
 func (o *OrganizationSettingsSamlAutocreateUsersDomains) SetDomains(v []string) {
 	o.Domains = v
 }
+
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *OrganizationSettingsSamlAutocreateUsersDomains) GetEnabled() bool {
@@ -92,6 +99,8 @@ func (o *OrganizationSettingsSamlAutocreateUsersDomains) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OrganizationSettingsSamlAutocreateUsersDomains) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o OrganizationSettingsSamlAutocreateUsersDomains) MarshalJSON() ([]byte, e
 func (o *OrganizationSettingsSamlAutocreateUsersDomains) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Domains []string `json:"domains,omitempty"`
-		Enabled *bool    `json:"enabled,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"domains", "enabled"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "domains", "enabled",  })
 	} else {
 		return err
 	}

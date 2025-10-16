@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ArbitraryCostUpsertRequestDataAttributes The definition of `ArbitraryCostUpsertRequestDataAttributes` object.
 type ArbitraryCostUpsertRequestDataAttributes struct {
@@ -29,9 +33,10 @@ type ArbitraryCostUpsertRequestDataAttributes struct {
 	// The `attributes` `type`.
 	Type string `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewArbitraryCostUpsertRequestDataAttributes instantiates a new ArbitraryCostUpsertRequestDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewArbitraryCostUpsertRequestDataAttributesWithDefaults() *ArbitraryCostUps
 	this := ArbitraryCostUpsertRequestDataAttributes{}
 	return &this
 }
-
 // GetCostsToAllocate returns the CostsToAllocate field value.
 func (o *ArbitraryCostUpsertRequestDataAttributes) GetCostsToAllocate() []ArbitraryCostUpsertRequestDataAttributesCostsToAllocateItems {
 	if o == nil {
@@ -77,6 +81,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributes) GetCostsToAllocateOk() (*[]Ar
 func (o *ArbitraryCostUpsertRequestDataAttributes) SetCostsToAllocate(v []ArbitraryCostUpsertRequestDataAttributesCostsToAllocateItems) {
 	o.CostsToAllocate = v
 }
+
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *ArbitraryCostUpsertRequestDataAttributes) GetEnabled() bool {
@@ -106,6 +111,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
 // GetOrderId returns the OrderId field value if set, zero value otherwise.
 func (o *ArbitraryCostUpsertRequestDataAttributes) GetOrderId() int64 {
 	if o == nil || o.OrderId == nil {
@@ -134,6 +140,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributes) SetOrderId(v int64) {
 	o.OrderId = &v
 }
 
+
 // GetProvider returns the Provider field value.
 func (o *ArbitraryCostUpsertRequestDataAttributes) GetProvider() []string {
 	if o == nil {
@@ -156,6 +163,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributes) GetProviderOk() (*[]string, b
 func (o *ArbitraryCostUpsertRequestDataAttributes) SetProvider(v []string) {
 	o.Provider = v
 }
+
 
 // GetRejected returns the Rejected field value if set, zero value otherwise.
 func (o *ArbitraryCostUpsertRequestDataAttributes) GetRejected() bool {
@@ -185,6 +193,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributes) SetRejected(v bool) {
 	o.Rejected = &v
 }
 
+
 // GetRuleName returns the RuleName field value.
 func (o *ArbitraryCostUpsertRequestDataAttributes) GetRuleName() string {
 	if o == nil {
@@ -207,6 +216,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributes) GetRuleNameOk() (*string, boo
 func (o *ArbitraryCostUpsertRequestDataAttributes) SetRuleName(v string) {
 	o.RuleName = v
 }
+
 
 // GetStrategy returns the Strategy field value.
 func (o *ArbitraryCostUpsertRequestDataAttributes) GetStrategy() ArbitraryCostUpsertRequestDataAttributesStrategy {
@@ -231,6 +241,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributes) SetStrategy(v ArbitraryCostUp
 	o.Strategy = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ArbitraryCostUpsertRequestDataAttributes) GetType() string {
 	if o == nil {
@@ -253,6 +264,8 @@ func (o *ArbitraryCostUpsertRequestDataAttributes) GetTypeOk() (*string, bool) {
 func (o *ArbitraryCostUpsertRequestDataAttributes) SetType(v string) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ArbitraryCostUpsertRequestDataAttributes) MarshalJSON() ([]byte, error) {
@@ -285,13 +298,13 @@ func (o ArbitraryCostUpsertRequestDataAttributes) MarshalJSON() ([]byte, error) 
 func (o *ArbitraryCostUpsertRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CostsToAllocate *[]ArbitraryCostUpsertRequestDataAttributesCostsToAllocateItems `json:"costs_to_allocate"`
-		Enabled         *bool                                                           `json:"enabled,omitempty"`
-		OrderId         *int64                                                          `json:"order_id,omitempty"`
-		Provider        *[]string                                                       `json:"provider"`
-		Rejected        *bool                                                           `json:"rejected,omitempty"`
-		RuleName        *string                                                         `json:"rule_name"`
-		Strategy        *ArbitraryCostUpsertRequestDataAttributesStrategy               `json:"strategy"`
-		Type            *string                                                         `json:"type"`
+		Enabled *bool `json:"enabled,omitempty"`
+		OrderId *int64 `json:"order_id,omitempty"`
+		Provider *[]string `json:"provider"`
+		Rejected *bool `json:"rejected,omitempty"`
+		RuleName *string `json:"rule_name"`
+		Strategy *ArbitraryCostUpsertRequestDataAttributesStrategy `json:"strategy"`
+		Type *string `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -313,7 +326,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributes) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"costs_to_allocate", "enabled", "order_id", "provider", "rejected", "rule_name", "strategy", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "costs_to_allocate", "enabled", "order_id", "provider", "rejected", "rule_name", "strategy", "type",  })
 	} else {
 		return err
 	}

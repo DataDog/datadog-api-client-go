@@ -2,20 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsBasicAuth - Object to handle basic authentication when performing the test.
 type SyntheticsBasicAuth struct {
-	SyntheticsBasicAuthWeb         *SyntheticsBasicAuthWeb
-	SyntheticsBasicAuthSigv4       *SyntheticsBasicAuthSigv4
-	SyntheticsBasicAuthNTLM        *SyntheticsBasicAuthNTLM
-	SyntheticsBasicAuthDigest      *SyntheticsBasicAuthDigest
+	SyntheticsBasicAuthWeb *SyntheticsBasicAuthWeb
+	SyntheticsBasicAuthSigv4 *SyntheticsBasicAuthSigv4
+	SyntheticsBasicAuthNTLM *SyntheticsBasicAuthNTLM
+	SyntheticsBasicAuthDigest *SyntheticsBasicAuthDigest
 	SyntheticsBasicAuthOauthClient *SyntheticsBasicAuthOauthClient
-	SyntheticsBasicAuthOauthROP    *SyntheticsBasicAuthOauthROP
+	SyntheticsBasicAuthOauthROP *SyntheticsBasicAuthOauthROP
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -60,7 +66,7 @@ func (obj *SyntheticsBasicAuth) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.SyntheticsBasicAuthWeb != nil && obj.SyntheticsBasicAuthWeb.UnparsedObject == nil {
 			jsonSyntheticsBasicAuthWeb, _ := datadog.Marshal(obj.SyntheticsBasicAuthWeb)
-			if string(jsonSyntheticsBasicAuthWeb) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonSyntheticsBasicAuthWeb) == "{}" && string(data) != "{}"  { // empty struct
 				obj.SyntheticsBasicAuthWeb = nil
 			} else {
 				match++
@@ -176,25 +182,31 @@ func (obj SyntheticsBasicAuth) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SyntheticsBasicAuthWeb)
 	}
 
+
 	if obj.SyntheticsBasicAuthSigv4 != nil {
 		return datadog.Marshal(&obj.SyntheticsBasicAuthSigv4)
 	}
+
 
 	if obj.SyntheticsBasicAuthNTLM != nil {
 		return datadog.Marshal(&obj.SyntheticsBasicAuthNTLM)
 	}
 
+
 	if obj.SyntheticsBasicAuthDigest != nil {
 		return datadog.Marshal(&obj.SyntheticsBasicAuthDigest)
 	}
+
 
 	if obj.SyntheticsBasicAuthOauthClient != nil {
 		return datadog.Marshal(&obj.SyntheticsBasicAuthOauthClient)
 	}
 
+
 	if obj.SyntheticsBasicAuthOauthROP != nil {
 		return datadog.Marshal(&obj.SyntheticsBasicAuthOauthROP)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -203,30 +215,36 @@ func (obj SyntheticsBasicAuth) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SyntheticsBasicAuth) GetActualInstance() interface{} {
+func (obj *SyntheticsBasicAuth) GetActualInstance() (interface{}) {
 	if obj.SyntheticsBasicAuthWeb != nil {
 		return obj.SyntheticsBasicAuthWeb
 	}
+
 
 	if obj.SyntheticsBasicAuthSigv4 != nil {
 		return obj.SyntheticsBasicAuthSigv4
 	}
 
+
 	if obj.SyntheticsBasicAuthNTLM != nil {
 		return obj.SyntheticsBasicAuthNTLM
 	}
+
 
 	if obj.SyntheticsBasicAuthDigest != nil {
 		return obj.SyntheticsBasicAuthDigest
 	}
 
+
 	if obj.SyntheticsBasicAuthOauthClient != nil {
 		return obj.SyntheticsBasicAuthOauthClient
 	}
 
+
 	if obj.SyntheticsBasicAuthOauthROP != nil {
 		return obj.SyntheticsBasicAuthOauthROP
 	}
+
 
 	// all schemas are nil
 	return nil

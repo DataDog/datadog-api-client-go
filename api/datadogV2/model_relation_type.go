@@ -2,29 +2,33 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RelationType Supported relation types.
 type RelationType string
 
 // List of RelationType.
 const (
-	RELATIONTYPE_RELATIONTYPEOWNS          RelationType = "RelationTypeOwns"
-	RELATIONTYPE_RELATIONTYPEOWNEDBY       RelationType = "RelationTypeOwnedBy"
-	RELATIONTYPE_RELATIONTYPEDEPENDSON     RelationType = "RelationTypeDependsOn"
-	RELATIONTYPE_RELATIONTYPEDEPENDENCYOF  RelationType = "RelationTypeDependencyOf"
-	RELATIONTYPE_RELATIONTYPEPARTSOF       RelationType = "RelationTypePartsOf"
-	RELATIONTYPE_RELATIONTYPEHASPART       RelationType = "RelationTypeHasPart"
-	RELATIONTYPE_RELATIONTYPEOTHEROWNS     RelationType = "RelationTypeOtherOwns"
-	RELATIONTYPE_RELATIONTYPEOTHEROWNEDBY  RelationType = "RelationTypeOtherOwnedBy"
+	RELATIONTYPE_RELATIONTYPEOWNS RelationType = "RelationTypeOwns"
+	RELATIONTYPE_RELATIONTYPEOWNEDBY RelationType = "RelationTypeOwnedBy"
+	RELATIONTYPE_RELATIONTYPEDEPENDSON RelationType = "RelationTypeDependsOn"
+	RELATIONTYPE_RELATIONTYPEDEPENDENCYOF RelationType = "RelationTypeDependencyOf"
+	RELATIONTYPE_RELATIONTYPEPARTSOF RelationType = "RelationTypePartsOf"
+	RELATIONTYPE_RELATIONTYPEHASPART RelationType = "RelationTypeHasPart"
+	RELATIONTYPE_RELATIONTYPEOTHEROWNS RelationType = "RelationTypeOtherOwns"
+	RELATIONTYPE_RELATIONTYPEOTHEROWNEDBY RelationType = "RelationTypeOtherOwnedBy"
 	RELATIONTYPE_RELATIONTYPEIMPLEMENTEDBY RelationType = "RelationTypeImplementedBy"
-	RELATIONTYPE_RELATIONTYPEIMPLEMENTS    RelationType = "RelationTypeImplements"
+	RELATIONTYPE_RELATIONTYPEIMPLEMENTS RelationType = "RelationTypeImplements"
 )
 
 var allowedRelationTypeEnumValues = []RelationType{

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleCreateData Object for a single WAF custom rule.
 type ApplicationSecurityWafCustomRuleCreateData struct {
@@ -17,9 +21,10 @@ type ApplicationSecurityWafCustomRuleCreateData struct {
 	// The type of the resource. The value should always be `custom_rule`.
 	Type ApplicationSecurityWafCustomRuleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafCustomRuleCreateData instantiates a new ApplicationSecurityWafCustomRuleCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewApplicationSecurityWafCustomRuleCreateDataWithDefaults() *ApplicationSec
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *ApplicationSecurityWafCustomRuleCreateData) GetAttributes() ApplicationSecurityWafCustomRuleCreateAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *ApplicationSecurityWafCustomRuleCreateData) GetAttributesOk() (*Applica
 func (o *ApplicationSecurityWafCustomRuleCreateData) SetAttributes(v ApplicationSecurityWafCustomRuleCreateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ApplicationSecurityWafCustomRuleCreateData) GetType() ApplicationSecurityWafCustomRuleType {
@@ -88,6 +93,8 @@ func (o *ApplicationSecurityWafCustomRuleCreateData) SetType(v ApplicationSecuri
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafCustomRuleCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o ApplicationSecurityWafCustomRuleCreateData) MarshalJSON() ([]byte, error
 func (o *ApplicationSecurityWafCustomRuleCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *ApplicationSecurityWafCustomRuleCreateAttributes `json:"attributes"`
-		Type       *ApplicationSecurityWafCustomRuleType             `json:"type"`
+		Type *ApplicationSecurityWafCustomRuleType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *ApplicationSecurityWafCustomRuleCreateData) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

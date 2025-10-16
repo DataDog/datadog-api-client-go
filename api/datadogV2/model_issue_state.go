@@ -2,24 +2,28 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssueState State of the issue
 type IssueState string
 
 // List of IssueState.
 const (
-	ISSUESTATE_OPEN         IssueState = "OPEN"
+	ISSUESTATE_OPEN IssueState = "OPEN"
 	ISSUESTATE_ACKNOWLEDGED IssueState = "ACKNOWLEDGED"
-	ISSUESTATE_RESOLVED     IssueState = "RESOLVED"
-	ISSUESTATE_IGNORED      IssueState = "IGNORED"
-	ISSUESTATE_EXCLUDED     IssueState = "EXCLUDED"
+	ISSUESTATE_RESOLVED IssueState = "RESOLVED"
+	ISSUESTATE_IGNORED IssueState = "IGNORED"
+	ISSUESTATE_EXCLUDED IssueState = "EXCLUDED"
 )
 
 var allowedIssueStateEnumValues = []IssueState{

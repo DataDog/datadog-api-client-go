@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GcpUcConfigResponseDataAttributes The definition of `GcpUcConfigResponseDataAttributes` object.
 type GcpUcConfigResponseDataAttributes struct {
@@ -37,9 +43,10 @@ type GcpUcConfigResponseDataAttributes struct {
 	// The `attributes` `updated_at`.
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGcpUcConfigResponseDataAttributes instantiates a new GcpUcConfigResponseDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +64,6 @@ func NewGcpUcConfigResponseDataAttributesWithDefaults() *GcpUcConfigResponseData
 	this := GcpUcConfigResponseDataAttributes{}
 	return &this
 }
-
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
 func (o *GcpUcConfigResponseDataAttributes) GetAccountId() string {
 	if o == nil || o.AccountId == nil {
@@ -85,6 +91,7 @@ func (o *GcpUcConfigResponseDataAttributes) HasAccountId() bool {
 func (o *GcpUcConfigResponseDataAttributes) SetAccountId(v string) {
 	o.AccountId = &v
 }
+
 
 // GetBucketName returns the BucketName field value if set, zero value otherwise.
 func (o *GcpUcConfigResponseDataAttributes) GetBucketName() string {
@@ -114,6 +121,7 @@ func (o *GcpUcConfigResponseDataAttributes) SetBucketName(v string) {
 	o.BucketName = &v
 }
 
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *GcpUcConfigResponseDataAttributes) GetCreatedAt() string {
 	if o == nil || o.CreatedAt == nil {
@@ -141,6 +149,7 @@ func (o *GcpUcConfigResponseDataAttributes) HasCreatedAt() bool {
 func (o *GcpUcConfigResponseDataAttributes) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
+
 
 // GetDataset returns the Dataset field value if set, zero value otherwise.
 func (o *GcpUcConfigResponseDataAttributes) GetDataset() string {
@@ -170,6 +179,7 @@ func (o *GcpUcConfigResponseDataAttributes) SetDataset(v string) {
 	o.Dataset = &v
 }
 
+
 // GetErrorMessages returns the ErrorMessages field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GcpUcConfigResponseDataAttributes) GetErrorMessages() []string {
 	if o == nil || o.ErrorMessages.Get() == nil {
@@ -183,7 +193,7 @@ func (o *GcpUcConfigResponseDataAttributes) GetErrorMessages() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *GcpUcConfigResponseDataAttributes) GetErrorMessagesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ErrorMessages.Get(), o.ErrorMessages.IsSet()
@@ -198,7 +208,6 @@ func (o *GcpUcConfigResponseDataAttributes) HasErrorMessages() bool {
 func (o *GcpUcConfigResponseDataAttributes) SetErrorMessages(v []string) {
 	o.ErrorMessages.Set(&v)
 }
-
 // SetErrorMessagesNil sets the value for ErrorMessages to be an explicit nil.
 func (o *GcpUcConfigResponseDataAttributes) SetErrorMessagesNil() {
 	o.ErrorMessages.Set(nil)
@@ -208,6 +217,7 @@ func (o *GcpUcConfigResponseDataAttributes) SetErrorMessagesNil() {
 func (o *GcpUcConfigResponseDataAttributes) UnsetErrorMessages() {
 	o.ErrorMessages.Unset()
 }
+
 
 // GetExportPrefix returns the ExportPrefix field value if set, zero value otherwise.
 func (o *GcpUcConfigResponseDataAttributes) GetExportPrefix() string {
@@ -237,6 +247,7 @@ func (o *GcpUcConfigResponseDataAttributes) SetExportPrefix(v string) {
 	o.ExportPrefix = &v
 }
 
+
 // GetExportProjectName returns the ExportProjectName field value if set, zero value otherwise.
 func (o *GcpUcConfigResponseDataAttributes) GetExportProjectName() string {
 	if o == nil || o.ExportProjectName == nil {
@@ -264,6 +275,7 @@ func (o *GcpUcConfigResponseDataAttributes) HasExportProjectName() bool {
 func (o *GcpUcConfigResponseDataAttributes) SetExportProjectName(v string) {
 	o.ExportProjectName = &v
 }
+
 
 // GetMonths returns the Months field value if set, zero value otherwise.
 func (o *GcpUcConfigResponseDataAttributes) GetMonths() int64 {
@@ -293,6 +305,7 @@ func (o *GcpUcConfigResponseDataAttributes) SetMonths(v int64) {
 	o.Months = &v
 }
 
+
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *GcpUcConfigResponseDataAttributes) GetProjectId() string {
 	if o == nil || o.ProjectId == nil {
@@ -320,6 +333,7 @@ func (o *GcpUcConfigResponseDataAttributes) HasProjectId() bool {
 func (o *GcpUcConfigResponseDataAttributes) SetProjectId(v string) {
 	o.ProjectId = &v
 }
+
 
 // GetServiceAccount returns the ServiceAccount field value if set, zero value otherwise.
 func (o *GcpUcConfigResponseDataAttributes) GetServiceAccount() string {
@@ -349,6 +363,7 @@ func (o *GcpUcConfigResponseDataAttributes) SetServiceAccount(v string) {
 	o.ServiceAccount = &v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GcpUcConfigResponseDataAttributes) GetStatus() string {
 	if o == nil || o.Status == nil {
@@ -376,6 +391,7 @@ func (o *GcpUcConfigResponseDataAttributes) HasStatus() bool {
 func (o *GcpUcConfigResponseDataAttributes) SetStatus(v string) {
 	o.Status = &v
 }
+
 
 // GetStatusUpdatedAt returns the StatusUpdatedAt field value if set, zero value otherwise.
 func (o *GcpUcConfigResponseDataAttributes) GetStatusUpdatedAt() string {
@@ -405,6 +421,7 @@ func (o *GcpUcConfigResponseDataAttributes) SetStatusUpdatedAt(v string) {
 	o.StatusUpdatedAt = &v
 }
 
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *GcpUcConfigResponseDataAttributes) GetUpdatedAt() string {
 	if o == nil || o.UpdatedAt == nil {
@@ -432,6 +449,8 @@ func (o *GcpUcConfigResponseDataAttributes) HasUpdatedAt() bool {
 func (o *GcpUcConfigResponseDataAttributes) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o GcpUcConfigResponseDataAttributes) MarshalJSON() ([]byte, error) {
@@ -488,26 +507,26 @@ func (o GcpUcConfigResponseDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GcpUcConfigResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountId         *string                      `json:"account_id,omitempty"`
-		BucketName        *string                      `json:"bucket_name,omitempty"`
-		CreatedAt         *string                      `json:"created_at,omitempty"`
-		Dataset           *string                      `json:"dataset,omitempty"`
-		ErrorMessages     datadog.NullableList[string] `json:"error_messages,omitempty"`
-		ExportPrefix      *string                      `json:"export_prefix,omitempty"`
-		ExportProjectName *string                      `json:"export_project_name,omitempty"`
-		Months            *int64                       `json:"months,omitempty"`
-		ProjectId         *string                      `json:"project_id,omitempty"`
-		ServiceAccount    *string                      `json:"service_account,omitempty"`
-		Status            *string                      `json:"status,omitempty"`
-		StatusUpdatedAt   *string                      `json:"status_updated_at,omitempty"`
-		UpdatedAt         *string                      `json:"updated_at,omitempty"`
+		AccountId *string `json:"account_id,omitempty"`
+		BucketName *string `json:"bucket_name,omitempty"`
+		CreatedAt *string `json:"created_at,omitempty"`
+		Dataset *string `json:"dataset,omitempty"`
+		ErrorMessages datadog.NullableList[string] `json:"error_messages,omitempty"`
+		ExportPrefix *string `json:"export_prefix,omitempty"`
+		ExportProjectName *string `json:"export_project_name,omitempty"`
+		Months *int64 `json:"months,omitempty"`
+		ProjectId *string `json:"project_id,omitempty"`
+		ServiceAccount *string `json:"service_account,omitempty"`
+		Status *string `json:"status,omitempty"`
+		StatusUpdatedAt *string `json:"status_updated_at,omitempty"`
+		UpdatedAt *string `json:"updated_at,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "bucket_name", "created_at", "dataset", "error_messages", "export_prefix", "export_project_name", "months", "project_id", "service_account", "status", "status_updated_at", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "account_id", "bucket_name", "created_at", "dataset", "error_messages", "export_prefix", "export_project_name", "months", "project_id", "service_account", "status", "status_updated_at", "updated_at",  })
 	} else {
 		return err
 	}

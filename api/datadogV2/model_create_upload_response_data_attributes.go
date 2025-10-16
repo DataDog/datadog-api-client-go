@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateUploadResponseDataAttributes The definition of `CreateUploadResponseDataAttributes` object.
 type CreateUploadResponseDataAttributes struct {
 	// The URLs of the parts in the upload.
 	PartUrls []string `json:"part_urls,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateUploadResponseDataAttributes instantiates a new CreateUploadResponseDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewCreateUploadResponseDataAttributesWithDefaults() *CreateUploadResponseDa
 	this := CreateUploadResponseDataAttributes{}
 	return &this
 }
-
 // GetPartUrls returns the PartUrls field value if set, zero value otherwise.
 func (o *CreateUploadResponseDataAttributes) GetPartUrls() []string {
 	if o == nil || o.PartUrls == nil {
@@ -62,6 +68,8 @@ func (o *CreateUploadResponseDataAttributes) SetPartUrls(v []string) {
 	o.PartUrls = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateUploadResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *CreateUploadResponseDataAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"part_urls"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "part_urls",  })
 	} else {
 		return err
 	}

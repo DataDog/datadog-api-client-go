@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	_io "io"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OpenAPIFile Object for API data in an `OpenAPI` format as a file.
 type OpenAPIFile struct {
 	// Binary `OpenAPI` spec file
 	OpenapiSpecFile *_io.Reader `json:"openapi_spec_file,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOpenAPIFile instantiates a new OpenAPIFile object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +40,6 @@ func NewOpenAPIFileWithDefaults() *OpenAPIFile {
 	this := OpenAPIFile{}
 	return &this
 }
-
 // GetOpenapiSpecFile returns the OpenapiSpecFile field value if set, zero value otherwise.
 func (o *OpenAPIFile) GetOpenapiSpecFile() _io.Reader {
 	if o == nil || o.OpenapiSpecFile == nil {
@@ -64,6 +68,8 @@ func (o *OpenAPIFile) SetOpenapiSpecFile(v _io.Reader) {
 	o.OpenapiSpecFile = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OpenAPIFile) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -90,7 +96,7 @@ func (o *OpenAPIFile) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"openapi_spec_file"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "openapi_spec_file",  })
 	} else {
 		return err
 	}

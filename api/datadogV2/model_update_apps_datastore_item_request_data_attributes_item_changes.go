@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpdateAppsDatastoreItemRequestDataAttributesItemChanges Changes to apply to a datastore item using set operations.
 type UpdateAppsDatastoreItemRequestDataAttributesItemChanges struct {
 	// Set operation that contains key-value pairs to set on the datastore item.
 	OpsSet map[string]interface{} `json:"ops_set,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUpdateAppsDatastoreItemRequestDataAttributesItemChanges instantiates a new UpdateAppsDatastoreItemRequestDataAttributesItemChanges object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewUpdateAppsDatastoreItemRequestDataAttributesItemChangesWithDefaults() *U
 	this := UpdateAppsDatastoreItemRequestDataAttributesItemChanges{}
 	return &this
 }
-
 // GetOpsSet returns the OpsSet field value if set, zero value otherwise.
 func (o *UpdateAppsDatastoreItemRequestDataAttributesItemChanges) GetOpsSet() map[string]interface{} {
 	if o == nil || o.OpsSet == nil {
@@ -62,6 +68,8 @@ func (o *UpdateAppsDatastoreItemRequestDataAttributesItemChanges) SetOpsSet(v ma
 	o.OpsSet = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateAppsDatastoreItemRequestDataAttributesItemChanges) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *UpdateAppsDatastoreItemRequestDataAttributesItemChanges) UnmarshalJSON(
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"ops_set"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "ops_set",  })
 	} else {
 		return err
 	}

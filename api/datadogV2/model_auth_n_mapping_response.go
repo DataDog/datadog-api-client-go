@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AuthNMappingResponse AuthN Mapping response from the API.
 type AuthNMappingResponse struct {
@@ -15,9 +21,10 @@ type AuthNMappingResponse struct {
 	// Included data in the AuthN Mapping response.
 	Included []AuthNMappingIncluded `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAuthNMappingResponse instantiates a new AuthNMappingResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewAuthNMappingResponseWithDefaults() *AuthNMappingResponse {
 	this := AuthNMappingResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *AuthNMappingResponse) GetData() AuthNMapping {
 	if o == nil || o.Data == nil {
@@ -63,6 +69,7 @@ func (o *AuthNMappingResponse) HasData() bool {
 func (o *AuthNMappingResponse) SetData(v AuthNMapping) {
 	o.Data = &v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *AuthNMappingResponse) GetIncluded() []AuthNMappingIncluded {
@@ -92,6 +99,8 @@ func (o *AuthNMappingResponse) SetIncluded(v []AuthNMappingIncluded) {
 	o.Included = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AuthNMappingResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o AuthNMappingResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AuthNMappingResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     *AuthNMapping          `json:"data,omitempty"`
+		Data *AuthNMapping `json:"data,omitempty"`
 		Included []AuthNMappingIncluded `json:"included,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,13 +131,13 @@ func (o *AuthNMappingResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "included",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Data = all.Data

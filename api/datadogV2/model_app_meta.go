@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
-
 	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AppMeta Metadata of an app.
 type AppMeta struct {
@@ -33,9 +35,10 @@ type AppMeta struct {
 	// The version number of the app. This starts at 1 and increments with each update.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAppMeta instantiates a new AppMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +56,6 @@ func NewAppMetaWithDefaults() *AppMeta {
 	this := AppMeta{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *AppMeta) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -81,6 +83,7 @@ func (o *AppMeta) HasCreatedAt() bool {
 func (o *AppMeta) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
+
 
 // GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
 func (o *AppMeta) GetDeletedAt() time.Time {
@@ -110,6 +113,7 @@ func (o *AppMeta) SetDeletedAt(v time.Time) {
 	o.DeletedAt = &v
 }
 
+
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *AppMeta) GetOrgId() int64 {
 	if o == nil || o.OrgId == nil {
@@ -137,6 +141,7 @@ func (o *AppMeta) HasOrgId() bool {
 func (o *AppMeta) SetOrgId(v int64) {
 	o.OrgId = &v
 }
+
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *AppMeta) GetUpdatedAt() time.Time {
@@ -166,6 +171,7 @@ func (o *AppMeta) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
+
 // GetUpdatedSinceDeployment returns the UpdatedSinceDeployment field value if set, zero value otherwise.
 func (o *AppMeta) GetUpdatedSinceDeployment() bool {
 	if o == nil || o.UpdatedSinceDeployment == nil {
@@ -193,6 +199,7 @@ func (o *AppMeta) HasUpdatedSinceDeployment() bool {
 func (o *AppMeta) SetUpdatedSinceDeployment(v bool) {
 	o.UpdatedSinceDeployment = &v
 }
+
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *AppMeta) GetUserId() int64 {
@@ -222,6 +229,7 @@ func (o *AppMeta) SetUserId(v int64) {
 	o.UserId = &v
 }
 
+
 // GetUserName returns the UserName field value if set, zero value otherwise.
 func (o *AppMeta) GetUserName() string {
 	if o == nil || o.UserName == nil {
@@ -249,6 +257,7 @@ func (o *AppMeta) HasUserName() bool {
 func (o *AppMeta) SetUserName(v string) {
 	o.UserName = &v
 }
+
 
 // GetUserUuid returns the UserUuid field value if set, zero value otherwise.
 func (o *AppMeta) GetUserUuid() uuid.UUID {
@@ -278,6 +287,7 @@ func (o *AppMeta) SetUserUuid(v uuid.UUID) {
 	o.UserUuid = &v
 }
 
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *AppMeta) GetVersion() int64 {
 	if o == nil || o.Version == nil {
@@ -305,6 +315,8 @@ func (o *AppMeta) HasVersion() bool {
 func (o *AppMeta) SetVersion(v int64) {
 	o.Version = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AppMeta) MarshalJSON() ([]byte, error) {
@@ -361,22 +373,22 @@ func (o AppMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AppMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt              *time.Time `json:"created_at,omitempty"`
-		DeletedAt              *time.Time `json:"deleted_at,omitempty"`
-		OrgId                  *int64     `json:"org_id,omitempty"`
-		UpdatedAt              *time.Time `json:"updated_at,omitempty"`
-		UpdatedSinceDeployment *bool      `json:"updated_since_deployment,omitempty"`
-		UserId                 *int64     `json:"user_id,omitempty"`
-		UserName               *string    `json:"user_name,omitempty"`
-		UserUuid               *uuid.UUID `json:"user_uuid,omitempty"`
-		Version                *int64     `json:"version,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		DeletedAt *time.Time `json:"deleted_at,omitempty"`
+		OrgId *int64 `json:"org_id,omitempty"`
+		UpdatedAt *time.Time `json:"updated_at,omitempty"`
+		UpdatedSinceDeployment *bool `json:"updated_since_deployment,omitempty"`
+		UserId *int64 `json:"user_id,omitempty"`
+		UserName *string `json:"user_name,omitempty"`
+		UserUuid *uuid.UUID `json:"user_uuid,omitempty"`
+		Version *int64 `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "deleted_at", "org_id", "updated_at", "updated_since_deployment", "user_id", "user_name", "user_uuid", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_at", "deleted_at", "org_id", "updated_at", "updated_since_deployment", "user_id", "user_name", "user_uuid", "version",  })
 	} else {
 		return err
 	}

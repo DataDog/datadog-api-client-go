@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PowerpacksResponseMetaPagination Powerpack response pagination metadata.
 type PowerpacksResponseMetaPagination struct {
@@ -27,9 +33,10 @@ type PowerpacksResponseMetaPagination struct {
 	// Offset type.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPowerpacksResponseMetaPagination instantiates a new PowerpacksResponseMetaPagination object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +54,6 @@ func NewPowerpacksResponseMetaPaginationWithDefaults() *PowerpacksResponseMetaPa
 	this := PowerpacksResponseMetaPagination{}
 	return &this
 }
-
 // GetFirstOffset returns the FirstOffset field value if set, zero value otherwise.
 func (o *PowerpacksResponseMetaPagination) GetFirstOffset() int64 {
 	if o == nil || o.FirstOffset == nil {
@@ -76,6 +82,7 @@ func (o *PowerpacksResponseMetaPagination) SetFirstOffset(v int64) {
 	o.FirstOffset = &v
 }
 
+
 // GetLastOffset returns the LastOffset field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PowerpacksResponseMetaPagination) GetLastOffset() int64 {
 	if o == nil || o.LastOffset.Get() == nil {
@@ -89,7 +96,7 @@ func (o *PowerpacksResponseMetaPagination) GetLastOffset() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *PowerpacksResponseMetaPagination) GetLastOffsetOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.LastOffset.Get(), o.LastOffset.IsSet()
@@ -104,7 +111,6 @@ func (o *PowerpacksResponseMetaPagination) HasLastOffset() bool {
 func (o *PowerpacksResponseMetaPagination) SetLastOffset(v int64) {
 	o.LastOffset.Set(&v)
 }
-
 // SetLastOffsetNil sets the value for LastOffset to be an explicit nil.
 func (o *PowerpacksResponseMetaPagination) SetLastOffsetNil() {
 	o.LastOffset.Set(nil)
@@ -114,6 +120,7 @@ func (o *PowerpacksResponseMetaPagination) SetLastOffsetNil() {
 func (o *PowerpacksResponseMetaPagination) UnsetLastOffset() {
 	o.LastOffset.Unset()
 }
+
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *PowerpacksResponseMetaPagination) GetLimit() int64 {
@@ -143,6 +150,7 @@ func (o *PowerpacksResponseMetaPagination) SetLimit(v int64) {
 	o.Limit = &v
 }
 
+
 // GetNextOffset returns the NextOffset field value if set, zero value otherwise.
 func (o *PowerpacksResponseMetaPagination) GetNextOffset() int64 {
 	if o == nil || o.NextOffset == nil {
@@ -170,6 +178,7 @@ func (o *PowerpacksResponseMetaPagination) HasNextOffset() bool {
 func (o *PowerpacksResponseMetaPagination) SetNextOffset(v int64) {
 	o.NextOffset = &v
 }
+
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
 func (o *PowerpacksResponseMetaPagination) GetOffset() int64 {
@@ -199,6 +208,7 @@ func (o *PowerpacksResponseMetaPagination) SetOffset(v int64) {
 	o.Offset = &v
 }
 
+
 // GetPrevOffset returns the PrevOffset field value if set, zero value otherwise.
 func (o *PowerpacksResponseMetaPagination) GetPrevOffset() int64 {
 	if o == nil || o.PrevOffset == nil {
@@ -226,6 +236,7 @@ func (o *PowerpacksResponseMetaPagination) HasPrevOffset() bool {
 func (o *PowerpacksResponseMetaPagination) SetPrevOffset(v int64) {
 	o.PrevOffset = &v
 }
+
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *PowerpacksResponseMetaPagination) GetTotal() int64 {
@@ -255,6 +266,7 @@ func (o *PowerpacksResponseMetaPagination) SetTotal(v int64) {
 	o.Total = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *PowerpacksResponseMetaPagination) GetType() string {
 	if o == nil || o.Type == nil {
@@ -282,6 +294,8 @@ func (o *PowerpacksResponseMetaPagination) HasType() bool {
 func (o *PowerpacksResponseMetaPagination) SetType(v string) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o PowerpacksResponseMetaPagination) MarshalJSON() ([]byte, error) {
@@ -323,21 +337,21 @@ func (o PowerpacksResponseMetaPagination) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PowerpacksResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		FirstOffset *int64                `json:"first_offset,omitempty"`
-		LastOffset  datadog.NullableInt64 `json:"last_offset,omitempty"`
-		Limit       *int64                `json:"limit,omitempty"`
-		NextOffset  *int64                `json:"next_offset,omitempty"`
-		Offset      *int64                `json:"offset,omitempty"`
-		PrevOffset  *int64                `json:"prev_offset,omitempty"`
-		Total       *int64                `json:"total,omitempty"`
-		Type        *string               `json:"type,omitempty"`
+		FirstOffset *int64 `json:"first_offset,omitempty"`
+		LastOffset datadog.NullableInt64 `json:"last_offset,omitempty"`
+		Limit *int64 `json:"limit,omitempty"`
+		NextOffset *int64 `json:"next_offset,omitempty"`
+		Offset *int64 `json:"offset,omitempty"`
+		PrevOffset *int64 `json:"prev_offset,omitempty"`
+		Total *int64 `json:"total,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"first_offset", "last_offset", "limit", "next_offset", "offset", "prev_offset", "total", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "first_offset", "last_offset", "limit", "next_offset", "offset", "prev_offset", "total", "type",  })
 	} else {
 		return err
 	}

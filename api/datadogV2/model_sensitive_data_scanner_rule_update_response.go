@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerRuleUpdateResponse Update rule response.
 type SensitiveDataScannerRuleUpdateResponse struct {
 	// Meta payload containing information about the API.
 	Meta *SensitiveDataScannerMetaVersionOnly `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerRuleUpdateResponse instantiates a new SensitiveDataScannerRuleUpdateResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewSensitiveDataScannerRuleUpdateResponseWithDefaults() *SensitiveDataScann
 	this := SensitiveDataScannerRuleUpdateResponse{}
 	return &this
 }
-
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *SensitiveDataScannerRuleUpdateResponse) GetMeta() SensitiveDataScannerMetaVersionOnly {
 	if o == nil || o.Meta == nil {
@@ -62,6 +68,8 @@ func (o *SensitiveDataScannerRuleUpdateResponse) SetMeta(v SensitiveDataScannerM
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerRuleUpdateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *SensitiveDataScannerRuleUpdateResponse) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems The definition of `ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems` object.
 type ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems struct {
@@ -17,9 +21,10 @@ type ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems struct {
 	// The `items` `percentage`. The numeric value format should be a 32bit float value.
 	Percentage float64 `json:"percentage"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems instantiates a new ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsWithDefa
 	this := ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems{}
 	return &this
 }
-
 // GetAllocatedTags returns the AllocatedTags field value.
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems) GetAllocatedTags() []ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocatedTagsItems {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems) GetAl
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems) SetAllocatedTags(v []ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocatedTagsItems) {
 	o.AllocatedTags = v
 }
+
 
 // GetPercentage returns the Percentage field value.
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems) GetPercentage() float64 {
@@ -86,6 +91,8 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems) SetPe
 	o.Percentage = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems) Marsha
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AllocatedTags *[]ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItemsAllocatedTagsItems `json:"allocated_tags"`
-		Percentage    *float64                                                                              `json:"percentage"`
+		Percentage *float64 `json:"percentage"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems) Unmar
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allocated_tags", "percentage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "allocated_tags", "percentage",  })
 	} else {
 		return err
 	}

@@ -2,24 +2,28 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineEnrichmentTableFileSchemaItemsType Declares allowed data types for enrichment table columns.
 type ObservabilityPipelineEnrichmentTableFileSchemaItemsType string
 
 // List of ObservabilityPipelineEnrichmentTableFileSchemaItemsType.
 const (
-	OBSERVABILITYPIPELINEENRICHMENTTABLEFILESCHEMAITEMSTYPE_STRING    ObservabilityPipelineEnrichmentTableFileSchemaItemsType = "string"
-	OBSERVABILITYPIPELINEENRICHMENTTABLEFILESCHEMAITEMSTYPE_BOOLEAN   ObservabilityPipelineEnrichmentTableFileSchemaItemsType = "boolean"
-	OBSERVABILITYPIPELINEENRICHMENTTABLEFILESCHEMAITEMSTYPE_INTEGER   ObservabilityPipelineEnrichmentTableFileSchemaItemsType = "integer"
-	OBSERVABILITYPIPELINEENRICHMENTTABLEFILESCHEMAITEMSTYPE_FLOAT     ObservabilityPipelineEnrichmentTableFileSchemaItemsType = "float"
-	OBSERVABILITYPIPELINEENRICHMENTTABLEFILESCHEMAITEMSTYPE_DATE      ObservabilityPipelineEnrichmentTableFileSchemaItemsType = "date"
+	OBSERVABILITYPIPELINEENRICHMENTTABLEFILESCHEMAITEMSTYPE_STRING ObservabilityPipelineEnrichmentTableFileSchemaItemsType = "string"
+	OBSERVABILITYPIPELINEENRICHMENTTABLEFILESCHEMAITEMSTYPE_BOOLEAN ObservabilityPipelineEnrichmentTableFileSchemaItemsType = "boolean"
+	OBSERVABILITYPIPELINEENRICHMENTTABLEFILESCHEMAITEMSTYPE_INTEGER ObservabilityPipelineEnrichmentTableFileSchemaItemsType = "integer"
+	OBSERVABILITYPIPELINEENRICHMENTTABLEFILESCHEMAITEMSTYPE_FLOAT ObservabilityPipelineEnrichmentTableFileSchemaItemsType = "float"
+	OBSERVABILITYPIPELINEENRICHMENTTABLEFILESCHEMAITEMSTYPE_DATE ObservabilityPipelineEnrichmentTableFileSchemaItemsType = "date"
 	OBSERVABILITYPIPELINEENRICHMENTTABLEFILESCHEMAITEMSTYPE_TIMESTAMP ObservabilityPipelineEnrichmentTableFileSchemaItemsType = "timestamp"
 )
 

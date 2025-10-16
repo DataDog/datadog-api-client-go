@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
-	"github.com/google/uuid"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListAppsResponseDataItems An app definition object. This contains only basic information about the app such as ID, name, and tags.
 type ListAppsResponseDataItems struct {
@@ -25,9 +27,10 @@ type ListAppsResponseDataItems struct {
 	// The app definition type.
 	Type AppDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListAppsResponseDataItems instantiates a new ListAppsResponseDataItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +53,6 @@ func NewListAppsResponseDataItemsWithDefaults() *ListAppsResponseDataItems {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *ListAppsResponseDataItems) GetAttributes() ListAppsResponseDataItemsAttributes {
 	if o == nil {
@@ -74,6 +76,7 @@ func (o *ListAppsResponseDataItems) SetAttributes(v ListAppsResponseDataItemsAtt
 	o.Attributes = v
 }
 
+
 // GetId returns the Id field value.
 func (o *ListAppsResponseDataItems) GetId() uuid.UUID {
 	if o == nil {
@@ -96,6 +99,7 @@ func (o *ListAppsResponseDataItems) GetIdOk() (*uuid.UUID, bool) {
 func (o *ListAppsResponseDataItems) SetId(v uuid.UUID) {
 	o.Id = v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *ListAppsResponseDataItems) GetMeta() AppMeta {
@@ -125,6 +129,7 @@ func (o *ListAppsResponseDataItems) SetMeta(v AppMeta) {
 	o.Meta = &v
 }
 
+
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *ListAppsResponseDataItems) GetRelationships() ListAppsResponseDataItemsRelationships {
 	if o == nil || o.Relationships == nil {
@@ -153,6 +158,7 @@ func (o *ListAppsResponseDataItems) SetRelationships(v ListAppsResponseDataItems
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ListAppsResponseDataItems) GetType() AppDefinitionType {
 	if o == nil {
@@ -175,6 +181,8 @@ func (o *ListAppsResponseDataItems) GetTypeOk() (*AppDefinitionType, bool) {
 func (o *ListAppsResponseDataItems) SetType(v AppDefinitionType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ListAppsResponseDataItems) MarshalJSON() ([]byte, error) {
@@ -201,11 +209,11 @@ func (o ListAppsResponseDataItems) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListAppsResponseDataItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *ListAppsResponseDataItemsAttributes    `json:"attributes"`
-		Id            *uuid.UUID                              `json:"id"`
-		Meta          *AppMeta                                `json:"meta,omitempty"`
+		Attributes *ListAppsResponseDataItemsAttributes `json:"attributes"`
+		Id *uuid.UUID `json:"id"`
+		Meta *AppMeta `json:"meta,omitempty"`
 		Relationships *ListAppsResponseDataItemsRelationships `json:"relationships,omitempty"`
-		Type          *AppDefinitionType                      `json:"type"`
+		Type *AppDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -221,7 +229,7 @@ func (o *ListAppsResponseDataItems) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "meta", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "meta", "relationships", "type",  })
 	} else {
 		return err
 	}
@@ -232,11 +240,11 @@ func (o *ListAppsResponseDataItems) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = *all.Attributes
 	o.Id = *all.Id
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

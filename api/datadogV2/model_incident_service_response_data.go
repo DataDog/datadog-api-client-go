@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentServiceResponseData Incident Service data from responses.
 type IncidentServiceResponseData struct {
@@ -21,9 +25,10 @@ type IncidentServiceResponseData struct {
 	// Incident service resource type.
 	Type IncidentServiceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentServiceResponseData instantiates a new IncidentServiceResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewIncidentServiceResponseDataWithDefaults() *IncidentServiceResponseData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *IncidentServiceResponseData) GetAttributes() IncidentServiceResponseAttributes {
 	if o == nil || o.Attributes == nil {
@@ -74,6 +78,7 @@ func (o *IncidentServiceResponseData) SetAttributes(v IncidentServiceResponseAtt
 	o.Attributes = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *IncidentServiceResponseData) GetId() string {
 	if o == nil {
@@ -96,6 +101,7 @@ func (o *IncidentServiceResponseData) GetIdOk() (*string, bool) {
 func (o *IncidentServiceResponseData) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *IncidentServiceResponseData) GetRelationships() IncidentServiceRelationships {
@@ -125,6 +131,7 @@ func (o *IncidentServiceResponseData) SetRelationships(v IncidentServiceRelation
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *IncidentServiceResponseData) GetType() IncidentServiceType {
 	if o == nil {
@@ -147,6 +154,8 @@ func (o *IncidentServiceResponseData) GetTypeOk() (*IncidentServiceType, bool) {
 func (o *IncidentServiceResponseData) SetType(v IncidentServiceType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentServiceResponseData) MarshalJSON() ([]byte, error) {
@@ -172,10 +181,10 @@ func (o IncidentServiceResponseData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentServiceResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *IncidentServiceResponseAttributes `json:"attributes,omitempty"`
-		Id            *string                            `json:"id"`
-		Relationships *IncidentServiceRelationships      `json:"relationships,omitempty"`
-		Type          *IncidentServiceType               `json:"type"`
+		Attributes *IncidentServiceResponseAttributes `json:"attributes,omitempty"`
+		Id *string `json:"id"`
+		Relationships *IncidentServiceRelationships `json:"relationships,omitempty"`
+		Type *IncidentServiceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -188,18 +197,18 @@ func (o *IncidentServiceResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "relationships", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = *all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Case A case
 type Case struct {
@@ -21,9 +25,10 @@ type Case struct {
 	// Case resource type
 	Type CaseResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCase instantiates a new Case object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewCaseWithDefaults() *Case {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *Case) GetAttributes() CaseAttributes {
 	if o == nil {
@@ -70,6 +74,7 @@ func (o *Case) SetAttributes(v CaseAttributes) {
 	o.Attributes = v
 }
 
+
 // GetId returns the Id field value.
 func (o *Case) GetId() string {
 	if o == nil {
@@ -92,6 +97,7 @@ func (o *Case) GetIdOk() (*string, bool) {
 func (o *Case) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *Case) GetRelationships() CaseRelationships {
@@ -121,6 +127,7 @@ func (o *Case) SetRelationships(v CaseRelationships) {
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *Case) GetType() CaseResourceType {
 	if o == nil {
@@ -144,6 +151,8 @@ func (o *Case) SetType(v CaseResourceType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o Case) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -166,10 +175,10 @@ func (o Case) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Case) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *CaseAttributes    `json:"attributes"`
-		Id            *string            `json:"id"`
+		Attributes *CaseAttributes `json:"attributes"`
+		Id *string `json:"id"`
 		Relationships *CaseRelationships `json:"relationships,omitempty"`
-		Type          *CaseResourceType  `json:"type"`
+		Type *CaseResourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -185,7 +194,7 @@ func (o *Case) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "relationships", "type",  })
 	} else {
 		return err
 	}
@@ -196,7 +205,7 @@ func (o *Case) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = *all.Attributes
 	o.Id = *all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

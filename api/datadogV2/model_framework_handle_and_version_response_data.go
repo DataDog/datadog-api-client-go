@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FrameworkHandleAndVersionResponseData Contains type and attributes for custom frameworks.
 type FrameworkHandleAndVersionResponseData struct {
@@ -19,9 +23,10 @@ type FrameworkHandleAndVersionResponseData struct {
 	// The type of the resource. The value must be `custom_framework`.
 	Type CustomFrameworkType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFrameworkHandleAndVersionResponseData instantiates a new FrameworkHandleAndVersionResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewFrameworkHandleAndVersionResponseDataWithDefaults() *FrameworkHandleAndV
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *FrameworkHandleAndVersionResponseData) GetAttributes() CustomFrameworkDataHandleAndVersion {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *FrameworkHandleAndVersionResponseData) GetAttributesOk() (*CustomFramew
 func (o *FrameworkHandleAndVersionResponseData) SetAttributes(v CustomFrameworkDataHandleAndVersion) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *FrameworkHandleAndVersionResponseData) GetId() string {
@@ -91,6 +96,7 @@ func (o *FrameworkHandleAndVersionResponseData) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetType returns the Type field value.
 func (o *FrameworkHandleAndVersionResponseData) GetType() CustomFrameworkType {
 	if o == nil {
@@ -114,6 +120,8 @@ func (o *FrameworkHandleAndVersionResponseData) SetType(v CustomFrameworkType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FrameworkHandleAndVersionResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -134,8 +142,8 @@ func (o FrameworkHandleAndVersionResponseData) MarshalJSON() ([]byte, error) {
 func (o *FrameworkHandleAndVersionResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *CustomFrameworkDataHandleAndVersion `json:"attributes"`
-		Id         *string                              `json:"id"`
-		Type       *CustomFrameworkType                 `json:"type"`
+		Id *string `json:"id"`
+		Type *CustomFrameworkType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -151,7 +159,7 @@ func (o *FrameworkHandleAndVersionResponseData) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

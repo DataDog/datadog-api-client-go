@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineRemoveFieldsProcessor The `remove_fields` processor deletes specified fields from logs.
 type ObservabilityPipelineRemoveFieldsProcessor struct {
@@ -23,9 +27,10 @@ type ObservabilityPipelineRemoveFieldsProcessor struct {
 	// The processor type. The value should always be `remove_fields`.
 	Type ObservabilityPipelineRemoveFieldsProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineRemoveFieldsProcessor instantiates a new ObservabilityPipelineRemoveFieldsProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewObservabilityPipelineRemoveFieldsProcessorWithDefaults() *ObservabilityP
 	this.Type = typeVar
 	return &this
 }
-
 // GetFields returns the Fields field value.
 func (o *ObservabilityPipelineRemoveFieldsProcessor) GetFields() []string {
 	if o == nil {
@@ -73,6 +77,7 @@ func (o *ObservabilityPipelineRemoveFieldsProcessor) GetFieldsOk() (*[]string, b
 func (o *ObservabilityPipelineRemoveFieldsProcessor) SetFields(v []string) {
 	o.Fields = v
 }
+
 
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineRemoveFieldsProcessor) GetId() string {
@@ -97,6 +102,7 @@ func (o *ObservabilityPipelineRemoveFieldsProcessor) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineRemoveFieldsProcessor) GetInclude() string {
 	if o == nil {
@@ -119,6 +125,7 @@ func (o *ObservabilityPipelineRemoveFieldsProcessor) GetIncludeOk() (*string, bo
 func (o *ObservabilityPipelineRemoveFieldsProcessor) SetInclude(v string) {
 	o.Include = v
 }
+
 
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineRemoveFieldsProcessor) GetInputs() []string {
@@ -143,6 +150,7 @@ func (o *ObservabilityPipelineRemoveFieldsProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineRemoveFieldsProcessor) GetType() ObservabilityPipelineRemoveFieldsProcessorType {
 	if o == nil {
@@ -166,6 +174,8 @@ func (o *ObservabilityPipelineRemoveFieldsProcessor) SetType(v ObservabilityPipe
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineRemoveFieldsProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -187,11 +197,11 @@ func (o ObservabilityPipelineRemoveFieldsProcessor) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineRemoveFieldsProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Fields  *[]string                                       `json:"fields"`
-		Id      *string                                         `json:"id"`
-		Include *string                                         `json:"include"`
-		Inputs  *[]string                                       `json:"inputs"`
-		Type    *ObservabilityPipelineRemoveFieldsProcessorType `json:"type"`
+		Fields *[]string `json:"fields"`
+		Id *string `json:"id"`
+		Include *string `json:"include"`
+		Inputs *[]string `json:"inputs"`
+		Type *ObservabilityPipelineRemoveFieldsProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -213,7 +223,7 @@ func (o *ObservabilityPipelineRemoveFieldsProcessor) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"fields", "id", "include", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "fields", "id", "include", "inputs", "type",  })
 	} else {
 		return err
 	}

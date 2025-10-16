@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GCPServiceAccountMeta Additional information related to your service account.
 type GCPServiceAccountMeta struct {
 	// The current list of projects accessible from your service account.
 	AccessibleProjects []string `json:"accessible_projects,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGCPServiceAccountMeta instantiates a new GCPServiceAccountMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewGCPServiceAccountMetaWithDefaults() *GCPServiceAccountMeta {
 	this := GCPServiceAccountMeta{}
 	return &this
 }
-
 // GetAccessibleProjects returns the AccessibleProjects field value if set, zero value otherwise.
 func (o *GCPServiceAccountMeta) GetAccessibleProjects() []string {
 	if o == nil || o.AccessibleProjects == nil {
@@ -62,6 +68,8 @@ func (o *GCPServiceAccountMeta) SetAccessibleProjects(v []string) {
 	o.AccessibleProjects = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o GCPServiceAccountMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *GCPServiceAccountMeta) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"accessible_projects"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "accessible_projects",  })
 	} else {
 		return err
 	}

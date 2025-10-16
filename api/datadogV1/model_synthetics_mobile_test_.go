@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsMobileTest Object containing details about a Synthetic mobile test.
 type SyntheticsMobileTest struct {
@@ -36,9 +40,10 @@ type SyntheticsMobileTest struct {
 	// Type of the Synthetic test, `mobile`.
 	Type SyntheticsMobileTestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsMobileTest instantiates a new SyntheticsMobileTest object.
 // This constructor will assign default values to properties that have it defined,
@@ -63,7 +68,6 @@ func NewSyntheticsMobileTestWithDefaults() *SyntheticsMobileTest {
 	this.Type = typeVar
 	return &this
 }
-
 // GetConfig returns the Config field value.
 func (o *SyntheticsMobileTest) GetConfig() SyntheticsMobileTestConfig {
 	if o == nil {
@@ -86,6 +90,7 @@ func (o *SyntheticsMobileTest) GetConfigOk() (*SyntheticsMobileTestConfig, bool)
 func (o *SyntheticsMobileTest) SetConfig(v SyntheticsMobileTestConfig) {
 	o.Config = v
 }
+
 
 // GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.
 func (o *SyntheticsMobileTest) GetDeviceIds() []string {
@@ -115,6 +120,7 @@ func (o *SyntheticsMobileTest) SetDeviceIds(v []string) {
 	o.DeviceIds = v
 }
 
+
 // GetMessage returns the Message field value.
 func (o *SyntheticsMobileTest) GetMessage() string {
 	if o == nil {
@@ -137,6 +143,7 @@ func (o *SyntheticsMobileTest) GetMessageOk() (*string, bool) {
 func (o *SyntheticsMobileTest) SetMessage(v string) {
 	o.Message = v
 }
+
 
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise.
 func (o *SyntheticsMobileTest) GetMonitorId() int64 {
@@ -166,6 +173,7 @@ func (o *SyntheticsMobileTest) SetMonitorId(v int64) {
 	o.MonitorId = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *SyntheticsMobileTest) GetName() string {
 	if o == nil {
@@ -189,6 +197,7 @@ func (o *SyntheticsMobileTest) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetOptions returns the Options field value.
 func (o *SyntheticsMobileTest) GetOptions() SyntheticsMobileTestOptions {
 	if o == nil {
@@ -211,6 +220,7 @@ func (o *SyntheticsMobileTest) GetOptionsOk() (*SyntheticsMobileTestOptions, boo
 func (o *SyntheticsMobileTest) SetOptions(v SyntheticsMobileTestOptions) {
 	o.Options = v
 }
+
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *SyntheticsMobileTest) GetPublicId() string {
@@ -240,6 +250,7 @@ func (o *SyntheticsMobileTest) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SyntheticsMobileTest) GetStatus() SyntheticsTestPauseStatus {
 	if o == nil || o.Status == nil {
@@ -267,6 +278,7 @@ func (o *SyntheticsMobileTest) HasStatus() bool {
 func (o *SyntheticsMobileTest) SetStatus(v SyntheticsTestPauseStatus) {
 	o.Status = &v
 }
+
 
 // GetSteps returns the Steps field value if set, zero value otherwise.
 func (o *SyntheticsMobileTest) GetSteps() []SyntheticsMobileStep {
@@ -296,6 +308,7 @@ func (o *SyntheticsMobileTest) SetSteps(v []SyntheticsMobileStep) {
 	o.Steps = v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SyntheticsMobileTest) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -324,6 +337,7 @@ func (o *SyntheticsMobileTest) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetType returns the Type field value.
 func (o *SyntheticsMobileTest) GetType() SyntheticsMobileTestType {
 	if o == nil {
@@ -346,6 +360,8 @@ func (o *SyntheticsMobileTest) GetTypeOk() (*SyntheticsMobileTestType, bool) {
 func (o *SyntheticsMobileTest) SetType(v SyntheticsMobileTestType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsMobileTest) MarshalJSON() ([]byte, error) {
@@ -386,17 +402,17 @@ func (o SyntheticsMobileTest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsMobileTest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Config    *SyntheticsMobileTestConfig  `json:"config"`
-		DeviceIds []string                     `json:"device_ids,omitempty"`
-		Message   *string                      `json:"message"`
-		MonitorId *int64                       `json:"monitor_id,omitempty"`
-		Name      *string                      `json:"name"`
-		Options   *SyntheticsMobileTestOptions `json:"options"`
-		PublicId  *string                      `json:"public_id,omitempty"`
-		Status    *SyntheticsTestPauseStatus   `json:"status,omitempty"`
-		Steps     []SyntheticsMobileStep       `json:"steps,omitempty"`
-		Tags      []string                     `json:"tags,omitempty"`
-		Type      *SyntheticsMobileTestType    `json:"type"`
+		Config *SyntheticsMobileTestConfig `json:"config"`
+		DeviceIds []string `json:"device_ids,omitempty"`
+		Message *string `json:"message"`
+		MonitorId *int64 `json:"monitor_id,omitempty"`
+		Name *string `json:"name"`
+		Options *SyntheticsMobileTestOptions `json:"options"`
+		PublicId *string `json:"public_id,omitempty"`
+		Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
+		Steps []SyntheticsMobileStep `json:"steps,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Type *SyntheticsMobileTestType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -418,7 +434,7 @@ func (o *SyntheticsMobileTest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"config", "device_ids", "message", "monitor_id", "name", "options", "public_id", "status", "steps", "tags", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "config", "device_ids", "message", "monitor_id", "name", "options", "public_id", "status", "steps", "tags", "type",  })
 	} else {
 		return err
 	}
@@ -437,7 +453,7 @@ func (o *SyntheticsMobileTest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Options = *all.Options
 	o.PublicId = all.PublicId
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

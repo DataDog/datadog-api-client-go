@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSLogsConfig AWS Logs Collection config.
 type AWSLogsConfig struct {
@@ -14,9 +20,10 @@ type AWSLogsConfig struct {
 	// and new logs for some services, ensuring no logs from new resources are missed and saving time spent on manual configuration.
 	LambdaForwarder *AWSLambdaForwarderConfig `json:"lambda_forwarder,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSLogsConfig instantiates a new AWSLogsConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -34,7 +41,6 @@ func NewAWSLogsConfigWithDefaults() *AWSLogsConfig {
 	this := AWSLogsConfig{}
 	return &this
 }
-
 // GetLambdaForwarder returns the LambdaForwarder field value if set, zero value otherwise.
 func (o *AWSLogsConfig) GetLambdaForwarder() AWSLambdaForwarderConfig {
 	if o == nil || o.LambdaForwarder == nil {
@@ -63,6 +69,8 @@ func (o *AWSLogsConfig) SetLambdaForwarder(v AWSLambdaForwarderConfig) {
 	o.LambdaForwarder = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSLogsConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -89,13 +97,13 @@ func (o *AWSLogsConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"lambda_forwarder"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "lambda_forwarder",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.LambdaForwarder != nil && all.LambdaForwarder.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LambdaForwarder != nil && all.LambdaForwarder.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LambdaForwarder = all.LambdaForwarder

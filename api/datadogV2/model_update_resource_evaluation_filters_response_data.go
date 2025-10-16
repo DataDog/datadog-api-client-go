@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpdateResourceEvaluationFiltersResponseData The definition of `UpdateResourceFilterResponseData` object.
 type UpdateResourceEvaluationFiltersResponseData struct {
@@ -19,9 +23,10 @@ type UpdateResourceEvaluationFiltersResponseData struct {
 	// Constant string to identify the request type.
 	Type ResourceFilterRequestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUpdateResourceEvaluationFiltersResponseData instantiates a new UpdateResourceEvaluationFiltersResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewUpdateResourceEvaluationFiltersResponseDataWithDefaults() *UpdateResourc
 	this := UpdateResourceEvaluationFiltersResponseData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *UpdateResourceEvaluationFiltersResponseData) GetAttributes() ResourceFilterAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *UpdateResourceEvaluationFiltersResponseData) GetAttributesOk() (*Resour
 func (o *UpdateResourceEvaluationFiltersResponseData) SetAttributes(v ResourceFilterAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *UpdateResourceEvaluationFiltersResponseData) GetId() string {
@@ -93,6 +98,7 @@ func (o *UpdateResourceEvaluationFiltersResponseData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *UpdateResourceEvaluationFiltersResponseData) GetType() ResourceFilterRequestType {
 	if o == nil {
@@ -116,6 +122,8 @@ func (o *UpdateResourceEvaluationFiltersResponseData) SetType(v ResourceFilterRe
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateResourceEvaluationFiltersResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -137,9 +145,9 @@ func (o UpdateResourceEvaluationFiltersResponseData) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *UpdateResourceEvaluationFiltersResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *ResourceFilterAttributes  `json:"attributes"`
-		Id         *string                    `json:"id,omitempty"`
-		Type       *ResourceFilterRequestType `json:"type"`
+		Attributes *ResourceFilterAttributes `json:"attributes"`
+		Id *string `json:"id,omitempty"`
+		Type *ResourceFilterRequestType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *UpdateResourceEvaluationFiltersResponseData) UnmarshalJSON(bytes []byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

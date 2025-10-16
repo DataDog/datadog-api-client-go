@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomConnectionAttributes The custom connection attributes.
 type CustomConnectionAttributes struct {
@@ -15,9 +21,10 @@ type CustomConnectionAttributes struct {
 	// Information about the Private Action Runner used by the custom connection, if the custom connection is associated with a Private Action Runner.
 	OnPremRunner *CustomConnectionAttributesOnPremRunner `json:"onPremRunner,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomConnectionAttributes instantiates a new CustomConnectionAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewCustomConnectionAttributesWithDefaults() *CustomConnectionAttributes {
 	this := CustomConnectionAttributes{}
 	return &this
 }
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CustomConnectionAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -63,6 +69,7 @@ func (o *CustomConnectionAttributes) HasName() bool {
 func (o *CustomConnectionAttributes) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetOnPremRunner returns the OnPremRunner field value if set, zero value otherwise.
 func (o *CustomConnectionAttributes) GetOnPremRunner() CustomConnectionAttributesOnPremRunner {
@@ -92,6 +99,8 @@ func (o *CustomConnectionAttributes) SetOnPremRunner(v CustomConnectionAttribute
 	o.OnPremRunner = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomConnectionAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o CustomConnectionAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomConnectionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name         *string                                 `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 		OnPremRunner *CustomConnectionAttributesOnPremRunner `json:"onPremRunner,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,14 +131,14 @@ func (o *CustomConnectionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "onPremRunner"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "onPremRunner",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Name = all.Name
-	if all.OnPremRunner != nil && all.OnPremRunner.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.OnPremRunner != nil && all.OnPremRunner.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.OnPremRunner = all.OnPremRunner

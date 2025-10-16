@@ -2,31 +2,35 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FormulaAndFunctionEventAggregation Aggregation methods for event platform queries.
 type FormulaAndFunctionEventAggregation string
 
 // List of FormulaAndFunctionEventAggregation.
 const (
-	FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT       FormulaAndFunctionEventAggregation = "count"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT FormulaAndFunctionEventAggregation = "count"
 	FORMULAANDFUNCTIONEVENTAGGREGATION_CARDINALITY FormulaAndFunctionEventAggregation = "cardinality"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_MEDIAN      FormulaAndFunctionEventAggregation = "median"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_PC75        FormulaAndFunctionEventAggregation = "pc75"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_PC90        FormulaAndFunctionEventAggregation = "pc90"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_PC95        FormulaAndFunctionEventAggregation = "pc95"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_PC98        FormulaAndFunctionEventAggregation = "pc98"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_PC99        FormulaAndFunctionEventAggregation = "pc99"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_SUM         FormulaAndFunctionEventAggregation = "sum"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_MIN         FormulaAndFunctionEventAggregation = "min"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_MAX         FormulaAndFunctionEventAggregation = "max"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_AVG         FormulaAndFunctionEventAggregation = "avg"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_MEDIAN FormulaAndFunctionEventAggregation = "median"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_PC75 FormulaAndFunctionEventAggregation = "pc75"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_PC90 FormulaAndFunctionEventAggregation = "pc90"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_PC95 FormulaAndFunctionEventAggregation = "pc95"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_PC98 FormulaAndFunctionEventAggregation = "pc98"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_PC99 FormulaAndFunctionEventAggregation = "pc99"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_SUM FormulaAndFunctionEventAggregation = "sum"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_MIN FormulaAndFunctionEventAggregation = "min"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_MAX FormulaAndFunctionEventAggregation = "max"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_AVG FormulaAndFunctionEventAggregation = "avg"
 )
 
 var allowedFormulaAndFunctionEventAggregationEnumValues = []FormulaAndFunctionEventAggregation{

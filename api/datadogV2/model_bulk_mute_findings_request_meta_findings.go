@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // BulkMuteFindingsRequestMetaFindings Finding object containing the finding information.
 type BulkMuteFindingsRequestMetaFindings struct {
 	// The unique ID for this finding.
 	FindingId *string `json:"finding_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewBulkMuteFindingsRequestMetaFindings instantiates a new BulkMuteFindingsRequestMetaFindings object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewBulkMuteFindingsRequestMetaFindingsWithDefaults() *BulkMuteFindingsReque
 	this := BulkMuteFindingsRequestMetaFindings{}
 	return &this
 }
-
 // GetFindingId returns the FindingId field value if set, zero value otherwise.
 func (o *BulkMuteFindingsRequestMetaFindings) GetFindingId() string {
 	if o == nil || o.FindingId == nil {
@@ -62,6 +68,8 @@ func (o *BulkMuteFindingsRequestMetaFindings) SetFindingId(v string) {
 	o.FindingId = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o BulkMuteFindingsRequestMetaFindings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *BulkMuteFindingsRequestMetaFindings) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"finding_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "finding_id",  })
 	} else {
 		return err
 	}

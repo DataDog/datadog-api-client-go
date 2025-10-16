@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentNotificationTemplateArrayMeta Response metadata.
 type IncidentNotificationTemplateArrayMeta struct {
 	// Pagination metadata.
 	Page *IncidentNotificationTemplateArrayMetaPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentNotificationTemplateArrayMeta instantiates a new IncidentNotificationTemplateArrayMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewIncidentNotificationTemplateArrayMetaWithDefaults() *IncidentNotificatio
 	this := IncidentNotificationTemplateArrayMeta{}
 	return &this
 }
-
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *IncidentNotificationTemplateArrayMeta) GetPage() IncidentNotificationTemplateArrayMetaPage {
 	if o == nil || o.Page == nil {
@@ -62,6 +68,8 @@ func (o *IncidentNotificationTemplateArrayMeta) SetPage(v IncidentNotificationTe
 	o.Page = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentNotificationTemplateArrayMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *IncidentNotificationTemplateArrayMeta) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"page"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "page",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Page = all.Page

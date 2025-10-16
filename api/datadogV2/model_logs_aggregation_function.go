@@ -2,31 +2,35 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsAggregationFunction An aggregation function
 type LogsAggregationFunction string
 
 // List of LogsAggregationFunction.
 const (
-	LOGSAGGREGATIONFUNCTION_COUNT         LogsAggregationFunction = "count"
-	LOGSAGGREGATIONFUNCTION_CARDINALITY   LogsAggregationFunction = "cardinality"
+	LOGSAGGREGATIONFUNCTION_COUNT LogsAggregationFunction = "count"
+	LOGSAGGREGATIONFUNCTION_CARDINALITY LogsAggregationFunction = "cardinality"
 	LOGSAGGREGATIONFUNCTION_PERCENTILE_75 LogsAggregationFunction = "pc75"
 	LOGSAGGREGATIONFUNCTION_PERCENTILE_90 LogsAggregationFunction = "pc90"
 	LOGSAGGREGATIONFUNCTION_PERCENTILE_95 LogsAggregationFunction = "pc95"
 	LOGSAGGREGATIONFUNCTION_PERCENTILE_98 LogsAggregationFunction = "pc98"
 	LOGSAGGREGATIONFUNCTION_PERCENTILE_99 LogsAggregationFunction = "pc99"
-	LOGSAGGREGATIONFUNCTION_SUM           LogsAggregationFunction = "sum"
-	LOGSAGGREGATIONFUNCTION_MIN           LogsAggregationFunction = "min"
-	LOGSAGGREGATIONFUNCTION_MAX           LogsAggregationFunction = "max"
-	LOGSAGGREGATIONFUNCTION_AVG           LogsAggregationFunction = "avg"
-	LOGSAGGREGATIONFUNCTION_MEDIAN        LogsAggregationFunction = "median"
+	LOGSAGGREGATIONFUNCTION_SUM LogsAggregationFunction = "sum"
+	LOGSAGGREGATIONFUNCTION_MIN LogsAggregationFunction = "min"
+	LOGSAGGREGATIONFUNCTION_MAX LogsAggregationFunction = "max"
+	LOGSAGGREGATIONFUNCTION_AVG LogsAggregationFunction = "avg"
+	LOGSAGGREGATIONFUNCTION_MEDIAN LogsAggregationFunction = "median"
 )
 
 var allowedLogsAggregationFunctionEnumValues = []LogsAggregationFunction{

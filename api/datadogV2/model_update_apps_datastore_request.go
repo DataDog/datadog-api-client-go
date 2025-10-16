@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpdateAppsDatastoreRequest Request to update a datastore's configuration such as its name or description.
 type UpdateAppsDatastoreRequest struct {
 	// Data wrapper containing the datastore identifier and the attributes to update.
 	Data *UpdateAppsDatastoreRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUpdateAppsDatastoreRequest instantiates a new UpdateAppsDatastoreRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewUpdateAppsDatastoreRequestWithDefaults() *UpdateAppsDatastoreRequest {
 	this := UpdateAppsDatastoreRequest{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *UpdateAppsDatastoreRequest) GetData() UpdateAppsDatastoreRequestData {
 	if o == nil || o.Data == nil {
@@ -62,6 +68,8 @@ func (o *UpdateAppsDatastoreRequest) SetData(v UpdateAppsDatastoreRequestData) {
 	o.Data = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateAppsDatastoreRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *UpdateAppsDatastoreRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Data = all.Data

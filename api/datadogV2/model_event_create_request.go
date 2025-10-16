@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventCreateRequest An event object.
 type EventCreateRequest struct {
@@ -17,9 +21,10 @@ type EventCreateRequest struct {
 	// Entity type.
 	Type EventCreateRequestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEventCreateRequest instantiates a new EventCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewEventCreateRequestWithDefaults() *EventCreateRequest {
 	this := EventCreateRequest{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *EventCreateRequest) GetAttributes() EventPayload {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *EventCreateRequest) GetAttributesOk() (*EventPayload, bool) {
 func (o *EventCreateRequest) SetAttributes(v EventPayload) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *EventCreateRequest) GetType() EventCreateRequestType {
@@ -86,6 +91,8 @@ func (o *EventCreateRequest) SetType(v EventCreateRequestType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *EventPayload           `json:"attributes"`
-		Type       *EventCreateRequestType `json:"type"`
+		Attributes *EventPayload `json:"attributes"`
+		Type *EventCreateRequestType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

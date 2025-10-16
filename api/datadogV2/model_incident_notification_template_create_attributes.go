@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentNotificationTemplateCreateAttributes The attributes for creating a notification template.
 type IncidentNotificationTemplateCreateAttributes struct {
@@ -21,9 +25,10 @@ type IncidentNotificationTemplateCreateAttributes struct {
 	// The subject line of the notification template.
 	Subject string `json:"subject"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentNotificationTemplateCreateAttributes instantiates a new IncidentNotificationTemplateCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewIncidentNotificationTemplateCreateAttributesWithDefaults() *IncidentNoti
 	this := IncidentNotificationTemplateCreateAttributes{}
 	return &this
 }
-
 // GetCategory returns the Category field value.
 func (o *IncidentNotificationTemplateCreateAttributes) GetCategory() string {
 	if o == nil {
@@ -68,6 +72,7 @@ func (o *IncidentNotificationTemplateCreateAttributes) GetCategoryOk() (*string,
 func (o *IncidentNotificationTemplateCreateAttributes) SetCategory(v string) {
 	o.Category = v
 }
+
 
 // GetContent returns the Content field value.
 func (o *IncidentNotificationTemplateCreateAttributes) GetContent() string {
@@ -92,6 +97,7 @@ func (o *IncidentNotificationTemplateCreateAttributes) SetContent(v string) {
 	o.Content = v
 }
 
+
 // GetName returns the Name field value.
 func (o *IncidentNotificationTemplateCreateAttributes) GetName() string {
 	if o == nil {
@@ -114,6 +120,7 @@ func (o *IncidentNotificationTemplateCreateAttributes) GetNameOk() (*string, boo
 func (o *IncidentNotificationTemplateCreateAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetSubject returns the Subject field value.
 func (o *IncidentNotificationTemplateCreateAttributes) GetSubject() string {
@@ -138,6 +145,8 @@ func (o *IncidentNotificationTemplateCreateAttributes) SetSubject(v string) {
 	o.Subject = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentNotificationTemplateCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -159,9 +168,9 @@ func (o IncidentNotificationTemplateCreateAttributes) MarshalJSON() ([]byte, err
 func (o *IncidentNotificationTemplateCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Category *string `json:"category"`
-		Content  *string `json:"content"`
-		Name     *string `json:"name"`
-		Subject  *string `json:"subject"`
+		Content *string `json:"content"`
+		Name *string `json:"name"`
+		Subject *string `json:"subject"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -180,7 +189,7 @@ func (o *IncidentNotificationTemplateCreateAttributes) UnmarshalJSON(bytes []byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"category", "content", "name", "subject"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "category", "content", "name", "subject",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GCPServiceAccountUpdate The definition of the `GCPServiceAccount` object.
 type GCPServiceAccountUpdate struct {
@@ -19,9 +23,10 @@ type GCPServiceAccountUpdate struct {
 	// The definition of the `GCPServiceAccount` object.
 	Type GCPServiceAccountCredentialType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGCPServiceAccountUpdate instantiates a new GCPServiceAccountUpdate object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewGCPServiceAccountUpdateWithDefaults() *GCPServiceAccountUpdate {
 	this := GCPServiceAccountUpdate{}
 	return &this
 }
-
 // GetPrivateKey returns the PrivateKey field value if set, zero value otherwise.
 func (o *GCPServiceAccountUpdate) GetPrivateKey() string {
 	if o == nil || o.PrivateKey == nil {
@@ -68,6 +72,7 @@ func (o *GCPServiceAccountUpdate) HasPrivateKey() bool {
 func (o *GCPServiceAccountUpdate) SetPrivateKey(v string) {
 	o.PrivateKey = &v
 }
+
 
 // GetServiceAccountEmail returns the ServiceAccountEmail field value if set, zero value otherwise.
 func (o *GCPServiceAccountUpdate) GetServiceAccountEmail() string {
@@ -97,6 +102,7 @@ func (o *GCPServiceAccountUpdate) SetServiceAccountEmail(v string) {
 	o.ServiceAccountEmail = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *GCPServiceAccountUpdate) GetType() GCPServiceAccountCredentialType {
 	if o == nil {
@@ -119,6 +125,8 @@ func (o *GCPServiceAccountUpdate) GetTypeOk() (*GCPServiceAccountCredentialType,
 func (o *GCPServiceAccountUpdate) SetType(v GCPServiceAccountCredentialType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o GCPServiceAccountUpdate) MarshalJSON() ([]byte, error) {
@@ -143,9 +151,9 @@ func (o GCPServiceAccountUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GCPServiceAccountUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		PrivateKey          *string                          `json:"private_key,omitempty"`
-		ServiceAccountEmail *string                          `json:"service_account_email,omitempty"`
-		Type                *GCPServiceAccountCredentialType `json:"type"`
+		PrivateKey *string `json:"private_key,omitempty"`
+		ServiceAccountEmail *string `json:"service_account_email,omitempty"`
+		Type *GCPServiceAccountCredentialType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,7 +163,7 @@ func (o *GCPServiceAccountUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"private_key", "service_account_email", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "private_key", "service_account_email", "type",  })
 	} else {
 		return err
 	}

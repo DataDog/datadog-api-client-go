@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScalarColumn - A single column in a scalar query response.
 type ScalarColumn struct {
 	GroupScalarColumn *GroupScalarColumn
-	DataScalarColumn  *DataScalarColumn
+	DataScalarColumn *DataScalarColumn
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -36,7 +42,7 @@ func (obj *ScalarColumn) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.GroupScalarColumn != nil && obj.GroupScalarColumn.UnparsedObject == nil {
 			jsonGroupScalarColumn, _ := datadog.Marshal(obj.GroupScalarColumn)
-			if string(jsonGroupScalarColumn) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonGroupScalarColumn) == "{}" && string(data) != "{}"  { // empty struct
 				obj.GroupScalarColumn = nil
 			} else {
 				match++
@@ -53,7 +59,7 @@ func (obj *ScalarColumn) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.DataScalarColumn != nil && obj.DataScalarColumn.UnparsedObject == nil {
 			jsonDataScalarColumn, _ := datadog.Marshal(obj.DataScalarColumn)
-			if string(jsonDataScalarColumn) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonDataScalarColumn) == "{}" && string(data) != "{}"  { // empty struct
 				obj.DataScalarColumn = nil
 			} else {
 				match++
@@ -80,9 +86,11 @@ func (obj ScalarColumn) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.GroupScalarColumn)
 	}
 
+
 	if obj.DataScalarColumn != nil {
 		return datadog.Marshal(&obj.DataScalarColumn)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj ScalarColumn) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ScalarColumn) GetActualInstance() interface{} {
+func (obj *ScalarColumn) GetActualInstance() (interface{}) {
 	if obj.GroupScalarColumn != nil {
 		return obj.GroupScalarColumn
 	}
 
+
 	if obj.DataScalarColumn != nil {
 		return obj.DataScalarColumn
 	}
+
 
 	// all schemas are nil
 	return nil

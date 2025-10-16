@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PatchTableRequestDataAttributesFileMetadata - The definition of `PatchTableRequestDataAttributesFileMetadata` object.
 type PatchTableRequestDataAttributesFileMetadata struct {
 	PatchTableRequestDataAttributesFileMetadataCloudStorage *PatchTableRequestDataAttributesFileMetadataCloudStorage
-	PatchTableRequestDataAttributesFileMetadataLocalFile    *PatchTableRequestDataAttributesFileMetadataLocalFile
+	PatchTableRequestDataAttributesFileMetadataLocalFile *PatchTableRequestDataAttributesFileMetadataLocalFile
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -36,7 +42,7 @@ func (obj *PatchTableRequestDataAttributesFileMetadata) UnmarshalJSON(data []byt
 	if err == nil {
 		if obj.PatchTableRequestDataAttributesFileMetadataCloudStorage != nil && obj.PatchTableRequestDataAttributesFileMetadataCloudStorage.UnparsedObject == nil {
 			jsonPatchTableRequestDataAttributesFileMetadataCloudStorage, _ := datadog.Marshal(obj.PatchTableRequestDataAttributesFileMetadataCloudStorage)
-			if string(jsonPatchTableRequestDataAttributesFileMetadataCloudStorage) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonPatchTableRequestDataAttributesFileMetadataCloudStorage) == "{}" && string(data) != "{}"  { // empty struct
 				obj.PatchTableRequestDataAttributesFileMetadataCloudStorage = nil
 			} else {
 				match++
@@ -80,9 +86,11 @@ func (obj PatchTableRequestDataAttributesFileMetadata) MarshalJSON() ([]byte, er
 		return datadog.Marshal(&obj.PatchTableRequestDataAttributesFileMetadataCloudStorage)
 	}
 
+
 	if obj.PatchTableRequestDataAttributesFileMetadataLocalFile != nil {
 		return datadog.Marshal(&obj.PatchTableRequestDataAttributesFileMetadataLocalFile)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj PatchTableRequestDataAttributesFileMetadata) MarshalJSON() ([]byte, er
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *PatchTableRequestDataAttributesFileMetadata) GetActualInstance() interface{} {
+func (obj *PatchTableRequestDataAttributesFileMetadata) GetActualInstance() (interface{}) {
 	if obj.PatchTableRequestDataAttributesFileMetadataCloudStorage != nil {
 		return obj.PatchTableRequestDataAttributesFileMetadataCloudStorage
 	}
 
+
 	if obj.PatchTableRequestDataAttributesFileMetadataLocalFile != nil {
 		return obj.PatchTableRequestDataAttributesFileMetadataLocalFile
 	}
+
 
 	// all schemas are nil
 	return nil

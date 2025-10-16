@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateIncidentNotificationTemplateRequest Create request for a notification template.
 type CreateIncidentNotificationTemplateRequest struct {
 	// Notification template data for a create request.
 	Data IncidentNotificationTemplateCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateIncidentNotificationTemplateRequest instantiates a new CreateIncidentNotificationTemplateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewCreateIncidentNotificationTemplateRequestWithDefaults() *CreateIncidentN
 	this := CreateIncidentNotificationTemplateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *CreateIncidentNotificationTemplateRequest) GetData() IncidentNotificationTemplateCreateData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *CreateIncidentNotificationTemplateRequest) GetDataOk() (*IncidentNotifi
 func (o *CreateIncidentNotificationTemplateRequest) SetData(v IncidentNotificationTemplateCreateData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateIncidentNotificationTemplateRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *CreateIncidentNotificationTemplateRequest) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

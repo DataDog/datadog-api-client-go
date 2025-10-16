@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricSLOAsset A SLO object with title.
 type MetricSLOAsset struct {
@@ -19,9 +23,10 @@ type MetricSLOAsset struct {
 	// SLO resource type.
 	Type MetricSLOType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricSLOAsset instantiates a new MetricSLOAsset object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewMetricSLOAssetWithDefaults() *MetricSLOAsset {
 	this := MetricSLOAsset{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *MetricSLOAsset) GetAttributes() MetricAssetAttributes {
 	if o == nil || o.Attributes == nil {
@@ -70,6 +74,7 @@ func (o *MetricSLOAsset) SetAttributes(v MetricAssetAttributes) {
 	o.Attributes = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *MetricSLOAsset) GetId() string {
 	if o == nil {
@@ -92,6 +97,7 @@ func (o *MetricSLOAsset) GetIdOk() (*string, bool) {
 func (o *MetricSLOAsset) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *MetricSLOAsset) GetType() MetricSLOType {
@@ -116,6 +122,8 @@ func (o *MetricSLOAsset) SetType(v MetricSLOType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricSLOAsset) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -138,8 +146,8 @@ func (o MetricSLOAsset) MarshalJSON() ([]byte, error) {
 func (o *MetricSLOAsset) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *MetricAssetAttributes `json:"attributes,omitempty"`
-		Id         *string                `json:"id"`
-		Type       *MetricSLOType         `json:"type"`
+		Id *string `json:"id"`
+		Type *MetricSLOType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,13 +160,13 @@ func (o *MetricSLOAsset) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

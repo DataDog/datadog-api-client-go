@@ -2,44 +2,47 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV1.LogsPipeline{
-		Filter: &datadogV1.LogsFilter{
-			Query: datadog.PtrString("source:python"),
-		},
-		Name: "",
-		Processors: []datadogV1.LogsProcessor{
-			datadogV1.LogsProcessor{
-				LogsGrokParser: &datadogV1.LogsGrokParser{
-					Grok: datadogV1.LogsGrokParserRules{
-						MatchRules: `rule_name_1 foo
+Filter: &datadogV1.LogsFilter{
+Query: datadog.PtrString("source:python"),
+},
+Name: "",
+Processors: []datadogV1.LogsProcessor{
+datadogV1.LogsProcessor{
+LogsGrokParser: &datadogV1.LogsGrokParser{
+Grok: datadogV1.LogsGrokParserRules{
+MatchRules: `rule_name_1 foo
 rule_name_2 bar`,
-						SupportRules: datadog.PtrString(`rule_name_1 foo
+SupportRules: datadog.PtrString(`rule_name_1 foo
 rule_name_2 bar`),
-					},
-					IsEnabled: datadog.PtrBool(false),
-					Samples:   []string{},
-					Source:    "message",
-					Type:      datadogV1.LOGSGROKPARSERTYPE_GROK_PARSER,
-				}},
-		},
-		Tags: []string{},
-	}
+},
+IsEnabled: datadog.PtrBool(false),
+Samples: []string{
+},
+Source: "message",
+Type: datadogV1.LOGSGROKPARSERTYPE_GROK_PARSER,
+}},
+},
+Tags: []string{
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewLogsPipelinesApi(apiClient)
-	resp, r, err := api.UpdateLogsPipeline(ctx, "pipeline_id", body)
+	resp, r, err := api.UpdateLogsPipeline(ctx, "pipeline_id", body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.UpdateLogsPipeline`: %v\n", err)

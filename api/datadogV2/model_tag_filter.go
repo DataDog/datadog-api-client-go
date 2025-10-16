@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TagFilter Tag filter for the budget's entries.
 type TagFilter struct {
@@ -15,9 +21,10 @@ type TagFilter struct {
 	// The value of the tag.
 	TagValue *string `json:"tag_value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTagFilter instantiates a new TagFilter object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewTagFilterWithDefaults() *TagFilter {
 	this := TagFilter{}
 	return &this
 }
-
 // GetTagKey returns the TagKey field value if set, zero value otherwise.
 func (o *TagFilter) GetTagKey() string {
 	if o == nil || o.TagKey == nil {
@@ -63,6 +69,7 @@ func (o *TagFilter) HasTagKey() bool {
 func (o *TagFilter) SetTagKey(v string) {
 	o.TagKey = &v
 }
+
 
 // GetTagValue returns the TagValue field value if set, zero value otherwise.
 func (o *TagFilter) GetTagValue() string {
@@ -92,6 +99,8 @@ func (o *TagFilter) SetTagValue(v string) {
 	o.TagValue = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TagFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o TagFilter) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TagFilter) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		TagKey   *string `json:"tag_key,omitempty"`
+		TagKey *string `json:"tag_key,omitempty"`
 		TagValue *string `json:"tag_value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *TagFilter) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"tag_key", "tag_value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "tag_key", "tag_value",  })
 	} else {
 		return err
 	}

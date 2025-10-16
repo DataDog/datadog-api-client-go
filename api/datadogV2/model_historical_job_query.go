@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HistoricalJobQuery Query for selecting logs analyzed by the historical job.
 type HistoricalJobQuery struct {
@@ -27,9 +33,10 @@ type HistoricalJobQuery struct {
 	// Query to run on logs.
 	Query *string `json:"query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHistoricalJobQuery instantiates a new HistoricalJobQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +62,6 @@ func NewHistoricalJobQueryWithDefaults() *HistoricalJobQuery {
 	this.HasOptionalGroupByFields = &hasOptionalGroupByFields
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
 func (o *HistoricalJobQuery) GetAggregation() SecurityMonitoringRuleQueryAggregation {
 	if o == nil || o.Aggregation == nil {
@@ -83,6 +89,7 @@ func (o *HistoricalJobQuery) HasAggregation() bool {
 func (o *HistoricalJobQuery) SetAggregation(v SecurityMonitoringRuleQueryAggregation) {
 	o.Aggregation = &v
 }
+
 
 // GetDataSource returns the DataSource field value if set, zero value otherwise.
 func (o *HistoricalJobQuery) GetDataSource() SecurityMonitoringStandardDataSource {
@@ -112,6 +119,7 @@ func (o *HistoricalJobQuery) SetDataSource(v SecurityMonitoringStandardDataSourc
 	o.DataSource = &v
 }
 
+
 // GetDistinctFields returns the DistinctFields field value if set, zero value otherwise.
 func (o *HistoricalJobQuery) GetDistinctFields() []string {
 	if o == nil || o.DistinctFields == nil {
@@ -139,6 +147,7 @@ func (o *HistoricalJobQuery) HasDistinctFields() bool {
 func (o *HistoricalJobQuery) SetDistinctFields(v []string) {
 	o.DistinctFields = v
 }
+
 
 // GetGroupByFields returns the GroupByFields field value if set, zero value otherwise.
 func (o *HistoricalJobQuery) GetGroupByFields() []string {
@@ -168,6 +177,7 @@ func (o *HistoricalJobQuery) SetGroupByFields(v []string) {
 	o.GroupByFields = v
 }
 
+
 // GetHasOptionalGroupByFields returns the HasOptionalGroupByFields field value if set, zero value otherwise.
 func (o *HistoricalJobQuery) GetHasOptionalGroupByFields() bool {
 	if o == nil || o.HasOptionalGroupByFields == nil {
@@ -195,6 +205,7 @@ func (o *HistoricalJobQuery) HasHasOptionalGroupByFields() bool {
 func (o *HistoricalJobQuery) SetHasOptionalGroupByFields(v bool) {
 	o.HasOptionalGroupByFields = &v
 }
+
 
 // GetMetrics returns the Metrics field value if set, zero value otherwise.
 func (o *HistoricalJobQuery) GetMetrics() []string {
@@ -224,6 +235,7 @@ func (o *HistoricalJobQuery) SetMetrics(v []string) {
 	o.Metrics = v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *HistoricalJobQuery) GetName() string {
 	if o == nil || o.Name == nil {
@@ -252,6 +264,7 @@ func (o *HistoricalJobQuery) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *HistoricalJobQuery) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -279,6 +292,8 @@ func (o *HistoricalJobQuery) HasQuery() bool {
 func (o *HistoricalJobQuery) SetQuery(v string) {
 	o.Query = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o HistoricalJobQuery) MarshalJSON() ([]byte, error) {
@@ -320,32 +335,32 @@ func (o HistoricalJobQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HistoricalJobQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Aggregation              *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
-		DataSource               *SecurityMonitoringStandardDataSource   `json:"dataSource,omitempty"`
-		DistinctFields           []string                                `json:"distinctFields,omitempty"`
-		GroupByFields            []string                                `json:"groupByFields,omitempty"`
-		HasOptionalGroupByFields *bool                                   `json:"hasOptionalGroupByFields,omitempty"`
-		Metrics                  []string                                `json:"metrics,omitempty"`
-		Name                     *string                                 `json:"name,omitempty"`
-		Query                    *string                                 `json:"query,omitempty"`
+		Aggregation *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
+		DataSource *SecurityMonitoringStandardDataSource `json:"dataSource,omitempty"`
+		DistinctFields []string `json:"distinctFields,omitempty"`
+		GroupByFields []string `json:"groupByFields,omitempty"`
+		HasOptionalGroupByFields *bool `json:"hasOptionalGroupByFields,omitempty"`
+		Metrics []string `json:"metrics,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Query *string `json:"query,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "dataSource", "distinctFields", "groupByFields", "hasOptionalGroupByFields", "metrics", "name", "query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation", "dataSource", "distinctFields", "groupByFields", "hasOptionalGroupByFields", "metrics", "name", "query",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Aggregation != nil && !all.Aggregation.IsValid() {
+	if all.Aggregation != nil &&!all.Aggregation.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Aggregation = all.Aggregation
 	}
-	if all.DataSource != nil && !all.DataSource.IsValid() {
+	if all.DataSource != nil &&!all.DataSource.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.DataSource = all.DataSource

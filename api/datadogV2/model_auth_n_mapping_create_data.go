@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AuthNMappingCreateData Data for creating an AuthN Mapping.
 type AuthNMappingCreateData struct {
@@ -19,9 +23,10 @@ type AuthNMappingCreateData struct {
 	// AuthN Mappings resource type.
 	Type AuthNMappingsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAuthNMappingCreateData instantiates a new AuthNMappingCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewAuthNMappingCreateDataWithDefaults() *AuthNMappingCreateData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *AuthNMappingCreateData) GetAttributes() AuthNMappingCreateAttributes {
 	if o == nil || o.Attributes == nil {
@@ -70,6 +74,7 @@ func (o *AuthNMappingCreateData) HasAttributes() bool {
 func (o *AuthNMappingCreateData) SetAttributes(v AuthNMappingCreateAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *AuthNMappingCreateData) GetRelationships() AuthNMappingCreateRelationships {
@@ -99,6 +104,7 @@ func (o *AuthNMappingCreateData) SetRelationships(v AuthNMappingCreateRelationsh
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *AuthNMappingCreateData) GetType() AuthNMappingsType {
 	if o == nil {
@@ -121,6 +127,8 @@ func (o *AuthNMappingCreateData) GetTypeOk() (*AuthNMappingsType, bool) {
 func (o *AuthNMappingCreateData) SetType(v AuthNMappingsType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AuthNMappingCreateData) MarshalJSON() ([]byte, error) {
@@ -145,9 +153,9 @@ func (o AuthNMappingCreateData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AuthNMappingCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *AuthNMappingCreateAttributes    `json:"attributes,omitempty"`
+		Attributes *AuthNMappingCreateAttributes `json:"attributes,omitempty"`
 		Relationships *AuthNMappingCreateRelationships `json:"relationships,omitempty"`
-		Type          *AuthNMappingsType               `json:"type"`
+		Type *AuthNMappingsType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -157,13 +165,13 @@ func (o *AuthNMappingCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "relationships", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

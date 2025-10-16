@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DeleteAppsDatastoreItemRequestDataAttributes Attributes specifying which datastore item to delete by its primary key.
 type DeleteAppsDatastoreItemRequestDataAttributes struct {
@@ -17,9 +21,10 @@ type DeleteAppsDatastoreItemRequestDataAttributes struct {
 	// The primary key value that identifies the item to delete. Cannot exceed 256 characters.
 	ItemKey string `json:"item_key"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDeleteAppsDatastoreItemRequestDataAttributes instantiates a new DeleteAppsDatastoreItemRequestDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewDeleteAppsDatastoreItemRequestDataAttributesWithDefaults() *DeleteAppsDa
 	this := DeleteAppsDatastoreItemRequestDataAttributes{}
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *DeleteAppsDatastoreItemRequestDataAttributes) GetId() string {
 	if o == nil || o.Id == nil {
@@ -67,6 +71,7 @@ func (o *DeleteAppsDatastoreItemRequestDataAttributes) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetItemKey returns the ItemKey field value.
 func (o *DeleteAppsDatastoreItemRequestDataAttributes) GetItemKey() string {
 	if o == nil {
@@ -90,6 +95,8 @@ func (o *DeleteAppsDatastoreItemRequestDataAttributes) SetItemKey(v string) {
 	o.ItemKey = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DeleteAppsDatastoreItemRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,7 +117,7 @@ func (o DeleteAppsDatastoreItemRequestDataAttributes) MarshalJSON() ([]byte, err
 // UnmarshalJSON deserializes the given payload.
 func (o *DeleteAppsDatastoreItemRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id      *string `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 		ItemKey *string `json:"item_key"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -121,7 +128,7 @@ func (o *DeleteAppsDatastoreItemRequestDataAttributes) UnmarshalJSON(bytes []byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "item_key"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "item_key",  })
 	} else {
 		return err
 	}

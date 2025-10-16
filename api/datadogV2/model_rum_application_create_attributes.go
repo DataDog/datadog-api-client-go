@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RUMApplicationCreateAttributes RUM application creation attributes.
 type RUMApplicationCreateAttributes struct {
@@ -21,9 +25,10 @@ type RUMApplicationCreateAttributes struct {
 	// Type of the RUM application. Supported values are `browser`, `ios`, `android`, `react-native`, `flutter`, `roku`, `electron`, `unity`, `kotlin-multiplatform`.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRUMApplicationCreateAttributes instantiates a new RUMApplicationCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewRUMApplicationCreateAttributesWithDefaults() *RUMApplicationCreateAttrib
 	this := RUMApplicationCreateAttributes{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *RUMApplicationCreateAttributes) GetName() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *RUMApplicationCreateAttributes) GetNameOk() (*string, bool) {
 func (o *RUMApplicationCreateAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetProductAnalyticsRetentionState returns the ProductAnalyticsRetentionState field value if set, zero value otherwise.
 func (o *RUMApplicationCreateAttributes) GetProductAnalyticsRetentionState() RUMProductAnalyticsRetentionState {
@@ -94,6 +99,7 @@ func (o *RUMApplicationCreateAttributes) SetProductAnalyticsRetentionState(v RUM
 	o.ProductAnalyticsRetentionState = &v
 }
 
+
 // GetRumEventProcessingState returns the RumEventProcessingState field value if set, zero value otherwise.
 func (o *RUMApplicationCreateAttributes) GetRumEventProcessingState() RUMEventProcessingState {
 	if o == nil || o.RumEventProcessingState == nil {
@@ -121,6 +127,7 @@ func (o *RUMApplicationCreateAttributes) HasRumEventProcessingState() bool {
 func (o *RUMApplicationCreateAttributes) SetRumEventProcessingState(v RUMEventProcessingState) {
 	o.RumEventProcessingState = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *RUMApplicationCreateAttributes) GetType() string {
@@ -150,6 +157,8 @@ func (o *RUMApplicationCreateAttributes) SetType(v string) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMApplicationCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -176,10 +185,10 @@ func (o RUMApplicationCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMApplicationCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name                           *string                            `json:"name"`
+		Name *string `json:"name"`
 		ProductAnalyticsRetentionState *RUMProductAnalyticsRetentionState `json:"product_analytics_retention_state,omitempty"`
-		RumEventProcessingState        *RUMEventProcessingState           `json:"rum_event_processing_state,omitempty"`
-		Type                           *string                            `json:"type,omitempty"`
+		RumEventProcessingState *RUMEventProcessingState `json:"rum_event_processing_state,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -189,19 +198,19 @@ func (o *RUMApplicationCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "product_analytics_retention_state", "rum_event_processing_state", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "product_analytics_retention_state", "rum_event_processing_state", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Name = *all.Name
-	if all.ProductAnalyticsRetentionState != nil && !all.ProductAnalyticsRetentionState.IsValid() {
+	if all.ProductAnalyticsRetentionState != nil &&!all.ProductAnalyticsRetentionState.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ProductAnalyticsRetentionState = all.ProductAnalyticsRetentionState
 	}
-	if all.RumEventProcessingState != nil && !all.RumEventProcessingState.IsValid() {
+	if all.RumEventProcessingState != nil &&!all.RumEventProcessingState.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.RumEventProcessingState = all.RumEventProcessingState

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineKafkaSourceLibrdkafkaOption Represents a key-value pair used to configure low-level `librdkafka` client options for Kafka sources, such as timeouts, buffer sizes, and security settings.
 type ObservabilityPipelineKafkaSourceLibrdkafkaOption struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineKafkaSourceLibrdkafkaOption struct {
 	// The value assigned to the specified `librdkafka` configuration option.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineKafkaSourceLibrdkafkaOption instantiates a new ObservabilityPipelineKafkaSourceLibrdkafkaOption object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineKafkaSourceLibrdkafkaOptionWithDefaults() *Observab
 	this := ObservabilityPipelineKafkaSourceLibrdkafkaOption{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *ObservabilityPipelineKafkaSourceLibrdkafkaOption) GetName() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineKafkaSourceLibrdkafkaOption) GetNameOk() (*string,
 func (o *ObservabilityPipelineKafkaSourceLibrdkafkaOption) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetValue returns the Value field value.
 func (o *ObservabilityPipelineKafkaSourceLibrdkafkaOption) GetValue() string {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineKafkaSourceLibrdkafkaOption) SetValue(v string) {
 	o.Value = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineKafkaSourceLibrdkafkaOption) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o ObservabilityPipelineKafkaSourceLibrdkafkaOption) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineKafkaSourceLibrdkafkaOption) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name  *string `json:"name"`
+		Name *string `json:"name"`
 		Value *string `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineKafkaSourceLibrdkafkaOption) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "value",  })
 	} else {
 		return err
 	}

@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SpansAggregateResponseStatus The status of the response.
 type SpansAggregateResponseStatus string
 
 // List of SpansAggregateResponseStatus.
 const (
-	SPANSAGGREGATERESPONSESTATUS_DONE    SpansAggregateResponseStatus = "done"
+	SPANSAGGREGATERESPONSESTATUS_DONE SpansAggregateResponseStatus = "done"
 	SPANSAGGREGATERESPONSESTATUS_TIMEOUT SpansAggregateResponseStatus = "timeout"
 )
 

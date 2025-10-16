@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AzureScanOptionsArray Response object containing a list of Azure scan options.
 type AzureScanOptionsArray struct {
 	// A list of Azure scan options.
 	Data []AzureScanOptionsData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAzureScanOptionsArray instantiates a new AzureScanOptionsArray object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewAzureScanOptionsArrayWithDefaults() *AzureScanOptionsArray {
 	this := AzureScanOptionsArray{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *AzureScanOptionsArray) GetData() []AzureScanOptionsData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *AzureScanOptionsArray) GetDataOk() (*[]AzureScanOptionsData, bool) {
 func (o *AzureScanOptionsArray) SetData(v []AzureScanOptionsData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AzureScanOptionsArray) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *AzureScanOptionsArray) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomCostsFileLineItem Line item details from a Custom Costs file.
 type CustomCostsFileLineItem struct {
@@ -25,9 +31,10 @@ type CustomCostsFileLineItem struct {
 	// Additional tags for the line item.
 	Tags map[string]string `json:"Tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomCostsFileLineItem instantiates a new CustomCostsFileLineItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +52,6 @@ func NewCustomCostsFileLineItemWithDefaults() *CustomCostsFileLineItem {
 	this := CustomCostsFileLineItem{}
 	return &this
 }
-
 // GetBilledCost returns the BilledCost field value if set, zero value otherwise.
 func (o *CustomCostsFileLineItem) GetBilledCost() float64 {
 	if o == nil || o.BilledCost == nil {
@@ -73,6 +79,7 @@ func (o *CustomCostsFileLineItem) HasBilledCost() bool {
 func (o *CustomCostsFileLineItem) SetBilledCost(v float64) {
 	o.BilledCost = &v
 }
+
 
 // GetBillingCurrency returns the BillingCurrency field value if set, zero value otherwise.
 func (o *CustomCostsFileLineItem) GetBillingCurrency() string {
@@ -102,6 +109,7 @@ func (o *CustomCostsFileLineItem) SetBillingCurrency(v string) {
 	o.BillingCurrency = &v
 }
 
+
 // GetChargeDescription returns the ChargeDescription field value if set, zero value otherwise.
 func (o *CustomCostsFileLineItem) GetChargeDescription() string {
 	if o == nil || o.ChargeDescription == nil {
@@ -129,6 +137,7 @@ func (o *CustomCostsFileLineItem) HasChargeDescription() bool {
 func (o *CustomCostsFileLineItem) SetChargeDescription(v string) {
 	o.ChargeDescription = &v
 }
+
 
 // GetChargePeriodEnd returns the ChargePeriodEnd field value if set, zero value otherwise.
 func (o *CustomCostsFileLineItem) GetChargePeriodEnd() string {
@@ -158,6 +167,7 @@ func (o *CustomCostsFileLineItem) SetChargePeriodEnd(v string) {
 	o.ChargePeriodEnd = &v
 }
 
+
 // GetChargePeriodStart returns the ChargePeriodStart field value if set, zero value otherwise.
 func (o *CustomCostsFileLineItem) GetChargePeriodStart() string {
 	if o == nil || o.ChargePeriodStart == nil {
@@ -185,6 +195,7 @@ func (o *CustomCostsFileLineItem) HasChargePeriodStart() bool {
 func (o *CustomCostsFileLineItem) SetChargePeriodStart(v string) {
 	o.ChargePeriodStart = &v
 }
+
 
 // GetProviderName returns the ProviderName field value if set, zero value otherwise.
 func (o *CustomCostsFileLineItem) GetProviderName() string {
@@ -214,6 +225,7 @@ func (o *CustomCostsFileLineItem) SetProviderName(v string) {
 	o.ProviderName = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *CustomCostsFileLineItem) GetTags() map[string]string {
 	if o == nil || o.Tags == nil {
@@ -241,6 +253,8 @@ func (o *CustomCostsFileLineItem) HasTags() bool {
 func (o *CustomCostsFileLineItem) SetTags(v map[string]string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomCostsFileLineItem) MarshalJSON() ([]byte, error) {
@@ -279,20 +293,20 @@ func (o CustomCostsFileLineItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomCostsFileLineItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BilledCost        *float64          `json:"BilledCost,omitempty"`
-		BillingCurrency   *string           `json:"BillingCurrency,omitempty"`
-		ChargeDescription *string           `json:"ChargeDescription,omitempty"`
-		ChargePeriodEnd   *string           `json:"ChargePeriodEnd,omitempty"`
-		ChargePeriodStart *string           `json:"ChargePeriodStart,omitempty"`
-		ProviderName      *string           `json:"ProviderName,omitempty"`
-		Tags              map[string]string `json:"Tags,omitempty"`
+		BilledCost *float64 `json:"BilledCost,omitempty"`
+		BillingCurrency *string `json:"BillingCurrency,omitempty"`
+		ChargeDescription *string `json:"ChargeDescription,omitempty"`
+		ChargePeriodEnd *string `json:"ChargePeriodEnd,omitempty"`
+		ChargePeriodStart *string `json:"ChargePeriodStart,omitempty"`
+		ProviderName *string `json:"ProviderName,omitempty"`
+		Tags map[string]string `json:"Tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"BilledCost", "BillingCurrency", "ChargeDescription", "ChargePeriodEnd", "ChargePeriodStart", "ProviderName", "Tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "BilledCost", "BillingCurrency", "ChargeDescription", "ChargePeriodEnd", "ChargePeriodStart", "ProviderName", "Tags",  })
 	} else {
 		return err
 	}

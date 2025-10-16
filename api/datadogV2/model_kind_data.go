@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // KindData Schema that defines the structure of a Kind object in the Software Catalog.
 type KindData struct {
@@ -19,9 +25,10 @@ type KindData struct {
 	// Kind.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewKindData instantiates a new KindData object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewKindDataWithDefaults() *KindData {
 	this := KindData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *KindData) GetAttributes() KindAttributes {
 	if o == nil || o.Attributes == nil {
@@ -67,6 +73,7 @@ func (o *KindData) HasAttributes() bool {
 func (o *KindData) SetAttributes(v KindAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *KindData) GetId() string {
@@ -96,6 +103,7 @@ func (o *KindData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *KindData) GetMeta() KindMetadata {
 	if o == nil || o.Meta == nil {
@@ -124,6 +132,7 @@ func (o *KindData) SetMeta(v KindMetadata) {
 	o.Meta = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *KindData) GetType() string {
 	if o == nil || o.Type == nil {
@@ -151,6 +160,8 @@ func (o *KindData) HasType() bool {
 func (o *KindData) SetType(v string) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o KindData) MarshalJSON() ([]byte, error) {
@@ -181,27 +192,27 @@ func (o KindData) MarshalJSON() ([]byte, error) {
 func (o *KindData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *KindAttributes `json:"attributes,omitempty"`
-		Id         *string         `json:"id,omitempty"`
-		Meta       *KindMetadata   `json:"meta,omitempty"`
-		Type       *string         `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Meta *KindMetadata `json:"meta,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "meta", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "meta", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

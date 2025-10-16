@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudWorkloadSecurityAgentPolicyVersion The versions of the policy
 type CloudWorkloadSecurityAgentPolicyVersion struct {
@@ -15,9 +21,10 @@ type CloudWorkloadSecurityAgentPolicyVersion struct {
 	// The version of the policy
 	Name *string `json:"Name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudWorkloadSecurityAgentPolicyVersion instantiates a new CloudWorkloadSecurityAgentPolicyVersion object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewCloudWorkloadSecurityAgentPolicyVersionWithDefaults() *CloudWorkloadSecu
 	this := CloudWorkloadSecurityAgentPolicyVersion{}
 	return &this
 }
-
 // GetDate returns the Date field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CloudWorkloadSecurityAgentPolicyVersion) GetDate() string {
 	if o == nil || o.Date.Get() == nil {
@@ -49,7 +55,7 @@ func (o *CloudWorkloadSecurityAgentPolicyVersion) GetDate() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CloudWorkloadSecurityAgentPolicyVersion) GetDateOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Date.Get(), o.Date.IsSet()
@@ -64,7 +70,6 @@ func (o *CloudWorkloadSecurityAgentPolicyVersion) HasDate() bool {
 func (o *CloudWorkloadSecurityAgentPolicyVersion) SetDate(v string) {
 	o.Date.Set(&v)
 }
-
 // SetDateNil sets the value for Date to be an explicit nil.
 func (o *CloudWorkloadSecurityAgentPolicyVersion) SetDateNil() {
 	o.Date.Set(nil)
@@ -74,6 +79,7 @@ func (o *CloudWorkloadSecurityAgentPolicyVersion) SetDateNil() {
 func (o *CloudWorkloadSecurityAgentPolicyVersion) UnsetDate() {
 	o.Date.Unset()
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentPolicyVersion) GetName() string {
@@ -103,6 +109,8 @@ func (o *CloudWorkloadSecurityAgentPolicyVersion) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudWorkloadSecurityAgentPolicyVersion) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -126,14 +134,14 @@ func (o CloudWorkloadSecurityAgentPolicyVersion) MarshalJSON() ([]byte, error) {
 func (o *CloudWorkloadSecurityAgentPolicyVersion) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Date datadog.NullableString `json:"Date,omitempty"`
-		Name *string                `json:"Name,omitempty"`
+		Name *string `json:"Name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"Date", "Name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "Date", "Name",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HostMapWidgetDefinitionRequests List of definitions.
 type HostMapWidgetDefinitionRequests struct {
@@ -15,9 +21,10 @@ type HostMapWidgetDefinitionRequests struct {
 	// Updated host map.
 	Size *HostMapRequest `json:"size,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHostMapWidgetDefinitionRequests instantiates a new HostMapWidgetDefinitionRequests object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewHostMapWidgetDefinitionRequestsWithDefaults() *HostMapWidgetDefinitionRe
 	this := HostMapWidgetDefinitionRequests{}
 	return &this
 }
-
 // GetFill returns the Fill field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinitionRequests) GetFill() HostMapRequest {
 	if o == nil || o.Fill == nil {
@@ -64,6 +70,7 @@ func (o *HostMapWidgetDefinitionRequests) SetFill(v HostMapRequest) {
 	o.Fill = &v
 }
 
+
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinitionRequests) GetSize() HostMapRequest {
 	if o == nil || o.Size == nil {
@@ -91,6 +98,8 @@ func (o *HostMapWidgetDefinitionRequests) HasSize() bool {
 func (o *HostMapWidgetDefinitionRequests) SetSize(v HostMapRequest) {
 	o.Size = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o HostMapWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
@@ -122,17 +131,17 @@ func (o *HostMapWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"fill", "size"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "fill", "size",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Fill != nil && all.Fill.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Fill != nil && all.Fill.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Fill = all.Fill
-	if all.Size != nil && all.Size.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Size != nil && all.Size.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Size = all.Size

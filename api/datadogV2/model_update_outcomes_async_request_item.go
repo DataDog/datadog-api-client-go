@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpdateOutcomesAsyncRequestItem Scorecard outcome for a single entity and rule.
 type UpdateOutcomesAsyncRequestItem struct {
@@ -21,9 +25,10 @@ type UpdateOutcomesAsyncRequestItem struct {
 	// The state of the rule evaluation.
 	State State `json:"state"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUpdateOutcomesAsyncRequestItem instantiates a new UpdateOutcomesAsyncRequestItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewUpdateOutcomesAsyncRequestItemWithDefaults() *UpdateOutcomesAsyncRequest
 	this := UpdateOutcomesAsyncRequestItem{}
 	return &this
 }
-
 // GetEntityReference returns the EntityReference field value.
 func (o *UpdateOutcomesAsyncRequestItem) GetEntityReference() string {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *UpdateOutcomesAsyncRequestItem) GetEntityReferenceOk() (*string, bool) 
 func (o *UpdateOutcomesAsyncRequestItem) SetEntityReference(v string) {
 	o.EntityReference = v
 }
+
 
 // GetRemarks returns the Remarks field value if set, zero value otherwise.
 func (o *UpdateOutcomesAsyncRequestItem) GetRemarks() string {
@@ -96,6 +101,7 @@ func (o *UpdateOutcomesAsyncRequestItem) SetRemarks(v string) {
 	o.Remarks = &v
 }
 
+
 // GetRuleId returns the RuleId field value.
 func (o *UpdateOutcomesAsyncRequestItem) GetRuleId() string {
 	if o == nil {
@@ -118,6 +124,7 @@ func (o *UpdateOutcomesAsyncRequestItem) GetRuleIdOk() (*string, bool) {
 func (o *UpdateOutcomesAsyncRequestItem) SetRuleId(v string) {
 	o.RuleId = v
 }
+
 
 // GetState returns the State field value.
 func (o *UpdateOutcomesAsyncRequestItem) GetState() State {
@@ -142,6 +149,8 @@ func (o *UpdateOutcomesAsyncRequestItem) SetState(v State) {
 	o.State = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateOutcomesAsyncRequestItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -165,9 +174,9 @@ func (o UpdateOutcomesAsyncRequestItem) MarshalJSON() ([]byte, error) {
 func (o *UpdateOutcomesAsyncRequestItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		EntityReference *string `json:"entity_reference"`
-		Remarks         *string `json:"remarks,omitempty"`
-		RuleId          *string `json:"rule_id"`
-		State           *State  `json:"state"`
+		Remarks *string `json:"remarks,omitempty"`
+		RuleId *string `json:"rule_id"`
+		State *State `json:"state"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -183,7 +192,7 @@ func (o *UpdateOutcomesAsyncRequestItem) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"entity_reference", "remarks", "rule_id", "state"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "entity_reference", "remarks", "rule_id", "state",  })
 	} else {
 		return err
 	}

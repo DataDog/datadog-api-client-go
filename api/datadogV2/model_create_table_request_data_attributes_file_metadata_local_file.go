@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateTableRequestDataAttributesFileMetadataLocalFile Local file metadata for create requests using the upload ID.
 type CreateTableRequestDataAttributesFileMetadataLocalFile struct {
@@ -17,6 +21,7 @@ type CreateTableRequestDataAttributesFileMetadataLocalFile struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateTableRequestDataAttributesFileMetadataLocalFile instantiates a new CreateTableRequestDataAttributesFileMetadataLocalFile object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +40,6 @@ func NewCreateTableRequestDataAttributesFileMetadataLocalFileWithDefaults() *Cre
 	this := CreateTableRequestDataAttributesFileMetadataLocalFile{}
 	return &this
 }
-
 // GetUploadId returns the UploadId field value.
 func (o *CreateTableRequestDataAttributesFileMetadataLocalFile) GetUploadId() string {
 	if o == nil {
@@ -58,6 +62,8 @@ func (o *CreateTableRequestDataAttributesFileMetadataLocalFile) GetUploadIdOk() 
 func (o *CreateTableRequestDataAttributesFileMetadataLocalFile) SetUploadId(v string) {
 	o.UploadId = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateTableRequestDataAttributesFileMetadataLocalFile) MarshalJSON() ([]byte, error) {

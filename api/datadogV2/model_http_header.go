@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HTTPHeader The definition of `HTTPHeader` object.
 type HTTPHeader struct {
@@ -17,9 +21,10 @@ type HTTPHeader struct {
 	// The `HTTPHeader` `value`.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHTTPHeader instantiates a new HTTPHeader object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewHTTPHeaderWithDefaults() *HTTPHeader {
 	this := HTTPHeader{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *HTTPHeader) GetName() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *HTTPHeader) GetNameOk() (*string, bool) {
 func (o *HTTPHeader) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetValue returns the Value field value.
 func (o *HTTPHeader) GetValue() string {
@@ -86,6 +91,8 @@ func (o *HTTPHeader) SetValue(v string) {
 	o.Value = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o HTTPHeader) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o HTTPHeader) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HTTPHeader) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name  *string `json:"name"`
+		Name *string `json:"name"`
 		Value *string `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *HTTPHeader) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "value",  })
 	} else {
 		return err
 	}

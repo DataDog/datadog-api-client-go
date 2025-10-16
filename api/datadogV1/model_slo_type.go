@@ -2,21 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOType The type of the service level objective.
 type SLOType string
 
 // List of SLOType.
 const (
-	SLOTYPE_METRIC     SLOType = "metric"
-	SLOTYPE_MONITOR    SLOType = "monitor"
+	SLOTYPE_METRIC SLOType = "metric"
+	SLOTYPE_MONITOR SLOType = "monitor"
 	SLOTYPE_TIME_SLICE SLOType = "time_slice"
 )
 

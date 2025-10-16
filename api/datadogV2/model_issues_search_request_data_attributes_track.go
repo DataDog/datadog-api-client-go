@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssuesSearchRequestDataAttributesTrack Track of the events to query. Either track(s) or persona(s) must be specified.
 type IssuesSearchRequestDataAttributesTrack string
@@ -16,8 +20,8 @@ type IssuesSearchRequestDataAttributesTrack string
 // List of IssuesSearchRequestDataAttributesTrack.
 const (
 	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_TRACE IssuesSearchRequestDataAttributesTrack = "trace"
-	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_LOGS  IssuesSearchRequestDataAttributesTrack = "logs"
-	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_RUM   IssuesSearchRequestDataAttributesTrack = "rum"
+	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_LOGS IssuesSearchRequestDataAttributesTrack = "logs"
+	ISSUESSEARCHREQUESTDATAATTRIBUTESTRACK_RUM IssuesSearchRequestDataAttributesTrack = "rum"
 )
 
 var allowedIssuesSearchRequestDataAttributesTrackEnumValues = []IssuesSearchRequestDataAttributesTrack{

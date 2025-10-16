@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // KindResponseMeta Kind response metadata.
 type KindResponseMeta struct {
 	// Total kinds count.
 	Count *int64 `json:"count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewKindResponseMeta instantiates a new KindResponseMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewKindResponseMetaWithDefaults() *KindResponseMeta {
 	this := KindResponseMeta{}
 	return &this
 }
-
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *KindResponseMeta) GetCount() int64 {
 	if o == nil || o.Count == nil {
@@ -62,6 +68,8 @@ func (o *KindResponseMeta) SetCount(v int64) {
 	o.Count = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o KindResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *KindResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"count"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "count",  })
 	} else {
 		return err
 	}

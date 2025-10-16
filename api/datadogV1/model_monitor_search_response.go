@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorSearchResponse The response form a monitor search.
 type MonitorSearchResponse struct {
@@ -17,9 +23,10 @@ type MonitorSearchResponse struct {
 	// The list of found monitors.
 	Monitors []MonitorSearchResult `json:"monitors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorSearchResponse instantiates a new MonitorSearchResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewMonitorSearchResponseWithDefaults() *MonitorSearchResponse {
 	this := MonitorSearchResponse{}
 	return &this
 }
-
 // GetCounts returns the Counts field value if set, zero value otherwise.
 func (o *MonitorSearchResponse) GetCounts() MonitorSearchResponseCounts {
 	if o == nil || o.Counts == nil {
@@ -65,6 +71,7 @@ func (o *MonitorSearchResponse) HasCounts() bool {
 func (o *MonitorSearchResponse) SetCounts(v MonitorSearchResponseCounts) {
 	o.Counts = &v
 }
+
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *MonitorSearchResponse) GetMetadata() MonitorSearchResponseMetadata {
@@ -94,6 +101,7 @@ func (o *MonitorSearchResponse) SetMetadata(v MonitorSearchResponseMetadata) {
 	o.Metadata = &v
 }
 
+
 // GetMonitors returns the Monitors field value if set, zero value otherwise.
 func (o *MonitorSearchResponse) GetMonitors() []MonitorSearchResult {
 	if o == nil || o.Monitors == nil {
@@ -122,6 +130,8 @@ func (o *MonitorSearchResponse) SetMonitors(v []MonitorSearchResult) {
 	o.Monitors = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorSearchResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,26 +157,26 @@ func (o MonitorSearchResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Counts   *MonitorSearchResponseCounts   `json:"counts,omitempty"`
+		Counts *MonitorSearchResponseCounts `json:"counts,omitempty"`
 		Metadata *MonitorSearchResponseMetadata `json:"metadata,omitempty"`
-		Monitors []MonitorSearchResult          `json:"monitors,omitempty"`
+		Monitors []MonitorSearchResult `json:"monitors,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"counts", "metadata", "monitors"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "counts", "metadata", "monitors",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Counts != nil && all.Counts.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Counts != nil && all.Counts.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Counts = all.Counts
-	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Metadata = all.Metadata

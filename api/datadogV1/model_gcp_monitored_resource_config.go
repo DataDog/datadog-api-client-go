@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GCPMonitoredResourceConfig Configuration for a GCP monitored resource.
 type GCPMonitoredResourceConfig struct {
@@ -16,9 +22,10 @@ type GCPMonitoredResourceConfig struct {
 	// The GCP monitored resource type. Only a subset of resource types are supported.
 	Type *GCPMonitoredResourceConfigType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGCPMonitoredResourceConfig instantiates a new GCPMonitoredResourceConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +43,6 @@ func NewGCPMonitoredResourceConfigWithDefaults() *GCPMonitoredResourceConfig {
 	this := GCPMonitoredResourceConfig{}
 	return &this
 }
-
 // GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *GCPMonitoredResourceConfig) GetFilters() []string {
 	if o == nil || o.Filters == nil {
@@ -64,6 +70,7 @@ func (o *GCPMonitoredResourceConfig) HasFilters() bool {
 func (o *GCPMonitoredResourceConfig) SetFilters(v []string) {
 	o.Filters = v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GCPMonitoredResourceConfig) GetType() GCPMonitoredResourceConfigType {
@@ -93,6 +100,8 @@ func (o *GCPMonitoredResourceConfig) SetType(v GCPMonitoredResourceConfigType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o GCPMonitoredResourceConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,22 +124,22 @@ func (o GCPMonitoredResourceConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GCPMonitoredResourceConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Filters []string                        `json:"filters,omitempty"`
-		Type    *GCPMonitoredResourceConfigType `json:"type,omitempty"`
+		Filters []string `json:"filters,omitempty"`
+		Type *GCPMonitoredResourceConfigType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"filters", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "filters", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Filters = all.Filters
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SunburstWidgetLegendInlineAutomatic Configuration of inline or automatic legends.
 type SunburstWidgetLegendInlineAutomatic struct {
@@ -19,9 +23,10 @@ type SunburstWidgetLegendInlineAutomatic struct {
 	// Whether to show the legend inline or let it be automatically generated.
 	Type SunburstWidgetLegendInlineAutomaticType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSunburstWidgetLegendInlineAutomatic instantiates a new SunburstWidgetLegendInlineAutomatic object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewSunburstWidgetLegendInlineAutomaticWithDefaults() *SunburstWidgetLegendI
 	this := SunburstWidgetLegendInlineAutomatic{}
 	return &this
 }
-
 // GetHidePercent returns the HidePercent field value if set, zero value otherwise.
 func (o *SunburstWidgetLegendInlineAutomatic) GetHidePercent() bool {
 	if o == nil || o.HidePercent == nil {
@@ -68,6 +72,7 @@ func (o *SunburstWidgetLegendInlineAutomatic) HasHidePercent() bool {
 func (o *SunburstWidgetLegendInlineAutomatic) SetHidePercent(v bool) {
 	o.HidePercent = &v
 }
+
 
 // GetHideValue returns the HideValue field value if set, zero value otherwise.
 func (o *SunburstWidgetLegendInlineAutomatic) GetHideValue() bool {
@@ -97,6 +102,7 @@ func (o *SunburstWidgetLegendInlineAutomatic) SetHideValue(v bool) {
 	o.HideValue = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *SunburstWidgetLegendInlineAutomatic) GetType() SunburstWidgetLegendInlineAutomaticType {
 	if o == nil {
@@ -119,6 +125,8 @@ func (o *SunburstWidgetLegendInlineAutomatic) GetTypeOk() (*SunburstWidgetLegend
 func (o *SunburstWidgetLegendInlineAutomatic) SetType(v SunburstWidgetLegendInlineAutomaticType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SunburstWidgetLegendInlineAutomatic) MarshalJSON() ([]byte, error) {
@@ -143,9 +151,9 @@ func (o SunburstWidgetLegendInlineAutomatic) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SunburstWidgetLegendInlineAutomatic) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		HidePercent *bool                                    `json:"hide_percent,omitempty"`
-		HideValue   *bool                                    `json:"hide_value,omitempty"`
-		Type        *SunburstWidgetLegendInlineAutomaticType `json:"type"`
+		HidePercent *bool `json:"hide_percent,omitempty"`
+		HideValue *bool `json:"hide_value,omitempty"`
+		Type *SunburstWidgetLegendInlineAutomaticType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,7 +163,7 @@ func (o *SunburstWidgetLegendInlineAutomatic) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"hide_percent", "hide_value", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "hide_percent", "hide_value", "type",  })
 	} else {
 		return err
 	}

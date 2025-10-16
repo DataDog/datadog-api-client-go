@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonthlyCostAttributionAttributes Cost Attribution by Tag for a given organization.
 type MonthlyCostAttributionAttributes struct {
@@ -30,9 +34,10 @@ type MonthlyCostAttributionAttributes struct {
 	// Fields in Cost Attribution by tag(s). Example: `infra_host_on_demand_cost`, `infra_host_committed_cost`, `infra_host_total_cost`, `infra_host_percentage_in_org`, `infra_host_percentage_in_account`.
 	Values interface{} `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonthlyCostAttributionAttributes instantiates a new MonthlyCostAttributionAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewMonthlyCostAttributionAttributesWithDefaults() *MonthlyCostAttributionAt
 	this := MonthlyCostAttributionAttributes{}
 	return &this
 }
-
 // GetMonth returns the Month field value if set, zero value otherwise.
 func (o *MonthlyCostAttributionAttributes) GetMonth() time.Time {
 	if o == nil || o.Month == nil {
@@ -78,6 +82,7 @@ func (o *MonthlyCostAttributionAttributes) HasMonth() bool {
 func (o *MonthlyCostAttributionAttributes) SetMonth(v time.Time) {
 	o.Month = &v
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *MonthlyCostAttributionAttributes) GetOrgName() string {
@@ -107,6 +112,7 @@ func (o *MonthlyCostAttributionAttributes) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *MonthlyCostAttributionAttributes) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -134,6 +140,7 @@ func (o *MonthlyCostAttributionAttributes) HasPublicId() bool {
 func (o *MonthlyCostAttributionAttributes) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
 
 // GetTagConfigSource returns the TagConfigSource field value if set, zero value otherwise.
 func (o *MonthlyCostAttributionAttributes) GetTagConfigSource() string {
@@ -163,9 +170,10 @@ func (o *MonthlyCostAttributionAttributes) SetTagConfigSource(v string) {
 	o.TagConfigSource = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonthlyCostAttributionAttributes) GetTags() map[string][]string {
-	if o == nil {
+	if o == nil  {
 		var ret map[string][]string
 		return ret
 	}
@@ -191,6 +199,7 @@ func (o *MonthlyCostAttributionAttributes) HasTags() bool {
 func (o *MonthlyCostAttributionAttributes) SetTags(v map[string][]string) {
 	o.Tags = v
 }
+
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *MonthlyCostAttributionAttributes) GetUpdatedAt() string {
@@ -220,6 +229,7 @@ func (o *MonthlyCostAttributionAttributes) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
 
+
 // GetValues returns the Values field value if set, zero value otherwise.
 func (o *MonthlyCostAttributionAttributes) GetValues() interface{} {
 	if o == nil || o.Values == nil {
@@ -247,6 +257,8 @@ func (o *MonthlyCostAttributionAttributes) HasValues() bool {
 func (o *MonthlyCostAttributionAttributes) SetValues(v interface{}) {
 	o.Values = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MonthlyCostAttributionAttributes) MarshalJSON() ([]byte, error) {
@@ -289,20 +301,20 @@ func (o MonthlyCostAttributionAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonthlyCostAttributionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Month           *time.Time          `json:"month,omitempty"`
-		OrgName         *string             `json:"org_name,omitempty"`
-		PublicId        *string             `json:"public_id,omitempty"`
-		TagConfigSource *string             `json:"tag_config_source,omitempty"`
-		Tags            map[string][]string `json:"tags,omitempty"`
-		UpdatedAt       *string             `json:"updated_at,omitempty"`
-		Values          interface{}         `json:"values,omitempty"`
+		Month *time.Time `json:"month,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
+		TagConfigSource *string `json:"tag_config_source,omitempty"`
+		Tags map[string][]string `json:"tags,omitempty"`
+		UpdatedAt *string `json:"updated_at,omitempty"`
+		Values interface{} `json:"values,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"month", "org_name", "public_id", "tag_config_source", "tags", "updated_at", "values"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "month", "org_name", "public_id", "tag_config_source", "tags", "updated_at", "values",  })
 	} else {
 		return err
 	}

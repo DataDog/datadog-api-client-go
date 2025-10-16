@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HTTPBody The definition of `HTTPBody` object.
 type HTTPBody struct {
@@ -15,9 +21,10 @@ type HTTPBody struct {
 	// Content type of the body
 	ContentType *string `json:"content_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHTTPBody instantiates a new HTTPBody object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewHTTPBodyWithDefaults() *HTTPBody {
 	this := HTTPBody{}
 	return &this
 }
-
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *HTTPBody) GetContent() string {
 	if o == nil || o.Content == nil {
@@ -63,6 +69,7 @@ func (o *HTTPBody) HasContent() bool {
 func (o *HTTPBody) SetContent(v string) {
 	o.Content = &v
 }
+
 
 // GetContentType returns the ContentType field value if set, zero value otherwise.
 func (o *HTTPBody) GetContentType() string {
@@ -92,6 +99,8 @@ func (o *HTTPBody) SetContentType(v string) {
 	o.ContentType = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o HTTPBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o HTTPBody) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HTTPBody) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Content     *string `json:"content,omitempty"`
+		Content *string `json:"content,omitempty"`
 		ContentType *string `json:"content_type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *HTTPBody) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"content", "content_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "content", "content_type",  })
 	} else {
 		return err
 	}

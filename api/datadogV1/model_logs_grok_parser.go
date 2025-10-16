@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsGrokParser Create custom grok rules to parse the full message or [a specific attribute of your raw event](https://docs.datadoghq.com/logs/log_configuration/parsing/#advanced-settings).
 // For more information, see the [parsing section](https://docs.datadoghq.com/logs/log_configuration/parsing).
@@ -26,9 +30,10 @@ type LogsGrokParser struct {
 	// Type of logs grok parser.
 	Type LogsGrokParserType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsGrokParser instantiates a new LogsGrokParser object.
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +62,6 @@ func NewLogsGrokParserWithDefaults() *LogsGrokParser {
 	this.Type = typeVar
 	return &this
 }
-
 // GetGrok returns the Grok field value.
 func (o *LogsGrokParser) GetGrok() LogsGrokParserRules {
 	if o == nil {
@@ -80,6 +84,7 @@ func (o *LogsGrokParser) GetGrokOk() (*LogsGrokParserRules, bool) {
 func (o *LogsGrokParser) SetGrok(v LogsGrokParserRules) {
 	o.Grok = v
 }
+
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsGrokParser) GetIsEnabled() bool {
@@ -109,6 +114,7 @@ func (o *LogsGrokParser) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsGrokParser) GetName() string {
 	if o == nil || o.Name == nil {
@@ -136,6 +142,7 @@ func (o *LogsGrokParser) HasName() bool {
 func (o *LogsGrokParser) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetSamples returns the Samples field value if set, zero value otherwise.
 func (o *LogsGrokParser) GetSamples() []string {
@@ -165,6 +172,7 @@ func (o *LogsGrokParser) SetSamples(v []string) {
 	o.Samples = v
 }
 
+
 // GetSource returns the Source field value.
 func (o *LogsGrokParser) GetSource() string {
 	if o == nil {
@@ -188,6 +196,7 @@ func (o *LogsGrokParser) SetSource(v string) {
 	o.Source = v
 }
 
+
 // GetType returns the Type field value.
 func (o *LogsGrokParser) GetType() LogsGrokParserType {
 	if o == nil {
@@ -210,6 +219,8 @@ func (o *LogsGrokParser) GetTypeOk() (*LogsGrokParserType, bool) {
 func (o *LogsGrokParser) SetType(v LogsGrokParserType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsGrokParser) MarshalJSON() ([]byte, error) {
@@ -239,12 +250,12 @@ func (o LogsGrokParser) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsGrokParser) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Grok      *LogsGrokParserRules `json:"grok"`
-		IsEnabled *bool                `json:"is_enabled,omitempty"`
-		Name      *string              `json:"name,omitempty"`
-		Samples   []string             `json:"samples,omitempty"`
-		Source    *string              `json:"source"`
-		Type      *LogsGrokParserType  `json:"type"`
+		Grok *LogsGrokParserRules `json:"grok"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Samples []string `json:"samples,omitempty"`
+		Source *string `json:"source"`
+		Type *LogsGrokParserType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -260,7 +271,7 @@ func (o *LogsGrokParser) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"grok", "is_enabled", "name", "samples", "source", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "grok", "is_enabled", "name", "samples", "source", "type",  })
 	} else {
 		return err
 	}

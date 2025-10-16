@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineCrowdStrikeNextGenSiemDestination The `crowdstrike_next_gen_siem` destination forwards logs to CrowdStrike Next Gen SIEM.
 type ObservabilityPipelineCrowdStrikeNextGenSiemDestination struct {
@@ -25,9 +29,10 @@ type ObservabilityPipelineCrowdStrikeNextGenSiemDestination struct {
 	// The destination type. The value should always be `crowdstrike_next_gen_siem`.
 	Type ObservabilityPipelineCrowdStrikeNextGenSiemDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineCrowdStrikeNextGenSiemDestination instantiates a new ObservabilityPipelineCrowdStrikeNextGenSiemDestination object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +56,6 @@ func NewObservabilityPipelineCrowdStrikeNextGenSiemDestinationWithDefaults() *Ob
 	this.Type = typeVar
 	return &this
 }
-
 // GetCompression returns the Compression field value if set, zero value otherwise.
 func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) GetCompression() ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression {
 	if o == nil || o.Compression == nil {
@@ -80,6 +84,7 @@ func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) SetCompression(
 	o.Compression = &v
 }
 
+
 // GetEncoding returns the Encoding field value.
 func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) GetEncoding() ObservabilityPipelineCrowdStrikeNextGenSiemDestinationEncoding {
 	if o == nil {
@@ -102,6 +107,7 @@ func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) GetEncodingOk()
 func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) SetEncoding(v ObservabilityPipelineCrowdStrikeNextGenSiemDestinationEncoding) {
 	o.Encoding = v
 }
+
 
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) GetId() string {
@@ -126,6 +132,7 @@ func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) SetId(v string)
 	o.Id = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) GetInputs() []string {
 	if o == nil {
@@ -148,6 +155,7 @@ func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) GetInputsOk() (
 func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetTls returns the Tls field value if set, zero value otherwise.
 func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) GetTls() ObservabilityPipelineTls {
@@ -177,6 +185,7 @@ func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) SetTls(v Observ
 	o.Tls = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) GetType() ObservabilityPipelineCrowdStrikeNextGenSiemDestinationType {
 	if o == nil {
@@ -199,6 +208,8 @@ func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) GetTypeOk() (*O
 func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) SetType(v ObservabilityPipelineCrowdStrikeNextGenSiemDestinationType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineCrowdStrikeNextGenSiemDestination) MarshalJSON() ([]byte, error) {
@@ -227,11 +238,11 @@ func (o ObservabilityPipelineCrowdStrikeNextGenSiemDestination) MarshalJSON() ([
 func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Compression *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression `json:"compression,omitempty"`
-		Encoding    *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationEncoding    `json:"encoding"`
-		Id          *string                                                            `json:"id"`
-		Inputs      *[]string                                                          `json:"inputs"`
-		Tls         *ObservabilityPipelineTls                                          `json:"tls,omitempty"`
-		Type        *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationType        `json:"type"`
+		Encoding *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationEncoding `json:"encoding"`
+		Id *string `json:"id"`
+		Inputs *[]string `json:"inputs"`
+		Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
+		Type *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -250,13 +261,13 @@ func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) UnmarshalJSON(b
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compression", "encoding", "id", "inputs", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "compression", "encoding", "id", "inputs", "tls", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Compression != nil && all.Compression.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Compression != nil && all.Compression.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Compression = all.Compression
@@ -267,7 +278,7 @@ func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) UnmarshalJSON(b
 	}
 	o.Id = *all.Id
 	o.Inputs = *all.Inputs
-	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tls = all.Tls

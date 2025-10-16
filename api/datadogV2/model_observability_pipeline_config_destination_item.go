@@ -2,33 +2,39 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineConfigDestinationItem - A destination for the pipeline.
 type ObservabilityPipelineConfigDestinationItem struct {
-	ObservabilityPipelineDatadogLogsDestination            *ObservabilityPipelineDatadogLogsDestination
-	ObservabilityPipelineAmazonS3Destination               *ObservabilityPipelineAmazonS3Destination
-	ObservabilityPipelineGoogleCloudStorageDestination     *ObservabilityPipelineGoogleCloudStorageDestination
-	ObservabilityPipelineSplunkHecDestination              *ObservabilityPipelineSplunkHecDestination
-	ObservabilityPipelineSumoLogicDestination              *ObservabilityPipelineSumoLogicDestination
-	ObservabilityPipelineElasticsearchDestination          *ObservabilityPipelineElasticsearchDestination
-	ObservabilityPipelineRsyslogDestination                *ObservabilityPipelineRsyslogDestination
-	ObservabilityPipelineSyslogNgDestination               *ObservabilityPipelineSyslogNgDestination
-	AzureStorageDestination                                *AzureStorageDestination
-	MicrosoftSentinelDestination                           *MicrosoftSentinelDestination
-	ObservabilityPipelineGoogleChronicleDestination        *ObservabilityPipelineGoogleChronicleDestination
-	ObservabilityPipelineNewRelicDestination               *ObservabilityPipelineNewRelicDestination
-	ObservabilityPipelineSentinelOneDestination            *ObservabilityPipelineSentinelOneDestination
-	ObservabilityPipelineOpenSearchDestination             *ObservabilityPipelineOpenSearchDestination
-	ObservabilityPipelineAmazonOpenSearchDestination       *ObservabilityPipelineAmazonOpenSearchDestination
-	ObservabilityPipelineSocketDestination                 *ObservabilityPipelineSocketDestination
-	ObservabilityPipelineAmazonSecurityLakeDestination     *ObservabilityPipelineAmazonSecurityLakeDestination
+	ObservabilityPipelineDatadogLogsDestination *ObservabilityPipelineDatadogLogsDestination
+	ObservabilityPipelineAmazonS3Destination *ObservabilityPipelineAmazonS3Destination
+	ObservabilityPipelineGoogleCloudStorageDestination *ObservabilityPipelineGoogleCloudStorageDestination
+	ObservabilityPipelineSplunkHecDestination *ObservabilityPipelineSplunkHecDestination
+	ObservabilityPipelineSumoLogicDestination *ObservabilityPipelineSumoLogicDestination
+	ObservabilityPipelineElasticsearchDestination *ObservabilityPipelineElasticsearchDestination
+	ObservabilityPipelineRsyslogDestination *ObservabilityPipelineRsyslogDestination
+	ObservabilityPipelineSyslogNgDestination *ObservabilityPipelineSyslogNgDestination
+	AzureStorageDestination *AzureStorageDestination
+	MicrosoftSentinelDestination *MicrosoftSentinelDestination
+	ObservabilityPipelineGoogleChronicleDestination *ObservabilityPipelineGoogleChronicleDestination
+	ObservabilityPipelineNewRelicDestination *ObservabilityPipelineNewRelicDestination
+	ObservabilityPipelineSentinelOneDestination *ObservabilityPipelineSentinelOneDestination
+	ObservabilityPipelineOpenSearchDestination *ObservabilityPipelineOpenSearchDestination
+	ObservabilityPipelineAmazonOpenSearchDestination *ObservabilityPipelineAmazonOpenSearchDestination
+	ObservabilityPipelineSocketDestination *ObservabilityPipelineSocketDestination
+	ObservabilityPipelineAmazonSecurityLakeDestination *ObservabilityPipelineAmazonSecurityLakeDestination
 	ObservabilityPipelineCrowdStrikeNextGenSiemDestination *ObservabilityPipelineCrowdStrikeNextGenSiemDestination
-	ObservabilityPipelineGooglePubSubDestination           *ObservabilityPipelineGooglePubSubDestination
+	ObservabilityPipelineGooglePubSubDestination *ObservabilityPipelineGooglePubSubDestination
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -488,77 +494,96 @@ func (obj ObservabilityPipelineConfigDestinationItem) MarshalJSON() ([]byte, err
 		return datadog.Marshal(&obj.ObservabilityPipelineDatadogLogsDestination)
 	}
 
+
 	if obj.ObservabilityPipelineAmazonS3Destination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineAmazonS3Destination)
 	}
+
 
 	if obj.ObservabilityPipelineGoogleCloudStorageDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineGoogleCloudStorageDestination)
 	}
 
+
 	if obj.ObservabilityPipelineSplunkHecDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSplunkHecDestination)
 	}
+
 
 	if obj.ObservabilityPipelineSumoLogicDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSumoLogicDestination)
 	}
 
+
 	if obj.ObservabilityPipelineElasticsearchDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineElasticsearchDestination)
 	}
+
 
 	if obj.ObservabilityPipelineRsyslogDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineRsyslogDestination)
 	}
 
+
 	if obj.ObservabilityPipelineSyslogNgDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSyslogNgDestination)
 	}
+
 
 	if obj.AzureStorageDestination != nil {
 		return datadog.Marshal(&obj.AzureStorageDestination)
 	}
 
+
 	if obj.MicrosoftSentinelDestination != nil {
 		return datadog.Marshal(&obj.MicrosoftSentinelDestination)
 	}
+
 
 	if obj.ObservabilityPipelineGoogleChronicleDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineGoogleChronicleDestination)
 	}
 
+
 	if obj.ObservabilityPipelineNewRelicDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineNewRelicDestination)
 	}
+
 
 	if obj.ObservabilityPipelineSentinelOneDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSentinelOneDestination)
 	}
 
+
 	if obj.ObservabilityPipelineOpenSearchDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineOpenSearchDestination)
 	}
+
 
 	if obj.ObservabilityPipelineAmazonOpenSearchDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineAmazonOpenSearchDestination)
 	}
 
+
 	if obj.ObservabilityPipelineSocketDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSocketDestination)
 	}
+
 
 	if obj.ObservabilityPipelineAmazonSecurityLakeDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineAmazonSecurityLakeDestination)
 	}
 
+
 	if obj.ObservabilityPipelineCrowdStrikeNextGenSiemDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineCrowdStrikeNextGenSiemDestination)
 	}
 
+
 	if obj.ObservabilityPipelineGooglePubSubDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineGooglePubSubDestination)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -567,82 +592,101 @@ func (obj ObservabilityPipelineConfigDestinationItem) MarshalJSON() ([]byte, err
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ObservabilityPipelineConfigDestinationItem) GetActualInstance() interface{} {
+func (obj *ObservabilityPipelineConfigDestinationItem) GetActualInstance() (interface{}) {
 	if obj.ObservabilityPipelineDatadogLogsDestination != nil {
 		return obj.ObservabilityPipelineDatadogLogsDestination
 	}
+
 
 	if obj.ObservabilityPipelineAmazonS3Destination != nil {
 		return obj.ObservabilityPipelineAmazonS3Destination
 	}
 
+
 	if obj.ObservabilityPipelineGoogleCloudStorageDestination != nil {
 		return obj.ObservabilityPipelineGoogleCloudStorageDestination
 	}
+
 
 	if obj.ObservabilityPipelineSplunkHecDestination != nil {
 		return obj.ObservabilityPipelineSplunkHecDestination
 	}
 
+
 	if obj.ObservabilityPipelineSumoLogicDestination != nil {
 		return obj.ObservabilityPipelineSumoLogicDestination
 	}
+
 
 	if obj.ObservabilityPipelineElasticsearchDestination != nil {
 		return obj.ObservabilityPipelineElasticsearchDestination
 	}
 
+
 	if obj.ObservabilityPipelineRsyslogDestination != nil {
 		return obj.ObservabilityPipelineRsyslogDestination
 	}
+
 
 	if obj.ObservabilityPipelineSyslogNgDestination != nil {
 		return obj.ObservabilityPipelineSyslogNgDestination
 	}
 
+
 	if obj.AzureStorageDestination != nil {
 		return obj.AzureStorageDestination
 	}
+
 
 	if obj.MicrosoftSentinelDestination != nil {
 		return obj.MicrosoftSentinelDestination
 	}
 
+
 	if obj.ObservabilityPipelineGoogleChronicleDestination != nil {
 		return obj.ObservabilityPipelineGoogleChronicleDestination
 	}
+
 
 	if obj.ObservabilityPipelineNewRelicDestination != nil {
 		return obj.ObservabilityPipelineNewRelicDestination
 	}
 
+
 	if obj.ObservabilityPipelineSentinelOneDestination != nil {
 		return obj.ObservabilityPipelineSentinelOneDestination
 	}
+
 
 	if obj.ObservabilityPipelineOpenSearchDestination != nil {
 		return obj.ObservabilityPipelineOpenSearchDestination
 	}
 
+
 	if obj.ObservabilityPipelineAmazonOpenSearchDestination != nil {
 		return obj.ObservabilityPipelineAmazonOpenSearchDestination
 	}
+
 
 	if obj.ObservabilityPipelineSocketDestination != nil {
 		return obj.ObservabilityPipelineSocketDestination
 	}
 
+
 	if obj.ObservabilityPipelineAmazonSecurityLakeDestination != nil {
 		return obj.ObservabilityPipelineAmazonSecurityLakeDestination
 	}
+
 
 	if obj.ObservabilityPipelineCrowdStrikeNextGenSiemDestination != nil {
 		return obj.ObservabilityPipelineCrowdStrikeNextGenSiemDestination
 	}
 
+
 	if obj.ObservabilityPipelineGooglePubSubDestination != nil {
 		return obj.ObservabilityPipelineGooglePubSubDestination
 	}
+
 
 	// all schemas are nil
 	return nil

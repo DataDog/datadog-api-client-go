@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentAttachmentLinkAttributes The attributes object for a link attachment.
 type IncidentAttachmentLinkAttributes struct {
@@ -20,9 +23,10 @@ type IncidentAttachmentLinkAttributes struct {
 	// Timestamp when the incident attachment link was last modified.
 	Modified *time.Time `json:"modified,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentAttachmentLinkAttributes instantiates a new IncidentAttachmentLinkAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func NewIncidentAttachmentLinkAttributesWithDefaults() *IncidentAttachmentLinkAt
 	this.AttachmentType = attachmentType
 	return &this
 }
-
 // GetAttachment returns the Attachment field value.
 func (o *IncidentAttachmentLinkAttributes) GetAttachment() IncidentAttachmentLinkAttributesAttachmentObject {
 	if o == nil {
@@ -68,6 +71,7 @@ func (o *IncidentAttachmentLinkAttributes) SetAttachment(v IncidentAttachmentLin
 	o.Attachment = v
 }
 
+
 // GetAttachmentType returns the AttachmentType field value.
 func (o *IncidentAttachmentLinkAttributes) GetAttachmentType() IncidentAttachmentLinkAttachmentType {
 	if o == nil {
@@ -90,6 +94,7 @@ func (o *IncidentAttachmentLinkAttributes) GetAttachmentTypeOk() (*IncidentAttac
 func (o *IncidentAttachmentLinkAttributes) SetAttachmentType(v IncidentAttachmentLinkAttachmentType) {
 	o.AttachmentType = v
 }
+
 
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *IncidentAttachmentLinkAttributes) GetModified() time.Time {
@@ -119,6 +124,8 @@ func (o *IncidentAttachmentLinkAttributes) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentAttachmentLinkAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -144,9 +151,9 @@ func (o IncidentAttachmentLinkAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentAttachmentLinkAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attachment     *IncidentAttachmentLinkAttributesAttachmentObject `json:"attachment"`
-		AttachmentType *IncidentAttachmentLinkAttachmentType             `json:"attachment_type"`
-		Modified       *time.Time                                        `json:"modified,omitempty"`
+		Attachment *IncidentAttachmentLinkAttributesAttachmentObject `json:"attachment"`
+		AttachmentType *IncidentAttachmentLinkAttachmentType `json:"attachment_type"`
+		Modified *time.Time `json:"modified,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -159,7 +166,7 @@ func (o *IncidentAttachmentLinkAttributes) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attachment", "attachment_type", "modified"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attachment", "attachment_type", "modified",  })
 	} else {
 		return err
 	}

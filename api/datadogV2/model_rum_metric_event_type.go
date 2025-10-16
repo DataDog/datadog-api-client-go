@@ -2,26 +2,30 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RumMetricEventType The type of RUM events to filter on.
 type RumMetricEventType string
 
 // List of RumMetricEventType.
 const (
-	RUMMETRICEVENTTYPE_SESSION   RumMetricEventType = "session"
-	RUMMETRICEVENTTYPE_VIEW      RumMetricEventType = "view"
-	RUMMETRICEVENTTYPE_ACTION    RumMetricEventType = "action"
-	RUMMETRICEVENTTYPE_ERROR     RumMetricEventType = "error"
-	RUMMETRICEVENTTYPE_RESOURCE  RumMetricEventType = "resource"
+	RUMMETRICEVENTTYPE_SESSION RumMetricEventType = "session"
+	RUMMETRICEVENTTYPE_VIEW RumMetricEventType = "view"
+	RUMMETRICEVENTTYPE_ACTION RumMetricEventType = "action"
+	RUMMETRICEVENTTYPE_ERROR RumMetricEventType = "error"
+	RUMMETRICEVENTTYPE_RESOURCE RumMetricEventType = "resource"
 	RUMMETRICEVENTTYPE_LONG_TASK RumMetricEventType = "long_task"
-	RUMMETRICEVENTTYPE_VITAL     RumMetricEventType = "vital"
+	RUMMETRICEVENTTYPE_VITAL RumMetricEventType = "vital"
 )
 
 var allowedRumMetricEventTypeEnumValues = []RumMetricEventType{

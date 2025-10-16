@@ -2,28 +2,32 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineAmazonS3DestinationStorageClass S3 storage class.
 type ObservabilityPipelineAmazonS3DestinationStorageClass string
 
 // List of ObservabilityPipelineAmazonS3DestinationStorageClass.
 const (
-	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_STANDARD            ObservabilityPipelineAmazonS3DestinationStorageClass = "STANDARD"
-	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_REDUCED_REDUNDANCY  ObservabilityPipelineAmazonS3DestinationStorageClass = "REDUCED_REDUNDANCY"
+	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_STANDARD ObservabilityPipelineAmazonS3DestinationStorageClass = "STANDARD"
+	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_REDUCED_REDUNDANCY ObservabilityPipelineAmazonS3DestinationStorageClass = "REDUCED_REDUNDANCY"
 	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_INTELLIGENT_TIERING ObservabilityPipelineAmazonS3DestinationStorageClass = "INTELLIGENT_TIERING"
-	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_STANDARD_IA         ObservabilityPipelineAmazonS3DestinationStorageClass = "STANDARD_IA"
-	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_EXPRESS_ONEZONE     ObservabilityPipelineAmazonS3DestinationStorageClass = "EXPRESS_ONEZONE"
-	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_ONEZONE_IA          ObservabilityPipelineAmazonS3DestinationStorageClass = "ONEZONE_IA"
-	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_GLACIER             ObservabilityPipelineAmazonS3DestinationStorageClass = "GLACIER"
-	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_GLACIER_IR          ObservabilityPipelineAmazonS3DestinationStorageClass = "GLACIER_IR"
-	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_DEEP_ARCHIVE        ObservabilityPipelineAmazonS3DestinationStorageClass = "DEEP_ARCHIVE"
+	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_STANDARD_IA ObservabilityPipelineAmazonS3DestinationStorageClass = "STANDARD_IA"
+	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_EXPRESS_ONEZONE ObservabilityPipelineAmazonS3DestinationStorageClass = "EXPRESS_ONEZONE"
+	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_ONEZONE_IA ObservabilityPipelineAmazonS3DestinationStorageClass = "ONEZONE_IA"
+	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_GLACIER ObservabilityPipelineAmazonS3DestinationStorageClass = "GLACIER"
+	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_GLACIER_IR ObservabilityPipelineAmazonS3DestinationStorageClass = "GLACIER_IR"
+	OBSERVABILITYPIPELINEAMAZONS3DESTINATIONSTORAGECLASS_DEEP_ARCHIVE ObservabilityPipelineAmazonS3DestinationStorageClass = "DEEP_ARCHIVE"
 )
 
 var allowedObservabilityPipelineAmazonS3DestinationStorageClassEnumValues = []ObservabilityPipelineAmazonS3DestinationStorageClass{

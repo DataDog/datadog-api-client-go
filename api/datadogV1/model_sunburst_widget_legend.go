@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SunburstWidgetLegend - Configuration of the legend.
 type SunburstWidgetLegend struct {
-	SunburstWidgetLegendTable           *SunburstWidgetLegendTable
+	SunburstWidgetLegendTable *SunburstWidgetLegendTable
 	SunburstWidgetLegendInlineAutomatic *SunburstWidgetLegendInlineAutomatic
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +86,11 @@ func (obj SunburstWidgetLegend) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SunburstWidgetLegendTable)
 	}
 
+
 	if obj.SunburstWidgetLegendInlineAutomatic != nil {
 		return datadog.Marshal(&obj.SunburstWidgetLegendInlineAutomatic)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj SunburstWidgetLegend) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SunburstWidgetLegend) GetActualInstance() interface{} {
+func (obj *SunburstWidgetLegend) GetActualInstance() (interface{}) {
 	if obj.SunburstWidgetLegendTable != nil {
 		return obj.SunburstWidgetLegendTable
 	}
 
+
 	if obj.SunburstWidgetLegendInlineAutomatic != nil {
 		return obj.SunburstWidgetLegendInlineAutomatic
 	}
+
 
 	// all schemas are nil
 	return nil

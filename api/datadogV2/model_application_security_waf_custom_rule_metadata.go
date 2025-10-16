@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleMetadata Metadata associated with the WAF Custom Rule.
 type ApplicationSecurityWafCustomRuleMetadata struct {
@@ -25,9 +29,10 @@ type ApplicationSecurityWafCustomRuleMetadata struct {
 	// The name of the user who last updated the WAF custom rule.
 	ModifiedByName *string `json:"modified_by_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafCustomRuleMetadata instantiates a new ApplicationSecurityWafCustomRuleMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewApplicationSecurityWafCustomRuleMetadataWithDefaults() *ApplicationSecur
 	this := ApplicationSecurityWafCustomRuleMetadata{}
 	return &this
 }
-
 // GetAddedAt returns the AddedAt field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleMetadata) GetAddedAt() time.Time {
 	if o == nil || o.AddedAt == nil {
@@ -73,6 +77,7 @@ func (o *ApplicationSecurityWafCustomRuleMetadata) HasAddedAt() bool {
 func (o *ApplicationSecurityWafCustomRuleMetadata) SetAddedAt(v time.Time) {
 	o.AddedAt = &v
 }
+
 
 // GetAddedBy returns the AddedBy field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleMetadata) GetAddedBy() string {
@@ -102,6 +107,7 @@ func (o *ApplicationSecurityWafCustomRuleMetadata) SetAddedBy(v string) {
 	o.AddedBy = &v
 }
 
+
 // GetAddedByName returns the AddedByName field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleMetadata) GetAddedByName() string {
 	if o == nil || o.AddedByName == nil {
@@ -129,6 +135,7 @@ func (o *ApplicationSecurityWafCustomRuleMetadata) HasAddedByName() bool {
 func (o *ApplicationSecurityWafCustomRuleMetadata) SetAddedByName(v string) {
 	o.AddedByName = &v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleMetadata) GetModifiedAt() time.Time {
@@ -158,6 +165,7 @@ func (o *ApplicationSecurityWafCustomRuleMetadata) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
+
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleMetadata) GetModifiedBy() string {
 	if o == nil || o.ModifiedBy == nil {
@@ -186,6 +194,7 @@ func (o *ApplicationSecurityWafCustomRuleMetadata) SetModifiedBy(v string) {
 	o.ModifiedBy = &v
 }
 
+
 // GetModifiedByName returns the ModifiedByName field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleMetadata) GetModifiedByName() string {
 	if o == nil || o.ModifiedByName == nil {
@@ -213,6 +222,8 @@ func (o *ApplicationSecurityWafCustomRuleMetadata) HasModifiedByName() bool {
 func (o *ApplicationSecurityWafCustomRuleMetadata) SetModifiedByName(v string) {
 	o.ModifiedByName = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafCustomRuleMetadata) MarshalJSON() ([]byte, error) {
@@ -256,19 +267,19 @@ func (o ApplicationSecurityWafCustomRuleMetadata) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationSecurityWafCustomRuleMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AddedAt        *time.Time `json:"added_at,omitempty"`
-		AddedBy        *string    `json:"added_by,omitempty"`
-		AddedByName    *string    `json:"added_by_name,omitempty"`
-		ModifiedAt     *time.Time `json:"modified_at,omitempty"`
-		ModifiedBy     *string    `json:"modified_by,omitempty"`
-		ModifiedByName *string    `json:"modified_by_name,omitempty"`
+		AddedAt *time.Time `json:"added_at,omitempty"`
+		AddedBy *string `json:"added_by,omitempty"`
+		AddedByName *string `json:"added_by_name,omitempty"`
+		ModifiedAt *time.Time `json:"modified_at,omitempty"`
+		ModifiedBy *string `json:"modified_by,omitempty"`
+		ModifiedByName *string `json:"modified_by_name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"added_at", "added_by", "added_by_name", "modified_at", "modified_by", "modified_by_name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "added_at", "added_by", "added_by_name", "modified_at", "modified_by", "modified_by_name",  })
 	} else {
 		return err
 	}

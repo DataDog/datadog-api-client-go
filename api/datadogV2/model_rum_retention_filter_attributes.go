@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RumRetentionFilterAttributes The object describing attributes of a RUM retention filter.
 type RumRetentionFilterAttributes struct {
@@ -21,9 +27,10 @@ type RumRetentionFilterAttributes struct {
 	// The sample rate for a RUM retention filter, between 0 and 100.
 	SampleRate *int64 `json:"sample_rate,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRumRetentionFilterAttributes instantiates a new RumRetentionFilterAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewRumRetentionFilterAttributesWithDefaults() *RumRetentionFilterAttributes
 	this := RumRetentionFilterAttributes{}
 	return &this
 }
-
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *RumRetentionFilterAttributes) GetEnabled() bool {
 	if o == nil || o.Enabled == nil {
@@ -69,6 +75,7 @@ func (o *RumRetentionFilterAttributes) HasEnabled() bool {
 func (o *RumRetentionFilterAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
+
 
 // GetEventType returns the EventType field value if set, zero value otherwise.
 func (o *RumRetentionFilterAttributes) GetEventType() RumRetentionFilterEventType {
@@ -98,6 +105,7 @@ func (o *RumRetentionFilterAttributes) SetEventType(v RumRetentionFilterEventTyp
 	o.EventType = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *RumRetentionFilterAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -125,6 +133,7 @@ func (o *RumRetentionFilterAttributes) HasName() bool {
 func (o *RumRetentionFilterAttributes) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *RumRetentionFilterAttributes) GetQuery() string {
@@ -154,6 +163,7 @@ func (o *RumRetentionFilterAttributes) SetQuery(v string) {
 	o.Query = &v
 }
 
+
 // GetSampleRate returns the SampleRate field value if set, zero value otherwise.
 func (o *RumRetentionFilterAttributes) GetSampleRate() int64 {
 	if o == nil || o.SampleRate == nil {
@@ -181,6 +191,8 @@ func (o *RumRetentionFilterAttributes) HasSampleRate() bool {
 func (o *RumRetentionFilterAttributes) SetSampleRate(v int64) {
 	o.SampleRate = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RumRetentionFilterAttributes) MarshalJSON() ([]byte, error) {
@@ -213,25 +225,25 @@ func (o RumRetentionFilterAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RumRetentionFilterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enabled    *bool                        `json:"enabled,omitempty"`
-		EventType  *RumRetentionFilterEventType `json:"event_type,omitempty"`
-		Name       *string                      `json:"name,omitempty"`
-		Query      *string                      `json:"query,omitempty"`
-		SampleRate *int64                       `json:"sample_rate,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
+		EventType *RumRetentionFilterEventType `json:"event_type,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Query *string `json:"query,omitempty"`
+		SampleRate *int64 `json:"sample_rate,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "event_type", "name", "query", "sample_rate"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "enabled", "event_type", "name", "query", "sample_rate",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Enabled = all.Enabled
-	if all.EventType != nil && !all.EventType.IsValid() {
+	if all.EventType != nil &&!all.EventType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.EventType = all.EventType

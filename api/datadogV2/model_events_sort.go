@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventsSort The sort parameters when querying events.
 type EventsSort string
 
 // List of EventsSort.
 const (
-	EVENTSSORT_TIMESTAMP_ASCENDING  EventsSort = "timestamp"
+	EVENTSSORT_TIMESTAMP_ASCENDING EventsSort = "timestamp"
 	EVENTSSORT_TIMESTAMP_DESCENDING EventsSort = "-timestamp"
 )
 

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventPayload Event attributes.
 type EventPayload struct {
@@ -35,6 +39,7 @@ type EventPayload struct {
 	UnparsedObject map[string]interface{} `json:"-"`
 }
 
+
 // NewEventPayload instantiates a new EventPayload object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -54,7 +59,6 @@ func NewEventPayloadWithDefaults() *EventPayload {
 	this := EventPayload{}
 	return &this
 }
-
 // GetAggregationKey returns the AggregationKey field value if set, zero value otherwise.
 func (o *EventPayload) GetAggregationKey() string {
 	if o == nil || o.AggregationKey == nil {
@@ -83,6 +87,7 @@ func (o *EventPayload) SetAggregationKey(v string) {
 	o.AggregationKey = &v
 }
 
+
 // GetAttributes returns the Attributes field value.
 func (o *EventPayload) GetAttributes() EventPayloadAttributes {
 	if o == nil {
@@ -106,6 +111,7 @@ func (o *EventPayload) SetAttributes(v EventPayloadAttributes) {
 	o.Attributes = v
 }
 
+
 // GetCategory returns the Category field value.
 func (o *EventPayload) GetCategory() EventCategory {
 	if o == nil {
@@ -128,6 +134,7 @@ func (o *EventPayload) GetCategoryOk() (*EventCategory, bool) {
 func (o *EventPayload) SetCategory(v EventCategory) {
 	o.Category = v
 }
+
 
 // GetIntegrationId returns the IntegrationId field value if set, zero value otherwise.
 func (o *EventPayload) GetIntegrationId() EventPayloadIntegrationId {
@@ -157,6 +164,7 @@ func (o *EventPayload) SetIntegrationId(v EventPayloadIntegrationId) {
 	o.IntegrationId = &v
 }
 
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *EventPayload) GetMessage() string {
 	if o == nil || o.Message == nil {
@@ -184,6 +192,7 @@ func (o *EventPayload) HasMessage() bool {
 func (o *EventPayload) SetMessage(v string) {
 	o.Message = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *EventPayload) GetTags() []string {
@@ -213,6 +222,7 @@ func (o *EventPayload) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *EventPayload) GetTimestamp() string {
 	if o == nil || o.Timestamp == nil {
@@ -241,6 +251,7 @@ func (o *EventPayload) SetTimestamp(v string) {
 	o.Timestamp = &v
 }
 
+
 // GetTitle returns the Title field value.
 func (o *EventPayload) GetTitle() string {
 	if o == nil {
@@ -263,6 +274,8 @@ func (o *EventPayload) GetTitleOk() (*string, bool) {
 func (o *EventPayload) SetTitle(v string) {
 	o.Title = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EventPayload) MarshalJSON() ([]byte, error) {
@@ -294,14 +307,14 @@ func (o EventPayload) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EventPayload) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AggregationKey *string                    `json:"aggregation_key,omitempty"`
-		Attributes     *EventPayloadAttributes    `json:"attributes"`
-		Category       *EventCategory             `json:"category"`
-		IntegrationId  *EventPayloadIntegrationId `json:"integration_id,omitempty"`
-		Message        *string                    `json:"message,omitempty"`
-		Tags           []string                   `json:"tags,omitempty"`
-		Timestamp      *string                    `json:"timestamp,omitempty"`
-		Title          *string                    `json:"title"`
+		AggregationKey *string `json:"aggregation_key,omitempty"`
+		Attributes *EventPayloadAttributes `json:"attributes"`
+		Category *EventCategory `json:"category"`
+		IntegrationId *EventPayloadIntegrationId `json:"integration_id,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Timestamp *string `json:"timestamp,omitempty"`
+		Title *string `json:"title"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -324,7 +337,7 @@ func (o *EventPayload) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.Category = *all.Category
 	}
-	if all.IntegrationId != nil && !all.IntegrationId.IsValid() {
+	if all.IntegrationId != nil &&!all.IntegrationId.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.IntegrationId = all.IntegrationId

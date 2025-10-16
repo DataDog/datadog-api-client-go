@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GoogleMeetConfigurationReference A reference to a Google Meet Configuration resource.
 type GoogleMeetConfigurationReference struct {
 	// The Google Meet configuration relationship data object.
 	Data NullableGoogleMeetConfigurationReferenceData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGoogleMeetConfigurationReference instantiates a new GoogleMeetConfigurationReference object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewGoogleMeetConfigurationReferenceWithDefaults() *GoogleMeetConfigurationR
 	this := GoogleMeetConfigurationReference{}
 	return &this
 }
-
 // GetData returns the Data field value.
 // If the value is explicit nil, the zero value for GoogleMeetConfigurationReferenceData will be returned.
 func (o *GoogleMeetConfigurationReference) GetData() GoogleMeetConfigurationReferenceData {
@@ -61,6 +65,8 @@ func (o *GoogleMeetConfigurationReference) GetDataOk() (*GoogleMeetConfiguration
 func (o *GoogleMeetConfigurationReference) SetData(v GoogleMeetConfigurationReferenceData) {
 	o.Data.Set(&v)
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o GoogleMeetConfigurationReference) MarshalJSON() ([]byte, error) {
@@ -89,7 +95,7 @@ func (o *GoogleMeetConfigurationReference) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}
@@ -101,7 +107,6 @@ func (o *GoogleMeetConfigurationReference) UnmarshalJSON(bytes []byte) (err erro
 
 	return nil
 }
-
 // NullableGoogleMeetConfigurationReference handles when a null is used for GoogleMeetConfigurationReference.
 type NullableGoogleMeetConfigurationReference struct {
 	value *GoogleMeetConfigurationReference

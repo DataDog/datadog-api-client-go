@@ -2,26 +2,27 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV1.WebhooksIntegration{
-		Name: "Example-Webhooks-Integration",
-		Url:  "https://example.com/webhook",
-	}
+Name: "Example-Webhooks-Integration",
+Url: "https://example.com/webhook",
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewWebhooksIntegrationApi(apiClient)
-	resp, r, err := api.CreateWebhooksIntegration(ctx, body)
+	resp, r, err := api.CreateWebhooksIntegration(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksIntegrationApi.CreateWebhooksIntegration`: %v\n", err)

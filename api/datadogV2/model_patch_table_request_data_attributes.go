@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PatchTableRequestDataAttributes The definition of `PatchTableRequestDataAttributes` object.
 type PatchTableRequestDataAttributes struct {
@@ -21,9 +27,10 @@ type PatchTableRequestDataAttributes struct {
 	// The tags of the reference table.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPatchTableRequestDataAttributes instantiates a new PatchTableRequestDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewPatchTableRequestDataAttributesWithDefaults() *PatchTableRequestDataAttr
 	this := PatchTableRequestDataAttributes{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *PatchTableRequestDataAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -69,6 +75,7 @@ func (o *PatchTableRequestDataAttributes) HasDescription() bool {
 func (o *PatchTableRequestDataAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetFileMetadata returns the FileMetadata field value if set, zero value otherwise.
 func (o *PatchTableRequestDataAttributes) GetFileMetadata() PatchTableRequestDataAttributesFileMetadata {
@@ -98,6 +105,7 @@ func (o *PatchTableRequestDataAttributes) SetFileMetadata(v PatchTableRequestDat
 	o.FileMetadata = &v
 }
 
+
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *PatchTableRequestDataAttributes) GetSchema() PatchTableRequestDataAttributesSchema {
 	if o == nil || o.Schema == nil {
@@ -125,6 +133,7 @@ func (o *PatchTableRequestDataAttributes) HasSchema() bool {
 func (o *PatchTableRequestDataAttributes) SetSchema(v PatchTableRequestDataAttributesSchema) {
 	o.Schema = &v
 }
+
 
 // GetSyncEnabled returns the SyncEnabled field value if set, zero value otherwise.
 func (o *PatchTableRequestDataAttributes) GetSyncEnabled() bool {
@@ -154,6 +163,7 @@ func (o *PatchTableRequestDataAttributes) SetSyncEnabled(v bool) {
 	o.SyncEnabled = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *PatchTableRequestDataAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -181,6 +191,8 @@ func (o *PatchTableRequestDataAttributes) HasTags() bool {
 func (o *PatchTableRequestDataAttributes) SetTags(v []string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o PatchTableRequestDataAttributes) MarshalJSON() ([]byte, error) {
@@ -213,18 +225,18 @@ func (o PatchTableRequestDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PatchTableRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description  *string                                      `json:"description,omitempty"`
+		Description *string `json:"description,omitempty"`
 		FileMetadata *PatchTableRequestDataAttributesFileMetadata `json:"file_metadata,omitempty"`
-		Schema       *PatchTableRequestDataAttributesSchema       `json:"schema,omitempty"`
-		SyncEnabled  *bool                                        `json:"sync_enabled,omitempty"`
-		Tags         []string                                     `json:"tags,omitempty"`
+		Schema *PatchTableRequestDataAttributesSchema `json:"schema,omitempty"`
+		SyncEnabled *bool `json:"sync_enabled,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "file_metadata", "schema", "sync_enabled", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "file_metadata", "schema", "sync_enabled", "tags",  })
 	} else {
 		return err
 	}
@@ -232,7 +244,7 @@ func (o *PatchTableRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error
 	hasInvalidField := false
 	o.Description = all.Description
 	o.FileMetadata = all.FileMetadata
-	if all.Schema != nil && all.Schema.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Schema != nil && all.Schema.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Schema = all.Schema

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TimeseriesBackground Set a timeseries on the widget background.
 type TimeseriesBackground struct {
@@ -17,9 +21,10 @@ type TimeseriesBackground struct {
 	// Axis controls for the widget.
 	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTimeseriesBackground instantiates a new TimeseriesBackground object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewTimeseriesBackgroundWithDefaults() *TimeseriesBackground {
 	this.Type = typeVar
 	return &this
 }
-
 // GetType returns the Type field value.
 func (o *TimeseriesBackground) GetType() TimeseriesBackgroundType {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *TimeseriesBackground) GetTypeOk() (*TimeseriesBackgroundType, bool) {
 func (o *TimeseriesBackground) SetType(v TimeseriesBackgroundType) {
 	o.Type = v
 }
+
 
 // GetYaxis returns the Yaxis field value if set, zero value otherwise.
 func (o *TimeseriesBackground) GetYaxis() WidgetAxis {
@@ -92,6 +97,8 @@ func (o *TimeseriesBackground) SetYaxis(v WidgetAxis) {
 	o.Yaxis = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TimeseriesBackground) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -112,8 +119,8 @@ func (o TimeseriesBackground) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TimeseriesBackground) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Type  *TimeseriesBackgroundType `json:"type"`
-		Yaxis *WidgetAxis               `json:"yaxis,omitempty"`
+		Type *TimeseriesBackgroundType `json:"type"`
+		Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -123,7 +130,7 @@ func (o *TimeseriesBackground) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"type", "yaxis"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "type", "yaxis",  })
 	} else {
 		return err
 	}
@@ -134,7 +141,7 @@ func (o *TimeseriesBackground) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.Type = *all.Type
 	}
-	if all.Yaxis != nil && all.Yaxis.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Yaxis != nil && all.Yaxis.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Yaxis = all.Yaxis

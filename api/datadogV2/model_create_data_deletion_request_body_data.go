@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateDataDeletionRequestBodyData Data needed to create a data deletion request.
 type CreateDataDeletionRequestBodyData struct {
@@ -17,9 +21,10 @@ type CreateDataDeletionRequestBodyData struct {
 	// The deletion request type.
 	Type CreateDataDeletionRequestBodyDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateDataDeletionRequestBodyData instantiates a new CreateDataDeletionRequestBodyData object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewCreateDataDeletionRequestBodyDataWithDefaults() *CreateDataDeletionReque
 	this := CreateDataDeletionRequestBodyData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *CreateDataDeletionRequestBodyData) GetAttributes() CreateDataDeletionRequestBodyAttributes {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *CreateDataDeletionRequestBodyData) GetAttributesOk() (*CreateDataDeleti
 func (o *CreateDataDeletionRequestBodyData) SetAttributes(v CreateDataDeletionRequestBodyAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *CreateDataDeletionRequestBodyData) GetType() CreateDataDeletionRequestBodyDataType {
@@ -86,6 +91,8 @@ func (o *CreateDataDeletionRequestBodyData) SetType(v CreateDataDeletionRequestB
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateDataDeletionRequestBodyData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o CreateDataDeletionRequestBodyData) MarshalJSON() ([]byte, error) {
 func (o *CreateDataDeletionRequestBodyData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *CreateDataDeletionRequestBodyAttributes `json:"attributes"`
-		Type       *CreateDataDeletionRequestBodyDataType   `json:"type"`
+		Type *CreateDataDeletionRequestBodyDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *CreateDataDeletionRequestBodyData) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

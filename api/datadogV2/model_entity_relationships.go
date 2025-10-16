@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityRelationships Entity relationships.
 type EntityRelationships struct {
@@ -21,9 +27,10 @@ type EntityRelationships struct {
 	// Entity to detail schema relationship.
 	Schema *EntityToSchema `json:"schema,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityRelationships instantiates a new EntityRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewEntityRelationshipsWithDefaults() *EntityRelationships {
 	this := EntityRelationships{}
 	return &this
 }
-
 // GetIncidents returns the Incidents field value if set, zero value otherwise.
 func (o *EntityRelationships) GetIncidents() EntityToIncidents {
 	if o == nil || o.Incidents == nil {
@@ -69,6 +75,7 @@ func (o *EntityRelationships) HasIncidents() bool {
 func (o *EntityRelationships) SetIncidents(v EntityToIncidents) {
 	o.Incidents = &v
 }
+
 
 // GetOncall returns the Oncall field value if set, zero value otherwise.
 func (o *EntityRelationships) GetOncall() EntityToOncalls {
@@ -98,6 +105,7 @@ func (o *EntityRelationships) SetOncall(v EntityToOncalls) {
 	o.Oncall = &v
 }
 
+
 // GetRawSchema returns the RawSchema field value if set, zero value otherwise.
 func (o *EntityRelationships) GetRawSchema() EntityToRawSchema {
 	if o == nil || o.RawSchema == nil {
@@ -125,6 +133,7 @@ func (o *EntityRelationships) HasRawSchema() bool {
 func (o *EntityRelationships) SetRawSchema(v EntityToRawSchema) {
 	o.RawSchema = &v
 }
+
 
 // GetRelatedEntities returns the RelatedEntities field value if set, zero value otherwise.
 func (o *EntityRelationships) GetRelatedEntities() EntityToRelatedEntities {
@@ -154,6 +163,7 @@ func (o *EntityRelationships) SetRelatedEntities(v EntityToRelatedEntities) {
 	o.RelatedEntities = &v
 }
 
+
 // GetSchema returns the Schema field value if set, zero value otherwise.
 func (o *EntityRelationships) GetSchema() EntityToSchema {
 	if o == nil || o.Schema == nil {
@@ -181,6 +191,8 @@ func (o *EntityRelationships) HasSchema() bool {
 func (o *EntityRelationships) SetSchema(v EntityToSchema) {
 	o.Schema = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityRelationships) MarshalJSON() ([]byte, error) {
@@ -213,40 +225,40 @@ func (o EntityRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Incidents       *EntityToIncidents       `json:"incidents,omitempty"`
-		Oncall          *EntityToOncalls         `json:"oncall,omitempty"`
-		RawSchema       *EntityToRawSchema       `json:"rawSchema,omitempty"`
+		Incidents *EntityToIncidents `json:"incidents,omitempty"`
+		Oncall *EntityToOncalls `json:"oncall,omitempty"`
+		RawSchema *EntityToRawSchema `json:"rawSchema,omitempty"`
 		RelatedEntities *EntityToRelatedEntities `json:"relatedEntities,omitempty"`
-		Schema          *EntityToSchema          `json:"schema,omitempty"`
+		Schema *EntityToSchema `json:"schema,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"incidents", "oncall", "rawSchema", "relatedEntities", "schema"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "incidents", "oncall", "rawSchema", "relatedEntities", "schema",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Incidents != nil && all.Incidents.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Incidents != nil && all.Incidents.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Incidents = all.Incidents
-	if all.Oncall != nil && all.Oncall.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Oncall != nil && all.Oncall.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Oncall = all.Oncall
-	if all.RawSchema != nil && all.RawSchema.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RawSchema != nil && all.RawSchema.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RawSchema = all.RawSchema
-	if all.RelatedEntities != nil && all.RelatedEntities.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RelatedEntities != nil && all.RelatedEntities.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RelatedEntities = all.RelatedEntities
-	if all.Schema != nil && all.Schema.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Schema != nil && all.Schema.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Schema = all.Schema

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ArbitraryCostUpsertRequestDataAttributesStrategy The definition of `ArbitraryCostUpsertRequestDataAttributesStrategy` object.
 type ArbitraryCostUpsertRequestDataAttributesStrategy struct {
@@ -31,9 +35,10 @@ type ArbitraryCostUpsertRequestDataAttributesStrategy struct {
 	// The `strategy` `method`.
 	Method string `json:"method"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewArbitraryCostUpsertRequestDataAttributesStrategy instantiates a new ArbitraryCostUpsertRequestDataAttributesStrategy object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewArbitraryCostUpsertRequestDataAttributesStrategyWithDefaults() *Arbitrar
 	this := ArbitraryCostUpsertRequestDataAttributesStrategy{}
 	return &this
 }
-
 // GetAllocatedBy returns the AllocatedBy field value if set, zero value otherwise.
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) GetAllocatedBy() []ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems {
 	if o == nil || o.AllocatedBy == nil {
@@ -80,6 +84,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) HasAllocatedBy() bool
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) SetAllocatedBy(v []ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems) {
 	o.AllocatedBy = v
 }
+
 
 // GetAllocatedByFilters returns the AllocatedByFilters field value if set, zero value otherwise.
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) GetAllocatedByFilters() []ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByFiltersItems {
@@ -109,6 +114,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) SetAllocatedByFilters
 	o.AllocatedByFilters = v
 }
 
+
 // GetAllocatedByTagKeys returns the AllocatedByTagKeys field value if set, zero value otherwise.
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) GetAllocatedByTagKeys() []string {
 	if o == nil || o.AllocatedByTagKeys == nil {
@@ -136,6 +142,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) HasAllocatedByTagKeys
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) SetAllocatedByTagKeys(v []string) {
 	o.AllocatedByTagKeys = v
 }
+
 
 // GetBasedOnCosts returns the BasedOnCosts field value if set, zero value otherwise.
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) GetBasedOnCosts() []ArbitraryCostUpsertRequestDataAttributesStrategyBasedOnCostsItems {
@@ -165,6 +172,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) SetBasedOnCosts(v []A
 	o.BasedOnCosts = v
 }
 
+
 // GetBasedOnTimeseries returns the BasedOnTimeseries field value if set, zero value otherwise.
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) GetBasedOnTimeseries() map[string]interface{} {
 	if o == nil || o.BasedOnTimeseries == nil {
@@ -192,6 +200,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) HasBasedOnTimeseries(
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) SetBasedOnTimeseries(v map[string]interface{}) {
 	o.BasedOnTimeseries = v
 }
+
 
 // GetEvaluateGroupedByFilters returns the EvaluateGroupedByFilters field value if set, zero value otherwise.
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) GetEvaluateGroupedByFilters() []ArbitraryCostUpsertRequestDataAttributesStrategyEvaluateGroupedByFiltersItems {
@@ -221,6 +230,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) SetEvaluateGroupedByF
 	o.EvaluateGroupedByFilters = v
 }
 
+
 // GetEvaluateGroupedByTagKeys returns the EvaluateGroupedByTagKeys field value if set, zero value otherwise.
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) GetEvaluateGroupedByTagKeys() []string {
 	if o == nil || o.EvaluateGroupedByTagKeys == nil {
@@ -248,6 +258,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) HasEvaluateGroupedByT
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) SetEvaluateGroupedByTagKeys(v []string) {
 	o.EvaluateGroupedByTagKeys = v
 }
+
 
 // GetGranularity returns the Granularity field value if set, zero value otherwise.
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) GetGranularity() string {
@@ -277,6 +288,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) SetGranularity(v stri
 	o.Granularity = &v
 }
 
+
 // GetMethod returns the Method field value.
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) GetMethod() string {
 	if o == nil {
@@ -299,6 +311,8 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) GetMethodOk() (*strin
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) SetMethod(v string) {
 	o.Method = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ArbitraryCostUpsertRequestDataAttributesStrategy) MarshalJSON() ([]byte, error) {
@@ -341,15 +355,15 @@ func (o ArbitraryCostUpsertRequestDataAttributesStrategy) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AllocatedBy              []ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems              `json:"allocated_by,omitempty"`
-		AllocatedByFilters       []ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByFiltersItems       `json:"allocated_by_filters,omitempty"`
-		AllocatedByTagKeys       []string                                                                        `json:"allocated_by_tag_keys,omitempty"`
-		BasedOnCosts             []ArbitraryCostUpsertRequestDataAttributesStrategyBasedOnCostsItems             `json:"based_on_costs,omitempty"`
-		BasedOnTimeseries        map[string]interface{}                                                          `json:"based_on_timeseries,omitempty"`
+		AllocatedBy []ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByItems `json:"allocated_by,omitempty"`
+		AllocatedByFilters []ArbitraryCostUpsertRequestDataAttributesStrategyAllocatedByFiltersItems `json:"allocated_by_filters,omitempty"`
+		AllocatedByTagKeys []string `json:"allocated_by_tag_keys,omitempty"`
+		BasedOnCosts []ArbitraryCostUpsertRequestDataAttributesStrategyBasedOnCostsItems `json:"based_on_costs,omitempty"`
+		BasedOnTimeseries map[string]interface{} `json:"based_on_timeseries,omitempty"`
 		EvaluateGroupedByFilters []ArbitraryCostUpsertRequestDataAttributesStrategyEvaluateGroupedByFiltersItems `json:"evaluate_grouped_by_filters,omitempty"`
-		EvaluateGroupedByTagKeys []string                                                                        `json:"evaluate_grouped_by_tag_keys,omitempty"`
-		Granularity              *string                                                                         `json:"granularity,omitempty"`
-		Method                   *string                                                                         `json:"method"`
+		EvaluateGroupedByTagKeys []string `json:"evaluate_grouped_by_tag_keys,omitempty"`
+		Granularity *string `json:"granularity,omitempty"`
+		Method *string `json:"method"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -359,7 +373,7 @@ func (o *ArbitraryCostUpsertRequestDataAttributesStrategy) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allocated_by", "allocated_by_filters", "allocated_by_tag_keys", "based_on_costs", "based_on_timeseries", "evaluate_grouped_by_filters", "evaluate_grouped_by_tag_keys", "granularity", "method"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "allocated_by", "allocated_by_filters", "allocated_by_tag_keys", "based_on_costs", "based_on_timeseries", "evaluate_grouped_by_filters", "evaluate_grouped_by_tag_keys", "granularity", "method",  })
 	} else {
 		return err
 	}

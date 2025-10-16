@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventCreateResponsePayloadLinks Links to the event.
 type EventCreateResponsePayloadLinks struct {
 	// The URL of the event. This link is only functional when using the default subdomain.
 	Self *string `json:"self,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEventCreateResponsePayloadLinks instantiates a new EventCreateResponsePayloadLinks object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewEventCreateResponsePayloadLinksWithDefaults() *EventCreateResponsePayloa
 	this := EventCreateResponsePayloadLinks{}
 	return &this
 }
-
 // GetSelf returns the Self field value if set, zero value otherwise.
 func (o *EventCreateResponsePayloadLinks) GetSelf() string {
 	if o == nil || o.Self == nil {
@@ -62,6 +68,8 @@ func (o *EventCreateResponsePayloadLinks) SetSelf(v string) {
 	o.Self = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EventCreateResponsePayloadLinks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *EventCreateResponsePayloadLinks) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"self"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "self",  })
 	} else {
 		return err
 	}

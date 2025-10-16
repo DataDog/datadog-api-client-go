@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomDestinationResponseForwardDestinationHttp The HTTP destination.
 type CustomDestinationResponseForwardDestinationHttp struct {
@@ -20,9 +24,10 @@ type CustomDestinationResponseForwardDestinationHttp struct {
 	// Type of the HTTP destination.
 	Type CustomDestinationResponseForwardDestinationHttpType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomDestinationResponseForwardDestinationHttp instantiates a new CustomDestinationResponseForwardDestinationHttp object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewCustomDestinationResponseForwardDestinationHttpWithDefaults() *CustomDes
 	this.Type = typeVar
 	return &this
 }
-
 // GetAuth returns the Auth field value.
 func (o *CustomDestinationResponseForwardDestinationHttp) GetAuth() CustomDestinationResponseHttpDestinationAuth {
 	if o == nil {
@@ -68,6 +72,7 @@ func (o *CustomDestinationResponseForwardDestinationHttp) GetAuthOk() (*CustomDe
 func (o *CustomDestinationResponseForwardDestinationHttp) SetAuth(v CustomDestinationResponseHttpDestinationAuth) {
 	o.Auth = v
 }
+
 
 // GetEndpoint returns the Endpoint field value.
 func (o *CustomDestinationResponseForwardDestinationHttp) GetEndpoint() string {
@@ -92,6 +97,7 @@ func (o *CustomDestinationResponseForwardDestinationHttp) SetEndpoint(v string) 
 	o.Endpoint = v
 }
 
+
 // GetType returns the Type field value.
 func (o *CustomDestinationResponseForwardDestinationHttp) GetType() CustomDestinationResponseForwardDestinationHttpType {
 	if o == nil {
@@ -115,6 +121,8 @@ func (o *CustomDestinationResponseForwardDestinationHttp) SetType(v CustomDestin
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomDestinationResponseForwardDestinationHttp) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -134,9 +142,9 @@ func (o CustomDestinationResponseForwardDestinationHttp) MarshalJSON() ([]byte, 
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomDestinationResponseForwardDestinationHttp) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Auth     *CustomDestinationResponseHttpDestinationAuth        `json:"auth"`
-		Endpoint *string                                              `json:"endpoint"`
-		Type     *CustomDestinationResponseForwardDestinationHttpType `json:"type"`
+		Auth *CustomDestinationResponseHttpDestinationAuth `json:"auth"`
+		Endpoint *string `json:"endpoint"`
+		Type *CustomDestinationResponseForwardDestinationHttpType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *CustomDestinationResponseForwardDestinationHttp) UnmarshalJSON(bytes []
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "endpoint", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "auth", "endpoint", "type",  })
 	} else {
 		return err
 	}

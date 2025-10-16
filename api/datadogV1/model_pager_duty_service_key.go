@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PagerDutyServiceKey PagerDuty service object key.
 type PagerDutyServiceKey struct {
 	// Your service key in PagerDuty.
 	ServiceKey string `json:"service_key"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPagerDutyServiceKey instantiates a new PagerDutyServiceKey object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewPagerDutyServiceKeyWithDefaults() *PagerDutyServiceKey {
 	this := PagerDutyServiceKey{}
 	return &this
 }
-
 // GetServiceKey returns the ServiceKey field value.
 func (o *PagerDutyServiceKey) GetServiceKey() string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *PagerDutyServiceKey) GetServiceKeyOk() (*string, bool) {
 func (o *PagerDutyServiceKey) SetServiceKey(v string) {
 	o.ServiceKey = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o PagerDutyServiceKey) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *PagerDutyServiceKey) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"service_key"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "service_key",  })
 	} else {
 		return err
 	}

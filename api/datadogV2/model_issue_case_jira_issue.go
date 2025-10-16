@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssueCaseJiraIssue Jira issue of the case.
 type IssueCaseJiraIssue struct {
@@ -15,9 +21,10 @@ type IssueCaseJiraIssue struct {
 	// Creation status of the Jira issue.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssueCaseJiraIssue instantiates a new IssueCaseJiraIssue object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewIssueCaseJiraIssueWithDefaults() *IssueCaseJiraIssue {
 	this := IssueCaseJiraIssue{}
 	return &this
 }
-
 // GetResult returns the Result field value if set, zero value otherwise.
 func (o *IssueCaseJiraIssue) GetResult() IssueCaseJiraIssueResult {
 	if o == nil || o.Result == nil {
@@ -63,6 +69,7 @@ func (o *IssueCaseJiraIssue) HasResult() bool {
 func (o *IssueCaseJiraIssue) SetResult(v IssueCaseJiraIssueResult) {
 	o.Result = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *IssueCaseJiraIssue) GetStatus() string {
@@ -92,6 +99,8 @@ func (o *IssueCaseJiraIssue) SetStatus(v string) {
 	o.Status = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IssueCaseJiraIssue) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,20 +124,20 @@ func (o IssueCaseJiraIssue) MarshalJSON() ([]byte, error) {
 func (o *IssueCaseJiraIssue) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Result *IssueCaseJiraIssueResult `json:"result,omitempty"`
-		Status *string                   `json:"status,omitempty"`
+		Status *string `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"result", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "result", "status",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Result != nil && all.Result.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Result != nil && all.Result.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Result = all.Result

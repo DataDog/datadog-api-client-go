@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GetSBOMResponse The expected response schema when getting an SBOM.
 type GetSBOMResponse struct {
 	// A single SBOM
 	Data SBOM `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGetSBOMResponse instantiates a new GetSBOMResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewGetSBOMResponseWithDefaults() *GetSBOMResponse {
 	this := GetSBOMResponse{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *GetSBOMResponse) GetData() SBOM {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *GetSBOMResponse) GetDataOk() (*SBOM, bool) {
 func (o *GetSBOMResponse) SetData(v SBOM) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o GetSBOMResponse) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *GetSBOMResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

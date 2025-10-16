@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GetDeviceAttributes The device attributes
 type GetDeviceAttributes struct {
@@ -49,9 +55,10 @@ type GetDeviceAttributes struct {
 	// The version of the device.
 	Version *string `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGetDeviceAttributes instantiates a new GetDeviceAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -69,7 +76,6 @@ func NewGetDeviceAttributesWithDefaults() *GetDeviceAttributes {
 	this := GetDeviceAttributes{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -97,6 +103,7 @@ func (o *GetDeviceAttributes) HasDescription() bool {
 func (o *GetDeviceAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetDeviceType returns the DeviceType field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetDeviceType() string {
@@ -126,6 +133,7 @@ func (o *GetDeviceAttributes) SetDeviceType(v string) {
 	o.DeviceType = &v
 }
 
+
 // GetIntegration returns the Integration field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetIntegration() string {
 	if o == nil || o.Integration == nil {
@@ -153,6 +161,7 @@ func (o *GetDeviceAttributes) HasIntegration() bool {
 func (o *GetDeviceAttributes) SetIntegration(v string) {
 	o.Integration = &v
 }
+
 
 // GetIpAddress returns the IpAddress field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetIpAddress() string {
@@ -182,6 +191,7 @@ func (o *GetDeviceAttributes) SetIpAddress(v string) {
 	o.IpAddress = &v
 }
 
+
 // GetLocation returns the Location field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetLocation() string {
 	if o == nil || o.Location == nil {
@@ -209,6 +219,7 @@ func (o *GetDeviceAttributes) HasLocation() bool {
 func (o *GetDeviceAttributes) SetLocation(v string) {
 	o.Location = &v
 }
+
 
 // GetModel returns the Model field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetModel() string {
@@ -238,6 +249,7 @@ func (o *GetDeviceAttributes) SetModel(v string) {
 	o.Model = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -265,6 +277,7 @@ func (o *GetDeviceAttributes) HasName() bool {
 func (o *GetDeviceAttributes) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetOsHostname returns the OsHostname field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetOsHostname() string {
@@ -294,6 +307,7 @@ func (o *GetDeviceAttributes) SetOsHostname(v string) {
 	o.OsHostname = &v
 }
 
+
 // GetOsName returns the OsName field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetOsName() string {
 	if o == nil || o.OsName == nil {
@@ -321,6 +335,7 @@ func (o *GetDeviceAttributes) HasOsName() bool {
 func (o *GetDeviceAttributes) SetOsName(v string) {
 	o.OsName = &v
 }
+
 
 // GetOsVersion returns the OsVersion field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetOsVersion() string {
@@ -350,6 +365,7 @@ func (o *GetDeviceAttributes) SetOsVersion(v string) {
 	o.OsVersion = &v
 }
 
+
 // GetPingStatus returns the PingStatus field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetPingStatus() string {
 	if o == nil || o.PingStatus == nil {
@@ -377,6 +393,7 @@ func (o *GetDeviceAttributes) HasPingStatus() bool {
 func (o *GetDeviceAttributes) SetPingStatus(v string) {
 	o.PingStatus = &v
 }
+
 
 // GetProductName returns the ProductName field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetProductName() string {
@@ -406,6 +423,7 @@ func (o *GetDeviceAttributes) SetProductName(v string) {
 	o.ProductName = &v
 }
 
+
 // GetSerialNumber returns the SerialNumber field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetSerialNumber() string {
 	if o == nil || o.SerialNumber == nil {
@@ -433,6 +451,7 @@ func (o *GetDeviceAttributes) HasSerialNumber() bool {
 func (o *GetDeviceAttributes) SetSerialNumber(v string) {
 	o.SerialNumber = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetStatus() string {
@@ -462,6 +481,7 @@ func (o *GetDeviceAttributes) SetStatus(v string) {
 	o.Status = &v
 }
 
+
 // GetSubnet returns the Subnet field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetSubnet() string {
 	if o == nil || o.Subnet == nil {
@@ -489,6 +509,7 @@ func (o *GetDeviceAttributes) HasSubnet() bool {
 func (o *GetDeviceAttributes) SetSubnet(v string) {
 	o.Subnet = &v
 }
+
 
 // GetSysObjectId returns the SysObjectId field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetSysObjectId() string {
@@ -518,6 +539,7 @@ func (o *GetDeviceAttributes) SetSysObjectId(v string) {
 	o.SysObjectId = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -545,6 +567,7 @@ func (o *GetDeviceAttributes) HasTags() bool {
 func (o *GetDeviceAttributes) SetTags(v []string) {
 	o.Tags = v
 }
+
 
 // GetVendor returns the Vendor field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetVendor() string {
@@ -574,6 +597,7 @@ func (o *GetDeviceAttributes) SetVendor(v string) {
 	o.Vendor = &v
 }
 
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *GetDeviceAttributes) GetVersion() string {
 	if o == nil || o.Version == nil {
@@ -601,6 +625,8 @@ func (o *GetDeviceAttributes) HasVersion() bool {
 func (o *GetDeviceAttributes) SetVersion(v string) {
 	o.Version = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o GetDeviceAttributes) MarshalJSON() ([]byte, error) {
@@ -675,32 +701,32 @@ func (o GetDeviceAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GetDeviceAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description  *string  `json:"description,omitempty"`
-		DeviceType   *string  `json:"device_type,omitempty"`
-		Integration  *string  `json:"integration,omitempty"`
-		IpAddress    *string  `json:"ip_address,omitempty"`
-		Location     *string  `json:"location,omitempty"`
-		Model        *string  `json:"model,omitempty"`
-		Name         *string  `json:"name,omitempty"`
-		OsHostname   *string  `json:"os_hostname,omitempty"`
-		OsName       *string  `json:"os_name,omitempty"`
-		OsVersion    *string  `json:"os_version,omitempty"`
-		PingStatus   *string  `json:"ping_status,omitempty"`
-		ProductName  *string  `json:"product_name,omitempty"`
-		SerialNumber *string  `json:"serial_number,omitempty"`
-		Status       *string  `json:"status,omitempty"`
-		Subnet       *string  `json:"subnet,omitempty"`
-		SysObjectId  *string  `json:"sys_object_id,omitempty"`
-		Tags         []string `json:"tags,omitempty"`
-		Vendor       *string  `json:"vendor,omitempty"`
-		Version      *string  `json:"version,omitempty"`
+		Description *string `json:"description,omitempty"`
+		DeviceType *string `json:"device_type,omitempty"`
+		Integration *string `json:"integration,omitempty"`
+		IpAddress *string `json:"ip_address,omitempty"`
+		Location *string `json:"location,omitempty"`
+		Model *string `json:"model,omitempty"`
+		Name *string `json:"name,omitempty"`
+		OsHostname *string `json:"os_hostname,omitempty"`
+		OsName *string `json:"os_name,omitempty"`
+		OsVersion *string `json:"os_version,omitempty"`
+		PingStatus *string `json:"ping_status,omitempty"`
+		ProductName *string `json:"product_name,omitempty"`
+		SerialNumber *string `json:"serial_number,omitempty"`
+		Status *string `json:"status,omitempty"`
+		Subnet *string `json:"subnet,omitempty"`
+		SysObjectId *string `json:"sys_object_id,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Vendor *string `json:"vendor,omitempty"`
+		Version *string `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "device_type", "integration", "ip_address", "location", "model", "name", "os_hostname", "os_name", "os_version", "ping_status", "product_name", "serial_number", "status", "subnet", "sys_object_id", "tags", "vendor", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "device_type", "integration", "ip_address", "location", "model", "name", "os_hostname", "os_name", "os_version", "ping_status", "product_name", "serial_number", "status", "subnet", "sys_object_id", "tags", "vendor", "version",  })
 	} else {
 		return err
 	}

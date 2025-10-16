@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LaunchDarklyIntegration The definition of the `LaunchDarklyIntegration` object.
 type LaunchDarklyIntegration struct {
@@ -17,9 +21,10 @@ type LaunchDarklyIntegration struct {
 	// The definition of the `LaunchDarklyIntegrationType` object.
 	Type LaunchDarklyIntegrationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLaunchDarklyIntegration instantiates a new LaunchDarklyIntegration object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewLaunchDarklyIntegrationWithDefaults() *LaunchDarklyIntegration {
 	this := LaunchDarklyIntegration{}
 	return &this
 }
-
 // GetCredentials returns the Credentials field value.
 func (o *LaunchDarklyIntegration) GetCredentials() LaunchDarklyCredentials {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *LaunchDarklyIntegration) GetCredentialsOk() (*LaunchDarklyCredentials, 
 func (o *LaunchDarklyIntegration) SetCredentials(v LaunchDarklyCredentials) {
 	o.Credentials = v
 }
+
 
 // GetType returns the Type field value.
 func (o *LaunchDarklyIntegration) GetType() LaunchDarklyIntegrationType {
@@ -86,6 +91,8 @@ func (o *LaunchDarklyIntegration) SetType(v LaunchDarklyIntegrationType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LaunchDarklyIntegration) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o LaunchDarklyIntegration) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LaunchDarklyIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Credentials *LaunchDarklyCredentials     `json:"credentials"`
-		Type        *LaunchDarklyIntegrationType `json:"type"`
+		Credentials *LaunchDarklyCredentials `json:"credentials"`
+		Type *LaunchDarklyIntegrationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *LaunchDarklyIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"credentials", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "credentials", "type",  })
 	} else {
 		return err
 	}

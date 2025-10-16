@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsBasicAuthNTLM Object to handle `NTLM` authentication when performing the test.
 type SyntheticsBasicAuthNTLM struct {
@@ -23,9 +27,10 @@ type SyntheticsBasicAuthNTLM struct {
 	// Workstation for the authentication to use when performing the test.
 	Workstation *string `json:"workstation,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsBasicAuthNTLM instantiates a new SyntheticsBasicAuthNTLM object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewSyntheticsBasicAuthNTLMWithDefaults() *SyntheticsBasicAuthNTLM {
 	this.Type = typeVar
 	return &this
 }
-
 // GetDomain returns the Domain field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthNTLM) GetDomain() string {
 	if o == nil || o.Domain == nil {
@@ -74,6 +78,7 @@ func (o *SyntheticsBasicAuthNTLM) HasDomain() bool {
 func (o *SyntheticsBasicAuthNTLM) SetDomain(v string) {
 	o.Domain = &v
 }
+
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthNTLM) GetPassword() string {
@@ -103,6 +108,7 @@ func (o *SyntheticsBasicAuthNTLM) SetPassword(v string) {
 	o.Password = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *SyntheticsBasicAuthNTLM) GetType() SyntheticsBasicAuthNTLMType {
 	if o == nil {
@@ -125,6 +131,7 @@ func (o *SyntheticsBasicAuthNTLM) GetTypeOk() (*SyntheticsBasicAuthNTLMType, boo
 func (o *SyntheticsBasicAuthNTLM) SetType(v SyntheticsBasicAuthNTLMType) {
 	o.Type = v
 }
+
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthNTLM) GetUsername() string {
@@ -154,6 +161,7 @@ func (o *SyntheticsBasicAuthNTLM) SetUsername(v string) {
 	o.Username = &v
 }
 
+
 // GetWorkstation returns the Workstation field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthNTLM) GetWorkstation() string {
 	if o == nil || o.Workstation == nil {
@@ -181,6 +189,8 @@ func (o *SyntheticsBasicAuthNTLM) HasWorkstation() bool {
 func (o *SyntheticsBasicAuthNTLM) SetWorkstation(v string) {
 	o.Workstation = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBasicAuthNTLM) MarshalJSON() ([]byte, error) {
@@ -211,11 +221,11 @@ func (o SyntheticsBasicAuthNTLM) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBasicAuthNTLM) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Domain      *string                      `json:"domain,omitempty"`
-		Password    *string                      `json:"password,omitempty"`
-		Type        *SyntheticsBasicAuthNTLMType `json:"type"`
-		Username    *string                      `json:"username,omitempty"`
-		Workstation *string                      `json:"workstation,omitempty"`
+		Domain *string `json:"domain,omitempty"`
+		Password *string `json:"password,omitempty"`
+		Type *SyntheticsBasicAuthNTLMType `json:"type"`
+		Username *string `json:"username,omitempty"`
+		Workstation *string `json:"workstation,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -225,7 +235,7 @@ func (o *SyntheticsBasicAuthNTLM) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"domain", "password", "type", "username", "workstation"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "domain", "password", "type", "username", "workstation",  })
 	} else {
 		return err
 	}

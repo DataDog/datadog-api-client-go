@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineReduceProcessor The `reduce` processor aggregates and merges logs based on matching keys and merge strategies.
 type ObservabilityPipelineReduceProcessor struct {
@@ -25,9 +29,10 @@ type ObservabilityPipelineReduceProcessor struct {
 	// The processor type. The value should always be `reduce`.
 	Type ObservabilityPipelineReduceProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineReduceProcessor instantiates a new ObservabilityPipelineReduceProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewObservabilityPipelineReduceProcessorWithDefaults() *ObservabilityPipelin
 	this.Type = typeVar
 	return &this
 }
-
 // GetGroupBy returns the GroupBy field value.
 func (o *ObservabilityPipelineReduceProcessor) GetGroupBy() []string {
 	if o == nil {
@@ -76,6 +80,7 @@ func (o *ObservabilityPipelineReduceProcessor) GetGroupByOk() (*[]string, bool) 
 func (o *ObservabilityPipelineReduceProcessor) SetGroupBy(v []string) {
 	o.GroupBy = v
 }
+
 
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineReduceProcessor) GetId() string {
@@ -100,6 +105,7 @@ func (o *ObservabilityPipelineReduceProcessor) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineReduceProcessor) GetInclude() string {
 	if o == nil {
@@ -122,6 +128,7 @@ func (o *ObservabilityPipelineReduceProcessor) GetIncludeOk() (*string, bool) {
 func (o *ObservabilityPipelineReduceProcessor) SetInclude(v string) {
 	o.Include = v
 }
+
 
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineReduceProcessor) GetInputs() []string {
@@ -146,6 +153,7 @@ func (o *ObservabilityPipelineReduceProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
 
+
 // GetMergeStrategies returns the MergeStrategies field value.
 func (o *ObservabilityPipelineReduceProcessor) GetMergeStrategies() []ObservabilityPipelineReduceProcessorMergeStrategy {
 	if o == nil {
@@ -168,6 +176,7 @@ func (o *ObservabilityPipelineReduceProcessor) GetMergeStrategiesOk() (*[]Observ
 func (o *ObservabilityPipelineReduceProcessor) SetMergeStrategies(v []ObservabilityPipelineReduceProcessorMergeStrategy) {
 	o.MergeStrategies = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineReduceProcessor) GetType() ObservabilityPipelineReduceProcessorType {
@@ -192,6 +201,8 @@ func (o *ObservabilityPipelineReduceProcessor) SetType(v ObservabilityPipelineRe
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineReduceProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -214,12 +225,12 @@ func (o ObservabilityPipelineReduceProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineReduceProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		GroupBy         *[]string                                            `json:"group_by"`
-		Id              *string                                              `json:"id"`
-		Include         *string                                              `json:"include"`
-		Inputs          *[]string                                            `json:"inputs"`
+		GroupBy *[]string `json:"group_by"`
+		Id *string `json:"id"`
+		Include *string `json:"include"`
+		Inputs *[]string `json:"inputs"`
 		MergeStrategies *[]ObservabilityPipelineReduceProcessorMergeStrategy `json:"merge_strategies"`
-		Type            *ObservabilityPipelineReduceProcessorType            `json:"type"`
+		Type *ObservabilityPipelineReduceProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -244,7 +255,7 @@ func (o *ObservabilityPipelineReduceProcessor) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"group_by", "id", "include", "inputs", "merge_strategies", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "group_by", "id", "include", "inputs", "merge_strategies", "type",  })
 	} else {
 		return err
 	}

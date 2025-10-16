@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GCPUsageCostConfigAttributes Attributes for a Google Cloud Usage Cost config.
 type GCPUsageCostConfigAttributes struct {
@@ -40,9 +44,10 @@ type GCPUsageCostConfigAttributes struct {
 	// The timestamp when the Google Cloud Usage Cost config status was updated.
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGCPUsageCostConfigAttributes instantiates a new GCPUsageCostConfigAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -67,7 +72,6 @@ func NewGCPUsageCostConfigAttributesWithDefaults() *GCPUsageCostConfigAttributes
 	this := GCPUsageCostConfigAttributes{}
 	return &this
 }
-
 // GetAccountId returns the AccountId field value.
 func (o *GCPUsageCostConfigAttributes) GetAccountId() string {
 	if o == nil {
@@ -91,6 +95,7 @@ func (o *GCPUsageCostConfigAttributes) SetAccountId(v string) {
 	o.AccountId = v
 }
 
+
 // GetBucketName returns the BucketName field value.
 func (o *GCPUsageCostConfigAttributes) GetBucketName() string {
 	if o == nil {
@@ -113,6 +118,7 @@ func (o *GCPUsageCostConfigAttributes) GetBucketNameOk() (*string, bool) {
 func (o *GCPUsageCostConfigAttributes) SetBucketName(v string) {
 	o.BucketName = v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *GCPUsageCostConfigAttributes) GetCreatedAt() string {
@@ -142,6 +148,7 @@ func (o *GCPUsageCostConfigAttributes) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
 
+
 // GetDataset returns the Dataset field value.
 func (o *GCPUsageCostConfigAttributes) GetDataset() string {
 	if o == nil {
@@ -165,6 +172,7 @@ func (o *GCPUsageCostConfigAttributes) SetDataset(v string) {
 	o.Dataset = v
 }
 
+
 // GetErrorMessages returns the ErrorMessages field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *GCPUsageCostConfigAttributes) GetErrorMessages() []string {
 	if o == nil || o.ErrorMessages.Get() == nil {
@@ -178,7 +186,7 @@ func (o *GCPUsageCostConfigAttributes) GetErrorMessages() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *GCPUsageCostConfigAttributes) GetErrorMessagesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ErrorMessages.Get(), o.ErrorMessages.IsSet()
@@ -193,7 +201,6 @@ func (o *GCPUsageCostConfigAttributes) HasErrorMessages() bool {
 func (o *GCPUsageCostConfigAttributes) SetErrorMessages(v []string) {
 	o.ErrorMessages.Set(&v)
 }
-
 // SetErrorMessagesNil sets the value for ErrorMessages to be an explicit nil.
 func (o *GCPUsageCostConfigAttributes) SetErrorMessagesNil() {
 	o.ErrorMessages.Set(nil)
@@ -203,6 +210,7 @@ func (o *GCPUsageCostConfigAttributes) SetErrorMessagesNil() {
 func (o *GCPUsageCostConfigAttributes) UnsetErrorMessages() {
 	o.ErrorMessages.Unset()
 }
+
 
 // GetExportPrefix returns the ExportPrefix field value.
 func (o *GCPUsageCostConfigAttributes) GetExportPrefix() string {
@@ -227,6 +235,7 @@ func (o *GCPUsageCostConfigAttributes) SetExportPrefix(v string) {
 	o.ExportPrefix = v
 }
 
+
 // GetExportProjectName returns the ExportProjectName field value.
 func (o *GCPUsageCostConfigAttributes) GetExportProjectName() string {
 	if o == nil {
@@ -249,6 +258,7 @@ func (o *GCPUsageCostConfigAttributes) GetExportProjectNameOk() (*string, bool) 
 func (o *GCPUsageCostConfigAttributes) SetExportProjectName(v string) {
 	o.ExportProjectName = v
 }
+
 
 // GetMonths returns the Months field value if set, zero value otherwise.
 // Deprecated
@@ -281,6 +291,7 @@ func (o *GCPUsageCostConfigAttributes) SetMonths(v int32) {
 	o.Months = &v
 }
 
+
 // GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *GCPUsageCostConfigAttributes) GetProjectId() string {
 	if o == nil || o.ProjectId == nil {
@@ -309,6 +320,7 @@ func (o *GCPUsageCostConfigAttributes) SetProjectId(v string) {
 	o.ProjectId = &v
 }
 
+
 // GetServiceAccount returns the ServiceAccount field value.
 func (o *GCPUsageCostConfigAttributes) GetServiceAccount() string {
 	if o == nil {
@@ -332,6 +344,7 @@ func (o *GCPUsageCostConfigAttributes) SetServiceAccount(v string) {
 	o.ServiceAccount = v
 }
 
+
 // GetStatus returns the Status field value.
 func (o *GCPUsageCostConfigAttributes) GetStatus() string {
 	if o == nil {
@@ -354,6 +367,7 @@ func (o *GCPUsageCostConfigAttributes) GetStatusOk() (*string, bool) {
 func (o *GCPUsageCostConfigAttributes) SetStatus(v string) {
 	o.Status = v
 }
+
 
 // GetStatusUpdatedAt returns the StatusUpdatedAt field value if set, zero value otherwise.
 func (o *GCPUsageCostConfigAttributes) GetStatusUpdatedAt() string {
@@ -383,6 +397,7 @@ func (o *GCPUsageCostConfigAttributes) SetStatusUpdatedAt(v string) {
 	o.StatusUpdatedAt = &v
 }
 
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *GCPUsageCostConfigAttributes) GetUpdatedAt() string {
 	if o == nil || o.UpdatedAt == nil {
@@ -410,6 +425,8 @@ func (o *GCPUsageCostConfigAttributes) HasUpdatedAt() bool {
 func (o *GCPUsageCostConfigAttributes) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o GCPUsageCostConfigAttributes) MarshalJSON() ([]byte, error) {
@@ -452,19 +469,19 @@ func (o GCPUsageCostConfigAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GCPUsageCostConfigAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountId         *string                      `json:"account_id"`
-		BucketName        *string                      `json:"bucket_name"`
-		CreatedAt         *string                      `json:"created_at,omitempty"`
-		Dataset           *string                      `json:"dataset"`
-		ErrorMessages     datadog.NullableList[string] `json:"error_messages,omitempty"`
-		ExportPrefix      *string                      `json:"export_prefix"`
-		ExportProjectName *string                      `json:"export_project_name"`
-		Months            *int32                       `json:"months,omitempty"`
-		ProjectId         *string                      `json:"project_id,omitempty"`
-		ServiceAccount    *string                      `json:"service_account"`
-		Status            *string                      `json:"status"`
-		StatusUpdatedAt   *string                      `json:"status_updated_at,omitempty"`
-		UpdatedAt         *string                      `json:"updated_at,omitempty"`
+		AccountId *string `json:"account_id"`
+		BucketName *string `json:"bucket_name"`
+		CreatedAt *string `json:"created_at,omitempty"`
+		Dataset *string `json:"dataset"`
+		ErrorMessages datadog.NullableList[string] `json:"error_messages,omitempty"`
+		ExportPrefix *string `json:"export_prefix"`
+		ExportProjectName *string `json:"export_project_name"`
+		Months *int32 `json:"months,omitempty"`
+		ProjectId *string `json:"project_id,omitempty"`
+		ServiceAccount *string `json:"service_account"`
+		Status *string `json:"status"`
+		StatusUpdatedAt *string `json:"status_updated_at,omitempty"`
+		UpdatedAt *string `json:"updated_at,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -492,7 +509,7 @@ func (o *GCPUsageCostConfigAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "bucket_name", "created_at", "dataset", "error_messages", "export_prefix", "export_project_name", "months", "project_id", "service_account", "status", "status_updated_at", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "account_id", "bucket_name", "created_at", "dataset", "error_messages", "export_prefix", "export_project_name", "months", "project_id", "service_account", "status", "status_updated_at", "updated_at",  })
 	} else {
 		return err
 	}

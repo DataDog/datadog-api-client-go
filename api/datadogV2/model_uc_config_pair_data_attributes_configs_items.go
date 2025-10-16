@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UCConfigPairDataAttributesConfigsItems The definition of `UCConfigPairDataAttributesConfigsItems` object.
 type UCConfigPairDataAttributesConfigsItems struct {
@@ -41,9 +47,10 @@ type UCConfigPairDataAttributesConfigsItems struct {
 	// The `items` `updated_at`.
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUCConfigPairDataAttributesConfigsItems instantiates a new UCConfigPairDataAttributesConfigsItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -61,7 +68,6 @@ func NewUCConfigPairDataAttributesConfigsItemsWithDefaults() *UCConfigPairDataAt
 	this := UCConfigPairDataAttributesConfigsItems{}
 	return &this
 }
-
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
 func (o *UCConfigPairDataAttributesConfigsItems) GetAccountId() string {
 	if o == nil || o.AccountId == nil {
@@ -89,6 +95,7 @@ func (o *UCConfigPairDataAttributesConfigsItems) HasAccountId() bool {
 func (o *UCConfigPairDataAttributesConfigsItems) SetAccountId(v string) {
 	o.AccountId = &v
 }
+
 
 // GetClientId returns the ClientId field value if set, zero value otherwise.
 func (o *UCConfigPairDataAttributesConfigsItems) GetClientId() string {
@@ -118,6 +125,7 @@ func (o *UCConfigPairDataAttributesConfigsItems) SetClientId(v string) {
 	o.ClientId = &v
 }
 
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *UCConfigPairDataAttributesConfigsItems) GetCreatedAt() string {
 	if o == nil || o.CreatedAt == nil {
@@ -145,6 +153,7 @@ func (o *UCConfigPairDataAttributesConfigsItems) HasCreatedAt() bool {
 func (o *UCConfigPairDataAttributesConfigsItems) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
+
 
 // GetDatasetType returns the DatasetType field value if set, zero value otherwise.
 func (o *UCConfigPairDataAttributesConfigsItems) GetDatasetType() string {
@@ -174,6 +183,7 @@ func (o *UCConfigPairDataAttributesConfigsItems) SetDatasetType(v string) {
 	o.DatasetType = &v
 }
 
+
 // GetErrorMessages returns the ErrorMessages field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UCConfigPairDataAttributesConfigsItems) GetErrorMessages() []string {
 	if o == nil || o.ErrorMessages.Get() == nil {
@@ -187,7 +197,7 @@ func (o *UCConfigPairDataAttributesConfigsItems) GetErrorMessages() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UCConfigPairDataAttributesConfigsItems) GetErrorMessagesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ErrorMessages.Get(), o.ErrorMessages.IsSet()
@@ -202,7 +212,6 @@ func (o *UCConfigPairDataAttributesConfigsItems) HasErrorMessages() bool {
 func (o *UCConfigPairDataAttributesConfigsItems) SetErrorMessages(v []string) {
 	o.ErrorMessages.Set(&v)
 }
-
 // SetErrorMessagesNil sets the value for ErrorMessages to be an explicit nil.
 func (o *UCConfigPairDataAttributesConfigsItems) SetErrorMessagesNil() {
 	o.ErrorMessages.Set(nil)
@@ -212,6 +221,7 @@ func (o *UCConfigPairDataAttributesConfigsItems) SetErrorMessagesNil() {
 func (o *UCConfigPairDataAttributesConfigsItems) UnsetErrorMessages() {
 	o.ErrorMessages.Unset()
 }
+
 
 // GetExportName returns the ExportName field value if set, zero value otherwise.
 func (o *UCConfigPairDataAttributesConfigsItems) GetExportName() string {
@@ -241,6 +251,7 @@ func (o *UCConfigPairDataAttributesConfigsItems) SetExportName(v string) {
 	o.ExportName = &v
 }
 
+
 // GetExportPath returns the ExportPath field value if set, zero value otherwise.
 func (o *UCConfigPairDataAttributesConfigsItems) GetExportPath() string {
 	if o == nil || o.ExportPath == nil {
@@ -268,6 +279,7 @@ func (o *UCConfigPairDataAttributesConfigsItems) HasExportPath() bool {
 func (o *UCConfigPairDataAttributesConfigsItems) SetExportPath(v string) {
 	o.ExportPath = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *UCConfigPairDataAttributesConfigsItems) GetId() string {
@@ -297,6 +309,7 @@ func (o *UCConfigPairDataAttributesConfigsItems) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetMonths returns the Months field value if set, zero value otherwise.
 func (o *UCConfigPairDataAttributesConfigsItems) GetMonths() int64 {
 	if o == nil || o.Months == nil {
@@ -324,6 +337,7 @@ func (o *UCConfigPairDataAttributesConfigsItems) HasMonths() bool {
 func (o *UCConfigPairDataAttributesConfigsItems) SetMonths(v int64) {
 	o.Months = &v
 }
+
 
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *UCConfigPairDataAttributesConfigsItems) GetScope() string {
@@ -353,6 +367,7 @@ func (o *UCConfigPairDataAttributesConfigsItems) SetScope(v string) {
 	o.Scope = &v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *UCConfigPairDataAttributesConfigsItems) GetStatus() string {
 	if o == nil || o.Status == nil {
@@ -380,6 +395,7 @@ func (o *UCConfigPairDataAttributesConfigsItems) HasStatus() bool {
 func (o *UCConfigPairDataAttributesConfigsItems) SetStatus(v string) {
 	o.Status = &v
 }
+
 
 // GetStatusUpdatedAt returns the StatusUpdatedAt field value if set, zero value otherwise.
 func (o *UCConfigPairDataAttributesConfigsItems) GetStatusUpdatedAt() string {
@@ -409,6 +425,7 @@ func (o *UCConfigPairDataAttributesConfigsItems) SetStatusUpdatedAt(v string) {
 	o.StatusUpdatedAt = &v
 }
 
+
 // GetStorageAccount returns the StorageAccount field value if set, zero value otherwise.
 func (o *UCConfigPairDataAttributesConfigsItems) GetStorageAccount() string {
 	if o == nil || o.StorageAccount == nil {
@@ -436,6 +453,7 @@ func (o *UCConfigPairDataAttributesConfigsItems) HasStorageAccount() bool {
 func (o *UCConfigPairDataAttributesConfigsItems) SetStorageAccount(v string) {
 	o.StorageAccount = &v
 }
+
 
 // GetStorageContainer returns the StorageContainer field value if set, zero value otherwise.
 func (o *UCConfigPairDataAttributesConfigsItems) GetStorageContainer() string {
@@ -465,6 +483,7 @@ func (o *UCConfigPairDataAttributesConfigsItems) SetStorageContainer(v string) {
 	o.StorageContainer = &v
 }
 
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *UCConfigPairDataAttributesConfigsItems) GetUpdatedAt() string {
 	if o == nil || o.UpdatedAt == nil {
@@ -492,6 +511,8 @@ func (o *UCConfigPairDataAttributesConfigsItems) HasUpdatedAt() bool {
 func (o *UCConfigPairDataAttributesConfigsItems) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UCConfigPairDataAttributesConfigsItems) MarshalJSON() ([]byte, error) {
@@ -554,28 +575,28 @@ func (o UCConfigPairDataAttributesConfigsItems) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UCConfigPairDataAttributesConfigsItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountId        *string                      `json:"account_id,omitempty"`
-		ClientId         *string                      `json:"client_id,omitempty"`
-		CreatedAt        *string                      `json:"created_at,omitempty"`
-		DatasetType      *string                      `json:"dataset_type,omitempty"`
-		ErrorMessages    datadog.NullableList[string] `json:"error_messages,omitempty"`
-		ExportName       *string                      `json:"export_name,omitempty"`
-		ExportPath       *string                      `json:"export_path,omitempty"`
-		Id               *string                      `json:"id,omitempty"`
-		Months           *int64                       `json:"months,omitempty"`
-		Scope            *string                      `json:"scope,omitempty"`
-		Status           *string                      `json:"status,omitempty"`
-		StatusUpdatedAt  *string                      `json:"status_updated_at,omitempty"`
-		StorageAccount   *string                      `json:"storage_account,omitempty"`
-		StorageContainer *string                      `json:"storage_container,omitempty"`
-		UpdatedAt        *string                      `json:"updated_at,omitempty"`
+		AccountId *string `json:"account_id,omitempty"`
+		ClientId *string `json:"client_id,omitempty"`
+		CreatedAt *string `json:"created_at,omitempty"`
+		DatasetType *string `json:"dataset_type,omitempty"`
+		ErrorMessages datadog.NullableList[string] `json:"error_messages,omitempty"`
+		ExportName *string `json:"export_name,omitempty"`
+		ExportPath *string `json:"export_path,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Months *int64 `json:"months,omitempty"`
+		Scope *string `json:"scope,omitempty"`
+		Status *string `json:"status,omitempty"`
+		StatusUpdatedAt *string `json:"status_updated_at,omitempty"`
+		StorageAccount *string `json:"storage_account,omitempty"`
+		StorageContainer *string `json:"storage_container,omitempty"`
+		UpdatedAt *string `json:"updated_at,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "client_id", "created_at", "dataset_type", "error_messages", "export_name", "export_path", "id", "months", "scope", "status", "status_updated_at", "storage_account", "storage_container", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "account_id", "client_id", "created_at", "dataset_type", "error_messages", "export_name", "export_path", "id", "months", "scope", "status", "status_updated_at", "storage_account", "storage_container", "updated_at",  })
 	} else {
 		return err
 	}

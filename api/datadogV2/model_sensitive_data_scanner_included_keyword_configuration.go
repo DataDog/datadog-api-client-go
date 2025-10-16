@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerIncludedKeywordConfiguration Object defining a set of keywords and a number of characters that help reduce noise.
 // You can provide a list of keywords you would like to check within a defined proximity of the matching pattern.
@@ -25,9 +29,10 @@ type SensitiveDataScannerIncludedKeywordConfiguration struct {
 	// to a standard pattern. If set to `false`, the specified keywords and `character_count` are applied.
 	UseRecommendedKeywords *bool `json:"use_recommended_keywords,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerIncludedKeywordConfiguration instantiates a new SensitiveDataScannerIncludedKeywordConfiguration object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewSensitiveDataScannerIncludedKeywordConfigurationWithDefaults() *Sensitiv
 	this := SensitiveDataScannerIncludedKeywordConfiguration{}
 	return &this
 }
-
 // GetCharacterCount returns the CharacterCount field value.
 func (o *SensitiveDataScannerIncludedKeywordConfiguration) GetCharacterCount() int64 {
 	if o == nil {
@@ -71,6 +75,7 @@ func (o *SensitiveDataScannerIncludedKeywordConfiguration) SetCharacterCount(v i
 	o.CharacterCount = v
 }
 
+
 // GetKeywords returns the Keywords field value.
 func (o *SensitiveDataScannerIncludedKeywordConfiguration) GetKeywords() []string {
 	if o == nil {
@@ -93,6 +98,7 @@ func (o *SensitiveDataScannerIncludedKeywordConfiguration) GetKeywordsOk() (*[]s
 func (o *SensitiveDataScannerIncludedKeywordConfiguration) SetKeywords(v []string) {
 	o.Keywords = v
 }
+
 
 // GetUseRecommendedKeywords returns the UseRecommendedKeywords field value if set, zero value otherwise.
 func (o *SensitiveDataScannerIncludedKeywordConfiguration) GetUseRecommendedKeywords() bool {
@@ -122,6 +128,8 @@ func (o *SensitiveDataScannerIncludedKeywordConfiguration) SetUseRecommendedKeyw
 	o.UseRecommendedKeywords = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerIncludedKeywordConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -143,9 +151,9 @@ func (o SensitiveDataScannerIncludedKeywordConfiguration) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *SensitiveDataScannerIncludedKeywordConfiguration) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CharacterCount         *int64    `json:"character_count"`
-		Keywords               *[]string `json:"keywords"`
-		UseRecommendedKeywords *bool     `json:"use_recommended_keywords,omitempty"`
+		CharacterCount *int64 `json:"character_count"`
+		Keywords *[]string `json:"keywords"`
+		UseRecommendedKeywords *bool `json:"use_recommended_keywords,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -158,7 +166,7 @@ func (o *SensitiveDataScannerIncludedKeywordConfiguration) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"character_count", "keywords", "use_recommended_keywords"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "character_count", "keywords", "use_recommended_keywords",  })
 	} else {
 		return err
 	}

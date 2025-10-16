@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FlakyTestRunMetadata Metadata about the latest failed test run of the flaky test.
 type FlakyTestRunMetadata struct {
@@ -23,9 +29,10 @@ type FlakyTestRunMetadata struct {
 	// The line number where the test starts in the source file.
 	SourceStart datadog.NullableInt64 `json:"source_start,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFlakyTestRunMetadata instantiates a new FlakyTestRunMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +50,6 @@ func NewFlakyTestRunMetadataWithDefaults() *FlakyTestRunMetadata {
 	this := FlakyTestRunMetadata{}
 	return &this
 }
-
 // GetDurationMs returns the DurationMs field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FlakyTestRunMetadata) GetDurationMs() int64 {
 	if o == nil || o.DurationMs.Get() == nil {
@@ -57,7 +63,7 @@ func (o *FlakyTestRunMetadata) GetDurationMs() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *FlakyTestRunMetadata) GetDurationMsOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.DurationMs.Get(), o.DurationMs.IsSet()
@@ -72,7 +78,6 @@ func (o *FlakyTestRunMetadata) HasDurationMs() bool {
 func (o *FlakyTestRunMetadata) SetDurationMs(v int64) {
 	o.DurationMs.Set(&v)
 }
-
 // SetDurationMsNil sets the value for DurationMs to be an explicit nil.
 func (o *FlakyTestRunMetadata) SetDurationMsNil() {
 	o.DurationMs.Set(nil)
@@ -82,6 +87,7 @@ func (o *FlakyTestRunMetadata) SetDurationMsNil() {
 func (o *FlakyTestRunMetadata) UnsetDurationMs() {
 	o.DurationMs.Unset()
 }
+
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FlakyTestRunMetadata) GetErrorMessage() string {
@@ -96,7 +102,7 @@ func (o *FlakyTestRunMetadata) GetErrorMessage() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *FlakyTestRunMetadata) GetErrorMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ErrorMessage.Get(), o.ErrorMessage.IsSet()
@@ -111,7 +117,6 @@ func (o *FlakyTestRunMetadata) HasErrorMessage() bool {
 func (o *FlakyTestRunMetadata) SetErrorMessage(v string) {
 	o.ErrorMessage.Set(&v)
 }
-
 // SetErrorMessageNil sets the value for ErrorMessage to be an explicit nil.
 func (o *FlakyTestRunMetadata) SetErrorMessageNil() {
 	o.ErrorMessage.Set(nil)
@@ -121,6 +126,7 @@ func (o *FlakyTestRunMetadata) SetErrorMessageNil() {
 func (o *FlakyTestRunMetadata) UnsetErrorMessage() {
 	o.ErrorMessage.Unset()
 }
+
 
 // GetErrorStack returns the ErrorStack field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FlakyTestRunMetadata) GetErrorStack() string {
@@ -135,7 +141,7 @@ func (o *FlakyTestRunMetadata) GetErrorStack() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *FlakyTestRunMetadata) GetErrorStackOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ErrorStack.Get(), o.ErrorStack.IsSet()
@@ -150,7 +156,6 @@ func (o *FlakyTestRunMetadata) HasErrorStack() bool {
 func (o *FlakyTestRunMetadata) SetErrorStack(v string) {
 	o.ErrorStack.Set(&v)
 }
-
 // SetErrorStackNil sets the value for ErrorStack to be an explicit nil.
 func (o *FlakyTestRunMetadata) SetErrorStackNil() {
 	o.ErrorStack.Set(nil)
@@ -160,6 +165,7 @@ func (o *FlakyTestRunMetadata) SetErrorStackNil() {
 func (o *FlakyTestRunMetadata) UnsetErrorStack() {
 	o.ErrorStack.Unset()
 }
+
 
 // GetSourceEnd returns the SourceEnd field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FlakyTestRunMetadata) GetSourceEnd() int64 {
@@ -174,7 +180,7 @@ func (o *FlakyTestRunMetadata) GetSourceEnd() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *FlakyTestRunMetadata) GetSourceEndOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.SourceEnd.Get(), o.SourceEnd.IsSet()
@@ -189,7 +195,6 @@ func (o *FlakyTestRunMetadata) HasSourceEnd() bool {
 func (o *FlakyTestRunMetadata) SetSourceEnd(v int64) {
 	o.SourceEnd.Set(&v)
 }
-
 // SetSourceEndNil sets the value for SourceEnd to be an explicit nil.
 func (o *FlakyTestRunMetadata) SetSourceEndNil() {
 	o.SourceEnd.Set(nil)
@@ -199,6 +204,7 @@ func (o *FlakyTestRunMetadata) SetSourceEndNil() {
 func (o *FlakyTestRunMetadata) UnsetSourceEnd() {
 	o.SourceEnd.Unset()
 }
+
 
 // GetSourceFile returns the SourceFile field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FlakyTestRunMetadata) GetSourceFile() string {
@@ -213,7 +219,7 @@ func (o *FlakyTestRunMetadata) GetSourceFile() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *FlakyTestRunMetadata) GetSourceFileOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.SourceFile.Get(), o.SourceFile.IsSet()
@@ -228,7 +234,6 @@ func (o *FlakyTestRunMetadata) HasSourceFile() bool {
 func (o *FlakyTestRunMetadata) SetSourceFile(v string) {
 	o.SourceFile.Set(&v)
 }
-
 // SetSourceFileNil sets the value for SourceFile to be an explicit nil.
 func (o *FlakyTestRunMetadata) SetSourceFileNil() {
 	o.SourceFile.Set(nil)
@@ -238,6 +243,7 @@ func (o *FlakyTestRunMetadata) SetSourceFileNil() {
 func (o *FlakyTestRunMetadata) UnsetSourceFile() {
 	o.SourceFile.Unset()
 }
+
 
 // GetSourceStart returns the SourceStart field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FlakyTestRunMetadata) GetSourceStart() int64 {
@@ -252,7 +258,7 @@ func (o *FlakyTestRunMetadata) GetSourceStart() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *FlakyTestRunMetadata) GetSourceStartOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.SourceStart.Get(), o.SourceStart.IsSet()
@@ -267,7 +273,6 @@ func (o *FlakyTestRunMetadata) HasSourceStart() bool {
 func (o *FlakyTestRunMetadata) SetSourceStart(v int64) {
 	o.SourceStart.Set(&v)
 }
-
 // SetSourceStartNil sets the value for SourceStart to be an explicit nil.
 func (o *FlakyTestRunMetadata) SetSourceStartNil() {
 	o.SourceStart.Set(nil)
@@ -277,6 +282,8 @@ func (o *FlakyTestRunMetadata) SetSourceStartNil() {
 func (o *FlakyTestRunMetadata) UnsetSourceStart() {
 	o.SourceStart.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FlakyTestRunMetadata) MarshalJSON() ([]byte, error) {
@@ -312,19 +319,19 @@ func (o FlakyTestRunMetadata) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FlakyTestRunMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DurationMs   datadog.NullableInt64  `json:"duration_ms,omitempty"`
+		DurationMs datadog.NullableInt64 `json:"duration_ms,omitempty"`
 		ErrorMessage datadog.NullableString `json:"error_message,omitempty"`
-		ErrorStack   datadog.NullableString `json:"error_stack,omitempty"`
-		SourceEnd    datadog.NullableInt64  `json:"source_end,omitempty"`
-		SourceFile   datadog.NullableString `json:"source_file,omitempty"`
-		SourceStart  datadog.NullableInt64  `json:"source_start,omitempty"`
+		ErrorStack datadog.NullableString `json:"error_stack,omitempty"`
+		SourceEnd datadog.NullableInt64 `json:"source_end,omitempty"`
+		SourceFile datadog.NullableString `json:"source_file,omitempty"`
+		SourceStart datadog.NullableInt64 `json:"source_start,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"duration_ms", "error_message", "error_stack", "source_end", "source_file", "source_start"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "duration_ms", "error_message", "error_stack", "source_end", "source_file", "source_start",  })
 	} else {
 		return err
 	}

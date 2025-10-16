@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RumMetricCreateAttributes The object describing the Datadog rum-based metric to create.
 type RumMetricCreateAttributes struct {
@@ -23,9 +27,10 @@ type RumMetricCreateAttributes struct {
 	// The rule to count updatable events. Is only set if `event_type` is `sessions` or `views`.
 	Uniqueness *RumMetricUniqueness `json:"uniqueness,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRumMetricCreateAttributes instantiates a new RumMetricCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewRumMetricCreateAttributesWithDefaults() *RumMetricCreateAttributes {
 	this := RumMetricCreateAttributes{}
 	return &this
 }
-
 // GetCompute returns the Compute field value.
 func (o *RumMetricCreateAttributes) GetCompute() RumMetricCompute {
 	if o == nil {
@@ -69,6 +73,7 @@ func (o *RumMetricCreateAttributes) SetCompute(v RumMetricCompute) {
 	o.Compute = v
 }
 
+
 // GetEventType returns the EventType field value.
 func (o *RumMetricCreateAttributes) GetEventType() RumMetricEventType {
 	if o == nil {
@@ -91,6 +96,7 @@ func (o *RumMetricCreateAttributes) GetEventTypeOk() (*RumMetricEventType, bool)
 func (o *RumMetricCreateAttributes) SetEventType(v RumMetricEventType) {
 	o.EventType = v
 }
+
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *RumMetricCreateAttributes) GetFilter() RumMetricFilter {
@@ -120,6 +126,7 @@ func (o *RumMetricCreateAttributes) SetFilter(v RumMetricFilter) {
 	o.Filter = &v
 }
 
+
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *RumMetricCreateAttributes) GetGroupBy() []RumMetricGroupBy {
 	if o == nil || o.GroupBy == nil {
@@ -147,6 +154,7 @@ func (o *RumMetricCreateAttributes) HasGroupBy() bool {
 func (o *RumMetricCreateAttributes) SetGroupBy(v []RumMetricGroupBy) {
 	o.GroupBy = v
 }
+
 
 // GetUniqueness returns the Uniqueness field value if set, zero value otherwise.
 func (o *RumMetricCreateAttributes) GetUniqueness() RumMetricUniqueness {
@@ -176,6 +184,8 @@ func (o *RumMetricCreateAttributes) SetUniqueness(v RumMetricUniqueness) {
 	o.Uniqueness = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RumMetricCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -203,10 +213,10 @@ func (o RumMetricCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RumMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Compute    *RumMetricCompute    `json:"compute"`
-		EventType  *RumMetricEventType  `json:"event_type"`
-		Filter     *RumMetricFilter     `json:"filter,omitempty"`
-		GroupBy    []RumMetricGroupBy   `json:"group_by,omitempty"`
+		Compute *RumMetricCompute `json:"compute"`
+		EventType *RumMetricEventType `json:"event_type"`
+		Filter *RumMetricFilter `json:"filter,omitempty"`
+		GroupBy []RumMetricGroupBy `json:"group_by,omitempty"`
 		Uniqueness *RumMetricUniqueness `json:"uniqueness,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -220,7 +230,7 @@ func (o *RumMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "event_type", "filter", "group_by", "uniqueness"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "compute", "event_type", "filter", "group_by", "uniqueness",  })
 	} else {
 		return err
 	}
@@ -235,12 +245,12 @@ func (o *RumMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.EventType = *all.EventType
 	}
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter
 	o.GroupBy = all.GroupBy
-	if all.Uniqueness != nil && all.Uniqueness.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Uniqueness != nil && all.Uniqueness.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Uniqueness = all.Uniqueness

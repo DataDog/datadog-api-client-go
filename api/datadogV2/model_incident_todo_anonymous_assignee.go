@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentTodoAnonymousAssignee Anonymous assignee entity.
 type IncidentTodoAnonymousAssignee struct {
@@ -21,9 +25,10 @@ type IncidentTodoAnonymousAssignee struct {
 	// The source of the anonymous assignee.
 	Source IncidentTodoAnonymousAssigneeSource `json:"source"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentTodoAnonymousAssignee instantiates a new IncidentTodoAnonymousAssignee object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewIncidentTodoAnonymousAssigneeWithDefaults() *IncidentTodoAnonymousAssign
 	this.Source = source
 	return &this
 }
-
 // GetIcon returns the Icon field value.
 func (o *IncidentTodoAnonymousAssignee) GetIcon() string {
 	if o == nil {
@@ -70,6 +74,7 @@ func (o *IncidentTodoAnonymousAssignee) GetIconOk() (*string, bool) {
 func (o *IncidentTodoAnonymousAssignee) SetIcon(v string) {
 	o.Icon = v
 }
+
 
 // GetId returns the Id field value.
 func (o *IncidentTodoAnonymousAssignee) GetId() string {
@@ -94,6 +99,7 @@ func (o *IncidentTodoAnonymousAssignee) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetName returns the Name field value.
 func (o *IncidentTodoAnonymousAssignee) GetName() string {
 	if o == nil {
@@ -116,6 +122,7 @@ func (o *IncidentTodoAnonymousAssignee) GetNameOk() (*string, bool) {
 func (o *IncidentTodoAnonymousAssignee) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetSource returns the Source field value.
 func (o *IncidentTodoAnonymousAssignee) GetSource() IncidentTodoAnonymousAssigneeSource {
@@ -140,6 +147,8 @@ func (o *IncidentTodoAnonymousAssignee) SetSource(v IncidentTodoAnonymousAssigne
 	o.Source = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentTodoAnonymousAssignee) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -160,9 +169,9 @@ func (o IncidentTodoAnonymousAssignee) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTodoAnonymousAssignee) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Icon   *string                              `json:"icon"`
-		Id     *string                              `json:"id"`
-		Name   *string                              `json:"name"`
+		Icon *string `json:"icon"`
+		Id *string `json:"id"`
+		Name *string `json:"name"`
 		Source *IncidentTodoAnonymousAssigneeSource `json:"source"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -182,7 +191,7 @@ func (o *IncidentTodoAnonymousAssignee) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"icon", "id", "name", "source"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "icon", "id", "name", "source",  })
 	} else {
 		return err
 	}

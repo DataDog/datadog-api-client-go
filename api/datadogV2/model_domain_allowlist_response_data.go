@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DomainAllowlistResponseData The email domain allowlist response for an org.
 type DomainAllowlistResponseData struct {
@@ -19,9 +23,10 @@ type DomainAllowlistResponseData struct {
 	// Email domain allowlist allowlist type.
 	Type DomainAllowlistType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDomainAllowlistResponseData instantiates a new DomainAllowlistResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewDomainAllowlistResponseDataWithDefaults() *DomainAllowlistResponseData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *DomainAllowlistResponseData) GetAttributes() DomainAllowlistResponseDataAttributes {
 	if o == nil || o.Attributes == nil {
@@ -71,6 +75,7 @@ func (o *DomainAllowlistResponseData) SetAttributes(v DomainAllowlistResponseDat
 	o.Attributes = &v
 }
 
+
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DomainAllowlistResponseData) GetId() string {
 	if o == nil || o.Id.Get() == nil {
@@ -84,7 +89,7 @@ func (o *DomainAllowlistResponseData) GetId() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DomainAllowlistResponseData) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Id.Get(), o.Id.IsSet()
@@ -99,7 +104,6 @@ func (o *DomainAllowlistResponseData) HasId() bool {
 func (o *DomainAllowlistResponseData) SetId(v string) {
 	o.Id.Set(&v)
 }
-
 // SetIdNil sets the value for Id to be an explicit nil.
 func (o *DomainAllowlistResponseData) SetIdNil() {
 	o.Id.Set(nil)
@@ -109,6 +113,7 @@ func (o *DomainAllowlistResponseData) SetIdNil() {
 func (o *DomainAllowlistResponseData) UnsetId() {
 	o.Id.Unset()
 }
+
 
 // GetType returns the Type field value.
 func (o *DomainAllowlistResponseData) GetType() DomainAllowlistType {
@@ -132,6 +137,8 @@ func (o *DomainAllowlistResponseData) GetTypeOk() (*DomainAllowlistType, bool) {
 func (o *DomainAllowlistResponseData) SetType(v DomainAllowlistType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DomainAllowlistResponseData) MarshalJSON() ([]byte, error) {
@@ -157,8 +164,8 @@ func (o DomainAllowlistResponseData) MarshalJSON() ([]byte, error) {
 func (o *DomainAllowlistResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *DomainAllowlistResponseDataAttributes `json:"attributes,omitempty"`
-		Id         datadog.NullableString                 `json:"id,omitempty"`
-		Type       *DomainAllowlistType                   `json:"type"`
+		Id datadog.NullableString `json:"id,omitempty"`
+		Type *DomainAllowlistType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -168,13 +175,13 @@ func (o *DomainAllowlistResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

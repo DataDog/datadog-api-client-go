@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptions Controls how partial redaction is applied, including character count and direction.
 type ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptions struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOption
 	// Indicates whether to redact characters from the first or last part of the matched value.
 	Direction ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptionsDirection `json:"direction"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptions instantiates a new ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOpt
 	this := ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptions{}
 	return &this
 }
-
 // GetCharacters returns the Characters field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptions) GetCharacters() int64 {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOp
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptions) SetCharacters(v int64) {
 	o.Characters = v
 }
+
 
 // GetDirection returns the Direction field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptions) GetDirection() ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptionsDirection {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOp
 	o.Direction = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOpt
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Characters *int64                                                                                 `json:"characters"`
-		Direction  *ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptionsDirection `json:"direction"`
+		Characters *int64 `json:"characters"`
+		Direction *ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOptionsDirection `json:"direction"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionPartialRedactOp
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"characters", "direction"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "characters", "direction",  })
 	} else {
 		return err
 	}

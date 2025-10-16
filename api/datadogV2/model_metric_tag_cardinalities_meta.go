@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricTagCardinalitiesMeta Response metadata object.
 type MetricTagCardinalitiesMeta struct {
@@ -14,9 +20,10 @@ type MetricTagCardinalitiesMeta struct {
 	// This matches the metric name provided in the request.
 	MetricName *string `json:"metric_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricTagCardinalitiesMeta instantiates a new MetricTagCardinalitiesMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -34,7 +41,6 @@ func NewMetricTagCardinalitiesMetaWithDefaults() *MetricTagCardinalitiesMeta {
 	this := MetricTagCardinalitiesMeta{}
 	return &this
 }
-
 // GetMetricName returns the MetricName field value if set, zero value otherwise.
 func (o *MetricTagCardinalitiesMeta) GetMetricName() string {
 	if o == nil || o.MetricName == nil {
@@ -63,6 +69,8 @@ func (o *MetricTagCardinalitiesMeta) SetMetricName(v string) {
 	o.MetricName = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricTagCardinalitiesMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -89,7 +97,7 @@ func (o *MetricTagCardinalitiesMeta) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"metric_name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "metric_name",  })
 	} else {
 		return err
 	}

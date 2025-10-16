@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SpansGroupByMissing - The value to use for spans that don't have the facet used to group by.
 type SpansGroupByMissing struct {
@@ -80,9 +86,11 @@ func (obj SpansGroupByMissing) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SpansGroupByMissingString)
 	}
 
+
 	if obj.SpansGroupByMissingNumber != nil {
 		return datadog.Marshal(&obj.SpansGroupByMissingNumber)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj SpansGroupByMissing) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SpansGroupByMissing) GetActualInstance() interface{} {
+func (obj *SpansGroupByMissing) GetActualInstance() (interface{}) {
 	if obj.SpansGroupByMissingString != nil {
 		return obj.SpansGroupByMissingString
 	}
 
+
 	if obj.SpansGroupByMissingNumber != nil {
 		return obj.SpansGroupByMissingNumber
 	}
+
 
 	// all schemas are nil
 	return nil

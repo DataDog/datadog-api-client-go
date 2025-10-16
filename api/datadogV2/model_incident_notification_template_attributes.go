@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentNotificationTemplateAttributes The notification template's attributes.
 type IncidentNotificationTemplateAttributes struct {
@@ -26,9 +29,10 @@ type IncidentNotificationTemplateAttributes struct {
 	// The subject line of the notification template.
 	Subject string `json:"subject"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentNotificationTemplateAttributes instantiates a new IncidentNotificationTemplateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +56,6 @@ func NewIncidentNotificationTemplateAttributesWithDefaults() *IncidentNotificati
 	this := IncidentNotificationTemplateAttributes{}
 	return &this
 }
-
 // GetCategory returns the Category field value.
 func (o *IncidentNotificationTemplateAttributes) GetCategory() string {
 	if o == nil {
@@ -75,6 +78,7 @@ func (o *IncidentNotificationTemplateAttributes) GetCategoryOk() (*string, bool)
 func (o *IncidentNotificationTemplateAttributes) SetCategory(v string) {
 	o.Category = v
 }
+
 
 // GetContent returns the Content field value.
 func (o *IncidentNotificationTemplateAttributes) GetContent() string {
@@ -99,6 +103,7 @@ func (o *IncidentNotificationTemplateAttributes) SetContent(v string) {
 	o.Content = v
 }
 
+
 // GetCreated returns the Created field value.
 func (o *IncidentNotificationTemplateAttributes) GetCreated() time.Time {
 	if o == nil {
@@ -121,6 +126,7 @@ func (o *IncidentNotificationTemplateAttributes) GetCreatedOk() (*time.Time, boo
 func (o *IncidentNotificationTemplateAttributes) SetCreated(v time.Time) {
 	o.Created = v
 }
+
 
 // GetModified returns the Modified field value.
 func (o *IncidentNotificationTemplateAttributes) GetModified() time.Time {
@@ -145,6 +151,7 @@ func (o *IncidentNotificationTemplateAttributes) SetModified(v time.Time) {
 	o.Modified = v
 }
 
+
 // GetName returns the Name field value.
 func (o *IncidentNotificationTemplateAttributes) GetName() string {
 	if o == nil {
@@ -168,6 +175,7 @@ func (o *IncidentNotificationTemplateAttributes) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetSubject returns the Subject field value.
 func (o *IncidentNotificationTemplateAttributes) GetSubject() string {
 	if o == nil {
@@ -190,6 +198,8 @@ func (o *IncidentNotificationTemplateAttributes) GetSubjectOk() (*string, bool) 
 func (o *IncidentNotificationTemplateAttributes) SetSubject(v string) {
 	o.Subject = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentNotificationTemplateAttributes) MarshalJSON() ([]byte, error) {
@@ -221,12 +231,12 @@ func (o IncidentNotificationTemplateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentNotificationTemplateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Category *string    `json:"category"`
-		Content  *string    `json:"content"`
-		Created  *time.Time `json:"created"`
+		Category *string `json:"category"`
+		Content *string `json:"content"`
+		Created *time.Time `json:"created"`
 		Modified *time.Time `json:"modified"`
-		Name     *string    `json:"name"`
-		Subject  *string    `json:"subject"`
+		Name *string `json:"name"`
+		Subject *string `json:"subject"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -251,7 +261,7 @@ func (o *IncidentNotificationTemplateAttributes) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"category", "content", "created", "modified", "name", "subject"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "category", "content", "created", "modified", "name", "subject",  })
 	} else {
 		return err
 	}

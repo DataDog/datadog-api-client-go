@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RecommendationDocument JSON:API document containing a single Recommendation resource. Returned by SPA when the Spark Gateway requests recommendations.
 type RecommendationDocument struct {
 	// JSON:API resource object for SPA Recommendation. Includes type, optional ID, and resource attributes with structured recommendations.
 	Data RecommendationData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRecommendationDocument instantiates a new RecommendationDocument object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewRecommendationDocumentWithDefaults() *RecommendationDocument {
 	this := RecommendationDocument{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *RecommendationDocument) GetData() RecommendationData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *RecommendationDocument) GetDataOk() (*RecommendationData, bool) {
 func (o *RecommendationDocument) SetData(v RecommendationData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RecommendationDocument) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *RecommendationDocument) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

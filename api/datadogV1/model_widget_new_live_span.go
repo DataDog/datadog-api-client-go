@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetNewLiveSpan Used for arbitrary live span times, such as 17 minutes or 6 hours.
 type WidgetNewLiveSpan struct {
@@ -21,9 +25,10 @@ type WidgetNewLiveSpan struct {
 	// Value of the time span.
 	Value int64 `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWidgetNewLiveSpan instantiates a new WidgetNewLiveSpan object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewWidgetNewLiveSpanWithDefaults() *WidgetNewLiveSpan {
 	this := WidgetNewLiveSpan{}
 	return &this
 }
-
 // GetHideIncompleteCostData returns the HideIncompleteCostData field value if set, zero value otherwise.
 func (o *WidgetNewLiveSpan) GetHideIncompleteCostData() bool {
 	if o == nil || o.HideIncompleteCostData == nil {
@@ -73,6 +77,7 @@ func (o *WidgetNewLiveSpan) SetHideIncompleteCostData(v bool) {
 	o.HideIncompleteCostData = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *WidgetNewLiveSpan) GetType() WidgetNewLiveSpanType {
 	if o == nil {
@@ -95,6 +100,7 @@ func (o *WidgetNewLiveSpan) GetTypeOk() (*WidgetNewLiveSpanType, bool) {
 func (o *WidgetNewLiveSpan) SetType(v WidgetNewLiveSpanType) {
 	o.Type = v
 }
+
 
 // GetUnit returns the Unit field value.
 func (o *WidgetNewLiveSpan) GetUnit() WidgetLiveSpanUnit {
@@ -119,6 +125,7 @@ func (o *WidgetNewLiveSpan) SetUnit(v WidgetLiveSpanUnit) {
 	o.Unit = v
 }
 
+
 // GetValue returns the Value field value.
 func (o *WidgetNewLiveSpan) GetValue() int64 {
 	if o == nil {
@@ -142,6 +149,8 @@ func (o *WidgetNewLiveSpan) SetValue(v int64) {
 	o.Value = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o WidgetNewLiveSpan) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -164,10 +173,10 @@ func (o WidgetNewLiveSpan) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetNewLiveSpan) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		HideIncompleteCostData *bool                  `json:"hide_incomplete_cost_data,omitempty"`
-		Type                   *WidgetNewLiveSpanType `json:"type"`
-		Unit                   *WidgetLiveSpanUnit    `json:"unit"`
-		Value                  *int64                 `json:"value"`
+		HideIncompleteCostData *bool `json:"hide_incomplete_cost_data,omitempty"`
+		Type *WidgetNewLiveSpanType `json:"type"`
+		Unit *WidgetLiveSpanUnit `json:"unit"`
+		Value *int64 `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -183,7 +192,7 @@ func (o *WidgetNewLiveSpan) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"hide_incomplete_cost_data", "type", "unit", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "hide_incomplete_cost_data", "type", "unit", "value",  })
 	} else {
 		return err
 	}

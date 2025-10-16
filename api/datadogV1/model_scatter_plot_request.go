@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScatterPlotRequest Updated scatter plot.
 type ScatterPlotRequest struct {
@@ -31,9 +37,10 @@ type ScatterPlotRequest struct {
 	// The log query.
 	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScatterPlotRequest instantiates a new ScatterPlotRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +58,6 @@ func NewScatterPlotRequestWithDefaults() *ScatterPlotRequest {
 	this := ScatterPlotRequest{}
 	return &this
 }
-
 // GetAggregator returns the Aggregator field value if set, zero value otherwise.
 func (o *ScatterPlotRequest) GetAggregator() ScatterplotWidgetAggregator {
 	if o == nil || o.Aggregator == nil {
@@ -79,6 +85,7 @@ func (o *ScatterPlotRequest) HasAggregator() bool {
 func (o *ScatterPlotRequest) SetAggregator(v ScatterplotWidgetAggregator) {
 	o.Aggregator = &v
 }
+
 
 // GetApmQuery returns the ApmQuery field value if set, zero value otherwise.
 func (o *ScatterPlotRequest) GetApmQuery() LogQueryDefinition {
@@ -108,6 +115,7 @@ func (o *ScatterPlotRequest) SetApmQuery(v LogQueryDefinition) {
 	o.ApmQuery = &v
 }
 
+
 // GetEventQuery returns the EventQuery field value if set, zero value otherwise.
 func (o *ScatterPlotRequest) GetEventQuery() LogQueryDefinition {
 	if o == nil || o.EventQuery == nil {
@@ -135,6 +143,7 @@ func (o *ScatterPlotRequest) HasEventQuery() bool {
 func (o *ScatterPlotRequest) SetEventQuery(v LogQueryDefinition) {
 	o.EventQuery = &v
 }
+
 
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
 func (o *ScatterPlotRequest) GetLogQuery() LogQueryDefinition {
@@ -164,6 +173,7 @@ func (o *ScatterPlotRequest) SetLogQuery(v LogQueryDefinition) {
 	o.LogQuery = &v
 }
 
+
 // GetNetworkQuery returns the NetworkQuery field value if set, zero value otherwise.
 func (o *ScatterPlotRequest) GetNetworkQuery() LogQueryDefinition {
 	if o == nil || o.NetworkQuery == nil {
@@ -191,6 +201,7 @@ func (o *ScatterPlotRequest) HasNetworkQuery() bool {
 func (o *ScatterPlotRequest) SetNetworkQuery(v LogQueryDefinition) {
 	o.NetworkQuery = &v
 }
+
 
 // GetProcessQuery returns the ProcessQuery field value if set, zero value otherwise.
 func (o *ScatterPlotRequest) GetProcessQuery() ProcessQueryDefinition {
@@ -220,6 +231,7 @@ func (o *ScatterPlotRequest) SetProcessQuery(v ProcessQueryDefinition) {
 	o.ProcessQuery = &v
 }
 
+
 // GetProfileMetricsQuery returns the ProfileMetricsQuery field value if set, zero value otherwise.
 func (o *ScatterPlotRequest) GetProfileMetricsQuery() LogQueryDefinition {
 	if o == nil || o.ProfileMetricsQuery == nil {
@@ -247,6 +259,7 @@ func (o *ScatterPlotRequest) HasProfileMetricsQuery() bool {
 func (o *ScatterPlotRequest) SetProfileMetricsQuery(v LogQueryDefinition) {
 	o.ProfileMetricsQuery = &v
 }
+
 
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *ScatterPlotRequest) GetQ() string {
@@ -276,6 +289,7 @@ func (o *ScatterPlotRequest) SetQ(v string) {
 	o.Q = &v
 }
 
+
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *ScatterPlotRequest) GetRumQuery() LogQueryDefinition {
 	if o == nil || o.RumQuery == nil {
@@ -304,6 +318,7 @@ func (o *ScatterPlotRequest) SetRumQuery(v LogQueryDefinition) {
 	o.RumQuery = &v
 }
 
+
 // GetSecurityQuery returns the SecurityQuery field value if set, zero value otherwise.
 func (o *ScatterPlotRequest) GetSecurityQuery() LogQueryDefinition {
 	if o == nil || o.SecurityQuery == nil {
@@ -331,6 +346,8 @@ func (o *ScatterPlotRequest) HasSecurityQuery() bool {
 func (o *ScatterPlotRequest) SetSecurityQuery(v LogQueryDefinition) {
 	o.SecurityQuery = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ScatterPlotRequest) MarshalJSON() ([]byte, error) {
@@ -378,63 +395,63 @@ func (o ScatterPlotRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ScatterPlotRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Aggregator          *ScatterplotWidgetAggregator `json:"aggregator,omitempty"`
-		ApmQuery            *LogQueryDefinition          `json:"apm_query,omitempty"`
-		EventQuery          *LogQueryDefinition          `json:"event_query,omitempty"`
-		LogQuery            *LogQueryDefinition          `json:"log_query,omitempty"`
-		NetworkQuery        *LogQueryDefinition          `json:"network_query,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition      `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition          `json:"profile_metrics_query,omitempty"`
-		Q                   *string                      `json:"q,omitempty"`
-		RumQuery            *LogQueryDefinition          `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition          `json:"security_query,omitempty"`
+		Aggregator *ScatterplotWidgetAggregator `json:"aggregator,omitempty"`
+		ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+		EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
+		LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+		NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+		ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
+		Q *string `json:"q,omitempty"`
+		RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+		SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregator", "apm_query", "event_query", "log_query", "network_query", "process_query", "profile_metrics_query", "q", "rum_query", "security_query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregator", "apm_query", "event_query", "log_query", "network_query", "process_query", "profile_metrics_query", "q", "rum_query", "security_query",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Aggregator != nil && !all.Aggregator.IsValid() {
+	if all.Aggregator != nil &&!all.Aggregator.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Aggregator = all.Aggregator
 	}
-	if all.ApmQuery != nil && all.ApmQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ApmQuery != nil && all.ApmQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ApmQuery = all.ApmQuery
-	if all.EventQuery != nil && all.EventQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.EventQuery != nil && all.EventQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.EventQuery = all.EventQuery
-	if all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogQuery = all.LogQuery
-	if all.NetworkQuery != nil && all.NetworkQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.NetworkQuery != nil && all.NetworkQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.NetworkQuery = all.NetworkQuery
-	if all.ProcessQuery != nil && all.ProcessQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ProcessQuery != nil && all.ProcessQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ProcessQuery = all.ProcessQuery
-	if all.ProfileMetricsQuery != nil && all.ProfileMetricsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ProfileMetricsQuery != nil && all.ProfileMetricsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ProfileMetricsQuery = all.ProfileMetricsQuery
 	o.Q = all.Q
-	if all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RumQuery = all.RumQuery
-	if all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SecurityQuery = all.SecurityQuery

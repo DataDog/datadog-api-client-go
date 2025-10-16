@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetLegacyLiveSpan Wrapper for live span
 type WidgetLegacyLiveSpan struct {
@@ -17,6 +23,7 @@ type WidgetLegacyLiveSpan struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewWidgetLegacyLiveSpan instantiates a new WidgetLegacyLiveSpan object.
 // This constructor will assign default values to properties that have it defined,
@@ -34,7 +41,6 @@ func NewWidgetLegacyLiveSpanWithDefaults() *WidgetLegacyLiveSpan {
 	this := WidgetLegacyLiveSpan{}
 	return &this
 }
-
 // GetHideIncompleteCostData returns the HideIncompleteCostData field value if set, zero value otherwise.
 func (o *WidgetLegacyLiveSpan) GetHideIncompleteCostData() bool {
 	if o == nil || o.HideIncompleteCostData == nil {
@@ -62,6 +68,7 @@ func (o *WidgetLegacyLiveSpan) HasHideIncompleteCostData() bool {
 func (o *WidgetLegacyLiveSpan) SetHideIncompleteCostData(v bool) {
 	o.HideIncompleteCostData = &v
 }
+
 
 // GetLiveSpan returns the LiveSpan field value if set, zero value otherwise.
 func (o *WidgetLegacyLiveSpan) GetLiveSpan() WidgetLiveSpan {
@@ -91,6 +98,8 @@ func (o *WidgetLegacyLiveSpan) SetLiveSpan(v WidgetLiveSpan) {
 	o.LiveSpan = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o WidgetLegacyLiveSpan) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -109,8 +118,8 @@ func (o WidgetLegacyLiveSpan) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetLegacyLiveSpan) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		HideIncompleteCostData *bool           `json:"hide_incomplete_cost_data,omitempty"`
-		LiveSpan               *WidgetLiveSpan `json:"live_span,omitempty"`
+		HideIncompleteCostData *bool `json:"hide_incomplete_cost_data,omitempty"`
+		LiveSpan *WidgetLiveSpan `json:"live_span,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +127,7 @@ func (o *WidgetLegacyLiveSpan) UnmarshalJSON(bytes []byte) (err error) {
 
 	hasInvalidField := false
 	o.HideIncompleteCostData = all.HideIncompleteCostData
-	if all.LiveSpan != nil && !all.LiveSpan.IsValid() {
+	if all.LiveSpan != nil &&!all.LiveSpan.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.LiveSpan = all.LiveSpan

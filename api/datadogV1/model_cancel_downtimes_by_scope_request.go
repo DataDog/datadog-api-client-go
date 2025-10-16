@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CancelDowntimesByScopeRequest Cancel downtimes according to scope.
 type CancelDowntimesByScopeRequest struct {
@@ -17,9 +21,10 @@ type CancelDowntimesByScopeRequest struct {
 	// The resulting downtime applies to sources that matches ALL provided scopes (`env:dev` **AND** `env:prod`).
 	Scope string `json:"scope"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCancelDowntimesByScopeRequest instantiates a new CancelDowntimesByScopeRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewCancelDowntimesByScopeRequestWithDefaults() *CancelDowntimesByScopeReque
 	this := CancelDowntimesByScopeRequest{}
 	return &this
 }
-
 // GetScope returns the Scope field value.
 func (o *CancelDowntimesByScopeRequest) GetScope() string {
 	if o == nil {
@@ -61,6 +65,8 @@ func (o *CancelDowntimesByScopeRequest) GetScopeOk() (*string, bool) {
 func (o *CancelDowntimesByScopeRequest) SetScope(v string) {
 	o.Scope = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CancelDowntimesByScopeRequest) MarshalJSON() ([]byte, error) {
@@ -89,7 +95,7 @@ func (o *CancelDowntimesByScopeRequest) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"scope"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "scope",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WorkflowDataUpdateAttributes The definition of `WorkflowDataUpdateAttributes` object.
 type WorkflowDataUpdateAttributes struct {
@@ -29,9 +33,10 @@ type WorkflowDataUpdateAttributes struct {
 	// If a Webhook trigger is defined on this workflow, a webhookSecret is required and should be provided here.
 	WebhookSecret *string `json:"webhookSecret,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWorkflowDataUpdateAttributes instantiates a new WorkflowDataUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +54,6 @@ func NewWorkflowDataUpdateAttributesWithDefaults() *WorkflowDataUpdateAttributes
 	this := WorkflowDataUpdateAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *WorkflowDataUpdateAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -77,6 +81,7 @@ func (o *WorkflowDataUpdateAttributes) HasCreatedAt() bool {
 func (o *WorkflowDataUpdateAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *WorkflowDataUpdateAttributes) GetDescription() string {
@@ -106,6 +111,7 @@ func (o *WorkflowDataUpdateAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *WorkflowDataUpdateAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -133,6 +139,7 @@ func (o *WorkflowDataUpdateAttributes) HasName() bool {
 func (o *WorkflowDataUpdateAttributes) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetPublished returns the Published field value if set, zero value otherwise.
 func (o *WorkflowDataUpdateAttributes) GetPublished() bool {
@@ -162,6 +169,7 @@ func (o *WorkflowDataUpdateAttributes) SetPublished(v bool) {
 	o.Published = &v
 }
 
+
 // GetSpec returns the Spec field value if set, zero value otherwise.
 func (o *WorkflowDataUpdateAttributes) GetSpec() Spec {
 	if o == nil || o.Spec == nil {
@@ -189,6 +197,7 @@ func (o *WorkflowDataUpdateAttributes) HasSpec() bool {
 func (o *WorkflowDataUpdateAttributes) SetSpec(v Spec) {
 	o.Spec = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *WorkflowDataUpdateAttributes) GetTags() []string {
@@ -218,6 +227,7 @@ func (o *WorkflowDataUpdateAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *WorkflowDataUpdateAttributes) GetUpdatedAt() time.Time {
 	if o == nil || o.UpdatedAt == nil {
@@ -246,6 +256,7 @@ func (o *WorkflowDataUpdateAttributes) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
+
 // GetWebhookSecret returns the WebhookSecret field value if set, zero value otherwise.
 func (o *WorkflowDataUpdateAttributes) GetWebhookSecret() string {
 	if o == nil || o.WebhookSecret == nil {
@@ -273,6 +284,8 @@ func (o *WorkflowDataUpdateAttributes) HasWebhookSecret() bool {
 func (o *WorkflowDataUpdateAttributes) SetWebhookSecret(v string) {
 	o.WebhookSecret = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o WorkflowDataUpdateAttributes) MarshalJSON() ([]byte, error) {
@@ -322,21 +335,21 @@ func (o WorkflowDataUpdateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WorkflowDataUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt     *time.Time `json:"createdAt,omitempty"`
-		Description   *string    `json:"description,omitempty"`
-		Name          *string    `json:"name,omitempty"`
-		Published     *bool      `json:"published,omitempty"`
-		Spec          *Spec      `json:"spec,omitempty"`
-		Tags          []string   `json:"tags,omitempty"`
-		UpdatedAt     *time.Time `json:"updatedAt,omitempty"`
-		WebhookSecret *string    `json:"webhookSecret,omitempty"`
+		CreatedAt *time.Time `json:"createdAt,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Published *bool `json:"published,omitempty"`
+		Spec *Spec `json:"spec,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		UpdatedAt *time.Time `json:"updatedAt,omitempty"`
+		WebhookSecret *string `json:"webhookSecret,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "description", "name", "published", "spec", "tags", "updatedAt", "webhookSecret"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "createdAt", "description", "name", "published", "spec", "tags", "updatedAt", "webhookSecret",  })
 	} else {
 		return err
 	}
@@ -346,7 +359,7 @@ func (o *WorkflowDataUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Description = all.Description
 	o.Name = all.Name
 	o.Published = all.Published
-	if all.Spec != nil && all.Spec.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Spec != nil && all.Spec.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Spec = all.Spec

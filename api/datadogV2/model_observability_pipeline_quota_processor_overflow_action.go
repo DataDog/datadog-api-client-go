@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineQuotaProcessorOverflowAction The action to take when the quota is exceeded. Options:
 // - `drop`: Drop the event.
@@ -18,8 +22,8 @@ type ObservabilityPipelineQuotaProcessorOverflowAction string
 
 // List of ObservabilityPipelineQuotaProcessorOverflowAction.
 const (
-	OBSERVABILITYPIPELINEQUOTAPROCESSOROVERFLOWACTION_DROP             ObservabilityPipelineQuotaProcessorOverflowAction = "drop"
-	OBSERVABILITYPIPELINEQUOTAPROCESSOROVERFLOWACTION_NO_ACTION        ObservabilityPipelineQuotaProcessorOverflowAction = "no_action"
+	OBSERVABILITYPIPELINEQUOTAPROCESSOROVERFLOWACTION_DROP ObservabilityPipelineQuotaProcessorOverflowAction = "drop"
+	OBSERVABILITYPIPELINEQUOTAPROCESSOROVERFLOWACTION_NO_ACTION ObservabilityPipelineQuotaProcessorOverflowAction = "no_action"
 	OBSERVABILITYPIPELINEQUOTAPROCESSOROVERFLOWACTION_OVERFLOW_ROUTING ObservabilityPipelineQuotaProcessorOverflowAction = "overflow_routing"
 )
 

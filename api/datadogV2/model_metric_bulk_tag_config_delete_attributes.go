@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricBulkTagConfigDeleteAttributes Optional parameters for bulk deleting metric tag configurations.
 type MetricBulkTagConfigDeleteAttributes struct {
 	// A list of account emails to notify when the configuration is applied.
 	Emails []string `json:"emails,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricBulkTagConfigDeleteAttributes instantiates a new MetricBulkTagConfigDeleteAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewMetricBulkTagConfigDeleteAttributesWithDefaults() *MetricBulkTagConfigDe
 	this := MetricBulkTagConfigDeleteAttributes{}
 	return &this
 }
-
 // GetEmails returns the Emails field value if set, zero value otherwise.
 func (o *MetricBulkTagConfigDeleteAttributes) GetEmails() []string {
 	if o == nil || o.Emails == nil {
@@ -62,6 +68,8 @@ func (o *MetricBulkTagConfigDeleteAttributes) SetEmails(v []string) {
 	o.Emails = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricBulkTagConfigDeleteAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *MetricBulkTagConfigDeleteAttributes) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"emails"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "emails",  })
 	} else {
 		return err
 	}

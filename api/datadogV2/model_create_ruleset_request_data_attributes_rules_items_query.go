@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateRulesetRequestDataAttributesRulesItemsQuery The definition of `CreateRulesetRequestDataAttributesRulesItemsQuery` object.
 type CreateRulesetRequestDataAttributesRulesItemsQuery struct {
@@ -21,9 +25,10 @@ type CreateRulesetRequestDataAttributesRulesItemsQuery struct {
 	// The `query` `query`.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateRulesetRequestDataAttributesRulesItemsQuery instantiates a new CreateRulesetRequestDataAttributesRulesItemsQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewCreateRulesetRequestDataAttributesRulesItemsQueryWithDefaults() *CreateR
 	this := CreateRulesetRequestDataAttributesRulesItemsQuery{}
 	return &this
 }
-
 // GetAddition returns the Addition field value.
 // If the value is explicit nil, the zero value for CreateRulesetRequestDataAttributesRulesItemsQueryAddition will be returned.
 func (o *CreateRulesetRequestDataAttributesRulesItemsQuery) GetAddition() CreateRulesetRequestDataAttributesRulesItemsQueryAddition {
@@ -69,6 +73,7 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsQuery) GetAdditionOk() (*Cr
 func (o *CreateRulesetRequestDataAttributesRulesItemsQuery) SetAddition(v CreateRulesetRequestDataAttributesRulesItemsQueryAddition) {
 	o.Addition.Set(&v)
 }
+
 
 // GetCaseInsensitivity returns the CaseInsensitivity field value if set, zero value otherwise.
 func (o *CreateRulesetRequestDataAttributesRulesItemsQuery) GetCaseInsensitivity() bool {
@@ -98,6 +103,7 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsQuery) SetCaseInsensitivity
 	o.CaseInsensitivity = &v
 }
 
+
 // GetIfNotExists returns the IfNotExists field value.
 func (o *CreateRulesetRequestDataAttributesRulesItemsQuery) GetIfNotExists() bool {
 	if o == nil {
@@ -120,6 +126,7 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsQuery) GetIfNotExistsOk() (
 func (o *CreateRulesetRequestDataAttributesRulesItemsQuery) SetIfNotExists(v bool) {
 	o.IfNotExists = v
 }
+
 
 // GetQuery returns the Query field value.
 func (o *CreateRulesetRequestDataAttributesRulesItemsQuery) GetQuery() string {
@@ -144,6 +151,8 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsQuery) SetQuery(v string) {
 	o.Query = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateRulesetRequestDataAttributesRulesItemsQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -166,10 +175,10 @@ func (o CreateRulesetRequestDataAttributesRulesItemsQuery) MarshalJSON() ([]byte
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateRulesetRequestDataAttributesRulesItemsQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Addition          NullableCreateRulesetRequestDataAttributesRulesItemsQueryAddition `json:"addition"`
-		CaseInsensitivity *bool                                                             `json:"case_insensitivity,omitempty"`
-		IfNotExists       *bool                                                             `json:"if_not_exists"`
-		Query             *string                                                           `json:"query"`
+		Addition NullableCreateRulesetRequestDataAttributesRulesItemsQueryAddition `json:"addition"`
+		CaseInsensitivity *bool `json:"case_insensitivity,omitempty"`
+		IfNotExists *bool `json:"if_not_exists"`
+		Query *string `json:"query"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -185,7 +194,7 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsQuery) UnmarshalJSON(bytes 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"addition", "case_insensitivity", "if_not_exists", "query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "addition", "case_insensitivity", "if_not_exists", "query",  })
 	} else {
 		return err
 	}
@@ -200,7 +209,6 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsQuery) UnmarshalJSON(bytes 
 
 	return nil
 }
-
 // NullableCreateRulesetRequestDataAttributesRulesItemsQuery handles when a null is used for CreateRulesetRequestDataAttributesRulesItemsQuery.
 type NullableCreateRulesetRequestDataAttributesRulesItemsQuery struct {
 	value *CreateRulesetRequestDataAttributesRulesItemsQuery

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentTypeUpdateAttributes Incident type's attributes for updates.
 type IncidentTypeUpdateAttributes struct {
@@ -29,9 +33,10 @@ type IncidentTypeUpdateAttributes struct {
 	// The string that will be prepended to the incident title across the Datadog app.
 	Prefix *string `json:"prefix,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentTypeUpdateAttributes instantiates a new IncidentTypeUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +54,6 @@ func NewIncidentTypeUpdateAttributesWithDefaults() *IncidentTypeUpdateAttributes
 	this := IncidentTypeUpdateAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *IncidentTypeUpdateAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -77,6 +81,7 @@ func (o *IncidentTypeUpdateAttributes) HasCreatedAt() bool {
 func (o *IncidentTypeUpdateAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
+
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *IncidentTypeUpdateAttributes) GetCreatedBy() string {
@@ -106,6 +111,7 @@ func (o *IncidentTypeUpdateAttributes) SetCreatedBy(v string) {
 	o.CreatedBy = &v
 }
 
+
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *IncidentTypeUpdateAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -133,6 +139,7 @@ func (o *IncidentTypeUpdateAttributes) HasDescription() bool {
 func (o *IncidentTypeUpdateAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetIsDefault returns the IsDefault field value if set, zero value otherwise.
 func (o *IncidentTypeUpdateAttributes) GetIsDefault() bool {
@@ -162,6 +169,7 @@ func (o *IncidentTypeUpdateAttributes) SetIsDefault(v bool) {
 	o.IsDefault = &v
 }
 
+
 // GetLastModifiedBy returns the LastModifiedBy field value if set, zero value otherwise.
 func (o *IncidentTypeUpdateAttributes) GetLastModifiedBy() string {
 	if o == nil || o.LastModifiedBy == nil {
@@ -189,6 +197,7 @@ func (o *IncidentTypeUpdateAttributes) HasLastModifiedBy() bool {
 func (o *IncidentTypeUpdateAttributes) SetLastModifiedBy(v string) {
 	o.LastModifiedBy = &v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *IncidentTypeUpdateAttributes) GetModifiedAt() time.Time {
@@ -218,6 +227,7 @@ func (o *IncidentTypeUpdateAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *IncidentTypeUpdateAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -246,6 +256,7 @@ func (o *IncidentTypeUpdateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetPrefix returns the Prefix field value if set, zero value otherwise.
 func (o *IncidentTypeUpdateAttributes) GetPrefix() string {
 	if o == nil || o.Prefix == nil {
@@ -273,6 +284,8 @@ func (o *IncidentTypeUpdateAttributes) HasPrefix() bool {
 func (o *IncidentTypeUpdateAttributes) SetPrefix(v string) {
 	o.Prefix = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentTypeUpdateAttributes) MarshalJSON() ([]byte, error) {
@@ -322,21 +335,21 @@ func (o IncidentTypeUpdateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTypeUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt      *time.Time `json:"createdAt,omitempty"`
-		CreatedBy      *string    `json:"createdBy,omitempty"`
-		Description    *string    `json:"description,omitempty"`
-		IsDefault      *bool      `json:"is_default,omitempty"`
-		LastModifiedBy *string    `json:"lastModifiedBy,omitempty"`
-		ModifiedAt     *time.Time `json:"modifiedAt,omitempty"`
-		Name           *string    `json:"name,omitempty"`
-		Prefix         *string    `json:"prefix,omitempty"`
+		CreatedAt *time.Time `json:"createdAt,omitempty"`
+		CreatedBy *string `json:"createdBy,omitempty"`
+		Description *string `json:"description,omitempty"`
+		IsDefault *bool `json:"is_default,omitempty"`
+		LastModifiedBy *string `json:"lastModifiedBy,omitempty"`
+		ModifiedAt *time.Time `json:"modifiedAt,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Prefix *string `json:"prefix,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "createdBy", "description", "is_default", "lastModifiedBy", "modifiedAt", "name", "prefix"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "createdAt", "createdBy", "description", "is_default", "lastModifiedBy", "modifiedAt", "name", "prefix",  })
 	} else {
 		return err
 	}

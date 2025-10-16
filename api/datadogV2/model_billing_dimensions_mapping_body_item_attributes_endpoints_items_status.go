@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // BillingDimensionsMappingBodyItemAttributesEndpointsItemsStatus Denotes whether mapping keys were available for this endpoint.
 type BillingDimensionsMappingBodyItemAttributesEndpointsItemsStatus string
 
 // List of BillingDimensionsMappingBodyItemAttributesEndpointsItemsStatus.
 const (
-	BILLINGDIMENSIONSMAPPINGBODYITEMATTRIBUTESENDPOINTSITEMSSTATUS_OK        BillingDimensionsMappingBodyItemAttributesEndpointsItemsStatus = "OK"
+	BILLINGDIMENSIONSMAPPINGBODYITEMATTRIBUTESENDPOINTSITEMSSTATUS_OK BillingDimensionsMappingBodyItemAttributesEndpointsItemsStatus = "OK"
 	BILLINGDIMENSIONSMAPPINGBODYITEMATTRIBUTESENDPOINTSITEMSSTATUS_NOT_FOUND BillingDimensionsMappingBodyItemAttributesEndpointsItemsStatus = "NOT_FOUND"
 )
 

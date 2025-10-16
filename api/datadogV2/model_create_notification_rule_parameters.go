@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateNotificationRuleParameters Body of the notification rule create request.
 type CreateNotificationRuleParameters struct {
 	// Data of the notification rule create request: the rule type, and the rule attributes. All fields are required.
 	Data *CreateNotificationRuleParametersData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateNotificationRuleParameters instantiates a new CreateNotificationRuleParameters object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewCreateNotificationRuleParametersWithDefaults() *CreateNotificationRulePa
 	this := CreateNotificationRuleParameters{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *CreateNotificationRuleParameters) GetData() CreateNotificationRuleParametersData {
 	if o == nil || o.Data == nil {
@@ -62,6 +68,8 @@ func (o *CreateNotificationRuleParameters) SetData(v CreateNotificationRuleParam
 	o.Data = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateNotificationRuleParameters) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *CreateNotificationRuleParameters) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Data = all.Data

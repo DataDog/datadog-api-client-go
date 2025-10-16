@@ -2,77 +2,78 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV2.ArbitraryCostUpsertRequest{
-		Data: &datadogV2.ArbitraryCostUpsertRequestData{
-			Attributes: &datadogV2.ArbitraryCostUpsertRequestDataAttributes{
-				CostsToAllocate: []datadogV2.ArbitraryCostUpsertRequestDataAttributesCostsToAllocateItems{
-					{
-						Condition: "is",
-						Tag:       "account_id",
-						Value:     datadog.PtrString("123456789"),
-					},
-					{
-						Condition: "in",
-						Tag:       "environment",
-						Value:     datadog.PtrString(""),
-						Values: *datadog.NewNullableList(&[]string{
-							"production",
-							"staging",
-						}),
-					},
-				},
-				Enabled: datadog.PtrBool(true),
-				OrderId: datadog.PtrInt64(1),
-				Provider: []string{
-					"aws",
-					"gcp",
-				},
-				RuleName: "example-arbitrary-cost-rule",
-				Strategy: datadogV2.ArbitraryCostUpsertRequestDataAttributesStrategy{
-					AllocatedByTagKeys: []string{
-						"team",
-						"environment",
-					},
-					BasedOnCosts: []datadogV2.ArbitraryCostUpsertRequestDataAttributesStrategyBasedOnCostsItems{
-						{
-							Condition: "is",
-							Tag:       "service",
-							Value:     datadog.PtrString("web-api"),
-						},
-						{
-							Condition: "not in",
-							Tag:       "team",
-							Value:     datadog.PtrString(""),
-							Values: *datadog.NewNullableList(&[]string{
-								"legacy",
-								"deprecated",
-							}),
-						},
-					},
-					Granularity: datadog.PtrString("daily"),
-					Method:      "proportional",
-				},
-				Type: "shared",
-			},
-			Type: datadogV2.ARBITRARYCOSTUPSERTREQUESTDATATYPE_UPSERT_ARBITRARY_RULE,
-		},
-	}
+Data: &datadogV2.ArbitraryCostUpsertRequestData{
+Attributes: &datadogV2.ArbitraryCostUpsertRequestDataAttributes{
+CostsToAllocate: []datadogV2.ArbitraryCostUpsertRequestDataAttributesCostsToAllocateItems{
+{
+Condition: "is",
+Tag: "account_id",
+Value: datadog.PtrString("123456789"),
+},
+{
+Condition: "in",
+Tag: "environment",
+Value: datadog.PtrString(""),
+Values: *datadog.NewNullableList(&[]string{
+"production",
+"staging",
+}),
+},
+},
+Enabled: datadog.PtrBool(true),
+OrderId: datadog.PtrInt64(1),
+Provider: []string{
+"aws",
+"gcp",
+},
+RuleName: "example-arbitrary-cost-rule",
+Strategy: datadogV2.ArbitraryCostUpsertRequestDataAttributesStrategy{
+AllocatedByTagKeys: []string{
+"team",
+"environment",
+},
+BasedOnCosts: []datadogV2.ArbitraryCostUpsertRequestDataAttributesStrategyBasedOnCostsItems{
+{
+Condition: "is",
+Tag: "service",
+Value: datadog.PtrString("web-api"),
+},
+{
+Condition: "not in",
+Tag: "team",
+Value: datadog.PtrString(""),
+Values: *datadog.NewNullableList(&[]string{
+"legacy",
+"deprecated",
+}),
+},
+},
+Granularity: datadog.PtrString("daily"),
+Method: "proportional",
+},
+Type: "shared",
+},
+Type: datadogV2.ARBITRARYCOSTUPSERTREQUESTDATATYPE_UPSERT_ARBITRARY_RULE,
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudCostManagementApi(apiClient)
-	resp, r, err := api.CreateCustomAllocationRule(ctx, body)
+	resp, r, err := api.CreateCustomAllocationRule(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudCostManagementApi.CreateCustomAllocationRule`: %v\n", err)

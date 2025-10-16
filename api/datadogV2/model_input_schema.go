@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // InputSchema A list of input parameters for the workflow. These can be used as dynamic runtime values in your workflow.
 type InputSchema struct {
 	// The `InputSchema` `parameters`.
 	Parameters []InputSchemaParameters `json:"parameters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewInputSchema instantiates a new InputSchema object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewInputSchemaWithDefaults() *InputSchema {
 	this := InputSchema{}
 	return &this
 }
-
 // GetParameters returns the Parameters field value if set, zero value otherwise.
 func (o *InputSchema) GetParameters() []InputSchemaParameters {
 	if o == nil || o.Parameters == nil {
@@ -62,6 +68,8 @@ func (o *InputSchema) SetParameters(v []InputSchemaParameters) {
 	o.Parameters = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o InputSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *InputSchema) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"parameters"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "parameters",  })
 	} else {
 		return err
 	}

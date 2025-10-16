@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OrgConnectionUserRelationshipData The data for a user relationship.
 type OrgConnectionUserRelationshipData struct {
@@ -17,9 +23,10 @@ type OrgConnectionUserRelationshipData struct {
 	// The type of the user relationship.
 	Type *OrgConnectionUserRelationshipDataType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOrgConnectionUserRelationshipData instantiates a new OrgConnectionUserRelationshipData object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewOrgConnectionUserRelationshipDataWithDefaults() *OrgConnectionUserRelati
 	this := OrgConnectionUserRelationshipData{}
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *OrgConnectionUserRelationshipData) GetId() string {
 	if o == nil || o.Id == nil {
@@ -65,6 +71,7 @@ func (o *OrgConnectionUserRelationshipData) HasId() bool {
 func (o *OrgConnectionUserRelationshipData) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *OrgConnectionUserRelationshipData) GetName() string {
@@ -94,6 +101,7 @@ func (o *OrgConnectionUserRelationshipData) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *OrgConnectionUserRelationshipData) GetType() OrgConnectionUserRelationshipDataType {
 	if o == nil || o.Type == nil {
@@ -122,6 +130,8 @@ func (o *OrgConnectionUserRelationshipData) SetType(v OrgConnectionUserRelations
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OrgConnectionUserRelationshipData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,8 +157,8 @@ func (o OrgConnectionUserRelationshipData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OrgConnectionUserRelationshipData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                                `json:"id,omitempty"`
-		Name *string                                `json:"name,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Name *string `json:"name,omitempty"`
 		Type *OrgConnectionUserRelationshipDataType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,7 +166,7 @@ func (o *OrgConnectionUserRelationshipData) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "name", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "name", "type",  })
 	} else {
 		return err
 	}
@@ -164,7 +174,7 @@ func (o *OrgConnectionUserRelationshipData) UnmarshalJSON(bytes []byte) (err err
 	hasInvalidField := false
 	o.Id = all.Id
 	o.Name = all.Name
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

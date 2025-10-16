@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DomainAllowlistRequest Request containing the desired email domain allowlist configuration.
 type DomainAllowlistRequest struct {
 	// The email domain allowlist for an org.
 	Data DomainAllowlist `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDomainAllowlistRequest instantiates a new DomainAllowlistRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewDomainAllowlistRequestWithDefaults() *DomainAllowlistRequest {
 	this := DomainAllowlistRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *DomainAllowlistRequest) GetData() DomainAllowlist {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *DomainAllowlistRequest) GetDataOk() (*DomainAllowlist, bool) {
 func (o *DomainAllowlistRequest) SetData(v DomainAllowlist) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DomainAllowlistRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *DomainAllowlistRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

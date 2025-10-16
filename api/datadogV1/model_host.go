@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Host Object representing a host.
 type Host struct {
@@ -39,9 +45,10 @@ type Host struct {
 	// Displays UP when the expected metrics are received and displays `???` if no metrics are received.
 	Up *bool `json:"up,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHost instantiates a new Host object.
 // This constructor will assign default values to properties that have it defined,
@@ -59,7 +66,6 @@ func NewHostWithDefaults() *Host {
 	this := Host{}
 	return &this
 }
-
 // GetAliases returns the Aliases field value if set, zero value otherwise.
 func (o *Host) GetAliases() []string {
 	if o == nil || o.Aliases == nil {
@@ -87,6 +93,7 @@ func (o *Host) HasAliases() bool {
 func (o *Host) SetAliases(v []string) {
 	o.Aliases = v
 }
+
 
 // GetApps returns the Apps field value if set, zero value otherwise.
 func (o *Host) GetApps() []string {
@@ -116,6 +123,7 @@ func (o *Host) SetApps(v []string) {
 	o.Apps = v
 }
 
+
 // GetAwsName returns the AwsName field value if set, zero value otherwise.
 func (o *Host) GetAwsName() string {
 	if o == nil || o.AwsName == nil {
@@ -143,6 +151,7 @@ func (o *Host) HasAwsName() bool {
 func (o *Host) SetAwsName(v string) {
 	o.AwsName = &v
 }
+
 
 // GetHostName returns the HostName field value if set, zero value otherwise.
 func (o *Host) GetHostName() string {
@@ -172,6 +181,7 @@ func (o *Host) SetHostName(v string) {
 	o.HostName = &v
 }
 
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Host) GetId() int64 {
 	if o == nil || o.Id == nil {
@@ -199,6 +209,7 @@ func (o *Host) HasId() bool {
 func (o *Host) SetId(v int64) {
 	o.Id = &v
 }
+
 
 // GetIsMuted returns the IsMuted field value if set, zero value otherwise.
 func (o *Host) GetIsMuted() bool {
@@ -228,6 +239,7 @@ func (o *Host) SetIsMuted(v bool) {
 	o.IsMuted = &v
 }
 
+
 // GetLastReportedTime returns the LastReportedTime field value if set, zero value otherwise.
 func (o *Host) GetLastReportedTime() int64 {
 	if o == nil || o.LastReportedTime == nil {
@@ -255,6 +267,7 @@ func (o *Host) HasLastReportedTime() bool {
 func (o *Host) SetLastReportedTime(v int64) {
 	o.LastReportedTime = &v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *Host) GetMeta() HostMeta {
@@ -284,6 +297,7 @@ func (o *Host) SetMeta(v HostMeta) {
 	o.Meta = &v
 }
 
+
 // GetMetrics returns the Metrics field value if set, zero value otherwise.
 func (o *Host) GetMetrics() HostMetrics {
 	if o == nil || o.Metrics == nil {
@@ -312,6 +326,7 @@ func (o *Host) SetMetrics(v HostMetrics) {
 	o.Metrics = &v
 }
 
+
 // GetMuteTimeout returns the MuteTimeout field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Host) GetMuteTimeout() int64 {
 	if o == nil || o.MuteTimeout.Get() == nil {
@@ -325,7 +340,7 @@ func (o *Host) GetMuteTimeout() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Host) GetMuteTimeoutOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.MuteTimeout.Get(), o.MuteTimeout.IsSet()
@@ -340,7 +355,6 @@ func (o *Host) HasMuteTimeout() bool {
 func (o *Host) SetMuteTimeout(v int64) {
 	o.MuteTimeout.Set(&v)
 }
-
 // SetMuteTimeoutNil sets the value for MuteTimeout to be an explicit nil.
 func (o *Host) SetMuteTimeoutNil() {
 	o.MuteTimeout.Set(nil)
@@ -350,6 +364,7 @@ func (o *Host) SetMuteTimeoutNil() {
 func (o *Host) UnsetMuteTimeout() {
 	o.MuteTimeout.Unset()
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *Host) GetName() string {
@@ -379,6 +394,7 @@ func (o *Host) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSources returns the Sources field value if set, zero value otherwise.
 func (o *Host) GetSources() []string {
 	if o == nil || o.Sources == nil {
@@ -406,6 +422,7 @@ func (o *Host) HasSources() bool {
 func (o *Host) SetSources(v []string) {
 	o.Sources = v
 }
+
 
 // GetTagsBySource returns the TagsBySource field value if set, zero value otherwise.
 func (o *Host) GetTagsBySource() map[string][]string {
@@ -435,6 +452,7 @@ func (o *Host) SetTagsBySource(v map[string][]string) {
 	o.TagsBySource = v
 }
 
+
 // GetUp returns the Up field value if set, zero value otherwise.
 func (o *Host) GetUp() bool {
 	if o == nil || o.Up == nil {
@@ -462,6 +480,8 @@ func (o *Host) HasUp() bool {
 func (o *Host) SetUp(v bool) {
 	o.Up = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o Host) MarshalJSON() ([]byte, error) {
@@ -521,27 +541,27 @@ func (o Host) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Aliases          []string              `json:"aliases,omitempty"`
-		Apps             []string              `json:"apps,omitempty"`
-		AwsName          *string               `json:"aws_name,omitempty"`
-		HostName         *string               `json:"host_name,omitempty"`
-		Id               *int64                `json:"id,omitempty"`
-		IsMuted          *bool                 `json:"is_muted,omitempty"`
-		LastReportedTime *int64                `json:"last_reported_time,omitempty"`
-		Meta             *HostMeta             `json:"meta,omitempty"`
-		Metrics          *HostMetrics          `json:"metrics,omitempty"`
-		MuteTimeout      datadog.NullableInt64 `json:"mute_timeout,omitempty"`
-		Name             *string               `json:"name,omitempty"`
-		Sources          []string              `json:"sources,omitempty"`
-		TagsBySource     map[string][]string   `json:"tags_by_source,omitempty"`
-		Up               *bool                 `json:"up,omitempty"`
+		Aliases []string `json:"aliases,omitempty"`
+		Apps []string `json:"apps,omitempty"`
+		AwsName *string `json:"aws_name,omitempty"`
+		HostName *string `json:"host_name,omitempty"`
+		Id *int64 `json:"id,omitempty"`
+		IsMuted *bool `json:"is_muted,omitempty"`
+		LastReportedTime *int64 `json:"last_reported_time,omitempty"`
+		Meta *HostMeta `json:"meta,omitempty"`
+		Metrics *HostMetrics `json:"metrics,omitempty"`
+		MuteTimeout datadog.NullableInt64 `json:"mute_timeout,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Sources []string `json:"sources,omitempty"`
+		TagsBySource map[string][]string `json:"tags_by_source,omitempty"`
+		Up *bool `json:"up,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aliases", "apps", "aws_name", "host_name", "id", "is_muted", "last_reported_time", "meta", "metrics", "mute_timeout", "name", "sources", "tags_by_source", "up"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aliases", "apps", "aws_name", "host_name", "id", "is_muted", "last_reported_time", "meta", "metrics", "mute_timeout", "name", "sources", "tags_by_source", "up",  })
 	} else {
 		return err
 	}
@@ -554,11 +574,11 @@ func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 	o.Id = all.Id
 	o.IsMuted = all.IsMuted
 	o.LastReportedTime = all.LastReportedTime
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta
-	if all.Metrics != nil && all.Metrics.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Metrics != nil && all.Metrics.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Metrics = all.Metrics

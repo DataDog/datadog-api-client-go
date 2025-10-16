@@ -2,27 +2,31 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FormulaAndFunctionSLOMeasure SLO measures queries.
 type FormulaAndFunctionSLOMeasure string
 
 // List of FormulaAndFunctionSLOMeasure.
 const (
-	FORMULAANDFUNCTIONSLOMEASURE_GOOD_EVENTS            FormulaAndFunctionSLOMeasure = "good_events"
-	FORMULAANDFUNCTIONSLOMEASURE_BAD_EVENTS             FormulaAndFunctionSLOMeasure = "bad_events"
-	FORMULAANDFUNCTIONSLOMEASURE_GOOD_MINUTES           FormulaAndFunctionSLOMeasure = "good_minutes"
-	FORMULAANDFUNCTIONSLOMEASURE_BAD_MINUTES            FormulaAndFunctionSLOMeasure = "bad_minutes"
-	FORMULAANDFUNCTIONSLOMEASURE_SLO_STATUS             FormulaAndFunctionSLOMeasure = "slo_status"
+	FORMULAANDFUNCTIONSLOMEASURE_GOOD_EVENTS FormulaAndFunctionSLOMeasure = "good_events"
+	FORMULAANDFUNCTIONSLOMEASURE_BAD_EVENTS FormulaAndFunctionSLOMeasure = "bad_events"
+	FORMULAANDFUNCTIONSLOMEASURE_GOOD_MINUTES FormulaAndFunctionSLOMeasure = "good_minutes"
+	FORMULAANDFUNCTIONSLOMEASURE_BAD_MINUTES FormulaAndFunctionSLOMeasure = "bad_minutes"
+	FORMULAANDFUNCTIONSLOMEASURE_SLO_STATUS FormulaAndFunctionSLOMeasure = "slo_status"
 	FORMULAANDFUNCTIONSLOMEASURE_ERROR_BUDGET_REMAINING FormulaAndFunctionSLOMeasure = "error_budget_remaining"
-	FORMULAANDFUNCTIONSLOMEASURE_BURN_RATE              FormulaAndFunctionSLOMeasure = "burn_rate"
-	FORMULAANDFUNCTIONSLOMEASURE_ERROR_BUDGET_BURNDOWN  FormulaAndFunctionSLOMeasure = "error_budget_burndown"
+	FORMULAANDFUNCTIONSLOMEASURE_BURN_RATE FormulaAndFunctionSLOMeasure = "burn_rate"
+	FORMULAANDFUNCTIONSLOMEASURE_ERROR_BUDGET_BURNDOWN FormulaAndFunctionSLOMeasure = "error_budget_burndown"
 )
 
 var allowedFormulaAndFunctionSLOMeasureEnumValues = []FormulaAndFunctionSLOMeasure{

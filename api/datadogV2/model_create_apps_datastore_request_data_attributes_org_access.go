@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateAppsDatastoreRequestDataAttributesOrgAccess The organization access level for the datastore. For example, 'contributor'.
 type CreateAppsDatastoreRequestDataAttributesOrgAccess string
@@ -16,8 +20,8 @@ type CreateAppsDatastoreRequestDataAttributesOrgAccess string
 // List of CreateAppsDatastoreRequestDataAttributesOrgAccess.
 const (
 	CREATEAPPSDATASTOREREQUESTDATAATTRIBUTESORGACCESS_CONTRIBUTOR CreateAppsDatastoreRequestDataAttributesOrgAccess = "contributor"
-	CREATEAPPSDATASTOREREQUESTDATAATTRIBUTESORGACCESS_VIEWER      CreateAppsDatastoreRequestDataAttributesOrgAccess = "viewer"
-	CREATEAPPSDATASTOREREQUESTDATAATTRIBUTESORGACCESS_MANAGER     CreateAppsDatastoreRequestDataAttributesOrgAccess = "manager"
+	CREATEAPPSDATASTOREREQUESTDATAATTRIBUTESORGACCESS_VIEWER CreateAppsDatastoreRequestDataAttributesOrgAccess = "viewer"
+	CREATEAPPSDATASTOREREQUESTDATAATTRIBUTESORGACCESS_MANAGER CreateAppsDatastoreRequestDataAttributesOrgAccess = "manager"
 )
 
 var allowedCreateAppsDatastoreRequestDataAttributesOrgAccessEnumValues = []CreateAppsDatastoreRequestDataAttributesOrgAccess{

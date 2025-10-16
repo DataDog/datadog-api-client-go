@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomDestinationResponseAttributes The attributes associated with the custom destination.
 type CustomDestinationResponseAttributes struct {
@@ -32,9 +38,10 @@ type CustomDestinationResponseAttributes struct {
 	// The custom destination query filter. Logs matching this query are forwarded to the destination.
 	Query *string `json:"query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomDestinationResponseAttributes instantiates a new CustomDestinationResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -68,7 +75,6 @@ func NewCustomDestinationResponseAttributesWithDefaults() *CustomDestinationResp
 	this.Query = &query
 	return &this
 }
-
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *CustomDestinationResponseAttributes) GetEnabled() bool {
 	if o == nil || o.Enabled == nil {
@@ -96,6 +102,7 @@ func (o *CustomDestinationResponseAttributes) HasEnabled() bool {
 func (o *CustomDestinationResponseAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
+
 
 // GetForwardTags returns the ForwardTags field value if set, zero value otherwise.
 func (o *CustomDestinationResponseAttributes) GetForwardTags() bool {
@@ -125,6 +132,7 @@ func (o *CustomDestinationResponseAttributes) SetForwardTags(v bool) {
 	o.ForwardTags = &v
 }
 
+
 // GetForwardTagsRestrictionList returns the ForwardTagsRestrictionList field value if set, zero value otherwise.
 func (o *CustomDestinationResponseAttributes) GetForwardTagsRestrictionList() []string {
 	if o == nil || o.ForwardTagsRestrictionList == nil {
@@ -152,6 +160,7 @@ func (o *CustomDestinationResponseAttributes) HasForwardTagsRestrictionList() bo
 func (o *CustomDestinationResponseAttributes) SetForwardTagsRestrictionList(v []string) {
 	o.ForwardTagsRestrictionList = v
 }
+
 
 // GetForwardTagsRestrictionListType returns the ForwardTagsRestrictionListType field value if set, zero value otherwise.
 func (o *CustomDestinationResponseAttributes) GetForwardTagsRestrictionListType() CustomDestinationAttributeTagsRestrictionListType {
@@ -181,6 +190,7 @@ func (o *CustomDestinationResponseAttributes) SetForwardTagsRestrictionListType(
 	o.ForwardTagsRestrictionListType = &v
 }
 
+
 // GetForwarderDestination returns the ForwarderDestination field value if set, zero value otherwise.
 func (o *CustomDestinationResponseAttributes) GetForwarderDestination() CustomDestinationResponseForwardDestination {
 	if o == nil || o.ForwarderDestination == nil {
@@ -208,6 +218,7 @@ func (o *CustomDestinationResponseAttributes) HasForwarderDestination() bool {
 func (o *CustomDestinationResponseAttributes) SetForwarderDestination(v CustomDestinationResponseForwardDestination) {
 	o.ForwarderDestination = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CustomDestinationResponseAttributes) GetName() string {
@@ -237,6 +248,7 @@ func (o *CustomDestinationResponseAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *CustomDestinationResponseAttributes) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -264,6 +276,8 @@ func (o *CustomDestinationResponseAttributes) HasQuery() bool {
 func (o *CustomDestinationResponseAttributes) SetQuery(v string) {
 	o.Query = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomDestinationResponseAttributes) MarshalJSON() ([]byte, error) {
@@ -302,20 +316,20 @@ func (o CustomDestinationResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomDestinationResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enabled                        *bool                                              `json:"enabled,omitempty"`
-		ForwardTags                    *bool                                              `json:"forward_tags,omitempty"`
-		ForwardTagsRestrictionList     []string                                           `json:"forward_tags_restriction_list,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
+		ForwardTags *bool `json:"forward_tags,omitempty"`
+		ForwardTagsRestrictionList []string `json:"forward_tags_restriction_list,omitempty"`
 		ForwardTagsRestrictionListType *CustomDestinationAttributeTagsRestrictionListType `json:"forward_tags_restriction_list_type,omitempty"`
-		ForwarderDestination           *CustomDestinationResponseForwardDestination       `json:"forwarder_destination,omitempty"`
-		Name                           *string                                            `json:"name,omitempty"`
-		Query                          *string                                            `json:"query,omitempty"`
+		ForwarderDestination *CustomDestinationResponseForwardDestination `json:"forwarder_destination,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Query *string `json:"query,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "forward_tags", "forward_tags_restriction_list", "forward_tags_restriction_list_type", "forwarder_destination", "name", "query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "enabled", "forward_tags", "forward_tags_restriction_list", "forward_tags_restriction_list_type", "forwarder_destination", "name", "query",  })
 	} else {
 		return err
 	}
@@ -324,7 +338,7 @@ func (o *CustomDestinationResponseAttributes) UnmarshalJSON(bytes []byte) (err e
 	o.Enabled = all.Enabled
 	o.ForwardTags = all.ForwardTags
 	o.ForwardTagsRestrictionList = all.ForwardTagsRestrictionList
-	if all.ForwardTagsRestrictionListType != nil && !all.ForwardTagsRestrictionListType.IsValid() {
+	if all.ForwardTagsRestrictionListType != nil &&!all.ForwardTagsRestrictionListType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ForwardTagsRestrictionListType = all.ForwardTagsRestrictionListType

@@ -2,17 +2,23 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AuthNMappingIncluded - Included data in the AuthN Mapping response.
 type AuthNMappingIncluded struct {
 	SAMLAssertionAttribute *SAMLAssertionAttribute
-	Role                   *Role
-	AuthNMappingTeam       *AuthNMappingTeam
+	Role *Role
+	AuthNMappingTeam *AuthNMappingTeam
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -76,7 +82,7 @@ func (obj *AuthNMappingIncluded) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.AuthNMappingTeam != nil && obj.AuthNMappingTeam.UnparsedObject == nil {
 			jsonAuthNMappingTeam, _ := datadog.Marshal(obj.AuthNMappingTeam)
-			if string(jsonAuthNMappingTeam) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonAuthNMappingTeam) == "{}" && string(data) != "{}"  { // empty struct
 				obj.AuthNMappingTeam = nil
 			} else {
 				match++
@@ -104,13 +110,16 @@ func (obj AuthNMappingIncluded) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SAMLAssertionAttribute)
 	}
 
+
 	if obj.Role != nil {
 		return datadog.Marshal(&obj.Role)
 	}
 
+
 	if obj.AuthNMappingTeam != nil {
 		return datadog.Marshal(&obj.AuthNMappingTeam)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj AuthNMappingIncluded) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *AuthNMappingIncluded) GetActualInstance() interface{} {
+func (obj *AuthNMappingIncluded) GetActualInstance() (interface{}) {
 	if obj.SAMLAssertionAttribute != nil {
 		return obj.SAMLAssertionAttribute
 	}
+
 
 	if obj.Role != nil {
 		return obj.Role
 	}
 
+
 	if obj.AuthNMappingTeam != nil {
 		return obj.AuthNMappingTeam
 	}
+
 
 	// all schemas are nil
 	return nil

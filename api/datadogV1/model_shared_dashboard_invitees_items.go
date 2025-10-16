@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SharedDashboardInviteesItems The allowlisted invitees for an INVITE-only shared dashboard.
 type SharedDashboardInviteesItems struct {
@@ -20,9 +23,10 @@ type SharedDashboardInviteesItems struct {
 	// Email of the invitee.
 	Email string `json:"email"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSharedDashboardInviteesItems instantiates a new SharedDashboardInviteesItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +45,6 @@ func NewSharedDashboardInviteesItemsWithDefaults() *SharedDashboardInviteesItems
 	this := SharedDashboardInviteesItems{}
 	return &this
 }
-
 // GetAccessExpiration returns the AccessExpiration field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SharedDashboardInviteesItems) GetAccessExpiration() time.Time {
 	if o == nil || o.AccessExpiration.Get() == nil {
@@ -55,7 +58,7 @@ func (o *SharedDashboardInviteesItems) GetAccessExpiration() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SharedDashboardInviteesItems) GetAccessExpirationOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.AccessExpiration.Get(), o.AccessExpiration.IsSet()
@@ -70,7 +73,6 @@ func (o *SharedDashboardInviteesItems) HasAccessExpiration() bool {
 func (o *SharedDashboardInviteesItems) SetAccessExpiration(v time.Time) {
 	o.AccessExpiration.Set(&v)
 }
-
 // SetAccessExpirationNil sets the value for AccessExpiration to be an explicit nil.
 func (o *SharedDashboardInviteesItems) SetAccessExpirationNil() {
 	o.AccessExpiration.Set(nil)
@@ -80,6 +82,7 @@ func (o *SharedDashboardInviteesItems) SetAccessExpirationNil() {
 func (o *SharedDashboardInviteesItems) UnsetAccessExpiration() {
 	o.AccessExpiration.Unset()
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *SharedDashboardInviteesItems) GetCreatedAt() time.Time {
@@ -109,6 +112,7 @@ func (o *SharedDashboardInviteesItems) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+
 // GetEmail returns the Email field value.
 func (o *SharedDashboardInviteesItems) GetEmail() string {
 	if o == nil {
@@ -131,6 +135,8 @@ func (o *SharedDashboardInviteesItems) GetEmailOk() (*string, bool) {
 func (o *SharedDashboardInviteesItems) SetEmail(v string) {
 	o.Email = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SharedDashboardInviteesItems) MarshalJSON() ([]byte, error) {
@@ -160,8 +166,8 @@ func (o SharedDashboardInviteesItems) MarshalJSON() ([]byte, error) {
 func (o *SharedDashboardInviteesItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AccessExpiration datadog.NullableTime `json:"access_expiration,omitempty"`
-		CreatedAt        *time.Time           `json:"created_at,omitempty"`
-		Email            *string              `json:"email"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		Email *string `json:"email"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -171,7 +177,7 @@ func (o *SharedDashboardInviteesItems) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"access_expiration", "created_at", "email"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "access_expiration", "created_at", "email",  })
 	} else {
 		return err
 	}

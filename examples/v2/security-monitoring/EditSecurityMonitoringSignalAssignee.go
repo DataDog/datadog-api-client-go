@@ -2,31 +2,32 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV2.SecurityMonitoringSignalAssigneeUpdateRequest{
-		Data: datadogV2.SecurityMonitoringSignalAssigneeUpdateData{
-			Attributes: datadogV2.SecurityMonitoringSignalAssigneeUpdateAttributes{
-				Assignee: datadogV2.SecurityMonitoringTriageUser{
-					Uuid: "",
-				},
-			},
-		},
-	}
+Data: datadogV2.SecurityMonitoringSignalAssigneeUpdateData{
+Attributes: datadogV2.SecurityMonitoringSignalAssigneeUpdateAttributes{
+Assignee: datadogV2.SecurityMonitoringTriageUser{
+Uuid: "",
+},
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.EditSecurityMonitoringSignalAssignee(ctx, "AQAAAYG1bl5K4HuUewAAAABBWUcxYmw1S0FBQmt2RmhRN0V4ZUVnQUE", body)
+	resp, r, err := api.EditSecurityMonitoringSignalAssignee(ctx, "AQAAAYG1bl5K4HuUewAAAABBWUcxYmw1S0FBQmt2RmhRN0V4ZUVnQUE", body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.EditSecurityMonitoringSignalAssignee`: %v\n", err)

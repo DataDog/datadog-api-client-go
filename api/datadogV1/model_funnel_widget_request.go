@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FunnelWidgetRequest Updated funnel widget.
 type FunnelWidgetRequest struct {
@@ -17,9 +21,10 @@ type FunnelWidgetRequest struct {
 	// Widget request type.
 	RequestType FunnelRequestType `json:"request_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFunnelWidgetRequest instantiates a new FunnelWidgetRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewFunnelWidgetRequestWithDefaults() *FunnelWidgetRequest {
 	this := FunnelWidgetRequest{}
 	return &this
 }
-
 // GetQuery returns the Query field value.
 func (o *FunnelWidgetRequest) GetQuery() FunnelQuery {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *FunnelWidgetRequest) GetQueryOk() (*FunnelQuery, bool) {
 func (o *FunnelWidgetRequest) SetQuery(v FunnelQuery) {
 	o.Query = v
 }
+
 
 // GetRequestType returns the RequestType field value.
 func (o *FunnelWidgetRequest) GetRequestType() FunnelRequestType {
@@ -86,6 +91,8 @@ func (o *FunnelWidgetRequest) SetRequestType(v FunnelRequestType) {
 	o.RequestType = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FunnelWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o FunnelWidgetRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FunnelWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Query       *FunnelQuery       `json:"query"`
+		Query *FunnelQuery `json:"query"`
 		RequestType *FunnelRequestType `json:"request_type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *FunnelWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"query", "request_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "query", "request_type",  })
 	} else {
 		return err
 	}

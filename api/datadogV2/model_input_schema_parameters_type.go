@@ -2,27 +2,31 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // InputSchemaParametersType The definition of `InputSchemaParametersType` object.
 type InputSchemaParametersType string
 
 // List of InputSchemaParametersType.
 const (
-	INPUTSCHEMAPARAMETERSTYPE_STRING        InputSchemaParametersType = "STRING"
-	INPUTSCHEMAPARAMETERSTYPE_NUMBER        InputSchemaParametersType = "NUMBER"
-	INPUTSCHEMAPARAMETERSTYPE_BOOLEAN       InputSchemaParametersType = "BOOLEAN"
-	INPUTSCHEMAPARAMETERSTYPE_OBJECT        InputSchemaParametersType = "OBJECT"
-	INPUTSCHEMAPARAMETERSTYPE_ARRAY_STRING  InputSchemaParametersType = "ARRAY_STRING"
-	INPUTSCHEMAPARAMETERSTYPE_ARRAY_NUMBER  InputSchemaParametersType = "ARRAY_NUMBER"
+	INPUTSCHEMAPARAMETERSTYPE_STRING InputSchemaParametersType = "STRING"
+	INPUTSCHEMAPARAMETERSTYPE_NUMBER InputSchemaParametersType = "NUMBER"
+	INPUTSCHEMAPARAMETERSTYPE_BOOLEAN InputSchemaParametersType = "BOOLEAN"
+	INPUTSCHEMAPARAMETERSTYPE_OBJECT InputSchemaParametersType = "OBJECT"
+	INPUTSCHEMAPARAMETERSTYPE_ARRAY_STRING InputSchemaParametersType = "ARRAY_STRING"
+	INPUTSCHEMAPARAMETERSTYPE_ARRAY_NUMBER InputSchemaParametersType = "ARRAY_NUMBER"
 	INPUTSCHEMAPARAMETERSTYPE_ARRAY_BOOLEAN InputSchemaParametersType = "ARRAY_BOOLEAN"
-	INPUTSCHEMAPARAMETERSTYPE_ARRAY_OBJECT  InputSchemaParametersType = "ARRAY_OBJECT"
+	INPUTSCHEMAPARAMETERSTYPE_ARRAY_OBJECT InputSchemaParametersType = "ARRAY_OBJECT"
 )
 
 var allowedInputSchemaParametersTypeEnumValues = []InputSchemaParametersType{

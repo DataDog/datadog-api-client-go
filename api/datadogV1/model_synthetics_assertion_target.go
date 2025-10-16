@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAssertionTarget An assertion which uses a simple target.
 type SyntheticsAssertionTarget struct {
@@ -23,9 +27,10 @@ type SyntheticsAssertionTarget struct {
 	// Type of the assertion.
 	Type SyntheticsAssertionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsAssertionTarget instantiates a new SyntheticsAssertionTarget object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewSyntheticsAssertionTargetWithDefaults() *SyntheticsAssertionTarget {
 	this := SyntheticsAssertionTarget{}
 	return &this
 }
-
 // GetOperator returns the Operator field value.
 func (o *SyntheticsAssertionTarget) GetOperator() SyntheticsAssertionOperator {
 	if o == nil {
@@ -69,6 +73,7 @@ func (o *SyntheticsAssertionTarget) GetOperatorOk() (*SyntheticsAssertionOperato
 func (o *SyntheticsAssertionTarget) SetOperator(v SyntheticsAssertionOperator) {
 	o.Operator = v
 }
+
 
 // GetProperty returns the Property field value if set, zero value otherwise.
 func (o *SyntheticsAssertionTarget) GetProperty() string {
@@ -98,6 +103,7 @@ func (o *SyntheticsAssertionTarget) SetProperty(v string) {
 	o.Property = &v
 }
 
+
 // GetTarget returns the Target field value.
 func (o *SyntheticsAssertionTarget) GetTarget() SyntheticsAssertionTargetValue {
 	if o == nil {
@@ -120,6 +126,7 @@ func (o *SyntheticsAssertionTarget) GetTargetOk() (*SyntheticsAssertionTargetVal
 func (o *SyntheticsAssertionTarget) SetTarget(v SyntheticsAssertionTargetValue) {
 	o.Target = v
 }
+
 
 // GetTimingsScope returns the TimingsScope field value if set, zero value otherwise.
 func (o *SyntheticsAssertionTarget) GetTimingsScope() SyntheticsAssertionTimingsScope {
@@ -149,6 +156,7 @@ func (o *SyntheticsAssertionTarget) SetTimingsScope(v SyntheticsAssertionTimings
 	o.TimingsScope = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *SyntheticsAssertionTarget) GetType() SyntheticsAssertionType {
 	if o == nil {
@@ -171,6 +179,8 @@ func (o *SyntheticsAssertionTarget) GetTypeOk() (*SyntheticsAssertionType, bool)
 func (o *SyntheticsAssertionTarget) SetType(v SyntheticsAssertionType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAssertionTarget) MarshalJSON() ([]byte, error) {
@@ -197,11 +207,11 @@ func (o SyntheticsAssertionTarget) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAssertionTarget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Operator     *SyntheticsAssertionOperator     `json:"operator"`
-		Property     *string                          `json:"property,omitempty"`
-		Target       *SyntheticsAssertionTargetValue  `json:"target"`
+		Operator *SyntheticsAssertionOperator `json:"operator"`
+		Property *string `json:"property,omitempty"`
+		Target *SyntheticsAssertionTargetValue `json:"target"`
 		TimingsScope *SyntheticsAssertionTimingsScope `json:"timingsScope,omitempty"`
-		Type         *SyntheticsAssertionType         `json:"type"`
+		Type *SyntheticsAssertionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -217,7 +227,7 @@ func (o *SyntheticsAssertionTarget) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"operator", "property", "target", "timingsScope", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "operator", "property", "target", "timingsScope", "type",  })
 	} else {
 		return err
 	}
@@ -230,7 +240,7 @@ func (o *SyntheticsAssertionTarget) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Property = all.Property
 	o.Target = *all.Target
-	if all.TimingsScope != nil && !all.TimingsScope.IsValid() {
+	if all.TimingsScope != nil &&!all.TimingsScope.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TimingsScope = all.TimingsScope

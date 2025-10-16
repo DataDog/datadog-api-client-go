@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListPipelinesResponse Represents the response payload containing a list of pipelines and associated metadata.
 type ListPipelinesResponse struct {
@@ -17,9 +21,10 @@ type ListPipelinesResponse struct {
 	// Metadata about the response.
 	Meta *ListPipelinesResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListPipelinesResponse instantiates a new ListPipelinesResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewListPipelinesResponseWithDefaults() *ListPipelinesResponse {
 	this := ListPipelinesResponse{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *ListPipelinesResponse) GetData() []ObservabilityPipelineData {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *ListPipelinesResponse) GetDataOk() (*[]ObservabilityPipelineData, bool)
 func (o *ListPipelinesResponse) SetData(v []ObservabilityPipelineData) {
 	o.Data = v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *ListPipelinesResponse) GetMeta() ListPipelinesResponseMeta {
@@ -90,6 +95,8 @@ func (o *ListPipelinesResponse) SetMeta(v ListPipelinesResponseMeta) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListPipelinesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o ListPipelinesResponse) MarshalJSON() ([]byte, error) {
 func (o *ListPipelinesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data *[]ObservabilityPipelineData `json:"data"`
-		Meta *ListPipelinesResponseMeta   `json:"meta,omitempty"`
+		Meta *ListPipelinesResponseMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,14 +128,14 @@ func (o *ListPipelinesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = *all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

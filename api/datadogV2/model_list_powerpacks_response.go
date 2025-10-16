@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListPowerpacksResponse Response object which includes all powerpack configurations.
 type ListPowerpacksResponse struct {
@@ -19,9 +25,10 @@ type ListPowerpacksResponse struct {
 	// Powerpack response metadata.
 	Meta *PowerpacksResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListPowerpacksResponse instantiates a new ListPowerpacksResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewListPowerpacksResponseWithDefaults() *ListPowerpacksResponse {
 	this := ListPowerpacksResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *ListPowerpacksResponse) GetData() []PowerpackData {
 	if o == nil || o.Data == nil {
@@ -67,6 +73,7 @@ func (o *ListPowerpacksResponse) HasData() bool {
 func (o *ListPowerpacksResponse) SetData(v []PowerpackData) {
 	o.Data = v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *ListPowerpacksResponse) GetIncluded() []User {
@@ -96,6 +103,7 @@ func (o *ListPowerpacksResponse) SetIncluded(v []User) {
 	o.Included = v
 }
 
+
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *ListPowerpacksResponse) GetLinks() PowerpackResponseLinks {
 	if o == nil || o.Links == nil {
@@ -123,6 +131,7 @@ func (o *ListPowerpacksResponse) HasLinks() bool {
 func (o *ListPowerpacksResponse) SetLinks(v PowerpackResponseLinks) {
 	o.Links = &v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *ListPowerpacksResponse) GetMeta() PowerpacksResponseMeta {
@@ -152,6 +161,8 @@ func (o *ListPowerpacksResponse) SetMeta(v PowerpacksResponseMeta) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListPowerpacksResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,17 +191,17 @@ func (o ListPowerpacksResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ListPowerpacksResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     []PowerpackData         `json:"data,omitempty"`
-		Included []User                  `json:"included,omitempty"`
-		Links    *PowerpackResponseLinks `json:"links,omitempty"`
-		Meta     *PowerpacksResponseMeta `json:"meta,omitempty"`
+		Data []PowerpackData `json:"data,omitempty"`
+		Included []User `json:"included,omitempty"`
+		Links *PowerpackResponseLinks `json:"links,omitempty"`
+		Meta *PowerpacksResponseMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "links", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "included", "links", "meta",  })
 	} else {
 		return err
 	}
@@ -198,11 +209,11 @@ func (o *ListPowerpacksResponse) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Data = all.Data
 	o.Included = all.Included
-	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Links = all.Links
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

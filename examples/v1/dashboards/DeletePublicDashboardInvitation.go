@@ -2,32 +2,35 @@
 
 package main
 
+
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV1.SharedDashboardInvites{
-		Data: datadogV1.SharedDashboardInvitesData{
-			SharedDashboardInvitesDataList: &[]datadogV1.SharedDashboardInvitesDataObject{
-				{
-					Attributes: datadogV1.SharedDashboardInvitesDataObjectAttributes{
-						Email: datadog.PtrString("test@datadoghq.com"),
-					},
-					Type: datadogV1.DASHBOARDINVITETYPE_PUBLIC_DASHBOARD_INVITATION,
-				},
-			}},
-	}
+Data: datadogV1.SharedDashboardInvitesData{
+SharedDashboardInvitesDataList: &[]datadogV1.SharedDashboardInvitesDataObject{
+{
+Attributes: datadogV1.SharedDashboardInvitesDataObjectAttributes{
+Email: datadog.PtrString("test@datadoghq.com"),
+},
+Type: datadogV1.DASHBOARDINVITETYPE_PUBLIC_DASHBOARD_INVITATION,
+},
+}},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewDashboardsApi(apiClient)
-	r, err := api.DeletePublicDashboardInvitation(ctx, "token", body)
+	r, err := api.DeletePublicDashboardInvitation(ctx, "token", body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.DeletePublicDashboardInvitation`: %v\n", err)

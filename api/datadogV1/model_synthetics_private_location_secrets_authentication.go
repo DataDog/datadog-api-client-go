@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsPrivateLocationSecretsAuthentication Authentication part of the secrets.
 type SyntheticsPrivateLocationSecretsAuthentication struct {
@@ -15,9 +21,10 @@ type SyntheticsPrivateLocationSecretsAuthentication struct {
 	// Secret access key for the private location.
 	Key *string `json:"key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsPrivateLocationSecretsAuthentication instantiates a new SyntheticsPrivateLocationSecretsAuthentication object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSyntheticsPrivateLocationSecretsAuthenticationWithDefaults() *Synthetics
 	this := SyntheticsPrivateLocationSecretsAuthentication{}
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationSecretsAuthentication) GetId() string {
 	if o == nil || o.Id == nil {
@@ -63,6 +69,7 @@ func (o *SyntheticsPrivateLocationSecretsAuthentication) HasId() bool {
 func (o *SyntheticsPrivateLocationSecretsAuthentication) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationSecretsAuthentication) GetKey() string {
@@ -92,6 +99,8 @@ func (o *SyntheticsPrivateLocationSecretsAuthentication) SetKey(v string) {
 	o.Key = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsPrivateLocationSecretsAuthentication) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o SyntheticsPrivateLocationSecretsAuthentication) MarshalJSON() ([]byte, e
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsPrivateLocationSecretsAuthentication) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id  *string `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Key *string `json:"key,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *SyntheticsPrivateLocationSecretsAuthentication) UnmarshalJSON(bytes []b
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "key"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "key",  })
 	} else {
 		return err
 	}

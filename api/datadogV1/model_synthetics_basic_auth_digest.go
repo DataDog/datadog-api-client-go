@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsBasicAuthDigest Object to handle digest authentication when performing the test.
 type SyntheticsBasicAuthDigest struct {
@@ -19,9 +23,10 @@ type SyntheticsBasicAuthDigest struct {
 	// Username to use for the digest authentication.
 	Username string `json:"username"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsBasicAuthDigest instantiates a new SyntheticsBasicAuthDigest object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewSyntheticsBasicAuthDigestWithDefaults() *SyntheticsBasicAuthDigest {
 	this.Type = typeVar
 	return &this
 }
-
 // GetPassword returns the Password field value.
 func (o *SyntheticsBasicAuthDigest) GetPassword() string {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *SyntheticsBasicAuthDigest) GetPasswordOk() (*string, bool) {
 func (o *SyntheticsBasicAuthDigest) SetPassword(v string) {
 	o.Password = v
 }
+
 
 // GetType returns the Type field value.
 func (o *SyntheticsBasicAuthDigest) GetType() SyntheticsBasicAuthDigestType {
@@ -91,6 +96,7 @@ func (o *SyntheticsBasicAuthDigest) SetType(v SyntheticsBasicAuthDigestType) {
 	o.Type = v
 }
 
+
 // GetUsername returns the Username field value.
 func (o *SyntheticsBasicAuthDigest) GetUsername() string {
 	if o == nil {
@@ -114,6 +120,8 @@ func (o *SyntheticsBasicAuthDigest) SetUsername(v string) {
 	o.Username = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBasicAuthDigest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -133,9 +141,9 @@ func (o SyntheticsBasicAuthDigest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBasicAuthDigest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Password *string                        `json:"password"`
-		Type     *SyntheticsBasicAuthDigestType `json:"type"`
-		Username *string                        `json:"username"`
+		Password *string `json:"password"`
+		Type *SyntheticsBasicAuthDigestType `json:"type"`
+		Username *string `json:"username"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -151,7 +159,7 @@ func (o *SyntheticsBasicAuthDigest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"password", "type", "username"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "password", "type", "username",  })
 	} else {
 		return err
 	}

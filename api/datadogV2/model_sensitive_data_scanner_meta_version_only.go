@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SensitiveDataScannerMetaVersionOnly Meta payload containing information about the API.
 type SensitiveDataScannerMetaVersionOnly struct {
 	// Version of the API (optional).
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSensitiveDataScannerMetaVersionOnly instantiates a new SensitiveDataScannerMetaVersionOnly object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewSensitiveDataScannerMetaVersionOnlyWithDefaults() *SensitiveDataScannerM
 	this := SensitiveDataScannerMetaVersionOnly{}
 	return &this
 }
-
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *SensitiveDataScannerMetaVersionOnly) GetVersion() int64 {
 	if o == nil || o.Version == nil {
@@ -62,6 +68,8 @@ func (o *SensitiveDataScannerMetaVersionOnly) SetVersion(v int64) {
 	o.Version = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SensitiveDataScannerMetaVersionOnly) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *SensitiveDataScannerMetaVersionOnly) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "version",  })
 	} else {
 		return err
 	}

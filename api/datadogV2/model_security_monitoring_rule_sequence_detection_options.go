@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleSequenceDetectionOptions Options on sequence detection method.
 type SecurityMonitoringRuleSequenceDetectionOptions struct {
@@ -15,9 +21,10 @@ type SecurityMonitoringRuleSequenceDetectionOptions struct {
 	// Steps that define the conditions to be matched in sequence.
 	Steps []SecurityMonitoringRuleSequenceDetectionStep `json:"steps,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringRuleSequenceDetectionOptions instantiates a new SecurityMonitoringRuleSequenceDetectionOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSecurityMonitoringRuleSequenceDetectionOptionsWithDefaults() *SecurityMo
 	this := SecurityMonitoringRuleSequenceDetectionOptions{}
 	return &this
 }
-
 // GetStepTransitions returns the StepTransitions field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleSequenceDetectionOptions) GetStepTransitions() []SecurityMonitoringRuleSequenceDetectionStepTransition {
 	if o == nil || o.StepTransitions == nil {
@@ -63,6 +69,7 @@ func (o *SecurityMonitoringRuleSequenceDetectionOptions) HasStepTransitions() bo
 func (o *SecurityMonitoringRuleSequenceDetectionOptions) SetStepTransitions(v []SecurityMonitoringRuleSequenceDetectionStepTransition) {
 	o.StepTransitions = v
 }
+
 
 // GetSteps returns the Steps field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleSequenceDetectionOptions) GetSteps() []SecurityMonitoringRuleSequenceDetectionStep {
@@ -92,6 +99,8 @@ func (o *SecurityMonitoringRuleSequenceDetectionOptions) SetSteps(v []SecurityMo
 	o.Steps = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleSequenceDetectionOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o SecurityMonitoringRuleSequenceDetectionOptions) MarshalJSON() ([]byte, e
 func (o *SecurityMonitoringRuleSequenceDetectionOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		StepTransitions []SecurityMonitoringRuleSequenceDetectionStepTransition `json:"stepTransitions,omitempty"`
-		Steps           []SecurityMonitoringRuleSequenceDetectionStep           `json:"steps,omitempty"`
+		Steps []SecurityMonitoringRuleSequenceDetectionStep `json:"steps,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"stepTransitions", "steps"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "stepTransitions", "steps",  })
 	} else {
 		return err
 	}

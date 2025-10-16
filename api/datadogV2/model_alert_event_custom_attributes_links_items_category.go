@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AlertEventCustomAttributesLinksItemsCategory The category of the link.
 type AlertEventCustomAttributesLinksItemsCategory string
 
 // List of AlertEventCustomAttributesLinksItemsCategory.
 const (
-	ALERTEVENTCUSTOMATTRIBUTESLINKSITEMSCATEGORY_RUNBOOK       AlertEventCustomAttributesLinksItemsCategory = "runbook"
+	ALERTEVENTCUSTOMATTRIBUTESLINKSITEMSCATEGORY_RUNBOOK AlertEventCustomAttributesLinksItemsCategory = "runbook"
 	ALERTEVENTCUSTOMATTRIBUTESLINKSITEMSCATEGORY_DOCUMENTATION AlertEventCustomAttributesLinksItemsCategory = "documentation"
-	ALERTEVENTCUSTOMATTRIBUTESLINKSITEMSCATEGORY_DASHBOARD     AlertEventCustomAttributesLinksItemsCategory = "dashboard"
+	ALERTEVENTCUSTOMATTRIBUTESLINKSITEMSCATEGORY_DASHBOARD AlertEventCustomAttributesLinksItemsCategory = "dashboard"
 )
 
 var allowedAlertEventCustomAttributesLinksItemsCategoryEnumValues = []AlertEventCustomAttributesLinksItemsCategory{

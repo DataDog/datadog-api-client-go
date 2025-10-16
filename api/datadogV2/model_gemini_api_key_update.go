@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GeminiAPIKeyUpdate The definition of the `GeminiAPIKey` object.
 type GeminiAPIKeyUpdate struct {
@@ -17,9 +21,10 @@ type GeminiAPIKeyUpdate struct {
 	// The definition of the `GeminiAPIKey` object.
 	Type GeminiAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGeminiAPIKeyUpdate instantiates a new GeminiAPIKeyUpdate object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewGeminiAPIKeyUpdateWithDefaults() *GeminiAPIKeyUpdate {
 	this := GeminiAPIKeyUpdate{}
 	return &this
 }
-
 // GetApiKey returns the ApiKey field value if set, zero value otherwise.
 func (o *GeminiAPIKeyUpdate) GetApiKey() string {
 	if o == nil || o.ApiKey == nil {
@@ -67,6 +71,7 @@ func (o *GeminiAPIKeyUpdate) SetApiKey(v string) {
 	o.ApiKey = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *GeminiAPIKeyUpdate) GetType() GeminiAPIKeyType {
 	if o == nil {
@@ -90,6 +95,8 @@ func (o *GeminiAPIKeyUpdate) SetType(v GeminiAPIKeyType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o GeminiAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,8 +117,8 @@ func (o GeminiAPIKeyUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GeminiAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey *string           `json:"api_key,omitempty"`
-		Type   *GeminiAPIKeyType `json:"type"`
+		ApiKey *string `json:"api_key,omitempty"`
+		Type *GeminiAPIKeyType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *GeminiAPIKeyUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_key", "type",  })
 	} else {
 		return err
 	}

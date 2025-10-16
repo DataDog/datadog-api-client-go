@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsArchiveAttributes The attributes associated with the archive.
 type LogsArchiveAttributes struct {
@@ -28,9 +32,10 @@ type LogsArchiveAttributes struct {
 	// The state of the archive.
 	State *LogsArchiveState `json:"state,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsArchiveAttributes instantiates a new LogsArchiveAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +60,6 @@ func NewLogsArchiveAttributesWithDefaults() *LogsArchiveAttributes {
 	this.IncludeTags = &includeTags
 	return &this
 }
-
 // GetDestination returns the Destination field value.
 // If the value is explicit nil, the zero value for LogsArchiveDestination will be returned.
 func (o *LogsArchiveAttributes) GetDestination() LogsArchiveDestination {
@@ -80,6 +84,7 @@ func (o *LogsArchiveAttributes) GetDestinationOk() (*LogsArchiveDestination, boo
 func (o *LogsArchiveAttributes) SetDestination(v LogsArchiveDestination) {
 	o.Destination.Set(&v)
 }
+
 
 // GetIncludeTags returns the IncludeTags field value if set, zero value otherwise.
 func (o *LogsArchiveAttributes) GetIncludeTags() bool {
@@ -109,6 +114,7 @@ func (o *LogsArchiveAttributes) SetIncludeTags(v bool) {
 	o.IncludeTags = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *LogsArchiveAttributes) GetName() string {
 	if o == nil {
@@ -131,6 +137,7 @@ func (o *LogsArchiveAttributes) GetNameOk() (*string, bool) {
 func (o *LogsArchiveAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetQuery returns the Query field value.
 func (o *LogsArchiveAttributes) GetQuery() string {
@@ -155,6 +162,7 @@ func (o *LogsArchiveAttributes) SetQuery(v string) {
 	o.Query = v
 }
 
+
 // GetRehydrationMaxScanSizeInGb returns the RehydrationMaxScanSizeInGb field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogsArchiveAttributes) GetRehydrationMaxScanSizeInGb() int64 {
 	if o == nil || o.RehydrationMaxScanSizeInGb.Get() == nil {
@@ -168,7 +176,7 @@ func (o *LogsArchiveAttributes) GetRehydrationMaxScanSizeInGb() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *LogsArchiveAttributes) GetRehydrationMaxScanSizeInGbOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.RehydrationMaxScanSizeInGb.Get(), o.RehydrationMaxScanSizeInGb.IsSet()
@@ -183,7 +191,6 @@ func (o *LogsArchiveAttributes) HasRehydrationMaxScanSizeInGb() bool {
 func (o *LogsArchiveAttributes) SetRehydrationMaxScanSizeInGb(v int64) {
 	o.RehydrationMaxScanSizeInGb.Set(&v)
 }
-
 // SetRehydrationMaxScanSizeInGbNil sets the value for RehydrationMaxScanSizeInGb to be an explicit nil.
 func (o *LogsArchiveAttributes) SetRehydrationMaxScanSizeInGbNil() {
 	o.RehydrationMaxScanSizeInGb.Set(nil)
@@ -193,6 +200,7 @@ func (o *LogsArchiveAttributes) SetRehydrationMaxScanSizeInGbNil() {
 func (o *LogsArchiveAttributes) UnsetRehydrationMaxScanSizeInGb() {
 	o.RehydrationMaxScanSizeInGb.Unset()
 }
+
 
 // GetRehydrationTags returns the RehydrationTags field value if set, zero value otherwise.
 func (o *LogsArchiveAttributes) GetRehydrationTags() []string {
@@ -222,6 +230,7 @@ func (o *LogsArchiveAttributes) SetRehydrationTags(v []string) {
 	o.RehydrationTags = v
 }
 
+
 // GetState returns the State field value if set, zero value otherwise.
 func (o *LogsArchiveAttributes) GetState() LogsArchiveState {
 	if o == nil || o.State == nil {
@@ -249,6 +258,8 @@ func (o *LogsArchiveAttributes) HasState() bool {
 func (o *LogsArchiveAttributes) SetState(v LogsArchiveState) {
 	o.State = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsArchiveAttributes) MarshalJSON() ([]byte, error) {
@@ -281,13 +292,13 @@ func (o LogsArchiveAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Destination                NullableLogsArchiveDestination `json:"destination"`
-		IncludeTags                *bool                          `json:"include_tags,omitempty"`
-		Name                       *string                        `json:"name"`
-		Query                      *string                        `json:"query"`
-		RehydrationMaxScanSizeInGb datadog.NullableInt64          `json:"rehydration_max_scan_size_in_gb,omitempty"`
-		RehydrationTags            []string                       `json:"rehydration_tags,omitempty"`
-		State                      *LogsArchiveState              `json:"state,omitempty"`
+		Destination NullableLogsArchiveDestination `json:"destination"`
+		IncludeTags *bool `json:"include_tags,omitempty"`
+		Name *string `json:"name"`
+		Query *string `json:"query"`
+		RehydrationMaxScanSizeInGb datadog.NullableInt64 `json:"rehydration_max_scan_size_in_gb,omitempty"`
+		RehydrationTags []string `json:"rehydration_tags,omitempty"`
+		State *LogsArchiveState `json:"state,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -303,7 +314,7 @@ func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"destination", "include_tags", "name", "query", "rehydration_max_scan_size_in_gb", "rehydration_tags", "state"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "destination", "include_tags", "name", "query", "rehydration_max_scan_size_in_gb", "rehydration_tags", "state",  })
 	} else {
 		return err
 	}
@@ -315,7 +326,7 @@ func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Query = *all.Query
 	o.RehydrationMaxScanSizeInGb = all.RehydrationMaxScanSizeInGb
 	o.RehydrationTags = all.RehydrationTags
-	if all.State != nil && !all.State.IsValid() {
+	if all.State != nil &&!all.State.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.State = all.State

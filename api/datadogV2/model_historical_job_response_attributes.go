@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HistoricalJobResponseAttributes Historical job attributes.
 type HistoricalJobResponseAttributes struct {
@@ -27,9 +33,10 @@ type HistoricalJobResponseAttributes struct {
 	// Last modification time of the job.
 	ModifiedAt *string `json:"modifiedAt,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHistoricalJobResponseAttributes instantiates a new HistoricalJobResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +54,6 @@ func NewHistoricalJobResponseAttributesWithDefaults() *HistoricalJobResponseAttr
 	this := HistoricalJobResponseAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *HistoricalJobResponseAttributes) GetCreatedAt() string {
 	if o == nil || o.CreatedAt == nil {
@@ -75,6 +81,7 @@ func (o *HistoricalJobResponseAttributes) HasCreatedAt() bool {
 func (o *HistoricalJobResponseAttributes) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
+
 
 // GetCreatedByHandle returns the CreatedByHandle field value if set, zero value otherwise.
 func (o *HistoricalJobResponseAttributes) GetCreatedByHandle() string {
@@ -104,6 +111,7 @@ func (o *HistoricalJobResponseAttributes) SetCreatedByHandle(v string) {
 	o.CreatedByHandle = &v
 }
 
+
 // GetCreatedByName returns the CreatedByName field value if set, zero value otherwise.
 func (o *HistoricalJobResponseAttributes) GetCreatedByName() string {
 	if o == nil || o.CreatedByName == nil {
@@ -131,6 +139,7 @@ func (o *HistoricalJobResponseAttributes) HasCreatedByName() bool {
 func (o *HistoricalJobResponseAttributes) SetCreatedByName(v string) {
 	o.CreatedByName = &v
 }
+
 
 // GetCreatedFromRuleId returns the CreatedFromRuleId field value if set, zero value otherwise.
 func (o *HistoricalJobResponseAttributes) GetCreatedFromRuleId() string {
@@ -160,6 +169,7 @@ func (o *HistoricalJobResponseAttributes) SetCreatedFromRuleId(v string) {
 	o.CreatedFromRuleId = &v
 }
 
+
 // GetJobDefinition returns the JobDefinition field value if set, zero value otherwise.
 func (o *HistoricalJobResponseAttributes) GetJobDefinition() JobDefinition {
 	if o == nil || o.JobDefinition == nil {
@@ -187,6 +197,7 @@ func (o *HistoricalJobResponseAttributes) HasJobDefinition() bool {
 func (o *HistoricalJobResponseAttributes) SetJobDefinition(v JobDefinition) {
 	o.JobDefinition = &v
 }
+
 
 // GetJobName returns the JobName field value if set, zero value otherwise.
 func (o *HistoricalJobResponseAttributes) GetJobName() string {
@@ -216,6 +227,7 @@ func (o *HistoricalJobResponseAttributes) SetJobName(v string) {
 	o.JobName = &v
 }
 
+
 // GetJobStatus returns the JobStatus field value if set, zero value otherwise.
 func (o *HistoricalJobResponseAttributes) GetJobStatus() string {
 	if o == nil || o.JobStatus == nil {
@@ -244,6 +256,7 @@ func (o *HistoricalJobResponseAttributes) SetJobStatus(v string) {
 	o.JobStatus = &v
 }
 
+
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *HistoricalJobResponseAttributes) GetModifiedAt() string {
 	if o == nil || o.ModifiedAt == nil {
@@ -271,6 +284,8 @@ func (o *HistoricalJobResponseAttributes) HasModifiedAt() bool {
 func (o *HistoricalJobResponseAttributes) SetModifiedAt(v string) {
 	o.ModifiedAt = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o HistoricalJobResponseAttributes) MarshalJSON() ([]byte, error) {
@@ -312,21 +327,21 @@ func (o HistoricalJobResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HistoricalJobResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt         *string        `json:"createdAt,omitempty"`
-		CreatedByHandle   *string        `json:"createdByHandle,omitempty"`
-		CreatedByName     *string        `json:"createdByName,omitempty"`
-		CreatedFromRuleId *string        `json:"createdFromRuleId,omitempty"`
-		JobDefinition     *JobDefinition `json:"jobDefinition,omitempty"`
-		JobName           *string        `json:"jobName,omitempty"`
-		JobStatus         *string        `json:"jobStatus,omitempty"`
-		ModifiedAt        *string        `json:"modifiedAt,omitempty"`
+		CreatedAt *string `json:"createdAt,omitempty"`
+		CreatedByHandle *string `json:"createdByHandle,omitempty"`
+		CreatedByName *string `json:"createdByName,omitempty"`
+		CreatedFromRuleId *string `json:"createdFromRuleId,omitempty"`
+		JobDefinition *JobDefinition `json:"jobDefinition,omitempty"`
+		JobName *string `json:"jobName,omitempty"`
+		JobStatus *string `json:"jobStatus,omitempty"`
+		ModifiedAt *string `json:"modifiedAt,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "createdByHandle", "createdByName", "createdFromRuleId", "jobDefinition", "jobName", "jobStatus", "modifiedAt"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "createdAt", "createdByHandle", "createdByName", "createdFromRuleId", "jobDefinition", "jobName", "jobStatus", "modifiedAt",  })
 	} else {
 		return err
 	}
@@ -336,7 +351,7 @@ func (o *HistoricalJobResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.CreatedByHandle = all.CreatedByHandle
 	o.CreatedByName = all.CreatedByName
 	o.CreatedFromRuleId = all.CreatedFromRuleId
-	if all.JobDefinition != nil && all.JobDefinition.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.JobDefinition != nil && all.JobDefinition.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.JobDefinition = all.JobDefinition

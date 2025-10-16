@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestDetailsType Type of the Synthetic test, either `api` or `browser`.
 type SyntheticsTestDetailsType string
 
 // List of SyntheticsTestDetailsType.
 const (
-	SYNTHETICSTESTDETAILSTYPE_API     SyntheticsTestDetailsType = "api"
+	SYNTHETICSTESTDETAILSTYPE_API SyntheticsTestDetailsType = "api"
 	SYNTHETICSTESTDETAILSTYPE_BROWSER SyntheticsTestDetailsType = "browser"
-	SYNTHETICSTESTDETAILSTYPE_MOBILE  SyntheticsTestDetailsType = "mobile"
+	SYNTHETICSTESTDETAILSTYPE_MOBILE SyntheticsTestDetailsType = "mobile"
 )
 
 var allowedSyntheticsTestDetailsTypeEnumValues = []SyntheticsTestDetailsType{

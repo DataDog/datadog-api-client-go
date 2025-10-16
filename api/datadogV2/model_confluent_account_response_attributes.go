@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ConfluentAccountResponseAttributes The attributes of a Confluent account.
 type ConfluentAccountResponseAttributes struct {
@@ -19,9 +23,10 @@ type ConfluentAccountResponseAttributes struct {
 	// A list of strings representing tags. Can be a single key, or key-value pairs separated by a colon.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewConfluentAccountResponseAttributes instantiates a new ConfluentAccountResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewConfluentAccountResponseAttributesWithDefaults() *ConfluentAccountRespon
 	this := ConfluentAccountResponseAttributes{}
 	return &this
 }
-
 // GetApiKey returns the ApiKey field value.
 func (o *ConfluentAccountResponseAttributes) GetApiKey() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *ConfluentAccountResponseAttributes) GetApiKeyOk() (*string, bool) {
 func (o *ConfluentAccountResponseAttributes) SetApiKey(v string) {
 	o.ApiKey = v
 }
+
 
 // GetResources returns the Resources field value if set, zero value otherwise.
 func (o *ConfluentAccountResponseAttributes) GetResources() []ConfluentResourceResponseAttributes {
@@ -92,6 +97,7 @@ func (o *ConfluentAccountResponseAttributes) SetResources(v []ConfluentResourceR
 	o.Resources = v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ConfluentAccountResponseAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -120,6 +126,8 @@ func (o *ConfluentAccountResponseAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ConfluentAccountResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -143,9 +151,9 @@ func (o ConfluentAccountResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ConfluentAccountResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey    *string                               `json:"api_key"`
+		ApiKey *string `json:"api_key"`
 		Resources []ConfluentResourceResponseAttributes `json:"resources,omitempty"`
-		Tags      []string                              `json:"tags,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,7 +163,7 @@ func (o *ConfluentAccountResponseAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "resources", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_key", "resources", "tags",  })
 	} else {
 		return err
 	}

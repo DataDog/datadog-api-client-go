@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListStreamGroupByItems List of facets on which to group.
 type ListStreamGroupByItems struct {
 	// Facet name.
 	Facet string `json:"facet"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListStreamGroupByItems instantiates a new ListStreamGroupByItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewListStreamGroupByItemsWithDefaults() *ListStreamGroupByItems {
 	this := ListStreamGroupByItems{}
 	return &this
 }
-
 // GetFacet returns the Facet field value.
 func (o *ListStreamGroupByItems) GetFacet() string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *ListStreamGroupByItems) GetFacetOk() (*string, bool) {
 func (o *ListStreamGroupByItems) SetFacet(v string) {
 	o.Facet = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ListStreamGroupByItems) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *ListStreamGroupByItems) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"facet"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "facet",  })
 	} else {
 		return err
 	}

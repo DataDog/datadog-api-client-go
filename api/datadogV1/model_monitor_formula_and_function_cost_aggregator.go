@@ -2,28 +2,32 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorFormulaAndFunctionCostAggregator Aggregation methods for metric queries.
 type MonitorFormulaAndFunctionCostAggregator string
 
 // List of MonitorFormulaAndFunctionCostAggregator.
 const (
-	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_AVG        MonitorFormulaAndFunctionCostAggregator = "avg"
-	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_SUM        MonitorFormulaAndFunctionCostAggregator = "sum"
-	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_MAX        MonitorFormulaAndFunctionCostAggregator = "max"
-	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_MIN        MonitorFormulaAndFunctionCostAggregator = "min"
-	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_LAST       MonitorFormulaAndFunctionCostAggregator = "last"
-	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_AREA       MonitorFormulaAndFunctionCostAggregator = "area"
-	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_L2NORM     MonitorFormulaAndFunctionCostAggregator = "l2norm"
+	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_AVG MonitorFormulaAndFunctionCostAggregator = "avg"
+	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_SUM MonitorFormulaAndFunctionCostAggregator = "sum"
+	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_MAX MonitorFormulaAndFunctionCostAggregator = "max"
+	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_MIN MonitorFormulaAndFunctionCostAggregator = "min"
+	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_LAST MonitorFormulaAndFunctionCostAggregator = "last"
+	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_AREA MonitorFormulaAndFunctionCostAggregator = "area"
+	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_L2NORM MonitorFormulaAndFunctionCostAggregator = "l2norm"
 	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_PERCENTILE MonitorFormulaAndFunctionCostAggregator = "percentile"
-	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_STDDEV     MonitorFormulaAndFunctionCostAggregator = "stddev"
+	MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_STDDEV MonitorFormulaAndFunctionCostAggregator = "stddev"
 )
 
 var allowedMonitorFormulaAndFunctionCostAggregatorEnumValues = []MonitorFormulaAndFunctionCostAggregator{

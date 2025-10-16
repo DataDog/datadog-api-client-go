@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentUpdateRelationships The incident's relationships for an update request.
 type IncidentUpdateRelationships struct {
@@ -17,9 +23,10 @@ type IncidentUpdateRelationships struct {
 	// A relationship reference for postmortems.
 	Postmortem *RelationshipToIncidentPostmortem `json:"postmortem,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentUpdateRelationships instantiates a new IncidentUpdateRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewIncidentUpdateRelationshipsWithDefaults() *IncidentUpdateRelationships {
 	this := IncidentUpdateRelationships{}
 	return &this
 }
-
 // GetCommanderUser returns the CommanderUser field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentUpdateRelationships) GetCommanderUser() NullableRelationshipToUser {
 	if o == nil || o.CommanderUser.Get() == nil {
@@ -51,7 +57,7 @@ func (o *IncidentUpdateRelationships) GetCommanderUser() NullableRelationshipToU
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentUpdateRelationships) GetCommanderUserOk() (*NullableRelationshipToUser, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.CommanderUser.Get(), o.CommanderUser.IsSet()
@@ -66,7 +72,6 @@ func (o *IncidentUpdateRelationships) HasCommanderUser() bool {
 func (o *IncidentUpdateRelationships) SetCommanderUser(v NullableRelationshipToUser) {
 	o.CommanderUser.Set(&v)
 }
-
 // SetCommanderUserNil sets the value for CommanderUser to be an explicit nil.
 func (o *IncidentUpdateRelationships) SetCommanderUserNil() {
 	o.CommanderUser.Set(nil)
@@ -76,6 +81,7 @@ func (o *IncidentUpdateRelationships) SetCommanderUserNil() {
 func (o *IncidentUpdateRelationships) UnsetCommanderUser() {
 	o.CommanderUser.Unset()
 }
+
 
 // GetIntegrations returns the Integrations field value if set, zero value otherwise.
 func (o *IncidentUpdateRelationships) GetIntegrations() RelationshipToIncidentIntegrationMetadatas {
@@ -105,6 +111,7 @@ func (o *IncidentUpdateRelationships) SetIntegrations(v RelationshipToIncidentIn
 	o.Integrations = &v
 }
 
+
 // GetPostmortem returns the Postmortem field value if set, zero value otherwise.
 func (o *IncidentUpdateRelationships) GetPostmortem() RelationshipToIncidentPostmortem {
 	if o == nil || o.Postmortem == nil {
@@ -133,6 +140,8 @@ func (o *IncidentUpdateRelationships) SetPostmortem(v RelationshipToIncidentPost
 	o.Postmortem = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentUpdateRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -158,27 +167,27 @@ func (o IncidentUpdateRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentUpdateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CommanderUser NullableNullableRelationshipToUser          `json:"commander_user,omitempty"`
-		Integrations  *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
-		Postmortem    *RelationshipToIncidentPostmortem           `json:"postmortem,omitempty"`
+		CommanderUser NullableNullableRelationshipToUser `json:"commander_user,omitempty"`
+		Integrations *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
+		Postmortem *RelationshipToIncidentPostmortem `json:"postmortem,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"commander_user", "integrations", "postmortem"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "commander_user", "integrations", "postmortem",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.CommanderUser = all.CommanderUser
-	if all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Integrations != nil && all.Integrations.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Integrations = all.Integrations
-	if all.Postmortem != nil && all.Postmortem.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Postmortem != nil && all.Postmortem.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Postmortem = all.Postmortem

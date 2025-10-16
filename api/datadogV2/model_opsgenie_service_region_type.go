@@ -2,21 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OpsgenieServiceRegionType The region for the Opsgenie service.
 type OpsgenieServiceRegionType string
 
 // List of OpsgenieServiceRegionType.
 const (
-	OPSGENIESERVICEREGIONTYPE_US     OpsgenieServiceRegionType = "us"
-	OPSGENIESERVICEREGIONTYPE_EU     OpsgenieServiceRegionType = "eu"
+	OPSGENIESERVICEREGIONTYPE_US OpsgenieServiceRegionType = "us"
+	OPSGENIESERVICEREGIONTYPE_EU OpsgenieServiceRegionType = "eu"
 	OPSGENIESERVICEREGIONTYPE_CUSTOM OpsgenieServiceRegionType = "custom"
 )
 

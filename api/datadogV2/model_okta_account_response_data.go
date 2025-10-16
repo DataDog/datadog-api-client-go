@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OktaAccountResponseData Data object of an Okta account
 type OktaAccountResponseData struct {
@@ -19,9 +23,10 @@ type OktaAccountResponseData struct {
 	// Account type for an Okta account.
 	Type OktaAccountType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOktaAccountResponseData instantiates a new OktaAccountResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewOktaAccountResponseDataWithDefaults() *OktaAccountResponseData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *OktaAccountResponseData) GetAttributes() OktaAccountAttributes {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *OktaAccountResponseData) GetAttributesOk() (*OktaAccountAttributes, boo
 func (o *OktaAccountResponseData) SetAttributes(v OktaAccountAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *OktaAccountResponseData) GetId() string {
@@ -91,6 +96,7 @@ func (o *OktaAccountResponseData) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetType returns the Type field value.
 func (o *OktaAccountResponseData) GetType() OktaAccountType {
 	if o == nil {
@@ -114,6 +120,8 @@ func (o *OktaAccountResponseData) SetType(v OktaAccountType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OktaAccountResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -134,8 +142,8 @@ func (o OktaAccountResponseData) MarshalJSON() ([]byte, error) {
 func (o *OktaAccountResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *OktaAccountAttributes `json:"attributes"`
-		Id         *string                `json:"id"`
-		Type       *OktaAccountType       `json:"type"`
+		Id *string `json:"id"`
+		Type *OktaAccountType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -151,7 +159,7 @@ func (o *OktaAccountResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

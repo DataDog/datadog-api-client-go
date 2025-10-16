@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleConditionParameters The scope of the WAF custom rule.
 type ApplicationSecurityWafCustomRuleConditionParameters struct {
@@ -26,9 +30,10 @@ type ApplicationSecurityWafCustomRuleConditionParameters struct {
 	// Store the captured value in the specified tag name. Only used with the capture_data operator.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafCustomRuleConditionParameters instantiates a new ApplicationSecurityWafCustomRuleConditionParameters object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewApplicationSecurityWafCustomRuleConditionParametersWithDefaults() *Appli
 	this := ApplicationSecurityWafCustomRuleConditionParameters{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleConditionParameters) GetData() string {
 	if o == nil || o.Data == nil {
@@ -76,6 +80,7 @@ func (o *ApplicationSecurityWafCustomRuleConditionParameters) SetData(v string) 
 	o.Data = &v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ApplicationSecurityWafCustomRuleConditionParameters) GetInputs() []ApplicationSecurityWafCustomRuleConditionInput {
 	if o == nil {
@@ -98,6 +103,7 @@ func (o *ApplicationSecurityWafCustomRuleConditionParameters) GetInputsOk() (*[]
 func (o *ApplicationSecurityWafCustomRuleConditionParameters) SetInputs(v []ApplicationSecurityWafCustomRuleConditionInput) {
 	o.Inputs = v
 }
+
 
 // GetList returns the List field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleConditionParameters) GetList() []string {
@@ -127,6 +133,7 @@ func (o *ApplicationSecurityWafCustomRuleConditionParameters) SetList(v []string
 	o.List = v
 }
 
+
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleConditionParameters) GetOptions() ApplicationSecurityWafCustomRuleConditionOptions {
 	if o == nil || o.Options == nil {
@@ -154,6 +161,7 @@ func (o *ApplicationSecurityWafCustomRuleConditionParameters) HasOptions() bool 
 func (o *ApplicationSecurityWafCustomRuleConditionParameters) SetOptions(v ApplicationSecurityWafCustomRuleConditionOptions) {
 	o.Options = &v
 }
+
 
 // GetRegex returns the Regex field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleConditionParameters) GetRegex() string {
@@ -183,6 +191,7 @@ func (o *ApplicationSecurityWafCustomRuleConditionParameters) SetRegex(v string)
 	o.Regex = &v
 }
 
+
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleConditionParameters) GetValue() string {
 	if o == nil || o.Value == nil {
@@ -210,6 +219,8 @@ func (o *ApplicationSecurityWafCustomRuleConditionParameters) HasValue() bool {
 func (o *ApplicationSecurityWafCustomRuleConditionParameters) SetValue(v string) {
 	o.Value = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafCustomRuleConditionParameters) MarshalJSON() ([]byte, error) {
@@ -243,12 +254,12 @@ func (o ApplicationSecurityWafCustomRuleConditionParameters) MarshalJSON() ([]by
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationSecurityWafCustomRuleConditionParameters) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data    *string                                           `json:"data,omitempty"`
-		Inputs  *[]ApplicationSecurityWafCustomRuleConditionInput `json:"inputs"`
-		List    []string                                          `json:"list,omitempty"`
+		Data *string `json:"data,omitempty"`
+		Inputs *[]ApplicationSecurityWafCustomRuleConditionInput `json:"inputs"`
+		List []string `json:"list,omitempty"`
 		Options *ApplicationSecurityWafCustomRuleConditionOptions `json:"options,omitempty"`
-		Regex   *string                                           `json:"regex,omitempty"`
-		Value   *string                                           `json:"value,omitempty"`
+		Regex *string `json:"regex,omitempty"`
+		Value *string `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -258,7 +269,7 @@ func (o *ApplicationSecurityWafCustomRuleConditionParameters) UnmarshalJSON(byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "inputs", "list", "options", "regex", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "inputs", "list", "options", "regex", "value",  })
 	} else {
 		return err
 	}
@@ -267,7 +278,7 @@ func (o *ApplicationSecurityWafCustomRuleConditionParameters) UnmarshalJSON(byte
 	o.Data = all.Data
 	o.Inputs = *all.Inputs
 	o.List = all.List
-	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Options = all.Options

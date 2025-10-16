@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsGroupByHistogram Used to perform a histogram computation (only for measure facets).
 // Note: at most 100 buckets are allowed, the number of buckets is (max - min)/interval.
@@ -22,9 +26,10 @@ type LogsGroupByHistogram struct {
 	// (values smaller than this one are filtered out)
 	Min float64 `json:"min"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsGroupByHistogram instantiates a new LogsGroupByHistogram object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewLogsGroupByHistogramWithDefaults() *LogsGroupByHistogram {
 	this := LogsGroupByHistogram{}
 	return &this
 }
-
 // GetInterval returns the Interval field value.
 func (o *LogsGroupByHistogram) GetInterval() float64 {
 	if o == nil {
@@ -68,6 +72,7 @@ func (o *LogsGroupByHistogram) GetIntervalOk() (*float64, bool) {
 func (o *LogsGroupByHistogram) SetInterval(v float64) {
 	o.Interval = v
 }
+
 
 // GetMax returns the Max field value.
 func (o *LogsGroupByHistogram) GetMax() float64 {
@@ -92,6 +97,7 @@ func (o *LogsGroupByHistogram) SetMax(v float64) {
 	o.Max = v
 }
 
+
 // GetMin returns the Min field value.
 func (o *LogsGroupByHistogram) GetMin() float64 {
 	if o == nil {
@@ -115,6 +121,8 @@ func (o *LogsGroupByHistogram) SetMin(v float64) {
 	o.Min = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsGroupByHistogram) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -135,8 +143,8 @@ func (o LogsGroupByHistogram) MarshalJSON() ([]byte, error) {
 func (o *LogsGroupByHistogram) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Interval *float64 `json:"interval"`
-		Max      *float64 `json:"max"`
-		Min      *float64 `json:"min"`
+		Max *float64 `json:"max"`
+		Min *float64 `json:"min"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *LogsGroupByHistogram) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"interval", "max", "min"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "interval", "max", "min",  })
 	} else {
 		return err
 	}

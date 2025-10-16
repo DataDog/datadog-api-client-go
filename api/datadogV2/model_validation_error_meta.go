@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ValidationErrorMeta Describes additional metadata for validation errors, including field names and error messages.
 type ValidationErrorMeta struct {
@@ -19,9 +23,10 @@ type ValidationErrorMeta struct {
 	// The detailed error message.
 	Message string `json:"message"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewValidationErrorMeta instantiates a new ValidationErrorMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewValidationErrorMetaWithDefaults() *ValidationErrorMeta {
 	this := ValidationErrorMeta{}
 	return &this
 }
-
 // GetField returns the Field field value if set, zero value otherwise.
 func (o *ValidationErrorMeta) GetField() string {
 	if o == nil || o.Field == nil {
@@ -68,6 +72,7 @@ func (o *ValidationErrorMeta) HasField() bool {
 func (o *ValidationErrorMeta) SetField(v string) {
 	o.Field = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ValidationErrorMeta) GetId() string {
@@ -97,6 +102,7 @@ func (o *ValidationErrorMeta) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetMessage returns the Message field value.
 func (o *ValidationErrorMeta) GetMessage() string {
 	if o == nil {
@@ -119,6 +125,8 @@ func (o *ValidationErrorMeta) GetMessageOk() (*string, bool) {
 func (o *ValidationErrorMeta) SetMessage(v string) {
 	o.Message = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ValidationErrorMeta) MarshalJSON() ([]byte, error) {
@@ -143,8 +151,8 @@ func (o ValidationErrorMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ValidationErrorMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Field   *string `json:"field,omitempty"`
-		Id      *string `json:"id,omitempty"`
+		Field *string `json:"field,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Message *string `json:"message"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -155,7 +163,7 @@ func (o *ValidationErrorMeta) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"field", "id", "message"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "field", "id", "message",  })
 	} else {
 		return err
 	}

@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetSortOrderBy - The item to sort the widget by.
 type WidgetSortOrderBy struct {
 	WidgetFormulaSort *WidgetFormulaSort
-	WidgetGroupSort   *WidgetGroupSort
+	WidgetGroupSort *WidgetGroupSort
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -80,9 +86,11 @@ func (obj WidgetSortOrderBy) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.WidgetFormulaSort)
 	}
 
+
 	if obj.WidgetGroupSort != nil {
 		return datadog.Marshal(&obj.WidgetGroupSort)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj WidgetSortOrderBy) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *WidgetSortOrderBy) GetActualInstance() interface{} {
+func (obj *WidgetSortOrderBy) GetActualInstance() (interface{}) {
 	if obj.WidgetFormulaSort != nil {
 		return obj.WidgetFormulaSort
 	}
 
+
 	if obj.WidgetGroupSort != nil {
 		return obj.WidgetGroupSort
 	}
+
 
 	// all schemas are nil
 	return nil

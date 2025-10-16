@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineRsyslogDestination The `rsyslog` destination forwards logs to an external `rsyslog` server over TCP or UDP using the syslog protocol.
 type ObservabilityPipelineRsyslogDestination struct {
@@ -23,9 +27,10 @@ type ObservabilityPipelineRsyslogDestination struct {
 	// The destination type. The value should always be `rsyslog`.
 	Type ObservabilityPipelineRsyslogDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineRsyslogDestination instantiates a new ObservabilityPipelineRsyslogDestination object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewObservabilityPipelineRsyslogDestinationWithDefaults() *ObservabilityPipe
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineRsyslogDestination) GetId() string {
 	if o == nil {
@@ -72,6 +76,7 @@ func (o *ObservabilityPipelineRsyslogDestination) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineRsyslogDestination) GetInputs() []string {
 	if o == nil {
@@ -94,6 +99,7 @@ func (o *ObservabilityPipelineRsyslogDestination) GetInputsOk() (*[]string, bool
 func (o *ObservabilityPipelineRsyslogDestination) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetKeepalive returns the Keepalive field value if set, zero value otherwise.
 func (o *ObservabilityPipelineRsyslogDestination) GetKeepalive() int64 {
@@ -123,6 +129,7 @@ func (o *ObservabilityPipelineRsyslogDestination) SetKeepalive(v int64) {
 	o.Keepalive = &v
 }
 
+
 // GetTls returns the Tls field value if set, zero value otherwise.
 func (o *ObservabilityPipelineRsyslogDestination) GetTls() ObservabilityPipelineTls {
 	if o == nil || o.Tls == nil {
@@ -151,6 +158,7 @@ func (o *ObservabilityPipelineRsyslogDestination) SetTls(v ObservabilityPipeline
 	o.Tls = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineRsyslogDestination) GetType() ObservabilityPipelineRsyslogDestinationType {
 	if o == nil {
@@ -173,6 +181,8 @@ func (o *ObservabilityPipelineRsyslogDestination) GetTypeOk() (*ObservabilityPip
 func (o *ObservabilityPipelineRsyslogDestination) SetType(v ObservabilityPipelineRsyslogDestinationType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineRsyslogDestination) MarshalJSON() ([]byte, error) {
@@ -199,11 +209,11 @@ func (o ObservabilityPipelineRsyslogDestination) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineRsyslogDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id        *string                                      `json:"id"`
-		Inputs    *[]string                                    `json:"inputs"`
-		Keepalive *int64                                       `json:"keepalive,omitempty"`
-		Tls       *ObservabilityPipelineTls                    `json:"tls,omitempty"`
-		Type      *ObservabilityPipelineRsyslogDestinationType `json:"type"`
+		Id *string `json:"id"`
+		Inputs *[]string `json:"inputs"`
+		Keepalive *int64 `json:"keepalive,omitempty"`
+		Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
+		Type *ObservabilityPipelineRsyslogDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -219,7 +229,7 @@ func (o *ObservabilityPipelineRsyslogDestination) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "inputs", "keepalive", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "inputs", "keepalive", "tls", "type",  })
 	} else {
 		return err
 	}
@@ -228,7 +238,7 @@ func (o *ObservabilityPipelineRsyslogDestination) UnmarshalJSON(bytes []byte) (e
 	o.Id = *all.Id
 	o.Inputs = *all.Inputs
 	o.Keepalive = all.Keepalive
-	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tls = all.Tls

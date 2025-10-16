@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSyslogNgSource The `syslog_ng` source listens for logs over TCP or UDP from a `syslog-ng` server using the syslog protocol.
 type ObservabilityPipelineSyslogNgSource struct {
@@ -21,9 +25,10 @@ type ObservabilityPipelineSyslogNgSource struct {
 	// The source type. The value should always be `syslog_ng`.
 	Type ObservabilityPipelineSyslogNgSourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSyslogNgSource instantiates a new ObservabilityPipelineSyslogNgSource object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewObservabilityPipelineSyslogNgSourceWithDefaults() *ObservabilityPipeline
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineSyslogNgSource) GetId() string {
 	if o == nil {
@@ -70,6 +74,7 @@ func (o *ObservabilityPipelineSyslogNgSource) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetMode returns the Mode field value.
 func (o *ObservabilityPipelineSyslogNgSource) GetMode() ObservabilityPipelineSyslogSourceMode {
 	if o == nil {
@@ -92,6 +97,7 @@ func (o *ObservabilityPipelineSyslogNgSource) GetModeOk() (*ObservabilityPipelin
 func (o *ObservabilityPipelineSyslogNgSource) SetMode(v ObservabilityPipelineSyslogSourceMode) {
 	o.Mode = v
 }
+
 
 // GetTls returns the Tls field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSyslogNgSource) GetTls() ObservabilityPipelineTls {
@@ -121,6 +127,7 @@ func (o *ObservabilityPipelineSyslogNgSource) SetTls(v ObservabilityPipelineTls)
 	o.Tls = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineSyslogNgSource) GetType() ObservabilityPipelineSyslogNgSourceType {
 	if o == nil {
@@ -144,6 +151,8 @@ func (o *ObservabilityPipelineSyslogNgSource) SetType(v ObservabilityPipelineSys
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSyslogNgSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -166,9 +175,9 @@ func (o ObservabilityPipelineSyslogNgSource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSyslogNgSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                                  `json:"id"`
-		Mode *ObservabilityPipelineSyslogSourceMode   `json:"mode"`
-		Tls  *ObservabilityPipelineTls                `json:"tls,omitempty"`
+		Id *string `json:"id"`
+		Mode *ObservabilityPipelineSyslogSourceMode `json:"mode"`
+		Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
 		Type *ObservabilityPipelineSyslogNgSourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -185,7 +194,7 @@ func (o *ObservabilityPipelineSyslogNgSource) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "mode", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "mode", "tls", "type",  })
 	} else {
 		return err
 	}
@@ -197,7 +206,7 @@ func (o *ObservabilityPipelineSyslogNgSource) UnmarshalJSON(bytes []byte) (err e
 	} else {
 		o.Mode = *all.Mode
 	}
-	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tls = all.Tls

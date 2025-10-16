@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DatasetAttributesRequest Dataset metadata and configurations.
 type DatasetAttributesRequest struct {
@@ -19,9 +23,10 @@ type DatasetAttributesRequest struct {
 	// List of product-specific filters.
 	ProductFilters []FiltersPerProduct `json:"product_filters"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDatasetAttributesRequest instantiates a new DatasetAttributesRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewDatasetAttributesRequestWithDefaults() *DatasetAttributesRequest {
 	this := DatasetAttributesRequest{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *DatasetAttributesRequest) GetName() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *DatasetAttributesRequest) GetNameOk() (*string, bool) {
 func (o *DatasetAttributesRequest) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetPrincipals returns the Principals field value.
 func (o *DatasetAttributesRequest) GetPrincipals() []string {
@@ -89,6 +94,7 @@ func (o *DatasetAttributesRequest) SetPrincipals(v []string) {
 	o.Principals = v
 }
 
+
 // GetProductFilters returns the ProductFilters field value.
 func (o *DatasetAttributesRequest) GetProductFilters() []FiltersPerProduct {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *DatasetAttributesRequest) SetProductFilters(v []FiltersPerProduct) {
 	o.ProductFilters = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DatasetAttributesRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,8 +139,8 @@ func (o DatasetAttributesRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DatasetAttributesRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name           *string              `json:"name"`
-		Principals     *[]string            `json:"principals"`
+		Name *string `json:"name"`
+		Principals *[]string `json:"principals"`
 		ProductFilters *[]FiltersPerProduct `json:"product_filters"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -149,7 +157,7 @@ func (o *DatasetAttributesRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "principals", "product_filters"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "principals", "product_filters",  })
 	} else {
 		return err
 	}

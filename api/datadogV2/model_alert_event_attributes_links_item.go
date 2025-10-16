@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AlertEventAttributesLinksItem A link.
 type AlertEventAttributesLinksItem struct {
@@ -17,9 +23,10 @@ type AlertEventAttributesLinksItem struct {
 	// The URL of the link.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAlertEventAttributesLinksItem instantiates a new AlertEventAttributesLinksItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewAlertEventAttributesLinksItemWithDefaults() *AlertEventAttributesLinksIt
 	this := AlertEventAttributesLinksItem{}
 	return &this
 }
-
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *AlertEventAttributesLinksItem) GetCategory() AlertEventAttributesLinksItemCategory {
 	if o == nil || o.Category == nil {
@@ -65,6 +71,7 @@ func (o *AlertEventAttributesLinksItem) HasCategory() bool {
 func (o *AlertEventAttributesLinksItem) SetCategory(v AlertEventAttributesLinksItemCategory) {
 	o.Category = &v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *AlertEventAttributesLinksItem) GetTitle() string {
@@ -94,6 +101,7 @@ func (o *AlertEventAttributesLinksItem) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *AlertEventAttributesLinksItem) GetUrl() string {
 	if o == nil || o.Url == nil {
@@ -122,6 +130,8 @@ func (o *AlertEventAttributesLinksItem) SetUrl(v string) {
 	o.Url = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AlertEventAttributesLinksItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,21 +158,21 @@ func (o AlertEventAttributesLinksItem) MarshalJSON() ([]byte, error) {
 func (o *AlertEventAttributesLinksItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Category *AlertEventAttributesLinksItemCategory `json:"category,omitempty"`
-		Title    *string                                `json:"title,omitempty"`
-		Url      *string                                `json:"url,omitempty"`
+		Title *string `json:"title,omitempty"`
+		Url *string `json:"url,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"category", "title", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "category", "title", "url",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Category != nil && !all.Category.IsValid() {
+	if all.Category != nil &&!all.Category.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Category = all.Category

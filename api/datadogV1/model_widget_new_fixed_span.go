@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetNewFixedSpan Used for fixed span times, such as 'March 1 to March 7'.
 type WidgetNewFixedSpan struct {
@@ -21,9 +25,10 @@ type WidgetNewFixedSpan struct {
 	// Type "fixed" denotes a fixed span.
 	Type WidgetNewFixedSpanType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWidgetNewFixedSpan instantiates a new WidgetNewFixedSpan object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewWidgetNewFixedSpanWithDefaults() *WidgetNewFixedSpan {
 	this := WidgetNewFixedSpan{}
 	return &this
 }
-
 // GetFrom returns the From field value.
 func (o *WidgetNewFixedSpan) GetFrom() int64 {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *WidgetNewFixedSpan) GetFromOk() (*int64, bool) {
 func (o *WidgetNewFixedSpan) SetFrom(v int64) {
 	o.From = v
 }
+
 
 // GetHideIncompleteCostData returns the HideIncompleteCostData field value if set, zero value otherwise.
 func (o *WidgetNewFixedSpan) GetHideIncompleteCostData() bool {
@@ -96,6 +101,7 @@ func (o *WidgetNewFixedSpan) SetHideIncompleteCostData(v bool) {
 	o.HideIncompleteCostData = &v
 }
 
+
 // GetTo returns the To field value.
 func (o *WidgetNewFixedSpan) GetTo() int64 {
 	if o == nil {
@@ -118,6 +124,7 @@ func (o *WidgetNewFixedSpan) GetToOk() (*int64, bool) {
 func (o *WidgetNewFixedSpan) SetTo(v int64) {
 	o.To = v
 }
+
 
 // GetType returns the Type field value.
 func (o *WidgetNewFixedSpan) GetType() WidgetNewFixedSpanType {
@@ -142,6 +149,8 @@ func (o *WidgetNewFixedSpan) SetType(v WidgetNewFixedSpanType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o WidgetNewFixedSpan) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -164,10 +173,10 @@ func (o WidgetNewFixedSpan) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetNewFixedSpan) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		From                   *int64                  `json:"from"`
-		HideIncompleteCostData *bool                   `json:"hide_incomplete_cost_data,omitempty"`
-		To                     *int64                  `json:"to"`
-		Type                   *WidgetNewFixedSpanType `json:"type"`
+		From *int64 `json:"from"`
+		HideIncompleteCostData *bool `json:"hide_incomplete_cost_data,omitempty"`
+		To *int64 `json:"to"`
+		Type *WidgetNewFixedSpanType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -183,7 +192,7 @@ func (o *WidgetNewFixedSpan) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"from", "hide_incomplete_cost_data", "to", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "from", "hide_incomplete_cost_data", "to", "type",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsRetentionAggSumUsage Object containing indexed logs usage aggregated across organizations and months for a retention period.
 type LogsRetentionAggSumUsage struct {
@@ -19,9 +25,10 @@ type LogsRetentionAggSumUsage struct {
 	// The retention period in days or "custom" for all custom retention periods.
 	Retention *string `json:"retention,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsRetentionAggSumUsage instantiates a new LogsRetentionAggSumUsage object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewLogsRetentionAggSumUsageWithDefaults() *LogsRetentionAggSumUsage {
 	this := LogsRetentionAggSumUsage{}
 	return &this
 }
-
 // GetLogsIndexedLogsUsageAggSum returns the LogsIndexedLogsUsageAggSum field value if set, zero value otherwise.
 func (o *LogsRetentionAggSumUsage) GetLogsIndexedLogsUsageAggSum() int64 {
 	if o == nil || o.LogsIndexedLogsUsageAggSum == nil {
@@ -67,6 +73,7 @@ func (o *LogsRetentionAggSumUsage) HasLogsIndexedLogsUsageAggSum() bool {
 func (o *LogsRetentionAggSumUsage) SetLogsIndexedLogsUsageAggSum(v int64) {
 	o.LogsIndexedLogsUsageAggSum = &v
 }
+
 
 // GetLogsLiveIndexedLogsUsageAggSum returns the LogsLiveIndexedLogsUsageAggSum field value if set, zero value otherwise.
 func (o *LogsRetentionAggSumUsage) GetLogsLiveIndexedLogsUsageAggSum() int64 {
@@ -96,6 +103,7 @@ func (o *LogsRetentionAggSumUsage) SetLogsLiveIndexedLogsUsageAggSum(v int64) {
 	o.LogsLiveIndexedLogsUsageAggSum = &v
 }
 
+
 // GetLogsRehydratedIndexedLogsUsageAggSum returns the LogsRehydratedIndexedLogsUsageAggSum field value if set, zero value otherwise.
 func (o *LogsRetentionAggSumUsage) GetLogsRehydratedIndexedLogsUsageAggSum() int64 {
 	if o == nil || o.LogsRehydratedIndexedLogsUsageAggSum == nil {
@@ -123,6 +131,7 @@ func (o *LogsRetentionAggSumUsage) HasLogsRehydratedIndexedLogsUsageAggSum() boo
 func (o *LogsRetentionAggSumUsage) SetLogsRehydratedIndexedLogsUsageAggSum(v int64) {
 	o.LogsRehydratedIndexedLogsUsageAggSum = &v
 }
+
 
 // GetRetention returns the Retention field value if set, zero value otherwise.
 func (o *LogsRetentionAggSumUsage) GetRetention() string {
@@ -152,6 +161,8 @@ func (o *LogsRetentionAggSumUsage) SetRetention(v string) {
 	o.Retention = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsRetentionAggSumUsage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,17 +191,17 @@ func (o LogsRetentionAggSumUsage) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsRetentionAggSumUsage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		LogsIndexedLogsUsageAggSum           *int64  `json:"logs_indexed_logs_usage_agg_sum,omitempty"`
-		LogsLiveIndexedLogsUsageAggSum       *int64  `json:"logs_live_indexed_logs_usage_agg_sum,omitempty"`
-		LogsRehydratedIndexedLogsUsageAggSum *int64  `json:"logs_rehydrated_indexed_logs_usage_agg_sum,omitempty"`
-		Retention                            *string `json:"retention,omitempty"`
+		LogsIndexedLogsUsageAggSum *int64 `json:"logs_indexed_logs_usage_agg_sum,omitempty"`
+		LogsLiveIndexedLogsUsageAggSum *int64 `json:"logs_live_indexed_logs_usage_agg_sum,omitempty"`
+		LogsRehydratedIndexedLogsUsageAggSum *int64 `json:"logs_rehydrated_indexed_logs_usage_agg_sum,omitempty"`
+		Retention *string `json:"retention,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"logs_indexed_logs_usage_agg_sum", "logs_live_indexed_logs_usage_agg_sum", "logs_rehydrated_indexed_logs_usage_agg_sum", "retention"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "logs_indexed_logs_usage_agg_sum", "logs_live_indexed_logs_usage_agg_sum", "logs_rehydrated_indexed_logs_usage_agg_sum", "retention",  })
 	} else {
 		return err
 	}

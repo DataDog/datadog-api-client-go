@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ContainerMetaPage Paging attributes.
 type ContainerMetaPage struct {
@@ -23,9 +29,10 @@ type ContainerMetaPage struct {
 	// Type of Container pagination.
 	Type *ContainerMetaPageType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewContainerMetaPage instantiates a new ContainerMetaPage object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +54,6 @@ func NewContainerMetaPageWithDefaults() *ContainerMetaPage {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetCursor returns the Cursor field value if set, zero value otherwise.
 func (o *ContainerMetaPage) GetCursor() string {
 	if o == nil || o.Cursor == nil {
@@ -75,6 +81,7 @@ func (o *ContainerMetaPage) HasCursor() bool {
 func (o *ContainerMetaPage) SetCursor(v string) {
 	o.Cursor = &v
 }
+
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *ContainerMetaPage) GetLimit() int32 {
@@ -104,6 +111,7 @@ func (o *ContainerMetaPage) SetLimit(v int32) {
 	o.Limit = &v
 }
 
+
 // GetNextCursor returns the NextCursor field value if set, zero value otherwise.
 func (o *ContainerMetaPage) GetNextCursor() string {
 	if o == nil || o.NextCursor == nil {
@@ -132,6 +140,7 @@ func (o *ContainerMetaPage) SetNextCursor(v string) {
 	o.NextCursor = &v
 }
 
+
 // GetPrevCursor returns the PrevCursor field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ContainerMetaPage) GetPrevCursor() string {
 	if o == nil || o.PrevCursor.Get() == nil {
@@ -145,7 +154,7 @@ func (o *ContainerMetaPage) GetPrevCursor() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *ContainerMetaPage) GetPrevCursorOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.PrevCursor.Get(), o.PrevCursor.IsSet()
@@ -160,7 +169,6 @@ func (o *ContainerMetaPage) HasPrevCursor() bool {
 func (o *ContainerMetaPage) SetPrevCursor(v string) {
 	o.PrevCursor.Set(&v)
 }
-
 // SetPrevCursorNil sets the value for PrevCursor to be an explicit nil.
 func (o *ContainerMetaPage) SetPrevCursorNil() {
 	o.PrevCursor.Set(nil)
@@ -170,6 +178,7 @@ func (o *ContainerMetaPage) SetPrevCursorNil() {
 func (o *ContainerMetaPage) UnsetPrevCursor() {
 	o.PrevCursor.Unset()
 }
+
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *ContainerMetaPage) GetTotal() int64 {
@@ -199,6 +208,7 @@ func (o *ContainerMetaPage) SetTotal(v int64) {
 	o.Total = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ContainerMetaPage) GetType() ContainerMetaPageType {
 	if o == nil || o.Type == nil {
@@ -226,6 +236,8 @@ func (o *ContainerMetaPage) HasType() bool {
 func (o *ContainerMetaPage) SetType(v ContainerMetaPageType) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ContainerMetaPage) MarshalJSON() ([]byte, error) {
@@ -261,19 +273,19 @@ func (o ContainerMetaPage) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ContainerMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Cursor     *string                `json:"cursor,omitempty"`
-		Limit      *int32                 `json:"limit,omitempty"`
-		NextCursor *string                `json:"next_cursor,omitempty"`
+		Cursor *string `json:"cursor,omitempty"`
+		Limit *int32 `json:"limit,omitempty"`
+		NextCursor *string `json:"next_cursor,omitempty"`
 		PrevCursor datadog.NullableString `json:"prev_cursor,omitempty"`
-		Total      *int64                 `json:"total,omitempty"`
-		Type       *ContainerMetaPageType `json:"type,omitempty"`
+		Total *int64 `json:"total,omitempty"`
+		Type *ContainerMetaPageType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cursor", "limit", "next_cursor", "prev_cursor", "total", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cursor", "limit", "next_cursor", "prev_cursor", "total", "type",  })
 	} else {
 		return err
 	}
@@ -284,7 +296,7 @@ func (o *ContainerMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	o.NextCursor = all.NextCursor
 	o.PrevCursor = all.PrevCursor
 	o.Total = all.Total
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

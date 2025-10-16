@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetNumberFormat Number format options for the widget.
 type WidgetNumberFormat struct {
@@ -15,9 +21,10 @@ type WidgetNumberFormat struct {
 	// The definition of `NumberFormatUnitScale` object.
 	UnitScale NullableNumberFormatUnitScale `json:"unit_scale,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewWidgetNumberFormat instantiates a new WidgetNumberFormat object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewWidgetNumberFormatWithDefaults() *WidgetNumberFormat {
 	this := WidgetNumberFormat{}
 	return &this
 }
-
 // GetUnit returns the Unit field value if set, zero value otherwise.
 func (o *WidgetNumberFormat) GetUnit() NumberFormatUnit {
 	if o == nil || o.Unit == nil {
@@ -64,6 +70,7 @@ func (o *WidgetNumberFormat) SetUnit(v NumberFormatUnit) {
 	o.Unit = &v
 }
 
+
 // GetUnitScale returns the UnitScale field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *WidgetNumberFormat) GetUnitScale() NumberFormatUnitScale {
 	if o == nil || o.UnitScale.Get() == nil {
@@ -77,7 +84,7 @@ func (o *WidgetNumberFormat) GetUnitScale() NumberFormatUnitScale {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *WidgetNumberFormat) GetUnitScaleOk() (*NumberFormatUnitScale, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.UnitScale.Get(), o.UnitScale.IsSet()
@@ -92,7 +99,6 @@ func (o *WidgetNumberFormat) HasUnitScale() bool {
 func (o *WidgetNumberFormat) SetUnitScale(v NumberFormatUnitScale) {
 	o.UnitScale.Set(&v)
 }
-
 // SetUnitScaleNil sets the value for UnitScale to be an explicit nil.
 func (o *WidgetNumberFormat) SetUnitScaleNil() {
 	o.UnitScale.Set(nil)
@@ -102,6 +108,8 @@ func (o *WidgetNumberFormat) SetUnitScaleNil() {
 func (o *WidgetNumberFormat) UnsetUnitScale() {
 	o.UnitScale.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o WidgetNumberFormat) MarshalJSON() ([]byte, error) {
@@ -125,7 +133,7 @@ func (o WidgetNumberFormat) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *WidgetNumberFormat) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Unit      *NumberFormatUnit             `json:"unit,omitempty"`
+		Unit *NumberFormatUnit `json:"unit,omitempty"`
 		UnitScale NullableNumberFormatUnitScale `json:"unit_scale,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -133,7 +141,7 @@ func (o *WidgetNumberFormat) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"unit", "unit_scale"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "unit", "unit_scale",  })
 	} else {
 		return err
 	}

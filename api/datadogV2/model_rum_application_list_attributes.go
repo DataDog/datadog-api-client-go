@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RUMApplicationListAttributes RUM application list attributes.
 type RUMApplicationListAttributes struct {
@@ -35,9 +39,10 @@ type RUMApplicationListAttributes struct {
 	// Handle of the updater user.
 	UpdatedByHandle string `json:"updated_by_handle"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRUMApplicationListAttributes instantiates a new RUMApplicationListAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -63,7 +68,6 @@ func NewRUMApplicationListAttributesWithDefaults() *RUMApplicationListAttributes
 	this := RUMApplicationListAttributes{}
 	return &this
 }
-
 // GetApplicationId returns the ApplicationId field value.
 func (o *RUMApplicationListAttributes) GetApplicationId() string {
 	if o == nil {
@@ -86,6 +90,7 @@ func (o *RUMApplicationListAttributes) GetApplicationIdOk() (*string, bool) {
 func (o *RUMApplicationListAttributes) SetApplicationId(v string) {
 	o.ApplicationId = v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value.
 func (o *RUMApplicationListAttributes) GetCreatedAt() int64 {
@@ -110,6 +115,7 @@ func (o *RUMApplicationListAttributes) SetCreatedAt(v int64) {
 	o.CreatedAt = v
 }
 
+
 // GetCreatedByHandle returns the CreatedByHandle field value.
 func (o *RUMApplicationListAttributes) GetCreatedByHandle() string {
 	if o == nil {
@@ -132,6 +138,7 @@ func (o *RUMApplicationListAttributes) GetCreatedByHandleOk() (*string, bool) {
 func (o *RUMApplicationListAttributes) SetCreatedByHandle(v string) {
 	o.CreatedByHandle = v
 }
+
 
 // GetHash returns the Hash field value if set, zero value otherwise.
 func (o *RUMApplicationListAttributes) GetHash() string {
@@ -161,6 +168,7 @@ func (o *RUMApplicationListAttributes) SetHash(v string) {
 	o.Hash = &v
 }
 
+
 // GetIsActive returns the IsActive field value if set, zero value otherwise.
 func (o *RUMApplicationListAttributes) GetIsActive() bool {
 	if o == nil || o.IsActive == nil {
@@ -189,6 +197,7 @@ func (o *RUMApplicationListAttributes) SetIsActive(v bool) {
 	o.IsActive = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *RUMApplicationListAttributes) GetName() string {
 	if o == nil {
@@ -212,6 +221,7 @@ func (o *RUMApplicationListAttributes) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetOrgId returns the OrgId field value.
 func (o *RUMApplicationListAttributes) GetOrgId() int32 {
 	if o == nil {
@@ -234,6 +244,7 @@ func (o *RUMApplicationListAttributes) GetOrgIdOk() (*int32, bool) {
 func (o *RUMApplicationListAttributes) SetOrgId(v int32) {
 	o.OrgId = v
 }
+
 
 // GetProductScales returns the ProductScales field value if set, zero value otherwise.
 func (o *RUMApplicationListAttributes) GetProductScales() RUMProductScales {
@@ -263,6 +274,7 @@ func (o *RUMApplicationListAttributes) SetProductScales(v RUMProductScales) {
 	o.ProductScales = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *RUMApplicationListAttributes) GetType() string {
 	if o == nil {
@@ -285,6 +297,7 @@ func (o *RUMApplicationListAttributes) GetTypeOk() (*string, bool) {
 func (o *RUMApplicationListAttributes) SetType(v string) {
 	o.Type = v
 }
+
 
 // GetUpdatedAt returns the UpdatedAt field value.
 func (o *RUMApplicationListAttributes) GetUpdatedAt() int64 {
@@ -309,6 +322,7 @@ func (o *RUMApplicationListAttributes) SetUpdatedAt(v int64) {
 	o.UpdatedAt = v
 }
 
+
 // GetUpdatedByHandle returns the UpdatedByHandle field value.
 func (o *RUMApplicationListAttributes) GetUpdatedByHandle() string {
 	if o == nil {
@@ -331,6 +345,8 @@ func (o *RUMApplicationListAttributes) GetUpdatedByHandleOk() (*string, bool) {
 func (o *RUMApplicationListAttributes) SetUpdatedByHandle(v string) {
 	o.UpdatedByHandle = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMApplicationListAttributes) MarshalJSON() ([]byte, error) {
@@ -365,17 +381,17 @@ func (o RUMApplicationListAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RUMApplicationListAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApplicationId   *string           `json:"application_id"`
-		CreatedAt       *int64            `json:"created_at"`
-		CreatedByHandle *string           `json:"created_by_handle"`
-		Hash            *string           `json:"hash,omitempty"`
-		IsActive        *bool             `json:"is_active,omitempty"`
-		Name            *string           `json:"name"`
-		OrgId           *int32            `json:"org_id"`
-		ProductScales   *RUMProductScales `json:"product_scales,omitempty"`
-		Type            *string           `json:"type"`
-		UpdatedAt       *int64            `json:"updated_at"`
-		UpdatedByHandle *string           `json:"updated_by_handle"`
+		ApplicationId *string `json:"application_id"`
+		CreatedAt *int64 `json:"created_at"`
+		CreatedByHandle *string `json:"created_by_handle"`
+		Hash *string `json:"hash,omitempty"`
+		IsActive *bool `json:"is_active,omitempty"`
+		Name *string `json:"name"`
+		OrgId *int32 `json:"org_id"`
+		ProductScales *RUMProductScales `json:"product_scales,omitempty"`
+		Type *string `json:"type"`
+		UpdatedAt *int64 `json:"updated_at"`
+		UpdatedByHandle *string `json:"updated_by_handle"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -406,7 +422,7 @@ func (o *RUMApplicationListAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"application_id", "created_at", "created_by_handle", "hash", "is_active", "name", "org_id", "product_scales", "type", "updated_at", "updated_by_handle"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "application_id", "created_at", "created_by_handle", "hash", "is_active", "name", "org_id", "product_scales", "type", "updated_at", "updated_by_handle",  })
 	} else {
 		return err
 	}
@@ -419,7 +435,7 @@ func (o *RUMApplicationListAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.IsActive = all.IsActive
 	o.Name = *all.Name
 	o.OrgId = *all.OrgId
-	if all.ProductScales != nil && all.ProductScales.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ProductScales != nil && all.ProductScales.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ProductScales = all.ProductScales

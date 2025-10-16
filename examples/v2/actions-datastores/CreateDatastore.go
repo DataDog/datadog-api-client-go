@@ -2,31 +2,32 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV2.CreateAppsDatastoreRequest{
-		Data: &datadogV2.CreateAppsDatastoreRequestData{
-			Attributes: &datadogV2.CreateAppsDatastoreRequestDataAttributes{
-				Name:              "datastore-name",
-				PrimaryColumnName: "primaryKey",
-			},
-			Type: datadogV2.DATASTOREDATATYPE_DATASTORES,
-		},
-	}
+Data: &datadogV2.CreateAppsDatastoreRequestData{
+Attributes: &datadogV2.CreateAppsDatastoreRequestDataAttributes{
+Name: "datastore-name",
+PrimaryColumnName: "primaryKey",
+},
+Type: datadogV2.DATASTOREDATATYPE_DATASTORES,
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewActionsDatastoresApi(apiClient)
-	resp, r, err := api.CreateDatastore(ctx, body)
+	resp, r, err := api.CreateDatastore(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ActionsDatastoresApi.CreateDatastore`: %v\n", err)

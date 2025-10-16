@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricBulkTagConfigCreateAttributes Optional parameters for bulk creating metric tag configurations.
 type MetricBulkTagConfigCreateAttributes struct {
@@ -30,9 +36,10 @@ type MetricBulkTagConfigCreateAttributes struct {
 	// A list of tag names to apply to the configuration.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricBulkTagConfigCreateAttributes instantiates a new MetricBulkTagConfigCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +57,6 @@ func NewMetricBulkTagConfigCreateAttributesWithDefaults() *MetricBulkTagConfigCr
 	this := MetricBulkTagConfigCreateAttributes{}
 	return &this
 }
-
 // GetEmails returns the Emails field value if set, zero value otherwise.
 func (o *MetricBulkTagConfigCreateAttributes) GetEmails() []string {
 	if o == nil || o.Emails == nil {
@@ -78,6 +84,7 @@ func (o *MetricBulkTagConfigCreateAttributes) HasEmails() bool {
 func (o *MetricBulkTagConfigCreateAttributes) SetEmails(v []string) {
 	o.Emails = v
 }
+
 
 // GetExcludeTagsMode returns the ExcludeTagsMode field value if set, zero value otherwise.
 func (o *MetricBulkTagConfigCreateAttributes) GetExcludeTagsMode() bool {
@@ -107,6 +114,7 @@ func (o *MetricBulkTagConfigCreateAttributes) SetExcludeTagsMode(v bool) {
 	o.ExcludeTagsMode = &v
 }
 
+
 // GetIncludeActivelyQueriedTagsWindow returns the IncludeActivelyQueriedTagsWindow field value if set, zero value otherwise.
 func (o *MetricBulkTagConfigCreateAttributes) GetIncludeActivelyQueriedTagsWindow() float64 {
 	if o == nil || o.IncludeActivelyQueriedTagsWindow == nil {
@@ -134,6 +142,7 @@ func (o *MetricBulkTagConfigCreateAttributes) HasIncludeActivelyQueriedTagsWindo
 func (o *MetricBulkTagConfigCreateAttributes) SetIncludeActivelyQueriedTagsWindow(v float64) {
 	o.IncludeActivelyQueriedTagsWindow = &v
 }
+
 
 // GetOverrideExistingConfigurations returns the OverrideExistingConfigurations field value if set, zero value otherwise.
 func (o *MetricBulkTagConfigCreateAttributes) GetOverrideExistingConfigurations() bool {
@@ -163,6 +172,7 @@ func (o *MetricBulkTagConfigCreateAttributes) SetOverrideExistingConfigurations(
 	o.OverrideExistingConfigurations = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MetricBulkTagConfigCreateAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -190,6 +200,8 @@ func (o *MetricBulkTagConfigCreateAttributes) HasTags() bool {
 func (o *MetricBulkTagConfigCreateAttributes) SetTags(v []string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricBulkTagConfigCreateAttributes) MarshalJSON() ([]byte, error) {
@@ -222,18 +234,18 @@ func (o MetricBulkTagConfigCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricBulkTagConfigCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Emails                           []string `json:"emails,omitempty"`
-		ExcludeTagsMode                  *bool    `json:"exclude_tags_mode,omitempty"`
+		Emails []string `json:"emails,omitempty"`
+		ExcludeTagsMode *bool `json:"exclude_tags_mode,omitempty"`
 		IncludeActivelyQueriedTagsWindow *float64 `json:"include_actively_queried_tags_window,omitempty"`
-		OverrideExistingConfigurations   *bool    `json:"override_existing_configurations,omitempty"`
-		Tags                             []string `json:"tags,omitempty"`
+		OverrideExistingConfigurations *bool `json:"override_existing_configurations,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"emails", "exclude_tags_mode", "include_actively_queried_tags_window", "override_existing_configurations", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "emails", "exclude_tags_mode", "include_actively_queried_tags_window", "override_existing_configurations", "tags",  })
 	} else {
 		return err
 	}

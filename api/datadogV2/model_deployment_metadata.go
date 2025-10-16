@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
-
 	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DeploymentMetadata Metadata object containing the publication creation information.
 type DeploymentMetadata struct {
@@ -23,9 +25,10 @@ type DeploymentMetadata struct {
 	// The UUID of the user who published the app.
 	UserUuid *uuid.UUID `json:"user_uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDeploymentMetadata instantiates a new DeploymentMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +46,6 @@ func NewDeploymentMetadataWithDefaults() *DeploymentMetadata {
 	this := DeploymentMetadata{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *DeploymentMetadata) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -71,6 +73,7 @@ func (o *DeploymentMetadata) HasCreatedAt() bool {
 func (o *DeploymentMetadata) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
+
 
 // GetUserId returns the UserId field value if set, zero value otherwise.
 func (o *DeploymentMetadata) GetUserId() int64 {
@@ -100,6 +103,7 @@ func (o *DeploymentMetadata) SetUserId(v int64) {
 	o.UserId = &v
 }
 
+
 // GetUserName returns the UserName field value if set, zero value otherwise.
 func (o *DeploymentMetadata) GetUserName() string {
 	if o == nil || o.UserName == nil {
@@ -128,6 +132,7 @@ func (o *DeploymentMetadata) SetUserName(v string) {
 	o.UserName = &v
 }
 
+
 // GetUserUuid returns the UserUuid field value if set, zero value otherwise.
 func (o *DeploymentMetadata) GetUserUuid() uuid.UUID {
 	if o == nil || o.UserUuid == nil {
@@ -155,6 +160,8 @@ func (o *DeploymentMetadata) HasUserUuid() bool {
 func (o *DeploymentMetadata) SetUserUuid(v uuid.UUID) {
 	o.UserUuid = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DeploymentMetadata) MarshalJSON() ([]byte, error) {
@@ -189,16 +196,16 @@ func (o DeploymentMetadata) MarshalJSON() ([]byte, error) {
 func (o *DeploymentMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CreatedAt *time.Time `json:"created_at,omitempty"`
-		UserId    *int64     `json:"user_id,omitempty"`
-		UserName  *string    `json:"user_name,omitempty"`
-		UserUuid  *uuid.UUID `json:"user_uuid,omitempty"`
+		UserId *int64 `json:"user_id,omitempty"`
+		UserName *string `json:"user_name,omitempty"`
+		UserUuid *uuid.UUID `json:"user_uuid,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "user_id", "user_name", "user_uuid"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_at", "user_id", "user_name", "user_uuid",  })
 	} else {
 		return err
 	}

@@ -2,14 +2,15 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -18,7 +19,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.ListVulnerableAssets", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.ListVulnerableAssets(ctx, *datadogV2.NewListVulnerableAssetsOptionalParameters().WithFilterType(datadogV2.ASSETTYPE_HOST).WithFilterRepositoryUrl("github.com/datadog/dd-go").WithFilterRisksInProduction(true))
+	resp, r, err := api.ListVulnerableAssets(ctx, *datadogV2.NewListVulnerableAssetsOptionalParameters().WithFilterType(datadogV2.ASSETTYPE_HOST).WithFilterRepositoryUrl("github.com/datadog/dd-go").WithFilterRisksInProduction(true), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListVulnerableAssets`: %v\n", err)

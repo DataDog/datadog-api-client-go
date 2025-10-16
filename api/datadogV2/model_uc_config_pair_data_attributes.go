@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UCConfigPairDataAttributes The definition of `UCConfigPairDataAttributes` object.
 type UCConfigPairDataAttributes struct {
 	// The `attributes` `configs`.
 	Configs []UCConfigPairDataAttributesConfigsItems `json:"configs,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUCConfigPairDataAttributes instantiates a new UCConfigPairDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewUCConfigPairDataAttributesWithDefaults() *UCConfigPairDataAttributes {
 	this := UCConfigPairDataAttributes{}
 	return &this
 }
-
 // GetConfigs returns the Configs field value if set, zero value otherwise.
 func (o *UCConfigPairDataAttributes) GetConfigs() []UCConfigPairDataAttributesConfigsItems {
 	if o == nil || o.Configs == nil {
@@ -62,6 +68,8 @@ func (o *UCConfigPairDataAttributes) SetConfigs(v []UCConfigPairDataAttributesCo
 	o.Configs = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UCConfigPairDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *UCConfigPairDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"configs"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "configs",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamReferenceAttributes Encapsulates the basic attributes of a Team reference, such as name, handle, and an optional avatar or description.
 type TeamReferenceAttributes struct {
@@ -19,9 +25,10 @@ type TeamReferenceAttributes struct {
 	// The full, human-readable name of the team.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTeamReferenceAttributes instantiates a new TeamReferenceAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewTeamReferenceAttributesWithDefaults() *TeamReferenceAttributes {
 	this := TeamReferenceAttributes{}
 	return &this
 }
-
 // GetAvatar returns the Avatar field value if set, zero value otherwise.
 func (o *TeamReferenceAttributes) GetAvatar() string {
 	if o == nil || o.Avatar == nil {
@@ -67,6 +73,7 @@ func (o *TeamReferenceAttributes) HasAvatar() bool {
 func (o *TeamReferenceAttributes) SetAvatar(v string) {
 	o.Avatar = &v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *TeamReferenceAttributes) GetDescription() string {
@@ -96,6 +103,7 @@ func (o *TeamReferenceAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *TeamReferenceAttributes) GetHandle() string {
 	if o == nil || o.Handle == nil {
@@ -123,6 +131,7 @@ func (o *TeamReferenceAttributes) HasHandle() bool {
 func (o *TeamReferenceAttributes) SetHandle(v string) {
 	o.Handle = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *TeamReferenceAttributes) GetName() string {
@@ -152,6 +161,8 @@ func (o *TeamReferenceAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamReferenceAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,17 +191,17 @@ func (o TeamReferenceAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamReferenceAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Avatar      *string `json:"avatar,omitempty"`
+		Avatar *string `json:"avatar,omitempty"`
 		Description *string `json:"description,omitempty"`
-		Handle      *string `json:"handle,omitempty"`
-		Name        *string `json:"name,omitempty"`
+		Handle *string `json:"handle,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"avatar", "description", "handle", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "avatar", "description", "handle", "name",  })
 	} else {
 		return err
 	}

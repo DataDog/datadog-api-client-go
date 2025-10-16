@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsCategoryProcessorCategory Object describing the logs filter.
 type LogsCategoryProcessorCategory struct {
@@ -15,9 +21,10 @@ type LogsCategoryProcessorCategory struct {
 	// Value to assign to the target attribute.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsCategoryProcessorCategory instantiates a new LogsCategoryProcessorCategory object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewLogsCategoryProcessorCategoryWithDefaults() *LogsCategoryProcessorCatego
 	this := LogsCategoryProcessorCategory{}
 	return &this
 }
-
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *LogsCategoryProcessorCategory) GetFilter() LogsFilter {
 	if o == nil || o.Filter == nil {
@@ -63,6 +69,7 @@ func (o *LogsCategoryProcessorCategory) HasFilter() bool {
 func (o *LogsCategoryProcessorCategory) SetFilter(v LogsFilter) {
 	o.Filter = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsCategoryProcessorCategory) GetName() string {
@@ -92,6 +99,8 @@ func (o *LogsCategoryProcessorCategory) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsCategoryProcessorCategory) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,20 +124,20 @@ func (o LogsCategoryProcessorCategory) MarshalJSON() ([]byte, error) {
 func (o *LogsCategoryProcessorCategory) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Filter *LogsFilter `json:"filter,omitempty"`
-		Name   *string     `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "filter", "name",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter

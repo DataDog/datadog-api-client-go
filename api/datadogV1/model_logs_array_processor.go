@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsArrayProcessor A processor for extracting, aggregating, or transforming values from JSON arrays within your logs.
 // Supported operations are:
@@ -25,9 +29,10 @@ type LogsArrayProcessor struct {
 	// Type of logs array processor.
 	Type LogsArrayProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsArrayProcessor instantiates a new LogsArrayProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewLogsArrayProcessorWithDefaults() *LogsArrayProcessor {
 	this.Type = typeVar
 	return &this
 }
-
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsArrayProcessor) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -81,6 +85,7 @@ func (o *LogsArrayProcessor) HasIsEnabled() bool {
 func (o *LogsArrayProcessor) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsArrayProcessor) GetName() string {
@@ -110,6 +115,7 @@ func (o *LogsArrayProcessor) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetOperation returns the Operation field value.
 func (o *LogsArrayProcessor) GetOperation() LogsArrayProcessorOperation {
 	if o == nil {
@@ -133,6 +139,7 @@ func (o *LogsArrayProcessor) SetOperation(v LogsArrayProcessorOperation) {
 	o.Operation = v
 }
 
+
 // GetType returns the Type field value.
 func (o *LogsArrayProcessor) GetType() LogsArrayProcessorType {
 	if o == nil {
@@ -155,6 +162,8 @@ func (o *LogsArrayProcessor) GetTypeOk() (*LogsArrayProcessorType, bool) {
 func (o *LogsArrayProcessor) SetType(v LogsArrayProcessorType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsArrayProcessor) MarshalJSON() ([]byte, error) {
@@ -180,10 +189,10 @@ func (o LogsArrayProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArrayProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		IsEnabled *bool                        `json:"is_enabled,omitempty"`
-		Name      *string                      `json:"name,omitempty"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		Name *string `json:"name,omitempty"`
 		Operation *LogsArrayProcessorOperation `json:"operation"`
-		Type      *LogsArrayProcessorType      `json:"type"`
+		Type *LogsArrayProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -196,7 +205,7 @@ func (o *LogsArrayProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"is_enabled", "name", "operation", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "is_enabled", "name", "operation", "type",  })
 	} else {
 		return err
 	}

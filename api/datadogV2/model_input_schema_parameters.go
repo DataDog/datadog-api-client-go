@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // InputSchemaParameters The definition of `InputSchemaParameters` object.
 type InputSchemaParameters struct {
@@ -23,9 +27,10 @@ type InputSchemaParameters struct {
 	// The definition of `InputSchemaParametersType` object.
 	Type InputSchemaParametersType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewInputSchemaParameters instantiates a new InputSchemaParameters object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewInputSchemaParametersWithDefaults() *InputSchemaParameters {
 	this := InputSchemaParameters{}
 	return &this
 }
-
 // GetDefaultValue returns the DefaultValue field value if set, zero value otherwise.
 func (o *InputSchemaParameters) GetDefaultValue() interface{} {
 	if o == nil || o.DefaultValue == nil {
@@ -73,6 +77,7 @@ func (o *InputSchemaParameters) HasDefaultValue() bool {
 func (o *InputSchemaParameters) SetDefaultValue(v interface{}) {
 	o.DefaultValue = v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *InputSchemaParameters) GetDescription() string {
@@ -102,6 +107,7 @@ func (o *InputSchemaParameters) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *InputSchemaParameters) GetLabel() string {
 	if o == nil || o.Label == nil {
@@ -130,6 +136,7 @@ func (o *InputSchemaParameters) SetLabel(v string) {
 	o.Label = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *InputSchemaParameters) GetName() string {
 	if o == nil {
@@ -153,6 +160,7 @@ func (o *InputSchemaParameters) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetType returns the Type field value.
 func (o *InputSchemaParameters) GetType() InputSchemaParametersType {
 	if o == nil {
@@ -175,6 +183,8 @@ func (o *InputSchemaParameters) GetTypeOk() (*InputSchemaParametersType, bool) {
 func (o *InputSchemaParameters) SetType(v InputSchemaParametersType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o InputSchemaParameters) MarshalJSON() ([]byte, error) {
@@ -203,11 +213,11 @@ func (o InputSchemaParameters) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *InputSchemaParameters) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DefaultValue interface{}                `json:"defaultValue,omitempty"`
-		Description  *string                    `json:"description,omitempty"`
-		Label        *string                    `json:"label,omitempty"`
-		Name         *string                    `json:"name"`
-		Type         *InputSchemaParametersType `json:"type"`
+		DefaultValue interface{} `json:"defaultValue,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Label *string `json:"label,omitempty"`
+		Name *string `json:"name"`
+		Type *InputSchemaParametersType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -220,7 +230,7 @@ func (o *InputSchemaParameters) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"defaultValue", "description", "label", "name", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "defaultValue", "description", "label", "name", "type",  })
 	} else {
 		return err
 	}

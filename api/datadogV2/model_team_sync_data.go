@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamSyncData Team sync data.
 type TeamSyncData struct {
@@ -17,9 +21,10 @@ type TeamSyncData struct {
 	// Team sync bulk type.
 	Type TeamSyncBulkType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTeamSyncData instantiates a new TeamSyncData object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewTeamSyncDataWithDefaults() *TeamSyncData {
 	this := TeamSyncData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *TeamSyncData) GetAttributes() TeamSyncAttributes {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *TeamSyncData) GetAttributesOk() (*TeamSyncAttributes, bool) {
 func (o *TeamSyncData) SetAttributes(v TeamSyncAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *TeamSyncData) GetType() TeamSyncBulkType {
@@ -86,6 +91,8 @@ func (o *TeamSyncData) SetType(v TeamSyncBulkType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamSyncData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o TeamSyncData) MarshalJSON() ([]byte, error) {
 func (o *TeamSyncData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *TeamSyncAttributes `json:"attributes"`
-		Type       *TeamSyncBulkType   `json:"type"`
+		Type *TeamSyncBulkType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *TeamSyncData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

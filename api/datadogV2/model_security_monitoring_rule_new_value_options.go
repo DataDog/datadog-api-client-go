@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleNewValueOptions Options on new value detection method.
 type SecurityMonitoringRuleNewValueOptions struct {
@@ -20,9 +26,10 @@ type SecurityMonitoringRuleNewValueOptions struct {
 	// A number of occurrences after which signals will be generated for values that weren't learned.
 	LearningThreshold *SecurityMonitoringRuleNewValueOptionsLearningThreshold `json:"learningThreshold,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringRuleNewValueOptions instantiates a new SecurityMonitoringRuleNewValueOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +59,6 @@ func NewSecurityMonitoringRuleNewValueOptionsWithDefaults() *SecurityMonitoringR
 	this.LearningThreshold = &learningThreshold
 	return &this
 }
-
 // GetForgetAfter returns the ForgetAfter field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleNewValueOptions) GetForgetAfter() SecurityMonitoringRuleNewValueOptionsForgetAfter {
 	if o == nil || o.ForgetAfter == nil {
@@ -80,6 +86,7 @@ func (o *SecurityMonitoringRuleNewValueOptions) HasForgetAfter() bool {
 func (o *SecurityMonitoringRuleNewValueOptions) SetForgetAfter(v SecurityMonitoringRuleNewValueOptionsForgetAfter) {
 	o.ForgetAfter = &v
 }
+
 
 // GetLearningDuration returns the LearningDuration field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleNewValueOptions) GetLearningDuration() SecurityMonitoringRuleNewValueOptionsLearningDuration {
@@ -109,6 +116,7 @@ func (o *SecurityMonitoringRuleNewValueOptions) SetLearningDuration(v SecurityMo
 	o.LearningDuration = &v
 }
 
+
 // GetLearningMethod returns the LearningMethod field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleNewValueOptions) GetLearningMethod() SecurityMonitoringRuleNewValueOptionsLearningMethod {
 	if o == nil || o.LearningMethod == nil {
@@ -136,6 +144,7 @@ func (o *SecurityMonitoringRuleNewValueOptions) HasLearningMethod() bool {
 func (o *SecurityMonitoringRuleNewValueOptions) SetLearningMethod(v SecurityMonitoringRuleNewValueOptionsLearningMethod) {
 	o.LearningMethod = &v
 }
+
 
 // GetLearningThreshold returns the LearningThreshold field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleNewValueOptions) GetLearningThreshold() SecurityMonitoringRuleNewValueOptionsLearningThreshold {
@@ -165,6 +174,8 @@ func (o *SecurityMonitoringRuleNewValueOptions) SetLearningThreshold(v SecurityM
 	o.LearningThreshold = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleNewValueOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -193,9 +204,9 @@ func (o SecurityMonitoringRuleNewValueOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleNewValueOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ForgetAfter       *SecurityMonitoringRuleNewValueOptionsForgetAfter       `json:"forgetAfter,omitempty"`
-		LearningDuration  *SecurityMonitoringRuleNewValueOptionsLearningDuration  `json:"learningDuration,omitempty"`
-		LearningMethod    *SecurityMonitoringRuleNewValueOptionsLearningMethod    `json:"learningMethod,omitempty"`
+		ForgetAfter *SecurityMonitoringRuleNewValueOptionsForgetAfter `json:"forgetAfter,omitempty"`
+		LearningDuration *SecurityMonitoringRuleNewValueOptionsLearningDuration `json:"learningDuration,omitempty"`
+		LearningMethod *SecurityMonitoringRuleNewValueOptionsLearningMethod `json:"learningMethod,omitempty"`
 		LearningThreshold *SecurityMonitoringRuleNewValueOptionsLearningThreshold `json:"learningThreshold,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -203,28 +214,28 @@ func (o *SecurityMonitoringRuleNewValueOptions) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"forgetAfter", "learningDuration", "learningMethod", "learningThreshold"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "forgetAfter", "learningDuration", "learningMethod", "learningThreshold",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.ForgetAfter != nil && !all.ForgetAfter.IsValid() {
+	if all.ForgetAfter != nil &&!all.ForgetAfter.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ForgetAfter = all.ForgetAfter
 	}
-	if all.LearningDuration != nil && !all.LearningDuration.IsValid() {
+	if all.LearningDuration != nil &&!all.LearningDuration.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.LearningDuration = all.LearningDuration
 	}
-	if all.LearningMethod != nil && !all.LearningMethod.IsValid() {
+	if all.LearningMethod != nil &&!all.LearningMethod.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.LearningMethod = all.LearningMethod
 	}
-	if all.LearningThreshold != nil && !all.LearningThreshold.IsValid() {
+	if all.LearningThreshold != nil &&!all.LearningThreshold.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.LearningThreshold = all.LearningThreshold

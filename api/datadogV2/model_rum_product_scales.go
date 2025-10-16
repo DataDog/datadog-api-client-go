@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RUMProductScales Product Scales configuration for the RUM application.
 type RUMProductScales struct {
@@ -15,9 +21,10 @@ type RUMProductScales struct {
 	// RUM event processing scale configuration.
 	RumEventProcessingScale *RUMEventProcessingScale `json:"rum_event_processing_scale,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRUMProductScales instantiates a new RUMProductScales object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewRUMProductScalesWithDefaults() *RUMProductScales {
 	this := RUMProductScales{}
 	return &this
 }
-
 // GetProductAnalyticsRetentionScale returns the ProductAnalyticsRetentionScale field value if set, zero value otherwise.
 func (o *RUMProductScales) GetProductAnalyticsRetentionScale() RUMProductAnalyticsRetentionScale {
 	if o == nil || o.ProductAnalyticsRetentionScale == nil {
@@ -63,6 +69,7 @@ func (o *RUMProductScales) HasProductAnalyticsRetentionScale() bool {
 func (o *RUMProductScales) SetProductAnalyticsRetentionScale(v RUMProductAnalyticsRetentionScale) {
 	o.ProductAnalyticsRetentionScale = &v
 }
+
 
 // GetRumEventProcessingScale returns the RumEventProcessingScale field value if set, zero value otherwise.
 func (o *RUMProductScales) GetRumEventProcessingScale() RUMEventProcessingScale {
@@ -92,6 +99,8 @@ func (o *RUMProductScales) SetRumEventProcessingScale(v RUMEventProcessingScale)
 	o.RumEventProcessingScale = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RUMProductScales) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,24 +124,24 @@ func (o RUMProductScales) MarshalJSON() ([]byte, error) {
 func (o *RUMProductScales) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ProductAnalyticsRetentionScale *RUMProductAnalyticsRetentionScale `json:"product_analytics_retention_scale,omitempty"`
-		RumEventProcessingScale        *RUMEventProcessingScale           `json:"rum_event_processing_scale,omitempty"`
+		RumEventProcessingScale *RUMEventProcessingScale `json:"rum_event_processing_scale,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"product_analytics_retention_scale", "rum_event_processing_scale"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "product_analytics_retention_scale", "rum_event_processing_scale",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.ProductAnalyticsRetentionScale != nil && all.ProductAnalyticsRetentionScale.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ProductAnalyticsRetentionScale != nil && all.ProductAnalyticsRetentionScale.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ProductAnalyticsRetentionScale = all.ProductAnalyticsRetentionScale
-	if all.RumEventProcessingScale != nil && all.RumEventProcessingScale.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RumEventProcessingScale != nil && all.RumEventProcessingScale.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RumEventProcessingScale = all.RumEventProcessingScale

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateRuleResponseData Create rule response data.
 type CreateRuleResponseData struct {
@@ -19,9 +25,10 @@ type CreateRuleResponseData struct {
 	// The JSON:API type for scorecard rules.
 	Type *RuleType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateRuleResponseData instantiates a new CreateRuleResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +50,6 @@ func NewCreateRuleResponseDataWithDefaults() *CreateRuleResponseData {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *CreateRuleResponseData) GetAttributes() RuleAttributes {
 	if o == nil || o.Attributes == nil {
@@ -71,6 +77,7 @@ func (o *CreateRuleResponseData) HasAttributes() bool {
 func (o *CreateRuleResponseData) SetAttributes(v RuleAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *CreateRuleResponseData) GetId() string {
@@ -100,6 +107,7 @@ func (o *CreateRuleResponseData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *CreateRuleResponseData) GetRelationships() RelationshipToRule {
 	if o == nil || o.Relationships == nil {
@@ -127,6 +135,7 @@ func (o *CreateRuleResponseData) HasRelationships() bool {
 func (o *CreateRuleResponseData) SetRelationships(v RelationshipToRule) {
 	o.Relationships = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CreateRuleResponseData) GetType() RuleType {
@@ -156,6 +165,8 @@ func (o *CreateRuleResponseData) SetType(v RuleType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateRuleResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -184,32 +195,32 @@ func (o CreateRuleResponseData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateRuleResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *RuleAttributes     `json:"attributes,omitempty"`
-		Id            *string             `json:"id,omitempty"`
+		Attributes *RuleAttributes `json:"attributes,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Relationships *RelationshipToRule `json:"relationships,omitempty"`
-		Type          *RuleType           `json:"type,omitempty"`
+		Type *RuleType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "relationships", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

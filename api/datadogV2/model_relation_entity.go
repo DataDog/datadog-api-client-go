@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RelationEntity Relation entity reference.
 type RelationEntity struct {
@@ -17,9 +23,10 @@ type RelationEntity struct {
 	// Entity namespace.
 	Namespace *string `json:"namespace,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRelationEntity instantiates a new RelationEntity object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewRelationEntityWithDefaults() *RelationEntity {
 	this := RelationEntity{}
 	return &this
 }
-
 // GetKind returns the Kind field value if set, zero value otherwise.
 func (o *RelationEntity) GetKind() string {
 	if o == nil || o.Kind == nil {
@@ -65,6 +71,7 @@ func (o *RelationEntity) HasKind() bool {
 func (o *RelationEntity) SetKind(v string) {
 	o.Kind = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *RelationEntity) GetName() string {
@@ -94,6 +101,7 @@ func (o *RelationEntity) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *RelationEntity) GetNamespace() string {
 	if o == nil || o.Namespace == nil {
@@ -122,6 +130,8 @@ func (o *RelationEntity) SetNamespace(v string) {
 	o.Namespace = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationEntity) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,8 +157,8 @@ func (o RelationEntity) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RelationEntity) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Kind      *string `json:"kind,omitempty"`
-		Name      *string `json:"name,omitempty"`
+		Kind *string `json:"kind,omitempty"`
+		Name *string `json:"name,omitempty"`
 		Namespace *string `json:"namespace,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,7 +166,7 @@ func (o *RelationEntity) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"kind", "name", "namespace"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "kind", "name", "namespace",  })
 	} else {
 		return err
 	}

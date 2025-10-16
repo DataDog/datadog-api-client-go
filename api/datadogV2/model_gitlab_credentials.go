@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GitlabCredentials - The definition of the `GitlabCredentials` object.
 type GitlabCredentials struct {
@@ -56,6 +62,7 @@ func (obj GitlabCredentials) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.GitlabAPIKey)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj GitlabCredentials) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *GitlabCredentials) GetActualInstance() interface{} {
+func (obj *GitlabCredentials) GetActualInstance() (interface{}) {
 	if obj.GitlabAPIKey != nil {
 		return obj.GitlabAPIKey
 	}
+
 
 	// all schemas are nil
 	return nil

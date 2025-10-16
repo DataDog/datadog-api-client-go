@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessorActionRedact Configuration for completely redacting matched sensitive data.
 type ObservabilityPipelineSensitiveDataScannerProcessorActionRedact struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineSensitiveDataScannerProcessorActionRedact struct {
 	// Configuration for fully redacting sensitive data.
 	Options ObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptions `json:"options"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSensitiveDataScannerProcessorActionRedact instantiates a new ObservabilityPipelineSensitiveDataScannerProcessorActionRedact object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineSensitiveDataScannerProcessorActionRedactWithDefaul
 	this := ObservabilityPipelineSensitiveDataScannerProcessorActionRedact{}
 	return &this
 }
-
 // GetAction returns the Action field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionRedact) GetAction() ObservabilityPipelineSensitiveDataScannerProcessorActionRedactAction {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionRedact) GetActi
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionRedact) SetAction(v ObservabilityPipelineSensitiveDataScannerProcessorActionRedactAction) {
 	o.Action = v
 }
+
 
 // GetOptions returns the Options field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionRedact) GetOptions() ObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptions {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionRedact) SetOpti
 	o.Options = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSensitiveDataScannerProcessorActionRedact) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o ObservabilityPipelineSensitiveDataScannerProcessorActionRedact) MarshalJ
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionRedact) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Action  *ObservabilityPipelineSensitiveDataScannerProcessorActionRedactAction  `json:"action"`
+		Action *ObservabilityPipelineSensitiveDataScannerProcessorActionRedactAction `json:"action"`
 		Options *ObservabilityPipelineSensitiveDataScannerProcessorActionRedactOptions `json:"options"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorActionRedact) Unmarsh
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"action", "options"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "action", "options",  })
 	} else {
 		return err
 	}

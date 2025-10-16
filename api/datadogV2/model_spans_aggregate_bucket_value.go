@@ -2,17 +2,23 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SpansAggregateBucketValue - A bucket value, can be either a timeseries or a single value.
 type SpansAggregateBucketValue struct {
 	SpansAggregateBucketValueSingleString *string
 	SpansAggregateBucketValueSingleNumber *float64
-	SpansAggregateBucketValueTimeseries   *SpansAggregateBucketValueTimeseries
+	SpansAggregateBucketValueTimeseries *SpansAggregateBucketValueTimeseries
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -76,7 +82,7 @@ func (obj *SpansAggregateBucketValue) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.SpansAggregateBucketValueTimeseries != nil {
 			jsonSpansAggregateBucketValueTimeseries, _ := datadog.Marshal(obj.SpansAggregateBucketValueTimeseries)
-			if string(jsonSpansAggregateBucketValueTimeseries) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonSpansAggregateBucketValueTimeseries) == "{}" && string(data) != "{}"  { // empty struct
 				obj.SpansAggregateBucketValueTimeseries = nil
 			} else {
 				match++
@@ -104,13 +110,16 @@ func (obj SpansAggregateBucketValue) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SpansAggregateBucketValueSingleString)
 	}
 
+
 	if obj.SpansAggregateBucketValueSingleNumber != nil {
 		return datadog.Marshal(&obj.SpansAggregateBucketValueSingleNumber)
 	}
 
+
 	if obj.SpansAggregateBucketValueTimeseries != nil {
 		return datadog.Marshal(&obj.SpansAggregateBucketValueTimeseries)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj SpansAggregateBucketValue) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SpansAggregateBucketValue) GetActualInstance() interface{} {
+func (obj *SpansAggregateBucketValue) GetActualInstance() (interface{}) {
 	if obj.SpansAggregateBucketValueSingleString != nil {
 		return obj.SpansAggregateBucketValueSingleString
 	}
+
 
 	if obj.SpansAggregateBucketValueSingleNumber != nil {
 		return obj.SpansAggregateBucketValueSingleNumber
 	}
 
+
 	if obj.SpansAggregateBucketValueTimeseries != nil {
 		return obj.SpansAggregateBucketValueTimeseries
 	}
+
 
 	// all schemas are nil
 	return nil

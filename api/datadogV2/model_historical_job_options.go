@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HistoricalJobOptions Job options.
 type HistoricalJobOptions struct {
@@ -30,9 +36,10 @@ type HistoricalJobOptions struct {
 	// Options on third party detection method.
 	ThirdPartyRuleOptions *SecurityMonitoringRuleThirdPartyOptions `json:"thirdPartyRuleOptions,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHistoricalJobOptions instantiates a new HistoricalJobOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +57,6 @@ func NewHistoricalJobOptionsWithDefaults() *HistoricalJobOptions {
 	this := HistoricalJobOptions{}
 	return &this
 }
-
 // GetDetectionMethod returns the DetectionMethod field value if set, zero value otherwise.
 func (o *HistoricalJobOptions) GetDetectionMethod() SecurityMonitoringRuleDetectionMethod {
 	if o == nil || o.DetectionMethod == nil {
@@ -78,6 +84,7 @@ func (o *HistoricalJobOptions) HasDetectionMethod() bool {
 func (o *HistoricalJobOptions) SetDetectionMethod(v SecurityMonitoringRuleDetectionMethod) {
 	o.DetectionMethod = &v
 }
+
 
 // GetEvaluationWindow returns the EvaluationWindow field value if set, zero value otherwise.
 func (o *HistoricalJobOptions) GetEvaluationWindow() SecurityMonitoringRuleEvaluationWindow {
@@ -107,6 +114,7 @@ func (o *HistoricalJobOptions) SetEvaluationWindow(v SecurityMonitoringRuleEvalu
 	o.EvaluationWindow = &v
 }
 
+
 // GetImpossibleTravelOptions returns the ImpossibleTravelOptions field value if set, zero value otherwise.
 func (o *HistoricalJobOptions) GetImpossibleTravelOptions() SecurityMonitoringRuleImpossibleTravelOptions {
 	if o == nil || o.ImpossibleTravelOptions == nil {
@@ -134,6 +142,7 @@ func (o *HistoricalJobOptions) HasImpossibleTravelOptions() bool {
 func (o *HistoricalJobOptions) SetImpossibleTravelOptions(v SecurityMonitoringRuleImpossibleTravelOptions) {
 	o.ImpossibleTravelOptions = &v
 }
+
 
 // GetKeepAlive returns the KeepAlive field value if set, zero value otherwise.
 func (o *HistoricalJobOptions) GetKeepAlive() SecurityMonitoringRuleKeepAlive {
@@ -163,6 +172,7 @@ func (o *HistoricalJobOptions) SetKeepAlive(v SecurityMonitoringRuleKeepAlive) {
 	o.KeepAlive = &v
 }
 
+
 // GetMaxSignalDuration returns the MaxSignalDuration field value if set, zero value otherwise.
 func (o *HistoricalJobOptions) GetMaxSignalDuration() SecurityMonitoringRuleMaxSignalDuration {
 	if o == nil || o.MaxSignalDuration == nil {
@@ -190,6 +200,7 @@ func (o *HistoricalJobOptions) HasMaxSignalDuration() bool {
 func (o *HistoricalJobOptions) SetMaxSignalDuration(v SecurityMonitoringRuleMaxSignalDuration) {
 	o.MaxSignalDuration = &v
 }
+
 
 // GetNewValueOptions returns the NewValueOptions field value if set, zero value otherwise.
 func (o *HistoricalJobOptions) GetNewValueOptions() SecurityMonitoringRuleNewValueOptions {
@@ -219,6 +230,7 @@ func (o *HistoricalJobOptions) SetNewValueOptions(v SecurityMonitoringRuleNewVal
 	o.NewValueOptions = &v
 }
 
+
 // GetSequenceDetectionOptions returns the SequenceDetectionOptions field value if set, zero value otherwise.
 func (o *HistoricalJobOptions) GetSequenceDetectionOptions() SecurityMonitoringRuleSequenceDetectionOptions {
 	if o == nil || o.SequenceDetectionOptions == nil {
@@ -247,6 +259,7 @@ func (o *HistoricalJobOptions) SetSequenceDetectionOptions(v SecurityMonitoringR
 	o.SequenceDetectionOptions = &v
 }
 
+
 // GetThirdPartyRuleOptions returns the ThirdPartyRuleOptions field value if set, zero value otherwise.
 func (o *HistoricalJobOptions) GetThirdPartyRuleOptions() SecurityMonitoringRuleThirdPartyOptions {
 	if o == nil || o.ThirdPartyRuleOptions == nil {
@@ -274,6 +287,8 @@ func (o *HistoricalJobOptions) HasThirdPartyRuleOptions() bool {
 func (o *HistoricalJobOptions) SetThirdPartyRuleOptions(v SecurityMonitoringRuleThirdPartyOptions) {
 	o.ThirdPartyRuleOptions = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o HistoricalJobOptions) MarshalJSON() ([]byte, error) {
@@ -315,59 +330,59 @@ func (o HistoricalJobOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HistoricalJobOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DetectionMethod          *SecurityMonitoringRuleDetectionMethod          `json:"detectionMethod,omitempty"`
-		EvaluationWindow         *SecurityMonitoringRuleEvaluationWindow         `json:"evaluationWindow,omitempty"`
-		ImpossibleTravelOptions  *SecurityMonitoringRuleImpossibleTravelOptions  `json:"impossibleTravelOptions,omitempty"`
-		KeepAlive                *SecurityMonitoringRuleKeepAlive                `json:"keepAlive,omitempty"`
-		MaxSignalDuration        *SecurityMonitoringRuleMaxSignalDuration        `json:"maxSignalDuration,omitempty"`
-		NewValueOptions          *SecurityMonitoringRuleNewValueOptions          `json:"newValueOptions,omitempty"`
+		DetectionMethod *SecurityMonitoringRuleDetectionMethod `json:"detectionMethod,omitempty"`
+		EvaluationWindow *SecurityMonitoringRuleEvaluationWindow `json:"evaluationWindow,omitempty"`
+		ImpossibleTravelOptions *SecurityMonitoringRuleImpossibleTravelOptions `json:"impossibleTravelOptions,omitempty"`
+		KeepAlive *SecurityMonitoringRuleKeepAlive `json:"keepAlive,omitempty"`
+		MaxSignalDuration *SecurityMonitoringRuleMaxSignalDuration `json:"maxSignalDuration,omitempty"`
+		NewValueOptions *SecurityMonitoringRuleNewValueOptions `json:"newValueOptions,omitempty"`
 		SequenceDetectionOptions *SecurityMonitoringRuleSequenceDetectionOptions `json:"sequenceDetectionOptions,omitempty"`
-		ThirdPartyRuleOptions    *SecurityMonitoringRuleThirdPartyOptions        `json:"thirdPartyRuleOptions,omitempty"`
+		ThirdPartyRuleOptions *SecurityMonitoringRuleThirdPartyOptions `json:"thirdPartyRuleOptions,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"detectionMethod", "evaluationWindow", "impossibleTravelOptions", "keepAlive", "maxSignalDuration", "newValueOptions", "sequenceDetectionOptions", "thirdPartyRuleOptions"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "detectionMethod", "evaluationWindow", "impossibleTravelOptions", "keepAlive", "maxSignalDuration", "newValueOptions", "sequenceDetectionOptions", "thirdPartyRuleOptions",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.DetectionMethod != nil && !all.DetectionMethod.IsValid() {
+	if all.DetectionMethod != nil &&!all.DetectionMethod.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.DetectionMethod = all.DetectionMethod
 	}
-	if all.EvaluationWindow != nil && !all.EvaluationWindow.IsValid() {
+	if all.EvaluationWindow != nil &&!all.EvaluationWindow.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.EvaluationWindow = all.EvaluationWindow
 	}
-	if all.ImpossibleTravelOptions != nil && all.ImpossibleTravelOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ImpossibleTravelOptions != nil && all.ImpossibleTravelOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ImpossibleTravelOptions = all.ImpossibleTravelOptions
-	if all.KeepAlive != nil && !all.KeepAlive.IsValid() {
+	if all.KeepAlive != nil &&!all.KeepAlive.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.KeepAlive = all.KeepAlive
 	}
-	if all.MaxSignalDuration != nil && !all.MaxSignalDuration.IsValid() {
+	if all.MaxSignalDuration != nil &&!all.MaxSignalDuration.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.MaxSignalDuration = all.MaxSignalDuration
 	}
-	if all.NewValueOptions != nil && all.NewValueOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.NewValueOptions != nil && all.NewValueOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.NewValueOptions = all.NewValueOptions
-	if all.SequenceDetectionOptions != nil && all.SequenceDetectionOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SequenceDetectionOptions != nil && all.SequenceDetectionOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SequenceDetectionOptions = all.SequenceDetectionOptions
-	if all.ThirdPartyRuleOptions != nil && all.ThirdPartyRuleOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ThirdPartyRuleOptions != nil && all.ThirdPartyRuleOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ThirdPartyRuleOptions = all.ThirdPartyRuleOptions

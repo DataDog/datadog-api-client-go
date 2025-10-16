@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamOnCallRespondersData Defines the main on-call responder object for a team, including relationships and metadata.
 type TeamOnCallRespondersData struct {
@@ -19,9 +23,10 @@ type TeamOnCallRespondersData struct {
 	// Represents the resource type for a group of users assigned to handle on-call duties within a team.
 	Type TeamOnCallRespondersDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTeamOnCallRespondersData instantiates a new TeamOnCallRespondersData object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewTeamOnCallRespondersDataWithDefaults() *TeamOnCallRespondersData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *TeamOnCallRespondersData) GetId() string {
 	if o == nil || o.Id == nil {
@@ -70,6 +74,7 @@ func (o *TeamOnCallRespondersData) HasId() bool {
 func (o *TeamOnCallRespondersData) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *TeamOnCallRespondersData) GetRelationships() TeamOnCallRespondersDataRelationships {
@@ -99,6 +104,7 @@ func (o *TeamOnCallRespondersData) SetRelationships(v TeamOnCallRespondersDataRe
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *TeamOnCallRespondersData) GetType() TeamOnCallRespondersDataType {
 	if o == nil {
@@ -121,6 +127,8 @@ func (o *TeamOnCallRespondersData) GetTypeOk() (*TeamOnCallRespondersDataType, b
 func (o *TeamOnCallRespondersData) SetType(v TeamOnCallRespondersDataType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamOnCallRespondersData) MarshalJSON() ([]byte, error) {
@@ -145,9 +153,9 @@ func (o TeamOnCallRespondersData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamOnCallRespondersData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id            *string                                `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Relationships *TeamOnCallRespondersDataRelationships `json:"relationships,omitempty"`
-		Type          *TeamOnCallRespondersDataType          `json:"type"`
+		Type *TeamOnCallRespondersDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -157,14 +165,14 @@ func (o *TeamOnCallRespondersData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "relationships", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Id = all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringSignalAssigneeUpdateData Data containing the patch for changing the assignee of a signal.
 type SecurityMonitoringSignalAssigneeUpdateData struct {
 	// Attributes describing the new assignee of a security signal.
 	Attributes SecurityMonitoringSignalAssigneeUpdateAttributes `json:"attributes"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringSignalAssigneeUpdateData instantiates a new SecurityMonitoringSignalAssigneeUpdateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewSecurityMonitoringSignalAssigneeUpdateDataWithDefaults() *SecurityMonito
 	this := SecurityMonitoringSignalAssigneeUpdateData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *SecurityMonitoringSignalAssigneeUpdateData) GetAttributes() SecurityMonitoringSignalAssigneeUpdateAttributes {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *SecurityMonitoringSignalAssigneeUpdateData) GetAttributesOk() (*Securit
 func (o *SecurityMonitoringSignalAssigneeUpdateData) SetAttributes(v SecurityMonitoringSignalAssigneeUpdateAttributes) {
 	o.Attributes = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringSignalAssigneeUpdateData) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *SecurityMonitoringSignalAssigneeUpdateData) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes",  })
 	} else {
 		return err
 	}

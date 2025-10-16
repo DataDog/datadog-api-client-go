@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineHttpServerSource The `http_server` source collects logs over HTTP POST from external services.
 type ObservabilityPipelineHttpServerSource struct {
@@ -23,9 +27,10 @@ type ObservabilityPipelineHttpServerSource struct {
 	// The source type. The value should always be `http_server`.
 	Type ObservabilityPipelineHttpServerSourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineHttpServerSource instantiates a new ObservabilityPipelineHttpServerSource object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +54,6 @@ func NewObservabilityPipelineHttpServerSourceWithDefaults() *ObservabilityPipeli
 	this.Type = typeVar
 	return &this
 }
-
 // GetAuthStrategy returns the AuthStrategy field value.
 func (o *ObservabilityPipelineHttpServerSource) GetAuthStrategy() ObservabilityPipelineHttpServerSourceAuthStrategy {
 	if o == nil {
@@ -72,6 +76,7 @@ func (o *ObservabilityPipelineHttpServerSource) GetAuthStrategyOk() (*Observabil
 func (o *ObservabilityPipelineHttpServerSource) SetAuthStrategy(v ObservabilityPipelineHttpServerSourceAuthStrategy) {
 	o.AuthStrategy = v
 }
+
 
 // GetDecoding returns the Decoding field value.
 func (o *ObservabilityPipelineHttpServerSource) GetDecoding() ObservabilityPipelineDecoding {
@@ -96,6 +101,7 @@ func (o *ObservabilityPipelineHttpServerSource) SetDecoding(v ObservabilityPipel
 	o.Decoding = v
 }
 
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineHttpServerSource) GetId() string {
 	if o == nil {
@@ -118,6 +124,7 @@ func (o *ObservabilityPipelineHttpServerSource) GetIdOk() (*string, bool) {
 func (o *ObservabilityPipelineHttpServerSource) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetTls returns the Tls field value if set, zero value otherwise.
 func (o *ObservabilityPipelineHttpServerSource) GetTls() ObservabilityPipelineTls {
@@ -147,6 +154,7 @@ func (o *ObservabilityPipelineHttpServerSource) SetTls(v ObservabilityPipelineTl
 	o.Tls = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineHttpServerSource) GetType() ObservabilityPipelineHttpServerSourceType {
 	if o == nil {
@@ -169,6 +177,8 @@ func (o *ObservabilityPipelineHttpServerSource) GetTypeOk() (*ObservabilityPipel
 func (o *ObservabilityPipelineHttpServerSource) SetType(v ObservabilityPipelineHttpServerSourceType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineHttpServerSource) MarshalJSON() ([]byte, error) {
@@ -194,10 +204,10 @@ func (o ObservabilityPipelineHttpServerSource) MarshalJSON() ([]byte, error) {
 func (o *ObservabilityPipelineHttpServerSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AuthStrategy *ObservabilityPipelineHttpServerSourceAuthStrategy `json:"auth_strategy"`
-		Decoding     *ObservabilityPipelineDecoding                     `json:"decoding"`
-		Id           *string                                            `json:"id"`
-		Tls          *ObservabilityPipelineTls                          `json:"tls,omitempty"`
-		Type         *ObservabilityPipelineHttpServerSourceType         `json:"type"`
+		Decoding *ObservabilityPipelineDecoding `json:"decoding"`
+		Id *string `json:"id"`
+		Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
+		Type *ObservabilityPipelineHttpServerSourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -216,7 +226,7 @@ func (o *ObservabilityPipelineHttpServerSource) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth_strategy", "decoding", "id", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "auth_strategy", "decoding", "id", "tls", "type",  })
 	} else {
 		return err
 	}
@@ -233,7 +243,7 @@ func (o *ObservabilityPipelineHttpServerSource) UnmarshalJSON(bytes []byte) (err
 		o.Decoding = *all.Decoding
 	}
 	o.Id = *all.Id
-	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tls = all.Tls

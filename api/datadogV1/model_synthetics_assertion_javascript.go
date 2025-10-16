@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAssertionJavascript A JavaScript assertion.
 type SyntheticsAssertionJavascript struct {
@@ -17,9 +21,10 @@ type SyntheticsAssertionJavascript struct {
 	// Type of the assertion.
 	Type SyntheticsAssertionJavascriptType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsAssertionJavascript instantiates a new SyntheticsAssertionJavascript object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSyntheticsAssertionJavascriptWithDefaults() *SyntheticsAssertionJavascri
 	this := SyntheticsAssertionJavascript{}
 	return &this
 }
-
 // GetCode returns the Code field value.
 func (o *SyntheticsAssertionJavascript) GetCode() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *SyntheticsAssertionJavascript) GetCodeOk() (*string, bool) {
 func (o *SyntheticsAssertionJavascript) SetCode(v string) {
 	o.Code = v
 }
+
 
 // GetType returns the Type field value.
 func (o *SyntheticsAssertionJavascript) GetType() SyntheticsAssertionJavascriptType {
@@ -86,6 +91,8 @@ func (o *SyntheticsAssertionJavascript) SetType(v SyntheticsAssertionJavascriptT
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAssertionJavascript) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o SyntheticsAssertionJavascript) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAssertionJavascript) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Code *string                            `json:"code"`
+		Code *string `json:"code"`
 		Type *SyntheticsAssertionJavascriptType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *SyntheticsAssertionJavascript) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"code", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "code", "type",  })
 	} else {
 		return err
 	}

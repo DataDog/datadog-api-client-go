@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ShiftDataAttributes Attributes for an on-call shift.
 type ShiftDataAttributes struct {
@@ -17,9 +21,10 @@ type ShiftDataAttributes struct {
 	// The start time of the shift.
 	Start *time.Time `json:"start,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewShiftDataAttributes instantiates a new ShiftDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewShiftDataAttributesWithDefaults() *ShiftDataAttributes {
 	this := ShiftDataAttributes{}
 	return &this
 }
-
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *ShiftDataAttributes) GetEnd() time.Time {
 	if o == nil || o.End == nil {
@@ -66,6 +70,7 @@ func (o *ShiftDataAttributes) SetEnd(v time.Time) {
 	o.End = &v
 }
 
+
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *ShiftDataAttributes) GetStart() time.Time {
 	if o == nil || o.Start == nil {
@@ -93,6 +98,8 @@ func (o *ShiftDataAttributes) HasStart() bool {
 func (o *ShiftDataAttributes) SetStart(v time.Time) {
 	o.Start = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ShiftDataAttributes) MarshalJSON() ([]byte, error) {
@@ -124,7 +131,7 @@ func (o ShiftDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ShiftDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		End   *time.Time `json:"end,omitempty"`
+		End *time.Time `json:"end,omitempty"`
 		Start *time.Time `json:"start,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -132,7 +139,7 @@ func (o *ShiftDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"end", "start"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "end", "start",  })
 	} else {
 		return err
 	}

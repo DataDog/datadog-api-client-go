@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricAllTags Object for a single metric's indexed tags.
 type MetricAllTags struct {
@@ -17,9 +23,10 @@ type MetricAllTags struct {
 	// The metric resource type.
 	Type *MetricType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricAllTags instantiates a new MetricAllTags object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewMetricAllTagsWithDefaults() *MetricAllTags {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *MetricAllTags) GetAttributes() MetricAllTagsAttributes {
 	if o == nil || o.Attributes == nil {
@@ -69,6 +75,7 @@ func (o *MetricAllTags) HasAttributes() bool {
 func (o *MetricAllTags) SetAttributes(v MetricAllTagsAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *MetricAllTags) GetId() string {
@@ -98,6 +105,7 @@ func (o *MetricAllTags) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MetricAllTags) GetType() MetricType {
 	if o == nil || o.Type == nil {
@@ -126,6 +134,8 @@ func (o *MetricAllTags) SetType(v MetricType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricAllTags) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -152,26 +162,26 @@ func (o MetricAllTags) MarshalJSON() ([]byte, error) {
 func (o *MetricAllTags) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *MetricAllTagsAttributes `json:"attributes,omitempty"`
-		Id         *string                  `json:"id,omitempty"`
-		Type       *MetricType              `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *MetricType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

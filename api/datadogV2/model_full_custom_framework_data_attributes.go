@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FullCustomFrameworkDataAttributes Full Framework Data Attributes.
 type FullCustomFrameworkDataAttributes struct {
@@ -23,9 +27,10 @@ type FullCustomFrameworkDataAttributes struct {
 	// Framework Version
 	Version string `json:"version"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFullCustomFrameworkDataAttributes instantiates a new FullCustomFrameworkDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewFullCustomFrameworkDataAttributesWithDefaults() *FullCustomFrameworkData
 	this := FullCustomFrameworkDataAttributes{}
 	return &this
 }
-
 // GetHandle returns the Handle field value.
 func (o *FullCustomFrameworkDataAttributes) GetHandle() string {
 	if o == nil {
@@ -70,6 +74,7 @@ func (o *FullCustomFrameworkDataAttributes) GetHandleOk() (*string, bool) {
 func (o *FullCustomFrameworkDataAttributes) SetHandle(v string) {
 	o.Handle = v
 }
+
 
 // GetIconUrl returns the IconUrl field value if set, zero value otherwise.
 func (o *FullCustomFrameworkDataAttributes) GetIconUrl() string {
@@ -99,6 +104,7 @@ func (o *FullCustomFrameworkDataAttributes) SetIconUrl(v string) {
 	o.IconUrl = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *FullCustomFrameworkDataAttributes) GetName() string {
 	if o == nil {
@@ -121,6 +127,7 @@ func (o *FullCustomFrameworkDataAttributes) GetNameOk() (*string, bool) {
 func (o *FullCustomFrameworkDataAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetRequirements returns the Requirements field value.
 func (o *FullCustomFrameworkDataAttributes) GetRequirements() []CustomFrameworkRequirement {
@@ -145,6 +152,7 @@ func (o *FullCustomFrameworkDataAttributes) SetRequirements(v []CustomFrameworkR
 	o.Requirements = v
 }
 
+
 // GetVersion returns the Version field value.
 func (o *FullCustomFrameworkDataAttributes) GetVersion() string {
 	if o == nil {
@@ -167,6 +175,8 @@ func (o *FullCustomFrameworkDataAttributes) GetVersionOk() (*string, bool) {
 func (o *FullCustomFrameworkDataAttributes) SetVersion(v string) {
 	o.Version = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FullCustomFrameworkDataAttributes) MarshalJSON() ([]byte, error) {
@@ -191,11 +201,11 @@ func (o FullCustomFrameworkDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FullCustomFrameworkDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Handle       *string                       `json:"handle"`
-		IconUrl      *string                       `json:"icon_url,omitempty"`
-		Name         *string                       `json:"name"`
+		Handle *string `json:"handle"`
+		IconUrl *string `json:"icon_url,omitempty"`
+		Name *string `json:"name"`
 		Requirements *[]CustomFrameworkRequirement `json:"requirements"`
-		Version      *string                       `json:"version"`
+		Version *string `json:"version"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -214,7 +224,7 @@ func (o *FullCustomFrameworkDataAttributes) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"handle", "icon_url", "name", "requirements", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "handle", "icon_url", "name", "requirements", "version",  })
 	} else {
 		return err
 	}

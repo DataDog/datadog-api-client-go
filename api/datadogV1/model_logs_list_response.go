@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsListResponse Response object with all logs matching the request and pagination information.
 type LogsListResponse struct {
@@ -18,9 +24,10 @@ type LogsListResponse struct {
 	// Status of the response.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsListResponse instantiates a new LogsListResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +45,6 @@ func NewLogsListResponseWithDefaults() *LogsListResponse {
 	this := LogsListResponse{}
 	return &this
 }
-
 // GetLogs returns the Logs field value if set, zero value otherwise.
 func (o *LogsListResponse) GetLogs() []Log {
 	if o == nil || o.Logs == nil {
@@ -67,6 +73,7 @@ func (o *LogsListResponse) SetLogs(v []Log) {
 	o.Logs = v
 }
 
+
 // GetNextLogId returns the NextLogId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogsListResponse) GetNextLogId() string {
 	if o == nil || o.NextLogId.Get() == nil {
@@ -80,7 +87,7 @@ func (o *LogsListResponse) GetNextLogId() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *LogsListResponse) GetNextLogIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.NextLogId.Get(), o.NextLogId.IsSet()
@@ -95,7 +102,6 @@ func (o *LogsListResponse) HasNextLogId() bool {
 func (o *LogsListResponse) SetNextLogId(v string) {
 	o.NextLogId.Set(&v)
 }
-
 // SetNextLogIdNil sets the value for NextLogId to be an explicit nil.
 func (o *LogsListResponse) SetNextLogIdNil() {
 	o.NextLogId.Set(nil)
@@ -105,6 +111,7 @@ func (o *LogsListResponse) SetNextLogIdNil() {
 func (o *LogsListResponse) UnsetNextLogId() {
 	o.NextLogId.Unset()
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *LogsListResponse) GetStatus() string {
@@ -134,6 +141,8 @@ func (o *LogsListResponse) SetStatus(v string) {
 	o.Status = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -159,16 +168,16 @@ func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Logs      []Log                  `json:"logs,omitempty"`
+		Logs []Log `json:"logs,omitempty"`
 		NextLogId datadog.NullableString `json:"nextLogId,omitempty"`
-		Status    *string                `json:"status,omitempty"`
+		Status *string `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"logs", "nextLogId", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "logs", "nextLogId", "status",  })
 	} else {
 		return err
 	}

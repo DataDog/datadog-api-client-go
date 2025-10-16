@@ -2,31 +2,35 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListStreamSource Source from which to query items to display in the stream.
 type ListStreamSource string
 
 // List of ListStreamSource.
 const (
-	LISTSTREAMSOURCE_LOGS_STREAM              ListStreamSource = "logs_stream"
-	LISTSTREAMSOURCE_AUDIT_STREAM             ListStreamSource = "audit_stream"
-	LISTSTREAMSOURCE_CI_PIPELINE_STREAM       ListStreamSource = "ci_pipeline_stream"
-	LISTSTREAMSOURCE_CI_TEST_STREAM           ListStreamSource = "ci_test_stream"
-	LISTSTREAMSOURCE_RUM_ISSUE_STREAM         ListStreamSource = "rum_issue_stream"
-	LISTSTREAMSOURCE_APM_ISSUE_STREAM         ListStreamSource = "apm_issue_stream"
-	LISTSTREAMSOURCE_TRACE_STREAM             ListStreamSource = "trace_stream"
-	LISTSTREAMSOURCE_LOGS_ISSUE_STREAM        ListStreamSource = "logs_issue_stream"
-	LISTSTREAMSOURCE_LOGS_PATTERN_STREAM      ListStreamSource = "logs_pattern_stream"
-	LISTSTREAMSOURCE_LOGS_TRANSACTION_STREAM  ListStreamSource = "logs_transaction_stream"
-	LISTSTREAMSOURCE_EVENT_STREAM             ListStreamSource = "event_stream"
-	LISTSTREAMSOURCE_RUM_STREAM               ListStreamSource = "rum_stream"
+	LISTSTREAMSOURCE_LOGS_STREAM ListStreamSource = "logs_stream"
+	LISTSTREAMSOURCE_AUDIT_STREAM ListStreamSource = "audit_stream"
+	LISTSTREAMSOURCE_CI_PIPELINE_STREAM ListStreamSource = "ci_pipeline_stream"
+	LISTSTREAMSOURCE_CI_TEST_STREAM ListStreamSource = "ci_test_stream"
+	LISTSTREAMSOURCE_RUM_ISSUE_STREAM ListStreamSource = "rum_issue_stream"
+	LISTSTREAMSOURCE_APM_ISSUE_STREAM ListStreamSource = "apm_issue_stream"
+	LISTSTREAMSOURCE_TRACE_STREAM ListStreamSource = "trace_stream"
+	LISTSTREAMSOURCE_LOGS_ISSUE_STREAM ListStreamSource = "logs_issue_stream"
+	LISTSTREAMSOURCE_LOGS_PATTERN_STREAM ListStreamSource = "logs_pattern_stream"
+	LISTSTREAMSOURCE_LOGS_TRANSACTION_STREAM ListStreamSource = "logs_transaction_stream"
+	LISTSTREAMSOURCE_EVENT_STREAM ListStreamSource = "event_stream"
+	LISTSTREAMSOURCE_RUM_STREAM ListStreamSource = "rum_stream"
 	LISTSTREAMSOURCE_LLM_OBSERVABILITY_STREAM ListStreamSource = "llm_observability_stream"
 )
 

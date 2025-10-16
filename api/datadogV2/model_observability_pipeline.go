@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipeline Top-level schema representing a pipeline.
 type ObservabilityPipeline struct {
 	// Contains the pipeline’s ID, type, and configuration attributes.
 	Data ObservabilityPipelineData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipeline instantiates a new ObservabilityPipeline object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewObservabilityPipelineWithDefaults() *ObservabilityPipeline {
 	this := ObservabilityPipeline{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *ObservabilityPipeline) GetData() ObservabilityPipelineData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *ObservabilityPipeline) GetDataOk() (*ObservabilityPipelineData, bool) {
 func (o *ObservabilityPipeline) SetData(v ObservabilityPipelineData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipeline) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *ObservabilityPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Connection The definition of `Connection` object.
 type Connection struct {
@@ -17,9 +21,10 @@ type Connection struct {
 	// The `Connection` `label`.
 	Label string `json:"label"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewConnection instantiates a new Connection object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewConnectionWithDefaults() *Connection {
 	this := Connection{}
 	return &this
 }
-
 // GetConnectionId returns the ConnectionId field value.
 func (o *Connection) GetConnectionId() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *Connection) GetConnectionIdOk() (*string, bool) {
 func (o *Connection) SetConnectionId(v string) {
 	o.ConnectionId = v
 }
+
 
 // GetLabel returns the Label field value.
 func (o *Connection) GetLabel() string {
@@ -86,6 +91,8 @@ func (o *Connection) SetLabel(v string) {
 	o.Label = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o Connection) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o Connection) MarshalJSON() ([]byte, error) {
 func (o *Connection) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ConnectionId *string `json:"connectionId"`
-		Label        *string `json:"label"`
+		Label *string `json:"label"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *Connection) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"connectionId", "label"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "connectionId", "label",  })
 	} else {
 		return err
 	}

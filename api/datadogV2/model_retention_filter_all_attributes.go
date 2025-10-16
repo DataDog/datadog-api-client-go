@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RetentionFilterAllAttributes The attributes of the retention filter.
 type RetentionFilterAllAttributes struct {
@@ -37,9 +43,10 @@ type RetentionFilterAllAttributes struct {
 	// A value of 1.0 keeps all traces with spans matching the query.
 	TraceRate *float64 `json:"trace_rate,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRetentionFilterAllAttributes instantiates a new RetentionFilterAllAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -61,7 +68,6 @@ func NewRetentionFilterAllAttributesWithDefaults() *RetentionFilterAllAttributes
 	this.FilterType = &filterType
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *RetentionFilterAllAttributes) GetCreatedAt() int64 {
 	if o == nil || o.CreatedAt == nil {
@@ -89,6 +95,7 @@ func (o *RetentionFilterAllAttributes) HasCreatedAt() bool {
 func (o *RetentionFilterAllAttributes) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
+
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *RetentionFilterAllAttributes) GetCreatedBy() string {
@@ -118,6 +125,7 @@ func (o *RetentionFilterAllAttributes) SetCreatedBy(v string) {
 	o.CreatedBy = &v
 }
 
+
 // GetEditable returns the Editable field value if set, zero value otherwise.
 func (o *RetentionFilterAllAttributes) GetEditable() bool {
 	if o == nil || o.Editable == nil {
@@ -145,6 +153,7 @@ func (o *RetentionFilterAllAttributes) HasEditable() bool {
 func (o *RetentionFilterAllAttributes) SetEditable(v bool) {
 	o.Editable = &v
 }
+
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *RetentionFilterAllAttributes) GetEnabled() bool {
@@ -174,6 +183,7 @@ func (o *RetentionFilterAllAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
 // GetExecutionOrder returns the ExecutionOrder field value if set, zero value otherwise.
 func (o *RetentionFilterAllAttributes) GetExecutionOrder() int64 {
 	if o == nil || o.ExecutionOrder == nil {
@@ -201,6 +211,7 @@ func (o *RetentionFilterAllAttributes) HasExecutionOrder() bool {
 func (o *RetentionFilterAllAttributes) SetExecutionOrder(v int64) {
 	o.ExecutionOrder = &v
 }
+
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *RetentionFilterAllAttributes) GetFilter() SpansFilter {
@@ -230,6 +241,7 @@ func (o *RetentionFilterAllAttributes) SetFilter(v SpansFilter) {
 	o.Filter = &v
 }
 
+
 // GetFilterType returns the FilterType field value if set, zero value otherwise.
 func (o *RetentionFilterAllAttributes) GetFilterType() RetentionFilterAllType {
 	if o == nil || o.FilterType == nil {
@@ -257,6 +269,7 @@ func (o *RetentionFilterAllAttributes) HasFilterType() bool {
 func (o *RetentionFilterAllAttributes) SetFilterType(v RetentionFilterAllType) {
 	o.FilterType = &v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *RetentionFilterAllAttributes) GetModifiedAt() int64 {
@@ -286,6 +299,7 @@ func (o *RetentionFilterAllAttributes) SetModifiedAt(v int64) {
 	o.ModifiedAt = &v
 }
 
+
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise.
 func (o *RetentionFilterAllAttributes) GetModifiedBy() string {
 	if o == nil || o.ModifiedBy == nil {
@@ -313,6 +327,7 @@ func (o *RetentionFilterAllAttributes) HasModifiedBy() bool {
 func (o *RetentionFilterAllAttributes) SetModifiedBy(v string) {
 	o.ModifiedBy = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *RetentionFilterAllAttributes) GetName() string {
@@ -342,6 +357,7 @@ func (o *RetentionFilterAllAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetRate returns the Rate field value if set, zero value otherwise.
 func (o *RetentionFilterAllAttributes) GetRate() float64 {
 	if o == nil || o.Rate == nil {
@@ -370,6 +386,7 @@ func (o *RetentionFilterAllAttributes) SetRate(v float64) {
 	o.Rate = &v
 }
 
+
 // GetTraceRate returns the TraceRate field value if set, zero value otherwise.
 func (o *RetentionFilterAllAttributes) GetTraceRate() float64 {
 	if o == nil || o.TraceRate == nil {
@@ -397,6 +414,8 @@ func (o *RetentionFilterAllAttributes) HasTraceRate() bool {
 func (o *RetentionFilterAllAttributes) SetTraceRate(v float64) {
 	o.TraceRate = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RetentionFilterAllAttributes) MarshalJSON() ([]byte, error) {
@@ -450,25 +469,25 @@ func (o RetentionFilterAllAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RetentionFilterAllAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt      *int64                  `json:"created_at,omitempty"`
-		CreatedBy      *string                 `json:"created_by,omitempty"`
-		Editable       *bool                   `json:"editable,omitempty"`
-		Enabled        *bool                   `json:"enabled,omitempty"`
-		ExecutionOrder *int64                  `json:"execution_order,omitempty"`
-		Filter         *SpansFilter            `json:"filter,omitempty"`
-		FilterType     *RetentionFilterAllType `json:"filter_type,omitempty"`
-		ModifiedAt     *int64                  `json:"modified_at,omitempty"`
-		ModifiedBy     *string                 `json:"modified_by,omitempty"`
-		Name           *string                 `json:"name,omitempty"`
-		Rate           *float64                `json:"rate,omitempty"`
-		TraceRate      *float64                `json:"trace_rate,omitempty"`
+		CreatedAt *int64 `json:"created_at,omitempty"`
+		CreatedBy *string `json:"created_by,omitempty"`
+		Editable *bool `json:"editable,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
+		ExecutionOrder *int64 `json:"execution_order,omitempty"`
+		Filter *SpansFilter `json:"filter,omitempty"`
+		FilterType *RetentionFilterAllType `json:"filter_type,omitempty"`
+		ModifiedAt *int64 `json:"modified_at,omitempty"`
+		ModifiedBy *string `json:"modified_by,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Rate *float64 `json:"rate,omitempty"`
+		TraceRate *float64 `json:"trace_rate,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "editable", "enabled", "execution_order", "filter", "filter_type", "modified_at", "modified_by", "name", "rate", "trace_rate"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_at", "created_by", "editable", "enabled", "execution_order", "filter", "filter_type", "modified_at", "modified_by", "name", "rate", "trace_rate",  })
 	} else {
 		return err
 	}
@@ -479,11 +498,11 @@ func (o *RetentionFilterAllAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Editable = all.Editable
 	o.Enabled = all.Enabled
 	o.ExecutionOrder = all.ExecutionOrder
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter
-	if all.FilterType != nil && !all.FilterType.IsValid() {
+	if all.FilterType != nil &&!all.FilterType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.FilterType = all.FilterType

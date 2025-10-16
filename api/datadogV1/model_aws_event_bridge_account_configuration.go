@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSEventBridgeAccountConfiguration The EventBridge configuration for one AWS account.
 type AWSEventBridgeAccountConfiguration struct {
@@ -18,9 +24,10 @@ type AWSEventBridgeAccountConfiguration struct {
 	// and metrics reporting through the main AWS integration.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSEventBridgeAccountConfiguration instantiates a new AWSEventBridgeAccountConfiguration object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +45,6 @@ func NewAWSEventBridgeAccountConfigurationWithDefaults() *AWSEventBridgeAccountC
 	this := AWSEventBridgeAccountConfiguration{}
 	return &this
 }
-
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
 func (o *AWSEventBridgeAccountConfiguration) GetAccountId() string {
 	if o == nil || o.AccountId == nil {
@@ -66,6 +72,7 @@ func (o *AWSEventBridgeAccountConfiguration) HasAccountId() bool {
 func (o *AWSEventBridgeAccountConfiguration) SetAccountId(v string) {
 	o.AccountId = &v
 }
+
 
 // GetEventHubs returns the EventHubs field value if set, zero value otherwise.
 func (o *AWSEventBridgeAccountConfiguration) GetEventHubs() []AWSEventBridgeSource {
@@ -95,6 +102,7 @@ func (o *AWSEventBridgeAccountConfiguration) SetEventHubs(v []AWSEventBridgeSour
 	o.EventHubs = v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *AWSEventBridgeAccountConfiguration) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -123,6 +131,8 @@ func (o *AWSEventBridgeAccountConfiguration) SetTags(v []string) {
 	o.Tags = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSEventBridgeAccountConfiguration) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,16 +158,16 @@ func (o AWSEventBridgeAccountConfiguration) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSEventBridgeAccountConfiguration) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountId *string                `json:"accountId,omitempty"`
+		AccountId *string `json:"accountId,omitempty"`
 		EventHubs []AWSEventBridgeSource `json:"eventHubs,omitempty"`
-		Tags      []string               `json:"tags,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"accountId", "eventHubs", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "accountId", "eventHubs", "tags",  })
 	} else {
 		return err
 	}

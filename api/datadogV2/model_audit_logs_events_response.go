@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AuditLogsEventsResponse Response object with all events matching the request and pagination information.
 type AuditLogsEventsResponse struct {
@@ -17,9 +23,10 @@ type AuditLogsEventsResponse struct {
 	// The metadata associated with a request.
 	Meta *AuditLogsResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAuditLogsEventsResponse instantiates a new AuditLogsEventsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewAuditLogsEventsResponseWithDefaults() *AuditLogsEventsResponse {
 	this := AuditLogsEventsResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *AuditLogsEventsResponse) GetData() []AuditLogsEvent {
 	if o == nil || o.Data == nil {
@@ -65,6 +71,7 @@ func (o *AuditLogsEventsResponse) HasData() bool {
 func (o *AuditLogsEventsResponse) SetData(v []AuditLogsEvent) {
 	o.Data = v
 }
+
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *AuditLogsEventsResponse) GetLinks() AuditLogsResponseLinks {
@@ -94,6 +101,7 @@ func (o *AuditLogsEventsResponse) SetLinks(v AuditLogsResponseLinks) {
 	o.Links = &v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *AuditLogsEventsResponse) GetMeta() AuditLogsResponseMetadata {
 	if o == nil || o.Meta == nil {
@@ -122,6 +130,8 @@ func (o *AuditLogsEventsResponse) SetMeta(v AuditLogsResponseMetadata) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AuditLogsEventsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,27 +157,27 @@ func (o AuditLogsEventsResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AuditLogsEventsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data  []AuditLogsEvent           `json:"data,omitempty"`
-		Links *AuditLogsResponseLinks    `json:"links,omitempty"`
-		Meta  *AuditLogsResponseMetadata `json:"meta,omitempty"`
+		Data []AuditLogsEvent `json:"data,omitempty"`
+		Links *AuditLogsResponseLinks `json:"links,omitempty"`
+		Meta *AuditLogsResponseMetadata `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "links", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "links", "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = all.Data
-	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Links = all.Links
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

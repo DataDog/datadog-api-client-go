@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomDestinationResponseHttpDestinationAuthCustomHeader Custom header access authentication.
 type CustomDestinationResponseHttpDestinationAuthCustomHeader struct {
@@ -17,9 +21,10 @@ type CustomDestinationResponseHttpDestinationAuthCustomHeader struct {
 	// Type of the custom header access authentication.
 	Type CustomDestinationResponseHttpDestinationAuthCustomHeaderType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomDestinationResponseHttpDestinationAuthCustomHeader instantiates a new CustomDestinationResponseHttpDestinationAuthCustomHeader object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewCustomDestinationResponseHttpDestinationAuthCustomHeaderWithDefaults() *
 	this.Type = typeVar
 	return &this
 }
-
 // GetHeaderName returns the HeaderName field value.
 func (o *CustomDestinationResponseHttpDestinationAuthCustomHeader) GetHeaderName() string {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *CustomDestinationResponseHttpDestinationAuthCustomHeader) GetHeaderName
 func (o *CustomDestinationResponseHttpDestinationAuthCustomHeader) SetHeaderName(v string) {
 	o.HeaderName = v
 }
+
 
 // GetType returns the Type field value.
 func (o *CustomDestinationResponseHttpDestinationAuthCustomHeader) GetType() CustomDestinationResponseHttpDestinationAuthCustomHeaderType {
@@ -88,6 +93,8 @@ func (o *CustomDestinationResponseHttpDestinationAuthCustomHeader) SetType(v Cus
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomDestinationResponseHttpDestinationAuthCustomHeader) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -106,8 +113,8 @@ func (o CustomDestinationResponseHttpDestinationAuthCustomHeader) MarshalJSON() 
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomDestinationResponseHttpDestinationAuthCustomHeader) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		HeaderName *string                                                       `json:"header_name"`
-		Type       *CustomDestinationResponseHttpDestinationAuthCustomHeaderType `json:"type"`
+		HeaderName *string `json:"header_name"`
+		Type *CustomDestinationResponseHttpDestinationAuthCustomHeaderType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *CustomDestinationResponseHttpDestinationAuthCustomHeader) UnmarshalJSON
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"header_name", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "header_name", "type",  })
 	} else {
 		return err
 	}

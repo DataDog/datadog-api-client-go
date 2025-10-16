@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DataDeletionResponseMeta The metadata of the data deletion response.
 type DataDeletionResponseMeta struct {
@@ -21,9 +27,10 @@ type DataDeletionResponseMeta struct {
 	// The status of the executed request.
 	RequestStatus *string `json:"request_status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDataDeletionResponseMeta instantiates a new DataDeletionResponseMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewDataDeletionResponseMetaWithDefaults() *DataDeletionResponseMeta {
 	this := DataDeletionResponseMeta{}
 	return &this
 }
-
 // GetCountProduct returns the CountProduct field value if set, zero value otherwise.
 func (o *DataDeletionResponseMeta) GetCountProduct() map[string]int64 {
 	if o == nil || o.CountProduct == nil {
@@ -69,6 +75,7 @@ func (o *DataDeletionResponseMeta) HasCountProduct() bool {
 func (o *DataDeletionResponseMeta) SetCountProduct(v map[string]int64) {
 	o.CountProduct = v
 }
+
 
 // GetCountStatus returns the CountStatus field value if set, zero value otherwise.
 func (o *DataDeletionResponseMeta) GetCountStatus() map[string]int64 {
@@ -98,6 +105,7 @@ func (o *DataDeletionResponseMeta) SetCountStatus(v map[string]int64) {
 	o.CountStatus = v
 }
 
+
 // GetNextPage returns the NextPage field value if set, zero value otherwise.
 func (o *DataDeletionResponseMeta) GetNextPage() string {
 	if o == nil || o.NextPage == nil {
@@ -125,6 +133,7 @@ func (o *DataDeletionResponseMeta) HasNextPage() bool {
 func (o *DataDeletionResponseMeta) SetNextPage(v string) {
 	o.NextPage = &v
 }
+
 
 // GetProduct returns the Product field value if set, zero value otherwise.
 func (o *DataDeletionResponseMeta) GetProduct() string {
@@ -154,6 +163,7 @@ func (o *DataDeletionResponseMeta) SetProduct(v string) {
 	o.Product = &v
 }
 
+
 // GetRequestStatus returns the RequestStatus field value if set, zero value otherwise.
 func (o *DataDeletionResponseMeta) GetRequestStatus() string {
 	if o == nil || o.RequestStatus == nil {
@@ -181,6 +191,8 @@ func (o *DataDeletionResponseMeta) HasRequestStatus() bool {
 func (o *DataDeletionResponseMeta) SetRequestStatus(v string) {
 	o.RequestStatus = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DataDeletionResponseMeta) MarshalJSON() ([]byte, error) {
@@ -213,18 +225,18 @@ func (o DataDeletionResponseMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DataDeletionResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CountProduct  map[string]int64 `json:"count_product,omitempty"`
-		CountStatus   map[string]int64 `json:"count_status,omitempty"`
-		NextPage      *string          `json:"next_page,omitempty"`
-		Product       *string          `json:"product,omitempty"`
-		RequestStatus *string          `json:"request_status,omitempty"`
+		CountProduct map[string]int64 `json:"count_product,omitempty"`
+		CountStatus map[string]int64 `json:"count_status,omitempty"`
+		NextPage *string `json:"next_page,omitempty"`
+		Product *string `json:"product,omitempty"`
+		RequestStatus *string `json:"request_status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"count_product", "count_status", "next_page", "product", "request_status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "count_product", "count_status", "next_page", "product", "request_status",  })
 	} else {
 		return err
 	}

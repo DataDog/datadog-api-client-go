@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionV2Contact - Service owner's contacts information.
 type ServiceDefinitionV2Contact struct {
-	ServiceDefinitionV2Email   *ServiceDefinitionV2Email
-	ServiceDefinitionV2Slack   *ServiceDefinitionV2Slack
+	ServiceDefinitionV2Email *ServiceDefinitionV2Email
+	ServiceDefinitionV2Slack *ServiceDefinitionV2Slack
 	ServiceDefinitionV2MSTeams *ServiceDefinitionV2MSTeams
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -104,13 +110,16 @@ func (obj ServiceDefinitionV2Contact) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.ServiceDefinitionV2Email)
 	}
 
+
 	if obj.ServiceDefinitionV2Slack != nil {
 		return datadog.Marshal(&obj.ServiceDefinitionV2Slack)
 	}
 
+
 	if obj.ServiceDefinitionV2MSTeams != nil {
 		return datadog.Marshal(&obj.ServiceDefinitionV2MSTeams)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj ServiceDefinitionV2Contact) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ServiceDefinitionV2Contact) GetActualInstance() interface{} {
+func (obj *ServiceDefinitionV2Contact) GetActualInstance() (interface{}) {
 	if obj.ServiceDefinitionV2Email != nil {
 		return obj.ServiceDefinitionV2Email
 	}
+
 
 	if obj.ServiceDefinitionV2Slack != nil {
 		return obj.ServiceDefinitionV2Slack
 	}
 
+
 	if obj.ServiceDefinitionV2MSTeams != nil {
 		return obj.ServiceDefinitionV2MSTeams
 	}
+
 
 	// all schemas are nil
 	return nil

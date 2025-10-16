@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpdateAppResponse The response object after an app is successfully updated.
 type UpdateAppResponse struct {
@@ -19,9 +25,10 @@ type UpdateAppResponse struct {
 	// The app's publication relationship and custom connections.
 	Relationship *AppRelationship `json:"relationship,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUpdateAppResponse instantiates a new UpdateAppResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewUpdateAppResponseWithDefaults() *UpdateAppResponse {
 	this := UpdateAppResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *UpdateAppResponse) GetData() UpdateAppResponseData {
 	if o == nil || o.Data == nil {
@@ -67,6 +73,7 @@ func (o *UpdateAppResponse) HasData() bool {
 func (o *UpdateAppResponse) SetData(v UpdateAppResponseData) {
 	o.Data = &v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *UpdateAppResponse) GetIncluded() []Deployment {
@@ -96,6 +103,7 @@ func (o *UpdateAppResponse) SetIncluded(v []Deployment) {
 	o.Included = v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *UpdateAppResponse) GetMeta() AppMeta {
 	if o == nil || o.Meta == nil {
@@ -123,6 +131,7 @@ func (o *UpdateAppResponse) HasMeta() bool {
 func (o *UpdateAppResponse) SetMeta(v AppMeta) {
 	o.Meta = &v
 }
+
 
 // GetRelationship returns the Relationship field value if set, zero value otherwise.
 func (o *UpdateAppResponse) GetRelationship() AppRelationship {
@@ -152,6 +161,8 @@ func (o *UpdateAppResponse) SetRelationship(v AppRelationship) {
 	o.Relationship = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateAppResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,32 +191,32 @@ func (o UpdateAppResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UpdateAppResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data         *UpdateAppResponseData `json:"data,omitempty"`
-		Included     []Deployment           `json:"included,omitempty"`
-		Meta         *AppMeta               `json:"meta,omitempty"`
-		Relationship *AppRelationship       `json:"relationship,omitempty"`
+		Data *UpdateAppResponseData `json:"data,omitempty"`
+		Included []Deployment `json:"included,omitempty"`
+		Meta *AppMeta `json:"meta,omitempty"`
+		Relationship *AppRelationship `json:"relationship,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "meta", "relationship"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "included", "meta", "relationship",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Data = all.Data
 	o.Included = all.Included
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta
-	if all.Relationship != nil && all.Relationship.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationship != nil && all.Relationship.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationship = all.Relationship

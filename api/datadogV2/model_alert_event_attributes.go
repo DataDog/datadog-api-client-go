@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AlertEventAttributes Alert event attributes.
 type AlertEventAttributes struct {
@@ -29,9 +35,10 @@ type AlertEventAttributes struct {
 	// The title of the event.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAlertEventAttributes instantiates a new AlertEventAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +56,6 @@ func NewAlertEventAttributesWithDefaults() *AlertEventAttributes {
 	this := AlertEventAttributes{}
 	return &this
 }
-
 // GetAggregationKey returns the AggregationKey field value if set, zero value otherwise.
 func (o *AlertEventAttributes) GetAggregationKey() string {
 	if o == nil || o.AggregationKey == nil {
@@ -77,6 +83,7 @@ func (o *AlertEventAttributes) HasAggregationKey() bool {
 func (o *AlertEventAttributes) SetAggregationKey(v string) {
 	o.AggregationKey = &v
 }
+
 
 // GetCustom returns the Custom field value if set, zero value otherwise.
 func (o *AlertEventAttributes) GetCustom() interface{} {
@@ -106,6 +113,7 @@ func (o *AlertEventAttributes) SetCustom(v interface{}) {
 	o.Custom = v
 }
 
+
 // GetEvt returns the Evt field value if set, zero value otherwise.
 func (o *AlertEventAttributes) GetEvt() EventSystemAttributes {
 	if o == nil || o.Evt == nil {
@@ -133,6 +141,7 @@ func (o *AlertEventAttributes) HasEvt() bool {
 func (o *AlertEventAttributes) SetEvt(v EventSystemAttributes) {
 	o.Evt = &v
 }
+
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *AlertEventAttributes) GetLinks() []AlertEventAttributesLinksItem {
@@ -162,6 +171,7 @@ func (o *AlertEventAttributes) SetLinks(v []AlertEventAttributesLinksItem) {
 	o.Links = v
 }
 
+
 // GetPriority returns the Priority field value if set, zero value otherwise.
 func (o *AlertEventAttributes) GetPriority() AlertEventAttributesPriority {
 	if o == nil || o.Priority == nil {
@@ -189,6 +199,7 @@ func (o *AlertEventAttributes) HasPriority() bool {
 func (o *AlertEventAttributes) SetPriority(v AlertEventAttributesPriority) {
 	o.Priority = &v
 }
+
 
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *AlertEventAttributes) GetService() string {
@@ -218,6 +229,7 @@ func (o *AlertEventAttributes) SetService(v string) {
 	o.Service = &v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *AlertEventAttributes) GetStatus() AlertEventAttributesStatus {
 	if o == nil || o.Status == nil {
@@ -245,6 +257,7 @@ func (o *AlertEventAttributes) HasStatus() bool {
 func (o *AlertEventAttributes) SetStatus(v AlertEventAttributesStatus) {
 	o.Status = &v
 }
+
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *AlertEventAttributes) GetTimestamp() int64 {
@@ -274,6 +287,7 @@ func (o *AlertEventAttributes) SetTimestamp(v int64) {
 	o.Timestamp = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *AlertEventAttributes) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -301,6 +315,8 @@ func (o *AlertEventAttributes) HasTitle() bool {
 func (o *AlertEventAttributes) SetTitle(v string) {
 	o.Title = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AlertEventAttributes) MarshalJSON() ([]byte, error) {
@@ -345,22 +361,22 @@ func (o AlertEventAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AlertEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AggregationKey *string                         `json:"aggregation_key,omitempty"`
-		Custom         interface{}                     `json:"custom,omitempty"`
-		Evt            *EventSystemAttributes          `json:"evt,omitempty"`
-		Links          []AlertEventAttributesLinksItem `json:"links,omitempty"`
-		Priority       *AlertEventAttributesPriority   `json:"priority,omitempty"`
-		Service        *string                         `json:"service,omitempty"`
-		Status         *AlertEventAttributesStatus     `json:"status,omitempty"`
-		Timestamp      *int64                          `json:"timestamp,omitempty"`
-		Title          *string                         `json:"title,omitempty"`
+		AggregationKey *string `json:"aggregation_key,omitempty"`
+		Custom interface{} `json:"custom,omitempty"`
+		Evt *EventSystemAttributes `json:"evt,omitempty"`
+		Links []AlertEventAttributesLinksItem `json:"links,omitempty"`
+		Priority *AlertEventAttributesPriority `json:"priority,omitempty"`
+		Service *string `json:"service,omitempty"`
+		Status *AlertEventAttributesStatus `json:"status,omitempty"`
+		Timestamp *int64 `json:"timestamp,omitempty"`
+		Title *string `json:"title,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation_key", "custom", "evt", "links", "priority", "service", "status", "timestamp", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation_key", "custom", "evt", "links", "priority", "service", "status", "timestamp", "title",  })
 	} else {
 		return err
 	}
@@ -368,18 +384,18 @@ func (o *AlertEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.AggregationKey = all.AggregationKey
 	o.Custom = all.Custom
-	if all.Evt != nil && all.Evt.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Evt != nil && all.Evt.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Evt = all.Evt
 	o.Links = all.Links
-	if all.Priority != nil && !all.Priority.IsValid() {
+	if all.Priority != nil &&!all.Priority.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Priority = all.Priority
 	}
 	o.Service = all.Service
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

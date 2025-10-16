@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentNotificationTemplateIncludedItems - Objects related to a notification template.
 type IncidentNotificationTemplateIncludedItems struct {
-	User               *User
+	User *User
 	IncidentTypeObject *IncidentTypeObject
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -36,7 +42,7 @@ func (obj *IncidentNotificationTemplateIncludedItems) UnmarshalJSON(data []byte)
 	if err == nil {
 		if obj.User != nil && obj.User.UnparsedObject == nil {
 			jsonUser, _ := datadog.Marshal(obj.User)
-			if string(jsonUser) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonUser) == "{}" && string(data) != "{}"  { // empty struct
 				obj.User = nil
 			} else {
 				match++
@@ -80,9 +86,11 @@ func (obj IncidentNotificationTemplateIncludedItems) MarshalJSON() ([]byte, erro
 		return datadog.Marshal(&obj.User)
 	}
 
+
 	if obj.IncidentTypeObject != nil {
 		return datadog.Marshal(&obj.IncidentTypeObject)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj IncidentNotificationTemplateIncludedItems) MarshalJSON() ([]byte, erro
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *IncidentNotificationTemplateIncludedItems) GetActualInstance() interface{} {
+func (obj *IncidentNotificationTemplateIncludedItems) GetActualInstance() (interface{}) {
 	if obj.User != nil {
 		return obj.User
 	}
 
+
 	if obj.IncidentTypeObject != nil {
 		return obj.IncidentTypeObject
 	}
+
 
 	// all schemas are nil
 	return nil

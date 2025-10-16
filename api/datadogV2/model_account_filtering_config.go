@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AccountFilteringConfig The account filtering configuration.
 type AccountFilteringConfig struct {
@@ -17,9 +23,10 @@ type AccountFilteringConfig struct {
 	// The AWS account IDs to be included in your billing dataset. This field is used when `include_new_accounts` is `false`.
 	IncludedAccounts []string `json:"included_accounts,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAccountFilteringConfig instantiates a new AccountFilteringConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewAccountFilteringConfigWithDefaults() *AccountFilteringConfig {
 	this := AccountFilteringConfig{}
 	return &this
 }
-
 // GetExcludedAccounts returns the ExcludedAccounts field value if set, zero value otherwise.
 func (o *AccountFilteringConfig) GetExcludedAccounts() []string {
 	if o == nil || o.ExcludedAccounts == nil {
@@ -66,6 +72,7 @@ func (o *AccountFilteringConfig) SetExcludedAccounts(v []string) {
 	o.ExcludedAccounts = v
 }
 
+
 // GetIncludeNewAccounts returns the IncludeNewAccounts field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AccountFilteringConfig) GetIncludeNewAccounts() bool {
 	if o == nil || o.IncludeNewAccounts.Get() == nil {
@@ -79,7 +86,7 @@ func (o *AccountFilteringConfig) GetIncludeNewAccounts() bool {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *AccountFilteringConfig) GetIncludeNewAccountsOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.IncludeNewAccounts.Get(), o.IncludeNewAccounts.IsSet()
@@ -94,7 +101,6 @@ func (o *AccountFilteringConfig) HasIncludeNewAccounts() bool {
 func (o *AccountFilteringConfig) SetIncludeNewAccounts(v bool) {
 	o.IncludeNewAccounts.Set(&v)
 }
-
 // SetIncludeNewAccountsNil sets the value for IncludeNewAccounts to be an explicit nil.
 func (o *AccountFilteringConfig) SetIncludeNewAccountsNil() {
 	o.IncludeNewAccounts.Set(nil)
@@ -104,6 +110,7 @@ func (o *AccountFilteringConfig) SetIncludeNewAccountsNil() {
 func (o *AccountFilteringConfig) UnsetIncludeNewAccounts() {
 	o.IncludeNewAccounts.Unset()
 }
+
 
 // GetIncludedAccounts returns the IncludedAccounts field value if set, zero value otherwise.
 func (o *AccountFilteringConfig) GetIncludedAccounts() []string {
@@ -133,6 +140,8 @@ func (o *AccountFilteringConfig) SetIncludedAccounts(v []string) {
 	o.IncludedAccounts = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AccountFilteringConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -158,16 +167,16 @@ func (o AccountFilteringConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AccountFilteringConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ExcludedAccounts   []string             `json:"excluded_accounts,omitempty"`
+		ExcludedAccounts []string `json:"excluded_accounts,omitempty"`
 		IncludeNewAccounts datadog.NullableBool `json:"include_new_accounts,omitempty"`
-		IncludedAccounts   []string             `json:"included_accounts,omitempty"`
+		IncludedAccounts []string `json:"included_accounts,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"excluded_accounts", "include_new_accounts", "included_accounts"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "excluded_accounts", "include_new_accounts", "included_accounts",  })
 	} else {
 		return err
 	}

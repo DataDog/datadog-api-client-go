@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListAppsResponseDataItemsRelationships The app's publication information.
 type ListAppsResponseDataItemsRelationships struct {
 	// Information pointing to the app's publication status.
 	Deployment *DeploymentRelationship `json:"deployment,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListAppsResponseDataItemsRelationships instantiates a new ListAppsResponseDataItemsRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewListAppsResponseDataItemsRelationshipsWithDefaults() *ListAppsResponseDa
 	this := ListAppsResponseDataItemsRelationships{}
 	return &this
 }
-
 // GetDeployment returns the Deployment field value if set, zero value otherwise.
 func (o *ListAppsResponseDataItemsRelationships) GetDeployment() DeploymentRelationship {
 	if o == nil || o.Deployment == nil {
@@ -62,6 +68,8 @@ func (o *ListAppsResponseDataItemsRelationships) SetDeployment(v DeploymentRelat
 	o.Deployment = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListAppsResponseDataItemsRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *ListAppsResponseDataItemsRelationships) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"deployment"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "deployment",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Deployment != nil && all.Deployment.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Deployment != nil && all.Deployment.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Deployment = all.Deployment

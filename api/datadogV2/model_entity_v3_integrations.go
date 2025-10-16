@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityV3Integrations A base schema for defining third-party integrations.
 type EntityV3Integrations struct {
@@ -17,6 +23,7 @@ type EntityV3Integrations struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityV3Integrations instantiates a new EntityV3Integrations object.
 // This constructor will assign default values to properties that have it defined,
@@ -34,7 +41,6 @@ func NewEntityV3IntegrationsWithDefaults() *EntityV3Integrations {
 	this := EntityV3Integrations{}
 	return &this
 }
-
 // GetOpsgenie returns the Opsgenie field value if set, zero value otherwise.
 func (o *EntityV3Integrations) GetOpsgenie() EntityV3DatadogIntegrationOpsgenie {
 	if o == nil || o.Opsgenie == nil {
@@ -62,6 +68,7 @@ func (o *EntityV3Integrations) HasOpsgenie() bool {
 func (o *EntityV3Integrations) SetOpsgenie(v EntityV3DatadogIntegrationOpsgenie) {
 	o.Opsgenie = &v
 }
+
 
 // GetPagerduty returns the Pagerduty field value if set, zero value otherwise.
 func (o *EntityV3Integrations) GetPagerduty() EntityV3DatadogIntegrationPagerduty {
@@ -91,6 +98,8 @@ func (o *EntityV3Integrations) SetPagerduty(v EntityV3DatadogIntegrationPagerdut
 	o.Pagerduty = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3Integrations) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -109,7 +118,7 @@ func (o EntityV3Integrations) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityV3Integrations) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Opsgenie  *EntityV3DatadogIntegrationOpsgenie  `json:"opsgenie,omitempty"`
+		Opsgenie *EntityV3DatadogIntegrationOpsgenie `json:"opsgenie,omitempty"`
 		Pagerduty *EntityV3DatadogIntegrationPagerduty `json:"pagerduty,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -117,11 +126,11 @@ func (o *EntityV3Integrations) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if all.Opsgenie != nil && all.Opsgenie.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Opsgenie != nil && all.Opsgenie.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Opsgenie = all.Opsgenie
-	if all.Pagerduty != nil && all.Pagerduty.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Pagerduty != nil && all.Pagerduty.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Pagerduty = all.Pagerduty

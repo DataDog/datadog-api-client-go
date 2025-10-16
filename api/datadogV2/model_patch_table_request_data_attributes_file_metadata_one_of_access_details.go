@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails The definition of `PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails` object.
 type PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails struct {
@@ -17,9 +23,10 @@ type PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails struct {
 	// The definition of `PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail` object.
 	GcpDetail *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail `json:"gcp_detail,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPatchTableRequestDataAttributesFileMetadataOneOfAccessDetails instantiates a new PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewPatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsWithDefault
 	this := PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails{}
 	return &this
 }
-
 // GetAwsDetail returns the AwsDetail field value if set, zero value otherwise.
 func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails) GetAwsDetail() PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail {
 	if o == nil || o.AwsDetail == nil {
@@ -65,6 +71,7 @@ func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails) HasAwsDe
 func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails) SetAwsDetail(v PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail) {
 	o.AwsDetail = &v
 }
+
 
 // GetAzureDetail returns the AzureDetail field value if set, zero value otherwise.
 func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails) GetAzureDetail() PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail {
@@ -94,6 +101,7 @@ func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails) SetAzure
 	o.AzureDetail = &v
 }
 
+
 // GetGcpDetail returns the GcpDetail field value if set, zero value otherwise.
 func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails) GetGcpDetail() PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail {
 	if o == nil || o.GcpDetail == nil {
@@ -122,6 +130,8 @@ func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails) SetGcpDe
 	o.GcpDetail = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,30 +157,30 @@ func (o PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails) MarshalJS
 // UnmarshalJSON deserializes the given payload.
 func (o *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AwsDetail   *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail   `json:"aws_detail,omitempty"`
+		AwsDetail *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail `json:"aws_detail,omitempty"`
 		AzureDetail *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail `json:"azure_detail,omitempty"`
-		GcpDetail   *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail   `json:"gcp_detail,omitempty"`
+		GcpDetail *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail `json:"gcp_detail,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aws_detail", "azure_detail", "gcp_detail"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aws_detail", "azure_detail", "gcp_detail",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.AwsDetail != nil && all.AwsDetail.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.AwsDetail != nil && all.AwsDetail.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.AwsDetail = all.AwsDetail
-	if all.AzureDetail != nil && all.AzureDetail.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.AzureDetail != nil && all.AzureDetail.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.AzureDetail = all.AzureDetail
-	if all.GcpDetail != nil && all.GcpDetail.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.GcpDetail != nil && all.GcpDetail.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.GcpDetail = all.GcpDetail

@@ -2,23 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FlakyTestAttributesFlakyState The current state of the flaky test.
 type FlakyTestAttributesFlakyState string
 
 // List of FlakyTestAttributesFlakyState.
 const (
-	FLAKYTESTATTRIBUTESFLAKYSTATE_ACTIVE      FlakyTestAttributesFlakyState = "active"
-	FLAKYTESTATTRIBUTESFLAKYSTATE_FIXED       FlakyTestAttributesFlakyState = "fixed"
+	FLAKYTESTATTRIBUTESFLAKYSTATE_ACTIVE FlakyTestAttributesFlakyState = "active"
+	FLAKYTESTATTRIBUTESFLAKYSTATE_FIXED FlakyTestAttributesFlakyState = "fixed"
 	FLAKYTESTATTRIBUTESFLAKYSTATE_QUARANTINED FlakyTestAttributesFlakyState = "quarantined"
-	FLAKYTESTATTRIBUTESFLAKYSTATE_DISABLED    FlakyTestAttributesFlakyState = "disabled"
+	FLAKYTESTATTRIBUTESFLAKYSTATE_DISABLED FlakyTestAttributesFlakyState = "disabled"
 )
 
 var allowedFlakyTestAttributesFlakyStateEnumValues = []FlakyTestAttributesFlakyState{

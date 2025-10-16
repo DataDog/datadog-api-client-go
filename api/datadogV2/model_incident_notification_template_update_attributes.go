@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentNotificationTemplateUpdateAttributes The attributes to update on a notification template.
 type IncidentNotificationTemplateUpdateAttributes struct {
@@ -19,9 +25,10 @@ type IncidentNotificationTemplateUpdateAttributes struct {
 	// The subject line of the notification template.
 	Subject *string `json:"subject,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentNotificationTemplateUpdateAttributes instantiates a new IncidentNotificationTemplateUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewIncidentNotificationTemplateUpdateAttributesWithDefaults() *IncidentNoti
 	this := IncidentNotificationTemplateUpdateAttributes{}
 	return &this
 }
-
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *IncidentNotificationTemplateUpdateAttributes) GetCategory() string {
 	if o == nil || o.Category == nil {
@@ -67,6 +73,7 @@ func (o *IncidentNotificationTemplateUpdateAttributes) HasCategory() bool {
 func (o *IncidentNotificationTemplateUpdateAttributes) SetCategory(v string) {
 	o.Category = &v
 }
+
 
 // GetContent returns the Content field value if set, zero value otherwise.
 func (o *IncidentNotificationTemplateUpdateAttributes) GetContent() string {
@@ -96,6 +103,7 @@ func (o *IncidentNotificationTemplateUpdateAttributes) SetContent(v string) {
 	o.Content = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *IncidentNotificationTemplateUpdateAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -124,6 +132,7 @@ func (o *IncidentNotificationTemplateUpdateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSubject returns the Subject field value if set, zero value otherwise.
 func (o *IncidentNotificationTemplateUpdateAttributes) GetSubject() string {
 	if o == nil || o.Subject == nil {
@@ -151,6 +160,8 @@ func (o *IncidentNotificationTemplateUpdateAttributes) HasSubject() bool {
 func (o *IncidentNotificationTemplateUpdateAttributes) SetSubject(v string) {
 	o.Subject = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentNotificationTemplateUpdateAttributes) MarshalJSON() ([]byte, error) {
@@ -181,16 +192,16 @@ func (o IncidentNotificationTemplateUpdateAttributes) MarshalJSON() ([]byte, err
 func (o *IncidentNotificationTemplateUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Category *string `json:"category,omitempty"`
-		Content  *string `json:"content,omitempty"`
-		Name     *string `json:"name,omitempty"`
-		Subject  *string `json:"subject,omitempty"`
+		Content *string `json:"content,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Subject *string `json:"subject,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"category", "content", "name", "subject"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "category", "content", "name", "subject",  })
 	} else {
 		return err
 	}

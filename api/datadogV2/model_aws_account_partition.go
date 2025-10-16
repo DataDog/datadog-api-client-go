@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSAccountPartition AWS partition your AWS account is scoped to. Defaults to `aws`.
 // See [Partitions](https://docs.aws.amazon.com/whitepapers/latest/aws-fault-isolation-boundaries/partitions.html) in the AWS documentation for more information.
@@ -16,8 +20,8 @@ type AWSAccountPartition string
 
 // List of AWSAccountPartition.
 const (
-	AWSACCOUNTPARTITION_AWS        AWSAccountPartition = "aws"
-	AWSACCOUNTPARTITION_AWS_CN     AWSAccountPartition = "aws-cn"
+	AWSACCOUNTPARTITION_AWS AWSAccountPartition = "aws"
+	AWSACCOUNTPARTITION_AWS_CN AWSAccountPartition = "aws-cn"
 	AWSACCOUNTPARTITION_AWS_US_GOV AWSAccountPartition = "aws-us-gov"
 )
 

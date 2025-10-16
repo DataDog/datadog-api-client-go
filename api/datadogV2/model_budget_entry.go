@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // BudgetEntry The entry of a budget.
 type BudgetEntry struct {
@@ -17,9 +23,10 @@ type BudgetEntry struct {
 	// The `tag_filters` of the budget entry.
 	TagFilters []TagFilter `json:"tag_filters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewBudgetEntry instantiates a new BudgetEntry object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewBudgetEntryWithDefaults() *BudgetEntry {
 	this := BudgetEntry{}
 	return &this
 }
-
 // GetAmount returns the Amount field value if set, zero value otherwise.
 func (o *BudgetEntry) GetAmount() float64 {
 	if o == nil || o.Amount == nil {
@@ -65,6 +71,7 @@ func (o *BudgetEntry) HasAmount() bool {
 func (o *BudgetEntry) SetAmount(v float64) {
 	o.Amount = &v
 }
+
 
 // GetMonth returns the Month field value if set, zero value otherwise.
 func (o *BudgetEntry) GetMonth() int64 {
@@ -94,6 +101,7 @@ func (o *BudgetEntry) SetMonth(v int64) {
 	o.Month = &v
 }
 
+
 // GetTagFilters returns the TagFilters field value if set, zero value otherwise.
 func (o *BudgetEntry) GetTagFilters() []TagFilter {
 	if o == nil || o.TagFilters == nil {
@@ -122,6 +130,8 @@ func (o *BudgetEntry) SetTagFilters(v []TagFilter) {
 	o.TagFilters = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o BudgetEntry) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,8 +157,8 @@ func (o BudgetEntry) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *BudgetEntry) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Amount     *float64    `json:"amount,omitempty"`
-		Month      *int64      `json:"month,omitempty"`
+		Amount *float64 `json:"amount,omitempty"`
+		Month *int64 `json:"month,omitempty"`
 		TagFilters []TagFilter `json:"tag_filters,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,7 +166,7 @@ func (o *BudgetEntry) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"amount", "month", "tag_filters"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "amount", "month", "tag_filters",  })
 	} else {
 		return err
 	}

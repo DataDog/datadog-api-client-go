@@ -2,27 +2,31 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AppsSortField The field and direction to sort apps by
 type AppsSortField string
 
 // List of AppsSortField.
 const (
-	APPSSORTFIELD_NAME            AppsSortField = "name"
-	APPSSORTFIELD_CREATED_AT      AppsSortField = "created_at"
-	APPSSORTFIELD_UPDATED_AT      AppsSortField = "updated_at"
-	APPSSORTFIELD_USER_NAME       AppsSortField = "user_name"
-	APPSSORTFIELD_NAME_DESC       AppsSortField = "-name"
+	APPSSORTFIELD_NAME AppsSortField = "name"
+	APPSSORTFIELD_CREATED_AT AppsSortField = "created_at"
+	APPSSORTFIELD_UPDATED_AT AppsSortField = "updated_at"
+	APPSSORTFIELD_USER_NAME AppsSortField = "user_name"
+	APPSSORTFIELD_NAME_DESC AppsSortField = "-name"
 	APPSSORTFIELD_CREATED_AT_DESC AppsSortField = "-created_at"
 	APPSSORTFIELD_UPDATED_AT_DESC AppsSortField = "-updated_at"
-	APPSSORTFIELD_USER_NAME_DESC  AppsSortField = "-user_name"
+	APPSSORTFIELD_USER_NAME_DESC AppsSortField = "-user_name"
 )
 
 var allowedAppsSortFieldEnumValues = []AppsSortField{

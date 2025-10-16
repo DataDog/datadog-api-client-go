@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RUMEventProcessingState Configures which RUM events are processed and stored for the application.
 type RUMEventProcessingState string
 
 // List of RUMEventProcessingState.
 const (
-	RUMEVENTPROCESSINGSTATE_ALL                RUMEventProcessingState = "ALL"
+	RUMEVENTPROCESSINGSTATE_ALL RUMEventProcessingState = "ALL"
 	RUMEVENTPROCESSINGSTATE_ERROR_FOCUSED_MODE RUMEventProcessingState = "ERROR_FOCUSED_MODE"
-	RUMEVENTPROCESSINGSTATE_NONE               RUMEventProcessingState = "NONE"
+	RUMEVENTPROCESSINGSTATE_NONE RUMEventProcessingState = "NONE"
 )
 
 var allowedRUMEventProcessingStateEnumValues = []RUMEventProcessingState{

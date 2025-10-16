@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricAssetNotebookRelationship An object of type `notebook` that can be referenced in the `included` data.
 type MetricAssetNotebookRelationship struct {
@@ -15,9 +21,10 @@ type MetricAssetNotebookRelationship struct {
 	// Notebook resource type.
 	Type *MetricNotebookType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricAssetNotebookRelationship instantiates a new MetricAssetNotebookRelationship object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewMetricAssetNotebookRelationshipWithDefaults() *MetricAssetNotebookRelati
 	this := MetricAssetNotebookRelationship{}
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *MetricAssetNotebookRelationship) GetId() string {
 	if o == nil || o.Id == nil {
@@ -63,6 +69,7 @@ func (o *MetricAssetNotebookRelationship) HasId() bool {
 func (o *MetricAssetNotebookRelationship) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MetricAssetNotebookRelationship) GetType() MetricNotebookType {
@@ -92,6 +99,8 @@ func (o *MetricAssetNotebookRelationship) SetType(v MetricNotebookType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricAssetNotebookRelationship) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o MetricAssetNotebookRelationship) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricAssetNotebookRelationship) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string             `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Type *MetricNotebookType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,14 +131,14 @@ func (o *MetricAssetNotebookRelationship) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Id = all.Id
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

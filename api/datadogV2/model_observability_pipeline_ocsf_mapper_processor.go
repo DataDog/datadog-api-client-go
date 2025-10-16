@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineOcsfMapperProcessor The `ocsf_mapper` processor transforms logs into the OCSF schema using a predefined mapping configuration.
 type ObservabilityPipelineOcsfMapperProcessor struct {
@@ -23,9 +27,10 @@ type ObservabilityPipelineOcsfMapperProcessor struct {
 	// The processor type. The value should always be `ocsf_mapper`.
 	Type ObservabilityPipelineOcsfMapperProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineOcsfMapperProcessor instantiates a new ObservabilityPipelineOcsfMapperProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewObservabilityPipelineOcsfMapperProcessorWithDefaults() *ObservabilityPip
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineOcsfMapperProcessor) GetId() string {
 	if o == nil {
@@ -73,6 +77,7 @@ func (o *ObservabilityPipelineOcsfMapperProcessor) GetIdOk() (*string, bool) {
 func (o *ObservabilityPipelineOcsfMapperProcessor) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineOcsfMapperProcessor) GetInclude() string {
@@ -97,6 +102,7 @@ func (o *ObservabilityPipelineOcsfMapperProcessor) SetInclude(v string) {
 	o.Include = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineOcsfMapperProcessor) GetInputs() []string {
 	if o == nil {
@@ -119,6 +125,7 @@ func (o *ObservabilityPipelineOcsfMapperProcessor) GetInputsOk() (*[]string, boo
 func (o *ObservabilityPipelineOcsfMapperProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetMappings returns the Mappings field value.
 func (o *ObservabilityPipelineOcsfMapperProcessor) GetMappings() []ObservabilityPipelineOcsfMapperProcessorMapping {
@@ -143,6 +150,7 @@ func (o *ObservabilityPipelineOcsfMapperProcessor) SetMappings(v []Observability
 	o.Mappings = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineOcsfMapperProcessor) GetType() ObservabilityPipelineOcsfMapperProcessorType {
 	if o == nil {
@@ -166,6 +174,8 @@ func (o *ObservabilityPipelineOcsfMapperProcessor) SetType(v ObservabilityPipeli
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineOcsfMapperProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -187,11 +197,11 @@ func (o ObservabilityPipelineOcsfMapperProcessor) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineOcsfMapperProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id       *string                                            `json:"id"`
-		Include  *string                                            `json:"include"`
-		Inputs   *[]string                                          `json:"inputs"`
+		Id *string `json:"id"`
+		Include *string `json:"include"`
+		Inputs *[]string `json:"inputs"`
 		Mappings *[]ObservabilityPipelineOcsfMapperProcessorMapping `json:"mappings"`
-		Type     *ObservabilityPipelineOcsfMapperProcessorType      `json:"type"`
+		Type *ObservabilityPipelineOcsfMapperProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -213,7 +223,7 @@ func (o *ObservabilityPipelineOcsfMapperProcessor) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "include", "inputs", "mappings", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "include", "inputs", "mappings", "type",  })
 	} else {
 		return err
 	}

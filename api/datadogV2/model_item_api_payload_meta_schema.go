@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ItemApiPayloadMetaSchema Schema information about the datastore, including its primary key and field definitions.
 type ItemApiPayloadMetaSchema struct {
@@ -15,9 +21,10 @@ type ItemApiPayloadMetaSchema struct {
 	// The name of the primary key column for this datastore.
 	PrimaryKey *string `json:"primary_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewItemApiPayloadMetaSchema instantiates a new ItemApiPayloadMetaSchema object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewItemApiPayloadMetaSchemaWithDefaults() *ItemApiPayloadMetaSchema {
 	this := ItemApiPayloadMetaSchema{}
 	return &this
 }
-
 // GetFields returns the Fields field value if set, zero value otherwise.
 func (o *ItemApiPayloadMetaSchema) GetFields() []ItemApiPayloadMetaSchemaField {
 	if o == nil || o.Fields == nil {
@@ -63,6 +69,7 @@ func (o *ItemApiPayloadMetaSchema) HasFields() bool {
 func (o *ItemApiPayloadMetaSchema) SetFields(v []ItemApiPayloadMetaSchemaField) {
 	o.Fields = v
 }
+
 
 // GetPrimaryKey returns the PrimaryKey field value if set, zero value otherwise.
 func (o *ItemApiPayloadMetaSchema) GetPrimaryKey() string {
@@ -92,6 +99,8 @@ func (o *ItemApiPayloadMetaSchema) SetPrimaryKey(v string) {
 	o.PrimaryKey = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ItemApiPayloadMetaSchema) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,15 +123,15 @@ func (o ItemApiPayloadMetaSchema) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ItemApiPayloadMetaSchema) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Fields     []ItemApiPayloadMetaSchemaField `json:"fields,omitempty"`
-		PrimaryKey *string                         `json:"primary_key,omitempty"`
+		Fields []ItemApiPayloadMetaSchemaField `json:"fields,omitempty"`
+		PrimaryKey *string `json:"primary_key,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"fields", "primary_key"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "fields", "primary_key",  })
 	} else {
 		return err
 	}

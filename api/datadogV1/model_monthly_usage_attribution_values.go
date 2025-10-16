@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonthlyUsageAttributionValues Fields in Usage Summary by tag(s).
 // The following values have been **deprecated**: `estimated_indexed_spans_usage`, `estimated_indexed_spans_percentage`, `estimated_ingested_spans_usage`, `estimated_ingested_spans_percentage`.
@@ -316,9 +322,10 @@ type MonthlyUsageAttributionValues struct {
 	// The total workflow executions usage by tag(s).
 	WorkflowExecutionsUsage *float64 `json:"workflow_executions_usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonthlyUsageAttributionValues instantiates a new MonthlyUsageAttributionValues object.
 // This constructor will assign default values to properties that have it defined,
@@ -336,7 +343,6 @@ func NewMonthlyUsageAttributionValuesWithDefaults() *MonthlyUsageAttributionValu
 	this := MonthlyUsageAttributionValues{}
 	return &this
 }
-
 // GetApiPercentage returns the ApiPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetApiPercentage() float64 {
 	if o == nil || o.ApiPercentage == nil {
@@ -364,6 +370,7 @@ func (o *MonthlyUsageAttributionValues) HasApiPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetApiPercentage(v float64) {
 	o.ApiPercentage = &v
 }
+
 
 // GetApiUsage returns the ApiUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetApiUsage() float64 {
@@ -393,6 +400,7 @@ func (o *MonthlyUsageAttributionValues) SetApiUsage(v float64) {
 	o.ApiUsage = &v
 }
 
+
 // GetApmFargatePercentage returns the ApmFargatePercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetApmFargatePercentage() float64 {
 	if o == nil || o.ApmFargatePercentage == nil {
@@ -420,6 +428,7 @@ func (o *MonthlyUsageAttributionValues) HasApmFargatePercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetApmFargatePercentage(v float64) {
 	o.ApmFargatePercentage = &v
 }
+
 
 // GetApmFargateUsage returns the ApmFargateUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetApmFargateUsage() float64 {
@@ -449,6 +458,7 @@ func (o *MonthlyUsageAttributionValues) SetApmFargateUsage(v float64) {
 	o.ApmFargateUsage = &v
 }
 
+
 // GetApmHostPercentage returns the ApmHostPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetApmHostPercentage() float64 {
 	if o == nil || o.ApmHostPercentage == nil {
@@ -476,6 +486,7 @@ func (o *MonthlyUsageAttributionValues) HasApmHostPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetApmHostPercentage(v float64) {
 	o.ApmHostPercentage = &v
 }
+
 
 // GetApmHostUsage returns the ApmHostUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetApmHostUsage() float64 {
@@ -505,6 +516,7 @@ func (o *MonthlyUsageAttributionValues) SetApmHostUsage(v float64) {
 	o.ApmHostUsage = &v
 }
 
+
 // GetApmUsmPercentage returns the ApmUsmPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetApmUsmPercentage() float64 {
 	if o == nil || o.ApmUsmPercentage == nil {
@@ -532,6 +544,7 @@ func (o *MonthlyUsageAttributionValues) HasApmUsmPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetApmUsmPercentage(v float64) {
 	o.ApmUsmPercentage = &v
 }
+
 
 // GetApmUsmUsage returns the ApmUsmUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetApmUsmUsage() float64 {
@@ -561,6 +574,7 @@ func (o *MonthlyUsageAttributionValues) SetApmUsmUsage(v float64) {
 	o.ApmUsmUsage = &v
 }
 
+
 // GetAppsecFargatePercentage returns the AppsecFargatePercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetAppsecFargatePercentage() float64 {
 	if o == nil || o.AppsecFargatePercentage == nil {
@@ -588,6 +602,7 @@ func (o *MonthlyUsageAttributionValues) HasAppsecFargatePercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetAppsecFargatePercentage(v float64) {
 	o.AppsecFargatePercentage = &v
 }
+
 
 // GetAppsecFargateUsage returns the AppsecFargateUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetAppsecFargateUsage() float64 {
@@ -617,6 +632,7 @@ func (o *MonthlyUsageAttributionValues) SetAppsecFargateUsage(v float64) {
 	o.AppsecFargateUsage = &v
 }
 
+
 // GetAppsecPercentage returns the AppsecPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetAppsecPercentage() float64 {
 	if o == nil || o.AppsecPercentage == nil {
@@ -644,6 +660,7 @@ func (o *MonthlyUsageAttributionValues) HasAppsecPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetAppsecPercentage(v float64) {
 	o.AppsecPercentage = &v
 }
+
 
 // GetAppsecUsage returns the AppsecUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetAppsecUsage() float64 {
@@ -673,6 +690,7 @@ func (o *MonthlyUsageAttributionValues) SetAppsecUsage(v float64) {
 	o.AppsecUsage = &v
 }
 
+
 // GetAsmServerlessTracedInvocationsPercentage returns the AsmServerlessTracedInvocationsPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetAsmServerlessTracedInvocationsPercentage() float64 {
 	if o == nil || o.AsmServerlessTracedInvocationsPercentage == nil {
@@ -700,6 +718,7 @@ func (o *MonthlyUsageAttributionValues) HasAsmServerlessTracedInvocationsPercent
 func (o *MonthlyUsageAttributionValues) SetAsmServerlessTracedInvocationsPercentage(v float64) {
 	o.AsmServerlessTracedInvocationsPercentage = &v
 }
+
 
 // GetAsmServerlessTracedInvocationsUsage returns the AsmServerlessTracedInvocationsUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetAsmServerlessTracedInvocationsUsage() float64 {
@@ -729,6 +748,7 @@ func (o *MonthlyUsageAttributionValues) SetAsmServerlessTracedInvocationsUsage(v
 	o.AsmServerlessTracedInvocationsUsage = &v
 }
 
+
 // GetBrowserPercentage returns the BrowserPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetBrowserPercentage() float64 {
 	if o == nil || o.BrowserPercentage == nil {
@@ -756,6 +776,7 @@ func (o *MonthlyUsageAttributionValues) HasBrowserPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetBrowserPercentage(v float64) {
 	o.BrowserPercentage = &v
 }
+
 
 // GetBrowserUsage returns the BrowserUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetBrowserUsage() float64 {
@@ -785,6 +806,7 @@ func (o *MonthlyUsageAttributionValues) SetBrowserUsage(v float64) {
 	o.BrowserUsage = &v
 }
 
+
 // GetCiPipelineIndexedSpansPercentage returns the CiPipelineIndexedSpansPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCiPipelineIndexedSpansPercentage() float64 {
 	if o == nil || o.CiPipelineIndexedSpansPercentage == nil {
@@ -812,6 +834,7 @@ func (o *MonthlyUsageAttributionValues) HasCiPipelineIndexedSpansPercentage() bo
 func (o *MonthlyUsageAttributionValues) SetCiPipelineIndexedSpansPercentage(v float64) {
 	o.CiPipelineIndexedSpansPercentage = &v
 }
+
 
 // GetCiPipelineIndexedSpansUsage returns the CiPipelineIndexedSpansUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCiPipelineIndexedSpansUsage() float64 {
@@ -841,6 +864,7 @@ func (o *MonthlyUsageAttributionValues) SetCiPipelineIndexedSpansUsage(v float64
 	o.CiPipelineIndexedSpansUsage = &v
 }
 
+
 // GetCiTestIndexedSpansPercentage returns the CiTestIndexedSpansPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCiTestIndexedSpansPercentage() float64 {
 	if o == nil || o.CiTestIndexedSpansPercentage == nil {
@@ -868,6 +892,7 @@ func (o *MonthlyUsageAttributionValues) HasCiTestIndexedSpansPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetCiTestIndexedSpansPercentage(v float64) {
 	o.CiTestIndexedSpansPercentage = &v
 }
+
 
 // GetCiTestIndexedSpansUsage returns the CiTestIndexedSpansUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCiTestIndexedSpansUsage() float64 {
@@ -897,6 +922,7 @@ func (o *MonthlyUsageAttributionValues) SetCiTestIndexedSpansUsage(v float64) {
 	o.CiTestIndexedSpansUsage = &v
 }
 
+
 // GetCiVisibilityItrPercentage returns the CiVisibilityItrPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCiVisibilityItrPercentage() float64 {
 	if o == nil || o.CiVisibilityItrPercentage == nil {
@@ -924,6 +950,7 @@ func (o *MonthlyUsageAttributionValues) HasCiVisibilityItrPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetCiVisibilityItrPercentage(v float64) {
 	o.CiVisibilityItrPercentage = &v
 }
+
 
 // GetCiVisibilityItrUsage returns the CiVisibilityItrUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCiVisibilityItrUsage() float64 {
@@ -953,6 +980,7 @@ func (o *MonthlyUsageAttributionValues) SetCiVisibilityItrUsage(v float64) {
 	o.CiVisibilityItrUsage = &v
 }
 
+
 // GetCloudSiemPercentage returns the CloudSiemPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCloudSiemPercentage() float64 {
 	if o == nil || o.CloudSiemPercentage == nil {
@@ -980,6 +1008,7 @@ func (o *MonthlyUsageAttributionValues) HasCloudSiemPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetCloudSiemPercentage(v float64) {
 	o.CloudSiemPercentage = &v
 }
+
 
 // GetCloudSiemUsage returns the CloudSiemUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCloudSiemUsage() float64 {
@@ -1009,6 +1038,7 @@ func (o *MonthlyUsageAttributionValues) SetCloudSiemUsage(v float64) {
 	o.CloudSiemUsage = &v
 }
 
+
 // GetCodeSecurityHostPercentage returns the CodeSecurityHostPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCodeSecurityHostPercentage() float64 {
 	if o == nil || o.CodeSecurityHostPercentage == nil {
@@ -1036,6 +1066,7 @@ func (o *MonthlyUsageAttributionValues) HasCodeSecurityHostPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetCodeSecurityHostPercentage(v float64) {
 	o.CodeSecurityHostPercentage = &v
 }
+
 
 // GetCodeSecurityHostUsage returns the CodeSecurityHostUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCodeSecurityHostUsage() float64 {
@@ -1065,6 +1096,7 @@ func (o *MonthlyUsageAttributionValues) SetCodeSecurityHostUsage(v float64) {
 	o.CodeSecurityHostUsage = &v
 }
 
+
 // GetContainerExclAgentPercentage returns the ContainerExclAgentPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetContainerExclAgentPercentage() float64 {
 	if o == nil || o.ContainerExclAgentPercentage == nil {
@@ -1092,6 +1124,7 @@ func (o *MonthlyUsageAttributionValues) HasContainerExclAgentPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetContainerExclAgentPercentage(v float64) {
 	o.ContainerExclAgentPercentage = &v
 }
+
 
 // GetContainerExclAgentUsage returns the ContainerExclAgentUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetContainerExclAgentUsage() float64 {
@@ -1121,6 +1154,7 @@ func (o *MonthlyUsageAttributionValues) SetContainerExclAgentUsage(v float64) {
 	o.ContainerExclAgentUsage = &v
 }
 
+
 // GetContainerPercentage returns the ContainerPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetContainerPercentage() float64 {
 	if o == nil || o.ContainerPercentage == nil {
@@ -1148,6 +1182,7 @@ func (o *MonthlyUsageAttributionValues) HasContainerPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetContainerPercentage(v float64) {
 	o.ContainerPercentage = &v
 }
+
 
 // GetContainerUsage returns the ContainerUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetContainerUsage() float64 {
@@ -1177,6 +1212,7 @@ func (o *MonthlyUsageAttributionValues) SetContainerUsage(v float64) {
 	o.ContainerUsage = &v
 }
 
+
 // GetCspmContainersPercentage returns the CspmContainersPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCspmContainersPercentage() float64 {
 	if o == nil || o.CspmContainersPercentage == nil {
@@ -1204,6 +1240,7 @@ func (o *MonthlyUsageAttributionValues) HasCspmContainersPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetCspmContainersPercentage(v float64) {
 	o.CspmContainersPercentage = &v
 }
+
 
 // GetCspmContainersUsage returns the CspmContainersUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCspmContainersUsage() float64 {
@@ -1233,6 +1270,7 @@ func (o *MonthlyUsageAttributionValues) SetCspmContainersUsage(v float64) {
 	o.CspmContainersUsage = &v
 }
 
+
 // GetCspmHostsPercentage returns the CspmHostsPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCspmHostsPercentage() float64 {
 	if o == nil || o.CspmHostsPercentage == nil {
@@ -1260,6 +1298,7 @@ func (o *MonthlyUsageAttributionValues) HasCspmHostsPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetCspmHostsPercentage(v float64) {
 	o.CspmHostsPercentage = &v
 }
+
 
 // GetCspmHostsUsage returns the CspmHostsUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCspmHostsUsage() float64 {
@@ -1289,6 +1328,7 @@ func (o *MonthlyUsageAttributionValues) SetCspmHostsUsage(v float64) {
 	o.CspmHostsUsage = &v
 }
 
+
 // GetCustomEventPercentage returns the CustomEventPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCustomEventPercentage() float64 {
 	if o == nil || o.CustomEventPercentage == nil {
@@ -1316,6 +1356,7 @@ func (o *MonthlyUsageAttributionValues) HasCustomEventPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetCustomEventPercentage(v float64) {
 	o.CustomEventPercentage = &v
 }
+
 
 // GetCustomEventUsage returns the CustomEventUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCustomEventUsage() float64 {
@@ -1345,6 +1386,7 @@ func (o *MonthlyUsageAttributionValues) SetCustomEventUsage(v float64) {
 	o.CustomEventUsage = &v
 }
 
+
 // GetCustomIngestedTimeseriesPercentage returns the CustomIngestedTimeseriesPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCustomIngestedTimeseriesPercentage() float64 {
 	if o == nil || o.CustomIngestedTimeseriesPercentage == nil {
@@ -1372,6 +1414,7 @@ func (o *MonthlyUsageAttributionValues) HasCustomIngestedTimeseriesPercentage() 
 func (o *MonthlyUsageAttributionValues) SetCustomIngestedTimeseriesPercentage(v float64) {
 	o.CustomIngestedTimeseriesPercentage = &v
 }
+
 
 // GetCustomIngestedTimeseriesUsage returns the CustomIngestedTimeseriesUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCustomIngestedTimeseriesUsage() float64 {
@@ -1401,6 +1444,7 @@ func (o *MonthlyUsageAttributionValues) SetCustomIngestedTimeseriesUsage(v float
 	o.CustomIngestedTimeseriesUsage = &v
 }
 
+
 // GetCustomTimeseriesPercentage returns the CustomTimeseriesPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCustomTimeseriesPercentage() float64 {
 	if o == nil || o.CustomTimeseriesPercentage == nil {
@@ -1428,6 +1472,7 @@ func (o *MonthlyUsageAttributionValues) HasCustomTimeseriesPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetCustomTimeseriesPercentage(v float64) {
 	o.CustomTimeseriesPercentage = &v
 }
+
 
 // GetCustomTimeseriesUsage returns the CustomTimeseriesUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCustomTimeseriesUsage() float64 {
@@ -1457,6 +1502,7 @@ func (o *MonthlyUsageAttributionValues) SetCustomTimeseriesUsage(v float64) {
 	o.CustomTimeseriesUsage = &v
 }
 
+
 // GetCwsContainersPercentage returns the CwsContainersPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCwsContainersPercentage() float64 {
 	if o == nil || o.CwsContainersPercentage == nil {
@@ -1484,6 +1530,7 @@ func (o *MonthlyUsageAttributionValues) HasCwsContainersPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetCwsContainersPercentage(v float64) {
 	o.CwsContainersPercentage = &v
 }
+
 
 // GetCwsContainersUsage returns the CwsContainersUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCwsContainersUsage() float64 {
@@ -1513,6 +1560,7 @@ func (o *MonthlyUsageAttributionValues) SetCwsContainersUsage(v float64) {
 	o.CwsContainersUsage = &v
 }
 
+
 // GetCwsFargateTaskPercentage returns the CwsFargateTaskPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCwsFargateTaskPercentage() float64 {
 	if o == nil || o.CwsFargateTaskPercentage == nil {
@@ -1540,6 +1588,7 @@ func (o *MonthlyUsageAttributionValues) HasCwsFargateTaskPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetCwsFargateTaskPercentage(v float64) {
 	o.CwsFargateTaskPercentage = &v
 }
+
 
 // GetCwsFargateTaskUsage returns the CwsFargateTaskUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCwsFargateTaskUsage() float64 {
@@ -1569,6 +1618,7 @@ func (o *MonthlyUsageAttributionValues) SetCwsFargateTaskUsage(v float64) {
 	o.CwsFargateTaskUsage = &v
 }
 
+
 // GetCwsHostsPercentage returns the CwsHostsPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCwsHostsPercentage() float64 {
 	if o == nil || o.CwsHostsPercentage == nil {
@@ -1596,6 +1646,7 @@ func (o *MonthlyUsageAttributionValues) HasCwsHostsPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetCwsHostsPercentage(v float64) {
 	o.CwsHostsPercentage = &v
 }
+
 
 // GetCwsHostsUsage returns the CwsHostsUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetCwsHostsUsage() float64 {
@@ -1625,6 +1676,7 @@ func (o *MonthlyUsageAttributionValues) SetCwsHostsUsage(v float64) {
 	o.CwsHostsUsage = &v
 }
 
+
 // GetDataJobsMonitoringUsage returns the DataJobsMonitoringUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetDataJobsMonitoringUsage() float64 {
 	if o == nil || o.DataJobsMonitoringUsage == nil {
@@ -1652,6 +1704,7 @@ func (o *MonthlyUsageAttributionValues) HasDataJobsMonitoringUsage() bool {
 func (o *MonthlyUsageAttributionValues) SetDataJobsMonitoringUsage(v float64) {
 	o.DataJobsMonitoringUsage = &v
 }
+
 
 // GetDataStreamMonitoringUsage returns the DataStreamMonitoringUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetDataStreamMonitoringUsage() float64 {
@@ -1681,6 +1734,7 @@ func (o *MonthlyUsageAttributionValues) SetDataStreamMonitoringUsage(v float64) 
 	o.DataStreamMonitoringUsage = &v
 }
 
+
 // GetDbmHostsPercentage returns the DbmHostsPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetDbmHostsPercentage() float64 {
 	if o == nil || o.DbmHostsPercentage == nil {
@@ -1708,6 +1762,7 @@ func (o *MonthlyUsageAttributionValues) HasDbmHostsPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetDbmHostsPercentage(v float64) {
 	o.DbmHostsPercentage = &v
 }
+
 
 // GetDbmHostsUsage returns the DbmHostsUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetDbmHostsUsage() float64 {
@@ -1737,6 +1792,7 @@ func (o *MonthlyUsageAttributionValues) SetDbmHostsUsage(v float64) {
 	o.DbmHostsUsage = &v
 }
 
+
 // GetDbmQueriesPercentage returns the DbmQueriesPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetDbmQueriesPercentage() float64 {
 	if o == nil || o.DbmQueriesPercentage == nil {
@@ -1764,6 +1820,7 @@ func (o *MonthlyUsageAttributionValues) HasDbmQueriesPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetDbmQueriesPercentage(v float64) {
 	o.DbmQueriesPercentage = &v
 }
+
 
 // GetDbmQueriesUsage returns the DbmQueriesUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetDbmQueriesUsage() float64 {
@@ -1793,6 +1850,7 @@ func (o *MonthlyUsageAttributionValues) SetDbmQueriesUsage(v float64) {
 	o.DbmQueriesUsage = &v
 }
 
+
 // GetErrorTrackingPercentage returns the ErrorTrackingPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetErrorTrackingPercentage() float64 {
 	if o == nil || o.ErrorTrackingPercentage == nil {
@@ -1820,6 +1878,7 @@ func (o *MonthlyUsageAttributionValues) HasErrorTrackingPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetErrorTrackingPercentage(v float64) {
 	o.ErrorTrackingPercentage = &v
 }
+
 
 // GetErrorTrackingUsage returns the ErrorTrackingUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetErrorTrackingUsage() float64 {
@@ -1849,6 +1908,7 @@ func (o *MonthlyUsageAttributionValues) SetErrorTrackingUsage(v float64) {
 	o.ErrorTrackingUsage = &v
 }
 
+
 // GetEstimatedIndexedSpansPercentage returns the EstimatedIndexedSpansPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedSpansPercentage() float64 {
 	if o == nil || o.EstimatedIndexedSpansPercentage == nil {
@@ -1876,6 +1936,7 @@ func (o *MonthlyUsageAttributionValues) HasEstimatedIndexedSpansPercentage() boo
 func (o *MonthlyUsageAttributionValues) SetEstimatedIndexedSpansPercentage(v float64) {
 	o.EstimatedIndexedSpansPercentage = &v
 }
+
 
 // GetEstimatedIndexedSpansUsage returns the EstimatedIndexedSpansUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedSpansUsage() float64 {
@@ -1905,6 +1966,7 @@ func (o *MonthlyUsageAttributionValues) SetEstimatedIndexedSpansUsage(v float64)
 	o.EstimatedIndexedSpansUsage = &v
 }
 
+
 // GetEstimatedIngestedSpansPercentage returns the EstimatedIngestedSpansPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetEstimatedIngestedSpansPercentage() float64 {
 	if o == nil || o.EstimatedIngestedSpansPercentage == nil {
@@ -1932,6 +1994,7 @@ func (o *MonthlyUsageAttributionValues) HasEstimatedIngestedSpansPercentage() bo
 func (o *MonthlyUsageAttributionValues) SetEstimatedIngestedSpansPercentage(v float64) {
 	o.EstimatedIngestedSpansPercentage = &v
 }
+
 
 // GetEstimatedIngestedSpansUsage returns the EstimatedIngestedSpansUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetEstimatedIngestedSpansUsage() float64 {
@@ -1961,6 +2024,7 @@ func (o *MonthlyUsageAttributionValues) SetEstimatedIngestedSpansUsage(v float64
 	o.EstimatedIngestedSpansUsage = &v
 }
 
+
 // GetFargatePercentage returns the FargatePercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetFargatePercentage() float64 {
 	if o == nil || o.FargatePercentage == nil {
@@ -1988,6 +2052,7 @@ func (o *MonthlyUsageAttributionValues) HasFargatePercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetFargatePercentage(v float64) {
 	o.FargatePercentage = &v
 }
+
 
 // GetFargateUsage returns the FargateUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetFargateUsage() float64 {
@@ -2017,6 +2082,7 @@ func (o *MonthlyUsageAttributionValues) SetFargateUsage(v float64) {
 	o.FargateUsage = &v
 }
 
+
 // GetFunctionsPercentage returns the FunctionsPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetFunctionsPercentage() float64 {
 	if o == nil || o.FunctionsPercentage == nil {
@@ -2044,6 +2110,7 @@ func (o *MonthlyUsageAttributionValues) HasFunctionsPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetFunctionsPercentage(v float64) {
 	o.FunctionsPercentage = &v
 }
+
 
 // GetFunctionsUsage returns the FunctionsUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetFunctionsUsage() float64 {
@@ -2073,6 +2140,7 @@ func (o *MonthlyUsageAttributionValues) SetFunctionsUsage(v float64) {
 	o.FunctionsUsage = &v
 }
 
+
 // GetIncidentManagementMonthlyActiveUsersPercentage returns the IncidentManagementMonthlyActiveUsersPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetIncidentManagementMonthlyActiveUsersPercentage() float64 {
 	if o == nil || o.IncidentManagementMonthlyActiveUsersPercentage == nil {
@@ -2100,6 +2168,7 @@ func (o *MonthlyUsageAttributionValues) HasIncidentManagementMonthlyActiveUsersP
 func (o *MonthlyUsageAttributionValues) SetIncidentManagementMonthlyActiveUsersPercentage(v float64) {
 	o.IncidentManagementMonthlyActiveUsersPercentage = &v
 }
+
 
 // GetIncidentManagementMonthlyActiveUsersUsage returns the IncidentManagementMonthlyActiveUsersUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetIncidentManagementMonthlyActiveUsersUsage() float64 {
@@ -2129,6 +2198,7 @@ func (o *MonthlyUsageAttributionValues) SetIncidentManagementMonthlyActiveUsersU
 	o.IncidentManagementMonthlyActiveUsersUsage = &v
 }
 
+
 // GetIndexedSpansPercentage returns the IndexedSpansPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetIndexedSpansPercentage() float64 {
 	if o == nil || o.IndexedSpansPercentage == nil {
@@ -2156,6 +2226,7 @@ func (o *MonthlyUsageAttributionValues) HasIndexedSpansPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetIndexedSpansPercentage(v float64) {
 	o.IndexedSpansPercentage = &v
 }
+
 
 // GetIndexedSpansUsage returns the IndexedSpansUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetIndexedSpansUsage() float64 {
@@ -2185,6 +2256,7 @@ func (o *MonthlyUsageAttributionValues) SetIndexedSpansUsage(v float64) {
 	o.IndexedSpansUsage = &v
 }
 
+
 // GetInfraHostPercentage returns the InfraHostPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetInfraHostPercentage() float64 {
 	if o == nil || o.InfraHostPercentage == nil {
@@ -2212,6 +2284,7 @@ func (o *MonthlyUsageAttributionValues) HasInfraHostPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetInfraHostPercentage(v float64) {
 	o.InfraHostPercentage = &v
 }
+
 
 // GetInfraHostUsage returns the InfraHostUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetInfraHostUsage() float64 {
@@ -2241,6 +2314,7 @@ func (o *MonthlyUsageAttributionValues) SetInfraHostUsage(v float64) {
 	o.InfraHostUsage = &v
 }
 
+
 // GetIngestedLogsBytesPercentage returns the IngestedLogsBytesPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetIngestedLogsBytesPercentage() float64 {
 	if o == nil || o.IngestedLogsBytesPercentage == nil {
@@ -2268,6 +2342,7 @@ func (o *MonthlyUsageAttributionValues) HasIngestedLogsBytesPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetIngestedLogsBytesPercentage(v float64) {
 	o.IngestedLogsBytesPercentage = &v
 }
+
 
 // GetIngestedLogsBytesUsage returns the IngestedLogsBytesUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetIngestedLogsBytesUsage() float64 {
@@ -2297,6 +2372,7 @@ func (o *MonthlyUsageAttributionValues) SetIngestedLogsBytesUsage(v float64) {
 	o.IngestedLogsBytesUsage = &v
 }
 
+
 // GetIngestedSpansBytesPercentage returns the IngestedSpansBytesPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetIngestedSpansBytesPercentage() float64 {
 	if o == nil || o.IngestedSpansBytesPercentage == nil {
@@ -2324,6 +2400,7 @@ func (o *MonthlyUsageAttributionValues) HasIngestedSpansBytesPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetIngestedSpansBytesPercentage(v float64) {
 	o.IngestedSpansBytesPercentage = &v
 }
+
 
 // GetIngestedSpansBytesUsage returns the IngestedSpansBytesUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetIngestedSpansBytesUsage() float64 {
@@ -2353,6 +2430,7 @@ func (o *MonthlyUsageAttributionValues) SetIngestedSpansBytesUsage(v float64) {
 	o.IngestedSpansBytesUsage = &v
 }
 
+
 // GetInvocationsPercentage returns the InvocationsPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetInvocationsPercentage() float64 {
 	if o == nil || o.InvocationsPercentage == nil {
@@ -2380,6 +2458,7 @@ func (o *MonthlyUsageAttributionValues) HasInvocationsPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetInvocationsPercentage(v float64) {
 	o.InvocationsPercentage = &v
 }
+
 
 // GetInvocationsUsage returns the InvocationsUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetInvocationsUsage() float64 {
@@ -2409,6 +2488,7 @@ func (o *MonthlyUsageAttributionValues) SetInvocationsUsage(v float64) {
 	o.InvocationsUsage = &v
 }
 
+
 // GetLambdaTracedInvocationsPercentage returns the LambdaTracedInvocationsPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLambdaTracedInvocationsPercentage() float64 {
 	if o == nil || o.LambdaTracedInvocationsPercentage == nil {
@@ -2436,6 +2516,7 @@ func (o *MonthlyUsageAttributionValues) HasLambdaTracedInvocationsPercentage() b
 func (o *MonthlyUsageAttributionValues) SetLambdaTracedInvocationsPercentage(v float64) {
 	o.LambdaTracedInvocationsPercentage = &v
 }
+
 
 // GetLambdaTracedInvocationsUsage returns the LambdaTracedInvocationsUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLambdaTracedInvocationsUsage() float64 {
@@ -2465,6 +2546,7 @@ func (o *MonthlyUsageAttributionValues) SetLambdaTracedInvocationsUsage(v float6
 	o.LambdaTracedInvocationsUsage = &v
 }
 
+
 // GetLlmObservabilityPercentage returns the LlmObservabilityPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLlmObservabilityPercentage() float64 {
 	if o == nil || o.LlmObservabilityPercentage == nil {
@@ -2492,6 +2574,7 @@ func (o *MonthlyUsageAttributionValues) HasLlmObservabilityPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetLlmObservabilityPercentage(v float64) {
 	o.LlmObservabilityPercentage = &v
 }
+
 
 // GetLlmObservabilityUsage returns the LlmObservabilityUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLlmObservabilityUsage() float64 {
@@ -2521,6 +2604,7 @@ func (o *MonthlyUsageAttributionValues) SetLlmObservabilityUsage(v float64) {
 	o.LlmObservabilityUsage = &v
 }
 
+
 // GetLogsIndexed15dayPercentage returns the LogsIndexed15dayPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed15dayPercentage() float64 {
 	if o == nil || o.LogsIndexed15dayPercentage == nil {
@@ -2548,6 +2632,7 @@ func (o *MonthlyUsageAttributionValues) HasLogsIndexed15dayPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetLogsIndexed15dayPercentage(v float64) {
 	o.LogsIndexed15dayPercentage = &v
 }
+
 
 // GetLogsIndexed15dayUsage returns the LogsIndexed15dayUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed15dayUsage() float64 {
@@ -2577,6 +2662,7 @@ func (o *MonthlyUsageAttributionValues) SetLogsIndexed15dayUsage(v float64) {
 	o.LogsIndexed15dayUsage = &v
 }
 
+
 // GetLogsIndexed180dayPercentage returns the LogsIndexed180dayPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed180dayPercentage() float64 {
 	if o == nil || o.LogsIndexed180dayPercentage == nil {
@@ -2604,6 +2690,7 @@ func (o *MonthlyUsageAttributionValues) HasLogsIndexed180dayPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetLogsIndexed180dayPercentage(v float64) {
 	o.LogsIndexed180dayPercentage = &v
 }
+
 
 // GetLogsIndexed180dayUsage returns the LogsIndexed180dayUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed180dayUsage() float64 {
@@ -2633,6 +2720,7 @@ func (o *MonthlyUsageAttributionValues) SetLogsIndexed180dayUsage(v float64) {
 	o.LogsIndexed180dayUsage = &v
 }
 
+
 // GetLogsIndexed1dayPercentage returns the LogsIndexed1dayPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed1dayPercentage() float64 {
 	if o == nil || o.LogsIndexed1dayPercentage == nil {
@@ -2660,6 +2748,7 @@ func (o *MonthlyUsageAttributionValues) HasLogsIndexed1dayPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetLogsIndexed1dayPercentage(v float64) {
 	o.LogsIndexed1dayPercentage = &v
 }
+
 
 // GetLogsIndexed1dayUsage returns the LogsIndexed1dayUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed1dayUsage() float64 {
@@ -2689,6 +2778,7 @@ func (o *MonthlyUsageAttributionValues) SetLogsIndexed1dayUsage(v float64) {
 	o.LogsIndexed1dayUsage = &v
 }
 
+
 // GetLogsIndexed30dayPercentage returns the LogsIndexed30dayPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed30dayPercentage() float64 {
 	if o == nil || o.LogsIndexed30dayPercentage == nil {
@@ -2716,6 +2806,7 @@ func (o *MonthlyUsageAttributionValues) HasLogsIndexed30dayPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetLogsIndexed30dayPercentage(v float64) {
 	o.LogsIndexed30dayPercentage = &v
 }
+
 
 // GetLogsIndexed30dayUsage returns the LogsIndexed30dayUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed30dayUsage() float64 {
@@ -2745,6 +2836,7 @@ func (o *MonthlyUsageAttributionValues) SetLogsIndexed30dayUsage(v float64) {
 	o.LogsIndexed30dayUsage = &v
 }
 
+
 // GetLogsIndexed360dayPercentage returns the LogsIndexed360dayPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed360dayPercentage() float64 {
 	if o == nil || o.LogsIndexed360dayPercentage == nil {
@@ -2772,6 +2864,7 @@ func (o *MonthlyUsageAttributionValues) HasLogsIndexed360dayPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetLogsIndexed360dayPercentage(v float64) {
 	o.LogsIndexed360dayPercentage = &v
 }
+
 
 // GetLogsIndexed360dayUsage returns the LogsIndexed360dayUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed360dayUsage() float64 {
@@ -2801,6 +2894,7 @@ func (o *MonthlyUsageAttributionValues) SetLogsIndexed360dayUsage(v float64) {
 	o.LogsIndexed360dayUsage = &v
 }
 
+
 // GetLogsIndexed3dayPercentage returns the LogsIndexed3dayPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed3dayPercentage() float64 {
 	if o == nil || o.LogsIndexed3dayPercentage == nil {
@@ -2828,6 +2922,7 @@ func (o *MonthlyUsageAttributionValues) HasLogsIndexed3dayPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetLogsIndexed3dayPercentage(v float64) {
 	o.LogsIndexed3dayPercentage = &v
 }
+
 
 // GetLogsIndexed3dayUsage returns the LogsIndexed3dayUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed3dayUsage() float64 {
@@ -2857,6 +2952,7 @@ func (o *MonthlyUsageAttributionValues) SetLogsIndexed3dayUsage(v float64) {
 	o.LogsIndexed3dayUsage = &v
 }
 
+
 // GetLogsIndexed45dayPercentage returns the LogsIndexed45dayPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed45dayPercentage() float64 {
 	if o == nil || o.LogsIndexed45dayPercentage == nil {
@@ -2884,6 +2980,7 @@ func (o *MonthlyUsageAttributionValues) HasLogsIndexed45dayPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetLogsIndexed45dayPercentage(v float64) {
 	o.LogsIndexed45dayPercentage = &v
 }
+
 
 // GetLogsIndexed45dayUsage returns the LogsIndexed45dayUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed45dayUsage() float64 {
@@ -2913,6 +3010,7 @@ func (o *MonthlyUsageAttributionValues) SetLogsIndexed45dayUsage(v float64) {
 	o.LogsIndexed45dayUsage = &v
 }
 
+
 // GetLogsIndexed60dayPercentage returns the LogsIndexed60dayPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed60dayPercentage() float64 {
 	if o == nil || o.LogsIndexed60dayPercentage == nil {
@@ -2940,6 +3038,7 @@ func (o *MonthlyUsageAttributionValues) HasLogsIndexed60dayPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetLogsIndexed60dayPercentage(v float64) {
 	o.LogsIndexed60dayPercentage = &v
 }
+
 
 // GetLogsIndexed60dayUsage returns the LogsIndexed60dayUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed60dayUsage() float64 {
@@ -2969,6 +3068,7 @@ func (o *MonthlyUsageAttributionValues) SetLogsIndexed60dayUsage(v float64) {
 	o.LogsIndexed60dayUsage = &v
 }
 
+
 // GetLogsIndexed7dayPercentage returns the LogsIndexed7dayPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed7dayPercentage() float64 {
 	if o == nil || o.LogsIndexed7dayPercentage == nil {
@@ -2996,6 +3096,7 @@ func (o *MonthlyUsageAttributionValues) HasLogsIndexed7dayPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetLogsIndexed7dayPercentage(v float64) {
 	o.LogsIndexed7dayPercentage = &v
 }
+
 
 // GetLogsIndexed7dayUsage returns the LogsIndexed7dayUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed7dayUsage() float64 {
@@ -3025,6 +3126,7 @@ func (o *MonthlyUsageAttributionValues) SetLogsIndexed7dayUsage(v float64) {
 	o.LogsIndexed7dayUsage = &v
 }
 
+
 // GetLogsIndexed90dayPercentage returns the LogsIndexed90dayPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed90dayPercentage() float64 {
 	if o == nil || o.LogsIndexed90dayPercentage == nil {
@@ -3052,6 +3154,7 @@ func (o *MonthlyUsageAttributionValues) HasLogsIndexed90dayPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetLogsIndexed90dayPercentage(v float64) {
 	o.LogsIndexed90dayPercentage = &v
 }
+
 
 // GetLogsIndexed90dayUsage returns the LogsIndexed90dayUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexed90dayUsage() float64 {
@@ -3081,6 +3184,7 @@ func (o *MonthlyUsageAttributionValues) SetLogsIndexed90dayUsage(v float64) {
 	o.LogsIndexed90dayUsage = &v
 }
 
+
 // GetLogsIndexedCustomRetentionPercentage returns the LogsIndexedCustomRetentionPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexedCustomRetentionPercentage() float64 {
 	if o == nil || o.LogsIndexedCustomRetentionPercentage == nil {
@@ -3108,6 +3212,7 @@ func (o *MonthlyUsageAttributionValues) HasLogsIndexedCustomRetentionPercentage(
 func (o *MonthlyUsageAttributionValues) SetLogsIndexedCustomRetentionPercentage(v float64) {
 	o.LogsIndexedCustomRetentionPercentage = &v
 }
+
 
 // GetLogsIndexedCustomRetentionUsage returns the LogsIndexedCustomRetentionUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetLogsIndexedCustomRetentionUsage() float64 {
@@ -3137,6 +3242,7 @@ func (o *MonthlyUsageAttributionValues) SetLogsIndexedCustomRetentionUsage(v flo
 	o.LogsIndexedCustomRetentionUsage = &v
 }
 
+
 // GetMobileAppTestingPercentage returns the MobileAppTestingPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetMobileAppTestingPercentage() float64 {
 	if o == nil || o.MobileAppTestingPercentage == nil {
@@ -3164,6 +3270,7 @@ func (o *MonthlyUsageAttributionValues) HasMobileAppTestingPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetMobileAppTestingPercentage(v float64) {
 	o.MobileAppTestingPercentage = &v
 }
+
 
 // GetMobileAppTestingUsage returns the MobileAppTestingUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetMobileAppTestingUsage() float64 {
@@ -3193,6 +3300,7 @@ func (o *MonthlyUsageAttributionValues) SetMobileAppTestingUsage(v float64) {
 	o.MobileAppTestingUsage = &v
 }
 
+
 // GetNdmNetflowPercentage returns the NdmNetflowPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetNdmNetflowPercentage() float64 {
 	if o == nil || o.NdmNetflowPercentage == nil {
@@ -3220,6 +3328,7 @@ func (o *MonthlyUsageAttributionValues) HasNdmNetflowPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetNdmNetflowPercentage(v float64) {
 	o.NdmNetflowPercentage = &v
 }
+
 
 // GetNdmNetflowUsage returns the NdmNetflowUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetNdmNetflowUsage() float64 {
@@ -3249,6 +3358,7 @@ func (o *MonthlyUsageAttributionValues) SetNdmNetflowUsage(v float64) {
 	o.NdmNetflowUsage = &v
 }
 
+
 // GetNetworkDeviceWirelessPercentage returns the NetworkDeviceWirelessPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetNetworkDeviceWirelessPercentage() float64 {
 	if o == nil || o.NetworkDeviceWirelessPercentage == nil {
@@ -3276,6 +3386,7 @@ func (o *MonthlyUsageAttributionValues) HasNetworkDeviceWirelessPercentage() boo
 func (o *MonthlyUsageAttributionValues) SetNetworkDeviceWirelessPercentage(v float64) {
 	o.NetworkDeviceWirelessPercentage = &v
 }
+
 
 // GetNetworkDeviceWirelessUsage returns the NetworkDeviceWirelessUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetNetworkDeviceWirelessUsage() float64 {
@@ -3305,6 +3416,7 @@ func (o *MonthlyUsageAttributionValues) SetNetworkDeviceWirelessUsage(v float64)
 	o.NetworkDeviceWirelessUsage = &v
 }
 
+
 // GetNpmHostPercentage returns the NpmHostPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetNpmHostPercentage() float64 {
 	if o == nil || o.NpmHostPercentage == nil {
@@ -3332,6 +3444,7 @@ func (o *MonthlyUsageAttributionValues) HasNpmHostPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetNpmHostPercentage(v float64) {
 	o.NpmHostPercentage = &v
 }
+
 
 // GetNpmHostUsage returns the NpmHostUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetNpmHostUsage() float64 {
@@ -3361,6 +3474,7 @@ func (o *MonthlyUsageAttributionValues) SetNpmHostUsage(v float64) {
 	o.NpmHostUsage = &v
 }
 
+
 // GetObsPipelineBytesPercentage returns the ObsPipelineBytesPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetObsPipelineBytesPercentage() float64 {
 	if o == nil || o.ObsPipelineBytesPercentage == nil {
@@ -3388,6 +3502,7 @@ func (o *MonthlyUsageAttributionValues) HasObsPipelineBytesPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetObsPipelineBytesPercentage(v float64) {
 	o.ObsPipelineBytesPercentage = &v
 }
+
 
 // GetObsPipelineBytesUsage returns the ObsPipelineBytesUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetObsPipelineBytesUsage() float64 {
@@ -3417,6 +3532,7 @@ func (o *MonthlyUsageAttributionValues) SetObsPipelineBytesUsage(v float64) {
 	o.ObsPipelineBytesUsage = &v
 }
 
+
 // GetObsPipelinesVcpuPercentage returns the ObsPipelinesVcpuPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetObsPipelinesVcpuPercentage() float64 {
 	if o == nil || o.ObsPipelinesVcpuPercentage == nil {
@@ -3444,6 +3560,7 @@ func (o *MonthlyUsageAttributionValues) HasObsPipelinesVcpuPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetObsPipelinesVcpuPercentage(v float64) {
 	o.ObsPipelinesVcpuPercentage = &v
 }
+
 
 // GetObsPipelinesVcpuUsage returns the ObsPipelinesVcpuUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetObsPipelinesVcpuUsage() float64 {
@@ -3473,6 +3590,7 @@ func (o *MonthlyUsageAttributionValues) SetObsPipelinesVcpuUsage(v float64) {
 	o.ObsPipelinesVcpuUsage = &v
 }
 
+
 // GetOnlineArchivePercentage returns the OnlineArchivePercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetOnlineArchivePercentage() float64 {
 	if o == nil || o.OnlineArchivePercentage == nil {
@@ -3500,6 +3618,7 @@ func (o *MonthlyUsageAttributionValues) HasOnlineArchivePercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetOnlineArchivePercentage(v float64) {
 	o.OnlineArchivePercentage = &v
 }
+
 
 // GetOnlineArchiveUsage returns the OnlineArchiveUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetOnlineArchiveUsage() float64 {
@@ -3529,6 +3648,7 @@ func (o *MonthlyUsageAttributionValues) SetOnlineArchiveUsage(v float64) {
 	o.OnlineArchiveUsage = &v
 }
 
+
 // GetProductAnalyticsSessionPercentage returns the ProductAnalyticsSessionPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetProductAnalyticsSessionPercentage() float64 {
 	if o == nil || o.ProductAnalyticsSessionPercentage == nil {
@@ -3556,6 +3676,7 @@ func (o *MonthlyUsageAttributionValues) HasProductAnalyticsSessionPercentage() b
 func (o *MonthlyUsageAttributionValues) SetProductAnalyticsSessionPercentage(v float64) {
 	o.ProductAnalyticsSessionPercentage = &v
 }
+
 
 // GetProductAnalyticsSessionUsage returns the ProductAnalyticsSessionUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetProductAnalyticsSessionUsage() float64 {
@@ -3585,6 +3706,7 @@ func (o *MonthlyUsageAttributionValues) SetProductAnalyticsSessionUsage(v float6
 	o.ProductAnalyticsSessionUsage = &v
 }
 
+
 // GetProfiledContainerPercentage returns the ProfiledContainerPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetProfiledContainerPercentage() float64 {
 	if o == nil || o.ProfiledContainerPercentage == nil {
@@ -3612,6 +3734,7 @@ func (o *MonthlyUsageAttributionValues) HasProfiledContainerPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetProfiledContainerPercentage(v float64) {
 	o.ProfiledContainerPercentage = &v
 }
+
 
 // GetProfiledContainerUsage returns the ProfiledContainerUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetProfiledContainerUsage() float64 {
@@ -3641,6 +3764,7 @@ func (o *MonthlyUsageAttributionValues) SetProfiledContainerUsage(v float64) {
 	o.ProfiledContainerUsage = &v
 }
 
+
 // GetProfiledFargatePercentage returns the ProfiledFargatePercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetProfiledFargatePercentage() float64 {
 	if o == nil || o.ProfiledFargatePercentage == nil {
@@ -3668,6 +3792,7 @@ func (o *MonthlyUsageAttributionValues) HasProfiledFargatePercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetProfiledFargatePercentage(v float64) {
 	o.ProfiledFargatePercentage = &v
 }
+
 
 // GetProfiledFargateUsage returns the ProfiledFargateUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetProfiledFargateUsage() float64 {
@@ -3697,6 +3822,7 @@ func (o *MonthlyUsageAttributionValues) SetProfiledFargateUsage(v float64) {
 	o.ProfiledFargateUsage = &v
 }
 
+
 // GetProfiledHostPercentage returns the ProfiledHostPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetProfiledHostPercentage() float64 {
 	if o == nil || o.ProfiledHostPercentage == nil {
@@ -3724,6 +3850,7 @@ func (o *MonthlyUsageAttributionValues) HasProfiledHostPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetProfiledHostPercentage(v float64) {
 	o.ProfiledHostPercentage = &v
 }
+
 
 // GetProfiledHostUsage returns the ProfiledHostUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetProfiledHostUsage() float64 {
@@ -3753,6 +3880,7 @@ func (o *MonthlyUsageAttributionValues) SetProfiledHostUsage(v float64) {
 	o.ProfiledHostUsage = &v
 }
 
+
 // GetPublishedAppPercentage returns the PublishedAppPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetPublishedAppPercentage() float64 {
 	if o == nil || o.PublishedAppPercentage == nil {
@@ -3780,6 +3908,7 @@ func (o *MonthlyUsageAttributionValues) HasPublishedAppPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetPublishedAppPercentage(v float64) {
 	o.PublishedAppPercentage = &v
 }
+
 
 // GetPublishedAppUsage returns the PublishedAppUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetPublishedAppUsage() float64 {
@@ -3809,6 +3938,7 @@ func (o *MonthlyUsageAttributionValues) SetPublishedAppUsage(v float64) {
 	o.PublishedAppUsage = &v
 }
 
+
 // GetRumBrowserMobileSessionsPercentage returns the RumBrowserMobileSessionsPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetRumBrowserMobileSessionsPercentage() float64 {
 	if o == nil || o.RumBrowserMobileSessionsPercentage == nil {
@@ -3836,6 +3966,7 @@ func (o *MonthlyUsageAttributionValues) HasRumBrowserMobileSessionsPercentage() 
 func (o *MonthlyUsageAttributionValues) SetRumBrowserMobileSessionsPercentage(v float64) {
 	o.RumBrowserMobileSessionsPercentage = &v
 }
+
 
 // GetRumBrowserMobileSessionsUsage returns the RumBrowserMobileSessionsUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetRumBrowserMobileSessionsUsage() float64 {
@@ -3865,6 +3996,7 @@ func (o *MonthlyUsageAttributionValues) SetRumBrowserMobileSessionsUsage(v float
 	o.RumBrowserMobileSessionsUsage = &v
 }
 
+
 // GetRumIngestedPercentage returns the RumIngestedPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetRumIngestedPercentage() float64 {
 	if o == nil || o.RumIngestedPercentage == nil {
@@ -3892,6 +4024,7 @@ func (o *MonthlyUsageAttributionValues) HasRumIngestedPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetRumIngestedPercentage(v float64) {
 	o.RumIngestedPercentage = &v
 }
+
 
 // GetRumIngestedUsage returns the RumIngestedUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetRumIngestedUsage() float64 {
@@ -3921,6 +4054,7 @@ func (o *MonthlyUsageAttributionValues) SetRumIngestedUsage(v float64) {
 	o.RumIngestedUsage = &v
 }
 
+
 // GetRumInvestigatePercentage returns the RumInvestigatePercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetRumInvestigatePercentage() float64 {
 	if o == nil || o.RumInvestigatePercentage == nil {
@@ -3948,6 +4082,7 @@ func (o *MonthlyUsageAttributionValues) HasRumInvestigatePercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetRumInvestigatePercentage(v float64) {
 	o.RumInvestigatePercentage = &v
 }
+
 
 // GetRumInvestigateUsage returns the RumInvestigateUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetRumInvestigateUsage() float64 {
@@ -3977,6 +4112,7 @@ func (o *MonthlyUsageAttributionValues) SetRumInvestigateUsage(v float64) {
 	o.RumInvestigateUsage = &v
 }
 
+
 // GetRumReplaySessionsPercentage returns the RumReplaySessionsPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetRumReplaySessionsPercentage() float64 {
 	if o == nil || o.RumReplaySessionsPercentage == nil {
@@ -4004,6 +4140,7 @@ func (o *MonthlyUsageAttributionValues) HasRumReplaySessionsPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetRumReplaySessionsPercentage(v float64) {
 	o.RumReplaySessionsPercentage = &v
 }
+
 
 // GetRumReplaySessionsUsage returns the RumReplaySessionsUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetRumReplaySessionsUsage() float64 {
@@ -4033,6 +4170,7 @@ func (o *MonthlyUsageAttributionValues) SetRumReplaySessionsUsage(v float64) {
 	o.RumReplaySessionsUsage = &v
 }
 
+
 // GetRumSessionReplayAddOnPercentage returns the RumSessionReplayAddOnPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetRumSessionReplayAddOnPercentage() float64 {
 	if o == nil || o.RumSessionReplayAddOnPercentage == nil {
@@ -4060,6 +4198,7 @@ func (o *MonthlyUsageAttributionValues) HasRumSessionReplayAddOnPercentage() boo
 func (o *MonthlyUsageAttributionValues) SetRumSessionReplayAddOnPercentage(v float64) {
 	o.RumSessionReplayAddOnPercentage = &v
 }
+
 
 // GetRumSessionReplayAddOnUsage returns the RumSessionReplayAddOnUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetRumSessionReplayAddOnUsage() float64 {
@@ -4089,6 +4228,7 @@ func (o *MonthlyUsageAttributionValues) SetRumSessionReplayAddOnUsage(v float64)
 	o.RumSessionReplayAddOnUsage = &v
 }
 
+
 // GetScaFargatePercentage returns the ScaFargatePercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetScaFargatePercentage() float64 {
 	if o == nil || o.ScaFargatePercentage == nil {
@@ -4116,6 +4256,7 @@ func (o *MonthlyUsageAttributionValues) HasScaFargatePercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetScaFargatePercentage(v float64) {
 	o.ScaFargatePercentage = &v
 }
+
 
 // GetScaFargateUsage returns the ScaFargateUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetScaFargateUsage() float64 {
@@ -4145,6 +4286,7 @@ func (o *MonthlyUsageAttributionValues) SetScaFargateUsage(v float64) {
 	o.ScaFargateUsage = &v
 }
 
+
 // GetSdsScannedBytesPercentage returns the SdsScannedBytesPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetSdsScannedBytesPercentage() float64 {
 	if o == nil || o.SdsScannedBytesPercentage == nil {
@@ -4172,6 +4314,7 @@ func (o *MonthlyUsageAttributionValues) HasSdsScannedBytesPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetSdsScannedBytesPercentage(v float64) {
 	o.SdsScannedBytesPercentage = &v
 }
+
 
 // GetSdsScannedBytesUsage returns the SdsScannedBytesUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetSdsScannedBytesUsage() float64 {
@@ -4201,6 +4344,7 @@ func (o *MonthlyUsageAttributionValues) SetSdsScannedBytesUsage(v float64) {
 	o.SdsScannedBytesUsage = &v
 }
 
+
 // GetServerlessAppsPercentage returns the ServerlessAppsPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetServerlessAppsPercentage() float64 {
 	if o == nil || o.ServerlessAppsPercentage == nil {
@@ -4228,6 +4372,7 @@ func (o *MonthlyUsageAttributionValues) HasServerlessAppsPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetServerlessAppsPercentage(v float64) {
 	o.ServerlessAppsPercentage = &v
 }
+
 
 // GetServerlessAppsUsage returns the ServerlessAppsUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetServerlessAppsUsage() float64 {
@@ -4257,6 +4402,7 @@ func (o *MonthlyUsageAttributionValues) SetServerlessAppsUsage(v float64) {
 	o.ServerlessAppsUsage = &v
 }
 
+
 // GetSiemAnalyzedLogsAddOnPercentage returns the SiemAnalyzedLogsAddOnPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetSiemAnalyzedLogsAddOnPercentage() float64 {
 	if o == nil || o.SiemAnalyzedLogsAddOnPercentage == nil {
@@ -4284,6 +4430,7 @@ func (o *MonthlyUsageAttributionValues) HasSiemAnalyzedLogsAddOnPercentage() boo
 func (o *MonthlyUsageAttributionValues) SetSiemAnalyzedLogsAddOnPercentage(v float64) {
 	o.SiemAnalyzedLogsAddOnPercentage = &v
 }
+
 
 // GetSiemAnalyzedLogsAddOnUsage returns the SiemAnalyzedLogsAddOnUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetSiemAnalyzedLogsAddOnUsage() float64 {
@@ -4313,6 +4460,7 @@ func (o *MonthlyUsageAttributionValues) SetSiemAnalyzedLogsAddOnUsage(v float64)
 	o.SiemAnalyzedLogsAddOnUsage = &v
 }
 
+
 // GetSiemIngestedBytesPercentage returns the SiemIngestedBytesPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetSiemIngestedBytesPercentage() float64 {
 	if o == nil || o.SiemIngestedBytesPercentage == nil {
@@ -4340,6 +4488,7 @@ func (o *MonthlyUsageAttributionValues) HasSiemIngestedBytesPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetSiemIngestedBytesPercentage(v float64) {
 	o.SiemIngestedBytesPercentage = &v
 }
+
 
 // GetSiemIngestedBytesUsage returns the SiemIngestedBytesUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetSiemIngestedBytesUsage() float64 {
@@ -4369,6 +4518,7 @@ func (o *MonthlyUsageAttributionValues) SetSiemIngestedBytesUsage(v float64) {
 	o.SiemIngestedBytesUsage = &v
 }
 
+
 // GetSnmpPercentage returns the SnmpPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetSnmpPercentage() float64 {
 	if o == nil || o.SnmpPercentage == nil {
@@ -4396,6 +4546,7 @@ func (o *MonthlyUsageAttributionValues) HasSnmpPercentage() bool {
 func (o *MonthlyUsageAttributionValues) SetSnmpPercentage(v float64) {
 	o.SnmpPercentage = &v
 }
+
 
 // GetSnmpUsage returns the SnmpUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetSnmpUsage() float64 {
@@ -4425,6 +4576,7 @@ func (o *MonthlyUsageAttributionValues) SetSnmpUsage(v float64) {
 	o.SnmpUsage = &v
 }
 
+
 // GetUniversalServiceMonitoringPercentage returns the UniversalServiceMonitoringPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetUniversalServiceMonitoringPercentage() float64 {
 	if o == nil || o.UniversalServiceMonitoringPercentage == nil {
@@ -4452,6 +4604,7 @@ func (o *MonthlyUsageAttributionValues) HasUniversalServiceMonitoringPercentage(
 func (o *MonthlyUsageAttributionValues) SetUniversalServiceMonitoringPercentage(v float64) {
 	o.UniversalServiceMonitoringPercentage = &v
 }
+
 
 // GetUniversalServiceMonitoringUsage returns the UniversalServiceMonitoringUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetUniversalServiceMonitoringUsage() float64 {
@@ -4481,6 +4634,7 @@ func (o *MonthlyUsageAttributionValues) SetUniversalServiceMonitoringUsage(v flo
 	o.UniversalServiceMonitoringUsage = &v
 }
 
+
 // GetVulnManagementHostsPercentage returns the VulnManagementHostsPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetVulnManagementHostsPercentage() float64 {
 	if o == nil || o.VulnManagementHostsPercentage == nil {
@@ -4508,6 +4662,7 @@ func (o *MonthlyUsageAttributionValues) HasVulnManagementHostsPercentage() bool 
 func (o *MonthlyUsageAttributionValues) SetVulnManagementHostsPercentage(v float64) {
 	o.VulnManagementHostsPercentage = &v
 }
+
 
 // GetVulnManagementHostsUsage returns the VulnManagementHostsUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetVulnManagementHostsUsage() float64 {
@@ -4537,6 +4692,7 @@ func (o *MonthlyUsageAttributionValues) SetVulnManagementHostsUsage(v float64) {
 	o.VulnManagementHostsUsage = &v
 }
 
+
 // GetWorkflowExecutionsPercentage returns the WorkflowExecutionsPercentage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetWorkflowExecutionsPercentage() float64 {
 	if o == nil || o.WorkflowExecutionsPercentage == nil {
@@ -4565,6 +4721,7 @@ func (o *MonthlyUsageAttributionValues) SetWorkflowExecutionsPercentage(v float6
 	o.WorkflowExecutionsPercentage = &v
 }
 
+
 // GetWorkflowExecutionsUsage returns the WorkflowExecutionsUsage field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionValues) GetWorkflowExecutionsUsage() float64 {
 	if o == nil || o.WorkflowExecutionsUsage == nil {
@@ -4592,6 +4749,8 @@ func (o *MonthlyUsageAttributionValues) HasWorkflowExecutionsUsage() bool {
 func (o *MonthlyUsageAttributionValues) SetWorkflowExecutionsUsage(v float64) {
 	o.WorkflowExecutionsUsage = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
@@ -5065,165 +5224,165 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiPercentage                                  *float64 `json:"api_percentage,omitempty"`
-		ApiUsage                                       *float64 `json:"api_usage,omitempty"`
-		ApmFargatePercentage                           *float64 `json:"apm_fargate_percentage,omitempty"`
-		ApmFargateUsage                                *float64 `json:"apm_fargate_usage,omitempty"`
-		ApmHostPercentage                              *float64 `json:"apm_host_percentage,omitempty"`
-		ApmHostUsage                                   *float64 `json:"apm_host_usage,omitempty"`
-		ApmUsmPercentage                               *float64 `json:"apm_usm_percentage,omitempty"`
-		ApmUsmUsage                                    *float64 `json:"apm_usm_usage,omitempty"`
-		AppsecFargatePercentage                        *float64 `json:"appsec_fargate_percentage,omitempty"`
-		AppsecFargateUsage                             *float64 `json:"appsec_fargate_usage,omitempty"`
-		AppsecPercentage                               *float64 `json:"appsec_percentage,omitempty"`
-		AppsecUsage                                    *float64 `json:"appsec_usage,omitempty"`
-		AsmServerlessTracedInvocationsPercentage       *float64 `json:"asm_serverless_traced_invocations_percentage,omitempty"`
-		AsmServerlessTracedInvocationsUsage            *float64 `json:"asm_serverless_traced_invocations_usage,omitempty"`
-		BrowserPercentage                              *float64 `json:"browser_percentage,omitempty"`
-		BrowserUsage                                   *float64 `json:"browser_usage,omitempty"`
-		CiPipelineIndexedSpansPercentage               *float64 `json:"ci_pipeline_indexed_spans_percentage,omitempty"`
-		CiPipelineIndexedSpansUsage                    *float64 `json:"ci_pipeline_indexed_spans_usage,omitempty"`
-		CiTestIndexedSpansPercentage                   *float64 `json:"ci_test_indexed_spans_percentage,omitempty"`
-		CiTestIndexedSpansUsage                        *float64 `json:"ci_test_indexed_spans_usage,omitempty"`
-		CiVisibilityItrPercentage                      *float64 `json:"ci_visibility_itr_percentage,omitempty"`
-		CiVisibilityItrUsage                           *float64 `json:"ci_visibility_itr_usage,omitempty"`
-		CloudSiemPercentage                            *float64 `json:"cloud_siem_percentage,omitempty"`
-		CloudSiemUsage                                 *float64 `json:"cloud_siem_usage,omitempty"`
-		CodeSecurityHostPercentage                     *float64 `json:"code_security_host_percentage,omitempty"`
-		CodeSecurityHostUsage                          *float64 `json:"code_security_host_usage,omitempty"`
-		ContainerExclAgentPercentage                   *float64 `json:"container_excl_agent_percentage,omitempty"`
-		ContainerExclAgentUsage                        *float64 `json:"container_excl_agent_usage,omitempty"`
-		ContainerPercentage                            *float64 `json:"container_percentage,omitempty"`
-		ContainerUsage                                 *float64 `json:"container_usage,omitempty"`
-		CspmContainersPercentage                       *float64 `json:"cspm_containers_percentage,omitempty"`
-		CspmContainersUsage                            *float64 `json:"cspm_containers_usage,omitempty"`
-		CspmHostsPercentage                            *float64 `json:"cspm_hosts_percentage,omitempty"`
-		CspmHostsUsage                                 *float64 `json:"cspm_hosts_usage,omitempty"`
-		CustomEventPercentage                          *float64 `json:"custom_event_percentage,omitempty"`
-		CustomEventUsage                               *float64 `json:"custom_event_usage,omitempty"`
-		CustomIngestedTimeseriesPercentage             *float64 `json:"custom_ingested_timeseries_percentage,omitempty"`
-		CustomIngestedTimeseriesUsage                  *float64 `json:"custom_ingested_timeseries_usage,omitempty"`
-		CustomTimeseriesPercentage                     *float64 `json:"custom_timeseries_percentage,omitempty"`
-		CustomTimeseriesUsage                          *float64 `json:"custom_timeseries_usage,omitempty"`
-		CwsContainersPercentage                        *float64 `json:"cws_containers_percentage,omitempty"`
-		CwsContainersUsage                             *float64 `json:"cws_containers_usage,omitempty"`
-		CwsFargateTaskPercentage                       *float64 `json:"cws_fargate_task_percentage,omitempty"`
-		CwsFargateTaskUsage                            *float64 `json:"cws_fargate_task_usage,omitempty"`
-		CwsHostsPercentage                             *float64 `json:"cws_hosts_percentage,omitempty"`
-		CwsHostsUsage                                  *float64 `json:"cws_hosts_usage,omitempty"`
-		DataJobsMonitoringUsage                        *float64 `json:"data_jobs_monitoring_usage,omitempty"`
-		DataStreamMonitoringUsage                      *float64 `json:"data_stream_monitoring_usage,omitempty"`
-		DbmHostsPercentage                             *float64 `json:"dbm_hosts_percentage,omitempty"`
-		DbmHostsUsage                                  *float64 `json:"dbm_hosts_usage,omitempty"`
-		DbmQueriesPercentage                           *float64 `json:"dbm_queries_percentage,omitempty"`
-		DbmQueriesUsage                                *float64 `json:"dbm_queries_usage,omitempty"`
-		ErrorTrackingPercentage                        *float64 `json:"error_tracking_percentage,omitempty"`
-		ErrorTrackingUsage                             *float64 `json:"error_tracking_usage,omitempty"`
-		EstimatedIndexedSpansPercentage                *float64 `json:"estimated_indexed_spans_percentage,omitempty"`
-		EstimatedIndexedSpansUsage                     *float64 `json:"estimated_indexed_spans_usage,omitempty"`
-		EstimatedIngestedSpansPercentage               *float64 `json:"estimated_ingested_spans_percentage,omitempty"`
-		EstimatedIngestedSpansUsage                    *float64 `json:"estimated_ingested_spans_usage,omitempty"`
-		FargatePercentage                              *float64 `json:"fargate_percentage,omitempty"`
-		FargateUsage                                   *float64 `json:"fargate_usage,omitempty"`
-		FunctionsPercentage                            *float64 `json:"functions_percentage,omitempty"`
-		FunctionsUsage                                 *float64 `json:"functions_usage,omitempty"`
+		ApiPercentage *float64 `json:"api_percentage,omitempty"`
+		ApiUsage *float64 `json:"api_usage,omitempty"`
+		ApmFargatePercentage *float64 `json:"apm_fargate_percentage,omitempty"`
+		ApmFargateUsage *float64 `json:"apm_fargate_usage,omitempty"`
+		ApmHostPercentage *float64 `json:"apm_host_percentage,omitempty"`
+		ApmHostUsage *float64 `json:"apm_host_usage,omitempty"`
+		ApmUsmPercentage *float64 `json:"apm_usm_percentage,omitempty"`
+		ApmUsmUsage *float64 `json:"apm_usm_usage,omitempty"`
+		AppsecFargatePercentage *float64 `json:"appsec_fargate_percentage,omitempty"`
+		AppsecFargateUsage *float64 `json:"appsec_fargate_usage,omitempty"`
+		AppsecPercentage *float64 `json:"appsec_percentage,omitempty"`
+		AppsecUsage *float64 `json:"appsec_usage,omitempty"`
+		AsmServerlessTracedInvocationsPercentage *float64 `json:"asm_serverless_traced_invocations_percentage,omitempty"`
+		AsmServerlessTracedInvocationsUsage *float64 `json:"asm_serverless_traced_invocations_usage,omitempty"`
+		BrowserPercentage *float64 `json:"browser_percentage,omitempty"`
+		BrowserUsage *float64 `json:"browser_usage,omitempty"`
+		CiPipelineIndexedSpansPercentage *float64 `json:"ci_pipeline_indexed_spans_percentage,omitempty"`
+		CiPipelineIndexedSpansUsage *float64 `json:"ci_pipeline_indexed_spans_usage,omitempty"`
+		CiTestIndexedSpansPercentage *float64 `json:"ci_test_indexed_spans_percentage,omitempty"`
+		CiTestIndexedSpansUsage *float64 `json:"ci_test_indexed_spans_usage,omitempty"`
+		CiVisibilityItrPercentage *float64 `json:"ci_visibility_itr_percentage,omitempty"`
+		CiVisibilityItrUsage *float64 `json:"ci_visibility_itr_usage,omitempty"`
+		CloudSiemPercentage *float64 `json:"cloud_siem_percentage,omitempty"`
+		CloudSiemUsage *float64 `json:"cloud_siem_usage,omitempty"`
+		CodeSecurityHostPercentage *float64 `json:"code_security_host_percentage,omitempty"`
+		CodeSecurityHostUsage *float64 `json:"code_security_host_usage,omitempty"`
+		ContainerExclAgentPercentage *float64 `json:"container_excl_agent_percentage,omitempty"`
+		ContainerExclAgentUsage *float64 `json:"container_excl_agent_usage,omitempty"`
+		ContainerPercentage *float64 `json:"container_percentage,omitempty"`
+		ContainerUsage *float64 `json:"container_usage,omitempty"`
+		CspmContainersPercentage *float64 `json:"cspm_containers_percentage,omitempty"`
+		CspmContainersUsage *float64 `json:"cspm_containers_usage,omitempty"`
+		CspmHostsPercentage *float64 `json:"cspm_hosts_percentage,omitempty"`
+		CspmHostsUsage *float64 `json:"cspm_hosts_usage,omitempty"`
+		CustomEventPercentage *float64 `json:"custom_event_percentage,omitempty"`
+		CustomEventUsage *float64 `json:"custom_event_usage,omitempty"`
+		CustomIngestedTimeseriesPercentage *float64 `json:"custom_ingested_timeseries_percentage,omitempty"`
+		CustomIngestedTimeseriesUsage *float64 `json:"custom_ingested_timeseries_usage,omitempty"`
+		CustomTimeseriesPercentage *float64 `json:"custom_timeseries_percentage,omitempty"`
+		CustomTimeseriesUsage *float64 `json:"custom_timeseries_usage,omitempty"`
+		CwsContainersPercentage *float64 `json:"cws_containers_percentage,omitempty"`
+		CwsContainersUsage *float64 `json:"cws_containers_usage,omitempty"`
+		CwsFargateTaskPercentage *float64 `json:"cws_fargate_task_percentage,omitempty"`
+		CwsFargateTaskUsage *float64 `json:"cws_fargate_task_usage,omitempty"`
+		CwsHostsPercentage *float64 `json:"cws_hosts_percentage,omitempty"`
+		CwsHostsUsage *float64 `json:"cws_hosts_usage,omitempty"`
+		DataJobsMonitoringUsage *float64 `json:"data_jobs_monitoring_usage,omitempty"`
+		DataStreamMonitoringUsage *float64 `json:"data_stream_monitoring_usage,omitempty"`
+		DbmHostsPercentage *float64 `json:"dbm_hosts_percentage,omitempty"`
+		DbmHostsUsage *float64 `json:"dbm_hosts_usage,omitempty"`
+		DbmQueriesPercentage *float64 `json:"dbm_queries_percentage,omitempty"`
+		DbmQueriesUsage *float64 `json:"dbm_queries_usage,omitempty"`
+		ErrorTrackingPercentage *float64 `json:"error_tracking_percentage,omitempty"`
+		ErrorTrackingUsage *float64 `json:"error_tracking_usage,omitempty"`
+		EstimatedIndexedSpansPercentage *float64 `json:"estimated_indexed_spans_percentage,omitempty"`
+		EstimatedIndexedSpansUsage *float64 `json:"estimated_indexed_spans_usage,omitempty"`
+		EstimatedIngestedSpansPercentage *float64 `json:"estimated_ingested_spans_percentage,omitempty"`
+		EstimatedIngestedSpansUsage *float64 `json:"estimated_ingested_spans_usage,omitempty"`
+		FargatePercentage *float64 `json:"fargate_percentage,omitempty"`
+		FargateUsage *float64 `json:"fargate_usage,omitempty"`
+		FunctionsPercentage *float64 `json:"functions_percentage,omitempty"`
+		FunctionsUsage *float64 `json:"functions_usage,omitempty"`
 		IncidentManagementMonthlyActiveUsersPercentage *float64 `json:"incident_management_monthly_active_users_percentage,omitempty"`
-		IncidentManagementMonthlyActiveUsersUsage      *float64 `json:"incident_management_monthly_active_users_usage,omitempty"`
-		IndexedSpansPercentage                         *float64 `json:"indexed_spans_percentage,omitempty"`
-		IndexedSpansUsage                              *float64 `json:"indexed_spans_usage,omitempty"`
-		InfraHostPercentage                            *float64 `json:"infra_host_percentage,omitempty"`
-		InfraHostUsage                                 *float64 `json:"infra_host_usage,omitempty"`
-		IngestedLogsBytesPercentage                    *float64 `json:"ingested_logs_bytes_percentage,omitempty"`
-		IngestedLogsBytesUsage                         *float64 `json:"ingested_logs_bytes_usage,omitempty"`
-		IngestedSpansBytesPercentage                   *float64 `json:"ingested_spans_bytes_percentage,omitempty"`
-		IngestedSpansBytesUsage                        *float64 `json:"ingested_spans_bytes_usage,omitempty"`
-		InvocationsPercentage                          *float64 `json:"invocations_percentage,omitempty"`
-		InvocationsUsage                               *float64 `json:"invocations_usage,omitempty"`
-		LambdaTracedInvocationsPercentage              *float64 `json:"lambda_traced_invocations_percentage,omitempty"`
-		LambdaTracedInvocationsUsage                   *float64 `json:"lambda_traced_invocations_usage,omitempty"`
-		LlmObservabilityPercentage                     *float64 `json:"llm_observability_percentage,omitempty"`
-		LlmObservabilityUsage                          *float64 `json:"llm_observability_usage,omitempty"`
-		LogsIndexed15dayPercentage                     *float64 `json:"logs_indexed_15day_percentage,omitempty"`
-		LogsIndexed15dayUsage                          *float64 `json:"logs_indexed_15day_usage,omitempty"`
-		LogsIndexed180dayPercentage                    *float64 `json:"logs_indexed_180day_percentage,omitempty"`
-		LogsIndexed180dayUsage                         *float64 `json:"logs_indexed_180day_usage,omitempty"`
-		LogsIndexed1dayPercentage                      *float64 `json:"logs_indexed_1day_percentage,omitempty"`
-		LogsIndexed1dayUsage                           *float64 `json:"logs_indexed_1day_usage,omitempty"`
-		LogsIndexed30dayPercentage                     *float64 `json:"logs_indexed_30day_percentage,omitempty"`
-		LogsIndexed30dayUsage                          *float64 `json:"logs_indexed_30day_usage,omitempty"`
-		LogsIndexed360dayPercentage                    *float64 `json:"logs_indexed_360day_percentage,omitempty"`
-		LogsIndexed360dayUsage                         *float64 `json:"logs_indexed_360day_usage,omitempty"`
-		LogsIndexed3dayPercentage                      *float64 `json:"logs_indexed_3day_percentage,omitempty"`
-		LogsIndexed3dayUsage                           *float64 `json:"logs_indexed_3day_usage,omitempty"`
-		LogsIndexed45dayPercentage                     *float64 `json:"logs_indexed_45day_percentage,omitempty"`
-		LogsIndexed45dayUsage                          *float64 `json:"logs_indexed_45day_usage,omitempty"`
-		LogsIndexed60dayPercentage                     *float64 `json:"logs_indexed_60day_percentage,omitempty"`
-		LogsIndexed60dayUsage                          *float64 `json:"logs_indexed_60day_usage,omitempty"`
-		LogsIndexed7dayPercentage                      *float64 `json:"logs_indexed_7day_percentage,omitempty"`
-		LogsIndexed7dayUsage                           *float64 `json:"logs_indexed_7day_usage,omitempty"`
-		LogsIndexed90dayPercentage                     *float64 `json:"logs_indexed_90day_percentage,omitempty"`
-		LogsIndexed90dayUsage                          *float64 `json:"logs_indexed_90day_usage,omitempty"`
-		LogsIndexedCustomRetentionPercentage           *float64 `json:"logs_indexed_custom_retention_percentage,omitempty"`
-		LogsIndexedCustomRetentionUsage                *float64 `json:"logs_indexed_custom_retention_usage,omitempty"`
-		MobileAppTestingPercentage                     *float64 `json:"mobile_app_testing_percentage,omitempty"`
-		MobileAppTestingUsage                          *float64 `json:"mobile_app_testing_usage,omitempty"`
-		NdmNetflowPercentage                           *float64 `json:"ndm_netflow_percentage,omitempty"`
-		NdmNetflowUsage                                *float64 `json:"ndm_netflow_usage,omitempty"`
-		NetworkDeviceWirelessPercentage                *float64 `json:"network_device_wireless_percentage,omitempty"`
-		NetworkDeviceWirelessUsage                     *float64 `json:"network_device_wireless_usage,omitempty"`
-		NpmHostPercentage                              *float64 `json:"npm_host_percentage,omitempty"`
-		NpmHostUsage                                   *float64 `json:"npm_host_usage,omitempty"`
-		ObsPipelineBytesPercentage                     *float64 `json:"obs_pipeline_bytes_percentage,omitempty"`
-		ObsPipelineBytesUsage                          *float64 `json:"obs_pipeline_bytes_usage,omitempty"`
-		ObsPipelinesVcpuPercentage                     *float64 `json:"obs_pipelines_vcpu_percentage,omitempty"`
-		ObsPipelinesVcpuUsage                          *float64 `json:"obs_pipelines_vcpu_usage,omitempty"`
-		OnlineArchivePercentage                        *float64 `json:"online_archive_percentage,omitempty"`
-		OnlineArchiveUsage                             *float64 `json:"online_archive_usage,omitempty"`
-		ProductAnalyticsSessionPercentage              *float64 `json:"product_analytics_session_percentage,omitempty"`
-		ProductAnalyticsSessionUsage                   *float64 `json:"product_analytics_session_usage,omitempty"`
-		ProfiledContainerPercentage                    *float64 `json:"profiled_container_percentage,omitempty"`
-		ProfiledContainerUsage                         *float64 `json:"profiled_container_usage,omitempty"`
-		ProfiledFargatePercentage                      *float64 `json:"profiled_fargate_percentage,omitempty"`
-		ProfiledFargateUsage                           *float64 `json:"profiled_fargate_usage,omitempty"`
-		ProfiledHostPercentage                         *float64 `json:"profiled_host_percentage,omitempty"`
-		ProfiledHostUsage                              *float64 `json:"profiled_host_usage,omitempty"`
-		PublishedAppPercentage                         *float64 `json:"published_app_percentage,omitempty"`
-		PublishedAppUsage                              *float64 `json:"published_app_usage,omitempty"`
-		RumBrowserMobileSessionsPercentage             *float64 `json:"rum_browser_mobile_sessions_percentage,omitempty"`
-		RumBrowserMobileSessionsUsage                  *float64 `json:"rum_browser_mobile_sessions_usage,omitempty"`
-		RumIngestedPercentage                          *float64 `json:"rum_ingested_percentage,omitempty"`
-		RumIngestedUsage                               *float64 `json:"rum_ingested_usage,omitempty"`
-		RumInvestigatePercentage                       *float64 `json:"rum_investigate_percentage,omitempty"`
-		RumInvestigateUsage                            *float64 `json:"rum_investigate_usage,omitempty"`
-		RumReplaySessionsPercentage                    *float64 `json:"rum_replay_sessions_percentage,omitempty"`
-		RumReplaySessionsUsage                         *float64 `json:"rum_replay_sessions_usage,omitempty"`
-		RumSessionReplayAddOnPercentage                *float64 `json:"rum_session_replay_add_on_percentage,omitempty"`
-		RumSessionReplayAddOnUsage                     *float64 `json:"rum_session_replay_add_on_usage,omitempty"`
-		ScaFargatePercentage                           *float64 `json:"sca_fargate_percentage,omitempty"`
-		ScaFargateUsage                                *float64 `json:"sca_fargate_usage,omitempty"`
-		SdsScannedBytesPercentage                      *float64 `json:"sds_scanned_bytes_percentage,omitempty"`
-		SdsScannedBytesUsage                           *float64 `json:"sds_scanned_bytes_usage,omitempty"`
-		ServerlessAppsPercentage                       *float64 `json:"serverless_apps_percentage,omitempty"`
-		ServerlessAppsUsage                            *float64 `json:"serverless_apps_usage,omitempty"`
-		SiemAnalyzedLogsAddOnPercentage                *float64 `json:"siem_analyzed_logs_add_on_percentage,omitempty"`
-		SiemAnalyzedLogsAddOnUsage                     *float64 `json:"siem_analyzed_logs_add_on_usage,omitempty"`
-		SiemIngestedBytesPercentage                    *float64 `json:"siem_ingested_bytes_percentage,omitempty"`
-		SiemIngestedBytesUsage                         *float64 `json:"siem_ingested_bytes_usage,omitempty"`
-		SnmpPercentage                                 *float64 `json:"snmp_percentage,omitempty"`
-		SnmpUsage                                      *float64 `json:"snmp_usage,omitempty"`
-		UniversalServiceMonitoringPercentage           *float64 `json:"universal_service_monitoring_percentage,omitempty"`
-		UniversalServiceMonitoringUsage                *float64 `json:"universal_service_monitoring_usage,omitempty"`
-		VulnManagementHostsPercentage                  *float64 `json:"vuln_management_hosts_percentage,omitempty"`
-		VulnManagementHostsUsage                       *float64 `json:"vuln_management_hosts_usage,omitempty"`
-		WorkflowExecutionsPercentage                   *float64 `json:"workflow_executions_percentage,omitempty"`
-		WorkflowExecutionsUsage                        *float64 `json:"workflow_executions_usage,omitempty"`
+		IncidentManagementMonthlyActiveUsersUsage *float64 `json:"incident_management_monthly_active_users_usage,omitempty"`
+		IndexedSpansPercentage *float64 `json:"indexed_spans_percentage,omitempty"`
+		IndexedSpansUsage *float64 `json:"indexed_spans_usage,omitempty"`
+		InfraHostPercentage *float64 `json:"infra_host_percentage,omitempty"`
+		InfraHostUsage *float64 `json:"infra_host_usage,omitempty"`
+		IngestedLogsBytesPercentage *float64 `json:"ingested_logs_bytes_percentage,omitempty"`
+		IngestedLogsBytesUsage *float64 `json:"ingested_logs_bytes_usage,omitempty"`
+		IngestedSpansBytesPercentage *float64 `json:"ingested_spans_bytes_percentage,omitempty"`
+		IngestedSpansBytesUsage *float64 `json:"ingested_spans_bytes_usage,omitempty"`
+		InvocationsPercentage *float64 `json:"invocations_percentage,omitempty"`
+		InvocationsUsage *float64 `json:"invocations_usage,omitempty"`
+		LambdaTracedInvocationsPercentage *float64 `json:"lambda_traced_invocations_percentage,omitempty"`
+		LambdaTracedInvocationsUsage *float64 `json:"lambda_traced_invocations_usage,omitempty"`
+		LlmObservabilityPercentage *float64 `json:"llm_observability_percentage,omitempty"`
+		LlmObservabilityUsage *float64 `json:"llm_observability_usage,omitempty"`
+		LogsIndexed15dayPercentage *float64 `json:"logs_indexed_15day_percentage,omitempty"`
+		LogsIndexed15dayUsage *float64 `json:"logs_indexed_15day_usage,omitempty"`
+		LogsIndexed180dayPercentage *float64 `json:"logs_indexed_180day_percentage,omitempty"`
+		LogsIndexed180dayUsage *float64 `json:"logs_indexed_180day_usage,omitempty"`
+		LogsIndexed1dayPercentage *float64 `json:"logs_indexed_1day_percentage,omitempty"`
+		LogsIndexed1dayUsage *float64 `json:"logs_indexed_1day_usage,omitempty"`
+		LogsIndexed30dayPercentage *float64 `json:"logs_indexed_30day_percentage,omitempty"`
+		LogsIndexed30dayUsage *float64 `json:"logs_indexed_30day_usage,omitempty"`
+		LogsIndexed360dayPercentage *float64 `json:"logs_indexed_360day_percentage,omitempty"`
+		LogsIndexed360dayUsage *float64 `json:"logs_indexed_360day_usage,omitempty"`
+		LogsIndexed3dayPercentage *float64 `json:"logs_indexed_3day_percentage,omitempty"`
+		LogsIndexed3dayUsage *float64 `json:"logs_indexed_3day_usage,omitempty"`
+		LogsIndexed45dayPercentage *float64 `json:"logs_indexed_45day_percentage,omitempty"`
+		LogsIndexed45dayUsage *float64 `json:"logs_indexed_45day_usage,omitempty"`
+		LogsIndexed60dayPercentage *float64 `json:"logs_indexed_60day_percentage,omitempty"`
+		LogsIndexed60dayUsage *float64 `json:"logs_indexed_60day_usage,omitempty"`
+		LogsIndexed7dayPercentage *float64 `json:"logs_indexed_7day_percentage,omitempty"`
+		LogsIndexed7dayUsage *float64 `json:"logs_indexed_7day_usage,omitempty"`
+		LogsIndexed90dayPercentage *float64 `json:"logs_indexed_90day_percentage,omitempty"`
+		LogsIndexed90dayUsage *float64 `json:"logs_indexed_90day_usage,omitempty"`
+		LogsIndexedCustomRetentionPercentage *float64 `json:"logs_indexed_custom_retention_percentage,omitempty"`
+		LogsIndexedCustomRetentionUsage *float64 `json:"logs_indexed_custom_retention_usage,omitempty"`
+		MobileAppTestingPercentage *float64 `json:"mobile_app_testing_percentage,omitempty"`
+		MobileAppTestingUsage *float64 `json:"mobile_app_testing_usage,omitempty"`
+		NdmNetflowPercentage *float64 `json:"ndm_netflow_percentage,omitempty"`
+		NdmNetflowUsage *float64 `json:"ndm_netflow_usage,omitempty"`
+		NetworkDeviceWirelessPercentage *float64 `json:"network_device_wireless_percentage,omitempty"`
+		NetworkDeviceWirelessUsage *float64 `json:"network_device_wireless_usage,omitempty"`
+		NpmHostPercentage *float64 `json:"npm_host_percentage,omitempty"`
+		NpmHostUsage *float64 `json:"npm_host_usage,omitempty"`
+		ObsPipelineBytesPercentage *float64 `json:"obs_pipeline_bytes_percentage,omitempty"`
+		ObsPipelineBytesUsage *float64 `json:"obs_pipeline_bytes_usage,omitempty"`
+		ObsPipelinesVcpuPercentage *float64 `json:"obs_pipelines_vcpu_percentage,omitempty"`
+		ObsPipelinesVcpuUsage *float64 `json:"obs_pipelines_vcpu_usage,omitempty"`
+		OnlineArchivePercentage *float64 `json:"online_archive_percentage,omitempty"`
+		OnlineArchiveUsage *float64 `json:"online_archive_usage,omitempty"`
+		ProductAnalyticsSessionPercentage *float64 `json:"product_analytics_session_percentage,omitempty"`
+		ProductAnalyticsSessionUsage *float64 `json:"product_analytics_session_usage,omitempty"`
+		ProfiledContainerPercentage *float64 `json:"profiled_container_percentage,omitempty"`
+		ProfiledContainerUsage *float64 `json:"profiled_container_usage,omitempty"`
+		ProfiledFargatePercentage *float64 `json:"profiled_fargate_percentage,omitempty"`
+		ProfiledFargateUsage *float64 `json:"profiled_fargate_usage,omitempty"`
+		ProfiledHostPercentage *float64 `json:"profiled_host_percentage,omitempty"`
+		ProfiledHostUsage *float64 `json:"profiled_host_usage,omitempty"`
+		PublishedAppPercentage *float64 `json:"published_app_percentage,omitempty"`
+		PublishedAppUsage *float64 `json:"published_app_usage,omitempty"`
+		RumBrowserMobileSessionsPercentage *float64 `json:"rum_browser_mobile_sessions_percentage,omitempty"`
+		RumBrowserMobileSessionsUsage *float64 `json:"rum_browser_mobile_sessions_usage,omitempty"`
+		RumIngestedPercentage *float64 `json:"rum_ingested_percentage,omitempty"`
+		RumIngestedUsage *float64 `json:"rum_ingested_usage,omitempty"`
+		RumInvestigatePercentage *float64 `json:"rum_investigate_percentage,omitempty"`
+		RumInvestigateUsage *float64 `json:"rum_investigate_usage,omitempty"`
+		RumReplaySessionsPercentage *float64 `json:"rum_replay_sessions_percentage,omitempty"`
+		RumReplaySessionsUsage *float64 `json:"rum_replay_sessions_usage,omitempty"`
+		RumSessionReplayAddOnPercentage *float64 `json:"rum_session_replay_add_on_percentage,omitempty"`
+		RumSessionReplayAddOnUsage *float64 `json:"rum_session_replay_add_on_usage,omitempty"`
+		ScaFargatePercentage *float64 `json:"sca_fargate_percentage,omitempty"`
+		ScaFargateUsage *float64 `json:"sca_fargate_usage,omitempty"`
+		SdsScannedBytesPercentage *float64 `json:"sds_scanned_bytes_percentage,omitempty"`
+		SdsScannedBytesUsage *float64 `json:"sds_scanned_bytes_usage,omitempty"`
+		ServerlessAppsPercentage *float64 `json:"serverless_apps_percentage,omitempty"`
+		ServerlessAppsUsage *float64 `json:"serverless_apps_usage,omitempty"`
+		SiemAnalyzedLogsAddOnPercentage *float64 `json:"siem_analyzed_logs_add_on_percentage,omitempty"`
+		SiemAnalyzedLogsAddOnUsage *float64 `json:"siem_analyzed_logs_add_on_usage,omitempty"`
+		SiemIngestedBytesPercentage *float64 `json:"siem_ingested_bytes_percentage,omitempty"`
+		SiemIngestedBytesUsage *float64 `json:"siem_ingested_bytes_usage,omitempty"`
+		SnmpPercentage *float64 `json:"snmp_percentage,omitempty"`
+		SnmpUsage *float64 `json:"snmp_usage,omitempty"`
+		UniversalServiceMonitoringPercentage *float64 `json:"universal_service_monitoring_percentage,omitempty"`
+		UniversalServiceMonitoringUsage *float64 `json:"universal_service_monitoring_usage,omitempty"`
+		VulnManagementHostsPercentage *float64 `json:"vuln_management_hosts_percentage,omitempty"`
+		VulnManagementHostsUsage *float64 `json:"vuln_management_hosts_usage,omitempty"`
+		WorkflowExecutionsPercentage *float64 `json:"workflow_executions_percentage,omitempty"`
+		WorkflowExecutionsUsage *float64 `json:"workflow_executions_usage,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "apm_usm_percentage", "apm_usm_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "asm_serverless_traced_invocations_percentage", "asm_serverless_traced_invocations_usage", "browser_percentage", "browser_usage", "ci_pipeline_indexed_spans_percentage", "ci_pipeline_indexed_spans_usage", "ci_test_indexed_spans_percentage", "ci_test_indexed_spans_usage", "ci_visibility_itr_percentage", "ci_visibility_itr_usage", "cloud_siem_percentage", "cloud_siem_usage", "code_security_host_percentage", "code_security_host_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_event_percentage", "custom_event_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_fargate_task_percentage", "cws_fargate_task_usage", "cws_hosts_percentage", "cws_hosts_usage", "data_jobs_monitoring_usage", "data_stream_monitoring_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "error_tracking_percentage", "error_tracking_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "fargate_percentage", "fargate_usage", "functions_percentage", "functions_usage", "incident_management_monthly_active_users_percentage", "incident_management_monthly_active_users_usage", "indexed_spans_percentage", "indexed_spans_usage", "infra_host_percentage", "infra_host_usage", "ingested_logs_bytes_percentage", "ingested_logs_bytes_usage", "ingested_spans_bytes_percentage", "ingested_spans_bytes_usage", "invocations_percentage", "invocations_usage", "lambda_traced_invocations_percentage", "lambda_traced_invocations_usage", "llm_observability_percentage", "llm_observability_usage", "logs_indexed_15day_percentage", "logs_indexed_15day_usage", "logs_indexed_180day_percentage", "logs_indexed_180day_usage", "logs_indexed_1day_percentage", "logs_indexed_1day_usage", "logs_indexed_30day_percentage", "logs_indexed_30day_usage", "logs_indexed_360day_percentage", "logs_indexed_360day_usage", "logs_indexed_3day_percentage", "logs_indexed_3day_usage", "logs_indexed_45day_percentage", "logs_indexed_45day_usage", "logs_indexed_60day_percentage", "logs_indexed_60day_usage", "logs_indexed_7day_percentage", "logs_indexed_7day_usage", "logs_indexed_90day_percentage", "logs_indexed_90day_usage", "logs_indexed_custom_retention_percentage", "logs_indexed_custom_retention_usage", "mobile_app_testing_percentage", "mobile_app_testing_usage", "ndm_netflow_percentage", "ndm_netflow_usage", "network_device_wireless_percentage", "network_device_wireless_usage", "npm_host_percentage", "npm_host_usage", "obs_pipeline_bytes_percentage", "obs_pipeline_bytes_usage", "obs_pipelines_vcpu_percentage", "obs_pipelines_vcpu_usage", "online_archive_percentage", "online_archive_usage", "product_analytics_session_percentage", "product_analytics_session_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "published_app_percentage", "published_app_usage", "rum_browser_mobile_sessions_percentage", "rum_browser_mobile_sessions_usage", "rum_ingested_percentage", "rum_ingested_usage", "rum_investigate_percentage", "rum_investigate_usage", "rum_replay_sessions_percentage", "rum_replay_sessions_usage", "rum_session_replay_add_on_percentage", "rum_session_replay_add_on_usage", "sca_fargate_percentage", "sca_fargate_usage", "sds_scanned_bytes_percentage", "sds_scanned_bytes_usage", "serverless_apps_percentage", "serverless_apps_usage", "siem_analyzed_logs_add_on_percentage", "siem_analyzed_logs_add_on_usage", "siem_ingested_bytes_percentage", "siem_ingested_bytes_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage", "workflow_executions_percentage", "workflow_executions_usage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "apm_usm_percentage", "apm_usm_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "asm_serverless_traced_invocations_percentage", "asm_serverless_traced_invocations_usage", "browser_percentage", "browser_usage", "ci_pipeline_indexed_spans_percentage", "ci_pipeline_indexed_spans_usage", "ci_test_indexed_spans_percentage", "ci_test_indexed_spans_usage", "ci_visibility_itr_percentage", "ci_visibility_itr_usage", "cloud_siem_percentage", "cloud_siem_usage", "code_security_host_percentage", "code_security_host_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_event_percentage", "custom_event_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_fargate_task_percentage", "cws_fargate_task_usage", "cws_hosts_percentage", "cws_hosts_usage", "data_jobs_monitoring_usage", "data_stream_monitoring_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "error_tracking_percentage", "error_tracking_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "fargate_percentage", "fargate_usage", "functions_percentage", "functions_usage", "incident_management_monthly_active_users_percentage", "incident_management_monthly_active_users_usage", "indexed_spans_percentage", "indexed_spans_usage", "infra_host_percentage", "infra_host_usage", "ingested_logs_bytes_percentage", "ingested_logs_bytes_usage", "ingested_spans_bytes_percentage", "ingested_spans_bytes_usage", "invocations_percentage", "invocations_usage", "lambda_traced_invocations_percentage", "lambda_traced_invocations_usage", "llm_observability_percentage", "llm_observability_usage", "logs_indexed_15day_percentage", "logs_indexed_15day_usage", "logs_indexed_180day_percentage", "logs_indexed_180day_usage", "logs_indexed_1day_percentage", "logs_indexed_1day_usage", "logs_indexed_30day_percentage", "logs_indexed_30day_usage", "logs_indexed_360day_percentage", "logs_indexed_360day_usage", "logs_indexed_3day_percentage", "logs_indexed_3day_usage", "logs_indexed_45day_percentage", "logs_indexed_45day_usage", "logs_indexed_60day_percentage", "logs_indexed_60day_usage", "logs_indexed_7day_percentage", "logs_indexed_7day_usage", "logs_indexed_90day_percentage", "logs_indexed_90day_usage", "logs_indexed_custom_retention_percentage", "logs_indexed_custom_retention_usage", "mobile_app_testing_percentage", "mobile_app_testing_usage", "ndm_netflow_percentage", "ndm_netflow_usage", "network_device_wireless_percentage", "network_device_wireless_usage", "npm_host_percentage", "npm_host_usage", "obs_pipeline_bytes_percentage", "obs_pipeline_bytes_usage", "obs_pipelines_vcpu_percentage", "obs_pipelines_vcpu_usage", "online_archive_percentage", "online_archive_usage", "product_analytics_session_percentage", "product_analytics_session_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "published_app_percentage", "published_app_usage", "rum_browser_mobile_sessions_percentage", "rum_browser_mobile_sessions_usage", "rum_ingested_percentage", "rum_ingested_usage", "rum_investigate_percentage", "rum_investigate_usage", "rum_replay_sessions_percentage", "rum_replay_sessions_usage", "rum_session_replay_add_on_percentage", "rum_session_replay_add_on_usage", "sca_fargate_percentage", "sca_fargate_usage", "sds_scanned_bytes_percentage", "sds_scanned_bytes_usage", "serverless_apps_percentage", "serverless_apps_usage", "siem_analyzed_logs_add_on_percentage", "siem_analyzed_logs_add_on_usage", "siem_ingested_bytes_percentage", "siem_ingested_bytes_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage", "workflow_executions_percentage", "workflow_executions_usage",  })
 	} else {
 		return err
 	}

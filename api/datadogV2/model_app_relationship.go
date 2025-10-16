@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AppRelationship The app's publication relationship and custom connections.
 type AppRelationship struct {
@@ -15,9 +21,10 @@ type AppRelationship struct {
 	// Information pointing to the app's publication status.
 	Deployment *DeploymentRelationship `json:"deployment,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAppRelationship instantiates a new AppRelationship object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewAppRelationshipWithDefaults() *AppRelationship {
 	this := AppRelationship{}
 	return &this
 }
-
 // GetConnections returns the Connections field value if set, zero value otherwise.
 func (o *AppRelationship) GetConnections() []CustomConnection {
 	if o == nil || o.Connections == nil {
@@ -63,6 +69,7 @@ func (o *AppRelationship) HasConnections() bool {
 func (o *AppRelationship) SetConnections(v []CustomConnection) {
 	o.Connections = v
 }
+
 
 // GetDeployment returns the Deployment field value if set, zero value otherwise.
 func (o *AppRelationship) GetDeployment() DeploymentRelationship {
@@ -92,6 +99,8 @@ func (o *AppRelationship) SetDeployment(v DeploymentRelationship) {
 	o.Deployment = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AppRelationship) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,22 +123,22 @@ func (o AppRelationship) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AppRelationship) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Connections []CustomConnection      `json:"connections,omitempty"`
-		Deployment  *DeploymentRelationship `json:"deployment,omitempty"`
+		Connections []CustomConnection `json:"connections,omitempty"`
+		Deployment *DeploymentRelationship `json:"deployment,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"connections", "deployment"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "connections", "deployment",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Connections = all.Connections
-	if all.Deployment != nil && all.Deployment.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Deployment != nil && all.Deployment.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Deployment = all.Deployment

@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ReadinessGate Used to merge multiple branches into a single branch.
 type ReadinessGate struct {
 	// The definition of `ReadinessGateThresholdType` object.
 	ThresholdType ReadinessGateThresholdType `json:"thresholdType"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewReadinessGate instantiates a new ReadinessGate object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewReadinessGateWithDefaults() *ReadinessGate {
 	this := ReadinessGate{}
 	return &this
 }
-
 // GetThresholdType returns the ThresholdType field value.
 func (o *ReadinessGate) GetThresholdType() ReadinessGateThresholdType {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *ReadinessGate) GetThresholdTypeOk() (*ReadinessGateThresholdType, bool)
 func (o *ReadinessGate) SetThresholdType(v ReadinessGateThresholdType) {
 	o.ThresholdType = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ReadinessGate) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *ReadinessGate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"thresholdType"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "thresholdType",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DORAListFailuresRequestData The JSON:API data.
 type DORAListFailuresRequestData struct {
@@ -17,9 +21,10 @@ type DORAListFailuresRequestData struct {
 	// The definition of `DORAListFailuresRequestDataType` object.
 	Type *DORAListFailuresRequestDataType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDORAListFailuresRequestData instantiates a new DORAListFailuresRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewDORAListFailuresRequestDataWithDefaults() *DORAListFailuresRequestData {
 	this := DORAListFailuresRequestData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *DORAListFailuresRequestData) GetAttributes() DORAListFailuresRequestAttributes {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *DORAListFailuresRequestData) GetAttributesOk() (*DORAListFailuresReques
 func (o *DORAListFailuresRequestData) SetAttributes(v DORAListFailuresRequestAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *DORAListFailuresRequestData) GetType() DORAListFailuresRequestDataType {
@@ -90,6 +95,8 @@ func (o *DORAListFailuresRequestData) SetType(v DORAListFailuresRequestDataType)
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DORAListFailuresRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o DORAListFailuresRequestData) MarshalJSON() ([]byte, error) {
 func (o *DORAListFailuresRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *DORAListFailuresRequestAttributes `json:"attributes"`
-		Type       *DORAListFailuresRequestDataType   `json:"type,omitempty"`
+		Type *DORAListFailuresRequestDataType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *DORAListFailuresRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}
@@ -131,7 +138,7 @@ func (o *DORAListFailuresRequestData) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

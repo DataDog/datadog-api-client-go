@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GithubWebhookTriggerWrapper Schema for a GitHub webhook-based trigger.
 type GithubWebhookTriggerWrapper struct {
@@ -17,9 +21,10 @@ type GithubWebhookTriggerWrapper struct {
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGithubWebhookTriggerWrapper instantiates a new GithubWebhookTriggerWrapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewGithubWebhookTriggerWrapperWithDefaults() *GithubWebhookTriggerWrapper {
 	this := GithubWebhookTriggerWrapper{}
 	return &this
 }
-
 // GetGithubWebhookTrigger returns the GithubWebhookTrigger field value.
 func (o *GithubWebhookTriggerWrapper) GetGithubWebhookTrigger() GithubWebhookTrigger {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *GithubWebhookTriggerWrapper) GetGithubWebhookTriggerOk() (*GithubWebhoo
 func (o *GithubWebhookTriggerWrapper) SetGithubWebhookTrigger(v GithubWebhookTrigger) {
 	o.GithubWebhookTrigger = v
 }
+
 
 // GetStartStepNames returns the StartStepNames field value if set, zero value otherwise.
 func (o *GithubWebhookTriggerWrapper) GetStartStepNames() []string {
@@ -90,6 +95,8 @@ func (o *GithubWebhookTriggerWrapper) SetStartStepNames(v []string) {
 	o.StartStepNames = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o GithubWebhookTriggerWrapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o GithubWebhookTriggerWrapper) MarshalJSON() ([]byte, error) {
 func (o *GithubWebhookTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		GithubWebhookTrigger *GithubWebhookTrigger `json:"githubWebhookTrigger"`
-		StartStepNames       []string              `json:"startStepNames,omitempty"`
+		StartStepNames []string `json:"startStepNames,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *GithubWebhookTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"githubWebhookTrigger", "startStepNames"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "githubWebhookTrigger", "startStepNames",  })
 	} else {
 		return err
 	}

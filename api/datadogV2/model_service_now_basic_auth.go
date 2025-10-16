@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceNowBasicAuth The definition of the `ServiceNowBasicAuth` object.
 type ServiceNowBasicAuth struct {
@@ -21,9 +25,10 @@ type ServiceNowBasicAuth struct {
 	// The `ServiceNowBasicAuth` `username`.
 	Username string `json:"username"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceNowBasicAuth instantiates a new ServiceNowBasicAuth object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewServiceNowBasicAuthWithDefaults() *ServiceNowBasicAuth {
 	this := ServiceNowBasicAuth{}
 	return &this
 }
-
 // GetInstance returns the Instance field value.
 func (o *ServiceNowBasicAuth) GetInstance() string {
 	if o == nil {
@@ -68,6 +72,7 @@ func (o *ServiceNowBasicAuth) GetInstanceOk() (*string, bool) {
 func (o *ServiceNowBasicAuth) SetInstance(v string) {
 	o.Instance = v
 }
+
 
 // GetPassword returns the Password field value.
 func (o *ServiceNowBasicAuth) GetPassword() string {
@@ -92,6 +97,7 @@ func (o *ServiceNowBasicAuth) SetPassword(v string) {
 	o.Password = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ServiceNowBasicAuth) GetType() ServiceNowBasicAuthType {
 	if o == nil {
@@ -114,6 +120,7 @@ func (o *ServiceNowBasicAuth) GetTypeOk() (*ServiceNowBasicAuthType, bool) {
 func (o *ServiceNowBasicAuth) SetType(v ServiceNowBasicAuthType) {
 	o.Type = v
 }
+
 
 // GetUsername returns the Username field value.
 func (o *ServiceNowBasicAuth) GetUsername() string {
@@ -138,6 +145,8 @@ func (o *ServiceNowBasicAuth) SetUsername(v string) {
 	o.Username = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceNowBasicAuth) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -158,10 +167,10 @@ func (o ServiceNowBasicAuth) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceNowBasicAuth) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Instance *string                  `json:"instance"`
-		Password *string                  `json:"password"`
-		Type     *ServiceNowBasicAuthType `json:"type"`
-		Username *string                  `json:"username"`
+		Instance *string `json:"instance"`
+		Password *string `json:"password"`
+		Type *ServiceNowBasicAuthType `json:"type"`
+		Username *string `json:"username"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -180,7 +189,7 @@ func (o *ServiceNowBasicAuth) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"instance", "password", "type", "username"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "instance", "password", "type", "username",  })
 	} else {
 		return err
 	}

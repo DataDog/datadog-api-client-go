@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CompletionCondition The definition of `CompletionCondition` object.
 type CompletionCondition struct {
@@ -19,9 +23,10 @@ type CompletionCondition struct {
 	// The definition of `CompletionConditionOperator` object.
 	Operator CompletionConditionOperator `json:"operator"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCompletionCondition instantiates a new CompletionCondition object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewCompletionConditionWithDefaults() *CompletionCondition {
 	this := CompletionCondition{}
 	return &this
 }
-
 // GetOperand1 returns the Operand1 field value.
 func (o *CompletionCondition) GetOperand1() interface{} {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *CompletionCondition) GetOperand1Ok() (*interface{}, bool) {
 func (o *CompletionCondition) SetOperand1(v interface{}) {
 	o.Operand1 = v
 }
+
 
 // GetOperand2 returns the Operand2 field value if set, zero value otherwise.
 func (o *CompletionCondition) GetOperand2() interface{} {
@@ -93,6 +98,7 @@ func (o *CompletionCondition) SetOperand2(v interface{}) {
 	o.Operand2 = v
 }
 
+
 // GetOperator returns the Operator field value.
 func (o *CompletionCondition) GetOperator() CompletionConditionOperator {
 	if o == nil {
@@ -116,6 +122,8 @@ func (o *CompletionCondition) SetOperator(v CompletionConditionOperator) {
 	o.Operator = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CompletionCondition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -137,8 +145,8 @@ func (o CompletionCondition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CompletionCondition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Operand1 *interface{}                 `json:"operand1"`
-		Operand2 interface{}                  `json:"operand2,omitempty"`
+		Operand1 *interface{} `json:"operand1"`
+		Operand2 interface{} `json:"operand2,omitempty"`
 		Operator *CompletionConditionOperator `json:"operator"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -152,7 +160,7 @@ func (o *CompletionCondition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"operand1", "operand2", "operator"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "operand1", "operand2", "operator",  })
 	} else {
 		return err
 	}

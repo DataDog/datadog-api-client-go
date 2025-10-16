@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern Specifies a pattern from Datadog’s sensitive data detection library to match known sensitive data types.
 type ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern struct {
 	// Indicates that a predefined library pattern is used.
 	Type ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern instantiates a new ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternWithDefa
 	this := ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern{}
 	return &this
 }
-
 // GetOptions returns the Options field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern) GetOptions() ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern) GetOp
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern) SetOptions(v ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions) {
 	o.Options = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern) GetType() ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternType {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern) SetTy
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern) Marsha
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Options *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternOptions `json:"options"`
-		Type    *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternType    `json:"type"`
+		Type *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPatternType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern) Unmar
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"options", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "options", "type",  })
 	} else {
 		return err
 	}

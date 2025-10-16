@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DistributionWidgetHistogramRequestQuery - Query definition for Distribution Widget Histogram Request
 type DistributionWidgetHistogramRequestQuery struct {
-	FormulaAndFunctionMetricQueryDefinition           *FormulaAndFunctionMetricQueryDefinition
-	FormulaAndFunctionEventQueryDefinition            *FormulaAndFunctionEventQueryDefinition
+	FormulaAndFunctionMetricQueryDefinition *FormulaAndFunctionMetricQueryDefinition
+	FormulaAndFunctionEventQueryDefinition *FormulaAndFunctionEventQueryDefinition
 	FormulaAndFunctionApmResourceStatsQueryDefinition *FormulaAndFunctionApmResourceStatsQueryDefinition
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -104,13 +110,16 @@ func (obj DistributionWidgetHistogramRequestQuery) MarshalJSON() ([]byte, error)
 		return datadog.Marshal(&obj.FormulaAndFunctionMetricQueryDefinition)
 	}
 
+
 	if obj.FormulaAndFunctionEventQueryDefinition != nil {
 		return datadog.Marshal(&obj.FormulaAndFunctionEventQueryDefinition)
 	}
 
+
 	if obj.FormulaAndFunctionApmResourceStatsQueryDefinition != nil {
 		return datadog.Marshal(&obj.FormulaAndFunctionApmResourceStatsQueryDefinition)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj DistributionWidgetHistogramRequestQuery) MarshalJSON() ([]byte, error)
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *DistributionWidgetHistogramRequestQuery) GetActualInstance() interface{} {
+func (obj *DistributionWidgetHistogramRequestQuery) GetActualInstance() (interface{}) {
 	if obj.FormulaAndFunctionMetricQueryDefinition != nil {
 		return obj.FormulaAndFunctionMetricQueryDefinition
 	}
+
 
 	if obj.FormulaAndFunctionEventQueryDefinition != nil {
 		return obj.FormulaAndFunctionEventQueryDefinition
 	}
 
+
 	if obj.FormulaAndFunctionApmResourceStatsQueryDefinition != nil {
 		return obj.FormulaAndFunctionApmResourceStatsQueryDefinition
 	}
+
 
 	// all schemas are nil
 	return nil

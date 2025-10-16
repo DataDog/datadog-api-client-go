@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssueCaseRelationships Resources related to a case.
 type IssueCaseRelationships struct {
@@ -19,9 +25,10 @@ type IssueCaseRelationships struct {
 	// Relationship to project
 	Project *ProjectRelationship `json:"project,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssueCaseRelationships instantiates a new IssueCaseRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewIssueCaseRelationshipsWithDefaults() *IssueCaseRelationships {
 	this := IssueCaseRelationships{}
 	return &this
 }
-
 // GetAssignee returns the Assignee field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IssueCaseRelationships) GetAssignee() NullableUserRelationship {
 	if o == nil || o.Assignee.Get() == nil {
@@ -53,7 +59,7 @@ func (o *IssueCaseRelationships) GetAssignee() NullableUserRelationship {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IssueCaseRelationships) GetAssigneeOk() (*NullableUserRelationship, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Assignee.Get(), o.Assignee.IsSet()
@@ -68,7 +74,6 @@ func (o *IssueCaseRelationships) HasAssignee() bool {
 func (o *IssueCaseRelationships) SetAssignee(v NullableUserRelationship) {
 	o.Assignee.Set(&v)
 }
-
 // SetAssigneeNil sets the value for Assignee to be an explicit nil.
 func (o *IssueCaseRelationships) SetAssigneeNil() {
 	o.Assignee.Set(nil)
@@ -78,6 +83,7 @@ func (o *IssueCaseRelationships) SetAssigneeNil() {
 func (o *IssueCaseRelationships) UnsetAssignee() {
 	o.Assignee.Unset()
 }
+
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IssueCaseRelationships) GetCreatedBy() NullableUserRelationship {
@@ -92,7 +98,7 @@ func (o *IssueCaseRelationships) GetCreatedBy() NullableUserRelationship {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IssueCaseRelationships) GetCreatedByOk() (*NullableUserRelationship, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.CreatedBy.Get(), o.CreatedBy.IsSet()
@@ -107,7 +113,6 @@ func (o *IssueCaseRelationships) HasCreatedBy() bool {
 func (o *IssueCaseRelationships) SetCreatedBy(v NullableUserRelationship) {
 	o.CreatedBy.Set(&v)
 }
-
 // SetCreatedByNil sets the value for CreatedBy to be an explicit nil.
 func (o *IssueCaseRelationships) SetCreatedByNil() {
 	o.CreatedBy.Set(nil)
@@ -117,6 +122,7 @@ func (o *IssueCaseRelationships) SetCreatedByNil() {
 func (o *IssueCaseRelationships) UnsetCreatedBy() {
 	o.CreatedBy.Unset()
 }
+
 
 // GetModifiedBy returns the ModifiedBy field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IssueCaseRelationships) GetModifiedBy() NullableUserRelationship {
@@ -131,7 +137,7 @@ func (o *IssueCaseRelationships) GetModifiedBy() NullableUserRelationship {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IssueCaseRelationships) GetModifiedByOk() (*NullableUserRelationship, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ModifiedBy.Get(), o.ModifiedBy.IsSet()
@@ -146,7 +152,6 @@ func (o *IssueCaseRelationships) HasModifiedBy() bool {
 func (o *IssueCaseRelationships) SetModifiedBy(v NullableUserRelationship) {
 	o.ModifiedBy.Set(&v)
 }
-
 // SetModifiedByNil sets the value for ModifiedBy to be an explicit nil.
 func (o *IssueCaseRelationships) SetModifiedByNil() {
 	o.ModifiedBy.Set(nil)
@@ -156,6 +161,7 @@ func (o *IssueCaseRelationships) SetModifiedByNil() {
 func (o *IssueCaseRelationships) UnsetModifiedBy() {
 	o.ModifiedBy.Unset()
 }
+
 
 // GetProject returns the Project field value if set, zero value otherwise.
 func (o *IssueCaseRelationships) GetProject() ProjectRelationship {
@@ -185,6 +191,8 @@ func (o *IssueCaseRelationships) SetProject(v ProjectRelationship) {
 	o.Project = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IssueCaseRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -213,17 +221,17 @@ func (o IssueCaseRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IssueCaseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Assignee   NullableNullableUserRelationship `json:"assignee,omitempty"`
-		CreatedBy  NullableNullableUserRelationship `json:"created_by,omitempty"`
+		Assignee NullableNullableUserRelationship `json:"assignee,omitempty"`
+		CreatedBy NullableNullableUserRelationship `json:"created_by,omitempty"`
 		ModifiedBy NullableNullableUserRelationship `json:"modified_by,omitempty"`
-		Project    *ProjectRelationship             `json:"project,omitempty"`
+		Project *ProjectRelationship `json:"project,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assignee", "created_by", "modified_by", "project"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "assignee", "created_by", "modified_by", "project",  })
 	} else {
 		return err
 	}
@@ -232,7 +240,7 @@ func (o *IssueCaseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	o.Assignee = all.Assignee
 	o.CreatedBy = all.CreatedBy
 	o.ModifiedBy = all.ModifiedBy
-	if all.Project != nil && all.Project.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Project != nil && all.Project.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Project = all.Project

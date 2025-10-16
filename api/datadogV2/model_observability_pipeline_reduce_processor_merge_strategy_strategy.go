@@ -2,31 +2,35 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineReduceProcessorMergeStrategyStrategy The merge strategy to apply.
 type ObservabilityPipelineReduceProcessorMergeStrategyStrategy string
 
 // List of ObservabilityPipelineReduceProcessorMergeStrategyStrategy.
 const (
-	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_DISCARD        ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "discard"
-	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_RETAIN         ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "retain"
-	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_SUM            ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "sum"
-	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_MAX            ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "max"
-	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_MIN            ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "min"
-	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_ARRAY          ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "array"
-	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_CONCAT         ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "concat"
+	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_DISCARD ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "discard"
+	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_RETAIN ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "retain"
+	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_SUM ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "sum"
+	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_MAX ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "max"
+	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_MIN ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "min"
+	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_ARRAY ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "array"
+	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_CONCAT ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "concat"
 	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_CONCAT_NEWLINE ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "concat_newline"
-	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_CONCAT_RAW     ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "concat_raw"
+	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_CONCAT_RAW ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "concat_raw"
 	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_SHORTEST_ARRAY ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "shortest_array"
-	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_LONGEST_ARRAY  ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "longest_array"
-	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_FLAT_UNIQUE    ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "flat_unique"
+	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_LONGEST_ARRAY ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "longest_array"
+	OBSERVABILITYPIPELINEREDUCEPROCESSORMERGESTRATEGYSTRATEGY_FLAT_UNIQUE ObservabilityPipelineReduceProcessorMergeStrategyStrategy = "flat_unique"
 )
 
 var allowedObservabilityPipelineReduceProcessorMergeStrategyStrategyEnumValues = []ObservabilityPipelineReduceProcessorMergeStrategyStrategy{

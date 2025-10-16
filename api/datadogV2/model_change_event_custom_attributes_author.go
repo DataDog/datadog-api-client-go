@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ChangeEventCustomAttributesAuthor The entity that made the change. Optional, if provided it must include `type` and `name`.
 type ChangeEventCustomAttributesAuthor struct {
@@ -19,6 +23,7 @@ type ChangeEventCustomAttributesAuthor struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewChangeEventCustomAttributesAuthor instantiates a new ChangeEventCustomAttributesAuthor object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewChangeEventCustomAttributesAuthorWithDefaults() *ChangeEventCustomAttrib
 	this := ChangeEventCustomAttributesAuthor{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *ChangeEventCustomAttributesAuthor) GetName() string {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *ChangeEventCustomAttributesAuthor) GetNameOk() (*string, bool) {
 func (o *ChangeEventCustomAttributesAuthor) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ChangeEventCustomAttributesAuthor) GetType() ChangeEventCustomAttributesAuthorType {
@@ -85,6 +90,8 @@ func (o *ChangeEventCustomAttributesAuthor) SetType(v ChangeEventCustomAttribute
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ChangeEventCustomAttributesAuthor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -99,7 +106,7 @@ func (o ChangeEventCustomAttributesAuthor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ChangeEventCustomAttributesAuthor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name *string                                `json:"name"`
+		Name *string `json:"name"`
 		Type *ChangeEventCustomAttributesAuthorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {

@@ -2,14 +2,15 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -17,7 +18,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewActionConnectionApi(apiClient)
-	resp, r, err := api.RegisterAppKey(ctx, "b7feea52-994e-4714-a100-1bd9eff5aee1")
+	resp, r, err := api.RegisterAppKey(ctx, "b7feea52-994e-4714-a100-1bd9eff5aee1", )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ActionConnectionApi.RegisterAppKey`: %v\n", err)

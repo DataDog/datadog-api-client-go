@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamOnCallRespondersDataRelationshipsEscalationsDataItems Represents a link to a specific escalation policy step associated with the on-call team.
 type TeamOnCallRespondersDataRelationshipsEscalationsDataItems struct {
@@ -17,9 +21,10 @@ type TeamOnCallRespondersDataRelationshipsEscalationsDataItems struct {
 	// Identifies the resource type for escalation policy steps linked to a team's on-call configuration.
 	Type TeamOnCallRespondersDataRelationshipsEscalationsDataItemsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTeamOnCallRespondersDataRelationshipsEscalationsDataItems instantiates a new TeamOnCallRespondersDataRelationshipsEscalationsDataItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewTeamOnCallRespondersDataRelationshipsEscalationsDataItemsWithDefaults() 
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *TeamOnCallRespondersDataRelationshipsEscalationsDataItems) GetId() string {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *TeamOnCallRespondersDataRelationshipsEscalationsDataItems) GetIdOk() (*
 func (o *TeamOnCallRespondersDataRelationshipsEscalationsDataItems) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *TeamOnCallRespondersDataRelationshipsEscalationsDataItems) GetType() TeamOnCallRespondersDataRelationshipsEscalationsDataItemsType {
@@ -88,6 +93,8 @@ func (o *TeamOnCallRespondersDataRelationshipsEscalationsDataItems) SetType(v Te
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamOnCallRespondersDataRelationshipsEscalationsDataItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -106,7 +113,7 @@ func (o TeamOnCallRespondersDataRelationshipsEscalationsDataItems) MarshalJSON()
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamOnCallRespondersDataRelationshipsEscalationsDataItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                                                        `json:"id"`
+		Id *string `json:"id"`
 		Type *TeamOnCallRespondersDataRelationshipsEscalationsDataItemsType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -120,7 +127,7 @@ func (o *TeamOnCallRespondersDataRelationshipsEscalationsDataItems) UnmarshalJSO
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}

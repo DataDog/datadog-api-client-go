@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PutAppsDatastoreItemResponseData Data containing the identifier of a single item that was successfully inserted into the datastore.
 type PutAppsDatastoreItemResponseData struct {
@@ -17,9 +21,10 @@ type PutAppsDatastoreItemResponseData struct {
 	// The resource type for datastore items.
 	Type DatastoreItemsDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPutAppsDatastoreItemResponseData instantiates a new PutAppsDatastoreItemResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewPutAppsDatastoreItemResponseDataWithDefaults() *PutAppsDatastoreItemResp
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *PutAppsDatastoreItemResponseData) GetId() string {
 	if o == nil || o.Id == nil {
@@ -69,6 +73,7 @@ func (o *PutAppsDatastoreItemResponseData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *PutAppsDatastoreItemResponseData) GetType() DatastoreItemsDataType {
 	if o == nil {
@@ -92,6 +97,8 @@ func (o *PutAppsDatastoreItemResponseData) SetType(v DatastoreItemsDataType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o PutAppsDatastoreItemResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -112,7 +119,7 @@ func (o PutAppsDatastoreItemResponseData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PutAppsDatastoreItemResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                 `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Type *DatastoreItemsDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -123,7 +130,7 @@ func (o *PutAppsDatastoreItemResponseData) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}

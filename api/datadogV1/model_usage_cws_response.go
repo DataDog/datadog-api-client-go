@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageCWSResponse Response containing the Cloud Workload Security usage for each hour for a given organization.
 type UsageCWSResponse struct {
 	// Get hourly usage for Cloud Workload Security.
 	Usage []UsageCWSHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageCWSResponse instantiates a new UsageCWSResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewUsageCWSResponseWithDefaults() *UsageCWSResponse {
 	this := UsageCWSResponse{}
 	return &this
 }
-
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageCWSResponse) GetUsage() []UsageCWSHour {
 	if o == nil || o.Usage == nil {
@@ -62,6 +68,8 @@ func (o *UsageCWSResponse) SetUsage(v []UsageCWSHour) {
 	o.Usage = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageCWSResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *UsageCWSResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"usage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "usage",  })
 	} else {
 		return err
 	}

@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineGcpAuth GCP credentials used to authenticate with Google Cloud Storage.
 type ObservabilityPipelineGcpAuth struct {
 	// Path to the GCP service account key file.
 	CredentialsFile string `json:"credentials_file"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineGcpAuth instantiates a new ObservabilityPipelineGcpAuth object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewObservabilityPipelineGcpAuthWithDefaults() *ObservabilityPipelineGcpAuth
 	this := ObservabilityPipelineGcpAuth{}
 	return &this
 }
-
 // GetCredentialsFile returns the CredentialsFile field value.
 func (o *ObservabilityPipelineGcpAuth) GetCredentialsFile() string {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *ObservabilityPipelineGcpAuth) GetCredentialsFileOk() (*string, bool) {
 func (o *ObservabilityPipelineGcpAuth) SetCredentialsFile(v string) {
 	o.CredentialsFile = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineGcpAuth) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *ObservabilityPipelineGcpAuth) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"credentials_file"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "credentials_file",  })
 	} else {
 		return err
 	}

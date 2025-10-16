@@ -2,56 +2,57 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV1.SyntheticsAPITest{
-		Config: datadogV1.SyntheticsAPITestConfig{
-			Assertions: []datadogV1.SyntheticsAssertion{
-				datadogV1.SyntheticsAssertion{
-					SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
-						Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_DAYS_THAN,
-						Target: datadogV1.SyntheticsAssertionTargetValue{
-							SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(10)},
-						Type: datadogV1.SYNTHETICSASSERTIONTYPE_CERTIFICATE,
-					}},
-			},
-			Request: &datadogV1.SyntheticsTestRequest{
-				Host: datadog.PtrString("datadoghq.com"),
-				Port: &datadogV1.SyntheticsTestRequestPort{
-					SyntheticsTestRequestVariablePort: datadog.PtrString("{{ DATADOG_PORT }}")},
-			},
-		},
-		Locations: []string{
-			"aws:us-east-2",
-		},
-		Message: "BDD test payload: synthetics_api_ssl_test_payload.json",
-		Name:    "Example-Synthetic",
-		Options: datadogV1.SyntheticsTestOptions{
-			AcceptSelfSigned:               datadog.PtrBool(true),
-			CheckCertificateRevocation:     datadog.PtrBool(true),
-			DisableAiaIntermediateFetching: datadog.PtrBool(true),
-			TickEvery:                      datadog.PtrInt64(60),
-		},
-		Subtype: datadogV1.SYNTHETICSTESTDETAILSSUBTYPE_SSL.Ptr(),
-		Tags: []string{
-			"testing:api",
-		},
-		Type: datadogV1.SYNTHETICSAPITESTTYPE_API,
-	}
+Config: datadogV1.SyntheticsAPITestConfig{
+Assertions: []datadogV1.SyntheticsAssertion{
+datadogV1.SyntheticsAssertion{
+SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{
+Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_DAYS_THAN,
+Target: datadogV1.SyntheticsAssertionTargetValue{
+SyntheticsAssertionTargetValueNumber: datadog.PtrFloat64(10)},
+Type: datadogV1.SYNTHETICSASSERTIONTYPE_CERTIFICATE,
+}},
+},
+Request: &datadogV1.SyntheticsTestRequest{
+Host: datadog.PtrString("datadoghq.com"),
+Port: &datadogV1.SyntheticsTestRequestPort{
+SyntheticsTestRequestVariablePort: datadog.PtrString("{{ DATADOG_PORT }}")},
+},
+},
+Locations: []string{
+"aws:us-east-2",
+},
+Message: "BDD test payload: synthetics_api_ssl_test_payload.json",
+Name: "Example-Synthetic",
+Options: datadogV1.SyntheticsTestOptions{
+AcceptSelfSigned: datadog.PtrBool(true),
+CheckCertificateRevocation: datadog.PtrBool(true),
+DisableAiaIntermediateFetching: datadog.PtrBool(true),
+TickEvery: datadog.PtrInt64(60),
+},
+Subtype: datadogV1.SYNTHETICSTESTDETAILSSUBTYPE_SSL.Ptr(),
+Tags: []string{
+"testing:api",
+},
+Type: datadogV1.SYNTHETICSAPITESTTYPE_API,
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewSyntheticsApi(apiClient)
-	resp, r, err := api.CreateSyntheticsAPITest(ctx, body)
+	resp, r, err := api.CreateSyntheticsAPITest(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateSyntheticsAPITest`: %v\n", err)

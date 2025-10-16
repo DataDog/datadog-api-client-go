@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DORADeploymentRequestData The JSON:API data.
 type DORADeploymentRequestData struct {
 	// Attributes to create a DORA deployment event.
 	Attributes DORADeploymentRequestAttributes `json:"attributes"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDORADeploymentRequestData instantiates a new DORADeploymentRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewDORADeploymentRequestDataWithDefaults() *DORADeploymentRequestData {
 	this := DORADeploymentRequestData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *DORADeploymentRequestData) GetAttributes() DORADeploymentRequestAttributes {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *DORADeploymentRequestData) GetAttributesOk() (*DORADeploymentRequestAtt
 func (o *DORADeploymentRequestData) SetAttributes(v DORADeploymentRequestAttributes) {
 	o.Attributes = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DORADeploymentRequestData) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *DORADeploymentRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes",  })
 	} else {
 		return err
 	}

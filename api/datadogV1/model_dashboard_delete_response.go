@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DashboardDeleteResponse Response from the delete dashboard call.
 type DashboardDeleteResponse struct {
 	// ID of the deleted dashboard.
 	DeletedDashboardId *string `json:"deleted_dashboard_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDashboardDeleteResponse instantiates a new DashboardDeleteResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewDashboardDeleteResponseWithDefaults() *DashboardDeleteResponse {
 	this := DashboardDeleteResponse{}
 	return &this
 }
-
 // GetDeletedDashboardId returns the DeletedDashboardId field value if set, zero value otherwise.
 func (o *DashboardDeleteResponse) GetDeletedDashboardId() string {
 	if o == nil || o.DeletedDashboardId == nil {
@@ -62,6 +68,8 @@ func (o *DashboardDeleteResponse) SetDeletedDashboardId(v string) {
 	o.DeletedDashboardId = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DashboardDeleteResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *DashboardDeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"deleted_dashboard_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "deleted_dashboard_id",  })
 	} else {
 		return err
 	}

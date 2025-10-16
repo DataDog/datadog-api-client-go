@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ActionQueryProperties The properties of the action query.
 type ActionQueryProperties struct {
@@ -31,9 +35,10 @@ type ActionQueryProperties struct {
 	// The definition of the action query.
 	Spec ActionQuerySpec `json:"spec"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewActionQueryProperties instantiates a new ActionQueryProperties object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewActionQueryPropertiesWithDefaults() *ActionQueryProperties {
 	this := ActionQueryProperties{}
 	return &this
 }
-
 // GetCondition returns the Condition field value if set, zero value otherwise.
 func (o *ActionQueryProperties) GetCondition() ActionQueryCondition {
 	if o == nil || o.Condition == nil {
@@ -80,6 +84,7 @@ func (o *ActionQueryProperties) HasCondition() bool {
 func (o *ActionQueryProperties) SetCondition(v ActionQueryCondition) {
 	o.Condition = &v
 }
+
 
 // GetDebounceInMs returns the DebounceInMs field value if set, zero value otherwise.
 func (o *ActionQueryProperties) GetDebounceInMs() ActionQueryDebounceInMs {
@@ -109,6 +114,7 @@ func (o *ActionQueryProperties) SetDebounceInMs(v ActionQueryDebounceInMs) {
 	o.DebounceInMs = &v
 }
 
+
 // GetMockedOutputs returns the MockedOutputs field value if set, zero value otherwise.
 func (o *ActionQueryProperties) GetMockedOutputs() ActionQueryMockedOutputs {
 	if o == nil || o.MockedOutputs == nil {
@@ -136,6 +142,7 @@ func (o *ActionQueryProperties) HasMockedOutputs() bool {
 func (o *ActionQueryProperties) SetMockedOutputs(v ActionQueryMockedOutputs) {
 	o.MockedOutputs = &v
 }
+
 
 // GetOnlyTriggerManually returns the OnlyTriggerManually field value if set, zero value otherwise.
 func (o *ActionQueryProperties) GetOnlyTriggerManually() ActionQueryOnlyTriggerManually {
@@ -165,6 +172,7 @@ func (o *ActionQueryProperties) SetOnlyTriggerManually(v ActionQueryOnlyTriggerM
 	o.OnlyTriggerManually = &v
 }
 
+
 // GetOutputs returns the Outputs field value if set, zero value otherwise.
 func (o *ActionQueryProperties) GetOutputs() string {
 	if o == nil || o.Outputs == nil {
@@ -192,6 +200,7 @@ func (o *ActionQueryProperties) HasOutputs() bool {
 func (o *ActionQueryProperties) SetOutputs(v string) {
 	o.Outputs = &v
 }
+
 
 // GetPollingIntervalInMs returns the PollingIntervalInMs field value if set, zero value otherwise.
 func (o *ActionQueryProperties) GetPollingIntervalInMs() ActionQueryPollingIntervalInMs {
@@ -221,6 +230,7 @@ func (o *ActionQueryProperties) SetPollingIntervalInMs(v ActionQueryPollingInter
 	o.PollingIntervalInMs = &v
 }
 
+
 // GetRequiresConfirmation returns the RequiresConfirmation field value if set, zero value otherwise.
 func (o *ActionQueryProperties) GetRequiresConfirmation() ActionQueryRequiresConfirmation {
 	if o == nil || o.RequiresConfirmation == nil {
@@ -248,6 +258,7 @@ func (o *ActionQueryProperties) HasRequiresConfirmation() bool {
 func (o *ActionQueryProperties) SetRequiresConfirmation(v ActionQueryRequiresConfirmation) {
 	o.RequiresConfirmation = &v
 }
+
 
 // GetShowToastOnError returns the ShowToastOnError field value if set, zero value otherwise.
 func (o *ActionQueryProperties) GetShowToastOnError() ActionQueryShowToastOnError {
@@ -277,6 +288,7 @@ func (o *ActionQueryProperties) SetShowToastOnError(v ActionQueryShowToastOnErro
 	o.ShowToastOnError = &v
 }
 
+
 // GetSpec returns the Spec field value.
 func (o *ActionQueryProperties) GetSpec() ActionQuerySpec {
 	if o == nil {
@@ -299,6 +311,8 @@ func (o *ActionQueryProperties) GetSpecOk() (*ActionQuerySpec, bool) {
 func (o *ActionQueryProperties) SetSpec(v ActionQuerySpec) {
 	o.Spec = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ActionQueryProperties) MarshalJSON() ([]byte, error) {
@@ -341,15 +355,15 @@ func (o ActionQueryProperties) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ActionQueryProperties) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Condition            *ActionQueryCondition            `json:"condition,omitempty"`
-		DebounceInMs         *ActionQueryDebounceInMs         `json:"debounceInMs,omitempty"`
-		MockedOutputs        *ActionQueryMockedOutputs        `json:"mockedOutputs,omitempty"`
-		OnlyTriggerManually  *ActionQueryOnlyTriggerManually  `json:"onlyTriggerManually,omitempty"`
-		Outputs              *string                          `json:"outputs,omitempty"`
-		PollingIntervalInMs  *ActionQueryPollingIntervalInMs  `json:"pollingIntervalInMs,omitempty"`
+		Condition *ActionQueryCondition `json:"condition,omitempty"`
+		DebounceInMs *ActionQueryDebounceInMs `json:"debounceInMs,omitempty"`
+		MockedOutputs *ActionQueryMockedOutputs `json:"mockedOutputs,omitempty"`
+		OnlyTriggerManually *ActionQueryOnlyTriggerManually `json:"onlyTriggerManually,omitempty"`
+		Outputs *string `json:"outputs,omitempty"`
+		PollingIntervalInMs *ActionQueryPollingIntervalInMs `json:"pollingIntervalInMs,omitempty"`
 		RequiresConfirmation *ActionQueryRequiresConfirmation `json:"requiresConfirmation,omitempty"`
-		ShowToastOnError     *ActionQueryShowToastOnError     `json:"showToastOnError,omitempty"`
-		Spec                 *ActionQuerySpec                 `json:"spec"`
+		ShowToastOnError *ActionQueryShowToastOnError `json:"showToastOnError,omitempty"`
+		Spec *ActionQuerySpec `json:"spec"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -359,7 +373,7 @@ func (o *ActionQueryProperties) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"condition", "debounceInMs", "mockedOutputs", "onlyTriggerManually", "outputs", "pollingIntervalInMs", "requiresConfirmation", "showToastOnError", "spec"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "condition", "debounceInMs", "mockedOutputs", "onlyTriggerManually", "outputs", "pollingIntervalInMs", "requiresConfirmation", "showToastOnError", "spec",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsArrayProcessorOperationAppend Operation that appends a value to a target array attribute.
 type LogsArrayProcessorOperationAppend struct {
@@ -21,9 +25,10 @@ type LogsArrayProcessorOperationAppend struct {
 	// Operation type.
 	Type LogsArrayProcessorOperationAppendType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsArrayProcessorOperationAppend instantiates a new LogsArrayProcessorOperationAppend object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewLogsArrayProcessorOperationAppendWithDefaults() *LogsArrayProcessorOpera
 	this.PreserveSource = &preserveSource
 	return &this
 }
-
 // GetPreserveSource returns the PreserveSource field value if set, zero value otherwise.
 func (o *LogsArrayProcessorOperationAppend) GetPreserveSource() bool {
 	if o == nil || o.PreserveSource == nil {
@@ -77,6 +81,7 @@ func (o *LogsArrayProcessorOperationAppend) SetPreserveSource(v bool) {
 	o.PreserveSource = &v
 }
 
+
 // GetSource returns the Source field value.
 func (o *LogsArrayProcessorOperationAppend) GetSource() string {
 	if o == nil {
@@ -99,6 +104,7 @@ func (o *LogsArrayProcessorOperationAppend) GetSourceOk() (*string, bool) {
 func (o *LogsArrayProcessorOperationAppend) SetSource(v string) {
 	o.Source = v
 }
+
 
 // GetTarget returns the Target field value.
 func (o *LogsArrayProcessorOperationAppend) GetTarget() string {
@@ -123,6 +129,7 @@ func (o *LogsArrayProcessorOperationAppend) SetTarget(v string) {
 	o.Target = v
 }
 
+
 // GetType returns the Type field value.
 func (o *LogsArrayProcessorOperationAppend) GetType() LogsArrayProcessorOperationAppendType {
 	if o == nil {
@@ -146,6 +153,8 @@ func (o *LogsArrayProcessorOperationAppend) SetType(v LogsArrayProcessorOperatio
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsArrayProcessorOperationAppend) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -168,10 +177,10 @@ func (o LogsArrayProcessorOperationAppend) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArrayProcessorOperationAppend) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		PreserveSource *bool                                  `json:"preserve_source,omitempty"`
-		Source         *string                                `json:"source"`
-		Target         *string                                `json:"target"`
-		Type           *LogsArrayProcessorOperationAppendType `json:"type"`
+		PreserveSource *bool `json:"preserve_source,omitempty"`
+		Source *string `json:"source"`
+		Target *string `json:"target"`
+		Type *LogsArrayProcessorOperationAppendType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -187,7 +196,7 @@ func (o *LogsArrayProcessorOperationAppend) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"preserve_source", "source", "target", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "preserve_source", "source", "target", "type",  })
 	} else {
 		return err
 	}

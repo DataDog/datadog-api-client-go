@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScalarFormulaRequestAttributes The object describing a scalar formula request.
 type ScalarFormulaRequestAttributes struct {
@@ -21,9 +25,10 @@ type ScalarFormulaRequestAttributes struct {
 	// End date (exclusive) of the query in milliseconds since the Unix epoch.
 	To int64 `json:"to"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScalarFormulaRequestAttributes instantiates a new ScalarFormulaRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewScalarFormulaRequestAttributesWithDefaults() *ScalarFormulaRequestAttrib
 	this := ScalarFormulaRequestAttributes{}
 	return &this
 }
-
 // GetFormulas returns the Formulas field value if set, zero value otherwise.
 func (o *ScalarFormulaRequestAttributes) GetFormulas() []QueryFormula {
 	if o == nil || o.Formulas == nil {
@@ -73,6 +77,7 @@ func (o *ScalarFormulaRequestAttributes) SetFormulas(v []QueryFormula) {
 	o.Formulas = v
 }
 
+
 // GetFrom returns the From field value.
 func (o *ScalarFormulaRequestAttributes) GetFrom() int64 {
 	if o == nil {
@@ -95,6 +100,7 @@ func (o *ScalarFormulaRequestAttributes) GetFromOk() (*int64, bool) {
 func (o *ScalarFormulaRequestAttributes) SetFrom(v int64) {
 	o.From = v
 }
+
 
 // GetQueries returns the Queries field value.
 func (o *ScalarFormulaRequestAttributes) GetQueries() []ScalarQuery {
@@ -119,6 +125,7 @@ func (o *ScalarFormulaRequestAttributes) SetQueries(v []ScalarQuery) {
 	o.Queries = v
 }
 
+
 // GetTo returns the To field value.
 func (o *ScalarFormulaRequestAttributes) GetTo() int64 {
 	if o == nil {
@@ -141,6 +148,8 @@ func (o *ScalarFormulaRequestAttributes) GetToOk() (*int64, bool) {
 func (o *ScalarFormulaRequestAttributes) SetTo(v int64) {
 	o.To = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ScalarFormulaRequestAttributes) MarshalJSON() ([]byte, error) {
@@ -165,9 +174,9 @@ func (o ScalarFormulaRequestAttributes) MarshalJSON() ([]byte, error) {
 func (o *ScalarFormulaRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Formulas []QueryFormula `json:"formulas,omitempty"`
-		From     *int64         `json:"from"`
-		Queries  *[]ScalarQuery `json:"queries"`
-		To       *int64         `json:"to"`
+		From *int64 `json:"from"`
+		Queries *[]ScalarQuery `json:"queries"`
+		To *int64 `json:"to"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -183,7 +192,7 @@ func (o *ScalarFormulaRequestAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"formulas", "from", "queries", "to"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "formulas", "from", "queries", "to",  })
 	} else {
 		return err
 	}

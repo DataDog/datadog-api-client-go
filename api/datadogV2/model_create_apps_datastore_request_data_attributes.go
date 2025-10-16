@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateAppsDatastoreRequestDataAttributes Configuration and metadata to create a new datastore.
 type CreateAppsDatastoreRequestDataAttributes struct {
@@ -25,9 +29,10 @@ type CreateAppsDatastoreRequestDataAttributes struct {
 	// Can be set to `uuid` to automatically generate primary keys when new items are added. Default value is `none`, which requires you to supply a primary key for each new item.
 	PrimaryKeyGenerationStrategy *DatastorePrimaryKeyGenerationStrategy `json:"primary_key_generation_strategy,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateAppsDatastoreRequestDataAttributes instantiates a new CreateAppsDatastoreRequestDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewCreateAppsDatastoreRequestDataAttributesWithDefaults() *CreateAppsDatast
 	this := CreateAppsDatastoreRequestDataAttributes{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CreateAppsDatastoreRequestDataAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -76,6 +80,7 @@ func (o *CreateAppsDatastoreRequestDataAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *CreateAppsDatastoreRequestDataAttributes) GetName() string {
 	if o == nil {
@@ -98,6 +103,7 @@ func (o *CreateAppsDatastoreRequestDataAttributes) GetNameOk() (*string, bool) {
 func (o *CreateAppsDatastoreRequestDataAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetOrgAccess returns the OrgAccess field value if set, zero value otherwise.
 func (o *CreateAppsDatastoreRequestDataAttributes) GetOrgAccess() CreateAppsDatastoreRequestDataAttributesOrgAccess {
@@ -127,6 +133,7 @@ func (o *CreateAppsDatastoreRequestDataAttributes) SetOrgAccess(v CreateAppsData
 	o.OrgAccess = &v
 }
 
+
 // GetPrimaryColumnName returns the PrimaryColumnName field value.
 func (o *CreateAppsDatastoreRequestDataAttributes) GetPrimaryColumnName() string {
 	if o == nil {
@@ -149,6 +156,7 @@ func (o *CreateAppsDatastoreRequestDataAttributes) GetPrimaryColumnNameOk() (*st
 func (o *CreateAppsDatastoreRequestDataAttributes) SetPrimaryColumnName(v string) {
 	o.PrimaryColumnName = v
 }
+
 
 // GetPrimaryKeyGenerationStrategy returns the PrimaryKeyGenerationStrategy field value if set, zero value otherwise.
 func (o *CreateAppsDatastoreRequestDataAttributes) GetPrimaryKeyGenerationStrategy() DatastorePrimaryKeyGenerationStrategy {
@@ -178,6 +186,8 @@ func (o *CreateAppsDatastoreRequestDataAttributes) SetPrimaryKeyGenerationStrate
 	o.PrimaryKeyGenerationStrategy = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateAppsDatastoreRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -205,11 +215,11 @@ func (o CreateAppsDatastoreRequestDataAttributes) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateAppsDatastoreRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description                  *string                                            `json:"description,omitempty"`
-		Name                         *string                                            `json:"name"`
-		OrgAccess                    *CreateAppsDatastoreRequestDataAttributesOrgAccess `json:"org_access,omitempty"`
-		PrimaryColumnName            *string                                            `json:"primary_column_name"`
-		PrimaryKeyGenerationStrategy *DatastorePrimaryKeyGenerationStrategy             `json:"primary_key_generation_strategy,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Name *string `json:"name"`
+		OrgAccess *CreateAppsDatastoreRequestDataAttributesOrgAccess `json:"org_access,omitempty"`
+		PrimaryColumnName *string `json:"primary_column_name"`
+		PrimaryKeyGenerationStrategy *DatastorePrimaryKeyGenerationStrategy `json:"primary_key_generation_strategy,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -222,7 +232,7 @@ func (o *CreateAppsDatastoreRequestDataAttributes) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "name", "org_access", "primary_column_name", "primary_key_generation_strategy"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "name", "org_access", "primary_column_name", "primary_key_generation_strategy",  })
 	} else {
 		return err
 	}
@@ -230,13 +240,13 @@ func (o *CreateAppsDatastoreRequestDataAttributes) UnmarshalJSON(bytes []byte) (
 	hasInvalidField := false
 	o.Description = all.Description
 	o.Name = *all.Name
-	if all.OrgAccess != nil && !all.OrgAccess.IsValid() {
+	if all.OrgAccess != nil &&!all.OrgAccess.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.OrgAccess = all.OrgAccess
 	}
 	o.PrimaryColumnName = *all.PrimaryColumnName
-	if all.PrimaryKeyGenerationStrategy != nil && !all.PrimaryKeyGenerationStrategy.IsValid() {
+	if all.PrimaryKeyGenerationStrategy != nil &&!all.PrimaryKeyGenerationStrategy.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.PrimaryKeyGenerationStrategy = all.PrimaryKeyGenerationStrategy

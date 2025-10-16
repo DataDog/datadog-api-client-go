@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression Compression configuration for log events.
 type ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression struct {
 	// Compression level.
 	Level *int64 `json:"level,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression instantiates a new ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompressionWithDef
 	this := ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression{}
 	return &this
 }
-
 // GetAlgorithm returns the Algorithm field value.
 func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression) GetAlgorithm() ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompressionAlgorithm {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression) GetA
 func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression) SetAlgorithm(v ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompressionAlgorithm) {
 	o.Algorithm = v
 }
+
 
 // GetLevel returns the Level field value if set, zero value otherwise.
 func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression) GetLevel() int64 {
@@ -90,6 +95,8 @@ func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression) SetL
 	o.Level = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression) Marsh
 func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Algorithm *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompressionAlgorithm `json:"algorithm"`
-		Level     *int64                                                                      `json:"level,omitempty"`
+		Level *int64 `json:"level,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression) Unma
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"algorithm", "level"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "algorithm", "level",  })
 	} else {
 		return err
 	}

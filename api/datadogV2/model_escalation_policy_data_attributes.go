@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EscalationPolicyDataAttributes Defines the main attributes of an escalation policy, such as its name and behavior on policy end.
 type EscalationPolicyDataAttributes struct {
@@ -19,9 +23,10 @@ type EscalationPolicyDataAttributes struct {
 	// Specifies how many times the escalation sequence is retried if there is no response.
 	Retries *int64 `json:"retries,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEscalationPolicyDataAttributes instantiates a new EscalationPolicyDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewEscalationPolicyDataAttributesWithDefaults() *EscalationPolicyDataAttrib
 	this := EscalationPolicyDataAttributes{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *EscalationPolicyDataAttributes) GetName() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *EscalationPolicyDataAttributes) GetNameOk() (*string, bool) {
 func (o *EscalationPolicyDataAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetResolvePageOnPolicyEnd returns the ResolvePageOnPolicyEnd field value if set, zero value otherwise.
 func (o *EscalationPolicyDataAttributes) GetResolvePageOnPolicyEnd() bool {
@@ -92,6 +97,7 @@ func (o *EscalationPolicyDataAttributes) SetResolvePageOnPolicyEnd(v bool) {
 	o.ResolvePageOnPolicyEnd = &v
 }
 
+
 // GetRetries returns the Retries field value if set, zero value otherwise.
 func (o *EscalationPolicyDataAttributes) GetRetries() int64 {
 	if o == nil || o.Retries == nil {
@@ -120,6 +126,8 @@ func (o *EscalationPolicyDataAttributes) SetRetries(v int64) {
 	o.Retries = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EscalationPolicyDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -143,9 +151,9 @@ func (o EscalationPolicyDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EscalationPolicyDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name                   *string `json:"name"`
-		ResolvePageOnPolicyEnd *bool   `json:"resolve_page_on_policy_end,omitempty"`
-		Retries                *int64  `json:"retries,omitempty"`
+		Name *string `json:"name"`
+		ResolvePageOnPolicyEnd *bool `json:"resolve_page_on_policy_end,omitempty"`
+		Retries *int64 `json:"retries,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,7 +163,7 @@ func (o *EscalationPolicyDataAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "resolve_page_on_policy_end", "retries"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "resolve_page_on_policy_end", "retries",  })
 	} else {
 		return err
 	}

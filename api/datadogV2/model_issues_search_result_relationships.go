@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssuesSearchResultRelationships Relationships between the search result and other resources.
 type IssuesSearchResultRelationships struct {
 	// Relationship between the search result and the corresponding issue.
 	Issue *IssuesSearchResultIssueRelationship `json:"issue,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssuesSearchResultRelationships instantiates a new IssuesSearchResultRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewIssuesSearchResultRelationshipsWithDefaults() *IssuesSearchResultRelatio
 	this := IssuesSearchResultRelationships{}
 	return &this
 }
-
 // GetIssue returns the Issue field value if set, zero value otherwise.
 func (o *IssuesSearchResultRelationships) GetIssue() IssuesSearchResultIssueRelationship {
 	if o == nil || o.Issue == nil {
@@ -62,6 +68,8 @@ func (o *IssuesSearchResultRelationships) SetIssue(v IssuesSearchResultIssueRela
 	o.Issue = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IssuesSearchResultRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *IssuesSearchResultRelationships) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"issue"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "issue",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Issue != nil && all.Issue.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Issue != nil && all.Issue.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Issue = all.Issue

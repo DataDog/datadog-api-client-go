@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsLookupProcessor Use the Lookup Processor to define a mapping between a log attribute
 // and a human readable value saved in the processors mapping table.
@@ -34,9 +38,10 @@ type LogsLookupProcessor struct {
 	// Type of logs lookup processor.
 	Type LogsLookupProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsLookupProcessor instantiates a new LogsLookupProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -64,7 +69,6 @@ func NewLogsLookupProcessorWithDefaults() *LogsLookupProcessor {
 	this.Type = typeVar
 	return &this
 }
-
 // GetDefaultLookup returns the DefaultLookup field value if set, zero value otherwise.
 func (o *LogsLookupProcessor) GetDefaultLookup() string {
 	if o == nil || o.DefaultLookup == nil {
@@ -92,6 +96,7 @@ func (o *LogsLookupProcessor) HasDefaultLookup() bool {
 func (o *LogsLookupProcessor) SetDefaultLookup(v string) {
 	o.DefaultLookup = &v
 }
+
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsLookupProcessor) GetIsEnabled() bool {
@@ -121,6 +126,7 @@ func (o *LogsLookupProcessor) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
+
 // GetLookupTable returns the LookupTable field value.
 func (o *LogsLookupProcessor) GetLookupTable() []string {
 	if o == nil {
@@ -143,6 +149,7 @@ func (o *LogsLookupProcessor) GetLookupTableOk() (*[]string, bool) {
 func (o *LogsLookupProcessor) SetLookupTable(v []string) {
 	o.LookupTable = v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsLookupProcessor) GetName() string {
@@ -172,6 +179,7 @@ func (o *LogsLookupProcessor) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSource returns the Source field value.
 func (o *LogsLookupProcessor) GetSource() string {
 	if o == nil {
@@ -194,6 +202,7 @@ func (o *LogsLookupProcessor) GetSourceOk() (*string, bool) {
 func (o *LogsLookupProcessor) SetSource(v string) {
 	o.Source = v
 }
+
 
 // GetTarget returns the Target field value.
 func (o *LogsLookupProcessor) GetTarget() string {
@@ -218,6 +227,7 @@ func (o *LogsLookupProcessor) SetTarget(v string) {
 	o.Target = v
 }
 
+
 // GetType returns the Type field value.
 func (o *LogsLookupProcessor) GetType() LogsLookupProcessorType {
 	if o == nil {
@@ -240,6 +250,8 @@ func (o *LogsLookupProcessor) GetTypeOk() (*LogsLookupProcessorType, bool) {
 func (o *LogsLookupProcessor) SetType(v LogsLookupProcessorType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsLookupProcessor) MarshalJSON() ([]byte, error) {
@@ -270,13 +282,13 @@ func (o LogsLookupProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsLookupProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DefaultLookup *string                  `json:"default_lookup,omitempty"`
-		IsEnabled     *bool                    `json:"is_enabled,omitempty"`
-		LookupTable   *[]string                `json:"lookup_table"`
-		Name          *string                  `json:"name,omitempty"`
-		Source        *string                  `json:"source"`
-		Target        *string                  `json:"target"`
-		Type          *LogsLookupProcessorType `json:"type"`
+		DefaultLookup *string `json:"default_lookup,omitempty"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		LookupTable *[]string `json:"lookup_table"`
+		Name *string `json:"name,omitempty"`
+		Source *string `json:"source"`
+		Target *string `json:"target"`
+		Type *LogsLookupProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -295,7 +307,7 @@ func (o *LogsLookupProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"default_lookup", "is_enabled", "lookup_table", "name", "source", "target", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "default_lookup", "is_enabled", "lookup_table", "name", "source", "target", "type",  })
 	} else {
 		return err
 	}

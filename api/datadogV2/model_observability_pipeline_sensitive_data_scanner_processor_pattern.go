@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessorPattern - Pattern detection configuration for identifying sensitive data using either a custom regex or a library reference.
 type ObservabilityPipelineSensitiveDataScannerProcessorPattern struct {
-	ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern  *ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern
+	ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern *ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern
 	ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern *ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +86,11 @@ func (obj ObservabilityPipelineSensitiveDataScannerProcessorPattern) MarshalJSON
 		return datadog.Marshal(&obj.ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern)
 	}
 
+
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj ObservabilityPipelineSensitiveDataScannerProcessorPattern) MarshalJSON
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ObservabilityPipelineSensitiveDataScannerProcessorPattern) GetActualInstance() interface{} {
+func (obj *ObservabilityPipelineSensitiveDataScannerProcessorPattern) GetActualInstance() (interface{}) {
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern != nil {
 		return obj.ObservabilityPipelineSensitiveDataScannerProcessorCustomPattern
 	}
 
+
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern != nil {
 		return obj.ObservabilityPipelineSensitiveDataScannerProcessorLibraryPattern
 	}
+
 
 	// all schemas are nil
 	return nil

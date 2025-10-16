@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RecommendationAttributes Attributes of the SPA Recommendation resource. Contains recommendations for both driver and executor components.
 type RecommendationAttributes struct {
@@ -17,9 +21,10 @@ type RecommendationAttributes struct {
 	// Resource recommendation for a single Spark component (driver or executor). Contains estimation data used to patch Spark job specs.
 	Executor ComponentRecommendation `json:"executor"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRecommendationAttributes instantiates a new RecommendationAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewRecommendationAttributesWithDefaults() *RecommendationAttributes {
 	this := RecommendationAttributes{}
 	return &this
 }
-
 // GetDriver returns the Driver field value.
 func (o *RecommendationAttributes) GetDriver() ComponentRecommendation {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *RecommendationAttributes) GetDriverOk() (*ComponentRecommendation, bool
 func (o *RecommendationAttributes) SetDriver(v ComponentRecommendation) {
 	o.Driver = v
 }
+
 
 // GetExecutor returns the Executor field value.
 func (o *RecommendationAttributes) GetExecutor() ComponentRecommendation {
@@ -86,6 +91,8 @@ func (o *RecommendationAttributes) SetExecutor(v ComponentRecommendation) {
 	o.Executor = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RecommendationAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o RecommendationAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RecommendationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Driver   *ComponentRecommendation `json:"driver"`
+		Driver *ComponentRecommendation `json:"driver"`
 		Executor *ComponentRecommendation `json:"executor"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *RecommendationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"driver", "executor"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "driver", "executor",  })
 	} else {
 		return err
 	}

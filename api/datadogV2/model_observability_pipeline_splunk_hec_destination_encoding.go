@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSplunkHecDestinationEncoding Encoding format for log events.
 type ObservabilityPipelineSplunkHecDestinationEncoding string
 
 // List of ObservabilityPipelineSplunkHecDestinationEncoding.
 const (
-	OBSERVABILITYPIPELINESPLUNKHECDESTINATIONENCODING_JSON        ObservabilityPipelineSplunkHecDestinationEncoding = "json"
+	OBSERVABILITYPIPELINESPLUNKHECDESTINATIONENCODING_JSON ObservabilityPipelineSplunkHecDestinationEncoding = "json"
 	OBSERVABILITYPIPELINESPLUNKHECDESTINATIONENCODING_RAW_MESSAGE ObservabilityPipelineSplunkHecDestinationEncoding = "raw_message"
 )
 

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // APIKeysResponseMeta Additional information related to api keys response.
 type APIKeysResponseMeta struct {
@@ -15,9 +21,10 @@ type APIKeysResponseMeta struct {
 	// Additional information related to the API keys response.
 	Page *APIKeysResponseMetaPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAPIKeysResponseMeta instantiates a new APIKeysResponseMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewAPIKeysResponseMetaWithDefaults() *APIKeysResponseMeta {
 	this := APIKeysResponseMeta{}
 	return &this
 }
-
 // GetMaxAllowed returns the MaxAllowed field value if set, zero value otherwise.
 func (o *APIKeysResponseMeta) GetMaxAllowed() int64 {
 	if o == nil || o.MaxAllowed == nil {
@@ -63,6 +69,7 @@ func (o *APIKeysResponseMeta) HasMaxAllowed() bool {
 func (o *APIKeysResponseMeta) SetMaxAllowed(v int64) {
 	o.MaxAllowed = &v
 }
+
 
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *APIKeysResponseMeta) GetPage() APIKeysResponseMetaPage {
@@ -92,6 +99,8 @@ func (o *APIKeysResponseMeta) SetPage(v APIKeysResponseMetaPage) {
 	o.Page = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o APIKeysResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,22 +123,22 @@ func (o APIKeysResponseMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *APIKeysResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		MaxAllowed *int64                   `json:"max_allowed,omitempty"`
-		Page       *APIKeysResponseMetaPage `json:"page,omitempty"`
+		MaxAllowed *int64 `json:"max_allowed,omitempty"`
+		Page *APIKeysResponseMetaPage `json:"page,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"max_allowed", "page"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "max_allowed", "page",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.MaxAllowed = all.MaxAllowed
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Page = all.Page

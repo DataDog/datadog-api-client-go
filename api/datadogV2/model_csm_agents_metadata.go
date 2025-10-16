@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CSMAgentsMetadata Metadata related to the paginated response.
 type CSMAgentsMetadata struct {
@@ -17,9 +23,10 @@ type CSMAgentsMetadata struct {
 	// Total number of items that match the filter criteria.
 	TotalFiltered *int64 `json:"total_filtered,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCSMAgentsMetadata instantiates a new CSMAgentsMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewCSMAgentsMetadataWithDefaults() *CSMAgentsMetadata {
 	this := CSMAgentsMetadata{}
 	return &this
 }
-
 // GetPageIndex returns the PageIndex field value if set, zero value otherwise.
 func (o *CSMAgentsMetadata) GetPageIndex() int64 {
 	if o == nil || o.PageIndex == nil {
@@ -65,6 +71,7 @@ func (o *CSMAgentsMetadata) HasPageIndex() bool {
 func (o *CSMAgentsMetadata) SetPageIndex(v int64) {
 	o.PageIndex = &v
 }
+
 
 // GetPageSize returns the PageSize field value if set, zero value otherwise.
 func (o *CSMAgentsMetadata) GetPageSize() int64 {
@@ -94,6 +101,7 @@ func (o *CSMAgentsMetadata) SetPageSize(v int64) {
 	o.PageSize = &v
 }
 
+
 // GetTotalFiltered returns the TotalFiltered field value if set, zero value otherwise.
 func (o *CSMAgentsMetadata) GetTotalFiltered() int64 {
 	if o == nil || o.TotalFiltered == nil {
@@ -122,6 +130,8 @@ func (o *CSMAgentsMetadata) SetTotalFiltered(v int64) {
 	o.TotalFiltered = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CSMAgentsMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,8 +157,8 @@ func (o CSMAgentsMetadata) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CSMAgentsMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		PageIndex     *int64 `json:"page_index,omitempty"`
-		PageSize      *int64 `json:"page_size,omitempty"`
+		PageIndex *int64 `json:"page_index,omitempty"`
+		PageSize *int64 `json:"page_size,omitempty"`
 		TotalFiltered *int64 `json:"total_filtered,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,7 +166,7 @@ func (o *CSMAgentsMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"page_index", "page_size", "total_filtered"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "page_index", "page_size", "total_filtered",  })
 	} else {
 		return err
 	}

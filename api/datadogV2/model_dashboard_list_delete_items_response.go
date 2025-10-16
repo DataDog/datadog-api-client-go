@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DashboardListDeleteItemsResponse Response containing a list of deleted dashboards.
 type DashboardListDeleteItemsResponse struct {
 	// List of dashboards deleted from the dashboard list.
 	DeletedDashboardsFromList []DashboardListItemResponse `json:"deleted_dashboards_from_list,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDashboardListDeleteItemsResponse instantiates a new DashboardListDeleteItemsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewDashboardListDeleteItemsResponseWithDefaults() *DashboardListDeleteItems
 	this := DashboardListDeleteItemsResponse{}
 	return &this
 }
-
 // GetDeletedDashboardsFromList returns the DeletedDashboardsFromList field value if set, zero value otherwise.
 func (o *DashboardListDeleteItemsResponse) GetDeletedDashboardsFromList() []DashboardListItemResponse {
 	if o == nil || o.DeletedDashboardsFromList == nil {
@@ -62,6 +68,8 @@ func (o *DashboardListDeleteItemsResponse) SetDeletedDashboardsFromList(v []Dash
 	o.DeletedDashboardsFromList = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DashboardListDeleteItemsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *DashboardListDeleteItemsResponse) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"deleted_dashboards_from_list"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "deleted_dashboards_from_list",  })
 	} else {
 		return err
 	}

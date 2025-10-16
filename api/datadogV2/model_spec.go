@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Spec The spec defines what the workflow does.
 type Spec struct {
@@ -25,9 +31,10 @@ type Spec struct {
 	// The list of triggers that activate this workflow. At least one trigger is required, and each trigger type may appear at most once.
 	Triggers []Trigger `json:"triggers,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSpec instantiates a new Spec object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +52,6 @@ func NewSpecWithDefaults() *Spec {
 	this := Spec{}
 	return &this
 }
-
 // GetAnnotations returns the Annotations field value if set, zero value otherwise.
 func (o *Spec) GetAnnotations() []Annotation {
 	if o == nil || o.Annotations == nil {
@@ -73,6 +79,7 @@ func (o *Spec) HasAnnotations() bool {
 func (o *Spec) SetAnnotations(v []Annotation) {
 	o.Annotations = v
 }
+
 
 // GetConnectionEnvs returns the ConnectionEnvs field value if set, zero value otherwise.
 func (o *Spec) GetConnectionEnvs() []ConnectionEnv {
@@ -102,6 +109,7 @@ func (o *Spec) SetConnectionEnvs(v []ConnectionEnv) {
 	o.ConnectionEnvs = v
 }
 
+
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *Spec) GetHandle() string {
 	if o == nil || o.Handle == nil {
@@ -129,6 +137,7 @@ func (o *Spec) HasHandle() bool {
 func (o *Spec) SetHandle(v string) {
 	o.Handle = &v
 }
+
 
 // GetInputSchema returns the InputSchema field value if set, zero value otherwise.
 func (o *Spec) GetInputSchema() InputSchema {
@@ -158,6 +167,7 @@ func (o *Spec) SetInputSchema(v InputSchema) {
 	o.InputSchema = &v
 }
 
+
 // GetOutputSchema returns the OutputSchema field value if set, zero value otherwise.
 func (o *Spec) GetOutputSchema() OutputSchema {
 	if o == nil || o.OutputSchema == nil {
@@ -185,6 +195,7 @@ func (o *Spec) HasOutputSchema() bool {
 func (o *Spec) SetOutputSchema(v OutputSchema) {
 	o.OutputSchema = &v
 }
+
 
 // GetSteps returns the Steps field value if set, zero value otherwise.
 func (o *Spec) GetSteps() []Step {
@@ -214,6 +225,7 @@ func (o *Spec) SetSteps(v []Step) {
 	o.Steps = v
 }
 
+
 // GetTriggers returns the Triggers field value if set, zero value otherwise.
 func (o *Spec) GetTriggers() []Trigger {
 	if o == nil || o.Triggers == nil {
@@ -241,6 +253,8 @@ func (o *Spec) HasTriggers() bool {
 func (o *Spec) SetTriggers(v []Trigger) {
 	o.Triggers = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o Spec) MarshalJSON() ([]byte, error) {
@@ -279,20 +293,20 @@ func (o Spec) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Spec) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Annotations    []Annotation    `json:"annotations,omitempty"`
+		Annotations []Annotation `json:"annotations,omitempty"`
 		ConnectionEnvs []ConnectionEnv `json:"connectionEnvs,omitempty"`
-		Handle         *string         `json:"handle,omitempty"`
-		InputSchema    *InputSchema    `json:"inputSchema,omitempty"`
-		OutputSchema   *OutputSchema   `json:"outputSchema,omitempty"`
-		Steps          []Step          `json:"steps,omitempty"`
-		Triggers       []Trigger       `json:"triggers,omitempty"`
+		Handle *string `json:"handle,omitempty"`
+		InputSchema *InputSchema `json:"inputSchema,omitempty"`
+		OutputSchema *OutputSchema `json:"outputSchema,omitempty"`
+		Steps []Step `json:"steps,omitempty"`
+		Triggers []Trigger `json:"triggers,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"annotations", "connectionEnvs", "handle", "inputSchema", "outputSchema", "steps", "triggers"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "annotations", "connectionEnvs", "handle", "inputSchema", "outputSchema", "steps", "triggers",  })
 	} else {
 		return err
 	}
@@ -301,11 +315,11 @@ func (o *Spec) UnmarshalJSON(bytes []byte) (err error) {
 	o.Annotations = all.Annotations
 	o.ConnectionEnvs = all.ConnectionEnvs
 	o.Handle = all.Handle
-	if all.InputSchema != nil && all.InputSchema.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.InputSchema != nil && all.InputSchema.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.InputSchema = all.InputSchema
-	if all.OutputSchema != nil && all.OutputSchema.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.OutputSchema != nil && all.OutputSchema.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.OutputSchema = all.OutputSchema

@@ -2,31 +2,35 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SBOMComponentType The SBOM component type
 type SBOMComponentType string
 
 // List of SBOMComponentType.
 const (
-	SBOMCOMPONENTTYPE_APPLICATION            SBOMComponentType = "application"
-	SBOMCOMPONENTTYPE_CONTAINER              SBOMComponentType = "container"
-	SBOMCOMPONENTTYPE_DATA                   SBOMComponentType = "data"
-	SBOMCOMPONENTTYPE_DEVICE                 SBOMComponentType = "device"
-	SBOMCOMPONENTTYPE_DEVICE_DRIVER          SBOMComponentType = "device-driver"
-	SBOMCOMPONENTTYPE_FILE                   SBOMComponentType = "file"
-	SBOMCOMPONENTTYPE_FIRMWARE               SBOMComponentType = "firmware"
-	SBOMCOMPONENTTYPE_FRAMEWORK              SBOMComponentType = "framework"
-	SBOMCOMPONENTTYPE_LIBRARY                SBOMComponentType = "library"
+	SBOMCOMPONENTTYPE_APPLICATION SBOMComponentType = "application"
+	SBOMCOMPONENTTYPE_CONTAINER SBOMComponentType = "container"
+	SBOMCOMPONENTTYPE_DATA SBOMComponentType = "data"
+	SBOMCOMPONENTTYPE_DEVICE SBOMComponentType = "device"
+	SBOMCOMPONENTTYPE_DEVICE_DRIVER SBOMComponentType = "device-driver"
+	SBOMCOMPONENTTYPE_FILE SBOMComponentType = "file"
+	SBOMCOMPONENTTYPE_FIRMWARE SBOMComponentType = "firmware"
+	SBOMCOMPONENTTYPE_FRAMEWORK SBOMComponentType = "framework"
+	SBOMCOMPONENTTYPE_LIBRARY SBOMComponentType = "library"
 	SBOMCOMPONENTTYPE_MACHINE_LEARNING_MODEL SBOMComponentType = "machine-learning-model"
-	SBOMCOMPONENTTYPE_OPERATING_SYSTEM       SBOMComponentType = "operating-system"
-	SBOMCOMPONENTTYPE_PLATFORM               SBOMComponentType = "platform"
+	SBOMCOMPONENTTYPE_OPERATING_SYSTEM SBOMComponentType = "operating-system"
+	SBOMCOMPONENTTYPE_PLATFORM SBOMComponentType = "platform"
 )
 
 var allowedSBOMComponentTypeEnumValues = []SBOMComponentType{

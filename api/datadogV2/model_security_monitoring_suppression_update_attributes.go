@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringSuppressionUpdateAttributes The suppression rule properties to be updated.
 type SecurityMonitoringSuppressionUpdateAttributes struct {
@@ -29,9 +35,10 @@ type SecurityMonitoringSuppressionUpdateAttributes struct {
 	// The current version of the suppression. This is optional, but it can help prevent concurrent modifications.
 	Version *int32 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringSuppressionUpdateAttributes instantiates a new SecurityMonitoringSuppressionUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +56,6 @@ func NewSecurityMonitoringSuppressionUpdateAttributesWithDefaults() *SecurityMon
 	this := SecurityMonitoringSuppressionUpdateAttributes{}
 	return &this
 }
-
 // GetDataExclusionQuery returns the DataExclusionQuery field value if set, zero value otherwise.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) GetDataExclusionQuery() string {
 	if o == nil || o.DataExclusionQuery == nil {
@@ -77,6 +83,7 @@ func (o *SecurityMonitoringSuppressionUpdateAttributes) HasDataExclusionQuery() 
 func (o *SecurityMonitoringSuppressionUpdateAttributes) SetDataExclusionQuery(v string) {
 	o.DataExclusionQuery = &v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) GetDescription() string {
@@ -106,6 +113,7 @@ func (o *SecurityMonitoringSuppressionUpdateAttributes) SetDescription(v string)
 	o.Description = &v
 }
 
+
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) GetEnabled() bool {
 	if o == nil || o.Enabled == nil {
@@ -134,6 +142,7 @@ func (o *SecurityMonitoringSuppressionUpdateAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
 // GetExpirationDate returns the ExpirationDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SecurityMonitoringSuppressionUpdateAttributes) GetExpirationDate() int64 {
 	if o == nil || o.ExpirationDate.Get() == nil {
@@ -147,7 +156,7 @@ func (o *SecurityMonitoringSuppressionUpdateAttributes) GetExpirationDate() int6
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) GetExpirationDateOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ExpirationDate.Get(), o.ExpirationDate.IsSet()
@@ -162,7 +171,6 @@ func (o *SecurityMonitoringSuppressionUpdateAttributes) HasExpirationDate() bool
 func (o *SecurityMonitoringSuppressionUpdateAttributes) SetExpirationDate(v int64) {
 	o.ExpirationDate.Set(&v)
 }
-
 // SetExpirationDateNil sets the value for ExpirationDate to be an explicit nil.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) SetExpirationDateNil() {
 	o.ExpirationDate.Set(nil)
@@ -172,6 +180,7 @@ func (o *SecurityMonitoringSuppressionUpdateAttributes) SetExpirationDateNil() {
 func (o *SecurityMonitoringSuppressionUpdateAttributes) UnsetExpirationDate() {
 	o.ExpirationDate.Unset()
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) GetName() string {
@@ -201,6 +210,7 @@ func (o *SecurityMonitoringSuppressionUpdateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetRuleQuery returns the RuleQuery field value if set, zero value otherwise.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) GetRuleQuery() string {
 	if o == nil || o.RuleQuery == nil {
@@ -229,6 +239,7 @@ func (o *SecurityMonitoringSuppressionUpdateAttributes) SetRuleQuery(v string) {
 	o.RuleQuery = &v
 }
 
+
 // GetStartDate returns the StartDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SecurityMonitoringSuppressionUpdateAttributes) GetStartDate() int64 {
 	if o == nil || o.StartDate.Get() == nil {
@@ -242,7 +253,7 @@ func (o *SecurityMonitoringSuppressionUpdateAttributes) GetStartDate() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) GetStartDateOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.StartDate.Get(), o.StartDate.IsSet()
@@ -257,7 +268,6 @@ func (o *SecurityMonitoringSuppressionUpdateAttributes) HasStartDate() bool {
 func (o *SecurityMonitoringSuppressionUpdateAttributes) SetStartDate(v int64) {
 	o.StartDate.Set(&v)
 }
-
 // SetStartDateNil sets the value for StartDate to be an explicit nil.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) SetStartDateNil() {
 	o.StartDate.Set(nil)
@@ -267,6 +277,7 @@ func (o *SecurityMonitoringSuppressionUpdateAttributes) SetStartDateNil() {
 func (o *SecurityMonitoringSuppressionUpdateAttributes) UnsetStartDate() {
 	o.StartDate.Unset()
 }
+
 
 // GetSuppressionQuery returns the SuppressionQuery field value if set, zero value otherwise.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) GetSuppressionQuery() string {
@@ -296,6 +307,7 @@ func (o *SecurityMonitoringSuppressionUpdateAttributes) SetSuppressionQuery(v st
 	o.SuppressionQuery = &v
 }
 
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) GetVersion() int32 {
 	if o == nil || o.Version == nil {
@@ -323,6 +335,8 @@ func (o *SecurityMonitoringSuppressionUpdateAttributes) HasVersion() bool {
 func (o *SecurityMonitoringSuppressionUpdateAttributes) SetVersion(v int32) {
 	o.Version = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringSuppressionUpdateAttributes) MarshalJSON() ([]byte, error) {
@@ -367,22 +381,22 @@ func (o SecurityMonitoringSuppressionUpdateAttributes) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSuppressionUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DataExclusionQuery *string               `json:"data_exclusion_query,omitempty"`
-		Description        *string               `json:"description,omitempty"`
-		Enabled            *bool                 `json:"enabled,omitempty"`
-		ExpirationDate     datadog.NullableInt64 `json:"expiration_date,omitempty"`
-		Name               *string               `json:"name,omitempty"`
-		RuleQuery          *string               `json:"rule_query,omitempty"`
-		StartDate          datadog.NullableInt64 `json:"start_date,omitempty"`
-		SuppressionQuery   *string               `json:"suppression_query,omitempty"`
-		Version            *int32                `json:"version,omitempty"`
+		DataExclusionQuery *string `json:"data_exclusion_query,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
+		ExpirationDate datadog.NullableInt64 `json:"expiration_date,omitempty"`
+		Name *string `json:"name,omitempty"`
+		RuleQuery *string `json:"rule_query,omitempty"`
+		StartDate datadog.NullableInt64 `json:"start_date,omitempty"`
+		SuppressionQuery *string `json:"suppression_query,omitempty"`
+		Version *int32 `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data_exclusion_query", "description", "enabled", "expiration_date", "name", "rule_query", "start_date", "suppression_query", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data_exclusion_query", "description", "enabled", "expiration_date", "name", "rule_query", "start_date", "suppression_query", "version",  })
 	} else {
 		return err
 	}

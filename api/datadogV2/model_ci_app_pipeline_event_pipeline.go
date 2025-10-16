@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppPipelineEventPipeline - Details of the top level pipeline, build, or workflow of your CI.
 type CIAppPipelineEventPipeline struct {
-	CIAppPipelineEventFinishedPipeline   *CIAppPipelineEventFinishedPipeline
+	CIAppPipelineEventFinishedPipeline *CIAppPipelineEventFinishedPipeline
 	CIAppPipelineEventInProgressPipeline *CIAppPipelineEventInProgressPipeline
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +86,11 @@ func (obj CIAppPipelineEventPipeline) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.CIAppPipelineEventFinishedPipeline)
 	}
 
+
 	if obj.CIAppPipelineEventInProgressPipeline != nil {
 		return datadog.Marshal(&obj.CIAppPipelineEventInProgressPipeline)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj CIAppPipelineEventPipeline) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *CIAppPipelineEventPipeline) GetActualInstance() interface{} {
+func (obj *CIAppPipelineEventPipeline) GetActualInstance() (interface{}) {
 	if obj.CIAppPipelineEventFinishedPipeline != nil {
 		return obj.CIAppPipelineEventFinishedPipeline
 	}
 
+
 	if obj.CIAppPipelineEventInProgressPipeline != nil {
 		return obj.CIAppPipelineEventInProgressPipeline
 	}
+
 
 	// all schemas are nil
 	return nil

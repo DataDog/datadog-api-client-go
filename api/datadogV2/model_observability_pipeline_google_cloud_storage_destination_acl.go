@@ -2,24 +2,28 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineGoogleCloudStorageDestinationAcl Access control list setting for objects written to the bucket.
 type ObservabilityPipelineGoogleCloudStorageDestinationAcl string
 
 // List of ObservabilityPipelineGoogleCloudStorageDestinationAcl.
 const (
-	OBSERVABILITYPIPELINEGOOGLECLOUDSTORAGEDESTINATIONACL_PRIVATE                            ObservabilityPipelineGoogleCloudStorageDestinationAcl = "private"
-	OBSERVABILITYPIPELINEGOOGLECLOUDSTORAGEDESTINATIONACL_PROJECTNOT_PRIVATE                 ObservabilityPipelineGoogleCloudStorageDestinationAcl = "project-private"
-	OBSERVABILITYPIPELINEGOOGLECLOUDSTORAGEDESTINATIONACL_PUBLICNOT_READ                     ObservabilityPipelineGoogleCloudStorageDestinationAcl = "public-read"
-	OBSERVABILITYPIPELINEGOOGLECLOUDSTORAGEDESTINATIONACL_AUTHENTICATEDNOT_READ              ObservabilityPipelineGoogleCloudStorageDestinationAcl = "authenticated-read"
-	OBSERVABILITYPIPELINEGOOGLECLOUDSTORAGEDESTINATIONACL_BUCKETNOT_OWNERNOT_READ            ObservabilityPipelineGoogleCloudStorageDestinationAcl = "bucket-owner-read"
+	OBSERVABILITYPIPELINEGOOGLECLOUDSTORAGEDESTINATIONACL_PRIVATE ObservabilityPipelineGoogleCloudStorageDestinationAcl = "private"
+	OBSERVABILITYPIPELINEGOOGLECLOUDSTORAGEDESTINATIONACL_PROJECTNOT_PRIVATE ObservabilityPipelineGoogleCloudStorageDestinationAcl = "project-private"
+	OBSERVABILITYPIPELINEGOOGLECLOUDSTORAGEDESTINATIONACL_PUBLICNOT_READ ObservabilityPipelineGoogleCloudStorageDestinationAcl = "public-read"
+	OBSERVABILITYPIPELINEGOOGLECLOUDSTORAGEDESTINATIONACL_AUTHENTICATEDNOT_READ ObservabilityPipelineGoogleCloudStorageDestinationAcl = "authenticated-read"
+	OBSERVABILITYPIPELINEGOOGLECLOUDSTORAGEDESTINATIONACL_BUCKETNOT_OWNERNOT_READ ObservabilityPipelineGoogleCloudStorageDestinationAcl = "bucket-owner-read"
 	OBSERVABILITYPIPELINEGOOGLECLOUDSTORAGEDESTINATIONACL_BUCKETNOT_OWNERNOT_FULLNOT_CONTROL ObservabilityPipelineGoogleCloudStorageDestinationAcl = "bucket-owner-full-control"
 )
 

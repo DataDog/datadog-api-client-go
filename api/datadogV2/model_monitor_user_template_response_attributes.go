@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorUserTemplateResponseAttributes Attributes for a monitor user template.
 type MonitorUserTemplateResponseAttributes struct {
@@ -29,9 +33,10 @@ type MonitorUserTemplateResponseAttributes struct {
 	// The version of the monitor user template.
 	Version datadog.NullableInt64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorUserTemplateResponseAttributes instantiates a new MonitorUserTemplateResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +54,6 @@ func NewMonitorUserTemplateResponseAttributesWithDefaults() *MonitorUserTemplate
 	this := MonitorUserTemplateResponseAttributes{}
 	return &this
 }
-
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *MonitorUserTemplateResponseAttributes) GetCreated() time.Time {
 	if o == nil || o.Created == nil {
@@ -78,6 +82,7 @@ func (o *MonitorUserTemplateResponseAttributes) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
+
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorUserTemplateResponseAttributes) GetDescription() string {
 	if o == nil || o.Description.Get() == nil {
@@ -91,7 +96,7 @@ func (o *MonitorUserTemplateResponseAttributes) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorUserTemplateResponseAttributes) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -106,7 +111,6 @@ func (o *MonitorUserTemplateResponseAttributes) HasDescription() bool {
 func (o *MonitorUserTemplateResponseAttributes) SetDescription(v string) {
 	o.Description.Set(&v)
 }
-
 // SetDescriptionNil sets the value for Description to be an explicit nil.
 func (o *MonitorUserTemplateResponseAttributes) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -116,6 +120,7 @@ func (o *MonitorUserTemplateResponseAttributes) SetDescriptionNil() {
 func (o *MonitorUserTemplateResponseAttributes) UnsetDescription() {
 	o.Description.Unset()
 }
+
 
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *MonitorUserTemplateResponseAttributes) GetModified() time.Time {
@@ -145,6 +150,7 @@ func (o *MonitorUserTemplateResponseAttributes) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
+
 // GetMonitorDefinition returns the MonitorDefinition field value if set, zero value otherwise.
 func (o *MonitorUserTemplateResponseAttributes) GetMonitorDefinition() map[string]interface{} {
 	if o == nil || o.MonitorDefinition == nil {
@@ -172,6 +178,7 @@ func (o *MonitorUserTemplateResponseAttributes) HasMonitorDefinition() bool {
 func (o *MonitorUserTemplateResponseAttributes) SetMonitorDefinition(v map[string]interface{}) {
 	o.MonitorDefinition = v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MonitorUserTemplateResponseAttributes) GetTags() []string {
@@ -201,6 +208,7 @@ func (o *MonitorUserTemplateResponseAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTemplateVariables returns the TemplateVariables field value if set, zero value otherwise.
 func (o *MonitorUserTemplateResponseAttributes) GetTemplateVariables() []MonitorUserTemplateTemplateVariablesItems {
 	if o == nil || o.TemplateVariables == nil {
@@ -228,6 +236,7 @@ func (o *MonitorUserTemplateResponseAttributes) HasTemplateVariables() bool {
 func (o *MonitorUserTemplateResponseAttributes) SetTemplateVariables(v []MonitorUserTemplateTemplateVariablesItems) {
 	o.TemplateVariables = v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *MonitorUserTemplateResponseAttributes) GetTitle() string {
@@ -257,6 +266,7 @@ func (o *MonitorUserTemplateResponseAttributes) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetVersion returns the Version field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorUserTemplateResponseAttributes) GetVersion() int64 {
 	if o == nil || o.Version.Get() == nil {
@@ -270,7 +280,7 @@ func (o *MonitorUserTemplateResponseAttributes) GetVersion() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorUserTemplateResponseAttributes) GetVersionOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Version.Get(), o.Version.IsSet()
@@ -285,7 +295,6 @@ func (o *MonitorUserTemplateResponseAttributes) HasVersion() bool {
 func (o *MonitorUserTemplateResponseAttributes) SetVersion(v int64) {
 	o.Version.Set(&v)
 }
-
 // SetVersionNil sets the value for Version to be an explicit nil.
 func (o *MonitorUserTemplateResponseAttributes) SetVersionNil() {
 	o.Version.Set(nil)
@@ -295,6 +304,8 @@ func (o *MonitorUserTemplateResponseAttributes) SetVersionNil() {
 func (o *MonitorUserTemplateResponseAttributes) UnsetVersion() {
 	o.Version.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorUserTemplateResponseAttributes) MarshalJSON() ([]byte, error) {
@@ -344,21 +355,21 @@ func (o MonitorUserTemplateResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorUserTemplateResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Created           *time.Time                                  `json:"created,omitempty"`
-		Description       datadog.NullableString                      `json:"description,omitempty"`
-		Modified          *time.Time                                  `json:"modified,omitempty"`
-		MonitorDefinition map[string]interface{}                      `json:"monitor_definition,omitempty"`
-		Tags              []string                                    `json:"tags,omitempty"`
+		Created *time.Time `json:"created,omitempty"`
+		Description datadog.NullableString `json:"description,omitempty"`
+		Modified *time.Time `json:"modified,omitempty"`
+		MonitorDefinition map[string]interface{} `json:"monitor_definition,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 		TemplateVariables []MonitorUserTemplateTemplateVariablesItems `json:"template_variables,omitempty"`
-		Title             *string                                     `json:"title,omitempty"`
-		Version           datadog.NullableInt64                       `json:"version,omitempty"`
+		Title *string `json:"title,omitempty"`
+		Version datadog.NullableInt64 `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created", "description", "modified", "monitor_definition", "tags", "template_variables", "title", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created", "description", "modified", "monitor_definition", "tags", "template_variables", "title", "version",  })
 	} else {
 		return err
 	}

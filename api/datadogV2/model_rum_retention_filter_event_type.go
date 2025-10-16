@@ -2,26 +2,30 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RumRetentionFilterEventType The type of RUM events to filter on.
 type RumRetentionFilterEventType string
 
 // List of RumRetentionFilterEventType.
 const (
-	RUMRETENTIONFILTEREVENTTYPE_SESSION   RumRetentionFilterEventType = "session"
-	RUMRETENTIONFILTEREVENTTYPE_VIEW      RumRetentionFilterEventType = "view"
-	RUMRETENTIONFILTEREVENTTYPE_ACTION    RumRetentionFilterEventType = "action"
-	RUMRETENTIONFILTEREVENTTYPE_ERROR     RumRetentionFilterEventType = "error"
-	RUMRETENTIONFILTEREVENTTYPE_RESOURCE  RumRetentionFilterEventType = "resource"
+	RUMRETENTIONFILTEREVENTTYPE_SESSION RumRetentionFilterEventType = "session"
+	RUMRETENTIONFILTEREVENTTYPE_VIEW RumRetentionFilterEventType = "view"
+	RUMRETENTIONFILTEREVENTTYPE_ACTION RumRetentionFilterEventType = "action"
+	RUMRETENTIONFILTEREVENTTYPE_ERROR RumRetentionFilterEventType = "error"
+	RUMRETENTIONFILTEREVENTTYPE_RESOURCE RumRetentionFilterEventType = "resource"
 	RUMRETENTIONFILTEREVENTTYPE_LONG_TASK RumRetentionFilterEventType = "long_task"
-	RUMRETENTIONFILTEREVENTTYPE_VITAL     RumRetentionFilterEventType = "vital"
+	RUMRETENTIONFILTEREVENTTYPE_VITAL RumRetentionFilterEventType = "vital"
 )
 
 var allowedRumRetentionFilterEventTypeEnumValues = []RumRetentionFilterEventType{

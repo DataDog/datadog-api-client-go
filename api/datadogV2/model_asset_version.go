@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AssetVersion Asset version.
 type AssetVersion struct {
@@ -15,9 +21,10 @@ type AssetVersion struct {
 	// Asset last version.
 	Last *string `json:"last,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAssetVersion instantiates a new AssetVersion object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewAssetVersionWithDefaults() *AssetVersion {
 	this := AssetVersion{}
 	return &this
 }
-
 // GetFirst returns the First field value if set, zero value otherwise.
 func (o *AssetVersion) GetFirst() string {
 	if o == nil || o.First == nil {
@@ -63,6 +69,7 @@ func (o *AssetVersion) HasFirst() bool {
 func (o *AssetVersion) SetFirst(v string) {
 	o.First = &v
 }
+
 
 // GetLast returns the Last field value if set, zero value otherwise.
 func (o *AssetVersion) GetLast() string {
@@ -92,6 +99,8 @@ func (o *AssetVersion) SetLast(v string) {
 	o.Last = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AssetVersion) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o AssetVersion) MarshalJSON() ([]byte, error) {
 func (o *AssetVersion) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		First *string `json:"first,omitempty"`
-		Last  *string `json:"last,omitempty"`
+		Last *string `json:"last,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"first", "last"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "first", "last",  })
 	} else {
 		return err
 	}

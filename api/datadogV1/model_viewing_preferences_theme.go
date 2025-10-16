@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ViewingPreferencesTheme The theme of the shared dashboard view. "system" follows your system's default viewing theme.
 type ViewingPreferencesTheme string
@@ -16,8 +20,8 @@ type ViewingPreferencesTheme string
 // List of ViewingPreferencesTheme.
 const (
 	VIEWINGPREFERENCESTHEME_SYSTEM ViewingPreferencesTheme = "system"
-	VIEWINGPREFERENCESTHEME_LIGHT  ViewingPreferencesTheme = "light"
-	VIEWINGPREFERENCESTHEME_DARK   ViewingPreferencesTheme = "dark"
+	VIEWINGPREFERENCESTHEME_LIGHT ViewingPreferencesTheme = "light"
+	VIEWINGPREFERENCESTHEME_DARK ViewingPreferencesTheme = "dark"
 )
 
 var allowedViewingPreferencesThemeEnumValues = []ViewingPreferencesTheme{

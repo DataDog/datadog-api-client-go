@@ -2,36 +2,37 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV2.SecurityMonitoringRuleCreatePayload{
-		CloudConfigurationRuleCreatePayload: &datadogV2.CloudConfigurationRuleCreatePayload{
-			Type:      datadogV2.CLOUDCONFIGURATIONRULETYPE_CLOUD_CONFIGURATION.Ptr(),
-			Name:      "Example-Security-Monitoring_cloud",
-			IsEnabled: false,
-			Cases: []datadogV2.CloudConfigurationRuleCaseCreate{
-				{
-					Status: datadogV2.SECURITYMONITORINGRULESEVERITY_INFO,
-					Notifications: []string{
-						"channel",
-					},
-				},
-			},
-			Options: datadogV2.CloudConfigurationRuleOptions{
-				ComplianceRuleOptions: datadogV2.CloudConfigurationComplianceRuleOptions{
-					ResourceType: datadog.PtrString("gcp_compute_disk"),
-					ComplexRule:  datadog.PtrBool(false),
-					RegoRule: &datadogV2.CloudConfigurationRegoRule{
-						Policy: `package datadog
+CloudConfigurationRuleCreatePayload: &datadogV2.CloudConfigurationRuleCreatePayload{
+Type: datadogV2.CLOUDCONFIGURATIONRULETYPE_CLOUD_CONFIGURATION.Ptr(),
+Name: "Example-Security-Monitoring_cloud",
+IsEnabled: false,
+Cases: []datadogV2.CloudConfigurationRuleCaseCreate{
+{
+Status: datadogV2.SECURITYMONITORINGRULESEVERITY_INFO,
+Notifications: []string{
+"channel",
+},
+},
+},
+Options: datadogV2.CloudConfigurationRuleOptions{
+ComplianceRuleOptions: datadogV2.CloudConfigurationComplianceRuleOptions{
+ResourceType: datadog.PtrString("gcp_compute_disk"),
+ComplexRule: datadog.PtrBool(false),
+RegoRule: &datadogV2.CloudConfigurationRegoRule{
+Policy: `package datadog
 
 import data.datadog.output as dd_output
 
@@ -53,38 +54,38 @@ results contains result if {
 	result := dd_output.format(resource, eval(resource))
 }
 `,
-						ResourceTypes: []string{
-							"gcp_compute_disk",
-						},
-					},
-				},
-			},
-			Message: "ddd",
-			Tags: []string{
-				"my:tag",
-			},
-			ComplianceSignalOptions: datadogV2.CloudConfigurationRuleComplianceSignalOptions{
-				UserActivationStatus: *datadog.NewNullableBool(datadog.PtrBool(true)),
-				UserGroupByFields: *datadog.NewNullableList(&[]string{
-					"@account_id",
-				}),
-			},
-			Filters: []datadogV2.SecurityMonitoringFilter{
-				{
-					Action: datadogV2.SECURITYMONITORINGFILTERACTION_REQUIRE.Ptr(),
-					Query:  datadog.PtrString("resource_id:helo*"),
-				},
-				{
-					Action: datadogV2.SECURITYMONITORINGFILTERACTION_SUPPRESS.Ptr(),
-					Query:  datadog.PtrString("control:helo*"),
-				},
-			},
-		}}
+ResourceTypes: []string{
+"gcp_compute_disk",
+},
+},
+},
+},
+Message: "ddd",
+Tags: []string{
+"my:tag",
+},
+ComplianceSignalOptions: datadogV2.CloudConfigurationRuleComplianceSignalOptions{
+UserActivationStatus: *datadog.NewNullableBool(datadog.PtrBool(true)),
+UserGroupByFields: *datadog.NewNullableList(&[]string{
+"@account_id",
+}),
+},
+Filters: []datadogV2.SecurityMonitoringFilter{
+{
+Action: datadogV2.SECURITYMONITORINGFILTERACTION_REQUIRE.Ptr(),
+Query: datadog.PtrString("resource_id:helo*"),
+},
+{
+Action: datadogV2.SECURITYMONITORINGFILTERACTION_SUPPRESS.Ptr(),
+Query: datadog.PtrString("control:helo*"),
+},
+},
+}}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.CreateSecurityMonitoringRule(ctx, body)
+	resp, r, err := api.CreateSecurityMonitoringRule(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityMonitoringRule`: %v\n", err)

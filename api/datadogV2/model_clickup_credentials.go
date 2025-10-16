@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ClickupCredentials - The definition of the `ClickupCredentials` object.
 type ClickupCredentials struct {
@@ -56,6 +62,7 @@ func (obj ClickupCredentials) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.ClickupAPIKey)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj ClickupCredentials) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ClickupCredentials) GetActualInstance() interface{} {
+func (obj *ClickupCredentials) GetActualInstance() (interface{}) {
 	if obj.ClickupAPIKey != nil {
 		return obj.ClickupAPIKey
 	}
+
 
 	// all schemas are nil
 	return nil

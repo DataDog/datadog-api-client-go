@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CancelDataDeletionResponseBody The response from the cancel data deletion request endpoint.
 type CancelDataDeletionResponseBody struct {
@@ -15,9 +21,10 @@ type CancelDataDeletionResponseBody struct {
 	// The metadata of the data deletion response.
 	Meta *DataDeletionResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCancelDataDeletionResponseBody instantiates a new CancelDataDeletionResponseBody object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewCancelDataDeletionResponseBodyWithDefaults() *CancelDataDeletionResponse
 	this := CancelDataDeletionResponseBody{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *CancelDataDeletionResponseBody) GetData() DataDeletionResponseItem {
 	if o == nil || o.Data == nil {
@@ -64,6 +70,7 @@ func (o *CancelDataDeletionResponseBody) SetData(v DataDeletionResponseItem) {
 	o.Data = &v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *CancelDataDeletionResponseBody) GetMeta() DataDeletionResponseMeta {
 	if o == nil || o.Meta == nil {
@@ -91,6 +98,8 @@ func (o *CancelDataDeletionResponseBody) HasMeta() bool {
 func (o *CancelDataDeletionResponseBody) SetMeta(v DataDeletionResponseMeta) {
 	o.Meta = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CancelDataDeletionResponseBody) MarshalJSON() ([]byte, error) {
@@ -122,17 +131,17 @@ func (o *CancelDataDeletionResponseBody) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Data = all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

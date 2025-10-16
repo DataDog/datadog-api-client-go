@@ -2,29 +2,33 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AppBuilderEventName The triggering action for the event.
 type AppBuilderEventName string
 
 // List of AppBuilderEventName.
 const (
-	APPBUILDEREVENTNAME_PAGECHANGE          AppBuilderEventName = "pageChange"
-	APPBUILDEREVENTNAME_TABLEROWCLICK       AppBuilderEventName = "tableRowClick"
+	APPBUILDEREVENTNAME_PAGECHANGE AppBuilderEventName = "pageChange"
+	APPBUILDEREVENTNAME_TABLEROWCLICK AppBuilderEventName = "tableRowClick"
 	APPBUILDEREVENTNAME_TABLEROWBUTTONCLICK AppBuilderEventName = "_tableRowButtonClick"
-	APPBUILDEREVENTNAME_CHANGE              AppBuilderEventName = "change"
-	APPBUILDEREVENTNAME_SUBMIT              AppBuilderEventName = "submit"
-	APPBUILDEREVENTNAME_CLICK               AppBuilderEventName = "click"
-	APPBUILDEREVENTNAME_TOGGLEOPEN          AppBuilderEventName = "toggleOpen"
-	APPBUILDEREVENTNAME_CLOSE               AppBuilderEventName = "close"
-	APPBUILDEREVENTNAME_OPEN                AppBuilderEventName = "open"
-	APPBUILDEREVENTNAME_EXECUTIONFINISHED   AppBuilderEventName = "executionFinished"
+	APPBUILDEREVENTNAME_CHANGE AppBuilderEventName = "change"
+	APPBUILDEREVENTNAME_SUBMIT AppBuilderEventName = "submit"
+	APPBUILDEREVENTNAME_CLICK AppBuilderEventName = "click"
+	APPBUILDEREVENTNAME_TOGGLEOPEN AppBuilderEventName = "toggleOpen"
+	APPBUILDEREVENTNAME_CLOSE AppBuilderEventName = "close"
+	APPBUILDEREVENTNAME_OPEN AppBuilderEventName = "open"
+	APPBUILDEREVENTNAME_EXECUTIONFINISHED AppBuilderEventName = "executionFinished"
 )
 
 var allowedAppBuilderEventNameEnumValues = []AppBuilderEventName{

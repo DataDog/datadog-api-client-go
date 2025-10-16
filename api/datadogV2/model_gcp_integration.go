@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GCPIntegration The definition of the `GCPIntegration` object.
 type GCPIntegration struct {
@@ -17,9 +21,10 @@ type GCPIntegration struct {
 	// The definition of the `GCPIntegrationType` object.
 	Type GCPIntegrationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGCPIntegration instantiates a new GCPIntegration object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewGCPIntegrationWithDefaults() *GCPIntegration {
 	this := GCPIntegration{}
 	return &this
 }
-
 // GetCredentials returns the Credentials field value.
 func (o *GCPIntegration) GetCredentials() GCPCredentials {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *GCPIntegration) GetCredentialsOk() (*GCPCredentials, bool) {
 func (o *GCPIntegration) SetCredentials(v GCPCredentials) {
 	o.Credentials = v
 }
+
 
 // GetType returns the Type field value.
 func (o *GCPIntegration) GetType() GCPIntegrationType {
@@ -86,6 +91,8 @@ func (o *GCPIntegration) SetType(v GCPIntegrationType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o GCPIntegration) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o GCPIntegration) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GCPIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Credentials *GCPCredentials     `json:"credentials"`
-		Type        *GCPIntegrationType `json:"type"`
+		Credentials *GCPCredentials `json:"credentials"`
+		Type *GCPIntegrationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *GCPIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"credentials", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "credentials", "type",  })
 	} else {
 		return err
 	}

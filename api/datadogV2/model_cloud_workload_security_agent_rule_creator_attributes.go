@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudWorkloadSecurityAgentRuleCreatorAttributes The attributes of the user who created the Agent rule
 type CloudWorkloadSecurityAgentRuleCreatorAttributes struct {
@@ -15,9 +21,10 @@ type CloudWorkloadSecurityAgentRuleCreatorAttributes struct {
 	// The name of the user
 	Name datadog.NullableString `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudWorkloadSecurityAgentRuleCreatorAttributes instantiates a new CloudWorkloadSecurityAgentRuleCreatorAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewCloudWorkloadSecurityAgentRuleCreatorAttributesWithDefaults() *CloudWork
 	this := CloudWorkloadSecurityAgentRuleCreatorAttributes{}
 	return &this
 }
-
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) GetHandle() string {
 	if o == nil || o.Handle == nil {
@@ -64,6 +70,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) SetHandle(v string) {
 	o.Handle = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) GetName() string {
 	if o == nil || o.Name.Get() == nil {
@@ -77,7 +84,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) GetName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Name.Get(), o.Name.IsSet()
@@ -92,7 +99,6 @@ func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) HasName() bool {
 func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) SetName(v string) {
 	o.Name.Set(&v)
 }
-
 // SetNameNil sets the value for Name to be an explicit nil.
 func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) SetNameNil() {
 	o.Name.Set(nil)
@@ -102,6 +108,8 @@ func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) SetNameNil() {
 func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) UnsetName() {
 	o.Name.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudWorkloadSecurityAgentRuleCreatorAttributes) MarshalJSON() ([]byte, error) {
@@ -125,15 +133,15 @@ func (o CloudWorkloadSecurityAgentRuleCreatorAttributes) MarshalJSON() ([]byte, 
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRuleCreatorAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Handle *string                `json:"handle,omitempty"`
-		Name   datadog.NullableString `json:"name,omitempty"`
+		Handle *string `json:"handle,omitempty"`
+		Name datadog.NullableString `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"handle", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "handle", "name",  })
 	} else {
 		return err
 	}

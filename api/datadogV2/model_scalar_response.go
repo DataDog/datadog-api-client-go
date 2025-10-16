@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScalarResponse A message containing the response to a scalar query.
 type ScalarResponse struct {
@@ -15,9 +21,10 @@ type ScalarResponse struct {
 	// The type of the resource. The value should always be scalar_response.
 	Type *ScalarFormulaResponseType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScalarResponse instantiates a new ScalarResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewScalarResponseWithDefaults() *ScalarResponse {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *ScalarResponse) GetAttributes() ScalarFormulaResponseAtrributes {
 	if o == nil || o.Attributes == nil {
@@ -67,6 +73,7 @@ func (o *ScalarResponse) HasAttributes() bool {
 func (o *ScalarResponse) SetAttributes(v ScalarFormulaResponseAtrributes) {
 	o.Attributes = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ScalarResponse) GetType() ScalarFormulaResponseType {
@@ -96,6 +103,8 @@ func (o *ScalarResponse) SetType(v ScalarFormulaResponseType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ScalarResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -119,24 +128,24 @@ func (o ScalarResponse) MarshalJSON() ([]byte, error) {
 func (o *ScalarResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *ScalarFormulaResponseAtrributes `json:"attributes,omitempty"`
-		Type       *ScalarFormulaResponseType       `json:"type,omitempty"`
+		Type *ScalarFormulaResponseType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

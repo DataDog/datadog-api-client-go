@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeCreateRequestAttributes Downtime details.
 type DowntimeCreateRequestAttributes struct {
@@ -31,9 +35,10 @@ type DowntimeCreateRequestAttributes struct {
 	// The scope to which the downtime applies. Must follow the [common search syntax](https://docs.datadoghq.com/logs/explorer/search_syntax/).
 	Scope string `json:"scope"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDowntimeCreateRequestAttributes instantiates a new DowntimeCreateRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +62,6 @@ func NewDowntimeCreateRequestAttributesWithDefaults() *DowntimeCreateRequestAttr
 	this.DisplayTimezone = *datadog.NewNullableString(&displayTimezone)
 	return &this
 }
-
 // GetDisplayTimezone returns the DisplayTimezone field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DowntimeCreateRequestAttributes) GetDisplayTimezone() string {
 	if o == nil || o.DisplayTimezone.Get() == nil {
@@ -71,7 +75,7 @@ func (o *DowntimeCreateRequestAttributes) GetDisplayTimezone() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeCreateRequestAttributes) GetDisplayTimezoneOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.DisplayTimezone.Get(), o.DisplayTimezone.IsSet()
@@ -86,7 +90,6 @@ func (o *DowntimeCreateRequestAttributes) HasDisplayTimezone() bool {
 func (o *DowntimeCreateRequestAttributes) SetDisplayTimezone(v string) {
 	o.DisplayTimezone.Set(&v)
 }
-
 // SetDisplayTimezoneNil sets the value for DisplayTimezone to be an explicit nil.
 func (o *DowntimeCreateRequestAttributes) SetDisplayTimezoneNil() {
 	o.DisplayTimezone.Set(nil)
@@ -96,6 +99,7 @@ func (o *DowntimeCreateRequestAttributes) SetDisplayTimezoneNil() {
 func (o *DowntimeCreateRequestAttributes) UnsetDisplayTimezone() {
 	o.DisplayTimezone.Unset()
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DowntimeCreateRequestAttributes) GetMessage() string {
@@ -110,7 +114,7 @@ func (o *DowntimeCreateRequestAttributes) GetMessage() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeCreateRequestAttributes) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Message.Get(), o.Message.IsSet()
@@ -125,7 +129,6 @@ func (o *DowntimeCreateRequestAttributes) HasMessage() bool {
 func (o *DowntimeCreateRequestAttributes) SetMessage(v string) {
 	o.Message.Set(&v)
 }
-
 // SetMessageNil sets the value for Message to be an explicit nil.
 func (o *DowntimeCreateRequestAttributes) SetMessageNil() {
 	o.Message.Set(nil)
@@ -135,6 +138,7 @@ func (o *DowntimeCreateRequestAttributes) SetMessageNil() {
 func (o *DowntimeCreateRequestAttributes) UnsetMessage() {
 	o.Message.Unset()
 }
+
 
 // GetMonitorIdentifier returns the MonitorIdentifier field value.
 func (o *DowntimeCreateRequestAttributes) GetMonitorIdentifier() DowntimeMonitorIdentifier {
@@ -158,6 +162,7 @@ func (o *DowntimeCreateRequestAttributes) GetMonitorIdentifierOk() (*DowntimeMon
 func (o *DowntimeCreateRequestAttributes) SetMonitorIdentifier(v DowntimeMonitorIdentifier) {
 	o.MonitorIdentifier = v
 }
+
 
 // GetMuteFirstRecoveryNotification returns the MuteFirstRecoveryNotification field value if set, zero value otherwise.
 func (o *DowntimeCreateRequestAttributes) GetMuteFirstRecoveryNotification() bool {
@@ -187,6 +192,7 @@ func (o *DowntimeCreateRequestAttributes) SetMuteFirstRecoveryNotification(v boo
 	o.MuteFirstRecoveryNotification = &v
 }
 
+
 // GetNotifyEndStates returns the NotifyEndStates field value if set, zero value otherwise.
 func (o *DowntimeCreateRequestAttributes) GetNotifyEndStates() []DowntimeNotifyEndStateTypes {
 	if o == nil || o.NotifyEndStates == nil {
@@ -214,6 +220,7 @@ func (o *DowntimeCreateRequestAttributes) HasNotifyEndStates() bool {
 func (o *DowntimeCreateRequestAttributes) SetNotifyEndStates(v []DowntimeNotifyEndStateTypes) {
 	o.NotifyEndStates = v
 }
+
 
 // GetNotifyEndTypes returns the NotifyEndTypes field value if set, zero value otherwise.
 func (o *DowntimeCreateRequestAttributes) GetNotifyEndTypes() []DowntimeNotifyEndStateActions {
@@ -243,6 +250,7 @@ func (o *DowntimeCreateRequestAttributes) SetNotifyEndTypes(v []DowntimeNotifyEn
 	o.NotifyEndTypes = v
 }
 
+
 // GetSchedule returns the Schedule field value if set, zero value otherwise.
 func (o *DowntimeCreateRequestAttributes) GetSchedule() DowntimeScheduleCreateRequest {
 	if o == nil || o.Schedule == nil {
@@ -271,6 +279,7 @@ func (o *DowntimeCreateRequestAttributes) SetSchedule(v DowntimeScheduleCreateRe
 	o.Schedule = &v
 }
 
+
 // GetScope returns the Scope field value.
 func (o *DowntimeCreateRequestAttributes) GetScope() string {
 	if o == nil {
@@ -293,6 +302,8 @@ func (o *DowntimeCreateRequestAttributes) GetScopeOk() (*string, bool) {
 func (o *DowntimeCreateRequestAttributes) SetScope(v string) {
 	o.Scope = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeCreateRequestAttributes) MarshalJSON() ([]byte, error) {
@@ -330,14 +341,14 @@ func (o DowntimeCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DisplayTimezone               datadog.NullableString          `json:"display_timezone,omitempty"`
-		Message                       datadog.NullableString          `json:"message,omitempty"`
-		MonitorIdentifier             *DowntimeMonitorIdentifier      `json:"monitor_identifier"`
-		MuteFirstRecoveryNotification *bool                           `json:"mute_first_recovery_notification,omitempty"`
-		NotifyEndStates               []DowntimeNotifyEndStateTypes   `json:"notify_end_states,omitempty"`
-		NotifyEndTypes                []DowntimeNotifyEndStateActions `json:"notify_end_types,omitempty"`
-		Schedule                      *DowntimeScheduleCreateRequest  `json:"schedule,omitempty"`
-		Scope                         *string                         `json:"scope"`
+		DisplayTimezone datadog.NullableString `json:"display_timezone,omitempty"`
+		Message datadog.NullableString `json:"message,omitempty"`
+		MonitorIdentifier *DowntimeMonitorIdentifier `json:"monitor_identifier"`
+		MuteFirstRecoveryNotification *bool `json:"mute_first_recovery_notification,omitempty"`
+		NotifyEndStates []DowntimeNotifyEndStateTypes `json:"notify_end_states,omitempty"`
+		NotifyEndTypes []DowntimeNotifyEndStateActions `json:"notify_end_types,omitempty"`
+		Schedule *DowntimeScheduleCreateRequest `json:"schedule,omitempty"`
+		Scope *string `json:"scope"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -350,7 +361,7 @@ func (o *DowntimeCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"display_timezone", "message", "monitor_identifier", "mute_first_recovery_notification", "notify_end_states", "notify_end_types", "schedule", "scope"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "display_timezone", "message", "monitor_identifier", "mute_first_recovery_notification", "notify_end_states", "notify_end_types", "schedule", "scope",  })
 	} else {
 		return err
 	}

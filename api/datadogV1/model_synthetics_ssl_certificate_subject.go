@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsSSLCertificateSubject Object describing the SSL certificate used for the test.
 type SyntheticsSSLCertificateSubject struct {
@@ -25,9 +31,10 @@ type SyntheticsSSLCertificateSubject struct {
 	// Subject Alternative Name associated with the certificate.
 	AltName *string `json:"altName,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsSSLCertificateSubject instantiates a new SyntheticsSSLCertificateSubject object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +52,6 @@ func NewSyntheticsSSLCertificateSubjectWithDefaults() *SyntheticsSSLCertificateS
 	this := SyntheticsSSLCertificateSubject{}
 	return &this
 }
-
 // GetC returns the C field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificateSubject) GetC() string {
 	if o == nil || o.C == nil {
@@ -73,6 +79,7 @@ func (o *SyntheticsSSLCertificateSubject) HasC() bool {
 func (o *SyntheticsSSLCertificateSubject) SetC(v string) {
 	o.C = &v
 }
+
 
 // GetCn returns the Cn field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificateSubject) GetCn() string {
@@ -102,6 +109,7 @@ func (o *SyntheticsSSLCertificateSubject) SetCn(v string) {
 	o.Cn = &v
 }
 
+
 // GetL returns the L field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificateSubject) GetL() string {
 	if o == nil || o.L == nil {
@@ -129,6 +137,7 @@ func (o *SyntheticsSSLCertificateSubject) HasL() bool {
 func (o *SyntheticsSSLCertificateSubject) SetL(v string) {
 	o.L = &v
 }
+
 
 // GetO returns the O field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificateSubject) GetO() string {
@@ -158,6 +167,7 @@ func (o *SyntheticsSSLCertificateSubject) SetO(v string) {
 	o.O = &v
 }
 
+
 // GetOu returns the Ou field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificateSubject) GetOu() string {
 	if o == nil || o.Ou == nil {
@@ -185,6 +195,7 @@ func (o *SyntheticsSSLCertificateSubject) HasOu() bool {
 func (o *SyntheticsSSLCertificateSubject) SetOu(v string) {
 	o.Ou = &v
 }
+
 
 // GetSt returns the St field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificateSubject) GetSt() string {
@@ -214,6 +225,7 @@ func (o *SyntheticsSSLCertificateSubject) SetSt(v string) {
 	o.St = &v
 }
 
+
 // GetAltName returns the AltName field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificateSubject) GetAltName() string {
 	if o == nil || o.AltName == nil {
@@ -241,6 +253,8 @@ func (o *SyntheticsSSLCertificateSubject) HasAltName() bool {
 func (o *SyntheticsSSLCertificateSubject) SetAltName(v string) {
 	o.AltName = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsSSLCertificateSubject) MarshalJSON() ([]byte, error) {
@@ -279,12 +293,12 @@ func (o SyntheticsSSLCertificateSubject) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsSSLCertificateSubject) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		C       *string `json:"C,omitempty"`
-		Cn      *string `json:"CN,omitempty"`
-		L       *string `json:"L,omitempty"`
-		O       *string `json:"O,omitempty"`
-		Ou      *string `json:"OU,omitempty"`
-		St      *string `json:"ST,omitempty"`
+		C *string `json:"C,omitempty"`
+		Cn *string `json:"CN,omitempty"`
+		L *string `json:"L,omitempty"`
+		O *string `json:"O,omitempty"`
+		Ou *string `json:"OU,omitempty"`
+		St *string `json:"ST,omitempty"`
 		AltName *string `json:"altName,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -292,7 +306,7 @@ func (o *SyntheticsSSLCertificateSubject) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"C", "CN", "L", "O", "OU", "ST", "altName"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "C", "CN", "L", "O", "OU", "ST", "altName",  })
 	} else {
 		return err
 	}

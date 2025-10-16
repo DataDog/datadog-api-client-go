@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppPipelineLevel Pipeline execution level.
 type CIAppPipelineLevel string
@@ -16,10 +20,10 @@ type CIAppPipelineLevel string
 // List of CIAppPipelineLevel.
 const (
 	CIAPPPIPELINELEVEL_PIPELINE CIAppPipelineLevel = "pipeline"
-	CIAPPPIPELINELEVEL_STAGE    CIAppPipelineLevel = "stage"
-	CIAPPPIPELINELEVEL_JOB      CIAppPipelineLevel = "job"
-	CIAPPPIPELINELEVEL_STEP     CIAppPipelineLevel = "step"
-	CIAPPPIPELINELEVEL_CUSTOM   CIAppPipelineLevel = "custom"
+	CIAPPPIPELINELEVEL_STAGE CIAppPipelineLevel = "stage"
+	CIAPPPIPELINELEVEL_JOB CIAppPipelineLevel = "job"
+	CIAPPPIPELINELEVEL_STEP CIAppPipelineLevel = "step"
+	CIAPPPIPELINELEVEL_CUSTOM CIAppPipelineLevel = "custom"
 )
 
 var allowedCIAppPipelineLevelEnumValues = []CIAppPipelineLevel{

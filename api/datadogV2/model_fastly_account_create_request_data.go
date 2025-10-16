@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FastlyAccountCreateRequestData Data object for creating a Fastly account.
 type FastlyAccountCreateRequestData struct {
@@ -17,9 +21,10 @@ type FastlyAccountCreateRequestData struct {
 	// The JSON:API type for this API. Should always be `fastly-accounts`.
 	Type FastlyAccountType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFastlyAccountCreateRequestData instantiates a new FastlyAccountCreateRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewFastlyAccountCreateRequestDataWithDefaults() *FastlyAccountCreateRequest
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *FastlyAccountCreateRequestData) GetAttributes() FastlyAccountCreateRequestAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *FastlyAccountCreateRequestData) GetAttributesOk() (*FastlyAccountCreate
 func (o *FastlyAccountCreateRequestData) SetAttributes(v FastlyAccountCreateRequestAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *FastlyAccountCreateRequestData) GetType() FastlyAccountType {
@@ -88,6 +93,8 @@ func (o *FastlyAccountCreateRequestData) SetType(v FastlyAccountType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FastlyAccountCreateRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o FastlyAccountCreateRequestData) MarshalJSON() ([]byte, error) {
 func (o *FastlyAccountCreateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *FastlyAccountCreateRequestAttributes `json:"attributes"`
-		Type       *FastlyAccountType                    `json:"type"`
+		Type *FastlyAccountType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *FastlyAccountCreateRequestData) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

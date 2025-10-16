@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleData Object for a single WAF custom rule.
 type ApplicationSecurityWafCustomRuleData struct {
@@ -17,9 +23,10 @@ type ApplicationSecurityWafCustomRuleData struct {
 	// The type of the resource. The value should always be `custom_rule`.
 	Type *ApplicationSecurityWafCustomRuleType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafCustomRuleData instantiates a new ApplicationSecurityWafCustomRuleData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewApplicationSecurityWafCustomRuleDataWithDefaults() *ApplicationSecurityW
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleData) GetAttributes() ApplicationSecurityWafCustomRuleAttributes {
 	if o == nil || o.Attributes == nil {
@@ -69,6 +75,7 @@ func (o *ApplicationSecurityWafCustomRuleData) HasAttributes() bool {
 func (o *ApplicationSecurityWafCustomRuleData) SetAttributes(v ApplicationSecurityWafCustomRuleAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleData) GetId() string {
@@ -98,6 +105,7 @@ func (o *ApplicationSecurityWafCustomRuleData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleData) GetType() ApplicationSecurityWafCustomRuleType {
 	if o == nil || o.Type == nil {
@@ -126,6 +134,8 @@ func (o *ApplicationSecurityWafCustomRuleData) SetType(v ApplicationSecurityWafC
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafCustomRuleData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -152,26 +162,26 @@ func (o ApplicationSecurityWafCustomRuleData) MarshalJSON() ([]byte, error) {
 func (o *ApplicationSecurityWafCustomRuleData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *ApplicationSecurityWafCustomRuleAttributes `json:"attributes,omitempty"`
-		Id         *string                                     `json:"id,omitempty"`
-		Type       *ApplicationSecurityWafCustomRuleType       `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *ApplicationSecurityWafCustomRuleType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

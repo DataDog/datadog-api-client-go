@@ -2,23 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppPipelineEventJobStatus The final status of the job.
 type CIAppPipelineEventJobStatus string
 
 // List of CIAppPipelineEventJobStatus.
 const (
-	CIAPPPIPELINEEVENTJOBSTATUS_SUCCESS  CIAppPipelineEventJobStatus = "success"
-	CIAPPPIPELINEEVENTJOBSTATUS_ERROR    CIAppPipelineEventJobStatus = "error"
+	CIAPPPIPELINEEVENTJOBSTATUS_SUCCESS CIAppPipelineEventJobStatus = "success"
+	CIAPPPIPELINEEVENTJOBSTATUS_ERROR CIAppPipelineEventJobStatus = "error"
 	CIAPPPIPELINEEVENTJOBSTATUS_CANCELED CIAppPipelineEventJobStatus = "canceled"
-	CIAPPPIPELINEEVENTJOBSTATUS_SKIPPED  CIAppPipelineEventJobStatus = "skipped"
+	CIAPPPIPELINEEVENTJOBSTATUS_SKIPPED CIAppPipelineEventJobStatus = "skipped"
 )
 
 var allowedCIAppPipelineEventJobStatusEnumValues = []CIAppPipelineEventJobStatus{

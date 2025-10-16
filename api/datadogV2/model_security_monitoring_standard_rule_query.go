@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringStandardRuleQuery Query for matching rule.
 type SecurityMonitoringStandardRuleQuery struct {
@@ -38,9 +44,10 @@ type SecurityMonitoringStandardRuleQuery struct {
 	// Query to run on logs.
 	Query *string `json:"query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringStandardRuleQuery instantiates a new SecurityMonitoringStandardRuleQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -66,7 +73,6 @@ func NewSecurityMonitoringStandardRuleQueryWithDefaults() *SecurityMonitoringSta
 	this.HasOptionalGroupByFields = &hasOptionalGroupByFields
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleQuery) GetAggregation() SecurityMonitoringRuleQueryAggregation {
 	if o == nil || o.Aggregation == nil {
@@ -94,6 +100,7 @@ func (o *SecurityMonitoringStandardRuleQuery) HasAggregation() bool {
 func (o *SecurityMonitoringStandardRuleQuery) SetAggregation(v SecurityMonitoringRuleQueryAggregation) {
 	o.Aggregation = &v
 }
+
 
 // GetCustomQueryExtension returns the CustomQueryExtension field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleQuery) GetCustomQueryExtension() string {
@@ -123,6 +130,7 @@ func (o *SecurityMonitoringStandardRuleQuery) SetCustomQueryExtension(v string) 
 	o.CustomQueryExtension = &v
 }
 
+
 // GetDataSource returns the DataSource field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleQuery) GetDataSource() SecurityMonitoringStandardDataSource {
 	if o == nil || o.DataSource == nil {
@@ -150,6 +158,7 @@ func (o *SecurityMonitoringStandardRuleQuery) HasDataSource() bool {
 func (o *SecurityMonitoringStandardRuleQuery) SetDataSource(v SecurityMonitoringStandardDataSource) {
 	o.DataSource = &v
 }
+
 
 // GetDistinctFields returns the DistinctFields field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleQuery) GetDistinctFields() []string {
@@ -179,6 +188,7 @@ func (o *SecurityMonitoringStandardRuleQuery) SetDistinctFields(v []string) {
 	o.DistinctFields = v
 }
 
+
 // GetGroupByFields returns the GroupByFields field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleQuery) GetGroupByFields() []string {
 	if o == nil || o.GroupByFields == nil {
@@ -206,6 +216,7 @@ func (o *SecurityMonitoringStandardRuleQuery) HasGroupByFields() bool {
 func (o *SecurityMonitoringStandardRuleQuery) SetGroupByFields(v []string) {
 	o.GroupByFields = v
 }
+
 
 // GetHasOptionalGroupByFields returns the HasOptionalGroupByFields field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleQuery) GetHasOptionalGroupByFields() bool {
@@ -235,6 +246,7 @@ func (o *SecurityMonitoringStandardRuleQuery) SetHasOptionalGroupByFields(v bool
 	o.HasOptionalGroupByFields = &v
 }
 
+
 // GetIndex returns the Index field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleQuery) GetIndex() string {
 	if o == nil || o.Index == nil {
@@ -263,6 +275,7 @@ func (o *SecurityMonitoringStandardRuleQuery) SetIndex(v string) {
 	o.Index = &v
 }
 
+
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleQuery) GetIndexes() []string {
 	if o == nil || o.Indexes == nil {
@@ -290,6 +303,7 @@ func (o *SecurityMonitoringStandardRuleQuery) HasIndexes() bool {
 func (o *SecurityMonitoringStandardRuleQuery) SetIndexes(v []string) {
 	o.Indexes = v
 }
+
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
 // Deprecated
@@ -322,6 +336,7 @@ func (o *SecurityMonitoringStandardRuleQuery) SetMetric(v string) {
 	o.Metric = &v
 }
 
+
 // GetMetrics returns the Metrics field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleQuery) GetMetrics() []string {
 	if o == nil || o.Metrics == nil {
@@ -349,6 +364,7 @@ func (o *SecurityMonitoringStandardRuleQuery) HasMetrics() bool {
 func (o *SecurityMonitoringStandardRuleQuery) SetMetrics(v []string) {
 	o.Metrics = v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleQuery) GetName() string {
@@ -378,6 +394,7 @@ func (o *SecurityMonitoringStandardRuleQuery) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleQuery) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -405,6 +422,8 @@ func (o *SecurityMonitoringStandardRuleQuery) HasQuery() bool {
 func (o *SecurityMonitoringStandardRuleQuery) SetQuery(v string) {
 	o.Query = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringStandardRuleQuery) MarshalJSON() ([]byte, error) {
@@ -458,37 +477,37 @@ func (o SecurityMonitoringStandardRuleQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringStandardRuleQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Aggregation              *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
-		CustomQueryExtension     *string                                 `json:"customQueryExtension,omitempty"`
-		DataSource               *SecurityMonitoringStandardDataSource   `json:"dataSource,omitempty"`
-		DistinctFields           []string                                `json:"distinctFields,omitempty"`
-		GroupByFields            []string                                `json:"groupByFields,omitempty"`
-		HasOptionalGroupByFields *bool                                   `json:"hasOptionalGroupByFields,omitempty"`
-		Index                    *string                                 `json:"index,omitempty"`
-		Indexes                  []string                                `json:"indexes,omitempty"`
-		Metric                   *string                                 `json:"metric,omitempty"`
-		Metrics                  []string                                `json:"metrics,omitempty"`
-		Name                     *string                                 `json:"name,omitempty"`
-		Query                    *string                                 `json:"query,omitempty"`
+		Aggregation *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
+		CustomQueryExtension *string `json:"customQueryExtension,omitempty"`
+		DataSource *SecurityMonitoringStandardDataSource `json:"dataSource,omitempty"`
+		DistinctFields []string `json:"distinctFields,omitempty"`
+		GroupByFields []string `json:"groupByFields,omitempty"`
+		HasOptionalGroupByFields *bool `json:"hasOptionalGroupByFields,omitempty"`
+		Index *string `json:"index,omitempty"`
+		Indexes []string `json:"indexes,omitempty"`
+		Metric *string `json:"metric,omitempty"`
+		Metrics []string `json:"metrics,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Query *string `json:"query,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "customQueryExtension", "dataSource", "distinctFields", "groupByFields", "hasOptionalGroupByFields", "index", "indexes", "metric", "metrics", "name", "query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregation", "customQueryExtension", "dataSource", "distinctFields", "groupByFields", "hasOptionalGroupByFields", "index", "indexes", "metric", "metrics", "name", "query",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Aggregation != nil && !all.Aggregation.IsValid() {
+	if all.Aggregation != nil &&!all.Aggregation.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Aggregation = all.Aggregation
 	}
 	o.CustomQueryExtension = all.CustomQueryExtension
-	if all.DataSource != nil && !all.DataSource.IsValid() {
+	if all.DataSource != nil &&!all.DataSource.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.DataSource = all.DataSource

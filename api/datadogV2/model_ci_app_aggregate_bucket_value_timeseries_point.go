@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppAggregateBucketValueTimeseriesPoint A timeseries point.
 type CIAppAggregateBucketValueTimeseriesPoint struct {
@@ -17,9 +21,10 @@ type CIAppAggregateBucketValueTimeseriesPoint struct {
 	// The value for this point.
 	Value *float64 `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCIAppAggregateBucketValueTimeseriesPoint instantiates a new CIAppAggregateBucketValueTimeseriesPoint object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewCIAppAggregateBucketValueTimeseriesPointWithDefaults() *CIAppAggregateBu
 	this := CIAppAggregateBucketValueTimeseriesPoint{}
 	return &this
 }
-
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *CIAppAggregateBucketValueTimeseriesPoint) GetTime() time.Time {
 	if o == nil || o.Time == nil {
@@ -65,6 +69,7 @@ func (o *CIAppAggregateBucketValueTimeseriesPoint) HasTime() bool {
 func (o *CIAppAggregateBucketValueTimeseriesPoint) SetTime(v time.Time) {
 	o.Time = &v
 }
+
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *CIAppAggregateBucketValueTimeseriesPoint) GetValue() float64 {
@@ -94,6 +99,8 @@ func (o *CIAppAggregateBucketValueTimeseriesPoint) SetValue(v float64) {
 	o.Value = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppAggregateBucketValueTimeseriesPoint) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -120,15 +127,15 @@ func (o CIAppAggregateBucketValueTimeseriesPoint) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppAggregateBucketValueTimeseriesPoint) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Time  *time.Time `json:"time,omitempty"`
-		Value *float64   `json:"value,omitempty"`
+		Time *time.Time `json:"time,omitempty"`
+		Value *float64 `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"time", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "time", "value",  })
 	} else {
 		return err
 	}

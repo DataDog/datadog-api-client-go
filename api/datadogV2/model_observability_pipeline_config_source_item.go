@@ -2,30 +2,36 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineConfigSourceItem - A data source for the pipeline.
 type ObservabilityPipelineConfigSourceItem struct {
-	ObservabilityPipelineKafkaSource              *ObservabilityPipelineKafkaSource
-	ObservabilityPipelineDatadogAgentSource       *ObservabilityPipelineDatadogAgentSource
-	ObservabilityPipelineSplunkTcpSource          *ObservabilityPipelineSplunkTcpSource
-	ObservabilityPipelineSplunkHecSource          *ObservabilityPipelineSplunkHecSource
-	ObservabilityPipelineAmazonS3Source           *ObservabilityPipelineAmazonS3Source
-	ObservabilityPipelineFluentdSource            *ObservabilityPipelineFluentdSource
-	ObservabilityPipelineFluentBitSource          *ObservabilityPipelineFluentBitSource
-	ObservabilityPipelineHttpServerSource         *ObservabilityPipelineHttpServerSource
-	ObservabilityPipelineSumoLogicSource          *ObservabilityPipelineSumoLogicSource
-	ObservabilityPipelineRsyslogSource            *ObservabilityPipelineRsyslogSource
-	ObservabilityPipelineSyslogNgSource           *ObservabilityPipelineSyslogNgSource
+	ObservabilityPipelineKafkaSource *ObservabilityPipelineKafkaSource
+	ObservabilityPipelineDatadogAgentSource *ObservabilityPipelineDatadogAgentSource
+	ObservabilityPipelineSplunkTcpSource *ObservabilityPipelineSplunkTcpSource
+	ObservabilityPipelineSplunkHecSource *ObservabilityPipelineSplunkHecSource
+	ObservabilityPipelineAmazonS3Source *ObservabilityPipelineAmazonS3Source
+	ObservabilityPipelineFluentdSource *ObservabilityPipelineFluentdSource
+	ObservabilityPipelineFluentBitSource *ObservabilityPipelineFluentBitSource
+	ObservabilityPipelineHttpServerSource *ObservabilityPipelineHttpServerSource
+	ObservabilityPipelineSumoLogicSource *ObservabilityPipelineSumoLogicSource
+	ObservabilityPipelineRsyslogSource *ObservabilityPipelineRsyslogSource
+	ObservabilityPipelineSyslogNgSource *ObservabilityPipelineSyslogNgSource
 	ObservabilityPipelineAmazonDataFirehoseSource *ObservabilityPipelineAmazonDataFirehoseSource
-	ObservabilityPipelineGooglePubSubSource       *ObservabilityPipelineGooglePubSubSource
-	ObservabilityPipelineHttpClientSource         *ObservabilityPipelineHttpClientSource
-	ObservabilityPipelineLogstashSource           *ObservabilityPipelineLogstashSource
-	ObservabilityPipelineSocketSource             *ObservabilityPipelineSocketSource
+	ObservabilityPipelineGooglePubSubSource *ObservabilityPipelineGooglePubSubSource
+	ObservabilityPipelineHttpClientSource *ObservabilityPipelineHttpClientSource
+	ObservabilityPipelineLogstashSource *ObservabilityPipelineLogstashSource
+	ObservabilityPipelineSocketSource *ObservabilityPipelineSocketSource
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -416,65 +422,81 @@ func (obj ObservabilityPipelineConfigSourceItem) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.ObservabilityPipelineKafkaSource)
 	}
 
+
 	if obj.ObservabilityPipelineDatadogAgentSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineDatadogAgentSource)
 	}
+
 
 	if obj.ObservabilityPipelineSplunkTcpSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSplunkTcpSource)
 	}
 
+
 	if obj.ObservabilityPipelineSplunkHecSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSplunkHecSource)
 	}
+
 
 	if obj.ObservabilityPipelineAmazonS3Source != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineAmazonS3Source)
 	}
 
+
 	if obj.ObservabilityPipelineFluentdSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineFluentdSource)
 	}
+
 
 	if obj.ObservabilityPipelineFluentBitSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineFluentBitSource)
 	}
 
+
 	if obj.ObservabilityPipelineHttpServerSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineHttpServerSource)
 	}
+
 
 	if obj.ObservabilityPipelineSumoLogicSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSumoLogicSource)
 	}
 
+
 	if obj.ObservabilityPipelineRsyslogSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineRsyslogSource)
 	}
+
 
 	if obj.ObservabilityPipelineSyslogNgSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSyslogNgSource)
 	}
 
+
 	if obj.ObservabilityPipelineAmazonDataFirehoseSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineAmazonDataFirehoseSource)
 	}
+
 
 	if obj.ObservabilityPipelineGooglePubSubSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineGooglePubSubSource)
 	}
 
+
 	if obj.ObservabilityPipelineHttpClientSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineHttpClientSource)
 	}
+
 
 	if obj.ObservabilityPipelineLogstashSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineLogstashSource)
 	}
 
+
 	if obj.ObservabilityPipelineSocketSource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSocketSource)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -483,70 +505,86 @@ func (obj ObservabilityPipelineConfigSourceItem) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ObservabilityPipelineConfigSourceItem) GetActualInstance() interface{} {
+func (obj *ObservabilityPipelineConfigSourceItem) GetActualInstance() (interface{}) {
 	if obj.ObservabilityPipelineKafkaSource != nil {
 		return obj.ObservabilityPipelineKafkaSource
 	}
+
 
 	if obj.ObservabilityPipelineDatadogAgentSource != nil {
 		return obj.ObservabilityPipelineDatadogAgentSource
 	}
 
+
 	if obj.ObservabilityPipelineSplunkTcpSource != nil {
 		return obj.ObservabilityPipelineSplunkTcpSource
 	}
+
 
 	if obj.ObservabilityPipelineSplunkHecSource != nil {
 		return obj.ObservabilityPipelineSplunkHecSource
 	}
 
+
 	if obj.ObservabilityPipelineAmazonS3Source != nil {
 		return obj.ObservabilityPipelineAmazonS3Source
 	}
+
 
 	if obj.ObservabilityPipelineFluentdSource != nil {
 		return obj.ObservabilityPipelineFluentdSource
 	}
 
+
 	if obj.ObservabilityPipelineFluentBitSource != nil {
 		return obj.ObservabilityPipelineFluentBitSource
 	}
+
 
 	if obj.ObservabilityPipelineHttpServerSource != nil {
 		return obj.ObservabilityPipelineHttpServerSource
 	}
 
+
 	if obj.ObservabilityPipelineSumoLogicSource != nil {
 		return obj.ObservabilityPipelineSumoLogicSource
 	}
+
 
 	if obj.ObservabilityPipelineRsyslogSource != nil {
 		return obj.ObservabilityPipelineRsyslogSource
 	}
 
+
 	if obj.ObservabilityPipelineSyslogNgSource != nil {
 		return obj.ObservabilityPipelineSyslogNgSource
 	}
+
 
 	if obj.ObservabilityPipelineAmazonDataFirehoseSource != nil {
 		return obj.ObservabilityPipelineAmazonDataFirehoseSource
 	}
 
+
 	if obj.ObservabilityPipelineGooglePubSubSource != nil {
 		return obj.ObservabilityPipelineGooglePubSubSource
 	}
+
 
 	if obj.ObservabilityPipelineHttpClientSource != nil {
 		return obj.ObservabilityPipelineHttpClientSource
 	}
 
+
 	if obj.ObservabilityPipelineLogstashSource != nil {
 		return obj.ObservabilityPipelineLogstashSource
 	}
 
+
 	if obj.ObservabilityPipelineSocketSource != nil {
 		return obj.ObservabilityPipelineSocketSource
 	}
+
 
 	// all schemas are nil
 	return nil

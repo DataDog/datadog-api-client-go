@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineAmazonOpenSearchDestinationAuth Authentication settings for the Amazon OpenSearch destination.
 // The `strategy` field determines whether basic or AWS-based authentication is used.
@@ -24,9 +28,10 @@ type ObservabilityPipelineAmazonOpenSearchDestinationAuth struct {
 	// The authentication strategy to use.
 	Strategy ObservabilityPipelineAmazonOpenSearchDestinationAuthStrategy `json:"strategy"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineAmazonOpenSearchDestinationAuth instantiates a new ObservabilityPipelineAmazonOpenSearchDestinationAuth object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewObservabilityPipelineAmazonOpenSearchDestinationAuthWithDefaults() *Obse
 	this := ObservabilityPipelineAmazonOpenSearchDestinationAuth{}
 	return &this
 }
-
 // GetAssumeRole returns the AssumeRole field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) GetAssumeRole() string {
 	if o == nil || o.AssumeRole == nil {
@@ -73,6 +77,7 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) HasAssumeRole() b
 func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) SetAssumeRole(v string) {
 	o.AssumeRole = &v
 }
+
 
 // GetAwsRegion returns the AwsRegion field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) GetAwsRegion() string {
@@ -102,6 +107,7 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) SetAwsRegion(v st
 	o.AwsRegion = &v
 }
 
+
 // GetExternalId returns the ExternalId field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) GetExternalId() string {
 	if o == nil || o.ExternalId == nil {
@@ -129,6 +135,7 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) HasExternalId() b
 func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) SetExternalId(v string) {
 	o.ExternalId = &v
 }
+
 
 // GetSessionName returns the SessionName field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) GetSessionName() string {
@@ -158,6 +165,7 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) SetSessionName(v 
 	o.SessionName = &v
 }
 
+
 // GetStrategy returns the Strategy field value.
 func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) GetStrategy() ObservabilityPipelineAmazonOpenSearchDestinationAuthStrategy {
 	if o == nil {
@@ -180,6 +188,8 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) GetStrategyOk() (
 func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) SetStrategy(v ObservabilityPipelineAmazonOpenSearchDestinationAuthStrategy) {
 	o.Strategy = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineAmazonOpenSearchDestinationAuth) MarshalJSON() ([]byte, error) {
@@ -210,11 +220,11 @@ func (o ObservabilityPipelineAmazonOpenSearchDestinationAuth) MarshalJSON() ([]b
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AssumeRole  *string                                                       `json:"assume_role,omitempty"`
-		AwsRegion   *string                                                       `json:"aws_region,omitempty"`
-		ExternalId  *string                                                       `json:"external_id,omitempty"`
-		SessionName *string                                                       `json:"session_name,omitempty"`
-		Strategy    *ObservabilityPipelineAmazonOpenSearchDestinationAuthStrategy `json:"strategy"`
+		AssumeRole *string `json:"assume_role,omitempty"`
+		AwsRegion *string `json:"aws_region,omitempty"`
+		ExternalId *string `json:"external_id,omitempty"`
+		SessionName *string `json:"session_name,omitempty"`
+		Strategy *ObservabilityPipelineAmazonOpenSearchDestinationAuthStrategy `json:"strategy"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -224,7 +234,7 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestinationAuth) UnmarshalJSON(byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assume_role", "aws_region", "external_id", "session_name", "strategy"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "assume_role", "aws_region", "external_id", "session_name", "strategy",  })
 	} else {
 		return err
 	}

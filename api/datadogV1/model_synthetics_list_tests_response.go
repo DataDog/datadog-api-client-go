@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsListTestsResponse Object containing an array of Synthetic tests configuration.
 type SyntheticsListTestsResponse struct {
 	// Array of Synthetic tests configuration.
 	Tests []SyntheticsTestDetails `json:"tests,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsListTestsResponse instantiates a new SyntheticsListTestsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewSyntheticsListTestsResponseWithDefaults() *SyntheticsListTestsResponse {
 	this := SyntheticsListTestsResponse{}
 	return &this
 }
-
 // GetTests returns the Tests field value if set, zero value otherwise.
 func (o *SyntheticsListTestsResponse) GetTests() []SyntheticsTestDetails {
 	if o == nil || o.Tests == nil {
@@ -62,6 +68,8 @@ func (o *SyntheticsListTestsResponse) SetTests(v []SyntheticsTestDetails) {
 	o.Tests = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsListTestsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *SyntheticsListTestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"tests"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "tests",  })
 	} else {
 		return err
 	}

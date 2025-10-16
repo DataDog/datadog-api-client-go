@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScheduleDataAttributes Provides core properties of a schedule object such as its name and time zone.
 type ScheduleDataAttributes struct {
@@ -15,9 +21,10 @@ type ScheduleDataAttributes struct {
 	// The time zone in which this schedule operates.
 	TimeZone *string `json:"time_zone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScheduleDataAttributes instantiates a new ScheduleDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewScheduleDataAttributesWithDefaults() *ScheduleDataAttributes {
 	this := ScheduleDataAttributes{}
 	return &this
 }
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ScheduleDataAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -63,6 +69,7 @@ func (o *ScheduleDataAttributes) HasName() bool {
 func (o *ScheduleDataAttributes) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetTimeZone returns the TimeZone field value if set, zero value otherwise.
 func (o *ScheduleDataAttributes) GetTimeZone() string {
@@ -92,6 +99,8 @@ func (o *ScheduleDataAttributes) SetTimeZone(v string) {
 	o.TimeZone = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ScheduleDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o ScheduleDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ScheduleDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name     *string `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 		TimeZone *string `json:"time_zone,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *ScheduleDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "time_zone"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "time_zone",  })
 	} else {
 		return err
 	}

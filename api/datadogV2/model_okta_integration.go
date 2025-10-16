@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OktaIntegration The definition of the `OktaIntegration` object.
 type OktaIntegration struct {
@@ -17,9 +21,10 @@ type OktaIntegration struct {
 	// The definition of the `OktaIntegrationType` object.
 	Type OktaIntegrationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOktaIntegration instantiates a new OktaIntegration object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewOktaIntegrationWithDefaults() *OktaIntegration {
 	this := OktaIntegration{}
 	return &this
 }
-
 // GetCredentials returns the Credentials field value.
 func (o *OktaIntegration) GetCredentials() OktaCredentials {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *OktaIntegration) GetCredentialsOk() (*OktaCredentials, bool) {
 func (o *OktaIntegration) SetCredentials(v OktaCredentials) {
 	o.Credentials = v
 }
+
 
 // GetType returns the Type field value.
 func (o *OktaIntegration) GetType() OktaIntegrationType {
@@ -86,6 +91,8 @@ func (o *OktaIntegration) SetType(v OktaIntegrationType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OktaIntegration) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o OktaIntegration) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OktaIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Credentials *OktaCredentials     `json:"credentials"`
-		Type        *OktaIntegrationType `json:"type"`
+		Credentials *OktaCredentials `json:"credentials"`
+		Type *OktaIntegrationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *OktaIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"credentials", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "credentials", "type",  })
 	} else {
 		return err
 	}

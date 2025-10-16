@@ -2,14 +2,15 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -18,7 +19,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.GetSPARecommendations", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSpaApi(apiClient)
-	resp, r, err := api.GetSPARecommendations(ctx, "shard", "service")
+	resp, r, err := api.GetSPARecommendations(ctx, "shard", "service", )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SpaApi.GetSPARecommendations`: %v\n", err)

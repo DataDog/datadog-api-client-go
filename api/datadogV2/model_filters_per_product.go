@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FiltersPerProduct Product-specific filters for the dataset.
 type FiltersPerProduct struct {
@@ -21,9 +25,10 @@ type FiltersPerProduct struct {
 	// 'metrics', 'logs', 'error_tracking', and 'cloud_cost'.
 	Product string `json:"product"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFiltersPerProduct instantiates a new FiltersPerProduct object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewFiltersPerProductWithDefaults() *FiltersPerProduct {
 	this := FiltersPerProduct{}
 	return &this
 }
-
 // GetFilters returns the Filters field value.
 func (o *FiltersPerProduct) GetFilters() []string {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *FiltersPerProduct) GetFiltersOk() (*[]string, bool) {
 func (o *FiltersPerProduct) SetFilters(v []string) {
 	o.Filters = v
 }
+
 
 // GetProduct returns the Product field value.
 func (o *FiltersPerProduct) GetProduct() string {
@@ -90,6 +95,8 @@ func (o *FiltersPerProduct) SetProduct(v string) {
 	o.Product = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FiltersPerProduct) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -109,7 +116,7 @@ func (o FiltersPerProduct) MarshalJSON() ([]byte, error) {
 func (o *FiltersPerProduct) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Filters *[]string `json:"filters"`
-		Product *string   `json:"product"`
+		Product *string `json:"product"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -122,7 +129,7 @@ func (o *FiltersPerProduct) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"filters", "product"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "filters", "product",  })
 	} else {
 		return err
 	}

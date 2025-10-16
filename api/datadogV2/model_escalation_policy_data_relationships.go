@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EscalationPolicyDataRelationships Represents the relationships for an escalation policy, including references to steps and teams.
 type EscalationPolicyDataRelationships struct {
@@ -17,9 +21,10 @@ type EscalationPolicyDataRelationships struct {
 	// Associates teams with this schedule in a data structure.
 	Teams *DataRelationshipsTeams `json:"teams,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEscalationPolicyDataRelationships instantiates a new EscalationPolicyDataRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewEscalationPolicyDataRelationshipsWithDefaults() *EscalationPolicyDataRel
 	this := EscalationPolicyDataRelationships{}
 	return &this
 }
-
 // GetSteps returns the Steps field value.
 func (o *EscalationPolicyDataRelationships) GetSteps() EscalationPolicyDataRelationshipsSteps {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *EscalationPolicyDataRelationships) GetStepsOk() (*EscalationPolicyDataR
 func (o *EscalationPolicyDataRelationships) SetSteps(v EscalationPolicyDataRelationshipsSteps) {
 	o.Steps = v
 }
+
 
 // GetTeams returns the Teams field value if set, zero value otherwise.
 func (o *EscalationPolicyDataRelationships) GetTeams() DataRelationshipsTeams {
@@ -90,6 +95,8 @@ func (o *EscalationPolicyDataRelationships) SetTeams(v DataRelationshipsTeams) {
 	o.Teams = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EscalationPolicyDataRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o EscalationPolicyDataRelationships) MarshalJSON() ([]byte, error) {
 func (o *EscalationPolicyDataRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Steps *EscalationPolicyDataRelationshipsSteps `json:"steps"`
-		Teams *DataRelationshipsTeams                 `json:"teams,omitempty"`
+		Teams *DataRelationshipsTeams `json:"teams,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *EscalationPolicyDataRelationships) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"steps", "teams"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "steps", "teams",  })
 	} else {
 		return err
 	}
@@ -131,7 +138,7 @@ func (o *EscalationPolicyDataRelationships) UnmarshalJSON(bytes []byte) (err err
 		hasInvalidField = true
 	}
 	o.Steps = *all.Steps
-	if all.Teams != nil && all.Teams.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Teams != nil && all.Teams.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Teams = all.Teams

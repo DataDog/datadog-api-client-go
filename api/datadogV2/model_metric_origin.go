@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricOrigin Metric origin information.
 type MetricOrigin struct {
@@ -17,9 +23,10 @@ type MetricOrigin struct {
 	// The origin service code
 	Service *int32 `json:"service,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricOrigin instantiates a new MetricOrigin object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +56,6 @@ func NewMetricOriginWithDefaults() *MetricOrigin {
 	this.Service = &service
 	return &this
 }
-
 // GetMetricType returns the MetricType field value if set, zero value otherwise.
 func (o *MetricOrigin) GetMetricType() int32 {
 	if o == nil || o.MetricType == nil {
@@ -77,6 +83,7 @@ func (o *MetricOrigin) HasMetricType() bool {
 func (o *MetricOrigin) SetMetricType(v int32) {
 	o.MetricType = &v
 }
+
 
 // GetProduct returns the Product field value if set, zero value otherwise.
 func (o *MetricOrigin) GetProduct() int32 {
@@ -106,6 +113,7 @@ func (o *MetricOrigin) SetProduct(v int32) {
 	o.Product = &v
 }
 
+
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *MetricOrigin) GetService() int32 {
 	if o == nil || o.Service == nil {
@@ -134,6 +142,8 @@ func (o *MetricOrigin) SetService(v int32) {
 	o.Service = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricOrigin) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -160,15 +170,15 @@ func (o MetricOrigin) MarshalJSON() ([]byte, error) {
 func (o *MetricOrigin) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		MetricType *int32 `json:"metric_type,omitempty"`
-		Product    *int32 `json:"product,omitempty"`
-		Service    *int32 `json:"service,omitempty"`
+		Product *int32 `json:"product,omitempty"`
+		Service *int32 `json:"service,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"metric_type", "product", "service"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "metric_type", "product", "service",  })
 	} else {
 		return err
 	}

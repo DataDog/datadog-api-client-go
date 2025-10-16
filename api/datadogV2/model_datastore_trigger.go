@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DatastoreTrigger Trigger a workflow from a Datastore. For automatic triggering a handle must be configured and the workflow must be published.
 type DatastoreTrigger struct {
 	// Defines a rate limit for a trigger.
 	RateLimit *TriggerRateLimit `json:"rateLimit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDatastoreTrigger instantiates a new DatastoreTrigger object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewDatastoreTriggerWithDefaults() *DatastoreTrigger {
 	this := DatastoreTrigger{}
 	return &this
 }
-
 // GetRateLimit returns the RateLimit field value if set, zero value otherwise.
 func (o *DatastoreTrigger) GetRateLimit() TriggerRateLimit {
 	if o == nil || o.RateLimit == nil {
@@ -62,6 +68,8 @@ func (o *DatastoreTrigger) SetRateLimit(v TriggerRateLimit) {
 	o.RateLimit = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DatastoreTrigger) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *DatastoreTrigger) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"rateLimit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "rateLimit",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.RateLimit != nil && all.RateLimit.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.RateLimit != nil && all.RateLimit.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.RateLimit = all.RateLimit

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RoutingRuleAction - Defines an action that is executed when a routing rule matches certain criteria.
 type RoutingRuleAction struct {
@@ -80,9 +86,11 @@ func (obj RoutingRuleAction) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SendSlackMessageAction)
 	}
 
+
 	if obj.SendTeamsMessageAction != nil {
 		return datadog.Marshal(&obj.SendTeamsMessageAction)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj RoutingRuleAction) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *RoutingRuleAction) GetActualInstance() interface{} {
+func (obj *RoutingRuleAction) GetActualInstance() (interface{}) {
 	if obj.SendSlackMessageAction != nil {
 		return obj.SendSlackMessageAction
 	}
 
+
 	if obj.SendTeamsMessageAction != nil {
 		return obj.SendTeamsMessageAction
 	}
+
 
 	// all schemas are nil
 	return nil

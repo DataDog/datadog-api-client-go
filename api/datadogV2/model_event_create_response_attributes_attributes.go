@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventCreateResponseAttributesAttributes JSON object for category-specific attributes.
 type EventCreateResponseAttributesAttributes struct {
 	// JSON object of event system attributes.
 	Evt *EventCreateResponseAttributesAttributesEvt `json:"evt,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEventCreateResponseAttributesAttributes instantiates a new EventCreateResponseAttributesAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewEventCreateResponseAttributesAttributesWithDefaults() *EventCreateRespon
 	this := EventCreateResponseAttributesAttributes{}
 	return &this
 }
-
 // GetEvt returns the Evt field value if set, zero value otherwise.
 func (o *EventCreateResponseAttributesAttributes) GetEvt() EventCreateResponseAttributesAttributesEvt {
 	if o == nil || o.Evt == nil {
@@ -62,6 +68,8 @@ func (o *EventCreateResponseAttributesAttributes) SetEvt(v EventCreateResponseAt
 	o.Evt = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EventCreateResponseAttributesAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *EventCreateResponseAttributesAttributes) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"evt"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "evt",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Evt != nil && all.Evt.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Evt != nil && all.Evt.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Evt = all.Evt

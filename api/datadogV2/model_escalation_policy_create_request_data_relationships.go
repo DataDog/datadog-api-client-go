@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EscalationPolicyCreateRequestDataRelationships Represents relationships in an escalation policy creation request, including references to teams.
 type EscalationPolicyCreateRequestDataRelationships struct {
 	// Associates teams with this schedule in a data structure.
 	Teams *DataRelationshipsTeams `json:"teams,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEscalationPolicyCreateRequestDataRelationships instantiates a new EscalationPolicyCreateRequestDataRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewEscalationPolicyCreateRequestDataRelationshipsWithDefaults() *Escalation
 	this := EscalationPolicyCreateRequestDataRelationships{}
 	return &this
 }
-
 // GetTeams returns the Teams field value if set, zero value otherwise.
 func (o *EscalationPolicyCreateRequestDataRelationships) GetTeams() DataRelationshipsTeams {
 	if o == nil || o.Teams == nil {
@@ -62,6 +68,8 @@ func (o *EscalationPolicyCreateRequestDataRelationships) SetTeams(v DataRelation
 	o.Teams = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EscalationPolicyCreateRequestDataRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *EscalationPolicyCreateRequestDataRelationships) UnmarshalJSON(bytes []b
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"teams"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "teams",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Teams != nil && all.Teams.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Teams != nil && all.Teams.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Teams = all.Teams

@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAPITestResultFullCheck Object describing the API test configuration.
 type SyntheticsAPITestResultFullCheck struct {
 	// Configuration object for a Synthetic test.
 	Config SyntheticsTestConfig `json:"config"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsAPITestResultFullCheck instantiates a new SyntheticsAPITestResultFullCheck object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewSyntheticsAPITestResultFullCheckWithDefaults() *SyntheticsAPITestResultF
 	this := SyntheticsAPITestResultFullCheck{}
 	return &this
 }
-
 // GetConfig returns the Config field value.
 func (o *SyntheticsAPITestResultFullCheck) GetConfig() SyntheticsTestConfig {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *SyntheticsAPITestResultFullCheck) GetConfigOk() (*SyntheticsTestConfig,
 func (o *SyntheticsAPITestResultFullCheck) SetConfig(v SyntheticsTestConfig) {
 	o.Config = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAPITestResultFullCheck) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *SyntheticsAPITestResultFullCheck) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"config"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "config",  })
 	} else {
 		return err
 	}

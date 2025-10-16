@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricTagConfigurationAttributes Object containing the definition of a metric tag configuration attributes.
 type MetricTagConfigurationAttributes struct {
@@ -30,9 +34,10 @@ type MetricTagConfigurationAttributes struct {
 	// List of tag keys on which to group.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricTagConfigurationAttributes instantiates a new MetricTagConfigurationAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewMetricTagConfigurationAttributesWithDefaults() *MetricTagConfigurationAt
 	this.MetricType = &metricType
 	return &this
 }
-
 // GetAggregations returns the Aggregations field value if set, zero value otherwise.
 func (o *MetricTagConfigurationAttributes) GetAggregations() []MetricCustomAggregation {
 	if o == nil || o.Aggregations == nil {
@@ -82,6 +86,7 @@ func (o *MetricTagConfigurationAttributes) HasAggregations() bool {
 func (o *MetricTagConfigurationAttributes) SetAggregations(v []MetricCustomAggregation) {
 	o.Aggregations = v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *MetricTagConfigurationAttributes) GetCreatedAt() time.Time {
@@ -111,6 +116,7 @@ func (o *MetricTagConfigurationAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+
 // GetExcludeTagsMode returns the ExcludeTagsMode field value if set, zero value otherwise.
 func (o *MetricTagConfigurationAttributes) GetExcludeTagsMode() bool {
 	if o == nil || o.ExcludeTagsMode == nil {
@@ -138,6 +144,7 @@ func (o *MetricTagConfigurationAttributes) HasExcludeTagsMode() bool {
 func (o *MetricTagConfigurationAttributes) SetExcludeTagsMode(v bool) {
 	o.ExcludeTagsMode = &v
 }
+
 
 // GetIncludePercentiles returns the IncludePercentiles field value if set, zero value otherwise.
 func (o *MetricTagConfigurationAttributes) GetIncludePercentiles() bool {
@@ -167,6 +174,7 @@ func (o *MetricTagConfigurationAttributes) SetIncludePercentiles(v bool) {
 	o.IncludePercentiles = &v
 }
 
+
 // GetMetricType returns the MetricType field value if set, zero value otherwise.
 func (o *MetricTagConfigurationAttributes) GetMetricType() MetricTagConfigurationMetricTypes {
 	if o == nil || o.MetricType == nil {
@@ -194,6 +202,7 @@ func (o *MetricTagConfigurationAttributes) HasMetricType() bool {
 func (o *MetricTagConfigurationAttributes) SetMetricType(v MetricTagConfigurationMetricTypes) {
 	o.MetricType = &v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *MetricTagConfigurationAttributes) GetModifiedAt() time.Time {
@@ -223,6 +232,7 @@ func (o *MetricTagConfigurationAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MetricTagConfigurationAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -250,6 +260,8 @@ func (o *MetricTagConfigurationAttributes) HasTags() bool {
 func (o *MetricTagConfigurationAttributes) SetTags(v []string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricTagConfigurationAttributes) MarshalJSON() ([]byte, error) {
@@ -296,20 +308,20 @@ func (o MetricTagConfigurationAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricTagConfigurationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Aggregations       []MetricCustomAggregation          `json:"aggregations,omitempty"`
-		CreatedAt          *time.Time                         `json:"created_at,omitempty"`
-		ExcludeTagsMode    *bool                              `json:"exclude_tags_mode,omitempty"`
-		IncludePercentiles *bool                              `json:"include_percentiles,omitempty"`
-		MetricType         *MetricTagConfigurationMetricTypes `json:"metric_type,omitempty"`
-		ModifiedAt         *time.Time                         `json:"modified_at,omitempty"`
-		Tags               []string                           `json:"tags,omitempty"`
+		Aggregations []MetricCustomAggregation `json:"aggregations,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		ExcludeTagsMode *bool `json:"exclude_tags_mode,omitempty"`
+		IncludePercentiles *bool `json:"include_percentiles,omitempty"`
+		MetricType *MetricTagConfigurationMetricTypes `json:"metric_type,omitempty"`
+		ModifiedAt *time.Time `json:"modified_at,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"aggregations", "created_at", "exclude_tags_mode", "include_percentiles", "metric_type", "modified_at", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "aggregations", "created_at", "exclude_tags_mode", "include_percentiles", "metric_type", "modified_at", "tags",  })
 	} else {
 		return err
 	}
@@ -319,7 +331,7 @@ func (o *MetricTagConfigurationAttributes) UnmarshalJSON(bytes []byte) (err erro
 	o.CreatedAt = all.CreatedAt
 	o.ExcludeTagsMode = all.ExcludeTagsMode
 	o.IncludePercentiles = all.IncludePercentiles
-	if all.MetricType != nil && !all.MetricType.IsValid() {
+	if all.MetricType != nil &&!all.MetricType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.MetricType = all.MetricType

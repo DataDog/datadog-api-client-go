@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DataDeletionResponseItem The created data deletion request information.
 type DataDeletionResponseItem struct {
@@ -19,9 +23,10 @@ type DataDeletionResponseItem struct {
 	// The type of the request created.
 	Type string `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDataDeletionResponseItem instantiates a new DataDeletionResponseItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewDataDeletionResponseItemWithDefaults() *DataDeletionResponseItem {
 	this := DataDeletionResponseItem{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *DataDeletionResponseItem) GetAttributes() DataDeletionResponseItemAttributes {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *DataDeletionResponseItem) GetAttributesOk() (*DataDeletionResponseItemA
 func (o *DataDeletionResponseItem) SetAttributes(v DataDeletionResponseItemAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *DataDeletionResponseItem) GetId() string {
@@ -89,6 +94,7 @@ func (o *DataDeletionResponseItem) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetType returns the Type field value.
 func (o *DataDeletionResponseItem) GetType() string {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *DataDeletionResponseItem) SetType(v string) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DataDeletionResponseItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -132,8 +140,8 @@ func (o DataDeletionResponseItem) MarshalJSON() ([]byte, error) {
 func (o *DataDeletionResponseItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *DataDeletionResponseItemAttributes `json:"attributes"`
-		Id         *string                             `json:"id"`
-		Type       *string                             `json:"type"`
+		Id *string `json:"id"`
+		Type *string `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *DataDeletionResponseItem) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

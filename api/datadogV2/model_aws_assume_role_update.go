@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSAssumeRoleUpdate The definition of `AWSAssumeRoleUpdate` object.
 type AWSAssumeRoleUpdate struct {
@@ -21,9 +25,10 @@ type AWSAssumeRoleUpdate struct {
 	// The definition of `AWSAssumeRoleType` object.
 	Type AWSAssumeRoleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSAssumeRoleUpdate instantiates a new AWSAssumeRoleUpdate object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewAWSAssumeRoleUpdateWithDefaults() *AWSAssumeRoleUpdate {
 	this := AWSAssumeRoleUpdate{}
 	return &this
 }
-
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
 func (o *AWSAssumeRoleUpdate) GetAccountId() string {
 	if o == nil || o.AccountId == nil {
@@ -70,6 +74,7 @@ func (o *AWSAssumeRoleUpdate) HasAccountId() bool {
 func (o *AWSAssumeRoleUpdate) SetAccountId(v string) {
 	o.AccountId = &v
 }
+
 
 // GetGenerateNewExternalId returns the GenerateNewExternalId field value if set, zero value otherwise.
 func (o *AWSAssumeRoleUpdate) GetGenerateNewExternalId() bool {
@@ -99,6 +104,7 @@ func (o *AWSAssumeRoleUpdate) SetGenerateNewExternalId(v bool) {
 	o.GenerateNewExternalId = &v
 }
 
+
 // GetRole returns the Role field value if set, zero value otherwise.
 func (o *AWSAssumeRoleUpdate) GetRole() string {
 	if o == nil || o.Role == nil {
@@ -127,6 +133,7 @@ func (o *AWSAssumeRoleUpdate) SetRole(v string) {
 	o.Role = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *AWSAssumeRoleUpdate) GetType() AWSAssumeRoleType {
 	if o == nil {
@@ -149,6 +156,8 @@ func (o *AWSAssumeRoleUpdate) GetTypeOk() (*AWSAssumeRoleType, bool) {
 func (o *AWSAssumeRoleUpdate) SetType(v AWSAssumeRoleType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSAssumeRoleUpdate) MarshalJSON() ([]byte, error) {
@@ -176,10 +185,10 @@ func (o AWSAssumeRoleUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSAssumeRoleUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountId             *string            `json:"account_id,omitempty"`
-		GenerateNewExternalId *bool              `json:"generate_new_external_id,omitempty"`
-		Role                  *string            `json:"role,omitempty"`
-		Type                  *AWSAssumeRoleType `json:"type"`
+		AccountId *string `json:"account_id,omitempty"`
+		GenerateNewExternalId *bool `json:"generate_new_external_id,omitempty"`
+		Role *string `json:"role,omitempty"`
+		Type *AWSAssumeRoleType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -189,7 +198,7 @@ func (o *AWSAssumeRoleUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "generate_new_external_id", "role", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "account_id", "generate_new_external_id", "role", "type",  })
 	} else {
 		return err
 	}

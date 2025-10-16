@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LayerAttributes Describes key properties of a Layer, including rotation details, name, start/end times, and any restrictions.
 type LayerAttributes struct {
@@ -25,9 +29,10 @@ type LayerAttributes struct {
 	// The date/time when the rotation starts (ISO 8601).
 	RotationStart *time.Time `json:"rotation_start,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLayerAttributes instantiates a new LayerAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewLayerAttributesWithDefaults() *LayerAttributes {
 	this := LayerAttributes{}
 	return &this
 }
-
 // GetEffectiveDate returns the EffectiveDate field value if set, zero value otherwise.
 func (o *LayerAttributes) GetEffectiveDate() time.Time {
 	if o == nil || o.EffectiveDate == nil {
@@ -73,6 +77,7 @@ func (o *LayerAttributes) HasEffectiveDate() bool {
 func (o *LayerAttributes) SetEffectiveDate(v time.Time) {
 	o.EffectiveDate = &v
 }
+
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
 func (o *LayerAttributes) GetEndDate() time.Time {
@@ -102,6 +107,7 @@ func (o *LayerAttributes) SetEndDate(v time.Time) {
 	o.EndDate = &v
 }
 
+
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *LayerAttributes) GetInterval() LayerAttributesInterval {
 	if o == nil || o.Interval == nil {
@@ -129,6 +135,7 @@ func (o *LayerAttributes) HasInterval() bool {
 func (o *LayerAttributes) SetInterval(v LayerAttributesInterval) {
 	o.Interval = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LayerAttributes) GetName() string {
@@ -158,6 +165,7 @@ func (o *LayerAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetRestrictions returns the Restrictions field value if set, zero value otherwise.
 func (o *LayerAttributes) GetRestrictions() []TimeRestriction {
 	if o == nil || o.Restrictions == nil {
@@ -186,6 +194,7 @@ func (o *LayerAttributes) SetRestrictions(v []TimeRestriction) {
 	o.Restrictions = v
 }
 
+
 // GetRotationStart returns the RotationStart field value if set, zero value otherwise.
 func (o *LayerAttributes) GetRotationStart() time.Time {
 	if o == nil || o.RotationStart == nil {
@@ -213,6 +222,8 @@ func (o *LayerAttributes) HasRotationStart() bool {
 func (o *LayerAttributes) SetRotationStart(v time.Time) {
 	o.RotationStart = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LayerAttributes) MarshalJSON() ([]byte, error) {
@@ -260,19 +271,19 @@ func (o LayerAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LayerAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		EffectiveDate *time.Time               `json:"effective_date,omitempty"`
-		EndDate       *time.Time               `json:"end_date,omitempty"`
-		Interval      *LayerAttributesInterval `json:"interval,omitempty"`
-		Name          *string                  `json:"name,omitempty"`
-		Restrictions  []TimeRestriction        `json:"restrictions,omitempty"`
-		RotationStart *time.Time               `json:"rotation_start,omitempty"`
+		EffectiveDate *time.Time `json:"effective_date,omitempty"`
+		EndDate *time.Time `json:"end_date,omitempty"`
+		Interval *LayerAttributesInterval `json:"interval,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Restrictions []TimeRestriction `json:"restrictions,omitempty"`
+		RotationStart *time.Time `json:"rotation_start,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"effective_date", "end_date", "interval", "name", "restrictions", "rotation_start"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "effective_date", "end_date", "interval", "name", "restrictions", "rotation_start",  })
 	} else {
 		return err
 	}
@@ -280,7 +291,7 @@ func (o *LayerAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.EffectiveDate = all.EffectiveDate
 	o.EndDate = all.EndDate
-	if all.Interval != nil && all.Interval.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Interval != nil && all.Interval.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Interval = all.Interval

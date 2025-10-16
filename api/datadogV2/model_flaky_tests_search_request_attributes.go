@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FlakyTestsSearchRequestAttributes Attributes for the flaky tests search request.
 type FlakyTestsSearchRequestAttributes struct {
@@ -17,9 +23,10 @@ type FlakyTestsSearchRequestAttributes struct {
 	// Parameter for sorting flaky test results. The default sort is by ascending Fully Qualified Name (FQN). The FQN is the concatenation of the test module, suite, and name.
 	Sort *FlakyTestsSearchSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFlakyTestsSearchRequestAttributes instantiates a new FlakyTestsSearchRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewFlakyTestsSearchRequestAttributesWithDefaults() *FlakyTestsSearchRequest
 	this := FlakyTestsSearchRequestAttributes{}
 	return &this
 }
-
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *FlakyTestsSearchRequestAttributes) GetFilter() FlakyTestsSearchFilter {
 	if o == nil || o.Filter == nil {
@@ -65,6 +71,7 @@ func (o *FlakyTestsSearchRequestAttributes) HasFilter() bool {
 func (o *FlakyTestsSearchRequestAttributes) SetFilter(v FlakyTestsSearchFilter) {
 	o.Filter = &v
 }
+
 
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *FlakyTestsSearchRequestAttributes) GetPage() FlakyTestsSearchPageOptions {
@@ -94,6 +101,7 @@ func (o *FlakyTestsSearchRequestAttributes) SetPage(v FlakyTestsSearchPageOption
 	o.Page = &v
 }
 
+
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *FlakyTestsSearchRequestAttributes) GetSort() FlakyTestsSearchSort {
 	if o == nil || o.Sort == nil {
@@ -122,6 +130,8 @@ func (o *FlakyTestsSearchRequestAttributes) SetSort(v FlakyTestsSearchSort) {
 	o.Sort = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FlakyTestsSearchRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,30 +157,30 @@ func (o FlakyTestsSearchRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FlakyTestsSearchRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Filter *FlakyTestsSearchFilter      `json:"filter,omitempty"`
-		Page   *FlakyTestsSearchPageOptions `json:"page,omitempty"`
-		Sort   *FlakyTestsSearchSort        `json:"sort,omitempty"`
+		Filter *FlakyTestsSearchFilter `json:"filter,omitempty"`
+		Page *FlakyTestsSearchPageOptions `json:"page,omitempty"`
+		Sort *FlakyTestsSearchSort `json:"sort,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "page", "sort"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "filter", "page", "sort",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Page = all.Page
-	if all.Sort != nil && !all.Sort.IsValid() {
+	if all.Sort != nil &&!all.Sort.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Sort = all.Sort

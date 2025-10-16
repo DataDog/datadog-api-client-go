@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OutboundEdge The definition of `OutboundEdge` object.
 type OutboundEdge struct {
@@ -17,9 +21,10 @@ type OutboundEdge struct {
 	// The `OutboundEdge` `nextStepName`.
 	NextStepName string `json:"nextStepName"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOutboundEdge instantiates a new OutboundEdge object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewOutboundEdgeWithDefaults() *OutboundEdge {
 	this := OutboundEdge{}
 	return &this
 }
-
 // GetBranchName returns the BranchName field value.
 func (o *OutboundEdge) GetBranchName() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *OutboundEdge) GetBranchNameOk() (*string, bool) {
 func (o *OutboundEdge) SetBranchName(v string) {
 	o.BranchName = v
 }
+
 
 // GetNextStepName returns the NextStepName field value.
 func (o *OutboundEdge) GetNextStepName() string {
@@ -86,6 +91,8 @@ func (o *OutboundEdge) SetNextStepName(v string) {
 	o.NextStepName = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OutboundEdge) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o OutboundEdge) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OutboundEdge) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BranchName   *string `json:"branchName"`
+		BranchName *string `json:"branchName"`
 		NextStepName *string `json:"nextStepName"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *OutboundEdge) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"branchName", "nextStepName"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "branchName", "nextStepName",  })
 	} else {
 		return err
 	}

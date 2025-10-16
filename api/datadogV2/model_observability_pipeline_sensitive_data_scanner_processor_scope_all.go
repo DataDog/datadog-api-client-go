@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessorScopeAll Applies scanning across all available fields.
 type ObservabilityPipelineSensitiveDataScannerProcessorScopeAll struct {
 	// Applies the rule to all fields.
 	Target ObservabilityPipelineSensitiveDataScannerProcessorScopeAllTarget `json:"target"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSensitiveDataScannerProcessorScopeAll instantiates a new ObservabilityPipelineSensitiveDataScannerProcessorScopeAll object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewObservabilityPipelineSensitiveDataScannerProcessorScopeAllWithDefaults()
 	this := ObservabilityPipelineSensitiveDataScannerProcessorScopeAll{}
 	return &this
 }
-
 // GetTarget returns the Target field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorScopeAll) GetTarget() ObservabilityPipelineSensitiveDataScannerProcessorScopeAllTarget {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorScopeAll) GetTargetOk
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorScopeAll) SetTarget(v ObservabilityPipelineSensitiveDataScannerProcessorScopeAllTarget) {
 	o.Target = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSensitiveDataScannerProcessorScopeAll) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorScopeAll) UnmarshalJS
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"target"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "target",  })
 	} else {
 		return err
 	}

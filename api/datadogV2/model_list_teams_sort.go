@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListTeamsSort Specifies the order of the returned teams
 type ListTeamsSort string
 
 // List of ListTeamsSort.
 const (
-	LISTTEAMSSORT_NAME        ListTeamsSort = "name"
-	LISTTEAMSSORT__NAME       ListTeamsSort = "-name"
-	LISTTEAMSSORT_USER_COUNT  ListTeamsSort = "user_count"
+	LISTTEAMSSORT_NAME ListTeamsSort = "name"
+	LISTTEAMSSORT__NAME ListTeamsSort = "-name"
+	LISTTEAMSSORT_USER_COUNT ListTeamsSort = "user_count"
 	LISTTEAMSSORT__USER_COUNT ListTeamsSort = "-user_count"
 )
 

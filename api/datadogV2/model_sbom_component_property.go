@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SBOMComponentProperty The custom property of the component of the SBOM.
 type SBOMComponentProperty struct {
@@ -17,9 +21,10 @@ type SBOMComponentProperty struct {
 	// The value of the custom property of the component of the SBOM.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSBOMComponentProperty instantiates a new SBOMComponentProperty object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSBOMComponentPropertyWithDefaults() *SBOMComponentProperty {
 	this := SBOMComponentProperty{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *SBOMComponentProperty) GetName() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *SBOMComponentProperty) GetNameOk() (*string, bool) {
 func (o *SBOMComponentProperty) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetValue returns the Value field value.
 func (o *SBOMComponentProperty) GetValue() string {
@@ -86,6 +91,8 @@ func (o *SBOMComponentProperty) SetValue(v string) {
 	o.Value = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SBOMComponentProperty) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o SBOMComponentProperty) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SBOMComponentProperty) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name  *string `json:"name"`
+		Name *string `json:"name"`
 		Value *string `json:"value"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *SBOMComponentProperty) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "value",  })
 	} else {
 		return err
 	}

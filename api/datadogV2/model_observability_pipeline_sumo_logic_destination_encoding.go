@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSumoLogicDestinationEncoding The output encoding format.
 type ObservabilityPipelineSumoLogicDestinationEncoding string
 
 // List of ObservabilityPipelineSumoLogicDestinationEncoding.
 const (
-	OBSERVABILITYPIPELINESUMOLOGICDESTINATIONENCODING_JSON        ObservabilityPipelineSumoLogicDestinationEncoding = "json"
+	OBSERVABILITYPIPELINESUMOLOGICDESTINATIONENCODING_JSON ObservabilityPipelineSumoLogicDestinationEncoding = "json"
 	OBSERVABILITYPIPELINESUMOLOGICDESTINATIONENCODING_RAW_MESSAGE ObservabilityPipelineSumoLogicDestinationEncoding = "raw_message"
-	OBSERVABILITYPIPELINESUMOLOGICDESTINATIONENCODING_LOGFMT      ObservabilityPipelineSumoLogicDestinationEncoding = "logfmt"
+	OBSERVABILITYPIPELINESUMOLOGICDESTINATIONENCODING_LOGFMT ObservabilityPipelineSumoLogicDestinationEncoding = "logfmt"
 )
 
 var allowedObservabilityPipelineSumoLogicDestinationEncodingEnumValues = []ObservabilityPipelineSumoLogicDestinationEncoding{

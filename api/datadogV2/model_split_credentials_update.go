@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SplitCredentialsUpdate - The definition of the `SplitCredentialsUpdate` object.
 type SplitCredentialsUpdate struct {
@@ -56,6 +62,7 @@ func (obj SplitCredentialsUpdate) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SplitAPIKeyUpdate)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj SplitCredentialsUpdate) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *SplitCredentialsUpdate) GetActualInstance() interface{} {
+func (obj *SplitCredentialsUpdate) GetActualInstance() (interface{}) {
 	if obj.SplitAPIKeyUpdate != nil {
 		return obj.SplitAPIKeyUpdate
 	}
+
 
 	// all schemas are nil
 	return nil

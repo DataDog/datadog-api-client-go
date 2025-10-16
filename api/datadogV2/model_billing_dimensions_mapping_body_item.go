@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // BillingDimensionsMappingBodyItem The mapping data for each billing dimension.
 type BillingDimensionsMappingBodyItem struct {
@@ -17,9 +23,10 @@ type BillingDimensionsMappingBodyItem struct {
 	// Type of active billing dimensions data.
 	Type *ActiveBillingDimensionsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewBillingDimensionsMappingBodyItem instantiates a new BillingDimensionsMappingBodyItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewBillingDimensionsMappingBodyItemWithDefaults() *BillingDimensionsMapping
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *BillingDimensionsMappingBodyItem) GetAttributes() BillingDimensionsMappingBodyItemAttributes {
 	if o == nil || o.Attributes == nil {
@@ -69,6 +75,7 @@ func (o *BillingDimensionsMappingBodyItem) HasAttributes() bool {
 func (o *BillingDimensionsMappingBodyItem) SetAttributes(v BillingDimensionsMappingBodyItemAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *BillingDimensionsMappingBodyItem) GetId() string {
@@ -98,6 +105,7 @@ func (o *BillingDimensionsMappingBodyItem) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *BillingDimensionsMappingBodyItem) GetType() ActiveBillingDimensionsType {
 	if o == nil || o.Type == nil {
@@ -126,6 +134,8 @@ func (o *BillingDimensionsMappingBodyItem) SetType(v ActiveBillingDimensionsType
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o BillingDimensionsMappingBodyItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -152,26 +162,26 @@ func (o BillingDimensionsMappingBodyItem) MarshalJSON() ([]byte, error) {
 func (o *BillingDimensionsMappingBodyItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *BillingDimensionsMappingBodyItemAttributes `json:"attributes,omitempty"`
-		Id         *string                                     `json:"id,omitempty"`
-		Type       *ActiveBillingDimensionsType                `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *ActiveBillingDimensionsType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

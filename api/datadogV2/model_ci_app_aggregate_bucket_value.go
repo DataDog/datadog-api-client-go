@@ -2,17 +2,23 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppAggregateBucketValue - A bucket value, can either be a timeseries or a single value.
 type CIAppAggregateBucketValue struct {
 	CIAppAggregateBucketValueSingleString *string
 	CIAppAggregateBucketValueSingleNumber *float64
-	CIAppAggregateBucketValueTimeseries   *CIAppAggregateBucketValueTimeseries
+	CIAppAggregateBucketValueTimeseries *CIAppAggregateBucketValueTimeseries
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -76,7 +82,7 @@ func (obj *CIAppAggregateBucketValue) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.CIAppAggregateBucketValueTimeseries != nil {
 			jsonCIAppAggregateBucketValueTimeseries, _ := datadog.Marshal(obj.CIAppAggregateBucketValueTimeseries)
-			if string(jsonCIAppAggregateBucketValueTimeseries) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonCIAppAggregateBucketValueTimeseries) == "{}" && string(data) != "{}"  { // empty struct
 				obj.CIAppAggregateBucketValueTimeseries = nil
 			} else {
 				match++
@@ -104,13 +110,16 @@ func (obj CIAppAggregateBucketValue) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.CIAppAggregateBucketValueSingleString)
 	}
 
+
 	if obj.CIAppAggregateBucketValueSingleNumber != nil {
 		return datadog.Marshal(&obj.CIAppAggregateBucketValueSingleNumber)
 	}
 
+
 	if obj.CIAppAggregateBucketValueTimeseries != nil {
 		return datadog.Marshal(&obj.CIAppAggregateBucketValueTimeseries)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj CIAppAggregateBucketValue) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *CIAppAggregateBucketValue) GetActualInstance() interface{} {
+func (obj *CIAppAggregateBucketValue) GetActualInstance() (interface{}) {
 	if obj.CIAppAggregateBucketValueSingleString != nil {
 		return obj.CIAppAggregateBucketValueSingleString
 	}
+
 
 	if obj.CIAppAggregateBucketValueSingleNumber != nil {
 		return obj.CIAppAggregateBucketValueSingleNumber
 	}
 
+
 	if obj.CIAppAggregateBucketValueTimeseries != nil {
 		return obj.CIAppAggregateBucketValueTimeseries
 	}
+
 
 	// all schemas are nil
 	return nil

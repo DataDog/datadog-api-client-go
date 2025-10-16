@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Library Vulnerability library.
 type Library struct {
@@ -17,9 +21,10 @@ type Library struct {
 	// Vulnerability library version.
 	Version *string `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLibrary instantiates a new Library object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewLibraryWithDefaults() *Library {
 	this := Library{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *Library) GetName() string {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *Library) GetNameOk() (*string, bool) {
 func (o *Library) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *Library) GetVersion() string {
@@ -90,6 +95,8 @@ func (o *Library) SetVersion(v string) {
 	o.Version = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o Library) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,7 +117,7 @@ func (o Library) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Library) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name    *string `json:"name"`
+		Name *string `json:"name"`
 		Version *string `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -121,7 +128,7 @@ func (o *Library) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "version",  })
 	} else {
 		return err
 	}

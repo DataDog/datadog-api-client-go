@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSplunkTcpSource The `splunk_tcp` source receives logs from a Splunk Universal Forwarder over TCP.
 // TLS is supported for secure transmission.
@@ -20,9 +24,10 @@ type ObservabilityPipelineSplunkTcpSource struct {
 	// The source type. Always `splunk_tcp`.
 	Type ObservabilityPipelineSplunkTcpSourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSplunkTcpSource instantiates a new ObservabilityPipelineSplunkTcpSource object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewObservabilityPipelineSplunkTcpSourceWithDefaults() *ObservabilityPipelin
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineSplunkTcpSource) GetId() string {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *ObservabilityPipelineSplunkTcpSource) GetIdOk() (*string, bool) {
 func (o *ObservabilityPipelineSplunkTcpSource) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetTls returns the Tls field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSplunkTcpSource) GetTls() ObservabilityPipelineTls {
@@ -96,6 +101,7 @@ func (o *ObservabilityPipelineSplunkTcpSource) SetTls(v ObservabilityPipelineTls
 	o.Tls = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineSplunkTcpSource) GetType() ObservabilityPipelineSplunkTcpSourceType {
 	if o == nil {
@@ -119,6 +125,8 @@ func (o *ObservabilityPipelineSplunkTcpSource) SetType(v ObservabilityPipelineSp
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSplunkTcpSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -140,8 +148,8 @@ func (o ObservabilityPipelineSplunkTcpSource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSplunkTcpSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                                   `json:"id"`
-		Tls  *ObservabilityPipelineTls                 `json:"tls,omitempty"`
+		Id *string `json:"id"`
+		Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
 		Type *ObservabilityPipelineSplunkTcpSourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -155,14 +163,14 @@ func (o *ObservabilityPipelineSplunkTcpSource) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "tls", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Id = *all.Id
-	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tls = all.Tls

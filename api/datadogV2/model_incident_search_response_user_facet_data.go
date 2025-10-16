@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentSearchResponseUserFacetData Facet data for user attributes of an incident.
 type IncidentSearchResponseUserFacetData struct {
@@ -21,9 +27,10 @@ type IncidentSearchResponseUserFacetData struct {
 	// ID of the user.
 	Uuid *string `json:"uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentSearchResponseUserFacetData instantiates a new IncidentSearchResponseUserFacetData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewIncidentSearchResponseUserFacetDataWithDefaults() *IncidentSearchRespons
 	this := IncidentSearchResponseUserFacetData{}
 	return &this
 }
-
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *IncidentSearchResponseUserFacetData) GetCount() int32 {
 	if o == nil || o.Count == nil {
@@ -69,6 +75,7 @@ func (o *IncidentSearchResponseUserFacetData) HasCount() bool {
 func (o *IncidentSearchResponseUserFacetData) SetCount(v int32) {
 	o.Count = &v
 }
+
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *IncidentSearchResponseUserFacetData) GetEmail() string {
@@ -98,6 +105,7 @@ func (o *IncidentSearchResponseUserFacetData) SetEmail(v string) {
 	o.Email = &v
 }
 
+
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *IncidentSearchResponseUserFacetData) GetHandle() string {
 	if o == nil || o.Handle == nil {
@@ -125,6 +133,7 @@ func (o *IncidentSearchResponseUserFacetData) HasHandle() bool {
 func (o *IncidentSearchResponseUserFacetData) SetHandle(v string) {
 	o.Handle = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *IncidentSearchResponseUserFacetData) GetName() string {
@@ -154,6 +163,7 @@ func (o *IncidentSearchResponseUserFacetData) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetUuid returns the Uuid field value if set, zero value otherwise.
 func (o *IncidentSearchResponseUserFacetData) GetUuid() string {
 	if o == nil || o.Uuid == nil {
@@ -181,6 +191,8 @@ func (o *IncidentSearchResponseUserFacetData) HasUuid() bool {
 func (o *IncidentSearchResponseUserFacetData) SetUuid(v string) {
 	o.Uuid = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentSearchResponseUserFacetData) MarshalJSON() ([]byte, error) {
@@ -213,18 +225,18 @@ func (o IncidentSearchResponseUserFacetData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentSearchResponseUserFacetData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Count  *int32  `json:"count,omitempty"`
-		Email  *string `json:"email,omitempty"`
+		Count *int32 `json:"count,omitempty"`
+		Email *string `json:"email,omitempty"`
 		Handle *string `json:"handle,omitempty"`
-		Name   *string `json:"name,omitempty"`
-		Uuid   *string `json:"uuid,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Uuid *string `json:"uuid,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"count", "email", "handle", "name", "uuid"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "count", "email", "handle", "name", "uuid",  })
 	} else {
 		return err
 	}

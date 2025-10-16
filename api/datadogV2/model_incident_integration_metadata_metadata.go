@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentIntegrationMetadataMetadata - Incident integration metadata's metadata attribute.
 type IncidentIntegrationMetadataMetadata struct {
-	SlackIntegrationMetadata   *SlackIntegrationMetadata
-	JiraIntegrationMetadata    *JiraIntegrationMetadata
+	SlackIntegrationMetadata *SlackIntegrationMetadata
+	JiraIntegrationMetadata *JiraIntegrationMetadata
 	MSTeamsIntegrationMetadata *MSTeamsIntegrationMetadata
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -104,13 +110,16 @@ func (obj IncidentIntegrationMetadataMetadata) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.SlackIntegrationMetadata)
 	}
 
+
 	if obj.JiraIntegrationMetadata != nil {
 		return datadog.Marshal(&obj.JiraIntegrationMetadata)
 	}
 
+
 	if obj.MSTeamsIntegrationMetadata != nil {
 		return datadog.Marshal(&obj.MSTeamsIntegrationMetadata)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj IncidentIntegrationMetadataMetadata) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *IncidentIntegrationMetadataMetadata) GetActualInstance() interface{} {
+func (obj *IncidentIntegrationMetadataMetadata) GetActualInstance() (interface{}) {
 	if obj.SlackIntegrationMetadata != nil {
 		return obj.SlackIntegrationMetadata
 	}
+
 
 	if obj.JiraIntegrationMetadata != nil {
 		return obj.JiraIntegrationMetadata
 	}
 
+
 	if obj.MSTeamsIntegrationMetadata != nil {
 		return obj.MSTeamsIntegrationMetadata
 	}
+
 
 	// all schemas are nil
 	return nil

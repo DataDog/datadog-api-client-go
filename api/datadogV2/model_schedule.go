@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Schedule Top-level container for a schedule object, including both the `data` payload and any related `included` resources (such as teams, layers, or members).
 type Schedule struct {
@@ -15,9 +21,10 @@ type Schedule struct {
 	// Any additional resources related to this schedule, such as teams and layers.
 	Included []ScheduleDataIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSchedule instantiates a new Schedule object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewScheduleWithDefaults() *Schedule {
 	this := Schedule{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *Schedule) GetData() ScheduleData {
 	if o == nil || o.Data == nil {
@@ -63,6 +69,7 @@ func (o *Schedule) HasData() bool {
 func (o *Schedule) SetData(v ScheduleData) {
 	o.Data = &v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *Schedule) GetIncluded() []ScheduleDataIncludedItem {
@@ -92,6 +99,8 @@ func (o *Schedule) SetIncluded(v []ScheduleDataIncludedItem) {
 	o.Included = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o Schedule) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o Schedule) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Schedule) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     *ScheduleData              `json:"data,omitempty"`
+		Data *ScheduleData `json:"data,omitempty"`
 		Included []ScheduleDataIncludedItem `json:"included,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,13 +131,13 @@ func (o *Schedule) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "included",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Data = all.Data

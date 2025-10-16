@@ -2,15 +2,15 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
-	"io"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -19,7 +19,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.CreateOpenAPI", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAPIManagementApi(apiClient)
-	resp, r, err := api.CreateOpenAPI(ctx, *datadogV2.NewCreateOpenAPIOptionalParameters().WithOpenapiSpecFile(func() io.Reader { fp, _ := os.Open("openapi-spec.yaml"); return fp }()))
+	resp, r, err := api.CreateOpenAPI(ctx, *datadogV2.NewCreateOpenAPIOptionalParameters().WithOpenapiSpecFile(func() io.Reader { fp, _ := os.Open("openapi-spec.yaml"); return fp }()), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `APIManagementApi.CreateOpenAPI`: %v\n", err)

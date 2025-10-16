@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleSequenceDetectionStepTransition Transition from a parent step to a child step within a sequence detection rule.
 type SecurityMonitoringRuleSequenceDetectionStepTransition struct {
@@ -18,9 +24,10 @@ type SecurityMonitoringRuleSequenceDetectionStepTransition struct {
 	// Name of the parent step.
 	Parent *string `json:"parent,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringRuleSequenceDetectionStepTransition instantiates a new SecurityMonitoringRuleSequenceDetectionStepTransition object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +45,6 @@ func NewSecurityMonitoringRuleSequenceDetectionStepTransitionWithDefaults() *Sec
 	this := SecurityMonitoringRuleSequenceDetectionStepTransition{}
 	return &this
 }
-
 // GetChild returns the Child field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleSequenceDetectionStepTransition) GetChild() string {
 	if o == nil || o.Child == nil {
@@ -66,6 +72,7 @@ func (o *SecurityMonitoringRuleSequenceDetectionStepTransition) HasChild() bool 
 func (o *SecurityMonitoringRuleSequenceDetectionStepTransition) SetChild(v string) {
 	o.Child = &v
 }
+
 
 // GetEvaluationWindow returns the EvaluationWindow field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleSequenceDetectionStepTransition) GetEvaluationWindow() SecurityMonitoringRuleEvaluationWindow {
@@ -95,6 +102,7 @@ func (o *SecurityMonitoringRuleSequenceDetectionStepTransition) SetEvaluationWin
 	o.EvaluationWindow = &v
 }
 
+
 // GetParent returns the Parent field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleSequenceDetectionStepTransition) GetParent() string {
 	if o == nil || o.Parent == nil {
@@ -123,6 +131,8 @@ func (o *SecurityMonitoringRuleSequenceDetectionStepTransition) SetParent(v stri
 	o.Parent = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleSequenceDetectionStepTransition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,23 +158,23 @@ func (o SecurityMonitoringRuleSequenceDetectionStepTransition) MarshalJSON() ([]
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleSequenceDetectionStepTransition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Child            *string                                 `json:"child,omitempty"`
+		Child *string `json:"child,omitempty"`
 		EvaluationWindow *SecurityMonitoringRuleEvaluationWindow `json:"evaluationWindow,omitempty"`
-		Parent           *string                                 `json:"parent,omitempty"`
+		Parent *string `json:"parent,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"child", "evaluationWindow", "parent"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "child", "evaluationWindow", "parent",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Child = all.Child
-	if all.EvaluationWindow != nil && !all.EvaluationWindow.IsValid() {
+	if all.EvaluationWindow != nil &&!all.EvaluationWindow.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.EvaluationWindow = all.EvaluationWindow

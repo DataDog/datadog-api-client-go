@@ -2,15 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
-
 	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DatasetAttributesResponse Dataset metadata and configuration(s).
 type DatasetAttributesResponse struct {
@@ -25,9 +27,10 @@ type DatasetAttributesResponse struct {
 	// List of product-specific filters.
 	ProductFilters []FiltersPerProduct `json:"product_filters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDatasetAttributesResponse instantiates a new DatasetAttributesResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +48,6 @@ func NewDatasetAttributesResponseWithDefaults() *DatasetAttributesResponse {
 	this := DatasetAttributesResponse{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DatasetAttributesResponse) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt.Get() == nil {
@@ -59,7 +61,7 @@ func (o *DatasetAttributesResponse) GetCreatedAt() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DatasetAttributesResponse) GetCreatedAtOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.CreatedAt.Get(), o.CreatedAt.IsSet()
@@ -74,7 +76,6 @@ func (o *DatasetAttributesResponse) HasCreatedAt() bool {
 func (o *DatasetAttributesResponse) SetCreatedAt(v time.Time) {
 	o.CreatedAt.Set(&v)
 }
-
 // SetCreatedAtNil sets the value for CreatedAt to be an explicit nil.
 func (o *DatasetAttributesResponse) SetCreatedAtNil() {
 	o.CreatedAt.Set(nil)
@@ -84,6 +85,7 @@ func (o *DatasetAttributesResponse) SetCreatedAtNil() {
 func (o *DatasetAttributesResponse) UnsetCreatedAt() {
 	o.CreatedAt.Unset()
 }
+
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *DatasetAttributesResponse) GetCreatedBy() uuid.UUID {
@@ -113,6 +115,7 @@ func (o *DatasetAttributesResponse) SetCreatedBy(v uuid.UUID) {
 	o.CreatedBy = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DatasetAttributesResponse) GetName() string {
 	if o == nil || o.Name == nil {
@@ -140,6 +143,7 @@ func (o *DatasetAttributesResponse) HasName() bool {
 func (o *DatasetAttributesResponse) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetPrincipals returns the Principals field value if set, zero value otherwise.
 func (o *DatasetAttributesResponse) GetPrincipals() []string {
@@ -169,6 +173,7 @@ func (o *DatasetAttributesResponse) SetPrincipals(v []string) {
 	o.Principals = v
 }
 
+
 // GetProductFilters returns the ProductFilters field value if set, zero value otherwise.
 func (o *DatasetAttributesResponse) GetProductFilters() []FiltersPerProduct {
 	if o == nil || o.ProductFilters == nil {
@@ -196,6 +201,8 @@ func (o *DatasetAttributesResponse) HasProductFilters() bool {
 func (o *DatasetAttributesResponse) SetProductFilters(v []FiltersPerProduct) {
 	o.ProductFilters = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DatasetAttributesResponse) MarshalJSON() ([]byte, error) {
@@ -228,18 +235,18 @@ func (o DatasetAttributesResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DatasetAttributesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt      datadog.NullableTime `json:"created_at,omitempty"`
-		CreatedBy      *uuid.UUID           `json:"created_by,omitempty"`
-		Name           *string              `json:"name,omitempty"`
-		Principals     []string             `json:"principals,omitempty"`
-		ProductFilters []FiltersPerProduct  `json:"product_filters,omitempty"`
+		CreatedAt datadog.NullableTime `json:"created_at,omitempty"`
+		CreatedBy *uuid.UUID `json:"created_by,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Principals []string `json:"principals,omitempty"`
+		ProductFilters []FiltersPerProduct `json:"product_filters,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "name", "principals", "product_filters"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_at", "created_by", "name", "principals", "product_filters",  })
 	} else {
 		return err
 	}

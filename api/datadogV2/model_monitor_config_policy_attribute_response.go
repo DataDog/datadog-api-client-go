@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorConfigPolicyAttributeResponse Policy and policy type for a monitor configuration policy.
 type MonitorConfigPolicyAttributeResponse struct {
@@ -15,9 +21,10 @@ type MonitorConfigPolicyAttributeResponse struct {
 	// The monitor configuration policy type.
 	PolicyType *MonitorConfigPolicyType `json:"policy_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorConfigPolicyAttributeResponse instantiates a new MonitorConfigPolicyAttributeResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewMonitorConfigPolicyAttributeResponseWithDefaults() *MonitorConfigPolicyA
 	this.PolicyType = &policyType
 	return &this
 }
-
 // GetPolicy returns the Policy field value if set, zero value otherwise.
 func (o *MonitorConfigPolicyAttributeResponse) GetPolicy() MonitorConfigPolicyPolicy {
 	if o == nil || o.Policy == nil {
@@ -67,6 +73,7 @@ func (o *MonitorConfigPolicyAttributeResponse) HasPolicy() bool {
 func (o *MonitorConfigPolicyAttributeResponse) SetPolicy(v MonitorConfigPolicyPolicy) {
 	o.Policy = &v
 }
+
 
 // GetPolicyType returns the PolicyType field value if set, zero value otherwise.
 func (o *MonitorConfigPolicyAttributeResponse) GetPolicyType() MonitorConfigPolicyType {
@@ -96,6 +103,8 @@ func (o *MonitorConfigPolicyAttributeResponse) SetPolicyType(v MonitorConfigPoli
 	o.PolicyType = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorConfigPolicyAttributeResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -118,22 +127,22 @@ func (o MonitorConfigPolicyAttributeResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorConfigPolicyAttributeResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Policy     *MonitorConfigPolicyPolicy `json:"policy,omitempty"`
-		PolicyType *MonitorConfigPolicyType   `json:"policy_type,omitempty"`
+		Policy *MonitorConfigPolicyPolicy `json:"policy,omitempty"`
+		PolicyType *MonitorConfigPolicyType `json:"policy_type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"policy", "policy_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "policy", "policy_type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Policy = all.Policy
-	if all.PolicyType != nil && !all.PolicyType.IsValid() {
+	if all.PolicyType != nil &&!all.PolicyType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.PolicyType = all.PolicyType

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // V2EventAttributes Event attributes.
 type V2EventAttributes struct {
@@ -19,9 +25,10 @@ type V2EventAttributes struct {
 	// Timestamp when the event occurred.
 	Timestamp *string `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewV2EventAttributes instantiates a new V2EventAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewV2EventAttributesWithDefaults() *V2EventAttributes {
 	this := V2EventAttributes{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *V2EventAttributes) GetAttributes() V2EventAttributesAttributes {
 	if o == nil || o.Attributes == nil {
@@ -67,6 +73,7 @@ func (o *V2EventAttributes) HasAttributes() bool {
 func (o *V2EventAttributes) SetAttributes(v V2EventAttributesAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *V2EventAttributes) GetMessage() string {
@@ -96,6 +103,7 @@ func (o *V2EventAttributes) SetMessage(v string) {
 	o.Message = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *V2EventAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -124,6 +132,7 @@ func (o *V2EventAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *V2EventAttributes) GetTimestamp() string {
 	if o == nil || o.Timestamp == nil {
@@ -151,6 +160,8 @@ func (o *V2EventAttributes) HasTimestamp() bool {
 func (o *V2EventAttributes) SetTimestamp(v string) {
 	o.Timestamp = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o V2EventAttributes) MarshalJSON() ([]byte, error) {
@@ -181,16 +192,16 @@ func (o V2EventAttributes) MarshalJSON() ([]byte, error) {
 func (o *V2EventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *V2EventAttributesAttributes `json:"attributes,omitempty"`
-		Message    *string                      `json:"message,omitempty"`
-		Tags       []string                     `json:"tags,omitempty"`
-		Timestamp  *string                      `json:"timestamp,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Timestamp *string `json:"timestamp,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "message", "tags", "timestamp"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "message", "tags", "timestamp",  })
 	} else {
 		return err
 	}

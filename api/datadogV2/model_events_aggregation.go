@@ -2,30 +2,34 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EventsAggregation The type of aggregation that can be performed on events-based queries.
 type EventsAggregation string
 
 // List of EventsAggregation.
 const (
-	EVENTSAGGREGATION_COUNT       EventsAggregation = "count"
+	EVENTSAGGREGATION_COUNT EventsAggregation = "count"
 	EVENTSAGGREGATION_CARDINALITY EventsAggregation = "cardinality"
-	EVENTSAGGREGATION_PC75        EventsAggregation = "pc75"
-	EVENTSAGGREGATION_PC90        EventsAggregation = "pc90"
-	EVENTSAGGREGATION_PC95        EventsAggregation = "pc95"
-	EVENTSAGGREGATION_PC98        EventsAggregation = "pc98"
-	EVENTSAGGREGATION_PC99        EventsAggregation = "pc99"
-	EVENTSAGGREGATION_SUM         EventsAggregation = "sum"
-	EVENTSAGGREGATION_MIN         EventsAggregation = "min"
-	EVENTSAGGREGATION_MAX         EventsAggregation = "max"
-	EVENTSAGGREGATION_AVG         EventsAggregation = "avg"
+	EVENTSAGGREGATION_PC75 EventsAggregation = "pc75"
+	EVENTSAGGREGATION_PC90 EventsAggregation = "pc90"
+	EVENTSAGGREGATION_PC95 EventsAggregation = "pc95"
+	EVENTSAGGREGATION_PC98 EventsAggregation = "pc98"
+	EVENTSAGGREGATION_PC99 EventsAggregation = "pc99"
+	EVENTSAGGREGATION_SUM EventsAggregation = "sum"
+	EVENTSAGGREGATION_MIN EventsAggregation = "min"
+	EVENTSAGGREGATION_MAX EventsAggregation = "max"
+	EVENTSAGGREGATION_AVG EventsAggregation = "avg"
 )
 
 var allowedEventsAggregationEnumValues = []EventsAggregation{

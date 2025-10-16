@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricTagCardinalityAttributes An object containing properties related to the tag key
 type MetricTagCardinalityAttributes struct {
 	// This describes the recent change in the tag keys cardinality
 	CardinalityDelta *int64 `json:"cardinality_delta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricTagCardinalityAttributes instantiates a new MetricTagCardinalityAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewMetricTagCardinalityAttributesWithDefaults() *MetricTagCardinalityAttrib
 	this := MetricTagCardinalityAttributes{}
 	return &this
 }
-
 // GetCardinalityDelta returns the CardinalityDelta field value if set, zero value otherwise.
 func (o *MetricTagCardinalityAttributes) GetCardinalityDelta() int64 {
 	if o == nil || o.CardinalityDelta == nil {
@@ -62,6 +68,8 @@ func (o *MetricTagCardinalityAttributes) SetCardinalityDelta(v int64) {
 	o.CardinalityDelta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricTagCardinalityAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *MetricTagCardinalityAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cardinality_delta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cardinality_delta",  })
 	} else {
 		return err
 	}

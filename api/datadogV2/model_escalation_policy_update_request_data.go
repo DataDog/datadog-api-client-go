@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EscalationPolicyUpdateRequestData Represents the data for updating an existing escalation policy, including its ID, attributes, relationships, and resource type.
 type EscalationPolicyUpdateRequestData struct {
@@ -21,9 +25,10 @@ type EscalationPolicyUpdateRequestData struct {
 	// Indicates that the resource is of type `policies`.
 	Type EscalationPolicyUpdateRequestDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEscalationPolicyUpdateRequestData instantiates a new EscalationPolicyUpdateRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewEscalationPolicyUpdateRequestDataWithDefaults() *EscalationPolicyUpdateR
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *EscalationPolicyUpdateRequestData) GetAttributes() EscalationPolicyUpdateRequestDataAttributes {
 	if o == nil {
@@ -70,6 +74,7 @@ func (o *EscalationPolicyUpdateRequestData) SetAttributes(v EscalationPolicyUpda
 	o.Attributes = v
 }
 
+
 // GetId returns the Id field value.
 func (o *EscalationPolicyUpdateRequestData) GetId() string {
 	if o == nil {
@@ -92,6 +97,7 @@ func (o *EscalationPolicyUpdateRequestData) GetIdOk() (*string, bool) {
 func (o *EscalationPolicyUpdateRequestData) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *EscalationPolicyUpdateRequestData) GetRelationships() EscalationPolicyUpdateRequestDataRelationships {
@@ -121,6 +127,7 @@ func (o *EscalationPolicyUpdateRequestData) SetRelationships(v EscalationPolicyU
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *EscalationPolicyUpdateRequestData) GetType() EscalationPolicyUpdateRequestDataType {
 	if o == nil {
@@ -144,6 +151,8 @@ func (o *EscalationPolicyUpdateRequestData) SetType(v EscalationPolicyUpdateRequ
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EscalationPolicyUpdateRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -166,10 +175,10 @@ func (o EscalationPolicyUpdateRequestData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EscalationPolicyUpdateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *EscalationPolicyUpdateRequestDataAttributes    `json:"attributes"`
-		Id            *string                                         `json:"id"`
+		Attributes *EscalationPolicyUpdateRequestDataAttributes `json:"attributes"`
+		Id *string `json:"id"`
 		Relationships *EscalationPolicyUpdateRequestDataRelationships `json:"relationships,omitempty"`
-		Type          *EscalationPolicyUpdateRequestDataType          `json:"type"`
+		Type *EscalationPolicyUpdateRequestDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -185,7 +194,7 @@ func (o *EscalationPolicyUpdateRequestData) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "relationships", "type",  })
 	} else {
 		return err
 	}
@@ -196,7 +205,7 @@ func (o *EscalationPolicyUpdateRequestData) UnmarshalJSON(bytes []byte) (err err
 	}
 	o.Attributes = *all.Attributes
 	o.Id = *all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityV3APISpec The definition of Entity V3 API Spec object.
 type EntityV3APISpec struct {
@@ -24,6 +30,7 @@ type EntityV3APISpec struct {
 	UnparsedObject map[string]interface{} `json:"-"`
 }
 
+
 // NewEntityV3APISpec instantiates a new EntityV3APISpec object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
@@ -40,7 +47,6 @@ func NewEntityV3APISpecWithDefaults() *EntityV3APISpec {
 	this := EntityV3APISpec{}
 	return &this
 }
-
 // GetImplementedBy returns the ImplementedBy field value if set, zero value otherwise.
 func (o *EntityV3APISpec) GetImplementedBy() []string {
 	if o == nil || o.ImplementedBy == nil {
@@ -68,6 +74,7 @@ func (o *EntityV3APISpec) HasImplementedBy() bool {
 func (o *EntityV3APISpec) SetImplementedBy(v []string) {
 	o.ImplementedBy = v
 }
+
 
 // GetInterface returns the Interface field value if set, zero value otherwise.
 func (o *EntityV3APISpec) GetInterface() EntityV3APISpecInterface {
@@ -97,6 +104,7 @@ func (o *EntityV3APISpec) SetInterface(v EntityV3APISpecInterface) {
 	o.Interface = &v
 }
 
+
 // GetLifecycle returns the Lifecycle field value if set, zero value otherwise.
 func (o *EntityV3APISpec) GetLifecycle() string {
 	if o == nil || o.Lifecycle == nil {
@@ -124,6 +132,7 @@ func (o *EntityV3APISpec) HasLifecycle() bool {
 func (o *EntityV3APISpec) SetLifecycle(v string) {
 	o.Lifecycle = &v
 }
+
 
 // GetTier returns the Tier field value if set, zero value otherwise.
 func (o *EntityV3APISpec) GetTier() string {
@@ -153,6 +162,7 @@ func (o *EntityV3APISpec) SetTier(v string) {
 	o.Tier = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *EntityV3APISpec) GetType() string {
 	if o == nil || o.Type == nil {
@@ -181,6 +191,8 @@ func (o *EntityV3APISpec) SetType(v string) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3APISpec) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -208,11 +220,11 @@ func (o EntityV3APISpec) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityV3APISpec) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ImplementedBy []string                  `json:"implementedBy,omitempty"`
-		Interface     *EntityV3APISpecInterface `json:"interface,omitempty"`
-		Lifecycle     *string                   `json:"lifecycle,omitempty"`
-		Tier          *string                   `json:"tier,omitempty"`
-		Type          *string                   `json:"type,omitempty"`
+		ImplementedBy []string `json:"implementedBy,omitempty"`
+		Interface *EntityV3APISpecInterface `json:"interface,omitempty"`
+		Lifecycle *string `json:"lifecycle,omitempty"`
+		Tier *string `json:"tier,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

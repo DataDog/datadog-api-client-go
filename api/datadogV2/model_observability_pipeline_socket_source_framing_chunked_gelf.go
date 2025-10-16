@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSocketSourceFramingChunkedGelf Byte frames which are chunked GELF messages.
 type ObservabilityPipelineSocketSourceFramingChunkedGelf struct {
 	// Byte frames which are chunked GELF messages.
 	Method ObservabilityPipelineSocketSourceFramingChunkedGelfMethod `json:"method"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSocketSourceFramingChunkedGelf instantiates a new ObservabilityPipelineSocketSourceFramingChunkedGelf object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewObservabilityPipelineSocketSourceFramingChunkedGelfWithDefaults() *Obser
 	this := ObservabilityPipelineSocketSourceFramingChunkedGelf{}
 	return &this
 }
-
 // GetMethod returns the Method field value.
 func (o *ObservabilityPipelineSocketSourceFramingChunkedGelf) GetMethod() ObservabilityPipelineSocketSourceFramingChunkedGelfMethod {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *ObservabilityPipelineSocketSourceFramingChunkedGelf) GetMethodOk() (*Ob
 func (o *ObservabilityPipelineSocketSourceFramingChunkedGelf) SetMethod(v ObservabilityPipelineSocketSourceFramingChunkedGelfMethod) {
 	o.Method = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSocketSourceFramingChunkedGelf) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *ObservabilityPipelineSocketSourceFramingChunkedGelf) UnmarshalJSON(byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"method"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "method",  })
 	} else {
 		return err
 	}

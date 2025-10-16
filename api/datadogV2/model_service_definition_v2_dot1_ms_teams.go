@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionV2Dot1MSTeams Service owner's Microsoft Teams.
 type ServiceDefinitionV2Dot1MSTeams struct {
@@ -19,9 +23,10 @@ type ServiceDefinitionV2Dot1MSTeams struct {
 	// Contact type.
 	Type ServiceDefinitionV2Dot1MSTeamsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceDefinitionV2Dot1MSTeams instantiates a new ServiceDefinitionV2Dot1MSTeams object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewServiceDefinitionV2Dot1MSTeamsWithDefaults() *ServiceDefinitionV2Dot1MST
 	this := ServiceDefinitionV2Dot1MSTeams{}
 	return &this
 }
-
 // GetContact returns the Contact field value.
 func (o *ServiceDefinitionV2Dot1MSTeams) GetContact() string {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *ServiceDefinitionV2Dot1MSTeams) GetContactOk() (*string, bool) {
 func (o *ServiceDefinitionV2Dot1MSTeams) SetContact(v string) {
 	o.Contact = v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ServiceDefinitionV2Dot1MSTeams) GetName() string {
@@ -93,6 +98,7 @@ func (o *ServiceDefinitionV2Dot1MSTeams) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ServiceDefinitionV2Dot1MSTeams) GetType() ServiceDefinitionV2Dot1MSTeamsType {
 	if o == nil {
@@ -116,6 +122,8 @@ func (o *ServiceDefinitionV2Dot1MSTeams) SetType(v ServiceDefinitionV2Dot1MSTeam
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceDefinitionV2Dot1MSTeams) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -137,9 +145,9 @@ func (o ServiceDefinitionV2Dot1MSTeams) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ServiceDefinitionV2Dot1MSTeams) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Contact *string                             `json:"contact"`
-		Name    *string                             `json:"name,omitempty"`
-		Type    *ServiceDefinitionV2Dot1MSTeamsType `json:"type"`
+		Contact *string `json:"contact"`
+		Name *string `json:"name,omitempty"`
+		Type *ServiceDefinitionV2Dot1MSTeamsType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *ServiceDefinitionV2Dot1MSTeams) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"contact", "name", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "contact", "name", "type",  })
 	} else {
 		return err
 	}

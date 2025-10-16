@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpsertCatalogKindRequest - Create or update kind request.
 type UpsertCatalogKindRequest struct {
@@ -80,9 +86,11 @@ func (obj UpsertCatalogKindRequest) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.KindObj)
 	}
 
+
 	if obj.KindRaw != nil {
 		return datadog.Marshal(&obj.KindRaw)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj UpsertCatalogKindRequest) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *UpsertCatalogKindRequest) GetActualInstance() interface{} {
+func (obj *UpsertCatalogKindRequest) GetActualInstance() (interface{}) {
 	if obj.KindObj != nil {
 		return obj.KindObj
 	}
 
+
 	if obj.KindRaw != nil {
 		return obj.KindRaw
 	}
+
 
 	// all schemas are nil
 	return nil

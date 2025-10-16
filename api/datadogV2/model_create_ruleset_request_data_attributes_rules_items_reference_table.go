@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateRulesetRequestDataAttributesRulesItemsReferenceTable The definition of `CreateRulesetRequestDataAttributesRulesItemsReferenceTable` object.
 type CreateRulesetRequestDataAttributesRulesItemsReferenceTable struct {
@@ -23,9 +27,10 @@ type CreateRulesetRequestDataAttributesRulesItemsReferenceTable struct {
 	// The `reference_table` `table_name`.
 	TableName string `json:"table_name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateRulesetRequestDataAttributesRulesItemsReferenceTable instantiates a new CreateRulesetRequestDataAttributesRulesItemsReferenceTable object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewCreateRulesetRequestDataAttributesRulesItemsReferenceTableWithDefaults()
 	this := CreateRulesetRequestDataAttributesRulesItemsReferenceTable{}
 	return &this
 }
-
 // GetCaseInsensitivity returns the CaseInsensitivity field value if set, zero value otherwise.
 func (o *CreateRulesetRequestDataAttributesRulesItemsReferenceTable) GetCaseInsensitivity() bool {
 	if o == nil || o.CaseInsensitivity == nil {
@@ -75,6 +79,7 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsReferenceTable) SetCaseInse
 	o.CaseInsensitivity = &v
 }
 
+
 // GetFieldPairs returns the FieldPairs field value.
 func (o *CreateRulesetRequestDataAttributesRulesItemsReferenceTable) GetFieldPairs() []CreateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems {
 	if o == nil {
@@ -97,6 +102,7 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsReferenceTable) GetFieldPai
 func (o *CreateRulesetRequestDataAttributesRulesItemsReferenceTable) SetFieldPairs(v []CreateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems) {
 	o.FieldPairs = v
 }
+
 
 // GetIfNotExists returns the IfNotExists field value if set, zero value otherwise.
 func (o *CreateRulesetRequestDataAttributesRulesItemsReferenceTable) GetIfNotExists() bool {
@@ -126,6 +132,7 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsReferenceTable) SetIfNotExi
 	o.IfNotExists = &v
 }
 
+
 // GetSourceKeys returns the SourceKeys field value.
 func (o *CreateRulesetRequestDataAttributesRulesItemsReferenceTable) GetSourceKeys() []string {
 	if o == nil {
@@ -149,6 +156,7 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsReferenceTable) SetSourceKe
 	o.SourceKeys = v
 }
 
+
 // GetTableName returns the TableName field value.
 func (o *CreateRulesetRequestDataAttributesRulesItemsReferenceTable) GetTableName() string {
 	if o == nil {
@@ -171,6 +179,8 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsReferenceTable) GetTableNam
 func (o *CreateRulesetRequestDataAttributesRulesItemsReferenceTable) SetTableName(v string) {
 	o.TableName = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateRulesetRequestDataAttributesRulesItemsReferenceTable) MarshalJSON() ([]byte, error) {
@@ -197,11 +207,11 @@ func (o CreateRulesetRequestDataAttributesRulesItemsReferenceTable) MarshalJSON(
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateRulesetRequestDataAttributesRulesItemsReferenceTable) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CaseInsensitivity *bool                                                                        `json:"case_insensitivity,omitempty"`
-		FieldPairs        *[]CreateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems `json:"field_pairs"`
-		IfNotExists       *bool                                                                        `json:"if_not_exists,omitempty"`
-		SourceKeys        *[]string                                                                    `json:"source_keys"`
-		TableName         *string                                                                      `json:"table_name"`
+		CaseInsensitivity *bool `json:"case_insensitivity,omitempty"`
+		FieldPairs *[]CreateRulesetRequestDataAttributesRulesItemsReferenceTableFieldPairsItems `json:"field_pairs"`
+		IfNotExists *bool `json:"if_not_exists,omitempty"`
+		SourceKeys *[]string `json:"source_keys"`
+		TableName *string `json:"table_name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -217,7 +227,7 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsReferenceTable) UnmarshalJS
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"case_insensitivity", "field_pairs", "if_not_exists", "source_keys", "table_name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "case_insensitivity", "field_pairs", "if_not_exists", "source_keys", "table_name",  })
 	} else {
 		return err
 	}
@@ -233,7 +243,6 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsReferenceTable) UnmarshalJS
 
 	return nil
 }
-
 // NullableCreateRulesetRequestDataAttributesRulesItemsReferenceTable handles when a null is used for CreateRulesetRequestDataAttributesRulesItemsReferenceTable.
 type NullableCreateRulesetRequestDataAttributesRulesItemsReferenceTable struct {
 	value *CreateRulesetRequestDataAttributesRulesItemsReferenceTable

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudflareAccountResponseAttributes Attributes object of a Cloudflare account.
 type CloudflareAccountResponseAttributes struct {
@@ -21,9 +25,10 @@ type CloudflareAccountResponseAttributes struct {
 	// An allowlist of zones to restrict pulling metrics for.
 	Zones []string `json:"zones,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudflareAccountResponseAttributes instantiates a new CloudflareAccountResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewCloudflareAccountResponseAttributesWithDefaults() *CloudflareAccountResp
 	this := CloudflareAccountResponseAttributes{}
 	return &this
 }
-
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *CloudflareAccountResponseAttributes) GetEmail() string {
 	if o == nil || o.Email == nil {
@@ -71,6 +75,7 @@ func (o *CloudflareAccountResponseAttributes) SetEmail(v string) {
 	o.Email = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *CloudflareAccountResponseAttributes) GetName() string {
 	if o == nil {
@@ -93,6 +98,7 @@ func (o *CloudflareAccountResponseAttributes) GetNameOk() (*string, bool) {
 func (o *CloudflareAccountResponseAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetResources returns the Resources field value if set, zero value otherwise.
 func (o *CloudflareAccountResponseAttributes) GetResources() []string {
@@ -122,6 +128,7 @@ func (o *CloudflareAccountResponseAttributes) SetResources(v []string) {
 	o.Resources = v
 }
 
+
 // GetZones returns the Zones field value if set, zero value otherwise.
 func (o *CloudflareAccountResponseAttributes) GetZones() []string {
 	if o == nil || o.Zones == nil {
@@ -150,6 +157,8 @@ func (o *CloudflareAccountResponseAttributes) SetZones(v []string) {
 	o.Zones = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudflareAccountResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -176,10 +185,10 @@ func (o CloudflareAccountResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudflareAccountResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Email     *string  `json:"email,omitempty"`
-		Name      *string  `json:"name"`
+		Email *string `json:"email,omitempty"`
+		Name *string `json:"name"`
 		Resources []string `json:"resources,omitempty"`
-		Zones     []string `json:"zones,omitempty"`
+		Zones []string `json:"zones,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -189,7 +198,7 @@ func (o *CloudflareAccountResponseAttributes) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"email", "name", "resources", "zones"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "email", "name", "resources", "zones",  })
 	} else {
 		return err
 	}

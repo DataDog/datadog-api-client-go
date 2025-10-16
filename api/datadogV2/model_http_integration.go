@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HTTPIntegration The definition of `HTTPIntegration` object.
 type HTTPIntegration struct {
@@ -19,9 +23,10 @@ type HTTPIntegration struct {
 	// The definition of `HTTPIntegrationType` object.
 	Type HTTPIntegrationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHTTPIntegration instantiates a new HTTPIntegration object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewHTTPIntegrationWithDefaults() *HTTPIntegration {
 	this := HTTPIntegration{}
 	return &this
 }
-
 // GetBaseUrl returns the BaseUrl field value.
 func (o *HTTPIntegration) GetBaseUrl() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *HTTPIntegration) GetBaseUrlOk() (*string, bool) {
 func (o *HTTPIntegration) SetBaseUrl(v string) {
 	o.BaseUrl = v
 }
+
 
 // GetCredentials returns the Credentials field value.
 func (o *HTTPIntegration) GetCredentials() HTTPCredentials {
@@ -89,6 +94,7 @@ func (o *HTTPIntegration) SetCredentials(v HTTPCredentials) {
 	o.Credentials = v
 }
 
+
 // GetType returns the Type field value.
 func (o *HTTPIntegration) GetType() HTTPIntegrationType {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *HTTPIntegration) SetType(v HTTPIntegrationType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o HTTPIntegration) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o HTTPIntegration) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HTTPIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BaseUrl     *string              `json:"base_url"`
-		Credentials *HTTPCredentials     `json:"credentials"`
-		Type        *HTTPIntegrationType `json:"type"`
+		BaseUrl *string `json:"base_url"`
+		Credentials *HTTPCredentials `json:"credentials"`
+		Type *HTTPIntegrationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *HTTPIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"base_url", "credentials", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "base_url", "credentials", "type",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // QueryValueWidgetDefinition Query values display the current value of a given metric, APM, or log query.
 type QueryValueWidgetDefinition struct {
@@ -37,9 +41,10 @@ type QueryValueWidgetDefinition struct {
 	// Type of the query value widget.
 	Type QueryValueWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewQueryValueWidgetDefinition instantiates a new QueryValueWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -61,7 +66,6 @@ func NewQueryValueWidgetDefinitionWithDefaults() *QueryValueWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAutoscale returns the Autoscale field value if set, zero value otherwise.
 func (o *QueryValueWidgetDefinition) GetAutoscale() bool {
 	if o == nil || o.Autoscale == nil {
@@ -89,6 +93,7 @@ func (o *QueryValueWidgetDefinition) HasAutoscale() bool {
 func (o *QueryValueWidgetDefinition) SetAutoscale(v bool) {
 	o.Autoscale = &v
 }
+
 
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
 func (o *QueryValueWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
@@ -118,6 +123,7 @@ func (o *QueryValueWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = v
 }
 
+
 // GetCustomUnit returns the CustomUnit field value if set, zero value otherwise.
 func (o *QueryValueWidgetDefinition) GetCustomUnit() string {
 	if o == nil || o.CustomUnit == nil {
@@ -145,6 +151,7 @@ func (o *QueryValueWidgetDefinition) HasCustomUnit() bool {
 func (o *QueryValueWidgetDefinition) SetCustomUnit(v string) {
 	o.CustomUnit = &v
 }
+
 
 // GetPrecision returns the Precision field value if set, zero value otherwise.
 func (o *QueryValueWidgetDefinition) GetPrecision() int64 {
@@ -174,6 +181,7 @@ func (o *QueryValueWidgetDefinition) SetPrecision(v int64) {
 	o.Precision = &v
 }
 
+
 // GetRequests returns the Requests field value.
 func (o *QueryValueWidgetDefinition) GetRequests() []QueryValueWidgetRequest {
 	if o == nil {
@@ -196,6 +204,7 @@ func (o *QueryValueWidgetDefinition) GetRequestsOk() (*[]QueryValueWidgetRequest
 func (o *QueryValueWidgetDefinition) SetRequests(v []QueryValueWidgetRequest) {
 	o.Requests = v
 }
+
 
 // GetTextAlign returns the TextAlign field value if set, zero value otherwise.
 func (o *QueryValueWidgetDefinition) GetTextAlign() WidgetTextAlign {
@@ -225,6 +234,7 @@ func (o *QueryValueWidgetDefinition) SetTextAlign(v WidgetTextAlign) {
 	o.TextAlign = &v
 }
 
+
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *QueryValueWidgetDefinition) GetTime() WidgetTime {
 	if o == nil || o.Time == nil {
@@ -252,6 +262,7 @@ func (o *QueryValueWidgetDefinition) HasTime() bool {
 func (o *QueryValueWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
+
 
 // GetTimeseriesBackground returns the TimeseriesBackground field value if set, zero value otherwise.
 func (o *QueryValueWidgetDefinition) GetTimeseriesBackground() TimeseriesBackground {
@@ -281,6 +292,7 @@ func (o *QueryValueWidgetDefinition) SetTimeseriesBackground(v TimeseriesBackgro
 	o.TimeseriesBackground = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *QueryValueWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -308,6 +320,7 @@ func (o *QueryValueWidgetDefinition) HasTitle() bool {
 func (o *QueryValueWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
+
 
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *QueryValueWidgetDefinition) GetTitleAlign() WidgetTextAlign {
@@ -337,6 +350,7 @@ func (o *QueryValueWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
 
+
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *QueryValueWidgetDefinition) GetTitleSize() string {
 	if o == nil || o.TitleSize == nil {
@@ -365,6 +379,7 @@ func (o *QueryValueWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *QueryValueWidgetDefinition) GetType() QueryValueWidgetDefinitionType {
 	if o == nil {
@@ -387,6 +402,8 @@ func (o *QueryValueWidgetDefinition) GetTypeOk() (*QueryValueWidgetDefinitionTyp
 func (o *QueryValueWidgetDefinition) SetType(v QueryValueWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o QueryValueWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -436,18 +453,18 @@ func (o QueryValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Autoscale            *bool                           `json:"autoscale,omitempty"`
-		CustomLinks          []WidgetCustomLink              `json:"custom_links,omitempty"`
-		CustomUnit           *string                         `json:"custom_unit,omitempty"`
-		Precision            *int64                          `json:"precision,omitempty"`
-		Requests             *[]QueryValueWidgetRequest      `json:"requests"`
-		TextAlign            *WidgetTextAlign                `json:"text_align,omitempty"`
-		Time                 *WidgetTime                     `json:"time,omitempty"`
-		TimeseriesBackground *TimeseriesBackground           `json:"timeseries_background,omitempty"`
-		Title                *string                         `json:"title,omitempty"`
-		TitleAlign           *WidgetTextAlign                `json:"title_align,omitempty"`
-		TitleSize            *string                         `json:"title_size,omitempty"`
-		Type                 *QueryValueWidgetDefinitionType `json:"type"`
+		Autoscale *bool `json:"autoscale,omitempty"`
+		CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
+		CustomUnit *string `json:"custom_unit,omitempty"`
+		Precision *int64 `json:"precision,omitempty"`
+		Requests *[]QueryValueWidgetRequest `json:"requests"`
+		TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
+		Time *WidgetTime `json:"time,omitempty"`
+		TimeseriesBackground *TimeseriesBackground `json:"timeseries_background,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type *QueryValueWidgetDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -460,7 +477,7 @@ func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"autoscale", "custom_links", "custom_unit", "precision", "requests", "text_align", "time", "timeseries_background", "title", "title_align", "title_size", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "autoscale", "custom_links", "custom_unit", "precision", "requests", "text_align", "time", "timeseries_background", "title", "title_align", "title_size", "type",  })
 	} else {
 		return err
 	}
@@ -471,18 +488,18 @@ func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.CustomUnit = all.CustomUnit
 	o.Precision = all.Precision
 	o.Requests = *all.Requests
-	if all.TextAlign != nil && !all.TextAlign.IsValid() {
+	if all.TextAlign != nil &&!all.TextAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TextAlign = all.TextAlign
 	}
 	o.Time = all.Time
-	if all.TimeseriesBackground != nil && all.TimeseriesBackground.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.TimeseriesBackground != nil && all.TimeseriesBackground.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.TimeseriesBackground = all.TimeseriesBackground
 	o.Title = all.Title
-	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
+	if all.TitleAlign != nil &&!all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign

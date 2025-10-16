@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ItemApiPayloadDataAttributes Metadata and content of a datastore item.
 type ItemApiPayloadDataAttributes struct {
@@ -29,9 +33,10 @@ type ItemApiPayloadDataAttributes struct {
 	// The data content (as key-value pairs) of a datastore item.
 	Value map[string]interface{} `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewItemApiPayloadDataAttributes instantiates a new ItemApiPayloadDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +54,6 @@ func NewItemApiPayloadDataAttributesWithDefaults() *ItemApiPayloadDataAttributes
 	this := ItemApiPayloadDataAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *ItemApiPayloadDataAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -77,6 +81,7 @@ func (o *ItemApiPayloadDataAttributes) HasCreatedAt() bool {
 func (o *ItemApiPayloadDataAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *ItemApiPayloadDataAttributes) GetModifiedAt() time.Time {
@@ -106,6 +111,7 @@ func (o *ItemApiPayloadDataAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
+
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *ItemApiPayloadDataAttributes) GetOrgId() int64 {
 	if o == nil || o.OrgId == nil {
@@ -133,6 +139,7 @@ func (o *ItemApiPayloadDataAttributes) HasOrgId() bool {
 func (o *ItemApiPayloadDataAttributes) SetOrgId(v int64) {
 	o.OrgId = &v
 }
+
 
 // GetPrimaryColumnName returns the PrimaryColumnName field value if set, zero value otherwise.
 func (o *ItemApiPayloadDataAttributes) GetPrimaryColumnName() string {
@@ -162,6 +169,7 @@ func (o *ItemApiPayloadDataAttributes) SetPrimaryColumnName(v string) {
 	o.PrimaryColumnName = &v
 }
 
+
 // GetSignature returns the Signature field value if set, zero value otherwise.
 func (o *ItemApiPayloadDataAttributes) GetSignature() string {
 	if o == nil || o.Signature == nil {
@@ -189,6 +197,7 @@ func (o *ItemApiPayloadDataAttributes) HasSignature() bool {
 func (o *ItemApiPayloadDataAttributes) SetSignature(v string) {
 	o.Signature = &v
 }
+
 
 // GetStoreId returns the StoreId field value if set, zero value otherwise.
 func (o *ItemApiPayloadDataAttributes) GetStoreId() string {
@@ -218,6 +227,7 @@ func (o *ItemApiPayloadDataAttributes) SetStoreId(v string) {
 	o.StoreId = &v
 }
 
+
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *ItemApiPayloadDataAttributes) GetValue() map[string]interface{} {
 	if o == nil || o.Value == nil {
@@ -245,6 +255,8 @@ func (o *ItemApiPayloadDataAttributes) HasValue() bool {
 func (o *ItemApiPayloadDataAttributes) SetValue(v map[string]interface{}) {
 	o.Value = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ItemApiPayloadDataAttributes) MarshalJSON() ([]byte, error) {
@@ -291,20 +303,20 @@ func (o ItemApiPayloadDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ItemApiPayloadDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt         *time.Time             `json:"created_at,omitempty"`
-		ModifiedAt        *time.Time             `json:"modified_at,omitempty"`
-		OrgId             *int64                 `json:"org_id,omitempty"`
-		PrimaryColumnName *string                `json:"primary_column_name,omitempty"`
-		Signature         *string                `json:"signature,omitempty"`
-		StoreId           *string                `json:"store_id,omitempty"`
-		Value             map[string]interface{} `json:"value,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		ModifiedAt *time.Time `json:"modified_at,omitempty"`
+		OrgId *int64 `json:"org_id,omitempty"`
+		PrimaryColumnName *string `json:"primary_column_name,omitempty"`
+		Signature *string `json:"signature,omitempty"`
+		StoreId *string `json:"store_id,omitempty"`
+		Value map[string]interface{} `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "modified_at", "org_id", "primary_column_name", "signature", "store_id", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_at", "modified_at", "org_id", "primary_column_name", "signature", "store_id", "value",  })
 	} else {
 		return err
 	}

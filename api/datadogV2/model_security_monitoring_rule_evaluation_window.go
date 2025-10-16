@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleEvaluationWindow A time window is specified to match when at least one of the cases matches true. This is a sliding window
 // and evaluates in real time. For third party detection method, this field is not used.
@@ -16,18 +20,18 @@ type SecurityMonitoringRuleEvaluationWindow int32
 
 // List of SecurityMonitoringRuleEvaluationWindow.
 const (
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_ZERO_MINUTES    SecurityMonitoringRuleEvaluationWindow = 0
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_ONE_MINUTE      SecurityMonitoringRuleEvaluationWindow = 60
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_FIVE_MINUTES    SecurityMonitoringRuleEvaluationWindow = 300
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_TEN_MINUTES     SecurityMonitoringRuleEvaluationWindow = 600
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_ZERO_MINUTES SecurityMonitoringRuleEvaluationWindow = 0
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_ONE_MINUTE SecurityMonitoringRuleEvaluationWindow = 60
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_FIVE_MINUTES SecurityMonitoringRuleEvaluationWindow = 300
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_TEN_MINUTES SecurityMonitoringRuleEvaluationWindow = 600
 	SECURITYMONITORINGRULEEVALUATIONWINDOW_FIFTEEN_MINUTES SecurityMonitoringRuleEvaluationWindow = 900
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_THIRTY_MINUTES  SecurityMonitoringRuleEvaluationWindow = 1800
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_ONE_HOUR        SecurityMonitoringRuleEvaluationWindow = 3600
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_TWO_HOURS       SecurityMonitoringRuleEvaluationWindow = 7200
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_THREE_HOURS     SecurityMonitoringRuleEvaluationWindow = 10800
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_SIX_HOURS       SecurityMonitoringRuleEvaluationWindow = 21600
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_TWELVE_HOURS    SecurityMonitoringRuleEvaluationWindow = 43200
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_ONE_DAY         SecurityMonitoringRuleEvaluationWindow = 86400
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_THIRTY_MINUTES SecurityMonitoringRuleEvaluationWindow = 1800
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_ONE_HOUR SecurityMonitoringRuleEvaluationWindow = 3600
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_TWO_HOURS SecurityMonitoringRuleEvaluationWindow = 7200
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_THREE_HOURS SecurityMonitoringRuleEvaluationWindow = 10800
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_SIX_HOURS SecurityMonitoringRuleEvaluationWindow = 21600
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_TWELVE_HOURS SecurityMonitoringRuleEvaluationWindow = 43200
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_ONE_DAY SecurityMonitoringRuleEvaluationWindow = 86400
 )
 
 var allowedSecurityMonitoringRuleEvaluationWindowEnumValues = []SecurityMonitoringRuleEvaluationWindow{

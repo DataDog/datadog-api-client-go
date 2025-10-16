@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // JobCreateResponseData The definition of `JobCreateResponseData` object.
 type JobCreateResponseData struct {
@@ -15,9 +21,10 @@ type JobCreateResponseData struct {
 	// Type of payload.
 	Type *HistoricalJobDataType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewJobCreateResponseData instantiates a new JobCreateResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewJobCreateResponseDataWithDefaults() *JobCreateResponseData {
 	this := JobCreateResponseData{}
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *JobCreateResponseData) GetId() string {
 	if o == nil || o.Id == nil {
@@ -63,6 +69,7 @@ func (o *JobCreateResponseData) HasId() bool {
 func (o *JobCreateResponseData) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *JobCreateResponseData) GetType() HistoricalJobDataType {
@@ -92,6 +99,8 @@ func (o *JobCreateResponseData) SetType(v HistoricalJobDataType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o JobCreateResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o JobCreateResponseData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *JobCreateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Type *HistoricalJobDataType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,14 +131,14 @@ func (o *JobCreateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Id = all.Id
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

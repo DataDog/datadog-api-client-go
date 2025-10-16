@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentNotificationTemplateCreateData Notification template data for a create request.
 type IncidentNotificationTemplateCreateData struct {
@@ -19,9 +23,10 @@ type IncidentNotificationTemplateCreateData struct {
 	// Notification templates resource type.
 	Type IncidentNotificationTemplateType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentNotificationTemplateCreateData instantiates a new IncidentNotificationTemplateCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewIncidentNotificationTemplateCreateDataWithDefaults() *IncidentNotificati
 	this := IncidentNotificationTemplateCreateData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *IncidentNotificationTemplateCreateData) GetAttributes() IncidentNotificationTemplateCreateAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *IncidentNotificationTemplateCreateData) GetAttributesOk() (*IncidentNot
 func (o *IncidentNotificationTemplateCreateData) SetAttributes(v IncidentNotificationTemplateCreateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *IncidentNotificationTemplateCreateData) GetRelationships() IncidentNotificationTemplateCreateDataRelationships {
@@ -93,6 +98,7 @@ func (o *IncidentNotificationTemplateCreateData) SetRelationships(v IncidentNoti
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *IncidentNotificationTemplateCreateData) GetType() IncidentNotificationTemplateType {
 	if o == nil {
@@ -116,6 +122,8 @@ func (o *IncidentNotificationTemplateCreateData) SetType(v IncidentNotificationT
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentNotificationTemplateCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -137,9 +145,9 @@ func (o IncidentNotificationTemplateCreateData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentNotificationTemplateCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *IncidentNotificationTemplateCreateAttributes        `json:"attributes"`
+		Attributes *IncidentNotificationTemplateCreateAttributes `json:"attributes"`
 		Relationships *IncidentNotificationTemplateCreateDataRelationships `json:"relationships,omitempty"`
-		Type          *IncidentNotificationTemplateType                    `json:"type"`
+		Type *IncidentNotificationTemplateType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *IncidentNotificationTemplateCreateData) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "relationships", "type",  })
 	} else {
 		return err
 	}
@@ -162,7 +170,7 @@ func (o *IncidentNotificationTemplateCreateData) UnmarshalJSON(bytes []byte) (er
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

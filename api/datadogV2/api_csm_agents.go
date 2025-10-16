@@ -2,10 +2,15 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"bytes"
 	_context "context"
+	_fmt "fmt"
+	_io "io"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -17,9 +22,9 @@ type CSMAgentsApi datadog.Service
 
 // ListAllCSMAgentsOptionalParameters holds optional parameters for ListAllCSMAgents.
 type ListAllCSMAgentsOptionalParameters struct {
-	Page           *int32
-	Size           *int32
-	Query          *string
+	Page *int32
+	Size *int32
+	Query *string
 	OrderDirection *OrderDirection
 }
 
@@ -28,25 +33,21 @@ func NewListAllCSMAgentsOptionalParameters() *ListAllCSMAgentsOptionalParameters
 	this := ListAllCSMAgentsOptionalParameters{}
 	return &this
 }
-
 // WithPage sets the corresponding parameter name and returns the struct.
 func (r *ListAllCSMAgentsOptionalParameters) WithPage(page int32) *ListAllCSMAgentsOptionalParameters {
 	r.Page = &page
 	return r
 }
-
 // WithSize sets the corresponding parameter name and returns the struct.
 func (r *ListAllCSMAgentsOptionalParameters) WithSize(size int32) *ListAllCSMAgentsOptionalParameters {
 	r.Size = &size
 	return r
 }
-
 // WithQuery sets the corresponding parameter name and returns the struct.
 func (r *ListAllCSMAgentsOptionalParameters) WithQuery(query string) *ListAllCSMAgentsOptionalParameters {
 	r.Query = &query
 	return r
 }
-
 // WithOrderDirection sets the corresponding parameter name and returns the struct.
 func (r *ListAllCSMAgentsOptionalParameters) WithOrderDirection(orderDirection OrderDirection) *ListAllCSMAgentsOptionalParameters {
 	r.OrderDirection = &orderDirection
@@ -57,18 +58,20 @@ func (r *ListAllCSMAgentsOptionalParameters) WithOrderDirection(orderDirection O
 // Get the list of all CSM Agents running on your hosts and containers.
 func (a *CSMAgentsApi) ListAllCSMAgents(ctx _context.Context, o ...ListAllCSMAgentsOptionalParameters) (CsmAgentsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue CsmAgentsResponse
-		optionalParams      ListAllCSMAgentsOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  CsmAgentsResponse
+		optionalParams ListAllCSMAgentsOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListAllCSMAgentsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListAllCSMAgentsOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMAgentsApi.ListAllCSMAgents")
 	if err != nil {
@@ -94,19 +97,20 @@ func (a *CSMAgentsApi) ListAllCSMAgents(ctx _context.Context, o ...ListAllCSMAge
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	if a.Client.Cfg.DelegatedTokenConfig != nil {
-		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-	} else {
-		datadog.SetAuthKeys(
-			ctx,
-			&localVarHeaderParams,
-			[2]string{"apiKeyAuth", "DD-API-KEY"},
-			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-		)
-	}
+	
+		if a.Client.Cfg.DelegatedTokenConfig != nil {
+			err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+		} else {
+        datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	 } 
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -124,10 +128,11 @@ func (a *CSMAgentsApi) ListAllCSMAgents(ctx _context.Context, o ...ListAllCSMAge
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -141,7 +146,7 @@ func (a *CSMAgentsApi) ListAllCSMAgents(ctx _context.Context, o ...ListAllCSMAge
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
@@ -152,9 +157,9 @@ func (a *CSMAgentsApi) ListAllCSMAgents(ctx _context.Context, o ...ListAllCSMAge
 
 // ListAllCSMServerlessAgentsOptionalParameters holds optional parameters for ListAllCSMServerlessAgents.
 type ListAllCSMServerlessAgentsOptionalParameters struct {
-	Page           *int32
-	Size           *int32
-	Query          *string
+	Page *int32
+	Size *int32
+	Query *string
 	OrderDirection *OrderDirection
 }
 
@@ -163,25 +168,21 @@ func NewListAllCSMServerlessAgentsOptionalParameters() *ListAllCSMServerlessAgen
 	this := ListAllCSMServerlessAgentsOptionalParameters{}
 	return &this
 }
-
 // WithPage sets the corresponding parameter name and returns the struct.
 func (r *ListAllCSMServerlessAgentsOptionalParameters) WithPage(page int32) *ListAllCSMServerlessAgentsOptionalParameters {
 	r.Page = &page
 	return r
 }
-
 // WithSize sets the corresponding parameter name and returns the struct.
 func (r *ListAllCSMServerlessAgentsOptionalParameters) WithSize(size int32) *ListAllCSMServerlessAgentsOptionalParameters {
 	r.Size = &size
 	return r
 }
-
 // WithQuery sets the corresponding parameter name and returns the struct.
 func (r *ListAllCSMServerlessAgentsOptionalParameters) WithQuery(query string) *ListAllCSMServerlessAgentsOptionalParameters {
 	r.Query = &query
 	return r
 }
-
 // WithOrderDirection sets the corresponding parameter name and returns the struct.
 func (r *ListAllCSMServerlessAgentsOptionalParameters) WithOrderDirection(orderDirection OrderDirection) *ListAllCSMServerlessAgentsOptionalParameters {
 	r.OrderDirection = &orderDirection
@@ -192,18 +193,20 @@ func (r *ListAllCSMServerlessAgentsOptionalParameters) WithOrderDirection(orderD
 // Get the list of all CSM Serverless Agents running on your hosts and containers.
 func (a *CSMAgentsApi) ListAllCSMServerlessAgents(ctx _context.Context, o ...ListAllCSMServerlessAgentsOptionalParameters) (CsmAgentsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue CsmAgentsResponse
-		optionalParams      ListAllCSMServerlessAgentsOptionalParameters
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  CsmAgentsResponse
+		optionalParams ListAllCSMServerlessAgentsOptionalParameters
 	)
 
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListAllCSMServerlessAgentsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
+    
+    if len(o) > 1 {
+        return  localVarReturnValue, nil, datadog.ReportError("only one argument of type ListAllCSMServerlessAgentsOptionalParameters is allowed")
+    }
+    if len(o) == 1 {
+        optionalParams = o[0]
+    }
+    
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CSMAgentsApi.ListAllCSMServerlessAgents")
 	if err != nil {
@@ -229,19 +232,20 @@ func (a *CSMAgentsApi) ListAllCSMServerlessAgents(ctx _context.Context, o ...Lis
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
-	if a.Client.Cfg.DelegatedTokenConfig != nil {
-		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
-		if err != nil {
-			return localVarReturnValue, nil, err
-		}
-	} else {
-		datadog.SetAuthKeys(
-			ctx,
-			&localVarHeaderParams,
-			[2]string{"apiKeyAuth", "DD-API-KEY"},
-			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
-		)
-	}
+	
+		if a.Client.Cfg.DelegatedTokenConfig != nil {
+			err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+			if err != nil {
+				return localVarReturnValue, nil, err
+			}
+		} else {
+        datadog.SetAuthKeys(
+		ctx,
+		&localVarHeaderParams,
+		[2]string{"apiKeyAuth", "DD-API-KEY"},
+		[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+	)
+	 } 
 	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
@@ -259,10 +263,11 @@ func (a *CSMAgentsApi) ListAllCSMServerlessAgents(ctx _context.Context, o ...Lis
 
 	if localVarHTTPResponse.StatusCode >= 300 {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+		if
+		localVarHTTPResponse.StatusCode == 403||localVarHTTPResponse.StatusCode == 429{
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -276,7 +281,7 @@ func (a *CSMAgentsApi) ListAllCSMServerlessAgents(ctx _context.Context, o ...Lis
 	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
 		newErr := datadog.GenericOpenAPIError{
-			ErrorBody:    localVarBody,
+			ErrorBody:  localVarBody,
 			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr

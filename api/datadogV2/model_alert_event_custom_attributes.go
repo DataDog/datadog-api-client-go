@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AlertEventCustomAttributes Alert event attributes.
 type AlertEventCustomAttributes struct {
@@ -23,6 +27,7 @@ type AlertEventCustomAttributes struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewAlertEventCustomAttributes instantiates a new AlertEventCustomAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewAlertEventCustomAttributesWithDefaults() *AlertEventCustomAttributes {
 	this.Priority = &priority
 	return &this
 }
-
 // GetCustom returns the Custom field value if set, zero value otherwise.
 func (o *AlertEventCustomAttributes) GetCustom() map[string]interface{} {
 	if o == nil || o.Custom == nil {
@@ -73,6 +77,7 @@ func (o *AlertEventCustomAttributes) HasCustom() bool {
 func (o *AlertEventCustomAttributes) SetCustom(v map[string]interface{}) {
 	o.Custom = v
 }
+
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *AlertEventCustomAttributes) GetLinks() []AlertEventCustomAttributesLinksItems {
@@ -102,6 +107,7 @@ func (o *AlertEventCustomAttributes) SetLinks(v []AlertEventCustomAttributesLink
 	o.Links = v
 }
 
+
 // GetPriority returns the Priority field value if set, zero value otherwise.
 func (o *AlertEventCustomAttributes) GetPriority() AlertEventCustomAttributesPriority {
 	if o == nil || o.Priority == nil {
@@ -130,6 +136,7 @@ func (o *AlertEventCustomAttributes) SetPriority(v AlertEventCustomAttributesPri
 	o.Priority = &v
 }
 
+
 // GetStatus returns the Status field value.
 func (o *AlertEventCustomAttributes) GetStatus() AlertEventCustomAttributesStatus {
 	if o == nil {
@@ -153,6 +160,8 @@ func (o *AlertEventCustomAttributes) SetStatus(v AlertEventCustomAttributesStatu
 	o.Status = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AlertEventCustomAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -175,10 +184,10 @@ func (o AlertEventCustomAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AlertEventCustomAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Custom   map[string]interface{}                 `json:"custom,omitempty"`
-		Links    []AlertEventCustomAttributesLinksItems `json:"links,omitempty"`
-		Priority *AlertEventCustomAttributesPriority    `json:"priority,omitempty"`
-		Status   *AlertEventCustomAttributesStatus      `json:"status"`
+		Custom map[string]interface{} `json:"custom,omitempty"`
+		Links []AlertEventCustomAttributesLinksItems `json:"links,omitempty"`
+		Priority *AlertEventCustomAttributesPriority `json:"priority,omitempty"`
+		Status *AlertEventCustomAttributesStatus `json:"status"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -190,7 +199,7 @@ func (o *AlertEventCustomAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Custom = all.Custom
 	o.Links = all.Links
-	if all.Priority != nil && !all.Priority.IsValid() {
+	if all.Priority != nil &&!all.Priority.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Priority = all.Priority

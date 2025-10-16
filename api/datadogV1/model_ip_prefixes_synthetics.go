@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IPPrefixesSynthetics Available prefix information for the Synthetics endpoints.
 type IPPrefixesSynthetics struct {
@@ -19,9 +25,10 @@ type IPPrefixesSynthetics struct {
 	// List of IPv6 prefixes by location.
 	PrefixesIpv6ByLocation map[string][]string `json:"prefixes_ipv6_by_location,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIPPrefixesSynthetics instantiates a new IPPrefixesSynthetics object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewIPPrefixesSyntheticsWithDefaults() *IPPrefixesSynthetics {
 	this := IPPrefixesSynthetics{}
 	return &this
 }
-
 // GetPrefixesIpv4 returns the PrefixesIpv4 field value if set, zero value otherwise.
 func (o *IPPrefixesSynthetics) GetPrefixesIpv4() []string {
 	if o == nil || o.PrefixesIpv4 == nil {
@@ -67,6 +73,7 @@ func (o *IPPrefixesSynthetics) HasPrefixesIpv4() bool {
 func (o *IPPrefixesSynthetics) SetPrefixesIpv4(v []string) {
 	o.PrefixesIpv4 = v
 }
+
 
 // GetPrefixesIpv4ByLocation returns the PrefixesIpv4ByLocation field value if set, zero value otherwise.
 func (o *IPPrefixesSynthetics) GetPrefixesIpv4ByLocation() map[string][]string {
@@ -96,6 +103,7 @@ func (o *IPPrefixesSynthetics) SetPrefixesIpv4ByLocation(v map[string][]string) 
 	o.PrefixesIpv4ByLocation = v
 }
 
+
 // GetPrefixesIpv6 returns the PrefixesIpv6 field value if set, zero value otherwise.
 func (o *IPPrefixesSynthetics) GetPrefixesIpv6() []string {
 	if o == nil || o.PrefixesIpv6 == nil {
@@ -123,6 +131,7 @@ func (o *IPPrefixesSynthetics) HasPrefixesIpv6() bool {
 func (o *IPPrefixesSynthetics) SetPrefixesIpv6(v []string) {
 	o.PrefixesIpv6 = v
 }
+
 
 // GetPrefixesIpv6ByLocation returns the PrefixesIpv6ByLocation field value if set, zero value otherwise.
 func (o *IPPrefixesSynthetics) GetPrefixesIpv6ByLocation() map[string][]string {
@@ -152,6 +161,8 @@ func (o *IPPrefixesSynthetics) SetPrefixesIpv6ByLocation(v map[string][]string) 
 	o.PrefixesIpv6ByLocation = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IPPrefixesSynthetics) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,9 +191,9 @@ func (o IPPrefixesSynthetics) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IPPrefixesSynthetics) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		PrefixesIpv4           []string            `json:"prefixes_ipv4,omitempty"`
+		PrefixesIpv4 []string `json:"prefixes_ipv4,omitempty"`
 		PrefixesIpv4ByLocation map[string][]string `json:"prefixes_ipv4_by_location,omitempty"`
-		PrefixesIpv6           []string            `json:"prefixes_ipv6,omitempty"`
+		PrefixesIpv6 []string `json:"prefixes_ipv6,omitempty"`
 		PrefixesIpv6ByLocation map[string][]string `json:"prefixes_ipv6_by_location,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -190,7 +201,7 @@ func (o *IPPrefixesSynthetics) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"prefixes_ipv4", "prefixes_ipv4_by_location", "prefixes_ipv6", "prefixes_ipv6_by_location"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "prefixes_ipv4", "prefixes_ipv4_by_location", "prefixes_ipv6", "prefixes_ipv6_by_location",  })
 	} else {
 		return err
 	}

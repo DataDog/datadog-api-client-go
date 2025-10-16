@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionMetaWarnings Schema validation warnings.
 type ServiceDefinitionMetaWarnings struct {
@@ -17,9 +23,10 @@ type ServiceDefinitionMetaWarnings struct {
 	// The warning message.
 	Message *string `json:"message,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceDefinitionMetaWarnings instantiates a new ServiceDefinitionMetaWarnings object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewServiceDefinitionMetaWarningsWithDefaults() *ServiceDefinitionMetaWarnin
 	this := ServiceDefinitionMetaWarnings{}
 	return &this
 }
-
 // GetInstanceLocation returns the InstanceLocation field value if set, zero value otherwise.
 func (o *ServiceDefinitionMetaWarnings) GetInstanceLocation() string {
 	if o == nil || o.InstanceLocation == nil {
@@ -65,6 +71,7 @@ func (o *ServiceDefinitionMetaWarnings) HasInstanceLocation() bool {
 func (o *ServiceDefinitionMetaWarnings) SetInstanceLocation(v string) {
 	o.InstanceLocation = &v
 }
+
 
 // GetKeywordLocation returns the KeywordLocation field value if set, zero value otherwise.
 func (o *ServiceDefinitionMetaWarnings) GetKeywordLocation() string {
@@ -94,6 +101,7 @@ func (o *ServiceDefinitionMetaWarnings) SetKeywordLocation(v string) {
 	o.KeywordLocation = &v
 }
 
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *ServiceDefinitionMetaWarnings) GetMessage() string {
 	if o == nil || o.Message == nil {
@@ -122,6 +130,8 @@ func (o *ServiceDefinitionMetaWarnings) SetMessage(v string) {
 	o.Message = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceDefinitionMetaWarnings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,15 +158,15 @@ func (o ServiceDefinitionMetaWarnings) MarshalJSON() ([]byte, error) {
 func (o *ServiceDefinitionMetaWarnings) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		InstanceLocation *string `json:"instance-location,omitempty"`
-		KeywordLocation  *string `json:"keyword-location,omitempty"`
-		Message          *string `json:"message,omitempty"`
+		KeywordLocation *string `json:"keyword-location,omitempty"`
+		Message *string `json:"message,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"instance-location", "keyword-location", "message"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "instance-location", "keyword-location", "message",  })
 	} else {
 		return err
 	}

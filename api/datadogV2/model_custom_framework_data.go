@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomFrameworkData Contains type and attributes for custom frameworks.
 type CustomFrameworkData struct {
@@ -17,9 +21,10 @@ type CustomFrameworkData struct {
 	// The type of the resource. The value must be `custom_framework`.
 	Type CustomFrameworkType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomFrameworkData instantiates a new CustomFrameworkData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewCustomFrameworkDataWithDefaults() *CustomFrameworkData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *CustomFrameworkData) GetAttributes() CustomFrameworkDataAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *CustomFrameworkData) GetAttributesOk() (*CustomFrameworkDataAttributes,
 func (o *CustomFrameworkData) SetAttributes(v CustomFrameworkDataAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *CustomFrameworkData) GetType() CustomFrameworkType {
@@ -88,6 +93,8 @@ func (o *CustomFrameworkData) SetType(v CustomFrameworkType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomFrameworkData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o CustomFrameworkData) MarshalJSON() ([]byte, error) {
 func (o *CustomFrameworkData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *CustomFrameworkDataAttributes `json:"attributes"`
-		Type       *CustomFrameworkType           `json:"type"`
+		Type *CustomFrameworkType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *CustomFrameworkData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

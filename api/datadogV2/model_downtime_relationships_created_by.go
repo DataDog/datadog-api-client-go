@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeRelationshipsCreatedBy The user who created the downtime.
 type DowntimeRelationshipsCreatedBy struct {
 	// Data for the user who created the downtime.
 	Data NullableDowntimeRelationshipsCreatedByData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDowntimeRelationshipsCreatedBy instantiates a new DowntimeRelationshipsCreatedBy object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewDowntimeRelationshipsCreatedByWithDefaults() *DowntimeRelationshipsCreat
 	this := DowntimeRelationshipsCreatedBy{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DowntimeRelationshipsCreatedBy) GetData() DowntimeRelationshipsCreatedByData {
 	if o == nil || o.Data.Get() == nil {
@@ -47,7 +53,7 @@ func (o *DowntimeRelationshipsCreatedBy) GetData() DowntimeRelationshipsCreatedB
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeRelationshipsCreatedBy) GetDataOk() (*DowntimeRelationshipsCreatedByData, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Data.Get(), o.Data.IsSet()
@@ -62,7 +68,6 @@ func (o *DowntimeRelationshipsCreatedBy) HasData() bool {
 func (o *DowntimeRelationshipsCreatedBy) SetData(v DowntimeRelationshipsCreatedByData) {
 	o.Data.Set(&v)
 }
-
 // SetDataNil sets the value for Data to be an explicit nil.
 func (o *DowntimeRelationshipsCreatedBy) SetDataNil() {
 	o.Data.Set(nil)
@@ -72,6 +77,8 @@ func (o *DowntimeRelationshipsCreatedBy) SetDataNil() {
 func (o *DowntimeRelationshipsCreatedBy) UnsetData() {
 	o.Data.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeRelationshipsCreatedBy) MarshalJSON() ([]byte, error) {
@@ -99,7 +106,7 @@ func (o *DowntimeRelationshipsCreatedBy) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

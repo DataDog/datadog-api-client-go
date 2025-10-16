@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTriggerCITestRunResult Information about a single test run.
 type SyntheticsTriggerCITestRunResult struct {
@@ -19,9 +25,10 @@ type SyntheticsTriggerCITestRunResult struct {
 	// ID of the result.
 	ResultId *string `json:"result_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsTriggerCITestRunResult instantiates a new SyntheticsTriggerCITestRunResult object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewSyntheticsTriggerCITestRunResultWithDefaults() *SyntheticsTriggerCITestR
 	this := SyntheticsTriggerCITestRunResult{}
 	return &this
 }
-
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *SyntheticsTriggerCITestRunResult) GetDevice() string {
 	if o == nil || o.Device == nil {
@@ -67,6 +73,7 @@ func (o *SyntheticsTriggerCITestRunResult) HasDevice() bool {
 func (o *SyntheticsTriggerCITestRunResult) SetDevice(v string) {
 	o.Device = &v
 }
+
 
 // GetLocation returns the Location field value if set, zero value otherwise.
 func (o *SyntheticsTriggerCITestRunResult) GetLocation() int64 {
@@ -96,6 +103,7 @@ func (o *SyntheticsTriggerCITestRunResult) SetLocation(v int64) {
 	o.Location = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *SyntheticsTriggerCITestRunResult) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -123,6 +131,7 @@ func (o *SyntheticsTriggerCITestRunResult) HasPublicId() bool {
 func (o *SyntheticsTriggerCITestRunResult) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
 
 // GetResultId returns the ResultId field value if set, zero value otherwise.
 func (o *SyntheticsTriggerCITestRunResult) GetResultId() string {
@@ -152,6 +161,8 @@ func (o *SyntheticsTriggerCITestRunResult) SetResultId(v string) {
 	o.ResultId = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTriggerCITestRunResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,8 +191,8 @@ func (o SyntheticsTriggerCITestRunResult) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTriggerCITestRunResult) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Device   *string `json:"device,omitempty"`
-		Location *int64  `json:"location,omitempty"`
+		Device *string `json:"device,omitempty"`
+		Location *int64 `json:"location,omitempty"`
 		PublicId *string `json:"public_id,omitempty"`
 		ResultId *string `json:"result_id,omitempty"`
 	}{}
@@ -190,7 +201,7 @@ func (o *SyntheticsTriggerCITestRunResult) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"device", "location", "public_id", "result_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "device", "location", "public_id", "result_id",  })
 	} else {
 		return err
 	}

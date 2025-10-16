@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // HTTPTokenAuthUpdate The definition of `HTTPTokenAuthUpdate` object.
 type HTTPTokenAuthUpdate struct {
@@ -23,9 +27,10 @@ type HTTPTokenAuthUpdate struct {
 	// The `HTTPTokenAuthUpdate` `url_parameters`.
 	UrlParameters []UrlParamUpdate `json:"url_parameters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewHTTPTokenAuthUpdate instantiates a new HTTPTokenAuthUpdate object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewHTTPTokenAuthUpdateWithDefaults() *HTTPTokenAuthUpdate {
 	this := HTTPTokenAuthUpdate{}
 	return &this
 }
-
 // GetBody returns the Body field value if set, zero value otherwise.
 func (o *HTTPTokenAuthUpdate) GetBody() HTTPBody {
 	if o == nil || o.Body == nil {
@@ -72,6 +76,7 @@ func (o *HTTPTokenAuthUpdate) HasBody() bool {
 func (o *HTTPTokenAuthUpdate) SetBody(v HTTPBody) {
 	o.Body = &v
 }
+
 
 // GetHeaders returns the Headers field value if set, zero value otherwise.
 func (o *HTTPTokenAuthUpdate) GetHeaders() []HTTPHeaderUpdate {
@@ -101,6 +106,7 @@ func (o *HTTPTokenAuthUpdate) SetHeaders(v []HTTPHeaderUpdate) {
 	o.Headers = v
 }
 
+
 // GetTokens returns the Tokens field value if set, zero value otherwise.
 func (o *HTTPTokenAuthUpdate) GetTokens() []HTTPTokenUpdate {
 	if o == nil || o.Tokens == nil {
@@ -129,6 +135,7 @@ func (o *HTTPTokenAuthUpdate) SetTokens(v []HTTPTokenUpdate) {
 	o.Tokens = v
 }
 
+
 // GetType returns the Type field value.
 func (o *HTTPTokenAuthUpdate) GetType() HTTPTokenAuthType {
 	if o == nil {
@@ -151,6 +158,7 @@ func (o *HTTPTokenAuthUpdate) GetTypeOk() (*HTTPTokenAuthType, bool) {
 func (o *HTTPTokenAuthUpdate) SetType(v HTTPTokenAuthType) {
 	o.Type = v
 }
+
 
 // GetUrlParameters returns the UrlParameters field value if set, zero value otherwise.
 func (o *HTTPTokenAuthUpdate) GetUrlParameters() []UrlParamUpdate {
@@ -179,6 +187,8 @@ func (o *HTTPTokenAuthUpdate) HasUrlParameters() bool {
 func (o *HTTPTokenAuthUpdate) SetUrlParameters(v []UrlParamUpdate) {
 	o.UrlParameters = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o HTTPTokenAuthUpdate) MarshalJSON() ([]byte, error) {
@@ -209,11 +219,11 @@ func (o HTTPTokenAuthUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HTTPTokenAuthUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Body          *HTTPBody          `json:"body,omitempty"`
-		Headers       []HTTPHeaderUpdate `json:"headers,omitempty"`
-		Tokens        []HTTPTokenUpdate  `json:"tokens,omitempty"`
-		Type          *HTTPTokenAuthType `json:"type"`
-		UrlParameters []UrlParamUpdate   `json:"url_parameters,omitempty"`
+		Body *HTTPBody `json:"body,omitempty"`
+		Headers []HTTPHeaderUpdate `json:"headers,omitempty"`
+		Tokens []HTTPTokenUpdate `json:"tokens,omitempty"`
+		Type *HTTPTokenAuthType `json:"type"`
+		UrlParameters []UrlParamUpdate `json:"url_parameters,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -223,13 +233,13 @@ func (o *HTTPTokenAuthUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"body", "headers", "tokens", "type", "url_parameters"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "body", "headers", "tokens", "type", "url_parameters",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Body != nil && all.Body.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Body != nil && all.Body.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Body = all.Body

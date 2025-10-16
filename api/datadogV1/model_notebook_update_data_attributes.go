@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotebookUpdateDataAttributes The data attributes of a notebook.
 type NotebookUpdateDataAttributes struct {
@@ -23,9 +27,10 @@ type NotebookUpdateDataAttributes struct {
 	// Notebook global timeframe.
 	Time NotebookGlobalTime `json:"time"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewNotebookUpdateDataAttributes instantiates a new NotebookUpdateDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewNotebookUpdateDataAttributesWithDefaults() *NotebookUpdateDataAttributes
 	this.Status = &status
 	return &this
 }
-
 // GetCells returns the Cells field value.
 func (o *NotebookUpdateDataAttributes) GetCells() []NotebookUpdateCell {
 	if o == nil {
@@ -73,6 +77,7 @@ func (o *NotebookUpdateDataAttributes) GetCellsOk() (*[]NotebookUpdateCell, bool
 func (o *NotebookUpdateDataAttributes) SetCells(v []NotebookUpdateCell) {
 	o.Cells = v
 }
+
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *NotebookUpdateDataAttributes) GetMetadata() NotebookMetadata {
@@ -102,6 +107,7 @@ func (o *NotebookUpdateDataAttributes) SetMetadata(v NotebookMetadata) {
 	o.Metadata = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *NotebookUpdateDataAttributes) GetName() string {
 	if o == nil {
@@ -124,6 +130,7 @@ func (o *NotebookUpdateDataAttributes) GetNameOk() (*string, bool) {
 func (o *NotebookUpdateDataAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *NotebookUpdateDataAttributes) GetStatus() NotebookStatus {
@@ -153,6 +160,7 @@ func (o *NotebookUpdateDataAttributes) SetStatus(v NotebookStatus) {
 	o.Status = &v
 }
 
+
 // GetTime returns the Time field value.
 func (o *NotebookUpdateDataAttributes) GetTime() NotebookGlobalTime {
 	if o == nil {
@@ -175,6 +183,8 @@ func (o *NotebookUpdateDataAttributes) GetTimeOk() (*NotebookGlobalTime, bool) {
 func (o *NotebookUpdateDataAttributes) SetTime(v NotebookGlobalTime) {
 	o.Time = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebookUpdateDataAttributes) MarshalJSON() ([]byte, error) {
@@ -201,11 +211,11 @@ func (o NotebookUpdateDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookUpdateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Cells    *[]NotebookUpdateCell `json:"cells"`
-		Metadata *NotebookMetadata     `json:"metadata,omitempty"`
-		Name     *string               `json:"name"`
-		Status   *NotebookStatus       `json:"status,omitempty"`
-		Time     *NotebookGlobalTime   `json:"time"`
+		Cells *[]NotebookUpdateCell `json:"cells"`
+		Metadata *NotebookMetadata `json:"metadata,omitempty"`
+		Name *string `json:"name"`
+		Status *NotebookStatus `json:"status,omitempty"`
+		Time *NotebookGlobalTime `json:"time"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -221,19 +231,19 @@ func (o *NotebookUpdateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cells", "metadata", "name", "status", "time"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cells", "metadata", "name", "status", "time",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Cells = *all.Cells
-	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Metadata = all.Metadata
 	o.Name = *all.Name
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

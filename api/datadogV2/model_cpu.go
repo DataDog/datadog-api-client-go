@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Cpu CPU usage statistics derived from historical Spark job metrics. Provides multiple estimates so users can choose between conservative and cost-saving risk profiles.
 type Cpu struct {
@@ -17,9 +23,10 @@ type Cpu struct {
 	// 95th percentile of CPU usage (millicores). Balances performance and cost, providing a safer margin than p75.
 	P95 *int64 `json:"p95,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCpu instantiates a new Cpu object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewCpuWithDefaults() *Cpu {
 	this := Cpu{}
 	return &this
 }
-
 // GetMax returns the Max field value if set, zero value otherwise.
 func (o *Cpu) GetMax() int64 {
 	if o == nil || o.Max == nil {
@@ -65,6 +71,7 @@ func (o *Cpu) HasMax() bool {
 func (o *Cpu) SetMax(v int64) {
 	o.Max = &v
 }
+
 
 // GetP75 returns the P75 field value if set, zero value otherwise.
 func (o *Cpu) GetP75() int64 {
@@ -94,6 +101,7 @@ func (o *Cpu) SetP75(v int64) {
 	o.P75 = &v
 }
 
+
 // GetP95 returns the P95 field value if set, zero value otherwise.
 func (o *Cpu) GetP95() int64 {
 	if o == nil || o.P95 == nil {
@@ -121,6 +129,8 @@ func (o *Cpu) HasP95() bool {
 func (o *Cpu) SetP95(v int64) {
 	o.P95 = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o Cpu) MarshalJSON() ([]byte, error) {
@@ -156,7 +166,7 @@ func (o *Cpu) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"max", "p75", "p95"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "max", "p75", "p95",  })
 	} else {
 		return err
 	}

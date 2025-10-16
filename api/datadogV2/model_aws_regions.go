@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSRegions - AWS Regions to collect data from. Defaults to `include_all`.
 type AWSRegions struct {
-	AWSRegionsIncludeAll  *AWSRegionsIncludeAll
+	AWSRegionsIncludeAll *AWSRegionsIncludeAll
 	AWSRegionsIncludeOnly *AWSRegionsIncludeOnly
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +86,11 @@ func (obj AWSRegions) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.AWSRegionsIncludeAll)
 	}
 
+
 	if obj.AWSRegionsIncludeOnly != nil {
 		return datadog.Marshal(&obj.AWSRegionsIncludeOnly)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj AWSRegions) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *AWSRegions) GetActualInstance() interface{} {
+func (obj *AWSRegions) GetActualInstance() (interface{}) {
 	if obj.AWSRegionsIncludeAll != nil {
 		return obj.AWSRegionsIncludeAll
 	}
 
+
 	if obj.AWSRegionsIncludeOnly != nil {
 		return obj.AWSRegionsIncludeOnly
 	}
+
 
 	// all schemas are nil
 	return nil

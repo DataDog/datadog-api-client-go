@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AppTriggerWrapper Schema for an App-based trigger.
 type AppTriggerWrapper struct {
@@ -17,9 +21,10 @@ type AppTriggerWrapper struct {
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAppTriggerWrapper instantiates a new AppTriggerWrapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewAppTriggerWrapperWithDefaults() *AppTriggerWrapper {
 	this := AppTriggerWrapper{}
 	return &this
 }
-
 // GetAppTrigger returns the AppTrigger field value.
 func (o *AppTriggerWrapper) GetAppTrigger() interface{} {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *AppTriggerWrapper) GetAppTriggerOk() (*interface{}, bool) {
 func (o *AppTriggerWrapper) SetAppTrigger(v interface{}) {
 	o.AppTrigger = v
 }
+
 
 // GetStartStepNames returns the StartStepNames field value if set, zero value otherwise.
 func (o *AppTriggerWrapper) GetStartStepNames() []string {
@@ -90,6 +95,8 @@ func (o *AppTriggerWrapper) SetStartStepNames(v []string) {
 	o.StartStepNames = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AppTriggerWrapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,8 +117,8 @@ func (o AppTriggerWrapper) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AppTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AppTrigger     *interface{} `json:"appTrigger"`
-		StartStepNames []string     `json:"startStepNames,omitempty"`
+		AppTrigger *interface{} `json:"appTrigger"`
+		StartStepNames []string `json:"startStepNames,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *AppTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"appTrigger", "startStepNames"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "appTrigger", "startStepNames",  })
 	} else {
 		return err
 	}

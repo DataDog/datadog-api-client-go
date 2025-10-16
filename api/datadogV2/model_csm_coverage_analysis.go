@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CsmCoverageAnalysis CSM Coverage Analysis.
 type CsmCoverageAnalysis struct {
@@ -19,9 +25,10 @@ type CsmCoverageAnalysis struct {
 	// The total number of resources.
 	TotalResourcesCount *int64 `json:"total_resources_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCsmCoverageAnalysis instantiates a new CsmCoverageAnalysis object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewCsmCoverageAnalysisWithDefaults() *CsmCoverageAnalysis {
 	this := CsmCoverageAnalysis{}
 	return &this
 }
-
 // GetConfiguredResourcesCount returns the ConfiguredResourcesCount field value if set, zero value otherwise.
 func (o *CsmCoverageAnalysis) GetConfiguredResourcesCount() int64 {
 	if o == nil || o.ConfiguredResourcesCount == nil {
@@ -67,6 +73,7 @@ func (o *CsmCoverageAnalysis) HasConfiguredResourcesCount() bool {
 func (o *CsmCoverageAnalysis) SetConfiguredResourcesCount(v int64) {
 	o.ConfiguredResourcesCount = &v
 }
+
 
 // GetCoverage returns the Coverage field value if set, zero value otherwise.
 func (o *CsmCoverageAnalysis) GetCoverage() float64 {
@@ -96,6 +103,7 @@ func (o *CsmCoverageAnalysis) SetCoverage(v float64) {
 	o.Coverage = &v
 }
 
+
 // GetPartiallyConfiguredResourcesCount returns the PartiallyConfiguredResourcesCount field value if set, zero value otherwise.
 func (o *CsmCoverageAnalysis) GetPartiallyConfiguredResourcesCount() int64 {
 	if o == nil || o.PartiallyConfiguredResourcesCount == nil {
@@ -123,6 +131,7 @@ func (o *CsmCoverageAnalysis) HasPartiallyConfiguredResourcesCount() bool {
 func (o *CsmCoverageAnalysis) SetPartiallyConfiguredResourcesCount(v int64) {
 	o.PartiallyConfiguredResourcesCount = &v
 }
+
 
 // GetTotalResourcesCount returns the TotalResourcesCount field value if set, zero value otherwise.
 func (o *CsmCoverageAnalysis) GetTotalResourcesCount() int64 {
@@ -152,6 +161,8 @@ func (o *CsmCoverageAnalysis) SetTotalResourcesCount(v int64) {
 	o.TotalResourcesCount = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CsmCoverageAnalysis) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,17 +191,17 @@ func (o CsmCoverageAnalysis) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CsmCoverageAnalysis) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ConfiguredResourcesCount          *int64   `json:"configured_resources_count,omitempty"`
-		Coverage                          *float64 `json:"coverage,omitempty"`
-		PartiallyConfiguredResourcesCount *int64   `json:"partially_configured_resources_count,omitempty"`
-		TotalResourcesCount               *int64   `json:"total_resources_count,omitempty"`
+		ConfiguredResourcesCount *int64 `json:"configured_resources_count,omitempty"`
+		Coverage *float64 `json:"coverage,omitempty"`
+		PartiallyConfiguredResourcesCount *int64 `json:"partially_configured_resources_count,omitempty"`
+		TotalResourcesCount *int64 `json:"total_resources_count,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"configured_resources_count", "coverage", "partially_configured_resources_count", "total_resources_count"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "configured_resources_count", "coverage", "partially_configured_resources_count", "total_resources_count",  })
 	} else {
 		return err
 	}

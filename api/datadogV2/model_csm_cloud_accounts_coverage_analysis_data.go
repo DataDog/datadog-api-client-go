@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CsmCloudAccountsCoverageAnalysisData CSM Cloud Accounts Coverage Analysis data.
 type CsmCloudAccountsCoverageAnalysisData struct {
@@ -17,9 +23,10 @@ type CsmCloudAccountsCoverageAnalysisData struct {
 	// The type of the resource. The value should always be `get_cloud_accounts_coverage_analysis_response_public_v0`.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCsmCloudAccountsCoverageAnalysisData instantiates a new CsmCloudAccountsCoverageAnalysisData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewCsmCloudAccountsCoverageAnalysisDataWithDefaults() *CsmCloudAccountsCove
 	this.Type = &typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *CsmCloudAccountsCoverageAnalysisData) GetAttributes() CsmCloudAccountsCoverageAnalysisAttributes {
 	if o == nil || o.Attributes == nil {
@@ -69,6 +75,7 @@ func (o *CsmCloudAccountsCoverageAnalysisData) HasAttributes() bool {
 func (o *CsmCloudAccountsCoverageAnalysisData) SetAttributes(v CsmCloudAccountsCoverageAnalysisAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *CsmCloudAccountsCoverageAnalysisData) GetId() string {
@@ -98,6 +105,7 @@ func (o *CsmCloudAccountsCoverageAnalysisData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *CsmCloudAccountsCoverageAnalysisData) GetType() string {
 	if o == nil || o.Type == nil {
@@ -126,6 +134,8 @@ func (o *CsmCloudAccountsCoverageAnalysisData) SetType(v string) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CsmCloudAccountsCoverageAnalysisData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -152,21 +162,21 @@ func (o CsmCloudAccountsCoverageAnalysisData) MarshalJSON() ([]byte, error) {
 func (o *CsmCloudAccountsCoverageAnalysisData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *CsmCloudAccountsCoverageAnalysisAttributes `json:"attributes,omitempty"`
-		Id         *string                                     `json:"id,omitempty"`
-		Type       *string                                     `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

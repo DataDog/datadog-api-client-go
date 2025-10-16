@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomDestinationForwardDestinationElasticsearch The Elasticsearch destination.
 type CustomDestinationForwardDestinationElasticsearch struct {
@@ -33,9 +37,10 @@ type CustomDestinationForwardDestinationElasticsearch struct {
 	// Type of the Elasticsearch destination.
 	Type CustomDestinationForwardDestinationElasticsearchType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomDestinationForwardDestinationElasticsearch instantiates a new CustomDestinationForwardDestinationElasticsearch object.
 // This constructor will assign default values to properties that have it defined,
@@ -59,7 +64,6 @@ func NewCustomDestinationForwardDestinationElasticsearchWithDefaults() *CustomDe
 	this.Type = typeVar
 	return &this
 }
-
 // GetAuth returns the Auth field value.
 func (o *CustomDestinationForwardDestinationElasticsearch) GetAuth() CustomDestinationElasticsearchDestinationAuth {
 	if o == nil {
@@ -82,6 +86,7 @@ func (o *CustomDestinationForwardDestinationElasticsearch) GetAuthOk() (*CustomD
 func (o *CustomDestinationForwardDestinationElasticsearch) SetAuth(v CustomDestinationElasticsearchDestinationAuth) {
 	o.Auth = v
 }
+
 
 // GetEndpoint returns the Endpoint field value.
 func (o *CustomDestinationForwardDestinationElasticsearch) GetEndpoint() string {
@@ -106,6 +111,7 @@ func (o *CustomDestinationForwardDestinationElasticsearch) SetEndpoint(v string)
 	o.Endpoint = v
 }
 
+
 // GetIndexName returns the IndexName field value.
 func (o *CustomDestinationForwardDestinationElasticsearch) GetIndexName() string {
 	if o == nil {
@@ -128,6 +134,7 @@ func (o *CustomDestinationForwardDestinationElasticsearch) GetIndexNameOk() (*st
 func (o *CustomDestinationForwardDestinationElasticsearch) SetIndexName(v string) {
 	o.IndexName = v
 }
+
 
 // GetIndexRotation returns the IndexRotation field value if set, zero value otherwise.
 func (o *CustomDestinationForwardDestinationElasticsearch) GetIndexRotation() string {
@@ -157,6 +164,7 @@ func (o *CustomDestinationForwardDestinationElasticsearch) SetIndexRotation(v st
 	o.IndexRotation = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *CustomDestinationForwardDestinationElasticsearch) GetType() CustomDestinationForwardDestinationElasticsearchType {
 	if o == nil {
@@ -179,6 +187,8 @@ func (o *CustomDestinationForwardDestinationElasticsearch) GetTypeOk() (*CustomD
 func (o *CustomDestinationForwardDestinationElasticsearch) SetType(v CustomDestinationForwardDestinationElasticsearchType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomDestinationForwardDestinationElasticsearch) MarshalJSON() ([]byte, error) {
@@ -203,11 +213,11 @@ func (o CustomDestinationForwardDestinationElasticsearch) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomDestinationForwardDestinationElasticsearch) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Auth          *CustomDestinationElasticsearchDestinationAuth        `json:"auth"`
-		Endpoint      *string                                               `json:"endpoint"`
-		IndexName     *string                                               `json:"index_name"`
-		IndexRotation *string                                               `json:"index_rotation,omitempty"`
-		Type          *CustomDestinationForwardDestinationElasticsearchType `json:"type"`
+		Auth *CustomDestinationElasticsearchDestinationAuth `json:"auth"`
+		Endpoint *string `json:"endpoint"`
+		IndexName *string `json:"index_name"`
+		IndexRotation *string `json:"index_rotation,omitempty"`
+		Type *CustomDestinationForwardDestinationElasticsearchType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -226,7 +236,7 @@ func (o *CustomDestinationForwardDestinationElasticsearch) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "endpoint", "index_name", "index_rotation", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "auth", "endpoint", "index_name", "index_rotation", "type",  })
 	} else {
 		return err
 	}

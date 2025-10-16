@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineQuotaProcessorOverride Defines a custom quota limit that applies to specific log events based on matching field values.
 type ObservabilityPipelineQuotaProcessorOverride struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineQuotaProcessorOverride struct {
 	// The maximum amount of data or number of events allowed before the quota is enforced. Can be specified in bytes or events.
 	Limit ObservabilityPipelineQuotaProcessorLimit `json:"limit"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineQuotaProcessorOverride instantiates a new ObservabilityPipelineQuotaProcessorOverride object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineQuotaProcessorOverrideWithDefaults() *Observability
 	this := ObservabilityPipelineQuotaProcessorOverride{}
 	return &this
 }
-
 // GetFields returns the Fields field value.
 func (o *ObservabilityPipelineQuotaProcessorOverride) GetFields() []ObservabilityPipelineFieldValue {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineQuotaProcessorOverride) GetFieldsOk() (*[]Observab
 func (o *ObservabilityPipelineQuotaProcessorOverride) SetFields(v []ObservabilityPipelineFieldValue) {
 	o.Fields = v
 }
+
 
 // GetLimit returns the Limit field value.
 func (o *ObservabilityPipelineQuotaProcessorOverride) GetLimit() ObservabilityPipelineQuotaProcessorLimit {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineQuotaProcessorOverride) SetLimit(v ObservabilityPi
 	o.Limit = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineQuotaProcessorOverride) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o ObservabilityPipelineQuotaProcessorOverride) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineQuotaProcessorOverride) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Fields *[]ObservabilityPipelineFieldValue        `json:"fields"`
-		Limit  *ObservabilityPipelineQuotaProcessorLimit `json:"limit"`
+		Fields *[]ObservabilityPipelineFieldValue `json:"fields"`
+		Limit *ObservabilityPipelineQuotaProcessorLimit `json:"limit"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineQuotaProcessorOverride) UnmarshalJSON(bytes []byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"fields", "limit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "fields", "limit",  })
 	} else {
 		return err
 	}

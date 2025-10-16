@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomDestinationElasticsearchDestinationAuth Basic access authentication.
 type CustomDestinationElasticsearchDestinationAuth struct {
@@ -17,9 +21,10 @@ type CustomDestinationElasticsearchDestinationAuth struct {
 	// The username of the authentication. This field is not returned by the API.
 	Username string `json:"username"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomDestinationElasticsearchDestinationAuth instantiates a new CustomDestinationElasticsearchDestinationAuth object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewCustomDestinationElasticsearchDestinationAuthWithDefaults() *CustomDesti
 	this := CustomDestinationElasticsearchDestinationAuth{}
 	return &this
 }
-
 // GetPassword returns the Password field value.
 func (o *CustomDestinationElasticsearchDestinationAuth) GetPassword() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *CustomDestinationElasticsearchDestinationAuth) SetPassword(v string) {
 	o.Password = v
 }
 
+
 // GetUsername returns the Username field value.
 func (o *CustomDestinationElasticsearchDestinationAuth) GetUsername() string {
 	if o == nil {
@@ -85,6 +90,8 @@ func (o *CustomDestinationElasticsearchDestinationAuth) GetUsernameOk() (*string
 func (o *CustomDestinationElasticsearchDestinationAuth) SetUsername(v string) {
 	o.Username = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomDestinationElasticsearchDestinationAuth) MarshalJSON() ([]byte, error) {
@@ -118,7 +125,7 @@ func (o *CustomDestinationElasticsearchDestinationAuth) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"password", "username"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "password", "username",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityV3DatastoreSpec The definition of Entity V3 Datastore Spec object.
 type EntityV3DatastoreSpec struct {
@@ -21,6 +27,7 @@ type EntityV3DatastoreSpec struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityV3DatastoreSpec instantiates a new EntityV3DatastoreSpec object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +45,6 @@ func NewEntityV3DatastoreSpecWithDefaults() *EntityV3DatastoreSpec {
 	this := EntityV3DatastoreSpec{}
 	return &this
 }
-
 // GetComponentOf returns the ComponentOf field value if set, zero value otherwise.
 func (o *EntityV3DatastoreSpec) GetComponentOf() []string {
 	if o == nil || o.ComponentOf == nil {
@@ -66,6 +72,7 @@ func (o *EntityV3DatastoreSpec) HasComponentOf() bool {
 func (o *EntityV3DatastoreSpec) SetComponentOf(v []string) {
 	o.ComponentOf = v
 }
+
 
 // GetLifecycle returns the Lifecycle field value if set, zero value otherwise.
 func (o *EntityV3DatastoreSpec) GetLifecycle() string {
@@ -95,6 +102,7 @@ func (o *EntityV3DatastoreSpec) SetLifecycle(v string) {
 	o.Lifecycle = &v
 }
 
+
 // GetTier returns the Tier field value if set, zero value otherwise.
 func (o *EntityV3DatastoreSpec) GetTier() string {
 	if o == nil || o.Tier == nil {
@@ -122,6 +130,7 @@ func (o *EntityV3DatastoreSpec) HasTier() bool {
 func (o *EntityV3DatastoreSpec) SetTier(v string) {
 	o.Tier = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *EntityV3DatastoreSpec) GetType() string {
@@ -151,6 +160,8 @@ func (o *EntityV3DatastoreSpec) SetType(v string) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityV3DatastoreSpec) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -176,9 +187,9 @@ func (o EntityV3DatastoreSpec) MarshalJSON() ([]byte, error) {
 func (o *EntityV3DatastoreSpec) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ComponentOf []string `json:"componentOf,omitempty"`
-		Lifecycle   *string  `json:"lifecycle,omitempty"`
-		Tier        *string  `json:"tier,omitempty"`
-		Type        *string  `json:"type,omitempty"`
+		Lifecycle *string `json:"lifecycle,omitempty"`
+		Tier *string `json:"tier,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

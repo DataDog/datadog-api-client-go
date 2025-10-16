@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineGoogleChronicleDestinationEncoding The encoding format for the logs sent to Chronicle.
 type ObservabilityPipelineGoogleChronicleDestinationEncoding string
 
 // List of ObservabilityPipelineGoogleChronicleDestinationEncoding.
 const (
-	OBSERVABILITYPIPELINEGOOGLECHRONICLEDESTINATIONENCODING_JSON        ObservabilityPipelineGoogleChronicleDestinationEncoding = "json"
+	OBSERVABILITYPIPELINEGOOGLECHRONICLEDESTINATIONENCODING_JSON ObservabilityPipelineGoogleChronicleDestinationEncoding = "json"
 	OBSERVABILITYPIPELINEGOOGLECHRONICLEDESTINATIONENCODING_RAW_MESSAGE ObservabilityPipelineGoogleChronicleDestinationEncoding = "raw_message"
 )
 

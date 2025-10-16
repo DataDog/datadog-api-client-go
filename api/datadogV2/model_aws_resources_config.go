@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSResourcesConfig AWS Resources Collection config.
 type AWSResourcesConfig struct {
@@ -15,9 +21,10 @@ type AWSResourcesConfig struct {
 	// Whether Datadog collects additional attributes and configuration information about the resources in your AWS account. Defaults to `true`. Required for `cloud_security_posture_management_collection`.
 	ExtendedCollection *bool `json:"extended_collection,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSResourcesConfig instantiates a new AWSResourcesConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewAWSResourcesConfigWithDefaults() *AWSResourcesConfig {
 	this := AWSResourcesConfig{}
 	return &this
 }
-
 // GetCloudSecurityPostureManagementCollection returns the CloudSecurityPostureManagementCollection field value if set, zero value otherwise.
 func (o *AWSResourcesConfig) GetCloudSecurityPostureManagementCollection() bool {
 	if o == nil || o.CloudSecurityPostureManagementCollection == nil {
@@ -63,6 +69,7 @@ func (o *AWSResourcesConfig) HasCloudSecurityPostureManagementCollection() bool 
 func (o *AWSResourcesConfig) SetCloudSecurityPostureManagementCollection(v bool) {
 	o.CloudSecurityPostureManagementCollection = &v
 }
+
 
 // GetExtendedCollection returns the ExtendedCollection field value if set, zero value otherwise.
 func (o *AWSResourcesConfig) GetExtendedCollection() bool {
@@ -92,6 +99,8 @@ func (o *AWSResourcesConfig) SetExtendedCollection(v bool) {
 	o.ExtendedCollection = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSResourcesConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,14 +124,14 @@ func (o AWSResourcesConfig) MarshalJSON() ([]byte, error) {
 func (o *AWSResourcesConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CloudSecurityPostureManagementCollection *bool `json:"cloud_security_posture_management_collection,omitempty"`
-		ExtendedCollection                       *bool `json:"extended_collection,omitempty"`
+		ExtendedCollection *bool `json:"extended_collection,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cloud_security_posture_management_collection", "extended_collection"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cloud_security_posture_management_collection", "extended_collection",  })
 	} else {
 		return err
 	}

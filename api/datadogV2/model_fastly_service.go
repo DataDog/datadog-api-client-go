@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FastlyService The schema representation of a Fastly service.
 type FastlyService struct {
@@ -17,9 +21,10 @@ type FastlyService struct {
 	// A list of tags for the Fastly service.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFastlyService instantiates a new FastlyService object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewFastlyServiceWithDefaults() *FastlyService {
 	this := FastlyService{}
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *FastlyService) GetId() string {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *FastlyService) GetIdOk() (*string, bool) {
 func (o *FastlyService) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *FastlyService) GetTags() []string {
@@ -90,6 +95,8 @@ func (o *FastlyService) SetTags(v []string) {
 	o.Tags = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FastlyService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,7 +117,7 @@ func (o FastlyService) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FastlyService) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string  `json:"id"`
+		Id *string `json:"id"`
 		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -121,7 +128,7 @@ func (o *FastlyService) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "tags",  })
 	} else {
 		return err
 	}

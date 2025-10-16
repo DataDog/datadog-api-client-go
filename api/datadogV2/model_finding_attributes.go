@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FindingAttributes The JSON:API attributes of the finding.
 type FindingAttributes struct {
@@ -37,9 +43,10 @@ type FindingAttributes struct {
 	// The vulnerability type of the finding.
 	VulnerabilityType *FindingVulnerabilityType `json:"vulnerability_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFindingAttributes instantiates a new FindingAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +64,6 @@ func NewFindingAttributesWithDefaults() *FindingAttributes {
 	this := FindingAttributes{}
 	return &this
 }
-
 // GetDatadogLink returns the DatadogLink field value if set, zero value otherwise.
 func (o *FindingAttributes) GetDatadogLink() string {
 	if o == nil || o.DatadogLink == nil {
@@ -85,6 +91,7 @@ func (o *FindingAttributes) HasDatadogLink() bool {
 func (o *FindingAttributes) SetDatadogLink(v string) {
 	o.DatadogLink = &v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *FindingAttributes) GetDescription() string {
@@ -114,6 +121,7 @@ func (o *FindingAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetEvaluation returns the Evaluation field value if set, zero value otherwise.
 func (o *FindingAttributes) GetEvaluation() FindingEvaluation {
 	if o == nil || o.Evaluation == nil {
@@ -141,6 +149,7 @@ func (o *FindingAttributes) HasEvaluation() bool {
 func (o *FindingAttributes) SetEvaluation(v FindingEvaluation) {
 	o.Evaluation = &v
 }
+
 
 // GetEvaluationChangedAt returns the EvaluationChangedAt field value if set, zero value otherwise.
 func (o *FindingAttributes) GetEvaluationChangedAt() int64 {
@@ -170,6 +179,7 @@ func (o *FindingAttributes) SetEvaluationChangedAt(v int64) {
 	o.EvaluationChangedAt = &v
 }
 
+
 // GetExternalId returns the ExternalId field value if set, zero value otherwise.
 func (o *FindingAttributes) GetExternalId() string {
 	if o == nil || o.ExternalId == nil {
@@ -197,6 +207,7 @@ func (o *FindingAttributes) HasExternalId() bool {
 func (o *FindingAttributes) SetExternalId(v string) {
 	o.ExternalId = &v
 }
+
 
 // GetMute returns the Mute field value if set, zero value otherwise.
 func (o *FindingAttributes) GetMute() FindingMute {
@@ -226,6 +237,7 @@ func (o *FindingAttributes) SetMute(v FindingMute) {
 	o.Mute = &v
 }
 
+
 // GetResource returns the Resource field value if set, zero value otherwise.
 func (o *FindingAttributes) GetResource() string {
 	if o == nil || o.Resource == nil {
@@ -253,6 +265,7 @@ func (o *FindingAttributes) HasResource() bool {
 func (o *FindingAttributes) SetResource(v string) {
 	o.Resource = &v
 }
+
 
 // GetResourceDiscoveryDate returns the ResourceDiscoveryDate field value if set, zero value otherwise.
 func (o *FindingAttributes) GetResourceDiscoveryDate() int64 {
@@ -282,6 +295,7 @@ func (o *FindingAttributes) SetResourceDiscoveryDate(v int64) {
 	o.ResourceDiscoveryDate = &v
 }
 
+
 // GetResourceType returns the ResourceType field value if set, zero value otherwise.
 func (o *FindingAttributes) GetResourceType() string {
 	if o == nil || o.ResourceType == nil {
@@ -309,6 +323,7 @@ func (o *FindingAttributes) HasResourceType() bool {
 func (o *FindingAttributes) SetResourceType(v string) {
 	o.ResourceType = &v
 }
+
 
 // GetRule returns the Rule field value if set, zero value otherwise.
 func (o *FindingAttributes) GetRule() FindingRule {
@@ -338,6 +353,7 @@ func (o *FindingAttributes) SetRule(v FindingRule) {
 	o.Rule = &v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *FindingAttributes) GetStatus() FindingStatus {
 	if o == nil || o.Status == nil {
@@ -365,6 +381,7 @@ func (o *FindingAttributes) HasStatus() bool {
 func (o *FindingAttributes) SetStatus(v FindingStatus) {
 	o.Status = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *FindingAttributes) GetTags() []string {
@@ -394,6 +411,7 @@ func (o *FindingAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetVulnerabilityType returns the VulnerabilityType field value if set, zero value otherwise.
 func (o *FindingAttributes) GetVulnerabilityType() FindingVulnerabilityType {
 	if o == nil || o.VulnerabilityType == nil {
@@ -421,6 +439,8 @@ func (o *FindingAttributes) HasVulnerabilityType() bool {
 func (o *FindingAttributes) SetVulnerabilityType(v FindingVulnerabilityType) {
 	o.VulnerabilityType = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FindingAttributes) MarshalJSON() ([]byte, error) {
@@ -477,26 +497,26 @@ func (o FindingAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DatadogLink           *string                   `json:"datadog_link,omitempty"`
-		Description           *string                   `json:"description,omitempty"`
-		Evaluation            *FindingEvaluation        `json:"evaluation,omitempty"`
-		EvaluationChangedAt   *int64                    `json:"evaluation_changed_at,omitempty"`
-		ExternalId            *string                   `json:"external_id,omitempty"`
-		Mute                  *FindingMute              `json:"mute,omitempty"`
-		Resource              *string                   `json:"resource,omitempty"`
-		ResourceDiscoveryDate *int64                    `json:"resource_discovery_date,omitempty"`
-		ResourceType          *string                   `json:"resource_type,omitempty"`
-		Rule                  *FindingRule              `json:"rule,omitempty"`
-		Status                *FindingStatus            `json:"status,omitempty"`
-		Tags                  []string                  `json:"tags,omitempty"`
-		VulnerabilityType     *FindingVulnerabilityType `json:"vulnerability_type,omitempty"`
+		DatadogLink *string `json:"datadog_link,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Evaluation *FindingEvaluation `json:"evaluation,omitempty"`
+		EvaluationChangedAt *int64 `json:"evaluation_changed_at,omitempty"`
+		ExternalId *string `json:"external_id,omitempty"`
+		Mute *FindingMute `json:"mute,omitempty"`
+		Resource *string `json:"resource,omitempty"`
+		ResourceDiscoveryDate *int64 `json:"resource_discovery_date,omitempty"`
+		ResourceType *string `json:"resource_type,omitempty"`
+		Rule *FindingRule `json:"rule,omitempty"`
+		Status *FindingStatus `json:"status,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		VulnerabilityType *FindingVulnerabilityType `json:"vulnerability_type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"datadog_link", "description", "evaluation", "evaluation_changed_at", "external_id", "mute", "resource", "resource_discovery_date", "resource_type", "rule", "status", "tags", "vulnerability_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "datadog_link", "description", "evaluation", "evaluation_changed_at", "external_id", "mute", "resource", "resource_discovery_date", "resource_type", "rule", "status", "tags", "vulnerability_type",  })
 	} else {
 		return err
 	}
@@ -504,31 +524,31 @@ func (o *FindingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.DatadogLink = all.DatadogLink
 	o.Description = all.Description
-	if all.Evaluation != nil && !all.Evaluation.IsValid() {
+	if all.Evaluation != nil &&!all.Evaluation.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Evaluation = all.Evaluation
 	}
 	o.EvaluationChangedAt = all.EvaluationChangedAt
 	o.ExternalId = all.ExternalId
-	if all.Mute != nil && all.Mute.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Mute != nil && all.Mute.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Mute = all.Mute
 	o.Resource = all.Resource
 	o.ResourceDiscoveryDate = all.ResourceDiscoveryDate
 	o.ResourceType = all.ResourceType
-	if all.Rule != nil && all.Rule.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Rule != nil && all.Rule.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Rule = all.Rule
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status
 	}
 	o.Tags = all.Tags
-	if all.VulnerabilityType != nil && !all.VulnerabilityType.IsValid() {
+	if all.VulnerabilityType != nil &&!all.VulnerabilityType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.VulnerabilityType = all.VulnerabilityType

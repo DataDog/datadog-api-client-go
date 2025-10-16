@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsArchiveDestinationS3 The S3 archive destination.
 type LogsArchiveDestinationS3 struct {
@@ -25,9 +29,10 @@ type LogsArchiveDestinationS3 struct {
 	// Type of the S3 archive destination.
 	Type LogsArchiveDestinationS3Type `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsArchiveDestinationS3 instantiates a new LogsArchiveDestinationS3 object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewLogsArchiveDestinationS3WithDefaults() *LogsArchiveDestinationS3 {
 	this.Type = typeVar
 	return &this
 }
-
 // GetBucket returns the Bucket field value.
 func (o *LogsArchiveDestinationS3) GetBucket() string {
 	if o == nil {
@@ -77,6 +81,7 @@ func (o *LogsArchiveDestinationS3) GetBucketOk() (*string, bool) {
 func (o *LogsArchiveDestinationS3) SetBucket(v string) {
 	o.Bucket = v
 }
+
 
 // GetEncryption returns the Encryption field value if set, zero value otherwise.
 func (o *LogsArchiveDestinationS3) GetEncryption() LogsArchiveEncryptionS3 {
@@ -106,6 +111,7 @@ func (o *LogsArchiveDestinationS3) SetEncryption(v LogsArchiveEncryptionS3) {
 	o.Encryption = &v
 }
 
+
 // GetIntegration returns the Integration field value.
 func (o *LogsArchiveDestinationS3) GetIntegration() LogsArchiveIntegrationS3 {
 	if o == nil {
@@ -128,6 +134,7 @@ func (o *LogsArchiveDestinationS3) GetIntegrationOk() (*LogsArchiveIntegrationS3
 func (o *LogsArchiveDestinationS3) SetIntegration(v LogsArchiveIntegrationS3) {
 	o.Integration = v
 }
+
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *LogsArchiveDestinationS3) GetPath() string {
@@ -157,6 +164,7 @@ func (o *LogsArchiveDestinationS3) SetPath(v string) {
 	o.Path = &v
 }
 
+
 // GetStorageClass returns the StorageClass field value if set, zero value otherwise.
 func (o *LogsArchiveDestinationS3) GetStorageClass() LogsArchiveStorageClassS3Type {
 	if o == nil || o.StorageClass == nil {
@@ -185,6 +193,7 @@ func (o *LogsArchiveDestinationS3) SetStorageClass(v LogsArchiveStorageClassS3Ty
 	o.StorageClass = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *LogsArchiveDestinationS3) GetType() LogsArchiveDestinationS3Type {
 	if o == nil {
@@ -207,6 +216,8 @@ func (o *LogsArchiveDestinationS3) GetTypeOk() (*LogsArchiveDestinationS3Type, b
 func (o *LogsArchiveDestinationS3) SetType(v LogsArchiveDestinationS3Type) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsArchiveDestinationS3) MarshalJSON() ([]byte, error) {
@@ -236,12 +247,12 @@ func (o LogsArchiveDestinationS3) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArchiveDestinationS3) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Bucket       *string                        `json:"bucket"`
-		Encryption   *LogsArchiveEncryptionS3       `json:"encryption,omitempty"`
-		Integration  *LogsArchiveIntegrationS3      `json:"integration"`
-		Path         *string                        `json:"path,omitempty"`
+		Bucket *string `json:"bucket"`
+		Encryption *LogsArchiveEncryptionS3 `json:"encryption,omitempty"`
+		Integration *LogsArchiveIntegrationS3 `json:"integration"`
+		Path *string `json:"path,omitempty"`
 		StorageClass *LogsArchiveStorageClassS3Type `json:"storage_class,omitempty"`
-		Type         *LogsArchiveDestinationS3Type  `json:"type"`
+		Type *LogsArchiveDestinationS3Type `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -257,14 +268,14 @@ func (o *LogsArchiveDestinationS3) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"bucket", "encryption", "integration", "path", "storage_class", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "bucket", "encryption", "integration", "path", "storage_class", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Bucket = *all.Bucket
-	if all.Encryption != nil && all.Encryption.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Encryption != nil && all.Encryption.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Encryption = all.Encryption
@@ -273,7 +284,7 @@ func (o *LogsArchiveDestinationS3) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Integration = *all.Integration
 	o.Path = all.Path
-	if all.StorageClass != nil && !all.StorageClass.IsValid() {
+	if all.StorageClass != nil &&!all.StorageClass.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.StorageClass = all.StorageClass

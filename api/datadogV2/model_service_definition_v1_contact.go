@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionV1Contact Contact information about the service.
 type ServiceDefinitionV1Contact struct {
@@ -15,9 +21,10 @@ type ServiceDefinitionV1Contact struct {
 	// Service owner’s Slack channel.
 	Slack *string `json:"slack,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewServiceDefinitionV1Contact instantiates a new ServiceDefinitionV1Contact object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewServiceDefinitionV1ContactWithDefaults() *ServiceDefinitionV1Contact {
 	this := ServiceDefinitionV1Contact{}
 	return &this
 }
-
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *ServiceDefinitionV1Contact) GetEmail() string {
 	if o == nil || o.Email == nil {
@@ -64,6 +70,7 @@ func (o *ServiceDefinitionV1Contact) SetEmail(v string) {
 	o.Email = &v
 }
 
+
 // GetSlack returns the Slack field value if set, zero value otherwise.
 func (o *ServiceDefinitionV1Contact) GetSlack() string {
 	if o == nil || o.Slack == nil {
@@ -91,6 +98,8 @@ func (o *ServiceDefinitionV1Contact) HasSlack() bool {
 func (o *ServiceDefinitionV1Contact) SetSlack(v string) {
 	o.Slack = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ServiceDefinitionV1Contact) MarshalJSON() ([]byte, error) {
@@ -122,7 +131,7 @@ func (o *ServiceDefinitionV1Contact) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"email", "slack"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "email", "slack",  })
 	} else {
 		return err
 	}

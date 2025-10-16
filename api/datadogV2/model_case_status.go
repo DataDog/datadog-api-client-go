@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CaseStatus Case status
 type CaseStatus string
 
 // List of CaseStatus.
 const (
-	CASESTATUS_OPEN        CaseStatus = "OPEN"
+	CASESTATUS_OPEN CaseStatus = "OPEN"
 	CASESTATUS_IN_PROGRESS CaseStatus = "IN_PROGRESS"
-	CASESTATUS_CLOSED      CaseStatus = "CLOSED"
+	CASESTATUS_CLOSED CaseStatus = "CLOSED"
 )
 
 var allowedCaseStatusEnumValues = []CaseStatus{

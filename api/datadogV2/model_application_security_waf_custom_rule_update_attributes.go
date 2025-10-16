@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleUpdateAttributes Update a WAF custom rule.
 type ApplicationSecurityWafCustomRuleUpdateAttributes struct {
@@ -31,9 +35,10 @@ type ApplicationSecurityWafCustomRuleUpdateAttributes struct {
 	// activity field associated with the traces.
 	Tags ApplicationSecurityWafCustomRuleTags `json:"tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafCustomRuleUpdateAttributes instantiates a new ApplicationSecurityWafCustomRuleUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +61,6 @@ func NewApplicationSecurityWafCustomRuleUpdateAttributesWithDefaults() *Applicat
 	this := ApplicationSecurityWafCustomRuleUpdateAttributes{}
 	return &this
 }
-
 // GetAction returns the Action field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) GetAction() ApplicationSecurityWafCustomRuleAction {
 	if o == nil || o.Action == nil {
@@ -85,6 +89,7 @@ func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) SetAction(v Applicati
 	o.Action = &v
 }
 
+
 // GetBlocking returns the Blocking field value.
 func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) GetBlocking() bool {
 	if o == nil {
@@ -107,6 +112,7 @@ func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) GetBlockingOk() (*boo
 func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) SetBlocking(v bool) {
 	o.Blocking = v
 }
+
 
 // GetConditions returns the Conditions field value.
 func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) GetConditions() []ApplicationSecurityWafCustomRuleCondition {
@@ -131,6 +137,7 @@ func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) SetConditions(v []App
 	o.Conditions = v
 }
 
+
 // GetEnabled returns the Enabled field value.
 func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) GetEnabled() bool {
 	if o == nil {
@@ -154,6 +161,7 @@ func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
+
 // GetName returns the Name field value.
 func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) GetName() string {
 	if o == nil {
@@ -176,6 +184,7 @@ func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) GetNameOk() (*string,
 func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetPathGlob returns the PathGlob field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) GetPathGlob() string {
@@ -205,6 +214,7 @@ func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) SetPathGlob(v string)
 	o.PathGlob = &v
 }
 
+
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) GetScope() []ApplicationSecurityWafCustomRuleScope {
 	if o == nil || o.Scope == nil {
@@ -233,6 +243,7 @@ func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) SetScope(v []Applicat
 	o.Scope = v
 }
 
+
 // GetTags returns the Tags field value.
 func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) GetTags() ApplicationSecurityWafCustomRuleTags {
 	if o == nil {
@@ -255,6 +266,8 @@ func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) GetTagsOk() (*Applica
 func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) SetTags(v ApplicationSecurityWafCustomRuleTags) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafCustomRuleUpdateAttributes) MarshalJSON() ([]byte, error) {
@@ -286,14 +299,14 @@ func (o ApplicationSecurityWafCustomRuleUpdateAttributes) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Action     *ApplicationSecurityWafCustomRuleAction      `json:"action,omitempty"`
-		Blocking   *bool                                        `json:"blocking"`
+		Action *ApplicationSecurityWafCustomRuleAction `json:"action,omitempty"`
+		Blocking *bool `json:"blocking"`
 		Conditions *[]ApplicationSecurityWafCustomRuleCondition `json:"conditions"`
-		Enabled    *bool                                        `json:"enabled"`
-		Name       *string                                      `json:"name"`
-		PathGlob   *string                                      `json:"path_glob,omitempty"`
-		Scope      []ApplicationSecurityWafCustomRuleScope      `json:"scope,omitempty"`
-		Tags       *ApplicationSecurityWafCustomRuleTags        `json:"tags"`
+		Enabled *bool `json:"enabled"`
+		Name *string `json:"name"`
+		PathGlob *string `json:"path_glob,omitempty"`
+		Scope []ApplicationSecurityWafCustomRuleScope `json:"scope,omitempty"`
+		Tags *ApplicationSecurityWafCustomRuleTags `json:"tags"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -315,13 +328,13 @@ func (o *ApplicationSecurityWafCustomRuleUpdateAttributes) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"action", "blocking", "conditions", "enabled", "name", "path_glob", "scope", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "action", "blocking", "conditions", "enabled", "name", "path_glob", "scope", "tags",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Action != nil && all.Action.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Action != nil && all.Action.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Action = all.Action

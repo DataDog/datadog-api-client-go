@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CaseCreateRelationships Relationships formed with the case on creation
 type CaseCreateRelationships struct {
@@ -17,9 +21,10 @@ type CaseCreateRelationships struct {
 	// Relationship to project
 	Project ProjectRelationship `json:"project"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCaseCreateRelationships instantiates a new CaseCreateRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewCaseCreateRelationshipsWithDefaults() *CaseCreateRelationships {
 	this := CaseCreateRelationships{}
 	return &this
 }
-
 // GetAssignee returns the Assignee field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CaseCreateRelationships) GetAssignee() NullableUserRelationship {
 	if o == nil || o.Assignee.Get() == nil {
@@ -52,7 +56,7 @@ func (o *CaseCreateRelationships) GetAssignee() NullableUserRelationship {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CaseCreateRelationships) GetAssigneeOk() (*NullableUserRelationship, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Assignee.Get(), o.Assignee.IsSet()
@@ -67,7 +71,6 @@ func (o *CaseCreateRelationships) HasAssignee() bool {
 func (o *CaseCreateRelationships) SetAssignee(v NullableUserRelationship) {
 	o.Assignee.Set(&v)
 }
-
 // SetAssigneeNil sets the value for Assignee to be an explicit nil.
 func (o *CaseCreateRelationships) SetAssigneeNil() {
 	o.Assignee.Set(nil)
@@ -77,6 +80,7 @@ func (o *CaseCreateRelationships) SetAssigneeNil() {
 func (o *CaseCreateRelationships) UnsetAssignee() {
 	o.Assignee.Unset()
 }
+
 
 // GetProject returns the Project field value.
 func (o *CaseCreateRelationships) GetProject() ProjectRelationship {
@@ -101,6 +105,8 @@ func (o *CaseCreateRelationships) SetProject(v ProjectRelationship) {
 	o.Project = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CaseCreateRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -122,7 +128,7 @@ func (o CaseCreateRelationships) MarshalJSON() ([]byte, error) {
 func (o *CaseCreateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Assignee NullableNullableUserRelationship `json:"assignee,omitempty"`
-		Project  *ProjectRelationship             `json:"project"`
+		Project *ProjectRelationship `json:"project"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -132,7 +138,7 @@ func (o *CaseCreateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assignee", "project"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "assignee", "project",  })
 	} else {
 		return err
 	}

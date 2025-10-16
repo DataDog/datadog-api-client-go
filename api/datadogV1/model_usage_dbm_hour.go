@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UsageDBMHour Database Monitoring usage for a given organization for a given hour.
 type UsageDBMHour struct {
@@ -23,9 +27,10 @@ type UsageDBMHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUsageDBMHour instantiates a new UsageDBMHour object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewUsageDBMHourWithDefaults() *UsageDBMHour {
 	this := UsageDBMHour{}
 	return &this
 }
-
 // GetDbmHostCount returns the DbmHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageDBMHour) GetDbmHostCount() int64 {
 	if o == nil || o.DbmHostCount.Get() == nil {
@@ -57,7 +61,7 @@ func (o *UsageDBMHour) GetDbmHostCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageDBMHour) GetDbmHostCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.DbmHostCount.Get(), o.DbmHostCount.IsSet()
@@ -72,7 +76,6 @@ func (o *UsageDBMHour) HasDbmHostCount() bool {
 func (o *UsageDBMHour) SetDbmHostCount(v int64) {
 	o.DbmHostCount.Set(&v)
 }
-
 // SetDbmHostCountNil sets the value for DbmHostCount to be an explicit nil.
 func (o *UsageDBMHour) SetDbmHostCountNil() {
 	o.DbmHostCount.Set(nil)
@@ -82,6 +85,7 @@ func (o *UsageDBMHour) SetDbmHostCountNil() {
 func (o *UsageDBMHour) UnsetDbmHostCount() {
 	o.DbmHostCount.Unset()
 }
+
 
 // GetDbmQueriesCount returns the DbmQueriesCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageDBMHour) GetDbmQueriesCount() int64 {
@@ -96,7 +100,7 @@ func (o *UsageDBMHour) GetDbmQueriesCount() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageDBMHour) GetDbmQueriesCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.DbmQueriesCount.Get(), o.DbmQueriesCount.IsSet()
@@ -111,7 +115,6 @@ func (o *UsageDBMHour) HasDbmQueriesCount() bool {
 func (o *UsageDBMHour) SetDbmQueriesCount(v int64) {
 	o.DbmQueriesCount.Set(&v)
 }
-
 // SetDbmQueriesCountNil sets the value for DbmQueriesCount to be an explicit nil.
 func (o *UsageDBMHour) SetDbmQueriesCountNil() {
 	o.DbmQueriesCount.Set(nil)
@@ -121,6 +124,7 @@ func (o *UsageDBMHour) SetDbmQueriesCountNil() {
 func (o *UsageDBMHour) UnsetDbmQueriesCount() {
 	o.DbmQueriesCount.Unset()
 }
+
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageDBMHour) GetHour() time.Time {
@@ -150,6 +154,7 @@ func (o *UsageDBMHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageDBMHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -178,6 +183,7 @@ func (o *UsageDBMHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageDBMHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -205,6 +211,8 @@ func (o *UsageDBMHour) HasPublicId() bool {
 func (o *UsageDBMHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UsageDBMHour) MarshalJSON() ([]byte, error) {
@@ -241,18 +249,18 @@ func (o UsageDBMHour) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UsageDBMHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DbmHostCount    datadog.NullableInt64 `json:"dbm_host_count,omitempty"`
+		DbmHostCount datadog.NullableInt64 `json:"dbm_host_count,omitempty"`
 		DbmQueriesCount datadog.NullableInt64 `json:"dbm_queries_count,omitempty"`
-		Hour            *time.Time            `json:"hour,omitempty"`
-		OrgName         *string               `json:"org_name,omitempty"`
-		PublicId        *string               `json:"public_id,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"dbm_host_count", "dbm_queries_count", "hour", "org_name", "public_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "dbm_host_count", "dbm_queries_count", "hour", "org_name", "public_id",  })
 	} else {
 		return err
 	}

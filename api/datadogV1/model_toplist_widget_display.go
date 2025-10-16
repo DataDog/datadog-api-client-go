@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ToplistWidgetDisplay - Top list widget display options.
 type ToplistWidgetDisplay struct {
 	ToplistWidgetStacked *ToplistWidgetStacked
-	ToplistWidgetFlat    *ToplistWidgetFlat
+	ToplistWidgetFlat *ToplistWidgetFlat
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -80,9 +86,11 @@ func (obj ToplistWidgetDisplay) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.ToplistWidgetStacked)
 	}
 
+
 	if obj.ToplistWidgetFlat != nil {
 		return datadog.Marshal(&obj.ToplistWidgetFlat)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj ToplistWidgetDisplay) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ToplistWidgetDisplay) GetActualInstance() interface{} {
+func (obj *ToplistWidgetDisplay) GetActualInstance() (interface{}) {
 	if obj.ToplistWidgetStacked != nil {
 		return obj.ToplistWidgetStacked
 	}
 
+
 	if obj.ToplistWidgetFlat != nil {
 		return obj.ToplistWidgetFlat
 	}
+
 
 	// all schemas are nil
 	return nil

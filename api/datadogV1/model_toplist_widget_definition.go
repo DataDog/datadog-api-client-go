@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ToplistWidgetDefinition The top list visualization enables you to display a list of Tag value like hostname or service with the most or least of any metric value, such as highest consumers of CPU, hosts with the least disk space, etc.
 type ToplistWidgetDefinition struct {
@@ -29,9 +33,10 @@ type ToplistWidgetDefinition struct {
 	// Type of the top list widget.
 	Type ToplistWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewToplistWidgetDefinition instantiates a new ToplistWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewToplistWidgetDefinitionWithDefaults() *ToplistWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
 func (o *ToplistWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 	if o == nil || o.CustomLinks == nil {
@@ -82,6 +86,7 @@ func (o *ToplistWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = v
 }
 
+
 // GetRequests returns the Requests field value.
 func (o *ToplistWidgetDefinition) GetRequests() []ToplistWidgetRequest {
 	if o == nil {
@@ -104,6 +109,7 @@ func (o *ToplistWidgetDefinition) GetRequestsOk() (*[]ToplistWidgetRequest, bool
 func (o *ToplistWidgetDefinition) SetRequests(v []ToplistWidgetRequest) {
 	o.Requests = v
 }
+
 
 // GetStyle returns the Style field value if set, zero value otherwise.
 func (o *ToplistWidgetDefinition) GetStyle() ToplistWidgetStyle {
@@ -133,6 +139,7 @@ func (o *ToplistWidgetDefinition) SetStyle(v ToplistWidgetStyle) {
 	o.Style = &v
 }
 
+
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *ToplistWidgetDefinition) GetTime() WidgetTime {
 	if o == nil || o.Time == nil {
@@ -160,6 +167,7 @@ func (o *ToplistWidgetDefinition) HasTime() bool {
 func (o *ToplistWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *ToplistWidgetDefinition) GetTitle() string {
@@ -189,6 +197,7 @@ func (o *ToplistWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *ToplistWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -216,6 +225,7 @@ func (o *ToplistWidgetDefinition) HasTitleAlign() bool {
 func (o *ToplistWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
+
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *ToplistWidgetDefinition) GetTitleSize() string {
@@ -245,6 +255,7 @@ func (o *ToplistWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ToplistWidgetDefinition) GetType() ToplistWidgetDefinitionType {
 	if o == nil {
@@ -267,6 +278,8 @@ func (o *ToplistWidgetDefinition) GetTypeOk() (*ToplistWidgetDefinitionType, boo
 func (o *ToplistWidgetDefinition) SetType(v ToplistWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ToplistWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -304,14 +317,14 @@ func (o ToplistWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ToplistWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomLinks []WidgetCustomLink           `json:"custom_links,omitempty"`
-		Requests    *[]ToplistWidgetRequest      `json:"requests"`
-		Style       *ToplistWidgetStyle          `json:"style,omitempty"`
-		Time        *WidgetTime                  `json:"time,omitempty"`
-		Title       *string                      `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign             `json:"title_align,omitempty"`
-		TitleSize   *string                      `json:"title_size,omitempty"`
-		Type        *ToplistWidgetDefinitionType `json:"type"`
+		CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
+		Requests *[]ToplistWidgetRequest `json:"requests"`
+		Style *ToplistWidgetStyle `json:"style,omitempty"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type *ToplistWidgetDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -324,7 +337,7 @@ func (o *ToplistWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom_links", "requests", "style", "time", "title", "title_align", "title_size", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "custom_links", "requests", "style", "time", "title", "title_align", "title_size", "type",  })
 	} else {
 		return err
 	}
@@ -332,13 +345,13 @@ func (o *ToplistWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.CustomLinks = all.CustomLinks
 	o.Requests = *all.Requests
-	if all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Style = all.Style
 	o.Time = all.Time
 	o.Title = all.Title
-	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
+	if all.TitleAlign != nil &&!all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign

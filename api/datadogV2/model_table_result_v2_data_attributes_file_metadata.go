@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TableResultV2DataAttributesFileMetadata - The definition of `TableResultV2DataAttributesFileMetadata` object.
 type TableResultV2DataAttributesFileMetadata struct {
 	TableResultV2DataAttributesFileMetadataCloudStorage *TableResultV2DataAttributesFileMetadataCloudStorage
-	TableResultV2DataAttributesFileMetadataLocalFile    *TableResultV2DataAttributesFileMetadataLocalFile
+	TableResultV2DataAttributesFileMetadataLocalFile *TableResultV2DataAttributesFileMetadataLocalFile
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -36,7 +42,7 @@ func (obj *TableResultV2DataAttributesFileMetadata) UnmarshalJSON(data []byte) e
 	if err == nil {
 		if obj.TableResultV2DataAttributesFileMetadataCloudStorage != nil && obj.TableResultV2DataAttributesFileMetadataCloudStorage.UnparsedObject == nil {
 			jsonTableResultV2DataAttributesFileMetadataCloudStorage, _ := datadog.Marshal(obj.TableResultV2DataAttributesFileMetadataCloudStorage)
-			if string(jsonTableResultV2DataAttributesFileMetadataCloudStorage) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonTableResultV2DataAttributesFileMetadataCloudStorage) == "{}" && string(data) != "{}"  { // empty struct
 				obj.TableResultV2DataAttributesFileMetadataCloudStorage = nil
 			} else {
 				match++
@@ -53,7 +59,7 @@ func (obj *TableResultV2DataAttributesFileMetadata) UnmarshalJSON(data []byte) e
 	if err == nil {
 		if obj.TableResultV2DataAttributesFileMetadataLocalFile != nil && obj.TableResultV2DataAttributesFileMetadataLocalFile.UnparsedObject == nil {
 			jsonTableResultV2DataAttributesFileMetadataLocalFile, _ := datadog.Marshal(obj.TableResultV2DataAttributesFileMetadataLocalFile)
-			if string(jsonTableResultV2DataAttributesFileMetadataLocalFile) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonTableResultV2DataAttributesFileMetadataLocalFile) == "{}" && string(data) != "{}"  { // empty struct
 				obj.TableResultV2DataAttributesFileMetadataLocalFile = nil
 			} else {
 				match++
@@ -80,9 +86,11 @@ func (obj TableResultV2DataAttributesFileMetadata) MarshalJSON() ([]byte, error)
 		return datadog.Marshal(&obj.TableResultV2DataAttributesFileMetadataCloudStorage)
 	}
 
+
 	if obj.TableResultV2DataAttributesFileMetadataLocalFile != nil {
 		return datadog.Marshal(&obj.TableResultV2DataAttributesFileMetadataLocalFile)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj TableResultV2DataAttributesFileMetadata) MarshalJSON() ([]byte, error)
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *TableResultV2DataAttributesFileMetadata) GetActualInstance() interface{} {
+func (obj *TableResultV2DataAttributesFileMetadata) GetActualInstance() (interface{}) {
 	if obj.TableResultV2DataAttributesFileMetadataCloudStorage != nil {
 		return obj.TableResultV2DataAttributesFileMetadataCloudStorage
 	}
 
+
 	if obj.TableResultV2DataAttributesFileMetadataLocalFile != nil {
 		return obj.TableResultV2DataAttributesFileMetadataLocalFile
 	}
+
 
 	// all schemas are nil
 	return nil

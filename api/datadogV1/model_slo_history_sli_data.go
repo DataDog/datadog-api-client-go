@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOHistorySLIData An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value.
 // This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
@@ -45,9 +51,10 @@ type SLOHistorySLIData struct {
 	// Deprecated
 	Uptime datadog.NullableFloat64 `json:"uptime,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSLOHistorySLIData instantiates a new SLOHistorySLIData object.
 // This constructor will assign default values to properties that have it defined,
@@ -65,7 +72,6 @@ func NewSLOHistorySLIDataWithDefaults() *SLOHistorySLIData {
 	this := SLOHistorySLIData{}
 	return &this
 }
-
 // GetErrorBudgetRemaining returns the ErrorBudgetRemaining field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetErrorBudgetRemaining() map[string]float64 {
 	if o == nil || o.ErrorBudgetRemaining == nil {
@@ -93,6 +99,7 @@ func (o *SLOHistorySLIData) HasErrorBudgetRemaining() bool {
 func (o *SLOHistorySLIData) SetErrorBudgetRemaining(v map[string]float64) {
 	o.ErrorBudgetRemaining = v
 }
+
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetErrors() []SLOHistoryResponseErrorWithType {
@@ -122,6 +129,7 @@ func (o *SLOHistorySLIData) SetErrors(v []SLOHistoryResponseErrorWithType) {
 	o.Errors = v
 }
 
+
 // GetGroup returns the Group field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetGroup() string {
 	if o == nil || o.Group == nil {
@@ -149,6 +157,7 @@ func (o *SLOHistorySLIData) HasGroup() bool {
 func (o *SLOHistorySLIData) SetGroup(v string) {
 	o.Group = &v
 }
+
 
 // GetHistory returns the History field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetHistory() [][]float64 {
@@ -178,6 +187,7 @@ func (o *SLOHistorySLIData) SetHistory(v [][]float64) {
 	o.History = v
 }
 
+
 // GetMonitorModified returns the MonitorModified field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetMonitorModified() int64 {
 	if o == nil || o.MonitorModified == nil {
@@ -205,6 +215,7 @@ func (o *SLOHistorySLIData) HasMonitorModified() bool {
 func (o *SLOHistorySLIData) SetMonitorModified(v int64) {
 	o.MonitorModified = &v
 }
+
 
 // GetMonitorType returns the MonitorType field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetMonitorType() string {
@@ -234,6 +245,7 @@ func (o *SLOHistorySLIData) SetMonitorType(v string) {
 	o.MonitorType = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetName() string {
 	if o == nil || o.Name == nil {
@@ -261,6 +273,7 @@ func (o *SLOHistorySLIData) HasName() bool {
 func (o *SLOHistorySLIData) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetPrecision returns the Precision field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetPrecision() map[string]float64 {
@@ -290,6 +303,7 @@ func (o *SLOHistorySLIData) SetPrecision(v map[string]float64) {
 	o.Precision = v
 }
 
+
 // GetPreview returns the Preview field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetPreview() bool {
 	if o == nil || o.Preview == nil {
@@ -318,6 +332,7 @@ func (o *SLOHistorySLIData) SetPreview(v bool) {
 	o.Preview = &v
 }
 
+
 // GetSliValue returns the SliValue field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOHistorySLIData) GetSliValue() float64 {
 	if o == nil || o.SliValue.Get() == nil {
@@ -331,7 +346,7 @@ func (o *SLOHistorySLIData) GetSliValue() float64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOHistorySLIData) GetSliValueOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.SliValue.Get(), o.SliValue.IsSet()
@@ -346,7 +361,6 @@ func (o *SLOHistorySLIData) HasSliValue() bool {
 func (o *SLOHistorySLIData) SetSliValue(v float64) {
 	o.SliValue.Set(&v)
 }
-
 // SetSliValueNil sets the value for SliValue to be an explicit nil.
 func (o *SLOHistorySLIData) SetSliValueNil() {
 	o.SliValue.Set(nil)
@@ -356,6 +370,7 @@ func (o *SLOHistorySLIData) SetSliValueNil() {
 func (o *SLOHistorySLIData) UnsetSliValue() {
 	o.SliValue.Unset()
 }
+
 
 // GetSpanPrecision returns the SpanPrecision field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetSpanPrecision() float64 {
@@ -385,6 +400,7 @@ func (o *SLOHistorySLIData) SetSpanPrecision(v float64) {
 	o.SpanPrecision = &v
 }
 
+
 // GetUptime returns the Uptime field value if set, zero value otherwise (both if not set or set to explicit null).
 // Deprecated
 func (o *SLOHistorySLIData) GetUptime() float64 {
@@ -400,7 +416,7 @@ func (o *SLOHistorySLIData) GetUptime() float64 {
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 // Deprecated
 func (o *SLOHistorySLIData) GetUptimeOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Uptime.Get(), o.Uptime.IsSet()
@@ -416,7 +432,6 @@ func (o *SLOHistorySLIData) HasUptime() bool {
 func (o *SLOHistorySLIData) SetUptime(v float64) {
 	o.Uptime.Set(&v)
 }
-
 // SetUptimeNil sets the value for Uptime to be an explicit nil.
 func (o *SLOHistorySLIData) SetUptimeNil() {
 	o.Uptime.Set(nil)
@@ -426,6 +441,8 @@ func (o *SLOHistorySLIData) SetUptimeNil() {
 func (o *SLOHistorySLIData) UnsetUptime() {
 	o.Uptime.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOHistorySLIData) MarshalJSON() ([]byte, error) {
@@ -479,25 +496,25 @@ func (o SLOHistorySLIData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOHistorySLIData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ErrorBudgetRemaining map[string]float64                `json:"error_budget_remaining,omitempty"`
-		Errors               []SLOHistoryResponseErrorWithType `json:"errors,omitempty"`
-		Group                *string                           `json:"group,omitempty"`
-		History              [][]float64                       `json:"history,omitempty"`
-		MonitorModified      *int64                            `json:"monitor_modified,omitempty"`
-		MonitorType          *string                           `json:"monitor_type,omitempty"`
-		Name                 *string                           `json:"name,omitempty"`
-		Precision            map[string]float64                `json:"precision,omitempty"`
-		Preview              *bool                             `json:"preview,omitempty"`
-		SliValue             datadog.NullableFloat64           `json:"sli_value,omitempty"`
-		SpanPrecision        *float64                          `json:"span_precision,omitempty"`
-		Uptime               datadog.NullableFloat64           `json:"uptime,omitempty"`
+		ErrorBudgetRemaining map[string]float64 `json:"error_budget_remaining,omitempty"`
+		Errors []SLOHistoryResponseErrorWithType `json:"errors,omitempty"`
+		Group *string `json:"group,omitempty"`
+		History [][]float64 `json:"history,omitempty"`
+		MonitorModified *int64 `json:"monitor_modified,omitempty"`
+		MonitorType *string `json:"monitor_type,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Precision map[string]float64 `json:"precision,omitempty"`
+		Preview *bool `json:"preview,omitempty"`
+		SliValue datadog.NullableFloat64 `json:"sli_value,omitempty"`
+		SpanPrecision *float64 `json:"span_precision,omitempty"`
+		Uptime datadog.NullableFloat64 `json:"uptime,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"error_budget_remaining", "errors", "group", "history", "monitor_modified", "monitor_type", "name", "precision", "preview", "sli_value", "span_precision", "uptime"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "error_budget_remaining", "errors", "group", "history", "monitor_modified", "monitor_type", "name", "precision", "preview", "sli_value", "span_precision", "uptime",  })
 	} else {
 		return err
 	}

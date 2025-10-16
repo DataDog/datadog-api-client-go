@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsArchiveEncryptionS3 The S3 encryption settings.
 type LogsArchiveEncryptionS3 struct {
@@ -17,9 +21,10 @@ type LogsArchiveEncryptionS3 struct {
 	// Type of S3 encryption for a destination.
 	Type LogsArchiveEncryptionS3Type `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsArchiveEncryptionS3 instantiates a new LogsArchiveEncryptionS3 object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewLogsArchiveEncryptionS3WithDefaults() *LogsArchiveEncryptionS3 {
 	this := LogsArchiveEncryptionS3{}
 	return &this
 }
-
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *LogsArchiveEncryptionS3) GetKey() string {
 	if o == nil || o.Key == nil {
@@ -67,6 +71,7 @@ func (o *LogsArchiveEncryptionS3) SetKey(v string) {
 	o.Key = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *LogsArchiveEncryptionS3) GetType() LogsArchiveEncryptionS3Type {
 	if o == nil {
@@ -90,6 +95,8 @@ func (o *LogsArchiveEncryptionS3) SetType(v LogsArchiveEncryptionS3Type) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsArchiveEncryptionS3) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,7 +117,7 @@ func (o LogsArchiveEncryptionS3) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArchiveEncryptionS3) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Key  *string                      `json:"key,omitempty"`
+		Key *string `json:"key,omitempty"`
 		Type *LogsArchiveEncryptionS3Type `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -121,7 +128,7 @@ func (o *LogsArchiveEncryptionS3) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"key", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "key", "type",  })
 	} else {
 		return err
 	}

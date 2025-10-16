@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotionAPIKey The definition of the `NotionAPIKey` object.
 type NotionAPIKey struct {
@@ -17,9 +21,10 @@ type NotionAPIKey struct {
 	// The definition of the `NotionAPIKey` object.
 	Type NotionAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewNotionAPIKey instantiates a new NotionAPIKey object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewNotionAPIKeyWithDefaults() *NotionAPIKey {
 	this := NotionAPIKey{}
 	return &this
 }
-
 // GetApiToken returns the ApiToken field value.
 func (o *NotionAPIKey) GetApiToken() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *NotionAPIKey) GetApiTokenOk() (*string, bool) {
 func (o *NotionAPIKey) SetApiToken(v string) {
 	o.ApiToken = v
 }
+
 
 // GetType returns the Type field value.
 func (o *NotionAPIKey) GetType() NotionAPIKeyType {
@@ -86,6 +91,8 @@ func (o *NotionAPIKey) SetType(v NotionAPIKeyType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o NotionAPIKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o NotionAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotionAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string           `json:"api_token"`
-		Type     *NotionAPIKeyType `json:"type"`
+		ApiToken *string `json:"api_token"`
+		Type *NotionAPIKeyType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *NotionAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_token", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_token", "type",  })
 	} else {
 		return err
 	}

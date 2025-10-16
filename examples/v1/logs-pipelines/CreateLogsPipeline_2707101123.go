@@ -2,40 +2,42 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV1.LogsPipeline{
-		Filter: &datadogV1.LogsFilter{
-			Query: datadog.PtrString("source:python"),
-		},
-		Name: "testPipeline",
-		Processors: []datadogV1.LogsProcessor{
-			datadogV1.LogsProcessor{
-				LogsSpanRemapper: &datadogV1.LogsSpanRemapper{
-					Type:      datadogV1.LOGSSPANREMAPPERTYPE_SPAN_ID_REMAPPER,
-					IsEnabled: datadog.PtrBool(true),
-					Name:      datadog.PtrString("test_filter"),
-					Sources: []string{
-						"dd.span_id",
-					},
-				}},
-		},
-		Tags: []string{},
-	}
+Filter: &datadogV1.LogsFilter{
+Query: datadog.PtrString("source:python"),
+},
+Name: "testPipeline",
+Processors: []datadogV1.LogsProcessor{
+datadogV1.LogsProcessor{
+LogsSpanRemapper: &datadogV1.LogsSpanRemapper{
+Type: datadogV1.LOGSSPANREMAPPERTYPE_SPAN_ID_REMAPPER,
+IsEnabled: datadog.PtrBool(true),
+Name: datadog.PtrString("test_filter"),
+Sources: []string{
+"dd.span_id",
+},
+}},
+},
+Tags: []string{
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewLogsPipelinesApi(apiClient)
-	resp, r, err := api.CreateLogsPipeline(ctx, body)
+	resp, r, err := api.CreateLogsPipeline(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.CreateLogsPipeline`: %v\n", err)

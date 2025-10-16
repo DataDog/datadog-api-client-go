@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MicrosoftTeamsTenantBasedHandleAttributes Tenant-based handle attributes.
 type MicrosoftTeamsTenantBasedHandleAttributes struct {
@@ -19,9 +25,10 @@ type MicrosoftTeamsTenantBasedHandleAttributes struct {
 	// Tenant id.
 	TenantId *string `json:"tenant_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMicrosoftTeamsTenantBasedHandleAttributes instantiates a new MicrosoftTeamsTenantBasedHandleAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewMicrosoftTeamsTenantBasedHandleAttributesWithDefaults() *MicrosoftTeamsT
 	this := MicrosoftTeamsTenantBasedHandleAttributes{}
 	return &this
 }
-
 // GetChannelId returns the ChannelId field value if set, zero value otherwise.
 func (o *MicrosoftTeamsTenantBasedHandleAttributes) GetChannelId() string {
 	if o == nil || o.ChannelId == nil {
@@ -67,6 +73,7 @@ func (o *MicrosoftTeamsTenantBasedHandleAttributes) HasChannelId() bool {
 func (o *MicrosoftTeamsTenantBasedHandleAttributes) SetChannelId(v string) {
 	o.ChannelId = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MicrosoftTeamsTenantBasedHandleAttributes) GetName() string {
@@ -96,6 +103,7 @@ func (o *MicrosoftTeamsTenantBasedHandleAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetTeamId returns the TeamId field value if set, zero value otherwise.
 func (o *MicrosoftTeamsTenantBasedHandleAttributes) GetTeamId() string {
 	if o == nil || o.TeamId == nil {
@@ -124,6 +132,7 @@ func (o *MicrosoftTeamsTenantBasedHandleAttributes) SetTeamId(v string) {
 	o.TeamId = &v
 }
 
+
 // GetTenantId returns the TenantId field value if set, zero value otherwise.
 func (o *MicrosoftTeamsTenantBasedHandleAttributes) GetTenantId() string {
 	if o == nil || o.TenantId == nil {
@@ -151,6 +160,8 @@ func (o *MicrosoftTeamsTenantBasedHandleAttributes) HasTenantId() bool {
 func (o *MicrosoftTeamsTenantBasedHandleAttributes) SetTenantId(v string) {
 	o.TenantId = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MicrosoftTeamsTenantBasedHandleAttributes) MarshalJSON() ([]byte, error) {
@@ -181,16 +192,16 @@ func (o MicrosoftTeamsTenantBasedHandleAttributes) MarshalJSON() ([]byte, error)
 func (o *MicrosoftTeamsTenantBasedHandleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ChannelId *string `json:"channel_id,omitempty"`
-		Name      *string `json:"name,omitempty"`
-		TeamId    *string `json:"team_id,omitempty"`
-		TenantId  *string `json:"tenant_id,omitempty"`
+		Name *string `json:"name,omitempty"`
+		TeamId *string `json:"team_id,omitempty"`
+		TenantId *string `json:"tenant_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"channel_id", "name", "team_id", "tenant_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "channel_id", "name", "team_id", "tenant_id",  })
 	} else {
 		return err
 	}

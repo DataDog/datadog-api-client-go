@@ -2,39 +2,40 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
-	"strconv"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV1"
+	"github.com/google/uuid"
 )
 
 func main() {
 	// there is a valid "downtime" in the system
 	DowntimeID, _ := strconv.ParseInt(os.Getenv("DOWNTIME_ID"), 10, 64)
 
+
 	body := datadogV1.Downtime{
-		Message:                       *datadog.NewNullableString(datadog.PtrString("Example-Downtime-updated")),
-		MuteFirstRecoveryNotification: datadog.PtrBool(true),
-		NotifyEndStates: []datadogV1.NotifyEndState{
-			datadogV1.NOTIFYENDSTATE_ALERT,
-			datadogV1.NOTIFYENDSTATE_NO_DATA,
-			datadogV1.NOTIFYENDSTATE_WARN,
-		},
-		NotifyEndTypes: []datadogV1.NotifyEndType{
-			datadogV1.NOTIFYENDTYPE_CANCELED,
-			datadogV1.NOTIFYENDTYPE_EXPIRED,
-		},
-	}
+Message: *datadog.NewNullableString(datadog.PtrString("Example-Downtime-updated")),
+MuteFirstRecoveryNotification: datadog.PtrBool(true),
+NotifyEndStates: []datadogV1.NotifyEndState{
+datadogV1.NOTIFYENDSTATE_ALERT,
+datadogV1.NOTIFYENDSTATE_NO_DATA,
+datadogV1.NOTIFYENDSTATE_WARN,
+},
+NotifyEndTypes: []datadogV1.NotifyEndType{
+datadogV1.NOTIFYENDTYPE_CANCELED,
+datadogV1.NOTIFYENDTYPE_EXPIRED,
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewDowntimesApi(apiClient)
-	resp, r, err := api.UpdateDowntime(ctx, DowntimeID, body)
+	resp, r, err := api.UpdateDowntime(ctx, DowntimeID, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.UpdateDowntime`: %v\n", err)

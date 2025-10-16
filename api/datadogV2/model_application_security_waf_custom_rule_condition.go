@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleCondition One condition of the WAF Custom Rule.
 type ApplicationSecurityWafCustomRuleCondition struct {
@@ -17,9 +21,10 @@ type ApplicationSecurityWafCustomRuleCondition struct {
 	// The scope of the WAF custom rule.
 	Parameters ApplicationSecurityWafCustomRuleConditionParameters `json:"parameters"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafCustomRuleCondition instantiates a new ApplicationSecurityWafCustomRuleCondition object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewApplicationSecurityWafCustomRuleConditionWithDefaults() *ApplicationSecu
 	this := ApplicationSecurityWafCustomRuleCondition{}
 	return &this
 }
-
 // GetOperator returns the Operator field value.
 func (o *ApplicationSecurityWafCustomRuleCondition) GetOperator() ApplicationSecurityWafCustomRuleConditionOperator {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ApplicationSecurityWafCustomRuleCondition) GetOperatorOk() (*Applicatio
 func (o *ApplicationSecurityWafCustomRuleCondition) SetOperator(v ApplicationSecurityWafCustomRuleConditionOperator) {
 	o.Operator = v
 }
+
 
 // GetParameters returns the Parameters field value.
 func (o *ApplicationSecurityWafCustomRuleCondition) GetParameters() ApplicationSecurityWafCustomRuleConditionParameters {
@@ -86,6 +91,8 @@ func (o *ApplicationSecurityWafCustomRuleCondition) SetParameters(v ApplicationS
 	o.Parameters = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafCustomRuleCondition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o ApplicationSecurityWafCustomRuleCondition) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationSecurityWafCustomRuleCondition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Operator   *ApplicationSecurityWafCustomRuleConditionOperator   `json:"operator"`
+		Operator *ApplicationSecurityWafCustomRuleConditionOperator `json:"operator"`
 		Parameters *ApplicationSecurityWafCustomRuleConditionParameters `json:"parameters"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *ApplicationSecurityWafCustomRuleCondition) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"operator", "parameters"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "operator", "parameters",  })
 	} else {
 		return err
 	}

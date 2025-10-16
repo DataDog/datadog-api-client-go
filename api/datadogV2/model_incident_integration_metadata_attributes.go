@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentIntegrationMetadataAttributes Incident integration metadata's attributes for a create request.
 type IncidentIntegrationMetadataAttributes struct {
@@ -29,9 +32,10 @@ type IncidentIntegrationMetadataAttributes struct {
 	// 4 indicates manually updated; 5 indicates failed.
 	Status *int32 `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentIntegrationMetadataAttributes instantiates a new IncidentIntegrationMetadataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +55,6 @@ func NewIncidentIntegrationMetadataAttributesWithDefaults() *IncidentIntegration
 	this := IncidentIntegrationMetadataAttributes{}
 	return &this
 }
-
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *IncidentIntegrationMetadataAttributes) GetCreated() time.Time {
 	if o == nil || o.Created == nil {
@@ -79,6 +82,7 @@ func (o *IncidentIntegrationMetadataAttributes) HasCreated() bool {
 func (o *IncidentIntegrationMetadataAttributes) SetCreated(v time.Time) {
 	o.Created = &v
 }
+
 
 // GetIncidentId returns the IncidentId field value if set, zero value otherwise.
 func (o *IncidentIntegrationMetadataAttributes) GetIncidentId() string {
@@ -108,6 +112,7 @@ func (o *IncidentIntegrationMetadataAttributes) SetIncidentId(v string) {
 	o.IncidentId = &v
 }
 
+
 // GetIntegrationType returns the IntegrationType field value.
 func (o *IncidentIntegrationMetadataAttributes) GetIntegrationType() int32 {
 	if o == nil {
@@ -131,6 +136,7 @@ func (o *IncidentIntegrationMetadataAttributes) SetIntegrationType(v int32) {
 	o.IntegrationType = v
 }
 
+
 // GetMetadata returns the Metadata field value.
 func (o *IncidentIntegrationMetadataAttributes) GetMetadata() IncidentIntegrationMetadataMetadata {
 	if o == nil {
@@ -153,6 +159,7 @@ func (o *IncidentIntegrationMetadataAttributes) GetMetadataOk() (*IncidentIntegr
 func (o *IncidentIntegrationMetadataAttributes) SetMetadata(v IncidentIntegrationMetadataMetadata) {
 	o.Metadata = v
 }
+
 
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *IncidentIntegrationMetadataAttributes) GetModified() time.Time {
@@ -182,6 +189,7 @@ func (o *IncidentIntegrationMetadataAttributes) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *IncidentIntegrationMetadataAttributes) GetStatus() int32 {
 	if o == nil || o.Status == nil {
@@ -209,6 +217,8 @@ func (o *IncidentIntegrationMetadataAttributes) HasStatus() bool {
 func (o *IncidentIntegrationMetadataAttributes) SetStatus(v int32) {
 	o.Status = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentIntegrationMetadataAttributes) MarshalJSON() ([]byte, error) {
@@ -248,12 +258,12 @@ func (o IncidentIntegrationMetadataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentIntegrationMetadataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Created         *time.Time                           `json:"created,omitempty"`
-		IncidentId      *string                              `json:"incident_id,omitempty"`
-		IntegrationType *int32                               `json:"integration_type"`
-		Metadata        *IncidentIntegrationMetadataMetadata `json:"metadata"`
-		Modified        *time.Time                           `json:"modified,omitempty"`
-		Status          *int32                               `json:"status,omitempty"`
+		Created *time.Time `json:"created,omitempty"`
+		IncidentId *string `json:"incident_id,omitempty"`
+		IntegrationType *int32 `json:"integration_type"`
+		Metadata *IncidentIntegrationMetadataMetadata `json:"metadata"`
+		Modified *time.Time `json:"modified,omitempty"`
+		Status *int32 `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -266,7 +276,7 @@ func (o *IncidentIntegrationMetadataAttributes) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created", "incident_id", "integration_type", "metadata", "modified", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created", "incident_id", "integration_type", "metadata", "modified", "status",  })
 	} else {
 		return err
 	}

@@ -2,40 +2,44 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	// there is a valid "policy_rc" in the system
 	PolicyDataID := os.Getenv("POLICY_DATA_ID")
 
+
 	body := datadogV2.CloudWorkloadSecurityAgentRuleCreateRequest{
-		Data: datadogV2.CloudWorkloadSecurityAgentRuleCreateData{
-			Attributes: datadogV2.CloudWorkloadSecurityAgentRuleCreateAttributes{
-				Description:  datadog.PtrString("My Agent rule"),
-				Enabled:      datadog.PtrBool(true),
-				Expression:   `exec.file.name == "sh"`,
-				AgentVersion: datadog.PtrString("> 7.60"),
-				Filters:      []string{},
-				Name:         "examplecsmthreat",
-				PolicyId:     datadog.PtrString(PolicyDataID),
-				ProductTags:  []string{},
-			},
-			Type: datadogV2.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
-		},
-	}
+Data: datadogV2.CloudWorkloadSecurityAgentRuleCreateData{
+Attributes: datadogV2.CloudWorkloadSecurityAgentRuleCreateAttributes{
+Description: datadog.PtrString("My Agent rule"),
+Enabled: datadog.PtrBool(true),
+Expression: `exec.file.name == "sh"`,
+AgentVersion: datadog.PtrString("> 7.60"),
+Filters: []string{
+},
+Name: "examplecsmthreat",
+PolicyId: datadog.PtrString(PolicyDataID),
+ProductTags: []string{
+},
+},
+Type: datadogV2.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCSMThreatsApi(apiClient)
-	resp, r, err := api.CreateCSMThreatsAgentRule(ctx, body)
+	resp, r, err := api.CreateCSMThreatsAgentRule(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CSMThreatsApi.CreateCSMThreatsAgentRule`: %v\n", err)

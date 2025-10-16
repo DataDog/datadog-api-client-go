@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringSignalAttributes The object containing all signal attributes and their
 // associated values.
@@ -22,9 +26,10 @@ type SecurityMonitoringSignalAttributes struct {
 	// The timestamp of the security signal.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringSignalAttributes instantiates a new SecurityMonitoringSignalAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewSecurityMonitoringSignalAttributesWithDefaults() *SecurityMonitoringSign
 	this := SecurityMonitoringSignalAttributes{}
 	return &this
 }
-
 // GetCustom returns the Custom field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalAttributes) GetCustom() map[string]interface{} {
 	if o == nil || o.Custom == nil {
@@ -70,6 +74,7 @@ func (o *SecurityMonitoringSignalAttributes) HasCustom() bool {
 func (o *SecurityMonitoringSignalAttributes) SetCustom(v map[string]interface{}) {
 	o.Custom = v
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalAttributes) GetMessage() string {
@@ -99,6 +104,7 @@ func (o *SecurityMonitoringSignalAttributes) SetMessage(v string) {
 	o.Message = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -127,6 +133,7 @@ func (o *SecurityMonitoringSignalAttributes) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalAttributes) GetTimestamp() time.Time {
 	if o == nil || o.Timestamp == nil {
@@ -154,6 +161,8 @@ func (o *SecurityMonitoringSignalAttributes) HasTimestamp() bool {
 func (o *SecurityMonitoringSignalAttributes) SetTimestamp(v time.Time) {
 	o.Timestamp = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringSignalAttributes) MarshalJSON() ([]byte, error) {
@@ -187,17 +196,17 @@ func (o SecurityMonitoringSignalAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Custom    map[string]interface{} `json:"custom,omitempty"`
-		Message   *string                `json:"message,omitempty"`
-		Tags      []string               `json:"tags,omitempty"`
-		Timestamp *time.Time             `json:"timestamp,omitempty"`
+		Custom map[string]interface{} `json:"custom,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Timestamp *time.Time `json:"timestamp,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom", "message", "tags", "timestamp"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "custom", "message", "tags", "timestamp",  })
 	} else {
 		return err
 	}

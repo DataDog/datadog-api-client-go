@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorDraftStatus Indicates whether the monitor is in a draft or published state.
 //
@@ -20,7 +24,7 @@ type MonitorDraftStatus string
 
 // List of MonitorDraftStatus.
 const (
-	MONITORDRAFTSTATUS_DRAFT     MonitorDraftStatus = "draft"
+	MONITORDRAFTSTATUS_DRAFT MonitorDraftStatus = "draft"
 	MONITORDRAFTSTATUS_PUBLISHED MonitorDraftStatus = "published"
 )
 

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsConfigVariableType Type of the configuration variable.
 type SyntheticsConfigVariableType string
@@ -16,8 +20,8 @@ type SyntheticsConfigVariableType string
 // List of SyntheticsConfigVariableType.
 const (
 	SYNTHETICSCONFIGVARIABLETYPE_GLOBAL SyntheticsConfigVariableType = "global"
-	SYNTHETICSCONFIGVARIABLETYPE_TEXT   SyntheticsConfigVariableType = "text"
-	SYNTHETICSCONFIGVARIABLETYPE_EMAIL  SyntheticsConfigVariableType = "email"
+	SYNTHETICSCONFIGVARIABLETYPE_TEXT SyntheticsConfigVariableType = "text"
+	SYNTHETICSCONFIGVARIABLETYPE_EMAIL SyntheticsConfigVariableType = "email"
 )
 
 var allowedSyntheticsConfigVariableTypeEnumValues = []SyntheticsConfigVariableType{

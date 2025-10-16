@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Component [Definition of a UI component in the app](https://docs.datadoghq.com/service_management/app_builder/components/)
 type Component struct {
@@ -23,9 +27,10 @@ type Component struct {
 	// The UI component type.
 	Type ComponentType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewComponent instantiates a new Component object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewComponentWithDefaults() *Component {
 	this := Component{}
 	return &this
 }
-
 // GetEvents returns the Events field value if set, zero value otherwise.
 func (o *Component) GetEvents() []AppBuilderEvent {
 	if o == nil || o.Events == nil {
@@ -75,6 +79,7 @@ func (o *Component) SetEvents(v []AppBuilderEvent) {
 	o.Events = v
 }
 
+
 // GetId returns the Id field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Component) GetId() string {
 	if o == nil || o.Id.Get() == nil {
@@ -88,7 +93,7 @@ func (o *Component) GetId() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Component) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Id.Get(), o.Id.IsSet()
@@ -103,7 +108,6 @@ func (o *Component) HasId() bool {
 func (o *Component) SetId(v string) {
 	o.Id.Set(&v)
 }
-
 // SetIdNil sets the value for Id to be an explicit nil.
 func (o *Component) SetIdNil() {
 	o.Id.Set(nil)
@@ -113,6 +117,7 @@ func (o *Component) SetIdNil() {
 func (o *Component) UnsetId() {
 	o.Id.Unset()
 }
+
 
 // GetName returns the Name field value.
 func (o *Component) GetName() string {
@@ -137,6 +142,7 @@ func (o *Component) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetProperties returns the Properties field value.
 func (o *Component) GetProperties() ComponentProperties {
 	if o == nil {
@@ -160,6 +166,7 @@ func (o *Component) SetProperties(v ComponentProperties) {
 	o.Properties = v
 }
 
+
 // GetType returns the Type field value.
 func (o *Component) GetType() ComponentType {
 	if o == nil {
@@ -182,6 +189,8 @@ func (o *Component) GetTypeOk() (*ComponentType, bool) {
 func (o *Component) SetType(v ComponentType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o Component) MarshalJSON() ([]byte, error) {
@@ -208,11 +217,11 @@ func (o Component) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Component) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Events     []AppBuilderEvent      `json:"events,omitempty"`
-		Id         datadog.NullableString `json:"id,omitempty"`
-		Name       *string                `json:"name"`
-		Properties *ComponentProperties   `json:"properties"`
-		Type       *ComponentType         `json:"type"`
+		Events []AppBuilderEvent `json:"events,omitempty"`
+		Id datadog.NullableString `json:"id,omitempty"`
+		Name *string `json:"name"`
+		Properties *ComponentProperties `json:"properties"`
+		Type *ComponentType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -228,7 +237,7 @@ func (o *Component) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"events", "id", "name", "properties", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "events", "id", "name", "properties", "type",  })
 	} else {
 		return err
 	}

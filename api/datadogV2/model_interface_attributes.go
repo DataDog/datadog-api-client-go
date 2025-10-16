@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // InterfaceAttributes The interface attributes
 type InterfaceAttributes struct {
@@ -25,9 +31,10 @@ type InterfaceAttributes struct {
 	// The interface status
 	Status *InterfaceAttributesStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewInterfaceAttributes instantiates a new InterfaceAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +52,6 @@ func NewInterfaceAttributesWithDefaults() *InterfaceAttributes {
 	this := InterfaceAttributes{}
 	return &this
 }
-
 // GetAlias returns the Alias field value if set, zero value otherwise.
 func (o *InterfaceAttributes) GetAlias() string {
 	if o == nil || o.Alias == nil {
@@ -73,6 +79,7 @@ func (o *InterfaceAttributes) HasAlias() bool {
 func (o *InterfaceAttributes) SetAlias(v string) {
 	o.Alias = &v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *InterfaceAttributes) GetDescription() string {
@@ -102,6 +109,7 @@ func (o *InterfaceAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetIndex returns the Index field value if set, zero value otherwise.
 func (o *InterfaceAttributes) GetIndex() int64 {
 	if o == nil || o.Index == nil {
@@ -129,6 +137,7 @@ func (o *InterfaceAttributes) HasIndex() bool {
 func (o *InterfaceAttributes) SetIndex(v int64) {
 	o.Index = &v
 }
+
 
 // GetIpAddresses returns the IpAddresses field value if set, zero value otherwise.
 func (o *InterfaceAttributes) GetIpAddresses() []string {
@@ -158,6 +167,7 @@ func (o *InterfaceAttributes) SetIpAddresses(v []string) {
 	o.IpAddresses = v
 }
 
+
 // GetMacAddress returns the MacAddress field value if set, zero value otherwise.
 func (o *InterfaceAttributes) GetMacAddress() string {
 	if o == nil || o.MacAddress == nil {
@@ -185,6 +195,7 @@ func (o *InterfaceAttributes) HasMacAddress() bool {
 func (o *InterfaceAttributes) SetMacAddress(v string) {
 	o.MacAddress = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *InterfaceAttributes) GetName() string {
@@ -214,6 +225,7 @@ func (o *InterfaceAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *InterfaceAttributes) GetStatus() InterfaceAttributesStatus {
 	if o == nil || o.Status == nil {
@@ -241,6 +253,8 @@ func (o *InterfaceAttributes) HasStatus() bool {
 func (o *InterfaceAttributes) SetStatus(v InterfaceAttributesStatus) {
 	o.Status = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o InterfaceAttributes) MarshalJSON() ([]byte, error) {
@@ -279,20 +293,20 @@ func (o InterfaceAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *InterfaceAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Alias       *string                    `json:"alias,omitempty"`
-		Description *string                    `json:"description,omitempty"`
-		Index       *int64                     `json:"index,omitempty"`
-		IpAddresses []string                   `json:"ip_addresses,omitempty"`
-		MacAddress  *string                    `json:"mac_address,omitempty"`
-		Name        *string                    `json:"name,omitempty"`
-		Status      *InterfaceAttributesStatus `json:"status,omitempty"`
+		Alias *string `json:"alias,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Index *int64 `json:"index,omitempty"`
+		IpAddresses []string `json:"ip_addresses,omitempty"`
+		MacAddress *string `json:"mac_address,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Status *InterfaceAttributesStatus `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"alias", "description", "index", "ip_addresses", "mac_address", "name", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "alias", "description", "index", "ip_addresses", "mac_address", "name", "status",  })
 	} else {
 		return err
 	}
@@ -304,7 +318,7 @@ func (o *InterfaceAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.IpAddresses = all.IpAddresses
 	o.MacAddress = all.MacAddress
 	o.Name = all.Name
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

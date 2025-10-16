@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OrganizationCreateBody Object describing an organization to create.
 type OrganizationCreateBody struct {
@@ -21,9 +25,10 @@ type OrganizationCreateBody struct {
 	// Deprecated
 	Subscription *OrganizationSubscription `json:"subscription,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOrganizationCreateBody instantiates a new OrganizationCreateBody object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewOrganizationCreateBodyWithDefaults() *OrganizationCreateBody {
 	this := OrganizationCreateBody{}
 	return &this
 }
-
 // GetBilling returns the Billing field value if set, zero value otherwise.
 // Deprecated
 func (o *OrganizationCreateBody) GetBilling() OrganizationBilling {
@@ -74,6 +78,7 @@ func (o *OrganizationCreateBody) SetBilling(v OrganizationBilling) {
 	o.Billing = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *OrganizationCreateBody) GetName() string {
 	if o == nil {
@@ -96,6 +101,7 @@ func (o *OrganizationCreateBody) GetNameOk() (*string, bool) {
 func (o *OrganizationCreateBody) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
 // Deprecated
@@ -128,6 +134,8 @@ func (o *OrganizationCreateBody) SetSubscription(v OrganizationSubscription) {
 	o.Subscription = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OrganizationCreateBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -151,8 +159,8 @@ func (o OrganizationCreateBody) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OrganizationCreateBody) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Billing      *OrganizationBilling      `json:"billing,omitempty"`
-		Name         *string                   `json:"name"`
+		Billing *OrganizationBilling `json:"billing,omitempty"`
+		Name *string `json:"name"`
 		Subscription *OrganizationSubscription `json:"subscription,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -163,18 +171,18 @@ func (o *OrganizationCreateBody) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"billing", "name", "subscription"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "billing", "name", "subscription",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Billing != nil && all.Billing.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Billing != nil && all.Billing.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Billing = all.Billing
 	o.Name = *all.Name
-	if all.Subscription != nil && all.Subscription.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Subscription != nil && all.Subscription.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Subscription = all.Subscription

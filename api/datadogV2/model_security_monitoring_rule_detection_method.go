@@ -2,26 +2,30 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleDetectionMethod The detection method.
 type SecurityMonitoringRuleDetectionMethod string
 
 // List of SecurityMonitoringRuleDetectionMethod.
 const (
-	SECURITYMONITORINGRULEDETECTIONMETHOD_THRESHOLD          SecurityMonitoringRuleDetectionMethod = "threshold"
-	SECURITYMONITORINGRULEDETECTIONMETHOD_NEW_VALUE          SecurityMonitoringRuleDetectionMethod = "new_value"
-	SECURITYMONITORINGRULEDETECTIONMETHOD_ANOMALY_DETECTION  SecurityMonitoringRuleDetectionMethod = "anomaly_detection"
-	SECURITYMONITORINGRULEDETECTIONMETHOD_IMPOSSIBLE_TRAVEL  SecurityMonitoringRuleDetectionMethod = "impossible_travel"
-	SECURITYMONITORINGRULEDETECTIONMETHOD_HARDCODED          SecurityMonitoringRuleDetectionMethod = "hardcoded"
-	SECURITYMONITORINGRULEDETECTIONMETHOD_THIRD_PARTY        SecurityMonitoringRuleDetectionMethod = "third_party"
-	SECURITYMONITORINGRULEDETECTIONMETHOD_ANOMALY_THRESHOLD  SecurityMonitoringRuleDetectionMethod = "anomaly_threshold"
+	SECURITYMONITORINGRULEDETECTIONMETHOD_THRESHOLD SecurityMonitoringRuleDetectionMethod = "threshold"
+	SECURITYMONITORINGRULEDETECTIONMETHOD_NEW_VALUE SecurityMonitoringRuleDetectionMethod = "new_value"
+	SECURITYMONITORINGRULEDETECTIONMETHOD_ANOMALY_DETECTION SecurityMonitoringRuleDetectionMethod = "anomaly_detection"
+	SECURITYMONITORINGRULEDETECTIONMETHOD_IMPOSSIBLE_TRAVEL SecurityMonitoringRuleDetectionMethod = "impossible_travel"
+	SECURITYMONITORINGRULEDETECTIONMETHOD_HARDCODED SecurityMonitoringRuleDetectionMethod = "hardcoded"
+	SECURITYMONITORINGRULEDETECTIONMETHOD_THIRD_PARTY SecurityMonitoringRuleDetectionMethod = "third_party"
+	SECURITYMONITORINGRULEDETECTIONMETHOD_ANOMALY_THRESHOLD SecurityMonitoringRuleDetectionMethod = "anomaly_threshold"
 	SECURITYMONITORINGRULEDETECTIONMETHOD_SEQUENCE_DETECTION SecurityMonitoringRuleDetectionMethod = "sequence_detection"
 )
 

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GetAppResponseDataAttributes The app definition attributes, such as name, description, and components.
 type GetAppResponseDataAttributes struct {
@@ -25,9 +31,10 @@ type GetAppResponseDataAttributes struct {
 	// A list of tags for the app, which can be used to filter apps.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGetAppResponseDataAttributes instantiates a new GetAppResponseDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +52,6 @@ func NewGetAppResponseDataAttributesWithDefaults() *GetAppResponseDataAttributes
 	this := GetAppResponseDataAttributes{}
 	return &this
 }
-
 // GetComponents returns the Components field value if set, zero value otherwise.
 func (o *GetAppResponseDataAttributes) GetComponents() []ComponentGrid {
 	if o == nil || o.Components == nil {
@@ -73,6 +79,7 @@ func (o *GetAppResponseDataAttributes) HasComponents() bool {
 func (o *GetAppResponseDataAttributes) SetComponents(v []ComponentGrid) {
 	o.Components = v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *GetAppResponseDataAttributes) GetDescription() string {
@@ -102,6 +109,7 @@ func (o *GetAppResponseDataAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetFavorite returns the Favorite field value if set, zero value otherwise.
 func (o *GetAppResponseDataAttributes) GetFavorite() bool {
 	if o == nil || o.Favorite == nil {
@@ -129,6 +137,7 @@ func (o *GetAppResponseDataAttributes) HasFavorite() bool {
 func (o *GetAppResponseDataAttributes) SetFavorite(v bool) {
 	o.Favorite = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *GetAppResponseDataAttributes) GetName() string {
@@ -158,6 +167,7 @@ func (o *GetAppResponseDataAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *GetAppResponseDataAttributes) GetQueries() []Query {
 	if o == nil || o.Queries == nil {
@@ -185,6 +195,7 @@ func (o *GetAppResponseDataAttributes) HasQueries() bool {
 func (o *GetAppResponseDataAttributes) SetQueries(v []Query) {
 	o.Queries = v
 }
+
 
 // GetRootInstanceName returns the RootInstanceName field value if set, zero value otherwise.
 func (o *GetAppResponseDataAttributes) GetRootInstanceName() string {
@@ -214,6 +225,7 @@ func (o *GetAppResponseDataAttributes) SetRootInstanceName(v string) {
 	o.RootInstanceName = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *GetAppResponseDataAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -241,6 +253,8 @@ func (o *GetAppResponseDataAttributes) HasTags() bool {
 func (o *GetAppResponseDataAttributes) SetTags(v []string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o GetAppResponseDataAttributes) MarshalJSON() ([]byte, error) {
@@ -279,20 +293,20 @@ func (o GetAppResponseDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GetAppResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Components       []ComponentGrid `json:"components,omitempty"`
-		Description      *string         `json:"description,omitempty"`
-		Favorite         *bool           `json:"favorite,omitempty"`
-		Name             *string         `json:"name,omitempty"`
-		Queries          []Query         `json:"queries,omitempty"`
-		RootInstanceName *string         `json:"rootInstanceName,omitempty"`
-		Tags             []string        `json:"tags,omitempty"`
+		Components []ComponentGrid `json:"components,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Favorite *bool `json:"favorite,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Queries []Query `json:"queries,omitempty"`
+		RootInstanceName *string `json:"rootInstanceName,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"components", "description", "favorite", "name", "queries", "rootInstanceName", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "components", "description", "favorite", "name", "queries", "rootInstanceName", "tags",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TableResultV2DataAttributesFileMetadataLocalFile File metadata for reference tables created by upload.
 type TableResultV2DataAttributesFileMetadataLocalFile struct {
@@ -17,9 +23,10 @@ type TableResultV2DataAttributesFileMetadataLocalFile struct {
 	// The upload ID that was used to create/update the table.
 	UploadId *string `json:"upload_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTableResultV2DataAttributesFileMetadataLocalFile instantiates a new TableResultV2DataAttributesFileMetadataLocalFile object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewTableResultV2DataAttributesFileMetadataLocalFileWithDefaults() *TableRes
 	this := TableResultV2DataAttributesFileMetadataLocalFile{}
 	return &this
 }
-
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributesFileMetadataLocalFile) GetErrorMessage() string {
 	if o == nil || o.ErrorMessage == nil {
@@ -65,6 +71,7 @@ func (o *TableResultV2DataAttributesFileMetadataLocalFile) HasErrorMessage() boo
 func (o *TableResultV2DataAttributesFileMetadataLocalFile) SetErrorMessage(v string) {
 	o.ErrorMessage = &v
 }
+
 
 // GetErrorRowCount returns the ErrorRowCount field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributesFileMetadataLocalFile) GetErrorRowCount() int64 {
@@ -94,6 +101,7 @@ func (o *TableResultV2DataAttributesFileMetadataLocalFile) SetErrorRowCount(v in
 	o.ErrorRowCount = &v
 }
 
+
 // GetUploadId returns the UploadId field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributesFileMetadataLocalFile) GetUploadId() string {
 	if o == nil || o.UploadId == nil {
@@ -122,6 +130,8 @@ func (o *TableResultV2DataAttributesFileMetadataLocalFile) SetUploadId(v string)
 	o.UploadId = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TableResultV2DataAttributesFileMetadataLocalFile) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o TableResultV2DataAttributesFileMetadataLocalFile) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *TableResultV2DataAttributesFileMetadataLocalFile) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ErrorMessage  *string `json:"error_message,omitempty"`
-		ErrorRowCount *int64  `json:"error_row_count,omitempty"`
-		UploadId      *string `json:"upload_id,omitempty"`
+		ErrorMessage *string `json:"error_message,omitempty"`
+		ErrorRowCount *int64 `json:"error_row_count,omitempty"`
+		UploadId *string `json:"upload_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"error_message", "error_row_count", "upload_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "error_message", "error_row_count", "upload_id",  })
 	} else {
 		return err
 	}

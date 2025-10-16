@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeRecurrence An object defining the recurrence of the downtime.
 type DowntimeRecurrence struct {
@@ -32,9 +38,10 @@ type DowntimeRecurrence struct {
 	// Only applicable when type is weeks. First letter must be capitalized.
 	WeekDays datadog.NullableList[string] `json:"week_days,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDowntimeRecurrence instantiates a new DowntimeRecurrence object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +59,6 @@ func NewDowntimeRecurrenceWithDefaults() *DowntimeRecurrence {
 	this := DowntimeRecurrence{}
 	return &this
 }
-
 // GetPeriod returns the Period field value if set, zero value otherwise.
 func (o *DowntimeRecurrence) GetPeriod() int32 {
 	if o == nil || o.Period == nil {
@@ -80,6 +86,7 @@ func (o *DowntimeRecurrence) HasPeriod() bool {
 func (o *DowntimeRecurrence) SetPeriod(v int32) {
 	o.Period = &v
 }
+
 
 // GetRrule returns the Rrule field value if set, zero value otherwise.
 func (o *DowntimeRecurrence) GetRrule() string {
@@ -109,6 +116,7 @@ func (o *DowntimeRecurrence) SetRrule(v string) {
 	o.Rrule = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *DowntimeRecurrence) GetType() string {
 	if o == nil || o.Type == nil {
@@ -137,6 +145,7 @@ func (o *DowntimeRecurrence) SetType(v string) {
 	o.Type = &v
 }
 
+
 // GetUntilDate returns the UntilDate field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DowntimeRecurrence) GetUntilDate() int64 {
 	if o == nil || o.UntilDate.Get() == nil {
@@ -150,7 +159,7 @@ func (o *DowntimeRecurrence) GetUntilDate() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeRecurrence) GetUntilDateOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.UntilDate.Get(), o.UntilDate.IsSet()
@@ -165,7 +174,6 @@ func (o *DowntimeRecurrence) HasUntilDate() bool {
 func (o *DowntimeRecurrence) SetUntilDate(v int64) {
 	o.UntilDate.Set(&v)
 }
-
 // SetUntilDateNil sets the value for UntilDate to be an explicit nil.
 func (o *DowntimeRecurrence) SetUntilDateNil() {
 	o.UntilDate.Set(nil)
@@ -175,6 +183,7 @@ func (o *DowntimeRecurrence) SetUntilDateNil() {
 func (o *DowntimeRecurrence) UnsetUntilDate() {
 	o.UntilDate.Unset()
 }
+
 
 // GetUntilOccurrences returns the UntilOccurrences field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DowntimeRecurrence) GetUntilOccurrences() int32 {
@@ -189,7 +198,7 @@ func (o *DowntimeRecurrence) GetUntilOccurrences() int32 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeRecurrence) GetUntilOccurrencesOk() (*int32, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.UntilOccurrences.Get(), o.UntilOccurrences.IsSet()
@@ -204,7 +213,6 @@ func (o *DowntimeRecurrence) HasUntilOccurrences() bool {
 func (o *DowntimeRecurrence) SetUntilOccurrences(v int32) {
 	o.UntilOccurrences.Set(&v)
 }
-
 // SetUntilOccurrencesNil sets the value for UntilOccurrences to be an explicit nil.
 func (o *DowntimeRecurrence) SetUntilOccurrencesNil() {
 	o.UntilOccurrences.Set(nil)
@@ -214,6 +222,7 @@ func (o *DowntimeRecurrence) SetUntilOccurrencesNil() {
 func (o *DowntimeRecurrence) UnsetUntilOccurrences() {
 	o.UntilOccurrences.Unset()
 }
+
 
 // GetWeekDays returns the WeekDays field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DowntimeRecurrence) GetWeekDays() []string {
@@ -228,7 +237,7 @@ func (o *DowntimeRecurrence) GetWeekDays() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeRecurrence) GetWeekDaysOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.WeekDays.Get(), o.WeekDays.IsSet()
@@ -243,7 +252,6 @@ func (o *DowntimeRecurrence) HasWeekDays() bool {
 func (o *DowntimeRecurrence) SetWeekDays(v []string) {
 	o.WeekDays.Set(&v)
 }
-
 // SetWeekDaysNil sets the value for WeekDays to be an explicit nil.
 func (o *DowntimeRecurrence) SetWeekDaysNil() {
 	o.WeekDays.Set(nil)
@@ -253,6 +261,8 @@ func (o *DowntimeRecurrence) SetWeekDaysNil() {
 func (o *DowntimeRecurrence) UnsetWeekDays() {
 	o.WeekDays.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeRecurrence) MarshalJSON() ([]byte, error) {
@@ -288,19 +298,19 @@ func (o DowntimeRecurrence) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DowntimeRecurrence) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Period           *int32                       `json:"period,omitempty"`
-		Rrule            *string                      `json:"rrule,omitempty"`
-		Type             *string                      `json:"type,omitempty"`
-		UntilDate        datadog.NullableInt64        `json:"until_date,omitempty"`
-		UntilOccurrences datadog.NullableInt32        `json:"until_occurrences,omitempty"`
-		WeekDays         datadog.NullableList[string] `json:"week_days,omitempty"`
+		Period *int32 `json:"period,omitempty"`
+		Rrule *string `json:"rrule,omitempty"`
+		Type *string `json:"type,omitempty"`
+		UntilDate datadog.NullableInt64 `json:"until_date,omitempty"`
+		UntilOccurrences datadog.NullableInt32 `json:"until_occurrences,omitempty"`
+		WeekDays datadog.NullableList[string] `json:"week_days,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"period", "rrule", "type", "until_date", "until_occurrences", "week_days"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "period", "rrule", "type", "until_date", "until_occurrences", "week_days",  })
 	} else {
 		return err
 	}
@@ -317,7 +327,6 @@ func (o *DowntimeRecurrence) UnmarshalJSON(bytes []byte) (err error) {
 
 	return nil
 }
-
 // NullableDowntimeRecurrence handles when a null is used for DowntimeRecurrence.
 type NullableDowntimeRecurrence struct {
 	value *DowntimeRecurrence

@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSentinelOneDestinationRegion The SentinelOne region to send logs to.
 type ObservabilityPipelineSentinelOneDestinationRegion string
 
 // List of ObservabilityPipelineSentinelOneDestinationRegion.
 const (
-	OBSERVABILITYPIPELINESENTINELONEDESTINATIONREGION_US          ObservabilityPipelineSentinelOneDestinationRegion = "us"
-	OBSERVABILITYPIPELINESENTINELONEDESTINATIONREGION_EU          ObservabilityPipelineSentinelOneDestinationRegion = "eu"
-	OBSERVABILITYPIPELINESENTINELONEDESTINATIONREGION_CA          ObservabilityPipelineSentinelOneDestinationRegion = "ca"
+	OBSERVABILITYPIPELINESENTINELONEDESTINATIONREGION_US ObservabilityPipelineSentinelOneDestinationRegion = "us"
+	OBSERVABILITYPIPELINESENTINELONEDESTINATIONREGION_EU ObservabilityPipelineSentinelOneDestinationRegion = "eu"
+	OBSERVABILITYPIPELINESENTINELONEDESTINATIONREGION_CA ObservabilityPipelineSentinelOneDestinationRegion = "ca"
 	OBSERVABILITYPIPELINESENTINELONEDESTINATIONREGION_DATA_SET_US ObservabilityPipelineSentinelOneDestinationRegion = "data_set_us"
 )
 

@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DashboardShareType Type of sharing access (either open to anyone who has the public URL or invite-only).
 type DashboardShareType string
 
 // List of DashboardShareType.
 const (
-	DASHBOARDSHARETYPE_OPEN   DashboardShareType = "open"
+	DASHBOARDSHARETYPE_OPEN DashboardShareType = "open"
 	DASHBOARDSHARETYPE_INVITE DashboardShareType = "invite"
-	DASHBOARDSHARETYPE_EMBED  DashboardShareType = "embed"
+	DASHBOARDSHARETYPE_EMBED DashboardShareType = "embed"
 )
 
 var allowedDashboardShareTypeEnumValues = []DashboardShareType{
@@ -66,7 +70,6 @@ func (v DashboardShareType) IsValid() bool {
 func (v DashboardShareType) Ptr() *DashboardShareType {
 	return &v
 }
-
 // NullableDashboardShareType handles when a null is used for DashboardShareType.
 type NullableDashboardShareType struct {
 	value *DashboardShareType

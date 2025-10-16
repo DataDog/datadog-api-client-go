@@ -2,6 +2,7 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadog
 
 import (
@@ -11,7 +12,6 @@ import (
 	"reflect"
 	"strings"
 	"time"
-	"unicode/utf8"
 )
 
 // PtrBool is a helper routine that returns a pointer to given boolean value.
@@ -40,7 +40,7 @@ func PtrTime(v time.Time) *time.Time { return &v }
 
 // PaginationResult pagination item helper struct
 type PaginationResult[T any] struct {
-	Item  T
+	Item T
 	Error error
 }
 

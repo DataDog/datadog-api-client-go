@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ActionQueryPollingIntervalInMs - If specified, the app will poll the query at the specified interval in milliseconds. The minimum polling interval is 15 seconds. The query will only poll when the app's browser tab is active.
 type ActionQueryPollingIntervalInMs struct {
 	Float64 *float64
-	String  *string
+	String *string
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -80,9 +86,11 @@ func (obj ActionQueryPollingIntervalInMs) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.Float64)
 	}
 
+
 	if obj.String != nil {
 		return datadog.Marshal(&obj.String)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj ActionQueryPollingIntervalInMs) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ActionQueryPollingIntervalInMs) GetActualInstance() interface{} {
+func (obj *ActionQueryPollingIntervalInMs) GetActualInstance() (interface{}) {
 	if obj.Float64 != nil {
 		return obj.Float64
 	}
 
+
 	if obj.String != nil {
 		return obj.String
 	}
+
 
 	// all schemas are nil
 	return nil

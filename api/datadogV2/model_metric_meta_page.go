@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricMetaPage Paging attributes. Only present if pagination query parameters were provided.
 type MetricMetaPage struct {
@@ -19,9 +25,10 @@ type MetricMetaPage struct {
 	// Type of metric pagination.
 	Type *MetricMetaPageType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricMetaPage instantiates a new MetricMetaPage object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +50,6 @@ func NewMetricMetaPageWithDefaults() *MetricMetaPage {
 	this.Type = &typeVar
 	return &this
 }
-
 // GetCursor returns the Cursor field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MetricMetaPage) GetCursor() string {
 	if o == nil || o.Cursor.Get() == nil {
@@ -57,7 +63,7 @@ func (o *MetricMetaPage) GetCursor() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MetricMetaPage) GetCursorOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Cursor.Get(), o.Cursor.IsSet()
@@ -72,7 +78,6 @@ func (o *MetricMetaPage) HasCursor() bool {
 func (o *MetricMetaPage) SetCursor(v string) {
 	o.Cursor.Set(&v)
 }
-
 // SetCursorNil sets the value for Cursor to be an explicit nil.
 func (o *MetricMetaPage) SetCursorNil() {
 	o.Cursor.Set(nil)
@@ -82,6 +87,7 @@ func (o *MetricMetaPage) SetCursorNil() {
 func (o *MetricMetaPage) UnsetCursor() {
 	o.Cursor.Unset()
 }
+
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *MetricMetaPage) GetLimit() int32 {
@@ -111,6 +117,7 @@ func (o *MetricMetaPage) SetLimit(v int32) {
 	o.Limit = &v
 }
 
+
 // GetNextCursor returns the NextCursor field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MetricMetaPage) GetNextCursor() string {
 	if o == nil || o.NextCursor.Get() == nil {
@@ -124,7 +131,7 @@ func (o *MetricMetaPage) GetNextCursor() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MetricMetaPage) GetNextCursorOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.NextCursor.Get(), o.NextCursor.IsSet()
@@ -139,7 +146,6 @@ func (o *MetricMetaPage) HasNextCursor() bool {
 func (o *MetricMetaPage) SetNextCursor(v string) {
 	o.NextCursor.Set(&v)
 }
-
 // SetNextCursorNil sets the value for NextCursor to be an explicit nil.
 func (o *MetricMetaPage) SetNextCursorNil() {
 	o.NextCursor.Set(nil)
@@ -149,6 +155,7 @@ func (o *MetricMetaPage) SetNextCursorNil() {
 func (o *MetricMetaPage) UnsetNextCursor() {
 	o.NextCursor.Unset()
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MetricMetaPage) GetType() MetricMetaPageType {
@@ -178,6 +185,8 @@ func (o *MetricMetaPage) SetType(v MetricMetaPageType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricMetaPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -206,17 +215,17 @@ func (o MetricMetaPage) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Cursor     datadog.NullableString `json:"cursor,omitempty"`
-		Limit      *int32                 `json:"limit,omitempty"`
+		Cursor datadog.NullableString `json:"cursor,omitempty"`
+		Limit *int32 `json:"limit,omitempty"`
 		NextCursor datadog.NullableString `json:"next_cursor,omitempty"`
-		Type       *MetricMetaPageType    `json:"type,omitempty"`
+		Type *MetricMetaPageType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cursor", "limit", "next_cursor", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cursor", "limit", "next_cursor", "type",  })
 	} else {
 		return err
 	}
@@ -225,7 +234,7 @@ func (o *MetricMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	o.Cursor = all.Cursor
 	o.Limit = all.Limit
 	o.NextCursor = all.NextCursor
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

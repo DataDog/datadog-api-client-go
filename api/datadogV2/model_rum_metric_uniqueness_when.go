@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RumMetricUniquenessWhen When to count updatable events. `match` when the event is first seen, or `end` when the event is complete.
 type RumMetricUniquenessWhen string
@@ -16,7 +20,7 @@ type RumMetricUniquenessWhen string
 // List of RumMetricUniquenessWhen.
 const (
 	RUMMETRICUNIQUENESSWHEN_WHEN_MATCH RumMetricUniquenessWhen = "match"
-	RUMMETRICUNIQUENESSWHEN_WHEN_END   RumMetricUniquenessWhen = "end"
+	RUMMETRICUNIQUENESSWHEN_WHEN_END RumMetricUniquenessWhen = "end"
 )
 
 var allowedRumMetricUniquenessWhenEnumValues = []RumMetricUniquenessWhen{

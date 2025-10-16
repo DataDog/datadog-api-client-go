@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SlackIntegrationChannelDisplay Configuration options for what is shown in an alert event message.
 type SlackIntegrationChannelDisplay struct {
@@ -21,9 +27,10 @@ type SlackIntegrationChannelDisplay struct {
 	// Show the scopes on which the monitor alerted.
 	Tags *bool `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSlackIntegrationChannelDisplay instantiates a new SlackIntegrationChannelDisplay object.
 // This constructor will assign default values to properties that have it defined,
@@ -61,7 +68,6 @@ func NewSlackIntegrationChannelDisplayWithDefaults() *SlackIntegrationChannelDis
 	this.Tags = &tags
 	return &this
 }
-
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *SlackIntegrationChannelDisplay) GetMessage() bool {
 	if o == nil || o.Message == nil {
@@ -89,6 +95,7 @@ func (o *SlackIntegrationChannelDisplay) HasMessage() bool {
 func (o *SlackIntegrationChannelDisplay) SetMessage(v bool) {
 	o.Message = &v
 }
+
 
 // GetMuteButtons returns the MuteButtons field value if set, zero value otherwise.
 func (o *SlackIntegrationChannelDisplay) GetMuteButtons() bool {
@@ -118,6 +125,7 @@ func (o *SlackIntegrationChannelDisplay) SetMuteButtons(v bool) {
 	o.MuteButtons = &v
 }
 
+
 // GetNotified returns the Notified field value if set, zero value otherwise.
 func (o *SlackIntegrationChannelDisplay) GetNotified() bool {
 	if o == nil || o.Notified == nil {
@@ -145,6 +153,7 @@ func (o *SlackIntegrationChannelDisplay) HasNotified() bool {
 func (o *SlackIntegrationChannelDisplay) SetNotified(v bool) {
 	o.Notified = &v
 }
+
 
 // GetSnapshot returns the Snapshot field value if set, zero value otherwise.
 func (o *SlackIntegrationChannelDisplay) GetSnapshot() bool {
@@ -174,6 +183,7 @@ func (o *SlackIntegrationChannelDisplay) SetSnapshot(v bool) {
 	o.Snapshot = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SlackIntegrationChannelDisplay) GetTags() bool {
 	if o == nil || o.Tags == nil {
@@ -201,6 +211,8 @@ func (o *SlackIntegrationChannelDisplay) HasTags() bool {
 func (o *SlackIntegrationChannelDisplay) SetTags(v bool) {
 	o.Tags = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SlackIntegrationChannelDisplay) MarshalJSON() ([]byte, error) {
@@ -233,18 +245,18 @@ func (o SlackIntegrationChannelDisplay) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SlackIntegrationChannelDisplay) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Message     *bool `json:"message,omitempty"`
+		Message *bool `json:"message,omitempty"`
 		MuteButtons *bool `json:"mute_buttons,omitempty"`
-		Notified    *bool `json:"notified,omitempty"`
-		Snapshot    *bool `json:"snapshot,omitempty"`
-		Tags        *bool `json:"tags,omitempty"`
+		Notified *bool `json:"notified,omitempty"`
+		Snapshot *bool `json:"snapshot,omitempty"`
+		Tags *bool `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"message", "mute_buttons", "notified", "snapshot", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "message", "mute_buttons", "notified", "snapshot", "tags",  })
 	} else {
 		return err
 	}

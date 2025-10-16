@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AlertGraphWidgetDefinition Alert graphs are timeseries graphs showing the current status of any monitor defined on your system.
 type AlertGraphWidgetDefinition struct {
@@ -27,9 +31,10 @@ type AlertGraphWidgetDefinition struct {
 	// Whether to display the Alert Graph as a timeseries or a top list.
 	VizType WidgetVizType `json:"viz_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAlertGraphWidgetDefinition instantiates a new AlertGraphWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewAlertGraphWidgetDefinitionWithDefaults() *AlertGraphWidgetDefinition {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAlertId returns the AlertId field value.
 func (o *AlertGraphWidgetDefinition) GetAlertId() string {
 	if o == nil {
@@ -75,6 +79,7 @@ func (o *AlertGraphWidgetDefinition) GetAlertIdOk() (*string, bool) {
 func (o *AlertGraphWidgetDefinition) SetAlertId(v string) {
 	o.AlertId = v
 }
+
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *AlertGraphWidgetDefinition) GetTime() WidgetTime {
@@ -104,6 +109,7 @@ func (o *AlertGraphWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *AlertGraphWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -131,6 +137,7 @@ func (o *AlertGraphWidgetDefinition) HasTitle() bool {
 func (o *AlertGraphWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
+
 
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *AlertGraphWidgetDefinition) GetTitleAlign() WidgetTextAlign {
@@ -160,6 +167,7 @@ func (o *AlertGraphWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
 
+
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *AlertGraphWidgetDefinition) GetTitleSize() string {
 	if o == nil || o.TitleSize == nil {
@@ -188,6 +196,7 @@ func (o *AlertGraphWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *AlertGraphWidgetDefinition) GetType() AlertGraphWidgetDefinitionType {
 	if o == nil {
@@ -211,6 +220,7 @@ func (o *AlertGraphWidgetDefinition) SetType(v AlertGraphWidgetDefinitionType) {
 	o.Type = v
 }
 
+
 // GetVizType returns the VizType field value.
 func (o *AlertGraphWidgetDefinition) GetVizType() WidgetVizType {
 	if o == nil {
@@ -233,6 +243,8 @@ func (o *AlertGraphWidgetDefinition) GetVizTypeOk() (*WidgetVizType, bool) {
 func (o *AlertGraphWidgetDefinition) SetVizType(v WidgetVizType) {
 	o.VizType = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AlertGraphWidgetDefinition) MarshalJSON() ([]byte, error) {
@@ -265,13 +277,13 @@ func (o AlertGraphWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AlertGraphWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AlertId    *string                         `json:"alert_id"`
-		Time       *WidgetTime                     `json:"time,omitempty"`
-		Title      *string                         `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign                `json:"title_align,omitempty"`
-		TitleSize  *string                         `json:"title_size,omitempty"`
-		Type       *AlertGraphWidgetDefinitionType `json:"type"`
-		VizType    *WidgetVizType                  `json:"viz_type"`
+		AlertId *string `json:"alert_id"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type *AlertGraphWidgetDefinitionType `json:"type"`
+		VizType *WidgetVizType `json:"viz_type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -287,7 +299,7 @@ func (o *AlertGraphWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"alert_id", "time", "title", "title_align", "title_size", "type", "viz_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "alert_id", "time", "title", "title_align", "title_size", "type", "viz_type",  })
 	} else {
 		return err
 	}
@@ -296,7 +308,7 @@ func (o *AlertGraphWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.AlertId = *all.AlertId
 	o.Time = all.Time
 	o.Title = all.Title
-	if all.TitleAlign != nil && !all.TitleAlign.IsValid() {
+	if all.TitleAlign != nil &&!all.TitleAlign.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.TitleAlign = all.TitleAlign

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DORAFailureRequestAttributes Attributes to create a DORA failure event.
 type DORAFailureRequestAttributes struct {
@@ -35,9 +39,10 @@ type DORAFailureRequestAttributes struct {
 	// Version to correlate with [APM Deployment Tracking](https://docs.datadoghq.com/tracing/services/deployment_tracking/).
 	Version *string `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDORAFailureRequestAttributes instantiates a new DORAFailureRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +61,6 @@ func NewDORAFailureRequestAttributesWithDefaults() *DORAFailureRequestAttributes
 	this := DORAFailureRequestAttributes{}
 	return &this
 }
-
 // GetCustomTags returns the CustomTags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DORAFailureRequestAttributes) GetCustomTags() []string {
 	if o == nil || o.CustomTags.Get() == nil {
@@ -70,7 +74,7 @@ func (o *DORAFailureRequestAttributes) GetCustomTags() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DORAFailureRequestAttributes) GetCustomTagsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.CustomTags.Get(), o.CustomTags.IsSet()
@@ -85,7 +89,6 @@ func (o *DORAFailureRequestAttributes) HasCustomTags() bool {
 func (o *DORAFailureRequestAttributes) SetCustomTags(v []string) {
 	o.CustomTags.Set(&v)
 }
-
 // SetCustomTagsNil sets the value for CustomTags to be an explicit nil.
 func (o *DORAFailureRequestAttributes) SetCustomTagsNil() {
 	o.CustomTags.Set(nil)
@@ -95,6 +98,7 @@ func (o *DORAFailureRequestAttributes) SetCustomTagsNil() {
 func (o *DORAFailureRequestAttributes) UnsetCustomTags() {
 	o.CustomTags.Unset()
 }
+
 
 // GetEnv returns the Env field value if set, zero value otherwise.
 func (o *DORAFailureRequestAttributes) GetEnv() string {
@@ -124,6 +128,7 @@ func (o *DORAFailureRequestAttributes) SetEnv(v string) {
 	o.Env = &v
 }
 
+
 // GetFinishedAt returns the FinishedAt field value if set, zero value otherwise.
 func (o *DORAFailureRequestAttributes) GetFinishedAt() int64 {
 	if o == nil || o.FinishedAt == nil {
@@ -151,6 +156,7 @@ func (o *DORAFailureRequestAttributes) HasFinishedAt() bool {
 func (o *DORAFailureRequestAttributes) SetFinishedAt(v int64) {
 	o.FinishedAt = &v
 }
+
 
 // GetGit returns the Git field value if set, zero value otherwise.
 func (o *DORAFailureRequestAttributes) GetGit() DORAGitInfo {
@@ -180,6 +186,7 @@ func (o *DORAFailureRequestAttributes) SetGit(v DORAGitInfo) {
 	o.Git = &v
 }
 
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *DORAFailureRequestAttributes) GetId() string {
 	if o == nil || o.Id == nil {
@@ -207,6 +214,7 @@ func (o *DORAFailureRequestAttributes) HasId() bool {
 func (o *DORAFailureRequestAttributes) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DORAFailureRequestAttributes) GetName() string {
@@ -236,6 +244,7 @@ func (o *DORAFailureRequestAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetServices returns the Services field value if set, zero value otherwise.
 func (o *DORAFailureRequestAttributes) GetServices() []string {
 	if o == nil || o.Services == nil {
@@ -263,6 +272,7 @@ func (o *DORAFailureRequestAttributes) HasServices() bool {
 func (o *DORAFailureRequestAttributes) SetServices(v []string) {
 	o.Services = v
 }
+
 
 // GetSeverity returns the Severity field value if set, zero value otherwise.
 func (o *DORAFailureRequestAttributes) GetSeverity() string {
@@ -292,6 +302,7 @@ func (o *DORAFailureRequestAttributes) SetSeverity(v string) {
 	o.Severity = &v
 }
 
+
 // GetStartedAt returns the StartedAt field value.
 func (o *DORAFailureRequestAttributes) GetStartedAt() int64 {
 	if o == nil {
@@ -314,6 +325,7 @@ func (o *DORAFailureRequestAttributes) GetStartedAtOk() (*int64, bool) {
 func (o *DORAFailureRequestAttributes) SetStartedAt(v int64) {
 	o.StartedAt = v
 }
+
 
 // GetTeam returns the Team field value if set, zero value otherwise.
 func (o *DORAFailureRequestAttributes) GetTeam() string {
@@ -343,6 +355,7 @@ func (o *DORAFailureRequestAttributes) SetTeam(v string) {
 	o.Team = &v
 }
 
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *DORAFailureRequestAttributes) GetVersion() string {
 	if o == nil || o.Version == nil {
@@ -370,6 +383,8 @@ func (o *DORAFailureRequestAttributes) HasVersion() bool {
 func (o *DORAFailureRequestAttributes) SetVersion(v string) {
 	o.Version = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DORAFailureRequestAttributes) MarshalJSON() ([]byte, error) {
@@ -419,16 +434,16 @@ func (o DORAFailureRequestAttributes) MarshalJSON() ([]byte, error) {
 func (o *DORAFailureRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CustomTags datadog.NullableList[string] `json:"custom_tags,omitempty"`
-		Env        *string                      `json:"env,omitempty"`
-		FinishedAt *int64                       `json:"finished_at,omitempty"`
-		Git        *DORAGitInfo                 `json:"git,omitempty"`
-		Id         *string                      `json:"id,omitempty"`
-		Name       *string                      `json:"name,omitempty"`
-		Services   []string                     `json:"services,omitempty"`
-		Severity   *string                      `json:"severity,omitempty"`
-		StartedAt  *int64                       `json:"started_at"`
-		Team       *string                      `json:"team,omitempty"`
-		Version    *string                      `json:"version,omitempty"`
+		Env *string `json:"env,omitempty"`
+		FinishedAt *int64 `json:"finished_at,omitempty"`
+		Git *DORAGitInfo `json:"git,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Services []string `json:"services,omitempty"`
+		Severity *string `json:"severity,omitempty"`
+		StartedAt *int64 `json:"started_at"`
+		Team *string `json:"team,omitempty"`
+		Version *string `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -438,7 +453,7 @@ func (o *DORAFailureRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom_tags", "env", "finished_at", "git", "id", "name", "services", "severity", "started_at", "team", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "custom_tags", "env", "finished_at", "git", "id", "name", "services", "severity", "started_at", "team", "version",  })
 	} else {
 		return err
 	}
@@ -447,7 +462,7 @@ func (o *DORAFailureRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.CustomTags = all.CustomTags
 	o.Env = all.Env
 	o.FinishedAt = all.FinishedAt
-	if all.Git != nil && all.Git.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Git != nil && all.Git.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Git = all.Git

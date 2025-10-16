@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SelfServiceTriggerWrapper Schema for a Self Service-based trigger.
 type SelfServiceTriggerWrapper struct {
@@ -17,9 +21,10 @@ type SelfServiceTriggerWrapper struct {
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSelfServiceTriggerWrapper instantiates a new SelfServiceTriggerWrapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewSelfServiceTriggerWrapperWithDefaults() *SelfServiceTriggerWrapper {
 	this := SelfServiceTriggerWrapper{}
 	return &this
 }
-
 // GetSelfServiceTrigger returns the SelfServiceTrigger field value.
 func (o *SelfServiceTriggerWrapper) GetSelfServiceTrigger() interface{} {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *SelfServiceTriggerWrapper) GetSelfServiceTriggerOk() (*interface{}, boo
 func (o *SelfServiceTriggerWrapper) SetSelfServiceTrigger(v interface{}) {
 	o.SelfServiceTrigger = v
 }
+
 
 // GetStartStepNames returns the StartStepNames field value if set, zero value otherwise.
 func (o *SelfServiceTriggerWrapper) GetStartStepNames() []string {
@@ -90,6 +95,8 @@ func (o *SelfServiceTriggerWrapper) SetStartStepNames(v []string) {
 	o.StartStepNames = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SelfServiceTriggerWrapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o SelfServiceTriggerWrapper) MarshalJSON() ([]byte, error) {
 func (o *SelfServiceTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		SelfServiceTrigger *interface{} `json:"selfServiceTrigger"`
-		StartStepNames     []string     `json:"startStepNames,omitempty"`
+		StartStepNames []string `json:"startStepNames,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *SelfServiceTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"selfServiceTrigger", "startStepNames"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "selfServiceTrigger", "startStepNames",  })
 	} else {
 		return err
 	}

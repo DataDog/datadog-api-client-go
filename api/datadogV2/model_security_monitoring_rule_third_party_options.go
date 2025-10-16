@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleThirdPartyOptions Options on third party detection method.
 type SecurityMonitoringRuleThirdPartyOptions struct {
@@ -19,9 +25,10 @@ type SecurityMonitoringRuleThirdPartyOptions struct {
 	// A template for the signal title; if omitted, the title is generated based on the case name.
 	SignalTitleTemplate *string `json:"signalTitleTemplate,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringRuleThirdPartyOptions instantiates a new SecurityMonitoringRuleThirdPartyOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewSecurityMonitoringRuleThirdPartyOptionsWithDefaults() *SecurityMonitorin
 	this := SecurityMonitoringRuleThirdPartyOptions{}
 	return &this
 }
-
 // GetDefaultNotifications returns the DefaultNotifications field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleThirdPartyOptions) GetDefaultNotifications() []string {
 	if o == nil || o.DefaultNotifications == nil {
@@ -67,6 +73,7 @@ func (o *SecurityMonitoringRuleThirdPartyOptions) HasDefaultNotifications() bool
 func (o *SecurityMonitoringRuleThirdPartyOptions) SetDefaultNotifications(v []string) {
 	o.DefaultNotifications = v
 }
+
 
 // GetDefaultStatus returns the DefaultStatus field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleThirdPartyOptions) GetDefaultStatus() SecurityMonitoringRuleSeverity {
@@ -96,6 +103,7 @@ func (o *SecurityMonitoringRuleThirdPartyOptions) SetDefaultStatus(v SecurityMon
 	o.DefaultStatus = &v
 }
 
+
 // GetRootQueries returns the RootQueries field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleThirdPartyOptions) GetRootQueries() []SecurityMonitoringThirdPartyRootQuery {
 	if o == nil || o.RootQueries == nil {
@@ -123,6 +131,7 @@ func (o *SecurityMonitoringRuleThirdPartyOptions) HasRootQueries() bool {
 func (o *SecurityMonitoringRuleThirdPartyOptions) SetRootQueries(v []SecurityMonitoringThirdPartyRootQuery) {
 	o.RootQueries = v
 }
+
 
 // GetSignalTitleTemplate returns the SignalTitleTemplate field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleThirdPartyOptions) GetSignalTitleTemplate() string {
@@ -152,6 +161,8 @@ func (o *SecurityMonitoringRuleThirdPartyOptions) SetSignalTitleTemplate(v strin
 	o.SignalTitleTemplate = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleThirdPartyOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,24 +191,24 @@ func (o SecurityMonitoringRuleThirdPartyOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleThirdPartyOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DefaultNotifications []string                                `json:"defaultNotifications,omitempty"`
-		DefaultStatus        *SecurityMonitoringRuleSeverity         `json:"defaultStatus,omitempty"`
-		RootQueries          []SecurityMonitoringThirdPartyRootQuery `json:"rootQueries,omitempty"`
-		SignalTitleTemplate  *string                                 `json:"signalTitleTemplate,omitempty"`
+		DefaultNotifications []string `json:"defaultNotifications,omitempty"`
+		DefaultStatus *SecurityMonitoringRuleSeverity `json:"defaultStatus,omitempty"`
+		RootQueries []SecurityMonitoringThirdPartyRootQuery `json:"rootQueries,omitempty"`
+		SignalTitleTemplate *string `json:"signalTitleTemplate,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"defaultNotifications", "defaultStatus", "rootQueries", "signalTitleTemplate"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "defaultNotifications", "defaultStatus", "rootQueries", "signalTitleTemplate",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.DefaultNotifications = all.DefaultNotifications
-	if all.DefaultStatus != nil && !all.DefaultStatus.IsValid() {
+	if all.DefaultStatus != nil &&!all.DefaultStatus.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.DefaultStatus = all.DefaultStatus

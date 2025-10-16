@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentNotificationRuleAttributesVisibility The visibility of the notification rule.
 type IncidentNotificationRuleAttributesVisibility string
 
 // List of IncidentNotificationRuleAttributesVisibility.
 const (
-	INCIDENTNOTIFICATIONRULEATTRIBUTESVISIBILITY_ALL          IncidentNotificationRuleAttributesVisibility = "all"
+	INCIDENTNOTIFICATIONRULEATTRIBUTESVISIBILITY_ALL IncidentNotificationRuleAttributesVisibility = "all"
 	INCIDENTNOTIFICATIONRULEATTRIBUTESVISIBILITY_ORGANIZATION IncidentNotificationRuleAttributesVisibility = "organization"
-	INCIDENTNOTIFICATIONRULEATTRIBUTESVISIBILITY_PRIVATE      IncidentNotificationRuleAttributesVisibility = "private"
+	INCIDENTNOTIFICATIONRULEATTRIBUTESVISIBILITY_PRIVATE IncidentNotificationRuleAttributesVisibility = "private"
 )
 
 var allowedIncidentNotificationRuleAttributesVisibilityEnumValues = []IncidentNotificationRuleAttributesVisibility{

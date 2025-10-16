@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FunnelQuery Updated funnel widget.
 type FunnelQuery struct {
@@ -19,9 +23,10 @@ type FunnelQuery struct {
 	// List of funnel steps.
 	Steps []FunnelStep `json:"steps"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFunnelQuery instantiates a new FunnelQuery object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewFunnelQueryWithDefaults() *FunnelQuery {
 	this.DataSource = dataSource
 	return &this
 }
-
 // GetDataSource returns the DataSource field value.
 func (o *FunnelQuery) GetDataSource() FunnelSource {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *FunnelQuery) GetDataSourceOk() (*FunnelSource, bool) {
 func (o *FunnelQuery) SetDataSource(v FunnelSource) {
 	o.DataSource = v
 }
+
 
 // GetQueryString returns the QueryString field value.
 func (o *FunnelQuery) GetQueryString() string {
@@ -91,6 +96,7 @@ func (o *FunnelQuery) SetQueryString(v string) {
 	o.QueryString = v
 }
 
+
 // GetSteps returns the Steps field value.
 func (o *FunnelQuery) GetSteps() []FunnelStep {
 	if o == nil {
@@ -114,6 +120,8 @@ func (o *FunnelQuery) SetSteps(v []FunnelStep) {
 	o.Steps = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FunnelQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -133,9 +141,9 @@ func (o FunnelQuery) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FunnelQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DataSource  *FunnelSource `json:"data_source"`
-		QueryString *string       `json:"query_string"`
-		Steps       *[]FunnelStep `json:"steps"`
+		DataSource *FunnelSource `json:"data_source"`
+		QueryString *string `json:"query_string"`
+		Steps *[]FunnelStep `json:"steps"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -151,7 +159,7 @@ func (o *FunnelQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data_source", "query_string", "steps"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data_source", "query_string", "steps",  })
 	} else {
 		return err
 	}

@@ -2,30 +2,34 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineOcsfMappingLibrary Predefined library mappings for common log formats.
 type ObservabilityPipelineOcsfMappingLibrary string
 
 // List of ObservabilityPipelineOcsfMappingLibrary.
 const (
-	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_CLOUDTRAIL_ACCOUNT_CHANGE                 ObservabilityPipelineOcsfMappingLibrary = "CloudTrail Account Change"
-	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_GCP_CLOUD_AUDIT_CREATEBUCKET              ObservabilityPipelineOcsfMappingLibrary = "GCP Cloud Audit CreateBucket"
-	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_GCP_CLOUD_AUDIT_CREATESINK                ObservabilityPipelineOcsfMappingLibrary = "GCP Cloud Audit CreateSink"
-	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_GCP_CLOUD_AUDIT_SETIAMPOLICY              ObservabilityPipelineOcsfMappingLibrary = "GCP Cloud Audit SetIamPolicy"
-	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_GCP_CLOUD_AUDIT_UPDATESINK                ObservabilityPipelineOcsfMappingLibrary = "GCP Cloud Audit UpdateSink"
-	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_GITHUB_AUDIT_LOG_API_ACTIVITY             ObservabilityPipelineOcsfMappingLibrary = "Github Audit Log API Activity"
+	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_CLOUDTRAIL_ACCOUNT_CHANGE ObservabilityPipelineOcsfMappingLibrary = "CloudTrail Account Change"
+	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_GCP_CLOUD_AUDIT_CREATEBUCKET ObservabilityPipelineOcsfMappingLibrary = "GCP Cloud Audit CreateBucket"
+	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_GCP_CLOUD_AUDIT_CREATESINK ObservabilityPipelineOcsfMappingLibrary = "GCP Cloud Audit CreateSink"
+	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_GCP_CLOUD_AUDIT_SETIAMPOLICY ObservabilityPipelineOcsfMappingLibrary = "GCP Cloud Audit SetIamPolicy"
+	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_GCP_CLOUD_AUDIT_UPDATESINK ObservabilityPipelineOcsfMappingLibrary = "GCP Cloud Audit UpdateSink"
+	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_GITHUB_AUDIT_LOG_API_ACTIVITY ObservabilityPipelineOcsfMappingLibrary = "Github Audit Log API Activity"
 	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_GOOGLE_WORKSPACE_ADMIN_AUDIT_ADDPRIVILEGE ObservabilityPipelineOcsfMappingLibrary = "Google Workspace Admin Audit addPrivilege"
-	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_MICROSOFT_365_DEFENDER_INCIDENT           ObservabilityPipelineOcsfMappingLibrary = "Microsoft 365 Defender Incident"
-	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_MICROSOFT_365_DEFENDER_USERLOGGEDIN       ObservabilityPipelineOcsfMappingLibrary = "Microsoft 365 Defender UserLoggedIn"
-	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_OKTA_SYSTEM_LOG_AUTHENTICATION            ObservabilityPipelineOcsfMappingLibrary = "Okta System Log Authentication"
-	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_PALO_ALTO_NETWORKS_FIREWALL_TRAFFIC       ObservabilityPipelineOcsfMappingLibrary = "Palo Alto Networks Firewall Traffic"
+	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_MICROSOFT_365_DEFENDER_INCIDENT ObservabilityPipelineOcsfMappingLibrary = "Microsoft 365 Defender Incident"
+	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_MICROSOFT_365_DEFENDER_USERLOGGEDIN ObservabilityPipelineOcsfMappingLibrary = "Microsoft 365 Defender UserLoggedIn"
+	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_OKTA_SYSTEM_LOG_AUTHENTICATION ObservabilityPipelineOcsfMappingLibrary = "Okta System Log Authentication"
+	OBSERVABILITYPIPELINEOCSFMAPPINGLIBRARY_PALO_ALTO_NETWORKS_FIREWALL_TRAFFIC ObservabilityPipelineOcsfMappingLibrary = "Palo Alto Networks Firewall Traffic"
 )
 
 var allowedObservabilityPipelineOcsfMappingLibraryEnumValues = []ObservabilityPipelineOcsfMappingLibrary{

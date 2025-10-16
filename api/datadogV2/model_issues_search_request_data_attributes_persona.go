@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssuesSearchRequestDataAttributesPersona Persona for the search. Either track(s) or persona(s) must be specified.
 type IssuesSearchRequestDataAttributesPersona string
 
 // List of IssuesSearchRequestDataAttributesPersona.
 const (
-	ISSUESSEARCHREQUESTDATAATTRIBUTESPERSONA_ALL     IssuesSearchRequestDataAttributesPersona = "ALL"
+	ISSUESSEARCHREQUESTDATAATTRIBUTESPERSONA_ALL IssuesSearchRequestDataAttributesPersona = "ALL"
 	ISSUESSEARCHREQUESTDATAATTRIBUTESPERSONA_BROWSER IssuesSearchRequestDataAttributesPersona = "BROWSER"
-	ISSUESSEARCHREQUESTDATAATTRIBUTESPERSONA_MOBILE  IssuesSearchRequestDataAttributesPersona = "MOBILE"
+	ISSUESSEARCHREQUESTDATAATTRIBUTESPERSONA_MOBILE IssuesSearchRequestDataAttributesPersona = "MOBILE"
 	ISSUESSEARCHREQUESTDATAATTRIBUTESPERSONA_BACKEND IssuesSearchRequestDataAttributesPersona = "BACKEND"
 )
 

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DatabaseMonitoringTriggerWrapper Schema for a Database Monitoring-based trigger.
 type DatabaseMonitoringTriggerWrapper struct {
@@ -17,9 +21,10 @@ type DatabaseMonitoringTriggerWrapper struct {
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDatabaseMonitoringTriggerWrapper instantiates a new DatabaseMonitoringTriggerWrapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewDatabaseMonitoringTriggerWrapperWithDefaults() *DatabaseMonitoringTrigge
 	this := DatabaseMonitoringTriggerWrapper{}
 	return &this
 }
-
 // GetDatabaseMonitoringTrigger returns the DatabaseMonitoringTrigger field value.
 func (o *DatabaseMonitoringTriggerWrapper) GetDatabaseMonitoringTrigger() interface{} {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *DatabaseMonitoringTriggerWrapper) GetDatabaseMonitoringTriggerOk() (*in
 func (o *DatabaseMonitoringTriggerWrapper) SetDatabaseMonitoringTrigger(v interface{}) {
 	o.DatabaseMonitoringTrigger = v
 }
+
 
 // GetStartStepNames returns the StartStepNames field value if set, zero value otherwise.
 func (o *DatabaseMonitoringTriggerWrapper) GetStartStepNames() []string {
@@ -90,6 +95,8 @@ func (o *DatabaseMonitoringTriggerWrapper) SetStartStepNames(v []string) {
 	o.StartStepNames = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DatabaseMonitoringTriggerWrapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o DatabaseMonitoringTriggerWrapper) MarshalJSON() ([]byte, error) {
 func (o *DatabaseMonitoringTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DatabaseMonitoringTrigger *interface{} `json:"databaseMonitoringTrigger"`
-		StartStepNames            []string     `json:"startStepNames,omitempty"`
+		StartStepNames []string `json:"startStepNames,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *DatabaseMonitoringTriggerWrapper) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"databaseMonitoringTrigger", "startStepNames"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "databaseMonitoringTrigger", "startStepNames",  })
 	} else {
 		return err
 	}

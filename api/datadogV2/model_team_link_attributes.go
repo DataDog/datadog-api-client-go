@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamLinkAttributes Team link attributes
 type TeamLinkAttributes struct {
@@ -21,9 +25,10 @@ type TeamLinkAttributes struct {
 	// The URL for the link
 	Url string `json:"url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTeamLinkAttributes instantiates a new TeamLinkAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewTeamLinkAttributesWithDefaults() *TeamLinkAttributes {
 	this := TeamLinkAttributes{}
 	return &this
 }
-
 // GetLabel returns the Label field value.
 func (o *TeamLinkAttributes) GetLabel() string {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *TeamLinkAttributes) GetLabelOk() (*string, bool) {
 func (o *TeamLinkAttributes) SetLabel(v string) {
 	o.Label = v
 }
+
 
 // GetPosition returns the Position field value if set, zero value otherwise.
 func (o *TeamLinkAttributes) GetPosition() int32 {
@@ -95,6 +100,7 @@ func (o *TeamLinkAttributes) SetPosition(v int32) {
 	o.Position = &v
 }
 
+
 // GetTeamId returns the TeamId field value if set, zero value otherwise.
 func (o *TeamLinkAttributes) GetTeamId() string {
 	if o == nil || o.TeamId == nil {
@@ -123,6 +129,7 @@ func (o *TeamLinkAttributes) SetTeamId(v string) {
 	o.TeamId = &v
 }
 
+
 // GetUrl returns the Url field value.
 func (o *TeamLinkAttributes) GetUrl() string {
 	if o == nil {
@@ -145,6 +152,8 @@ func (o *TeamLinkAttributes) GetUrlOk() (*string, bool) {
 func (o *TeamLinkAttributes) SetUrl(v string) {
 	o.Url = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamLinkAttributes) MarshalJSON() ([]byte, error) {
@@ -170,10 +179,10 @@ func (o TeamLinkAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamLinkAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Label    *string `json:"label"`
-		Position *int32  `json:"position,omitempty"`
-		TeamId   *string `json:"team_id,omitempty"`
-		Url      *string `json:"url"`
+		Label *string `json:"label"`
+		Position *int32 `json:"position,omitempty"`
+		TeamId *string `json:"team_id,omitempty"`
+		Url *string `json:"url"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -186,7 +195,7 @@ func (o *TeamLinkAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"label", "position", "team_id", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "label", "position", "team_id", "url",  })
 	} else {
 		return err
 	}

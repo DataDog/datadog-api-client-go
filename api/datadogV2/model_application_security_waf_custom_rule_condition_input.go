@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleConditionInput Input from the request on which the condition should apply.
 type ApplicationSecurityWafCustomRuleConditionInput struct {
@@ -17,9 +21,10 @@ type ApplicationSecurityWafCustomRuleConditionInput struct {
 	// Specific path for the input.
 	KeyPath []string `json:"key_path,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafCustomRuleConditionInput instantiates a new ApplicationSecurityWafCustomRuleConditionInput object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewApplicationSecurityWafCustomRuleConditionInputWithDefaults() *Applicatio
 	this := ApplicationSecurityWafCustomRuleConditionInput{}
 	return &this
 }
-
 // GetAddress returns the Address field value.
 func (o *ApplicationSecurityWafCustomRuleConditionInput) GetAddress() ApplicationSecurityWafCustomRuleConditionInputAddress {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *ApplicationSecurityWafCustomRuleConditionInput) GetAddressOk() (*Applic
 func (o *ApplicationSecurityWafCustomRuleConditionInput) SetAddress(v ApplicationSecurityWafCustomRuleConditionInputAddress) {
 	o.Address = v
 }
+
 
 // GetKeyPath returns the KeyPath field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleConditionInput) GetKeyPath() []string {
@@ -90,6 +95,8 @@ func (o *ApplicationSecurityWafCustomRuleConditionInput) SetKeyPath(v []string) 
 	o.KeyPath = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafCustomRuleConditionInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o ApplicationSecurityWafCustomRuleConditionInput) MarshalJSON() ([]byte, e
 func (o *ApplicationSecurityWafCustomRuleConditionInput) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Address *ApplicationSecurityWafCustomRuleConditionInputAddress `json:"address"`
-		KeyPath []string                                               `json:"key_path,omitempty"`
+		KeyPath []string `json:"key_path,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *ApplicationSecurityWafCustomRuleConditionInput) UnmarshalJSON(bytes []b
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"address", "key_path"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "address", "key_path",  })
 	} else {
 		return err
 	}

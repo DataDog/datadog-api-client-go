@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SearchIssuesIncludeQueryParameterItem Relationship object that should be included in the search response.
 type SearchIssuesIncludeQueryParameterItem string
 
 // List of SearchIssuesIncludeQueryParameterItem.
 const (
-	SEARCHISSUESINCLUDEQUERYPARAMETERITEM_ISSUE             SearchIssuesIncludeQueryParameterItem = "issue"
-	SEARCHISSUESINCLUDEQUERYPARAMETERITEM_ISSUE_ASSIGNEE    SearchIssuesIncludeQueryParameterItem = "issue.assignee"
-	SEARCHISSUESINCLUDEQUERYPARAMETERITEM_ISSUE_CASE        SearchIssuesIncludeQueryParameterItem = "issue.case"
+	SEARCHISSUESINCLUDEQUERYPARAMETERITEM_ISSUE SearchIssuesIncludeQueryParameterItem = "issue"
+	SEARCHISSUESINCLUDEQUERYPARAMETERITEM_ISSUE_ASSIGNEE SearchIssuesIncludeQueryParameterItem = "issue.assignee"
+	SEARCHISSUESINCLUDEQUERYPARAMETERITEM_ISSUE_CASE SearchIssuesIncludeQueryParameterItem = "issue.case"
 	SEARCHISSUESINCLUDEQUERYPARAMETERITEM_ISSUE_TEAM_OWNERS SearchIssuesIncludeQueryParameterItem = "issue.team_owners"
 )
 

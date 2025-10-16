@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RumMetricUniqueness The rule to count updatable events. Is only set if `event_type` is `sessions` or `views`.
 type RumMetricUniqueness struct {
 	// When to count updatable events. `match` when the event is first seen, or `end` when the event is complete.
 	When RumMetricUniquenessWhen `json:"when"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRumMetricUniqueness instantiates a new RumMetricUniqueness object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewRumMetricUniquenessWithDefaults() *RumMetricUniqueness {
 	this := RumMetricUniqueness{}
 	return &this
 }
-
 // GetWhen returns the When field value.
 func (o *RumMetricUniqueness) GetWhen() RumMetricUniquenessWhen {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *RumMetricUniqueness) GetWhenOk() (*RumMetricUniquenessWhen, bool) {
 func (o *RumMetricUniqueness) SetWhen(v RumMetricUniquenessWhen) {
 	o.When = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RumMetricUniqueness) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *RumMetricUniqueness) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"when"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "when",  })
 	} else {
 		return err
 	}

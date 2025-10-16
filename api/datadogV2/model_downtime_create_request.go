@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeCreateRequest Request for creating a downtime.
 type DowntimeCreateRequest struct {
 	// Object to create a downtime.
 	Data DowntimeCreateRequestData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDowntimeCreateRequest instantiates a new DowntimeCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewDowntimeCreateRequestWithDefaults() *DowntimeCreateRequest {
 	this := DowntimeCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *DowntimeCreateRequest) GetData() DowntimeCreateRequestData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *DowntimeCreateRequest) GetDataOk() (*DowntimeCreateRequestData, bool) {
 func (o *DowntimeCreateRequest) SetData(v DowntimeCreateRequestData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeCreateRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *DowntimeCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

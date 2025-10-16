@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppCreatePipelineEventRequestDataSingleOrArray - Data of the pipeline events to create.
 type CIAppCreatePipelineEventRequestDataSingleOrArray struct {
-	CIAppCreatePipelineEventRequestData      *CIAppCreatePipelineEventRequestData
+	CIAppCreatePipelineEventRequestData *CIAppCreatePipelineEventRequestData
 	CIAppCreatePipelineEventRequestDataArray *[]CIAppCreatePipelineEventRequestData
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -36,7 +42,7 @@ func (obj *CIAppCreatePipelineEventRequestDataSingleOrArray) UnmarshalJSON(data 
 	if err == nil {
 		if obj.CIAppCreatePipelineEventRequestData != nil && obj.CIAppCreatePipelineEventRequestData.UnparsedObject == nil {
 			jsonCIAppCreatePipelineEventRequestData, _ := datadog.Marshal(obj.CIAppCreatePipelineEventRequestData)
-			if string(jsonCIAppCreatePipelineEventRequestData) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonCIAppCreatePipelineEventRequestData) == "{}" && string(data) != "{}"  { // empty struct
 				obj.CIAppCreatePipelineEventRequestData = nil
 			} else {
 				match++
@@ -53,7 +59,7 @@ func (obj *CIAppCreatePipelineEventRequestDataSingleOrArray) UnmarshalJSON(data 
 	if err == nil {
 		if obj.CIAppCreatePipelineEventRequestDataArray != nil {
 			jsonCIAppCreatePipelineEventRequestDataArray, _ := datadog.Marshal(obj.CIAppCreatePipelineEventRequestDataArray)
-			if string(jsonCIAppCreatePipelineEventRequestDataArray) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonCIAppCreatePipelineEventRequestDataArray) == "{}" && string(data) != "{}"  { // empty struct
 				obj.CIAppCreatePipelineEventRequestDataArray = nil
 			} else {
 				match++
@@ -80,9 +86,11 @@ func (obj CIAppCreatePipelineEventRequestDataSingleOrArray) MarshalJSON() ([]byt
 		return datadog.Marshal(&obj.CIAppCreatePipelineEventRequestData)
 	}
 
+
 	if obj.CIAppCreatePipelineEventRequestDataArray != nil {
 		return datadog.Marshal(&obj.CIAppCreatePipelineEventRequestDataArray)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj CIAppCreatePipelineEventRequestDataSingleOrArray) MarshalJSON() ([]byt
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *CIAppCreatePipelineEventRequestDataSingleOrArray) GetActualInstance() interface{} {
+func (obj *CIAppCreatePipelineEventRequestDataSingleOrArray) GetActualInstance() (interface{}) {
 	if obj.CIAppCreatePipelineEventRequestData != nil {
 		return obj.CIAppCreatePipelineEventRequestData
 	}
 
+
 	if obj.CIAppCreatePipelineEventRequestDataArray != nil {
 		return obj.CIAppCreatePipelineEventRequestDataArray
 	}
+
 
 	// all schemas are nil
 	return nil

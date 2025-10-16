@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineRsyslogSource The `rsyslog` source listens for logs over TCP or UDP from an `rsyslog` server using the syslog protocol.
 type ObservabilityPipelineRsyslogSource struct {
@@ -21,9 +25,10 @@ type ObservabilityPipelineRsyslogSource struct {
 	// The source type. The value should always be `rsyslog`.
 	Type ObservabilityPipelineRsyslogSourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineRsyslogSource instantiates a new ObservabilityPipelineRsyslogSource object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewObservabilityPipelineRsyslogSourceWithDefaults() *ObservabilityPipelineR
 	this.Type = typeVar
 	return &this
 }
-
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineRsyslogSource) GetId() string {
 	if o == nil {
@@ -70,6 +74,7 @@ func (o *ObservabilityPipelineRsyslogSource) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetMode returns the Mode field value.
 func (o *ObservabilityPipelineRsyslogSource) GetMode() ObservabilityPipelineSyslogSourceMode {
 	if o == nil {
@@ -92,6 +97,7 @@ func (o *ObservabilityPipelineRsyslogSource) GetModeOk() (*ObservabilityPipeline
 func (o *ObservabilityPipelineRsyslogSource) SetMode(v ObservabilityPipelineSyslogSourceMode) {
 	o.Mode = v
 }
+
 
 // GetTls returns the Tls field value if set, zero value otherwise.
 func (o *ObservabilityPipelineRsyslogSource) GetTls() ObservabilityPipelineTls {
@@ -121,6 +127,7 @@ func (o *ObservabilityPipelineRsyslogSource) SetTls(v ObservabilityPipelineTls) 
 	o.Tls = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineRsyslogSource) GetType() ObservabilityPipelineRsyslogSourceType {
 	if o == nil {
@@ -144,6 +151,8 @@ func (o *ObservabilityPipelineRsyslogSource) SetType(v ObservabilityPipelineRsys
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineRsyslogSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -166,9 +175,9 @@ func (o ObservabilityPipelineRsyslogSource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineRsyslogSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                                 `json:"id"`
-		Mode *ObservabilityPipelineSyslogSourceMode  `json:"mode"`
-		Tls  *ObservabilityPipelineTls               `json:"tls,omitempty"`
+		Id *string `json:"id"`
+		Mode *ObservabilityPipelineSyslogSourceMode `json:"mode"`
+		Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
 		Type *ObservabilityPipelineRsyslogSourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -185,7 +194,7 @@ func (o *ObservabilityPipelineRsyslogSource) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "mode", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "mode", "tls", "type",  })
 	} else {
 		return err
 	}
@@ -197,7 +206,7 @@ func (o *ObservabilityPipelineRsyslogSource) UnmarshalJSON(bytes []byte) (err er
 	} else {
 		o.Mode = *all.Mode
 	}
-	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tls = all.Tls

@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineMetricValue - Specifies how the value of the generated metric is computed.
 type ObservabilityPipelineMetricValue struct {
-	ObservabilityPipelineGeneratedMetricIncrementByOne   *ObservabilityPipelineGeneratedMetricIncrementByOne
+	ObservabilityPipelineGeneratedMetricIncrementByOne *ObservabilityPipelineGeneratedMetricIncrementByOne
 	ObservabilityPipelineGeneratedMetricIncrementByField *ObservabilityPipelineGeneratedMetricIncrementByField
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +86,11 @@ func (obj ObservabilityPipelineMetricValue) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.ObservabilityPipelineGeneratedMetricIncrementByOne)
 	}
 
+
 	if obj.ObservabilityPipelineGeneratedMetricIncrementByField != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineGeneratedMetricIncrementByField)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj ObservabilityPipelineMetricValue) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ObservabilityPipelineMetricValue) GetActualInstance() interface{} {
+func (obj *ObservabilityPipelineMetricValue) GetActualInstance() (interface{}) {
 	if obj.ObservabilityPipelineGeneratedMetricIncrementByOne != nil {
 		return obj.ObservabilityPipelineGeneratedMetricIncrementByOne
 	}
 
+
 	if obj.ObservabilityPipelineGeneratedMetricIncrementByField != nil {
 		return obj.ObservabilityPipelineGeneratedMetricIncrementByField
 	}
+
 
 	// all schemas are nil
 	return nil

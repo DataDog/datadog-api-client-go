@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AppBuilderEvent An event on a UI component that triggers a response or action in an app.
 type AppBuilderEvent struct {
@@ -15,9 +21,10 @@ type AppBuilderEvent struct {
 	// The response to the event.
 	Type *AppBuilderEventType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAppBuilderEvent instantiates a new AppBuilderEvent object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewAppBuilderEventWithDefaults() *AppBuilderEvent {
 	this := AppBuilderEvent{}
 	return &this
 }
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *AppBuilderEvent) GetName() AppBuilderEventName {
 	if o == nil || o.Name == nil {
@@ -64,6 +70,7 @@ func (o *AppBuilderEvent) SetName(v AppBuilderEventName) {
 	o.Name = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *AppBuilderEvent) GetType() AppBuilderEventType {
 	if o == nil || o.Type == nil {
@@ -91,6 +98,8 @@ func (o *AppBuilderEvent) HasType() bool {
 func (o *AppBuilderEvent) SetType(v AppBuilderEventType) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AppBuilderEvent) MarshalJSON() ([]byte, error) {
@@ -122,18 +131,18 @@ func (o *AppBuilderEvent) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Name != nil && !all.Name.IsValid() {
+	if all.Name != nil &&!all.Name.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Name = all.Name
 	}
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

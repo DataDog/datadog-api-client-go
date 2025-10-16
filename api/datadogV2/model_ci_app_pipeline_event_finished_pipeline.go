@@ -2,14 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
-	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppPipelineEventFinishedPipeline Details of a finished pipeline.
 type CIAppPipelineEventFinishedPipeline struct {
@@ -58,9 +61,10 @@ type CIAppPipelineEventFinishedPipeline struct {
 	// The URL to look at the pipeline in the CI provider UI.
 	Url string `json:"url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCIAppPipelineEventFinishedPipeline instantiates a new CIAppPipelineEventFinishedPipeline object.
 // This constructor will assign default values to properties that have it defined,
@@ -88,7 +92,6 @@ func NewCIAppPipelineEventFinishedPipelineWithDefaults() *CIAppPipelineEventFini
 	this.Level = level
 	return &this
 }
-
 // GetEnd returns the End field value.
 func (o *CIAppPipelineEventFinishedPipeline) GetEnd() time.Time {
 	if o == nil {
@@ -112,6 +115,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetEnd(v time.Time) {
 	o.End = v
 }
 
+
 // GetError returns the Error field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventFinishedPipeline) GetError() CIAppCIError {
 	if o == nil || o.Error.Get() == nil {
@@ -125,7 +129,7 @@ func (o *CIAppPipelineEventFinishedPipeline) GetError() CIAppCIError {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventFinishedPipeline) GetErrorOk() (*CIAppCIError, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Error.Get(), o.Error.IsSet()
@@ -140,7 +144,6 @@ func (o *CIAppPipelineEventFinishedPipeline) HasError() bool {
 func (o *CIAppPipelineEventFinishedPipeline) SetError(v CIAppCIError) {
 	o.Error.Set(&v)
 }
-
 // SetErrorNil sets the value for Error to be an explicit nil.
 func (o *CIAppPipelineEventFinishedPipeline) SetErrorNil() {
 	o.Error.Set(nil)
@@ -150,6 +153,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetErrorNil() {
 func (o *CIAppPipelineEventFinishedPipeline) UnsetError() {
 	o.Error.Unset()
 }
+
 
 // GetGit returns the Git field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventFinishedPipeline) GetGit() CIAppGitInfo {
@@ -164,7 +168,7 @@ func (o *CIAppPipelineEventFinishedPipeline) GetGit() CIAppGitInfo {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventFinishedPipeline) GetGitOk() (*CIAppGitInfo, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Git.Get(), o.Git.IsSet()
@@ -179,7 +183,6 @@ func (o *CIAppPipelineEventFinishedPipeline) HasGit() bool {
 func (o *CIAppPipelineEventFinishedPipeline) SetGit(v CIAppGitInfo) {
 	o.Git.Set(&v)
 }
-
 // SetGitNil sets the value for Git to be an explicit nil.
 func (o *CIAppPipelineEventFinishedPipeline) SetGitNil() {
 	o.Git.Set(nil)
@@ -189,6 +192,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetGitNil() {
 func (o *CIAppPipelineEventFinishedPipeline) UnsetGit() {
 	o.Git.Unset()
 }
+
 
 // GetIsManual returns the IsManual field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventFinishedPipeline) GetIsManual() bool {
@@ -203,7 +207,7 @@ func (o *CIAppPipelineEventFinishedPipeline) GetIsManual() bool {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventFinishedPipeline) GetIsManualOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.IsManual.Get(), o.IsManual.IsSet()
@@ -218,7 +222,6 @@ func (o *CIAppPipelineEventFinishedPipeline) HasIsManual() bool {
 func (o *CIAppPipelineEventFinishedPipeline) SetIsManual(v bool) {
 	o.IsManual.Set(&v)
 }
-
 // SetIsManualNil sets the value for IsManual to be an explicit nil.
 func (o *CIAppPipelineEventFinishedPipeline) SetIsManualNil() {
 	o.IsManual.Set(nil)
@@ -228,6 +231,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetIsManualNil() {
 func (o *CIAppPipelineEventFinishedPipeline) UnsetIsManual() {
 	o.IsManual.Unset()
 }
+
 
 // GetIsResumed returns the IsResumed field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventFinishedPipeline) GetIsResumed() bool {
@@ -242,7 +246,7 @@ func (o *CIAppPipelineEventFinishedPipeline) GetIsResumed() bool {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventFinishedPipeline) GetIsResumedOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.IsResumed.Get(), o.IsResumed.IsSet()
@@ -257,7 +261,6 @@ func (o *CIAppPipelineEventFinishedPipeline) HasIsResumed() bool {
 func (o *CIAppPipelineEventFinishedPipeline) SetIsResumed(v bool) {
 	o.IsResumed.Set(&v)
 }
-
 // SetIsResumedNil sets the value for IsResumed to be an explicit nil.
 func (o *CIAppPipelineEventFinishedPipeline) SetIsResumedNil() {
 	o.IsResumed.Set(nil)
@@ -267,6 +270,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetIsResumedNil() {
 func (o *CIAppPipelineEventFinishedPipeline) UnsetIsResumed() {
 	o.IsResumed.Unset()
 }
+
 
 // GetLevel returns the Level field value.
 func (o *CIAppPipelineEventFinishedPipeline) GetLevel() CIAppPipelineEventPipelineLevel {
@@ -291,6 +295,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetLevel(v CIAppPipelineEventPipeli
 	o.Level = v
 }
 
+
 // GetMetrics returns the Metrics field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventFinishedPipeline) GetMetrics() []string {
 	if o == nil || o.Metrics.Get() == nil {
@@ -304,7 +309,7 @@ func (o *CIAppPipelineEventFinishedPipeline) GetMetrics() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventFinishedPipeline) GetMetricsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Metrics.Get(), o.Metrics.IsSet()
@@ -319,7 +324,6 @@ func (o *CIAppPipelineEventFinishedPipeline) HasMetrics() bool {
 func (o *CIAppPipelineEventFinishedPipeline) SetMetrics(v []string) {
 	o.Metrics.Set(&v)
 }
-
 // SetMetricsNil sets the value for Metrics to be an explicit nil.
 func (o *CIAppPipelineEventFinishedPipeline) SetMetricsNil() {
 	o.Metrics.Set(nil)
@@ -329,6 +333,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetMetricsNil() {
 func (o *CIAppPipelineEventFinishedPipeline) UnsetMetrics() {
 	o.Metrics.Unset()
 }
+
 
 // GetName returns the Name field value.
 func (o *CIAppPipelineEventFinishedPipeline) GetName() string {
@@ -353,6 +358,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetNode returns the Node field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventFinishedPipeline) GetNode() CIAppHostInfo {
 	if o == nil || o.Node.Get() == nil {
@@ -366,7 +372,7 @@ func (o *CIAppPipelineEventFinishedPipeline) GetNode() CIAppHostInfo {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventFinishedPipeline) GetNodeOk() (*CIAppHostInfo, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Node.Get(), o.Node.IsSet()
@@ -381,7 +387,6 @@ func (o *CIAppPipelineEventFinishedPipeline) HasNode() bool {
 func (o *CIAppPipelineEventFinishedPipeline) SetNode(v CIAppHostInfo) {
 	o.Node.Set(&v)
 }
-
 // SetNodeNil sets the value for Node to be an explicit nil.
 func (o *CIAppPipelineEventFinishedPipeline) SetNodeNil() {
 	o.Node.Set(nil)
@@ -392,9 +397,10 @@ func (o *CIAppPipelineEventFinishedPipeline) UnsetNode() {
 	o.Node.Unset()
 }
 
+
 // GetParameters returns the Parameters field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventFinishedPipeline) GetParameters() map[string]string {
-	if o == nil {
+	if o == nil  {
 		var ret map[string]string
 		return ret
 	}
@@ -421,6 +427,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetParameters(v map[string]string) 
 	o.Parameters = v
 }
 
+
 // GetParentPipeline returns the ParentPipeline field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventFinishedPipeline) GetParentPipeline() CIAppPipelineEventParentPipeline {
 	if o == nil || o.ParentPipeline.Get() == nil {
@@ -434,7 +441,7 @@ func (o *CIAppPipelineEventFinishedPipeline) GetParentPipeline() CIAppPipelineEv
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventFinishedPipeline) GetParentPipelineOk() (*CIAppPipelineEventParentPipeline, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ParentPipeline.Get(), o.ParentPipeline.IsSet()
@@ -449,7 +456,6 @@ func (o *CIAppPipelineEventFinishedPipeline) HasParentPipeline() bool {
 func (o *CIAppPipelineEventFinishedPipeline) SetParentPipeline(v CIAppPipelineEventParentPipeline) {
 	o.ParentPipeline.Set(&v)
 }
-
 // SetParentPipelineNil sets the value for ParentPipeline to be an explicit nil.
 func (o *CIAppPipelineEventFinishedPipeline) SetParentPipelineNil() {
 	o.ParentPipeline.Set(nil)
@@ -459,6 +465,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetParentPipelineNil() {
 func (o *CIAppPipelineEventFinishedPipeline) UnsetParentPipeline() {
 	o.ParentPipeline.Unset()
 }
+
 
 // GetPartialRetry returns the PartialRetry field value.
 func (o *CIAppPipelineEventFinishedPipeline) GetPartialRetry() bool {
@@ -482,6 +489,7 @@ func (o *CIAppPipelineEventFinishedPipeline) GetPartialRetryOk() (*bool, bool) {
 func (o *CIAppPipelineEventFinishedPipeline) SetPartialRetry(v bool) {
 	o.PartialRetry = v
 }
+
 
 // GetPipelineId returns the PipelineId field value if set, zero value otherwise.
 func (o *CIAppPipelineEventFinishedPipeline) GetPipelineId() string {
@@ -511,6 +519,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetPipelineId(v string) {
 	o.PipelineId = &v
 }
 
+
 // GetPreviousAttempt returns the PreviousAttempt field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventFinishedPipeline) GetPreviousAttempt() CIAppPipelineEventPreviousPipeline {
 	if o == nil || o.PreviousAttempt.Get() == nil {
@@ -524,7 +533,7 @@ func (o *CIAppPipelineEventFinishedPipeline) GetPreviousAttempt() CIAppPipelineE
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventFinishedPipeline) GetPreviousAttemptOk() (*CIAppPipelineEventPreviousPipeline, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.PreviousAttempt.Get(), o.PreviousAttempt.IsSet()
@@ -539,7 +548,6 @@ func (o *CIAppPipelineEventFinishedPipeline) HasPreviousAttempt() bool {
 func (o *CIAppPipelineEventFinishedPipeline) SetPreviousAttempt(v CIAppPipelineEventPreviousPipeline) {
 	o.PreviousAttempt.Set(&v)
 }
-
 // SetPreviousAttemptNil sets the value for PreviousAttempt to be an explicit nil.
 func (o *CIAppPipelineEventFinishedPipeline) SetPreviousAttemptNil() {
 	o.PreviousAttempt.Set(nil)
@@ -549,6 +557,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetPreviousAttemptNil() {
 func (o *CIAppPipelineEventFinishedPipeline) UnsetPreviousAttempt() {
 	o.PreviousAttempt.Unset()
 }
+
 
 // GetQueueTime returns the QueueTime field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventFinishedPipeline) GetQueueTime() int64 {
@@ -563,7 +572,7 @@ func (o *CIAppPipelineEventFinishedPipeline) GetQueueTime() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventFinishedPipeline) GetQueueTimeOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.QueueTime.Get(), o.QueueTime.IsSet()
@@ -578,7 +587,6 @@ func (o *CIAppPipelineEventFinishedPipeline) HasQueueTime() bool {
 func (o *CIAppPipelineEventFinishedPipeline) SetQueueTime(v int64) {
 	o.QueueTime.Set(&v)
 }
-
 // SetQueueTimeNil sets the value for QueueTime to be an explicit nil.
 func (o *CIAppPipelineEventFinishedPipeline) SetQueueTimeNil() {
 	o.QueueTime.Set(nil)
@@ -588,6 +596,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetQueueTimeNil() {
 func (o *CIAppPipelineEventFinishedPipeline) UnsetQueueTime() {
 	o.QueueTime.Unset()
 }
+
 
 // GetStart returns the Start field value.
 func (o *CIAppPipelineEventFinishedPipeline) GetStart() time.Time {
@@ -612,6 +621,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetStart(v time.Time) {
 	o.Start = v
 }
 
+
 // GetStatus returns the Status field value.
 func (o *CIAppPipelineEventFinishedPipeline) GetStatus() CIAppPipelineEventPipelineStatus {
 	if o == nil {
@@ -635,6 +645,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetStatus(v CIAppPipelineEventPipel
 	o.Status = v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CIAppPipelineEventFinishedPipeline) GetTags() []string {
 	if o == nil || o.Tags.Get() == nil {
@@ -648,7 +659,7 @@ func (o *CIAppPipelineEventFinishedPipeline) GetTags() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CIAppPipelineEventFinishedPipeline) GetTagsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Tags.Get(), o.Tags.IsSet()
@@ -663,7 +674,6 @@ func (o *CIAppPipelineEventFinishedPipeline) HasTags() bool {
 func (o *CIAppPipelineEventFinishedPipeline) SetTags(v []string) {
 	o.Tags.Set(&v)
 }
-
 // SetTagsNil sets the value for Tags to be an explicit nil.
 func (o *CIAppPipelineEventFinishedPipeline) SetTagsNil() {
 	o.Tags.Set(nil)
@@ -673,6 +683,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetTagsNil() {
 func (o *CIAppPipelineEventFinishedPipeline) UnsetTags() {
 	o.Tags.Unset()
 }
+
 
 // GetUniqueId returns the UniqueId field value.
 func (o *CIAppPipelineEventFinishedPipeline) GetUniqueId() string {
@@ -697,6 +708,7 @@ func (o *CIAppPipelineEventFinishedPipeline) SetUniqueId(v string) {
 	o.UniqueId = v
 }
 
+
 // GetUrl returns the Url field value.
 func (o *CIAppPipelineEventFinishedPipeline) GetUrl() string {
 	if o == nil {
@@ -719,6 +731,8 @@ func (o *CIAppPipelineEventFinishedPipeline) GetUrlOk() (*string, bool) {
 func (o *CIAppPipelineEventFinishedPipeline) SetUrl(v string) {
 	o.Url = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppPipelineEventFinishedPipeline) MarshalJSON() ([]byte, error) {
@@ -788,26 +802,26 @@ func (o CIAppPipelineEventFinishedPipeline) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppPipelineEventFinishedPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		End             *time.Time                                 `json:"end"`
-		Error           NullableCIAppCIError                       `json:"error,omitempty"`
-		Git             NullableCIAppGitInfo                       `json:"git,omitempty"`
-		IsManual        datadog.NullableBool                       `json:"is_manual,omitempty"`
-		IsResumed       datadog.NullableBool                       `json:"is_resumed,omitempty"`
-		Level           *CIAppPipelineEventPipelineLevel           `json:"level"`
-		Metrics         datadog.NullableList[string]               `json:"metrics,omitempty"`
-		Name            *string                                    `json:"name"`
-		Node            NullableCIAppHostInfo                      `json:"node,omitempty"`
-		Parameters      map[string]string                          `json:"parameters,omitempty"`
-		ParentPipeline  NullableCIAppPipelineEventParentPipeline   `json:"parent_pipeline,omitempty"`
-		PartialRetry    *bool                                      `json:"partial_retry"`
-		PipelineId      *string                                    `json:"pipeline_id,omitempty"`
+		End *time.Time `json:"end"`
+		Error NullableCIAppCIError `json:"error,omitempty"`
+		Git NullableCIAppGitInfo `json:"git,omitempty"`
+		IsManual datadog.NullableBool `json:"is_manual,omitempty"`
+		IsResumed datadog.NullableBool `json:"is_resumed,omitempty"`
+		Level *CIAppPipelineEventPipelineLevel `json:"level"`
+		Metrics datadog.NullableList[string] `json:"metrics,omitempty"`
+		Name *string `json:"name"`
+		Node NullableCIAppHostInfo `json:"node,omitempty"`
+		Parameters map[string]string `json:"parameters,omitempty"`
+		ParentPipeline NullableCIAppPipelineEventParentPipeline `json:"parent_pipeline,omitempty"`
+		PartialRetry *bool `json:"partial_retry"`
+		PipelineId *string `json:"pipeline_id,omitempty"`
 		PreviousAttempt NullableCIAppPipelineEventPreviousPipeline `json:"previous_attempt,omitempty"`
-		QueueTime       datadog.NullableInt64                      `json:"queue_time,omitempty"`
-		Start           *time.Time                                 `json:"start"`
-		Status          *CIAppPipelineEventPipelineStatus          `json:"status"`
-		Tags            datadog.NullableList[string]               `json:"tags,omitempty"`
-		UniqueId        *string                                    `json:"unique_id"`
-		Url             *string                                    `json:"url"`
+		QueueTime datadog.NullableInt64 `json:"queue_time,omitempty"`
+		Start *time.Time `json:"start"`
+		Status *CIAppPipelineEventPipelineStatus `json:"status"`
+		Tags datadog.NullableList[string] `json:"tags,omitempty"`
+		UniqueId *string `json:"unique_id"`
+		Url *string `json:"url"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -838,7 +852,7 @@ func (o *CIAppPipelineEventFinishedPipeline) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"end", "error", "git", "is_manual", "is_resumed", "level", "metrics", "name", "node", "parameters", "parent_pipeline", "partial_retry", "pipeline_id", "previous_attempt", "queue_time", "start", "status", "tags", "unique_id", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "end", "error", "git", "is_manual", "is_resumed", "level", "metrics", "name", "node", "parameters", "parent_pipeline", "partial_retry", "pipeline_id", "previous_attempt", "queue_time", "start", "status", "tags", "unique_id", "url",  })
 	} else {
 		return err
 	}

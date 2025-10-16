@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AuthNMappingUpdateRelationships - Relationship of AuthN Mapping update object to a Role or Team.
 type AuthNMappingUpdateRelationships struct {
@@ -80,9 +86,11 @@ func (obj AuthNMappingUpdateRelationships) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.AuthNMappingRelationshipToRole)
 	}
 
+
 	if obj.AuthNMappingRelationshipToTeam != nil {
 		return datadog.Marshal(&obj.AuthNMappingRelationshipToTeam)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj AuthNMappingUpdateRelationships) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *AuthNMappingUpdateRelationships) GetActualInstance() interface{} {
+func (obj *AuthNMappingUpdateRelationships) GetActualInstance() (interface{}) {
 	if obj.AuthNMappingRelationshipToRole != nil {
 		return obj.AuthNMappingRelationshipToRole
 	}
 
+
 	if obj.AuthNMappingRelationshipToTeam != nil {
 		return obj.AuthNMappingRelationshipToTeam
 	}
+
 
 	// all schemas are nil
 	return nil

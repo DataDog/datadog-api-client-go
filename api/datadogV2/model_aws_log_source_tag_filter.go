@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSLogSourceTagFilter AWS log source tag filter list. Defaults to `[]`.
 // Array of log source to AWS resource tag mappings. Each mapping contains a log source and its associated AWS resource tags (in `key:value` format) used to filter logs submitted to Datadog.
@@ -18,9 +24,10 @@ type AWSLogSourceTagFilter struct {
 	// The AWS resource tags to filter on for the log source specified by `source`.
 	Tags datadog.NullableList[string] `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSLogSourceTagFilter instantiates a new AWSLogSourceTagFilter object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +45,6 @@ func NewAWSLogSourceTagFilterWithDefaults() *AWSLogSourceTagFilter {
 	this := AWSLogSourceTagFilter{}
 	return &this
 }
-
 // GetSource returns the Source field value if set, zero value otherwise.
 func (o *AWSLogSourceTagFilter) GetSource() string {
 	if o == nil || o.Source == nil {
@@ -67,6 +73,7 @@ func (o *AWSLogSourceTagFilter) SetSource(v string) {
 	o.Source = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *AWSLogSourceTagFilter) GetTags() []string {
 	if o == nil || o.Tags.Get() == nil {
@@ -80,7 +87,7 @@ func (o *AWSLogSourceTagFilter) GetTags() []string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *AWSLogSourceTagFilter) GetTagsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Tags.Get(), o.Tags.IsSet()
@@ -95,7 +102,6 @@ func (o *AWSLogSourceTagFilter) HasTags() bool {
 func (o *AWSLogSourceTagFilter) SetTags(v []string) {
 	o.Tags.Set(&v)
 }
-
 // SetTagsNil sets the value for Tags to be an explicit nil.
 func (o *AWSLogSourceTagFilter) SetTagsNil() {
 	o.Tags.Set(nil)
@@ -105,6 +111,8 @@ func (o *AWSLogSourceTagFilter) SetTagsNil() {
 func (o *AWSLogSourceTagFilter) UnsetTags() {
 	o.Tags.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSLogSourceTagFilter) MarshalJSON() ([]byte, error) {
@@ -128,15 +136,15 @@ func (o AWSLogSourceTagFilter) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSLogSourceTagFilter) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Source *string                      `json:"source,omitempty"`
-		Tags   datadog.NullableList[string] `json:"tags,omitempty"`
+		Source *string `json:"source,omitempty"`
+		Tags datadog.NullableList[string] `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"source", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "source", "tags",  })
 	} else {
 		return err
 	}

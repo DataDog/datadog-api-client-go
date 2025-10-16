@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsBatchStatus Determines whether the batch has passed, failed, or is in progress.
 type SyntheticsBatchStatus string
 
 // List of SyntheticsBatchStatus.
 const (
-	SYNTHETICSBATCHSTATUS_PASSED  SyntheticsBatchStatus = "passed"
+	SYNTHETICSBATCHSTATUS_PASSED SyntheticsBatchStatus = "passed"
 	SYNTHETICSBATCHSTATUS_SKIPPED SyntheticsBatchStatus = "skipped"
-	SYNTHETICSBATCHSTATUS_FAILED  SyntheticsBatchStatus = "failed"
+	SYNTHETICSBATCHSTATUS_FAILED SyntheticsBatchStatus = "failed"
 )
 
 var allowedSyntheticsBatchStatusEnumValues = []SyntheticsBatchStatus{

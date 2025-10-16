@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestRequestCertificate Client certificate to use when performing the test request.
 type SyntheticsTestRequestCertificate struct {
@@ -15,9 +21,10 @@ type SyntheticsTestRequestCertificate struct {
 	// Define a request certificate.
 	Key *SyntheticsTestRequestCertificateItem `json:"key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsTestRequestCertificate instantiates a new SyntheticsTestRequestCertificate object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSyntheticsTestRequestCertificateWithDefaults() *SyntheticsTestRequestCer
 	this := SyntheticsTestRequestCertificate{}
 	return &this
 }
-
 // GetCert returns the Cert field value if set, zero value otherwise.
 func (o *SyntheticsTestRequestCertificate) GetCert() SyntheticsTestRequestCertificateItem {
 	if o == nil || o.Cert == nil {
@@ -63,6 +69,7 @@ func (o *SyntheticsTestRequestCertificate) HasCert() bool {
 func (o *SyntheticsTestRequestCertificate) SetCert(v SyntheticsTestRequestCertificateItem) {
 	o.Cert = &v
 }
+
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *SyntheticsTestRequestCertificate) GetKey() SyntheticsTestRequestCertificateItem {
@@ -92,6 +99,8 @@ func (o *SyntheticsTestRequestCertificate) SetKey(v SyntheticsTestRequestCertifi
 	o.Key = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTestRequestCertificate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,24 +124,24 @@ func (o SyntheticsTestRequestCertificate) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTestRequestCertificate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Cert *SyntheticsTestRequestCertificateItem `json:"cert,omitempty"`
-		Key  *SyntheticsTestRequestCertificateItem `json:"key,omitempty"`
+		Key *SyntheticsTestRequestCertificateItem `json:"key,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cert", "key"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cert", "key",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Cert != nil && all.Cert.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Cert != nil && all.Cert.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Cert = all.Cert
-	if all.Key != nil && all.Key.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Key != nil && all.Key.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Key = all.Key

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // JSONAPIErrorItemSource References to the source of the error.
 type JSONAPIErrorItemSource struct {
@@ -17,9 +23,10 @@ type JSONAPIErrorItemSource struct {
 	// A JSON pointer to the value in the request document that caused the error.
 	Pointer *string `json:"pointer,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewJSONAPIErrorItemSource instantiates a new JSONAPIErrorItemSource object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewJSONAPIErrorItemSourceWithDefaults() *JSONAPIErrorItemSource {
 	this := JSONAPIErrorItemSource{}
 	return &this
 }
-
 // GetHeader returns the Header field value if set, zero value otherwise.
 func (o *JSONAPIErrorItemSource) GetHeader() string {
 	if o == nil || o.Header == nil {
@@ -65,6 +71,7 @@ func (o *JSONAPIErrorItemSource) HasHeader() bool {
 func (o *JSONAPIErrorItemSource) SetHeader(v string) {
 	o.Header = &v
 }
+
 
 // GetParameter returns the Parameter field value if set, zero value otherwise.
 func (o *JSONAPIErrorItemSource) GetParameter() string {
@@ -94,6 +101,7 @@ func (o *JSONAPIErrorItemSource) SetParameter(v string) {
 	o.Parameter = &v
 }
 
+
 // GetPointer returns the Pointer field value if set, zero value otherwise.
 func (o *JSONAPIErrorItemSource) GetPointer() string {
 	if o == nil || o.Pointer == nil {
@@ -122,6 +130,8 @@ func (o *JSONAPIErrorItemSource) SetPointer(v string) {
 	o.Pointer = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o JSONAPIErrorItemSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o JSONAPIErrorItemSource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *JSONAPIErrorItemSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Header    *string `json:"header,omitempty"`
+		Header *string `json:"header,omitempty"`
 		Parameter *string `json:"parameter,omitempty"`
-		Pointer   *string `json:"pointer,omitempty"`
+		Pointer *string `json:"pointer,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"header", "parameter", "pointer"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "header", "parameter", "pointer",  })
 	} else {
 		return err
 	}

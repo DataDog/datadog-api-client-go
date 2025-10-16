@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssueCaseJiraIssueResult Contains the identifiers and URL for a successfully created Jira issue.
 type IssueCaseJiraIssueResult struct {
@@ -19,9 +25,10 @@ type IssueCaseJiraIssueResult struct {
 	// Jira project key.
 	ProjectKey *string `json:"project_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIssueCaseJiraIssueResult instantiates a new IssueCaseJiraIssueResult object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewIssueCaseJiraIssueResultWithDefaults() *IssueCaseJiraIssueResult {
 	this := IssueCaseJiraIssueResult{}
 	return &this
 }
-
 // GetIssueId returns the IssueId field value if set, zero value otherwise.
 func (o *IssueCaseJiraIssueResult) GetIssueId() string {
 	if o == nil || o.IssueId == nil {
@@ -67,6 +73,7 @@ func (o *IssueCaseJiraIssueResult) HasIssueId() bool {
 func (o *IssueCaseJiraIssueResult) SetIssueId(v string) {
 	o.IssueId = &v
 }
+
 
 // GetIssueKey returns the IssueKey field value if set, zero value otherwise.
 func (o *IssueCaseJiraIssueResult) GetIssueKey() string {
@@ -96,6 +103,7 @@ func (o *IssueCaseJiraIssueResult) SetIssueKey(v string) {
 	o.IssueKey = &v
 }
 
+
 // GetIssueUrl returns the IssueUrl field value if set, zero value otherwise.
 func (o *IssueCaseJiraIssueResult) GetIssueUrl() string {
 	if o == nil || o.IssueUrl == nil {
@@ -123,6 +131,7 @@ func (o *IssueCaseJiraIssueResult) HasIssueUrl() bool {
 func (o *IssueCaseJiraIssueResult) SetIssueUrl(v string) {
 	o.IssueUrl = &v
 }
+
 
 // GetProjectKey returns the ProjectKey field value if set, zero value otherwise.
 func (o *IssueCaseJiraIssueResult) GetProjectKey() string {
@@ -152,6 +161,8 @@ func (o *IssueCaseJiraIssueResult) SetProjectKey(v string) {
 	o.ProjectKey = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IssueCaseJiraIssueResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,9 +191,9 @@ func (o IssueCaseJiraIssueResult) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IssueCaseJiraIssueResult) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		IssueId    *string `json:"issue_id,omitempty"`
-		IssueKey   *string `json:"issue_key,omitempty"`
-		IssueUrl   *string `json:"issue_url,omitempty"`
+		IssueId *string `json:"issue_id,omitempty"`
+		IssueKey *string `json:"issue_key,omitempty"`
+		IssueUrl *string `json:"issue_url,omitempty"`
 		ProjectKey *string `json:"project_key,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -190,7 +201,7 @@ func (o *IssueCaseJiraIssueResult) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"issue_id", "issue_key", "issue_url", "project_key"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "issue_id", "issue_key", "issue_url", "project_key",  })
 	} else {
 		return err
 	}

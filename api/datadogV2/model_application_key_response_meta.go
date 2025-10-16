@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationKeyResponseMeta Additional information related to the application key response.
 type ApplicationKeyResponseMeta struct {
@@ -15,9 +21,10 @@ type ApplicationKeyResponseMeta struct {
 	// Additional information related to the application key response.
 	Page *ApplicationKeyResponseMetaPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationKeyResponseMeta instantiates a new ApplicationKeyResponseMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewApplicationKeyResponseMetaWithDefaults() *ApplicationKeyResponseMeta {
 	this := ApplicationKeyResponseMeta{}
 	return &this
 }
-
 // GetMaxAllowedPerUser returns the MaxAllowedPerUser field value if set, zero value otherwise.
 func (o *ApplicationKeyResponseMeta) GetMaxAllowedPerUser() int64 {
 	if o == nil || o.MaxAllowedPerUser == nil {
@@ -63,6 +69,7 @@ func (o *ApplicationKeyResponseMeta) HasMaxAllowedPerUser() bool {
 func (o *ApplicationKeyResponseMeta) SetMaxAllowedPerUser(v int64) {
 	o.MaxAllowedPerUser = &v
 }
+
 
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *ApplicationKeyResponseMeta) GetPage() ApplicationKeyResponseMetaPage {
@@ -92,6 +99,8 @@ func (o *ApplicationKeyResponseMeta) SetPage(v ApplicationKeyResponseMetaPage) {
 	o.Page = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationKeyResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,22 +123,22 @@ func (o ApplicationKeyResponseMeta) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationKeyResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		MaxAllowedPerUser *int64                          `json:"max_allowed_per_user,omitempty"`
-		Page              *ApplicationKeyResponseMetaPage `json:"page,omitempty"`
+		MaxAllowedPerUser *int64 `json:"max_allowed_per_user,omitempty"`
+		Page *ApplicationKeyResponseMetaPage `json:"page,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"max_allowed_per_user", "page"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "max_allowed_per_user", "page",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.MaxAllowedPerUser = all.MaxAllowedPerUser
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Page = all.Page

@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RelationshipToIncidentPostmortem A relationship reference for postmortems.
 type RelationshipToIncidentPostmortem struct {
 	// The postmortem relationship data.
 	Data RelationshipToIncidentPostmortemData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRelationshipToIncidentPostmortem instantiates a new RelationshipToIncidentPostmortem object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewRelationshipToIncidentPostmortemWithDefaults() *RelationshipToIncidentPo
 	this := RelationshipToIncidentPostmortem{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *RelationshipToIncidentPostmortem) GetData() RelationshipToIncidentPostmortemData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *RelationshipToIncidentPostmortem) GetDataOk() (*RelationshipToIncidentP
 func (o *RelationshipToIncidentPostmortem) SetData(v RelationshipToIncidentPostmortemData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationshipToIncidentPostmortem) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *RelationshipToIncidentPostmortem) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

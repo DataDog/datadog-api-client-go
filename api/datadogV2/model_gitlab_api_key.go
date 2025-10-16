@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GitlabAPIKey The definition of the `GitlabAPIKey` object.
 type GitlabAPIKey struct {
@@ -17,9 +21,10 @@ type GitlabAPIKey struct {
 	// The definition of the `GitlabAPIKey` object.
 	Type GitlabAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGitlabAPIKey instantiates a new GitlabAPIKey object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewGitlabAPIKeyWithDefaults() *GitlabAPIKey {
 	this := GitlabAPIKey{}
 	return &this
 }
-
 // GetApiToken returns the ApiToken field value.
 func (o *GitlabAPIKey) GetApiToken() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *GitlabAPIKey) GetApiTokenOk() (*string, bool) {
 func (o *GitlabAPIKey) SetApiToken(v string) {
 	o.ApiToken = v
 }
+
 
 // GetType returns the Type field value.
 func (o *GitlabAPIKey) GetType() GitlabAPIKeyType {
@@ -86,6 +91,8 @@ func (o *GitlabAPIKey) SetType(v GitlabAPIKeyType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o GitlabAPIKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o GitlabAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GitlabAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiToken *string           `json:"api_token"`
-		Type     *GitlabAPIKeyType `json:"type"`
+		ApiToken *string `json:"api_token"`
+		Type *GitlabAPIKeyType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *GitlabAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_token", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_token", "type",  })
 	} else {
 		return err
 	}

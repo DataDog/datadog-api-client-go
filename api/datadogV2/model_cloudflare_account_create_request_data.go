@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudflareAccountCreateRequestData Data object for creating a Cloudflare account.
 type CloudflareAccountCreateRequestData struct {
@@ -17,9 +21,10 @@ type CloudflareAccountCreateRequestData struct {
 	// The JSON:API type for this API. Should always be `cloudflare-accounts`.
 	Type CloudflareAccountType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCloudflareAccountCreateRequestData instantiates a new CloudflareAccountCreateRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewCloudflareAccountCreateRequestDataWithDefaults() *CloudflareAccountCreat
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *CloudflareAccountCreateRequestData) GetAttributes() CloudflareAccountCreateRequestAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *CloudflareAccountCreateRequestData) GetAttributesOk() (*CloudflareAccou
 func (o *CloudflareAccountCreateRequestData) SetAttributes(v CloudflareAccountCreateRequestAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *CloudflareAccountCreateRequestData) GetType() CloudflareAccountType {
@@ -88,6 +93,8 @@ func (o *CloudflareAccountCreateRequestData) SetType(v CloudflareAccountType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudflareAccountCreateRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o CloudflareAccountCreateRequestData) MarshalJSON() ([]byte, error) {
 func (o *CloudflareAccountCreateRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *CloudflareAccountCreateRequestAttributes `json:"attributes"`
-		Type       *CloudflareAccountType                    `json:"type"`
+		Type *CloudflareAccountType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *CloudflareAccountCreateRequestData) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

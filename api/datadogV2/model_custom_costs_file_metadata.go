@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomCostsFileMetadata Schema of a Custom Costs metadata.
 type CustomCostsFileMetadata struct {
@@ -27,9 +33,10 @@ type CustomCostsFileMetadata struct {
 	// Metadata of the user that has uploaded the Custom Costs file.
 	UploadedBy *CustomCostsUser `json:"uploaded_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomCostsFileMetadata instantiates a new CustomCostsFileMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +54,6 @@ func NewCustomCostsFileMetadataWithDefaults() *CustomCostsFileMetadata {
 	this := CustomCostsFileMetadata{}
 	return &this
 }
-
 // GetBilledCost returns the BilledCost field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadata) GetBilledCost() float64 {
 	if o == nil || o.BilledCost == nil {
@@ -75,6 +81,7 @@ func (o *CustomCostsFileMetadata) HasBilledCost() bool {
 func (o *CustomCostsFileMetadata) SetBilledCost(v float64) {
 	o.BilledCost = &v
 }
+
 
 // GetBillingCurrency returns the BillingCurrency field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadata) GetBillingCurrency() string {
@@ -104,6 +111,7 @@ func (o *CustomCostsFileMetadata) SetBillingCurrency(v string) {
 	o.BillingCurrency = &v
 }
 
+
 // GetChargePeriod returns the ChargePeriod field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadata) GetChargePeriod() CustomCostsFileUsageChargePeriod {
 	if o == nil || o.ChargePeriod == nil {
@@ -131,6 +139,7 @@ func (o *CustomCostsFileMetadata) HasChargePeriod() bool {
 func (o *CustomCostsFileMetadata) SetChargePeriod(v CustomCostsFileUsageChargePeriod) {
 	o.ChargePeriod = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadata) GetName() string {
@@ -160,6 +169,7 @@ func (o *CustomCostsFileMetadata) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetProviderNames returns the ProviderNames field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadata) GetProviderNames() []string {
 	if o == nil || o.ProviderNames == nil {
@@ -187,6 +197,7 @@ func (o *CustomCostsFileMetadata) HasProviderNames() bool {
 func (o *CustomCostsFileMetadata) SetProviderNames(v []string) {
 	o.ProviderNames = v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadata) GetStatus() string {
@@ -216,6 +227,7 @@ func (o *CustomCostsFileMetadata) SetStatus(v string) {
 	o.Status = &v
 }
 
+
 // GetUploadedAt returns the UploadedAt field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadata) GetUploadedAt() float64 {
 	if o == nil || o.UploadedAt == nil {
@@ -244,6 +256,7 @@ func (o *CustomCostsFileMetadata) SetUploadedAt(v float64) {
 	o.UploadedAt = &v
 }
 
+
 // GetUploadedBy returns the UploadedBy field value if set, zero value otherwise.
 func (o *CustomCostsFileMetadata) GetUploadedBy() CustomCostsUser {
 	if o == nil || o.UploadedBy == nil {
@@ -271,6 +284,8 @@ func (o *CustomCostsFileMetadata) HasUploadedBy() bool {
 func (o *CustomCostsFileMetadata) SetUploadedBy(v CustomCostsUser) {
 	o.UploadedBy = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomCostsFileMetadata) MarshalJSON() ([]byte, error) {
@@ -312,21 +327,21 @@ func (o CustomCostsFileMetadata) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomCostsFileMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BilledCost      *float64                          `json:"billed_cost,omitempty"`
-		BillingCurrency *string                           `json:"billing_currency,omitempty"`
-		ChargePeriod    *CustomCostsFileUsageChargePeriod `json:"charge_period,omitempty"`
-		Name            *string                           `json:"name,omitempty"`
-		ProviderNames   []string                          `json:"provider_names,omitempty"`
-		Status          *string                           `json:"status,omitempty"`
-		UploadedAt      *float64                          `json:"uploaded_at,omitempty"`
-		UploadedBy      *CustomCostsUser                  `json:"uploaded_by,omitempty"`
+		BilledCost *float64 `json:"billed_cost,omitempty"`
+		BillingCurrency *string `json:"billing_currency,omitempty"`
+		ChargePeriod *CustomCostsFileUsageChargePeriod `json:"charge_period,omitempty"`
+		Name *string `json:"name,omitempty"`
+		ProviderNames []string `json:"provider_names,omitempty"`
+		Status *string `json:"status,omitempty"`
+		UploadedAt *float64 `json:"uploaded_at,omitempty"`
+		UploadedBy *CustomCostsUser `json:"uploaded_by,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"billed_cost", "billing_currency", "charge_period", "name", "provider_names", "status", "uploaded_at", "uploaded_by"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "billed_cost", "billing_currency", "charge_period", "name", "provider_names", "status", "uploaded_at", "uploaded_by",  })
 	} else {
 		return err
 	}
@@ -334,7 +349,7 @@ func (o *CustomCostsFileMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.BilledCost = all.BilledCost
 	o.BillingCurrency = all.BillingCurrency
-	if all.ChargePeriod != nil && all.ChargePeriod.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ChargePeriod != nil && all.ChargePeriod.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ChargePeriod = all.ChargePeriod
@@ -342,7 +357,7 @@ func (o *CustomCostsFileMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.ProviderNames = all.ProviderNames
 	o.Status = all.Status
 	o.UploadedAt = all.UploadedAt
-	if all.UploadedBy != nil && all.UploadedBy.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.UploadedBy != nil && all.UploadedBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.UploadedBy = all.UploadedBy

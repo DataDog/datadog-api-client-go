@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineCustomProcessorRemap Defines a single VRL remap rule with its own filtering and transformation logic.
 type ObservabilityPipelineCustomProcessorRemap struct {
@@ -23,9 +27,10 @@ type ObservabilityPipelineCustomProcessorRemap struct {
 	// The VRL script source code that defines the processing logic.
 	Source string `json:"source"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineCustomProcessorRemap instantiates a new ObservabilityPipelineCustomProcessorRemap object.
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewObservabilityPipelineCustomProcessorRemapWithDefaults() *ObservabilityPi
 	this := ObservabilityPipelineCustomProcessorRemap{}
 	return &this
 }
-
 // GetDropOnError returns the DropOnError field value.
 func (o *ObservabilityPipelineCustomProcessorRemap) GetDropOnError() bool {
 	if o == nil {
@@ -71,6 +75,7 @@ func (o *ObservabilityPipelineCustomProcessorRemap) GetDropOnErrorOk() (*bool, b
 func (o *ObservabilityPipelineCustomProcessorRemap) SetDropOnError(v bool) {
 	o.DropOnError = v
 }
+
 
 // GetEnabled returns the Enabled field value.
 func (o *ObservabilityPipelineCustomProcessorRemap) GetEnabled() bool {
@@ -95,6 +100,7 @@ func (o *ObservabilityPipelineCustomProcessorRemap) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
+
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineCustomProcessorRemap) GetInclude() string {
 	if o == nil {
@@ -117,6 +123,7 @@ func (o *ObservabilityPipelineCustomProcessorRemap) GetIncludeOk() (*string, boo
 func (o *ObservabilityPipelineCustomProcessorRemap) SetInclude(v string) {
 	o.Include = v
 }
+
 
 // GetName returns the Name field value.
 func (o *ObservabilityPipelineCustomProcessorRemap) GetName() string {
@@ -141,6 +148,7 @@ func (o *ObservabilityPipelineCustomProcessorRemap) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetSource returns the Source field value.
 func (o *ObservabilityPipelineCustomProcessorRemap) GetSource() string {
 	if o == nil {
@@ -164,6 +172,8 @@ func (o *ObservabilityPipelineCustomProcessorRemap) SetSource(v string) {
 	o.Source = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineCustomProcessorRemap) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -185,11 +195,11 @@ func (o ObservabilityPipelineCustomProcessorRemap) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineCustomProcessorRemap) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DropOnError *bool   `json:"drop_on_error"`
-		Enabled     *bool   `json:"enabled"`
-		Include     *string `json:"include"`
-		Name        *string `json:"name"`
-		Source      *string `json:"source"`
+		DropOnError *bool `json:"drop_on_error"`
+		Enabled *bool `json:"enabled"`
+		Include *string `json:"include"`
+		Name *string `json:"name"`
+		Source *string `json:"source"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -211,7 +221,7 @@ func (o *ObservabilityPipelineCustomProcessorRemap) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"drop_on_error", "enabled", "include", "name", "source"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "drop_on_error", "enabled", "include", "name", "source",  })
 	} else {
 		return err
 	}

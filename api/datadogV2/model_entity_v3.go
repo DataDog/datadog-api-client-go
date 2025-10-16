@@ -2,19 +2,25 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityV3 - Entity schema v3.
 type EntityV3 struct {
-	EntityV3Service   *EntityV3Service
+	EntityV3Service *EntityV3Service
 	EntityV3Datastore *EntityV3Datastore
-	EntityV3Queue     *EntityV3Queue
-	EntityV3System    *EntityV3System
-	EntityV3API       *EntityV3API
+	EntityV3Queue *EntityV3Queue
+	EntityV3System *EntityV3System
+	EntityV3API *EntityV3API
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -152,21 +158,26 @@ func (obj EntityV3) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.EntityV3Service)
 	}
 
+
 	if obj.EntityV3Datastore != nil {
 		return datadog.Marshal(&obj.EntityV3Datastore)
 	}
+
 
 	if obj.EntityV3Queue != nil {
 		return datadog.Marshal(&obj.EntityV3Queue)
 	}
 
+
 	if obj.EntityV3System != nil {
 		return datadog.Marshal(&obj.EntityV3System)
 	}
 
+
 	if obj.EntityV3API != nil {
 		return datadog.Marshal(&obj.EntityV3API)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -175,26 +186,31 @@ func (obj EntityV3) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *EntityV3) GetActualInstance() interface{} {
+func (obj *EntityV3) GetActualInstance() (interface{}) {
 	if obj.EntityV3Service != nil {
 		return obj.EntityV3Service
 	}
+
 
 	if obj.EntityV3Datastore != nil {
 		return obj.EntityV3Datastore
 	}
 
+
 	if obj.EntityV3Queue != nil {
 		return obj.EntityV3Queue
 	}
+
 
 	if obj.EntityV3System != nil {
 		return obj.EntityV3System
 	}
 
+
 	if obj.EntityV3API != nil {
 		return obj.EntityV3API
 	}
+
 
 	// all schemas are nil
 	return nil

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsPipelineProcessor Nested Pipelines are pipelines within a pipeline. Use Nested Pipelines to split the processing into two steps.
 // For example, first use a high-level filtering such as team and then a second level of filtering based on the
@@ -27,9 +31,10 @@ type LogsPipelineProcessor struct {
 	// Type of logs pipeline processor.
 	Type LogsPipelineProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsPipelineProcessor instantiates a new LogsPipelineProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewLogsPipelineProcessorWithDefaults() *LogsPipelineProcessor {
 	this.Type = typeVar
 	return &this
 }
-
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *LogsPipelineProcessor) GetFilter() LogsFilter {
 	if o == nil || o.Filter == nil {
@@ -82,6 +86,7 @@ func (o *LogsPipelineProcessor) HasFilter() bool {
 func (o *LogsPipelineProcessor) SetFilter(v LogsFilter) {
 	o.Filter = &v
 }
+
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsPipelineProcessor) GetIsEnabled() bool {
@@ -111,6 +116,7 @@ func (o *LogsPipelineProcessor) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsPipelineProcessor) GetName() string {
 	if o == nil || o.Name == nil {
@@ -138,6 +144,7 @@ func (o *LogsPipelineProcessor) HasName() bool {
 func (o *LogsPipelineProcessor) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetProcessors returns the Processors field value if set, zero value otherwise.
 func (o *LogsPipelineProcessor) GetProcessors() []LogsProcessor {
@@ -167,6 +174,7 @@ func (o *LogsPipelineProcessor) SetProcessors(v []LogsProcessor) {
 	o.Processors = v
 }
 
+
 // GetType returns the Type field value.
 func (o *LogsPipelineProcessor) GetType() LogsPipelineProcessorType {
 	if o == nil {
@@ -189,6 +197,8 @@ func (o *LogsPipelineProcessor) GetTypeOk() (*LogsPipelineProcessorType, bool) {
 func (o *LogsPipelineProcessor) SetType(v LogsPipelineProcessorType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsPipelineProcessor) MarshalJSON() ([]byte, error) {
@@ -219,11 +229,11 @@ func (o LogsPipelineProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsPipelineProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Filter     *LogsFilter                `json:"filter,omitempty"`
-		IsEnabled  *bool                      `json:"is_enabled,omitempty"`
-		Name       *string                    `json:"name,omitempty"`
-		Processors []LogsProcessor            `json:"processors,omitempty"`
-		Type       *LogsPipelineProcessorType `json:"type"`
+		Filter *LogsFilter `json:"filter,omitempty"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Processors []LogsProcessor `json:"processors,omitempty"`
+		Type *LogsPipelineProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -233,13 +243,13 @@ func (o *LogsPipelineProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "is_enabled", "name", "processors", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "filter", "is_enabled", "name", "processors", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter

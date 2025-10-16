@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // BillingDimensionsMappingBodyItemAttributesEndpointsItems An endpoint's keys mapped to the billing_dimension.
 type BillingDimensionsMappingBodyItemAttributesEndpointsItems struct {
@@ -17,9 +23,10 @@ type BillingDimensionsMappingBodyItemAttributesEndpointsItems struct {
 	// Denotes whether mapping keys were available for this endpoint.
 	Status *BillingDimensionsMappingBodyItemAttributesEndpointsItemsStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewBillingDimensionsMappingBodyItemAttributesEndpointsItems instantiates a new BillingDimensionsMappingBodyItemAttributesEndpointsItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewBillingDimensionsMappingBodyItemAttributesEndpointsItemsWithDefaults() *
 	this := BillingDimensionsMappingBodyItemAttributesEndpointsItems{}
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *BillingDimensionsMappingBodyItemAttributesEndpointsItems) GetId() string {
 	if o == nil || o.Id == nil {
@@ -65,6 +71,7 @@ func (o *BillingDimensionsMappingBodyItemAttributesEndpointsItems) HasId() bool 
 func (o *BillingDimensionsMappingBodyItemAttributesEndpointsItems) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetKeys returns the Keys field value if set, zero value otherwise.
 func (o *BillingDimensionsMappingBodyItemAttributesEndpointsItems) GetKeys() []string {
@@ -94,6 +101,7 @@ func (o *BillingDimensionsMappingBodyItemAttributesEndpointsItems) SetKeys(v []s
 	o.Keys = v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *BillingDimensionsMappingBodyItemAttributesEndpointsItems) GetStatus() BillingDimensionsMappingBodyItemAttributesEndpointsItemsStatus {
 	if o == nil || o.Status == nil {
@@ -122,6 +130,8 @@ func (o *BillingDimensionsMappingBodyItemAttributesEndpointsItems) SetStatus(v B
 	o.Status = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o BillingDimensionsMappingBodyItemAttributesEndpointsItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,8 +157,8 @@ func (o BillingDimensionsMappingBodyItemAttributesEndpointsItems) MarshalJSON() 
 // UnmarshalJSON deserializes the given payload.
 func (o *BillingDimensionsMappingBodyItemAttributesEndpointsItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id     *string                                                         `json:"id,omitempty"`
-		Keys   []string                                                        `json:"keys,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Keys []string `json:"keys,omitempty"`
 		Status *BillingDimensionsMappingBodyItemAttributesEndpointsItemsStatus `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,7 +166,7 @@ func (o *BillingDimensionsMappingBodyItemAttributesEndpointsItems) UnmarshalJSON
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "keys", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "keys", "status",  })
 	} else {
 		return err
 	}
@@ -164,7 +174,7 @@ func (o *BillingDimensionsMappingBodyItemAttributesEndpointsItems) UnmarshalJSON
 	hasInvalidField := false
 	o.Id = all.Id
 	o.Keys = all.Keys
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

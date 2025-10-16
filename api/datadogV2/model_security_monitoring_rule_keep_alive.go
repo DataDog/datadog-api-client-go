@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleKeepAlive Once a signal is generated, the signal will remain "open" if a case is matched at least once within
 // this keep alive window. For third party detection method, this field is not used.
@@ -16,18 +20,18 @@ type SecurityMonitoringRuleKeepAlive int32
 
 // List of SecurityMonitoringRuleKeepAlive.
 const (
-	SECURITYMONITORINGRULEKEEPALIVE_ZERO_MINUTES    SecurityMonitoringRuleKeepAlive = 0
-	SECURITYMONITORINGRULEKEEPALIVE_ONE_MINUTE      SecurityMonitoringRuleKeepAlive = 60
-	SECURITYMONITORINGRULEKEEPALIVE_FIVE_MINUTES    SecurityMonitoringRuleKeepAlive = 300
-	SECURITYMONITORINGRULEKEEPALIVE_TEN_MINUTES     SecurityMonitoringRuleKeepAlive = 600
+	SECURITYMONITORINGRULEKEEPALIVE_ZERO_MINUTES SecurityMonitoringRuleKeepAlive = 0
+	SECURITYMONITORINGRULEKEEPALIVE_ONE_MINUTE SecurityMonitoringRuleKeepAlive = 60
+	SECURITYMONITORINGRULEKEEPALIVE_FIVE_MINUTES SecurityMonitoringRuleKeepAlive = 300
+	SECURITYMONITORINGRULEKEEPALIVE_TEN_MINUTES SecurityMonitoringRuleKeepAlive = 600
 	SECURITYMONITORINGRULEKEEPALIVE_FIFTEEN_MINUTES SecurityMonitoringRuleKeepAlive = 900
-	SECURITYMONITORINGRULEKEEPALIVE_THIRTY_MINUTES  SecurityMonitoringRuleKeepAlive = 1800
-	SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR        SecurityMonitoringRuleKeepAlive = 3600
-	SECURITYMONITORINGRULEKEEPALIVE_TWO_HOURS       SecurityMonitoringRuleKeepAlive = 7200
-	SECURITYMONITORINGRULEKEEPALIVE_THREE_HOURS     SecurityMonitoringRuleKeepAlive = 10800
-	SECURITYMONITORINGRULEKEEPALIVE_SIX_HOURS       SecurityMonitoringRuleKeepAlive = 21600
-	SECURITYMONITORINGRULEKEEPALIVE_TWELVE_HOURS    SecurityMonitoringRuleKeepAlive = 43200
-	SECURITYMONITORINGRULEKEEPALIVE_ONE_DAY         SecurityMonitoringRuleKeepAlive = 86400
+	SECURITYMONITORINGRULEKEEPALIVE_THIRTY_MINUTES SecurityMonitoringRuleKeepAlive = 1800
+	SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR SecurityMonitoringRuleKeepAlive = 3600
+	SECURITYMONITORINGRULEKEEPALIVE_TWO_HOURS SecurityMonitoringRuleKeepAlive = 7200
+	SECURITYMONITORINGRULEKEEPALIVE_THREE_HOURS SecurityMonitoringRuleKeepAlive = 10800
+	SECURITYMONITORINGRULEKEEPALIVE_SIX_HOURS SecurityMonitoringRuleKeepAlive = 21600
+	SECURITYMONITORINGRULEKEEPALIVE_TWELVE_HOURS SecurityMonitoringRuleKeepAlive = 43200
+	SECURITYMONITORINGRULEKEEPALIVE_ONE_DAY SecurityMonitoringRuleKeepAlive = 86400
 )
 
 var allowedSecurityMonitoringRuleKeepAliveEnumValues = []SecurityMonitoringRuleKeepAlive{

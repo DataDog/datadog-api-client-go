@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentTeamIncludedItems - An object related to an incident team which is present in the included payload.
 type IncidentTeamIncludedItems struct {
@@ -30,7 +36,7 @@ func (obj *IncidentTeamIncludedItems) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.User != nil && obj.User.UnparsedObject == nil {
 			jsonUser, _ := datadog.Marshal(obj.User)
-			if string(jsonUser) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonUser) == "{}" && string(data) != "{}"  { // empty struct
 				obj.User = nil
 			} else {
 				match++
@@ -56,6 +62,7 @@ func (obj IncidentTeamIncludedItems) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.User)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj IncidentTeamIncludedItems) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *IncidentTeamIncludedItems) GetActualInstance() interface{} {
+func (obj *IncidentTeamIncludedItems) GetActualInstance() (interface{}) {
 	if obj.User != nil {
 		return obj.User
 	}
+
 
 	// all schemas are nil
 	return nil

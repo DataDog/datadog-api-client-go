@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestUptime Object containing the uptime for a Synthetic test ID.
 type SyntheticsTestUptime struct {
@@ -19,9 +25,10 @@ type SyntheticsTestUptime struct {
 	// Timestamp in seconds for the end of uptime.
 	ToTs *int64 `json:"to_ts,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsTestUptime instantiates a new SyntheticsTestUptime object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewSyntheticsTestUptimeWithDefaults() *SyntheticsTestUptime {
 	this := SyntheticsTestUptime{}
 	return &this
 }
-
 // GetFromTs returns the FromTs field value if set, zero value otherwise.
 func (o *SyntheticsTestUptime) GetFromTs() int64 {
 	if o == nil || o.FromTs == nil {
@@ -67,6 +73,7 @@ func (o *SyntheticsTestUptime) HasFromTs() bool {
 func (o *SyntheticsTestUptime) SetFromTs(v int64) {
 	o.FromTs = &v
 }
+
 
 // GetOverall returns the Overall field value if set, zero value otherwise.
 func (o *SyntheticsTestUptime) GetOverall() SyntheticsUptime {
@@ -96,6 +103,7 @@ func (o *SyntheticsTestUptime) SetOverall(v SyntheticsUptime) {
 	o.Overall = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *SyntheticsTestUptime) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -123,6 +131,7 @@ func (o *SyntheticsTestUptime) HasPublicId() bool {
 func (o *SyntheticsTestUptime) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
 
 // GetToTs returns the ToTs field value if set, zero value otherwise.
 func (o *SyntheticsTestUptime) GetToTs() int64 {
@@ -152,6 +161,8 @@ func (o *SyntheticsTestUptime) SetToTs(v int64) {
 	o.ToTs = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTestUptime) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,24 +191,24 @@ func (o SyntheticsTestUptime) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestUptime) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		FromTs   *int64            `json:"from_ts,omitempty"`
-		Overall  *SyntheticsUptime `json:"overall,omitempty"`
-		PublicId *string           `json:"public_id,omitempty"`
-		ToTs     *int64            `json:"to_ts,omitempty"`
+		FromTs *int64 `json:"from_ts,omitempty"`
+		Overall *SyntheticsUptime `json:"overall,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
+		ToTs *int64 `json:"to_ts,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"from_ts", "overall", "public_id", "to_ts"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "from_ts", "overall", "public_id", "to_ts",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.FromTs = all.FromTs
-	if all.Overall != nil && all.Overall.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Overall != nil && all.Overall.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Overall = all.Overall

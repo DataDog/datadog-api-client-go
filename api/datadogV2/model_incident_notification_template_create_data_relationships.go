@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentNotificationTemplateCreateDataRelationships The definition of `NotificationTemplateCreateDataRelationships` object.
 type IncidentNotificationTemplateCreateDataRelationships struct {
 	// Relationship to an incident type.
 	IncidentType *RelationshipToIncidentType `json:"incident_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentNotificationTemplateCreateDataRelationships instantiates a new IncidentNotificationTemplateCreateDataRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewIncidentNotificationTemplateCreateDataRelationshipsWithDefaults() *Incid
 	this := IncidentNotificationTemplateCreateDataRelationships{}
 	return &this
 }
-
 // GetIncidentType returns the IncidentType field value if set, zero value otherwise.
 func (o *IncidentNotificationTemplateCreateDataRelationships) GetIncidentType() RelationshipToIncidentType {
 	if o == nil || o.IncidentType == nil {
@@ -62,6 +68,8 @@ func (o *IncidentNotificationTemplateCreateDataRelationships) SetIncidentType(v 
 	o.IncidentType = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentNotificationTemplateCreateDataRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *IncidentNotificationTemplateCreateDataRelationships) UnmarshalJSON(byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"incident_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "incident_type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.IncidentType != nil && all.IncidentType.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.IncidentType != nil && all.IncidentType.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.IncidentType = all.IncidentType

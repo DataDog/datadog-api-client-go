@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Estimation Recommended resource values for a Spark driver or executor, derived from recent real usage metrics. Used by SPA to propose more efficient pod sizing.
 type Estimation struct {
@@ -21,9 +27,10 @@ type Estimation struct {
 	// Recommended JVM overhead (in MiB). Computed as total memory - heap.
 	Overhead *int64 `json:"overhead,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEstimation instantiates a new Estimation object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewEstimationWithDefaults() *Estimation {
 	this := Estimation{}
 	return &this
 }
-
 // GetCpu returns the Cpu field value if set, zero value otherwise.
 func (o *Estimation) GetCpu() Cpu {
 	if o == nil || o.Cpu == nil {
@@ -69,6 +75,7 @@ func (o *Estimation) HasCpu() bool {
 func (o *Estimation) SetCpu(v Cpu) {
 	o.Cpu = &v
 }
+
 
 // GetEphemeralStorage returns the EphemeralStorage field value if set, zero value otherwise.
 func (o *Estimation) GetEphemeralStorage() int64 {
@@ -98,6 +105,7 @@ func (o *Estimation) SetEphemeralStorage(v int64) {
 	o.EphemeralStorage = &v
 }
 
+
 // GetHeap returns the Heap field value if set, zero value otherwise.
 func (o *Estimation) GetHeap() int64 {
 	if o == nil || o.Heap == nil {
@@ -125,6 +133,7 @@ func (o *Estimation) HasHeap() bool {
 func (o *Estimation) SetHeap(v int64) {
 	o.Heap = &v
 }
+
 
 // GetMemory returns the Memory field value if set, zero value otherwise.
 func (o *Estimation) GetMemory() int64 {
@@ -154,6 +163,7 @@ func (o *Estimation) SetMemory(v int64) {
 	o.Memory = &v
 }
 
+
 // GetOverhead returns the Overhead field value if set, zero value otherwise.
 func (o *Estimation) GetOverhead() int64 {
 	if o == nil || o.Overhead == nil {
@@ -181,6 +191,8 @@ func (o *Estimation) HasOverhead() bool {
 func (o *Estimation) SetOverhead(v int64) {
 	o.Overhead = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o Estimation) MarshalJSON() ([]byte, error) {
@@ -213,24 +225,24 @@ func (o Estimation) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Estimation) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Cpu              *Cpu   `json:"cpu,omitempty"`
+		Cpu *Cpu `json:"cpu,omitempty"`
 		EphemeralStorage *int64 `json:"ephemeral_storage,omitempty"`
-		Heap             *int64 `json:"heap,omitempty"`
-		Memory           *int64 `json:"memory,omitempty"`
-		Overhead         *int64 `json:"overhead,omitempty"`
+		Heap *int64 `json:"heap,omitempty"`
+		Memory *int64 `json:"memory,omitempty"`
+		Overhead *int64 `json:"overhead,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cpu", "ephemeral_storage", "heap", "memory", "overhead"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cpu", "ephemeral_storage", "heap", "memory", "overhead",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Cpu != nil && all.Cpu.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Cpu != nil && all.Cpu.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Cpu = all.Cpu

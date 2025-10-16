@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // OrgConnectionRelationships Related organizations and user.
 type OrgConnectionRelationships struct {
@@ -17,9 +23,10 @@ type OrgConnectionRelationships struct {
 	// Org relationship.
 	SourceOrg *OrgConnectionOrgRelationship `json:"source_org,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewOrgConnectionRelationships instantiates a new OrgConnectionRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewOrgConnectionRelationshipsWithDefaults() *OrgConnectionRelationships {
 	this := OrgConnectionRelationships{}
 	return &this
 }
-
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *OrgConnectionRelationships) GetCreatedBy() OrgConnectionUserRelationship {
 	if o == nil || o.CreatedBy == nil {
@@ -65,6 +71,7 @@ func (o *OrgConnectionRelationships) HasCreatedBy() bool {
 func (o *OrgConnectionRelationships) SetCreatedBy(v OrgConnectionUserRelationship) {
 	o.CreatedBy = &v
 }
+
 
 // GetSinkOrg returns the SinkOrg field value if set, zero value otherwise.
 func (o *OrgConnectionRelationships) GetSinkOrg() OrgConnectionOrgRelationship {
@@ -94,6 +101,7 @@ func (o *OrgConnectionRelationships) SetSinkOrg(v OrgConnectionOrgRelationship) 
 	o.SinkOrg = &v
 }
 
+
 // GetSourceOrg returns the SourceOrg field value if set, zero value otherwise.
 func (o *OrgConnectionRelationships) GetSourceOrg() OrgConnectionOrgRelationship {
 	if o == nil || o.SourceOrg == nil {
@@ -122,6 +130,8 @@ func (o *OrgConnectionRelationships) SetSourceOrg(v OrgConnectionOrgRelationship
 	o.SourceOrg = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o OrgConnectionRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,29 +158,29 @@ func (o OrgConnectionRelationships) MarshalJSON() ([]byte, error) {
 func (o *OrgConnectionRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CreatedBy *OrgConnectionUserRelationship `json:"created_by,omitempty"`
-		SinkOrg   *OrgConnectionOrgRelationship  `json:"sink_org,omitempty"`
-		SourceOrg *OrgConnectionOrgRelationship  `json:"source_org,omitempty"`
+		SinkOrg *OrgConnectionOrgRelationship `json:"sink_org,omitempty"`
+		SourceOrg *OrgConnectionOrgRelationship `json:"source_org,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_by", "sink_org", "source_org"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_by", "sink_org", "source_org",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.CreatedBy != nil && all.CreatedBy.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CreatedBy != nil && all.CreatedBy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CreatedBy = all.CreatedBy
-	if all.SinkOrg != nil && all.SinkOrg.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SinkOrg != nil && all.SinkOrg.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SinkOrg = all.SinkOrg
-	if all.SourceOrg != nil && all.SourceOrg.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.SourceOrg != nil && all.SourceOrg.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SourceOrg = all.SourceOrg

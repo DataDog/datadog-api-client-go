@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppPipelineEventStepStatus The final status of the step.
 type CIAppPipelineEventStepStatus string
@@ -16,7 +20,7 @@ type CIAppPipelineEventStepStatus string
 // List of CIAppPipelineEventStepStatus.
 const (
 	CIAPPPIPELINEEVENTSTEPSTATUS_SUCCESS CIAppPipelineEventStepStatus = "success"
-	CIAPPPIPELINEEVENTSTEPSTATUS_ERROR   CIAppPipelineEventStepStatus = "error"
+	CIAPPPIPELINEEVENTSTEPSTATUS_ERROR CIAppPipelineEventStepStatus = "error"
 )
 
 var allowedCIAppPipelineEventStepStatusEnumValues = []CIAppPipelineEventStepStatus{

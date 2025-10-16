@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineQuotaProcessor The Quota Processor measures logging traffic for logs that match a specified filter. When the configured daily quota is met, the processor can drop or alert.
 type ObservabilityPipelineQuotaProcessor struct {
@@ -38,9 +42,10 @@ type ObservabilityPipelineQuotaProcessor struct {
 	// The processor type. The value should always be `quota`.
 	Type ObservabilityPipelineQuotaProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineQuotaProcessor instantiates a new ObservabilityPipelineQuotaProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -67,7 +72,6 @@ func NewObservabilityPipelineQuotaProcessorWithDefaults() *ObservabilityPipeline
 	this.Type = typeVar
 	return &this
 }
-
 // GetDropEvents returns the DropEvents field value.
 func (o *ObservabilityPipelineQuotaProcessor) GetDropEvents() bool {
 	if o == nil {
@@ -91,6 +95,7 @@ func (o *ObservabilityPipelineQuotaProcessor) SetDropEvents(v bool) {
 	o.DropEvents = v
 }
 
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineQuotaProcessor) GetId() string {
 	if o == nil {
@@ -113,6 +118,7 @@ func (o *ObservabilityPipelineQuotaProcessor) GetIdOk() (*string, bool) {
 func (o *ObservabilityPipelineQuotaProcessor) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetIgnoreWhenMissingPartitions returns the IgnoreWhenMissingPartitions field value if set, zero value otherwise.
 func (o *ObservabilityPipelineQuotaProcessor) GetIgnoreWhenMissingPartitions() bool {
@@ -142,6 +148,7 @@ func (o *ObservabilityPipelineQuotaProcessor) SetIgnoreWhenMissingPartitions(v b
 	o.IgnoreWhenMissingPartitions = &v
 }
 
+
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineQuotaProcessor) GetInclude() string {
 	if o == nil {
@@ -164,6 +171,7 @@ func (o *ObservabilityPipelineQuotaProcessor) GetIncludeOk() (*string, bool) {
 func (o *ObservabilityPipelineQuotaProcessor) SetInclude(v string) {
 	o.Include = v
 }
+
 
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineQuotaProcessor) GetInputs() []string {
@@ -188,6 +196,7 @@ func (o *ObservabilityPipelineQuotaProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
 
+
 // GetLimit returns the Limit field value.
 func (o *ObservabilityPipelineQuotaProcessor) GetLimit() ObservabilityPipelineQuotaProcessorLimit {
 	if o == nil {
@@ -211,6 +220,7 @@ func (o *ObservabilityPipelineQuotaProcessor) SetLimit(v ObservabilityPipelineQu
 	o.Limit = v
 }
 
+
 // GetName returns the Name field value.
 func (o *ObservabilityPipelineQuotaProcessor) GetName() string {
 	if o == nil {
@@ -233,6 +243,7 @@ func (o *ObservabilityPipelineQuotaProcessor) GetNameOk() (*string, bool) {
 func (o *ObservabilityPipelineQuotaProcessor) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetOverflowAction returns the OverflowAction field value if set, zero value otherwise.
 func (o *ObservabilityPipelineQuotaProcessor) GetOverflowAction() ObservabilityPipelineQuotaProcessorOverflowAction {
@@ -262,6 +273,7 @@ func (o *ObservabilityPipelineQuotaProcessor) SetOverflowAction(v ObservabilityP
 	o.OverflowAction = &v
 }
 
+
 // GetOverrides returns the Overrides field value if set, zero value otherwise.
 func (o *ObservabilityPipelineQuotaProcessor) GetOverrides() []ObservabilityPipelineQuotaProcessorOverride {
 	if o == nil || o.Overrides == nil {
@@ -289,6 +301,7 @@ func (o *ObservabilityPipelineQuotaProcessor) HasOverrides() bool {
 func (o *ObservabilityPipelineQuotaProcessor) SetOverrides(v []ObservabilityPipelineQuotaProcessorOverride) {
 	o.Overrides = v
 }
+
 
 // GetPartitionFields returns the PartitionFields field value if set, zero value otherwise.
 func (o *ObservabilityPipelineQuotaProcessor) GetPartitionFields() []string {
@@ -318,6 +331,7 @@ func (o *ObservabilityPipelineQuotaProcessor) SetPartitionFields(v []string) {
 	o.PartitionFields = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineQuotaProcessor) GetType() ObservabilityPipelineQuotaProcessorType {
 	if o == nil {
@@ -340,6 +354,8 @@ func (o *ObservabilityPipelineQuotaProcessor) GetTypeOk() (*ObservabilityPipelin
 func (o *ObservabilityPipelineQuotaProcessor) SetType(v ObservabilityPipelineQuotaProcessorType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineQuotaProcessor) MarshalJSON() ([]byte, error) {
@@ -376,17 +392,17 @@ func (o ObservabilityPipelineQuotaProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineQuotaProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DropEvents                  *bool                                              `json:"drop_events"`
-		Id                          *string                                            `json:"id"`
-		IgnoreWhenMissingPartitions *bool                                              `json:"ignore_when_missing_partitions,omitempty"`
-		Include                     *string                                            `json:"include"`
-		Inputs                      *[]string                                          `json:"inputs"`
-		Limit                       *ObservabilityPipelineQuotaProcessorLimit          `json:"limit"`
-		Name                        *string                                            `json:"name"`
-		OverflowAction              *ObservabilityPipelineQuotaProcessorOverflowAction `json:"overflow_action,omitempty"`
-		Overrides                   []ObservabilityPipelineQuotaProcessorOverride      `json:"overrides,omitempty"`
-		PartitionFields             []string                                           `json:"partition_fields,omitempty"`
-		Type                        *ObservabilityPipelineQuotaProcessorType           `json:"type"`
+		DropEvents *bool `json:"drop_events"`
+		Id *string `json:"id"`
+		IgnoreWhenMissingPartitions *bool `json:"ignore_when_missing_partitions,omitempty"`
+		Include *string `json:"include"`
+		Inputs *[]string `json:"inputs"`
+		Limit *ObservabilityPipelineQuotaProcessorLimit `json:"limit"`
+		Name *string `json:"name"`
+		OverflowAction *ObservabilityPipelineQuotaProcessorOverflowAction `json:"overflow_action,omitempty"`
+		Overrides []ObservabilityPipelineQuotaProcessorOverride `json:"overrides,omitempty"`
+		PartitionFields []string `json:"partition_fields,omitempty"`
+		Type *ObservabilityPipelineQuotaProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -414,7 +430,7 @@ func (o *ObservabilityPipelineQuotaProcessor) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"drop_events", "id", "ignore_when_missing_partitions", "include", "inputs", "limit", "name", "overflow_action", "overrides", "partition_fields", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "drop_events", "id", "ignore_when_missing_partitions", "include", "inputs", "limit", "name", "overflow_action", "overrides", "partition_fields", "type",  })
 	} else {
 		return err
 	}
@@ -430,7 +446,7 @@ func (o *ObservabilityPipelineQuotaProcessor) UnmarshalJSON(bytes []byte) (err e
 	}
 	o.Limit = *all.Limit
 	o.Name = *all.Name
-	if all.OverflowAction != nil && !all.OverflowAction.IsValid() {
+	if all.OverflowAction != nil &&!all.OverflowAction.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.OverflowAction = all.OverflowAction

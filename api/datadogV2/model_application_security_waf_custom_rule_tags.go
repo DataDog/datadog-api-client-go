@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleTags Tags associated with the WAF Custom Rule. The concatenation of category and type will form the security
 // activity field associated with the traces.
@@ -18,9 +22,10 @@ type ApplicationSecurityWafCustomRuleTags struct {
 	// The type of the WAF rule, associated with the category will form the security activity.
 	Type string `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]string      `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
+	AdditionalProperties map[string]string `json:"-"`
 }
+
 
 // NewApplicationSecurityWafCustomRuleTags instantiates a new ApplicationSecurityWafCustomRuleTags object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewApplicationSecurityWafCustomRuleTagsWithDefaults() *ApplicationSecurityW
 	this := ApplicationSecurityWafCustomRuleTags{}
 	return &this
 }
-
 // GetCategory returns the Category field value.
 func (o *ApplicationSecurityWafCustomRuleTags) GetCategory() ApplicationSecurityWafCustomRuleTagsCategory {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *ApplicationSecurityWafCustomRuleTags) GetCategoryOk() (*ApplicationSecu
 func (o *ApplicationSecurityWafCustomRuleTags) SetCategory(v ApplicationSecurityWafCustomRuleTagsCategory) {
 	o.Category = v
 }
+
 
 // GetType returns the Type field value.
 func (o *ApplicationSecurityWafCustomRuleTags) GetType() string {
@@ -87,6 +92,8 @@ func (o *ApplicationSecurityWafCustomRuleTags) SetType(v string) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafCustomRuleTags) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -106,7 +113,7 @@ func (o ApplicationSecurityWafCustomRuleTags) MarshalJSON() ([]byte, error) {
 func (o *ApplicationSecurityWafCustomRuleTags) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Category *ApplicationSecurityWafCustomRuleTagsCategory `json:"category"`
-		Type     *string                                       `json:"type"`
+		Type *string `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -119,7 +126,7 @@ func (o *ApplicationSecurityWafCustomRuleTags) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]string)
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"category", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "category", "type",  })
 	} else {
 		return err
 	}

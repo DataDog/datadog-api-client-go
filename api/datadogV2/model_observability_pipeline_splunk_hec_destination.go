@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSplunkHecDestination The `splunk_hec` destination forwards logs to Splunk using the HTTP Event Collector (HEC).
 type ObservabilityPipelineSplunkHecDestination struct {
@@ -28,9 +32,10 @@ type ObservabilityPipelineSplunkHecDestination struct {
 	// The destination type. Always `splunk_hec`.
 	Type ObservabilityPipelineSplunkHecDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSplunkHecDestination instantiates a new ObservabilityPipelineSplunkHecDestination object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewObservabilityPipelineSplunkHecDestinationWithDefaults() *ObservabilityPi
 	this.Type = typeVar
 	return &this
 }
-
 // GetAutoExtractTimestamp returns the AutoExtractTimestamp field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSplunkHecDestination) GetAutoExtractTimestamp() bool {
 	if o == nil || o.AutoExtractTimestamp == nil {
@@ -81,6 +85,7 @@ func (o *ObservabilityPipelineSplunkHecDestination) HasAutoExtractTimestamp() bo
 func (o *ObservabilityPipelineSplunkHecDestination) SetAutoExtractTimestamp(v bool) {
 	o.AutoExtractTimestamp = &v
 }
+
 
 // GetEncoding returns the Encoding field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSplunkHecDestination) GetEncoding() ObservabilityPipelineSplunkHecDestinationEncoding {
@@ -110,6 +115,7 @@ func (o *ObservabilityPipelineSplunkHecDestination) SetEncoding(v ObservabilityP
 	o.Encoding = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineSplunkHecDestination) GetId() string {
 	if o == nil {
@@ -132,6 +138,7 @@ func (o *ObservabilityPipelineSplunkHecDestination) GetIdOk() (*string, bool) {
 func (o *ObservabilityPipelineSplunkHecDestination) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetIndex returns the Index field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSplunkHecDestination) GetIndex() string {
@@ -161,6 +168,7 @@ func (o *ObservabilityPipelineSplunkHecDestination) SetIndex(v string) {
 	o.Index = &v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineSplunkHecDestination) GetInputs() []string {
 	if o == nil {
@@ -183,6 +191,7 @@ func (o *ObservabilityPipelineSplunkHecDestination) GetInputsOk() (*[]string, bo
 func (o *ObservabilityPipelineSplunkHecDestination) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetSourcetype returns the Sourcetype field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSplunkHecDestination) GetSourcetype() string {
@@ -212,6 +221,7 @@ func (o *ObservabilityPipelineSplunkHecDestination) SetSourcetype(v string) {
 	o.Sourcetype = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineSplunkHecDestination) GetType() ObservabilityPipelineSplunkHecDestinationType {
 	if o == nil {
@@ -234,6 +244,8 @@ func (o *ObservabilityPipelineSplunkHecDestination) GetTypeOk() (*ObservabilityP
 func (o *ObservabilityPipelineSplunkHecDestination) SetType(v ObservabilityPipelineSplunkHecDestinationType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSplunkHecDestination) MarshalJSON() ([]byte, error) {
@@ -266,13 +278,13 @@ func (o ObservabilityPipelineSplunkHecDestination) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSplunkHecDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AutoExtractTimestamp *bool                                              `json:"auto_extract_timestamp,omitempty"`
-		Encoding             *ObservabilityPipelineSplunkHecDestinationEncoding `json:"encoding,omitempty"`
-		Id                   *string                                            `json:"id"`
-		Index                *string                                            `json:"index,omitempty"`
-		Inputs               *[]string                                          `json:"inputs"`
-		Sourcetype           *string                                            `json:"sourcetype,omitempty"`
-		Type                 *ObservabilityPipelineSplunkHecDestinationType     `json:"type"`
+		AutoExtractTimestamp *bool `json:"auto_extract_timestamp,omitempty"`
+		Encoding *ObservabilityPipelineSplunkHecDestinationEncoding `json:"encoding,omitempty"`
+		Id *string `json:"id"`
+		Index *string `json:"index,omitempty"`
+		Inputs *[]string `json:"inputs"`
+		Sourcetype *string `json:"sourcetype,omitempty"`
+		Type *ObservabilityPipelineSplunkHecDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -288,14 +300,14 @@ func (o *ObservabilityPipelineSplunkHecDestination) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auto_extract_timestamp", "encoding", "id", "index", "inputs", "sourcetype", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "auto_extract_timestamp", "encoding", "id", "index", "inputs", "sourcetype", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.AutoExtractTimestamp = all.AutoExtractTimestamp
-	if all.Encoding != nil && !all.Encoding.IsValid() {
+	if all.Encoding != nil &&!all.Encoding.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Encoding = all.Encoding

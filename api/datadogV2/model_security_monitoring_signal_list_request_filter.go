@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringSignalListRequestFilter Search filters for listing security signals.
 type SecurityMonitoringSignalListRequestFilter struct {
@@ -19,9 +23,10 @@ type SecurityMonitoringSignalListRequestFilter struct {
 	// The maximum timestamp for requested security signals.
 	To *time.Time `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringSignalListRequestFilter instantiates a new SecurityMonitoringSignalListRequestFilter object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSecurityMonitoringSignalListRequestFilterWithDefaults() *SecurityMonitor
 	this := SecurityMonitoringSignalListRequestFilter{}
 	return &this
 }
-
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequestFilter) GetFrom() time.Time {
 	if o == nil || o.From == nil {
@@ -67,6 +71,7 @@ func (o *SecurityMonitoringSignalListRequestFilter) HasFrom() bool {
 func (o *SecurityMonitoringSignalListRequestFilter) SetFrom(v time.Time) {
 	o.From = &v
 }
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequestFilter) GetQuery() string {
@@ -96,6 +101,7 @@ func (o *SecurityMonitoringSignalListRequestFilter) SetQuery(v string) {
 	o.Query = &v
 }
 
+
 // GetTo returns the To field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequestFilter) GetTo() time.Time {
 	if o == nil || o.To == nil {
@@ -123,6 +129,8 @@ func (o *SecurityMonitoringSignalListRequestFilter) HasTo() bool {
 func (o *SecurityMonitoringSignalListRequestFilter) SetTo(v time.Time) {
 	o.To = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringSignalListRequestFilter) MarshalJSON() ([]byte, error) {
@@ -157,16 +165,16 @@ func (o SecurityMonitoringSignalListRequestFilter) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalListRequestFilter) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		From  *time.Time `json:"from,omitempty"`
-		Query *string    `json:"query,omitempty"`
-		To    *time.Time `json:"to,omitempty"`
+		From *time.Time `json:"from,omitempty"`
+		Query *string `json:"query,omitempty"`
+		To *time.Time `json:"to,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"from", "query", "to"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "from", "query", "to",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PatchNotificationRuleParametersDataAttributes Attributes of the notification rule patch request. It is required to update the version of the rule when patching it.
 type PatchNotificationRuleParametersDataAttributes struct {
@@ -31,9 +37,10 @@ type PatchNotificationRuleParametersDataAttributes struct {
 	// Version of the notification rule. It is updated when the rule is modified.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPatchNotificationRuleParametersDataAttributes instantiates a new PatchNotificationRuleParametersDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +58,6 @@ func NewPatchNotificationRuleParametersDataAttributesWithDefaults() *PatchNotifi
 	this := PatchNotificationRuleParametersDataAttributes{}
 	return &this
 }
-
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *PatchNotificationRuleParametersDataAttributes) GetEnabled() bool {
 	if o == nil || o.Enabled == nil {
@@ -79,6 +85,7 @@ func (o *PatchNotificationRuleParametersDataAttributes) HasEnabled() bool {
 func (o *PatchNotificationRuleParametersDataAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PatchNotificationRuleParametersDataAttributes) GetName() string {
@@ -108,6 +115,7 @@ func (o *PatchNotificationRuleParametersDataAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSelectors returns the Selectors field value if set, zero value otherwise.
 func (o *PatchNotificationRuleParametersDataAttributes) GetSelectors() Selectors {
 	if o == nil || o.Selectors == nil {
@@ -135,6 +143,7 @@ func (o *PatchNotificationRuleParametersDataAttributes) HasSelectors() bool {
 func (o *PatchNotificationRuleParametersDataAttributes) SetSelectors(v Selectors) {
 	o.Selectors = &v
 }
+
 
 // GetTargets returns the Targets field value if set, zero value otherwise.
 func (o *PatchNotificationRuleParametersDataAttributes) GetTargets() []string {
@@ -164,6 +173,7 @@ func (o *PatchNotificationRuleParametersDataAttributes) SetTargets(v []string) {
 	o.Targets = v
 }
 
+
 // GetTimeAggregation returns the TimeAggregation field value if set, zero value otherwise.
 func (o *PatchNotificationRuleParametersDataAttributes) GetTimeAggregation() int64 {
 	if o == nil || o.TimeAggregation == nil {
@@ -192,6 +202,7 @@ func (o *PatchNotificationRuleParametersDataAttributes) SetTimeAggregation(v int
 	o.TimeAggregation = &v
 }
 
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *PatchNotificationRuleParametersDataAttributes) GetVersion() int64 {
 	if o == nil || o.Version == nil {
@@ -219,6 +230,8 @@ func (o *PatchNotificationRuleParametersDataAttributes) HasVersion() bool {
 func (o *PatchNotificationRuleParametersDataAttributes) SetVersion(v int64) {
 	o.Version = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o PatchNotificationRuleParametersDataAttributes) MarshalJSON() ([]byte, error) {
@@ -254,19 +267,19 @@ func (o PatchNotificationRuleParametersDataAttributes) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *PatchNotificationRuleParametersDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enabled         *bool      `json:"enabled,omitempty"`
-		Name            *string    `json:"name,omitempty"`
-		Selectors       *Selectors `json:"selectors,omitempty"`
-		Targets         []string   `json:"targets,omitempty"`
-		TimeAggregation *int64     `json:"time_aggregation,omitempty"`
-		Version         *int64     `json:"version,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Selectors *Selectors `json:"selectors,omitempty"`
+		Targets []string `json:"targets,omitempty"`
+		TimeAggregation *int64 `json:"time_aggregation,omitempty"`
+		Version *int64 `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "name", "selectors", "targets", "time_aggregation", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "enabled", "name", "selectors", "targets", "time_aggregation", "version",  })
 	} else {
 		return err
 	}
@@ -274,7 +287,7 @@ func (o *PatchNotificationRuleParametersDataAttributes) UnmarshalJSON(bytes []by
 	hasInvalidField := false
 	o.Enabled = all.Enabled
 	o.Name = all.Name
-	if all.Selectors != nil && all.Selectors.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Selectors != nil && all.Selectors.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Selectors = all.Selectors

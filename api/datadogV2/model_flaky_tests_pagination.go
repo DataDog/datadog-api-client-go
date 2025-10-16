@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FlakyTestsPagination Pagination metadata for flaky tests.
 type FlakyTestsPagination struct {
 	// Cursor for the next page of results.
 	NextPage datadog.NullableString `json:"next_page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFlakyTestsPagination instantiates a new FlakyTestsPagination object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewFlakyTestsPaginationWithDefaults() *FlakyTestsPagination {
 	this := FlakyTestsPagination{}
 	return &this
 }
-
 // GetNextPage returns the NextPage field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FlakyTestsPagination) GetNextPage() string {
 	if o == nil || o.NextPage.Get() == nil {
@@ -47,7 +53,7 @@ func (o *FlakyTestsPagination) GetNextPage() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *FlakyTestsPagination) GetNextPageOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.NextPage.Get(), o.NextPage.IsSet()
@@ -62,7 +68,6 @@ func (o *FlakyTestsPagination) HasNextPage() bool {
 func (o *FlakyTestsPagination) SetNextPage(v string) {
 	o.NextPage.Set(&v)
 }
-
 // SetNextPageNil sets the value for NextPage to be an explicit nil.
 func (o *FlakyTestsPagination) SetNextPageNil() {
 	o.NextPage.Set(nil)
@@ -72,6 +77,8 @@ func (o *FlakyTestsPagination) SetNextPageNil() {
 func (o *FlakyTestsPagination) UnsetNextPage() {
 	o.NextPage.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FlakyTestsPagination) MarshalJSON() ([]byte, error) {
@@ -99,7 +106,7 @@ func (o *FlakyTestsPagination) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"next_page"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "next_page",  })
 	} else {
 		return err
 	}

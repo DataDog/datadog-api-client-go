@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AnthropicIntegration The definition of the `AnthropicIntegration` object.
 type AnthropicIntegration struct {
@@ -17,9 +21,10 @@ type AnthropicIntegration struct {
 	// The definition of the `AnthropicIntegrationType` object.
 	Type AnthropicIntegrationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAnthropicIntegration instantiates a new AnthropicIntegration object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewAnthropicIntegrationWithDefaults() *AnthropicIntegration {
 	this := AnthropicIntegration{}
 	return &this
 }
-
 // GetCredentials returns the Credentials field value.
 func (o *AnthropicIntegration) GetCredentials() AnthropicCredentials {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *AnthropicIntegration) GetCredentialsOk() (*AnthropicCredentials, bool) 
 func (o *AnthropicIntegration) SetCredentials(v AnthropicCredentials) {
 	o.Credentials = v
 }
+
 
 // GetType returns the Type field value.
 func (o *AnthropicIntegration) GetType() AnthropicIntegrationType {
@@ -86,6 +91,8 @@ func (o *AnthropicIntegration) SetType(v AnthropicIntegrationType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AnthropicIntegration) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o AnthropicIntegration) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AnthropicIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Credentials *AnthropicCredentials     `json:"credentials"`
-		Type        *AnthropicIntegrationType `json:"type"`
+		Credentials *AnthropicCredentials `json:"credentials"`
+		Type *AnthropicIntegrationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *AnthropicIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"credentials", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "credentials", "type",  })
 	} else {
 		return err
 	}

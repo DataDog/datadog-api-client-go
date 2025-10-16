@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAssertionJSONPathTargetTarget Composed target for `validatesJSONPath` operator.
 type SyntheticsAssertionJSONPathTargetTarget struct {
@@ -19,9 +25,10 @@ type SyntheticsAssertionJSONPathTargetTarget struct {
 	// Value used by the operator in assertions. Can be either a number or string.
 	TargetValue *SyntheticsAssertionTargetValue `json:"targetValue,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsAssertionJSONPathTargetTarget instantiates a new SyntheticsAssertionJSONPathTargetTarget object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewSyntheticsAssertionJSONPathTargetTargetWithDefaults() *SyntheticsAsserti
 	this := SyntheticsAssertionJSONPathTargetTarget{}
 	return &this
 }
-
 // GetElementsOperator returns the ElementsOperator field value if set, zero value otherwise.
 func (o *SyntheticsAssertionJSONPathTargetTarget) GetElementsOperator() string {
 	if o == nil || o.ElementsOperator == nil {
@@ -67,6 +73,7 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) HasElementsOperator() bool {
 func (o *SyntheticsAssertionJSONPathTargetTarget) SetElementsOperator(v string) {
 	o.ElementsOperator = &v
 }
+
 
 // GetJsonPath returns the JsonPath field value if set, zero value otherwise.
 func (o *SyntheticsAssertionJSONPathTargetTarget) GetJsonPath() string {
@@ -96,6 +103,7 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) SetJsonPath(v string) {
 	o.JsonPath = &v
 }
 
+
 // GetOperator returns the Operator field value if set, zero value otherwise.
 func (o *SyntheticsAssertionJSONPathTargetTarget) GetOperator() string {
 	if o == nil || o.Operator == nil {
@@ -123,6 +131,7 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) HasOperator() bool {
 func (o *SyntheticsAssertionJSONPathTargetTarget) SetOperator(v string) {
 	o.Operator = &v
 }
+
 
 // GetTargetValue returns the TargetValue field value if set, zero value otherwise.
 func (o *SyntheticsAssertionJSONPathTargetTarget) GetTargetValue() SyntheticsAssertionTargetValue {
@@ -152,6 +161,8 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) SetTargetValue(v SyntheticsAss
 	o.TargetValue = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAssertionJSONPathTargetTarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,17 +191,17 @@ func (o SyntheticsAssertionJSONPathTargetTarget) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAssertionJSONPathTargetTarget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ElementsOperator *string                         `json:"elementsOperator,omitempty"`
-		JsonPath         *string                         `json:"jsonPath,omitempty"`
-		Operator         *string                         `json:"operator,omitempty"`
-		TargetValue      *SyntheticsAssertionTargetValue `json:"targetValue,omitempty"`
+		ElementsOperator *string `json:"elementsOperator,omitempty"`
+		JsonPath *string `json:"jsonPath,omitempty"`
+		Operator *string `json:"operator,omitempty"`
+		TargetValue *SyntheticsAssertionTargetValue `json:"targetValue,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"elementsOperator", "jsonPath", "operator", "targetValue"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "elementsOperator", "jsonPath", "operator", "targetValue",  })
 	} else {
 		return err
 	}

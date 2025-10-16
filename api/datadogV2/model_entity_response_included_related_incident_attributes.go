@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityResponseIncludedRelatedIncidentAttributes Incident attributes.
 type EntityResponseIncludedRelatedIncidentAttributes struct {
@@ -23,9 +27,10 @@ type EntityResponseIncludedRelatedIncidentAttributes struct {
 	// Incident title.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityResponseIncludedRelatedIncidentAttributes instantiates a new EntityResponseIncludedRelatedIncidentAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewEntityResponseIncludedRelatedIncidentAttributesWithDefaults() *EntityRes
 	this := EntityResponseIncludedRelatedIncidentAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedIncidentAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -71,6 +75,7 @@ func (o *EntityResponseIncludedRelatedIncidentAttributes) HasCreatedAt() bool {
 func (o *EntityResponseIncludedRelatedIncidentAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
+
 
 // GetHtmlUrl returns the HtmlUrl field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedIncidentAttributes) GetHtmlUrl() string {
@@ -100,6 +105,7 @@ func (o *EntityResponseIncludedRelatedIncidentAttributes) SetHtmlUrl(v string) {
 	o.HtmlUrl = &v
 }
 
+
 // GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedIncidentAttributes) GetProvider() string {
 	if o == nil || o.Provider == nil {
@@ -127,6 +133,7 @@ func (o *EntityResponseIncludedRelatedIncidentAttributes) HasProvider() bool {
 func (o *EntityResponseIncludedRelatedIncidentAttributes) SetProvider(v string) {
 	o.Provider = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedIncidentAttributes) GetStatus() string {
@@ -156,6 +163,7 @@ func (o *EntityResponseIncludedRelatedIncidentAttributes) SetStatus(v string) {
 	o.Status = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedIncidentAttributes) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -183,6 +191,8 @@ func (o *EntityResponseIncludedRelatedIncidentAttributes) HasTitle() bool {
 func (o *EntityResponseIncludedRelatedIncidentAttributes) SetTitle(v string) {
 	o.Title = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityResponseIncludedRelatedIncidentAttributes) MarshalJSON() ([]byte, error) {
@@ -220,17 +230,17 @@ func (o EntityResponseIncludedRelatedIncidentAttributes) MarshalJSON() ([]byte, 
 func (o *EntityResponseIncludedRelatedIncidentAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CreatedAt *time.Time `json:"createdAt,omitempty"`
-		HtmlUrl   *string    `json:"htmlURL,omitempty"`
-		Provider  *string    `json:"provider,omitempty"`
-		Status    *string    `json:"status,omitempty"`
-		Title     *string    `json:"title,omitempty"`
+		HtmlUrl *string `json:"htmlURL,omitempty"`
+		Provider *string `json:"provider,omitempty"`
+		Status *string `json:"status,omitempty"`
+		Title *string `json:"title,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "htmlURL", "provider", "status", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "createdAt", "htmlURL", "provider", "status", "title",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineReduceProcessorMergeStrategy Defines how a specific field should be merged across grouped events.
 type ObservabilityPipelineReduceProcessorMergeStrategy struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineReduceProcessorMergeStrategy struct {
 	// The merge strategy to apply.
 	Strategy ObservabilityPipelineReduceProcessorMergeStrategyStrategy `json:"strategy"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineReduceProcessorMergeStrategy instantiates a new ObservabilityPipelineReduceProcessorMergeStrategy object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineReduceProcessorMergeStrategyWithDefaults() *Observa
 	this := ObservabilityPipelineReduceProcessorMergeStrategy{}
 	return &this
 }
-
 // GetPath returns the Path field value.
 func (o *ObservabilityPipelineReduceProcessorMergeStrategy) GetPath() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineReduceProcessorMergeStrategy) GetPathOk() (*string
 func (o *ObservabilityPipelineReduceProcessorMergeStrategy) SetPath(v string) {
 	o.Path = v
 }
+
 
 // GetStrategy returns the Strategy field value.
 func (o *ObservabilityPipelineReduceProcessorMergeStrategy) GetStrategy() ObservabilityPipelineReduceProcessorMergeStrategyStrategy {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineReduceProcessorMergeStrategy) SetStrategy(v Observ
 	o.Strategy = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineReduceProcessorMergeStrategy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o ObservabilityPipelineReduceProcessorMergeStrategy) MarshalJSON() ([]byte
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineReduceProcessorMergeStrategy) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Path     *string                                                    `json:"path"`
+		Path *string `json:"path"`
 		Strategy *ObservabilityPipelineReduceProcessorMergeStrategyStrategy `json:"strategy"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineReduceProcessorMergeStrategy) UnmarshalJSON(bytes 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"path", "strategy"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "path", "strategy",  })
 	} else {
 		return err
 	}

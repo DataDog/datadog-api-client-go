@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // VirusTotalCredentialsUpdate - The definition of the `VirusTotalCredentialsUpdate` object.
 type VirusTotalCredentialsUpdate struct {
@@ -56,6 +62,7 @@ func (obj VirusTotalCredentialsUpdate) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.VirusTotalAPIKeyUpdate)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj VirusTotalCredentialsUpdate) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *VirusTotalCredentialsUpdate) GetActualInstance() interface{} {
+func (obj *VirusTotalCredentialsUpdate) GetActualInstance() (interface{}) {
 	if obj.VirusTotalAPIKeyUpdate != nil {
 		return obj.VirusTotalAPIKeyUpdate
 	}
+
 
 	// all schemas are nil
 	return nil

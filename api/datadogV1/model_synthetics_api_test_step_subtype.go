@@ -2,26 +2,30 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAPITestStepSubtype The subtype of the Synthetic multi-step API test step.
 type SyntheticsAPITestStepSubtype string
 
 // List of SyntheticsAPITestStepSubtype.
 const (
-	SYNTHETICSAPITESTSTEPSUBTYPE_HTTP      SyntheticsAPITestStepSubtype = "http"
-	SYNTHETICSAPITESTSTEPSUBTYPE_GRPC      SyntheticsAPITestStepSubtype = "grpc"
-	SYNTHETICSAPITESTSTEPSUBTYPE_SSL       SyntheticsAPITestStepSubtype = "ssl"
-	SYNTHETICSAPITESTSTEPSUBTYPE_DNS       SyntheticsAPITestStepSubtype = "dns"
-	SYNTHETICSAPITESTSTEPSUBTYPE_TCP       SyntheticsAPITestStepSubtype = "tcp"
-	SYNTHETICSAPITESTSTEPSUBTYPE_UDP       SyntheticsAPITestStepSubtype = "udp"
-	SYNTHETICSAPITESTSTEPSUBTYPE_ICMP      SyntheticsAPITestStepSubtype = "icmp"
+	SYNTHETICSAPITESTSTEPSUBTYPE_HTTP SyntheticsAPITestStepSubtype = "http"
+	SYNTHETICSAPITESTSTEPSUBTYPE_GRPC SyntheticsAPITestStepSubtype = "grpc"
+	SYNTHETICSAPITESTSTEPSUBTYPE_SSL SyntheticsAPITestStepSubtype = "ssl"
+	SYNTHETICSAPITESTSTEPSUBTYPE_DNS SyntheticsAPITestStepSubtype = "dns"
+	SYNTHETICSAPITESTSTEPSUBTYPE_TCP SyntheticsAPITestStepSubtype = "tcp"
+	SYNTHETICSAPITESTSTEPSUBTYPE_UDP SyntheticsAPITestStepSubtype = "udp"
+	SYNTHETICSAPITESTSTEPSUBTYPE_ICMP SyntheticsAPITestStepSubtype = "icmp"
 	SYNTHETICSAPITESTSTEPSUBTYPE_WEBSOCKET SyntheticsAPITestStepSubtype = "websocket"
 )
 

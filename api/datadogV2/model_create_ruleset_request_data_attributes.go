@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateRulesetRequestDataAttributes The definition of `CreateRulesetRequestDataAttributes` object.
 type CreateRulesetRequestDataAttributes struct {
@@ -17,9 +21,10 @@ type CreateRulesetRequestDataAttributes struct {
 	// The `attributes` `rules`.
 	Rules []CreateRulesetRequestDataAttributesRulesItems `json:"rules"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateRulesetRequestDataAttributes instantiates a new CreateRulesetRequestDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewCreateRulesetRequestDataAttributesWithDefaults() *CreateRulesetRequestDa
 	this := CreateRulesetRequestDataAttributes{}
 	return &this
 }
-
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *CreateRulesetRequestDataAttributes) GetEnabled() bool {
 	if o == nil || o.Enabled == nil {
@@ -67,6 +71,7 @@ func (o *CreateRulesetRequestDataAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
 // GetRules returns the Rules field value.
 func (o *CreateRulesetRequestDataAttributes) GetRules() []CreateRulesetRequestDataAttributesRulesItems {
 	if o == nil {
@@ -90,6 +95,8 @@ func (o *CreateRulesetRequestDataAttributes) SetRules(v []CreateRulesetRequestDa
 	o.Rules = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateRulesetRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,8 +117,8 @@ func (o CreateRulesetRequestDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateRulesetRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enabled *bool                                           `json:"enabled,omitempty"`
-		Rules   *[]CreateRulesetRequestDataAttributesRulesItems `json:"rules"`
+		Enabled *bool `json:"enabled,omitempty"`
+		Rules *[]CreateRulesetRequestDataAttributesRulesItems `json:"rules"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *CreateRulesetRequestDataAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "rules"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "enabled", "rules",  })
 	} else {
 		return err
 	}

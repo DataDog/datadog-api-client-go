@@ -2,18 +2,20 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	// there is a valid "historical_job" in the system
+
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
@@ -21,7 +23,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.RunHistoricalJob", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.ListHistoricalJobs(ctx, *datadogV2.NewListHistoricalJobsOptionalParameters().WithFilterQuery("id:string"))
+	resp, r, err := api.ListHistoricalJobs(ctx, *datadogV2.NewListHistoricalJobsOptionalParameters().WithFilterQuery("id:string"), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListHistoricalJobs`: %v\n", err)

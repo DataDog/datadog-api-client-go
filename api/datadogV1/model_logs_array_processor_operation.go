@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsArrayProcessorOperation - Configuration of the array processor operation to perform.
 type LogsArrayProcessorOperation struct {
@@ -104,13 +110,16 @@ func (obj LogsArrayProcessorOperation) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.LogsArrayProcessorOperationAppend)
 	}
 
+
 	if obj.LogsArrayProcessorOperationLength != nil {
 		return datadog.Marshal(&obj.LogsArrayProcessorOperationLength)
 	}
 
+
 	if obj.LogsArrayProcessorOperationSelect != nil {
 		return datadog.Marshal(&obj.LogsArrayProcessorOperationSelect)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj LogsArrayProcessorOperation) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *LogsArrayProcessorOperation) GetActualInstance() interface{} {
+func (obj *LogsArrayProcessorOperation) GetActualInstance() (interface{}) {
 	if obj.LogsArrayProcessorOperationAppend != nil {
 		return obj.LogsArrayProcessorOperationAppend
 	}
+
 
 	if obj.LogsArrayProcessorOperationLength != nil {
 		return obj.LogsArrayProcessorOperationLength
 	}
 
+
 	if obj.LogsArrayProcessorOperationSelect != nil {
 		return obj.LogsArrayProcessorOperationSelect
 	}
+
 
 	// all schemas are nil
 	return nil

@@ -2,36 +2,37 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
-	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+    "github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
 	body := datadogV2.SecurityMonitoringSuppressionCreateRequest{
-		Data: datadogV2.SecurityMonitoringSuppressionCreateData{
-			Attributes: datadogV2.SecurityMonitoringSuppressionCreateAttributes{
-				Description:      datadog.PtrString("This rule suppresses low-severity signals in staging environments."),
-				Enabled:          true,
-				StartDate:        datadog.PtrInt64(1637493071000),
-				ExpirationDate:   datadog.PtrInt64(1638443471000),
-				Name:             "Example-Security-Monitoring",
-				RuleQuery:        "type:log_detection source:cloudtrail",
-				SuppressionQuery: datadog.PtrString("env:staging status:low"),
-			},
-			Type: datadogV2.SECURITYMONITORINGSUPPRESSIONTYPE_SUPPRESSIONS,
-		},
-	}
+Data: datadogV2.SecurityMonitoringSuppressionCreateData{
+Attributes: datadogV2.SecurityMonitoringSuppressionCreateAttributes{
+Description: datadog.PtrString("This rule suppresses low-severity signals in staging environments."),
+Enabled: true,
+StartDate: datadog.PtrInt64(1637493071000),
+ExpirationDate: datadog.PtrInt64(1638443471000),
+Name: "Example-Security-Monitoring",
+RuleQuery: "type:log_detection source:cloudtrail",
+SuppressionQuery: datadog.PtrString("env:staging status:low"),
+},
+Type: datadogV2.SECURITYMONITORINGSUPPRESSIONTYPE_SUPPRESSIONS,
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.CreateSecurityMonitoringSuppression(ctx, body)
+	resp, r, err := api.CreateSecurityMonitoringSuppression(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityMonitoringSuppression`: %v\n", err)

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineConfig Specifies the pipeline's configuration, including its sources, processors, and destinations.
 type ObservabilityPipelineConfig struct {
@@ -19,9 +23,10 @@ type ObservabilityPipelineConfig struct {
 	// A list of configured data sources for the pipeline.
 	Sources []ObservabilityPipelineConfigSourceItem `json:"sources"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineConfig instantiates a new ObservabilityPipelineConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewObservabilityPipelineConfigWithDefaults() *ObservabilityPipelineConfig {
 	this := ObservabilityPipelineConfig{}
 	return &this
 }
-
 // GetDestinations returns the Destinations field value.
 func (o *ObservabilityPipelineConfig) GetDestinations() []ObservabilityPipelineConfigDestinationItem {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *ObservabilityPipelineConfig) GetDestinationsOk() (*[]ObservabilityPipel
 func (o *ObservabilityPipelineConfig) SetDestinations(v []ObservabilityPipelineConfigDestinationItem) {
 	o.Destinations = v
 }
+
 
 // GetProcessors returns the Processors field value if set, zero value otherwise.
 func (o *ObservabilityPipelineConfig) GetProcessors() []ObservabilityPipelineConfigProcessorItem {
@@ -93,6 +98,7 @@ func (o *ObservabilityPipelineConfig) SetProcessors(v []ObservabilityPipelineCon
 	o.Processors = v
 }
 
+
 // GetSources returns the Sources field value.
 func (o *ObservabilityPipelineConfig) GetSources() []ObservabilityPipelineConfigSourceItem {
 	if o == nil {
@@ -116,6 +122,8 @@ func (o *ObservabilityPipelineConfig) SetSources(v []ObservabilityPipelineConfig
 	o.Sources = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -138,8 +146,8 @@ func (o ObservabilityPipelineConfig) MarshalJSON() ([]byte, error) {
 func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Destinations *[]ObservabilityPipelineConfigDestinationItem `json:"destinations"`
-		Processors   []ObservabilityPipelineConfigProcessorItem    `json:"processors,omitempty"`
-		Sources      *[]ObservabilityPipelineConfigSourceItem      `json:"sources"`
+		Processors []ObservabilityPipelineConfigProcessorItem `json:"processors,omitempty"`
+		Sources *[]ObservabilityPipelineConfigSourceItem `json:"sources"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"destinations", "processors", "sources"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "destinations", "processors", "sources",  })
 	} else {
 		return err
 	}

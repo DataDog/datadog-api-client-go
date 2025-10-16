@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TriggerRateLimit Defines a rate limit for a trigger.
 type TriggerRateLimit struct {
@@ -15,9 +21,10 @@ type TriggerRateLimit struct {
 	// The `TriggerRateLimit` `interval`. The expected format is the number of seconds ending with an s. For example, 1 day is 86400s
 	Interval *string `json:"interval,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTriggerRateLimit instantiates a new TriggerRateLimit object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewTriggerRateLimitWithDefaults() *TriggerRateLimit {
 	this := TriggerRateLimit{}
 	return &this
 }
-
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *TriggerRateLimit) GetCount() int64 {
 	if o == nil || o.Count == nil {
@@ -63,6 +69,7 @@ func (o *TriggerRateLimit) HasCount() bool {
 func (o *TriggerRateLimit) SetCount(v int64) {
 	o.Count = &v
 }
+
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *TriggerRateLimit) GetInterval() string {
@@ -92,6 +99,8 @@ func (o *TriggerRateLimit) SetInterval(v string) {
 	o.Interval = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TriggerRateLimit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o TriggerRateLimit) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TriggerRateLimit) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Count    *int64  `json:"count,omitempty"`
+		Count *int64 `json:"count,omitempty"`
 		Interval *string `json:"interval,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *TriggerRateLimit) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"count", "interval"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "count", "interval",  })
 	} else {
 		return err
 	}

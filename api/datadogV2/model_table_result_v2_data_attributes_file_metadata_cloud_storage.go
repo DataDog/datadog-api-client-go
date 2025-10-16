@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TableResultV2DataAttributesFileMetadataCloudStorage File metadata for reference tables created by cloud storage.
 type TableResultV2DataAttributesFileMetadataCloudStorage struct {
@@ -21,9 +27,10 @@ type TableResultV2DataAttributesFileMetadataCloudStorage struct {
 	// Whether this table is synced automatically.
 	SyncEnabled *bool `json:"sync_enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTableResultV2DataAttributesFileMetadataCloudStorage instantiates a new TableResultV2DataAttributesFileMetadataCloudStorage object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewTableResultV2DataAttributesFileMetadataCloudStorageWithDefaults() *Table
 	this := TableResultV2DataAttributesFileMetadataCloudStorage{}
 	return &this
 }
-
 // GetAccessDetails returns the AccessDetails field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributesFileMetadataCloudStorage) GetAccessDetails() TableResultV2DataAttributesFileMetadataOneOfAccessDetails {
 	if o == nil || o.AccessDetails == nil {
@@ -69,6 +75,7 @@ func (o *TableResultV2DataAttributesFileMetadataCloudStorage) HasAccessDetails()
 func (o *TableResultV2DataAttributesFileMetadataCloudStorage) SetAccessDetails(v TableResultV2DataAttributesFileMetadataOneOfAccessDetails) {
 	o.AccessDetails = &v
 }
+
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributesFileMetadataCloudStorage) GetErrorMessage() string {
@@ -98,6 +105,7 @@ func (o *TableResultV2DataAttributesFileMetadataCloudStorage) SetErrorMessage(v 
 	o.ErrorMessage = &v
 }
 
+
 // GetErrorRowCount returns the ErrorRowCount field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributesFileMetadataCloudStorage) GetErrorRowCount() int64 {
 	if o == nil || o.ErrorRowCount == nil {
@@ -125,6 +133,7 @@ func (o *TableResultV2DataAttributesFileMetadataCloudStorage) HasErrorRowCount()
 func (o *TableResultV2DataAttributesFileMetadataCloudStorage) SetErrorRowCount(v int64) {
 	o.ErrorRowCount = &v
 }
+
 
 // GetErrorType returns the ErrorType field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributesFileMetadataCloudStorage) GetErrorType() TableResultV2DataAttributesFileMetadataCloudStorageErrorType {
@@ -154,6 +163,7 @@ func (o *TableResultV2DataAttributesFileMetadataCloudStorage) SetErrorType(v Tab
 	o.ErrorType = &v
 }
 
+
 // GetSyncEnabled returns the SyncEnabled field value if set, zero value otherwise.
 func (o *TableResultV2DataAttributesFileMetadataCloudStorage) GetSyncEnabled() bool {
 	if o == nil || o.SyncEnabled == nil {
@@ -181,6 +191,8 @@ func (o *TableResultV2DataAttributesFileMetadataCloudStorage) HasSyncEnabled() b
 func (o *TableResultV2DataAttributesFileMetadataCloudStorage) SetSyncEnabled(v bool) {
 	o.SyncEnabled = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TableResultV2DataAttributesFileMetadataCloudStorage) MarshalJSON() ([]byte, error) {
@@ -213,30 +225,30 @@ func (o TableResultV2DataAttributesFileMetadataCloudStorage) MarshalJSON() ([]by
 // UnmarshalJSON deserializes the given payload.
 func (o *TableResultV2DataAttributesFileMetadataCloudStorage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccessDetails *TableResultV2DataAttributesFileMetadataOneOfAccessDetails    `json:"access_details,omitempty"`
-		ErrorMessage  *string                                                       `json:"error_message,omitempty"`
-		ErrorRowCount *int64                                                        `json:"error_row_count,omitempty"`
-		ErrorType     *TableResultV2DataAttributesFileMetadataCloudStorageErrorType `json:"error_type,omitempty"`
-		SyncEnabled   *bool                                                         `json:"sync_enabled,omitempty"`
+		AccessDetails *TableResultV2DataAttributesFileMetadataOneOfAccessDetails `json:"access_details,omitempty"`
+		ErrorMessage *string `json:"error_message,omitempty"`
+		ErrorRowCount *int64 `json:"error_row_count,omitempty"`
+		ErrorType *TableResultV2DataAttributesFileMetadataCloudStorageErrorType `json:"error_type,omitempty"`
+		SyncEnabled *bool `json:"sync_enabled,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"access_details", "error_message", "error_row_count", "error_type", "sync_enabled"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "access_details", "error_message", "error_row_count", "error_type", "sync_enabled",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.AccessDetails != nil && all.AccessDetails.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.AccessDetails != nil && all.AccessDetails.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.AccessDetails = all.AccessDetails
 	o.ErrorMessage = all.ErrorMessage
 	o.ErrorRowCount = all.ErrorRowCount
-	if all.ErrorType != nil && !all.ErrorType.IsValid() {
+	if all.ErrorType != nil &&!all.ErrorType.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ErrorType = all.ErrorType

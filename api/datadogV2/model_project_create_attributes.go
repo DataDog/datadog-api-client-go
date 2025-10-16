@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ProjectCreateAttributes Project creation attributes
 type ProjectCreateAttributes struct {
@@ -17,9 +21,10 @@ type ProjectCreateAttributes struct {
 	// name
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewProjectCreateAttributes instantiates a new ProjectCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewProjectCreateAttributesWithDefaults() *ProjectCreateAttributes {
 	this := ProjectCreateAttributes{}
 	return &this
 }
-
 // GetKey returns the Key field value.
 func (o *ProjectCreateAttributes) GetKey() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ProjectCreateAttributes) GetKeyOk() (*string, bool) {
 func (o *ProjectCreateAttributes) SetKey(v string) {
 	o.Key = v
 }
+
 
 // GetName returns the Name field value.
 func (o *ProjectCreateAttributes) GetName() string {
@@ -86,6 +91,8 @@ func (o *ProjectCreateAttributes) SetName(v string) {
 	o.Name = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ProjectCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o ProjectCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ProjectCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Key  *string `json:"key"`
+		Key *string `json:"key"`
 		Name *string `json:"name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *ProjectCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"key", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "key", "name",  })
 	} else {
 		return err
 	}

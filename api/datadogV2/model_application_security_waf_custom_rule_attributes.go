@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleAttributes A WAF custom rule.
 type ApplicationSecurityWafCustomRuleAttributes struct {
@@ -33,9 +37,10 @@ type ApplicationSecurityWafCustomRuleAttributes struct {
 	// activity field associated with the traces.
 	Tags ApplicationSecurityWafCustomRuleTags `json:"tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafCustomRuleAttributes instantiates a new ApplicationSecurityWafCustomRuleAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -58,7 +63,6 @@ func NewApplicationSecurityWafCustomRuleAttributesWithDefaults() *ApplicationSec
 	this := ApplicationSecurityWafCustomRuleAttributes{}
 	return &this
 }
-
 // GetAction returns the Action field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleAttributes) GetAction() ApplicationSecurityWafCustomRuleAction {
 	if o == nil || o.Action == nil {
@@ -87,6 +91,7 @@ func (o *ApplicationSecurityWafCustomRuleAttributes) SetAction(v ApplicationSecu
 	o.Action = &v
 }
 
+
 // GetBlocking returns the Blocking field value.
 func (o *ApplicationSecurityWafCustomRuleAttributes) GetBlocking() bool {
 	if o == nil {
@@ -109,6 +114,7 @@ func (o *ApplicationSecurityWafCustomRuleAttributes) GetBlockingOk() (*bool, boo
 func (o *ApplicationSecurityWafCustomRuleAttributes) SetBlocking(v bool) {
 	o.Blocking = v
 }
+
 
 // GetConditions returns the Conditions field value.
 func (o *ApplicationSecurityWafCustomRuleAttributes) GetConditions() []ApplicationSecurityWafCustomRuleCondition {
@@ -133,6 +139,7 @@ func (o *ApplicationSecurityWafCustomRuleAttributes) SetConditions(v []Applicati
 	o.Conditions = v
 }
 
+
 // GetEnabled returns the Enabled field value.
 func (o *ApplicationSecurityWafCustomRuleAttributes) GetEnabled() bool {
 	if o == nil {
@@ -155,6 +162,7 @@ func (o *ApplicationSecurityWafCustomRuleAttributes) GetEnabledOk() (*bool, bool
 func (o *ApplicationSecurityWafCustomRuleAttributes) SetEnabled(v bool) {
 	o.Enabled = v
 }
+
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleAttributes) GetMetadata() ApplicationSecurityWafCustomRuleMetadata {
@@ -184,6 +192,7 @@ func (o *ApplicationSecurityWafCustomRuleAttributes) SetMetadata(v ApplicationSe
 	o.Metadata = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *ApplicationSecurityWafCustomRuleAttributes) GetName() string {
 	if o == nil {
@@ -206,6 +215,7 @@ func (o *ApplicationSecurityWafCustomRuleAttributes) GetNameOk() (*string, bool)
 func (o *ApplicationSecurityWafCustomRuleAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetPathGlob returns the PathGlob field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleAttributes) GetPathGlob() string {
@@ -235,6 +245,7 @@ func (o *ApplicationSecurityWafCustomRuleAttributes) SetPathGlob(v string) {
 	o.PathGlob = &v
 }
 
+
 // GetScope returns the Scope field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleAttributes) GetScope() []ApplicationSecurityWafCustomRuleScope {
 	if o == nil || o.Scope == nil {
@@ -263,6 +274,7 @@ func (o *ApplicationSecurityWafCustomRuleAttributes) SetScope(v []ApplicationSec
 	o.Scope = v
 }
 
+
 // GetTags returns the Tags field value.
 func (o *ApplicationSecurityWafCustomRuleAttributes) GetTags() ApplicationSecurityWafCustomRuleTags {
 	if o == nil {
@@ -285,6 +297,8 @@ func (o *ApplicationSecurityWafCustomRuleAttributes) GetTagsOk() (*ApplicationSe
 func (o *ApplicationSecurityWafCustomRuleAttributes) SetTags(v ApplicationSecurityWafCustomRuleTags) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafCustomRuleAttributes) MarshalJSON() ([]byte, error) {
@@ -319,15 +333,15 @@ func (o ApplicationSecurityWafCustomRuleAttributes) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationSecurityWafCustomRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Action     *ApplicationSecurityWafCustomRuleAction      `json:"action,omitempty"`
-		Blocking   *bool                                        `json:"blocking"`
+		Action *ApplicationSecurityWafCustomRuleAction `json:"action,omitempty"`
+		Blocking *bool `json:"blocking"`
 		Conditions *[]ApplicationSecurityWafCustomRuleCondition `json:"conditions"`
-		Enabled    *bool                                        `json:"enabled"`
-		Metadata   *ApplicationSecurityWafCustomRuleMetadata    `json:"metadata,omitempty"`
-		Name       *string                                      `json:"name"`
-		PathGlob   *string                                      `json:"path_glob,omitempty"`
-		Scope      []ApplicationSecurityWafCustomRuleScope      `json:"scope,omitempty"`
-		Tags       *ApplicationSecurityWafCustomRuleTags        `json:"tags"`
+		Enabled *bool `json:"enabled"`
+		Metadata *ApplicationSecurityWafCustomRuleMetadata `json:"metadata,omitempty"`
+		Name *string `json:"name"`
+		PathGlob *string `json:"path_glob,omitempty"`
+		Scope []ApplicationSecurityWafCustomRuleScope `json:"scope,omitempty"`
+		Tags *ApplicationSecurityWafCustomRuleTags `json:"tags"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -349,20 +363,20 @@ func (o *ApplicationSecurityWafCustomRuleAttributes) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"action", "blocking", "conditions", "enabled", "metadata", "name", "path_glob", "scope", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "action", "blocking", "conditions", "enabled", "metadata", "name", "path_glob", "scope", "tags",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Action != nil && all.Action.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Action != nil && all.Action.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Action = all.Action
 	o.Blocking = *all.Blocking
 	o.Conditions = *all.Conditions
 	o.Enabled = *all.Enabled
-	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Metadata = all.Metadata

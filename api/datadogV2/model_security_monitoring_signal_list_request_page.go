@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringSignalListRequestPage The paging attributes for listing security signals.
 type SecurityMonitoringSignalListRequestPage struct {
@@ -15,9 +21,10 @@ type SecurityMonitoringSignalListRequestPage struct {
 	// The maximum number of security signals in the response.
 	Limit *int32 `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringSignalListRequestPage instantiates a new SecurityMonitoringSignalListRequestPage object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewSecurityMonitoringSignalListRequestPageWithDefaults() *SecurityMonitorin
 	this.Limit = &limit
 	return &this
 }
-
 // GetCursor returns the Cursor field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequestPage) GetCursor() string {
 	if o == nil || o.Cursor == nil {
@@ -67,6 +73,7 @@ func (o *SecurityMonitoringSignalListRequestPage) HasCursor() bool {
 func (o *SecurityMonitoringSignalListRequestPage) SetCursor(v string) {
 	o.Cursor = &v
 }
+
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequestPage) GetLimit() int32 {
@@ -96,6 +103,8 @@ func (o *SecurityMonitoringSignalListRequestPage) SetLimit(v int32) {
 	o.Limit = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringSignalListRequestPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -119,14 +128,14 @@ func (o SecurityMonitoringSignalListRequestPage) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringSignalListRequestPage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Cursor *string `json:"cursor,omitempty"`
-		Limit  *int32  `json:"limit,omitempty"`
+		Limit *int32 `json:"limit,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cursor", "limit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cursor", "limit",  })
 	} else {
 		return err
 	}

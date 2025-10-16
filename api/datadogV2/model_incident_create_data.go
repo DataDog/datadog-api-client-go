@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentCreateData Incident data for a create request.
 type IncidentCreateData struct {
@@ -19,9 +23,10 @@ type IncidentCreateData struct {
 	// Incident resource type.
 	Type IncidentType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentCreateData instantiates a new IncidentCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewIncidentCreateDataWithDefaults() *IncidentCreateData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *IncidentCreateData) GetAttributes() IncidentCreateAttributes {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *IncidentCreateData) GetAttributesOk() (*IncidentCreateAttributes, bool)
 func (o *IncidentCreateData) SetAttributes(v IncidentCreateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *IncidentCreateData) GetRelationships() IncidentCreateRelationships {
@@ -95,6 +100,7 @@ func (o *IncidentCreateData) SetRelationships(v IncidentCreateRelationships) {
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *IncidentCreateData) GetType() IncidentType {
 	if o == nil {
@@ -118,6 +124,8 @@ func (o *IncidentCreateData) SetType(v IncidentType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -139,9 +147,9 @@ func (o IncidentCreateData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *IncidentCreateAttributes    `json:"attributes"`
+		Attributes *IncidentCreateAttributes `json:"attributes"`
 		Relationships *IncidentCreateRelationships `json:"relationships,omitempty"`
-		Type          *IncidentType                `json:"type"`
+		Type *IncidentType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -154,7 +162,7 @@ func (o *IncidentCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "relationships", "type",  })
 	} else {
 		return err
 	}
@@ -164,7 +172,7 @@ func (o *IncidentCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

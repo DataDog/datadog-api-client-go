@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PatchTableRequestDataAttributesFileMetadataCloudStorage Cloud storage file metadata for patch requests. Allows partial updates of access_details and sync_enabled.
 type PatchTableRequestDataAttributesFileMetadataCloudStorage struct {
@@ -17,6 +23,7 @@ type PatchTableRequestDataAttributesFileMetadataCloudStorage struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewPatchTableRequestDataAttributesFileMetadataCloudStorage instantiates a new PatchTableRequestDataAttributesFileMetadataCloudStorage object.
 // This constructor will assign default values to properties that have it defined,
@@ -34,7 +41,6 @@ func NewPatchTableRequestDataAttributesFileMetadataCloudStorageWithDefaults() *P
 	this := PatchTableRequestDataAttributesFileMetadataCloudStorage{}
 	return &this
 }
-
 // GetAccessDetails returns the AccessDetails field value if set, zero value otherwise.
 func (o *PatchTableRequestDataAttributesFileMetadataCloudStorage) GetAccessDetails() PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails {
 	if o == nil || o.AccessDetails == nil {
@@ -62,6 +68,7 @@ func (o *PatchTableRequestDataAttributesFileMetadataCloudStorage) HasAccessDetai
 func (o *PatchTableRequestDataAttributesFileMetadataCloudStorage) SetAccessDetails(v PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails) {
 	o.AccessDetails = &v
 }
+
 
 // GetSyncEnabled returns the SyncEnabled field value if set, zero value otherwise.
 func (o *PatchTableRequestDataAttributesFileMetadataCloudStorage) GetSyncEnabled() bool {
@@ -91,6 +98,8 @@ func (o *PatchTableRequestDataAttributesFileMetadataCloudStorage) SetSyncEnabled
 	o.SyncEnabled = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o PatchTableRequestDataAttributesFileMetadataCloudStorage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,14 +119,14 @@ func (o PatchTableRequestDataAttributesFileMetadataCloudStorage) MarshalJSON() (
 func (o *PatchTableRequestDataAttributesFileMetadataCloudStorage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AccessDetails *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails `json:"access_details,omitempty"`
-		SyncEnabled   *bool                                                          `json:"sync_enabled,omitempty"`
+		SyncEnabled *bool `json:"sync_enabled,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	hasInvalidField := false
-	if all.AccessDetails != nil && all.AccessDetails.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.AccessDetails != nil && all.AccessDetails.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.AccessDetails = all.AccessDetails

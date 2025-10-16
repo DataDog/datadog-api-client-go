@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScheduleUpdateRequest A top-level wrapper for a schedule update request, referring to the `data` object with the new details.
 type ScheduleUpdateRequest struct {
 	// Contains all data needed to update an existing schedule, including its attributes (such as name and time zone) and any relationships to teams.
 	Data ScheduleUpdateRequestData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScheduleUpdateRequest instantiates a new ScheduleUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewScheduleUpdateRequestWithDefaults() *ScheduleUpdateRequest {
 	this := ScheduleUpdateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *ScheduleUpdateRequest) GetData() ScheduleUpdateRequestData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *ScheduleUpdateRequest) GetDataOk() (*ScheduleUpdateRequestData, bool) {
 func (o *ScheduleUpdateRequest) SetData(v ScheduleUpdateRequestData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ScheduleUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *ScheduleUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSLambdaForwarderConfigLogSourceConfig Log source configuration.
 type AWSLambdaForwarderConfigLogSourceConfig struct {
 	// List of AWS log source tag filters. Defaults to `[]`.
 	TagFilters []AWSLogSourceTagFilter `json:"tag_filters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSLambdaForwarderConfigLogSourceConfig instantiates a new AWSLambdaForwarderConfigLogSourceConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewAWSLambdaForwarderConfigLogSourceConfigWithDefaults() *AWSLambdaForwarde
 	this := AWSLambdaForwarderConfigLogSourceConfig{}
 	return &this
 }
-
 // GetTagFilters returns the TagFilters field value if set, zero value otherwise.
 func (o *AWSLambdaForwarderConfigLogSourceConfig) GetTagFilters() []AWSLogSourceTagFilter {
 	if o == nil || o.TagFilters == nil {
@@ -62,6 +68,8 @@ func (o *AWSLambdaForwarderConfigLogSourceConfig) SetTagFilters(v []AWSLogSource
 	o.TagFilters = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSLambdaForwarderConfigLogSourceConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *AWSLambdaForwarderConfigLogSourceConfig) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"tag_filters"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "tag_filters",  })
 	} else {
 		return err
 	}

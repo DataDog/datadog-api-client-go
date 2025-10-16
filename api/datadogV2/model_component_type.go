@@ -2,39 +2,43 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ComponentType The UI component type.
 type ComponentType string
 
 // List of ComponentType.
 const (
-	COMPONENTTYPE_TABLE           ComponentType = "table"
-	COMPONENTTYPE_TEXTINPUT       ComponentType = "textInput"
-	COMPONENTTYPE_TEXTAREA        ComponentType = "textArea"
-	COMPONENTTYPE_BUTTON          ComponentType = "button"
-	COMPONENTTYPE_TEXT            ComponentType = "text"
-	COMPONENTTYPE_SELECT          ComponentType = "select"
-	COMPONENTTYPE_MODAL           ComponentType = "modal"
-	COMPONENTTYPE_SCHEMAFORM      ComponentType = "schemaForm"
-	COMPONENTTYPE_CHECKBOX        ComponentType = "checkbox"
-	COMPONENTTYPE_TABS            ComponentType = "tabs"
-	COMPONENTTYPE_VEGACHART       ComponentType = "vegaChart"
-	COMPONENTTYPE_RADIOBUTTONS    ComponentType = "radioButtons"
-	COMPONENTTYPE_NUMBERINPUT     ComponentType = "numberInput"
-	COMPONENTTYPE_FILEINPUT       ComponentType = "fileInput"
-	COMPONENTTYPE_JSONINPUT       ComponentType = "jsonInput"
-	COMPONENTTYPE_GRIDCELL        ComponentType = "gridCell"
+	COMPONENTTYPE_TABLE ComponentType = "table"
+	COMPONENTTYPE_TEXTINPUT ComponentType = "textInput"
+	COMPONENTTYPE_TEXTAREA ComponentType = "textArea"
+	COMPONENTTYPE_BUTTON ComponentType = "button"
+	COMPONENTTYPE_TEXT ComponentType = "text"
+	COMPONENTTYPE_SELECT ComponentType = "select"
+	COMPONENTTYPE_MODAL ComponentType = "modal"
+	COMPONENTTYPE_SCHEMAFORM ComponentType = "schemaForm"
+	COMPONENTTYPE_CHECKBOX ComponentType = "checkbox"
+	COMPONENTTYPE_TABS ComponentType = "tabs"
+	COMPONENTTYPE_VEGACHART ComponentType = "vegaChart"
+	COMPONENTTYPE_RADIOBUTTONS ComponentType = "radioButtons"
+	COMPONENTTYPE_NUMBERINPUT ComponentType = "numberInput"
+	COMPONENTTYPE_FILEINPUT ComponentType = "fileInput"
+	COMPONENTTYPE_JSONINPUT ComponentType = "jsonInput"
+	COMPONENTTYPE_GRIDCELL ComponentType = "gridCell"
 	COMPONENTTYPE_DATERANGEPICKER ComponentType = "dateRangePicker"
-	COMPONENTTYPE_SEARCH          ComponentType = "search"
-	COMPONENTTYPE_CONTAINER       ComponentType = "container"
-	COMPONENTTYPE_CALLOUTVALUE    ComponentType = "calloutValue"
+	COMPONENTTYPE_SEARCH ComponentType = "search"
+	COMPONENTTYPE_CONTAINER ComponentType = "container"
+	COMPONENTTYPE_CALLOUTVALUE ComponentType = "calloutValue"
 )
 
 var allowedComponentTypeEnumValues = []ComponentType{

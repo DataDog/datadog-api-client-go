@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RelationshipToIncidentIntegrationMetadatas A relationship reference for multiple integration metadata objects.
 type RelationshipToIncidentIntegrationMetadatas struct {
 	// Integration metadata relationship array
 	Data []RelationshipToIncidentIntegrationMetadataData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRelationshipToIncidentIntegrationMetadatas instantiates a new RelationshipToIncidentIntegrationMetadatas object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewRelationshipToIncidentIntegrationMetadatasWithDefaults() *RelationshipTo
 	this := RelationshipToIncidentIntegrationMetadatas{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *RelationshipToIncidentIntegrationMetadatas) GetData() []RelationshipToIncidentIntegrationMetadataData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *RelationshipToIncidentIntegrationMetadatas) GetDataOk() (*[]Relationshi
 func (o *RelationshipToIncidentIntegrationMetadatas) SetData(v []RelationshipToIncidentIntegrationMetadataData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationshipToIncidentIntegrationMetadatas) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *RelationshipToIncidentIntegrationMetadatas) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

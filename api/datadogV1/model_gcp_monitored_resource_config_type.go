@@ -2,22 +2,26 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GCPMonitoredResourceConfigType The GCP monitored resource type. Only a subset of resource types are supported.
 type GCPMonitoredResourceConfigType string
 
 // List of GCPMonitoredResourceConfigType.
 const (
-	GCPMONITOREDRESOURCECONFIGTYPE_CLOUD_FUNCTION     GCPMonitoredResourceConfigType = "cloud_function"
+	GCPMONITOREDRESOURCECONFIGTYPE_CLOUD_FUNCTION GCPMonitoredResourceConfigType = "cloud_function"
 	GCPMONITOREDRESOURCECONFIGTYPE_CLOUD_RUN_REVISION GCPMonitoredResourceConfigType = "cloud_run_revision"
-	GCPMONITOREDRESOURCECONFIGTYPE_GCE_INSTANCE       GCPMonitoredResourceConfigType = "gce_instance"
+	GCPMONITOREDRESOURCECONFIGTYPE_GCE_INSTANCE GCPMonitoredResourceConfigType = "gce_instance"
 )
 
 var allowedGCPMonitoredResourceConfigTypeEnumValues = []GCPMonitoredResourceConfigType{

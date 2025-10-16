@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomCostsFileUsageChargePeriod Usage charge period of a Custom Costs file.
 type CustomCostsFileUsageChargePeriod struct {
@@ -15,9 +21,10 @@ type CustomCostsFileUsageChargePeriod struct {
 	// Start of the usage of the Custom Costs file.
 	Start *float64 `json:"start,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomCostsFileUsageChargePeriod instantiates a new CustomCostsFileUsageChargePeriod object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewCustomCostsFileUsageChargePeriodWithDefaults() *CustomCostsFileUsageChar
 	this := CustomCostsFileUsageChargePeriod{}
 	return &this
 }
-
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *CustomCostsFileUsageChargePeriod) GetEnd() float64 {
 	if o == nil || o.End == nil {
@@ -63,6 +69,7 @@ func (o *CustomCostsFileUsageChargePeriod) HasEnd() bool {
 func (o *CustomCostsFileUsageChargePeriod) SetEnd(v float64) {
 	o.End = &v
 }
+
 
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *CustomCostsFileUsageChargePeriod) GetStart() float64 {
@@ -92,6 +99,8 @@ func (o *CustomCostsFileUsageChargePeriod) SetStart(v float64) {
 	o.Start = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomCostsFileUsageChargePeriod) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o CustomCostsFileUsageChargePeriod) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomCostsFileUsageChargePeriod) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		End   *float64 `json:"end,omitempty"`
+		End *float64 `json:"end,omitempty"`
 		Start *float64 `json:"start,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *CustomCostsFileUsageChargePeriod) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"end", "start"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "end", "start",  })
 	} else {
 		return err
 	}

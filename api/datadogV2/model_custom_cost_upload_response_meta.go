@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomCostUploadResponseMeta Meta for the response from the Upload Custom Costs endpoints.
 type CustomCostUploadResponseMeta struct {
 	// Version of Custom Costs file
 	Version *string `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomCostUploadResponseMeta instantiates a new CustomCostUploadResponseMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewCustomCostUploadResponseMetaWithDefaults() *CustomCostUploadResponseMeta
 	this := CustomCostUploadResponseMeta{}
 	return &this
 }
-
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *CustomCostUploadResponseMeta) GetVersion() string {
 	if o == nil || o.Version == nil {
@@ -62,6 +68,8 @@ func (o *CustomCostUploadResponseMeta) SetVersion(v string) {
 	o.Version = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomCostUploadResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *CustomCostUploadResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "version",  })
 	} else {
 		return err
 	}

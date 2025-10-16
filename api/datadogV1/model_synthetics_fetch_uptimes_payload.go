@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsFetchUptimesPayload Object containing IDs of Synthetic tests and a timeframe.
 type SyntheticsFetchUptimesPayload struct {
@@ -19,9 +23,10 @@ type SyntheticsFetchUptimesPayload struct {
 	// Timestamp in seconds (Unix epoch) for the end of uptime.
 	ToTs int64 `json:"to_ts"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsFetchUptimesPayload instantiates a new SyntheticsFetchUptimesPayload object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewSyntheticsFetchUptimesPayloadWithDefaults() *SyntheticsFetchUptimesPaylo
 	this := SyntheticsFetchUptimesPayload{}
 	return &this
 }
-
 // GetFromTs returns the FromTs field value.
 func (o *SyntheticsFetchUptimesPayload) GetFromTs() int64 {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *SyntheticsFetchUptimesPayload) GetFromTsOk() (*int64, bool) {
 func (o *SyntheticsFetchUptimesPayload) SetFromTs(v int64) {
 	o.FromTs = v
 }
+
 
 // GetPublicIds returns the PublicIds field value.
 func (o *SyntheticsFetchUptimesPayload) GetPublicIds() []string {
@@ -89,6 +94,7 @@ func (o *SyntheticsFetchUptimesPayload) SetPublicIds(v []string) {
 	o.PublicIds = v
 }
 
+
 // GetToTs returns the ToTs field value.
 func (o *SyntheticsFetchUptimesPayload) GetToTs() int64 {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *SyntheticsFetchUptimesPayload) SetToTs(v int64) {
 	o.ToTs = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsFetchUptimesPayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o SyntheticsFetchUptimesPayload) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsFetchUptimesPayload) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		FromTs    *int64    `json:"from_ts"`
+		FromTs *int64 `json:"from_ts"`
 		PublicIds *[]string `json:"public_ids"`
-		ToTs      *int64    `json:"to_ts"`
+		ToTs *int64 `json:"to_ts"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *SyntheticsFetchUptimesPayload) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"from_ts", "public_ids", "to_ts"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "from_ts", "public_ids", "to_ts",  })
 	} else {
 		return err
 	}

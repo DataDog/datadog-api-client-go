@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // WidgetImageSizing How to size the image on the widget. The values are based on the image `object-fit` CSS properties.
 // **Note**: `zoom`, `fit` and `center` values are deprecated.
@@ -16,14 +20,14 @@ type WidgetImageSizing string
 
 // List of WidgetImageSizing.
 const (
-	WIDGETIMAGESIZING_FILL      WidgetImageSizing = "fill"
-	WIDGETIMAGESIZING_CONTAIN   WidgetImageSizing = "contain"
-	WIDGETIMAGESIZING_COVER     WidgetImageSizing = "cover"
-	WIDGETIMAGESIZING_NONE      WidgetImageSizing = "none"
+	WIDGETIMAGESIZING_FILL WidgetImageSizing = "fill"
+	WIDGETIMAGESIZING_CONTAIN WidgetImageSizing = "contain"
+	WIDGETIMAGESIZING_COVER WidgetImageSizing = "cover"
+	WIDGETIMAGESIZING_NONE WidgetImageSizing = "none"
 	WIDGETIMAGESIZING_SCALEDOWN WidgetImageSizing = "scale-down"
-	WIDGETIMAGESIZING_ZOOM      WidgetImageSizing = "zoom"
-	WIDGETIMAGESIZING_FIT       WidgetImageSizing = "fit"
-	WIDGETIMAGESIZING_CENTER    WidgetImageSizing = "center"
+	WIDGETIMAGESIZING_ZOOM WidgetImageSizing = "zoom"
+	WIDGETIMAGESIZING_FIT WidgetImageSizing = "fit"
+	WIDGETIMAGESIZING_CENTER WidgetImageSizing = "center"
 )
 
 var allowedWidgetImageSizingEnumValues = []WidgetImageSizing{

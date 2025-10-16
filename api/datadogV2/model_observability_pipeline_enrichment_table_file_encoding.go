@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineEnrichmentTableFileEncoding File encoding format.
 type ObservabilityPipelineEnrichmentTableFileEncoding struct {
@@ -19,9 +23,10 @@ type ObservabilityPipelineEnrichmentTableFileEncoding struct {
 	// Specifies the encoding format (e.g., CSV) used for enrichment tables.
 	Type ObservabilityPipelineEnrichmentTableFileEncodingType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineEnrichmentTableFileEncoding instantiates a new ObservabilityPipelineEnrichmentTableFileEncoding object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewObservabilityPipelineEnrichmentTableFileEncodingWithDefaults() *Observab
 	this := ObservabilityPipelineEnrichmentTableFileEncoding{}
 	return &this
 }
-
 // GetDelimiter returns the Delimiter field value.
 func (o *ObservabilityPipelineEnrichmentTableFileEncoding) GetDelimiter() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *ObservabilityPipelineEnrichmentTableFileEncoding) GetDelimiterOk() (*st
 func (o *ObservabilityPipelineEnrichmentTableFileEncoding) SetDelimiter(v string) {
 	o.Delimiter = v
 }
+
 
 // GetIncludesHeaders returns the IncludesHeaders field value.
 func (o *ObservabilityPipelineEnrichmentTableFileEncoding) GetIncludesHeaders() bool {
@@ -89,6 +94,7 @@ func (o *ObservabilityPipelineEnrichmentTableFileEncoding) SetIncludesHeaders(v 
 	o.IncludesHeaders = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineEnrichmentTableFileEncoding) GetType() ObservabilityPipelineEnrichmentTableFileEncodingType {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *ObservabilityPipelineEnrichmentTableFileEncoding) SetType(v Observabili
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineEnrichmentTableFileEncoding) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o ObservabilityPipelineEnrichmentTableFileEncoding) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineEnrichmentTableFileEncoding) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Delimiter       *string                                               `json:"delimiter"`
-		IncludesHeaders *bool                                                 `json:"includes_headers"`
-		Type            *ObservabilityPipelineEnrichmentTableFileEncodingType `json:"type"`
+		Delimiter *string `json:"delimiter"`
+		IncludesHeaders *bool `json:"includes_headers"`
+		Type *ObservabilityPipelineEnrichmentTableFileEncodingType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *ObservabilityPipelineEnrichmentTableFileEncoding) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"delimiter", "includes_headers", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "delimiter", "includes_headers", "type",  })
 	} else {
 		return err
 	}

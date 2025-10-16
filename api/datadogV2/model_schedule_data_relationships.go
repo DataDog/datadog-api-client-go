@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ScheduleDataRelationships Groups the relationships for a schedule object, referencing layers and teams.
 type ScheduleDataRelationships struct {
@@ -15,9 +21,10 @@ type ScheduleDataRelationships struct {
 	// Associates teams with this schedule in a data structure.
 	Teams *DataRelationshipsTeams `json:"teams,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewScheduleDataRelationships instantiates a new ScheduleDataRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewScheduleDataRelationshipsWithDefaults() *ScheduleDataRelationships {
 	this := ScheduleDataRelationships{}
 	return &this
 }
-
 // GetLayers returns the Layers field value if set, zero value otherwise.
 func (o *ScheduleDataRelationships) GetLayers() ScheduleDataRelationshipsLayers {
 	if o == nil || o.Layers == nil {
@@ -63,6 +69,7 @@ func (o *ScheduleDataRelationships) HasLayers() bool {
 func (o *ScheduleDataRelationships) SetLayers(v ScheduleDataRelationshipsLayers) {
 	o.Layers = &v
 }
+
 
 // GetTeams returns the Teams field value if set, zero value otherwise.
 func (o *ScheduleDataRelationships) GetTeams() DataRelationshipsTeams {
@@ -92,6 +99,8 @@ func (o *ScheduleDataRelationships) SetTeams(v DataRelationshipsTeams) {
 	o.Teams = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ScheduleDataRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,24 +124,24 @@ func (o ScheduleDataRelationships) MarshalJSON() ([]byte, error) {
 func (o *ScheduleDataRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Layers *ScheduleDataRelationshipsLayers `json:"layers,omitempty"`
-		Teams  *DataRelationshipsTeams          `json:"teams,omitempty"`
+		Teams *DataRelationshipsTeams `json:"teams,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"layers", "teams"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "layers", "teams",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Layers != nil && all.Layers.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Layers != nil && all.Layers.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Layers = all.Layers
-	if all.Teams != nil && all.Teams.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Teams != nil && all.Teams.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Teams = all.Teams

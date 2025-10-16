@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringSignalRuleCreatePayload Create a new signal correlation rule.
 type SecurityMonitoringSignalRuleCreatePayload struct {
@@ -33,9 +37,10 @@ type SecurityMonitoringSignalRuleCreatePayload struct {
 	// The rule type.
 	Type *SecurityMonitoringSignalRuleType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringSignalRuleCreatePayload instantiates a new SecurityMonitoringSignalRuleCreatePayload object.
 // This constructor will assign default values to properties that have it defined,
@@ -59,7 +64,6 @@ func NewSecurityMonitoringSignalRuleCreatePayloadWithDefaults() *SecurityMonitor
 	this := SecurityMonitoringSignalRuleCreatePayload{}
 	return &this
 }
-
 // GetCases returns the Cases field value.
 func (o *SecurityMonitoringSignalRuleCreatePayload) GetCases() []SecurityMonitoringRuleCaseCreate {
 	if o == nil {
@@ -82,6 +86,7 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) GetCasesOk() (*[]SecurityMon
 func (o *SecurityMonitoringSignalRuleCreatePayload) SetCases(v []SecurityMonitoringRuleCaseCreate) {
 	o.Cases = v
 }
+
 
 // GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleCreatePayload) GetFilters() []SecurityMonitoringFilter {
@@ -111,6 +116,7 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) SetFilters(v []SecurityMonit
 	o.Filters = v
 }
 
+
 // GetHasExtendedTitle returns the HasExtendedTitle field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleCreatePayload) GetHasExtendedTitle() bool {
 	if o == nil || o.HasExtendedTitle == nil {
@@ -139,6 +145,7 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) SetHasExtendedTitle(v bool) 
 	o.HasExtendedTitle = &v
 }
 
+
 // GetIsEnabled returns the IsEnabled field value.
 func (o *SecurityMonitoringSignalRuleCreatePayload) GetIsEnabled() bool {
 	if o == nil {
@@ -161,6 +168,7 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) GetIsEnabledOk() (*bool, boo
 func (o *SecurityMonitoringSignalRuleCreatePayload) SetIsEnabled(v bool) {
 	o.IsEnabled = v
 }
+
 
 // GetMessage returns the Message field value.
 func (o *SecurityMonitoringSignalRuleCreatePayload) GetMessage() string {
@@ -185,6 +193,7 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) SetMessage(v string) {
 	o.Message = v
 }
 
+
 // GetName returns the Name field value.
 func (o *SecurityMonitoringSignalRuleCreatePayload) GetName() string {
 	if o == nil {
@@ -207,6 +216,7 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) GetNameOk() (*string, bool) 
 func (o *SecurityMonitoringSignalRuleCreatePayload) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetOptions returns the Options field value.
 func (o *SecurityMonitoringSignalRuleCreatePayload) GetOptions() SecurityMonitoringRuleOptions {
@@ -231,6 +241,7 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) SetOptions(v SecurityMonitor
 	o.Options = v
 }
 
+
 // GetQueries returns the Queries field value.
 func (o *SecurityMonitoringSignalRuleCreatePayload) GetQueries() []SecurityMonitoringSignalRuleQuery {
 	if o == nil {
@@ -253,6 +264,7 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) GetQueriesOk() (*[]SecurityM
 func (o *SecurityMonitoringSignalRuleCreatePayload) SetQueries(v []SecurityMonitoringSignalRuleQuery) {
 	o.Queries = v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleCreatePayload) GetTags() []string {
@@ -282,6 +294,7 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleCreatePayload) GetType() SecurityMonitoringSignalRuleType {
 	if o == nil || o.Type == nil {
@@ -309,6 +322,8 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) HasType() bool {
 func (o *SecurityMonitoringSignalRuleCreatePayload) SetType(v SecurityMonitoringSignalRuleType) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringSignalRuleCreatePayload) MarshalJSON() ([]byte, error) {
@@ -344,16 +359,16 @@ func (o SecurityMonitoringSignalRuleCreatePayload) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalRuleCreatePayload) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Cases            *[]SecurityMonitoringRuleCaseCreate  `json:"cases"`
-		Filters          []SecurityMonitoringFilter           `json:"filters,omitempty"`
-		HasExtendedTitle *bool                                `json:"hasExtendedTitle,omitempty"`
-		IsEnabled        *bool                                `json:"isEnabled"`
-		Message          *string                              `json:"message"`
-		Name             *string                              `json:"name"`
-		Options          *SecurityMonitoringRuleOptions       `json:"options"`
-		Queries          *[]SecurityMonitoringSignalRuleQuery `json:"queries"`
-		Tags             []string                             `json:"tags,omitempty"`
-		Type             *SecurityMonitoringSignalRuleType    `json:"type,omitempty"`
+		Cases *[]SecurityMonitoringRuleCaseCreate `json:"cases"`
+		Filters []SecurityMonitoringFilter `json:"filters,omitempty"`
+		HasExtendedTitle *bool `json:"hasExtendedTitle,omitempty"`
+		IsEnabled *bool `json:"isEnabled"`
+		Message *string `json:"message"`
+		Name *string `json:"name"`
+		Options *SecurityMonitoringRuleOptions `json:"options"`
+		Queries *[]SecurityMonitoringSignalRuleQuery `json:"queries"`
+		Tags []string `json:"tags,omitempty"`
+		Type *SecurityMonitoringSignalRuleType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -378,7 +393,7 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cases", "filters", "hasExtendedTitle", "isEnabled", "message", "name", "options", "queries", "tags", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cases", "filters", "hasExtendedTitle", "isEnabled", "message", "name", "options", "queries", "tags", "type",  })
 	} else {
 		return err
 	}
@@ -396,7 +411,7 @@ func (o *SecurityMonitoringSignalRuleCreatePayload) UnmarshalJSON(bytes []byte) 
 	o.Options = *all.Options
 	o.Queries = *all.Queries
 	o.Tags = all.Tags
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

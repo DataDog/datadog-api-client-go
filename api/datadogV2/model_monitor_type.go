@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorType Attributes from the monitor that triggered the event.
 type MonitorType struct {
@@ -33,9 +39,10 @@ type MonitorType struct {
 	// The monitor type.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorType instantiates a new MonitorType object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +60,6 @@ func NewMonitorTypeWithDefaults() *MonitorType {
 	this := MonitorType{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *MonitorType) GetCreatedAt() int64 {
 	if o == nil || o.CreatedAt == nil {
@@ -81,6 +87,7 @@ func (o *MonitorType) HasCreatedAt() bool {
 func (o *MonitorType) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
+
 
 // GetGroupStatus returns the GroupStatus field value if set, zero value otherwise.
 func (o *MonitorType) GetGroupStatus() int32 {
@@ -110,6 +117,7 @@ func (o *MonitorType) SetGroupStatus(v int32) {
 	o.GroupStatus = &v
 }
 
+
 // GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *MonitorType) GetGroups() []string {
 	if o == nil || o.Groups == nil {
@@ -137,6 +145,7 @@ func (o *MonitorType) HasGroups() bool {
 func (o *MonitorType) SetGroups(v []string) {
 	o.Groups = v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *MonitorType) GetId() int64 {
@@ -166,6 +175,7 @@ func (o *MonitorType) SetId(v int64) {
 	o.Id = &v
 }
 
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *MonitorType) GetMessage() string {
 	if o == nil || o.Message == nil {
@@ -193,6 +203,7 @@ func (o *MonitorType) HasMessage() bool {
 func (o *MonitorType) SetMessage(v string) {
 	o.Message = &v
 }
+
 
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *MonitorType) GetModified() int64 {
@@ -222,6 +233,7 @@ func (o *MonitorType) SetModified(v int64) {
 	o.Modified = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MonitorType) GetName() string {
 	if o == nil || o.Name == nil {
@@ -249,6 +261,7 @@ func (o *MonitorType) HasName() bool {
 func (o *MonitorType) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *MonitorType) GetQuery() string {
@@ -278,6 +291,7 @@ func (o *MonitorType) SetQuery(v string) {
 	o.Query = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MonitorType) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -305,6 +319,7 @@ func (o *MonitorType) HasTags() bool {
 func (o *MonitorType) SetTags(v []string) {
 	o.Tags = v
 }
+
 
 // GetTemplatedName returns the TemplatedName field value if set, zero value otherwise.
 func (o *MonitorType) GetTemplatedName() string {
@@ -334,6 +349,7 @@ func (o *MonitorType) SetTemplatedName(v string) {
 	o.TemplatedName = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MonitorType) GetType() string {
 	if o == nil || o.Type == nil {
@@ -361,6 +377,8 @@ func (o *MonitorType) HasType() bool {
 func (o *MonitorType) SetType(v string) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorType) MarshalJSON() ([]byte, error) {
@@ -411,24 +429,24 @@ func (o MonitorType) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorType) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt     *int64   `json:"created_at,omitempty"`
-		GroupStatus   *int32   `json:"group_status,omitempty"`
-		Groups        []string `json:"groups,omitempty"`
-		Id            *int64   `json:"id,omitempty"`
-		Message       *string  `json:"message,omitempty"`
-		Modified      *int64   `json:"modified,omitempty"`
-		Name          *string  `json:"name,omitempty"`
-		Query         *string  `json:"query,omitempty"`
-		Tags          []string `json:"tags,omitempty"`
-		TemplatedName *string  `json:"templated_name,omitempty"`
-		Type          *string  `json:"type,omitempty"`
+		CreatedAt *int64 `json:"created_at,omitempty"`
+		GroupStatus *int32 `json:"group_status,omitempty"`
+		Groups []string `json:"groups,omitempty"`
+		Id *int64 `json:"id,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Modified *int64 `json:"modified,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Query *string `json:"query,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		TemplatedName *string `json:"templated_name,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "group_status", "groups", "id", "message", "modified", "name", "query", "tags", "templated_name", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_at", "group_status", "groups", "id", "message", "modified", "name", "query", "tags", "templated_name", "type",  })
 	} else {
 		return err
 	}
@@ -450,7 +468,6 @@ func (o *MonitorType) UnmarshalJSON(bytes []byte) (err error) {
 
 	return nil
 }
-
 // NullableMonitorType handles when a null is used for MonitorType.
 type NullableMonitorType struct {
 	value *MonitorType

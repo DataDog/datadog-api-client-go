@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SloReportCreateRequestAttributes The attributes portion of the SLO report request.
 type SloReportCreateRequestAttributes struct {
@@ -23,9 +27,10 @@ type SloReportCreateRequestAttributes struct {
 	// The `to` timestamp for the report in epoch seconds.
 	ToTs int64 `json:"to_ts"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSloReportCreateRequestAttributes instantiates a new SloReportCreateRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewSloReportCreateRequestAttributesWithDefaults() *SloReportCreateRequestAt
 	this := SloReportCreateRequestAttributes{}
 	return &this
 }
-
 // GetFromTs returns the FromTs field value.
 func (o *SloReportCreateRequestAttributes) GetFromTs() int64 {
 	if o == nil {
@@ -69,6 +73,7 @@ func (o *SloReportCreateRequestAttributes) GetFromTsOk() (*int64, bool) {
 func (o *SloReportCreateRequestAttributes) SetFromTs(v int64) {
 	o.FromTs = v
 }
+
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *SloReportCreateRequestAttributes) GetInterval() SLOReportInterval {
@@ -98,6 +103,7 @@ func (o *SloReportCreateRequestAttributes) SetInterval(v SLOReportInterval) {
 	o.Interval = &v
 }
 
+
 // GetQuery returns the Query field value.
 func (o *SloReportCreateRequestAttributes) GetQuery() string {
 	if o == nil {
@@ -120,6 +126,7 @@ func (o *SloReportCreateRequestAttributes) GetQueryOk() (*string, bool) {
 func (o *SloReportCreateRequestAttributes) SetQuery(v string) {
 	o.Query = v
 }
+
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *SloReportCreateRequestAttributes) GetTimezone() string {
@@ -149,6 +156,7 @@ func (o *SloReportCreateRequestAttributes) SetTimezone(v string) {
 	o.Timezone = &v
 }
 
+
 // GetToTs returns the ToTs field value.
 func (o *SloReportCreateRequestAttributes) GetToTs() int64 {
 	if o == nil {
@@ -171,6 +179,8 @@ func (o *SloReportCreateRequestAttributes) GetToTsOk() (*int64, bool) {
 func (o *SloReportCreateRequestAttributes) SetToTs(v int64) {
 	o.ToTs = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SloReportCreateRequestAttributes) MarshalJSON() ([]byte, error) {
@@ -197,11 +207,11 @@ func (o SloReportCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SloReportCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		FromTs   *int64             `json:"from_ts"`
+		FromTs *int64 `json:"from_ts"`
 		Interval *SLOReportInterval `json:"interval,omitempty"`
-		Query    *string            `json:"query"`
-		Timezone *string            `json:"timezone,omitempty"`
-		ToTs     *int64             `json:"to_ts"`
+		Query *string `json:"query"`
+		Timezone *string `json:"timezone,omitempty"`
+		ToTs *int64 `json:"to_ts"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -217,14 +227,14 @@ func (o *SloReportCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"from_ts", "interval", "query", "timezone", "to_ts"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "from_ts", "interval", "query", "timezone", "to_ts",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.FromTs = *all.FromTs
-	if all.Interval != nil && !all.Interval.IsValid() {
+	if all.Interval != nil &&!all.Interval.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Interval = all.Interval

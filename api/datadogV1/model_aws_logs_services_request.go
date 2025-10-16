@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSLogsServicesRequest A list of current AWS services for which Datadog offers automatic log collection.
 type AWSLogsServicesRequest struct {
@@ -17,9 +21,10 @@ type AWSLogsServicesRequest struct {
 	// Array of services IDs set to enable automatic log collection. Discover the list of available services with the get list of AWS log ready services API endpoint.
 	Services []string `json:"services"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSLogsServicesRequest instantiates a new AWSLogsServicesRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewAWSLogsServicesRequestWithDefaults() *AWSLogsServicesRequest {
 	this := AWSLogsServicesRequest{}
 	return &this
 }
-
 // GetAccountId returns the AccountId field value.
 func (o *AWSLogsServicesRequest) GetAccountId() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *AWSLogsServicesRequest) GetAccountIdOk() (*string, bool) {
 func (o *AWSLogsServicesRequest) SetAccountId(v string) {
 	o.AccountId = v
 }
+
 
 // GetServices returns the Services field value.
 func (o *AWSLogsServicesRequest) GetServices() []string {
@@ -86,6 +91,8 @@ func (o *AWSLogsServicesRequest) SetServices(v []string) {
 	o.Services = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSLogsServicesRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o AWSLogsServicesRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AWSLogsServicesRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountId *string   `json:"account_id"`
-		Services  *[]string `json:"services"`
+		AccountId *string `json:"account_id"`
+		Services *[]string `json:"services"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *AWSLogsServicesRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "services"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "account_id", "services",  })
 	} else {
 		return err
 	}

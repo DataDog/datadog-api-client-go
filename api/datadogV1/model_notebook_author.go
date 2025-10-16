@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotebookAuthor Attributes of user object returned by the API.
 type NotebookAuthor struct {
@@ -31,9 +35,10 @@ type NotebookAuthor struct {
 	// Whether the user is verified.
 	Verified *bool `json:"verified,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewNotebookAuthor instantiates a new NotebookAuthor object.
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +56,6 @@ func NewNotebookAuthorWithDefaults() *NotebookAuthor {
 	this := NotebookAuthor{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *NotebookAuthor) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -79,6 +83,7 @@ func (o *NotebookAuthor) HasCreatedAt() bool {
 func (o *NotebookAuthor) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
+
 
 // GetDisabled returns the Disabled field value if set, zero value otherwise.
 func (o *NotebookAuthor) GetDisabled() bool {
@@ -108,6 +113,7 @@ func (o *NotebookAuthor) SetDisabled(v bool) {
 	o.Disabled = &v
 }
 
+
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *NotebookAuthor) GetEmail() string {
 	if o == nil || o.Email == nil {
@@ -135,6 +141,7 @@ func (o *NotebookAuthor) HasEmail() bool {
 func (o *NotebookAuthor) SetEmail(v string) {
 	o.Email = &v
 }
+
 
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *NotebookAuthor) GetHandle() string {
@@ -164,6 +171,7 @@ func (o *NotebookAuthor) SetHandle(v string) {
 	o.Handle = &v
 }
 
+
 // GetIcon returns the Icon field value if set, zero value otherwise.
 func (o *NotebookAuthor) GetIcon() string {
 	if o == nil || o.Icon == nil {
@@ -192,6 +200,7 @@ func (o *NotebookAuthor) SetIcon(v string) {
 	o.Icon = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NotebookAuthor) GetName() string {
 	if o == nil || o.Name.Get() == nil {
@@ -205,7 +214,7 @@ func (o *NotebookAuthor) GetName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *NotebookAuthor) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Name.Get(), o.Name.IsSet()
@@ -220,7 +229,6 @@ func (o *NotebookAuthor) HasName() bool {
 func (o *NotebookAuthor) SetName(v string) {
 	o.Name.Set(&v)
 }
-
 // SetNameNil sets the value for Name to be an explicit nil.
 func (o *NotebookAuthor) SetNameNil() {
 	o.Name.Set(nil)
@@ -230,6 +238,7 @@ func (o *NotebookAuthor) SetNameNil() {
 func (o *NotebookAuthor) UnsetName() {
 	o.Name.Unset()
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *NotebookAuthor) GetStatus() string {
@@ -259,6 +268,7 @@ func (o *NotebookAuthor) SetStatus(v string) {
 	o.Status = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NotebookAuthor) GetTitle() string {
 	if o == nil || o.Title.Get() == nil {
@@ -272,7 +282,7 @@ func (o *NotebookAuthor) GetTitle() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *NotebookAuthor) GetTitleOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
@@ -287,7 +297,6 @@ func (o *NotebookAuthor) HasTitle() bool {
 func (o *NotebookAuthor) SetTitle(v string) {
 	o.Title.Set(&v)
 }
-
 // SetTitleNil sets the value for Title to be an explicit nil.
 func (o *NotebookAuthor) SetTitleNil() {
 	o.Title.Set(nil)
@@ -297,6 +306,7 @@ func (o *NotebookAuthor) SetTitleNil() {
 func (o *NotebookAuthor) UnsetTitle() {
 	o.Title.Unset()
 }
+
 
 // GetVerified returns the Verified field value if set, zero value otherwise.
 func (o *NotebookAuthor) GetVerified() bool {
@@ -325,6 +335,8 @@ func (o *NotebookAuthor) HasVerified() bool {
 func (o *NotebookAuthor) SetVerified(v bool) {
 	o.Verified = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o NotebookAuthor) MarshalJSON() ([]byte, error) {
@@ -373,22 +385,22 @@ func (o NotebookAuthor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookAuthor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt *time.Time             `json:"created_at,omitempty"`
-		Disabled  *bool                  `json:"disabled,omitempty"`
-		Email     *string                `json:"email,omitempty"`
-		Handle    *string                `json:"handle,omitempty"`
-		Icon      *string                `json:"icon,omitempty"`
-		Name      datadog.NullableString `json:"name,omitempty"`
-		Status    *string                `json:"status,omitempty"`
-		Title     datadog.NullableString `json:"title,omitempty"`
-		Verified  *bool                  `json:"verified,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		Disabled *bool `json:"disabled,omitempty"`
+		Email *string `json:"email,omitempty"`
+		Handle *string `json:"handle,omitempty"`
+		Icon *string `json:"icon,omitempty"`
+		Name datadog.NullableString `json:"name,omitempty"`
+		Status *string `json:"status,omitempty"`
+		Title datadog.NullableString `json:"title,omitempty"`
+		Verified *bool `json:"verified,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "disabled", "email", "handle", "icon", "name", "status", "title", "verified"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_at", "disabled", "email", "handle", "icon", "name", "status", "title", "verified",  })
 	} else {
 		return err
 	}

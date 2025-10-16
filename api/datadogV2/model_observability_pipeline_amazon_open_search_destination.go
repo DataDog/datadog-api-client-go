@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineAmazonOpenSearchDestination The `amazon_opensearch` destination writes logs to Amazon OpenSearch.
 type ObservabilityPipelineAmazonOpenSearchDestination struct {
@@ -24,9 +28,10 @@ type ObservabilityPipelineAmazonOpenSearchDestination struct {
 	// The destination type. The value should always be `amazon_opensearch`.
 	Type ObservabilityPipelineAmazonOpenSearchDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineAmazonOpenSearchDestination instantiates a new ObservabilityPipelineAmazonOpenSearchDestination object.
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewObservabilityPipelineAmazonOpenSearchDestinationWithDefaults() *Observab
 	this.Type = typeVar
 	return &this
 }
-
 // GetAuth returns the Auth field value.
 func (o *ObservabilityPipelineAmazonOpenSearchDestination) GetAuth() ObservabilityPipelineAmazonOpenSearchDestinationAuth {
 	if o == nil {
@@ -73,6 +77,7 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestination) GetAuthOk() (*Observa
 func (o *ObservabilityPipelineAmazonOpenSearchDestination) SetAuth(v ObservabilityPipelineAmazonOpenSearchDestinationAuth) {
 	o.Auth = v
 }
+
 
 // GetBulkIndex returns the BulkIndex field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonOpenSearchDestination) GetBulkIndex() string {
@@ -102,6 +107,7 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestination) SetBulkIndex(v string
 	o.BulkIndex = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineAmazonOpenSearchDestination) GetId() string {
 	if o == nil {
@@ -124,6 +130,7 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestination) GetIdOk() (*string, b
 func (o *ObservabilityPipelineAmazonOpenSearchDestination) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineAmazonOpenSearchDestination) GetInputs() []string {
@@ -148,6 +155,7 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestination) SetInputs(v []string)
 	o.Inputs = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineAmazonOpenSearchDestination) GetType() ObservabilityPipelineAmazonOpenSearchDestinationType {
 	if o == nil {
@@ -170,6 +178,8 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestination) GetTypeOk() (*Observa
 func (o *ObservabilityPipelineAmazonOpenSearchDestination) SetType(v ObservabilityPipelineAmazonOpenSearchDestinationType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineAmazonOpenSearchDestination) MarshalJSON() ([]byte, error) {
@@ -194,11 +204,11 @@ func (o ObservabilityPipelineAmazonOpenSearchDestination) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineAmazonOpenSearchDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Auth      *ObservabilityPipelineAmazonOpenSearchDestinationAuth `json:"auth"`
-		BulkIndex *string                                               `json:"bulk_index,omitempty"`
-		Id        *string                                               `json:"id"`
-		Inputs    *[]string                                             `json:"inputs"`
-		Type      *ObservabilityPipelineAmazonOpenSearchDestinationType `json:"type"`
+		Auth *ObservabilityPipelineAmazonOpenSearchDestinationAuth `json:"auth"`
+		BulkIndex *string `json:"bulk_index,omitempty"`
+		Id *string `json:"id"`
+		Inputs *[]string `json:"inputs"`
+		Type *ObservabilityPipelineAmazonOpenSearchDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -217,7 +227,7 @@ func (o *ObservabilityPipelineAmazonOpenSearchDestination) UnmarshalJSON(bytes [
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "bulk_index", "id", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "auth", "bulk_index", "id", "inputs", "type",  })
 	} else {
 		return err
 	}

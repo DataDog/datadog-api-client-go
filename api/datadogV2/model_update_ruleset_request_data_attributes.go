@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpdateRulesetRequestDataAttributes The definition of `UpdateRulesetRequestDataAttributes` object.
 type UpdateRulesetRequestDataAttributes struct {
@@ -19,9 +23,10 @@ type UpdateRulesetRequestDataAttributes struct {
 	// The `attributes` `rules`.
 	Rules []UpdateRulesetRequestDataAttributesRulesItems `json:"rules"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUpdateRulesetRequestDataAttributes instantiates a new UpdateRulesetRequestDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewUpdateRulesetRequestDataAttributesWithDefaults() *UpdateRulesetRequestDa
 	this := UpdateRulesetRequestDataAttributes{}
 	return &this
 }
-
 // GetEnabled returns the Enabled field value.
 func (o *UpdateRulesetRequestDataAttributes) GetEnabled() bool {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *UpdateRulesetRequestDataAttributes) GetEnabledOk() (*bool, bool) {
 func (o *UpdateRulesetRequestDataAttributes) SetEnabled(v bool) {
 	o.Enabled = v
 }
+
 
 // GetLastVersion returns the LastVersion field value if set, zero value otherwise.
 func (o *UpdateRulesetRequestDataAttributes) GetLastVersion() int64 {
@@ -93,6 +98,7 @@ func (o *UpdateRulesetRequestDataAttributes) SetLastVersion(v int64) {
 	o.LastVersion = &v
 }
 
+
 // GetRules returns the Rules field value.
 func (o *UpdateRulesetRequestDataAttributes) GetRules() []UpdateRulesetRequestDataAttributesRulesItems {
 	if o == nil {
@@ -116,6 +122,8 @@ func (o *UpdateRulesetRequestDataAttributes) SetRules(v []UpdateRulesetRequestDa
 	o.Rules = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateRulesetRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -137,9 +145,9 @@ func (o UpdateRulesetRequestDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UpdateRulesetRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enabled     *bool                                           `json:"enabled"`
-		LastVersion *int64                                          `json:"last_version,omitempty"`
-		Rules       *[]UpdateRulesetRequestDataAttributesRulesItems `json:"rules"`
+		Enabled *bool `json:"enabled"`
+		LastVersion *int64 `json:"last_version,omitempty"`
+		Rules *[]UpdateRulesetRequestDataAttributesRulesItems `json:"rules"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *UpdateRulesetRequestDataAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "last_version", "rules"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "enabled", "last_version", "rules",  })
 	} else {
 		return err
 	}

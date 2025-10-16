@@ -2,32 +2,38 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineConfigProcessorItem - A processor for the pipeline.
 type ObservabilityPipelineConfigProcessorItem struct {
-	ObservabilityPipelineFilterProcessor               *ObservabilityPipelineFilterProcessor
-	ObservabilityPipelineParseJSONProcessor            *ObservabilityPipelineParseJSONProcessor
-	ObservabilityPipelineQuotaProcessor                *ObservabilityPipelineQuotaProcessor
-	ObservabilityPipelineAddFieldsProcessor            *ObservabilityPipelineAddFieldsProcessor
-	ObservabilityPipelineRemoveFieldsProcessor         *ObservabilityPipelineRemoveFieldsProcessor
-	ObservabilityPipelineRenameFieldsProcessor         *ObservabilityPipelineRenameFieldsProcessor
-	ObservabilityPipelineGenerateMetricsProcessor      *ObservabilityPipelineGenerateMetricsProcessor
-	ObservabilityPipelineSampleProcessor               *ObservabilityPipelineSampleProcessor
-	ObservabilityPipelineParseGrokProcessor            *ObservabilityPipelineParseGrokProcessor
+	ObservabilityPipelineFilterProcessor *ObservabilityPipelineFilterProcessor
+	ObservabilityPipelineParseJSONProcessor *ObservabilityPipelineParseJSONProcessor
+	ObservabilityPipelineQuotaProcessor *ObservabilityPipelineQuotaProcessor
+	ObservabilityPipelineAddFieldsProcessor *ObservabilityPipelineAddFieldsProcessor
+	ObservabilityPipelineRemoveFieldsProcessor *ObservabilityPipelineRemoveFieldsProcessor
+	ObservabilityPipelineRenameFieldsProcessor *ObservabilityPipelineRenameFieldsProcessor
+	ObservabilityPipelineGenerateMetricsProcessor *ObservabilityPipelineGenerateMetricsProcessor
+	ObservabilityPipelineSampleProcessor *ObservabilityPipelineSampleProcessor
+	ObservabilityPipelineParseGrokProcessor *ObservabilityPipelineParseGrokProcessor
 	ObservabilityPipelineSensitiveDataScannerProcessor *ObservabilityPipelineSensitiveDataScannerProcessor
-	ObservabilityPipelineOcsfMapperProcessor           *ObservabilityPipelineOcsfMapperProcessor
-	ObservabilityPipelineAddEnvVarsProcessor           *ObservabilityPipelineAddEnvVarsProcessor
-	ObservabilityPipelineDedupeProcessor               *ObservabilityPipelineDedupeProcessor
-	ObservabilityPipelineEnrichmentTableProcessor      *ObservabilityPipelineEnrichmentTableProcessor
-	ObservabilityPipelineReduceProcessor               *ObservabilityPipelineReduceProcessor
-	ObservabilityPipelineThrottleProcessor             *ObservabilityPipelineThrottleProcessor
-	ObservabilityPipelineCustomProcessor               *ObservabilityPipelineCustomProcessor
-	ObservabilityPipelineDatadogTagsProcessor          *ObservabilityPipelineDatadogTagsProcessor
+	ObservabilityPipelineOcsfMapperProcessor *ObservabilityPipelineOcsfMapperProcessor
+	ObservabilityPipelineAddEnvVarsProcessor *ObservabilityPipelineAddEnvVarsProcessor
+	ObservabilityPipelineDedupeProcessor *ObservabilityPipelineDedupeProcessor
+	ObservabilityPipelineEnrichmentTableProcessor *ObservabilityPipelineEnrichmentTableProcessor
+	ObservabilityPipelineReduceProcessor *ObservabilityPipelineReduceProcessor
+	ObservabilityPipelineThrottleProcessor *ObservabilityPipelineThrottleProcessor
+	ObservabilityPipelineCustomProcessor *ObservabilityPipelineCustomProcessor
+	ObservabilityPipelineDatadogTagsProcessor *ObservabilityPipelineDatadogTagsProcessor
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -464,73 +470,91 @@ func (obj ObservabilityPipelineConfigProcessorItem) MarshalJSON() ([]byte, error
 		return datadog.Marshal(&obj.ObservabilityPipelineFilterProcessor)
 	}
 
+
 	if obj.ObservabilityPipelineParseJSONProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineParseJSONProcessor)
 	}
+
 
 	if obj.ObservabilityPipelineQuotaProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineQuotaProcessor)
 	}
 
+
 	if obj.ObservabilityPipelineAddFieldsProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineAddFieldsProcessor)
 	}
+
 
 	if obj.ObservabilityPipelineRemoveFieldsProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineRemoveFieldsProcessor)
 	}
 
+
 	if obj.ObservabilityPipelineRenameFieldsProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineRenameFieldsProcessor)
 	}
+
 
 	if obj.ObservabilityPipelineGenerateMetricsProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineGenerateMetricsProcessor)
 	}
 
+
 	if obj.ObservabilityPipelineSampleProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSampleProcessor)
 	}
+
 
 	if obj.ObservabilityPipelineParseGrokProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineParseGrokProcessor)
 	}
 
+
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineSensitiveDataScannerProcessor)
 	}
+
 
 	if obj.ObservabilityPipelineOcsfMapperProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineOcsfMapperProcessor)
 	}
 
+
 	if obj.ObservabilityPipelineAddEnvVarsProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineAddEnvVarsProcessor)
 	}
+
 
 	if obj.ObservabilityPipelineDedupeProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineDedupeProcessor)
 	}
 
+
 	if obj.ObservabilityPipelineEnrichmentTableProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineEnrichmentTableProcessor)
 	}
+
 
 	if obj.ObservabilityPipelineReduceProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineReduceProcessor)
 	}
 
+
 	if obj.ObservabilityPipelineThrottleProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineThrottleProcessor)
 	}
+
 
 	if obj.ObservabilityPipelineCustomProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineCustomProcessor)
 	}
 
+
 	if obj.ObservabilityPipelineDatadogTagsProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineDatadogTagsProcessor)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -539,78 +563,96 @@ func (obj ObservabilityPipelineConfigProcessorItem) MarshalJSON() ([]byte, error
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ObservabilityPipelineConfigProcessorItem) GetActualInstance() interface{} {
+func (obj *ObservabilityPipelineConfigProcessorItem) GetActualInstance() (interface{}) {
 	if obj.ObservabilityPipelineFilterProcessor != nil {
 		return obj.ObservabilityPipelineFilterProcessor
 	}
+
 
 	if obj.ObservabilityPipelineParseJSONProcessor != nil {
 		return obj.ObservabilityPipelineParseJSONProcessor
 	}
 
+
 	if obj.ObservabilityPipelineQuotaProcessor != nil {
 		return obj.ObservabilityPipelineQuotaProcessor
 	}
+
 
 	if obj.ObservabilityPipelineAddFieldsProcessor != nil {
 		return obj.ObservabilityPipelineAddFieldsProcessor
 	}
 
+
 	if obj.ObservabilityPipelineRemoveFieldsProcessor != nil {
 		return obj.ObservabilityPipelineRemoveFieldsProcessor
 	}
+
 
 	if obj.ObservabilityPipelineRenameFieldsProcessor != nil {
 		return obj.ObservabilityPipelineRenameFieldsProcessor
 	}
 
+
 	if obj.ObservabilityPipelineGenerateMetricsProcessor != nil {
 		return obj.ObservabilityPipelineGenerateMetricsProcessor
 	}
+
 
 	if obj.ObservabilityPipelineSampleProcessor != nil {
 		return obj.ObservabilityPipelineSampleProcessor
 	}
 
+
 	if obj.ObservabilityPipelineParseGrokProcessor != nil {
 		return obj.ObservabilityPipelineParseGrokProcessor
 	}
+
 
 	if obj.ObservabilityPipelineSensitiveDataScannerProcessor != nil {
 		return obj.ObservabilityPipelineSensitiveDataScannerProcessor
 	}
 
+
 	if obj.ObservabilityPipelineOcsfMapperProcessor != nil {
 		return obj.ObservabilityPipelineOcsfMapperProcessor
 	}
+
 
 	if obj.ObservabilityPipelineAddEnvVarsProcessor != nil {
 		return obj.ObservabilityPipelineAddEnvVarsProcessor
 	}
 
+
 	if obj.ObservabilityPipelineDedupeProcessor != nil {
 		return obj.ObservabilityPipelineDedupeProcessor
 	}
+
 
 	if obj.ObservabilityPipelineEnrichmentTableProcessor != nil {
 		return obj.ObservabilityPipelineEnrichmentTableProcessor
 	}
 
+
 	if obj.ObservabilityPipelineReduceProcessor != nil {
 		return obj.ObservabilityPipelineReduceProcessor
 	}
+
 
 	if obj.ObservabilityPipelineThrottleProcessor != nil {
 		return obj.ObservabilityPipelineThrottleProcessor
 	}
 
+
 	if obj.ObservabilityPipelineCustomProcessor != nil {
 		return obj.ObservabilityPipelineCustomProcessor
 	}
 
+
 	if obj.ObservabilityPipelineDatadogTagsProcessor != nil {
 		return obj.ObservabilityPipelineDatadogTagsProcessor
 	}
+
 
 	// all schemas are nil
 	return nil

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsRetentionSumUsage Object containing indexed logs usage grouped by retention period and summed.
 type LogsRetentionSumUsage struct {
@@ -19,9 +25,10 @@ type LogsRetentionSumUsage struct {
 	// The retention period in days or "custom" for all custom retention periods.
 	Retention *string `json:"retention,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsRetentionSumUsage instantiates a new LogsRetentionSumUsage object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewLogsRetentionSumUsageWithDefaults() *LogsRetentionSumUsage {
 	this := LogsRetentionSumUsage{}
 	return &this
 }
-
 // GetLogsIndexedLogsUsageSum returns the LogsIndexedLogsUsageSum field value if set, zero value otherwise.
 func (o *LogsRetentionSumUsage) GetLogsIndexedLogsUsageSum() int64 {
 	if o == nil || o.LogsIndexedLogsUsageSum == nil {
@@ -67,6 +73,7 @@ func (o *LogsRetentionSumUsage) HasLogsIndexedLogsUsageSum() bool {
 func (o *LogsRetentionSumUsage) SetLogsIndexedLogsUsageSum(v int64) {
 	o.LogsIndexedLogsUsageSum = &v
 }
+
 
 // GetLogsLiveIndexedLogsUsageSum returns the LogsLiveIndexedLogsUsageSum field value if set, zero value otherwise.
 func (o *LogsRetentionSumUsage) GetLogsLiveIndexedLogsUsageSum() int64 {
@@ -96,6 +103,7 @@ func (o *LogsRetentionSumUsage) SetLogsLiveIndexedLogsUsageSum(v int64) {
 	o.LogsLiveIndexedLogsUsageSum = &v
 }
 
+
 // GetLogsRehydratedIndexedLogsUsageSum returns the LogsRehydratedIndexedLogsUsageSum field value if set, zero value otherwise.
 func (o *LogsRetentionSumUsage) GetLogsRehydratedIndexedLogsUsageSum() int64 {
 	if o == nil || o.LogsRehydratedIndexedLogsUsageSum == nil {
@@ -123,6 +131,7 @@ func (o *LogsRetentionSumUsage) HasLogsRehydratedIndexedLogsUsageSum() bool {
 func (o *LogsRetentionSumUsage) SetLogsRehydratedIndexedLogsUsageSum(v int64) {
 	o.LogsRehydratedIndexedLogsUsageSum = &v
 }
+
 
 // GetRetention returns the Retention field value if set, zero value otherwise.
 func (o *LogsRetentionSumUsage) GetRetention() string {
@@ -152,6 +161,8 @@ func (o *LogsRetentionSumUsage) SetRetention(v string) {
 	o.Retention = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsRetentionSumUsage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -180,17 +191,17 @@ func (o LogsRetentionSumUsage) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsRetentionSumUsage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		LogsIndexedLogsUsageSum           *int64  `json:"logs_indexed_logs_usage_sum,omitempty"`
-		LogsLiveIndexedLogsUsageSum       *int64  `json:"logs_live_indexed_logs_usage_sum,omitempty"`
-		LogsRehydratedIndexedLogsUsageSum *int64  `json:"logs_rehydrated_indexed_logs_usage_sum,omitempty"`
-		Retention                         *string `json:"retention,omitempty"`
+		LogsIndexedLogsUsageSum *int64 `json:"logs_indexed_logs_usage_sum,omitempty"`
+		LogsLiveIndexedLogsUsageSum *int64 `json:"logs_live_indexed_logs_usage_sum,omitempty"`
+		LogsRehydratedIndexedLogsUsageSum *int64 `json:"logs_rehydrated_indexed_logs_usage_sum,omitempty"`
+		Retention *string `json:"retention,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"logs_indexed_logs_usage_sum", "logs_live_indexed_logs_usage_sum", "logs_rehydrated_indexed_logs_usage_sum", "retention"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "logs_indexed_logs_usage_sum", "logs_live_indexed_logs_usage_sum", "logs_rehydrated_indexed_logs_usage_sum", "retention",  })
 	} else {
 		return err
 	}

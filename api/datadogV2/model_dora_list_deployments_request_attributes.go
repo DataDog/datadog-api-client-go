@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DORAListDeploymentsRequestAttributes Attributes to get a list of deployments.
 type DORAListDeploymentsRequestAttributes struct {
@@ -23,9 +27,10 @@ type DORAListDeploymentsRequestAttributes struct {
 	// Maximum timestamp for requested events.
 	To *time.Time `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDORAListDeploymentsRequestAttributes instantiates a new DORAListDeploymentsRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewDORAListDeploymentsRequestAttributesWithDefaults() *DORAListDeploymentsR
 	this.Limit = &limit
 	return &this
 }
-
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *DORAListDeploymentsRequestAttributes) GetFrom() time.Time {
 	if o == nil || o.From == nil {
@@ -75,6 +79,7 @@ func (o *DORAListDeploymentsRequestAttributes) HasFrom() bool {
 func (o *DORAListDeploymentsRequestAttributes) SetFrom(v time.Time) {
 	o.From = &v
 }
+
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *DORAListDeploymentsRequestAttributes) GetLimit() int32 {
@@ -104,6 +109,7 @@ func (o *DORAListDeploymentsRequestAttributes) SetLimit(v int32) {
 	o.Limit = &v
 }
 
+
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *DORAListDeploymentsRequestAttributes) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -131,6 +137,7 @@ func (o *DORAListDeploymentsRequestAttributes) HasQuery() bool {
 func (o *DORAListDeploymentsRequestAttributes) SetQuery(v string) {
 	o.Query = &v
 }
+
 
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *DORAListDeploymentsRequestAttributes) GetSort() string {
@@ -160,6 +167,7 @@ func (o *DORAListDeploymentsRequestAttributes) SetSort(v string) {
 	o.Sort = &v
 }
 
+
 // GetTo returns the To field value if set, zero value otherwise.
 func (o *DORAListDeploymentsRequestAttributes) GetTo() time.Time {
 	if o == nil || o.To == nil {
@@ -187,6 +195,8 @@ func (o *DORAListDeploymentsRequestAttributes) HasTo() bool {
 func (o *DORAListDeploymentsRequestAttributes) SetTo(v time.Time) {
 	o.To = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DORAListDeploymentsRequestAttributes) MarshalJSON() ([]byte, error) {
@@ -227,18 +237,18 @@ func (o DORAListDeploymentsRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DORAListDeploymentsRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		From  *time.Time `json:"from,omitempty"`
-		Limit *int32     `json:"limit,omitempty"`
-		Query *string    `json:"query,omitempty"`
-		Sort  *string    `json:"sort,omitempty"`
-		To    *time.Time `json:"to,omitempty"`
+		From *time.Time `json:"from,omitempty"`
+		Limit *int32 `json:"limit,omitempty"`
+		Query *string `json:"query,omitempty"`
+		Sort *string `json:"sort,omitempty"`
+		To *time.Time `json:"to,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"from", "limit", "query", "sort", "to"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "from", "limit", "query", "sort", "to",  })
 	} else {
 		return err
 	}

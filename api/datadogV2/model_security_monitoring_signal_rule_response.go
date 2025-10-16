@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringSignalRuleResponse Rule.
 type SecurityMonitoringSignalRuleResponse struct {
@@ -51,9 +57,10 @@ type SecurityMonitoringSignalRuleResponse struct {
 	// The version of the rule.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringSignalRuleResponse instantiates a new SecurityMonitoringSignalRuleResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -71,7 +78,6 @@ func NewSecurityMonitoringSignalRuleResponseWithDefaults() *SecurityMonitoringSi
 	this := SecurityMonitoringSignalRuleResponse{}
 	return &this
 }
-
 // GetCases returns the Cases field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetCases() []SecurityMonitoringRuleCase {
 	if o == nil || o.Cases == nil {
@@ -99,6 +105,7 @@ func (o *SecurityMonitoringSignalRuleResponse) HasCases() bool {
 func (o *SecurityMonitoringSignalRuleResponse) SetCases(v []SecurityMonitoringRuleCase) {
 	o.Cases = v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetCreatedAt() int64 {
@@ -128,6 +135,7 @@ func (o *SecurityMonitoringSignalRuleResponse) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
 
+
 // GetCreationAuthorId returns the CreationAuthorId field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetCreationAuthorId() int64 {
 	if o == nil || o.CreationAuthorId == nil {
@@ -155,6 +163,7 @@ func (o *SecurityMonitoringSignalRuleResponse) HasCreationAuthorId() bool {
 func (o *SecurityMonitoringSignalRuleResponse) SetCreationAuthorId(v int64) {
 	o.CreationAuthorId = &v
 }
+
 
 // GetCustomMessage returns the CustomMessage field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetCustomMessage() string {
@@ -184,6 +193,7 @@ func (o *SecurityMonitoringSignalRuleResponse) SetCustomMessage(v string) {
 	o.CustomMessage = &v
 }
 
+
 // GetCustomName returns the CustomName field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetCustomName() string {
 	if o == nil || o.CustomName == nil {
@@ -211,6 +221,7 @@ func (o *SecurityMonitoringSignalRuleResponse) HasCustomName() bool {
 func (o *SecurityMonitoringSignalRuleResponse) SetCustomName(v string) {
 	o.CustomName = &v
 }
+
 
 // GetDeprecationDate returns the DeprecationDate field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetDeprecationDate() int64 {
@@ -240,6 +251,7 @@ func (o *SecurityMonitoringSignalRuleResponse) SetDeprecationDate(v int64) {
 	o.DeprecationDate = &v
 }
 
+
 // GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetFilters() []SecurityMonitoringFilter {
 	if o == nil || o.Filters == nil {
@@ -267,6 +279,7 @@ func (o *SecurityMonitoringSignalRuleResponse) HasFilters() bool {
 func (o *SecurityMonitoringSignalRuleResponse) SetFilters(v []SecurityMonitoringFilter) {
 	o.Filters = v
 }
+
 
 // GetHasExtendedTitle returns the HasExtendedTitle field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetHasExtendedTitle() bool {
@@ -296,6 +309,7 @@ func (o *SecurityMonitoringSignalRuleResponse) SetHasExtendedTitle(v bool) {
 	o.HasExtendedTitle = &v
 }
 
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetId() string {
 	if o == nil || o.Id == nil {
@@ -323,6 +337,7 @@ func (o *SecurityMonitoringSignalRuleResponse) HasId() bool {
 func (o *SecurityMonitoringSignalRuleResponse) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetIsDefault returns the IsDefault field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetIsDefault() bool {
@@ -352,6 +367,7 @@ func (o *SecurityMonitoringSignalRuleResponse) SetIsDefault(v bool) {
 	o.IsDefault = &v
 }
 
+
 // GetIsDeleted returns the IsDeleted field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetIsDeleted() bool {
 	if o == nil || o.IsDeleted == nil {
@@ -379,6 +395,7 @@ func (o *SecurityMonitoringSignalRuleResponse) HasIsDeleted() bool {
 func (o *SecurityMonitoringSignalRuleResponse) SetIsDeleted(v bool) {
 	o.IsDeleted = &v
 }
+
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetIsEnabled() bool {
@@ -408,6 +425,7 @@ func (o *SecurityMonitoringSignalRuleResponse) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetMessage() string {
 	if o == nil || o.Message == nil {
@@ -435,6 +453,7 @@ func (o *SecurityMonitoringSignalRuleResponse) HasMessage() bool {
 func (o *SecurityMonitoringSignalRuleResponse) SetMessage(v string) {
 	o.Message = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetName() string {
@@ -464,6 +483,7 @@ func (o *SecurityMonitoringSignalRuleResponse) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetOptions() SecurityMonitoringRuleOptions {
 	if o == nil || o.Options == nil {
@@ -491,6 +511,7 @@ func (o *SecurityMonitoringSignalRuleResponse) HasOptions() bool {
 func (o *SecurityMonitoringSignalRuleResponse) SetOptions(v SecurityMonitoringRuleOptions) {
 	o.Options = &v
 }
+
 
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetQueries() []SecurityMonitoringSignalRuleResponseQuery {
@@ -520,6 +541,7 @@ func (o *SecurityMonitoringSignalRuleResponse) SetQueries(v []SecurityMonitoring
 	o.Queries = v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -547,6 +569,7 @@ func (o *SecurityMonitoringSignalRuleResponse) HasTags() bool {
 func (o *SecurityMonitoringSignalRuleResponse) SetTags(v []string) {
 	o.Tags = v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetType() SecurityMonitoringSignalRuleType {
@@ -576,6 +599,7 @@ func (o *SecurityMonitoringSignalRuleResponse) SetType(v SecurityMonitoringSigna
 	o.Type = &v
 }
 
+
 // GetUpdateAuthorId returns the UpdateAuthorId field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetUpdateAuthorId() int64 {
 	if o == nil || o.UpdateAuthorId == nil {
@@ -604,6 +628,7 @@ func (o *SecurityMonitoringSignalRuleResponse) SetUpdateAuthorId(v int64) {
 	o.UpdateAuthorId = &v
 }
 
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalRuleResponse) GetVersion() int64 {
 	if o == nil || o.Version == nil {
@@ -631,6 +656,8 @@ func (o *SecurityMonitoringSignalRuleResponse) HasVersion() bool {
 func (o *SecurityMonitoringSignalRuleResponse) SetVersion(v int64) {
 	o.Version = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringSignalRuleResponse) MarshalJSON() ([]byte, error) {
@@ -708,33 +735,33 @@ func (o SecurityMonitoringSignalRuleResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringSignalRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Cases            []SecurityMonitoringRuleCase                `json:"cases,omitempty"`
-		CreatedAt        *int64                                      `json:"createdAt,omitempty"`
-		CreationAuthorId *int64                                      `json:"creationAuthorId,omitempty"`
-		CustomMessage    *string                                     `json:"customMessage,omitempty"`
-		CustomName       *string                                     `json:"customName,omitempty"`
-		DeprecationDate  *int64                                      `json:"deprecationDate,omitempty"`
-		Filters          []SecurityMonitoringFilter                  `json:"filters,omitempty"`
-		HasExtendedTitle *bool                                       `json:"hasExtendedTitle,omitempty"`
-		Id               *string                                     `json:"id,omitempty"`
-		IsDefault        *bool                                       `json:"isDefault,omitempty"`
-		IsDeleted        *bool                                       `json:"isDeleted,omitempty"`
-		IsEnabled        *bool                                       `json:"isEnabled,omitempty"`
-		Message          *string                                     `json:"message,omitempty"`
-		Name             *string                                     `json:"name,omitempty"`
-		Options          *SecurityMonitoringRuleOptions              `json:"options,omitempty"`
-		Queries          []SecurityMonitoringSignalRuleResponseQuery `json:"queries,omitempty"`
-		Tags             []string                                    `json:"tags,omitempty"`
-		Type             *SecurityMonitoringSignalRuleType           `json:"type,omitempty"`
-		UpdateAuthorId   *int64                                      `json:"updateAuthorId,omitempty"`
-		Version          *int64                                      `json:"version,omitempty"`
+		Cases []SecurityMonitoringRuleCase `json:"cases,omitempty"`
+		CreatedAt *int64 `json:"createdAt,omitempty"`
+		CreationAuthorId *int64 `json:"creationAuthorId,omitempty"`
+		CustomMessage *string `json:"customMessage,omitempty"`
+		CustomName *string `json:"customName,omitempty"`
+		DeprecationDate *int64 `json:"deprecationDate,omitempty"`
+		Filters []SecurityMonitoringFilter `json:"filters,omitempty"`
+		HasExtendedTitle *bool `json:"hasExtendedTitle,omitempty"`
+		Id *string `json:"id,omitempty"`
+		IsDefault *bool `json:"isDefault,omitempty"`
+		IsDeleted *bool `json:"isDeleted,omitempty"`
+		IsEnabled *bool `json:"isEnabled,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Options *SecurityMonitoringRuleOptions `json:"options,omitempty"`
+		Queries []SecurityMonitoringSignalRuleResponseQuery `json:"queries,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Type *SecurityMonitoringSignalRuleType `json:"type,omitempty"`
+		UpdateAuthorId *int64 `json:"updateAuthorId,omitempty"`
+		Version *int64 `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cases", "createdAt", "creationAuthorId", "customMessage", "customName", "deprecationDate", "filters", "hasExtendedTitle", "id", "isDefault", "isDeleted", "isEnabled", "message", "name", "options", "queries", "tags", "type", "updateAuthorId", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cases", "createdAt", "creationAuthorId", "customMessage", "customName", "deprecationDate", "filters", "hasExtendedTitle", "id", "isDefault", "isDeleted", "isEnabled", "message", "name", "options", "queries", "tags", "type", "updateAuthorId", "version",  })
 	} else {
 		return err
 	}
@@ -754,13 +781,13 @@ func (o *SecurityMonitoringSignalRuleResponse) UnmarshalJSON(bytes []byte) (err 
 	o.IsEnabled = all.IsEnabled
 	o.Message = all.Message
 	o.Name = all.Name
-	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Options = all.Options
 	o.Queries = all.Queries
 	o.Tags = all.Tags
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

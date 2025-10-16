@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TopologyQueryDataSource Name of the data source
 type TopologyQueryDataSource string
@@ -16,7 +20,7 @@ type TopologyQueryDataSource string
 // List of TopologyQueryDataSource.
 const (
 	TOPOLOGYQUERYDATASOURCE_DATA_STREAMS TopologyQueryDataSource = "data_streams"
-	TOPOLOGYQUERYDATASOURCE_SERVICE_MAP  TopologyQueryDataSource = "service_map"
+	TOPOLOGYQUERYDATASOURCE_SERVICE_MAP TopologyQueryDataSource = "service_map"
 )
 
 var allowedTopologyQueryDataSourceEnumValues = []TopologyQueryDataSource{

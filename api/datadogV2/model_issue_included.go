@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssueIncluded - An array of related resources, returned when the `include` query parameter is used.
 type IssueIncluded struct {
@@ -104,13 +110,16 @@ func (obj IssueIncluded) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.IssueCase)
 	}
 
+
 	if obj.IssueUser != nil {
 		return datadog.Marshal(&obj.IssueUser)
 	}
 
+
 	if obj.IssueTeam != nil {
 		return datadog.Marshal(&obj.IssueTeam)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj IssueIncluded) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *IssueIncluded) GetActualInstance() interface{} {
+func (obj *IssueIncluded) GetActualInstance() (interface{}) {
 	if obj.IssueCase != nil {
 		return obj.IssueCase
 	}
+
 
 	if obj.IssueUser != nil {
 		return obj.IssueUser
 	}
 
+
 	if obj.IssueTeam != nil {
 		return obj.IssueTeam
 	}
+
 
 	// all schemas are nil
 	return nil

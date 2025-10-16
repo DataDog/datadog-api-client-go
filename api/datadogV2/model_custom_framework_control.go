@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CustomFrameworkControl Framework Control.
 type CustomFrameworkControl struct {
@@ -17,9 +21,10 @@ type CustomFrameworkControl struct {
 	// Rule IDs.
 	RulesId []string `json:"rules_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCustomFrameworkControl instantiates a new CustomFrameworkControl object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewCustomFrameworkControlWithDefaults() *CustomFrameworkControl {
 	this := CustomFrameworkControl{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *CustomFrameworkControl) GetName() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *CustomFrameworkControl) GetNameOk() (*string, bool) {
 func (o *CustomFrameworkControl) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetRulesId returns the RulesId field value.
 func (o *CustomFrameworkControl) GetRulesId() []string {
@@ -86,6 +91,8 @@ func (o *CustomFrameworkControl) SetRulesId(v []string) {
 	o.RulesId = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomFrameworkControl) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o CustomFrameworkControl) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomFrameworkControl) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name    *string   `json:"name"`
+		Name *string `json:"name"`
 		RulesId *[]string `json:"rules_id"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *CustomFrameworkControl) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "rules_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "rules_id",  })
 	} else {
 		return err
 	}

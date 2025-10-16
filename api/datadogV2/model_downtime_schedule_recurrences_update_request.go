@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeScheduleRecurrencesUpdateRequest A recurring downtime schedule definition.
 type DowntimeScheduleRecurrencesUpdateRequest struct {
@@ -17,6 +23,7 @@ type DowntimeScheduleRecurrencesUpdateRequest struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewDowntimeScheduleRecurrencesUpdateRequest instantiates a new DowntimeScheduleRecurrencesUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +45,6 @@ func NewDowntimeScheduleRecurrencesUpdateRequestWithDefaults() *DowntimeSchedule
 	this.Timezone = &timezone
 	return &this
 }
-
 // GetRecurrences returns the Recurrences field value if set, zero value otherwise.
 func (o *DowntimeScheduleRecurrencesUpdateRequest) GetRecurrences() []DowntimeScheduleRecurrenceCreateUpdateRequest {
 	if o == nil || o.Recurrences == nil {
@@ -66,6 +72,7 @@ func (o *DowntimeScheduleRecurrencesUpdateRequest) HasRecurrences() bool {
 func (o *DowntimeScheduleRecurrencesUpdateRequest) SetRecurrences(v []DowntimeScheduleRecurrenceCreateUpdateRequest) {
 	o.Recurrences = v
 }
+
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *DowntimeScheduleRecurrencesUpdateRequest) GetTimezone() string {
@@ -95,6 +102,8 @@ func (o *DowntimeScheduleRecurrencesUpdateRequest) SetTimezone(v string) {
 	o.Timezone = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeScheduleRecurrencesUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o DowntimeScheduleRecurrencesUpdateRequest) MarshalJSON() ([]byte, error) 
 func (o *DowntimeScheduleRecurrencesUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Recurrences []DowntimeScheduleRecurrenceCreateUpdateRequest `json:"recurrences,omitempty"`
-		Timezone    *string                                         `json:"timezone,omitempty"`
+		Timezone *string `json:"timezone,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

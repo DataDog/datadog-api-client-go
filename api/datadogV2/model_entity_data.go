@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityData Entity data.
 type EntityData struct {
@@ -21,9 +27,10 @@ type EntityData struct {
 	// Entity.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityData instantiates a new EntityData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewEntityDataWithDefaults() *EntityData {
 	this := EntityData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *EntityData) GetAttributes() EntityAttributes {
 	if o == nil || o.Attributes == nil {
@@ -69,6 +75,7 @@ func (o *EntityData) HasAttributes() bool {
 func (o *EntityData) SetAttributes(v EntityAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *EntityData) GetId() string {
@@ -98,6 +105,7 @@ func (o *EntityData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *EntityData) GetMeta() EntityMeta {
 	if o == nil || o.Meta == nil {
@@ -125,6 +133,7 @@ func (o *EntityData) HasMeta() bool {
 func (o *EntityData) SetMeta(v EntityMeta) {
 	o.Meta = &v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *EntityData) GetRelationships() EntityRelationships {
@@ -154,6 +163,7 @@ func (o *EntityData) SetRelationships(v EntityRelationships) {
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *EntityData) GetType() string {
 	if o == nil || o.Type == nil {
@@ -181,6 +191,8 @@ func (o *EntityData) HasType() bool {
 func (o *EntityData) SetType(v string) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityData) MarshalJSON() ([]byte, error) {
@@ -213,33 +225,33 @@ func (o EntityData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *EntityAttributes    `json:"attributes,omitempty"`
-		Id            *string              `json:"id,omitempty"`
-		Meta          *EntityMeta          `json:"meta,omitempty"`
+		Attributes *EntityAttributes `json:"attributes,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Meta *EntityMeta `json:"meta,omitempty"`
 		Relationships *EntityRelationships `json:"relationships,omitempty"`
-		Type          *string              `json:"type,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "meta", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "meta", "relationships", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships

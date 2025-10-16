@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DatadogAPIKey The definition of the `DatadogAPIKey` object.
 type DatadogAPIKey struct {
@@ -23,9 +27,10 @@ type DatadogAPIKey struct {
 	// The definition of the `DatadogAPIKey` object.
 	Type DatadogAPIKeyType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDatadogAPIKey instantiates a new DatadogAPIKey object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewDatadogAPIKeyWithDefaults() *DatadogAPIKey {
 	this := DatadogAPIKey{}
 	return &this
 }
-
 // GetApiKey returns the ApiKey field value.
 func (o *DatadogAPIKey) GetApiKey() string {
 	if o == nil {
@@ -70,6 +74,7 @@ func (o *DatadogAPIKey) GetApiKeyOk() (*string, bool) {
 func (o *DatadogAPIKey) SetApiKey(v string) {
 	o.ApiKey = v
 }
+
 
 // GetAppKey returns the AppKey field value.
 func (o *DatadogAPIKey) GetAppKey() string {
@@ -94,6 +99,7 @@ func (o *DatadogAPIKey) SetAppKey(v string) {
 	o.AppKey = v
 }
 
+
 // GetDatacenter returns the Datacenter field value.
 func (o *DatadogAPIKey) GetDatacenter() string {
 	if o == nil {
@@ -116,6 +122,7 @@ func (o *DatadogAPIKey) GetDatacenterOk() (*string, bool) {
 func (o *DatadogAPIKey) SetDatacenter(v string) {
 	o.Datacenter = v
 }
+
 
 // GetSubdomain returns the Subdomain field value if set, zero value otherwise.
 func (o *DatadogAPIKey) GetSubdomain() string {
@@ -145,6 +152,7 @@ func (o *DatadogAPIKey) SetSubdomain(v string) {
 	o.Subdomain = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *DatadogAPIKey) GetType() DatadogAPIKeyType {
 	if o == nil {
@@ -167,6 +175,8 @@ func (o *DatadogAPIKey) GetTypeOk() (*DatadogAPIKeyType, bool) {
 func (o *DatadogAPIKey) SetType(v DatadogAPIKeyType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o DatadogAPIKey) MarshalJSON() ([]byte, error) {
@@ -191,11 +201,11 @@ func (o DatadogAPIKey) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DatadogAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiKey     *string            `json:"api_key"`
-		AppKey     *string            `json:"app_key"`
-		Datacenter *string            `json:"datacenter"`
-		Subdomain  *string            `json:"subdomain,omitempty"`
-		Type       *DatadogAPIKeyType `json:"type"`
+		ApiKey *string `json:"api_key"`
+		AppKey *string `json:"app_key"`
+		Datacenter *string `json:"datacenter"`
+		Subdomain *string `json:"subdomain,omitempty"`
+		Type *DatadogAPIKeyType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -214,7 +224,7 @@ func (o *DatadogAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_key", "app_key", "datacenter", "subdomain", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "api_key", "app_key", "datacenter", "subdomain", "type",  })
 	} else {
 		return err
 	}

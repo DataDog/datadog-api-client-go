@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Step A Step is a sub-component of a workflow. Each Step performs an action.
 type Step struct {
@@ -31,9 +35,10 @@ type Step struct {
 	// Used to merge multiple branches into a single branch.
 	ReadinessGate *ReadinessGate `json:"readinessGate,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewStep instantiates a new Step object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewStepWithDefaults() *Step {
 	this := Step{}
 	return &this
 }
-
 // GetActionId returns the ActionId field value.
 func (o *Step) GetActionId() string {
 	if o == nil {
@@ -76,6 +80,7 @@ func (o *Step) GetActionIdOk() (*string, bool) {
 func (o *Step) SetActionId(v string) {
 	o.ActionId = v
 }
+
 
 // GetCompletionGate returns the CompletionGate field value if set, zero value otherwise.
 func (o *Step) GetCompletionGate() CompletionGate {
@@ -105,6 +110,7 @@ func (o *Step) SetCompletionGate(v CompletionGate) {
 	o.CompletionGate = &v
 }
 
+
 // GetConnectionLabel returns the ConnectionLabel field value if set, zero value otherwise.
 func (o *Step) GetConnectionLabel() string {
 	if o == nil || o.ConnectionLabel == nil {
@@ -132,6 +138,7 @@ func (o *Step) HasConnectionLabel() bool {
 func (o *Step) SetConnectionLabel(v string) {
 	o.ConnectionLabel = &v
 }
+
 
 // GetDisplay returns the Display field value if set, zero value otherwise.
 func (o *Step) GetDisplay() StepDisplay {
@@ -161,6 +168,7 @@ func (o *Step) SetDisplay(v StepDisplay) {
 	o.Display = &v
 }
 
+
 // GetErrorHandlers returns the ErrorHandlers field value if set, zero value otherwise.
 func (o *Step) GetErrorHandlers() []ErrorHandler {
 	if o == nil || o.ErrorHandlers == nil {
@@ -189,6 +197,7 @@ func (o *Step) SetErrorHandlers(v []ErrorHandler) {
 	o.ErrorHandlers = v
 }
 
+
 // GetName returns the Name field value.
 func (o *Step) GetName() string {
 	if o == nil {
@@ -211,6 +220,7 @@ func (o *Step) GetNameOk() (*string, bool) {
 func (o *Step) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetOutboundEdges returns the OutboundEdges field value if set, zero value otherwise.
 func (o *Step) GetOutboundEdges() []OutboundEdge {
@@ -240,6 +250,7 @@ func (o *Step) SetOutboundEdges(v []OutboundEdge) {
 	o.OutboundEdges = v
 }
 
+
 // GetParameters returns the Parameters field value if set, zero value otherwise.
 func (o *Step) GetParameters() []Parameter {
 	if o == nil || o.Parameters == nil {
@@ -268,6 +279,7 @@ func (o *Step) SetParameters(v []Parameter) {
 	o.Parameters = v
 }
 
+
 // GetReadinessGate returns the ReadinessGate field value if set, zero value otherwise.
 func (o *Step) GetReadinessGate() ReadinessGate {
 	if o == nil || o.ReadinessGate == nil {
@@ -295,6 +307,8 @@ func (o *Step) HasReadinessGate() bool {
 func (o *Step) SetReadinessGate(v ReadinessGate) {
 	o.ReadinessGate = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o Step) MarshalJSON() ([]byte, error) {
@@ -335,15 +349,15 @@ func (o Step) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Step) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ActionId        *string         `json:"actionId"`
-		CompletionGate  *CompletionGate `json:"completionGate,omitempty"`
-		ConnectionLabel *string         `json:"connectionLabel,omitempty"`
-		Display         *StepDisplay    `json:"display,omitempty"`
-		ErrorHandlers   []ErrorHandler  `json:"errorHandlers,omitempty"`
-		Name            *string         `json:"name"`
-		OutboundEdges   []OutboundEdge  `json:"outboundEdges,omitempty"`
-		Parameters      []Parameter     `json:"parameters,omitempty"`
-		ReadinessGate   *ReadinessGate  `json:"readinessGate,omitempty"`
+		ActionId *string `json:"actionId"`
+		CompletionGate *CompletionGate `json:"completionGate,omitempty"`
+		ConnectionLabel *string `json:"connectionLabel,omitempty"`
+		Display *StepDisplay `json:"display,omitempty"`
+		ErrorHandlers []ErrorHandler `json:"errorHandlers,omitempty"`
+		Name *string `json:"name"`
+		OutboundEdges []OutboundEdge `json:"outboundEdges,omitempty"`
+		Parameters []Parameter `json:"parameters,omitempty"`
+		ReadinessGate *ReadinessGate `json:"readinessGate,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -356,19 +370,19 @@ func (o *Step) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"actionId", "completionGate", "connectionLabel", "display", "errorHandlers", "name", "outboundEdges", "parameters", "readinessGate"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "actionId", "completionGate", "connectionLabel", "display", "errorHandlers", "name", "outboundEdges", "parameters", "readinessGate",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.ActionId = *all.ActionId
-	if all.CompletionGate != nil && all.CompletionGate.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CompletionGate != nil && all.CompletionGate.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CompletionGate = all.CompletionGate
 	o.ConnectionLabel = all.ConnectionLabel
-	if all.Display != nil && all.Display.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Display != nil && all.Display.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Display = all.Display
@@ -376,7 +390,7 @@ func (o *Step) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = *all.Name
 	o.OutboundEdges = all.OutboundEdges
 	o.Parameters = all.Parameters
-	if all.ReadinessGate != nil && all.ReadinessGate.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.ReadinessGate != nil && all.ReadinessGate.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.ReadinessGate = all.ReadinessGate

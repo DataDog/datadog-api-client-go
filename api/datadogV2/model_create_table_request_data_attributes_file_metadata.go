@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateTableRequestDataAttributesFileMetadata - The definition of `CreateTableRequestDataAttributesFileMetadata` object.
 type CreateTableRequestDataAttributesFileMetadata struct {
 	CreateTableRequestDataAttributesFileMetadataCloudStorage *CreateTableRequestDataAttributesFileMetadataCloudStorage
-	CreateTableRequestDataAttributesFileMetadataLocalFile    *CreateTableRequestDataAttributesFileMetadataLocalFile
+	CreateTableRequestDataAttributesFileMetadataLocalFile *CreateTableRequestDataAttributesFileMetadataLocalFile
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -80,9 +86,11 @@ func (obj CreateTableRequestDataAttributesFileMetadata) MarshalJSON() ([]byte, e
 		return datadog.Marshal(&obj.CreateTableRequestDataAttributesFileMetadataCloudStorage)
 	}
 
+
 	if obj.CreateTableRequestDataAttributesFileMetadataLocalFile != nil {
 		return datadog.Marshal(&obj.CreateTableRequestDataAttributesFileMetadataLocalFile)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj CreateTableRequestDataAttributesFileMetadata) MarshalJSON() ([]byte, e
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *CreateTableRequestDataAttributesFileMetadata) GetActualInstance() interface{} {
+func (obj *CreateTableRequestDataAttributesFileMetadata) GetActualInstance() (interface{}) {
 	if obj.CreateTableRequestDataAttributesFileMetadataCloudStorage != nil {
 		return obj.CreateTableRequestDataAttributesFileMetadataCloudStorage
 	}
 
+
 	if obj.CreateTableRequestDataAttributesFileMetadataLocalFile != nil {
 		return obj.CreateTableRequestDataAttributesFileMetadataLocalFile
 	}
+
 
 	// all schemas are nil
 	return nil

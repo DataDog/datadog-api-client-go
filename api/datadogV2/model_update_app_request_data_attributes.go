@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // UpdateAppRequestDataAttributes App definition attributes to be updated, such as name, description, and components.
 type UpdateAppRequestDataAttributes struct {
@@ -23,9 +29,10 @@ type UpdateAppRequestDataAttributes struct {
 	// The new list of tags for the app, which can be used to filter apps. If this field is set, any existing tags not included in the request are removed.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewUpdateAppRequestDataAttributes instantiates a new UpdateAppRequestDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +50,6 @@ func NewUpdateAppRequestDataAttributesWithDefaults() *UpdateAppRequestDataAttrib
 	this := UpdateAppRequestDataAttributes{}
 	return &this
 }
-
 // GetComponents returns the Components field value if set, zero value otherwise.
 func (o *UpdateAppRequestDataAttributes) GetComponents() []ComponentGrid {
 	if o == nil || o.Components == nil {
@@ -71,6 +77,7 @@ func (o *UpdateAppRequestDataAttributes) HasComponents() bool {
 func (o *UpdateAppRequestDataAttributes) SetComponents(v []ComponentGrid) {
 	o.Components = v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *UpdateAppRequestDataAttributes) GetDescription() string {
@@ -100,6 +107,7 @@ func (o *UpdateAppRequestDataAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UpdateAppRequestDataAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -127,6 +135,7 @@ func (o *UpdateAppRequestDataAttributes) HasName() bool {
 func (o *UpdateAppRequestDataAttributes) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *UpdateAppRequestDataAttributes) GetQueries() []Query {
@@ -156,6 +165,7 @@ func (o *UpdateAppRequestDataAttributes) SetQueries(v []Query) {
 	o.Queries = v
 }
 
+
 // GetRootInstanceName returns the RootInstanceName field value if set, zero value otherwise.
 func (o *UpdateAppRequestDataAttributes) GetRootInstanceName() string {
 	if o == nil || o.RootInstanceName == nil {
@@ -184,6 +194,7 @@ func (o *UpdateAppRequestDataAttributes) SetRootInstanceName(v string) {
 	o.RootInstanceName = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *UpdateAppRequestDataAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -211,6 +222,8 @@ func (o *UpdateAppRequestDataAttributes) HasTags() bool {
 func (o *UpdateAppRequestDataAttributes) SetTags(v []string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o UpdateAppRequestDataAttributes) MarshalJSON() ([]byte, error) {
@@ -246,19 +259,19 @@ func (o UpdateAppRequestDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *UpdateAppRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Components       []ComponentGrid `json:"components,omitempty"`
-		Description      *string         `json:"description,omitempty"`
-		Name             *string         `json:"name,omitempty"`
-		Queries          []Query         `json:"queries,omitempty"`
-		RootInstanceName *string         `json:"rootInstanceName,omitempty"`
-		Tags             []string        `json:"tags,omitempty"`
+		Components []ComponentGrid `json:"components,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Queries []Query `json:"queries,omitempty"`
+		RootInstanceName *string `json:"rootInstanceName,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"components", "description", "name", "queries", "rootInstanceName", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "components", "description", "name", "queries", "rootInstanceName", "tags",  })
 	} else {
 		return err
 	}

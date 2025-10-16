@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentImpactCreateData Incident impact data for a create request.
 type IncidentImpactCreateData struct {
@@ -17,9 +21,10 @@ type IncidentImpactCreateData struct {
 	// Incident impact resource type.
 	Type IncidentImpactType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentImpactCreateData instantiates a new IncidentImpactCreateData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewIncidentImpactCreateDataWithDefaults() *IncidentImpactCreateData {
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *IncidentImpactCreateData) GetAttributes() IncidentImpactCreateAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *IncidentImpactCreateData) GetAttributesOk() (*IncidentImpactCreateAttri
 func (o *IncidentImpactCreateData) SetAttributes(v IncidentImpactCreateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *IncidentImpactCreateData) GetType() IncidentImpactType {
@@ -88,6 +93,8 @@ func (o *IncidentImpactCreateData) SetType(v IncidentImpactType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentImpactCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o IncidentImpactCreateData) MarshalJSON() ([]byte, error) {
 func (o *IncidentImpactCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *IncidentImpactCreateAttributes `json:"attributes"`
-		Type       *IncidentImpactType             `json:"type"`
+		Type *IncidentImpactType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *IncidentImpactCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

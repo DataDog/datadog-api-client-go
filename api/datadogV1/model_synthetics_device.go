@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsDevice Object describing the device used to perform the Synthetic test.
 type SyntheticsDevice struct {
@@ -23,9 +27,10 @@ type SyntheticsDevice struct {
 	// Screen width of the device.
 	Width int64 `json:"width"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsDevice instantiates a new SyntheticsDevice object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewSyntheticsDeviceWithDefaults() *SyntheticsDevice {
 	this := SyntheticsDevice{}
 	return &this
 }
-
 // GetHeight returns the Height field value.
 func (o *SyntheticsDevice) GetHeight() int64 {
 	if o == nil {
@@ -71,6 +75,7 @@ func (o *SyntheticsDevice) SetHeight(v int64) {
 	o.Height = v
 }
 
+
 // GetId returns the Id field value.
 func (o *SyntheticsDevice) GetId() string {
 	if o == nil {
@@ -93,6 +98,7 @@ func (o *SyntheticsDevice) GetIdOk() (*string, bool) {
 func (o *SyntheticsDevice) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetIsMobile returns the IsMobile field value if set, zero value otherwise.
 func (o *SyntheticsDevice) GetIsMobile() bool {
@@ -122,6 +128,7 @@ func (o *SyntheticsDevice) SetIsMobile(v bool) {
 	o.IsMobile = &v
 }
 
+
 // GetName returns the Name field value.
 func (o *SyntheticsDevice) GetName() string {
 	if o == nil {
@@ -144,6 +151,7 @@ func (o *SyntheticsDevice) GetNameOk() (*string, bool) {
 func (o *SyntheticsDevice) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetWidth returns the Width field value.
 func (o *SyntheticsDevice) GetWidth() int64 {
@@ -168,6 +176,8 @@ func (o *SyntheticsDevice) SetWidth(v int64) {
 	o.Width = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsDevice) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -191,11 +201,11 @@ func (o SyntheticsDevice) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Height   *int64  `json:"height"`
-		Id       *string `json:"id"`
-		IsMobile *bool   `json:"isMobile,omitempty"`
-		Name     *string `json:"name"`
-		Width    *int64  `json:"width"`
+		Height *int64 `json:"height"`
+		Id *string `json:"id"`
+		IsMobile *bool `json:"isMobile,omitempty"`
+		Name *string `json:"name"`
+		Width *int64 `json:"width"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -214,7 +224,7 @@ func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"height", "id", "isMobile", "name", "width"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "height", "id", "isMobile", "name", "width",  })
 	} else {
 		return err
 	}

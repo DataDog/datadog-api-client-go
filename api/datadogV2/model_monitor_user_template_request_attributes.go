@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorUserTemplateRequestAttributes Attributes for a monitor user template.
 type MonitorUserTemplateRequestAttributes struct {
@@ -25,6 +29,7 @@ type MonitorUserTemplateRequestAttributes struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorUserTemplateRequestAttributes instantiates a new MonitorUserTemplateRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewMonitorUserTemplateRequestAttributesWithDefaults() *MonitorUserTemplateR
 	this := MonitorUserTemplateRequestAttributes{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorUserTemplateRequestAttributes) GetDescription() string {
 	if o == nil || o.Description.Get() == nil {
@@ -59,7 +63,7 @@ func (o *MonitorUserTemplateRequestAttributes) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorUserTemplateRequestAttributes) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -74,7 +78,6 @@ func (o *MonitorUserTemplateRequestAttributes) HasDescription() bool {
 func (o *MonitorUserTemplateRequestAttributes) SetDescription(v string) {
 	o.Description.Set(&v)
 }
-
 // SetDescriptionNil sets the value for Description to be an explicit nil.
 func (o *MonitorUserTemplateRequestAttributes) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -84,6 +87,7 @@ func (o *MonitorUserTemplateRequestAttributes) SetDescriptionNil() {
 func (o *MonitorUserTemplateRequestAttributes) UnsetDescription() {
 	o.Description.Unset()
 }
+
 
 // GetMonitorDefinition returns the MonitorDefinition field value.
 func (o *MonitorUserTemplateRequestAttributes) GetMonitorDefinition() map[string]interface{} {
@@ -108,6 +112,7 @@ func (o *MonitorUserTemplateRequestAttributes) SetMonitorDefinition(v map[string
 	o.MonitorDefinition = v
 }
 
+
 // GetTags returns the Tags field value.
 func (o *MonitorUserTemplateRequestAttributes) GetTags() []string {
 	if o == nil {
@@ -130,6 +135,7 @@ func (o *MonitorUserTemplateRequestAttributes) GetTagsOk() (*[]string, bool) {
 func (o *MonitorUserTemplateRequestAttributes) SetTags(v []string) {
 	o.Tags = v
 }
+
 
 // GetTemplateVariables returns the TemplateVariables field value if set, zero value otherwise.
 func (o *MonitorUserTemplateRequestAttributes) GetTemplateVariables() []MonitorUserTemplateTemplateVariablesItems {
@@ -159,6 +165,7 @@ func (o *MonitorUserTemplateRequestAttributes) SetTemplateVariables(v []MonitorU
 	o.TemplateVariables = v
 }
 
+
 // GetTitle returns the Title field value.
 func (o *MonitorUserTemplateRequestAttributes) GetTitle() string {
 	if o == nil {
@@ -182,6 +189,8 @@ func (o *MonitorUserTemplateRequestAttributes) SetTitle(v string) {
 	o.Title = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorUserTemplateRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -203,11 +212,11 @@ func (o MonitorUserTemplateRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorUserTemplateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Description       datadog.NullableString                      `json:"description,omitempty"`
-		MonitorDefinition *map[string]interface{}                     `json:"monitor_definition"`
-		Tags              *[]string                                   `json:"tags"`
+		Description datadog.NullableString `json:"description,omitempty"`
+		MonitorDefinition *map[string]interface{} `json:"monitor_definition"`
+		Tags *[]string `json:"tags"`
 		TemplateVariables []MonitorUserTemplateTemplateVariablesItems `json:"template_variables,omitempty"`
-		Title             *string                                     `json:"title"`
+		Title *string `json:"title"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

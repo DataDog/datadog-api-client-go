@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineParseGrokProcessorRuleSupportRule The Grok helper rule referenced in the parsing rules.
 type ObservabilityPipelineParseGrokProcessorRuleSupportRule struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineParseGrokProcessorRuleSupportRule struct {
 	// The definition of the Grok helper rule.
 	Rule string `json:"rule"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineParseGrokProcessorRuleSupportRule instantiates a new ObservabilityPipelineParseGrokProcessorRuleSupportRule object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineParseGrokProcessorRuleSupportRuleWithDefaults() *Ob
 	this := ObservabilityPipelineParseGrokProcessorRuleSupportRule{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *ObservabilityPipelineParseGrokProcessorRuleSupportRule) GetName() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *ObservabilityPipelineParseGrokProcessorRuleSupportRule) SetName(v strin
 	o.Name = v
 }
 
+
 // GetRule returns the Rule field value.
 func (o *ObservabilityPipelineParseGrokProcessorRuleSupportRule) GetRule() string {
 	if o == nil {
@@ -85,6 +90,8 @@ func (o *ObservabilityPipelineParseGrokProcessorRuleSupportRule) GetRuleOk() (*s
 func (o *ObservabilityPipelineParseGrokProcessorRuleSupportRule) SetRule(v string) {
 	o.Rule = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineParseGrokProcessorRuleSupportRule) MarshalJSON() ([]byte, error) {
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineParseGrokProcessorRuleSupportRule) UnmarshalJSON(b
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "rule"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "rule",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentIntegrationMetadataPatchData Incident integration metadata data for a patch request.
 type IncidentIntegrationMetadataPatchData struct {
@@ -17,9 +21,10 @@ type IncidentIntegrationMetadataPatchData struct {
 	// Integration metadata resource type.
 	Type IncidentIntegrationMetadataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentIntegrationMetadataPatchData instantiates a new IncidentIntegrationMetadataPatchData object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewIncidentIntegrationMetadataPatchDataWithDefaults() *IncidentIntegrationM
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *IncidentIntegrationMetadataPatchData) GetAttributes() IncidentIntegrationMetadataAttributes {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *IncidentIntegrationMetadataPatchData) GetAttributesOk() (*IncidentInteg
 func (o *IncidentIntegrationMetadataPatchData) SetAttributes(v IncidentIntegrationMetadataAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value.
 func (o *IncidentIntegrationMetadataPatchData) GetType() IncidentIntegrationMetadataType {
@@ -88,6 +93,8 @@ func (o *IncidentIntegrationMetadataPatchData) SetType(v IncidentIntegrationMeta
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentIntegrationMetadataPatchData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,7 +114,7 @@ func (o IncidentIntegrationMetadataPatchData) MarshalJSON() ([]byte, error) {
 func (o *IncidentIntegrationMetadataPatchData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *IncidentIntegrationMetadataAttributes `json:"attributes"`
-		Type       *IncidentIntegrationMetadataType       `json:"type"`
+		Type *IncidentIntegrationMetadataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -120,7 +127,7 @@ func (o *IncidentIntegrationMetadataPatchData) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "type",  })
 	} else {
 		return err
 	}

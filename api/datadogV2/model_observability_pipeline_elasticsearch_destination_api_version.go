@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineElasticsearchDestinationApiVersion The Elasticsearch API version to use. Set to `auto` to auto-detect.
 type ObservabilityPipelineElasticsearchDestinationApiVersion string
@@ -16,9 +20,9 @@ type ObservabilityPipelineElasticsearchDestinationApiVersion string
 // List of ObservabilityPipelineElasticsearchDestinationApiVersion.
 const (
 	OBSERVABILITYPIPELINEELASTICSEARCHDESTINATIONAPIVERSION_AUTO ObservabilityPipelineElasticsearchDestinationApiVersion = "auto"
-	OBSERVABILITYPIPELINEELASTICSEARCHDESTINATIONAPIVERSION_V6   ObservabilityPipelineElasticsearchDestinationApiVersion = "v6"
-	OBSERVABILITYPIPELINEELASTICSEARCHDESTINATIONAPIVERSION_V7   ObservabilityPipelineElasticsearchDestinationApiVersion = "v7"
-	OBSERVABILITYPIPELINEELASTICSEARCHDESTINATIONAPIVERSION_V8   ObservabilityPipelineElasticsearchDestinationApiVersion = "v8"
+	OBSERVABILITYPIPELINEELASTICSEARCHDESTINATIONAPIVERSION_V6 ObservabilityPipelineElasticsearchDestinationApiVersion = "v6"
+	OBSERVABILITYPIPELINEELASTICSEARCHDESTINATIONAPIVERSION_V7 ObservabilityPipelineElasticsearchDestinationApiVersion = "v7"
+	OBSERVABILITYPIPELINEELASTICSEARCHDESTINATIONAPIVERSION_V8 ObservabilityPipelineElasticsearchDestinationApiVersion = "v8"
 )
 
 var allowedObservabilityPipelineElasticsearchDestinationApiVersionEnumValues = []ObservabilityPipelineElasticsearchDestinationApiVersion{

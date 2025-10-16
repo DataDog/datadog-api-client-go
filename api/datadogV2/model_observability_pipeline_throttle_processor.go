@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineThrottleProcessor The `throttle` processor limits the number of events that pass through over a given time window.
 type ObservabilityPipelineThrottleProcessor struct {
@@ -27,9 +31,10 @@ type ObservabilityPipelineThrottleProcessor struct {
 	// The time window in seconds over which the threshold applies.
 	Window float64 `json:"window"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineThrottleProcessor instantiates a new ObservabilityPipelineThrottleProcessor object.
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +60,6 @@ func NewObservabilityPipelineThrottleProcessorWithDefaults() *ObservabilityPipel
 	this.Type = typeVar
 	return &this
 }
-
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *ObservabilityPipelineThrottleProcessor) GetGroupBy() []string {
 	if o == nil || o.GroupBy == nil {
@@ -84,6 +88,7 @@ func (o *ObservabilityPipelineThrottleProcessor) SetGroupBy(v []string) {
 	o.GroupBy = v
 }
 
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineThrottleProcessor) GetId() string {
 	if o == nil {
@@ -106,6 +111,7 @@ func (o *ObservabilityPipelineThrottleProcessor) GetIdOk() (*string, bool) {
 func (o *ObservabilityPipelineThrottleProcessor) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetInclude returns the Include field value.
 func (o *ObservabilityPipelineThrottleProcessor) GetInclude() string {
@@ -130,6 +136,7 @@ func (o *ObservabilityPipelineThrottleProcessor) SetInclude(v string) {
 	o.Include = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineThrottleProcessor) GetInputs() []string {
 	if o == nil {
@@ -152,6 +159,7 @@ func (o *ObservabilityPipelineThrottleProcessor) GetInputsOk() (*[]string, bool)
 func (o *ObservabilityPipelineThrottleProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetThreshold returns the Threshold field value.
 func (o *ObservabilityPipelineThrottleProcessor) GetThreshold() int64 {
@@ -176,6 +184,7 @@ func (o *ObservabilityPipelineThrottleProcessor) SetThreshold(v int64) {
 	o.Threshold = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineThrottleProcessor) GetType() ObservabilityPipelineThrottleProcessorType {
 	if o == nil {
@@ -199,6 +208,7 @@ func (o *ObservabilityPipelineThrottleProcessor) SetType(v ObservabilityPipeline
 	o.Type = v
 }
 
+
 // GetWindow returns the Window field value.
 func (o *ObservabilityPipelineThrottleProcessor) GetWindow() float64 {
 	if o == nil {
@@ -221,6 +231,8 @@ func (o *ObservabilityPipelineThrottleProcessor) GetWindowOk() (*float64, bool) 
 func (o *ObservabilityPipelineThrottleProcessor) SetWindow(v float64) {
 	o.Window = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineThrottleProcessor) MarshalJSON() ([]byte, error) {
@@ -247,13 +259,13 @@ func (o ObservabilityPipelineThrottleProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineThrottleProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		GroupBy   []string                                    `json:"group_by,omitempty"`
-		Id        *string                                     `json:"id"`
-		Include   *string                                     `json:"include"`
-		Inputs    *[]string                                   `json:"inputs"`
-		Threshold *int64                                      `json:"threshold"`
-		Type      *ObservabilityPipelineThrottleProcessorType `json:"type"`
-		Window    *float64                                    `json:"window"`
+		GroupBy []string `json:"group_by,omitempty"`
+		Id *string `json:"id"`
+		Include *string `json:"include"`
+		Inputs *[]string `json:"inputs"`
+		Threshold *int64 `json:"threshold"`
+		Type *ObservabilityPipelineThrottleProcessorType `json:"type"`
+		Window *float64 `json:"window"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -278,7 +290,7 @@ func (o *ObservabilityPipelineThrottleProcessor) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"group_by", "id", "include", "inputs", "threshold", "type", "window"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "group_by", "id", "include", "inputs", "threshold", "type", "window",  })
 	} else {
 		return err
 	}

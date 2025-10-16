@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityV3APISpecInterface - The API definition.
 type EntityV3APISpecInterface struct {
-	EntityV3APISpecInterfaceFileRef    *EntityV3APISpecInterfaceFileRef
+	EntityV3APISpecInterfaceFileRef *EntityV3APISpecInterfaceFileRef
 	EntityV3APISpecInterfaceDefinition *EntityV3APISpecInterfaceDefinition
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -36,7 +42,7 @@ func (obj *EntityV3APISpecInterface) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.EntityV3APISpecInterfaceFileRef != nil && obj.EntityV3APISpecInterfaceFileRef.UnparsedObject == nil {
 			jsonEntityV3APISpecInterfaceFileRef, _ := datadog.Marshal(obj.EntityV3APISpecInterfaceFileRef)
-			if string(jsonEntityV3APISpecInterfaceFileRef) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonEntityV3APISpecInterfaceFileRef) == "{}" && string(data) != "{}"  { // empty struct
 				obj.EntityV3APISpecInterfaceFileRef = nil
 			} else {
 				match++
@@ -53,7 +59,7 @@ func (obj *EntityV3APISpecInterface) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.EntityV3APISpecInterfaceDefinition != nil && obj.EntityV3APISpecInterfaceDefinition.UnparsedObject == nil {
 			jsonEntityV3APISpecInterfaceDefinition, _ := datadog.Marshal(obj.EntityV3APISpecInterfaceDefinition)
-			if string(jsonEntityV3APISpecInterfaceDefinition) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonEntityV3APISpecInterfaceDefinition) == "{}" && string(data) != "{}"  { // empty struct
 				obj.EntityV3APISpecInterfaceDefinition = nil
 			} else {
 				match++
@@ -80,9 +86,11 @@ func (obj EntityV3APISpecInterface) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.EntityV3APISpecInterfaceFileRef)
 	}
 
+
 	if obj.EntityV3APISpecInterfaceDefinition != nil {
 		return datadog.Marshal(&obj.EntityV3APISpecInterfaceDefinition)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj EntityV3APISpecInterface) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *EntityV3APISpecInterface) GetActualInstance() interface{} {
+func (obj *EntityV3APISpecInterface) GetActualInstance() (interface{}) {
 	if obj.EntityV3APISpecInterfaceFileRef != nil {
 		return obj.EntityV3APISpecInterfaceFileRef
 	}
 
+
 	if obj.EntityV3APISpecInterfaceDefinition != nil {
 		return obj.EntityV3APISpecInterfaceDefinition
 	}
+
 
 	// all schemas are nil
 	return nil

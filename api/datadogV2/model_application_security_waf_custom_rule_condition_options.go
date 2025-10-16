@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleConditionOptions Options for the operator of this condition.
 type ApplicationSecurityWafCustomRuleConditionOptions struct {
@@ -15,9 +21,10 @@ type ApplicationSecurityWafCustomRuleConditionOptions struct {
 	// Only evaluate this condition if the value has a minimum amount of characters.
 	MinLength *int64 `json:"min_length,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafCustomRuleConditionOptions instantiates a new ApplicationSecurityWafCustomRuleConditionOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +50,6 @@ func NewApplicationSecurityWafCustomRuleConditionOptionsWithDefaults() *Applicat
 	this.MinLength = &minLength
 	return &this
 }
-
 // GetCaseSensitive returns the CaseSensitive field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleConditionOptions) GetCaseSensitive() bool {
 	if o == nil || o.CaseSensitive == nil {
@@ -71,6 +77,7 @@ func (o *ApplicationSecurityWafCustomRuleConditionOptions) HasCaseSensitive() bo
 func (o *ApplicationSecurityWafCustomRuleConditionOptions) SetCaseSensitive(v bool) {
 	o.CaseSensitive = &v
 }
+
 
 // GetMinLength returns the MinLength field value if set, zero value otherwise.
 func (o *ApplicationSecurityWafCustomRuleConditionOptions) GetMinLength() int64 {
@@ -100,6 +107,8 @@ func (o *ApplicationSecurityWafCustomRuleConditionOptions) SetMinLength(v int64)
 	o.MinLength = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafCustomRuleConditionOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -122,15 +131,15 @@ func (o ApplicationSecurityWafCustomRuleConditionOptions) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationSecurityWafCustomRuleConditionOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CaseSensitive *bool  `json:"case_sensitive,omitempty"`
-		MinLength     *int64 `json:"min_length,omitempty"`
+		CaseSensitive *bool `json:"case_sensitive,omitempty"`
+		MinLength *int64 `json:"min_length,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"case_sensitive", "min_length"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "case_sensitive", "min_length",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions Configuration for keywords used to reinforce sensitive data pattern detection.
 type ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions struct {
 	// Maximum number of tokens between a keyword and a sensitive value match.
 	Proximity int64 `json:"proximity"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions instantiates a new ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineSensitiveDataScannerProcessorKeywordOptionsWithDefa
 	this := ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions{}
 	return &this
 }
-
 // GetKeywords returns the Keywords field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions) GetKeywords() []string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions) GetKe
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions) SetKeywords(v []string) {
 	o.Keywords = v
 }
+
 
 // GetProximity returns the Proximity field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions) GetProximity() int64 {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions) SetPr
 	o.Proximity = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions) Marsha
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Keywords  *[]string `json:"keywords"`
-		Proximity *int64    `json:"proximity"`
+		Keywords *[]string `json:"keywords"`
+		Proximity *int64 `json:"proximity"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorKeywordOptions) Unmar
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"keywords", "proximity"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "keywords", "proximity",  })
 	} else {
 		return err
 	}

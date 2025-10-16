@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SplitIntegration The definition of the `SplitIntegration` object.
 type SplitIntegration struct {
@@ -17,9 +21,10 @@ type SplitIntegration struct {
 	// The definition of the `SplitIntegrationType` object.
 	Type SplitIntegrationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSplitIntegration instantiates a new SplitIntegration object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSplitIntegrationWithDefaults() *SplitIntegration {
 	this := SplitIntegration{}
 	return &this
 }
-
 // GetCredentials returns the Credentials field value.
 func (o *SplitIntegration) GetCredentials() SplitCredentials {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *SplitIntegration) GetCredentialsOk() (*SplitCredentials, bool) {
 func (o *SplitIntegration) SetCredentials(v SplitCredentials) {
 	o.Credentials = v
 }
+
 
 // GetType returns the Type field value.
 func (o *SplitIntegration) GetType() SplitIntegrationType {
@@ -86,6 +91,8 @@ func (o *SplitIntegration) SetType(v SplitIntegrationType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SplitIntegration) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o SplitIntegration) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SplitIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Credentials *SplitCredentials     `json:"credentials"`
-		Type        *SplitIntegrationType `json:"type"`
+		Credentials *SplitCredentials `json:"credentials"`
+		Type *SplitIntegrationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *SplitIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"credentials", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "credentials", "type",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SecurityMonitoringRuleSequenceDetectionStep Step definition for sequence detection containing the step name, condition, and evaluation window.
 type SecurityMonitoringRuleSequenceDetectionStep struct {
@@ -18,9 +24,10 @@ type SecurityMonitoringRuleSequenceDetectionStep struct {
 	// Unique name identifying the step.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSecurityMonitoringRuleSequenceDetectionStep instantiates a new SecurityMonitoringRuleSequenceDetectionStep object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +45,6 @@ func NewSecurityMonitoringRuleSequenceDetectionStepWithDefaults() *SecurityMonit
 	this := SecurityMonitoringRuleSequenceDetectionStep{}
 	return &this
 }
-
 // GetCondition returns the Condition field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleSequenceDetectionStep) GetCondition() string {
 	if o == nil || o.Condition == nil {
@@ -66,6 +72,7 @@ func (o *SecurityMonitoringRuleSequenceDetectionStep) HasCondition() bool {
 func (o *SecurityMonitoringRuleSequenceDetectionStep) SetCondition(v string) {
 	o.Condition = &v
 }
+
 
 // GetEvaluationWindow returns the EvaluationWindow field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleSequenceDetectionStep) GetEvaluationWindow() SecurityMonitoringRuleEvaluationWindow {
@@ -95,6 +102,7 @@ func (o *SecurityMonitoringRuleSequenceDetectionStep) SetEvaluationWindow(v Secu
 	o.EvaluationWindow = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleSequenceDetectionStep) GetName() string {
 	if o == nil || o.Name == nil {
@@ -123,6 +131,8 @@ func (o *SecurityMonitoringRuleSequenceDetectionStep) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleSequenceDetectionStep) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -148,23 +158,23 @@ func (o SecurityMonitoringRuleSequenceDetectionStep) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleSequenceDetectionStep) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Condition        *string                                 `json:"condition,omitempty"`
+		Condition *string `json:"condition,omitempty"`
 		EvaluationWindow *SecurityMonitoringRuleEvaluationWindow `json:"evaluationWindow,omitempty"`
-		Name             *string                                 `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"condition", "evaluationWindow", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "condition", "evaluationWindow", "name",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Condition = all.Condition
-	if all.EvaluationWindow != nil && !all.EvaluationWindow.IsValid() {
+	if all.EvaluationWindow != nil &&!all.EvaluationWindow.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.EvaluationWindow = all.EvaluationWindow

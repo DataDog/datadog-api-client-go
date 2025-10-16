@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestRestrictionPolicyBinding Objects describing the binding used for a mobile test.
 type SyntheticsTestRestrictionPolicyBinding struct {
@@ -15,9 +21,10 @@ type SyntheticsTestRestrictionPolicyBinding struct {
 	// The type of relation for the binding.
 	Relation *SyntheticsTestRestrictionPolicyBindingRelation `json:"relation,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsTestRestrictionPolicyBinding instantiates a new SyntheticsTestRestrictionPolicyBinding object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewSyntheticsTestRestrictionPolicyBindingWithDefaults() *SyntheticsTestRest
 	this := SyntheticsTestRestrictionPolicyBinding{}
 	return &this
 }
-
 // GetPrincipals returns the Principals field value if set, zero value otherwise.
 func (o *SyntheticsTestRestrictionPolicyBinding) GetPrincipals() []string {
 	if o == nil || o.Principals == nil {
@@ -63,6 +69,7 @@ func (o *SyntheticsTestRestrictionPolicyBinding) HasPrincipals() bool {
 func (o *SyntheticsTestRestrictionPolicyBinding) SetPrincipals(v []string) {
 	o.Principals = v
 }
+
 
 // GetRelation returns the Relation field value if set, zero value otherwise.
 func (o *SyntheticsTestRestrictionPolicyBinding) GetRelation() SyntheticsTestRestrictionPolicyBindingRelation {
@@ -92,6 +99,8 @@ func (o *SyntheticsTestRestrictionPolicyBinding) SetRelation(v SyntheticsTestRes
 	o.Relation = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTestRestrictionPolicyBinding) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,22 +123,22 @@ func (o SyntheticsTestRestrictionPolicyBinding) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestRestrictionPolicyBinding) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Principals []string                                        `json:"principals,omitempty"`
-		Relation   *SyntheticsTestRestrictionPolicyBindingRelation `json:"relation,omitempty"`
+		Principals []string `json:"principals,omitempty"`
+		Relation *SyntheticsTestRestrictionPolicyBindingRelation `json:"relation,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"principals", "relation"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "principals", "relation",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Principals = all.Principals
-	if all.Relation != nil && !all.Relation.IsValid() {
+	if all.Relation != nil &&!all.Relation.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Relation = all.Relation

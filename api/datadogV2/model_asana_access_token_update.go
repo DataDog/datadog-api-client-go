@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AsanaAccessTokenUpdate The definition of the `AsanaAccessToken` object.
 type AsanaAccessTokenUpdate struct {
@@ -17,9 +21,10 @@ type AsanaAccessTokenUpdate struct {
 	// The definition of the `AsanaAccessToken` object.
 	Type AsanaAccessTokenType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAsanaAccessTokenUpdate instantiates a new AsanaAccessTokenUpdate object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewAsanaAccessTokenUpdateWithDefaults() *AsanaAccessTokenUpdate {
 	this := AsanaAccessTokenUpdate{}
 	return &this
 }
-
 // GetAccessToken returns the AccessToken field value if set, zero value otherwise.
 func (o *AsanaAccessTokenUpdate) GetAccessToken() string {
 	if o == nil || o.AccessToken == nil {
@@ -67,6 +71,7 @@ func (o *AsanaAccessTokenUpdate) SetAccessToken(v string) {
 	o.AccessToken = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *AsanaAccessTokenUpdate) GetType() AsanaAccessTokenType {
 	if o == nil {
@@ -90,6 +95,8 @@ func (o *AsanaAccessTokenUpdate) SetType(v AsanaAccessTokenType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AsanaAccessTokenUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,8 +117,8 @@ func (o AsanaAccessTokenUpdate) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AsanaAccessTokenUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccessToken *string               `json:"access_token,omitempty"`
-		Type        *AsanaAccessTokenType `json:"type"`
+		AccessToken *string `json:"access_token,omitempty"`
+		Type *AsanaAccessTokenType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *AsanaAccessTokenUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"access_token", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "access_token", "type",  })
 	} else {
 		return err
 	}

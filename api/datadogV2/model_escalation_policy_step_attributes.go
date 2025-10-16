@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EscalationPolicyStepAttributes Defines attributes for an escalation policy step, such as assignment strategy and escalation timeout.
 type EscalationPolicyStepAttributes struct {
@@ -15,9 +21,10 @@ type EscalationPolicyStepAttributes struct {
 	// Specifies how many seconds to wait before escalating to the next step.
 	EscalateAfterSeconds *int64 `json:"escalate_after_seconds,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEscalationPolicyStepAttributes instantiates a new EscalationPolicyStepAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewEscalationPolicyStepAttributesWithDefaults() *EscalationPolicyStepAttrib
 	this := EscalationPolicyStepAttributes{}
 	return &this
 }
-
 // GetAssignment returns the Assignment field value if set, zero value otherwise.
 func (o *EscalationPolicyStepAttributes) GetAssignment() EscalationPolicyStepAttributesAssignment {
 	if o == nil || o.Assignment == nil {
@@ -63,6 +69,7 @@ func (o *EscalationPolicyStepAttributes) HasAssignment() bool {
 func (o *EscalationPolicyStepAttributes) SetAssignment(v EscalationPolicyStepAttributesAssignment) {
 	o.Assignment = &v
 }
+
 
 // GetEscalateAfterSeconds returns the EscalateAfterSeconds field value if set, zero value otherwise.
 func (o *EscalationPolicyStepAttributes) GetEscalateAfterSeconds() int64 {
@@ -92,6 +99,8 @@ func (o *EscalationPolicyStepAttributes) SetEscalateAfterSeconds(v int64) {
 	o.EscalateAfterSeconds = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EscalationPolicyStepAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,21 +123,21 @@ func (o EscalationPolicyStepAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EscalationPolicyStepAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Assignment           *EscalationPolicyStepAttributesAssignment `json:"assignment,omitempty"`
-		EscalateAfterSeconds *int64                                    `json:"escalate_after_seconds,omitempty"`
+		Assignment *EscalationPolicyStepAttributesAssignment `json:"assignment,omitempty"`
+		EscalateAfterSeconds *int64 `json:"escalate_after_seconds,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assignment", "escalate_after_seconds"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "assignment", "escalate_after_seconds",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Assignment != nil && !all.Assignment.IsValid() {
+	if all.Assignment != nil &&!all.Assignment.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Assignment = all.Assignment

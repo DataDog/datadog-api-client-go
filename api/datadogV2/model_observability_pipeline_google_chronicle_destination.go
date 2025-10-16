@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineGoogleChronicleDestination The `google_chronicle` destination sends logs to Google Chronicle.
 type ObservabilityPipelineGoogleChronicleDestination struct {
@@ -27,9 +31,10 @@ type ObservabilityPipelineGoogleChronicleDestination struct {
 	// The destination type. The value should always be `google_chronicle`.
 	Type ObservabilityPipelineGoogleChronicleDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineGoogleChronicleDestination instantiates a new ObservabilityPipelineGoogleChronicleDestination object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewObservabilityPipelineGoogleChronicleDestinationWithDefaults() *Observabi
 	this.Type = typeVar
 	return &this
 }
-
 // GetAuth returns the Auth field value.
 func (o *ObservabilityPipelineGoogleChronicleDestination) GetAuth() ObservabilityPipelineGcpAuth {
 	if o == nil {
@@ -78,6 +82,7 @@ func (o *ObservabilityPipelineGoogleChronicleDestination) SetAuth(v Observabilit
 	o.Auth = v
 }
 
+
 // GetCustomerId returns the CustomerId field value.
 func (o *ObservabilityPipelineGoogleChronicleDestination) GetCustomerId() string {
 	if o == nil {
@@ -100,6 +105,7 @@ func (o *ObservabilityPipelineGoogleChronicleDestination) GetCustomerIdOk() (*st
 func (o *ObservabilityPipelineGoogleChronicleDestination) SetCustomerId(v string) {
 	o.CustomerId = v
 }
+
 
 // GetEncoding returns the Encoding field value if set, zero value otherwise.
 func (o *ObservabilityPipelineGoogleChronicleDestination) GetEncoding() ObservabilityPipelineGoogleChronicleDestinationEncoding {
@@ -129,6 +135,7 @@ func (o *ObservabilityPipelineGoogleChronicleDestination) SetEncoding(v Observab
 	o.Encoding = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineGoogleChronicleDestination) GetId() string {
 	if o == nil {
@@ -152,6 +159,7 @@ func (o *ObservabilityPipelineGoogleChronicleDestination) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineGoogleChronicleDestination) GetInputs() []string {
 	if o == nil {
@@ -174,6 +182,7 @@ func (o *ObservabilityPipelineGoogleChronicleDestination) GetInputsOk() (*[]stri
 func (o *ObservabilityPipelineGoogleChronicleDestination) SetInputs(v []string) {
 	o.Inputs = v
 }
+
 
 // GetLogType returns the LogType field value if set, zero value otherwise.
 func (o *ObservabilityPipelineGoogleChronicleDestination) GetLogType() string {
@@ -203,6 +212,7 @@ func (o *ObservabilityPipelineGoogleChronicleDestination) SetLogType(v string) {
 	o.LogType = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineGoogleChronicleDestination) GetType() ObservabilityPipelineGoogleChronicleDestinationType {
 	if o == nil {
@@ -225,6 +235,8 @@ func (o *ObservabilityPipelineGoogleChronicleDestination) GetTypeOk() (*Observab
 func (o *ObservabilityPipelineGoogleChronicleDestination) SetType(v ObservabilityPipelineGoogleChronicleDestinationType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineGoogleChronicleDestination) MarshalJSON() ([]byte, error) {
@@ -253,13 +265,13 @@ func (o ObservabilityPipelineGoogleChronicleDestination) MarshalJSON() ([]byte, 
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineGoogleChronicleDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Auth       *ObservabilityPipelineGcpAuth                            `json:"auth"`
-		CustomerId *string                                                  `json:"customer_id"`
-		Encoding   *ObservabilityPipelineGoogleChronicleDestinationEncoding `json:"encoding,omitempty"`
-		Id         *string                                                  `json:"id"`
-		Inputs     *[]string                                                `json:"inputs"`
-		LogType    *string                                                  `json:"log_type,omitempty"`
-		Type       *ObservabilityPipelineGoogleChronicleDestinationType     `json:"type"`
+		Auth *ObservabilityPipelineGcpAuth `json:"auth"`
+		CustomerId *string `json:"customer_id"`
+		Encoding *ObservabilityPipelineGoogleChronicleDestinationEncoding `json:"encoding,omitempty"`
+		Id *string `json:"id"`
+		Inputs *[]string `json:"inputs"`
+		LogType *string `json:"log_type,omitempty"`
+		Type *ObservabilityPipelineGoogleChronicleDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -281,7 +293,7 @@ func (o *ObservabilityPipelineGoogleChronicleDestination) UnmarshalJSON(bytes []
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "customer_id", "encoding", "id", "inputs", "log_type", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "auth", "customer_id", "encoding", "id", "inputs", "log_type", "type",  })
 	} else {
 		return err
 	}
@@ -292,7 +304,7 @@ func (o *ObservabilityPipelineGoogleChronicleDestination) UnmarshalJSON(bytes []
 	}
 	o.Auth = *all.Auth
 	o.CustomerId = *all.CustomerId
-	if all.Encoding != nil && !all.Encoding.IsValid() {
+	if all.Encoding != nil &&!all.Encoding.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Encoding = all.Encoding

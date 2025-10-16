@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentTriggerWrapper Schema for an Incident-based trigger.
 type IncidentTriggerWrapper struct {
@@ -17,9 +21,10 @@ type IncidentTriggerWrapper struct {
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentTriggerWrapper instantiates a new IncidentTriggerWrapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewIncidentTriggerWrapperWithDefaults() *IncidentTriggerWrapper {
 	this := IncidentTriggerWrapper{}
 	return &this
 }
-
 // GetIncidentTrigger returns the IncidentTrigger field value.
 func (o *IncidentTriggerWrapper) GetIncidentTrigger() IncidentTrigger {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *IncidentTriggerWrapper) GetIncidentTriggerOk() (*IncidentTrigger, bool)
 func (o *IncidentTriggerWrapper) SetIncidentTrigger(v IncidentTrigger) {
 	o.IncidentTrigger = v
 }
+
 
 // GetStartStepNames returns the StartStepNames field value if set, zero value otherwise.
 func (o *IncidentTriggerWrapper) GetStartStepNames() []string {
@@ -90,6 +95,8 @@ func (o *IncidentTriggerWrapper) SetStartStepNames(v []string) {
 	o.StartStepNames = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentTriggerWrapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o IncidentTriggerWrapper) MarshalJSON() ([]byte, error) {
 func (o *IncidentTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		IncidentTrigger *IncidentTrigger `json:"incidentTrigger"`
-		StartStepNames  []string         `json:"startStepNames,omitempty"`
+		StartStepNames []string `json:"startStepNames,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *IncidentTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"incidentTrigger", "startStepNames"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "incidentTrigger", "startStepNames",  })
 	} else {
 		return err
 	}

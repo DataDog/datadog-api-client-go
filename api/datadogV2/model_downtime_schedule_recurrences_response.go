@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeScheduleRecurrencesResponse A recurring downtime schedule definition.
 type DowntimeScheduleRecurrencesResponse struct {
@@ -22,9 +26,10 @@ type DowntimeScheduleRecurrencesResponse struct {
 	// Must match `display_timezone`.
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewDowntimeScheduleRecurrencesResponse instantiates a new DowntimeScheduleRecurrencesResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewDowntimeScheduleRecurrencesResponseWithDefaults() *DowntimeScheduleRecur
 	this.Timezone = &timezone
 	return &this
 }
-
 // GetCurrentDowntime returns the CurrentDowntime field value if set, zero value otherwise.
 func (o *DowntimeScheduleRecurrencesResponse) GetCurrentDowntime() DowntimeScheduleCurrentDowntimeResponse {
 	if o == nil || o.CurrentDowntime == nil {
@@ -76,6 +80,7 @@ func (o *DowntimeScheduleRecurrencesResponse) SetCurrentDowntime(v DowntimeSched
 	o.CurrentDowntime = &v
 }
 
+
 // GetRecurrences returns the Recurrences field value.
 func (o *DowntimeScheduleRecurrencesResponse) GetRecurrences() []DowntimeScheduleRecurrenceResponse {
 	if o == nil {
@@ -98,6 +103,7 @@ func (o *DowntimeScheduleRecurrencesResponse) GetRecurrencesOk() (*[]DowntimeSch
 func (o *DowntimeScheduleRecurrencesResponse) SetRecurrences(v []DowntimeScheduleRecurrenceResponse) {
 	o.Recurrences = v
 }
+
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *DowntimeScheduleRecurrencesResponse) GetTimezone() string {
@@ -127,6 +133,8 @@ func (o *DowntimeScheduleRecurrencesResponse) SetTimezone(v string) {
 	o.Timezone = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DowntimeScheduleRecurrencesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -151,8 +159,8 @@ func (o DowntimeScheduleRecurrencesResponse) MarshalJSON() ([]byte, error) {
 func (o *DowntimeScheduleRecurrencesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CurrentDowntime *DowntimeScheduleCurrentDowntimeResponse `json:"current_downtime,omitempty"`
-		Recurrences     *[]DowntimeScheduleRecurrenceResponse    `json:"recurrences"`
-		Timezone        *string                                  `json:"timezone,omitempty"`
+		Recurrences *[]DowntimeScheduleRecurrenceResponse `json:"recurrences"`
+		Timezone *string `json:"timezone,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -162,13 +170,13 @@ func (o *DowntimeScheduleRecurrencesResponse) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"current_downtime", "recurrences", "timezone"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "current_downtime", "recurrences", "timezone",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.CurrentDowntime != nil && all.CurrentDowntime.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CurrentDowntime != nil && all.CurrentDowntime.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CurrentDowntime = all.CurrentDowntime

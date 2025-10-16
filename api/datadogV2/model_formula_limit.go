@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FormulaLimit Message for specifying limits to the number of values returned by a query.
 // This limit is only for scalar queries and has no effect on timeseries queries.
@@ -16,9 +22,10 @@ type FormulaLimit struct {
 	// Direction of sort.
 	Order *QuerySortOrder `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFormulaLimit instantiates a new FormulaLimit object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +47,6 @@ func NewFormulaLimitWithDefaults() *FormulaLimit {
 	this.Order = &order
 	return &this
 }
-
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *FormulaLimit) GetCount() int32 {
 	if o == nil || o.Count == nil {
@@ -68,6 +74,7 @@ func (o *FormulaLimit) HasCount() bool {
 func (o *FormulaLimit) SetCount(v int32) {
 	o.Count = &v
 }
+
 
 // GetOrder returns the Order field value if set, zero value otherwise.
 func (o *FormulaLimit) GetOrder() QuerySortOrder {
@@ -97,6 +104,8 @@ func (o *FormulaLimit) SetOrder(v QuerySortOrder) {
 	o.Order = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FormulaLimit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -119,7 +128,7 @@ func (o FormulaLimit) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaLimit) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Count *int32          `json:"count,omitempty"`
+		Count *int32 `json:"count,omitempty"`
 		Order *QuerySortOrder `json:"order,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -127,14 +136,14 @@ func (o *FormulaLimit) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"count", "order"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "count", "order",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Count = all.Count
-	if all.Order != nil && !all.Order.IsValid() {
+	if all.Order != nil &&!all.Order.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Order = all.Order

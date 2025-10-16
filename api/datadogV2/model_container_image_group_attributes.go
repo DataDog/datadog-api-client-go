@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ContainerImageGroupAttributes Attributes for a Container Image Group.
 type ContainerImageGroupAttributes struct {
@@ -17,9 +23,10 @@ type ContainerImageGroupAttributes struct {
 	// Tags from the group name parsed in key/value format.
 	Tags interface{} `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewContainerImageGroupAttributes instantiates a new ContainerImageGroupAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewContainerImageGroupAttributesWithDefaults() *ContainerImageGroupAttribut
 	this := ContainerImageGroupAttributes{}
 	return &this
 }
-
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *ContainerImageGroupAttributes) GetCount() int64 {
 	if o == nil || o.Count == nil {
@@ -65,6 +71,7 @@ func (o *ContainerImageGroupAttributes) HasCount() bool {
 func (o *ContainerImageGroupAttributes) SetCount(v int64) {
 	o.Count = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ContainerImageGroupAttributes) GetName() string {
@@ -94,6 +101,7 @@ func (o *ContainerImageGroupAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ContainerImageGroupAttributes) GetTags() interface{} {
 	if o == nil || o.Tags == nil {
@@ -122,6 +130,8 @@ func (o *ContainerImageGroupAttributes) SetTags(v interface{}) {
 	o.Tags = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ContainerImageGroupAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o ContainerImageGroupAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ContainerImageGroupAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Count *int64      `json:"count,omitempty"`
-		Name  *string     `json:"name,omitempty"`
-		Tags  interface{} `json:"tags,omitempty"`
+		Count *int64 `json:"count,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Tags interface{} `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"count", "name", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "count", "name", "tags",  })
 	} else {
 		return err
 	}

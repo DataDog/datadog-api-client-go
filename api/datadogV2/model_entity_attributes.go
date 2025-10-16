@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityAttributes Entity attributes.
 type EntityAttributes struct {
@@ -27,9 +33,10 @@ type EntityAttributes struct {
 	// The tags.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityAttributes instantiates a new EntityAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +54,6 @@ func NewEntityAttributesWithDefaults() *EntityAttributes {
 	this := EntityAttributes{}
 	return &this
 }
-
 // GetApiVersion returns the ApiVersion field value if set, zero value otherwise.
 func (o *EntityAttributes) GetApiVersion() string {
 	if o == nil || o.ApiVersion == nil {
@@ -75,6 +81,7 @@ func (o *EntityAttributes) HasApiVersion() bool {
 func (o *EntityAttributes) SetApiVersion(v string) {
 	o.ApiVersion = &v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *EntityAttributes) GetDescription() string {
@@ -104,6 +111,7 @@ func (o *EntityAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *EntityAttributes) GetDisplayName() string {
 	if o == nil || o.DisplayName == nil {
@@ -131,6 +139,7 @@ func (o *EntityAttributes) HasDisplayName() bool {
 func (o *EntityAttributes) SetDisplayName(v string) {
 	o.DisplayName = &v
 }
+
 
 // GetKind returns the Kind field value if set, zero value otherwise.
 func (o *EntityAttributes) GetKind() string {
@@ -160,6 +169,7 @@ func (o *EntityAttributes) SetKind(v string) {
 	o.Kind = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *EntityAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -187,6 +197,7 @@ func (o *EntityAttributes) HasName() bool {
 func (o *EntityAttributes) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *EntityAttributes) GetNamespace() string {
@@ -216,6 +227,7 @@ func (o *EntityAttributes) SetNamespace(v string) {
 	o.Namespace = &v
 }
 
+
 // GetOwner returns the Owner field value if set, zero value otherwise.
 func (o *EntityAttributes) GetOwner() string {
 	if o == nil || o.Owner == nil {
@@ -244,6 +256,7 @@ func (o *EntityAttributes) SetOwner(v string) {
 	o.Owner = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *EntityAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -271,6 +284,8 @@ func (o *EntityAttributes) HasTags() bool {
 func (o *EntityAttributes) SetTags(v []string) {
 	o.Tags = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityAttributes) MarshalJSON() ([]byte, error) {
@@ -312,21 +327,21 @@ func (o EntityAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiVersion  *string  `json:"apiVersion,omitempty"`
-		Description *string  `json:"description,omitempty"`
-		DisplayName *string  `json:"displayName,omitempty"`
-		Kind        *string  `json:"kind,omitempty"`
-		Name        *string  `json:"name,omitempty"`
-		Namespace   *string  `json:"namespace,omitempty"`
-		Owner       *string  `json:"owner,omitempty"`
-		Tags        []string `json:"tags,omitempty"`
+		ApiVersion *string `json:"apiVersion,omitempty"`
+		Description *string `json:"description,omitempty"`
+		DisplayName *string `json:"displayName,omitempty"`
+		Kind *string `json:"kind,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Namespace *string `json:"namespace,omitempty"`
+		Owner *string `json:"owner,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"apiVersion", "description", "displayName", "kind", "name", "namespace", "owner", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "apiVersion", "description", "displayName", "kind", "name", "namespace", "owner", "tags",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EntityResponseIncludedRelatedOncallEscalationItem Oncall escalation.
 type EntityResponseIncludedRelatedOncallEscalationItem struct {
@@ -17,9 +23,10 @@ type EntityResponseIncludedRelatedOncallEscalationItem struct {
 	// Oncall name.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEntityResponseIncludedRelatedOncallEscalationItem instantiates a new EntityResponseIncludedRelatedOncallEscalationItem object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewEntityResponseIncludedRelatedOncallEscalationItemWithDefaults() *EntityR
 	this := EntityResponseIncludedRelatedOncallEscalationItem{}
 	return &this
 }
-
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedOncallEscalationItem) GetEmail() string {
 	if o == nil || o.Email == nil {
@@ -65,6 +71,7 @@ func (o *EntityResponseIncludedRelatedOncallEscalationItem) HasEmail() bool {
 func (o *EntityResponseIncludedRelatedOncallEscalationItem) SetEmail(v string) {
 	o.Email = &v
 }
+
 
 // GetEscalationLevel returns the EscalationLevel field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedOncallEscalationItem) GetEscalationLevel() int64 {
@@ -94,6 +101,7 @@ func (o *EntityResponseIncludedRelatedOncallEscalationItem) SetEscalationLevel(v
 	o.EscalationLevel = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *EntityResponseIncludedRelatedOncallEscalationItem) GetName() string {
 	if o == nil || o.Name == nil {
@@ -122,6 +130,8 @@ func (o *EntityResponseIncludedRelatedOncallEscalationItem) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EntityResponseIncludedRelatedOncallEscalationItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,16 +157,16 @@ func (o EntityResponseIncludedRelatedOncallEscalationItem) MarshalJSON() ([]byte
 // UnmarshalJSON deserializes the given payload.
 func (o *EntityResponseIncludedRelatedOncallEscalationItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Email           *string `json:"email,omitempty"`
-		EscalationLevel *int64  `json:"escalationLevel,omitempty"`
-		Name            *string `json:"name,omitempty"`
+		Email *string `json:"email,omitempty"`
+		EscalationLevel *int64 `json:"escalationLevel,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"email", "escalationLevel", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "email", "escalationLevel", "name",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSCredentials - The definition of `AWSCredentials` object.
 type AWSCredentials struct {
@@ -56,6 +62,7 @@ func (obj AWSCredentials) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.AWSAssumeRole)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj AWSCredentials) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *AWSCredentials) GetActualInstance() interface{} {
+func (obj *AWSCredentials) GetActualInstance() (interface{}) {
 	if obj.AWSAssumeRole != nil {
 		return obj.AWSAssumeRole
 	}
+
 
 	// all schemas are nil
 	return nil

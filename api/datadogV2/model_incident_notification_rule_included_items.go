@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentNotificationRuleIncludedItems - Objects related to a notification rule.
 type IncidentNotificationRuleIncludedItems struct {
-	User                               *User
-	IncidentTypeObject                 *IncidentTypeObject
+	User *User
+	IncidentTypeObject *IncidentTypeObject
 	IncidentNotificationTemplateObject *IncidentNotificationTemplateObject
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -42,7 +48,7 @@ func (obj *IncidentNotificationRuleIncludedItems) UnmarshalJSON(data []byte) err
 	if err == nil {
 		if obj.User != nil && obj.User.UnparsedObject == nil {
 			jsonUser, _ := datadog.Marshal(obj.User)
-			if string(jsonUser) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonUser) == "{}" && string(data) != "{}"  { // empty struct
 				obj.User = nil
 			} else {
 				match++
@@ -104,13 +110,16 @@ func (obj IncidentNotificationRuleIncludedItems) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.User)
 	}
 
+
 	if obj.IncidentTypeObject != nil {
 		return datadog.Marshal(&obj.IncidentTypeObject)
 	}
 
+
 	if obj.IncidentNotificationTemplateObject != nil {
 		return datadog.Marshal(&obj.IncidentNotificationTemplateObject)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -119,18 +128,21 @@ func (obj IncidentNotificationRuleIncludedItems) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *IncidentNotificationRuleIncludedItems) GetActualInstance() interface{} {
+func (obj *IncidentNotificationRuleIncludedItems) GetActualInstance() (interface{}) {
 	if obj.User != nil {
 		return obj.User
 	}
+
 
 	if obj.IncidentTypeObject != nil {
 		return obj.IncidentTypeObject
 	}
 
+
 	if obj.IncidentNotificationTemplateObject != nil {
 		return obj.IncidentNotificationTemplateObject
 	}
+
 
 	// all schemas are nil
 	return nil

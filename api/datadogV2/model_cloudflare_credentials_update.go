@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CloudflareCredentialsUpdate - The definition of the `CloudflareCredentialsUpdate` object.
 type CloudflareCredentialsUpdate struct {
-	CloudflareAPITokenUpdate       *CloudflareAPITokenUpdate
+	CloudflareAPITokenUpdate *CloudflareAPITokenUpdate
 	CloudflareGlobalAPITokenUpdate *CloudflareGlobalAPITokenUpdate
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +86,11 @@ func (obj CloudflareCredentialsUpdate) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.CloudflareAPITokenUpdate)
 	}
 
+
 	if obj.CloudflareGlobalAPITokenUpdate != nil {
 		return datadog.Marshal(&obj.CloudflareGlobalAPITokenUpdate)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj CloudflareCredentialsUpdate) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *CloudflareCredentialsUpdate) GetActualInstance() interface{} {
+func (obj *CloudflareCredentialsUpdate) GetActualInstance() (interface{}) {
 	if obj.CloudflareAPITokenUpdate != nil {
 		return obj.CloudflareAPITokenUpdate
 	}
 
+
 	if obj.CloudflareGlobalAPITokenUpdate != nil {
 		return obj.CloudflareGlobalAPITokenUpdate
 	}
+
 
 	// all schemas are nil
 	return nil

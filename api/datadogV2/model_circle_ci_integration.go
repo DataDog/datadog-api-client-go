@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CircleCIIntegration The definition of the `CircleCIIntegration` object.
 type CircleCIIntegration struct {
@@ -17,9 +21,10 @@ type CircleCIIntegration struct {
 	// The definition of the `CircleCIIntegrationType` object.
 	Type CircleCIIntegrationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCircleCIIntegration instantiates a new CircleCIIntegration object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewCircleCIIntegrationWithDefaults() *CircleCIIntegration {
 	this := CircleCIIntegration{}
 	return &this
 }
-
 // GetCredentials returns the Credentials field value.
 func (o *CircleCIIntegration) GetCredentials() CircleCICredentials {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *CircleCIIntegration) GetCredentialsOk() (*CircleCICredentials, bool) {
 func (o *CircleCIIntegration) SetCredentials(v CircleCICredentials) {
 	o.Credentials = v
 }
+
 
 // GetType returns the Type field value.
 func (o *CircleCIIntegration) GetType() CircleCIIntegrationType {
@@ -86,6 +91,8 @@ func (o *CircleCIIntegration) SetType(v CircleCIIntegrationType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CircleCIIntegration) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o CircleCIIntegration) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CircleCIIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Credentials *CircleCICredentials     `json:"credentials"`
-		Type        *CircleCIIntegrationType `json:"type"`
+		Credentials *CircleCICredentials `json:"credentials"`
+		Type *CircleCIIntegrationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *CircleCIIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"credentials", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "credentials", "type",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
-	"time"
+	"github.com/google/uuid"
+	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FullAPIKeyAttributes Attributes of a full API key.
 type FullAPIKeyAttributes struct {
@@ -29,9 +33,10 @@ type FullAPIKeyAttributes struct {
 	// The remote config read enabled status.
 	RemoteConfigReadEnabled *bool `json:"remote_config_read_enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFullAPIKeyAttributes instantiates a new FullAPIKeyAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +54,6 @@ func NewFullAPIKeyAttributesWithDefaults() *FullAPIKeyAttributes {
 	this := FullAPIKeyAttributes{}
 	return &this
 }
-
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *FullAPIKeyAttributes) GetCategory() string {
 	if o == nil || o.Category == nil {
@@ -77,6 +81,7 @@ func (o *FullAPIKeyAttributes) HasCategory() bool {
 func (o *FullAPIKeyAttributes) SetCategory(v string) {
 	o.Category = &v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *FullAPIKeyAttributes) GetCreatedAt() time.Time {
@@ -106,6 +111,7 @@ func (o *FullAPIKeyAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+
 // GetDateLastUsed returns the DateLastUsed field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FullAPIKeyAttributes) GetDateLastUsed() time.Time {
 	if o == nil || o.DateLastUsed.Get() == nil {
@@ -119,7 +125,7 @@ func (o *FullAPIKeyAttributes) GetDateLastUsed() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *FullAPIKeyAttributes) GetDateLastUsedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.DateLastUsed.Get(), o.DateLastUsed.IsSet()
@@ -134,7 +140,6 @@ func (o *FullAPIKeyAttributes) HasDateLastUsed() bool {
 func (o *FullAPIKeyAttributes) SetDateLastUsed(v time.Time) {
 	o.DateLastUsed.Set(&v)
 }
-
 // SetDateLastUsedNil sets the value for DateLastUsed to be an explicit nil.
 func (o *FullAPIKeyAttributes) SetDateLastUsedNil() {
 	o.DateLastUsed.Set(nil)
@@ -144,6 +149,7 @@ func (o *FullAPIKeyAttributes) SetDateLastUsedNil() {
 func (o *FullAPIKeyAttributes) UnsetDateLastUsed() {
 	o.DateLastUsed.Unset()
 }
+
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *FullAPIKeyAttributes) GetKey() string {
@@ -173,6 +179,7 @@ func (o *FullAPIKeyAttributes) SetKey(v string) {
 	o.Key = &v
 }
 
+
 // GetLast4 returns the Last4 field value if set, zero value otherwise.
 func (o *FullAPIKeyAttributes) GetLast4() string {
 	if o == nil || o.Last4 == nil {
@@ -200,6 +207,7 @@ func (o *FullAPIKeyAttributes) HasLast4() bool {
 func (o *FullAPIKeyAttributes) SetLast4(v string) {
 	o.Last4 = &v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *FullAPIKeyAttributes) GetModifiedAt() time.Time {
@@ -229,6 +237,7 @@ func (o *FullAPIKeyAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *FullAPIKeyAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -257,6 +266,7 @@ func (o *FullAPIKeyAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetRemoteConfigReadEnabled returns the RemoteConfigReadEnabled field value if set, zero value otherwise.
 func (o *FullAPIKeyAttributes) GetRemoteConfigReadEnabled() bool {
 	if o == nil || o.RemoteConfigReadEnabled == nil {
@@ -284,6 +294,8 @@ func (o *FullAPIKeyAttributes) HasRemoteConfigReadEnabled() bool {
 func (o *FullAPIKeyAttributes) SetRemoteConfigReadEnabled(v bool) {
 	o.RemoteConfigReadEnabled = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FullAPIKeyAttributes) MarshalJSON() ([]byte, error) {
@@ -333,21 +345,21 @@ func (o FullAPIKeyAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FullAPIKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Category                *string              `json:"category,omitempty"`
-		CreatedAt               *time.Time           `json:"created_at,omitempty"`
-		DateLastUsed            datadog.NullableTime `json:"date_last_used,omitempty"`
-		Key                     *string              `json:"key,omitempty"`
-		Last4                   *string              `json:"last4,omitempty"`
-		ModifiedAt              *time.Time           `json:"modified_at,omitempty"`
-		Name                    *string              `json:"name,omitempty"`
-		RemoteConfigReadEnabled *bool                `json:"remote_config_read_enabled,omitempty"`
+		Category *string `json:"category,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		DateLastUsed datadog.NullableTime `json:"date_last_used,omitempty"`
+		Key *string `json:"key,omitempty"`
+		Last4 *string `json:"last4,omitempty"`
+		ModifiedAt *time.Time `json:"modified_at,omitempty"`
+		Name *string `json:"name,omitempty"`
+		RemoteConfigReadEnabled *bool `json:"remote_config_read_enabled,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"category", "created_at", "date_last_used", "key", "last4", "modified_at", "name", "remote_config_read_enabled"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "category", "created_at", "date_last_used", "key", "last4", "modified_at", "name", "remote_config_read_enabled",  })
 	} else {
 		return err
 	}

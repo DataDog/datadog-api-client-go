@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // PatchNotificationRuleParametersData Data of the notification rule patch request: the rule ID, the rule type, and the rule attributes. All fields are required.
 type PatchNotificationRuleParametersData struct {
@@ -19,9 +23,10 @@ type PatchNotificationRuleParametersData struct {
 	// The rule type associated to notification rules.
 	Type NotificationRulesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewPatchNotificationRuleParametersData instantiates a new PatchNotificationRuleParametersData object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewPatchNotificationRuleParametersDataWithDefaults() *PatchNotificationRule
 	this := PatchNotificationRuleParametersData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *PatchNotificationRuleParametersData) GetAttributes() PatchNotificationRuleParametersDataAttributes {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *PatchNotificationRuleParametersData) GetAttributesOk() (*PatchNotificat
 func (o *PatchNotificationRuleParametersData) SetAttributes(v PatchNotificationRuleParametersDataAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *PatchNotificationRuleParametersData) GetId() string {
@@ -89,6 +94,7 @@ func (o *PatchNotificationRuleParametersData) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetType returns the Type field value.
 func (o *PatchNotificationRuleParametersData) GetType() NotificationRulesType {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *PatchNotificationRuleParametersData) SetType(v NotificationRulesType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o PatchNotificationRuleParametersData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -132,8 +140,8 @@ func (o PatchNotificationRuleParametersData) MarshalJSON() ([]byte, error) {
 func (o *PatchNotificationRuleParametersData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *PatchNotificationRuleParametersDataAttributes `json:"attributes"`
-		Id         *string                                        `json:"id"`
-		Type       *NotificationRulesType                         `json:"type"`
+		Id *string `json:"id"`
+		Type *NotificationRulesType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *PatchNotificationRuleParametersData) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

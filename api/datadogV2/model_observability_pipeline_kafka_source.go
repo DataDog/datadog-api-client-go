@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineKafkaSource The `kafka` source ingests data from Apache Kafka topics.
 type ObservabilityPipelineKafkaSource struct {
@@ -27,9 +31,10 @@ type ObservabilityPipelineKafkaSource struct {
 	// The source type. The value should always be `kafka`.
 	Type ObservabilityPipelineKafkaSourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineKafkaSource instantiates a new ObservabilityPipelineKafkaSource object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewObservabilityPipelineKafkaSourceWithDefaults() *ObservabilityPipelineKaf
 	this.Type = typeVar
 	return &this
 }
-
 // GetGroupId returns the GroupId field value.
 func (o *ObservabilityPipelineKafkaSource) GetGroupId() string {
 	if o == nil {
@@ -77,6 +81,7 @@ func (o *ObservabilityPipelineKafkaSource) SetGroupId(v string) {
 	o.GroupId = v
 }
 
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineKafkaSource) GetId() string {
 	if o == nil {
@@ -99,6 +104,7 @@ func (o *ObservabilityPipelineKafkaSource) GetIdOk() (*string, bool) {
 func (o *ObservabilityPipelineKafkaSource) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetLibrdkafkaOptions returns the LibrdkafkaOptions field value if set, zero value otherwise.
 func (o *ObservabilityPipelineKafkaSource) GetLibrdkafkaOptions() []ObservabilityPipelineKafkaSourceLibrdkafkaOption {
@@ -128,6 +134,7 @@ func (o *ObservabilityPipelineKafkaSource) SetLibrdkafkaOptions(v []Observabilit
 	o.LibrdkafkaOptions = v
 }
 
+
 // GetSasl returns the Sasl field value if set, zero value otherwise.
 func (o *ObservabilityPipelineKafkaSource) GetSasl() ObservabilityPipelineKafkaSourceSasl {
 	if o == nil || o.Sasl == nil {
@@ -155,6 +162,7 @@ func (o *ObservabilityPipelineKafkaSource) HasSasl() bool {
 func (o *ObservabilityPipelineKafkaSource) SetSasl(v ObservabilityPipelineKafkaSourceSasl) {
 	o.Sasl = &v
 }
+
 
 // GetTls returns the Tls field value if set, zero value otherwise.
 func (o *ObservabilityPipelineKafkaSource) GetTls() ObservabilityPipelineTls {
@@ -184,6 +192,7 @@ func (o *ObservabilityPipelineKafkaSource) SetTls(v ObservabilityPipelineTls) {
 	o.Tls = &v
 }
 
+
 // GetTopics returns the Topics field value.
 func (o *ObservabilityPipelineKafkaSource) GetTopics() []string {
 	if o == nil {
@@ -207,6 +216,7 @@ func (o *ObservabilityPipelineKafkaSource) SetTopics(v []string) {
 	o.Topics = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineKafkaSource) GetType() ObservabilityPipelineKafkaSourceType {
 	if o == nil {
@@ -229,6 +239,8 @@ func (o *ObservabilityPipelineKafkaSource) GetTypeOk() (*ObservabilityPipelineKa
 func (o *ObservabilityPipelineKafkaSource) SetType(v ObservabilityPipelineKafkaSourceType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineKafkaSource) MarshalJSON() ([]byte, error) {
@@ -259,13 +271,13 @@ func (o ObservabilityPipelineKafkaSource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineKafkaSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		GroupId           *string                                            `json:"group_id"`
-		Id                *string                                            `json:"id"`
+		GroupId *string `json:"group_id"`
+		Id *string `json:"id"`
 		LibrdkafkaOptions []ObservabilityPipelineKafkaSourceLibrdkafkaOption `json:"librdkafka_options,omitempty"`
-		Sasl              *ObservabilityPipelineKafkaSourceSasl              `json:"sasl,omitempty"`
-		Tls               *ObservabilityPipelineTls                          `json:"tls,omitempty"`
-		Topics            *[]string                                          `json:"topics"`
-		Type              *ObservabilityPipelineKafkaSourceType              `json:"type"`
+		Sasl *ObservabilityPipelineKafkaSourceSasl `json:"sasl,omitempty"`
+		Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
+		Topics *[]string `json:"topics"`
+		Type *ObservabilityPipelineKafkaSourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -284,7 +296,7 @@ func (o *ObservabilityPipelineKafkaSource) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"group_id", "id", "librdkafka_options", "sasl", "tls", "topics", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "group_id", "id", "librdkafka_options", "sasl", "tls", "topics", "type",  })
 	} else {
 		return err
 	}
@@ -293,11 +305,11 @@ func (o *ObservabilityPipelineKafkaSource) UnmarshalJSON(bytes []byte) (err erro
 	o.GroupId = *all.GroupId
 	o.Id = *all.Id
 	o.LibrdkafkaOptions = all.LibrdkafkaOptions
-	if all.Sasl != nil && all.Sasl.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Sasl != nil && all.Sasl.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Sasl = all.Sasl
-	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tls = all.Tls

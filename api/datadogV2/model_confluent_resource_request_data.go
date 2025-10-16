@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ConfluentResourceRequestData JSON:API request for updating a Confluent resource.
 type ConfluentResourceRequestData struct {
@@ -19,9 +23,10 @@ type ConfluentResourceRequestData struct {
 	// The JSON:API type for this request.
 	Type ConfluentResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewConfluentResourceRequestData instantiates a new ConfluentResourceRequestData object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewConfluentResourceRequestDataWithDefaults() *ConfluentResourceRequestData
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value.
 func (o *ConfluentResourceRequestData) GetAttributes() ConfluentResourceRequestAttributes {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *ConfluentResourceRequestData) GetAttributesOk() (*ConfluentResourceRequ
 func (o *ConfluentResourceRequestData) SetAttributes(v ConfluentResourceRequestAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value.
 func (o *ConfluentResourceRequestData) GetId() string {
@@ -91,6 +96,7 @@ func (o *ConfluentResourceRequestData) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetType returns the Type field value.
 func (o *ConfluentResourceRequestData) GetType() ConfluentResourceType {
 	if o == nil {
@@ -114,6 +120,8 @@ func (o *ConfluentResourceRequestData) SetType(v ConfluentResourceType) {
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ConfluentResourceRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -134,8 +142,8 @@ func (o ConfluentResourceRequestData) MarshalJSON() ([]byte, error) {
 func (o *ConfluentResourceRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *ConfluentResourceRequestAttributes `json:"attributes"`
-		Id         *string                             `json:"id"`
-		Type       *ConfluentResourceType              `json:"type"`
+		Id *string `json:"id"`
+		Type *ConfluentResourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -151,7 +159,7 @@ func (o *ConfluentResourceRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}

@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ComponentPropertiesIsVisible - Whether the UI component is visible. If this is a string, it must be a valid JavaScript expression that evaluates to a boolean.
 type ComponentPropertiesIsVisible struct {
-	Bool   *bool
+	Bool *bool
 	String *string
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -80,9 +86,11 @@ func (obj ComponentPropertiesIsVisible) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.Bool)
 	}
 
+
 	if obj.String != nil {
 		return datadog.Marshal(&obj.String)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj ComponentPropertiesIsVisible) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ComponentPropertiesIsVisible) GetActualInstance() interface{} {
+func (obj *ComponentPropertiesIsVisible) GetActualInstance() (interface{}) {
 	if obj.Bool != nil {
 		return obj.Bool
 	}
 
+
 	if obj.String != nil {
 		return obj.String
 	}
+
 
 	// all schemas are nil
 	return nil

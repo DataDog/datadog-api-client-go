@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // NotificationRuleAttributes Attributes of the notification rule.
 type NotificationRuleAttributes struct {
@@ -41,9 +45,10 @@ type NotificationRuleAttributes struct {
 	// Version of the notification rule. It is updated when the rule is modified.
 	Version int64 `json:"version"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewNotificationRuleAttributes instantiates a new NotificationRuleAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -70,7 +75,6 @@ func NewNotificationRuleAttributesWithDefaults() *NotificationRuleAttributes {
 	this := NotificationRuleAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value.
 func (o *NotificationRuleAttributes) GetCreatedAt() int64 {
 	if o == nil {
@@ -93,6 +97,7 @@ func (o *NotificationRuleAttributes) GetCreatedAtOk() (*int64, bool) {
 func (o *NotificationRuleAttributes) SetCreatedAt(v int64) {
 	o.CreatedAt = v
 }
+
 
 // GetCreatedBy returns the CreatedBy field value.
 func (o *NotificationRuleAttributes) GetCreatedBy() RuleUser {
@@ -117,6 +122,7 @@ func (o *NotificationRuleAttributes) SetCreatedBy(v RuleUser) {
 	o.CreatedBy = v
 }
 
+
 // GetEnabled returns the Enabled field value.
 func (o *NotificationRuleAttributes) GetEnabled() bool {
 	if o == nil {
@@ -139,6 +145,7 @@ func (o *NotificationRuleAttributes) GetEnabledOk() (*bool, bool) {
 func (o *NotificationRuleAttributes) SetEnabled(v bool) {
 	o.Enabled = v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value.
 func (o *NotificationRuleAttributes) GetModifiedAt() int64 {
@@ -163,6 +170,7 @@ func (o *NotificationRuleAttributes) SetModifiedAt(v int64) {
 	o.ModifiedAt = v
 }
 
+
 // GetModifiedBy returns the ModifiedBy field value.
 func (o *NotificationRuleAttributes) GetModifiedBy() RuleUser {
 	if o == nil {
@@ -185,6 +193,7 @@ func (o *NotificationRuleAttributes) GetModifiedByOk() (*RuleUser, bool) {
 func (o *NotificationRuleAttributes) SetModifiedBy(v RuleUser) {
 	o.ModifiedBy = v
 }
+
 
 // GetName returns the Name field value.
 func (o *NotificationRuleAttributes) GetName() string {
@@ -209,6 +218,7 @@ func (o *NotificationRuleAttributes) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetSelectors returns the Selectors field value.
 func (o *NotificationRuleAttributes) GetSelectors() Selectors {
 	if o == nil {
@@ -232,6 +242,7 @@ func (o *NotificationRuleAttributes) SetSelectors(v Selectors) {
 	o.Selectors = v
 }
 
+
 // GetTargets returns the Targets field value.
 func (o *NotificationRuleAttributes) GetTargets() []string {
 	if o == nil {
@@ -254,6 +265,7 @@ func (o *NotificationRuleAttributes) GetTargetsOk() (*[]string, bool) {
 func (o *NotificationRuleAttributes) SetTargets(v []string) {
 	o.Targets = v
 }
+
 
 // GetTimeAggregation returns the TimeAggregation field value if set, zero value otherwise.
 func (o *NotificationRuleAttributes) GetTimeAggregation() int64 {
@@ -283,6 +295,7 @@ func (o *NotificationRuleAttributes) SetTimeAggregation(v int64) {
 	o.TimeAggregation = &v
 }
 
+
 // GetVersion returns the Version field value.
 func (o *NotificationRuleAttributes) GetVersion() int64 {
 	if o == nil {
@@ -305,6 +318,8 @@ func (o *NotificationRuleAttributes) GetVersionOk() (*int64, bool) {
 func (o *NotificationRuleAttributes) SetVersion(v int64) {
 	o.Version = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o NotificationRuleAttributes) MarshalJSON() ([]byte, error) {
@@ -334,16 +349,16 @@ func (o NotificationRuleAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotificationRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt       *int64     `json:"created_at"`
-		CreatedBy       *RuleUser  `json:"created_by"`
-		Enabled         *bool      `json:"enabled"`
-		ModifiedAt      *int64     `json:"modified_at"`
-		ModifiedBy      *RuleUser  `json:"modified_by"`
-		Name            *string    `json:"name"`
-		Selectors       *Selectors `json:"selectors"`
-		Targets         *[]string  `json:"targets"`
-		TimeAggregation *int64     `json:"time_aggregation,omitempty"`
-		Version         *int64     `json:"version"`
+		CreatedAt *int64 `json:"created_at"`
+		CreatedBy *RuleUser `json:"created_by"`
+		Enabled *bool `json:"enabled"`
+		ModifiedAt *int64 `json:"modified_at"`
+		ModifiedBy *RuleUser `json:"modified_by"`
+		Name *string `json:"name"`
+		Selectors *Selectors `json:"selectors"`
+		Targets *[]string `json:"targets"`
+		TimeAggregation *int64 `json:"time_aggregation,omitempty"`
+		Version *int64 `json:"version"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -377,7 +392,7 @@ func (o *NotificationRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "enabled", "modified_at", "modified_by", "name", "selectors", "targets", "time_aggregation", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_at", "created_by", "enabled", "modified_at", "modified_by", "name", "selectors", "targets", "time_aggregation", "version",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AssetType The asset type
 type AssetType string
@@ -16,10 +20,10 @@ type AssetType string
 // List of AssetType.
 const (
 	ASSETTYPE_REPOSITORY AssetType = "Repository"
-	ASSETTYPE_SERVICE    AssetType = "Service"
-	ASSETTYPE_HOST       AssetType = "Host"
-	ASSETTYPE_HOSTIMAGE  AssetType = "HostImage"
-	ASSETTYPE_IMAGE      AssetType = "Image"
+	ASSETTYPE_SERVICE AssetType = "Service"
+	ASSETTYPE_HOST AssetType = "Host"
+	ASSETTYPE_HOSTIMAGE AssetType = "HostImage"
+	ASSETTYPE_IMAGE AssetType = "Image"
 )
 
 var allowedAssetTypeEnumValues = []AssetType{

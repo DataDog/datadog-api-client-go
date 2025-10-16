@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ResourceFilterAttributes Attributes of a resource filter.
 type ResourceFilterAttributes struct {
@@ -17,9 +21,10 @@ type ResourceFilterAttributes struct {
 	// The UUID of the resource filter.
 	Uuid *string `json:"uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewResourceFilterAttributes instantiates a new ResourceFilterAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewResourceFilterAttributesWithDefaults() *ResourceFilterAttributes {
 	this := ResourceFilterAttributes{}
 	return &this
 }
-
 // GetCloudProvider returns the CloudProvider field value.
 func (o *ResourceFilterAttributes) GetCloudProvider() map[string]map[string][]string {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *ResourceFilterAttributes) GetCloudProviderOk() (*map[string]map[string]
 func (o *ResourceFilterAttributes) SetCloudProvider(v map[string]map[string][]string) {
 	o.CloudProvider = v
 }
+
 
 // GetUuid returns the Uuid field value if set, zero value otherwise.
 func (o *ResourceFilterAttributes) GetUuid() string {
@@ -90,6 +95,8 @@ func (o *ResourceFilterAttributes) SetUuid(v string) {
 	o.Uuid = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ResourceFilterAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -111,7 +118,7 @@ func (o ResourceFilterAttributes) MarshalJSON() ([]byte, error) {
 func (o *ResourceFilterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CloudProvider *map[string]map[string][]string `json:"cloud_provider"`
-		Uuid          *string                         `json:"uuid,omitempty"`
+		Uuid *string `json:"uuid,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *ResourceFilterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cloud_provider", "uuid"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cloud_provider", "uuid",  })
 	} else {
 		return err
 	}

@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CIAppResponseMetadata The metadata associated with a request.
 type CIAppResponseMetadata struct {
@@ -20,9 +26,10 @@ type CIAppResponseMetadata struct {
 	// warnings are present in the response.
 	Warnings []CIAppWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCIAppResponseMetadata instantiates a new CIAppResponseMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +47,6 @@ func NewCIAppResponseMetadataWithDefaults() *CIAppResponseMetadata {
 	this := CIAppResponseMetadata{}
 	return &this
 }
-
 // GetElapsed returns the Elapsed field value if set, zero value otherwise.
 func (o *CIAppResponseMetadata) GetElapsed() int64 {
 	if o == nil || o.Elapsed == nil {
@@ -68,6 +74,7 @@ func (o *CIAppResponseMetadata) HasElapsed() bool {
 func (o *CIAppResponseMetadata) SetElapsed(v int64) {
 	o.Elapsed = &v
 }
+
 
 // GetRequestId returns the RequestId field value if set, zero value otherwise.
 func (o *CIAppResponseMetadata) GetRequestId() string {
@@ -97,6 +104,7 @@ func (o *CIAppResponseMetadata) SetRequestId(v string) {
 	o.RequestId = &v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *CIAppResponseMetadata) GetStatus() CIAppResponseStatus {
 	if o == nil || o.Status == nil {
@@ -124,6 +132,7 @@ func (o *CIAppResponseMetadata) HasStatus() bool {
 func (o *CIAppResponseMetadata) SetStatus(v CIAppResponseStatus) {
 	o.Status = &v
 }
+
 
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
 func (o *CIAppResponseMetadata) GetWarnings() []CIAppWarning {
@@ -153,6 +162,8 @@ func (o *CIAppResponseMetadata) SetWarnings(v []CIAppWarning) {
 	o.Warnings = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CIAppResponseMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -181,17 +192,17 @@ func (o CIAppResponseMetadata) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Elapsed   *int64               `json:"elapsed,omitempty"`
-		RequestId *string              `json:"request_id,omitempty"`
-		Status    *CIAppResponseStatus `json:"status,omitempty"`
-		Warnings  []CIAppWarning       `json:"warnings,omitempty"`
+		Elapsed *int64 `json:"elapsed,omitempty"`
+		RequestId *string `json:"request_id,omitempty"`
+		Status *CIAppResponseStatus `json:"status,omitempty"`
+		Warnings []CIAppWarning `json:"warnings,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"elapsed", "request_id", "status", "warnings"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "elapsed", "request_id", "status", "warnings",  })
 	} else {
 		return err
 	}
@@ -199,7 +210,7 @@ func (o *CIAppResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.Elapsed = all.Elapsed
 	o.RequestId = all.RequestId
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

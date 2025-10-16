@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsTestOptionsRetry Object describing the retry strategy to apply to a Synthetic test.
 type SyntheticsTestOptionsRetry struct {
@@ -17,9 +23,10 @@ type SyntheticsTestOptionsRetry struct {
 	// 300ms.
 	Interval *float64 `json:"interval,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsTestOptionsRetry instantiates a new SyntheticsTestOptionsRetry object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewSyntheticsTestOptionsRetryWithDefaults() *SyntheticsTestOptionsRetry {
 	this := SyntheticsTestOptionsRetry{}
 	return &this
 }
-
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *SyntheticsTestOptionsRetry) GetCount() int64 {
 	if o == nil || o.Count == nil {
@@ -65,6 +71,7 @@ func (o *SyntheticsTestOptionsRetry) HasCount() bool {
 func (o *SyntheticsTestOptionsRetry) SetCount(v int64) {
 	o.Count = &v
 }
+
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *SyntheticsTestOptionsRetry) GetInterval() float64 {
@@ -94,6 +101,8 @@ func (o *SyntheticsTestOptionsRetry) SetInterval(v float64) {
 	o.Interval = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTestOptionsRetry) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -116,7 +125,7 @@ func (o SyntheticsTestOptionsRetry) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestOptionsRetry) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Count    *int64   `json:"count,omitempty"`
+		Count *int64 `json:"count,omitempty"`
 		Interval *float64 `json:"interval,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -124,7 +133,7 @@ func (o *SyntheticsTestOptionsRetry) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"count", "interval"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "count", "interval",  })
 	} else {
 		return err
 	}

@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RoutingRuleRelationships Specifies relationships for a routing rule, linking to associated policy resources.
 type RoutingRuleRelationships struct {
 	// Defines the relationship that links a routing rule to a policy.
 	Policy *RoutingRuleRelationshipsPolicy `json:"policy,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRoutingRuleRelationships instantiates a new RoutingRuleRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewRoutingRuleRelationshipsWithDefaults() *RoutingRuleRelationships {
 	this := RoutingRuleRelationships{}
 	return &this
 }
-
 // GetPolicy returns the Policy field value if set, zero value otherwise.
 func (o *RoutingRuleRelationships) GetPolicy() RoutingRuleRelationshipsPolicy {
 	if o == nil || o.Policy == nil {
@@ -62,6 +68,8 @@ func (o *RoutingRuleRelationships) SetPolicy(v RoutingRuleRelationshipsPolicy) {
 	o.Policy = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RoutingRuleRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *RoutingRuleRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"policy"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "policy",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Policy != nil && all.Policy.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Policy != nil && all.Policy.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Policy = all.Policy

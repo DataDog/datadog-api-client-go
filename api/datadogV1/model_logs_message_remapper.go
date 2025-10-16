@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsMessageRemapper The message is a key attribute in Datadog.
 // It is displayed in the message column of the Log Explorer and you can do full string search on it.
@@ -26,9 +30,10 @@ type LogsMessageRemapper struct {
 	// Type of logs message remapper.
 	Type LogsMessageRemapperType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsMessageRemapper instantiates a new LogsMessageRemapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewLogsMessageRemapperWithDefaults() *LogsMessageRemapper {
 	this.Type = typeVar
 	return &this
 }
-
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsMessageRemapper) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -82,6 +86,7 @@ func (o *LogsMessageRemapper) HasIsEnabled() bool {
 func (o *LogsMessageRemapper) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsMessageRemapper) GetName() string {
@@ -111,6 +116,7 @@ func (o *LogsMessageRemapper) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSources returns the Sources field value.
 func (o *LogsMessageRemapper) GetSources() []string {
 	if o == nil {
@@ -134,6 +140,7 @@ func (o *LogsMessageRemapper) SetSources(v []string) {
 	o.Sources = v
 }
 
+
 // GetType returns the Type field value.
 func (o *LogsMessageRemapper) GetType() LogsMessageRemapperType {
 	if o == nil {
@@ -156,6 +163,8 @@ func (o *LogsMessageRemapper) GetTypeOk() (*LogsMessageRemapperType, bool) {
 func (o *LogsMessageRemapper) SetType(v LogsMessageRemapperType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsMessageRemapper) MarshalJSON() ([]byte, error) {
@@ -181,10 +190,10 @@ func (o LogsMessageRemapper) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsMessageRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		IsEnabled *bool                    `json:"is_enabled,omitempty"`
-		Name      *string                  `json:"name,omitempty"`
-		Sources   *[]string                `json:"sources"`
-		Type      *LogsMessageRemapperType `json:"type"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Sources *[]string `json:"sources"`
+		Type *LogsMessageRemapperType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -197,7 +206,7 @@ func (o *LogsMessageRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"is_enabled", "name", "sources", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "is_enabled", "name", "sources", "type",  })
 	} else {
 		return err
 	}

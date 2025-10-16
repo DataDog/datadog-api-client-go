@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ShiftIncluded - Included data for shift operations.
 type ShiftIncluded struct {
@@ -56,6 +62,7 @@ func (obj ShiftIncluded) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.ScheduleUser)
 	}
 
+
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
 	}
@@ -63,10 +70,11 @@ func (obj ShiftIncluded) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ShiftIncluded) GetActualInstance() interface{} {
+func (obj *ShiftIncluded) GetActualInstance() (interface{}) {
 	if obj.ScheduleUser != nil {
 		return obj.ScheduleUser
 	}
+
 
 	// all schemas are nil
 	return nil

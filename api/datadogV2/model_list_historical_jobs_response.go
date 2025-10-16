@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ListHistoricalJobsResponse List of historical jobs.
 type ListHistoricalJobsResponse struct {
@@ -15,9 +21,10 @@ type ListHistoricalJobsResponse struct {
 	// Metadata about the list of jobs.
 	Meta *HistoricalJobListMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewListHistoricalJobsResponse instantiates a new ListHistoricalJobsResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewListHistoricalJobsResponseWithDefaults() *ListHistoricalJobsResponse {
 	this := ListHistoricalJobsResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *ListHistoricalJobsResponse) GetData() []HistoricalJobResponseData {
 	if o == nil || o.Data == nil {
@@ -63,6 +69,7 @@ func (o *ListHistoricalJobsResponse) HasData() bool {
 func (o *ListHistoricalJobsResponse) SetData(v []HistoricalJobResponseData) {
 	o.Data = v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *ListHistoricalJobsResponse) GetMeta() HistoricalJobListMeta {
@@ -92,6 +99,8 @@ func (o *ListHistoricalJobsResponse) SetMeta(v HistoricalJobListMeta) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListHistoricalJobsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,21 +124,21 @@ func (o ListHistoricalJobsResponse) MarshalJSON() ([]byte, error) {
 func (o *ListHistoricalJobsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data []HistoricalJobResponseData `json:"data,omitempty"`
-		Meta *HistoricalJobListMeta      `json:"meta,omitempty"`
+		Meta *HistoricalJobListMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

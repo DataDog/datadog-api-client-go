@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SLOBulkDeleteResponse The bulk partial delete service level objective object endpoint
 // response.
@@ -20,9 +26,10 @@ type SLOBulkDeleteResponse struct {
 	// Array of errors object returned.
 	Errors []SLOBulkDeleteError `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSLOBulkDeleteResponse instantiates a new SLOBulkDeleteResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +47,6 @@ func NewSLOBulkDeleteResponseWithDefaults() *SLOBulkDeleteResponse {
 	this := SLOBulkDeleteResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *SLOBulkDeleteResponse) GetData() SLOBulkDeleteResponseData {
 	if o == nil || o.Data == nil {
@@ -68,6 +74,7 @@ func (o *SLOBulkDeleteResponse) HasData() bool {
 func (o *SLOBulkDeleteResponse) SetData(v SLOBulkDeleteResponseData) {
 	o.Data = &v
 }
+
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *SLOBulkDeleteResponse) GetErrors() []SLOBulkDeleteError {
@@ -97,6 +104,8 @@ func (o *SLOBulkDeleteResponse) SetErrors(v []SLOBulkDeleteError) {
 	o.Errors = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SLOBulkDeleteResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -119,21 +128,21 @@ func (o SLOBulkDeleteResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SLOBulkDeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data   *SLOBulkDeleteResponseData `json:"data,omitempty"`
-		Errors []SLOBulkDeleteError       `json:"errors,omitempty"`
+		Data *SLOBulkDeleteResponseData `json:"data,omitempty"`
+		Errors []SLOBulkDeleteError `json:"errors,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "errors"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "errors",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Data = all.Data

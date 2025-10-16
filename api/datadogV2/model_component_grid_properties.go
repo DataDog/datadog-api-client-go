@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ComponentGridProperties Properties of a grid component.
 type ComponentGridProperties struct {
@@ -17,9 +23,10 @@ type ComponentGridProperties struct {
 	// Whether the grid component and its children are visible. If a string, it must be a valid JavaScript expression that evaluates to a boolean.
 	IsVisible *ComponentGridPropertiesIsVisible `json:"isVisible,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewComponentGridProperties instantiates a new ComponentGridProperties object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewComponentGridPropertiesWithDefaults() *ComponentGridProperties {
 	this.BackgroundColor = &backgroundColor
 	return &this
 }
-
 // GetBackgroundColor returns the BackgroundColor field value if set, zero value otherwise.
 func (o *ComponentGridProperties) GetBackgroundColor() string {
 	if o == nil || o.BackgroundColor == nil {
@@ -69,6 +75,7 @@ func (o *ComponentGridProperties) HasBackgroundColor() bool {
 func (o *ComponentGridProperties) SetBackgroundColor(v string) {
 	o.BackgroundColor = &v
 }
+
 
 // GetChildren returns the Children field value if set, zero value otherwise.
 func (o *ComponentGridProperties) GetChildren() []Component {
@@ -98,6 +105,7 @@ func (o *ComponentGridProperties) SetChildren(v []Component) {
 	o.Children = v
 }
 
+
 // GetIsVisible returns the IsVisible field value if set, zero value otherwise.
 func (o *ComponentGridProperties) GetIsVisible() ComponentGridPropertiesIsVisible {
 	if o == nil || o.IsVisible == nil {
@@ -126,6 +134,8 @@ func (o *ComponentGridProperties) SetIsVisible(v ComponentGridPropertiesIsVisibl
 	o.IsVisible = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ComponentGridProperties) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -151,16 +161,16 @@ func (o ComponentGridProperties) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ComponentGridProperties) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BackgroundColor *string                           `json:"backgroundColor,omitempty"`
-		Children        []Component                       `json:"children,omitempty"`
-		IsVisible       *ComponentGridPropertiesIsVisible `json:"isVisible,omitempty"`
+		BackgroundColor *string `json:"backgroundColor,omitempty"`
+		Children []Component `json:"children,omitempty"`
+		IsVisible *ComponentGridPropertiesIsVisible `json:"isVisible,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"backgroundColor", "children", "isVisible"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "backgroundColor", "children", "isVisible",  })
 	} else {
 		return err
 	}

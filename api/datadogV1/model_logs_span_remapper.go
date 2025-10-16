@@ -2,20 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // LogsSpanRemapper There are two ways to define correlation between application spans and logs:
 //
-//  1. Follow the documentation on [how to inject a span ID in the application logs](https://docs.datadoghq.com/tracing/connect_logs_and_traces).
-//     Log integrations automatically handle all remaining setup steps by default.
+//   1. Follow the documentation on [how to inject a span ID in the application logs](https://docs.datadoghq.com/tracing/connect_logs_and_traces).
+//   Log integrations automatically handle all remaining setup steps by default.
 //
-//  2. Use the span remapper processor to define a log attribute as its associated span ID.
+//   2. Use the span remapper processor to define a log attribute as its associated span ID.
 type LogsSpanRemapper struct {
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
@@ -26,9 +30,10 @@ type LogsSpanRemapper struct {
 	// Type of logs span remapper.
 	Type LogsSpanRemapperType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewLogsSpanRemapper instantiates a new LogsSpanRemapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewLogsSpanRemapperWithDefaults() *LogsSpanRemapper {
 	this.Type = typeVar
 	return &this
 }
-
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsSpanRemapper) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -81,6 +85,7 @@ func (o *LogsSpanRemapper) HasIsEnabled() bool {
 func (o *LogsSpanRemapper) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsSpanRemapper) GetName() string {
@@ -110,6 +115,7 @@ func (o *LogsSpanRemapper) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSources returns the Sources field value if set, zero value otherwise.
 func (o *LogsSpanRemapper) GetSources() []string {
 	if o == nil || o.Sources == nil {
@@ -138,6 +144,7 @@ func (o *LogsSpanRemapper) SetSources(v []string) {
 	o.Sources = v
 }
 
+
 // GetType returns the Type field value.
 func (o *LogsSpanRemapper) GetType() LogsSpanRemapperType {
 	if o == nil {
@@ -160,6 +167,8 @@ func (o *LogsSpanRemapper) GetTypeOk() (*LogsSpanRemapperType, bool) {
 func (o *LogsSpanRemapper) SetType(v LogsSpanRemapperType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o LogsSpanRemapper) MarshalJSON() ([]byte, error) {
@@ -187,10 +196,10 @@ func (o LogsSpanRemapper) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsSpanRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		IsEnabled *bool                 `json:"is_enabled,omitempty"`
-		Name      *string               `json:"name,omitempty"`
-		Sources   []string              `json:"sources,omitempty"`
-		Type      *LogsSpanRemapperType `json:"type"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Sources []string `json:"sources,omitempty"`
+		Type *LogsSpanRemapperType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -200,7 +209,7 @@ func (o *LogsSpanRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"is_enabled", "name", "sources", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "is_enabled", "name", "sources", "type",  })
 	} else {
 		return err
 	}

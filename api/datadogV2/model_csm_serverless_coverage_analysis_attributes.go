@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CsmServerlessCoverageAnalysisAttributes CSM Serverless Resources Coverage Analysis attributes.
 type CsmServerlessCoverageAnalysisAttributes struct {
@@ -17,9 +23,10 @@ type CsmServerlessCoverageAnalysisAttributes struct {
 	// CSM Coverage Analysis.
 	TotalCoverage *CsmCoverageAnalysis `json:"total_coverage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCsmServerlessCoverageAnalysisAttributes instantiates a new CsmServerlessCoverageAnalysisAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewCsmServerlessCoverageAnalysisAttributesWithDefaults() *CsmServerlessCove
 	this := CsmServerlessCoverageAnalysisAttributes{}
 	return &this
 }
-
 // GetCwsCoverage returns the CwsCoverage field value if set, zero value otherwise.
 func (o *CsmServerlessCoverageAnalysisAttributes) GetCwsCoverage() CsmCoverageAnalysis {
 	if o == nil || o.CwsCoverage == nil {
@@ -65,6 +71,7 @@ func (o *CsmServerlessCoverageAnalysisAttributes) HasCwsCoverage() bool {
 func (o *CsmServerlessCoverageAnalysisAttributes) SetCwsCoverage(v CsmCoverageAnalysis) {
 	o.CwsCoverage = &v
 }
+
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *CsmServerlessCoverageAnalysisAttributes) GetOrgId() int64 {
@@ -94,6 +101,7 @@ func (o *CsmServerlessCoverageAnalysisAttributes) SetOrgId(v int64) {
 	o.OrgId = &v
 }
 
+
 // GetTotalCoverage returns the TotalCoverage field value if set, zero value otherwise.
 func (o *CsmServerlessCoverageAnalysisAttributes) GetTotalCoverage() CsmCoverageAnalysis {
 	if o == nil || o.TotalCoverage == nil {
@@ -122,6 +130,8 @@ func (o *CsmServerlessCoverageAnalysisAttributes) SetTotalCoverage(v CsmCoverage
 	o.TotalCoverage = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CsmServerlessCoverageAnalysisAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,8 +157,8 @@ func (o CsmServerlessCoverageAnalysisAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CsmServerlessCoverageAnalysisAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CwsCoverage   *CsmCoverageAnalysis `json:"cws_coverage,omitempty"`
-		OrgId         *int64               `json:"org_id,omitempty"`
+		CwsCoverage *CsmCoverageAnalysis `json:"cws_coverage,omitempty"`
+		OrgId *int64 `json:"org_id,omitempty"`
 		TotalCoverage *CsmCoverageAnalysis `json:"total_coverage,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,18 +166,18 @@ func (o *CsmServerlessCoverageAnalysisAttributes) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cws_coverage", "org_id", "total_coverage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cws_coverage", "org_id", "total_coverage",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.CwsCoverage != nil && all.CwsCoverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CwsCoverage != nil && all.CwsCoverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CwsCoverage = all.CwsCoverage
 	o.OrgId = all.OrgId
-	if all.TotalCoverage != nil && all.TotalCoverage.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.TotalCoverage != nil && all.TotalCoverage.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.TotalCoverage = all.TotalCoverage

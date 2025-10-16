@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RelationResponse Relation response data.
 type RelationResponse struct {
@@ -23,9 +29,10 @@ type RelationResponse struct {
 	// Relation type.
 	Type *RelationResponseType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRelationResponse instantiates a new RelationResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +50,6 @@ func NewRelationResponseWithDefaults() *RelationResponse {
 	this := RelationResponse{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *RelationResponse) GetAttributes() RelationAttributes {
 	if o == nil || o.Attributes == nil {
@@ -71,6 +77,7 @@ func (o *RelationResponse) HasAttributes() bool {
 func (o *RelationResponse) SetAttributes(v RelationAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *RelationResponse) GetId() string {
@@ -100,6 +107,7 @@ func (o *RelationResponse) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *RelationResponse) GetMeta() RelationMeta {
 	if o == nil || o.Meta == nil {
@@ -127,6 +135,7 @@ func (o *RelationResponse) HasMeta() bool {
 func (o *RelationResponse) SetMeta(v RelationMeta) {
 	o.Meta = &v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *RelationResponse) GetRelationships() RelationRelationships {
@@ -156,6 +165,7 @@ func (o *RelationResponse) SetRelationships(v RelationRelationships) {
 	o.Relationships = &v
 }
 
+
 // GetSubtype returns the Subtype field value if set, zero value otherwise.
 func (o *RelationResponse) GetSubtype() string {
 	if o == nil || o.Subtype == nil {
@@ -184,6 +194,7 @@ func (o *RelationResponse) SetSubtype(v string) {
 	o.Subtype = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *RelationResponse) GetType() RelationResponseType {
 	if o == nil || o.Type == nil {
@@ -211,6 +222,8 @@ func (o *RelationResponse) HasType() bool {
 func (o *RelationResponse) SetType(v RelationResponseType) {
 	o.Type = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationResponse) MarshalJSON() ([]byte, error) {
@@ -246,39 +259,39 @@ func (o RelationResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RelationResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *RelationAttributes    `json:"attributes,omitempty"`
-		Id            *string                `json:"id,omitempty"`
-		Meta          *RelationMeta          `json:"meta,omitempty"`
+		Attributes *RelationAttributes `json:"attributes,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Meta *RelationMeta `json:"meta,omitempty"`
 		Relationships *RelationRelationships `json:"relationships,omitempty"`
-		Subtype       *string                `json:"subtype,omitempty"`
-		Type          *RelationResponseType  `json:"type,omitempty"`
+		Subtype *string `json:"subtype,omitempty"`
+		Type *RelationResponseType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "meta", "relationships", "subtype", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "meta", "relationships", "subtype", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Relationships = all.Relationships
 	o.Subtype = all.Subtype
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

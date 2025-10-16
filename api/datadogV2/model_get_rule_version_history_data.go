@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // GetRuleVersionHistoryData Data for the rule version history.
 type GetRuleVersionHistoryData struct {
@@ -17,9 +23,10 @@ type GetRuleVersionHistoryData struct {
 	// Type of data.
 	Type *GetRuleVersionHistoryDataType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewGetRuleVersionHistoryData instantiates a new GetRuleVersionHistoryData object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewGetRuleVersionHistoryDataWithDefaults() *GetRuleVersionHistoryData {
 	this := GetRuleVersionHistoryData{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *GetRuleVersionHistoryData) GetAttributes() RuleVersionHistory {
 	if o == nil || o.Attributes == nil {
@@ -65,6 +71,7 @@ func (o *GetRuleVersionHistoryData) HasAttributes() bool {
 func (o *GetRuleVersionHistoryData) SetAttributes(v RuleVersionHistory) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *GetRuleVersionHistoryData) GetId() string {
@@ -94,6 +101,7 @@ func (o *GetRuleVersionHistoryData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *GetRuleVersionHistoryData) GetType() GetRuleVersionHistoryDataType {
 	if o == nil || o.Type == nil {
@@ -122,6 +130,8 @@ func (o *GetRuleVersionHistoryData) SetType(v GetRuleVersionHistoryDataType) {
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o GetRuleVersionHistoryData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,27 +157,27 @@ func (o GetRuleVersionHistoryData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GetRuleVersionHistoryData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RuleVersionHistory            `json:"attributes,omitempty"`
-		Id         *string                        `json:"id,omitempty"`
-		Type       *GetRuleVersionHistoryDataType `json:"type,omitempty"`
+		Attributes *RuleVersionHistory `json:"attributes,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *GetRuleVersionHistoryDataType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type

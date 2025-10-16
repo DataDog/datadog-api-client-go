@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EPSS Vulnerability EPSS severity.
 type EPSS struct {
@@ -17,9 +21,10 @@ type EPSS struct {
 	// The vulnerability severity.
 	Severity VulnerabilitySeverity `json:"severity"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEPSS instantiates a new EPSS object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewEPSSWithDefaults() *EPSS {
 	this := EPSS{}
 	return &this
 }
-
 // GetScore returns the Score field value.
 func (o *EPSS) GetScore() float64 {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *EPSS) GetScoreOk() (*float64, bool) {
 func (o *EPSS) SetScore(v float64) {
 	o.Score = v
 }
+
 
 // GetSeverity returns the Severity field value.
 func (o *EPSS) GetSeverity() VulnerabilitySeverity {
@@ -86,6 +91,8 @@ func (o *EPSS) SetSeverity(v VulnerabilitySeverity) {
 	o.Severity = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o EPSS) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o EPSS) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *EPSS) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Score    *float64               `json:"score"`
+		Score *float64 `json:"score"`
 		Severity *VulnerabilitySeverity `json:"severity"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *EPSS) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"score", "severity"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "score", "severity",  })
 	} else {
 		return err
 	}

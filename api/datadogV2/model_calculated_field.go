@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CalculatedField Calculated field.
 type CalculatedField struct {
@@ -17,9 +21,10 @@ type CalculatedField struct {
 	// Field name.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCalculatedField instantiates a new CalculatedField object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewCalculatedFieldWithDefaults() *CalculatedField {
 	this := CalculatedField{}
 	return &this
 }
-
 // GetExpression returns the Expression field value.
 func (o *CalculatedField) GetExpression() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *CalculatedField) GetExpressionOk() (*string, bool) {
 func (o *CalculatedField) SetExpression(v string) {
 	o.Expression = v
 }
+
 
 // GetName returns the Name field value.
 func (o *CalculatedField) GetName() string {
@@ -86,6 +91,8 @@ func (o *CalculatedField) SetName(v string) {
 	o.Name = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CalculatedField) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -105,7 +112,7 @@ func (o CalculatedField) MarshalJSON() ([]byte, error) {
 func (o *CalculatedField) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Expression *string `json:"expression"`
-		Name       *string `json:"name"`
+		Name *string `json:"name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *CalculatedField) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"expression", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "expression", "name",  })
 	} else {
 		return err
 	}

@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ServiceDefinitionSchema - Service definition schema.
 type ServiceDefinitionSchema struct {
-	ServiceDefinitionV1     *ServiceDefinitionV1
-	ServiceDefinitionV2     *ServiceDefinitionV2
+	ServiceDefinitionV1 *ServiceDefinitionV1
+	ServiceDefinitionV2 *ServiceDefinitionV2
 	ServiceDefinitionV2Dot1 *ServiceDefinitionV2Dot1
 	ServiceDefinitionV2Dot2 *ServiceDefinitionV2Dot2
 
@@ -128,17 +134,21 @@ func (obj ServiceDefinitionSchema) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.ServiceDefinitionV1)
 	}
 
+
 	if obj.ServiceDefinitionV2 != nil {
 		return datadog.Marshal(&obj.ServiceDefinitionV2)
 	}
+
 
 	if obj.ServiceDefinitionV2Dot1 != nil {
 		return datadog.Marshal(&obj.ServiceDefinitionV2Dot1)
 	}
 
+
 	if obj.ServiceDefinitionV2Dot2 != nil {
 		return datadog.Marshal(&obj.ServiceDefinitionV2Dot2)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -147,22 +157,26 @@ func (obj ServiceDefinitionSchema) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *ServiceDefinitionSchema) GetActualInstance() interface{} {
+func (obj *ServiceDefinitionSchema) GetActualInstance() (interface{}) {
 	if obj.ServiceDefinitionV1 != nil {
 		return obj.ServiceDefinitionV1
 	}
+
 
 	if obj.ServiceDefinitionV2 != nil {
 		return obj.ServiceDefinitionV2
 	}
 
+
 	if obj.ServiceDefinitionV2Dot1 != nil {
 		return obj.ServiceDefinitionV2Dot1
 	}
 
+
 	if obj.ServiceDefinitionV2Dot2 != nil {
 		return obj.ServiceDefinitionV2Dot2
 	}
+
 
 	// all schemas are nil
 	return nil

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAssertionJSONSchemaTarget An assertion for the `validatesJSONSchema` operator.
 type SyntheticsAssertionJSONSchemaTarget struct {
@@ -19,9 +23,10 @@ type SyntheticsAssertionJSONSchemaTarget struct {
 	// Type of the assertion.
 	Type SyntheticsAssertionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsAssertionJSONSchemaTarget instantiates a new SyntheticsAssertionJSONSchemaTarget object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewSyntheticsAssertionJSONSchemaTargetWithDefaults() *SyntheticsAssertionJS
 	this := SyntheticsAssertionJSONSchemaTarget{}
 	return &this
 }
-
 // GetOperator returns the Operator field value.
 func (o *SyntheticsAssertionJSONSchemaTarget) GetOperator() SyntheticsAssertionJSONSchemaOperator {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *SyntheticsAssertionJSONSchemaTarget) GetOperatorOk() (*SyntheticsAssert
 func (o *SyntheticsAssertionJSONSchemaTarget) SetOperator(v SyntheticsAssertionJSONSchemaOperator) {
 	o.Operator = v
 }
+
 
 // GetTarget returns the Target field value if set, zero value otherwise.
 func (o *SyntheticsAssertionJSONSchemaTarget) GetTarget() SyntheticsAssertionJSONSchemaTargetTarget {
@@ -93,6 +98,7 @@ func (o *SyntheticsAssertionJSONSchemaTarget) SetTarget(v SyntheticsAssertionJSO
 	o.Target = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *SyntheticsAssertionJSONSchemaTarget) GetType() SyntheticsAssertionType {
 	if o == nil {
@@ -116,6 +122,8 @@ func (o *SyntheticsAssertionJSONSchemaTarget) SetType(v SyntheticsAssertionType)
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAssertionJSONSchemaTarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -137,9 +145,9 @@ func (o SyntheticsAssertionJSONSchemaTarget) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAssertionJSONSchemaTarget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Operator *SyntheticsAssertionJSONSchemaOperator     `json:"operator"`
-		Target   *SyntheticsAssertionJSONSchemaTargetTarget `json:"target,omitempty"`
-		Type     *SyntheticsAssertionType                   `json:"type"`
+		Operator *SyntheticsAssertionJSONSchemaOperator `json:"operator"`
+		Target *SyntheticsAssertionJSONSchemaTargetTarget `json:"target,omitempty"`
+		Type *SyntheticsAssertionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,7 +160,7 @@ func (o *SyntheticsAssertionJSONSchemaTarget) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"operator", "target", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "operator", "target", "type",  })
 	} else {
 		return err
 	}
@@ -163,7 +171,7 @@ func (o *SyntheticsAssertionJSONSchemaTarget) UnmarshalJSON(bytes []byte) (err e
 	} else {
 		o.Operator = *all.Operator
 	}
-	if all.Target != nil && all.Target.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Target != nil && all.Target.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Target = all.Target

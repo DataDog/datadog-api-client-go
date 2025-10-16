@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // TeamRoutingRulesRequestRule Defines an individual routing rule item that contains the rule data for the request.
 type TeamRoutingRulesRequestRule struct {
@@ -21,9 +27,10 @@ type TeamRoutingRulesRequestRule struct {
 	// Specifies the level of urgency for a routing rule (low, high, or dynamic).
 	Urgency *Urgency `json:"urgency,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewTeamRoutingRulesRequestRule instantiates a new TeamRoutingRulesRequestRule object.
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +48,6 @@ func NewTeamRoutingRulesRequestRuleWithDefaults() *TeamRoutingRulesRequestRule {
 	this := TeamRoutingRulesRequestRule{}
 	return &this
 }
-
 // GetActions returns the Actions field value if set, zero value otherwise.
 func (o *TeamRoutingRulesRequestRule) GetActions() []RoutingRuleAction {
 	if o == nil || o.Actions == nil {
@@ -69,6 +75,7 @@ func (o *TeamRoutingRulesRequestRule) HasActions() bool {
 func (o *TeamRoutingRulesRequestRule) SetActions(v []RoutingRuleAction) {
 	o.Actions = v
 }
+
 
 // GetPolicyId returns the PolicyId field value if set, zero value otherwise.
 func (o *TeamRoutingRulesRequestRule) GetPolicyId() string {
@@ -98,6 +105,7 @@ func (o *TeamRoutingRulesRequestRule) SetPolicyId(v string) {
 	o.PolicyId = &v
 }
 
+
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *TeamRoutingRulesRequestRule) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -125,6 +133,7 @@ func (o *TeamRoutingRulesRequestRule) HasQuery() bool {
 func (o *TeamRoutingRulesRequestRule) SetQuery(v string) {
 	o.Query = &v
 }
+
 
 // GetTimeRestriction returns the TimeRestriction field value if set, zero value otherwise.
 func (o *TeamRoutingRulesRequestRule) GetTimeRestriction() TimeRestrictions {
@@ -154,6 +163,7 @@ func (o *TeamRoutingRulesRequestRule) SetTimeRestriction(v TimeRestrictions) {
 	o.TimeRestriction = &v
 }
 
+
 // GetUrgency returns the Urgency field value if set, zero value otherwise.
 func (o *TeamRoutingRulesRequestRule) GetUrgency() Urgency {
 	if o == nil || o.Urgency == nil {
@@ -181,6 +191,8 @@ func (o *TeamRoutingRulesRequestRule) HasUrgency() bool {
 func (o *TeamRoutingRulesRequestRule) SetUrgency(v Urgency) {
 	o.Urgency = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamRoutingRulesRequestRule) MarshalJSON() ([]byte, error) {
@@ -213,18 +225,18 @@ func (o TeamRoutingRulesRequestRule) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TeamRoutingRulesRequestRule) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Actions         []RoutingRuleAction `json:"actions,omitempty"`
-		PolicyId        *string             `json:"policy_id,omitempty"`
-		Query           *string             `json:"query,omitempty"`
-		TimeRestriction *TimeRestrictions   `json:"time_restriction,omitempty"`
-		Urgency         *Urgency            `json:"urgency,omitempty"`
+		Actions []RoutingRuleAction `json:"actions,omitempty"`
+		PolicyId *string `json:"policy_id,omitempty"`
+		Query *string `json:"query,omitempty"`
+		TimeRestriction *TimeRestrictions `json:"time_restriction,omitempty"`
+		Urgency *Urgency `json:"urgency,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"actions", "policy_id", "query", "time_restriction", "urgency"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "actions", "policy_id", "query", "time_restriction", "urgency",  })
 	} else {
 		return err
 	}
@@ -233,11 +245,11 @@ func (o *TeamRoutingRulesRequestRule) UnmarshalJSON(bytes []byte) (err error) {
 	o.Actions = all.Actions
 	o.PolicyId = all.PolicyId
 	o.Query = all.Query
-	if all.TimeRestriction != nil && all.TimeRestriction.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.TimeRestriction != nil && all.TimeRestriction.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.TimeRestriction = all.TimeRestriction
-	if all.Urgency != nil && !all.Urgency.IsValid() {
+	if all.Urgency != nil &&!all.Urgency.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Urgency = all.Urgency

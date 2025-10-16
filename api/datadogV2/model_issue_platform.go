@@ -2,27 +2,31 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IssuePlatform Platform associated with the issue.
 type IssuePlatform string
 
 // List of IssuePlatform.
 const (
-	ISSUEPLATFORM_ANDROID      IssuePlatform = "ANDROID"
-	ISSUEPLATFORM_BACKEND      IssuePlatform = "BACKEND"
-	ISSUEPLATFORM_BROWSER      IssuePlatform = "BROWSER"
-	ISSUEPLATFORM_FLUTTER      IssuePlatform = "FLUTTER"
-	ISSUEPLATFORM_IOS          IssuePlatform = "IOS"
+	ISSUEPLATFORM_ANDROID IssuePlatform = "ANDROID"
+	ISSUEPLATFORM_BACKEND IssuePlatform = "BACKEND"
+	ISSUEPLATFORM_BROWSER IssuePlatform = "BROWSER"
+	ISSUEPLATFORM_FLUTTER IssuePlatform = "FLUTTER"
+	ISSUEPLATFORM_IOS IssuePlatform = "IOS"
 	ISSUEPLATFORM_REACT_NATIVE IssuePlatform = "REACT_NATIVE"
-	ISSUEPLATFORM_ROKU         IssuePlatform = "ROKU"
-	ISSUEPLATFORM_UNKNOWN      IssuePlatform = "UNKNOWN"
+	ISSUEPLATFORM_ROKU IssuePlatform = "ROKU"
+	ISSUEPLATFORM_UNKNOWN IssuePlatform = "UNKNOWN"
 )
 
 var allowedIssuePlatformEnumValues = []IssuePlatform{

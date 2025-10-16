@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSocketSource The `socket` source ingests logs over TCP or UDP.
 type ObservabilityPipelineSocketSource struct {
@@ -23,9 +27,10 @@ type ObservabilityPipelineSocketSource struct {
 	// The source type. The value should always be `socket`.
 	Type ObservabilityPipelineSocketSourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSocketSource instantiates a new ObservabilityPipelineSocketSource object.
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +54,6 @@ func NewObservabilityPipelineSocketSourceWithDefaults() *ObservabilityPipelineSo
 	this.Type = typeVar
 	return &this
 }
-
 // GetFraming returns the Framing field value.
 func (o *ObservabilityPipelineSocketSource) GetFraming() ObservabilityPipelineSocketSourceFraming {
 	if o == nil {
@@ -72,6 +76,7 @@ func (o *ObservabilityPipelineSocketSource) GetFramingOk() (*ObservabilityPipeli
 func (o *ObservabilityPipelineSocketSource) SetFraming(v ObservabilityPipelineSocketSourceFraming) {
 	o.Framing = v
 }
+
 
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineSocketSource) GetId() string {
@@ -96,6 +101,7 @@ func (o *ObservabilityPipelineSocketSource) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetMode returns the Mode field value.
 func (o *ObservabilityPipelineSocketSource) GetMode() ObservabilityPipelineSocketSourceMode {
 	if o == nil {
@@ -118,6 +124,7 @@ func (o *ObservabilityPipelineSocketSource) GetModeOk() (*ObservabilityPipelineS
 func (o *ObservabilityPipelineSocketSource) SetMode(v ObservabilityPipelineSocketSourceMode) {
 	o.Mode = v
 }
+
 
 // GetTls returns the Tls field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSocketSource) GetTls() ObservabilityPipelineTls {
@@ -147,6 +154,7 @@ func (o *ObservabilityPipelineSocketSource) SetTls(v ObservabilityPipelineTls) {
 	o.Tls = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineSocketSource) GetType() ObservabilityPipelineSocketSourceType {
 	if o == nil {
@@ -169,6 +177,8 @@ func (o *ObservabilityPipelineSocketSource) GetTypeOk() (*ObservabilityPipelineS
 func (o *ObservabilityPipelineSocketSource) SetType(v ObservabilityPipelineSocketSourceType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSocketSource) MarshalJSON() ([]byte, error) {
@@ -194,10 +204,10 @@ func (o ObservabilityPipelineSocketSource) MarshalJSON() ([]byte, error) {
 func (o *ObservabilityPipelineSocketSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Framing *ObservabilityPipelineSocketSourceFraming `json:"framing"`
-		Id      *string                                   `json:"id"`
-		Mode    *ObservabilityPipelineSocketSourceMode    `json:"mode"`
-		Tls     *ObservabilityPipelineTls                 `json:"tls,omitempty"`
-		Type    *ObservabilityPipelineSocketSourceType    `json:"type"`
+		Id *string `json:"id"`
+		Mode *ObservabilityPipelineSocketSourceMode `json:"mode"`
+		Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
+		Type *ObservabilityPipelineSocketSourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -216,7 +226,7 @@ func (o *ObservabilityPipelineSocketSource) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"framing", "id", "mode", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "framing", "id", "mode", "tls", "type",  })
 	} else {
 		return err
 	}
@@ -229,7 +239,7 @@ func (o *ObservabilityPipelineSocketSource) UnmarshalJSON(bytes []byte) (err err
 	} else {
 		o.Mode = *all.Mode
 	}
-	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tls = all.Tls

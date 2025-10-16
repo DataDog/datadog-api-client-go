@@ -2,15 +2,21 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // DowntimeScheduleCreateRequest - Schedule for the downtime.
 type DowntimeScheduleCreateRequest struct {
-	DowntimeScheduleRecurrencesCreateRequest   *DowntimeScheduleRecurrencesCreateRequest
+	DowntimeScheduleRecurrencesCreateRequest *DowntimeScheduleRecurrencesCreateRequest
 	DowntimeScheduleOneTimeCreateUpdateRequest *DowntimeScheduleOneTimeCreateUpdateRequest
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -53,7 +59,7 @@ func (obj *DowntimeScheduleCreateRequest) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.DowntimeScheduleOneTimeCreateUpdateRequest != nil && obj.DowntimeScheduleOneTimeCreateUpdateRequest.UnparsedObject == nil {
 			jsonDowntimeScheduleOneTimeCreateUpdateRequest, _ := datadog.Marshal(obj.DowntimeScheduleOneTimeCreateUpdateRequest)
-			if string(jsonDowntimeScheduleOneTimeCreateUpdateRequest) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonDowntimeScheduleOneTimeCreateUpdateRequest) == "{}" && string(data) != "{}"  { // empty struct
 				obj.DowntimeScheduleOneTimeCreateUpdateRequest = nil
 			} else {
 				match++
@@ -80,9 +86,11 @@ func (obj DowntimeScheduleCreateRequest) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.DowntimeScheduleRecurrencesCreateRequest)
 	}
 
+
 	if obj.DowntimeScheduleOneTimeCreateUpdateRequest != nil {
 		return datadog.Marshal(&obj.DowntimeScheduleOneTimeCreateUpdateRequest)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj DowntimeScheduleCreateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *DowntimeScheduleCreateRequest) GetActualInstance() interface{} {
+func (obj *DowntimeScheduleCreateRequest) GetActualInstance() (interface{}) {
 	if obj.DowntimeScheduleRecurrencesCreateRequest != nil {
 		return obj.DowntimeScheduleRecurrencesCreateRequest
 	}
 
+
 	if obj.DowntimeScheduleOneTimeCreateUpdateRequest != nil {
 		return obj.DowntimeScheduleOneTimeCreateUpdateRequest
 	}
+
 
 	// all schemas are nil
 	return nil

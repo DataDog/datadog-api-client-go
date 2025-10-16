@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CreateRulesetRequestDataAttributesRulesItemsMapping The definition of `CreateRulesetRequestDataAttributesRulesItemsMapping` object.
 type CreateRulesetRequestDataAttributesRulesItemsMapping struct {
@@ -19,9 +23,10 @@ type CreateRulesetRequestDataAttributesRulesItemsMapping struct {
 	// The `mapping` `source_keys`.
 	SourceKeys []string `json:"source_keys"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCreateRulesetRequestDataAttributesRulesItemsMapping instantiates a new CreateRulesetRequestDataAttributesRulesItemsMapping object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewCreateRulesetRequestDataAttributesRulesItemsMappingWithDefaults() *Creat
 	this := CreateRulesetRequestDataAttributesRulesItemsMapping{}
 	return &this
 }
-
 // GetDestinationKey returns the DestinationKey field value.
 func (o *CreateRulesetRequestDataAttributesRulesItemsMapping) GetDestinationKey() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsMapping) GetDestinationKeyO
 func (o *CreateRulesetRequestDataAttributesRulesItemsMapping) SetDestinationKey(v string) {
 	o.DestinationKey = v
 }
+
 
 // GetIfNotExists returns the IfNotExists field value.
 func (o *CreateRulesetRequestDataAttributesRulesItemsMapping) GetIfNotExists() bool {
@@ -89,6 +94,7 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsMapping) SetIfNotExists(v b
 	o.IfNotExists = v
 }
 
+
 // GetSourceKeys returns the SourceKeys field value.
 func (o *CreateRulesetRequestDataAttributesRulesItemsMapping) GetSourceKeys() []string {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsMapping) SetSourceKeys(v []
 	o.SourceKeys = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateRulesetRequestDataAttributesRulesItemsMapping) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o CreateRulesetRequestDataAttributesRulesItemsMapping) MarshalJSON() ([]by
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateRulesetRequestDataAttributesRulesItemsMapping) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DestinationKey *string   `json:"destination_key"`
-		IfNotExists    *bool     `json:"if_not_exists"`
-		SourceKeys     *[]string `json:"source_keys"`
+		DestinationKey *string `json:"destination_key"`
+		IfNotExists *bool `json:"if_not_exists"`
+		SourceKeys *[]string `json:"source_keys"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsMapping) UnmarshalJSON(byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"destination_key", "if_not_exists", "source_keys"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "destination_key", "if_not_exists", "source_keys",  })
 	} else {
 		return err
 	}
@@ -163,7 +171,6 @@ func (o *CreateRulesetRequestDataAttributesRulesItemsMapping) UnmarshalJSON(byte
 
 	return nil
 }
-
 // NullableCreateRulesetRequestDataAttributesRulesItemsMapping handles when a null is used for CreateRulesetRequestDataAttributesRulesItemsMapping.
 type NullableCreateRulesetRequestDataAttributesRulesItemsMapping struct {
 	value *CreateRulesetRequestDataAttributesRulesItemsMapping

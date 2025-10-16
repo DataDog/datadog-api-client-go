@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SlackIntegrationMetadata Incident integration metadata for the Slack integration.
 type SlackIntegrationMetadata struct {
 	// Array of Slack channels in this integration metadata.
 	Channels []SlackIntegrationMetadataChannelItem `json:"channels"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSlackIntegrationMetadata instantiates a new SlackIntegrationMetadata object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewSlackIntegrationMetadataWithDefaults() *SlackIntegrationMetadata {
 	this := SlackIntegrationMetadata{}
 	return &this
 }
-
 // GetChannels returns the Channels field value.
 func (o *SlackIntegrationMetadata) GetChannels() []SlackIntegrationMetadataChannelItem {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *SlackIntegrationMetadata) GetChannelsOk() (*[]SlackIntegrationMetadataC
 func (o *SlackIntegrationMetadata) SetChannels(v []SlackIntegrationMetadataChannelItem) {
 	o.Channels = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SlackIntegrationMetadata) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *SlackIntegrationMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"channels"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "channels",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineAmazonDataFirehoseSource The `amazon_data_firehose` source ingests logs from AWS Data Firehose.
 type ObservabilityPipelineAmazonDataFirehoseSource struct {
@@ -22,9 +26,10 @@ type ObservabilityPipelineAmazonDataFirehoseSource struct {
 	// The source type. The value should always be `amazon_data_firehose`.
 	Type ObservabilityPipelineAmazonDataFirehoseSourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineAmazonDataFirehoseSource instantiates a new ObservabilityPipelineAmazonDataFirehoseSource object.
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewObservabilityPipelineAmazonDataFirehoseSourceWithDefaults() *Observabili
 	this.Type = typeVar
 	return &this
 }
-
 // GetAuth returns the Auth field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonDataFirehoseSource) GetAuth() ObservabilityPipelineAwsAuth {
 	if o == nil || o.Auth == nil {
@@ -75,6 +79,7 @@ func (o *ObservabilityPipelineAmazonDataFirehoseSource) SetAuth(v ObservabilityP
 	o.Auth = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineAmazonDataFirehoseSource) GetId() string {
 	if o == nil {
@@ -97,6 +102,7 @@ func (o *ObservabilityPipelineAmazonDataFirehoseSource) GetIdOk() (*string, bool
 func (o *ObservabilityPipelineAmazonDataFirehoseSource) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetTls returns the Tls field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonDataFirehoseSource) GetTls() ObservabilityPipelineTls {
@@ -126,6 +132,7 @@ func (o *ObservabilityPipelineAmazonDataFirehoseSource) SetTls(v ObservabilityPi
 	o.Tls = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineAmazonDataFirehoseSource) GetType() ObservabilityPipelineAmazonDataFirehoseSourceType {
 	if o == nil {
@@ -148,6 +155,8 @@ func (o *ObservabilityPipelineAmazonDataFirehoseSource) GetTypeOk() (*Observabil
 func (o *ObservabilityPipelineAmazonDataFirehoseSource) SetType(v ObservabilityPipelineAmazonDataFirehoseSourceType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineAmazonDataFirehoseSource) MarshalJSON() ([]byte, error) {
@@ -173,9 +182,9 @@ func (o ObservabilityPipelineAmazonDataFirehoseSource) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineAmazonDataFirehoseSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Auth *ObservabilityPipelineAwsAuth                      `json:"auth,omitempty"`
-		Id   *string                                            `json:"id"`
-		Tls  *ObservabilityPipelineTls                          `json:"tls,omitempty"`
+		Auth *ObservabilityPipelineAwsAuth `json:"auth,omitempty"`
+		Id *string `json:"id"`
+		Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
 		Type *ObservabilityPipelineAmazonDataFirehoseSourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -189,18 +198,18 @@ func (o *ObservabilityPipelineAmazonDataFirehoseSource) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "id", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "auth", "id", "tls", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Auth != nil && all.Auth.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Auth != nil && all.Auth.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Auth = all.Auth
 	o.Id = *all.Id
-	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tls = all.Tls

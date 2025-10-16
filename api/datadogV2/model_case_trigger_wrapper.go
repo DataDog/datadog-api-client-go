@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // CaseTriggerWrapper Schema for a Case-based trigger.
 type CaseTriggerWrapper struct {
@@ -17,9 +21,10 @@ type CaseTriggerWrapper struct {
 	// A list of steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewCaseTriggerWrapper instantiates a new CaseTriggerWrapper object.
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewCaseTriggerWrapperWithDefaults() *CaseTriggerWrapper {
 	this := CaseTriggerWrapper{}
 	return &this
 }
-
 // GetCaseTrigger returns the CaseTrigger field value.
 func (o *CaseTriggerWrapper) GetCaseTrigger() CaseTrigger {
 	if o == nil {
@@ -61,6 +65,7 @@ func (o *CaseTriggerWrapper) GetCaseTriggerOk() (*CaseTrigger, bool) {
 func (o *CaseTriggerWrapper) SetCaseTrigger(v CaseTrigger) {
 	o.CaseTrigger = v
 }
+
 
 // GetStartStepNames returns the StartStepNames field value if set, zero value otherwise.
 func (o *CaseTriggerWrapper) GetStartStepNames() []string {
@@ -90,6 +95,8 @@ func (o *CaseTriggerWrapper) SetStartStepNames(v []string) {
 	o.StartStepNames = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CaseTriggerWrapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -110,8 +117,8 @@ func (o CaseTriggerWrapper) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CaseTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CaseTrigger    *CaseTrigger `json:"caseTrigger"`
-		StartStepNames []string     `json:"startStepNames,omitempty"`
+		CaseTrigger *CaseTrigger `json:"caseTrigger"`
+		StartStepNames []string `json:"startStepNames,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,7 +128,7 @@ func (o *CaseTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"caseTrigger", "startStepNames"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "caseTrigger", "startStepNames",  })
 	} else {
 		return err
 	}

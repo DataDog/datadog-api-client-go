@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AwsScanOptionsCreateAttributes Attributes for the AWS scan options to create.
 type AwsScanOptionsCreateAttributes struct {
@@ -21,9 +25,10 @@ type AwsScanOptionsCreateAttributes struct {
 	// Indicates if scanning for vulnerabilities in hosts is enabled.
 	VulnHostOs bool `json:"vuln_host_os"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAwsScanOptionsCreateAttributes instantiates a new AwsScanOptionsCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewAwsScanOptionsCreateAttributesWithDefaults() *AwsScanOptionsCreateAttrib
 	this := AwsScanOptionsCreateAttributes{}
 	return &this
 }
-
 // GetLambda returns the Lambda field value.
 func (o *AwsScanOptionsCreateAttributes) GetLambda() bool {
 	if o == nil {
@@ -68,6 +72,7 @@ func (o *AwsScanOptionsCreateAttributes) GetLambdaOk() (*bool, bool) {
 func (o *AwsScanOptionsCreateAttributes) SetLambda(v bool) {
 	o.Lambda = v
 }
+
 
 // GetSensitiveData returns the SensitiveData field value.
 func (o *AwsScanOptionsCreateAttributes) GetSensitiveData() bool {
@@ -92,6 +97,7 @@ func (o *AwsScanOptionsCreateAttributes) SetSensitiveData(v bool) {
 	o.SensitiveData = v
 }
 
+
 // GetVulnContainersOs returns the VulnContainersOs field value.
 func (o *AwsScanOptionsCreateAttributes) GetVulnContainersOs() bool {
 	if o == nil {
@@ -114,6 +120,7 @@ func (o *AwsScanOptionsCreateAttributes) GetVulnContainersOsOk() (*bool, bool) {
 func (o *AwsScanOptionsCreateAttributes) SetVulnContainersOs(v bool) {
 	o.VulnContainersOs = v
 }
+
 
 // GetVulnHostOs returns the VulnHostOs field value.
 func (o *AwsScanOptionsCreateAttributes) GetVulnHostOs() bool {
@@ -138,6 +145,8 @@ func (o *AwsScanOptionsCreateAttributes) SetVulnHostOs(v bool) {
 	o.VulnHostOs = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AwsScanOptionsCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -158,10 +167,10 @@ func (o AwsScanOptionsCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AwsScanOptionsCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Lambda           *bool `json:"lambda"`
-		SensitiveData    *bool `json:"sensitive_data"`
+		Lambda *bool `json:"lambda"`
+		SensitiveData *bool `json:"sensitive_data"`
 		VulnContainersOs *bool `json:"vuln_containers_os"`
-		VulnHostOs       *bool `json:"vuln_host_os"`
+		VulnHostOs *bool `json:"vuln_host_os"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -180,7 +189,7 @@ func (o *AwsScanOptionsCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"lambda", "sensitive_data", "vuln_containers_os", "vuln_host_os"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "lambda", "sensitive_data", "vuln_containers_os", "vuln_host_os",  })
 	} else {
 		return err
 	}

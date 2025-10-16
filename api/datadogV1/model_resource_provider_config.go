@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ResourceProviderConfig Configuration settings applied to resources from the specified Azure resource provider.
 type ResourceProviderConfig struct {
@@ -15,9 +21,10 @@ type ResourceProviderConfig struct {
 	// The provider namespace to apply this configuration to.
 	Namespace *string `json:"namespace,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewResourceProviderConfig instantiates a new ResourceProviderConfig object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewResourceProviderConfigWithDefaults() *ResourceProviderConfig {
 	this := ResourceProviderConfig{}
 	return &this
 }
-
 // GetMetricsEnabled returns the MetricsEnabled field value if set, zero value otherwise.
 func (o *ResourceProviderConfig) GetMetricsEnabled() bool {
 	if o == nil || o.MetricsEnabled == nil {
@@ -63,6 +69,7 @@ func (o *ResourceProviderConfig) HasMetricsEnabled() bool {
 func (o *ResourceProviderConfig) SetMetricsEnabled(v bool) {
 	o.MetricsEnabled = &v
 }
+
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *ResourceProviderConfig) GetNamespace() string {
@@ -92,6 +99,8 @@ func (o *ResourceProviderConfig) SetNamespace(v string) {
 	o.Namespace = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ResourceProviderConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,15 +123,15 @@ func (o ResourceProviderConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ResourceProviderConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		MetricsEnabled *bool   `json:"metrics_enabled,omitempty"`
-		Namespace      *string `json:"namespace,omitempty"`
+		MetricsEnabled *bool `json:"metrics_enabled,omitempty"`
+		Namespace *string `json:"namespace,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"metrics_enabled", "namespace"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "metrics_enabled", "namespace",  })
 	} else {
 		return err
 	}

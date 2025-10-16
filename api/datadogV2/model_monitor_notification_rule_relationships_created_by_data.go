@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorNotificationRuleRelationshipsCreatedByData Data for the user who created the monitor notification rule.
 type MonitorNotificationRuleRelationshipsCreatedByData struct {
@@ -15,9 +21,10 @@ type MonitorNotificationRuleRelationshipsCreatedByData struct {
 	// Users resource type.
 	Type *UsersType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorNotificationRuleRelationshipsCreatedByData instantiates a new MonitorNotificationRuleRelationshipsCreatedByData object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,6 @@ func NewMonitorNotificationRuleRelationshipsCreatedByDataWithDefaults() *Monitor
 	this.Type = &typeVar
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *MonitorNotificationRuleRelationshipsCreatedByData) GetId() string {
 	if o == nil || o.Id == nil {
@@ -67,6 +73,7 @@ func (o *MonitorNotificationRuleRelationshipsCreatedByData) HasId() bool {
 func (o *MonitorNotificationRuleRelationshipsCreatedByData) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MonitorNotificationRuleRelationshipsCreatedByData) GetType() UsersType {
@@ -96,6 +103,8 @@ func (o *MonitorNotificationRuleRelationshipsCreatedByData) SetType(v UsersType)
 	o.Type = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorNotificationRuleRelationshipsCreatedByData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -118,7 +127,7 @@ func (o MonitorNotificationRuleRelationshipsCreatedByData) MarshalJSON() ([]byte
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorNotificationRuleRelationshipsCreatedByData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string    `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Type *UsersType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -126,14 +135,14 @@ func (o *MonitorNotificationRuleRelationshipsCreatedByData) UnmarshalJSON(bytes 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Id = all.Id
-	if all.Type != nil && !all.Type.IsValid() {
+	if all.Type != nil &&!all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type
@@ -149,7 +158,6 @@ func (o *MonitorNotificationRuleRelationshipsCreatedByData) UnmarshalJSON(bytes 
 
 	return nil
 }
-
 // NullableMonitorNotificationRuleRelationshipsCreatedByData handles when a null is used for MonitorNotificationRuleRelationshipsCreatedByData.
 type NullableMonitorNotificationRuleRelationshipsCreatedByData struct {
 	value *MonitorNotificationRuleRelationshipsCreatedByData

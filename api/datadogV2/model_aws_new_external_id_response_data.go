@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // AWSNewExternalIDResponseData AWS External ID response body.
 type AWSNewExternalIDResponseData struct {
@@ -19,9 +23,10 @@ type AWSNewExternalIDResponseData struct {
 	// The `AWSNewExternalIDResponseData` `type`.
 	Type AWSNewExternalIDResponseDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewAWSNewExternalIDResponseData instantiates a new AWSNewExternalIDResponseData object.
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewAWSNewExternalIDResponseDataWithDefaults() *AWSNewExternalIDResponseData
 	this.Type = typeVar
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *AWSNewExternalIDResponseData) GetAttributes() AWSNewExternalIDResponseAttributes {
 	if o == nil || o.Attributes == nil {
@@ -74,6 +78,7 @@ func (o *AWSNewExternalIDResponseData) SetAttributes(v AWSNewExternalIDResponseA
 	o.Attributes = &v
 }
 
+
 // GetId returns the Id field value.
 func (o *AWSNewExternalIDResponseData) GetId() string {
 	if o == nil {
@@ -96,6 +101,7 @@ func (o *AWSNewExternalIDResponseData) GetIdOk() (*string, bool) {
 func (o *AWSNewExternalIDResponseData) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value.
 func (o *AWSNewExternalIDResponseData) GetType() AWSNewExternalIDResponseDataType {
@@ -120,6 +126,8 @@ func (o *AWSNewExternalIDResponseData) SetType(v AWSNewExternalIDResponseDataTyp
 	o.Type = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AWSNewExternalIDResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -142,8 +150,8 @@ func (o AWSNewExternalIDResponseData) MarshalJSON() ([]byte, error) {
 func (o *AWSNewExternalIDResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *AWSNewExternalIDResponseAttributes `json:"attributes,omitempty"`
-		Id         *string                             `json:"id"`
-		Type       *AWSNewExternalIDResponseDataType   `json:"type"`
+		Id *string `json:"id"`
+		Type *AWSNewExternalIDResponseDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -156,13 +164,13 @@ func (o *AWSNewExternalIDResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "attributes", "id", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes

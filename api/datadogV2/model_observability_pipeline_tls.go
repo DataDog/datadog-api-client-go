@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineTls Configuration for enabling TLS encryption between the pipeline component and external services.
 type ObservabilityPipelineTls struct {
@@ -19,9 +23,10 @@ type ObservabilityPipelineTls struct {
 	// Path to the private key file associated with the TLS client certificate. Used for mutual TLS authentication.
 	KeyFile *string `json:"key_file,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineTls instantiates a new ObservabilityPipelineTls object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewObservabilityPipelineTlsWithDefaults() *ObservabilityPipelineTls {
 	this := ObservabilityPipelineTls{}
 	return &this
 }
-
 // GetCaFile returns the CaFile field value if set, zero value otherwise.
 func (o *ObservabilityPipelineTls) GetCaFile() string {
 	if o == nil || o.CaFile == nil {
@@ -69,6 +73,7 @@ func (o *ObservabilityPipelineTls) SetCaFile(v string) {
 	o.CaFile = &v
 }
 
+
 // GetCrtFile returns the CrtFile field value.
 func (o *ObservabilityPipelineTls) GetCrtFile() string {
 	if o == nil {
@@ -91,6 +96,7 @@ func (o *ObservabilityPipelineTls) GetCrtFileOk() (*string, bool) {
 func (o *ObservabilityPipelineTls) SetCrtFile(v string) {
 	o.CrtFile = v
 }
+
 
 // GetKeyFile returns the KeyFile field value if set, zero value otherwise.
 func (o *ObservabilityPipelineTls) GetKeyFile() string {
@@ -120,6 +126,8 @@ func (o *ObservabilityPipelineTls) SetKeyFile(v string) {
 	o.KeyFile = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineTls) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -143,7 +151,7 @@ func (o ObservabilityPipelineTls) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineTls) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CaFile  *string `json:"ca_file,omitempty"`
+		CaFile *string `json:"ca_file,omitempty"`
 		CrtFile *string `json:"crt_file"`
 		KeyFile *string `json:"key_file,omitempty"`
 	}{}
@@ -155,7 +163,7 @@ func (o *ObservabilityPipelineTls) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"ca_file", "crt_file", "key_file"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "ca_file", "crt_file", "key_file",  })
 	} else {
 		return err
 	}

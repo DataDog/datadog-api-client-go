@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineRenameFieldsProcessorField Defines how to rename a field in log events.
 type ObservabilityPipelineRenameFieldsProcessorField struct {
@@ -19,9 +23,10 @@ type ObservabilityPipelineRenameFieldsProcessorField struct {
 	// The original field name in the log event that should be renamed.
 	Source string `json:"source"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineRenameFieldsProcessorField instantiates a new ObservabilityPipelineRenameFieldsProcessorField object.
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewObservabilityPipelineRenameFieldsProcessorFieldWithDefaults() *Observabi
 	this := ObservabilityPipelineRenameFieldsProcessorField{}
 	return &this
 }
-
 // GetDestination returns the Destination field value.
 func (o *ObservabilityPipelineRenameFieldsProcessorField) GetDestination() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *ObservabilityPipelineRenameFieldsProcessorField) GetDestinationOk() (*s
 func (o *ObservabilityPipelineRenameFieldsProcessorField) SetDestination(v string) {
 	o.Destination = v
 }
+
 
 // GetPreserveSource returns the PreserveSource field value.
 func (o *ObservabilityPipelineRenameFieldsProcessorField) GetPreserveSource() bool {
@@ -89,6 +94,7 @@ func (o *ObservabilityPipelineRenameFieldsProcessorField) SetPreserveSource(v bo
 	o.PreserveSource = v
 }
 
+
 // GetSource returns the Source field value.
 func (o *ObservabilityPipelineRenameFieldsProcessorField) GetSource() string {
 	if o == nil {
@@ -112,6 +118,8 @@ func (o *ObservabilityPipelineRenameFieldsProcessorField) SetSource(v string) {
 	o.Source = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineRenameFieldsProcessorField) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -131,9 +139,9 @@ func (o ObservabilityPipelineRenameFieldsProcessorField) MarshalJSON() ([]byte, 
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineRenameFieldsProcessorField) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Destination    *string `json:"destination"`
-		PreserveSource *bool   `json:"preserve_source"`
-		Source         *string `json:"source"`
+		Destination *string `json:"destination"`
+		PreserveSource *bool `json:"preserve_source"`
+		Source *string `json:"source"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,7 +157,7 @@ func (o *ObservabilityPipelineRenameFieldsProcessorField) UnmarshalJSON(bytes []
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"destination", "preserve_source", "source"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "destination", "preserve_source", "source",  })
 	} else {
 		return err
 	}

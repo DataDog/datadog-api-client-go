@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RelationshipToOrganizations Relationship to organizations.
 type RelationshipToOrganizations struct {
 	// Relationships to organization objects.
 	Data []RelationshipToOrganizationData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRelationshipToOrganizations instantiates a new RelationshipToOrganizations object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewRelationshipToOrganizationsWithDefaults() *RelationshipToOrganizations {
 	this := RelationshipToOrganizations{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *RelationshipToOrganizations) GetData() []RelationshipToOrganizationData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *RelationshipToOrganizations) GetDataOk() (*[]RelationshipToOrganization
 func (o *RelationshipToOrganizations) SetData(v []RelationshipToOrganizationData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o RelationshipToOrganizations) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *RelationshipToOrganizations) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

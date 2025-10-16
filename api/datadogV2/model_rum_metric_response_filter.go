@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // RumMetricResponseFilter The rum-based metric filter. RUM events matching this filter will be aggregated in this metric.
 type RumMetricResponseFilter struct {
 	// The search query - following the RUM search syntax.
 	Query *string `json:"query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRumMetricResponseFilter instantiates a new RumMetricResponseFilter object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewRumMetricResponseFilterWithDefaults() *RumMetricResponseFilter {
 	this := RumMetricResponseFilter{}
 	return &this
 }
-
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *RumMetricResponseFilter) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -62,6 +68,8 @@ func (o *RumMetricResponseFilter) SetQuery(v string) {
 	o.Query = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o RumMetricResponseFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,7 +96,7 @@ func (o *RumMetricResponseFilter) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "query",  })
 	} else {
 		return err
 	}

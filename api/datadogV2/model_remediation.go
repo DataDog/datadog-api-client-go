@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // Remediation Vulnerability remediation.
 type Remediation struct {
@@ -29,9 +33,10 @@ type Remediation struct {
 	// Remediation type.
 	Type string `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewRemediation instantiates a new Remediation object.
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +62,6 @@ func NewRemediationWithDefaults() *Remediation {
 	this := Remediation{}
 	return &this
 }
-
 // GetAutoSolvable returns the AutoSolvable field value.
 func (o *Remediation) GetAutoSolvable() bool {
 	if o == nil {
@@ -80,6 +84,7 @@ func (o *Remediation) GetAutoSolvableOk() (*bool, bool) {
 func (o *Remediation) SetAutoSolvable(v bool) {
 	o.AutoSolvable = v
 }
+
 
 // GetAvoidedAdvisories returns the AvoidedAdvisories field value.
 func (o *Remediation) GetAvoidedAdvisories() []Advisory {
@@ -104,6 +109,7 @@ func (o *Remediation) SetAvoidedAdvisories(v []Advisory) {
 	o.AvoidedAdvisories = v
 }
 
+
 // GetFixedAdvisories returns the FixedAdvisories field value.
 func (o *Remediation) GetFixedAdvisories() []Advisory {
 	if o == nil {
@@ -126,6 +132,7 @@ func (o *Remediation) GetFixedAdvisoriesOk() (*[]Advisory, bool) {
 func (o *Remediation) SetFixedAdvisories(v []Advisory) {
 	o.FixedAdvisories = v
 }
+
 
 // GetLibraryName returns the LibraryName field value.
 func (o *Remediation) GetLibraryName() string {
@@ -150,6 +157,7 @@ func (o *Remediation) SetLibraryName(v string) {
 	o.LibraryName = v
 }
 
+
 // GetLibraryVersion returns the LibraryVersion field value.
 func (o *Remediation) GetLibraryVersion() string {
 	if o == nil {
@@ -172,6 +180,7 @@ func (o *Remediation) GetLibraryVersionOk() (*string, bool) {
 func (o *Remediation) SetLibraryVersion(v string) {
 	o.LibraryVersion = v
 }
+
 
 // GetNewAdvisories returns the NewAdvisories field value.
 func (o *Remediation) GetNewAdvisories() []Advisory {
@@ -196,6 +205,7 @@ func (o *Remediation) SetNewAdvisories(v []Advisory) {
 	o.NewAdvisories = v
 }
 
+
 // GetRemainingAdvisories returns the RemainingAdvisories field value.
 func (o *Remediation) GetRemainingAdvisories() []Advisory {
 	if o == nil {
@@ -219,6 +229,7 @@ func (o *Remediation) SetRemainingAdvisories(v []Advisory) {
 	o.RemainingAdvisories = v
 }
 
+
 // GetType returns the Type field value.
 func (o *Remediation) GetType() string {
 	if o == nil {
@@ -241,6 +252,8 @@ func (o *Remediation) GetTypeOk() (*string, bool) {
 func (o *Remediation) SetType(v string) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o Remediation) MarshalJSON() ([]byte, error) {
@@ -266,14 +279,14 @@ func (o Remediation) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Remediation) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AutoSolvable        *bool       `json:"auto_solvable"`
-		AvoidedAdvisories   *[]Advisory `json:"avoided_advisories"`
-		FixedAdvisories     *[]Advisory `json:"fixed_advisories"`
-		LibraryName         *string     `json:"library_name"`
-		LibraryVersion      *string     `json:"library_version"`
-		NewAdvisories       *[]Advisory `json:"new_advisories"`
+		AutoSolvable *bool `json:"auto_solvable"`
+		AvoidedAdvisories *[]Advisory `json:"avoided_advisories"`
+		FixedAdvisories *[]Advisory `json:"fixed_advisories"`
+		LibraryName *string `json:"library_name"`
+		LibraryVersion *string `json:"library_version"`
+		NewAdvisories *[]Advisory `json:"new_advisories"`
 		RemainingAdvisories *[]Advisory `json:"remaining_advisories"`
-		Type                *string     `json:"type"`
+		Type *string `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -304,7 +317,7 @@ func (o *Remediation) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auto_solvable", "avoided_advisories", "fixed_advisories", "library_name", "library_version", "new_advisories", "remaining_advisories", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "auto_solvable", "avoided_advisories", "fixed_advisories", "library_name", "library_version", "new_advisories", "remaining_advisories", "type",  })
 	} else {
 		return err
 	}

@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude Includes only specific fields for sensitive data scanning.
 type ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude struct {
@@ -17,9 +21,10 @@ type ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude struct {
 	// Applies the rule only to included fields.
 	Target ObservabilityPipelineSensitiveDataScannerProcessorScopeIncludeTarget `json:"target"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineSensitiveDataScannerProcessorScopeInclude instantiates a new ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewObservabilityPipelineSensitiveDataScannerProcessorScopeIncludeWithDefaul
 	this := ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude{}
 	return &this
 }
-
 // GetOptions returns the Options field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude) GetOptions() ObservabilityPipelineSensitiveDataScannerProcessorScopeOptions {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude) GetOpti
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude) SetOptions(v ObservabilityPipelineSensitiveDataScannerProcessorScopeOptions) {
 	o.Options = v
 }
+
 
 // GetTarget returns the Target field value.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude) GetTarget() ObservabilityPipelineSensitiveDataScannerProcessorScopeIncludeTarget {
@@ -86,6 +91,8 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude) SetTarg
 	o.Target = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,8 +111,8 @@ func (o ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude) MarshalJ
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Options *ObservabilityPipelineSensitiveDataScannerProcessorScopeOptions       `json:"options"`
-		Target  *ObservabilityPipelineSensitiveDataScannerProcessorScopeIncludeTarget `json:"target"`
+		Options *ObservabilityPipelineSensitiveDataScannerProcessorScopeOptions `json:"options"`
+		Target *ObservabilityPipelineSensitiveDataScannerProcessorScopeIncludeTarget `json:"target"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +125,7 @@ func (o *ObservabilityPipelineSensitiveDataScannerProcessorScopeInclude) Unmarsh
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"options", "target"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "options", "target",  })
 	} else {
 		return err
 	}

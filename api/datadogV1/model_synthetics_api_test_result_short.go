@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SyntheticsAPITestResultShort Object with the results of a single Synthetic API test.
 type SyntheticsAPITestResultShort struct {
@@ -24,9 +30,10 @@ type SyntheticsAPITestResultShort struct {
 	// * `2` for no data
 	Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSyntheticsAPITestResultShort instantiates a new SyntheticsAPITestResultShort object.
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +51,6 @@ func NewSyntheticsAPITestResultShortWithDefaults() *SyntheticsAPITestResultShort
 	this := SyntheticsAPITestResultShort{}
 	return &this
 }
-
 // GetCheckTime returns the CheckTime field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultShort) GetCheckTime() float64 {
 	if o == nil || o.CheckTime == nil {
@@ -72,6 +78,7 @@ func (o *SyntheticsAPITestResultShort) HasCheckTime() bool {
 func (o *SyntheticsAPITestResultShort) SetCheckTime(v float64) {
 	o.CheckTime = &v
 }
+
 
 // GetProbeDc returns the ProbeDc field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultShort) GetProbeDc() string {
@@ -101,6 +108,7 @@ func (o *SyntheticsAPITestResultShort) SetProbeDc(v string) {
 	o.ProbeDc = &v
 }
 
+
 // GetResult returns the Result field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultShort) GetResult() SyntheticsAPITestResultShortResult {
 	if o == nil || o.Result == nil {
@@ -128,6 +136,7 @@ func (o *SyntheticsAPITestResultShort) HasResult() bool {
 func (o *SyntheticsAPITestResultShort) SetResult(v SyntheticsAPITestResultShortResult) {
 	o.Result = &v
 }
+
 
 // GetResultId returns the ResultId field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultShort) GetResultId() string {
@@ -157,6 +166,7 @@ func (o *SyntheticsAPITestResultShort) SetResultId(v string) {
 	o.ResultId = &v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultShort) GetStatus() SyntheticsTestMonitorStatus {
 	if o == nil || o.Status == nil {
@@ -184,6 +194,8 @@ func (o *SyntheticsAPITestResultShort) HasStatus() bool {
 func (o *SyntheticsAPITestResultShort) SetStatus(v SyntheticsTestMonitorStatus) {
 	o.Status = &v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAPITestResultShort) MarshalJSON() ([]byte, error) {
@@ -216,18 +228,18 @@ func (o SyntheticsAPITestResultShort) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAPITestResultShort) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CheckTime *float64                            `json:"check_time,omitempty"`
-		ProbeDc   *string                             `json:"probe_dc,omitempty"`
-		Result    *SyntheticsAPITestResultShortResult `json:"result,omitempty"`
-		ResultId  *string                             `json:"result_id,omitempty"`
-		Status    *SyntheticsTestMonitorStatus        `json:"status,omitempty"`
+		CheckTime *float64 `json:"check_time,omitempty"`
+		ProbeDc *string `json:"probe_dc,omitempty"`
+		Result *SyntheticsAPITestResultShortResult `json:"result,omitempty"`
+		ResultId *string `json:"result_id,omitempty"`
+		Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"check_time", "probe_dc", "result", "result_id", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "check_time", "probe_dc", "result", "result_id", "status",  })
 	} else {
 		return err
 	}
@@ -235,12 +247,12 @@ func (o *SyntheticsAPITestResultShort) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.CheckTime = all.CheckTime
 	o.ProbeDc = all.ProbeDc
-	if all.Result != nil && all.Result.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Result != nil && all.Result.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Result = all.Result
 	o.ResultId = all.ResultId
-	if all.Status != nil && !all.Status.IsValid() {
+	if all.Status != nil &&!all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Status = all.Status

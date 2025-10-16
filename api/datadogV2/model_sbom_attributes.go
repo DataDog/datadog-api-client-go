@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SBOMAttributes The JSON:API attributes of the SBOM.
 type SBOMAttributes struct {
@@ -27,9 +31,10 @@ type SBOMAttributes struct {
 	// It increments when a BOM is modified. The default value is 1.
 	Version int64 `json:"version"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSBOMAttributes instantiates a new SBOMAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewSBOMAttributesWithDefaults() *SBOMAttributes {
 	this := SBOMAttributes{}
 	return &this
 }
-
 // GetBomFormat returns the BomFormat field value.
 func (o *SBOMAttributes) GetBomFormat() string {
 	if o == nil {
@@ -77,6 +81,7 @@ func (o *SBOMAttributes) GetBomFormatOk() (*string, bool) {
 func (o *SBOMAttributes) SetBomFormat(v string) {
 	o.BomFormat = v
 }
+
 
 // GetComponents returns the Components field value.
 func (o *SBOMAttributes) GetComponents() []SBOMComponent {
@@ -101,6 +106,7 @@ func (o *SBOMAttributes) SetComponents(v []SBOMComponent) {
 	o.Components = v
 }
 
+
 // GetDependencies returns the Dependencies field value.
 func (o *SBOMAttributes) GetDependencies() []SBOMComponentDependency {
 	if o == nil {
@@ -123,6 +129,7 @@ func (o *SBOMAttributes) GetDependenciesOk() (*[]SBOMComponentDependency, bool) 
 func (o *SBOMAttributes) SetDependencies(v []SBOMComponentDependency) {
 	o.Dependencies = v
 }
+
 
 // GetMetadata returns the Metadata field value.
 func (o *SBOMAttributes) GetMetadata() SBOMMetadata {
@@ -147,6 +154,7 @@ func (o *SBOMAttributes) SetMetadata(v SBOMMetadata) {
 	o.Metadata = v
 }
 
+
 // GetSerialNumber returns the SerialNumber field value.
 func (o *SBOMAttributes) GetSerialNumber() string {
 	if o == nil {
@@ -169,6 +177,7 @@ func (o *SBOMAttributes) GetSerialNumberOk() (*string, bool) {
 func (o *SBOMAttributes) SetSerialNumber(v string) {
 	o.SerialNumber = v
 }
+
 
 // GetSpecVersion returns the SpecVersion field value.
 func (o *SBOMAttributes) GetSpecVersion() SpecVersion {
@@ -193,6 +202,7 @@ func (o *SBOMAttributes) SetSpecVersion(v SpecVersion) {
 	o.SpecVersion = v
 }
 
+
 // GetVersion returns the Version field value.
 func (o *SBOMAttributes) GetVersion() int64 {
 	if o == nil {
@@ -215,6 +225,8 @@ func (o *SBOMAttributes) GetVersionOk() (*int64, bool) {
 func (o *SBOMAttributes) SetVersion(v int64) {
 	o.Version = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o SBOMAttributes) MarshalJSON() ([]byte, error) {
@@ -239,13 +251,13 @@ func (o SBOMAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SBOMAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BomFormat    *string                    `json:"bomFormat"`
-		Components   *[]SBOMComponent           `json:"components"`
+		BomFormat *string `json:"bomFormat"`
+		Components *[]SBOMComponent `json:"components"`
 		Dependencies *[]SBOMComponentDependency `json:"dependencies"`
-		Metadata     *SBOMMetadata              `json:"metadata"`
-		SerialNumber *string                    `json:"serialNumber"`
-		SpecVersion  *SpecVersion               `json:"specVersion"`
-		Version      *int64                     `json:"version"`
+		Metadata *SBOMMetadata `json:"metadata"`
+		SerialNumber *string `json:"serialNumber"`
+		SpecVersion *SpecVersion `json:"specVersion"`
+		Version *int64 `json:"version"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -273,7 +285,7 @@ func (o *SBOMAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"bomFormat", "components", "dependencies", "metadata", "serialNumber", "specVersion", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "bomFormat", "components", "dependencies", "metadata", "serialNumber", "specVersion", "version",  })
 	} else {
 		return err
 	}

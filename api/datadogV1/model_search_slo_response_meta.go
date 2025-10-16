@@ -2,20 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // SearchSLOResponseMeta Searches metadata returned by the API.
 type SearchSLOResponseMeta struct {
 	// Pagination metadata returned by the API.
 	Pagination *SearchSLOResponseMetaPage `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewSearchSLOResponseMeta instantiates a new SearchSLOResponseMeta object.
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,6 @@ func NewSearchSLOResponseMetaWithDefaults() *SearchSLOResponseMeta {
 	this := SearchSLOResponseMeta{}
 	return &this
 }
-
 // GetPagination returns the Pagination field value if set, zero value otherwise.
 func (o *SearchSLOResponseMeta) GetPagination() SearchSLOResponseMetaPage {
 	if o == nil || o.Pagination == nil {
@@ -62,6 +68,8 @@ func (o *SearchSLOResponseMeta) SetPagination(v SearchSLOResponseMetaPage) {
 	o.Pagination = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SearchSLOResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -88,13 +96,13 @@ func (o *SearchSLOResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"pagination"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "pagination",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Pagination != nil && all.Pagination.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Pagination != nil && all.Pagination.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Pagination = all.Pagination

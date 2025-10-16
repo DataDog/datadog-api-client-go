@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ObservabilityPipelineAmazonSecurityLakeDestination The `amazon_security_lake` destination sends your logs to Amazon Security Lake.
 type ObservabilityPipelineAmazonSecurityLakeDestination struct {
@@ -30,9 +34,10 @@ type ObservabilityPipelineAmazonSecurityLakeDestination struct {
 	// The destination type. Always `amazon_security_lake`.
 	Type ObservabilityPipelineAmazonSecurityLakeDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewObservabilityPipelineAmazonSecurityLakeDestination instantiates a new ObservabilityPipelineAmazonSecurityLakeDestination object.
 // This constructor will assign default values to properties that have it defined,
@@ -58,7 +63,6 @@ func NewObservabilityPipelineAmazonSecurityLakeDestinationWithDefaults() *Observ
 	this.Type = typeVar
 	return &this
 }
-
 // GetAuth returns the Auth field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonSecurityLakeDestination) GetAuth() ObservabilityPipelineAwsAuth {
 	if o == nil || o.Auth == nil {
@@ -87,6 +91,7 @@ func (o *ObservabilityPipelineAmazonSecurityLakeDestination) SetAuth(v Observabi
 	o.Auth = &v
 }
 
+
 // GetBucket returns the Bucket field value.
 func (o *ObservabilityPipelineAmazonSecurityLakeDestination) GetBucket() string {
 	if o == nil {
@@ -109,6 +114,7 @@ func (o *ObservabilityPipelineAmazonSecurityLakeDestination) GetBucketOk() (*str
 func (o *ObservabilityPipelineAmazonSecurityLakeDestination) SetBucket(v string) {
 	o.Bucket = v
 }
+
 
 // GetCustomSourceName returns the CustomSourceName field value.
 func (o *ObservabilityPipelineAmazonSecurityLakeDestination) GetCustomSourceName() string {
@@ -133,6 +139,7 @@ func (o *ObservabilityPipelineAmazonSecurityLakeDestination) SetCustomSourceName
 	o.CustomSourceName = v
 }
 
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineAmazonSecurityLakeDestination) GetId() string {
 	if o == nil {
@@ -155,6 +162,7 @@ func (o *ObservabilityPipelineAmazonSecurityLakeDestination) GetIdOk() (*string,
 func (o *ObservabilityPipelineAmazonSecurityLakeDestination) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineAmazonSecurityLakeDestination) GetInputs() []string {
@@ -179,6 +187,7 @@ func (o *ObservabilityPipelineAmazonSecurityLakeDestination) SetInputs(v []strin
 	o.Inputs = v
 }
 
+
 // GetRegion returns the Region field value.
 func (o *ObservabilityPipelineAmazonSecurityLakeDestination) GetRegion() string {
 	if o == nil {
@@ -201,6 +210,7 @@ func (o *ObservabilityPipelineAmazonSecurityLakeDestination) GetRegionOk() (*str
 func (o *ObservabilityPipelineAmazonSecurityLakeDestination) SetRegion(v string) {
 	o.Region = v
 }
+
 
 // GetTls returns the Tls field value if set, zero value otherwise.
 func (o *ObservabilityPipelineAmazonSecurityLakeDestination) GetTls() ObservabilityPipelineTls {
@@ -230,6 +240,7 @@ func (o *ObservabilityPipelineAmazonSecurityLakeDestination) SetTls(v Observabil
 	o.Tls = &v
 }
 
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineAmazonSecurityLakeDestination) GetType() ObservabilityPipelineAmazonSecurityLakeDestinationType {
 	if o == nil {
@@ -252,6 +263,8 @@ func (o *ObservabilityPipelineAmazonSecurityLakeDestination) GetTypeOk() (*Obser
 func (o *ObservabilityPipelineAmazonSecurityLakeDestination) SetType(v ObservabilityPipelineAmazonSecurityLakeDestinationType) {
 	o.Type = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineAmazonSecurityLakeDestination) MarshalJSON() ([]byte, error) {
@@ -281,14 +294,14 @@ func (o ObservabilityPipelineAmazonSecurityLakeDestination) MarshalJSON() ([]byt
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineAmazonSecurityLakeDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Auth             *ObservabilityPipelineAwsAuth                           `json:"auth,omitempty"`
-		Bucket           *string                                                 `json:"bucket"`
-		CustomSourceName *string                                                 `json:"custom_source_name"`
-		Id               *string                                                 `json:"id"`
-		Inputs           *[]string                                               `json:"inputs"`
-		Region           *string                                                 `json:"region"`
-		Tls              *ObservabilityPipelineTls                               `json:"tls,omitempty"`
-		Type             *ObservabilityPipelineAmazonSecurityLakeDestinationType `json:"type"`
+		Auth *ObservabilityPipelineAwsAuth `json:"auth,omitempty"`
+		Bucket *string `json:"bucket"`
+		CustomSourceName *string `json:"custom_source_name"`
+		Id *string `json:"id"`
+		Inputs *[]string `json:"inputs"`
+		Region *string `json:"region"`
+		Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
+		Type *ObservabilityPipelineAmazonSecurityLakeDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -313,13 +326,13 @@ func (o *ObservabilityPipelineAmazonSecurityLakeDestination) UnmarshalJSON(bytes
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "bucket", "custom_source_name", "id", "inputs", "region", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "auth", "bucket", "custom_source_name", "id", "inputs", "region", "tls", "type",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Auth != nil && all.Auth.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Auth != nil && all.Auth.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Auth = all.Auth
@@ -328,7 +341,7 @@ func (o *ObservabilityPipelineAmazonSecurityLakeDestination) UnmarshalJSON(bytes
 	o.Id = *all.Id
 	o.Inputs = *all.Inputs
 	o.Region = *all.Region
-	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Tls = all.Tls

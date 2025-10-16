@@ -2,22 +2,27 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MonitorNotificationRuleUpdateRequest Request for updating a monitor notification rule.
 type MonitorNotificationRuleUpdateRequest struct {
 	// Object to update a monitor notification rule.
 	Data MonitorNotificationRuleUpdateRequestData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMonitorNotificationRuleUpdateRequest instantiates a new MonitorNotificationRuleUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,6 @@ func NewMonitorNotificationRuleUpdateRequestWithDefaults() *MonitorNotificationR
 	this := MonitorNotificationRuleUpdateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value.
 func (o *MonitorNotificationRuleUpdateRequest) GetData() MonitorNotificationRuleUpdateRequestData {
 	if o == nil {
@@ -59,6 +63,8 @@ func (o *MonitorNotificationRuleUpdateRequest) GetDataOk() (*MonitorNotification
 func (o *MonitorNotificationRuleUpdateRequest) SetData(v MonitorNotificationRuleUpdateRequestData) {
 	o.Data = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorNotificationRuleUpdateRequest) MarshalJSON() ([]byte, error) {
@@ -87,7 +93,7 @@ func (o *MonitorNotificationRuleUpdateRequest) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data",  })
 	} else {
 		return err
 	}

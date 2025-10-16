@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // MetricTagCardinalitiesResponse Response object that includes an array of objects representing the cardinality details of a metric's tags.
 type MetricTagCardinalitiesResponse struct {
@@ -15,9 +21,10 @@ type MetricTagCardinalitiesResponse struct {
 	// Response metadata object.
 	Meta *MetricTagCardinalitiesMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewMetricTagCardinalitiesResponse instantiates a new MetricTagCardinalitiesResponse object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewMetricTagCardinalitiesResponseWithDefaults() *MetricTagCardinalitiesResp
 	this := MetricTagCardinalitiesResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *MetricTagCardinalitiesResponse) GetData() []MetricTagCardinality {
 	if o == nil || o.Data == nil {
@@ -63,6 +69,7 @@ func (o *MetricTagCardinalitiesResponse) HasData() bool {
 func (o *MetricTagCardinalitiesResponse) SetData(v []MetricTagCardinality) {
 	o.Data = v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *MetricTagCardinalitiesResponse) GetMeta() MetricTagCardinalitiesMeta {
@@ -92,6 +99,8 @@ func (o *MetricTagCardinalitiesResponse) SetMeta(v MetricTagCardinalitiesMeta) {
 	o.Meta = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MetricTagCardinalitiesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o MetricTagCardinalitiesResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MetricTagCardinalitiesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data []MetricTagCardinality      `json:"data,omitempty"`
+		Data []MetricTagCardinality `json:"data,omitempty"`
 		Meta *MetricTagCardinalitiesMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,14 +131,14 @@ func (o *MetricTagCardinalitiesResponse) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "data", "meta",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta

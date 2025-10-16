@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // KindObj Schema for kind.
 type KindObj struct {
@@ -19,9 +23,10 @@ type KindObj struct {
 	// The name of the kind to create or update. This must be in kebab-case format.
 	Kind string `json:"kind"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewKindObj instantiates a new KindObj object.
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewKindObjWithDefaults() *KindObj {
 	this := KindObj{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *KindObj) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -68,6 +72,7 @@ func (o *KindObj) HasDescription() bool {
 func (o *KindObj) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *KindObj) GetDisplayName() string {
@@ -97,6 +102,7 @@ func (o *KindObj) SetDisplayName(v string) {
 	o.DisplayName = &v
 }
 
+
 // GetKind returns the Kind field value.
 func (o *KindObj) GetKind() string {
 	if o == nil {
@@ -119,6 +125,8 @@ func (o *KindObj) GetKindOk() (*string, bool) {
 func (o *KindObj) SetKind(v string) {
 	o.Kind = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o KindObj) MarshalJSON() ([]byte, error) {
@@ -145,7 +153,7 @@ func (o *KindObj) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Description *string `json:"description,omitempty"`
 		DisplayName *string `json:"displayName,omitempty"`
-		Kind        *string `json:"kind"`
+		Kind *string `json:"kind"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -155,7 +163,7 @@ func (o *KindObj) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "displayName", "kind"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "description", "displayName", "kind",  })
 	} else {
 		return err
 	}

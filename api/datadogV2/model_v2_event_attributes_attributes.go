@@ -2,16 +2,22 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // V2EventAttributesAttributes - JSON object for category-specific attributes.
 type V2EventAttributesAttributes struct {
 	ChangeEventAttributes *ChangeEventAttributes
-	AlertEventAttributes  *AlertEventAttributes
+	AlertEventAttributes *AlertEventAttributes
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -36,7 +42,7 @@ func (obj *V2EventAttributesAttributes) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.ChangeEventAttributes != nil && obj.ChangeEventAttributes.UnparsedObject == nil {
 			jsonChangeEventAttributes, _ := datadog.Marshal(obj.ChangeEventAttributes)
-			if string(jsonChangeEventAttributes) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonChangeEventAttributes) == "{}" && string(data) != "{}"  { // empty struct
 				obj.ChangeEventAttributes = nil
 			} else {
 				match++
@@ -53,7 +59,7 @@ func (obj *V2EventAttributesAttributes) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.AlertEventAttributes != nil && obj.AlertEventAttributes.UnparsedObject == nil {
 			jsonAlertEventAttributes, _ := datadog.Marshal(obj.AlertEventAttributes)
-			if string(jsonAlertEventAttributes) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonAlertEventAttributes) == "{}" && string(data) != "{}"  { // empty struct
 				obj.AlertEventAttributes = nil
 			} else {
 				match++
@@ -80,9 +86,11 @@ func (obj V2EventAttributesAttributes) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.ChangeEventAttributes)
 	}
 
+
 	if obj.AlertEventAttributes != nil {
 		return datadog.Marshal(&obj.AlertEventAttributes)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -91,14 +99,16 @@ func (obj V2EventAttributesAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *V2EventAttributesAttributes) GetActualInstance() interface{} {
+func (obj *V2EventAttributesAttributes) GetActualInstance() (interface{}) {
 	if obj.ChangeEventAttributes != nil {
 		return obj.ChangeEventAttributes
 	}
 
+
 	if obj.AlertEventAttributes != nil {
 		return obj.AlertEventAttributes
 	}
+
 
 	// all schemas are nil
 	return nil

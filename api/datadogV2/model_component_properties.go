@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ComponentProperties Properties of a UI component. Different component types can have their own additional unique properties. See the [components documentation](https://docs.datadoghq.com/service_management/app_builder/components/) for more detail on each component type and its properties.
 type ComponentProperties struct {
@@ -15,9 +21,10 @@ type ComponentProperties struct {
 	// Whether the UI component is visible. If this is a string, it must be a valid JavaScript expression that evaluates to a boolean.
 	IsVisible *ComponentPropertiesIsVisible `json:"isVisible,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewComponentProperties instantiates a new ComponentProperties object.
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +42,6 @@ func NewComponentPropertiesWithDefaults() *ComponentProperties {
 	this := ComponentProperties{}
 	return &this
 }
-
 // GetChildren returns the Children field value if set, zero value otherwise.
 func (o *ComponentProperties) GetChildren() []Component {
 	if o == nil || o.Children == nil {
@@ -63,6 +69,7 @@ func (o *ComponentProperties) HasChildren() bool {
 func (o *ComponentProperties) SetChildren(v []Component) {
 	o.Children = v
 }
+
 
 // GetIsVisible returns the IsVisible field value if set, zero value otherwise.
 func (o *ComponentProperties) GetIsVisible() ComponentPropertiesIsVisible {
@@ -92,6 +99,8 @@ func (o *ComponentProperties) SetIsVisible(v ComponentPropertiesIsVisible) {
 	o.IsVisible = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ComponentProperties) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -114,7 +123,7 @@ func (o ComponentProperties) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ComponentProperties) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Children  []Component                   `json:"children,omitempty"`
+		Children []Component `json:"children,omitempty"`
 		IsVisible *ComponentPropertiesIsVisible `json:"isVisible,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -122,7 +131,7 @@ func (o *ComponentProperties) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"children", "isVisible"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "children", "isVisible",  })
 	} else {
 		return err
 	}

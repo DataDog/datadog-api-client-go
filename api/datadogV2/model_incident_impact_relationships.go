@@ -2,11 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // IncidentImpactRelationships The incident impact's resource relationships.
 type IncidentImpactRelationships struct {
@@ -17,9 +23,10 @@ type IncidentImpactRelationships struct {
 	// Relationship to user.
 	LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewIncidentImpactRelationships instantiates a new IncidentImpactRelationships object.
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +44,6 @@ func NewIncidentImpactRelationshipsWithDefaults() *IncidentImpactRelationships {
 	this := IncidentImpactRelationships{}
 	return &this
 }
-
 // GetCreatedByUser returns the CreatedByUser field value if set, zero value otherwise.
 func (o *IncidentImpactRelationships) GetCreatedByUser() RelationshipToUser {
 	if o == nil || o.CreatedByUser == nil {
@@ -65,6 +71,7 @@ func (o *IncidentImpactRelationships) HasCreatedByUser() bool {
 func (o *IncidentImpactRelationships) SetCreatedByUser(v RelationshipToUser) {
 	o.CreatedByUser = &v
 }
+
 
 // GetIncident returns the Incident field value if set, zero value otherwise.
 func (o *IncidentImpactRelationships) GetIncident() RelationshipToIncident {
@@ -94,6 +101,7 @@ func (o *IncidentImpactRelationships) SetIncident(v RelationshipToIncident) {
 	o.Incident = &v
 }
 
+
 // GetLastModifiedByUser returns the LastModifiedByUser field value if set, zero value otherwise.
 func (o *IncidentImpactRelationships) GetLastModifiedByUser() RelationshipToUser {
 	if o == nil || o.LastModifiedByUser == nil {
@@ -122,6 +130,8 @@ func (o *IncidentImpactRelationships) SetLastModifiedByUser(v RelationshipToUser
 	o.LastModifiedByUser = &v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentImpactRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -147,30 +157,30 @@ func (o IncidentImpactRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentImpactRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedByUser      *RelationshipToUser     `json:"created_by_user,omitempty"`
-		Incident           *RelationshipToIncident `json:"incident,omitempty"`
-		LastModifiedByUser *RelationshipToUser     `json:"last_modified_by_user,omitempty"`
+		CreatedByUser *RelationshipToUser `json:"created_by_user,omitempty"`
+		Incident *RelationshipToIncident `json:"incident,omitempty"`
+		LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_by_user", "incident", "last_modified_by_user"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "created_by_user", "incident", "last_modified_by_user",  })
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.CreatedByUser != nil && all.CreatedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.CreatedByUser != nil && all.CreatedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.CreatedByUser = all.CreatedByUser
-	if all.Incident != nil && all.Incident.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.Incident != nil && all.Incident.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Incident = all.Incident
-	if all.LastModifiedByUser != nil && all.LastModifiedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
+	if  all.LastModifiedByUser != nil && all.LastModifiedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LastModifiedByUser = all.LastModifiedByUser

@@ -2,18 +2,24 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EscalationPolicyIncluded - Represents included related resources when retrieving an escalation policy, such as teams, steps, or targets.
 type EscalationPolicyIncluded struct {
-	TeamReference        *TeamReference
+	TeamReference *TeamReference
 	EscalationPolicyStep *EscalationPolicyStep
 	EscalationPolicyUser *EscalationPolicyUser
-	ScheduleData         *ScheduleData
+	ScheduleData *ScheduleData
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -128,17 +134,21 @@ func (obj EscalationPolicyIncluded) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.TeamReference)
 	}
 
+
 	if obj.EscalationPolicyStep != nil {
 		return datadog.Marshal(&obj.EscalationPolicyStep)
 	}
+
 
 	if obj.EscalationPolicyUser != nil {
 		return datadog.Marshal(&obj.EscalationPolicyUser)
 	}
 
+
 	if obj.ScheduleData != nil {
 		return datadog.Marshal(&obj.ScheduleData)
 	}
+
 
 	if obj.UnparsedObject != nil {
 		return datadog.Marshal(obj.UnparsedObject)
@@ -147,22 +157,26 @@ func (obj EscalationPolicyIncluded) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *EscalationPolicyIncluded) GetActualInstance() interface{} {
+func (obj *EscalationPolicyIncluded) GetActualInstance() (interface{}) {
 	if obj.TeamReference != nil {
 		return obj.TeamReference
 	}
+
 
 	if obj.EscalationPolicyStep != nil {
 		return obj.EscalationPolicyStep
 	}
 
+
 	if obj.EscalationPolicyUser != nil {
 		return obj.EscalationPolicyUser
 	}
 
+
 	if obj.ScheduleData != nil {
 		return obj.ScheduleData
 	}
+
 
 	// all schemas are nil
 	return nil

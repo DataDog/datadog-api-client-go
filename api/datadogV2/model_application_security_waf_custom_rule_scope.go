@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ApplicationSecurityWafCustomRuleScope The scope of the WAF custom rule.
 type ApplicationSecurityWafCustomRuleScope struct {
@@ -17,9 +21,10 @@ type ApplicationSecurityWafCustomRuleScope struct {
 	// The service scope for the WAF custom rule.
 	Service string `json:"service"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewApplicationSecurityWafCustomRuleScope instantiates a new ApplicationSecurityWafCustomRuleScope object.
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewApplicationSecurityWafCustomRuleScopeWithDefaults() *ApplicationSecurity
 	this := ApplicationSecurityWafCustomRuleScope{}
 	return &this
 }
-
 // GetEnv returns the Env field value.
 func (o *ApplicationSecurityWafCustomRuleScope) GetEnv() string {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *ApplicationSecurityWafCustomRuleScope) GetEnvOk() (*string, bool) {
 func (o *ApplicationSecurityWafCustomRuleScope) SetEnv(v string) {
 	o.Env = v
 }
+
 
 // GetService returns the Service field value.
 func (o *ApplicationSecurityWafCustomRuleScope) GetService() string {
@@ -86,6 +91,8 @@ func (o *ApplicationSecurityWafCustomRuleScope) SetService(v string) {
 	o.Service = v
 }
 
+
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ApplicationSecurityWafCustomRuleScope) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -104,7 +111,7 @@ func (o ApplicationSecurityWafCustomRuleScope) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ApplicationSecurityWafCustomRuleScope) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Env     *string `json:"env"`
+		Env *string `json:"env"`
 		Service *string `json:"service"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +125,7 @@ func (o *ApplicationSecurityWafCustomRuleScope) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"env", "service"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "env", "service",  })
 	} else {
 		return err
 	}

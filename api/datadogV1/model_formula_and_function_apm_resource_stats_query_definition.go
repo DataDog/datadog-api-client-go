@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV1
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // FormulaAndFunctionApmResourceStatsQueryDefinition APM resource stats query using formulas and functions.
 type FormulaAndFunctionApmResourceStatsQueryDefinition struct {
@@ -35,9 +39,10 @@ type FormulaAndFunctionApmResourceStatsQueryDefinition struct {
 	// APM resource stat name.
 	Stat FormulaAndFunctionApmResourceStatName `json:"stat"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewFormulaAndFunctionApmResourceStatsQueryDefinition instantiates a new FormulaAndFunctionApmResourceStatsQueryDefinition object.
 // This constructor will assign default values to properties that have it defined,
@@ -60,7 +65,6 @@ func NewFormulaAndFunctionApmResourceStatsQueryDefinitionWithDefaults() *Formula
 	this := FormulaAndFunctionApmResourceStatsQueryDefinition{}
 	return &this
 }
-
 // GetCrossOrgUuids returns the CrossOrgUuids field value if set, zero value otherwise.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetCrossOrgUuids() []string {
 	if o == nil || o.CrossOrgUuids == nil {
@@ -89,6 +93,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetCrossOrgUuids(v [
 	o.CrossOrgUuids = v
 }
 
+
 // GetDataSource returns the DataSource field value.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetDataSource() FormulaAndFunctionApmResourceStatsDataSource {
 	if o == nil {
@@ -112,6 +117,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetDataSource(v Form
 	o.DataSource = v
 }
 
+
 // GetEnv returns the Env field value.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetEnv() string {
 	if o == nil {
@@ -134,6 +140,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetEnvOk() (*string,
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetEnv(v string) {
 	o.Env = v
 }
+
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetGroupBy() []string {
@@ -163,6 +170,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetGroupBy(v []strin
 	o.GroupBy = v
 }
 
+
 // GetName returns the Name field value.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetName() string {
 	if o == nil {
@@ -185,6 +193,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetNameOk() (*string
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetOperationName returns the OperationName field value if set, zero value otherwise.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetOperationName() string {
@@ -214,6 +223,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetOperationName(v s
 	o.OperationName = &v
 }
 
+
 // GetPrimaryTagName returns the PrimaryTagName field value if set, zero value otherwise.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetPrimaryTagName() string {
 	if o == nil || o.PrimaryTagName == nil {
@@ -241,6 +251,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) HasPrimaryTagName() 
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetPrimaryTagName(v string) {
 	o.PrimaryTagName = &v
 }
+
 
 // GetPrimaryTagValue returns the PrimaryTagValue field value if set, zero value otherwise.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetPrimaryTagValue() string {
@@ -270,6 +281,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetPrimaryTagValue(v
 	o.PrimaryTagValue = &v
 }
 
+
 // GetResourceName returns the ResourceName field value if set, zero value otherwise.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetResourceName() string {
 	if o == nil || o.ResourceName == nil {
@@ -298,6 +310,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetResourceName(v st
 	o.ResourceName = &v
 }
 
+
 // GetService returns the Service field value.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetService() string {
 	if o == nil {
@@ -321,6 +334,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetService(v string)
 	o.Service = v
 }
 
+
 // GetStat returns the Stat field value.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetStat() FormulaAndFunctionApmResourceStatName {
 	if o == nil {
@@ -343,6 +357,8 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetStatOk() (*Formul
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetStat(v FormulaAndFunctionApmResourceStatName) {
 	o.Stat = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o FormulaAndFunctionApmResourceStatsQueryDefinition) MarshalJSON() ([]byte, error) {
@@ -383,17 +399,17 @@ func (o FormulaAndFunctionApmResourceStatsQueryDefinition) MarshalJSON() ([]byte
 // UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CrossOrgUuids   []string                                      `json:"cross_org_uuids,omitempty"`
-		DataSource      *FormulaAndFunctionApmResourceStatsDataSource `json:"data_source"`
-		Env             *string                                       `json:"env"`
-		GroupBy         []string                                      `json:"group_by,omitempty"`
-		Name            *string                                       `json:"name"`
-		OperationName   *string                                       `json:"operation_name,omitempty"`
-		PrimaryTagName  *string                                       `json:"primary_tag_name,omitempty"`
-		PrimaryTagValue *string                                       `json:"primary_tag_value,omitempty"`
-		ResourceName    *string                                       `json:"resource_name,omitempty"`
-		Service         *string                                       `json:"service"`
-		Stat            *FormulaAndFunctionApmResourceStatName        `json:"stat"`
+		CrossOrgUuids []string `json:"cross_org_uuids,omitempty"`
+		DataSource *FormulaAndFunctionApmResourceStatsDataSource `json:"data_source"`
+		Env *string `json:"env"`
+		GroupBy []string `json:"group_by,omitempty"`
+		Name *string `json:"name"`
+		OperationName *string `json:"operation_name,omitempty"`
+		PrimaryTagName *string `json:"primary_tag_name,omitempty"`
+		PrimaryTagValue *string `json:"primary_tag_value,omitempty"`
+		ResourceName *string `json:"resource_name,omitempty"`
+		Service *string `json:"service"`
+		Stat *FormulaAndFunctionApmResourceStatName `json:"stat"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -415,7 +431,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cross_org_uuids", "data_source", "env", "group_by", "name", "operation_name", "primary_tag_name", "primary_tag_value", "resource_name", "service", "stat"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "cross_org_uuids", "data_source", "env", "group_by", "name", "operation_name", "primary_tag_name", "primary_tag_value", "resource_name", "service", "stat",  })
 	} else {
 		return err
 	}

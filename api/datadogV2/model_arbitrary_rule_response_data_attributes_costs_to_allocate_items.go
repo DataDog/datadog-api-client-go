@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // ArbitraryRuleResponseDataAttributesCostsToAllocateItems The definition of `ArbitraryRuleResponseDataAttributesCostsToAllocateItems` object.
 type ArbitraryRuleResponseDataAttributesCostsToAllocateItems struct {
@@ -21,9 +25,10 @@ type ArbitraryRuleResponseDataAttributesCostsToAllocateItems struct {
 	// The `items` `values`.
 	Values datadog.NullableList[string] `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewArbitraryRuleResponseDataAttributesCostsToAllocateItems instantiates a new ArbitraryRuleResponseDataAttributesCostsToAllocateItems object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewArbitraryRuleResponseDataAttributesCostsToAllocateItemsWithDefaults() *A
 	this := ArbitraryRuleResponseDataAttributesCostsToAllocateItems{}
 	return &this
 }
-
 // GetCondition returns the Condition field value.
 func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) GetCondition() string {
 	if o == nil {
@@ -67,6 +71,7 @@ func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) SetCondition(v
 	o.Condition = v
 }
 
+
 // GetTag returns the Tag field value.
 func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) GetTag() string {
 	if o == nil {
@@ -89,6 +94,7 @@ func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) GetTagOk() (*s
 func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) SetTag(v string) {
 	o.Tag = v
 }
+
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) GetValue() string {
@@ -118,6 +124,7 @@ func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) SetValue(v str
 	o.Value = &v
 }
 
+
 // GetValues returns the Values field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) GetValues() []string {
 	if o == nil || o.Values.Get() == nil {
@@ -131,7 +138,7 @@ func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) GetValues() []
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) GetValuesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Values.Get(), o.Values.IsSet()
@@ -146,7 +153,6 @@ func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) HasValues() bo
 func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) SetValues(v []string) {
 	o.Values.Set(&v)
 }
-
 // SetValuesNil sets the value for Values to be an explicit nil.
 func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) SetValuesNil() {
 	o.Values.Set(nil)
@@ -156,6 +162,8 @@ func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) SetValuesNil()
 func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) UnsetValues() {
 	o.Values.Unset()
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o ArbitraryRuleResponseDataAttributesCostsToAllocateItems) MarshalJSON() ([]byte, error) {
@@ -181,10 +189,10 @@ func (o ArbitraryRuleResponseDataAttributesCostsToAllocateItems) MarshalJSON() (
 // UnmarshalJSON deserializes the given payload.
 func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Condition *string                      `json:"condition"`
-		Tag       *string                      `json:"tag"`
-		Value     *string                      `json:"value,omitempty"`
-		Values    datadog.NullableList[string] `json:"values,omitempty"`
+		Condition *string `json:"condition"`
+		Tag *string `json:"tag"`
+		Value *string `json:"value,omitempty"`
+		Values datadog.NullableList[string] `json:"values,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -197,7 +205,7 @@ func (o *ArbitraryRuleResponseDataAttributesCostsToAllocateItems) UnmarshalJSON(
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"condition", "tag", "value", "values"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "condition", "tag", "value", "values",  })
 	} else {
 		return err
 	}

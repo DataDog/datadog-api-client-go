@@ -2,13 +2,17 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
+
 package datadogV2
 
 import (
+	"github.com/google/uuid"
 	"fmt"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+
 )
+
 
 // EscalationPolicyUpdateRequestDataAttributes Defines the attributes that can be updated for an escalation policy, such as description, name, resolution behavior, retries, and steps.
 type EscalationPolicyUpdateRequestDataAttributes struct {
@@ -21,9 +25,10 @@ type EscalationPolicyUpdateRequestDataAttributes struct {
 	// A list of escalation steps, each defining assignment, escalation timeout, and targets.
 	Steps []EscalationPolicyUpdateRequestDataAttributesStepsItems `json:"steps"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
+
 
 // NewEscalationPolicyUpdateRequestDataAttributes instantiates a new EscalationPolicyUpdateRequestDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewEscalationPolicyUpdateRequestDataAttributesWithDefaults() *EscalationPol
 	this := EscalationPolicyUpdateRequestDataAttributes{}
 	return &this
 }
-
 // GetName returns the Name field value.
 func (o *EscalationPolicyUpdateRequestDataAttributes) GetName() string {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *EscalationPolicyUpdateRequestDataAttributes) GetNameOk() (*string, bool
 func (o *EscalationPolicyUpdateRequestDataAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetResolvePageOnPolicyEnd returns the ResolvePageOnPolicyEnd field value if set, zero value otherwise.
 func (o *EscalationPolicyUpdateRequestDataAttributes) GetResolvePageOnPolicyEnd() bool {
@@ -95,6 +100,7 @@ func (o *EscalationPolicyUpdateRequestDataAttributes) SetResolvePageOnPolicyEnd(
 	o.ResolvePageOnPolicyEnd = &v
 }
 
+
 // GetRetries returns the Retries field value if set, zero value otherwise.
 func (o *EscalationPolicyUpdateRequestDataAttributes) GetRetries() int64 {
 	if o == nil || o.Retries == nil {
@@ -123,6 +129,7 @@ func (o *EscalationPolicyUpdateRequestDataAttributes) SetRetries(v int64) {
 	o.Retries = &v
 }
 
+
 // GetSteps returns the Steps field value.
 func (o *EscalationPolicyUpdateRequestDataAttributes) GetSteps() []EscalationPolicyUpdateRequestDataAttributesStepsItems {
 	if o == nil {
@@ -145,6 +152,8 @@ func (o *EscalationPolicyUpdateRequestDataAttributes) GetStepsOk() (*[]Escalatio
 func (o *EscalationPolicyUpdateRequestDataAttributes) SetSteps(v []EscalationPolicyUpdateRequestDataAttributesStepsItems) {
 	o.Steps = v
 }
+
+
 
 // MarshalJSON serializes the struct using spec logic.
 func (o EscalationPolicyUpdateRequestDataAttributes) MarshalJSON() ([]byte, error) {
@@ -170,10 +179,10 @@ func (o EscalationPolicyUpdateRequestDataAttributes) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *EscalationPolicyUpdateRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name                   *string                                                  `json:"name"`
-		ResolvePageOnPolicyEnd *bool                                                    `json:"resolve_page_on_policy_end,omitempty"`
-		Retries                *int64                                                   `json:"retries,omitempty"`
-		Steps                  *[]EscalationPolicyUpdateRequestDataAttributesStepsItems `json:"steps"`
+		Name *string `json:"name"`
+		ResolvePageOnPolicyEnd *bool `json:"resolve_page_on_policy_end,omitempty"`
+		Retries *int64 `json:"retries,omitempty"`
+		Steps *[]EscalationPolicyUpdateRequestDataAttributesStepsItems `json:"steps"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -186,7 +195,7 @@ func (o *EscalationPolicyUpdateRequestDataAttributes) UnmarshalJSON(bytes []byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "resolve_page_on_policy_end", "retries", "steps"})
+		datadog.DeleteKeys(additionalProperties, &[]string{ "name", "resolve_page_on_policy_end", "retries", "steps",  })
 	} else {
 		return err
 	}
