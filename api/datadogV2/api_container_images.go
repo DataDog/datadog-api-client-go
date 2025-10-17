@@ -62,6 +62,7 @@ func (r *ListContainerImagesOptionalParameters) WithPageCursor(pageCursor string
 
 // ListContainerImages Get all Container Images.
 // Get all Container Images for your organization.
+// **Note**: To enrich the data returned by this endpoint with security scans, see the new [api/v2/security/scanned-assets-metadata](https://docs.datadoghq.com/api/latest/security-monitoring/#list-scanned-assets-metadata) endpoint.
 func (a *ContainerImagesApi) ListContainerImages(ctx _context.Context, o ...ListContainerImagesOptionalParameters) (ContainerImagesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
