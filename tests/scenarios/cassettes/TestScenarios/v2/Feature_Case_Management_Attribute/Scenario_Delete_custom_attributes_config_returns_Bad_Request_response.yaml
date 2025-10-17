@@ -1,0 +1,46 @@
+interactions:
+- request:
+    body: "{\"data\":{\"attributes\":{\"description\":\"Worldwide case type\",\"emoji\"\
+      :\"\U0001F30D\",\"name\":\"World\"},\"type\":\"case_type\"}}\n"
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/cases/types
+  response:
+    body: "{\"data\":{\"id\":\"3ffd2bc8-e360-40d4-8ed6-60f72161fd89\",\"type\":\"\
+      case_type\",\"attributes\":{\"description\":\"Worldwide case type\",\"emoji\"\
+      :\"\U0001F30D\",\"internal\":false,\"name\":\"World\",\"statuses_config\":{\"\
+      open\":{\"status_options\":[{\"name\":\"Open\"}],\"default\":\"Open\"},\"in_progress\"\
+      :{\"status_options\":[{\"name\":\"In Progress\"}],\"default\":\"In Progress\"\
+      },\"closed\":{\"status_options\":[{\"name\":\"Closed\"}],\"default\":\"Closed\"\
+      }}}}}"
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/cases/types/3ffd2bc8-e360-40d4-8ed6-60f72161fd89/custom_attributes/not-an-uuid
+  response:
+    body: '{"errors":[{"status":"400","title":"Invalid Parameter","detail":"invalid
+      parameter \"CustomAttributeId\" in \"path\"; expected type \"uuid\""}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
