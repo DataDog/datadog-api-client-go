@@ -75,8 +75,8 @@
 <span id="L18" class="ln">    18  </span>	Priority *CasePriority `json:&#34;priority,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// Title</span>
 <span id="L20" class="ln">    20  </span>	Title string `json:&#34;title&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// Case type</span>
-<span id="L22" class="ln">    22  </span>	Type CaseType `json:&#34;type&#34;`
+<span id="L21" class="ln">    21  </span>	<span class="comment">// Case type UUID</span>
+<span id="L22" class="ln">    22  </span>	TypeId string `json:&#34;type_id&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L24" class="ln">    24  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L25" class="ln">    25  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -86,12 +86,12 @@
 <span id="L29" class="ln">    29  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
 <span id="L30" class="ln">    30  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
 <span id="L31" class="ln">    31  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L32" class="ln">    32  </span>func NewCaseCreateAttributes(title string, typeVar CaseType) *CaseCreateAttributes {
+<span id="L32" class="ln">    32  </span>func NewCaseCreateAttributes(title string, typeId string) *CaseCreateAttributes {
 <span id="L33" class="ln">    33  </span>	this := CaseCreateAttributes{}
 <span id="L34" class="ln">    34  </span>	var priority CasePriority = CASEPRIORITY_NOT_DEFINED
 <span id="L35" class="ln">    35  </span>	this.Priority = &amp;priority
 <span id="L36" class="ln">    36  </span>	this.Title = title
-<span id="L37" class="ln">    37  </span>	this.Type = typeVar
+<span id="L37" class="ln">    37  </span>	this.TypeId = typeId
 <span id="L38" class="ln">    38  </span>	return &amp;this
 <span id="L39" class="ln">    39  </span>}
 <span id="L40" class="ln">    40  </span>
@@ -184,27 +184,27 @@
 <span id="L127" class="ln">   127  </span>	o.Title = v
 <span id="L128" class="ln">   128  </span>}
 <span id="L129" class="ln">   129  </span>
-<span id="L130" class="ln">   130  </span><span class="comment">// GetType returns the Type field value.</span>
-<span id="L131" class="ln">   131  </span>func (o *CaseCreateAttributes) GetType() CaseType {
+<span id="L130" class="ln">   130  </span><span class="comment">// GetTypeId returns the TypeId field value.</span>
+<span id="L131" class="ln">   131  </span>func (o *CaseCreateAttributes) GetTypeId() string {
 <span id="L132" class="ln">   132  </span>	if o == nil {
-<span id="L133" class="ln">   133  </span>		var ret CaseType
+<span id="L133" class="ln">   133  </span>		var ret string
 <span id="L134" class="ln">   134  </span>		return ret
 <span id="L135" class="ln">   135  </span>	}
-<span id="L136" class="ln">   136  </span>	return o.Type
+<span id="L136" class="ln">   136  </span>	return o.TypeId
 <span id="L137" class="ln">   137  </span>}
 <span id="L138" class="ln">   138  </span>
-<span id="L139" class="ln">   139  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value</span>
+<span id="L139" class="ln">   139  </span><span class="comment">// GetTypeIdOk returns a tuple with the TypeId field value</span>
 <span id="L140" class="ln">   140  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L141" class="ln">   141  </span>func (o *CaseCreateAttributes) GetTypeOk() (*CaseType, bool) {
+<span id="L141" class="ln">   141  </span>func (o *CaseCreateAttributes) GetTypeIdOk() (*string, bool) {
 <span id="L142" class="ln">   142  </span>	if o == nil {
 <span id="L143" class="ln">   143  </span>		return nil, false
 <span id="L144" class="ln">   144  </span>	}
-<span id="L145" class="ln">   145  </span>	return &amp;o.Type, true
+<span id="L145" class="ln">   145  </span>	return &amp;o.TypeId, true
 <span id="L146" class="ln">   146  </span>}
 <span id="L147" class="ln">   147  </span>
-<span id="L148" class="ln">   148  </span><span class="comment">// SetType sets field value.</span>
-<span id="L149" class="ln">   149  </span>func (o *CaseCreateAttributes) SetType(v CaseType) {
-<span id="L150" class="ln">   150  </span>	o.Type = v
+<span id="L148" class="ln">   148  </span><span class="comment">// SetTypeId sets field value.</span>
+<span id="L149" class="ln">   149  </span>func (o *CaseCreateAttributes) SetTypeId(v string) {
+<span id="L150" class="ln">   150  </span>	o.TypeId = v
 <span id="L151" class="ln">   151  </span>}
 <span id="L152" class="ln">   152  </span>
 <span id="L153" class="ln">   153  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
@@ -220,7 +220,7 @@
 <span id="L163" class="ln">   163  </span>		toSerialize[&#34;priority&#34;] = o.Priority
 <span id="L164" class="ln">   164  </span>	}
 <span id="L165" class="ln">   165  </span>	toSerialize[&#34;title&#34;] = o.Title
-<span id="L166" class="ln">   166  </span>	toSerialize[&#34;type&#34;] = o.Type
+<span id="L166" class="ln">   166  </span>	toSerialize[&#34;type_id&#34;] = o.TypeId
 <span id="L167" class="ln">   167  </span>
 <span id="L168" class="ln">   168  </span>	for key, value := range o.AdditionalProperties {
 <span id="L169" class="ln">   169  </span>		toSerialize[key] = value
@@ -234,7 +234,7 @@
 <span id="L177" class="ln">   177  </span>		Description *string       `json:&#34;description,omitempty&#34;`
 <span id="L178" class="ln">   178  </span>		Priority    *CasePriority `json:&#34;priority,omitempty&#34;`
 <span id="L179" class="ln">   179  </span>		Title       *string       `json:&#34;title&#34;`
-<span id="L180" class="ln">   180  </span>		Type        *CaseType     `json:&#34;type&#34;`
+<span id="L180" class="ln">   180  </span>		TypeId      *string       `json:&#34;type_id&#34;`
 <span id="L181" class="ln">   181  </span>	}{}
 <span id="L182" class="ln">   182  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L183" class="ln">   183  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
@@ -242,12 +242,12 @@
 <span id="L185" class="ln">   185  </span>	if all.Title == nil {
 <span id="L186" class="ln">   186  </span>		return fmt.Errorf(&#34;required field title missing&#34;)
 <span id="L187" class="ln">   187  </span>	}
-<span id="L188" class="ln">   188  </span>	if all.Type == nil {
-<span id="L189" class="ln">   189  </span>		return fmt.Errorf(&#34;required field type missing&#34;)
+<span id="L188" class="ln">   188  </span>	if all.TypeId == nil {
+<span id="L189" class="ln">   189  </span>		return fmt.Errorf(&#34;required field type_id missing&#34;)
 <span id="L190" class="ln">   190  </span>	}
 <span id="L191" class="ln">   191  </span>	additionalProperties := make(map[string]interface{})
 <span id="L192" class="ln">   192  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L193" class="ln">   193  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;description&#34;, &#34;priority&#34;, &#34;title&#34;, &#34;type&#34;})
+<span id="L193" class="ln">   193  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;description&#34;, &#34;priority&#34;, &#34;title&#34;, &#34;type_id&#34;})
 <span id="L194" class="ln">   194  </span>	} else {
 <span id="L195" class="ln">   195  </span>		return err
 <span id="L196" class="ln">   196  </span>	}
@@ -260,23 +260,19 @@
 <span id="L203" class="ln">   203  </span>		o.Priority = all.Priority
 <span id="L204" class="ln">   204  </span>	}
 <span id="L205" class="ln">   205  </span>	o.Title = *all.Title
-<span id="L206" class="ln">   206  </span>	if !all.Type.IsValid() {
-<span id="L207" class="ln">   207  </span>		hasInvalidField = true
-<span id="L208" class="ln">   208  </span>	} else {
-<span id="L209" class="ln">   209  </span>		o.Type = *all.Type
+<span id="L206" class="ln">   206  </span>	o.TypeId = *all.TypeId
+<span id="L207" class="ln">   207  </span>
+<span id="L208" class="ln">   208  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L209" class="ln">   209  </span>		o.AdditionalProperties = additionalProperties
 <span id="L210" class="ln">   210  </span>	}
 <span id="L211" class="ln">   211  </span>
-<span id="L212" class="ln">   212  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L213" class="ln">   213  </span>		o.AdditionalProperties = additionalProperties
+<span id="L212" class="ln">   212  </span>	if hasInvalidField {
+<span id="L213" class="ln">   213  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
 <span id="L214" class="ln">   214  </span>	}
 <span id="L215" class="ln">   215  </span>
-<span id="L216" class="ln">   216  </span>	if hasInvalidField {
-<span id="L217" class="ln">   217  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L218" class="ln">   218  </span>	}
-<span id="L219" class="ln">   219  </span>
-<span id="L220" class="ln">   220  </span>	return nil
-<span id="L221" class="ln">   221  </span>}
-<span id="L222" class="ln">   222  </span>
+<span id="L216" class="ln">   216  </span>	return nil
+<span id="L217" class="ln">   217  </span>}
+<span id="L218" class="ln">   218  </span>
 </pre><p></p>
 
 <div id="footer">
