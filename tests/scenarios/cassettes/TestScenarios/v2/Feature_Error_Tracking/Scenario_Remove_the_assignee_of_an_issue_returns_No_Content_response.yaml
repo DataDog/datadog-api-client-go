@@ -1,0 +1,37 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"from":1759416220000,"query":"service:synthetics-browser","to":1760712220000,"track":"rum"},"type":"search_request"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/error-tracking/issues/search
+  response:
+    body: '{"data":[{"id":"d3ab59c6-84ee-11f0-87bb-da7ad0900002","type":"error_tracking_search_result","attributes":{"impacted_sessions":4316,"total_count":8640},"relationships":{"issue":{"data":{"id":"d3ab59c6-84ee-11f0-87bb-da7ad0900002","type":"issue"}}}},{"id":"a5bb2896-a4d0-11f0-bd76-da7ad0900002","type":"error_tracking_search_result","attributes":{"impacted_sessions":280,"total_count":272},"relationships":{"issue":{"data":{"id":"a5bb2896-a4d0-11f0-bd76-da7ad0900002","type":"issue"}}}},{"id":"e2a89d14-6f07-11f0-8a88-da7ad0900002","type":"error_tracking_search_result","attributes":{"impacted_sessions":1,"total_count":4},"relationships":{"issue":{"data":{"id":"e2a89d14-6f07-11f0-8a88-da7ad0900002","type":"issue"}}}},{"id":"5f8ebd5c-6dd9-11f0-8a28-da7ad0900002","type":"error_tracking_search_result","attributes":{"impacted_sessions":1,"total_count":1},"relationships":{"issue":{"data":{"id":"5f8ebd5c-6dd9-11f0-8a28-da7ad0900002","type":"issue"}}}},{"id":"e2a89134-6f07-11f0-8d36-da7ad0900002","type":"error_tracking_search_result","attributes":{"impacted_sessions":1,"total_count":1},"relationships":{"issue":{"data":{"id":"e2a89134-6f07-11f0-8d36-da7ad0900002","type":"issue"}}}}]}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/error-tracking/issues/d3ab59c6-84ee-11f0-87bb-da7ad0900002/assignee
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2

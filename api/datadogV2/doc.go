@@ -226,6 +226,7 @@
 //   - [DowntimesApi.ListDowntimes]
 //   - [DowntimesApi.ListMonitorDowntimes]
 //   - [DowntimesApi.UpdateDowntime]
+//   - [ErrorTrackingApi.DeleteIssueAssignee]
 //   - [ErrorTrackingApi.GetIssue]
 //   - [ErrorTrackingApi.SearchIssues]
 //   - [ErrorTrackingApi.UpdateIssueAssignee]
