@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 2.48.0/2025-10-23
+
+### Changed
+* Include mention to new scanned-assets-metadata endpoint on container images v1 endpoint [#3410](https://github.com/DataDog/datadog-api-client-go/pull/3410)
+* Include mention to new scanned-assets-metadata endpoint on hosts v1 endpoint [#3409](https://github.com/DataDog/datadog-api-client-go/pull/3409)
+* security_monitoring - Add indexes to deprecate index in ruleQuery [#3402](https://github.com/DataDog/datadog-api-client-go/pull/3402)
+* Add support for vulnerability management - Add ListScannedAssetsMetadata new endpoint and update existing ones [#3400](https://github.com/DataDog/datadog-api-client-go/pull/3400)
+* Update description, operationId and examples for tag pipeline and custom allocation rules [#3397](https://github.com/DataDog/datadog-api-client-go/pull/3397)
+
+### Fixed
+* Update the summary name for get a tag pipeline ruleset. [#3405](https://github.com/DataDog/datadog-api-client-go/pull/3405)
+
+### Added
+* Add new DeleteAssignee endpoint to Error Tracking APIs [#3404](https://github.com/DataDog/datadog-api-client-go/pull/3404)
+* document agentless GCP scan options CRUD endpoints [#3401](https://github.com/DataDog/datadog-api-client-go/pull/3401)
+* Document `/api/v2/roles/templates`  [#3390](https://github.com/DataDog/datadog-api-client-go/pull/3390)
+* Add Reference Tables API spec [#3389](https://github.com/DataDog/datadog-api-client-go/pull/3389)
+* Add blockedRequestPatterns to synthetics browser test options [#3383](https://github.com/DataDog/datadog-api-client-go/pull/3383)
+* Add `BulkDeleteDatastoreItems` to Datastore API spec [#3382](https://github.com/DataDog/datadog-api-client-go/pull/3382)
+* Add some missing Workload Protection agent rule fields [#3381](https://github.com/DataDog/datadog-api-client-go/pull/3381)
+* Add AzureScanOptions to agentless scanning API [#3379](https://github.com/DataDog/datadog-api-client-go/pull/3379)
+* Add conditional recipients to notification rule [#3375](https://github.com/DataDog/datadog-api-client-go/pull/3375)
+* Update ci_app description with max 1 year event run duration restriction [#3358](https://github.com/DataDog/datadog-api-client-go/pull/3358)
+* Documenting the new Flaky Test Management API endpoint for public beta [#3347](https://github.com/DataDog/datadog-api-client-go/pull/3347)
+* Document multiple case-management endpoints [#3273](https://github.com/DataDog/datadog-api-client-go/pull/3273)
+
 ## 2.47.0/2025-09-30
 
 ### Added
