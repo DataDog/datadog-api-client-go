@@ -600,6 +600,10 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
+			"v2.CancelFleetDeployment":                   false,
+			"v2.CreateFleetDeploymentConfigure":          false,
+			"v2.GetFleetDeployment":                      false,
+			"v2.ListFleetDeployments":                    false,
 			"v2.CreateOpenAPI":                           false,
 			"v2.DeleteOpenAPI":                           false,
 			"v2.GetOpenAPI":                              false,
