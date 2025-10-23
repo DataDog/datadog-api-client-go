@@ -584,6 +584,8 @@
 //   - [SpansMetricsApi.GetSpansMetric]
 //   - [SpansMetricsApi.ListSpansMetrics]
 //   - [SpansMetricsApi.UpdateSpansMetric]
+//   - [StaticAnalysisApi.CreateSCAResolveVulnerableSymbols]
+//   - [StaticAnalysisApi.CreateSCAResult]
 //   - [SyntheticsApi.GetOnDemandConcurrencyCap]
 //   - [SyntheticsApi.SetOnDemandConcurrencyCap]
 //   - [TeamsApi.AddMemberTeam]
