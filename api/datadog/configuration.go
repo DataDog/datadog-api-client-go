@@ -698,6 +698,8 @@ func NewConfiguration() *Configuration {
 			"v2.GetSLOReport":                            false,
 			"v2.GetSLOReportJobStatus":                   false,
 			"v2.GetSPARecommendations":                   false,
+			"v2.CreateSCAResolveVulnerableSymbols":       false,
+			"v2.CreateSCAResult":                         false,
 			"v2.AddMemberTeam":                           false,
 			"v2.ListMemberTeams":                         false,
 			"v2.RemoveMemberTeam":                        false,
