@@ -15,7 +15,7 @@ import (
 // AgentlessScanningApi service type
 type AgentlessScanningApi datadog.Service
 
-// CreateAwsOnDemandTask Post an AWS on demand task.
+// CreateAwsOnDemandTask Create AWS on demand task.
 // Trigger the scan of an AWS resource with a high priority. Agentless scanning must be activated for the AWS account containing the resource to scan.
 func (a *AgentlessScanningApi) CreateAwsOnDemandTask(ctx _context.Context, body AwsOnDemandCreateRequest) (AwsOnDemandResponse, *_nethttp.Response, error) {
 	var (
@@ -95,7 +95,7 @@ func (a *AgentlessScanningApi) CreateAwsOnDemandTask(ctx _context.Context, body 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateAwsScanOptions Post AWS Scan Options.
+// CreateAwsScanOptions Create AWS scan options.
 // Activate Agentless scan options for an AWS account.
 func (a *AgentlessScanningApi) CreateAwsScanOptions(ctx _context.Context, body AwsScanOptionsCreateRequest) (AwsScanOptionsResponse, *_nethttp.Response, error) {
 	var (
@@ -175,7 +175,7 @@ func (a *AgentlessScanningApi) CreateAwsScanOptions(ctx _context.Context, body A
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateAzureScanOptions Create azure scan options.
+// CreateAzureScanOptions Create Azure scan options.
 // Activate Agentless scan options for an Azure subscription.
 func (a *AgentlessScanningApi) CreateAzureScanOptions(ctx _context.Context, body AzureScanOptions) (AzureScanOptions, *_nethttp.Response, error) {
 	var (
@@ -255,7 +255,7 @@ func (a *AgentlessScanningApi) CreateAzureScanOptions(ctx _context.Context, body
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateGcpScanOptions Post GCP Scan Options.
+// CreateGcpScanOptions Create GCP scan options.
 // Activate Agentless scan options for a GCP project.
 func (a *AgentlessScanningApi) CreateGcpScanOptions(ctx _context.Context, body GcpScanOptions) (GcpScanOptions, *_nethttp.Response, error) {
 	var (
@@ -335,7 +335,7 @@ func (a *AgentlessScanningApi) CreateGcpScanOptions(ctx _context.Context, body G
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// DeleteAwsScanOptions Delete AWS Scan Options.
+// DeleteAwsScanOptions Delete AWS scan options.
 // Delete Agentless scan options for an AWS account.
 func (a *AgentlessScanningApi) DeleteAwsScanOptions(ctx _context.Context, accountId string) (*_nethttp.Response, error) {
 	var (
@@ -403,7 +403,7 @@ func (a *AgentlessScanningApi) DeleteAwsScanOptions(ctx _context.Context, accoun
 	return localVarHTTPResponse, nil
 }
 
-// DeleteAzureScanOptions Delete azure scan options.
+// DeleteAzureScanOptions Delete Azure scan options.
 // Delete Agentless scan options for an Azure subscription.
 func (a *AgentlessScanningApi) DeleteAzureScanOptions(ctx _context.Context, subscriptionId string) (*_nethttp.Response, error) {
 	var (
@@ -471,7 +471,7 @@ func (a *AgentlessScanningApi) DeleteAzureScanOptions(ctx _context.Context, subs
 	return localVarHTTPResponse, nil
 }
 
-// DeleteGcpScanOptions Delete GCP Scan Options.
+// DeleteGcpScanOptions Delete GCP scan options.
 // Delete Agentless scan options for a GCP project.
 func (a *AgentlessScanningApi) DeleteGcpScanOptions(ctx _context.Context, projectId string) (*_nethttp.Response, error) {
 	var (
@@ -539,7 +539,7 @@ func (a *AgentlessScanningApi) DeleteGcpScanOptions(ctx _context.Context, projec
 	return localVarHTTPResponse, nil
 }
 
-// GetAwsOnDemandTask Get AWS On Demand task by id.
+// GetAwsOnDemandTask Get AWS on demand task.
 // Fetch the data of a specific on demand task.
 func (a *AgentlessScanningApi) GetAwsOnDemandTask(ctx _context.Context, taskId string) (AwsOnDemandResponse, *_nethttp.Response, error) {
 	var (
@@ -851,7 +851,7 @@ func (a *AgentlessScanningApi) GetGcpScanOptions(ctx _context.Context, projectId
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListAwsOnDemandTasks Get AWS On Demand tasks.
+// ListAwsOnDemandTasks List AWS on demand tasks.
 // Fetches the most recent 1000 AWS on demand tasks.
 func (a *AgentlessScanningApi) ListAwsOnDemandTasks(ctx _context.Context) (AwsOnDemandListResponse, *_nethttp.Response, error) {
 	var (
@@ -928,7 +928,7 @@ func (a *AgentlessScanningApi) ListAwsOnDemandTasks(ctx _context.Context) (AwsOn
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListAwsScanOptions List AWS Scan Options.
+// ListAwsScanOptions List AWS scan options.
 // Fetches the scan options configured for AWS accounts.
 func (a *AgentlessScanningApi) ListAwsScanOptions(ctx _context.Context) (AwsScanOptionsListResponse, *_nethttp.Response, error) {
 	var (
@@ -1005,7 +1005,7 @@ func (a *AgentlessScanningApi) ListAwsScanOptions(ctx _context.Context) (AwsScan
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListAzureScanOptions List azure scan options.
+// ListAzureScanOptions List Azure scan options.
 // Fetches the scan options configured for Azure accounts.
 func (a *AgentlessScanningApi) ListAzureScanOptions(ctx _context.Context) (AzureScanOptionsArray, *_nethttp.Response, error) {
 	var (
@@ -1082,7 +1082,7 @@ func (a *AgentlessScanningApi) ListAzureScanOptions(ctx _context.Context) (Azure
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListGcpScanOptions List GCP Scan Options.
+// ListGcpScanOptions List GCP scan options.
 // Fetches the scan options configured for all GCP projects.
 func (a *AgentlessScanningApi) ListGcpScanOptions(ctx _context.Context) (GcpScanOptionsArray, *_nethttp.Response, error) {
 	var (
@@ -1159,7 +1159,7 @@ func (a *AgentlessScanningApi) ListGcpScanOptions(ctx _context.Context) (GcpScan
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateAwsScanOptions Patch AWS Scan Options.
+// UpdateAwsScanOptions Update AWS scan options.
 // Update the Agentless scan options for an activated account.
 func (a *AgentlessScanningApi) UpdateAwsScanOptions(ctx _context.Context, accountId string, body AwsScanOptionsUpdateRequest) (*_nethttp.Response, error) {
 	var (
@@ -1230,7 +1230,7 @@ func (a *AgentlessScanningApi) UpdateAwsScanOptions(ctx _context.Context, accoun
 	return localVarHTTPResponse, nil
 }
 
-// UpdateAzureScanOptions Update azure scan options.
+// UpdateAzureScanOptions Update Azure scan options.
 // Update the Agentless scan options for an activated subscription.
 func (a *AgentlessScanningApi) UpdateAzureScanOptions(ctx _context.Context, subscriptionId string, body AzureScanOptionsInputUpdate) (AzureScanOptions, *_nethttp.Response, error) {
 	var (
@@ -1311,7 +1311,7 @@ func (a *AgentlessScanningApi) UpdateAzureScanOptions(ctx _context.Context, subs
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateGcpScanOptions Patch GCP Scan Options.
+// UpdateGcpScanOptions Update GCP scan options.
 // Update the Agentless scan options for an activated GCP project.
 func (a *AgentlessScanningApi) UpdateGcpScanOptions(ctx _context.Context, projectId string, body GcpScanOptionsInputUpdate) (GcpScanOptions, *_nethttp.Response, error) {
 	var (

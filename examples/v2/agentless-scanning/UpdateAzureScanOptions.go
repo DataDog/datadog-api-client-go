@@ -1,4 +1,4 @@
-// Update azure scan options returns "OK" response
+// Update Azure scan options returns "OK" response
 
 package main
 

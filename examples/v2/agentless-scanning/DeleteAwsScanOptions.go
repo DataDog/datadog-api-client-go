@@ -1,4 +1,4 @@
-// Delete AWS Scan Options returns "No Content" response
+// Delete AWS scan options returns "No Content" response
 
 package main
 

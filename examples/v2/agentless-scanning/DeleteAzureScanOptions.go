@@ -1,4 +1,4 @@
-// Delete azure scan options returns "No Content" response
+// Delete Azure scan options returns "No Content" response
 
 package main
 

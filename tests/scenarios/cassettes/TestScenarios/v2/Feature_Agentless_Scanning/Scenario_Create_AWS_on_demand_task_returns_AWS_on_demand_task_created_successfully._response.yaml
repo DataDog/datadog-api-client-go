@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"arn":"arn:aws:lambda:us-west-2:123456789012:function:my-function"},"type":"aws_resource"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/agentless_scanning/ondemand/aws
+  response:
+    body: '{"data":{"id":"438046ce-01cd-4ae5-b117-ff971e6fa449","type":"aws_resource","attributes":{"arn":"arn:aws:lambda:us-west-2:123456789012:function:my-function","created_at":"2025-10-23T22:21:53.957627Z","status":"QUEUED"}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+version: 2

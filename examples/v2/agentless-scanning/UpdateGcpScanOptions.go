@@ -1,4 +1,4 @@
-// Patch GCP Scan Options returns "OK" response
+// Update GCP scan options returns "OK" response
 
 package main
 

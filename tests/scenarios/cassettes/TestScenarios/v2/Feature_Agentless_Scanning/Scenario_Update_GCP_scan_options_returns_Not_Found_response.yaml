@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"vuln_containers_os":true,"vuln_host_os":true},"id":"nonexistent-project-id","type":"gcp_scan_options"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/agentless_scanning/accounts/gcp/nonexistent-project-id
+  response:
+    body: '{"errors":[{"status":"404","detail":"no gcp scan options found for project
+      nonexistent-project-id"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

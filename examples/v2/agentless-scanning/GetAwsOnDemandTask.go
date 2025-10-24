@@ -1,4 +1,4 @@
-// Get AWS On Demand task by id returns "OK." response
+// Get AWS on demand task returns "OK." response
 
 package main
 

@@ -1,4 +1,4 @@
-// List azure scan options returns "OK" response
+// List Azure scan options returns "OK" response
 
 package main
 

@@ -1,4 +1,4 @@
-// Post an AWS on demand task returns "AWS on demand task created successfully." response
+// Create AWS on demand task returns "AWS on demand task created successfully." response
 
 package main
 

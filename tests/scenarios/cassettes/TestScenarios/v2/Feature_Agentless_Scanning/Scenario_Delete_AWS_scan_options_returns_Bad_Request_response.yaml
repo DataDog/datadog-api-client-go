@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 0
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/agentless_scanning/accounts/aws/incorrectId
+  response:
+    body: '{"errors":[{"title":"Generic Error","detail":"invalid AWS account ID"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
