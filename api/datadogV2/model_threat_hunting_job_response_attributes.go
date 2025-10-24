@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HistoricalJobResponseAttributes Historical job attributes.
-type HistoricalJobResponseAttributes struct {
+// ThreatHuntingJobResponseAttributes Threat hunting job attributes.
+type ThreatHuntingJobResponseAttributes struct {
 	// Time when the job was created.
 	CreatedAt *string `json:"createdAt,omitempty"`
 	// The handle of the user who created the job.
@@ -18,7 +18,7 @@ type HistoricalJobResponseAttributes struct {
 	CreatedByName *string `json:"createdByName,omitempty"`
 	// ID of the rule used to create the job (if it is created from a rule).
 	CreatedFromRuleId *string `json:"createdFromRuleId,omitempty"`
-	// Definition of a historical job.
+	// Definition of a threat hunting job.
 	JobDefinition *JobDefinition `json:"jobDefinition,omitempty"`
 	// Job name.
 	JobName *string `json:"jobName,omitempty"`
@@ -31,25 +31,25 @@ type HistoricalJobResponseAttributes struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewHistoricalJobResponseAttributes instantiates a new HistoricalJobResponseAttributes object.
+// NewThreatHuntingJobResponseAttributes instantiates a new ThreatHuntingJobResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewHistoricalJobResponseAttributes() *HistoricalJobResponseAttributes {
-	this := HistoricalJobResponseAttributes{}
+func NewThreatHuntingJobResponseAttributes() *ThreatHuntingJobResponseAttributes {
+	this := ThreatHuntingJobResponseAttributes{}
 	return &this
 }
 
-// NewHistoricalJobResponseAttributesWithDefaults instantiates a new HistoricalJobResponseAttributes object.
+// NewThreatHuntingJobResponseAttributesWithDefaults instantiates a new ThreatHuntingJobResponseAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewHistoricalJobResponseAttributesWithDefaults() *HistoricalJobResponseAttributes {
-	this := HistoricalJobResponseAttributes{}
+func NewThreatHuntingJobResponseAttributesWithDefaults() *ThreatHuntingJobResponseAttributes {
+	this := ThreatHuntingJobResponseAttributes{}
 	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *HistoricalJobResponseAttributes) GetCreatedAt() string {
+func (o *ThreatHuntingJobResponseAttributes) GetCreatedAt() string {
 	if o == nil || o.CreatedAt == nil {
 		var ret string
 		return ret
@@ -59,7 +59,7 @@ func (o *HistoricalJobResponseAttributes) GetCreatedAt() string {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobResponseAttributes) GetCreatedAtOk() (*string, bool) {
+func (o *ThreatHuntingJobResponseAttributes) GetCreatedAtOk() (*string, bool) {
 	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
@@ -67,17 +67,17 @@ func (o *HistoricalJobResponseAttributes) GetCreatedAtOk() (*string, bool) {
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
-func (o *HistoricalJobResponseAttributes) HasCreatedAt() bool {
+func (o *ThreatHuntingJobResponseAttributes) HasCreatedAt() bool {
 	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given string and assigns it to the CreatedAt field.
-func (o *HistoricalJobResponseAttributes) SetCreatedAt(v string) {
+func (o *ThreatHuntingJobResponseAttributes) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
 
 // GetCreatedByHandle returns the CreatedByHandle field value if set, zero value otherwise.
-func (o *HistoricalJobResponseAttributes) GetCreatedByHandle() string {
+func (o *ThreatHuntingJobResponseAttributes) GetCreatedByHandle() string {
 	if o == nil || o.CreatedByHandle == nil {
 		var ret string
 		return ret
@@ -87,7 +87,7 @@ func (o *HistoricalJobResponseAttributes) GetCreatedByHandle() string {
 
 // GetCreatedByHandleOk returns a tuple with the CreatedByHandle field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobResponseAttributes) GetCreatedByHandleOk() (*string, bool) {
+func (o *ThreatHuntingJobResponseAttributes) GetCreatedByHandleOk() (*string, bool) {
 	if o == nil || o.CreatedByHandle == nil {
 		return nil, false
 	}
@@ -95,17 +95,17 @@ func (o *HistoricalJobResponseAttributes) GetCreatedByHandleOk() (*string, bool)
 }
 
 // HasCreatedByHandle returns a boolean if a field has been set.
-func (o *HistoricalJobResponseAttributes) HasCreatedByHandle() bool {
+func (o *ThreatHuntingJobResponseAttributes) HasCreatedByHandle() bool {
 	return o != nil && o.CreatedByHandle != nil
 }
 
 // SetCreatedByHandle gets a reference to the given string and assigns it to the CreatedByHandle field.
-func (o *HistoricalJobResponseAttributes) SetCreatedByHandle(v string) {
+func (o *ThreatHuntingJobResponseAttributes) SetCreatedByHandle(v string) {
 	o.CreatedByHandle = &v
 }
 
 // GetCreatedByName returns the CreatedByName field value if set, zero value otherwise.
-func (o *HistoricalJobResponseAttributes) GetCreatedByName() string {
+func (o *ThreatHuntingJobResponseAttributes) GetCreatedByName() string {
 	if o == nil || o.CreatedByName == nil {
 		var ret string
 		return ret
@@ -115,7 +115,7 @@ func (o *HistoricalJobResponseAttributes) GetCreatedByName() string {
 
 // GetCreatedByNameOk returns a tuple with the CreatedByName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobResponseAttributes) GetCreatedByNameOk() (*string, bool) {
+func (o *ThreatHuntingJobResponseAttributes) GetCreatedByNameOk() (*string, bool) {
 	if o == nil || o.CreatedByName == nil {
 		return nil, false
 	}
@@ -123,17 +123,17 @@ func (o *HistoricalJobResponseAttributes) GetCreatedByNameOk() (*string, bool) {
 }
 
 // HasCreatedByName returns a boolean if a field has been set.
-func (o *HistoricalJobResponseAttributes) HasCreatedByName() bool {
+func (o *ThreatHuntingJobResponseAttributes) HasCreatedByName() bool {
 	return o != nil && o.CreatedByName != nil
 }
 
 // SetCreatedByName gets a reference to the given string and assigns it to the CreatedByName field.
-func (o *HistoricalJobResponseAttributes) SetCreatedByName(v string) {
+func (o *ThreatHuntingJobResponseAttributes) SetCreatedByName(v string) {
 	o.CreatedByName = &v
 }
 
 // GetCreatedFromRuleId returns the CreatedFromRuleId field value if set, zero value otherwise.
-func (o *HistoricalJobResponseAttributes) GetCreatedFromRuleId() string {
+func (o *ThreatHuntingJobResponseAttributes) GetCreatedFromRuleId() string {
 	if o == nil || o.CreatedFromRuleId == nil {
 		var ret string
 		return ret
@@ -143,7 +143,7 @@ func (o *HistoricalJobResponseAttributes) GetCreatedFromRuleId() string {
 
 // GetCreatedFromRuleIdOk returns a tuple with the CreatedFromRuleId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobResponseAttributes) GetCreatedFromRuleIdOk() (*string, bool) {
+func (o *ThreatHuntingJobResponseAttributes) GetCreatedFromRuleIdOk() (*string, bool) {
 	if o == nil || o.CreatedFromRuleId == nil {
 		return nil, false
 	}
@@ -151,17 +151,17 @@ func (o *HistoricalJobResponseAttributes) GetCreatedFromRuleIdOk() (*string, boo
 }
 
 // HasCreatedFromRuleId returns a boolean if a field has been set.
-func (o *HistoricalJobResponseAttributes) HasCreatedFromRuleId() bool {
+func (o *ThreatHuntingJobResponseAttributes) HasCreatedFromRuleId() bool {
 	return o != nil && o.CreatedFromRuleId != nil
 }
 
 // SetCreatedFromRuleId gets a reference to the given string and assigns it to the CreatedFromRuleId field.
-func (o *HistoricalJobResponseAttributes) SetCreatedFromRuleId(v string) {
+func (o *ThreatHuntingJobResponseAttributes) SetCreatedFromRuleId(v string) {
 	o.CreatedFromRuleId = &v
 }
 
 // GetJobDefinition returns the JobDefinition field value if set, zero value otherwise.
-func (o *HistoricalJobResponseAttributes) GetJobDefinition() JobDefinition {
+func (o *ThreatHuntingJobResponseAttributes) GetJobDefinition() JobDefinition {
 	if o == nil || o.JobDefinition == nil {
 		var ret JobDefinition
 		return ret
@@ -171,7 +171,7 @@ func (o *HistoricalJobResponseAttributes) GetJobDefinition() JobDefinition {
 
 // GetJobDefinitionOk returns a tuple with the JobDefinition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobResponseAttributes) GetJobDefinitionOk() (*JobDefinition, bool) {
+func (o *ThreatHuntingJobResponseAttributes) GetJobDefinitionOk() (*JobDefinition, bool) {
 	if o == nil || o.JobDefinition == nil {
 		return nil, false
 	}
@@ -179,17 +179,17 @@ func (o *HistoricalJobResponseAttributes) GetJobDefinitionOk() (*JobDefinition, 
 }
 
 // HasJobDefinition returns a boolean if a field has been set.
-func (o *HistoricalJobResponseAttributes) HasJobDefinition() bool {
+func (o *ThreatHuntingJobResponseAttributes) HasJobDefinition() bool {
 	return o != nil && o.JobDefinition != nil
 }
 
 // SetJobDefinition gets a reference to the given JobDefinition and assigns it to the JobDefinition field.
-func (o *HistoricalJobResponseAttributes) SetJobDefinition(v JobDefinition) {
+func (o *ThreatHuntingJobResponseAttributes) SetJobDefinition(v JobDefinition) {
 	o.JobDefinition = &v
 }
 
 // GetJobName returns the JobName field value if set, zero value otherwise.
-func (o *HistoricalJobResponseAttributes) GetJobName() string {
+func (o *ThreatHuntingJobResponseAttributes) GetJobName() string {
 	if o == nil || o.JobName == nil {
 		var ret string
 		return ret
@@ -199,7 +199,7 @@ func (o *HistoricalJobResponseAttributes) GetJobName() string {
 
 // GetJobNameOk returns a tuple with the JobName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobResponseAttributes) GetJobNameOk() (*string, bool) {
+func (o *ThreatHuntingJobResponseAttributes) GetJobNameOk() (*string, bool) {
 	if o == nil || o.JobName == nil {
 		return nil, false
 	}
@@ -207,17 +207,17 @@ func (o *HistoricalJobResponseAttributes) GetJobNameOk() (*string, bool) {
 }
 
 // HasJobName returns a boolean if a field has been set.
-func (o *HistoricalJobResponseAttributes) HasJobName() bool {
+func (o *ThreatHuntingJobResponseAttributes) HasJobName() bool {
 	return o != nil && o.JobName != nil
 }
 
 // SetJobName gets a reference to the given string and assigns it to the JobName field.
-func (o *HistoricalJobResponseAttributes) SetJobName(v string) {
+func (o *ThreatHuntingJobResponseAttributes) SetJobName(v string) {
 	o.JobName = &v
 }
 
 // GetJobStatus returns the JobStatus field value if set, zero value otherwise.
-func (o *HistoricalJobResponseAttributes) GetJobStatus() string {
+func (o *ThreatHuntingJobResponseAttributes) GetJobStatus() string {
 	if o == nil || o.JobStatus == nil {
 		var ret string
 		return ret
@@ -227,7 +227,7 @@ func (o *HistoricalJobResponseAttributes) GetJobStatus() string {
 
 // GetJobStatusOk returns a tuple with the JobStatus field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobResponseAttributes) GetJobStatusOk() (*string, bool) {
+func (o *ThreatHuntingJobResponseAttributes) GetJobStatusOk() (*string, bool) {
 	if o == nil || o.JobStatus == nil {
 		return nil, false
 	}
@@ -235,17 +235,17 @@ func (o *HistoricalJobResponseAttributes) GetJobStatusOk() (*string, bool) {
 }
 
 // HasJobStatus returns a boolean if a field has been set.
-func (o *HistoricalJobResponseAttributes) HasJobStatus() bool {
+func (o *ThreatHuntingJobResponseAttributes) HasJobStatus() bool {
 	return o != nil && o.JobStatus != nil
 }
 
 // SetJobStatus gets a reference to the given string and assigns it to the JobStatus field.
-func (o *HistoricalJobResponseAttributes) SetJobStatus(v string) {
+func (o *ThreatHuntingJobResponseAttributes) SetJobStatus(v string) {
 	o.JobStatus = &v
 }
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
-func (o *HistoricalJobResponseAttributes) GetModifiedAt() string {
+func (o *ThreatHuntingJobResponseAttributes) GetModifiedAt() string {
 	if o == nil || o.ModifiedAt == nil {
 		var ret string
 		return ret
@@ -255,7 +255,7 @@ func (o *HistoricalJobResponseAttributes) GetModifiedAt() string {
 
 // GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobResponseAttributes) GetModifiedAtOk() (*string, bool) {
+func (o *ThreatHuntingJobResponseAttributes) GetModifiedAtOk() (*string, bool) {
 	if o == nil || o.ModifiedAt == nil {
 		return nil, false
 	}
@@ -263,17 +263,17 @@ func (o *HistoricalJobResponseAttributes) GetModifiedAtOk() (*string, bool) {
 }
 
 // HasModifiedAt returns a boolean if a field has been set.
-func (o *HistoricalJobResponseAttributes) HasModifiedAt() bool {
+func (o *ThreatHuntingJobResponseAttributes) HasModifiedAt() bool {
 	return o != nil && o.ModifiedAt != nil
 }
 
 // SetModifiedAt gets a reference to the given string and assigns it to the ModifiedAt field.
-func (o *HistoricalJobResponseAttributes) SetModifiedAt(v string) {
+func (o *ThreatHuntingJobResponseAttributes) SetModifiedAt(v string) {
 	o.ModifiedAt = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o HistoricalJobResponseAttributes) MarshalJSON() ([]byte, error) {
+func (o ThreatHuntingJobResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -310,7 +310,7 @@ func (o HistoricalJobResponseAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *HistoricalJobResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ThreatHuntingJobResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CreatedAt         *string        `json:"createdAt,omitempty"`
 		CreatedByHandle   *string        `json:"createdByHandle,omitempty"`

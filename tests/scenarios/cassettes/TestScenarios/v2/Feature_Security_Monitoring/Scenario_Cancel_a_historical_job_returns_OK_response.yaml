@@ -10,9 +10,9 @@ interactions:
       - application/json
     id: 0
     method: POST
-    url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs
+    url: https://api.datadoghq.com/api/v2/siem-threat-hunting/jobs
   response:
-    body: '{"data":{"id":"e332b07e-d573-45fa-b2df-9a1bcc27f17e","type":"historicalDetectionsJob"}}'
+    body: '{"data":{"id":"cafe565c-106b-486e-ad21-a712656723b4","type":"historicalDetectionsJob"}}'
     code: 201
     duration: 0ms
     headers:
@@ -27,7 +27,7 @@ interactions:
       - '*/*'
     id: 1
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs/e332b07e-d573-45fa-b2df-9a1bcc27f17e/cancel
+    url: https://api.datadoghq.com/api/v2/siem-threat-hunting/jobs/cafe565c-106b-486e-ad21-a712656723b4/cancel
   response:
     body: ''
     code: 204

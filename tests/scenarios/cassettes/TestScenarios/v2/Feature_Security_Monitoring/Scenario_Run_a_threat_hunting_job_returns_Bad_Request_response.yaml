@@ -10,7 +10,7 @@ interactions:
       - application/json
     id: 0
     method: POST
-    url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs
+    url: https://api.datadoghq.com/api/v2/siem-threat-hunting/jobs
   response:
     body: '{"errors":["input_validation_error(Field ''index'' is invalid: Invalid
       index): Index must exist"]}'

@@ -7,10 +7,9 @@ interactions:
       - '*/*'
     id: 0
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs/8e2a37fb-b0c8-4761-a7f0-0a8d6a98ba93
+    url: https://api.datadoghq.com/api/v2/siem-threat-hunting/jobs/8e2a37fb-b0c8-4761-a7f0-0a8d6a98ba93
   response:
-    body: '{"errors":[{"status":"404","title":"Not Found","detail":"Job 8e2a37fb-b0c8-4761-a7f0-0a8d6a98ba93
-      was not found."}]}'
+    body: '{"errors":[{"status":"404","detail":"Not Found"}]}'
     code: 404
     duration: 0ms
     headers:
