@@ -1,4 +1,4 @@
-// Delete GCP Scan Options returns "No Content" response
+// Delete GCP scan options returns "No Content" response
 
 package main
 

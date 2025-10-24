@@ -1,0 +1,20 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 0
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/agentless_scanning/accounts/aws/000000000005
+  response:
+    body: '{"errors":[{"status":"404","detail":"no aws scan options found for account
+      000000000005"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

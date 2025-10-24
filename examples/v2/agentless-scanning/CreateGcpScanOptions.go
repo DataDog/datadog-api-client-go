@@ -1,4 +1,4 @@
-// Post GCP Scan Options returns "Agentless scan options enabled successfully." response
+// Create GCP scan options returns "Agentless scan options enabled successfully." response
 
 package main
 

@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/agentless_scanning/accounts/gcp
+  response:
+    body: '{"data":[{"id":"invalid/project/id","type":"gcp_scan_options","attributes":{"vuln_containers_os":true,"vuln_host_os":true}},{"id":"api-spec-test","type":"gcp_scan_options","attributes":{"vuln_containers_os":false,"vuln_host_os":true}}]}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2

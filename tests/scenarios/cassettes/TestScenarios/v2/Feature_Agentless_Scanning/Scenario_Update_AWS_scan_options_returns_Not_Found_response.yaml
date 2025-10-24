@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"vuln_containers_os":true,"vuln_host_os":true},"id":"000000000005","type":"aws_scan_options"}}
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/agentless_scanning/accounts/aws/000000000005
+  response:
+    body: '{"errors":[{"status":"404","detail":"no aws scan options found for account
+      000000000005"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

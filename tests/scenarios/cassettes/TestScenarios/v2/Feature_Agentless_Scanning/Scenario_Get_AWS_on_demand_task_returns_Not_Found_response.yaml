@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/agentless_scanning/ondemand/aws/00000000-0000-0000-824a-000000000000
+  response:
+    body: '{"errors":[{"status":"404","detail":"no task found with id ''00000000-0000-0000-824a-000000000000''"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2
