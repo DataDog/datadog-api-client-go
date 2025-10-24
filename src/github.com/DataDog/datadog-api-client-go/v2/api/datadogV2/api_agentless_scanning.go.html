@@ -72,7 +72,7 @@
 <span id="L15" class="ln">    15  </span><span class="comment">// AgentlessScanningApi service type</span>
 <span id="L16" class="ln">    16  </span>type AgentlessScanningApi datadog.Service
 <span id="L17" class="ln">    17  </span>
-<span id="L18" class="ln">    18  </span><span class="comment">// CreateAwsOnDemandTask Post an AWS on demand task.</span>
+<span id="L18" class="ln">    18  </span><span class="comment">// CreateAwsOnDemandTask Create AWS on demand task.</span>
 <span id="L19" class="ln">    19  </span><span class="comment">// Trigger the scan of an AWS resource with a high priority. Agentless scanning must be activated for the AWS account containing the resource to scan.</span>
 <span id="L20" class="ln">    20  </span>func (a *AgentlessScanningApi) CreateAwsOnDemandTask(ctx _context.Context, body AwsOnDemandCreateRequest) (AwsOnDemandResponse, *_nethttp.Response, error) {
 <span id="L21" class="ln">    21  </span>	var (
@@ -152,7 +152,7 @@
 <span id="L95" class="ln">    95  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L96" class="ln">    96  </span>}
 <span id="L97" class="ln">    97  </span>
-<span id="L98" class="ln">    98  </span><span class="comment">// CreateAwsScanOptions Post AWS Scan Options.</span>
+<span id="L98" class="ln">    98  </span><span class="comment">// CreateAwsScanOptions Create AWS scan options.</span>
 <span id="L99" class="ln">    99  </span><span class="comment">// Activate Agentless scan options for an AWS account.</span>
 <span id="L100" class="ln">   100  </span>func (a *AgentlessScanningApi) CreateAwsScanOptions(ctx _context.Context, body AwsScanOptionsCreateRequest) (AwsScanOptionsResponse, *_nethttp.Response, error) {
 <span id="L101" class="ln">   101  </span>	var (
@@ -232,7 +232,7 @@
 <span id="L175" class="ln">   175  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L176" class="ln">   176  </span>}
 <span id="L177" class="ln">   177  </span>
-<span id="L178" class="ln">   178  </span><span class="comment">// CreateAzureScanOptions Create azure scan options.</span>
+<span id="L178" class="ln">   178  </span><span class="comment">// CreateAzureScanOptions Create Azure scan options.</span>
 <span id="L179" class="ln">   179  </span><span class="comment">// Activate Agentless scan options for an Azure subscription.</span>
 <span id="L180" class="ln">   180  </span>func (a *AgentlessScanningApi) CreateAzureScanOptions(ctx _context.Context, body AzureScanOptions) (AzureScanOptions, *_nethttp.Response, error) {
 <span id="L181" class="ln">   181  </span>	var (
@@ -312,7 +312,7 @@
 <span id="L255" class="ln">   255  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L256" class="ln">   256  </span>}
 <span id="L257" class="ln">   257  </span>
-<span id="L258" class="ln">   258  </span><span class="comment">// CreateGcpScanOptions Post GCP Scan Options.</span>
+<span id="L258" class="ln">   258  </span><span class="comment">// CreateGcpScanOptions Create GCP scan options.</span>
 <span id="L259" class="ln">   259  </span><span class="comment">// Activate Agentless scan options for a GCP project.</span>
 <span id="L260" class="ln">   260  </span>func (a *AgentlessScanningApi) CreateGcpScanOptions(ctx _context.Context, body GcpScanOptions) (GcpScanOptions, *_nethttp.Response, error) {
 <span id="L261" class="ln">   261  </span>	var (
@@ -392,7 +392,7 @@
 <span id="L335" class="ln">   335  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L336" class="ln">   336  </span>}
 <span id="L337" class="ln">   337  </span>
-<span id="L338" class="ln">   338  </span><span class="comment">// DeleteAwsScanOptions Delete AWS Scan Options.</span>
+<span id="L338" class="ln">   338  </span><span class="comment">// DeleteAwsScanOptions Delete AWS scan options.</span>
 <span id="L339" class="ln">   339  </span><span class="comment">// Delete Agentless scan options for an AWS account.</span>
 <span id="L340" class="ln">   340  </span>func (a *AgentlessScanningApi) DeleteAwsScanOptions(ctx _context.Context, accountId string) (*_nethttp.Response, error) {
 <span id="L341" class="ln">   341  </span>	var (
@@ -460,7 +460,7 @@
 <span id="L403" class="ln">   403  </span>	return localVarHTTPResponse, nil
 <span id="L404" class="ln">   404  </span>}
 <span id="L405" class="ln">   405  </span>
-<span id="L406" class="ln">   406  </span><span class="comment">// DeleteAzureScanOptions Delete azure scan options.</span>
+<span id="L406" class="ln">   406  </span><span class="comment">// DeleteAzureScanOptions Delete Azure scan options.</span>
 <span id="L407" class="ln">   407  </span><span class="comment">// Delete Agentless scan options for an Azure subscription.</span>
 <span id="L408" class="ln">   408  </span>func (a *AgentlessScanningApi) DeleteAzureScanOptions(ctx _context.Context, subscriptionId string) (*_nethttp.Response, error) {
 <span id="L409" class="ln">   409  </span>	var (
@@ -528,7 +528,7 @@
 <span id="L471" class="ln">   471  </span>	return localVarHTTPResponse, nil
 <span id="L472" class="ln">   472  </span>}
 <span id="L473" class="ln">   473  </span>
-<span id="L474" class="ln">   474  </span><span class="comment">// DeleteGcpScanOptions Delete GCP Scan Options.</span>
+<span id="L474" class="ln">   474  </span><span class="comment">// DeleteGcpScanOptions Delete GCP scan options.</span>
 <span id="L475" class="ln">   475  </span><span class="comment">// Delete Agentless scan options for a GCP project.</span>
 <span id="L476" class="ln">   476  </span>func (a *AgentlessScanningApi) DeleteGcpScanOptions(ctx _context.Context, projectId string) (*_nethttp.Response, error) {
 <span id="L477" class="ln">   477  </span>	var (
@@ -596,7 +596,7 @@
 <span id="L539" class="ln">   539  </span>	return localVarHTTPResponse, nil
 <span id="L540" class="ln">   540  </span>}
 <span id="L541" class="ln">   541  </span>
-<span id="L542" class="ln">   542  </span><span class="comment">// GetAwsOnDemandTask Get AWS On Demand task by id.</span>
+<span id="L542" class="ln">   542  </span><span class="comment">// GetAwsOnDemandTask Get AWS on demand task.</span>
 <span id="L543" class="ln">   543  </span><span class="comment">// Fetch the data of a specific on demand task.</span>
 <span id="L544" class="ln">   544  </span>func (a *AgentlessScanningApi) GetAwsOnDemandTask(ctx _context.Context, taskId string) (AwsOnDemandResponse, *_nethttp.Response, error) {
 <span id="L545" class="ln">   545  </span>	var (
@@ -908,7 +908,7 @@
 <span id="L851" class="ln">   851  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L852" class="ln">   852  </span>}
 <span id="L853" class="ln">   853  </span>
-<span id="L854" class="ln">   854  </span><span class="comment">// ListAwsOnDemandTasks Get AWS On Demand tasks.</span>
+<span id="L854" class="ln">   854  </span><span class="comment">// ListAwsOnDemandTasks List AWS on demand tasks.</span>
 <span id="L855" class="ln">   855  </span><span class="comment">// Fetches the most recent 1000 AWS on demand tasks.</span>
 <span id="L856" class="ln">   856  </span>func (a *AgentlessScanningApi) ListAwsOnDemandTasks(ctx _context.Context) (AwsOnDemandListResponse, *_nethttp.Response, error) {
 <span id="L857" class="ln">   857  </span>	var (
@@ -985,7 +985,7 @@
 <span id="L928" class="ln">   928  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L929" class="ln">   929  </span>}
 <span id="L930" class="ln">   930  </span>
-<span id="L931" class="ln">   931  </span><span class="comment">// ListAwsScanOptions List AWS Scan Options.</span>
+<span id="L931" class="ln">   931  </span><span class="comment">// ListAwsScanOptions List AWS scan options.</span>
 <span id="L932" class="ln">   932  </span><span class="comment">// Fetches the scan options configured for AWS accounts.</span>
 <span id="L933" class="ln">   933  </span>func (a *AgentlessScanningApi) ListAwsScanOptions(ctx _context.Context) (AwsScanOptionsListResponse, *_nethttp.Response, error) {
 <span id="L934" class="ln">   934  </span>	var (
@@ -1062,7 +1062,7 @@
 <span id="L1005" class="ln">  1005  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1006" class="ln">  1006  </span>}
 <span id="L1007" class="ln">  1007  </span>
-<span id="L1008" class="ln">  1008  </span><span class="comment">// ListAzureScanOptions List azure scan options.</span>
+<span id="L1008" class="ln">  1008  </span><span class="comment">// ListAzureScanOptions List Azure scan options.</span>
 <span id="L1009" class="ln">  1009  </span><span class="comment">// Fetches the scan options configured for Azure accounts.</span>
 <span id="L1010" class="ln">  1010  </span>func (a *AgentlessScanningApi) ListAzureScanOptions(ctx _context.Context) (AzureScanOptionsArray, *_nethttp.Response, error) {
 <span id="L1011" class="ln">  1011  </span>	var (
@@ -1139,7 +1139,7 @@
 <span id="L1082" class="ln">  1082  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1083" class="ln">  1083  </span>}
 <span id="L1084" class="ln">  1084  </span>
-<span id="L1085" class="ln">  1085  </span><span class="comment">// ListGcpScanOptions List GCP Scan Options.</span>
+<span id="L1085" class="ln">  1085  </span><span class="comment">// ListGcpScanOptions List GCP scan options.</span>
 <span id="L1086" class="ln">  1086  </span><span class="comment">// Fetches the scan options configured for all GCP projects.</span>
 <span id="L1087" class="ln">  1087  </span>func (a *AgentlessScanningApi) ListGcpScanOptions(ctx _context.Context) (GcpScanOptionsArray, *_nethttp.Response, error) {
 <span id="L1088" class="ln">  1088  </span>	var (
@@ -1216,7 +1216,7 @@
 <span id="L1159" class="ln">  1159  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1160" class="ln">  1160  </span>}
 <span id="L1161" class="ln">  1161  </span>
-<span id="L1162" class="ln">  1162  </span><span class="comment">// UpdateAwsScanOptions Patch AWS Scan Options.</span>
+<span id="L1162" class="ln">  1162  </span><span class="comment">// UpdateAwsScanOptions Update AWS scan options.</span>
 <span id="L1163" class="ln">  1163  </span><span class="comment">// Update the Agentless scan options for an activated account.</span>
 <span id="L1164" class="ln">  1164  </span>func (a *AgentlessScanningApi) UpdateAwsScanOptions(ctx _context.Context, accountId string, body AwsScanOptionsUpdateRequest) (*_nethttp.Response, error) {
 <span id="L1165" class="ln">  1165  </span>	var (
@@ -1287,7 +1287,7 @@
 <span id="L1230" class="ln">  1230  </span>	return localVarHTTPResponse, nil
 <span id="L1231" class="ln">  1231  </span>}
 <span id="L1232" class="ln">  1232  </span>
-<span id="L1233" class="ln">  1233  </span><span class="comment">// UpdateAzureScanOptions Update azure scan options.</span>
+<span id="L1233" class="ln">  1233  </span><span class="comment">// UpdateAzureScanOptions Update Azure scan options.</span>
 <span id="L1234" class="ln">  1234  </span><span class="comment">// Update the Agentless scan options for an activated subscription.</span>
 <span id="L1235" class="ln">  1235  </span>func (a *AgentlessScanningApi) UpdateAzureScanOptions(ctx _context.Context, subscriptionId string, body AzureScanOptionsInputUpdate) (AzureScanOptions, *_nethttp.Response, error) {
 <span id="L1236" class="ln">  1236  </span>	var (
@@ -1368,7 +1368,7 @@
 <span id="L1311" class="ln">  1311  </span>	return localVarReturnValue, localVarHTTPResponse, nil
 <span id="L1312" class="ln">  1312  </span>}
 <span id="L1313" class="ln">  1313  </span>
-<span id="L1314" class="ln">  1314  </span><span class="comment">// UpdateGcpScanOptions Patch GCP Scan Options.</span>
+<span id="L1314" class="ln">  1314  </span><span class="comment">// UpdateGcpScanOptions Update GCP scan options.</span>
 <span id="L1315" class="ln">  1315  </span><span class="comment">// Update the Agentless scan options for an activated GCP project.</span>
 <span id="L1316" class="ln">  1316  </span>func (a *AgentlessScanningApi) UpdateGcpScanOptions(ctx _context.Context, projectId string, body GcpScanOptionsInputUpdate) (GcpScanOptions, *_nethttp.Response, error) {
 <span id="L1317" class="ln">  1317  </span>	var (
