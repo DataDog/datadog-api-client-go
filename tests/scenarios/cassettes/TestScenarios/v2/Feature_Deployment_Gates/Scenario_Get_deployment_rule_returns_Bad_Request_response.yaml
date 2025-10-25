@@ -1,0 +1,95 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"dry_run":false,"env":"production","identifier":"my-gate","service":"my-service"},"type":"deployment_gate"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/deployment_gates
+  response:
+    body: '{"data":{"id":"77f93166-2bf5-40c9-a9cb-fb4155595f99","type":"deployment_gate","attributes":{"created_at":"2025-10-24T09:11:36.349398Z","created_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"dry_run":false,"env":"production","identifier":"my-gate","service":"my-service","updated_at":"2025-10-24T09:11:36.349398Z","updated_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"dry_run":false,"name":"My deployment rule","options":{"excluded_resources":[]},"type":"faulty_deployment_detection"},"type":"deployment_rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
+    url: https://api.datadoghq.com/api/v2/deployment_gates/77f93166-2bf5-40c9-a9cb-fb4155595f99/rules
+  response:
+    body: '{"data":{"id":"a897eb5d-4a29-48b9-8f5b-ffc8150a9a88","type":"deployment_rule","attributes":{"created_at":"2025-10-24T09:11:36.623875Z","created_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"dry_run":false,"gate_id":"77f93166-2bf5-40c9-a9cb-fb4155595f99","name":"My
+      deployment rule","options":{},"type":"faulty_deployment_detection","updated_at":"2025-10-24T09:11:36.623875Z","updated_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 2
+    method: GET
+    url: https://api.datadoghq.com/api/v2/deployment_gates/invalid-gate-id/rules/invalid-rule-id
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"attribute \"gate_id\"
+      Invalid id"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 3
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/deployment_gates/77f93166-2bf5-40c9-a9cb-fb4155595f99/rules/a897eb5d-4a29-48b9-8f5b-ffc8150a9a88
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 4
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/deployment_gates/77f93166-2bf5-40c9-a9cb-fb4155595f99
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
