@@ -183,28 +183,46 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 //
 // #### Supported resources
 // Restriction policies can be applied to the following resources:
-// - Dashboards: `dashboard`
-// - Integration Services: `integration-service`
-// - Integration Webhooks: `integration-webhook`
-// - Notebooks: `notebook`
-// - Powerpacks: `powerpack`
-// - Reference Tables: `reference-table`
-// - Security Rules: `security-rule`
-// - Service Level Objectives: `slo`
-// - Synthetic Global Variables: `synthetics-global-variable`
-// - Synthetic Tests: `synthetics-test`
-// - Synthetic Private Locations: `synthetics-private-location`
-// - Monitors: `monitor`
-// - Workflows: `workflow`
+// - APM Service Ingestion Configuration: `apm-service-ingestion-configuration`
 // - App Builder Apps: `app-builder-app`
+// - Apps Datastore: `apps-datastore`
+// - AWS Integration Configuration: `aws-integration-configuration`
+// - Azure Integration Configuration: `azure-integration-configuration`
+// - Case Management Project: `case-management-project`
 // - Connections: `connection`
 // - Connection Groups: `connection-group`
-// - RUM Applications: `rum-application`
 // - Cross Org Connections: `cross-org-connection`
-// - Spreadsheets: `spreadsheet`
-// - On-Call Schedules: `on-call-schedule`
+// - Dashboards: `dashboard`
+// - Feature Flag: `feature-flag`
+// - Form: `form`
+// - GCP Integration Configuration: `gcp-integration-configuration`
+// - Integration: `integration`
+// - Integration Accounts: `integration-account`
+// - Integration Services: `integration-service`
+// - Integration Webhooks: `integration-webhook`
+// - Logs Archive: `logs-archive`
+// - Logs Pipeline: `logs-pipeline`
+// - Logs Workspace: `logs-workspace`
+// - Monitors: `monitor`
+// - Notebooks: `notebook`
+// - Observability Pipelines Live Capture: `obs-pipelines-live-capture`
+// - Observability Pipelines Pipeline: `obs-pipelines-pipeline`
 // - On-Call Escalation Policies: `on-call-escalation-policy`
+// - On-Call Schedules: `on-call-schedule`
 // - On-Call Team Routing Rules: `on-call-team-routing-rules`
+// - Powerpacks: `powerpack`
+// - Private Action Runner: `private-action-runner`
+// - Reference Tables: `reference-table`
+// - RUM Applications: `rum-application`
+// - Seat: `seat`
+// - Security Rules: `security-rule`
+// - Service Level Objectives: `slo`
+// - Spreadsheets: `spreadsheet`
+// - Suppression Rule: `suppression-rule`
+// - Synthetic Global Variables: `synthetics-global-variable`
+// - Synthetic Private Locations: `synthetics-private-location`
+// - Synthetic Tests: `synthetics-test`
+// - Workflows: `workflow`
 //
 // #### Supported relations for resources
 // Resource Type               | Supported Relations
