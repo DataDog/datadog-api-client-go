@@ -8,38 +8,38 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RunHistoricalJobRequestAttributes Run a historical job request.
-type RunHistoricalJobRequestAttributes struct {
-	// Definition of a historical job based on a security monitoring rule.
+// RunThreatHuntingJobRequestAttributes Run a threat hunting job request.
+type RunThreatHuntingJobRequestAttributes struct {
+	// Definition of a threat hunting job based on a security monitoring rule.
 	FromRule *JobDefinitionFromRule `json:"fromRule,omitempty"`
 	// Request ID.
 	Id *string `json:"id,omitempty"`
-	// Definition of a historical job.
+	// Definition of a threat hunting job.
 	JobDefinition *JobDefinition `json:"jobDefinition,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRunHistoricalJobRequestAttributes instantiates a new RunHistoricalJobRequestAttributes object.
+// NewRunThreatHuntingJobRequestAttributes instantiates a new RunThreatHuntingJobRequestAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRunHistoricalJobRequestAttributes() *RunHistoricalJobRequestAttributes {
-	this := RunHistoricalJobRequestAttributes{}
+func NewRunThreatHuntingJobRequestAttributes() *RunThreatHuntingJobRequestAttributes {
+	this := RunThreatHuntingJobRequestAttributes{}
 	return &this
 }
 
-// NewRunHistoricalJobRequestAttributesWithDefaults instantiates a new RunHistoricalJobRequestAttributes object.
+// NewRunThreatHuntingJobRequestAttributesWithDefaults instantiates a new RunThreatHuntingJobRequestAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRunHistoricalJobRequestAttributesWithDefaults() *RunHistoricalJobRequestAttributes {
-	this := RunHistoricalJobRequestAttributes{}
+func NewRunThreatHuntingJobRequestAttributesWithDefaults() *RunThreatHuntingJobRequestAttributes {
+	this := RunThreatHuntingJobRequestAttributes{}
 	return &this
 }
 
 // GetFromRule returns the FromRule field value if set, zero value otherwise.
-func (o *RunHistoricalJobRequestAttributes) GetFromRule() JobDefinitionFromRule {
+func (o *RunThreatHuntingJobRequestAttributes) GetFromRule() JobDefinitionFromRule {
 	if o == nil || o.FromRule == nil {
 		var ret JobDefinitionFromRule
 		return ret
@@ -49,7 +49,7 @@ func (o *RunHistoricalJobRequestAttributes) GetFromRule() JobDefinitionFromRule 
 
 // GetFromRuleOk returns a tuple with the FromRule field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RunHistoricalJobRequestAttributes) GetFromRuleOk() (*JobDefinitionFromRule, bool) {
+func (o *RunThreatHuntingJobRequestAttributes) GetFromRuleOk() (*JobDefinitionFromRule, bool) {
 	if o == nil || o.FromRule == nil {
 		return nil, false
 	}
@@ -57,17 +57,17 @@ func (o *RunHistoricalJobRequestAttributes) GetFromRuleOk() (*JobDefinitionFromR
 }
 
 // HasFromRule returns a boolean if a field has been set.
-func (o *RunHistoricalJobRequestAttributes) HasFromRule() bool {
+func (o *RunThreatHuntingJobRequestAttributes) HasFromRule() bool {
 	return o != nil && o.FromRule != nil
 }
 
 // SetFromRule gets a reference to the given JobDefinitionFromRule and assigns it to the FromRule field.
-func (o *RunHistoricalJobRequestAttributes) SetFromRule(v JobDefinitionFromRule) {
+func (o *RunThreatHuntingJobRequestAttributes) SetFromRule(v JobDefinitionFromRule) {
 	o.FromRule = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *RunHistoricalJobRequestAttributes) GetId() string {
+func (o *RunThreatHuntingJobRequestAttributes) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -77,7 +77,7 @@ func (o *RunHistoricalJobRequestAttributes) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RunHistoricalJobRequestAttributes) GetIdOk() (*string, bool) {
+func (o *RunThreatHuntingJobRequestAttributes) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -85,17 +85,17 @@ func (o *RunHistoricalJobRequestAttributes) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *RunHistoricalJobRequestAttributes) HasId() bool {
+func (o *RunThreatHuntingJobRequestAttributes) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *RunHistoricalJobRequestAttributes) SetId(v string) {
+func (o *RunThreatHuntingJobRequestAttributes) SetId(v string) {
 	o.Id = &v
 }
 
 // GetJobDefinition returns the JobDefinition field value if set, zero value otherwise.
-func (o *RunHistoricalJobRequestAttributes) GetJobDefinition() JobDefinition {
+func (o *RunThreatHuntingJobRequestAttributes) GetJobDefinition() JobDefinition {
 	if o == nil || o.JobDefinition == nil {
 		var ret JobDefinition
 		return ret
@@ -105,7 +105,7 @@ func (o *RunHistoricalJobRequestAttributes) GetJobDefinition() JobDefinition {
 
 // GetJobDefinitionOk returns a tuple with the JobDefinition field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RunHistoricalJobRequestAttributes) GetJobDefinitionOk() (*JobDefinition, bool) {
+func (o *RunThreatHuntingJobRequestAttributes) GetJobDefinitionOk() (*JobDefinition, bool) {
 	if o == nil || o.JobDefinition == nil {
 		return nil, false
 	}
@@ -113,17 +113,17 @@ func (o *RunHistoricalJobRequestAttributes) GetJobDefinitionOk() (*JobDefinition
 }
 
 // HasJobDefinition returns a boolean if a field has been set.
-func (o *RunHistoricalJobRequestAttributes) HasJobDefinition() bool {
+func (o *RunThreatHuntingJobRequestAttributes) HasJobDefinition() bool {
 	return o != nil && o.JobDefinition != nil
 }
 
 // SetJobDefinition gets a reference to the given JobDefinition and assigns it to the JobDefinition field.
-func (o *RunHistoricalJobRequestAttributes) SetJobDefinition(v JobDefinition) {
+func (o *RunThreatHuntingJobRequestAttributes) SetJobDefinition(v JobDefinition) {
 	o.JobDefinition = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RunHistoricalJobRequestAttributes) MarshalJSON() ([]byte, error) {
+func (o RunThreatHuntingJobRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -145,7 +145,7 @@ func (o RunHistoricalJobRequestAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RunHistoricalJobRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RunThreatHuntingJobRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		FromRule      *JobDefinitionFromRule `json:"fromRule,omitempty"`
 		Id            *string                `json:"id,omitempty"`

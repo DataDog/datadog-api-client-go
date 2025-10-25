@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RunHistoricalJobRequest Run a historical job request.
-type RunHistoricalJobRequest struct {
-	// Data for running a historical job request.
-	Data *RunHistoricalJobRequestData `json:"data,omitempty"`
+// ThreatHuntingJobResponse Threat hunting job response.
+type ThreatHuntingJobResponse struct {
+	// Threat hunting job response data.
+	Data *ThreatHuntingJobResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRunHistoricalJobRequest instantiates a new RunHistoricalJobRequest object.
+// NewThreatHuntingJobResponse instantiates a new ThreatHuntingJobResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRunHistoricalJobRequest() *RunHistoricalJobRequest {
-	this := RunHistoricalJobRequest{}
+func NewThreatHuntingJobResponse() *ThreatHuntingJobResponse {
+	this := ThreatHuntingJobResponse{}
 	return &this
 }
 
-// NewRunHistoricalJobRequestWithDefaults instantiates a new RunHistoricalJobRequest object.
+// NewThreatHuntingJobResponseWithDefaults instantiates a new ThreatHuntingJobResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRunHistoricalJobRequestWithDefaults() *RunHistoricalJobRequest {
-	this := RunHistoricalJobRequest{}
+func NewThreatHuntingJobResponseWithDefaults() *ThreatHuntingJobResponse {
+	this := ThreatHuntingJobResponse{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *RunHistoricalJobRequest) GetData() RunHistoricalJobRequestData {
+func (o *ThreatHuntingJobResponse) GetData() ThreatHuntingJobResponseData {
 	if o == nil || o.Data == nil {
-		var ret RunHistoricalJobRequestData
+		var ret ThreatHuntingJobResponseData
 		return ret
 	}
 	return *o.Data
@@ -45,7 +45,7 @@ func (o *RunHistoricalJobRequest) GetData() RunHistoricalJobRequestData {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RunHistoricalJobRequest) GetDataOk() (*RunHistoricalJobRequestData, bool) {
+func (o *ThreatHuntingJobResponse) GetDataOk() (*ThreatHuntingJobResponseData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *RunHistoricalJobRequest) GetDataOk() (*RunHistoricalJobRequestData, boo
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *RunHistoricalJobRequest) HasData() bool {
+func (o *ThreatHuntingJobResponse) HasData() bool {
 	return o != nil && o.Data != nil
 }
 
-// SetData gets a reference to the given RunHistoricalJobRequestData and assigns it to the Data field.
-func (o *RunHistoricalJobRequest) SetData(v RunHistoricalJobRequestData) {
+// SetData gets a reference to the given ThreatHuntingJobResponseData and assigns it to the Data field.
+func (o *ThreatHuntingJobResponse) SetData(v ThreatHuntingJobResponseData) {
 	o.Data = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RunHistoricalJobRequest) MarshalJSON() ([]byte, error) {
+func (o ThreatHuntingJobResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,9 +79,9 @@ func (o RunHistoricalJobRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RunHistoricalJobRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ThreatHuntingJobResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *RunHistoricalJobRequestData `json:"data,omitempty"`
+		Data *ThreatHuntingJobResponseData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

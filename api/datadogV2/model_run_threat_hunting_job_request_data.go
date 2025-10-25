@@ -8,38 +8,38 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RunHistoricalJobRequestData Data for running a historical job request.
-type RunHistoricalJobRequestData struct {
-	// Run a historical job request.
-	Attributes *RunHistoricalJobRequestAttributes `json:"attributes,omitempty"`
+// RunThreatHuntingJobRequestData Data for running a threat hunting job request.
+type RunThreatHuntingJobRequestData struct {
+	// Run a threat hunting job request.
+	Attributes *RunThreatHuntingJobRequestAttributes `json:"attributes,omitempty"`
 	// Type of data.
-	Type *RunHistoricalJobRequestDataType `json:"type,omitempty"`
+	Type *RunThreatHuntingJobRequestDataType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRunHistoricalJobRequestData instantiates a new RunHistoricalJobRequestData object.
+// NewRunThreatHuntingJobRequestData instantiates a new RunThreatHuntingJobRequestData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRunHistoricalJobRequestData() *RunHistoricalJobRequestData {
-	this := RunHistoricalJobRequestData{}
+func NewRunThreatHuntingJobRequestData() *RunThreatHuntingJobRequestData {
+	this := RunThreatHuntingJobRequestData{}
 	return &this
 }
 
-// NewRunHistoricalJobRequestDataWithDefaults instantiates a new RunHistoricalJobRequestData object.
+// NewRunThreatHuntingJobRequestDataWithDefaults instantiates a new RunThreatHuntingJobRequestData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRunHistoricalJobRequestDataWithDefaults() *RunHistoricalJobRequestData {
-	this := RunHistoricalJobRequestData{}
+func NewRunThreatHuntingJobRequestDataWithDefaults() *RunThreatHuntingJobRequestData {
+	this := RunThreatHuntingJobRequestData{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *RunHistoricalJobRequestData) GetAttributes() RunHistoricalJobRequestAttributes {
+func (o *RunThreatHuntingJobRequestData) GetAttributes() RunThreatHuntingJobRequestAttributes {
 	if o == nil || o.Attributes == nil {
-		var ret RunHistoricalJobRequestAttributes
+		var ret RunThreatHuntingJobRequestAttributes
 		return ret
 	}
 	return *o.Attributes
@@ -47,7 +47,7 @@ func (o *RunHistoricalJobRequestData) GetAttributes() RunHistoricalJobRequestAtt
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RunHistoricalJobRequestData) GetAttributesOk() (*RunHistoricalJobRequestAttributes, bool) {
+func (o *RunThreatHuntingJobRequestData) GetAttributesOk() (*RunThreatHuntingJobRequestAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -55,19 +55,19 @@ func (o *RunHistoricalJobRequestData) GetAttributesOk() (*RunHistoricalJobReques
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *RunHistoricalJobRequestData) HasAttributes() bool {
+func (o *RunThreatHuntingJobRequestData) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
-// SetAttributes gets a reference to the given RunHistoricalJobRequestAttributes and assigns it to the Attributes field.
-func (o *RunHistoricalJobRequestData) SetAttributes(v RunHistoricalJobRequestAttributes) {
+// SetAttributes gets a reference to the given RunThreatHuntingJobRequestAttributes and assigns it to the Attributes field.
+func (o *RunThreatHuntingJobRequestData) SetAttributes(v RunThreatHuntingJobRequestAttributes) {
 	o.Attributes = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *RunHistoricalJobRequestData) GetType() RunHistoricalJobRequestDataType {
+func (o *RunThreatHuntingJobRequestData) GetType() RunThreatHuntingJobRequestDataType {
 	if o == nil || o.Type == nil {
-		var ret RunHistoricalJobRequestDataType
+		var ret RunThreatHuntingJobRequestDataType
 		return ret
 	}
 	return *o.Type
@@ -75,7 +75,7 @@ func (o *RunHistoricalJobRequestData) GetType() RunHistoricalJobRequestDataType 
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RunHistoricalJobRequestData) GetTypeOk() (*RunHistoricalJobRequestDataType, bool) {
+func (o *RunThreatHuntingJobRequestData) GetTypeOk() (*RunThreatHuntingJobRequestDataType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -83,17 +83,17 @@ func (o *RunHistoricalJobRequestData) GetTypeOk() (*RunHistoricalJobRequestDataT
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *RunHistoricalJobRequestData) HasType() bool {
+func (o *RunThreatHuntingJobRequestData) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
-// SetType gets a reference to the given RunHistoricalJobRequestDataType and assigns it to the Type field.
-func (o *RunHistoricalJobRequestData) SetType(v RunHistoricalJobRequestDataType) {
+// SetType gets a reference to the given RunThreatHuntingJobRequestDataType and assigns it to the Type field.
+func (o *RunThreatHuntingJobRequestData) SetType(v RunThreatHuntingJobRequestDataType) {
 	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RunHistoricalJobRequestData) MarshalJSON() ([]byte, error) {
+func (o RunThreatHuntingJobRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -112,10 +112,10 @@ func (o RunHistoricalJobRequestData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RunHistoricalJobRequestData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *RunThreatHuntingJobRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *RunHistoricalJobRequestAttributes `json:"attributes,omitempty"`
-		Type       *RunHistoricalJobRequestDataType   `json:"type,omitempty"`
+		Attributes *RunThreatHuntingJobRequestAttributes `json:"attributes,omitempty"`
+		Type       *RunThreatHuntingJobRequestDataType   `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

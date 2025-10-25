@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HistoricalJobOptions Job options.
-type HistoricalJobOptions struct {
+// ThreatHuntingJobOptions Job options.
+type ThreatHuntingJobOptions struct {
 	// The detection method.
 	DetectionMethod *SecurityMonitoringRuleDetectionMethod `json:"detectionMethod,omitempty"`
 	// A time window is specified to match when at least one of the cases matches true. This is a sliding window
@@ -34,25 +34,25 @@ type HistoricalJobOptions struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewHistoricalJobOptions instantiates a new HistoricalJobOptions object.
+// NewThreatHuntingJobOptions instantiates a new ThreatHuntingJobOptions object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewHistoricalJobOptions() *HistoricalJobOptions {
-	this := HistoricalJobOptions{}
+func NewThreatHuntingJobOptions() *ThreatHuntingJobOptions {
+	this := ThreatHuntingJobOptions{}
 	return &this
 }
 
-// NewHistoricalJobOptionsWithDefaults instantiates a new HistoricalJobOptions object.
+// NewThreatHuntingJobOptionsWithDefaults instantiates a new ThreatHuntingJobOptions object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewHistoricalJobOptionsWithDefaults() *HistoricalJobOptions {
-	this := HistoricalJobOptions{}
+func NewThreatHuntingJobOptionsWithDefaults() *ThreatHuntingJobOptions {
+	this := ThreatHuntingJobOptions{}
 	return &this
 }
 
 // GetDetectionMethod returns the DetectionMethod field value if set, zero value otherwise.
-func (o *HistoricalJobOptions) GetDetectionMethod() SecurityMonitoringRuleDetectionMethod {
+func (o *ThreatHuntingJobOptions) GetDetectionMethod() SecurityMonitoringRuleDetectionMethod {
 	if o == nil || o.DetectionMethod == nil {
 		var ret SecurityMonitoringRuleDetectionMethod
 		return ret
@@ -62,7 +62,7 @@ func (o *HistoricalJobOptions) GetDetectionMethod() SecurityMonitoringRuleDetect
 
 // GetDetectionMethodOk returns a tuple with the DetectionMethod field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobOptions) GetDetectionMethodOk() (*SecurityMonitoringRuleDetectionMethod, bool) {
+func (o *ThreatHuntingJobOptions) GetDetectionMethodOk() (*SecurityMonitoringRuleDetectionMethod, bool) {
 	if o == nil || o.DetectionMethod == nil {
 		return nil, false
 	}
@@ -70,17 +70,17 @@ func (o *HistoricalJobOptions) GetDetectionMethodOk() (*SecurityMonitoringRuleDe
 }
 
 // HasDetectionMethod returns a boolean if a field has been set.
-func (o *HistoricalJobOptions) HasDetectionMethod() bool {
+func (o *ThreatHuntingJobOptions) HasDetectionMethod() bool {
 	return o != nil && o.DetectionMethod != nil
 }
 
 // SetDetectionMethod gets a reference to the given SecurityMonitoringRuleDetectionMethod and assigns it to the DetectionMethod field.
-func (o *HistoricalJobOptions) SetDetectionMethod(v SecurityMonitoringRuleDetectionMethod) {
+func (o *ThreatHuntingJobOptions) SetDetectionMethod(v SecurityMonitoringRuleDetectionMethod) {
 	o.DetectionMethod = &v
 }
 
 // GetEvaluationWindow returns the EvaluationWindow field value if set, zero value otherwise.
-func (o *HistoricalJobOptions) GetEvaluationWindow() SecurityMonitoringRuleEvaluationWindow {
+func (o *ThreatHuntingJobOptions) GetEvaluationWindow() SecurityMonitoringRuleEvaluationWindow {
 	if o == nil || o.EvaluationWindow == nil {
 		var ret SecurityMonitoringRuleEvaluationWindow
 		return ret
@@ -90,7 +90,7 @@ func (o *HistoricalJobOptions) GetEvaluationWindow() SecurityMonitoringRuleEvalu
 
 // GetEvaluationWindowOk returns a tuple with the EvaluationWindow field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobOptions) GetEvaluationWindowOk() (*SecurityMonitoringRuleEvaluationWindow, bool) {
+func (o *ThreatHuntingJobOptions) GetEvaluationWindowOk() (*SecurityMonitoringRuleEvaluationWindow, bool) {
 	if o == nil || o.EvaluationWindow == nil {
 		return nil, false
 	}
@@ -98,17 +98,17 @@ func (o *HistoricalJobOptions) GetEvaluationWindowOk() (*SecurityMonitoringRuleE
 }
 
 // HasEvaluationWindow returns a boolean if a field has been set.
-func (o *HistoricalJobOptions) HasEvaluationWindow() bool {
+func (o *ThreatHuntingJobOptions) HasEvaluationWindow() bool {
 	return o != nil && o.EvaluationWindow != nil
 }
 
 // SetEvaluationWindow gets a reference to the given SecurityMonitoringRuleEvaluationWindow and assigns it to the EvaluationWindow field.
-func (o *HistoricalJobOptions) SetEvaluationWindow(v SecurityMonitoringRuleEvaluationWindow) {
+func (o *ThreatHuntingJobOptions) SetEvaluationWindow(v SecurityMonitoringRuleEvaluationWindow) {
 	o.EvaluationWindow = &v
 }
 
 // GetImpossibleTravelOptions returns the ImpossibleTravelOptions field value if set, zero value otherwise.
-func (o *HistoricalJobOptions) GetImpossibleTravelOptions() SecurityMonitoringRuleImpossibleTravelOptions {
+func (o *ThreatHuntingJobOptions) GetImpossibleTravelOptions() SecurityMonitoringRuleImpossibleTravelOptions {
 	if o == nil || o.ImpossibleTravelOptions == nil {
 		var ret SecurityMonitoringRuleImpossibleTravelOptions
 		return ret
@@ -118,7 +118,7 @@ func (o *HistoricalJobOptions) GetImpossibleTravelOptions() SecurityMonitoringRu
 
 // GetImpossibleTravelOptionsOk returns a tuple with the ImpossibleTravelOptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobOptions) GetImpossibleTravelOptionsOk() (*SecurityMonitoringRuleImpossibleTravelOptions, bool) {
+func (o *ThreatHuntingJobOptions) GetImpossibleTravelOptionsOk() (*SecurityMonitoringRuleImpossibleTravelOptions, bool) {
 	if o == nil || o.ImpossibleTravelOptions == nil {
 		return nil, false
 	}
@@ -126,17 +126,17 @@ func (o *HistoricalJobOptions) GetImpossibleTravelOptionsOk() (*SecurityMonitori
 }
 
 // HasImpossibleTravelOptions returns a boolean if a field has been set.
-func (o *HistoricalJobOptions) HasImpossibleTravelOptions() bool {
+func (o *ThreatHuntingJobOptions) HasImpossibleTravelOptions() bool {
 	return o != nil && o.ImpossibleTravelOptions != nil
 }
 
 // SetImpossibleTravelOptions gets a reference to the given SecurityMonitoringRuleImpossibleTravelOptions and assigns it to the ImpossibleTravelOptions field.
-func (o *HistoricalJobOptions) SetImpossibleTravelOptions(v SecurityMonitoringRuleImpossibleTravelOptions) {
+func (o *ThreatHuntingJobOptions) SetImpossibleTravelOptions(v SecurityMonitoringRuleImpossibleTravelOptions) {
 	o.ImpossibleTravelOptions = &v
 }
 
 // GetKeepAlive returns the KeepAlive field value if set, zero value otherwise.
-func (o *HistoricalJobOptions) GetKeepAlive() SecurityMonitoringRuleKeepAlive {
+func (o *ThreatHuntingJobOptions) GetKeepAlive() SecurityMonitoringRuleKeepAlive {
 	if o == nil || o.KeepAlive == nil {
 		var ret SecurityMonitoringRuleKeepAlive
 		return ret
@@ -146,7 +146,7 @@ func (o *HistoricalJobOptions) GetKeepAlive() SecurityMonitoringRuleKeepAlive {
 
 // GetKeepAliveOk returns a tuple with the KeepAlive field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobOptions) GetKeepAliveOk() (*SecurityMonitoringRuleKeepAlive, bool) {
+func (o *ThreatHuntingJobOptions) GetKeepAliveOk() (*SecurityMonitoringRuleKeepAlive, bool) {
 	if o == nil || o.KeepAlive == nil {
 		return nil, false
 	}
@@ -154,17 +154,17 @@ func (o *HistoricalJobOptions) GetKeepAliveOk() (*SecurityMonitoringRuleKeepAliv
 }
 
 // HasKeepAlive returns a boolean if a field has been set.
-func (o *HistoricalJobOptions) HasKeepAlive() bool {
+func (o *ThreatHuntingJobOptions) HasKeepAlive() bool {
 	return o != nil && o.KeepAlive != nil
 }
 
 // SetKeepAlive gets a reference to the given SecurityMonitoringRuleKeepAlive and assigns it to the KeepAlive field.
-func (o *HistoricalJobOptions) SetKeepAlive(v SecurityMonitoringRuleKeepAlive) {
+func (o *ThreatHuntingJobOptions) SetKeepAlive(v SecurityMonitoringRuleKeepAlive) {
 	o.KeepAlive = &v
 }
 
 // GetMaxSignalDuration returns the MaxSignalDuration field value if set, zero value otherwise.
-func (o *HistoricalJobOptions) GetMaxSignalDuration() SecurityMonitoringRuleMaxSignalDuration {
+func (o *ThreatHuntingJobOptions) GetMaxSignalDuration() SecurityMonitoringRuleMaxSignalDuration {
 	if o == nil || o.MaxSignalDuration == nil {
 		var ret SecurityMonitoringRuleMaxSignalDuration
 		return ret
@@ -174,7 +174,7 @@ func (o *HistoricalJobOptions) GetMaxSignalDuration() SecurityMonitoringRuleMaxS
 
 // GetMaxSignalDurationOk returns a tuple with the MaxSignalDuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobOptions) GetMaxSignalDurationOk() (*SecurityMonitoringRuleMaxSignalDuration, bool) {
+func (o *ThreatHuntingJobOptions) GetMaxSignalDurationOk() (*SecurityMonitoringRuleMaxSignalDuration, bool) {
 	if o == nil || o.MaxSignalDuration == nil {
 		return nil, false
 	}
@@ -182,17 +182,17 @@ func (o *HistoricalJobOptions) GetMaxSignalDurationOk() (*SecurityMonitoringRule
 }
 
 // HasMaxSignalDuration returns a boolean if a field has been set.
-func (o *HistoricalJobOptions) HasMaxSignalDuration() bool {
+func (o *ThreatHuntingJobOptions) HasMaxSignalDuration() bool {
 	return o != nil && o.MaxSignalDuration != nil
 }
 
 // SetMaxSignalDuration gets a reference to the given SecurityMonitoringRuleMaxSignalDuration and assigns it to the MaxSignalDuration field.
-func (o *HistoricalJobOptions) SetMaxSignalDuration(v SecurityMonitoringRuleMaxSignalDuration) {
+func (o *ThreatHuntingJobOptions) SetMaxSignalDuration(v SecurityMonitoringRuleMaxSignalDuration) {
 	o.MaxSignalDuration = &v
 }
 
 // GetNewValueOptions returns the NewValueOptions field value if set, zero value otherwise.
-func (o *HistoricalJobOptions) GetNewValueOptions() SecurityMonitoringRuleNewValueOptions {
+func (o *ThreatHuntingJobOptions) GetNewValueOptions() SecurityMonitoringRuleNewValueOptions {
 	if o == nil || o.NewValueOptions == nil {
 		var ret SecurityMonitoringRuleNewValueOptions
 		return ret
@@ -202,7 +202,7 @@ func (o *HistoricalJobOptions) GetNewValueOptions() SecurityMonitoringRuleNewVal
 
 // GetNewValueOptionsOk returns a tuple with the NewValueOptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobOptions) GetNewValueOptionsOk() (*SecurityMonitoringRuleNewValueOptions, bool) {
+func (o *ThreatHuntingJobOptions) GetNewValueOptionsOk() (*SecurityMonitoringRuleNewValueOptions, bool) {
 	if o == nil || o.NewValueOptions == nil {
 		return nil, false
 	}
@@ -210,17 +210,17 @@ func (o *HistoricalJobOptions) GetNewValueOptionsOk() (*SecurityMonitoringRuleNe
 }
 
 // HasNewValueOptions returns a boolean if a field has been set.
-func (o *HistoricalJobOptions) HasNewValueOptions() bool {
+func (o *ThreatHuntingJobOptions) HasNewValueOptions() bool {
 	return o != nil && o.NewValueOptions != nil
 }
 
 // SetNewValueOptions gets a reference to the given SecurityMonitoringRuleNewValueOptions and assigns it to the NewValueOptions field.
-func (o *HistoricalJobOptions) SetNewValueOptions(v SecurityMonitoringRuleNewValueOptions) {
+func (o *ThreatHuntingJobOptions) SetNewValueOptions(v SecurityMonitoringRuleNewValueOptions) {
 	o.NewValueOptions = &v
 }
 
 // GetSequenceDetectionOptions returns the SequenceDetectionOptions field value if set, zero value otherwise.
-func (o *HistoricalJobOptions) GetSequenceDetectionOptions() SecurityMonitoringRuleSequenceDetectionOptions {
+func (o *ThreatHuntingJobOptions) GetSequenceDetectionOptions() SecurityMonitoringRuleSequenceDetectionOptions {
 	if o == nil || o.SequenceDetectionOptions == nil {
 		var ret SecurityMonitoringRuleSequenceDetectionOptions
 		return ret
@@ -230,7 +230,7 @@ func (o *HistoricalJobOptions) GetSequenceDetectionOptions() SecurityMonitoringR
 
 // GetSequenceDetectionOptionsOk returns a tuple with the SequenceDetectionOptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobOptions) GetSequenceDetectionOptionsOk() (*SecurityMonitoringRuleSequenceDetectionOptions, bool) {
+func (o *ThreatHuntingJobOptions) GetSequenceDetectionOptionsOk() (*SecurityMonitoringRuleSequenceDetectionOptions, bool) {
 	if o == nil || o.SequenceDetectionOptions == nil {
 		return nil, false
 	}
@@ -238,17 +238,17 @@ func (o *HistoricalJobOptions) GetSequenceDetectionOptionsOk() (*SecurityMonitor
 }
 
 // HasSequenceDetectionOptions returns a boolean if a field has been set.
-func (o *HistoricalJobOptions) HasSequenceDetectionOptions() bool {
+func (o *ThreatHuntingJobOptions) HasSequenceDetectionOptions() bool {
 	return o != nil && o.SequenceDetectionOptions != nil
 }
 
 // SetSequenceDetectionOptions gets a reference to the given SecurityMonitoringRuleSequenceDetectionOptions and assigns it to the SequenceDetectionOptions field.
-func (o *HistoricalJobOptions) SetSequenceDetectionOptions(v SecurityMonitoringRuleSequenceDetectionOptions) {
+func (o *ThreatHuntingJobOptions) SetSequenceDetectionOptions(v SecurityMonitoringRuleSequenceDetectionOptions) {
 	o.SequenceDetectionOptions = &v
 }
 
 // GetThirdPartyRuleOptions returns the ThirdPartyRuleOptions field value if set, zero value otherwise.
-func (o *HistoricalJobOptions) GetThirdPartyRuleOptions() SecurityMonitoringRuleThirdPartyOptions {
+func (o *ThreatHuntingJobOptions) GetThirdPartyRuleOptions() SecurityMonitoringRuleThirdPartyOptions {
 	if o == nil || o.ThirdPartyRuleOptions == nil {
 		var ret SecurityMonitoringRuleThirdPartyOptions
 		return ret
@@ -258,7 +258,7 @@ func (o *HistoricalJobOptions) GetThirdPartyRuleOptions() SecurityMonitoringRule
 
 // GetThirdPartyRuleOptionsOk returns a tuple with the ThirdPartyRuleOptions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobOptions) GetThirdPartyRuleOptionsOk() (*SecurityMonitoringRuleThirdPartyOptions, bool) {
+func (o *ThreatHuntingJobOptions) GetThirdPartyRuleOptionsOk() (*SecurityMonitoringRuleThirdPartyOptions, bool) {
 	if o == nil || o.ThirdPartyRuleOptions == nil {
 		return nil, false
 	}
@@ -266,17 +266,17 @@ func (o *HistoricalJobOptions) GetThirdPartyRuleOptionsOk() (*SecurityMonitoring
 }
 
 // HasThirdPartyRuleOptions returns a boolean if a field has been set.
-func (o *HistoricalJobOptions) HasThirdPartyRuleOptions() bool {
+func (o *ThreatHuntingJobOptions) HasThirdPartyRuleOptions() bool {
 	return o != nil && o.ThirdPartyRuleOptions != nil
 }
 
 // SetThirdPartyRuleOptions gets a reference to the given SecurityMonitoringRuleThirdPartyOptions and assigns it to the ThirdPartyRuleOptions field.
-func (o *HistoricalJobOptions) SetThirdPartyRuleOptions(v SecurityMonitoringRuleThirdPartyOptions) {
+func (o *ThreatHuntingJobOptions) SetThirdPartyRuleOptions(v SecurityMonitoringRuleThirdPartyOptions) {
 	o.ThirdPartyRuleOptions = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o HistoricalJobOptions) MarshalJSON() ([]byte, error) {
+func (o ThreatHuntingJobOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -313,7 +313,7 @@ func (o HistoricalJobOptions) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *HistoricalJobOptions) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ThreatHuntingJobOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DetectionMethod          *SecurityMonitoringRuleDetectionMethod          `json:"detectionMethod,omitempty"`
 		EvaluationWindow         *SecurityMonitoringRuleEvaluationWindow         `json:"evaluationWindow,omitempty"`
