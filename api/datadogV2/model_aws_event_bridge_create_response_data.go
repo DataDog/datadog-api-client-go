@@ -10,47 +10,48 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSAccountUpdateRequestData AWS Account Update Request data.
-type AWSAccountUpdateRequestData struct {
-	// The AWS Account Integration Config to be updated.
-	Attributes AWSAccountUpdateRequestAttributes `json:"attributes"`
-	// Unique Datadog ID of the AWS Account Integration Config.
-	// To get the config ID for an account, use the
-	// [List all AWS integrations](https://docs.datadoghq.com/api/latest/aws-integration/#list-all-aws-integrations)
-	// endpoint and query by AWS Account ID.
+// AWSEventBridgeCreateResponseData Amazon EventBridge create response data.
+type AWSEventBridgeCreateResponseData struct {
+	// A created EventBridge source.
+	Attributes AWSEventBridgeCreateResponseAttributes `json:"attributes"`
+	// The ID of the Amazon EventBridge create response data.
 	Id *string `json:"id,omitempty"`
-	// AWS Account resource type.
-	Type AWSAccountType `json:"type"`
+	// Amazon EventBridge resource type.
+	Type AWSEventBridgeType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewAWSAccountUpdateRequestData instantiates a new AWSAccountUpdateRequestData object.
+// NewAWSEventBridgeCreateResponseData instantiates a new AWSEventBridgeCreateResponseData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAWSAccountUpdateRequestData(attributes AWSAccountUpdateRequestAttributes, typeVar AWSAccountType) *AWSAccountUpdateRequestData {
-	this := AWSAccountUpdateRequestData{}
+func NewAWSEventBridgeCreateResponseData(attributes AWSEventBridgeCreateResponseAttributes, typeVar AWSEventBridgeType) *AWSEventBridgeCreateResponseData {
+	this := AWSEventBridgeCreateResponseData{}
 	this.Attributes = attributes
+	var id string = "create_event_bridge"
+	this.Id = &id
 	this.Type = typeVar
 	return &this
 }
 
-// NewAWSAccountUpdateRequestDataWithDefaults instantiates a new AWSAccountUpdateRequestData object.
+// NewAWSEventBridgeCreateResponseDataWithDefaults instantiates a new AWSEventBridgeCreateResponseData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewAWSAccountUpdateRequestDataWithDefaults() *AWSAccountUpdateRequestData {
-	this := AWSAccountUpdateRequestData{}
-	var typeVar AWSAccountType = AWSACCOUNTTYPE_ACCOUNT
+func NewAWSEventBridgeCreateResponseDataWithDefaults() *AWSEventBridgeCreateResponseData {
+	this := AWSEventBridgeCreateResponseData{}
+	var id string = "create_event_bridge"
+	this.Id = &id
+	var typeVar AWSEventBridgeType = AWSEVENTBRIDGETYPE_EVENT_BRIDGE
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *AWSAccountUpdateRequestData) GetAttributes() AWSAccountUpdateRequestAttributes {
+func (o *AWSEventBridgeCreateResponseData) GetAttributes() AWSEventBridgeCreateResponseAttributes {
 	if o == nil {
-		var ret AWSAccountUpdateRequestAttributes
+		var ret AWSEventBridgeCreateResponseAttributes
 		return ret
 	}
 	return o.Attributes
@@ -58,7 +59,7 @@ func (o *AWSAccountUpdateRequestData) GetAttributes() AWSAccountUpdateRequestAtt
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *AWSAccountUpdateRequestData) GetAttributesOk() (*AWSAccountUpdateRequestAttributes, bool) {
+func (o *AWSEventBridgeCreateResponseData) GetAttributesOk() (*AWSEventBridgeCreateResponseAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,12 +67,12 @@ func (o *AWSAccountUpdateRequestData) GetAttributesOk() (*AWSAccountUpdateReques
 }
 
 // SetAttributes sets field value.
-func (o *AWSAccountUpdateRequestData) SetAttributes(v AWSAccountUpdateRequestAttributes) {
+func (o *AWSEventBridgeCreateResponseData) SetAttributes(v AWSEventBridgeCreateResponseAttributes) {
 	o.Attributes = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *AWSAccountUpdateRequestData) GetId() string {
+func (o *AWSEventBridgeCreateResponseData) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -81,7 +82,7 @@ func (o *AWSAccountUpdateRequestData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AWSAccountUpdateRequestData) GetIdOk() (*string, bool) {
+func (o *AWSEventBridgeCreateResponseData) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -89,19 +90,19 @@ func (o *AWSAccountUpdateRequestData) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *AWSAccountUpdateRequestData) HasId() bool {
+func (o *AWSEventBridgeCreateResponseData) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *AWSAccountUpdateRequestData) SetId(v string) {
+func (o *AWSEventBridgeCreateResponseData) SetId(v string) {
 	o.Id = &v
 }
 
 // GetType returns the Type field value.
-func (o *AWSAccountUpdateRequestData) GetType() AWSAccountType {
+func (o *AWSEventBridgeCreateResponseData) GetType() AWSEventBridgeType {
 	if o == nil {
-		var ret AWSAccountType
+		var ret AWSEventBridgeType
 		return ret
 	}
 	return o.Type
@@ -109,7 +110,7 @@ func (o *AWSAccountUpdateRequestData) GetType() AWSAccountType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *AWSAccountUpdateRequestData) GetTypeOk() (*AWSAccountType, bool) {
+func (o *AWSEventBridgeCreateResponseData) GetTypeOk() (*AWSEventBridgeType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -117,12 +118,12 @@ func (o *AWSAccountUpdateRequestData) GetTypeOk() (*AWSAccountType, bool) {
 }
 
 // SetType sets field value.
-func (o *AWSAccountUpdateRequestData) SetType(v AWSAccountType) {
+func (o *AWSEventBridgeCreateResponseData) SetType(v AWSEventBridgeType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o AWSAccountUpdateRequestData) MarshalJSON() ([]byte, error) {
+func (o AWSEventBridgeCreateResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -140,11 +141,11 @@ func (o AWSAccountUpdateRequestData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *AWSAccountUpdateRequestData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *AWSEventBridgeCreateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *AWSAccountUpdateRequestAttributes `json:"attributes"`
-		Id         *string                            `json:"id,omitempty"`
-		Type       *AWSAccountType                    `json:"type"`
+		Attributes *AWSEventBridgeCreateResponseAttributes `json:"attributes"`
+		Id         *string                                 `json:"id,omitempty"`
+		Type       *AWSEventBridgeType                     `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
