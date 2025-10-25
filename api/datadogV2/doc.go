@@ -274,6 +274,7 @@
 //   - [IncidentsApi.CreateIncidentNotificationTemplate]
 //   - [IncidentsApi.CreateIncidentTodo]
 //   - [IncidentsApi.CreateIncidentType]
+//   - [IncidentsApi.CreatePageFromIncident]
 //   - [IncidentsApi.DeleteIncident]
 //   - [IncidentsApi.DeleteIncidentImpact]
 //   - [IncidentsApi.DeleteIncidentIntegration]
