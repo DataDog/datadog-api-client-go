@@ -12,19 +12,19 @@ import (
 )
 
 func main() {
-	// there is a valid "historical_job" in the system
-	HistoricalJobDataID := os.Getenv("HISTORICAL_JOB_DATA_ID")
+	// there is a valid "threat_hunting_job" in the system
+	ThreatHuntingJobDataID := os.Getenv("THREAT_HUNTING_JOB_DATA_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.CancelHistoricalJob", true)
-	configuration.SetUnstableOperationEnabled("v2.RunHistoricalJob", true)
+	configuration.SetUnstableOperationEnabled("v2.CancelThreatHuntingJob", true)
+	configuration.SetUnstableOperationEnabled("v2.RunThreatHuntingJob", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	r, err := api.CancelHistoricalJob(ctx, HistoricalJobDataID)
+	r, err := api.CancelThreatHuntingJob(ctx, ThreatHuntingJobDataID)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CancelHistoricalJob`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CancelThreatHuntingJob`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HistoricalJobQuery Query for selecting logs analyzed by the historical job.
-type HistoricalJobQuery struct {
+// ThreatHuntingJobQuery Query for selecting logs analyzed by the threat hunting job.
+type ThreatHuntingJobQuery struct {
 	// The aggregation type.
 	Aggregation *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
 	// Source of events, either logs, audit trail, or Datadog events.
@@ -31,12 +31,12 @@ type HistoricalJobQuery struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewHistoricalJobQuery instantiates a new HistoricalJobQuery object.
+// NewThreatHuntingJobQuery instantiates a new ThreatHuntingJobQuery object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewHistoricalJobQuery() *HistoricalJobQuery {
-	this := HistoricalJobQuery{}
+func NewThreatHuntingJobQuery() *ThreatHuntingJobQuery {
+	this := ThreatHuntingJobQuery{}
 	var dataSource SecurityMonitoringStandardDataSource = SECURITYMONITORINGSTANDARDDATASOURCE_LOGS
 	this.DataSource = &dataSource
 	var hasOptionalGroupByFields bool = false
@@ -44,11 +44,11 @@ func NewHistoricalJobQuery() *HistoricalJobQuery {
 	return &this
 }
 
-// NewHistoricalJobQueryWithDefaults instantiates a new HistoricalJobQuery object.
+// NewThreatHuntingJobQueryWithDefaults instantiates a new ThreatHuntingJobQuery object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewHistoricalJobQueryWithDefaults() *HistoricalJobQuery {
-	this := HistoricalJobQuery{}
+func NewThreatHuntingJobQueryWithDefaults() *ThreatHuntingJobQuery {
+	this := ThreatHuntingJobQuery{}
 	var dataSource SecurityMonitoringStandardDataSource = SECURITYMONITORINGSTANDARDDATASOURCE_LOGS
 	this.DataSource = &dataSource
 	var hasOptionalGroupByFields bool = false
@@ -57,7 +57,7 @@ func NewHistoricalJobQueryWithDefaults() *HistoricalJobQuery {
 }
 
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
-func (o *HistoricalJobQuery) GetAggregation() SecurityMonitoringRuleQueryAggregation {
+func (o *ThreatHuntingJobQuery) GetAggregation() SecurityMonitoringRuleQueryAggregation {
 	if o == nil || o.Aggregation == nil {
 		var ret SecurityMonitoringRuleQueryAggregation
 		return ret
@@ -67,7 +67,7 @@ func (o *HistoricalJobQuery) GetAggregation() SecurityMonitoringRuleQueryAggrega
 
 // GetAggregationOk returns a tuple with the Aggregation field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobQuery) GetAggregationOk() (*SecurityMonitoringRuleQueryAggregation, bool) {
+func (o *ThreatHuntingJobQuery) GetAggregationOk() (*SecurityMonitoringRuleQueryAggregation, bool) {
 	if o == nil || o.Aggregation == nil {
 		return nil, false
 	}
@@ -75,17 +75,17 @@ func (o *HistoricalJobQuery) GetAggregationOk() (*SecurityMonitoringRuleQueryAgg
 }
 
 // HasAggregation returns a boolean if a field has been set.
-func (o *HistoricalJobQuery) HasAggregation() bool {
+func (o *ThreatHuntingJobQuery) HasAggregation() bool {
 	return o != nil && o.Aggregation != nil
 }
 
 // SetAggregation gets a reference to the given SecurityMonitoringRuleQueryAggregation and assigns it to the Aggregation field.
-func (o *HistoricalJobQuery) SetAggregation(v SecurityMonitoringRuleQueryAggregation) {
+func (o *ThreatHuntingJobQuery) SetAggregation(v SecurityMonitoringRuleQueryAggregation) {
 	o.Aggregation = &v
 }
 
 // GetDataSource returns the DataSource field value if set, zero value otherwise.
-func (o *HistoricalJobQuery) GetDataSource() SecurityMonitoringStandardDataSource {
+func (o *ThreatHuntingJobQuery) GetDataSource() SecurityMonitoringStandardDataSource {
 	if o == nil || o.DataSource == nil {
 		var ret SecurityMonitoringStandardDataSource
 		return ret
@@ -95,7 +95,7 @@ func (o *HistoricalJobQuery) GetDataSource() SecurityMonitoringStandardDataSourc
 
 // GetDataSourceOk returns a tuple with the DataSource field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobQuery) GetDataSourceOk() (*SecurityMonitoringStandardDataSource, bool) {
+func (o *ThreatHuntingJobQuery) GetDataSourceOk() (*SecurityMonitoringStandardDataSource, bool) {
 	if o == nil || o.DataSource == nil {
 		return nil, false
 	}
@@ -103,17 +103,17 @@ func (o *HistoricalJobQuery) GetDataSourceOk() (*SecurityMonitoringStandardDataS
 }
 
 // HasDataSource returns a boolean if a field has been set.
-func (o *HistoricalJobQuery) HasDataSource() bool {
+func (o *ThreatHuntingJobQuery) HasDataSource() bool {
 	return o != nil && o.DataSource != nil
 }
 
 // SetDataSource gets a reference to the given SecurityMonitoringStandardDataSource and assigns it to the DataSource field.
-func (o *HistoricalJobQuery) SetDataSource(v SecurityMonitoringStandardDataSource) {
+func (o *ThreatHuntingJobQuery) SetDataSource(v SecurityMonitoringStandardDataSource) {
 	o.DataSource = &v
 }
 
 // GetDistinctFields returns the DistinctFields field value if set, zero value otherwise.
-func (o *HistoricalJobQuery) GetDistinctFields() []string {
+func (o *ThreatHuntingJobQuery) GetDistinctFields() []string {
 	if o == nil || o.DistinctFields == nil {
 		var ret []string
 		return ret
@@ -123,7 +123,7 @@ func (o *HistoricalJobQuery) GetDistinctFields() []string {
 
 // GetDistinctFieldsOk returns a tuple with the DistinctFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobQuery) GetDistinctFieldsOk() (*[]string, bool) {
+func (o *ThreatHuntingJobQuery) GetDistinctFieldsOk() (*[]string, bool) {
 	if o == nil || o.DistinctFields == nil {
 		return nil, false
 	}
@@ -131,17 +131,17 @@ func (o *HistoricalJobQuery) GetDistinctFieldsOk() (*[]string, bool) {
 }
 
 // HasDistinctFields returns a boolean if a field has been set.
-func (o *HistoricalJobQuery) HasDistinctFields() bool {
+func (o *ThreatHuntingJobQuery) HasDistinctFields() bool {
 	return o != nil && o.DistinctFields != nil
 }
 
 // SetDistinctFields gets a reference to the given []string and assigns it to the DistinctFields field.
-func (o *HistoricalJobQuery) SetDistinctFields(v []string) {
+func (o *ThreatHuntingJobQuery) SetDistinctFields(v []string) {
 	o.DistinctFields = v
 }
 
 // GetGroupByFields returns the GroupByFields field value if set, zero value otherwise.
-func (o *HistoricalJobQuery) GetGroupByFields() []string {
+func (o *ThreatHuntingJobQuery) GetGroupByFields() []string {
 	if o == nil || o.GroupByFields == nil {
 		var ret []string
 		return ret
@@ -151,7 +151,7 @@ func (o *HistoricalJobQuery) GetGroupByFields() []string {
 
 // GetGroupByFieldsOk returns a tuple with the GroupByFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobQuery) GetGroupByFieldsOk() (*[]string, bool) {
+func (o *ThreatHuntingJobQuery) GetGroupByFieldsOk() (*[]string, bool) {
 	if o == nil || o.GroupByFields == nil {
 		return nil, false
 	}
@@ -159,17 +159,17 @@ func (o *HistoricalJobQuery) GetGroupByFieldsOk() (*[]string, bool) {
 }
 
 // HasGroupByFields returns a boolean if a field has been set.
-func (o *HistoricalJobQuery) HasGroupByFields() bool {
+func (o *ThreatHuntingJobQuery) HasGroupByFields() bool {
 	return o != nil && o.GroupByFields != nil
 }
 
 // SetGroupByFields gets a reference to the given []string and assigns it to the GroupByFields field.
-func (o *HistoricalJobQuery) SetGroupByFields(v []string) {
+func (o *ThreatHuntingJobQuery) SetGroupByFields(v []string) {
 	o.GroupByFields = v
 }
 
 // GetHasOptionalGroupByFields returns the HasOptionalGroupByFields field value if set, zero value otherwise.
-func (o *HistoricalJobQuery) GetHasOptionalGroupByFields() bool {
+func (o *ThreatHuntingJobQuery) GetHasOptionalGroupByFields() bool {
 	if o == nil || o.HasOptionalGroupByFields == nil {
 		var ret bool
 		return ret
@@ -179,7 +179,7 @@ func (o *HistoricalJobQuery) GetHasOptionalGroupByFields() bool {
 
 // GetHasOptionalGroupByFieldsOk returns a tuple with the HasOptionalGroupByFields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobQuery) GetHasOptionalGroupByFieldsOk() (*bool, bool) {
+func (o *ThreatHuntingJobQuery) GetHasOptionalGroupByFieldsOk() (*bool, bool) {
 	if o == nil || o.HasOptionalGroupByFields == nil {
 		return nil, false
 	}
@@ -187,17 +187,17 @@ func (o *HistoricalJobQuery) GetHasOptionalGroupByFieldsOk() (*bool, bool) {
 }
 
 // HasHasOptionalGroupByFields returns a boolean if a field has been set.
-func (o *HistoricalJobQuery) HasHasOptionalGroupByFields() bool {
+func (o *ThreatHuntingJobQuery) HasHasOptionalGroupByFields() bool {
 	return o != nil && o.HasOptionalGroupByFields != nil
 }
 
 // SetHasOptionalGroupByFields gets a reference to the given bool and assigns it to the HasOptionalGroupByFields field.
-func (o *HistoricalJobQuery) SetHasOptionalGroupByFields(v bool) {
+func (o *ThreatHuntingJobQuery) SetHasOptionalGroupByFields(v bool) {
 	o.HasOptionalGroupByFields = &v
 }
 
 // GetMetrics returns the Metrics field value if set, zero value otherwise.
-func (o *HistoricalJobQuery) GetMetrics() []string {
+func (o *ThreatHuntingJobQuery) GetMetrics() []string {
 	if o == nil || o.Metrics == nil {
 		var ret []string
 		return ret
@@ -207,7 +207,7 @@ func (o *HistoricalJobQuery) GetMetrics() []string {
 
 // GetMetricsOk returns a tuple with the Metrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobQuery) GetMetricsOk() (*[]string, bool) {
+func (o *ThreatHuntingJobQuery) GetMetricsOk() (*[]string, bool) {
 	if o == nil || o.Metrics == nil {
 		return nil, false
 	}
@@ -215,17 +215,17 @@ func (o *HistoricalJobQuery) GetMetricsOk() (*[]string, bool) {
 }
 
 // HasMetrics returns a boolean if a field has been set.
-func (o *HistoricalJobQuery) HasMetrics() bool {
+func (o *ThreatHuntingJobQuery) HasMetrics() bool {
 	return o != nil && o.Metrics != nil
 }
 
 // SetMetrics gets a reference to the given []string and assigns it to the Metrics field.
-func (o *HistoricalJobQuery) SetMetrics(v []string) {
+func (o *ThreatHuntingJobQuery) SetMetrics(v []string) {
 	o.Metrics = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *HistoricalJobQuery) GetName() string {
+func (o *ThreatHuntingJobQuery) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -235,7 +235,7 @@ func (o *HistoricalJobQuery) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobQuery) GetNameOk() (*string, bool) {
+func (o *ThreatHuntingJobQuery) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -243,17 +243,17 @@ func (o *HistoricalJobQuery) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *HistoricalJobQuery) HasName() bool {
+func (o *ThreatHuntingJobQuery) HasName() bool {
 	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *HistoricalJobQuery) SetName(v string) {
+func (o *ThreatHuntingJobQuery) SetName(v string) {
 	o.Name = &v
 }
 
 // GetQuery returns the Query field value if set, zero value otherwise.
-func (o *HistoricalJobQuery) GetQuery() string {
+func (o *ThreatHuntingJobQuery) GetQuery() string {
 	if o == nil || o.Query == nil {
 		var ret string
 		return ret
@@ -263,7 +263,7 @@ func (o *HistoricalJobQuery) GetQuery() string {
 
 // GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HistoricalJobQuery) GetQueryOk() (*string, bool) {
+func (o *ThreatHuntingJobQuery) GetQueryOk() (*string, bool) {
 	if o == nil || o.Query == nil {
 		return nil, false
 	}
@@ -271,17 +271,17 @@ func (o *HistoricalJobQuery) GetQueryOk() (*string, bool) {
 }
 
 // HasQuery returns a boolean if a field has been set.
-func (o *HistoricalJobQuery) HasQuery() bool {
+func (o *ThreatHuntingJobQuery) HasQuery() bool {
 	return o != nil && o.Query != nil
 }
 
 // SetQuery gets a reference to the given string and assigns it to the Query field.
-func (o *HistoricalJobQuery) SetQuery(v string) {
+func (o *ThreatHuntingJobQuery) SetQuery(v string) {
 	o.Query = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o HistoricalJobQuery) MarshalJSON() ([]byte, error) {
+func (o ThreatHuntingJobQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -318,7 +318,7 @@ func (o HistoricalJobQuery) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *HistoricalJobQuery) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ThreatHuntingJobQuery) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Aggregation              *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
 		DataSource               *SecurityMonitoringStandardDataSource   `json:"dataSource,omitempty"`

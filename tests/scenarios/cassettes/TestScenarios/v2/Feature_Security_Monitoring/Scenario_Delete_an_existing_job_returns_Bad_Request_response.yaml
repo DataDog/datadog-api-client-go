@@ -7,7 +7,7 @@ interactions:
       - '*/*'
     id: 0
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs/inva-lid
+    url: https://api.datadoghq.com/api/v2/siem-threat-hunting/jobs/inva-lid
   response:
     body: '{"errors":[{"status":"400","title":"Generic Error","detail":"invalid jobId"}]}'
     code: 400

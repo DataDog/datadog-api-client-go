@@ -8,38 +8,38 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ListHistoricalJobsResponse List of historical jobs.
-type ListHistoricalJobsResponse struct {
-	// Array containing the list of historical jobs.
-	Data []HistoricalJobResponseData `json:"data,omitempty"`
+// ListThreatHuntingJobsResponse List of threat hunting jobs.
+type ListThreatHuntingJobsResponse struct {
+	// Array containing the list of threat hunting jobs.
+	Data []ThreatHuntingJobResponseData `json:"data,omitempty"`
 	// Metadata about the list of jobs.
-	Meta *HistoricalJobListMeta `json:"meta,omitempty"`
+	Meta *ThreatHuntingJobListMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewListHistoricalJobsResponse instantiates a new ListHistoricalJobsResponse object.
+// NewListThreatHuntingJobsResponse instantiates a new ListThreatHuntingJobsResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewListHistoricalJobsResponse() *ListHistoricalJobsResponse {
-	this := ListHistoricalJobsResponse{}
+func NewListThreatHuntingJobsResponse() *ListThreatHuntingJobsResponse {
+	this := ListThreatHuntingJobsResponse{}
 	return &this
 }
 
-// NewListHistoricalJobsResponseWithDefaults instantiates a new ListHistoricalJobsResponse object.
+// NewListThreatHuntingJobsResponseWithDefaults instantiates a new ListThreatHuntingJobsResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewListHistoricalJobsResponseWithDefaults() *ListHistoricalJobsResponse {
-	this := ListHistoricalJobsResponse{}
+func NewListThreatHuntingJobsResponseWithDefaults() *ListThreatHuntingJobsResponse {
+	this := ListThreatHuntingJobsResponse{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *ListHistoricalJobsResponse) GetData() []HistoricalJobResponseData {
+func (o *ListThreatHuntingJobsResponse) GetData() []ThreatHuntingJobResponseData {
 	if o == nil || o.Data == nil {
-		var ret []HistoricalJobResponseData
+		var ret []ThreatHuntingJobResponseData
 		return ret
 	}
 	return o.Data
@@ -47,7 +47,7 @@ func (o *ListHistoricalJobsResponse) GetData() []HistoricalJobResponseData {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListHistoricalJobsResponse) GetDataOk() (*[]HistoricalJobResponseData, bool) {
+func (o *ListThreatHuntingJobsResponse) GetDataOk() (*[]ThreatHuntingJobResponseData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -55,19 +55,19 @@ func (o *ListHistoricalJobsResponse) GetDataOk() (*[]HistoricalJobResponseData, 
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *ListHistoricalJobsResponse) HasData() bool {
+func (o *ListThreatHuntingJobsResponse) HasData() bool {
 	return o != nil && o.Data != nil
 }
 
-// SetData gets a reference to the given []HistoricalJobResponseData and assigns it to the Data field.
-func (o *ListHistoricalJobsResponse) SetData(v []HistoricalJobResponseData) {
+// SetData gets a reference to the given []ThreatHuntingJobResponseData and assigns it to the Data field.
+func (o *ListThreatHuntingJobsResponse) SetData(v []ThreatHuntingJobResponseData) {
 	o.Data = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *ListHistoricalJobsResponse) GetMeta() HistoricalJobListMeta {
+func (o *ListThreatHuntingJobsResponse) GetMeta() ThreatHuntingJobListMeta {
 	if o == nil || o.Meta == nil {
-		var ret HistoricalJobListMeta
+		var ret ThreatHuntingJobListMeta
 		return ret
 	}
 	return *o.Meta
@@ -75,7 +75,7 @@ func (o *ListHistoricalJobsResponse) GetMeta() HistoricalJobListMeta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListHistoricalJobsResponse) GetMetaOk() (*HistoricalJobListMeta, bool) {
+func (o *ListThreatHuntingJobsResponse) GetMetaOk() (*ThreatHuntingJobListMeta, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -83,17 +83,17 @@ func (o *ListHistoricalJobsResponse) GetMetaOk() (*HistoricalJobListMeta, bool) 
 }
 
 // HasMeta returns a boolean if a field has been set.
-func (o *ListHistoricalJobsResponse) HasMeta() bool {
+func (o *ListThreatHuntingJobsResponse) HasMeta() bool {
 	return o != nil && o.Meta != nil
 }
 
-// SetMeta gets a reference to the given HistoricalJobListMeta and assigns it to the Meta field.
-func (o *ListHistoricalJobsResponse) SetMeta(v HistoricalJobListMeta) {
+// SetMeta gets a reference to the given ThreatHuntingJobListMeta and assigns it to the Meta field.
+func (o *ListThreatHuntingJobsResponse) SetMeta(v ThreatHuntingJobListMeta) {
 	o.Meta = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ListHistoricalJobsResponse) MarshalJSON() ([]byte, error) {
+func (o ListThreatHuntingJobsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -112,10 +112,10 @@ func (o ListHistoricalJobsResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ListHistoricalJobsResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ListThreatHuntingJobsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data []HistoricalJobResponseData `json:"data,omitempty"`
-		Meta *HistoricalJobListMeta      `json:"meta,omitempty"`
+		Data []ThreatHuntingJobResponseData `json:"data,omitempty"`
+		Meta *ThreatHuntingJobListMeta      `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
