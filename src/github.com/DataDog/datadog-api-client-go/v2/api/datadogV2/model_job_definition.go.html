@@ -67,7 +67,7 @@
 <span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L11" class="ln">    11  </span>)
 <span id="L12" class="ln">    12  </span>
-<span id="L13" class="ln">    13  </span><span class="comment">// JobDefinition Definition of a historical job.</span>
+<span id="L13" class="ln">    13  </span><span class="comment">// JobDefinition Definition of a threat hunting job.</span>
 <span id="L14" class="ln">    14  </span>type JobDefinition struct {
 <span id="L15" class="ln">    15  </span>	<span class="comment">// Calculated fields.</span>
 <span id="L16" class="ln">    16  </span>	CalculatedFields []CalculatedField `json:&#34;calculatedFields,omitempty&#34;`
@@ -84,9 +84,9 @@
 <span id="L27" class="ln">    27  </span>	<span class="comment">// Job name.</span>
 <span id="L28" class="ln">    28  </span>	Name string `json:&#34;name&#34;`
 <span id="L29" class="ln">    29  </span>	<span class="comment">// Job options.</span>
-<span id="L30" class="ln">    30  </span>	Options *HistoricalJobOptions `json:&#34;options,omitempty&#34;`
+<span id="L30" class="ln">    30  </span>	Options *ThreatHuntingJobOptions `json:&#34;options,omitempty&#34;`
 <span id="L31" class="ln">    31  </span>	<span class="comment">// Queries for selecting logs analyzed by the job.</span>
-<span id="L32" class="ln">    32  </span>	Queries []HistoricalJobQuery `json:&#34;queries&#34;`
+<span id="L32" class="ln">    32  </span>	Queries []ThreatHuntingJobQuery `json:&#34;queries&#34;`
 <span id="L33" class="ln">    33  </span>	<span class="comment">// Reference tables used in the queries.</span>
 <span id="L34" class="ln">    34  </span>	ReferenceTables []SecurityMonitoringReferenceTable `json:&#34;referenceTables,omitempty&#34;`
 <span id="L35" class="ln">    35  </span>	<span class="comment">// Tags for generated signals.</span>
@@ -106,7 +106,7 @@
 <span id="L49" class="ln">    49  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
 <span id="L50" class="ln">    50  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
 <span id="L51" class="ln">    51  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L52" class="ln">    52  </span>func NewJobDefinition(cases []SecurityMonitoringRuleCaseCreate, from int64, index string, message string, name string, queries []HistoricalJobQuery, to int64) *JobDefinition {
+<span id="L52" class="ln">    52  </span>func NewJobDefinition(cases []SecurityMonitoringRuleCaseCreate, from int64, index string, message string, name string, queries []ThreatHuntingJobQuery, to int64) *JobDefinition {
 <span id="L53" class="ln">    53  </span>	this := JobDefinition{}
 <span id="L54" class="ln">    54  </span>	this.Cases = cases
 <span id="L55" class="ln">    55  </span>	this.From = from
@@ -298,9 +298,9 @@
 <span id="L241" class="ln">   241  </span>}
 <span id="L242" class="ln">   242  </span>
 <span id="L243" class="ln">   243  </span><span class="comment">// GetOptions returns the Options field value if set, zero value otherwise.</span>
-<span id="L244" class="ln">   244  </span>func (o *JobDefinition) GetOptions() HistoricalJobOptions {
+<span id="L244" class="ln">   244  </span>func (o *JobDefinition) GetOptions() ThreatHuntingJobOptions {
 <span id="L245" class="ln">   245  </span>	if o == nil || o.Options == nil {
-<span id="L246" class="ln">   246  </span>		var ret HistoricalJobOptions
+<span id="L246" class="ln">   246  </span>		var ret ThreatHuntingJobOptions
 <span id="L247" class="ln">   247  </span>		return ret
 <span id="L248" class="ln">   248  </span>	}
 <span id="L249" class="ln">   249  </span>	return *o.Options
@@ -308,7 +308,7 @@
 <span id="L251" class="ln">   251  </span>
 <span id="L252" class="ln">   252  </span><span class="comment">// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise</span>
 <span id="L253" class="ln">   253  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L254" class="ln">   254  </span>func (o *JobDefinition) GetOptionsOk() (*HistoricalJobOptions, bool) {
+<span id="L254" class="ln">   254  </span>func (o *JobDefinition) GetOptionsOk() (*ThreatHuntingJobOptions, bool) {
 <span id="L255" class="ln">   255  </span>	if o == nil || o.Options == nil {
 <span id="L256" class="ln">   256  </span>		return nil, false
 <span id="L257" class="ln">   257  </span>	}
@@ -320,15 +320,15 @@
 <span id="L263" class="ln">   263  </span>	return o != nil &amp;&amp; o.Options != nil
 <span id="L264" class="ln">   264  </span>}
 <span id="L265" class="ln">   265  </span>
-<span id="L266" class="ln">   266  </span><span class="comment">// SetOptions gets a reference to the given HistoricalJobOptions and assigns it to the Options field.</span>
-<span id="L267" class="ln">   267  </span>func (o *JobDefinition) SetOptions(v HistoricalJobOptions) {
+<span id="L266" class="ln">   266  </span><span class="comment">// SetOptions gets a reference to the given ThreatHuntingJobOptions and assigns it to the Options field.</span>
+<span id="L267" class="ln">   267  </span>func (o *JobDefinition) SetOptions(v ThreatHuntingJobOptions) {
 <span id="L268" class="ln">   268  </span>	o.Options = &amp;v
 <span id="L269" class="ln">   269  </span>}
 <span id="L270" class="ln">   270  </span>
 <span id="L271" class="ln">   271  </span><span class="comment">// GetQueries returns the Queries field value.</span>
-<span id="L272" class="ln">   272  </span>func (o *JobDefinition) GetQueries() []HistoricalJobQuery {
+<span id="L272" class="ln">   272  </span>func (o *JobDefinition) GetQueries() []ThreatHuntingJobQuery {
 <span id="L273" class="ln">   273  </span>	if o == nil {
-<span id="L274" class="ln">   274  </span>		var ret []HistoricalJobQuery
+<span id="L274" class="ln">   274  </span>		var ret []ThreatHuntingJobQuery
 <span id="L275" class="ln">   275  </span>		return ret
 <span id="L276" class="ln">   276  </span>	}
 <span id="L277" class="ln">   277  </span>	return o.Queries
@@ -336,7 +336,7 @@
 <span id="L279" class="ln">   279  </span>
 <span id="L280" class="ln">   280  </span><span class="comment">// GetQueriesOk returns a tuple with the Queries field value</span>
 <span id="L281" class="ln">   281  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L282" class="ln">   282  </span>func (o *JobDefinition) GetQueriesOk() (*[]HistoricalJobQuery, bool) {
+<span id="L282" class="ln">   282  </span>func (o *JobDefinition) GetQueriesOk() (*[]ThreatHuntingJobQuery, bool) {
 <span id="L283" class="ln">   283  </span>	if o == nil {
 <span id="L284" class="ln">   284  </span>		return nil, false
 <span id="L285" class="ln">   285  </span>	}
@@ -344,7 +344,7 @@
 <span id="L287" class="ln">   287  </span>}
 <span id="L288" class="ln">   288  </span>
 <span id="L289" class="ln">   289  </span><span class="comment">// SetQueries sets field value.</span>
-<span id="L290" class="ln">   290  </span>func (o *JobDefinition) SetQueries(v []HistoricalJobQuery) {
+<span id="L290" class="ln">   290  </span>func (o *JobDefinition) SetQueries(v []ThreatHuntingJobQuery) {
 <span id="L291" class="ln">   291  </span>	o.Queries = v
 <span id="L292" class="ln">   292  </span>}
 <span id="L293" class="ln">   293  </span>
@@ -534,8 +534,8 @@
 <span id="L477" class="ln">   477  </span>		Index            *string                                      `json:&#34;index&#34;`
 <span id="L478" class="ln">   478  </span>		Message          *string                                      `json:&#34;message&#34;`
 <span id="L479" class="ln">   479  </span>		Name             *string                                      `json:&#34;name&#34;`
-<span id="L480" class="ln">   480  </span>		Options          *HistoricalJobOptions                        `json:&#34;options,omitempty&#34;`
-<span id="L481" class="ln">   481  </span>		Queries          *[]HistoricalJobQuery                        `json:&#34;queries&#34;`
+<span id="L480" class="ln">   480  </span>		Options          *ThreatHuntingJobOptions                     `json:&#34;options,omitempty&#34;`
+<span id="L481" class="ln">   481  </span>		Queries          *[]ThreatHuntingJobQuery                     `json:&#34;queries&#34;`
 <span id="L482" class="ln">   482  </span>		ReferenceTables  []SecurityMonitoringReferenceTable           `json:&#34;referenceTables,omitempty&#34;`
 <span id="L483" class="ln">   483  </span>		Tags             []string                                     `json:&#34;tags,omitempty&#34;`
 <span id="L484" class="ln">   484  </span>		ThirdPartyCases  []SecurityMonitoringThirdPartyRuleCaseCreate `json:&#34;thirdPartyCases,omitempty&#34;`

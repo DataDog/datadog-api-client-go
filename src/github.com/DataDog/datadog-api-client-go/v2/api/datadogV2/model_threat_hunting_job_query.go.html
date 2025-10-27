@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="theme-color" content="#375EAB"/>
 
-  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_historical_job_query.go - Datadog</title>
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_threat_hunting_job_query.go - Datadog</title>
 
 <link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
 
@@ -38,7 +38,7 @@
 
   <h1>
     Source file
-    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_historical_job_query.go</span>
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_threat_hunting_job_query.go</span>
   </h1>
 
 
@@ -65,8 +65,8 @@
 <span id="L8" class="ln">     8  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L9" class="ln">     9  </span>)
 <span id="L10" class="ln">    10  </span>
-<span id="L11" class="ln">    11  </span><span class="comment">// HistoricalJobQuery Query for selecting logs analyzed by the historical job.</span>
-<span id="L12" class="ln">    12  </span>type HistoricalJobQuery struct {
+<span id="L11" class="ln">    11  </span><span class="comment">// ThreatHuntingJobQuery Query for selecting logs analyzed by the threat hunting job.</span>
+<span id="L12" class="ln">    12  </span>type ThreatHuntingJobQuery struct {
 <span id="L13" class="ln">    13  </span>	<span class="comment">// The aggregation type.</span>
 <span id="L14" class="ln">    14  </span>	Aggregation *SecurityMonitoringRuleQueryAggregation `json:&#34;aggregation,omitempty&#34;`
 <span id="L15" class="ln">    15  </span>	<span class="comment">// Source of events, either logs, audit trail, or Datadog events.</span>
@@ -88,12 +88,12 @@
 <span id="L31" class="ln">    31  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
 <span id="L32" class="ln">    32  </span>}
 <span id="L33" class="ln">    33  </span>
-<span id="L34" class="ln">    34  </span><span class="comment">// NewHistoricalJobQuery instantiates a new HistoricalJobQuery object.</span>
+<span id="L34" class="ln">    34  </span><span class="comment">// NewThreatHuntingJobQuery instantiates a new ThreatHuntingJobQuery object.</span>
 <span id="L35" class="ln">    35  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
 <span id="L36" class="ln">    36  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
 <span id="L37" class="ln">    37  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L38" class="ln">    38  </span>func NewHistoricalJobQuery() *HistoricalJobQuery {
-<span id="L39" class="ln">    39  </span>	this := HistoricalJobQuery{}
+<span id="L38" class="ln">    38  </span>func NewThreatHuntingJobQuery() *ThreatHuntingJobQuery {
+<span id="L39" class="ln">    39  </span>	this := ThreatHuntingJobQuery{}
 <span id="L40" class="ln">    40  </span>	var dataSource SecurityMonitoringStandardDataSource = SECURITYMONITORINGSTANDARDDATASOURCE_LOGS
 <span id="L41" class="ln">    41  </span>	this.DataSource = &amp;dataSource
 <span id="L42" class="ln">    42  </span>	var hasOptionalGroupByFields bool = false
@@ -101,11 +101,11 @@
 <span id="L44" class="ln">    44  </span>	return &amp;this
 <span id="L45" class="ln">    45  </span>}
 <span id="L46" class="ln">    46  </span>
-<span id="L47" class="ln">    47  </span><span class="comment">// NewHistoricalJobQueryWithDefaults instantiates a new HistoricalJobQuery object.</span>
+<span id="L47" class="ln">    47  </span><span class="comment">// NewThreatHuntingJobQueryWithDefaults instantiates a new ThreatHuntingJobQuery object.</span>
 <span id="L48" class="ln">    48  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
 <span id="L49" class="ln">    49  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L50" class="ln">    50  </span>func NewHistoricalJobQueryWithDefaults() *HistoricalJobQuery {
-<span id="L51" class="ln">    51  </span>	this := HistoricalJobQuery{}
+<span id="L50" class="ln">    50  </span>func NewThreatHuntingJobQueryWithDefaults() *ThreatHuntingJobQuery {
+<span id="L51" class="ln">    51  </span>	this := ThreatHuntingJobQuery{}
 <span id="L52" class="ln">    52  </span>	var dataSource SecurityMonitoringStandardDataSource = SECURITYMONITORINGSTANDARDDATASOURCE_LOGS
 <span id="L53" class="ln">    53  </span>	this.DataSource = &amp;dataSource
 <span id="L54" class="ln">    54  </span>	var hasOptionalGroupByFields bool = false
@@ -114,7 +114,7 @@
 <span id="L57" class="ln">    57  </span>}
 <span id="L58" class="ln">    58  </span>
 <span id="L59" class="ln">    59  </span><span class="comment">// GetAggregation returns the Aggregation field value if set, zero value otherwise.</span>
-<span id="L60" class="ln">    60  </span>func (o *HistoricalJobQuery) GetAggregation() SecurityMonitoringRuleQueryAggregation {
+<span id="L60" class="ln">    60  </span>func (o *ThreatHuntingJobQuery) GetAggregation() SecurityMonitoringRuleQueryAggregation {
 <span id="L61" class="ln">    61  </span>	if o == nil || o.Aggregation == nil {
 <span id="L62" class="ln">    62  </span>		var ret SecurityMonitoringRuleQueryAggregation
 <span id="L63" class="ln">    63  </span>		return ret
@@ -124,7 +124,7 @@
 <span id="L67" class="ln">    67  </span>
 <span id="L68" class="ln">    68  </span><span class="comment">// GetAggregationOk returns a tuple with the Aggregation field value if set, nil otherwise</span>
 <span id="L69" class="ln">    69  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L70" class="ln">    70  </span>func (o *HistoricalJobQuery) GetAggregationOk() (*SecurityMonitoringRuleQueryAggregation, bool) {
+<span id="L70" class="ln">    70  </span>func (o *ThreatHuntingJobQuery) GetAggregationOk() (*SecurityMonitoringRuleQueryAggregation, bool) {
 <span id="L71" class="ln">    71  </span>	if o == nil || o.Aggregation == nil {
 <span id="L72" class="ln">    72  </span>		return nil, false
 <span id="L73" class="ln">    73  </span>	}
@@ -132,17 +132,17 @@
 <span id="L75" class="ln">    75  </span>}
 <span id="L76" class="ln">    76  </span>
 <span id="L77" class="ln">    77  </span><span class="comment">// HasAggregation returns a boolean if a field has been set.</span>
-<span id="L78" class="ln">    78  </span>func (o *HistoricalJobQuery) HasAggregation() bool {
+<span id="L78" class="ln">    78  </span>func (o *ThreatHuntingJobQuery) HasAggregation() bool {
 <span id="L79" class="ln">    79  </span>	return o != nil &amp;&amp; o.Aggregation != nil
 <span id="L80" class="ln">    80  </span>}
 <span id="L81" class="ln">    81  </span>
 <span id="L82" class="ln">    82  </span><span class="comment">// SetAggregation gets a reference to the given SecurityMonitoringRuleQueryAggregation and assigns it to the Aggregation field.</span>
-<span id="L83" class="ln">    83  </span>func (o *HistoricalJobQuery) SetAggregation(v SecurityMonitoringRuleQueryAggregation) {
+<span id="L83" class="ln">    83  </span>func (o *ThreatHuntingJobQuery) SetAggregation(v SecurityMonitoringRuleQueryAggregation) {
 <span id="L84" class="ln">    84  </span>	o.Aggregation = &amp;v
 <span id="L85" class="ln">    85  </span>}
 <span id="L86" class="ln">    86  </span>
 <span id="L87" class="ln">    87  </span><span class="comment">// GetDataSource returns the DataSource field value if set, zero value otherwise.</span>
-<span id="L88" class="ln">    88  </span>func (o *HistoricalJobQuery) GetDataSource() SecurityMonitoringStandardDataSource {
+<span id="L88" class="ln">    88  </span>func (o *ThreatHuntingJobQuery) GetDataSource() SecurityMonitoringStandardDataSource {
 <span id="L89" class="ln">    89  </span>	if o == nil || o.DataSource == nil {
 <span id="L90" class="ln">    90  </span>		var ret SecurityMonitoringStandardDataSource
 <span id="L91" class="ln">    91  </span>		return ret
@@ -152,7 +152,7 @@
 <span id="L95" class="ln">    95  </span>
 <span id="L96" class="ln">    96  </span><span class="comment">// GetDataSourceOk returns a tuple with the DataSource field value if set, nil otherwise</span>
 <span id="L97" class="ln">    97  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L98" class="ln">    98  </span>func (o *HistoricalJobQuery) GetDataSourceOk() (*SecurityMonitoringStandardDataSource, bool) {
+<span id="L98" class="ln">    98  </span>func (o *ThreatHuntingJobQuery) GetDataSourceOk() (*SecurityMonitoringStandardDataSource, bool) {
 <span id="L99" class="ln">    99  </span>	if o == nil || o.DataSource == nil {
 <span id="L100" class="ln">   100  </span>		return nil, false
 <span id="L101" class="ln">   101  </span>	}
@@ -160,17 +160,17 @@
 <span id="L103" class="ln">   103  </span>}
 <span id="L104" class="ln">   104  </span>
 <span id="L105" class="ln">   105  </span><span class="comment">// HasDataSource returns a boolean if a field has been set.</span>
-<span id="L106" class="ln">   106  </span>func (o *HistoricalJobQuery) HasDataSource() bool {
+<span id="L106" class="ln">   106  </span>func (o *ThreatHuntingJobQuery) HasDataSource() bool {
 <span id="L107" class="ln">   107  </span>	return o != nil &amp;&amp; o.DataSource != nil
 <span id="L108" class="ln">   108  </span>}
 <span id="L109" class="ln">   109  </span>
 <span id="L110" class="ln">   110  </span><span class="comment">// SetDataSource gets a reference to the given SecurityMonitoringStandardDataSource and assigns it to the DataSource field.</span>
-<span id="L111" class="ln">   111  </span>func (o *HistoricalJobQuery) SetDataSource(v SecurityMonitoringStandardDataSource) {
+<span id="L111" class="ln">   111  </span>func (o *ThreatHuntingJobQuery) SetDataSource(v SecurityMonitoringStandardDataSource) {
 <span id="L112" class="ln">   112  </span>	o.DataSource = &amp;v
 <span id="L113" class="ln">   113  </span>}
 <span id="L114" class="ln">   114  </span>
 <span id="L115" class="ln">   115  </span><span class="comment">// GetDistinctFields returns the DistinctFields field value if set, zero value otherwise.</span>
-<span id="L116" class="ln">   116  </span>func (o *HistoricalJobQuery) GetDistinctFields() []string {
+<span id="L116" class="ln">   116  </span>func (o *ThreatHuntingJobQuery) GetDistinctFields() []string {
 <span id="L117" class="ln">   117  </span>	if o == nil || o.DistinctFields == nil {
 <span id="L118" class="ln">   118  </span>		var ret []string
 <span id="L119" class="ln">   119  </span>		return ret
@@ -180,7 +180,7 @@
 <span id="L123" class="ln">   123  </span>
 <span id="L124" class="ln">   124  </span><span class="comment">// GetDistinctFieldsOk returns a tuple with the DistinctFields field value if set, nil otherwise</span>
 <span id="L125" class="ln">   125  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L126" class="ln">   126  </span>func (o *HistoricalJobQuery) GetDistinctFieldsOk() (*[]string, bool) {
+<span id="L126" class="ln">   126  </span>func (o *ThreatHuntingJobQuery) GetDistinctFieldsOk() (*[]string, bool) {
 <span id="L127" class="ln">   127  </span>	if o == nil || o.DistinctFields == nil {
 <span id="L128" class="ln">   128  </span>		return nil, false
 <span id="L129" class="ln">   129  </span>	}
@@ -188,17 +188,17 @@
 <span id="L131" class="ln">   131  </span>}
 <span id="L132" class="ln">   132  </span>
 <span id="L133" class="ln">   133  </span><span class="comment">// HasDistinctFields returns a boolean if a field has been set.</span>
-<span id="L134" class="ln">   134  </span>func (o *HistoricalJobQuery) HasDistinctFields() bool {
+<span id="L134" class="ln">   134  </span>func (o *ThreatHuntingJobQuery) HasDistinctFields() bool {
 <span id="L135" class="ln">   135  </span>	return o != nil &amp;&amp; o.DistinctFields != nil
 <span id="L136" class="ln">   136  </span>}
 <span id="L137" class="ln">   137  </span>
 <span id="L138" class="ln">   138  </span><span class="comment">// SetDistinctFields gets a reference to the given []string and assigns it to the DistinctFields field.</span>
-<span id="L139" class="ln">   139  </span>func (o *HistoricalJobQuery) SetDistinctFields(v []string) {
+<span id="L139" class="ln">   139  </span>func (o *ThreatHuntingJobQuery) SetDistinctFields(v []string) {
 <span id="L140" class="ln">   140  </span>	o.DistinctFields = v
 <span id="L141" class="ln">   141  </span>}
 <span id="L142" class="ln">   142  </span>
 <span id="L143" class="ln">   143  </span><span class="comment">// GetGroupByFields returns the GroupByFields field value if set, zero value otherwise.</span>
-<span id="L144" class="ln">   144  </span>func (o *HistoricalJobQuery) GetGroupByFields() []string {
+<span id="L144" class="ln">   144  </span>func (o *ThreatHuntingJobQuery) GetGroupByFields() []string {
 <span id="L145" class="ln">   145  </span>	if o == nil || o.GroupByFields == nil {
 <span id="L146" class="ln">   146  </span>		var ret []string
 <span id="L147" class="ln">   147  </span>		return ret
@@ -208,7 +208,7 @@
 <span id="L151" class="ln">   151  </span>
 <span id="L152" class="ln">   152  </span><span class="comment">// GetGroupByFieldsOk returns a tuple with the GroupByFields field value if set, nil otherwise</span>
 <span id="L153" class="ln">   153  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L154" class="ln">   154  </span>func (o *HistoricalJobQuery) GetGroupByFieldsOk() (*[]string, bool) {
+<span id="L154" class="ln">   154  </span>func (o *ThreatHuntingJobQuery) GetGroupByFieldsOk() (*[]string, bool) {
 <span id="L155" class="ln">   155  </span>	if o == nil || o.GroupByFields == nil {
 <span id="L156" class="ln">   156  </span>		return nil, false
 <span id="L157" class="ln">   157  </span>	}
@@ -216,17 +216,17 @@
 <span id="L159" class="ln">   159  </span>}
 <span id="L160" class="ln">   160  </span>
 <span id="L161" class="ln">   161  </span><span class="comment">// HasGroupByFields returns a boolean if a field has been set.</span>
-<span id="L162" class="ln">   162  </span>func (o *HistoricalJobQuery) HasGroupByFields() bool {
+<span id="L162" class="ln">   162  </span>func (o *ThreatHuntingJobQuery) HasGroupByFields() bool {
 <span id="L163" class="ln">   163  </span>	return o != nil &amp;&amp; o.GroupByFields != nil
 <span id="L164" class="ln">   164  </span>}
 <span id="L165" class="ln">   165  </span>
 <span id="L166" class="ln">   166  </span><span class="comment">// SetGroupByFields gets a reference to the given []string and assigns it to the GroupByFields field.</span>
-<span id="L167" class="ln">   167  </span>func (o *HistoricalJobQuery) SetGroupByFields(v []string) {
+<span id="L167" class="ln">   167  </span>func (o *ThreatHuntingJobQuery) SetGroupByFields(v []string) {
 <span id="L168" class="ln">   168  </span>	o.GroupByFields = v
 <span id="L169" class="ln">   169  </span>}
 <span id="L170" class="ln">   170  </span>
 <span id="L171" class="ln">   171  </span><span class="comment">// GetHasOptionalGroupByFields returns the HasOptionalGroupByFields field value if set, zero value otherwise.</span>
-<span id="L172" class="ln">   172  </span>func (o *HistoricalJobQuery) GetHasOptionalGroupByFields() bool {
+<span id="L172" class="ln">   172  </span>func (o *ThreatHuntingJobQuery) GetHasOptionalGroupByFields() bool {
 <span id="L173" class="ln">   173  </span>	if o == nil || o.HasOptionalGroupByFields == nil {
 <span id="L174" class="ln">   174  </span>		var ret bool
 <span id="L175" class="ln">   175  </span>		return ret
@@ -236,7 +236,7 @@
 <span id="L179" class="ln">   179  </span>
 <span id="L180" class="ln">   180  </span><span class="comment">// GetHasOptionalGroupByFieldsOk returns a tuple with the HasOptionalGroupByFields field value if set, nil otherwise</span>
 <span id="L181" class="ln">   181  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L182" class="ln">   182  </span>func (o *HistoricalJobQuery) GetHasOptionalGroupByFieldsOk() (*bool, bool) {
+<span id="L182" class="ln">   182  </span>func (o *ThreatHuntingJobQuery) GetHasOptionalGroupByFieldsOk() (*bool, bool) {
 <span id="L183" class="ln">   183  </span>	if o == nil || o.HasOptionalGroupByFields == nil {
 <span id="L184" class="ln">   184  </span>		return nil, false
 <span id="L185" class="ln">   185  </span>	}
@@ -244,17 +244,17 @@
 <span id="L187" class="ln">   187  </span>}
 <span id="L188" class="ln">   188  </span>
 <span id="L189" class="ln">   189  </span><span class="comment">// HasHasOptionalGroupByFields returns a boolean if a field has been set.</span>
-<span id="L190" class="ln">   190  </span>func (o *HistoricalJobQuery) HasHasOptionalGroupByFields() bool {
+<span id="L190" class="ln">   190  </span>func (o *ThreatHuntingJobQuery) HasHasOptionalGroupByFields() bool {
 <span id="L191" class="ln">   191  </span>	return o != nil &amp;&amp; o.HasOptionalGroupByFields != nil
 <span id="L192" class="ln">   192  </span>}
 <span id="L193" class="ln">   193  </span>
 <span id="L194" class="ln">   194  </span><span class="comment">// SetHasOptionalGroupByFields gets a reference to the given bool and assigns it to the HasOptionalGroupByFields field.</span>
-<span id="L195" class="ln">   195  </span>func (o *HistoricalJobQuery) SetHasOptionalGroupByFields(v bool) {
+<span id="L195" class="ln">   195  </span>func (o *ThreatHuntingJobQuery) SetHasOptionalGroupByFields(v bool) {
 <span id="L196" class="ln">   196  </span>	o.HasOptionalGroupByFields = &amp;v
 <span id="L197" class="ln">   197  </span>}
 <span id="L198" class="ln">   198  </span>
 <span id="L199" class="ln">   199  </span><span class="comment">// GetMetrics returns the Metrics field value if set, zero value otherwise.</span>
-<span id="L200" class="ln">   200  </span>func (o *HistoricalJobQuery) GetMetrics() []string {
+<span id="L200" class="ln">   200  </span>func (o *ThreatHuntingJobQuery) GetMetrics() []string {
 <span id="L201" class="ln">   201  </span>	if o == nil || o.Metrics == nil {
 <span id="L202" class="ln">   202  </span>		var ret []string
 <span id="L203" class="ln">   203  </span>		return ret
@@ -264,7 +264,7 @@
 <span id="L207" class="ln">   207  </span>
 <span id="L208" class="ln">   208  </span><span class="comment">// GetMetricsOk returns a tuple with the Metrics field value if set, nil otherwise</span>
 <span id="L209" class="ln">   209  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L210" class="ln">   210  </span>func (o *HistoricalJobQuery) GetMetricsOk() (*[]string, bool) {
+<span id="L210" class="ln">   210  </span>func (o *ThreatHuntingJobQuery) GetMetricsOk() (*[]string, bool) {
 <span id="L211" class="ln">   211  </span>	if o == nil || o.Metrics == nil {
 <span id="L212" class="ln">   212  </span>		return nil, false
 <span id="L213" class="ln">   213  </span>	}
@@ -272,17 +272,17 @@
 <span id="L215" class="ln">   215  </span>}
 <span id="L216" class="ln">   216  </span>
 <span id="L217" class="ln">   217  </span><span class="comment">// HasMetrics returns a boolean if a field has been set.</span>
-<span id="L218" class="ln">   218  </span>func (o *HistoricalJobQuery) HasMetrics() bool {
+<span id="L218" class="ln">   218  </span>func (o *ThreatHuntingJobQuery) HasMetrics() bool {
 <span id="L219" class="ln">   219  </span>	return o != nil &amp;&amp; o.Metrics != nil
 <span id="L220" class="ln">   220  </span>}
 <span id="L221" class="ln">   221  </span>
 <span id="L222" class="ln">   222  </span><span class="comment">// SetMetrics gets a reference to the given []string and assigns it to the Metrics field.</span>
-<span id="L223" class="ln">   223  </span>func (o *HistoricalJobQuery) SetMetrics(v []string) {
+<span id="L223" class="ln">   223  </span>func (o *ThreatHuntingJobQuery) SetMetrics(v []string) {
 <span id="L224" class="ln">   224  </span>	o.Metrics = v
 <span id="L225" class="ln">   225  </span>}
 <span id="L226" class="ln">   226  </span>
 <span id="L227" class="ln">   227  </span><span class="comment">// GetName returns the Name field value if set, zero value otherwise.</span>
-<span id="L228" class="ln">   228  </span>func (o *HistoricalJobQuery) GetName() string {
+<span id="L228" class="ln">   228  </span>func (o *ThreatHuntingJobQuery) GetName() string {
 <span id="L229" class="ln">   229  </span>	if o == nil || o.Name == nil {
 <span id="L230" class="ln">   230  </span>		var ret string
 <span id="L231" class="ln">   231  </span>		return ret
@@ -292,7 +292,7 @@
 <span id="L235" class="ln">   235  </span>
 <span id="L236" class="ln">   236  </span><span class="comment">// GetNameOk returns a tuple with the Name field value if set, nil otherwise</span>
 <span id="L237" class="ln">   237  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L238" class="ln">   238  </span>func (o *HistoricalJobQuery) GetNameOk() (*string, bool) {
+<span id="L238" class="ln">   238  </span>func (o *ThreatHuntingJobQuery) GetNameOk() (*string, bool) {
 <span id="L239" class="ln">   239  </span>	if o == nil || o.Name == nil {
 <span id="L240" class="ln">   240  </span>		return nil, false
 <span id="L241" class="ln">   241  </span>	}
@@ -300,17 +300,17 @@
 <span id="L243" class="ln">   243  </span>}
 <span id="L244" class="ln">   244  </span>
 <span id="L245" class="ln">   245  </span><span class="comment">// HasName returns a boolean if a field has been set.</span>
-<span id="L246" class="ln">   246  </span>func (o *HistoricalJobQuery) HasName() bool {
+<span id="L246" class="ln">   246  </span>func (o *ThreatHuntingJobQuery) HasName() bool {
 <span id="L247" class="ln">   247  </span>	return o != nil &amp;&amp; o.Name != nil
 <span id="L248" class="ln">   248  </span>}
 <span id="L249" class="ln">   249  </span>
 <span id="L250" class="ln">   250  </span><span class="comment">// SetName gets a reference to the given string and assigns it to the Name field.</span>
-<span id="L251" class="ln">   251  </span>func (o *HistoricalJobQuery) SetName(v string) {
+<span id="L251" class="ln">   251  </span>func (o *ThreatHuntingJobQuery) SetName(v string) {
 <span id="L252" class="ln">   252  </span>	o.Name = &amp;v
 <span id="L253" class="ln">   253  </span>}
 <span id="L254" class="ln">   254  </span>
 <span id="L255" class="ln">   255  </span><span class="comment">// GetQuery returns the Query field value if set, zero value otherwise.</span>
-<span id="L256" class="ln">   256  </span>func (o *HistoricalJobQuery) GetQuery() string {
+<span id="L256" class="ln">   256  </span>func (o *ThreatHuntingJobQuery) GetQuery() string {
 <span id="L257" class="ln">   257  </span>	if o == nil || o.Query == nil {
 <span id="L258" class="ln">   258  </span>		var ret string
 <span id="L259" class="ln">   259  </span>		return ret
@@ -320,7 +320,7 @@
 <span id="L263" class="ln">   263  </span>
 <span id="L264" class="ln">   264  </span><span class="comment">// GetQueryOk returns a tuple with the Query field value if set, nil otherwise</span>
 <span id="L265" class="ln">   265  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L266" class="ln">   266  </span>func (o *HistoricalJobQuery) GetQueryOk() (*string, bool) {
+<span id="L266" class="ln">   266  </span>func (o *ThreatHuntingJobQuery) GetQueryOk() (*string, bool) {
 <span id="L267" class="ln">   267  </span>	if o == nil || o.Query == nil {
 <span id="L268" class="ln">   268  </span>		return nil, false
 <span id="L269" class="ln">   269  </span>	}
@@ -328,17 +328,17 @@
 <span id="L271" class="ln">   271  </span>}
 <span id="L272" class="ln">   272  </span>
 <span id="L273" class="ln">   273  </span><span class="comment">// HasQuery returns a boolean if a field has been set.</span>
-<span id="L274" class="ln">   274  </span>func (o *HistoricalJobQuery) HasQuery() bool {
+<span id="L274" class="ln">   274  </span>func (o *ThreatHuntingJobQuery) HasQuery() bool {
 <span id="L275" class="ln">   275  </span>	return o != nil &amp;&amp; o.Query != nil
 <span id="L276" class="ln">   276  </span>}
 <span id="L277" class="ln">   277  </span>
 <span id="L278" class="ln">   278  </span><span class="comment">// SetQuery gets a reference to the given string and assigns it to the Query field.</span>
-<span id="L279" class="ln">   279  </span>func (o *HistoricalJobQuery) SetQuery(v string) {
+<span id="L279" class="ln">   279  </span>func (o *ThreatHuntingJobQuery) SetQuery(v string) {
 <span id="L280" class="ln">   280  </span>	o.Query = &amp;v
 <span id="L281" class="ln">   281  </span>}
 <span id="L282" class="ln">   282  </span>
 <span id="L283" class="ln">   283  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L284" class="ln">   284  </span>func (o HistoricalJobQuery) MarshalJSON() ([]byte, error) {
+<span id="L284" class="ln">   284  </span>func (o ThreatHuntingJobQuery) MarshalJSON() ([]byte, error) {
 <span id="L285" class="ln">   285  </span>	toSerialize := map[string]interface{}{}
 <span id="L286" class="ln">   286  </span>	if o.UnparsedObject != nil {
 <span id="L287" class="ln">   287  </span>		return datadog.Marshal(o.UnparsedObject)
@@ -375,7 +375,7 @@
 <span id="L318" class="ln">   318  </span>}
 <span id="L319" class="ln">   319  </span>
 <span id="L320" class="ln">   320  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L321" class="ln">   321  </span>func (o *HistoricalJobQuery) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L321" class="ln">   321  </span>func (o *ThreatHuntingJobQuery) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L322" class="ln">   322  </span>	all := struct {
 <span id="L323" class="ln">   323  </span>		Aggregation              *SecurityMonitoringRuleQueryAggregation `json:&#34;aggregation,omitempty&#34;`
 <span id="L324" class="ln">   324  </span>		DataSource               *SecurityMonitoringStandardDataSource   `json:&#34;dataSource,omitempty&#34;`
