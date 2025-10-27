@@ -14,13 +14,13 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.DeleteHistoricalJob", true)
+	configuration.SetUnstableOperationEnabled("v2.DeleteThreatHuntingJob", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	r, err := api.DeleteHistoricalJob(ctx, "job_id")
+	r, err := api.DeleteThreatHuntingJob(ctx, "job_id")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteHistoricalJob`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteThreatHuntingJob`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

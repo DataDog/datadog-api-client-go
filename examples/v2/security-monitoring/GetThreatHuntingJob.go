@@ -13,22 +13,22 @@ import (
 )
 
 func main() {
-	// there is a valid "historical_job" in the system
-	HistoricalJobDataID := os.Getenv("HISTORICAL_JOB_DATA_ID")
+	// there is a valid "threat_hunting_job" in the system
+	ThreatHuntingJobDataID := os.Getenv("THREAT_HUNTING_JOB_DATA_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetHistoricalJob", true)
-	configuration.SetUnstableOperationEnabled("v2.RunHistoricalJob", true)
+	configuration.SetUnstableOperationEnabled("v2.GetThreatHuntingJob", true)
+	configuration.SetUnstableOperationEnabled("v2.RunThreatHuntingJob", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.GetHistoricalJob(ctx, HistoricalJobDataID)
+	resp, r, err := api.GetThreatHuntingJob(ctx, ThreatHuntingJobDataID)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.GetHistoricalJob`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.GetThreatHuntingJob`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.GetHistoricalJob`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.GetThreatHuntingJob`:\n%s\n", responseContent)
 }

@@ -7,7 +7,7 @@ interactions:
       - application/json
     id: 0
     method: GET
-    url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs/inva-lid
+    url: https://api.datadoghq.com/api/v2/siem-threat-hunting/jobs/inva-lid
   response:
     body: '{"errors":[{"status":"400","detail":"invalid jobId"}]}'
     code: 400

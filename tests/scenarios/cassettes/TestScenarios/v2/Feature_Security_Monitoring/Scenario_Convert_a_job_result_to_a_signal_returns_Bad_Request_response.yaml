@@ -10,7 +10,7 @@ interactions:
       - application/json
     id: 0
     method: POST
-    url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs/signal_convert
+    url: https://api.datadoghq.com/api/v2/siem-threat-hunting/jobs/signal_convert
   response:
     body: '{"errors":[{"status":"400","title":"Generic Error","detail":"empty jobResultId
       provided"}]}'
