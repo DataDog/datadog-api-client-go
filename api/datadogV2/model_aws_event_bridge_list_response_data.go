@@ -10,73 +10,68 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AWSAccountResponseData AWS Account response data.
-type AWSAccountResponseData struct {
-	// AWS Account response attributes.
-	Attributes *AWSAccountResponseAttributes `json:"attributes,omitempty"`
-	// Unique Datadog ID of the AWS Account Integration Config.
-	// To get the config ID for an account, use the
-	// [List all AWS integrations](https://docs.datadoghq.com/api/latest/aws-integration/#list-all-aws-integrations)
-	// endpoint and query by AWS Account ID.
+// AWSEventBridgeListResponseData Amazon EventBridge list response data.
+type AWSEventBridgeListResponseData struct {
+	// An object describing the EventBridge configuration for multiple accounts.
+	Attributes AWSEventBridgeListResponseAttributes `json:"attributes"`
+	// The ID of the Amazon EventBridge list response data.
 	Id string `json:"id"`
-	// AWS Account resource type.
-	Type AWSAccountType `json:"type"`
+	// Amazon EventBridge resource type.
+	Type AWSEventBridgeType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewAWSAccountResponseData instantiates a new AWSAccountResponseData object.
+// NewAWSEventBridgeListResponseData instantiates a new AWSEventBridgeListResponseData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAWSAccountResponseData(id string, typeVar AWSAccountType) *AWSAccountResponseData {
-	this := AWSAccountResponseData{}
+func NewAWSEventBridgeListResponseData(attributes AWSEventBridgeListResponseAttributes, id string, typeVar AWSEventBridgeType) *AWSEventBridgeListResponseData {
+	this := AWSEventBridgeListResponseData{}
+	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewAWSAccountResponseDataWithDefaults instantiates a new AWSAccountResponseData object.
+// NewAWSEventBridgeListResponseDataWithDefaults instantiates a new AWSEventBridgeListResponseData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewAWSAccountResponseDataWithDefaults() *AWSAccountResponseData {
-	this := AWSAccountResponseData{}
-	var typeVar AWSAccountType = AWSACCOUNTTYPE_ACCOUNT
+func NewAWSEventBridgeListResponseDataWithDefaults() *AWSEventBridgeListResponseData {
+	this := AWSEventBridgeListResponseData{}
+	var id string = "get_event_bridge"
+	this.Id = id
+	var typeVar AWSEventBridgeType = AWSEVENTBRIDGETYPE_EVENT_BRIDGE
 	this.Type = typeVar
 	return &this
 }
 
-// GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *AWSAccountResponseData) GetAttributes() AWSAccountResponseAttributes {
-	if o == nil || o.Attributes == nil {
-		var ret AWSAccountResponseAttributes
+// GetAttributes returns the Attributes field value.
+func (o *AWSEventBridgeListResponseData) GetAttributes() AWSEventBridgeListResponseAttributes {
+	if o == nil {
+		var ret AWSEventBridgeListResponseAttributes
 		return ret
 	}
-	return *o.Attributes
+	return o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *AWSAccountResponseData) GetAttributesOk() (*AWSAccountResponseAttributes, bool) {
-	if o == nil || o.Attributes == nil {
+func (o *AWSEventBridgeListResponseData) GetAttributesOk() (*AWSEventBridgeListResponseAttributes, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Attributes, true
+	return &o.Attributes, true
 }
 
-// HasAttributes returns a boolean if a field has been set.
-func (o *AWSAccountResponseData) HasAttributes() bool {
-	return o != nil && o.Attributes != nil
-}
-
-// SetAttributes gets a reference to the given AWSAccountResponseAttributes and assigns it to the Attributes field.
-func (o *AWSAccountResponseData) SetAttributes(v AWSAccountResponseAttributes) {
-	o.Attributes = &v
+// SetAttributes sets field value.
+func (o *AWSEventBridgeListResponseData) SetAttributes(v AWSEventBridgeListResponseAttributes) {
+	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *AWSAccountResponseData) GetId() string {
+func (o *AWSEventBridgeListResponseData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -86,7 +81,7 @@ func (o *AWSAccountResponseData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *AWSAccountResponseData) GetIdOk() (*string, bool) {
+func (o *AWSEventBridgeListResponseData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -94,14 +89,14 @@ func (o *AWSAccountResponseData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *AWSAccountResponseData) SetId(v string) {
+func (o *AWSEventBridgeListResponseData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *AWSAccountResponseData) GetType() AWSAccountType {
+func (o *AWSEventBridgeListResponseData) GetType() AWSEventBridgeType {
 	if o == nil {
-		var ret AWSAccountType
+		var ret AWSEventBridgeType
 		return ret
 	}
 	return o.Type
@@ -109,7 +104,7 @@ func (o *AWSAccountResponseData) GetType() AWSAccountType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *AWSAccountResponseData) GetTypeOk() (*AWSAccountType, bool) {
+func (o *AWSEventBridgeListResponseData) GetTypeOk() (*AWSEventBridgeType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -117,19 +112,17 @@ func (o *AWSAccountResponseData) GetTypeOk() (*AWSAccountType, bool) {
 }
 
 // SetType sets field value.
-func (o *AWSAccountResponseData) SetType(v AWSAccountType) {
+func (o *AWSEventBridgeListResponseData) SetType(v AWSEventBridgeType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o AWSAccountResponseData) MarshalJSON() ([]byte, error) {
+func (o AWSEventBridgeListResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Attributes != nil {
-		toSerialize["attributes"] = o.Attributes
-	}
+	toSerialize["attributes"] = o.Attributes
 	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
 
@@ -140,14 +133,17 @@ func (o AWSAccountResponseData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *AWSAccountResponseData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *AWSEventBridgeListResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *AWSAccountResponseAttributes `json:"attributes,omitempty"`
-		Id         *string                       `json:"id"`
-		Type       *AWSAccountType               `json:"type"`
+		Attributes *AWSEventBridgeListResponseAttributes `json:"attributes"`
+		Id         *string                               `json:"id"`
+		Type       *AWSEventBridgeType                   `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
 	}
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
@@ -163,10 +159,10 @@ func (o *AWSAccountResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Attributes = all.Attributes
+	o.Attributes = *all.Attributes
 	o.Id = *all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
