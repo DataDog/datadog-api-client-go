@@ -102,6 +102,8 @@ func (a *AWSIntegrationApi) CreateAWSAccount(ctx _context.Context, body AWSAccou
 
 // CreateAWSEventBridgeSource Create an Amazon EventBridge source.
 // Create an Amazon EventBridge source.
+//
+// Deprecated: This API is deprecated.
 func (a *AWSIntegrationApi) CreateAWSEventBridgeSource(ctx _context.Context, body AWSEventBridgeCreateRequest) (AWSEventBridgeCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -428,6 +430,8 @@ func (a *AWSIntegrationApi) DeleteAWSAccount(ctx _context.Context, body AWSAccou
 
 // DeleteAWSEventBridgeSource Delete an Amazon EventBridge source.
 // Delete an Amazon EventBridge source.
+//
+// Deprecated: This API is deprecated.
 func (a *AWSIntegrationApi) DeleteAWSEventBridgeSource(ctx _context.Context, body AWSEventBridgeDeleteRequest) (AWSEventBridgeDeleteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -717,6 +721,8 @@ func (a *AWSIntegrationApi) ListAWSAccounts(ctx _context.Context, o ...ListAWSAc
 
 // ListAWSEventBridgeSources Get all Amazon EventBridge sources.
 // Get all Amazon EventBridge sources.
+//
+// Deprecated: This API is deprecated.
 func (a *AWSIntegrationApi) ListAWSEventBridgeSources(ctx _context.Context) (AWSEventBridgeListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
