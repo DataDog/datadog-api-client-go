@@ -570,7 +570,7 @@
 <span id="L513" class="ln">   513  </span>}
 <span id="L514" class="ln">   514  </span>
 <span id="L515" class="ln">   515  </span><span class="comment">// ListAWSLogsServices Get list of AWS log ready services.</span>
-<span id="L516" class="ln">   516  </span><span class="comment">// Get the list of current AWS services that Datadog offers automatic log collection. Use returned service IDs with the services parameter for the Enable an AWS service log collection API endpoint.</span>
+<span id="L516" class="ln">   516  </span><span class="comment">// **This endpoint is deprecated - use the V2 endpoint instead.** Get the list of current AWS services that Datadog offers automatic log collection. Use returned service IDs with the services parameter for the Enable an AWS service log collection API endpoint.</span>
 <span id="L517" class="ln">   517  </span><span class="comment">//</span>
 <span id="L518" class="ln">   518  </span><span class="comment">// Deprecated: This API is deprecated.</span>
 <span id="L519" class="ln">   519  </span>func (a *AWSLogsIntegrationApi) ListAWSLogsServices(ctx _context.Context) ([]AWSLogsListServicesResponse, *_nethttp.Response, error) {

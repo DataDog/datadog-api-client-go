@@ -73,7 +73,7 @@
 <span id="L16" class="ln">    16  </span>type AWSIntegrationApi datadog.Service
 <span id="L17" class="ln">    17  </span>
 <span id="L18" class="ln">    18  </span><span class="comment">// CreateAWSAccount Create an AWS integration.</span>
-<span id="L19" class="ln">    19  </span><span class="comment">// Create a Datadog-Amazon Web Services integration.</span>
+<span id="L19" class="ln">    19  </span><span class="comment">// &#34;**This endpoint is deprecated - use the V2 endpoints instead.** Create a Datadog-Amazon Web Services integration.</span>
 <span id="L20" class="ln">    20  </span><span class="comment">// Using the `POST` method updates your integration configuration</span>
 <span id="L21" class="ln">    21  </span><span class="comment">// by adding your new configuration to the existing one in your Datadog organization.</span>
 <span id="L22" class="ln">    22  </span><span class="comment">// A unique AWS Account ID for role based authentication.</span>
@@ -322,7 +322,7 @@
 <span id="L265" class="ln">   265  </span>}
 <span id="L266" class="ln">   266  </span>
 <span id="L267" class="ln">   267  </span><span class="comment">// CreateNewAWSExternalID Generate a new external ID.</span>
-<span id="L268" class="ln">   268  </span><span class="comment">// Generate a new AWS external ID for a given AWS account ID and role name pair.</span>
+<span id="L268" class="ln">   268  </span><span class="comment">// **This endpoint is deprecated - use the V2 endpoints instead.** Generate a new AWS external ID for a given AWS account ID and role name pair.</span>
 <span id="L269" class="ln">   269  </span><span class="comment">//</span>
 <span id="L270" class="ln">   270  </span><span class="comment">// Deprecated: This API is deprecated.</span>
 <span id="L271" class="ln">   271  </span>func (a *AWSIntegrationApi) CreateNewAWSExternalID(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
@@ -404,7 +404,7 @@
 <span id="L347" class="ln">   347  </span>}
 <span id="L348" class="ln">   348  </span>
 <span id="L349" class="ln">   349  </span><span class="comment">// DeleteAWSAccount Delete an AWS integration.</span>
-<span id="L350" class="ln">   350  </span><span class="comment">// Delete a Datadog-AWS integration matching the specified `account_id` and `role_name parameters`.</span>
+<span id="L350" class="ln">   350  </span><span class="comment">// **This endpoint is deprecated - use the V2 endpoints instead.** Delete a Datadog-AWS integration matching the specified `account_id` and `role_name parameters`.</span>
 <span id="L351" class="ln">   351  </span><span class="comment">//</span>
 <span id="L352" class="ln">   352  </span><span class="comment">// Deprecated: This API is deprecated.</span>
 <span id="L353" class="ln">   353  </span>func (a *AWSIntegrationApi) DeleteAWSAccount(ctx _context.Context, body AWSAccountDeleteRequest) (interface{}, *_nethttp.Response, error) {
@@ -681,7 +681,7 @@
 <span id="L624" class="ln">   624  </span>}
 <span id="L625" class="ln">   625  </span>
 <span id="L626" class="ln">   626  </span><span class="comment">// ListAWSAccounts List all AWS integrations.</span>
-<span id="L627" class="ln">   627  </span><span class="comment">// List all Datadog-AWS integrations available in your Datadog organization.</span>
+<span id="L627" class="ln">   627  </span><span class="comment">// **This endpoint is deprecated - use the V2 endpoints instead.** List all Datadog-AWS integrations available in your Datadog organization.</span>
 <span id="L628" class="ln">   628  </span><span class="comment">//</span>
 <span id="L629" class="ln">   629  </span><span class="comment">// Deprecated: This API is deprecated.</span>
 <span id="L630" class="ln">   630  </span>func (a *AWSIntegrationApi) ListAWSAccounts(ctx _context.Context, o ...ListAWSAccountsOptionalParameters) (AWSAccountListResponse, *_nethttp.Response, error) {
@@ -936,7 +936,7 @@
 <span id="L879" class="ln">   879  </span>}
 <span id="L880" class="ln">   880  </span>
 <span id="L881" class="ln">   881  </span><span class="comment">// ListAvailableAWSNamespaces List namespace rules.</span>
-<span id="L882" class="ln">   882  </span><span class="comment">// List all namespace rules for a given Datadog-AWS integration. This endpoint takes no arguments.</span>
+<span id="L882" class="ln">   882  </span><span class="comment">// **This endpoint is deprecated - use the V2 endpoints instead.** List all namespace rules for a given Datadog-AWS integration. This endpoint takes no arguments.</span>
 <span id="L883" class="ln">   883  </span><span class="comment">//</span>
 <span id="L884" class="ln">   884  </span><span class="comment">// Deprecated: This API is deprecated.</span>
 <span id="L885" class="ln">   885  </span>func (a *AWSIntegrationApi) ListAvailableAWSNamespaces(ctx _context.Context) ([]string, *_nethttp.Response, error) {
@@ -1046,7 +1046,7 @@
 <span id="L989" class="ln">   989  </span>}
 <span id="L990" class="ln">   990  </span>
 <span id="L991" class="ln">   991  </span><span class="comment">// UpdateAWSAccount Update an AWS integration.</span>
-<span id="L992" class="ln">   992  </span><span class="comment">// Update a Datadog-Amazon Web Services integration.</span>
+<span id="L992" class="ln">   992  </span><span class="comment">// **This endpoint is deprecated - use the V2 endpoints instead.** Update a Datadog-Amazon Web Services integration.</span>
 <span id="L993" class="ln">   993  </span><span class="comment">//</span>
 <span id="L994" class="ln">   994  </span><span class="comment">// Deprecated: This API is deprecated.</span>
 <span id="L995" class="ln">   995  </span>func (a *AWSIntegrationApi) UpdateAWSAccount(ctx _context.Context, body AWSAccount, o ...UpdateAWSAccountOptionalParameters) (interface{}, *_nethttp.Response, error) {
