@@ -16,7 +16,7 @@ import (
 type AWSIntegrationApi datadog.Service
 
 // CreateAWSAccount Create an AWS integration.
-// "**This endpoint is deprecated - use the V2 endpoints instead.** Create a Datadog-Amazon Web Services integration.
+// **This endpoint is deprecated - use the V2 endpoints instead.** Create a Datadog-Amazon Web Services integration.
 // Using the `POST` method updates your integration configuration
 // by adding your new configuration to the existing one in your Datadog organization.
 // A unique AWS Account ID for role based authentication.
@@ -101,7 +101,7 @@ func (a *AWSIntegrationApi) CreateAWSAccount(ctx _context.Context, body AWSAccou
 }
 
 // CreateAWSEventBridgeSource Create an Amazon EventBridge source.
-// Create an Amazon EventBridge source.
+// **This endpoint is deprecated - use the V2 endpoints instead.** Create an Amazon EventBridge source.
 //
 // Deprecated: This API is deprecated.
 func (a *AWSIntegrationApi) CreateAWSEventBridgeSource(ctx _context.Context, body AWSEventBridgeCreateRequest) (AWSEventBridgeCreateResponse, *_nethttp.Response, error) {
@@ -429,7 +429,7 @@ func (a *AWSIntegrationApi) DeleteAWSAccount(ctx _context.Context, body AWSAccou
 }
 
 // DeleteAWSEventBridgeSource Delete an Amazon EventBridge source.
-// Delete an Amazon EventBridge source.
+// **This endpoint is deprecated - use the V2 endpoints instead.** Delete an Amazon EventBridge source.
 //
 // Deprecated: This API is deprecated.
 func (a *AWSIntegrationApi) DeleteAWSEventBridgeSource(ctx _context.Context, body AWSEventBridgeDeleteRequest) (AWSEventBridgeDeleteResponse, *_nethttp.Response, error) {
@@ -720,7 +720,7 @@ func (a *AWSIntegrationApi) ListAWSAccounts(ctx _context.Context, o ...ListAWSAc
 }
 
 // ListAWSEventBridgeSources Get all Amazon EventBridge sources.
-// Get all Amazon EventBridge sources.
+// **This endpoint is deprecated - use the V2 endpoints instead.** Get all Amazon EventBridge sources.
 //
 // Deprecated: This API is deprecated.
 func (a *AWSIntegrationApi) ListAWSEventBridgeSources(ctx _context.Context) (AWSEventBridgeListResponse, *_nethttp.Response, error) {
