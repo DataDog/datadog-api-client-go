@@ -73,7 +73,7 @@
 <span id="L16" class="ln">    16  </span>type AWSIntegrationApi datadog.Service
 <span id="L17" class="ln">    17  </span>
 <span id="L18" class="ln">    18  </span><span class="comment">// CreateAWSAccount Create an AWS integration.</span>
-<span id="L19" class="ln">    19  </span><span class="comment">// &#34;**This endpoint is deprecated - use the V2 endpoints instead.** Create a Datadog-Amazon Web Services integration.</span>
+<span id="L19" class="ln">    19  </span><span class="comment">// **This endpoint is deprecated - use the V2 endpoints instead.** Create a Datadog-Amazon Web Services integration.</span>
 <span id="L20" class="ln">    20  </span><span class="comment">// Using the `POST` method updates your integration configuration</span>
 <span id="L21" class="ln">    21  </span><span class="comment">// by adding your new configuration to the existing one in your Datadog organization.</span>
 <span id="L22" class="ln">    22  </span><span class="comment">// A unique AWS Account ID for role based authentication.</span>
@@ -158,7 +158,7 @@
 <span id="L101" class="ln">   101  </span>}
 <span id="L102" class="ln">   102  </span>
 <span id="L103" class="ln">   103  </span><span class="comment">// CreateAWSEventBridgeSource Create an Amazon EventBridge source.</span>
-<span id="L104" class="ln">   104  </span><span class="comment">// Create an Amazon EventBridge source.</span>
+<span id="L104" class="ln">   104  </span><span class="comment">// **This endpoint is deprecated - use the V2 endpoints instead.** Create an Amazon EventBridge source.</span>
 <span id="L105" class="ln">   105  </span><span class="comment">//</span>
 <span id="L106" class="ln">   106  </span><span class="comment">// Deprecated: This API is deprecated.</span>
 <span id="L107" class="ln">   107  </span>func (a *AWSIntegrationApi) CreateAWSEventBridgeSource(ctx _context.Context, body AWSEventBridgeCreateRequest) (AWSEventBridgeCreateResponse, *_nethttp.Response, error) {
@@ -486,7 +486,7 @@
 <span id="L429" class="ln">   429  </span>}
 <span id="L430" class="ln">   430  </span>
 <span id="L431" class="ln">   431  </span><span class="comment">// DeleteAWSEventBridgeSource Delete an Amazon EventBridge source.</span>
-<span id="L432" class="ln">   432  </span><span class="comment">// Delete an Amazon EventBridge source.</span>
+<span id="L432" class="ln">   432  </span><span class="comment">// **This endpoint is deprecated - use the V2 endpoints instead.** Delete an Amazon EventBridge source.</span>
 <span id="L433" class="ln">   433  </span><span class="comment">//</span>
 <span id="L434" class="ln">   434  </span><span class="comment">// Deprecated: This API is deprecated.</span>
 <span id="L435" class="ln">   435  </span>func (a *AWSIntegrationApi) DeleteAWSEventBridgeSource(ctx _context.Context, body AWSEventBridgeDeleteRequest) (AWSEventBridgeDeleteResponse, *_nethttp.Response, error) {
@@ -777,7 +777,7 @@
 <span id="L720" class="ln">   720  </span>}
 <span id="L721" class="ln">   721  </span>
 <span id="L722" class="ln">   722  </span><span class="comment">// ListAWSEventBridgeSources Get all Amazon EventBridge sources.</span>
-<span id="L723" class="ln">   723  </span><span class="comment">// Get all Amazon EventBridge sources.</span>
+<span id="L723" class="ln">   723  </span><span class="comment">// **This endpoint is deprecated - use the V2 endpoints instead.** Get all Amazon EventBridge sources.</span>
 <span id="L724" class="ln">   724  </span><span class="comment">//</span>
 <span id="L725" class="ln">   725  </span><span class="comment">// Deprecated: This API is deprecated.</span>
 <span id="L726" class="ln">   726  </span>func (a *AWSIntegrationApi) ListAWSEventBridgeSources(ctx _context.Context) (AWSEventBridgeListResponse, *_nethttp.Response, error) {
