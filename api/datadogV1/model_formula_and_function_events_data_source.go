@@ -27,6 +27,7 @@ const (
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES       FormulaAndFunctionEventsDataSource = "ci_pipelines"
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_INCIDENT_ANALYTICS FormulaAndFunctionEventsDataSource = "incident_analytics"
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_PRODUCT_ANALYTICS  FormulaAndFunctionEventsDataSource = "product_analytics"
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_ON_CALL_EVENTS     FormulaAndFunctionEventsDataSource = "on_call_events"
 )
 
 var allowedFormulaAndFunctionEventsDataSourceEnumValues = []FormulaAndFunctionEventsDataSource{
@@ -42,6 +43,7 @@ var allowedFormulaAndFunctionEventsDataSourceEnumValues = []FormulaAndFunctionEv
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES,
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_INCIDENT_ANALYTICS,
 	FORMULAANDFUNCTIONEVENTSDATASOURCE_PRODUCT_ANALYTICS,
+	FORMULAANDFUNCTIONEVENTSDATASOURCE_ON_CALL_EVENTS,
 }
 
 // GetAllowedValues reeturns the list of possible values.
