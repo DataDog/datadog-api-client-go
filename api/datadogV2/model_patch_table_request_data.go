@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchTableRequestData The definition of `PatchTableRequestData` object.
+// PatchTableRequestData The definition of the patch table request data object.
 type PatchTableRequestData struct {
-	// The definition of `PatchTableRequestDataAttributes` object.
+	// The definition of the reference table attributes object.
 	Attributes *PatchTableRequestDataAttributes `json:"attributes,omitempty"`
 	// The ID of the reference table.
 	Id *string `json:"id,omitempty"`

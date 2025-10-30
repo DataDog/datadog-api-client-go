@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableRowResourceData The definition of `TableRowResourceData` object.
+// TableRowResourceData The definition of the table row resource data object.
 type TableRowResourceData struct {
-	// The definition of `TableRowResourceDataAttributes` object.
+	// The definition of the row attributes object.
 	Attributes *TableRowResourceDataAttributes `json:"attributes,omitempty"`
 	// The ID of the row.
 	Id *string `json:"id,omitempty"`

@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchTableRequest The definition of `PatchTableRequest` object.
+// PatchTableRequest The definition of the patch table request object.
 type PatchTableRequest struct {
-	// The definition of `PatchTableRequestData` object.
+	// The definition of the patch table request data object.
 	Data *PatchTableRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

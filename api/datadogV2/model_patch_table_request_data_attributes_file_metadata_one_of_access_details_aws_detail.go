@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail The definition of `PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail` object.
+// PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail The definition of the AWS access details object.
 type PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail struct {
 	// The ID of the AWS account.
 	AwsAccountId *string `json:"aws_account_id,omitempty"`

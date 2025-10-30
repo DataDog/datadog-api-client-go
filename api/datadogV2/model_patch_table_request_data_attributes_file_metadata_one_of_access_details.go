@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails The definition of `PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails` object.
+// PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails The definition of the access details object.
 type PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails struct {
-	// The definition of `PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail` object.
+	// The definition of the AWS access details object.
 	AwsDetail *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail `json:"aws_detail,omitempty"`
-	// The definition of `PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail` object.
+	// The definition of the Azure access details object.
 	AzureDetail *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail `json:"azure_detail,omitempty"`
-	// The definition of `PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail` object.
+	// The definition of the GCP access details object.
 	GcpDetail *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail `json:"gcp_detail,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

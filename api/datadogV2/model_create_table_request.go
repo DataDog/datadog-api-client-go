@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateTableRequest The definition of `CreateTableRequest` object.
+// CreateTableRequest The definition of the reference table request object.
 type CreateTableRequest struct {
-	// The definition of `CreateTableRequestData` object.
+	// The definition of the reference table request data object.
 	Data *CreateTableRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

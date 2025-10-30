@@ -8,19 +8,19 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableResultV2DataAttributes The definition of `TableResultV2DataAttributes` object.
+// TableResultV2DataAttributes The definition of the reference table attributes object.
 type TableResultV2DataAttributes struct {
 	// UUID of the user who created the reference table.
 	CreatedBy *string `json:"created_by,omitempty"`
 	// The description of the reference table.
 	Description *string `json:"description,omitempty"`
-	// The definition of `TableResultV2DataAttributesFileMetadata` object.
+	// The definition of the file metadata object.
 	FileMetadata *TableResultV2DataAttributesFileMetadata `json:"file_metadata,omitempty"`
 	// UUID of the user who last updated the reference table.
 	LastUpdatedBy *string `json:"last_updated_by,omitempty"`
 	// The number of successfully processed rows in the reference table.
 	RowCount *int64 `json:"row_count,omitempty"`
-	// The definition of `TableResultV2DataAttributesSchema` object.
+	// The definition of the schema object.
 	Schema *TableResultV2DataAttributesSchema `json:"schema,omitempty"`
 	// The source type for reference table data. Includes all possible source types that can appear in responses.
 	Source *ReferenceTableSourceType `json:"source,omitempty"`

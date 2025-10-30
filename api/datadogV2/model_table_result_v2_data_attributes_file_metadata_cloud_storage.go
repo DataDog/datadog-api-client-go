@@ -10,7 +10,7 @@ import (
 
 // TableResultV2DataAttributesFileMetadataCloudStorage File metadata for reference tables created by cloud storage.
 type TableResultV2DataAttributesFileMetadataCloudStorage struct {
-	// The definition of `TableResultV2DataAttributesFileMetadataOneOfAccessDetails` object.
+	// The definition of the access details object.
 	AccessDetails *TableResultV2DataAttributesFileMetadataOneOfAccessDetails `json:"access_details,omitempty"`
 	// The error message returned from the sync.
 	ErrorMessage *string `json:"error_message,omitempty"`

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchTableRequestDataAttributesSchemaFieldsItems The definition of `PatchTableRequestDataAttributesSchemaFieldsItems` object.
+// PatchTableRequestDataAttributesSchemaFieldsItems The definition of a schema field object.
 type PatchTableRequestDataAttributesSchemaFieldsItems struct {
 	// The field name.
 	Name string `json:"name"`

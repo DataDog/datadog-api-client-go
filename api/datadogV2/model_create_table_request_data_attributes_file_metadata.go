@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateTableRequestDataAttributesFileMetadata - The definition of `CreateTableRequestDataAttributesFileMetadata` object.
+// CreateTableRequestDataAttributesFileMetadata - The definition of the file metadata object.
 type CreateTableRequestDataAttributesFileMetadata struct {
 	CreateTableRequestDataAttributesFileMetadataCloudStorage *CreateTableRequestDataAttributesFileMetadataCloudStorage
 	CreateTableRequestDataAttributesFileMetadataLocalFile    *CreateTableRequestDataAttributesFileMetadataLocalFile

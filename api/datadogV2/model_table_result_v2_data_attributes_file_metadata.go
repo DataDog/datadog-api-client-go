@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableResultV2DataAttributesFileMetadata - The definition of `TableResultV2DataAttributesFileMetadata` object.
+// TableResultV2DataAttributesFileMetadata - The definition of the file metadata object.
 type TableResultV2DataAttributesFileMetadata struct {
 	TableResultV2DataAttributesFileMetadataCloudStorage *TableResultV2DataAttributesFileMetadataCloudStorage
 	TableResultV2DataAttributesFileMetadataLocalFile    *TableResultV2DataAttributesFileMetadataLocalFile

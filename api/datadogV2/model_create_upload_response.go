@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateUploadResponse The definition of `CreateUploadResponse` object.
+// CreateUploadResponse The definition of the upload response object.
 type CreateUploadResponse struct {
-	// The definition of `CreateUploadResponseData` object.
+	// The definition of the upload response data object.
 	Data *CreateUploadResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

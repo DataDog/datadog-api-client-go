@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail The definition of `PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail` object.
+// PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail The definition of the GCP access details object.
 type PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail struct {
 	// The relative file path from the GCS bucket root to the CSV file.
 	FilePath *string `json:"file_path,omitempty"`

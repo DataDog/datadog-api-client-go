@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableResultV2DataAttributesFileMetadataOneOfAccessDetailsAwsDetail The definition of `TableResultV2DataAttributesFileMetadataOneOfAccessDetailsAwsDetail` object.
+// TableResultV2DataAttributesFileMetadataOneOfAccessDetailsAwsDetail The definition of the AWS access details object.
 type TableResultV2DataAttributesFileMetadataOneOfAccessDetailsAwsDetail struct {
 	// The ID of the AWS account.
 	AwsAccountId *string `json:"aws_account_id,omitempty"`

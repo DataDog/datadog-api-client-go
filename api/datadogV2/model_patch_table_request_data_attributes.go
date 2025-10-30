@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchTableRequestDataAttributes The definition of `PatchTableRequestDataAttributes` object.
+// PatchTableRequestDataAttributes The definition of the reference table attributes object.
 type PatchTableRequestDataAttributes struct {
 	// The description of the reference table.
 	Description *string `json:"description,omitempty"`
-	// The definition of `PatchTableRequestDataAttributesFileMetadata` object.
+	// The definition of the file metadata object.
 	FileMetadata *PatchTableRequestDataAttributesFileMetadata `json:"file_metadata,omitempty"`
-	// The definition of `PatchTableRequestDataAttributesSchema` object.
+	// The definition of the schema object.
 	Schema *PatchTableRequestDataAttributesSchema `json:"schema,omitempty"`
 	// Whether this table is synced automatically.
 	SyncEnabled *bool `json:"sync_enabled,omitempty"`
