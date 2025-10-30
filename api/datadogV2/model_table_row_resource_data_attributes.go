@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableRowResourceDataAttributes The definition of `TableRowResourceDataAttributes` object.
+// TableRowResourceDataAttributes The definition of the row attributes object.
 type TableRowResourceDataAttributes struct {
 	// The values of the row.
 	Values map[string]interface{} `json:"values,omitempty"`

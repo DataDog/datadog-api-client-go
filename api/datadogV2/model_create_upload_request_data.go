@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateUploadRequestData The definition of `CreateUploadRequestData` object.
+// CreateUploadRequestData The definition of the upload request data object.
 type CreateUploadRequestData struct {
-	// The definition of `CreateUploadRequestDataAttributes` object.
+	// The definition of the upload attributes object.
 	Attributes *CreateUploadRequestDataAttributes `json:"attributes,omitempty"`
 	// The ID of the upload.
 	Id *string `json:"id,omitempty"`

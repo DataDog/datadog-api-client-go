@@ -12,7 +12,7 @@ import (
 
 // CreateTableRequestDataAttributesFileMetadataCloudStorage Cloud storage file metadata for create requests. Both access_details and sync_enabled are required.
 type CreateTableRequestDataAttributesFileMetadataCloudStorage struct {
-	// The definition of `CreateTableRequestDataAttributesFileMetadataOneOfAccessDetails` object.
+	// The definition of the access details object.
 	AccessDetails CreateTableRequestDataAttributesFileMetadataOneOfAccessDetails `json:"access_details"`
 	// Whether this table is synced automatically.
 	SyncEnabled bool `json:"sync_enabled"`

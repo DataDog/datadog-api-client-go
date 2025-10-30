@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateUploadRequest The definition of `CreateUploadRequest` object.
+// CreateUploadRequest The definition of the upload request object.
 type CreateUploadRequest struct {
-	// The definition of `CreateUploadRequestData` object.
+	// The definition of the upload request data object.
 	Data *CreateUploadRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

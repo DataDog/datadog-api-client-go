@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateUploadRequestDataAttributes The definition of `CreateUploadRequestDataAttributes` object.
+// CreateUploadRequestDataAttributes The definition of the upload attributes object.
 type CreateUploadRequestDataAttributes struct {
-	// The headers of the file to upload.
+	// The headers of the CSV file to upload to be used as the schema fields, provided in the same order as the columns in the CSV file.
 	Headers []string `json:"headers"`
 	// The number of parts in the upload.
 	PartCount int32 `json:"part_count"`

@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableResultV2Data The definition of `TableResultV2Data` object.
+// TableResultV2Data The definition of the table result data object.
 type TableResultV2Data struct {
-	// The definition of `TableResultV2DataAttributes` object.
+	// The definition of the reference table attributes object.
 	Attributes *TableResultV2DataAttributes `json:"attributes,omitempty"`
 	// The ID of the reference table.
 	Id *string `json:"id,omitempty"`

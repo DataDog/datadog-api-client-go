@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateTableRequestDataAttributesSchemaFieldsItems The definition of `CreateTableRequestDataAttributesSchemaFieldsItems` object.
+// CreateTableRequestDataAttributesSchemaFieldsItems The definition of a schema field object.
 type CreateTableRequestDataAttributesSchemaFieldsItems struct {
 	// The field name.
 	Name string `json:"name"`

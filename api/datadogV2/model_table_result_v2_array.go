@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableResultV2Array The definition of `TableResultV2Array` object.
+// TableResultV2Array The definition of the table result array object.
 type TableResultV2Array struct {
 	// The reference tables.
 	Data []TableResultV2Data `json:"data"`

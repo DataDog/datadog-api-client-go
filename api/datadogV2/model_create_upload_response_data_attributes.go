@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateUploadResponseDataAttributes The definition of `CreateUploadResponseDataAttributes` object.
+// CreateUploadResponseDataAttributes The definition of the upload response attributes object.
 type CreateUploadResponseDataAttributes struct {
 	// The URLs of the parts in the upload.
 	PartUrls []string `json:"part_urls,omitempty"`

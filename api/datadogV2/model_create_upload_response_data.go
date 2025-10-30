@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateUploadResponseData The definition of `CreateUploadResponseData` object.
+// CreateUploadResponseData The definition of the upload response data object.
 type CreateUploadResponseData struct {
-	// The definition of `CreateUploadResponseDataAttributes` object.
+	// The definition of the upload response attributes object.
 	Attributes *CreateUploadResponseDataAttributes `json:"attributes,omitempty"`
 	// The ID of the upload.
 	Id *string `json:"id,omitempty"`

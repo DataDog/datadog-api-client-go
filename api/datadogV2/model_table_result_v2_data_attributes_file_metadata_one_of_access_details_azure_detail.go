@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableResultV2DataAttributesFileMetadataOneOfAccessDetailsAzureDetail The definition of `TableResultV2DataAttributesFileMetadataOneOfAccessDetailsAzureDetail` object.
+// TableResultV2DataAttributesFileMetadataOneOfAccessDetailsAzureDetail The definition of the Azure access details object.
 type TableResultV2DataAttributesFileMetadataOneOfAccessDetailsAzureDetail struct {
 	// The Azure client ID.
 	AzureClientId *string `json:"azure_client_id,omitempty"`
