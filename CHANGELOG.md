@@ -1,5 +1,20 @@
 # CHANGELOG
 
+## 2.49.0/2025-10-30
+
+### Added
+* 📝 [LOGSAC-1298] Add logs-pipeline type to restriction policy OpenAPI spec [#3434](https://github.com/DataDog/datadog-api-client-go/pull/3434)
+* Security Monitoring - Update Signal Archive Reasons [#3433](https://github.com/DataDog/datadog-api-client-go/pull/3433)
+* Add endpoints for Software Composition Analysis [#3430](https://github.com/DataDog/datadog-api-client-go/pull/3430)
+* Add New Serverless Summary Entries to Api Spec [#3418](https://github.com/DataDog/datadog-api-client-go/pull/3418)
+* Add metric namespace config filters to V2 GCP API [#3417](https://github.com/DataDog/datadog-api-client-go/pull/3417)
+* Add specs for v2 eventbridge API [#3414](https://github.com/DataDog/datadog-api-client-go/pull/3414)
+* Add support for `Schema Processor` in `Logs Pipelines` [#3411](https://github.com/DataDog/datadog-api-client-go/pull/3411)
+* Add Static Analysis Rules Endpoints [#3395](https://github.com/DataDog/datadog-api-client-go/pull/3395)
+
+### Changed
+* Rename historical job API endpoints to threat hunting [#3431](https://github.com/DataDog/datadog-api-client-go/pull/3431)
+
 ## 2.48.0/2025-10-23
 
 ### Changed
