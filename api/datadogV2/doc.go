@@ -582,6 +582,7 @@
 //   - [SoftwareCatalogApi.ListCatalogEntity]
 //   - [SoftwareCatalogApi.ListCatalogKind]
 //   - [SoftwareCatalogApi.ListCatalogRelation]
+//   - [SoftwareCatalogApi.PreviewCatalogEntities]
 //   - [SoftwareCatalogApi.UpsertCatalogEntity]
 //   - [SoftwareCatalogApi.UpsertCatalogKind]
 //   - [SpaApi.GetSPARecommendations]
