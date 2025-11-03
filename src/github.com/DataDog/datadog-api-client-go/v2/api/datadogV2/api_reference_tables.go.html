@@ -468,8 +468,8 @@
 <span id="L411" class="ln">   411  </span>
 <span id="L412" class="ln">   412  </span><span class="comment">// ListTablesOptionalParameters holds optional parameters for ListTables.</span>
 <span id="L413" class="ln">   413  </span>type ListTablesOptionalParameters struct {
-<span id="L414" class="ln">   414  </span>	Limit                   *int64
-<span id="L415" class="ln">   415  </span>	Offset                  *int64
+<span id="L414" class="ln">   414  </span>	PageLimit               *int64
+<span id="L415" class="ln">   415  </span>	PageOffset              *int64
 <span id="L416" class="ln">   416  </span>	Sort                    *ReferenceTableSortType
 <span id="L417" class="ln">   417  </span>	FilterStatus            *string
 <span id="L418" class="ln">   418  </span>	FilterTableNameExact    *string
@@ -482,15 +482,15 @@
 <span id="L425" class="ln">   425  </span>	return &amp;this
 <span id="L426" class="ln">   426  </span>}
 <span id="L427" class="ln">   427  </span>
-<span id="L428" class="ln">   428  </span><span class="comment">// WithLimit sets the corresponding parameter name and returns the struct.</span>
-<span id="L429" class="ln">   429  </span>func (r *ListTablesOptionalParameters) WithLimit(limit int64) *ListTablesOptionalParameters {
-<span id="L430" class="ln">   430  </span>	r.Limit = &amp;limit
+<span id="L428" class="ln">   428  </span><span class="comment">// WithPageLimit sets the corresponding parameter name and returns the struct.</span>
+<span id="L429" class="ln">   429  </span>func (r *ListTablesOptionalParameters) WithPageLimit(pageLimit int64) *ListTablesOptionalParameters {
+<span id="L430" class="ln">   430  </span>	r.PageLimit = &amp;pageLimit
 <span id="L431" class="ln">   431  </span>	return r
 <span id="L432" class="ln">   432  </span>}
 <span id="L433" class="ln">   433  </span>
-<span id="L434" class="ln">   434  </span><span class="comment">// WithOffset sets the corresponding parameter name and returns the struct.</span>
-<span id="L435" class="ln">   435  </span>func (r *ListTablesOptionalParameters) WithOffset(offset int64) *ListTablesOptionalParameters {
-<span id="L436" class="ln">   436  </span>	r.Offset = &amp;offset
+<span id="L434" class="ln">   434  </span><span class="comment">// WithPageOffset sets the corresponding parameter name and returns the struct.</span>
+<span id="L435" class="ln">   435  </span>func (r *ListTablesOptionalParameters) WithPageOffset(pageOffset int64) *ListTablesOptionalParameters {
+<span id="L436" class="ln">   436  </span>	r.PageOffset = &amp;pageOffset
 <span id="L437" class="ln">   437  </span>	return r
 <span id="L438" class="ln">   438  </span>}
 <span id="L439" class="ln">   439  </span>
@@ -545,11 +545,11 @@
 <span id="L488" class="ln">   488  </span>	localVarHeaderParams := make(map[string]string)
 <span id="L489" class="ln">   489  </span>	localVarQueryParams := _neturl.Values{}
 <span id="L490" class="ln">   490  </span>	localVarFormParams := _neturl.Values{}
-<span id="L491" class="ln">   491  </span>	if optionalParams.Limit != nil {
-<span id="L492" class="ln">   492  </span>		localVarQueryParams.Add(&#34;limit&#34;, datadog.ParameterToString(*optionalParams.Limit, &#34;&#34;))
+<span id="L491" class="ln">   491  </span>	if optionalParams.PageLimit != nil {
+<span id="L492" class="ln">   492  </span>		localVarQueryParams.Add(&#34;page[limit]&#34;, datadog.ParameterToString(*optionalParams.PageLimit, &#34;&#34;))
 <span id="L493" class="ln">   493  </span>	}
-<span id="L494" class="ln">   494  </span>	if optionalParams.Offset != nil {
-<span id="L495" class="ln">   495  </span>		localVarQueryParams.Add(&#34;offset&#34;, datadog.ParameterToString(*optionalParams.Offset, &#34;&#34;))
+<span id="L494" class="ln">   494  </span>	if optionalParams.PageOffset != nil {
+<span id="L495" class="ln">   495  </span>		localVarQueryParams.Add(&#34;page[offset]&#34;, datadog.ParameterToString(*optionalParams.PageOffset, &#34;&#34;))
 <span id="L496" class="ln">   496  </span>	}
 <span id="L497" class="ln">   497  </span>	if optionalParams.Sort != nil {
 <span id="L498" class="ln">   498  </span>		localVarQueryParams.Add(&#34;sort&#34;, datadog.ParameterToString(*optionalParams.Sort, &#34;&#34;))
