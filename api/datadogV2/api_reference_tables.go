@@ -411,8 +411,8 @@ func (a *ReferenceTablesApi) GetTable(ctx _context.Context, id string) (TableRes
 
 // ListTablesOptionalParameters holds optional parameters for ListTables.
 type ListTablesOptionalParameters struct {
-	Limit                   *int64
-	Offset                  *int64
+	PageLimit               *int64
+	PageOffset              *int64
 	Sort                    *ReferenceTableSortType
 	FilterStatus            *string
 	FilterTableNameExact    *string
@@ -425,15 +425,15 @@ func NewListTablesOptionalParameters() *ListTablesOptionalParameters {
 	return &this
 }
 
-// WithLimit sets the corresponding parameter name and returns the struct.
-func (r *ListTablesOptionalParameters) WithLimit(limit int64) *ListTablesOptionalParameters {
-	r.Limit = &limit
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListTablesOptionalParameters) WithPageLimit(pageLimit int64) *ListTablesOptionalParameters {
+	r.PageLimit = &pageLimit
 	return r
 }
 
-// WithOffset sets the corresponding parameter name and returns the struct.
-func (r *ListTablesOptionalParameters) WithOffset(offset int64) *ListTablesOptionalParameters {
-	r.Offset = &offset
+// WithPageOffset sets the corresponding parameter name and returns the struct.
+func (r *ListTablesOptionalParameters) WithPageOffset(pageOffset int64) *ListTablesOptionalParameters {
+	r.PageOffset = &pageOffset
 	return r
 }
 
@@ -488,11 +488,11 @@ func (a *ReferenceTablesApi) ListTables(ctx _context.Context, o ...ListTablesOpt
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if optionalParams.Limit != nil {
-		localVarQueryParams.Add("limit", datadog.ParameterToString(*optionalParams.Limit, ""))
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
 	}
-	if optionalParams.Offset != nil {
-		localVarQueryParams.Add("offset", datadog.ParameterToString(*optionalParams.Offset, ""))
+	if optionalParams.PageOffset != nil {
+		localVarQueryParams.Add("page[offset]", datadog.ParameterToString(*optionalParams.PageOffset, ""))
 	}
 	if optionalParams.Sort != nil {
 		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
