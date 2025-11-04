@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// FleetDeploymentConfigureCreateRequest Request payload for creating a new configuration deployment.
-type FleetDeploymentConfigureCreateRequest struct {
-	// Data for creating a new configuration deployment.
-	Data FleetDeploymentConfigureCreate `json:"data"`
+// FleetDeploymentPackageUpgradeCreateRequest Request payload for creating a new package upgrade deployment.
+type FleetDeploymentPackageUpgradeCreateRequest struct {
+	// Data for creating a new package upgrade deployment.
+	Data FleetDeploymentPackageUpgradeCreate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewFleetDeploymentConfigureCreateRequest instantiates a new FleetDeploymentConfigureCreateRequest object.
+// NewFleetDeploymentPackageUpgradeCreateRequest instantiates a new FleetDeploymentPackageUpgradeCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewFleetDeploymentConfigureCreateRequest(data FleetDeploymentConfigureCreate) *FleetDeploymentConfigureCreateRequest {
-	this := FleetDeploymentConfigureCreateRequest{}
+func NewFleetDeploymentPackageUpgradeCreateRequest(data FleetDeploymentPackageUpgradeCreate) *FleetDeploymentPackageUpgradeCreateRequest {
+	this := FleetDeploymentPackageUpgradeCreateRequest{}
 	this.Data = data
 	return &this
 }
 
-// NewFleetDeploymentConfigureCreateRequestWithDefaults instantiates a new FleetDeploymentConfigureCreateRequest object.
+// NewFleetDeploymentPackageUpgradeCreateRequestWithDefaults instantiates a new FleetDeploymentPackageUpgradeCreateRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewFleetDeploymentConfigureCreateRequestWithDefaults() *FleetDeploymentConfigureCreateRequest {
-	this := FleetDeploymentConfigureCreateRequest{}
+func NewFleetDeploymentPackageUpgradeCreateRequestWithDefaults() *FleetDeploymentPackageUpgradeCreateRequest {
+	this := FleetDeploymentPackageUpgradeCreateRequest{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *FleetDeploymentConfigureCreateRequest) GetData() FleetDeploymentConfigureCreate {
+func (o *FleetDeploymentPackageUpgradeCreateRequest) GetData() FleetDeploymentPackageUpgradeCreate {
 	if o == nil {
-		var ret FleetDeploymentConfigureCreate
+		var ret FleetDeploymentPackageUpgradeCreate
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *FleetDeploymentConfigureCreateRequest) GetData() FleetDeploymentConfigu
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *FleetDeploymentConfigureCreateRequest) GetDataOk() (*FleetDeploymentConfigureCreate, bool) {
+func (o *FleetDeploymentPackageUpgradeCreateRequest) GetDataOk() (*FleetDeploymentPackageUpgradeCreate, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *FleetDeploymentConfigureCreateRequest) GetDataOk() (*FleetDeploymentCon
 }
 
 // SetData sets field value.
-func (o *FleetDeploymentConfigureCreateRequest) SetData(v FleetDeploymentConfigureCreate) {
+func (o *FleetDeploymentPackageUpgradeCreateRequest) SetData(v FleetDeploymentPackageUpgradeCreate) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o FleetDeploymentConfigureCreateRequest) MarshalJSON() ([]byte, error) {
+func (o FleetDeploymentPackageUpgradeCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o FleetDeploymentConfigureCreateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *FleetDeploymentConfigureCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *FleetDeploymentPackageUpgradeCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *FleetDeploymentConfigureCreate `json:"data"`
+		Data *FleetDeploymentPackageUpgradeCreate `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

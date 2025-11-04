@@ -1,4 +1,4 @@
-// Create a deployment returns "CREATED" response
+// Create a configuration deployment returns "CREATED" response
 
 package main
 

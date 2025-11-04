@@ -1,4 +1,4 @@
-// Get a configuration deployment by ID returns "OK" response
+// List all available Agent versions returns "OK" response
 
 package main
 
@@ -15,16 +15,16 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetFleetDeployment", true)
+	configuration.SetUnstableOperationEnabled("v2.ListFleetAgentVersions", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewFleetAutomationApi(apiClient)
-	resp, r, err := api.GetFleetDeployment(ctx, "deployment_id", *datadogV2.NewGetFleetDeploymentOptionalParameters())
+	resp, r, err := api.ListFleetAgentVersions(ctx)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `FleetAutomationApi.GetFleetDeployment`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `FleetAutomationApi.ListFleetAgentVersions`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `FleetAutomationApi.GetFleetDeployment`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `FleetAutomationApi.ListFleetAgentVersions`:\n%s\n", responseContent)
 }

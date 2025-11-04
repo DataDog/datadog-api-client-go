@@ -12,6 +12,8 @@ import (
 type FleetDeploymentResponse struct {
 	// A deployment that defines automated configuration changes for a fleet of hosts.
 	Data *FleetDeployment `json:"data,omitempty"`
+	// Metadata for a single deployment response, including pagination information for hosts.
+	Meta *FleetDeploymentResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -62,6 +64,34 @@ func (o *FleetDeploymentResponse) SetData(v FleetDeployment) {
 	o.Data = &v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *FleetDeploymentResponse) GetMeta() FleetDeploymentResponseMeta {
+	if o == nil || o.Meta == nil {
+		var ret FleetDeploymentResponseMeta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FleetDeploymentResponse) GetMetaOk() (*FleetDeploymentResponseMeta, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *FleetDeploymentResponse) HasMeta() bool {
+	return o != nil && o.Meta != nil
+}
+
+// SetMeta gets a reference to the given FleetDeploymentResponseMeta and assigns it to the Meta field.
+func (o *FleetDeploymentResponse) SetMeta(v FleetDeploymentResponseMeta) {
+	o.Meta = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o FleetDeploymentResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -70,6 +100,9 @@ func (o FleetDeploymentResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -81,14 +114,15 @@ func (o FleetDeploymentResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FleetDeploymentResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *FleetDeployment `json:"data,omitempty"`
+		Data *FleetDeployment             `json:"data,omitempty"`
+		Meta *FleetDeploymentResponseMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
 	} else {
 		return err
 	}
@@ -98,6 +132,10 @@ func (o *FleetDeploymentResponse) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Data = all.Data
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
