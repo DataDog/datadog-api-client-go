@@ -22,8 +22,8 @@ type FleetDeploymentOperation struct {
 	// Patch data in JSON format to apply to the configuration file.
 	// When using `merge-patch`, this object is merged with the existing configuration,
 	// allowing you to add, update, or override specific fields without replacing the entire file.
-	// The structure must match the target configuration file format (for example, YAML structure for Datadog Agent config).
-	// Not applicable when using the `delete` operation.
+	// The structure must match the target configuration file format (for example, YAML structure
+	// for Datadog Agent config). Not applicable when using the `delete` operation.
 	Patch map[string]interface{} `json:"patch,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

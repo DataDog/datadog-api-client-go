@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// FleetDeploymentConfigureCreateRequest Request payload for creating a new configuration deployment.
-type FleetDeploymentConfigureCreateRequest struct {
-	// Data for creating a new configuration deployment.
-	Data FleetDeploymentConfigureCreate `json:"data"`
+// FleetSchedulesResponse Response containing a list of schedules.
+type FleetSchedulesResponse struct {
+	// Array of schedules.
+	Data []FleetSchedule `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewFleetDeploymentConfigureCreateRequest instantiates a new FleetDeploymentConfigureCreateRequest object.
+// NewFleetSchedulesResponse instantiates a new FleetSchedulesResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewFleetDeploymentConfigureCreateRequest(data FleetDeploymentConfigureCreate) *FleetDeploymentConfigureCreateRequest {
-	this := FleetDeploymentConfigureCreateRequest{}
+func NewFleetSchedulesResponse(data []FleetSchedule) *FleetSchedulesResponse {
+	this := FleetSchedulesResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewFleetDeploymentConfigureCreateRequestWithDefaults instantiates a new FleetDeploymentConfigureCreateRequest object.
+// NewFleetSchedulesResponseWithDefaults instantiates a new FleetSchedulesResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewFleetDeploymentConfigureCreateRequestWithDefaults() *FleetDeploymentConfigureCreateRequest {
-	this := FleetDeploymentConfigureCreateRequest{}
+func NewFleetSchedulesResponseWithDefaults() *FleetSchedulesResponse {
+	this := FleetSchedulesResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *FleetDeploymentConfigureCreateRequest) GetData() FleetDeploymentConfigureCreate {
+func (o *FleetSchedulesResponse) GetData() []FleetSchedule {
 	if o == nil {
-		var ret FleetDeploymentConfigureCreate
+		var ret []FleetSchedule
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *FleetDeploymentConfigureCreateRequest) GetData() FleetDeploymentConfigu
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *FleetDeploymentConfigureCreateRequest) GetDataOk() (*FleetDeploymentConfigureCreate, bool) {
+func (o *FleetSchedulesResponse) GetDataOk() (*[]FleetSchedule, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *FleetDeploymentConfigureCreateRequest) GetDataOk() (*FleetDeploymentCon
 }
 
 // SetData sets field value.
-func (o *FleetDeploymentConfigureCreateRequest) SetData(v FleetDeploymentConfigureCreate) {
+func (o *FleetSchedulesResponse) SetData(v []FleetSchedule) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o FleetDeploymentConfigureCreateRequest) MarshalJSON() ([]byte, error) {
+func (o FleetSchedulesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o FleetDeploymentConfigureCreateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *FleetDeploymentConfigureCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *FleetSchedulesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *FleetDeploymentConfigureCreate `json:"data"`
+		Data *[]FleetSchedule `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -91,19 +91,10 @@ func (o *FleetDeploymentConfigureCreateRequest) UnmarshalJSON(bytes []byte) (err
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

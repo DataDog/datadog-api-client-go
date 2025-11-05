@@ -10,42 +10,45 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// FleetDeploymentConfigureCreate Data for creating a new configuration deployment.
-type FleetDeploymentConfigureCreate struct {
-	// Attributes for creating a new configuration deployment.
-	Attributes FleetDeploymentConfigureAttributes `json:"attributes"`
-	// The type of deployment resource.
-	Type FleetDeploymentResourceType `json:"type"`
+// FleetSchedule A schedule that automatically creates deployments based on a recurrence rule.
+type FleetSchedule struct {
+	// Attributes of a schedule in the response.
+	Attributes FleetScheduleAttributes `json:"attributes"`
+	// Unique identifier for the schedule.
+	Id string `json:"id"`
+	// The type of schedule resource.
+	Type FleetScheduleResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewFleetDeploymentConfigureCreate instantiates a new FleetDeploymentConfigureCreate object.
+// NewFleetSchedule instantiates a new FleetSchedule object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewFleetDeploymentConfigureCreate(attributes FleetDeploymentConfigureAttributes, typeVar FleetDeploymentResourceType) *FleetDeploymentConfigureCreate {
-	this := FleetDeploymentConfigureCreate{}
+func NewFleetSchedule(attributes FleetScheduleAttributes, id string, typeVar FleetScheduleResourceType) *FleetSchedule {
+	this := FleetSchedule{}
 	this.Attributes = attributes
+	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewFleetDeploymentConfigureCreateWithDefaults instantiates a new FleetDeploymentConfigureCreate object.
+// NewFleetScheduleWithDefaults instantiates a new FleetSchedule object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewFleetDeploymentConfigureCreateWithDefaults() *FleetDeploymentConfigureCreate {
-	this := FleetDeploymentConfigureCreate{}
-	var typeVar FleetDeploymentResourceType = FLEETDEPLOYMENTRESOURCETYPE_DEPLOYMENT
+func NewFleetScheduleWithDefaults() *FleetSchedule {
+	this := FleetSchedule{}
+	var typeVar FleetScheduleResourceType = FLEETSCHEDULERESOURCETYPE_SCHEDULE
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *FleetDeploymentConfigureCreate) GetAttributes() FleetDeploymentConfigureAttributes {
+func (o *FleetSchedule) GetAttributes() FleetScheduleAttributes {
 	if o == nil {
-		var ret FleetDeploymentConfigureAttributes
+		var ret FleetScheduleAttributes
 		return ret
 	}
 	return o.Attributes
@@ -53,7 +56,7 @@ func (o *FleetDeploymentConfigureCreate) GetAttributes() FleetDeploymentConfigur
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *FleetDeploymentConfigureCreate) GetAttributesOk() (*FleetDeploymentConfigureAttributes, bool) {
+func (o *FleetSchedule) GetAttributesOk() (*FleetScheduleAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,14 +64,37 @@ func (o *FleetDeploymentConfigureCreate) GetAttributesOk() (*FleetDeploymentConf
 }
 
 // SetAttributes sets field value.
-func (o *FleetDeploymentConfigureCreate) SetAttributes(v FleetDeploymentConfigureAttributes) {
+func (o *FleetSchedule) SetAttributes(v FleetScheduleAttributes) {
 	o.Attributes = v
 }
 
-// GetType returns the Type field value.
-func (o *FleetDeploymentConfigureCreate) GetType() FleetDeploymentResourceType {
+// GetId returns the Id field value.
+func (o *FleetSchedule) GetId() string {
 	if o == nil {
-		var ret FleetDeploymentResourceType
+		var ret string
+		return ret
+	}
+	return o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value
+// and a boolean to check if the value has been set.
+func (o *FleetSchedule) GetIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Id, true
+}
+
+// SetId sets field value.
+func (o *FleetSchedule) SetId(v string) {
+	o.Id = v
+}
+
+// GetType returns the Type field value.
+func (o *FleetSchedule) GetType() FleetScheduleResourceType {
+	if o == nil {
+		var ret FleetScheduleResourceType
 		return ret
 	}
 	return o.Type
@@ -76,7 +102,7 @@ func (o *FleetDeploymentConfigureCreate) GetType() FleetDeploymentResourceType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *FleetDeploymentConfigureCreate) GetTypeOk() (*FleetDeploymentResourceType, bool) {
+func (o *FleetSchedule) GetTypeOk() (*FleetScheduleResourceType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,17 +110,18 @@ func (o *FleetDeploymentConfigureCreate) GetTypeOk() (*FleetDeploymentResourceTy
 }
 
 // SetType sets field value.
-func (o *FleetDeploymentConfigureCreate) SetType(v FleetDeploymentResourceType) {
+func (o *FleetSchedule) SetType(v FleetScheduleResourceType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o FleetDeploymentConfigureCreate) MarshalJSON() ([]byte, error) {
+func (o FleetSchedule) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["attributes"] = o.Attributes
+	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -104,10 +131,11 @@ func (o FleetDeploymentConfigureCreate) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *FleetDeploymentConfigureCreate) UnmarshalJSON(bytes []byte) (err error) {
+func (o *FleetSchedule) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *FleetDeploymentConfigureAttributes `json:"attributes"`
-		Type       *FleetDeploymentResourceType        `json:"type"`
+		Attributes *FleetScheduleAttributes   `json:"attributes"`
+		Id         *string                    `json:"id"`
+		Type       *FleetScheduleResourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -115,12 +143,15 @@ func (o *FleetDeploymentConfigureCreate) UnmarshalJSON(bytes []byte) (err error)
 	if all.Attributes == nil {
 		return fmt.Errorf("required field attributes missing")
 	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
+	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
 	} else {
 		return err
 	}
@@ -130,6 +161,7 @@ func (o *FleetDeploymentConfigureCreate) UnmarshalJSON(bytes []byte) (err error)
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
+	o.Id = *all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {

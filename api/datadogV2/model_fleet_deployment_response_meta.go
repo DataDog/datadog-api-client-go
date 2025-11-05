@@ -5,68 +5,72 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// FleetDeploymentConfigureCreateRequest Request payload for creating a new configuration deployment.
-type FleetDeploymentConfigureCreateRequest struct {
-	// Data for creating a new configuration deployment.
-	Data FleetDeploymentConfigureCreate `json:"data"`
+// FleetDeploymentResponseMeta Metadata for a single deployment response, including pagination information for hosts.
+type FleetDeploymentResponseMeta struct {
+	// Pagination details for the list of hosts in a deployment.
+	Hosts *FleetDeploymentHostsPage `json:"hosts,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewFleetDeploymentConfigureCreateRequest instantiates a new FleetDeploymentConfigureCreateRequest object.
+// NewFleetDeploymentResponseMeta instantiates a new FleetDeploymentResponseMeta object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewFleetDeploymentConfigureCreateRequest(data FleetDeploymentConfigureCreate) *FleetDeploymentConfigureCreateRequest {
-	this := FleetDeploymentConfigureCreateRequest{}
-	this.Data = data
+func NewFleetDeploymentResponseMeta() *FleetDeploymentResponseMeta {
+	this := FleetDeploymentResponseMeta{}
 	return &this
 }
 
-// NewFleetDeploymentConfigureCreateRequestWithDefaults instantiates a new FleetDeploymentConfigureCreateRequest object.
+// NewFleetDeploymentResponseMetaWithDefaults instantiates a new FleetDeploymentResponseMeta object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewFleetDeploymentConfigureCreateRequestWithDefaults() *FleetDeploymentConfigureCreateRequest {
-	this := FleetDeploymentConfigureCreateRequest{}
+func NewFleetDeploymentResponseMetaWithDefaults() *FleetDeploymentResponseMeta {
+	this := FleetDeploymentResponseMeta{}
 	return &this
 }
 
-// GetData returns the Data field value.
-func (o *FleetDeploymentConfigureCreateRequest) GetData() FleetDeploymentConfigureCreate {
-	if o == nil {
-		var ret FleetDeploymentConfigureCreate
+// GetHosts returns the Hosts field value if set, zero value otherwise.
+func (o *FleetDeploymentResponseMeta) GetHosts() FleetDeploymentHostsPage {
+	if o == nil || o.Hosts == nil {
+		var ret FleetDeploymentHostsPage
 		return ret
 	}
-	return o.Data
+	return *o.Hosts
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetHostsOk returns a tuple with the Hosts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *FleetDeploymentConfigureCreateRequest) GetDataOk() (*FleetDeploymentConfigureCreate, bool) {
-	if o == nil {
+func (o *FleetDeploymentResponseMeta) GetHostsOk() (*FleetDeploymentHostsPage, bool) {
+	if o == nil || o.Hosts == nil {
 		return nil, false
 	}
-	return &o.Data, true
+	return o.Hosts, true
 }
 
-// SetData sets field value.
-func (o *FleetDeploymentConfigureCreateRequest) SetData(v FleetDeploymentConfigureCreate) {
-	o.Data = v
+// HasHosts returns a boolean if a field has been set.
+func (o *FleetDeploymentResponseMeta) HasHosts() bool {
+	return o != nil && o.Hosts != nil
+}
+
+// SetHosts gets a reference to the given FleetDeploymentHostsPage and assigns it to the Hosts field.
+func (o *FleetDeploymentResponseMeta) SetHosts(v FleetDeploymentHostsPage) {
+	o.Hosts = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o FleetDeploymentConfigureCreateRequest) MarshalJSON() ([]byte, error) {
+func (o FleetDeploymentResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["data"] = o.Data
+	if o.Hosts != nil {
+		toSerialize["hosts"] = o.Hosts
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,28 +79,25 @@ func (o FleetDeploymentConfigureCreateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *FleetDeploymentConfigureCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *FleetDeploymentResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *FleetDeploymentConfigureCreate `json:"data"`
+		Hosts *FleetDeploymentHostsPage `json:"hosts,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Data == nil {
-		return fmt.Errorf("required field data missing")
-	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"hosts"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Hosts != nil && all.Hosts.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Data = *all.Data
+	o.Hosts = all.Hosts
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

@@ -16,8 +16,15 @@ type FleetDeploymentAttributes struct {
 	EstimatedEndTimeUnix *int64 `json:"estimated_end_time_unix,omitempty"`
 	// Query used to filter and select target hosts for the deployment. Uses the Datadog query syntax.
 	FilterQuery *string `json:"filter_query,omitempty"`
-	// Current high-level status of the deployment (for example, "pending", "running", "completed", "failed").
+	// Current high-level status of the deployment (for example, "pending", "running",
+	// "completed", "failed").
 	HighLevelStatus *string `json:"high_level_status,omitempty"`
+	// Paginated list of hosts in this deployment with their individual statuses. Only included
+	// when fetching a single deployment by ID. Use the `limit` and `page` query parameters to
+	// navigate through pages. Pagination metadata is included in the response `meta.hosts` field.
+	Hosts []FleetDeploymentHost `json:"hosts,omitempty"`
+	// List of packages to deploy to target hosts. Present only for package upgrade deployments.
+	Packages []FleetDeploymentPackage `json:"packages,omitempty"`
 	// Total number of hosts targeted by this deployment.
 	TotalHosts *int64 `json:"total_hosts,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -154,6 +161,62 @@ func (o *FleetDeploymentAttributes) SetHighLevelStatus(v string) {
 	o.HighLevelStatus = &v
 }
 
+// GetHosts returns the Hosts field value if set, zero value otherwise.
+func (o *FleetDeploymentAttributes) GetHosts() []FleetDeploymentHost {
+	if o == nil || o.Hosts == nil {
+		var ret []FleetDeploymentHost
+		return ret
+	}
+	return o.Hosts
+}
+
+// GetHostsOk returns a tuple with the Hosts field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FleetDeploymentAttributes) GetHostsOk() (*[]FleetDeploymentHost, bool) {
+	if o == nil || o.Hosts == nil {
+		return nil, false
+	}
+	return &o.Hosts, true
+}
+
+// HasHosts returns a boolean if a field has been set.
+func (o *FleetDeploymentAttributes) HasHosts() bool {
+	return o != nil && o.Hosts != nil
+}
+
+// SetHosts gets a reference to the given []FleetDeploymentHost and assigns it to the Hosts field.
+func (o *FleetDeploymentAttributes) SetHosts(v []FleetDeploymentHost) {
+	o.Hosts = v
+}
+
+// GetPackages returns the Packages field value if set, zero value otherwise.
+func (o *FleetDeploymentAttributes) GetPackages() []FleetDeploymentPackage {
+	if o == nil || o.Packages == nil {
+		var ret []FleetDeploymentPackage
+		return ret
+	}
+	return o.Packages
+}
+
+// GetPackagesOk returns a tuple with the Packages field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FleetDeploymentAttributes) GetPackagesOk() (*[]FleetDeploymentPackage, bool) {
+	if o == nil || o.Packages == nil {
+		return nil, false
+	}
+	return &o.Packages, true
+}
+
+// HasPackages returns a boolean if a field has been set.
+func (o *FleetDeploymentAttributes) HasPackages() bool {
+	return o != nil && o.Packages != nil
+}
+
+// SetPackages gets a reference to the given []FleetDeploymentPackage and assigns it to the Packages field.
+func (o *FleetDeploymentAttributes) SetPackages(v []FleetDeploymentPackage) {
+	o.Packages = v
+}
+
 // GetTotalHosts returns the TotalHosts field value if set, zero value otherwise.
 func (o *FleetDeploymentAttributes) GetTotalHosts() int64 {
 	if o == nil || o.TotalHosts == nil {
@@ -200,6 +263,12 @@ func (o FleetDeploymentAttributes) MarshalJSON() ([]byte, error) {
 	if o.HighLevelStatus != nil {
 		toSerialize["high_level_status"] = o.HighLevelStatus
 	}
+	if o.Hosts != nil {
+		toSerialize["hosts"] = o.Hosts
+	}
+	if o.Packages != nil {
+		toSerialize["packages"] = o.Packages
+	}
 	if o.TotalHosts != nil {
 		toSerialize["total_hosts"] = o.TotalHosts
 	}
@@ -217,6 +286,8 @@ func (o *FleetDeploymentAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		EstimatedEndTimeUnix *int64                     `json:"estimated_end_time_unix,omitempty"`
 		FilterQuery          *string                    `json:"filter_query,omitempty"`
 		HighLevelStatus      *string                    `json:"high_level_status,omitempty"`
+		Hosts                []FleetDeploymentHost      `json:"hosts,omitempty"`
+		Packages             []FleetDeploymentPackage   `json:"packages,omitempty"`
 		TotalHosts           *int64                     `json:"total_hosts,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -224,7 +295,7 @@ func (o *FleetDeploymentAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"config_operations", "estimated_end_time_unix", "filter_query", "high_level_status", "total_hosts"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"config_operations", "estimated_end_time_unix", "filter_query", "high_level_status", "hosts", "packages", "total_hosts"})
 	} else {
 		return err
 	}
@@ -232,6 +303,8 @@ func (o *FleetDeploymentAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.EstimatedEndTimeUnix = all.EstimatedEndTimeUnix
 	o.FilterQuery = all.FilterQuery
 	o.HighLevelStatus = all.HighLevelStatus
+	o.Hosts = all.Hosts
+	o.Packages = all.Packages
 	o.TotalHosts = all.TotalHosts
 
 	if len(additionalProperties) > 0 {
