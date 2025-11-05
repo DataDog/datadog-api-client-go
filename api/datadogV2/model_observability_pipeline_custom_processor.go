@@ -12,12 +12,14 @@ import (
 
 // ObservabilityPipelineCustomProcessor The `custom_processor` processor transforms events using [Vector Remap Language (VRL)](https://vector.dev/docs/reference/vrl/) scripts with advanced filtering capabilities.
 type ObservabilityPipelineCustomProcessor struct {
+	// Whether this processor is enabled.
+	Enabled *bool `json:"enabled,omitempty"`
 	// The unique identifier for this processor.
 	Id string `json:"id"`
 	// A Datadog search query used to determine which logs this processor targets. This field should always be set to `*` for the custom_processor processor.
 	Include string `json:"include"`
-	// A list of component IDs whose output is used as the input for this processor.
-	Inputs []string `json:"inputs"`
+	// A list of component IDs whose output is used as input for this processor. Required when used as a standalone processor, omit when used within a processor group.
+	Inputs []string `json:"inputs,omitempty"`
 	// Array of VRL remap rules.
 	Remaps []ObservabilityPipelineCustomProcessorRemap `json:"remaps"`
 	// The processor type. The value should always be `custom_processor`.
@@ -31,11 +33,10 @@ type ObservabilityPipelineCustomProcessor struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineCustomProcessor(id string, include string, inputs []string, remaps []ObservabilityPipelineCustomProcessorRemap, typeVar ObservabilityPipelineCustomProcessorType) *ObservabilityPipelineCustomProcessor {
+func NewObservabilityPipelineCustomProcessor(id string, include string, remaps []ObservabilityPipelineCustomProcessorRemap, typeVar ObservabilityPipelineCustomProcessorType) *ObservabilityPipelineCustomProcessor {
 	this := ObservabilityPipelineCustomProcessor{}
 	this.Id = id
 	this.Include = include
-	this.Inputs = inputs
 	this.Remaps = remaps
 	this.Type = typeVar
 	return &this
@@ -51,6 +52,34 @@ func NewObservabilityPipelineCustomProcessorWithDefaults() *ObservabilityPipelin
 	var typeVar ObservabilityPipelineCustomProcessorType = OBSERVABILITYPIPELINECUSTOMPROCESSORTYPE_CUSTOM_PROCESSOR
 	this.Type = typeVar
 	return &this
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *ObservabilityPipelineCustomProcessor) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineCustomProcessor) GetEnabledOk() (*bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *ObservabilityPipelineCustomProcessor) HasEnabled() bool {
+	return o != nil && o.Enabled != nil
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *ObservabilityPipelineCustomProcessor) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetId returns the Id field value.
@@ -99,25 +128,30 @@ func (o *ObservabilityPipelineCustomProcessor) SetInclude(v string) {
 	o.Include = v
 }
 
-// GetInputs returns the Inputs field value.
+// GetInputs returns the Inputs field value if set, zero value otherwise.
 func (o *ObservabilityPipelineCustomProcessor) GetInputs() []string {
-	if o == nil {
+	if o == nil || o.Inputs == nil {
 		var ret []string
 		return ret
 	}
 	return o.Inputs
 }
 
-// GetInputsOk returns a tuple with the Inputs field value
+// GetInputsOk returns a tuple with the Inputs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ObservabilityPipelineCustomProcessor) GetInputsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil || o.Inputs == nil {
 		return nil, false
 	}
 	return &o.Inputs, true
 }
 
-// SetInputs sets field value.
+// HasInputs returns a boolean if a field has been set.
+func (o *ObservabilityPipelineCustomProcessor) HasInputs() bool {
+	return o != nil && o.Inputs != nil
+}
+
+// SetInputs gets a reference to the given []string and assigns it to the Inputs field.
 func (o *ObservabilityPipelineCustomProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
@@ -174,9 +208,14 @@ func (o ObservabilityPipelineCustomProcessor) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["include"] = o.Include
-	toSerialize["inputs"] = o.Inputs
+	if o.Inputs != nil {
+		toSerialize["inputs"] = o.Inputs
+	}
 	toSerialize["remaps"] = o.Remaps
 	toSerialize["type"] = o.Type
 
@@ -189,9 +228,10 @@ func (o ObservabilityPipelineCustomProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineCustomProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Enabled *bool                                        `json:"enabled,omitempty"`
 		Id      *string                                      `json:"id"`
 		Include *string                                      `json:"include"`
-		Inputs  *[]string                                    `json:"inputs"`
+		Inputs  []string                                     `json:"inputs,omitempty"`
 		Remaps  *[]ObservabilityPipelineCustomProcessorRemap `json:"remaps"`
 		Type    *ObservabilityPipelineCustomProcessorType    `json:"type"`
 	}{}
@@ -204,9 +244,6 @@ func (o *ObservabilityPipelineCustomProcessor) UnmarshalJSON(bytes []byte) (err 
 	if all.Include == nil {
 		return fmt.Errorf("required field include missing")
 	}
-	if all.Inputs == nil {
-		return fmt.Errorf("required field inputs missing")
-	}
 	if all.Remaps == nil {
 		return fmt.Errorf("required field remaps missing")
 	}
@@ -215,15 +252,16 @@ func (o *ObservabilityPipelineCustomProcessor) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "include", "inputs", "remaps", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "id", "include", "inputs", "remaps", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Enabled = all.Enabled
 	o.Id = *all.Id
 	o.Include = *all.Include
-	o.Inputs = *all.Inputs
+	o.Inputs = all.Inputs
 	o.Remaps = *all.Remaps
 	if !all.Type.IsValid() {
 		hasInvalidField = true

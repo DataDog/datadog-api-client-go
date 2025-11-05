@@ -14,14 +14,16 @@ import (
 type ObservabilityPipelineQuotaProcessor struct {
 	// If set to `true`, logs that matched the quota filter and sent after the quota has been met are dropped; only logs that did not match the filter query continue through the pipeline.
 	DropEvents bool `json:"drop_events"`
+	// Whether this processor is enabled.
+	Enabled *bool `json:"enabled,omitempty"`
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// If `true`, the processor skips quota checks when partition fields are missing from the logs.
 	IgnoreWhenMissingPartitions *bool `json:"ignore_when_missing_partitions,omitempty"`
 	// A Datadog search query used to determine which logs this processor targets.
 	Include string `json:"include"`
-	// A list of component IDs whose output is used as the `input` for this component.
-	Inputs []string `json:"inputs"`
+	// A list of component IDs whose output is used as input for this processor. Required when used as a standalone processor, omit when used within a processor group.
+	Inputs []string `json:"inputs,omitempty"`
 	// The maximum amount of data or number of events allowed before the quota is enforced. Can be specified in bytes or events.
 	Limit ObservabilityPipelineQuotaProcessorLimit `json:"limit"`
 	// Name of the quota.
@@ -46,12 +48,11 @@ type ObservabilityPipelineQuotaProcessor struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineQuotaProcessor(dropEvents bool, id string, include string, inputs []string, limit ObservabilityPipelineQuotaProcessorLimit, name string, typeVar ObservabilityPipelineQuotaProcessorType) *ObservabilityPipelineQuotaProcessor {
+func NewObservabilityPipelineQuotaProcessor(dropEvents bool, id string, include string, limit ObservabilityPipelineQuotaProcessorLimit, name string, typeVar ObservabilityPipelineQuotaProcessorType) *ObservabilityPipelineQuotaProcessor {
 	this := ObservabilityPipelineQuotaProcessor{}
 	this.DropEvents = dropEvents
 	this.Id = id
 	this.Include = include
-	this.Inputs = inputs
 	this.Limit = limit
 	this.Name = name
 	this.Type = typeVar
@@ -89,6 +90,34 @@ func (o *ObservabilityPipelineQuotaProcessor) GetDropEventsOk() (*bool, bool) {
 // SetDropEvents sets field value.
 func (o *ObservabilityPipelineQuotaProcessor) SetDropEvents(v bool) {
 	o.DropEvents = v
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *ObservabilityPipelineQuotaProcessor) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineQuotaProcessor) GetEnabledOk() (*bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *ObservabilityPipelineQuotaProcessor) HasEnabled() bool {
+	return o != nil && o.Enabled != nil
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *ObservabilityPipelineQuotaProcessor) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetId returns the Id field value.
@@ -165,25 +194,30 @@ func (o *ObservabilityPipelineQuotaProcessor) SetInclude(v string) {
 	o.Include = v
 }
 
-// GetInputs returns the Inputs field value.
+// GetInputs returns the Inputs field value if set, zero value otherwise.
 func (o *ObservabilityPipelineQuotaProcessor) GetInputs() []string {
-	if o == nil {
+	if o == nil || o.Inputs == nil {
 		var ret []string
 		return ret
 	}
 	return o.Inputs
 }
 
-// GetInputsOk returns a tuple with the Inputs field value
+// GetInputsOk returns a tuple with the Inputs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ObservabilityPipelineQuotaProcessor) GetInputsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil || o.Inputs == nil {
 		return nil, false
 	}
 	return &o.Inputs, true
 }
 
-// SetInputs sets field value.
+// HasInputs returns a boolean if a field has been set.
+func (o *ObservabilityPipelineQuotaProcessor) HasInputs() bool {
+	return o != nil && o.Inputs != nil
+}
+
+// SetInputs gets a reference to the given []string and assigns it to the Inputs field.
 func (o *ObservabilityPipelineQuotaProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
@@ -348,12 +382,17 @@ func (o ObservabilityPipelineQuotaProcessor) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["drop_events"] = o.DropEvents
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
 	toSerialize["id"] = o.Id
 	if o.IgnoreWhenMissingPartitions != nil {
 		toSerialize["ignore_when_missing_partitions"] = o.IgnoreWhenMissingPartitions
 	}
 	toSerialize["include"] = o.Include
-	toSerialize["inputs"] = o.Inputs
+	if o.Inputs != nil {
+		toSerialize["inputs"] = o.Inputs
+	}
 	toSerialize["limit"] = o.Limit
 	toSerialize["name"] = o.Name
 	if o.OverflowAction != nil {
@@ -377,10 +416,11 @@ func (o ObservabilityPipelineQuotaProcessor) MarshalJSON() ([]byte, error) {
 func (o *ObservabilityPipelineQuotaProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DropEvents                  *bool                                              `json:"drop_events"`
+		Enabled                     *bool                                              `json:"enabled,omitempty"`
 		Id                          *string                                            `json:"id"`
 		IgnoreWhenMissingPartitions *bool                                              `json:"ignore_when_missing_partitions,omitempty"`
 		Include                     *string                                            `json:"include"`
-		Inputs                      *[]string                                          `json:"inputs"`
+		Inputs                      []string                                           `json:"inputs,omitempty"`
 		Limit                       *ObservabilityPipelineQuotaProcessorLimit          `json:"limit"`
 		Name                        *string                                            `json:"name"`
 		OverflowAction              *ObservabilityPipelineQuotaProcessorOverflowAction `json:"overflow_action,omitempty"`
@@ -400,9 +440,6 @@ func (o *ObservabilityPipelineQuotaProcessor) UnmarshalJSON(bytes []byte) (err e
 	if all.Include == nil {
 		return fmt.Errorf("required field include missing")
 	}
-	if all.Inputs == nil {
-		return fmt.Errorf("required field inputs missing")
-	}
 	if all.Limit == nil {
 		return fmt.Errorf("required field limit missing")
 	}
@@ -414,17 +451,18 @@ func (o *ObservabilityPipelineQuotaProcessor) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"drop_events", "id", "ignore_when_missing_partitions", "include", "inputs", "limit", "name", "overflow_action", "overrides", "partition_fields", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"drop_events", "enabled", "id", "ignore_when_missing_partitions", "include", "inputs", "limit", "name", "overflow_action", "overrides", "partition_fields", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.DropEvents = *all.DropEvents
+	o.Enabled = all.Enabled
 	o.Id = *all.Id
 	o.IgnoreWhenMissingPartitions = all.IgnoreWhenMissingPartitions
 	o.Include = *all.Include
-	o.Inputs = *all.Inputs
+	o.Inputs = all.Inputs
 	if all.Limit.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
