@@ -79,8 +79,8 @@
 <span id="L22" class="ln">    22  </span>	<span class="comment">// Patch data in JSON format to apply to the configuration file.</span>
 <span id="L23" class="ln">    23  </span>	<span class="comment">// When using `merge-patch`, this object is merged with the existing configuration,</span>
 <span id="L24" class="ln">    24  </span>	<span class="comment">// allowing you to add, update, or override specific fields without replacing the entire file.</span>
-<span id="L25" class="ln">    25  </span>	<span class="comment">// The structure must match the target configuration file format (for example, YAML structure for Datadog Agent config).</span>
-<span id="L26" class="ln">    26  </span>	<span class="comment">// Not applicable when using the `delete` operation.</span>
+<span id="L25" class="ln">    25  </span>	<span class="comment">// The structure must match the target configuration file format (for example, YAML structure</span>
+<span id="L26" class="ln">    26  </span>	<span class="comment">// for Datadog Agent config). Not applicable when using the `delete` operation.</span>
 <span id="L27" class="ln">    27  </span>	Patch map[string]interface{} `json:&#34;patch,omitempty&#34;`
 <span id="L28" class="ln">    28  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L29" class="ln">    29  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
