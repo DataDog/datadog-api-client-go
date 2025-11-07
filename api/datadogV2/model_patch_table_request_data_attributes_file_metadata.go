@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchTableRequestDataAttributesFileMetadata - The definition of `PatchTableRequestDataAttributesFileMetadata` object.
+// PatchTableRequestDataAttributesFileMetadata - Metadata specifying where and how to access the reference table's data file.
 type PatchTableRequestDataAttributesFileMetadata struct {
 	PatchTableRequestDataAttributesFileMetadataCloudStorage *PatchTableRequestDataAttributesFileMetadataCloudStorage
 	PatchTableRequestDataAttributesFileMetadataLocalFile    *PatchTableRequestDataAttributesFileMetadataLocalFile

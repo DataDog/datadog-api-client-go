@@ -8,15 +8,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail The definition of `PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail` object.
+// PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail Azure Blob Storage access configuration.
 type PatchTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail struct {
-	// The Azure client ID.
+	// Azure service principal (application) client ID with permissions to read from the container.
 	AzureClientId *string `json:"azure_client_id,omitempty"`
-	// The name of the Azure container.
+	// Azure Blob Storage container containing the CSV file.
 	AzureContainerName *string `json:"azure_container_name,omitempty"`
-	// The name of the Azure storage account.
+	// Azure storage account where the container is located.
 	AzureStorageAccountName *string `json:"azure_storage_account_name,omitempty"`
-	// The ID of the Azure tenant.
+	// Azure Active Directory tenant ID.
 	AzureTenantId *string `json:"azure_tenant_id,omitempty"`
 	// The relative file path from the Azure container root to the CSV file.
 	FilePath *string `json:"file_path,omitempty"`

@@ -10,15 +10,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail The definition of `CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail` object.
+// CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail Azure Blob Storage access configuration.
 type CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail struct {
-	// The Azure client ID.
+	// Azure service principal (application) client ID with permissions to read from the container.
 	AzureClientId string `json:"azure_client_id"`
-	// The name of the Azure container.
+	// Azure Blob Storage container containing the CSV file.
 	AzureContainerName string `json:"azure_container_name"`
-	// The name of the Azure storage account.
+	// Azure storage account where the container is located.
 	AzureStorageAccountName string `json:"azure_storage_account_name"`
-	// The ID of the Azure tenant.
+	// Azure Active Directory tenant ID.
 	AzureTenantId string `json:"azure_tenant_id"`
 	// The relative file path from the Azure container root to the CSV file.
 	FilePath string `json:"file_path"`

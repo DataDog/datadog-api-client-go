@@ -10,17 +10,14 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchTableRequestData The definition of `PatchTableRequestData` object.
+// PatchTableRequestData The data object containing the partial table definition updates.
 type PatchTableRequestData struct {
-	// The definition of `PatchTableRequestDataAttributes` object.
+	// Attributes that define the updates to the reference table's configuration and properties.
 	Attributes *PatchTableRequestDataAttributes `json:"attributes,omitempty"`
-	// The ID of the reference table.
-	Id *string `json:"id,omitempty"`
 	// Reference table resource type.
 	Type PatchTableRequestDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewPatchTableRequestData instantiates a new PatchTableRequestData object.
@@ -71,34 +68,6 @@ func (o *PatchTableRequestData) SetAttributes(v PatchTableRequestDataAttributes)
 	o.Attributes = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *PatchTableRequestData) GetId() string {
-	if o == nil || o.Id == nil {
-		var ret string
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchTableRequestData) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *PatchTableRequestData) HasId() bool {
-	return o != nil && o.Id != nil
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
-func (o *PatchTableRequestData) SetId(v string) {
-	o.Id = &v
-}
-
 // GetType returns the Type field value.
 func (o *PatchTableRequestData) GetType() PatchTableRequestDataType {
 	if o == nil {
@@ -131,14 +100,7 @@ func (o PatchTableRequestData) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
 	toSerialize["type"] = o.Type
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -146,7 +108,6 @@ func (o PatchTableRequestData) MarshalJSON() ([]byte, error) {
 func (o *PatchTableRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *PatchTableRequestDataAttributes `json:"attributes,omitempty"`
-		Id         *string                          `json:"id,omitempty"`
 		Type       *PatchTableRequestDataType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -155,27 +116,16 @@ func (o *PatchTableRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
-	o.Id = all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
-	}
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	if hasInvalidField {

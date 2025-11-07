@@ -8,13 +8,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableRowResourceDataAttributes The definition of `TableRowResourceDataAttributes` object.
+// TableRowResourceDataAttributes Column values for this row in the reference table.
 type TableRowResourceDataAttributes struct {
-	// The values of the row.
-	Values map[string]interface{} `json:"values,omitempty"`
+	// Key-value pairs representing the row data, where keys are field names from the schema.
+	Values interface{} `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewTableRowResourceDataAttributes instantiates a new TableRowResourceDataAttributes object.
@@ -35,9 +34,9 @@ func NewTableRowResourceDataAttributesWithDefaults() *TableRowResourceDataAttrib
 }
 
 // GetValues returns the Values field value if set, zero value otherwise.
-func (o *TableRowResourceDataAttributes) GetValues() map[string]interface{} {
+func (o *TableRowResourceDataAttributes) GetValues() interface{} {
 	if o == nil || o.Values == nil {
-		var ret map[string]interface{}
+		var ret interface{}
 		return ret
 	}
 	return o.Values
@@ -45,7 +44,7 @@ func (o *TableRowResourceDataAttributes) GetValues() map[string]interface{} {
 
 // GetValuesOk returns a tuple with the Values field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TableRowResourceDataAttributes) GetValuesOk() (*map[string]interface{}, bool) {
+func (o *TableRowResourceDataAttributes) GetValuesOk() (*interface{}, bool) {
 	if o == nil || o.Values == nil {
 		return nil, false
 	}
@@ -57,8 +56,8 @@ func (o *TableRowResourceDataAttributes) HasValues() bool {
 	return o != nil && o.Values != nil
 }
 
-// SetValues gets a reference to the given map[string]interface{} and assigns it to the Values field.
-func (o *TableRowResourceDataAttributes) SetValues(v map[string]interface{}) {
+// SetValues gets a reference to the given interface{} and assigns it to the Values field.
+func (o *TableRowResourceDataAttributes) SetValues(v interface{}) {
 	o.Values = v
 }
 
@@ -71,32 +70,18 @@ func (o TableRowResourceDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Values != nil {
 		toSerialize["values"] = o.Values
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
 func (o *TableRowResourceDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Values map[string]interface{} `json:"values,omitempty"`
+		Values interface{} `json:"values,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"values"})
-	} else {
-		return err
-	}
 	o.Values = all.Values
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

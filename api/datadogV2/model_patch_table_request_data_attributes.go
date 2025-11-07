@@ -8,17 +8,17 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchTableRequestDataAttributes The definition of `PatchTableRequestDataAttributes` object.
+// PatchTableRequestDataAttributes Attributes that define the updates to the reference table's configuration and properties.
 type PatchTableRequestDataAttributes struct {
-	// The description of the reference table.
+	// Optional text describing the purpose or contents of this reference table.
 	Description *string `json:"description,omitempty"`
-	// The definition of `PatchTableRequestDataAttributesFileMetadata` object.
+	// Metadata specifying where and how to access the reference table's data file.
 	FileMetadata *PatchTableRequestDataAttributesFileMetadata `json:"file_metadata,omitempty"`
-	// The definition of `PatchTableRequestDataAttributesSchema` object.
+	// Schema defining the updates to the structure and columns of the reference table. Schema fields cannot be deleted or renamed.
 	Schema *PatchTableRequestDataAttributesSchema `json:"schema,omitempty"`
 	// Whether this table is synced automatically.
 	SyncEnabled *bool `json:"sync_enabled,omitempty"`
-	// The tags of the reference table.
+	// Tags for organizing and filtering reference tables.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,15 +10,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail The definition of `CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail` object.
+// CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail Google Cloud Platform storage access configuration.
 type CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail struct {
 	// The relative file path from the GCS bucket root to the CSV file.
 	FilePath string `json:"file_path"`
-	// The name of the GCP bucket.
+	// GCP bucket containing the CSV file.
 	GcpBucketName string `json:"gcp_bucket_name"`
-	// The ID of the GCP project.
+	// GCP project ID where the bucket is located.
 	GcpProjectId string `json:"gcp_project_id"`
-	// The email of the GCP service account.
+	// Service account email with read permissions for the GCS bucket.
 	GcpServiceAccountEmail string `json:"gcp_service_account_email"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -8,14 +8,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableResultV2DataAttributesFileMetadataLocalFile File metadata for reference tables created by upload.
+// TableResultV2DataAttributesFileMetadataLocalFile File metadata for reference tables created by upload. Note that upload_id is only returned in the immediate create/replace response and is not available in subsequent GET requests.
 type TableResultV2DataAttributesFileMetadataLocalFile struct {
 	// The error message returned from the creation/update.
 	ErrorMessage *string `json:"error_message,omitempty"`
 	// The number of rows that failed to create/update.
 	ErrorRowCount *int64 `json:"error_row_count,omitempty"`
-	// The upload ID that was used to create/update the table.
-	UploadId *string `json:"upload_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -94,34 +92,6 @@ func (o *TableResultV2DataAttributesFileMetadataLocalFile) SetErrorRowCount(v in
 	o.ErrorRowCount = &v
 }
 
-// GetUploadId returns the UploadId field value if set, zero value otherwise.
-func (o *TableResultV2DataAttributesFileMetadataLocalFile) GetUploadId() string {
-	if o == nil || o.UploadId == nil {
-		var ret string
-		return ret
-	}
-	return *o.UploadId
-}
-
-// GetUploadIdOk returns a tuple with the UploadId field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *TableResultV2DataAttributesFileMetadataLocalFile) GetUploadIdOk() (*string, bool) {
-	if o == nil || o.UploadId == nil {
-		return nil, false
-	}
-	return o.UploadId, true
-}
-
-// HasUploadId returns a boolean if a field has been set.
-func (o *TableResultV2DataAttributesFileMetadataLocalFile) HasUploadId() bool {
-	return o != nil && o.UploadId != nil
-}
-
-// SetUploadId gets a reference to the given string and assigns it to the UploadId field.
-func (o *TableResultV2DataAttributesFileMetadataLocalFile) SetUploadId(v string) {
-	o.UploadId = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o TableResultV2DataAttributesFileMetadataLocalFile) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -133,9 +103,6 @@ func (o TableResultV2DataAttributesFileMetadataLocalFile) MarshalJSON() ([]byte,
 	}
 	if o.ErrorRowCount != nil {
 		toSerialize["error_row_count"] = o.ErrorRowCount
-	}
-	if o.UploadId != nil {
-		toSerialize["upload_id"] = o.UploadId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -149,20 +116,18 @@ func (o *TableResultV2DataAttributesFileMetadataLocalFile) UnmarshalJSON(bytes [
 	all := struct {
 		ErrorMessage  *string `json:"error_message,omitempty"`
 		ErrorRowCount *int64  `json:"error_row_count,omitempty"`
-		UploadId      *string `json:"upload_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"error_message", "error_row_count", "upload_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"error_message", "error_row_count"})
 	} else {
 		return err
 	}
 	o.ErrorMessage = all.ErrorMessage
 	o.ErrorRowCount = all.ErrorRowCount
-	o.UploadId = all.UploadId
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
