@@ -67,15 +67,15 @@
 <span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L11" class="ln">    11  </span>)
 <span id="L12" class="ln">    12  </span>
-<span id="L13" class="ln">    13  </span><span class="comment">// CreateUploadRequestDataAttributes The definition of `CreateUploadRequestDataAttributes` object.</span>
+<span id="L13" class="ln">    13  </span><span class="comment">// CreateUploadRequestDataAttributes Upload configuration specifying how data is uploaded by the user, and properties of the table to associate the upload with.</span>
 <span id="L14" class="ln">    14  </span>type CreateUploadRequestDataAttributes struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// The headers of the file to upload.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// The CSV file headers that define the schema fields, provided in the same order as the columns in the uploaded file.</span>
 <span id="L16" class="ln">    16  </span>	Headers []string `json:&#34;headers&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// The number of parts in the upload.</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Number of parts to split the file into for multipart upload.</span>
 <span id="L18" class="ln">    18  </span>	PartCount int32 `json:&#34;part_count&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// The size of each part in the upload in bytes. For multipart uploads (part_count &gt; 1), all parts except the last one must be at least 5,000,000 bytes. For single-part uploads (part_count = 1), any size is allowed.</span>
+<span id="L19" class="ln">    19  </span>	<span class="comment">// The size of each part in the upload in bytes. All parts except the last one must be at least 5,000,000 bytes.</span>
 <span id="L20" class="ln">    20  </span>	PartSize int64 `json:&#34;part_size&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// The name of the reference table.</span>
+<span id="L21" class="ln">    21  </span>	<span class="comment">// Name of the table to associate with this upload.</span>
 <span id="L22" class="ln">    22  </span>	TableName string `json:&#34;table_name&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L24" class="ln">    24  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`

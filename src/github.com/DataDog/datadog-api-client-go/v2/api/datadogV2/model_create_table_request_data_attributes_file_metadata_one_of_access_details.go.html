@@ -65,13 +65,13 @@
 <span id="L8" class="ln">     8  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L9" class="ln">     9  </span>)
 <span id="L10" class="ln">    10  </span>
-<span id="L11" class="ln">    11  </span><span class="comment">// CreateTableRequestDataAttributesFileMetadataOneOfAccessDetails The definition of `CreateTableRequestDataAttributesFileMetadataOneOfAccessDetails` object.</span>
+<span id="L11" class="ln">    11  </span><span class="comment">// CreateTableRequestDataAttributesFileMetadataOneOfAccessDetails Cloud storage access configuration for the reference table data file.</span>
 <span id="L12" class="ln">    12  </span>type CreateTableRequestDataAttributesFileMetadataOneOfAccessDetails struct {
-<span id="L13" class="ln">    13  </span>	<span class="comment">// The definition of `CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail` object.</span>
+<span id="L13" class="ln">    13  </span>	<span class="comment">// Amazon Web Services S3 storage access configuration.</span>
 <span id="L14" class="ln">    14  </span>	AwsDetail *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail `json:&#34;aws_detail,omitempty&#34;`
-<span id="L15" class="ln">    15  </span>	<span class="comment">// The definition of `CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail` object.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Azure Blob Storage access configuration.</span>
 <span id="L16" class="ln">    16  </span>	AzureDetail *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail `json:&#34;azure_detail,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// The definition of `CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail` object.</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Google Cloud Platform storage access configuration.</span>
 <span id="L18" class="ln">    18  </span>	GcpDetail *CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail `json:&#34;gcp_detail,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L20" class="ln">    20  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`

@@ -65,17 +65,17 @@
 <span id="L8" class="ln">     8  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L9" class="ln">     9  </span>)
 <span id="L10" class="ln">    10  </span>
-<span id="L11" class="ln">    11  </span><span class="comment">// PatchTableRequestDataAttributes The definition of `PatchTableRequestDataAttributes` object.</span>
+<span id="L11" class="ln">    11  </span><span class="comment">// PatchTableRequestDataAttributes Attributes that define the updates to the reference table&#39;s configuration and properties.</span>
 <span id="L12" class="ln">    12  </span>type PatchTableRequestDataAttributes struct {
-<span id="L13" class="ln">    13  </span>	<span class="comment">// The description of the reference table.</span>
+<span id="L13" class="ln">    13  </span>	<span class="comment">// Optional text describing the purpose or contents of this reference table.</span>
 <span id="L14" class="ln">    14  </span>	Description *string `json:&#34;description,omitempty&#34;`
-<span id="L15" class="ln">    15  </span>	<span class="comment">// The definition of `PatchTableRequestDataAttributesFileMetadata` object.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Metadata specifying where and how to access the reference table&#39;s data file.</span>
 <span id="L16" class="ln">    16  </span>	FileMetadata *PatchTableRequestDataAttributesFileMetadata `json:&#34;file_metadata,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// The definition of `PatchTableRequestDataAttributesSchema` object.</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Schema defining the updates to the structure and columns of the reference table. Schema fields cannot be deleted or renamed.</span>
 <span id="L18" class="ln">    18  </span>	Schema *PatchTableRequestDataAttributesSchema `json:&#34;schema,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// Whether this table is synced automatically.</span>
 <span id="L20" class="ln">    20  </span>	SyncEnabled *bool `json:&#34;sync_enabled,omitempty&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// The tags of the reference table.</span>
+<span id="L21" class="ln">    21  </span>	<span class="comment">// Tags for organizing and filtering reference tables.</span>
 <span id="L22" class="ln">    22  </span>	Tags []string `json:&#34;tags,omitempty&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L24" class="ln">    24  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`

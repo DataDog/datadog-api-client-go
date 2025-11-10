@@ -65,29 +65,29 @@
 <span id="L8" class="ln">     8  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L9" class="ln">     9  </span>)
 <span id="L10" class="ln">    10  </span>
-<span id="L11" class="ln">    11  </span><span class="comment">// TableResultV2DataAttributes The definition of `TableResultV2DataAttributes` object.</span>
+<span id="L11" class="ln">    11  </span><span class="comment">// TableResultV2DataAttributes Attributes that define the reference table&#39;s configuration and properties.</span>
 <span id="L12" class="ln">    12  </span>type TableResultV2DataAttributes struct {
 <span id="L13" class="ln">    13  </span>	<span class="comment">// UUID of the user who created the reference table.</span>
 <span id="L14" class="ln">    14  </span>	CreatedBy *string `json:&#34;created_by,omitempty&#34;`
-<span id="L15" class="ln">    15  </span>	<span class="comment">// The description of the reference table.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Optional text describing the purpose or contents of this reference table.</span>
 <span id="L16" class="ln">    16  </span>	Description *string `json:&#34;description,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// The definition of `TableResultV2DataAttributesFileMetadata` object.</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Metadata specifying where and how to access the reference table&#39;s data file.</span>
 <span id="L18" class="ln">    18  </span>	FileMetadata *TableResultV2DataAttributesFileMetadata `json:&#34;file_metadata,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// UUID of the user who last updated the reference table.</span>
 <span id="L20" class="ln">    20  </span>	LastUpdatedBy *string `json:&#34;last_updated_by,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// The number of successfully processed rows in the reference table.</span>
 <span id="L22" class="ln">    22  </span>	RowCount *int64 `json:&#34;row_count,omitempty&#34;`
-<span id="L23" class="ln">    23  </span>	<span class="comment">// The definition of `TableResultV2DataAttributesSchema` object.</span>
+<span id="L23" class="ln">    23  </span>	<span class="comment">// Schema defining the structure and columns of the reference table.</span>
 <span id="L24" class="ln">    24  </span>	Schema *TableResultV2DataAttributesSchema `json:&#34;schema,omitempty&#34;`
 <span id="L25" class="ln">    25  </span>	<span class="comment">// The source type for reference table data. Includes all possible source types that can appear in responses.</span>
 <span id="L26" class="ln">    26  </span>	Source *ReferenceTableSourceType `json:&#34;source,omitempty&#34;`
-<span id="L27" class="ln">    27  </span>	<span class="comment">// The status of the reference table.</span>
+<span id="L27" class="ln">    27  </span>	<span class="comment">// The processing status of the table.</span>
 <span id="L28" class="ln">    28  </span>	Status *string `json:&#34;status,omitempty&#34;`
-<span id="L29" class="ln">    29  </span>	<span class="comment">// The name of the reference table.</span>
+<span id="L29" class="ln">    29  </span>	<span class="comment">// Unique name to identify this reference table. Used in enrichment processors and API calls.</span>
 <span id="L30" class="ln">    30  </span>	TableName *string `json:&#34;table_name,omitempty&#34;`
-<span id="L31" class="ln">    31  </span>	<span class="comment">// The tags of the reference table.</span>
+<span id="L31" class="ln">    31  </span>	<span class="comment">// Tags for organizing and filtering reference tables.</span>
 <span id="L32" class="ln">    32  </span>	Tags []string `json:&#34;tags,omitempty&#34;`
-<span id="L33" class="ln">    33  </span>	<span class="comment">// The timestamp of the last update to the reference table in ISO 8601 format.</span>
+<span id="L33" class="ln">    33  </span>	<span class="comment">// When the reference table was last updated, in ISO 8601 format.</span>
 <span id="L34" class="ln">    34  </span>	UpdatedAt *string `json:&#34;updated_at,omitempty&#34;`
 <span id="L35" class="ln">    35  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L36" class="ln">    36  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`

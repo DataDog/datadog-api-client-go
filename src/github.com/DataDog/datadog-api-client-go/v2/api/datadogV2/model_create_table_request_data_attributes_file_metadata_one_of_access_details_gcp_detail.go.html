@@ -67,15 +67,15 @@
 <span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L11" class="ln">    11  </span>)
 <span id="L12" class="ln">    12  </span>
-<span id="L13" class="ln">    13  </span><span class="comment">// CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail The definition of `CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail` object.</span>
+<span id="L13" class="ln">    13  </span><span class="comment">// CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail Google Cloud Platform storage access configuration.</span>
 <span id="L14" class="ln">    14  </span>type CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail struct {
 <span id="L15" class="ln">    15  </span>	<span class="comment">// The relative file path from the GCS bucket root to the CSV file.</span>
 <span id="L16" class="ln">    16  </span>	FilePath string `json:&#34;file_path&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// The name of the GCP bucket.</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// GCP bucket containing the CSV file.</span>
 <span id="L18" class="ln">    18  </span>	GcpBucketName string `json:&#34;gcp_bucket_name&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// The ID of the GCP project.</span>
+<span id="L19" class="ln">    19  </span>	<span class="comment">// GCP project ID where the bucket is located.</span>
 <span id="L20" class="ln">    20  </span>	GcpProjectId string `json:&#34;gcp_project_id&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// The email of the GCP service account.</span>
+<span id="L21" class="ln">    21  </span>	<span class="comment">// Service account email with read permissions for the GCS bucket.</span>
 <span id="L22" class="ln">    22  </span>	GcpServiceAccountEmail string `json:&#34;gcp_service_account_email&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L24" class="ln">    24  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
