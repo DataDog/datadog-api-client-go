@@ -5,13 +5,15 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // TableResultV2DataAttributesFileMetadataCloudStorage File metadata for reference tables created by cloud storage.
 type TableResultV2DataAttributesFileMetadataCloudStorage struct {
-	// The definition of `TableResultV2DataAttributesFileMetadataOneOfAccessDetails` object.
-	AccessDetails *TableResultV2DataAttributesFileMetadataOneOfAccessDetails `json:"access_details,omitempty"`
+	// Cloud storage access configuration for the reference table data file.
+	AccessDetails TableResultV2DataAttributesFileMetadataOneOfAccessDetails `json:"access_details"`
 	// The error message returned from the sync.
 	ErrorMessage *string `json:"error_message,omitempty"`
 	// The number of rows that failed to sync.
@@ -29,8 +31,9 @@ type TableResultV2DataAttributesFileMetadataCloudStorage struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTableResultV2DataAttributesFileMetadataCloudStorage() *TableResultV2DataAttributesFileMetadataCloudStorage {
+func NewTableResultV2DataAttributesFileMetadataCloudStorage(accessDetails TableResultV2DataAttributesFileMetadataOneOfAccessDetails) *TableResultV2DataAttributesFileMetadataCloudStorage {
 	this := TableResultV2DataAttributesFileMetadataCloudStorage{}
+	this.AccessDetails = accessDetails
 	return &this
 }
 
@@ -42,32 +45,27 @@ func NewTableResultV2DataAttributesFileMetadataCloudStorageWithDefaults() *Table
 	return &this
 }
 
-// GetAccessDetails returns the AccessDetails field value if set, zero value otherwise.
+// GetAccessDetails returns the AccessDetails field value.
 func (o *TableResultV2DataAttributesFileMetadataCloudStorage) GetAccessDetails() TableResultV2DataAttributesFileMetadataOneOfAccessDetails {
-	if o == nil || o.AccessDetails == nil {
+	if o == nil {
 		var ret TableResultV2DataAttributesFileMetadataOneOfAccessDetails
 		return ret
 	}
-	return *o.AccessDetails
+	return o.AccessDetails
 }
 
-// GetAccessDetailsOk returns a tuple with the AccessDetails field value if set, nil otherwise
+// GetAccessDetailsOk returns a tuple with the AccessDetails field value
 // and a boolean to check if the value has been set.
 func (o *TableResultV2DataAttributesFileMetadataCloudStorage) GetAccessDetailsOk() (*TableResultV2DataAttributesFileMetadataOneOfAccessDetails, bool) {
-	if o == nil || o.AccessDetails == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.AccessDetails, true
+	return &o.AccessDetails, true
 }
 
-// HasAccessDetails returns a boolean if a field has been set.
-func (o *TableResultV2DataAttributesFileMetadataCloudStorage) HasAccessDetails() bool {
-	return o != nil && o.AccessDetails != nil
-}
-
-// SetAccessDetails gets a reference to the given TableResultV2DataAttributesFileMetadataOneOfAccessDetails and assigns it to the AccessDetails field.
+// SetAccessDetails sets field value.
 func (o *TableResultV2DataAttributesFileMetadataCloudStorage) SetAccessDetails(v TableResultV2DataAttributesFileMetadataOneOfAccessDetails) {
-	o.AccessDetails = &v
+	o.AccessDetails = v
 }
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
@@ -188,9 +186,7 @@ func (o TableResultV2DataAttributesFileMetadataCloudStorage) MarshalJSON() ([]by
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.AccessDetails != nil {
-		toSerialize["access_details"] = o.AccessDetails
-	}
+	toSerialize["access_details"] = o.AccessDetails
 	if o.ErrorMessage != nil {
 		toSerialize["error_message"] = o.ErrorMessage
 	}
@@ -213,7 +209,7 @@ func (o TableResultV2DataAttributesFileMetadataCloudStorage) MarshalJSON() ([]by
 // UnmarshalJSON deserializes the given payload.
 func (o *TableResultV2DataAttributesFileMetadataCloudStorage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccessDetails *TableResultV2DataAttributesFileMetadataOneOfAccessDetails    `json:"access_details,omitempty"`
+		AccessDetails *TableResultV2DataAttributesFileMetadataOneOfAccessDetails    `json:"access_details"`
 		ErrorMessage  *string                                                       `json:"error_message,omitempty"`
 		ErrorRowCount *int64                                                        `json:"error_row_count,omitempty"`
 		ErrorType     *TableResultV2DataAttributesFileMetadataCloudStorageErrorType `json:"error_type,omitempty"`
@@ -221,6 +217,9 @@ func (o *TableResultV2DataAttributesFileMetadataCloudStorage) UnmarshalJSON(byte
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.AccessDetails == nil {
+		return fmt.Errorf("required field access_details missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -230,10 +229,10 @@ func (o *TableResultV2DataAttributesFileMetadataCloudStorage) UnmarshalJSON(byte
 	}
 
 	hasInvalidField := false
-	if all.AccessDetails != nil && all.AccessDetails.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.AccessDetails.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.AccessDetails = all.AccessDetails
+	o.AccessDetails = *all.AccessDetails
 	o.ErrorMessage = all.ErrorMessage
 	o.ErrorRowCount = all.ErrorRowCount
 	if all.ErrorType != nil && !all.ErrorType.IsValid() {

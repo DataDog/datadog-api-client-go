@@ -47,7 +47,6 @@ func main() {
 					"test_tag",
 				},
 			},
-			Id:   datadog.PtrString("00000000-0000-0000-0000-000000000000"),
 			Type: datadogV2.PATCHTABLEREQUESTDATATYPE_REFERENCE_TABLE,
 		},
 	}

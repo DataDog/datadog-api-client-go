@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableResultV2DataAttributesSchema The definition of `TableResultV2DataAttributesSchema` object.
+// TableResultV2DataAttributesSchema Schema defining the structure and columns of the reference table.
 type TableResultV2DataAttributesSchema struct {
-	// The `schema` `fields`.
+	// The schema fields.
 	Fields []TableResultV2DataAttributesSchemaFieldsItems `json:"fields"`
 	// List of field names that serve as primary keys for the table. Only one primary key is supported, and it is used as an ID to retrieve rows.
 	PrimaryKeys []string `json:"primary_keys"`

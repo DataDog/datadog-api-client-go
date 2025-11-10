@@ -10,19 +10,19 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateTableRequestDataAttributes The definition of `CreateTableRequestDataAttributes` object.
+// CreateTableRequestDataAttributes Attributes that define the reference table's configuration and properties.
 type CreateTableRequestDataAttributes struct {
-	// The description of the reference table.
+	// Optional text describing the purpose or contents of this reference table.
 	Description *string `json:"description,omitempty"`
-	// The definition of `CreateTableRequestDataAttributesFileMetadata` object.
+	// Metadata specifying where and how to access the reference table's data file.
 	FileMetadata *CreateTableRequestDataAttributesFileMetadata `json:"file_metadata,omitempty"`
-	// The definition of `CreateTableRequestDataAttributesSchema` object.
+	// Schema defining the structure and columns of the reference table.
 	Schema CreateTableRequestDataAttributesSchema `json:"schema"`
 	// The source type for creating reference table data. Only these source types can be created through this API.
 	Source ReferenceTableCreateSourceType `json:"source"`
-	// The name of the reference table.
+	// Name to identify this reference table.
 	TableName string `json:"table_name"`
-	// The tags of the reference table.
+	// Tags for organizing and filtering reference tables.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

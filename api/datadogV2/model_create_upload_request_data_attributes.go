@@ -10,15 +10,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateUploadRequestDataAttributes The definition of `CreateUploadRequestDataAttributes` object.
+// CreateUploadRequestDataAttributes Upload configuration specifying how data is uploaded by the user, and properties of the table to associate the upload with.
 type CreateUploadRequestDataAttributes struct {
-	// The headers of the file to upload.
+	// The CSV file headers that define the schema fields, provided in the same order as the columns in the uploaded file.
 	Headers []string `json:"headers"`
-	// The number of parts in the upload.
+	// Number of parts to split the file into for multipart upload.
 	PartCount int32 `json:"part_count"`
-	// The size of each part in the upload in bytes. For multipart uploads (part_count > 1), all parts except the last one must be at least 5,000,000 bytes. For single-part uploads (part_count = 1), any size is allowed.
+	// The size of each part in the upload in bytes. All parts except the last one must be at least 5,000,000 bytes.
 	PartSize int64 `json:"part_size"`
-	// The name of the reference table.
+	// Name of the table to associate with this upload.
 	TableName string `json:"table_name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

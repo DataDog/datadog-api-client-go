@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableResultV2DataAttributesSchemaFieldsItems The definition of `TableResultV2DataAttributesSchemaFieldsItems` object.
+// TableResultV2DataAttributesSchemaFieldsItems A single field (column) in the reference table schema to be returned.
 type TableResultV2DataAttributesSchemaFieldsItems struct {
 	// The field name.
 	Name string `json:"name"`

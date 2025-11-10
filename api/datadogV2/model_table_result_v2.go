@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableResultV2 The definition of `TableResultV2` object.
+// TableResultV2 A reference table resource containing its full configuration and state.
 type TableResultV2 struct {
-	// The definition of `TableResultV2Data` object.
+	// The data object containing the reference table configuration and state.
 	Data *TableResultV2Data `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

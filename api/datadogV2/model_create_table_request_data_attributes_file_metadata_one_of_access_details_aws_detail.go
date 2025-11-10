@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail The definition of `CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail` object.
+// CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail Amazon Web Services S3 storage access configuration.
 type CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail struct {
-	// The ID of the AWS account.
+	// AWS account ID where the S3 bucket is located.
 	AwsAccountId string `json:"aws_account_id"`
-	// The name of the Amazon S3 bucket.
+	// S3 bucket containing the CSV file.
 	AwsBucketName string `json:"aws_bucket_name"`
 	// The relative file path from the S3 bucket root to the CSV file.
 	FilePath string `json:"file_path"`

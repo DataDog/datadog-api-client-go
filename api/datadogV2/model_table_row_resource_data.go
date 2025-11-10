@@ -10,17 +10,16 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableRowResourceData The definition of `TableRowResourceData` object.
+// TableRowResourceData The data object containing the row column names and values.
 type TableRowResourceData struct {
-	// The definition of `TableRowResourceDataAttributes` object.
+	// Column values for this row in the reference table.
 	Attributes *TableRowResourceDataAttributes `json:"attributes,omitempty"`
-	// The ID of the row.
+	// Row identifier, corresponding to the primary key value.
 	Id *string `json:"id,omitempty"`
 	// Row resource type.
 	Type TableRowResourceDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewTableRowResourceData instantiates a new TableRowResourceData object.
@@ -135,10 +134,6 @@ func (o TableRowResourceData) MarshalJSON() ([]byte, error) {
 		toSerialize["id"] = o.Id
 	}
 	toSerialize["type"] = o.Type
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -155,12 +150,6 @@ func (o *TableRowResourceData) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
@@ -172,10 +161,6 @@ func (o *TableRowResourceData) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	} else {
 		o.Type = *all.Type
-	}
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
 	}
 
 	if hasInvalidField {

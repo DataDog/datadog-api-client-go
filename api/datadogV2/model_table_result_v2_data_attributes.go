@@ -8,29 +8,29 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableResultV2DataAttributes The definition of `TableResultV2DataAttributes` object.
+// TableResultV2DataAttributes Attributes that define the reference table's configuration and properties.
 type TableResultV2DataAttributes struct {
 	// UUID of the user who created the reference table.
 	CreatedBy *string `json:"created_by,omitempty"`
-	// The description of the reference table.
+	// Optional text describing the purpose or contents of this reference table.
 	Description *string `json:"description,omitempty"`
-	// The definition of `TableResultV2DataAttributesFileMetadata` object.
+	// Metadata specifying where and how to access the reference table's data file.
 	FileMetadata *TableResultV2DataAttributesFileMetadata `json:"file_metadata,omitempty"`
 	// UUID of the user who last updated the reference table.
 	LastUpdatedBy *string `json:"last_updated_by,omitempty"`
 	// The number of successfully processed rows in the reference table.
 	RowCount *int64 `json:"row_count,omitempty"`
-	// The definition of `TableResultV2DataAttributesSchema` object.
+	// Schema defining the structure and columns of the reference table.
 	Schema *TableResultV2DataAttributesSchema `json:"schema,omitempty"`
 	// The source type for reference table data. Includes all possible source types that can appear in responses.
 	Source *ReferenceTableSourceType `json:"source,omitempty"`
-	// The status of the reference table.
+	// The processing status of the table.
 	Status *string `json:"status,omitempty"`
-	// The name of the reference table.
+	// Unique name to identify this reference table. Used in enrichment processors and API calls.
 	TableName *string `json:"table_name,omitempty"`
-	// The tags of the reference table.
+	// Tags for organizing and filtering reference tables.
 	Tags []string `json:"tags,omitempty"`
-	// The timestamp of the last update to the reference table in ISO 8601 format.
+	// When the reference table was last updated, in ISO 8601 format.
 	UpdatedAt *string `json:"updated_at,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

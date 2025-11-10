@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchTableRequestDataAttributesSchemaFieldsItems The definition of `PatchTableRequestDataAttributesSchemaFieldsItems` object.
+// PatchTableRequestDataAttributesSchemaFieldsItems A single field (column) in the reference table schema to be updated. Schema fields cannot be deleted or renamed.
 type PatchTableRequestDataAttributesSchemaFieldsItems struct {
 	// The field name.
 	Name string `json:"name"`

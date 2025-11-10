@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableResultV2DataAttributesFileMetadata - The definition of `TableResultV2DataAttributesFileMetadata` object.
+// TableResultV2DataAttributesFileMetadata - Metadata specifying where and how to access the reference table's data file.
 type TableResultV2DataAttributesFileMetadata struct {
 	TableResultV2DataAttributesFileMetadataCloudStorage *TableResultV2DataAttributesFileMetadataCloudStorage
 	TableResultV2DataAttributesFileMetadataLocalFile    *TableResultV2DataAttributesFileMetadataLocalFile
@@ -36,7 +36,7 @@ func (obj *TableResultV2DataAttributesFileMetadata) UnmarshalJSON(data []byte) e
 	if err == nil {
 		if obj.TableResultV2DataAttributesFileMetadataCloudStorage != nil && obj.TableResultV2DataAttributesFileMetadataCloudStorage.UnparsedObject == nil {
 			jsonTableResultV2DataAttributesFileMetadataCloudStorage, _ := datadog.Marshal(obj.TableResultV2DataAttributesFileMetadataCloudStorage)
-			if string(jsonTableResultV2DataAttributesFileMetadataCloudStorage) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonTableResultV2DataAttributesFileMetadataCloudStorage) == "{}" { // empty struct
 				obj.TableResultV2DataAttributesFileMetadataCloudStorage = nil
 			} else {
 				match++

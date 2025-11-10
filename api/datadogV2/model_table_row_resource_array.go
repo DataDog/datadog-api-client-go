@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableRowResourceArray The definition of `TableRowResourceArray` object.
+// TableRowResourceArray List of rows from a reference table query.
 type TableRowResourceArray struct {
 	// The rows.
 	Data []TableRowResourceData `json:"data"`

@@ -10,7 +10,7 @@ import (
 
 // PatchTableRequestDataAttributesFileMetadataCloudStorage Cloud storage file metadata for patch requests. Allows partial updates of access_details and sync_enabled.
 type PatchTableRequestDataAttributesFileMetadataCloudStorage struct {
-	// The definition of `PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails` object.
+	// Cloud storage access configuration for the reference table data file.
 	AccessDetails *PatchTableRequestDataAttributesFileMetadataOneOfAccessDetails `json:"access_details,omitempty"`
 	// Whether this table is synced automatically.
 	SyncEnabled *bool `json:"sync_enabled,omitempty"`

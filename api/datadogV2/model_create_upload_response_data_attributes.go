@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateUploadResponseDataAttributes The definition of `CreateUploadResponseDataAttributes` object.
+// CreateUploadResponseDataAttributes Pre-signed URLs for uploading parts of the file.
 type CreateUploadResponseDataAttributes struct {
-	// The URLs of the parts in the upload.
+	// The pre-signed URLs for uploading parts. These URLs expire after 5 minutes.
 	PartUrls []string `json:"part_urls,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
