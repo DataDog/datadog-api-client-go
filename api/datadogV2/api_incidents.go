@@ -3168,6 +3168,8 @@ func (r *UpdateIncidentAttachmentsOptionalParameters) WithInclude(include []Inci
 
 // UpdateIncidentAttachments Create, update, and delete incident attachments.
 // The bulk update endpoint for creating, updating, and deleting attachments for a given incident.
+//
+// Deprecated: This API is deprecated.
 func (a *IncidentsApi) UpdateIncidentAttachments(ctx _context.Context, incidentId string, body IncidentAttachmentUpdateRequest, o ...UpdateIncidentAttachmentsOptionalParameters) (IncidentAttachmentUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
