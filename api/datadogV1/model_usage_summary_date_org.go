@@ -20,10 +20,14 @@ type UsageSummaryDateOrg struct {
 	ApmAzureAppServiceHostTop99p *int64 `json:"apm_azure_app_service_host_top99p,omitempty"`
 	// Shows the 99th percentile of all APM DevSecOps hosts over all hours in the current date for the given org.
 	ApmDevsecopsHostTop99p *int64 `json:"apm_devsecops_host_top99p,omitempty"`
+	// Shows the 99th percentile of all distinct standalone Enterprise hosts over all hours in the current date for the given org.
+	ApmEnterpriseStandaloneHostsTop99p *int64 `json:"apm_enterprise_standalone_hosts_top99p,omitempty"`
 	// Shows the average of all APM ECS Fargate tasks over all hours in the current month for the given org.
 	ApmFargateCountAvg *int64 `json:"apm_fargate_count_avg,omitempty"`
 	// Shows the 99th percentile of all distinct APM hosts over all hours in the current date for the given org.
 	ApmHostTop99p *int64 `json:"apm_host_top99p,omitempty"`
+	// Shows the 99th percentile of all distinct standalone Pro hosts over all hours in the current date for the given org.
+	ApmProStandaloneHostsTop99p *int64 `json:"apm_pro_standalone_hosts_top99p,omitempty"`
 	// Shows the average of all Application Security Monitoring ECS Fargate tasks over all hours in the current month for the given org.
 	AppsecFargateCountAvg *int64 `json:"appsec_fargate_count_avg,omitempty"`
 	// Shows the sum of all Application Security Monitoring Serverless invocations over all hours in the current month for the given org.
@@ -605,6 +609,34 @@ func (o *UsageSummaryDateOrg) SetApmDevsecopsHostTop99p(v int64) {
 	o.ApmDevsecopsHostTop99p = &v
 }
 
+// GetApmEnterpriseStandaloneHostsTop99p returns the ApmEnterpriseStandaloneHostsTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetApmEnterpriseStandaloneHostsTop99p() int64 {
+	if o == nil || o.ApmEnterpriseStandaloneHostsTop99p == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ApmEnterpriseStandaloneHostsTop99p
+}
+
+// GetApmEnterpriseStandaloneHostsTop99pOk returns a tuple with the ApmEnterpriseStandaloneHostsTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetApmEnterpriseStandaloneHostsTop99pOk() (*int64, bool) {
+	if o == nil || o.ApmEnterpriseStandaloneHostsTop99p == nil {
+		return nil, false
+	}
+	return o.ApmEnterpriseStandaloneHostsTop99p, true
+}
+
+// HasApmEnterpriseStandaloneHostsTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasApmEnterpriseStandaloneHostsTop99p() bool {
+	return o != nil && o.ApmEnterpriseStandaloneHostsTop99p != nil
+}
+
+// SetApmEnterpriseStandaloneHostsTop99p gets a reference to the given int64 and assigns it to the ApmEnterpriseStandaloneHostsTop99p field.
+func (o *UsageSummaryDateOrg) SetApmEnterpriseStandaloneHostsTop99p(v int64) {
+	o.ApmEnterpriseStandaloneHostsTop99p = &v
+}
+
 // GetApmFargateCountAvg returns the ApmFargateCountAvg field value if set, zero value otherwise.
 func (o *UsageSummaryDateOrg) GetApmFargateCountAvg() int64 {
 	if o == nil || o.ApmFargateCountAvg == nil {
@@ -659,6 +691,34 @@ func (o *UsageSummaryDateOrg) HasApmHostTop99p() bool {
 // SetApmHostTop99p gets a reference to the given int64 and assigns it to the ApmHostTop99p field.
 func (o *UsageSummaryDateOrg) SetApmHostTop99p(v int64) {
 	o.ApmHostTop99p = &v
+}
+
+// GetApmProStandaloneHostsTop99p returns the ApmProStandaloneHostsTop99p field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetApmProStandaloneHostsTop99p() int64 {
+	if o == nil || o.ApmProStandaloneHostsTop99p == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ApmProStandaloneHostsTop99p
+}
+
+// GetApmProStandaloneHostsTop99pOk returns a tuple with the ApmProStandaloneHostsTop99p field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetApmProStandaloneHostsTop99pOk() (*int64, bool) {
+	if o == nil || o.ApmProStandaloneHostsTop99p == nil {
+		return nil, false
+	}
+	return o.ApmProStandaloneHostsTop99p, true
+}
+
+// HasApmProStandaloneHostsTop99p returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasApmProStandaloneHostsTop99p() bool {
+	return o != nil && o.ApmProStandaloneHostsTop99p != nil
+}
+
+// SetApmProStandaloneHostsTop99p gets a reference to the given int64 and assigns it to the ApmProStandaloneHostsTop99p field.
+func (o *UsageSummaryDateOrg) SetApmProStandaloneHostsTop99p(v int64) {
+	o.ApmProStandaloneHostsTop99p = &v
 }
 
 // GetAppsecFargateCountAvg returns the AppsecFargateCountAvg field value if set, zero value otherwise.
@@ -6383,11 +6443,17 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.ApmDevsecopsHostTop99p != nil {
 		toSerialize["apm_devsecops_host_top99p"] = o.ApmDevsecopsHostTop99p
 	}
+	if o.ApmEnterpriseStandaloneHostsTop99p != nil {
+		toSerialize["apm_enterprise_standalone_hosts_top99p"] = o.ApmEnterpriseStandaloneHostsTop99p
+	}
 	if o.ApmFargateCountAvg != nil {
 		toSerialize["apm_fargate_count_avg"] = o.ApmFargateCountAvg
 	}
 	if o.ApmHostTop99p != nil {
 		toSerialize["apm_host_top99p"] = o.ApmHostTop99p
+	}
+	if o.ApmProStandaloneHostsTop99p != nil {
+		toSerialize["apm_pro_standalone_hosts_top99p"] = o.ApmProStandaloneHostsTop99p
 	}
 	if o.AppsecFargateCountAvg != nil {
 		toSerialize["appsec_fargate_count_avg"] = o.AppsecFargateCountAvg
@@ -7010,8 +7076,10 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		AgentHostTop99p                                               *int64  `json:"agent_host_top99p,omitempty"`
 		ApmAzureAppServiceHostTop99p                                  *int64  `json:"apm_azure_app_service_host_top99p,omitempty"`
 		ApmDevsecopsHostTop99p                                        *int64  `json:"apm_devsecops_host_top99p,omitempty"`
+		ApmEnterpriseStandaloneHostsTop99p                            *int64  `json:"apm_enterprise_standalone_hosts_top99p,omitempty"`
 		ApmFargateCountAvg                                            *int64  `json:"apm_fargate_count_avg,omitempty"`
 		ApmHostTop99p                                                 *int64  `json:"apm_host_top99p,omitempty"`
+		ApmProStandaloneHostsTop99p                                   *int64  `json:"apm_pro_standalone_hosts_top99p,omitempty"`
 		AppsecFargateCountAvg                                         *int64  `json:"appsec_fargate_count_avg,omitempty"`
 		AsmServerlessSum                                              *int64  `json:"asm_serverless_sum,omitempty"`
 		AuditLogsLinesIndexedSum                                      *int64  `json:"audit_logs_lines_indexed_sum,omitempty"`
@@ -7220,7 +7288,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_name", "account_public_id", "agent_host_top99p", "apm_azure_app_service_host_top99p", "apm_devsecops_host_top99p", "apm_fargate_count_avg", "apm_host_top99p", "appsec_fargate_count_avg", "asm_serverless_sum", "audit_logs_lines_indexed_sum", "audit_trail_enabled_hwm", "avg_profiled_fargate_tasks", "aws_host_top99p", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p", "billable_ingested_bytes_sum", "bits_ai_investigations_sum", "browser_rum_lite_session_count_sum", "browser_rum_replay_session_count_sum", "browser_rum_units_sum", "ci_pipeline_indexed_spans_sum", "ci_test_indexed_spans_sum", "ci_visibility_itr_committers_hwm", "ci_visibility_pipeline_committers_hwm", "ci_visibility_test_committers_hwm", "cloud_cost_management_aws_host_count_avg", "cloud_cost_management_azure_host_count_avg", "cloud_cost_management_gcp_host_count_avg", "cloud_cost_management_host_count_avg", "cloud_siem_events_sum", "code_analysis_sa_committers_hwm", "code_analysis_sca_committers_hwm", "code_security_host_top99p", "container_avg", "container_excl_agent_avg", "container_hwm", "csm_container_enterprise_compliance_count_sum", "csm_container_enterprise_cws_count_sum", "csm_container_enterprise_total_count_sum", "csm_host_enterprise_aas_host_count_top99p", "csm_host_enterprise_aws_host_count_top99p", "csm_host_enterprise_azure_host_count_top99p", "csm_host_enterprise_compliance_host_count_top99p", "csm_host_enterprise_cws_host_count_top99p", "csm_host_enterprise_gcp_host_count_top99p", "csm_host_enterprise_total_host_count_top99p", "cspm_aas_host_top99p", "cspm_aws_host_top99p", "cspm_azure_host_top99p", "cspm_container_avg", "cspm_container_hwm", "cspm_gcp_host_top99p", "cspm_host_top99p", "custom_historical_ts_avg", "custom_live_ts_avg", "custom_ts_avg", "cws_container_count_avg", "cws_fargate_task_avg", "cws_host_top99p", "data_jobs_monitoring_host_hr_sum", "dbm_host_top99p_sum", "dbm_queries_avg_sum", "eph_infra_host_agent_sum", "eph_infra_host_alibaba_sum", "eph_infra_host_aws_sum", "eph_infra_host_azure_sum", "eph_infra_host_ent_sum", "eph_infra_host_gcp_sum", "eph_infra_host_heroku_sum", "eph_infra_host_only_aas_sum", "eph_infra_host_only_vsphere_sum", "eph_infra_host_opentelemetry_apm_sum", "eph_infra_host_opentelemetry_sum", "eph_infra_host_pro_sum", "eph_infra_host_proplus_sum", "error_tracking_apm_error_events_sum", "error_tracking_error_events_sum", "error_tracking_events_sum", "error_tracking_rum_error_events_sum", "event_management_correlation_correlated_events_sum", "event_management_correlation_correlated_related_events_sum", "event_management_correlation_sum", "fargate_container_profiler_profiling_fargate_avg", "fargate_container_profiler_profiling_fargate_eks_avg", "fargate_tasks_count_avg", "fargate_tasks_count_hwm", "flex_logs_compute_large_avg", "flex_logs_compute_medium_avg", "flex_logs_compute_small_avg", "flex_logs_compute_xlarge_avg", "flex_logs_compute_xsmall_avg", "flex_logs_starter_avg", "flex_logs_starter_storage_index_avg", "flex_logs_starter_storage_retention_adjustment_avg", "flex_stored_logs_avg", "forwarding_events_bytes_sum", "gcp_host_top99p", "heroku_host_top99p", "id", "incident_management_monthly_active_users_hwm", "indexed_events_count_sum", "infra_host_top99p", "ingested_events_bytes_sum", "iot_device_agg_sum", "iot_device_top99p_sum", "llm_observability_min_spend_sum", "llm_observability_sum", "mobile_rum_lite_session_count_sum", "mobile_rum_session_count_android_sum", "mobile_rum_session_count_flutter_sum", "mobile_rum_session_count_ios_sum", "mobile_rum_session_count_reactnative_sum", "mobile_rum_session_count_roku_sum", "mobile_rum_session_count_sum", "mobile_rum_units_sum", "name", "ndm_netflow_events_sum", "netflow_indexed_events_count_sum", "network_device_wireless_top99p", "npm_host_top99p", "observability_pipelines_bytes_processed_sum", "oci_host_sum", "oci_host_top99p", "on_call_seat_hwm", "online_archive_events_count_sum", "opentelemetry_apm_host_top99p", "opentelemetry_host_top99p", "product_analytics_sum", "profiling_aas_count_top99p", "profiling_host_top99p", "public_id", "published_app_hwm", "region", "rum_browser_and_mobile_session_count", "rum_browser_legacy_session_count_sum", "rum_browser_lite_session_count_sum", "rum_browser_replay_session_count_sum", "rum_indexed_sessions_sum", "rum_ingested_sessions_sum", "rum_lite_session_count_sum", "rum_mobile_legacy_session_count_android_sum", "rum_mobile_legacy_session_count_flutter_sum", "rum_mobile_legacy_session_count_ios_sum", "rum_mobile_legacy_session_count_reactnative_sum", "rum_mobile_legacy_session_count_roku_sum", "rum_mobile_lite_session_count_android_sum", "rum_mobile_lite_session_count_flutter_sum", "rum_mobile_lite_session_count_ios_sum", "rum_mobile_lite_session_count_kotlinmultiplatform_sum", "rum_mobile_lite_session_count_reactnative_sum", "rum_mobile_lite_session_count_roku_sum", "rum_mobile_lite_session_count_unity_sum", "rum_mobile_replay_session_count_android_sum", "rum_mobile_replay_session_count_ios_sum", "rum_mobile_replay_session_count_kotlinmultiplatform_sum", "rum_mobile_replay_session_count_reactnative_sum", "rum_replay_session_count_sum", "rum_session_count_sum", "rum_session_replay_add_on_sum", "rum_total_session_count_sum", "rum_units_sum", "sca_fargate_count_avg", "sca_fargate_count_hwm", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_apm_apm_azure_appservice_instances_avg", "serverless_apps_apm_apm_azure_azurefunction_instances_avg", "serverless_apps_apm_apm_azure_containerapp_instances_avg", "serverless_apps_apm_apm_fargate_ecs_tasks_avg", "serverless_apps_apm_apm_gcp_cloudfunction_instances_avg", "serverless_apps_apm_apm_gcp_cloudrun_instances_avg", "serverless_apps_apm_avg", "serverless_apps_apm_excl_fargate_apm_azure_appservice_instances_avg", "serverless_apps_apm_excl_fargate_apm_azure_azurefunction_instances_avg", "serverless_apps_apm_excl_fargate_apm_azure_containerapp_instances_avg", "serverless_apps_apm_excl_fargate_apm_gcp_cloudfunction_instances_avg", "serverless_apps_apm_excl_fargate_apm_gcp_cloudrun_instances_avg", "serverless_apps_apm_excl_fargate_avg", "serverless_apps_azure_container_app_instances_avg", "serverless_apps_azure_count_avg", "serverless_apps_azure_function_app_instances_avg", "serverless_apps_azure_web_app_instances_avg", "serverless_apps_ecs_avg", "serverless_apps_eks_avg", "serverless_apps_excl_fargate_avg", "serverless_apps_excl_fargate_azure_container_app_instances_avg", "serverless_apps_excl_fargate_azure_function_app_instances_avg", "serverless_apps_excl_fargate_azure_web_app_instances_avg", "serverless_apps_excl_fargate_google_cloud_functions_instances_avg", "serverless_apps_excl_fargate_google_cloud_run_instances_avg", "serverless_apps_google_cloud_functions_instances_avg", "serverless_apps_google_cloud_run_instances_avg", "serverless_apps_google_count_avg", "serverless_apps_total_count_avg", "siem_analyzed_logs_add_on_count_sum", "synthetics_browser_check_calls_count_sum", "synthetics_check_calls_count_sum", "synthetics_mobile_test_runs_sum", "synthetics_parallel_testing_max_slots_hwm", "trace_search_indexed_events_count_sum", "twol_ingested_events_bytes_sum", "universal_service_monitoring_host_top99p", "vsphere_host_top99p", "vuln_management_host_count_top99p", "workflow_executions_usage_sum"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_name", "account_public_id", "agent_host_top99p", "apm_azure_app_service_host_top99p", "apm_devsecops_host_top99p", "apm_enterprise_standalone_hosts_top99p", "apm_fargate_count_avg", "apm_host_top99p", "apm_pro_standalone_hosts_top99p", "appsec_fargate_count_avg", "asm_serverless_sum", "audit_logs_lines_indexed_sum", "audit_trail_enabled_hwm", "avg_profiled_fargate_tasks", "aws_host_top99p", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p", "billable_ingested_bytes_sum", "bits_ai_investigations_sum", "browser_rum_lite_session_count_sum", "browser_rum_replay_session_count_sum", "browser_rum_units_sum", "ci_pipeline_indexed_spans_sum", "ci_test_indexed_spans_sum", "ci_visibility_itr_committers_hwm", "ci_visibility_pipeline_committers_hwm", "ci_visibility_test_committers_hwm", "cloud_cost_management_aws_host_count_avg", "cloud_cost_management_azure_host_count_avg", "cloud_cost_management_gcp_host_count_avg", "cloud_cost_management_host_count_avg", "cloud_siem_events_sum", "code_analysis_sa_committers_hwm", "code_analysis_sca_committers_hwm", "code_security_host_top99p", "container_avg", "container_excl_agent_avg", "container_hwm", "csm_container_enterprise_compliance_count_sum", "csm_container_enterprise_cws_count_sum", "csm_container_enterprise_total_count_sum", "csm_host_enterprise_aas_host_count_top99p", "csm_host_enterprise_aws_host_count_top99p", "csm_host_enterprise_azure_host_count_top99p", "csm_host_enterprise_compliance_host_count_top99p", "csm_host_enterprise_cws_host_count_top99p", "csm_host_enterprise_gcp_host_count_top99p", "csm_host_enterprise_total_host_count_top99p", "cspm_aas_host_top99p", "cspm_aws_host_top99p", "cspm_azure_host_top99p", "cspm_container_avg", "cspm_container_hwm", "cspm_gcp_host_top99p", "cspm_host_top99p", "custom_historical_ts_avg", "custom_live_ts_avg", "custom_ts_avg", "cws_container_count_avg", "cws_fargate_task_avg", "cws_host_top99p", "data_jobs_monitoring_host_hr_sum", "dbm_host_top99p_sum", "dbm_queries_avg_sum", "eph_infra_host_agent_sum", "eph_infra_host_alibaba_sum", "eph_infra_host_aws_sum", "eph_infra_host_azure_sum", "eph_infra_host_ent_sum", "eph_infra_host_gcp_sum", "eph_infra_host_heroku_sum", "eph_infra_host_only_aas_sum", "eph_infra_host_only_vsphere_sum", "eph_infra_host_opentelemetry_apm_sum", "eph_infra_host_opentelemetry_sum", "eph_infra_host_pro_sum", "eph_infra_host_proplus_sum", "error_tracking_apm_error_events_sum", "error_tracking_error_events_sum", "error_tracking_events_sum", "error_tracking_rum_error_events_sum", "event_management_correlation_correlated_events_sum", "event_management_correlation_correlated_related_events_sum", "event_management_correlation_sum", "fargate_container_profiler_profiling_fargate_avg", "fargate_container_profiler_profiling_fargate_eks_avg", "fargate_tasks_count_avg", "fargate_tasks_count_hwm", "flex_logs_compute_large_avg", "flex_logs_compute_medium_avg", "flex_logs_compute_small_avg", "flex_logs_compute_xlarge_avg", "flex_logs_compute_xsmall_avg", "flex_logs_starter_avg", "flex_logs_starter_storage_index_avg", "flex_logs_starter_storage_retention_adjustment_avg", "flex_stored_logs_avg", "forwarding_events_bytes_sum", "gcp_host_top99p", "heroku_host_top99p", "id", "incident_management_monthly_active_users_hwm", "indexed_events_count_sum", "infra_host_top99p", "ingested_events_bytes_sum", "iot_device_agg_sum", "iot_device_top99p_sum", "llm_observability_min_spend_sum", "llm_observability_sum", "mobile_rum_lite_session_count_sum", "mobile_rum_session_count_android_sum", "mobile_rum_session_count_flutter_sum", "mobile_rum_session_count_ios_sum", "mobile_rum_session_count_reactnative_sum", "mobile_rum_session_count_roku_sum", "mobile_rum_session_count_sum", "mobile_rum_units_sum", "name", "ndm_netflow_events_sum", "netflow_indexed_events_count_sum", "network_device_wireless_top99p", "npm_host_top99p", "observability_pipelines_bytes_processed_sum", "oci_host_sum", "oci_host_top99p", "on_call_seat_hwm", "online_archive_events_count_sum", "opentelemetry_apm_host_top99p", "opentelemetry_host_top99p", "product_analytics_sum", "profiling_aas_count_top99p", "profiling_host_top99p", "public_id", "published_app_hwm", "region", "rum_browser_and_mobile_session_count", "rum_browser_legacy_session_count_sum", "rum_browser_lite_session_count_sum", "rum_browser_replay_session_count_sum", "rum_indexed_sessions_sum", "rum_ingested_sessions_sum", "rum_lite_session_count_sum", "rum_mobile_legacy_session_count_android_sum", "rum_mobile_legacy_session_count_flutter_sum", "rum_mobile_legacy_session_count_ios_sum", "rum_mobile_legacy_session_count_reactnative_sum", "rum_mobile_legacy_session_count_roku_sum", "rum_mobile_lite_session_count_android_sum", "rum_mobile_lite_session_count_flutter_sum", "rum_mobile_lite_session_count_ios_sum", "rum_mobile_lite_session_count_kotlinmultiplatform_sum", "rum_mobile_lite_session_count_reactnative_sum", "rum_mobile_lite_session_count_roku_sum", "rum_mobile_lite_session_count_unity_sum", "rum_mobile_replay_session_count_android_sum", "rum_mobile_replay_session_count_ios_sum", "rum_mobile_replay_session_count_kotlinmultiplatform_sum", "rum_mobile_replay_session_count_reactnative_sum", "rum_replay_session_count_sum", "rum_session_count_sum", "rum_session_replay_add_on_sum", "rum_total_session_count_sum", "rum_units_sum", "sca_fargate_count_avg", "sca_fargate_count_hwm", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_apm_apm_azure_appservice_instances_avg", "serverless_apps_apm_apm_azure_azurefunction_instances_avg", "serverless_apps_apm_apm_azure_containerapp_instances_avg", "serverless_apps_apm_apm_fargate_ecs_tasks_avg", "serverless_apps_apm_apm_gcp_cloudfunction_instances_avg", "serverless_apps_apm_apm_gcp_cloudrun_instances_avg", "serverless_apps_apm_avg", "serverless_apps_apm_excl_fargate_apm_azure_appservice_instances_avg", "serverless_apps_apm_excl_fargate_apm_azure_azurefunction_instances_avg", "serverless_apps_apm_excl_fargate_apm_azure_containerapp_instances_avg", "serverless_apps_apm_excl_fargate_apm_gcp_cloudfunction_instances_avg", "serverless_apps_apm_excl_fargate_apm_gcp_cloudrun_instances_avg", "serverless_apps_apm_excl_fargate_avg", "serverless_apps_azure_container_app_instances_avg", "serverless_apps_azure_count_avg", "serverless_apps_azure_function_app_instances_avg", "serverless_apps_azure_web_app_instances_avg", "serverless_apps_ecs_avg", "serverless_apps_eks_avg", "serverless_apps_excl_fargate_avg", "serverless_apps_excl_fargate_azure_container_app_instances_avg", "serverless_apps_excl_fargate_azure_function_app_instances_avg", "serverless_apps_excl_fargate_azure_web_app_instances_avg", "serverless_apps_excl_fargate_google_cloud_functions_instances_avg", "serverless_apps_excl_fargate_google_cloud_run_instances_avg", "serverless_apps_google_cloud_functions_instances_avg", "serverless_apps_google_cloud_run_instances_avg", "serverless_apps_google_count_avg", "serverless_apps_total_count_avg", "siem_analyzed_logs_add_on_count_sum", "synthetics_browser_check_calls_count_sum", "synthetics_check_calls_count_sum", "synthetics_mobile_test_runs_sum", "synthetics_parallel_testing_max_slots_hwm", "trace_search_indexed_events_count_sum", "twol_ingested_events_bytes_sum", "universal_service_monitoring_host_top99p", "vsphere_host_top99p", "vuln_management_host_count_top99p", "workflow_executions_usage_sum"})
 	} else {
 		return err
 	}
@@ -7229,8 +7297,10 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.AgentHostTop99p = all.AgentHostTop99p
 	o.ApmAzureAppServiceHostTop99p = all.ApmAzureAppServiceHostTop99p
 	o.ApmDevsecopsHostTop99p = all.ApmDevsecopsHostTop99p
+	o.ApmEnterpriseStandaloneHostsTop99p = all.ApmEnterpriseStandaloneHostsTop99p
 	o.ApmFargateCountAvg = all.ApmFargateCountAvg
 	o.ApmHostTop99p = all.ApmHostTop99p
+	o.ApmProStandaloneHostsTop99p = all.ApmProStandaloneHostsTop99p
 	o.AppsecFargateCountAvg = all.AppsecFargateCountAvg
 	o.AsmServerlessSum = all.AsmServerlessSum
 	o.AuditLogsLinesIndexedSum = all.AuditLogsLinesIndexedSum
