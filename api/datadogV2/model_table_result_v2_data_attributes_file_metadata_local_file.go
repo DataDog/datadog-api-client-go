@@ -15,8 +15,7 @@ type TableResultV2DataAttributesFileMetadataLocalFile struct {
 	// The number of rows that failed to create/update.
 	ErrorRowCount *int64 `json:"error_row_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewTableResultV2DataAttributesFileMetadataLocalFile instantiates a new TableResultV2DataAttributesFileMetadataLocalFile object.
@@ -104,10 +103,6 @@ func (o TableResultV2DataAttributesFileMetadataLocalFile) MarshalJSON() ([]byte,
 	if o.ErrorRowCount != nil {
 		toSerialize["error_row_count"] = o.ErrorRowCount
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -120,18 +115,8 @@ func (o *TableResultV2DataAttributesFileMetadataLocalFile) UnmarshalJSON(bytes [
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"error_message", "error_row_count"})
-	} else {
-		return err
-	}
 	o.ErrorMessage = all.ErrorMessage
 	o.ErrorRowCount = all.ErrorRowCount
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

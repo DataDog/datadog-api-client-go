@@ -23,8 +23,7 @@ type TableResultV2DataAttributesFileMetadataCloudStorage struct {
 	// Whether this table is synced automatically.
 	SyncEnabled *bool `json:"sync_enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewTableResultV2DataAttributesFileMetadataCloudStorage instantiates a new TableResultV2DataAttributesFileMetadataCloudStorage object.
@@ -199,10 +198,6 @@ func (o TableResultV2DataAttributesFileMetadataCloudStorage) MarshalJSON() ([]by
 	if o.SyncEnabled != nil {
 		toSerialize["sync_enabled"] = o.SyncEnabled
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -221,12 +216,6 @@ func (o *TableResultV2DataAttributesFileMetadataCloudStorage) UnmarshalJSON(byte
 	if all.AccessDetails == nil {
 		return fmt.Errorf("required field access_details missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"access_details", "error_message", "error_row_count", "error_type", "sync_enabled"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	if all.AccessDetails.UnparsedObject != nil && o.UnparsedObject == nil {
@@ -241,10 +230,6 @@ func (o *TableResultV2DataAttributesFileMetadataCloudStorage) UnmarshalJSON(byte
 		o.ErrorType = all.ErrorType
 	}
 	o.SyncEnabled = all.SyncEnabled
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
