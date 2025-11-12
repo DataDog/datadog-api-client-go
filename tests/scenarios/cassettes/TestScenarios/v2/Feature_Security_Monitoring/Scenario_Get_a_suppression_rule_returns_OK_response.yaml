@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"Test-Get_a_suppression_rule_returns_OK_response-1715358886","enabled":true,"name":"Test-Get_a_suppression_rule_returns_OK_response-1715358886","rule_query":"source:cloudtrail","suppression_query":"env:test"},"type":"suppressions"}}
+      {"data":{"attributes":{"description":"Test-Get_a_suppression_rule_returns_OK_response-1762518447","enabled":true,"name":"Test-Get_a_suppression_rule_returns_OK_response-1762518447","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["technique:T1110-brute-force","source:cloudtrail"]},"type":"suppressions"}}
     form: {}
     headers:
       Accept:
@@ -12,14 +12,14 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions
   response:
-    body: '{"data":{"id":"ol3-0o2-rrp","attributes":{"name":"Test-Get_a_suppression_rule_returns_OK_response-1715358886","enabled":true,"description":"Test-Get_a_suppression_rule_returns_OK_response-1715358886","rule_query":"source:cloudtrail","suppression_query":"env:test","data_exclusion_query":"","version":1,"creation_date":1715358886671,"update_date":1715358886671,"creator":{"name":null,"handle":"frog@datadoghq.com"},"updater":{"name":null,"handle":"frog@datadoghq.com"}},"type":"suppressions"}}
-
-      '
+    body: '{"data":{"id":"ylq-igi-icg","type":"suppressions","attributes":{"creation_date":1762518447901,"creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"data_exclusion_query":"","description":"Test-Get_a_suppression_rule_returns_OK_response-1762518447","editable":true,"enabled":true,"name":"Test-Get_a_suppression_rule_returns_OK_response-1762518447","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1762518447901,"updater":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"version":1}}}'
     code: 200
     duration: 0ms
     headers:
       Content-Type:
-      - application/json
+      - application/vnd.api+json
     status: 200 OK
 - request:
     body: ''
@@ -29,16 +29,16 @@ interactions:
       - application/json
     id: 1
     method: GET
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/ol3-0o2-rrp
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/ylq-igi-icg
   response:
-    body: '{"data":{"id":"ol3-0o2-rrp","attributes":{"name":"Test-Get_a_suppression_rule_returns_OK_response-1715358886","enabled":true,"description":"Test-Get_a_suppression_rule_returns_OK_response-1715358886","rule_query":"source:cloudtrail","suppression_query":"env:test","data_exclusion_query":"","version":1,"creation_date":1715358886671,"update_date":1715358886671,"creator":{"name":null,"handle":"frog@datadoghq.com"},"updater":{"name":null,"handle":"frog@datadoghq.com"}},"type":"suppressions"}}
-
-      '
+    body: '{"data":{"id":"ylq-igi-icg","type":"suppressions","attributes":{"creation_date":1762518447901,"creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"data_exclusion_query":"","description":"Test-Get_a_suppression_rule_returns_OK_response-1762518447","editable":true,"enabled":true,"name":"Test-Get_a_suppression_rule_returns_OK_response-1762518447","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1762518447901,"updater":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"version":1}}}'
     code: 200
     duration: 0ms
     headers:
       Content-Type:
-      - application/json
+      - application/vnd.api+json
     status: 200 OK
 - request:
     body: ''
@@ -48,13 +48,11 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/ol3-0o2-rrp
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/ylq-igi-icg
   response:
     body: ''
     code: 204
     duration: 0ms
-    headers:
-      Content-Type:
-      - text/html; charset=utf-8
+    headers: {}
     status: 204 No Content
 version: 2

@@ -23,6 +23,10 @@ func main() {
 				Name:             "Example-Security-Monitoring",
 				RuleQuery:        "type:log_detection source:cloudtrail",
 				SuppressionQuery: datadog.PtrString("env:staging status:low"),
+				Tags: []string{
+					"technique:T1110-brute-force",
+					"source:cloudtrail",
+				},
 			},
 			Type: datadogV2.SECURITYMONITORINGSUPPRESSIONTYPE_SUPPRESSIONS,
 		},
