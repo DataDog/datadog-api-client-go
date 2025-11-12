@@ -592,7 +592,8 @@ func (a *KeyManagementApi) GetApplicationKey(ctx _context.Context, appKeyId stri
 }
 
 // GetCurrentUserApplicationKey Get one application key owned by current user.
-// Get an application key owned by current user
+// Get an application key owned by current user.
+// The `key` field is not returned for organizations in [One-Time Read mode](https://docs.datadoghq.com/account_management/api-app-keys/#one-time-read-mode).
 func (a *KeyManagementApi) GetCurrentUserApplicationKey(ctx _context.Context, appKeyId string) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1367,7 +1368,8 @@ func (a *KeyManagementApi) UpdateApplicationKey(ctx _context.Context, appKeyId s
 }
 
 // UpdateCurrentUserApplicationKey Edit an application key owned by current user.
-// Edit an application key owned by current user
+// Edit an application key owned by current user.
+// The `key` field is not returned for organizations in [One-Time Read mode](https://docs.datadoghq.com/account_management/api-app-keys/#one-time-read-mode).
 func (a *KeyManagementApi) UpdateCurrentUserApplicationKey(ctx _context.Context, appKeyId string, body ApplicationKeyUpdateRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

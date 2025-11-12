@@ -97,6 +97,7 @@ func (a *KeyManagementApi) CreateAPIKey(ctx _context.Context, body ApiKey) (ApiK
 
 // CreateApplicationKey Create an application key.
 // Create an application key with a given name.
+// This endpoint is disabled for organizations in [One-Time Read mode](https://docs.datadoghq.com/account_management/api-app-keys/#one-time-read-mode).
 func (a *KeyManagementApi) CreateApplicationKey(ctx _context.Context, body ApplicationKey) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -255,6 +256,7 @@ func (a *KeyManagementApi) DeleteAPIKey(ctx _context.Context, key string) (ApiKe
 
 // DeleteApplicationKey Delete an application key.
 // Delete a given application key.
+// This endpoint is disabled for organizations in [One-Time Read mode](https://docs.datadoghq.com/account_management/api-app-keys/#one-time-read-mode).
 func (a *KeyManagementApi) DeleteApplicationKey(ctx _context.Context, key string) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -411,6 +413,7 @@ func (a *KeyManagementApi) GetAPIKey(ctx _context.Context, key string) (ApiKeyRe
 
 // GetApplicationKey Get an application key.
 // Get a given application key.
+// This endpoint is disabled for organizations in [One-Time Read mode](https://docs.datadoghq.com/account_management/api-app-keys/#one-time-read-mode).
 func (a *KeyManagementApi) GetApplicationKey(ctx _context.Context, key string) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -566,6 +569,7 @@ func (a *KeyManagementApi) ListAPIKeys(ctx _context.Context) (ApiKeyListResponse
 
 // ListApplicationKeys Get all application keys.
 // Get all application keys available for your Datadog account.
+// This endpoint is disabled for organizations in [One-Time Read mode](https://docs.datadoghq.com/account_management/api-app-keys/#one-time-read-mode).
 func (a *KeyManagementApi) ListApplicationKeys(ctx _context.Context) (ApplicationKeyListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -724,6 +728,7 @@ func (a *KeyManagementApi) UpdateAPIKey(ctx _context.Context, key string, body A
 
 // UpdateApplicationKey Edit an application key.
 // Edit an application key name.
+// This endpoint is disabled for organizations in [One-Time Read mode](https://docs.datadoghq.com/account_management/api-app-keys/#one-time-read-mode).
 func (a *KeyManagementApi) UpdateApplicationKey(ctx _context.Context, key string, body ApplicationKey) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
