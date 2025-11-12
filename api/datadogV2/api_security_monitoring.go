@@ -98,7 +98,12 @@ func (a *SecurityMonitoringApi) CancelThreatHuntingJob(ctx _context.Context, job
 
 // ConvertExistingSecurityMonitoringRule Convert an existing rule from JSON to Terraform.
 // Convert an existing rule from JSON to Terraform for datadog provider
-// resource datadog_security_monitoring_rule.
+// resource `datadog_security_monitoring_rule`. You can do so for the following rule types:
+// - App and API Protection
+// - Cloud SIEM (log detection and signal correlation)
+// - Workload Protection
+//
+// You can convert Cloud Security configuration rules using Terraform's [Datadog Cloud Configuration Rule resource](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/cloud_configuration_rule).
 func (a *SecurityMonitoringApi) ConvertExistingSecurityMonitoringRule(ctx _context.Context, ruleId string) (SecurityMonitoringRuleConvertResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -256,7 +261,12 @@ func (a *SecurityMonitoringApi) ConvertJobResultToSignal(ctx _context.Context, b
 
 // ConvertSecurityMonitoringRuleFromJSONToTerraform Convert a rule from JSON to Terraform.
 // Convert a rule that doesn't (yet) exist from JSON to Terraform for datadog provider
-// resource datadog_security_monitoring_rule.
+// resource `datadog_security_monitoring_rule`. You can do so for the following rule types:
+// - App and API Protection
+// - Cloud SIEM (log detection and signal correlation)
+// - Workload Protection
+//
+// You can convert Cloud Security configuration rules using Terraform's [Datadog Cloud Configuration Rule resource](https://registry.terraform.io/providers/DataDog/datadog/latest/docs/resources/cloud_configuration_rule).
 func (a *SecurityMonitoringApi) ConvertSecurityMonitoringRuleFromJSONToTerraform(ctx _context.Context, body SecurityMonitoringRuleConvertPayload) (SecurityMonitoringRuleConvertResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
