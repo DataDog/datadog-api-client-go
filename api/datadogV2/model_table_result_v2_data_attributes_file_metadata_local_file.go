@@ -115,6 +115,17 @@ func (o *TableResultV2DataAttributesFileMetadataLocalFile) UnmarshalJSON(bytes [
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
+	// Validate no additional properties are present (additionalProperties: false)
+	// This is necessary for OneOf disambiguation - LocalFile must reject fields like 'access_details'
+	additionalProperties := make(map[string]interface{})
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"error_message", "error_row_count"})
+		if len(additionalProperties) > 0 {
+			return fmt.Errorf("additional properties not allowed in TableResultV2DataAttributesFileMetadataLocalFile: %v", additionalProperties)
+		}
+	} else {
+		return err
+	}
 	o.ErrorMessage = all.ErrorMessage
 	o.ErrorRowCount = all.ErrorRowCount
 
