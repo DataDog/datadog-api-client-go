@@ -631,6 +631,7 @@
 //   - [TeamsApi.GetTeamLinks]
 //   - [TeamsApi.GetTeamMemberships]
 //   - [TeamsApi.GetTeamPermissionSettings]
+//   - [TeamsApi.GetTeamSync]
 //   - [TeamsApi.GetUserMemberships]
 //   - [TeamsApi.ListMemberTeams]
 //   - [TeamsApi.ListTeams]
