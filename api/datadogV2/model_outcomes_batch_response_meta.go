@@ -13,7 +13,7 @@ type OutcomesBatchResponseMeta struct {
 	// Total number of scorecard results received during the bulk operation.
 	TotalReceived *int64 `json:"total_received,omitempty"`
 	// Total number of scorecard results modified during the bulk operation.
-	TotalUpdated *int64 `json:"total_updated,omitempty"`
+	TotalStaged *int64 `json:"total_staged,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -64,32 +64,32 @@ func (o *OutcomesBatchResponseMeta) SetTotalReceived(v int64) {
 	o.TotalReceived = &v
 }
 
-// GetTotalUpdated returns the TotalUpdated field value if set, zero value otherwise.
-func (o *OutcomesBatchResponseMeta) GetTotalUpdated() int64 {
-	if o == nil || o.TotalUpdated == nil {
+// GetTotalStaged returns the TotalStaged field value if set, zero value otherwise.
+func (o *OutcomesBatchResponseMeta) GetTotalStaged() int64 {
+	if o == nil || o.TotalStaged == nil {
 		var ret int64
 		return ret
 	}
-	return *o.TotalUpdated
+	return *o.TotalStaged
 }
 
-// GetTotalUpdatedOk returns a tuple with the TotalUpdated field value if set, nil otherwise
+// GetTotalStagedOk returns a tuple with the TotalStaged field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *OutcomesBatchResponseMeta) GetTotalUpdatedOk() (*int64, bool) {
-	if o == nil || o.TotalUpdated == nil {
+func (o *OutcomesBatchResponseMeta) GetTotalStagedOk() (*int64, bool) {
+	if o == nil || o.TotalStaged == nil {
 		return nil, false
 	}
-	return o.TotalUpdated, true
+	return o.TotalStaged, true
 }
 
-// HasTotalUpdated returns a boolean if a field has been set.
-func (o *OutcomesBatchResponseMeta) HasTotalUpdated() bool {
-	return o != nil && o.TotalUpdated != nil
+// HasTotalStaged returns a boolean if a field has been set.
+func (o *OutcomesBatchResponseMeta) HasTotalStaged() bool {
+	return o != nil && o.TotalStaged != nil
 }
 
-// SetTotalUpdated gets a reference to the given int64 and assigns it to the TotalUpdated field.
-func (o *OutcomesBatchResponseMeta) SetTotalUpdated(v int64) {
-	o.TotalUpdated = &v
+// SetTotalStaged gets a reference to the given int64 and assigns it to the TotalStaged field.
+func (o *OutcomesBatchResponseMeta) SetTotalStaged(v int64) {
+	o.TotalStaged = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -101,8 +101,8 @@ func (o OutcomesBatchResponseMeta) MarshalJSON() ([]byte, error) {
 	if o.TotalReceived != nil {
 		toSerialize["total_received"] = o.TotalReceived
 	}
-	if o.TotalUpdated != nil {
-		toSerialize["total_updated"] = o.TotalUpdated
+	if o.TotalStaged != nil {
+		toSerialize["total_staged"] = o.TotalStaged
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -115,19 +115,19 @@ func (o OutcomesBatchResponseMeta) MarshalJSON() ([]byte, error) {
 func (o *OutcomesBatchResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		TotalReceived *int64 `json:"total_received,omitempty"`
-		TotalUpdated  *int64 `json:"total_updated,omitempty"`
+		TotalStaged   *int64 `json:"total_staged,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"total_received", "total_updated"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"total_received", "total_staged"})
 	} else {
 		return err
 	}
 	o.TotalReceived = all.TotalReceived
-	o.TotalUpdated = all.TotalUpdated
+	o.TotalStaged = all.TotalStaged
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
