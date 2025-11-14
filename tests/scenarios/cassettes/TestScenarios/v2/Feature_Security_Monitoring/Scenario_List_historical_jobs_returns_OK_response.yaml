@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/siem-threat-hunting/jobs
   response:
-    body: '{"data":{"id":"e935c6c8-ba76-4ebf-8770-bb772a5ec1ed","type":"historicalDetectionsJob"}}'
+    body: '{"data":{"id":"c3564eed-ff70-43e1-ab6f-593de95bd21f","type":"historicalDetectionsJob"}}'
     code: 201
     duration: 0ms
     headers:
@@ -27,15 +27,14 @@ interactions:
       - application/json
     id: 1
     method: GET
-    url: https://api.datadoghq.com/api/v2/siem-threat-hunting/jobs?filter%5Bquery%5D=id%3Ae935c6c8-ba76-4ebf-8770-bb772a5ec1ed
+    url: https://api.datadoghq.com/api/v2/siem-threat-hunting/jobs?filter%5Bquery%5D=id%3Ac3564eed-ff70-43e1-ab6f-593de95bd21f
   response:
-    body: '{"data":[{"id":"e935c6c8-ba76-4ebf-8770-bb772a5ec1ed","type":"historicalDetectionsJob","attributes":{"createdAt":"2025-10-24
-      14:24:02.256887+00","createdByHandle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","createdByName":"CI
-      Account","jobDefinition":{"from":1730387522611,"to":1730387532611,"index":"main","name":"Excessive
+    body: '{"data":[{"id":"c3564eed-ff70-43e1-ab6f-593de95bd21f","type":"historicalDetectionsJob","attributes":{"createdAt":"2025-11-11
+      21:36:57.303304+00","createdByHandle":"frog@datadoghq.com","createdByName":"frog","jobDefinition":{"from":1730387522611,"to":1730387532611,"index":"main","name":"Excessive
       number of failed attempts.","cases":[{"name":"Condition 1","status":"info","notifications":[],"condition":"a
       \u003e 1"}],"queries":[{"query":"source:non_existing_src_weekend","groupByFields":[],"hasOptionalGroupByFields":false,"distinctFields":[],"aggregation":"count","name":"","dataSource":"logs"}],"options":{"evaluationWindow":900,"detectionMethod":"threshold","maxSignalDuration":86400,"keepAlive":3600},"message":"A
       large number of failed login attempts.","tags":[],"type":"log_detection"},"jobName":"Excessive
-      number of failed attempts.","jobStatus":"pending","modifiedAt":"2025-10-24 14:24:02.256887+00"}}],"meta":{"totalCount":1}}'
+      number of failed attempts.","jobStatus":"pending","modifiedAt":"2025-11-11 21:36:57.303304+00","signalOutput":false}}],"meta":{"totalCount":1}}'
     code: 200
     duration: 0ms
     headers:
