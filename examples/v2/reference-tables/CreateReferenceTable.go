@@ -16,37 +16,46 @@ func main() {
 	body := datadogV2.CreateTableRequest{
 		Data: &datadogV2.CreateTableRequestData{
 			Attributes: &datadogV2.CreateTableRequestDataAttributes{
-				Description: datadog.PtrString("this is a cloud table generated via a cloud bucket sync"),
 				FileMetadata: &datadogV2.CreateTableRequestDataAttributesFileMetadata{
 					CreateTableRequestDataAttributesFileMetadataCloudStorage: &datadogV2.CreateTableRequestDataAttributesFileMetadataCloudStorage{
 						AccessDetails: datadogV2.CreateTableRequestDataAttributesFileMetadataOneOfAccessDetails{
 							AwsDetail: &datadogV2.CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAwsDetail{
-								AwsAccountId:  "test-account-id",
-								AwsBucketName: "test-bucket",
-								FilePath:      "test_rt.csv",
+								AwsAccountId:  "123456789000",
+								AwsBucketName: "example-data-bucket",
+								FilePath:      "reference-tables/users.csv",
+							},
+							AzureDetail: &datadogV2.CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsAzureDetail{
+								AzureClientId:           "aaaaaaaa-1111-2222-3333-bbbbbbbbbbbb",
+								AzureContainerName:      "reference-data",
+								AzureStorageAccountName: "examplestorageaccount",
+								AzureTenantId:           "cccccccc-4444-5555-6666-dddddddddddd",
+								FilePath:                "tables/users.csv",
+							},
+							GcpDetail: &datadogV2.CreateTableRequestDataAttributesFileMetadataOneOfAccessDetailsGcpDetail{
+								FilePath:               "data/reference_tables/users.csv",
+								GcpBucketName:          "example-data-bucket",
+								GcpProjectId:           "example-gcp-project-12345",
+								GcpServiceAccountEmail: "example-service@example-gcp-project-12345.iam.gserviceaccount.com",
 							},
 						},
-						SyncEnabled: true,
+						SyncEnabled: false,
 					}},
 				Schema: datadogV2.CreateTableRequestDataAttributesSchema{
 					Fields: []datadogV2.CreateTableRequestDataAttributesSchemaFieldsItems{
 						{
-							Name: "name",
-							Type: datadogV2.REFERENCETABLESCHEMAFIELDTYPE_STRING,
-						},
-						{
-							Name: "account_id",
+							Name: "field_1",
 							Type: datadogV2.REFERENCETABLESCHEMAFIELDTYPE_STRING,
 						},
 					},
 					PrimaryKeys: []string{
-						"account_id",
+						"field_1",
 					},
 				},
-				Source:    datadogV2.REFERENCETABLECREATESOURCETYPE_S3,
-				TableName: "test_reference_table",
+				Source:    datadogV2.REFERENCETABLECREATESOURCETYPE_LOCAL_FILE,
+				TableName: "table_1",
 				Tags: []string{
-					"test_tag",
+					"tag_1",
+					"tag_2",
 				},
 			},
 			Type: datadogV2.CREATETABLEREQUESTDATATYPE_REFERENCE_TABLE,
