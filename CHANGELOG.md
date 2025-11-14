@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 2.50.0/2025-11-14
+
+### Added
+* Add suppression tags [#3456](https://github.com/DataDog/datadog-api-client-go/pull/3456)
+* Add Team Connection API Documentation [#3454](https://github.com/DataDog/datadog-api-client-go/pull/3454)
+* Add new summary keys for new standalone billing dimensions [#3451](https://github.com/DataDog/datadog-api-client-go/pull/3451)
+* Add Bits AI Investigations and On-Call to  API specs [#3447](https://github.com/DataDog/datadog-api-client-go/pull/3447)
+* Add `PreviewCatalogEntities` [#3444](https://github.com/DataDog/datadog-api-client-go/pull/3444)
+* Sync 'audience_management.yaml' files with backend [#3441](https://github.com/DataDog/datadog-api-client-go/pull/3441)
+* Dashboards - Add on_call_events datasources [#3440](https://github.com/DataDog/datadog-api-client-go/pull/3440)
+* Add last_login_time to Users v2 API [#3399](https://github.com/DataDog/datadog-api-client-go/pull/3399)
+
+### Deprecated
+* [api-spec] Mark PATCH /api/v2/incidents/incident_id/attachments endpoint as deprecated [#3453](https://github.com/DataDog/datadog-api-client-go/pull/3453)
+* [METEXP-2068] Deprecate api/v1/search Endpoint [#3448](https://github.com/DataDog/datadog-api-client-go/pull/3448)
+
 ## 2.49.0/2025-10-30
 
 ### Added
