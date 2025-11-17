@@ -725,6 +725,7 @@ func NewConfiguration() *Configuration {
 			"v2.CreateSCAResolveVulnerableSymbols":       false,
 			"v2.CreateSCAResult":                         false,
 			"v2.AddMemberTeam":                           false,
+			"v2.GetTeamSync":                             false,
 			"v2.ListMemberTeams":                         false,
 			"v2.RemoveMemberTeam":                        false,
 			"v2.SyncTeams":                               false,
