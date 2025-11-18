@@ -72,455 +72,466 @@
 <span id="L15" class="ln">    15  </span>	<span class="comment">// Optional text describing the purpose or contents of this reference table.</span>
 <span id="L16" class="ln">    16  </span>	Description *string `json:&#34;description,omitempty&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// Metadata specifying where and how to access the reference table&#39;s data file.</span>
-<span id="L18" class="ln">    18  </span>	FileMetadata *TableResultV2DataAttributesFileMetadata `json:&#34;file_metadata,omitempty&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// UUID of the user who last updated the reference table.</span>
-<span id="L20" class="ln">    20  </span>	LastUpdatedBy *string `json:&#34;last_updated_by,omitempty&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// The number of successfully processed rows in the reference table.</span>
-<span id="L22" class="ln">    22  </span>	RowCount *int64 `json:&#34;row_count,omitempty&#34;`
-<span id="L23" class="ln">    23  </span>	<span class="comment">// Schema defining the structure and columns of the reference table.</span>
-<span id="L24" class="ln">    24  </span>	Schema *TableResultV2DataAttributesSchema `json:&#34;schema,omitempty&#34;`
-<span id="L25" class="ln">    25  </span>	<span class="comment">// The source type for reference table data. Includes all possible source types that can appear in responses.</span>
-<span id="L26" class="ln">    26  </span>	Source *ReferenceTableSourceType `json:&#34;source,omitempty&#34;`
-<span id="L27" class="ln">    27  </span>	<span class="comment">// The processing status of the table.</span>
-<span id="L28" class="ln">    28  </span>	Status *string `json:&#34;status,omitempty&#34;`
-<span id="L29" class="ln">    29  </span>	<span class="comment">// Unique name to identify this reference table. Used in enrichment processors and API calls.</span>
-<span id="L30" class="ln">    30  </span>	TableName *string `json:&#34;table_name,omitempty&#34;`
-<span id="L31" class="ln">    31  </span>	<span class="comment">// Tags for organizing and filtering reference tables.</span>
-<span id="L32" class="ln">    32  </span>	Tags []string `json:&#34;tags,omitempty&#34;`
-<span id="L33" class="ln">    33  </span>	<span class="comment">// When the reference table was last updated, in ISO 8601 format.</span>
-<span id="L34" class="ln">    34  </span>	UpdatedAt *string `json:&#34;updated_at,omitempty&#34;`
-<span id="L35" class="ln">    35  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
-<span id="L36" class="ln">    36  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L37" class="ln">    37  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
-<span id="L38" class="ln">    38  </span>}
-<span id="L39" class="ln">    39  </span>
-<span id="L40" class="ln">    40  </span><span class="comment">// NewTableResultV2DataAttributes instantiates a new TableResultV2DataAttributes object.</span>
-<span id="L41" class="ln">    41  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
-<span id="L42" class="ln">    42  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
-<span id="L43" class="ln">    43  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L44" class="ln">    44  </span>func NewTableResultV2DataAttributes() *TableResultV2DataAttributes {
-<span id="L45" class="ln">    45  </span>	this := TableResultV2DataAttributes{}
-<span id="L46" class="ln">    46  </span>	return &amp;this
-<span id="L47" class="ln">    47  </span>}
-<span id="L48" class="ln">    48  </span>
-<span id="L49" class="ln">    49  </span><span class="comment">// NewTableResultV2DataAttributesWithDefaults instantiates a new TableResultV2DataAttributes object.</span>
-<span id="L50" class="ln">    50  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
-<span id="L51" class="ln">    51  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L52" class="ln">    52  </span>func NewTableResultV2DataAttributesWithDefaults() *TableResultV2DataAttributes {
+<span id="L18" class="ln">    18  </span>	<span class="comment">//</span>
+<span id="L19" class="ln">    19  </span>	<span class="comment">// For cloud storage tables (S3/GCS/Azure):</span>
+<span id="L20" class="ln">    20  </span>	<span class="comment">//   - sync_enabled and access_details will always be present</span>
+<span id="L21" class="ln">    21  </span>	<span class="comment">//   - error fields (error_message, error_row_count, error_type) are present only when errors occur</span>
+<span id="L22" class="ln">    22  </span>	<span class="comment">//</span>
+<span id="L23" class="ln">    23  </span>	<span class="comment">// For local file tables:</span>
+<span id="L24" class="ln">    24  </span>	<span class="comment">//   - error fields (error_message, error_row_count) are present only when errors occur</span>
+<span id="L25" class="ln">    25  </span>	<span class="comment">//   - sync_enabled, access_details are never present</span>
+<span id="L26" class="ln">    26  </span>	FileMetadata *TableResultV2DataAttributesFileMetadata `json:&#34;file_metadata,omitempty&#34;`
+<span id="L27" class="ln">    27  </span>	<span class="comment">// UUID of the user who last updated the reference table.</span>
+<span id="L28" class="ln">    28  </span>	LastUpdatedBy *string `json:&#34;last_updated_by,omitempty&#34;`
+<span id="L29" class="ln">    29  </span>	<span class="comment">// The number of successfully processed rows in the reference table.</span>
+<span id="L30" class="ln">    30  </span>	RowCount *int64 `json:&#34;row_count,omitempty&#34;`
+<span id="L31" class="ln">    31  </span>	<span class="comment">// Schema defining the structure and columns of the reference table.</span>
+<span id="L32" class="ln">    32  </span>	Schema *TableResultV2DataAttributesSchema `json:&#34;schema,omitempty&#34;`
+<span id="L33" class="ln">    33  </span>	<span class="comment">// The source type for reference table data. Includes all possible source types that can appear in responses.</span>
+<span id="L34" class="ln">    34  </span>	Source *ReferenceTableSourceType `json:&#34;source,omitempty&#34;`
+<span id="L35" class="ln">    35  </span>	<span class="comment">// The processing status of the table.</span>
+<span id="L36" class="ln">    36  </span>	Status *string `json:&#34;status,omitempty&#34;`
+<span id="L37" class="ln">    37  </span>	<span class="comment">// Unique name to identify this reference table. Used in enrichment processors and API calls.</span>
+<span id="L38" class="ln">    38  </span>	TableName *string `json:&#34;table_name,omitempty&#34;`
+<span id="L39" class="ln">    39  </span>	<span class="comment">// Tags for organizing and filtering reference tables.</span>
+<span id="L40" class="ln">    40  </span>	Tags []string `json:&#34;tags,omitempty&#34;`
+<span id="L41" class="ln">    41  </span>	<span class="comment">// When the reference table was last updated, in ISO 8601 format.</span>
+<span id="L42" class="ln">    42  </span>	UpdatedAt *string `json:&#34;updated_at,omitempty&#34;`
+<span id="L43" class="ln">    43  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L44" class="ln">    44  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L45" class="ln">    45  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L46" class="ln">    46  </span>}
+<span id="L47" class="ln">    47  </span>
+<span id="L48" class="ln">    48  </span><span class="comment">// NewTableResultV2DataAttributes instantiates a new TableResultV2DataAttributes object.</span>
+<span id="L49" class="ln">    49  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L50" class="ln">    50  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L51" class="ln">    51  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L52" class="ln">    52  </span>func NewTableResultV2DataAttributes() *TableResultV2DataAttributes {
 <span id="L53" class="ln">    53  </span>	this := TableResultV2DataAttributes{}
 <span id="L54" class="ln">    54  </span>	return &amp;this
 <span id="L55" class="ln">    55  </span>}
 <span id="L56" class="ln">    56  </span>
-<span id="L57" class="ln">    57  </span><span class="comment">// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.</span>
-<span id="L58" class="ln">    58  </span>func (o *TableResultV2DataAttributes) GetCreatedBy() string {
-<span id="L59" class="ln">    59  </span>	if o == nil || o.CreatedBy == nil {
-<span id="L60" class="ln">    60  </span>		var ret string
-<span id="L61" class="ln">    61  </span>		return ret
-<span id="L62" class="ln">    62  </span>	}
-<span id="L63" class="ln">    63  </span>	return *o.CreatedBy
-<span id="L64" class="ln">    64  </span>}
-<span id="L65" class="ln">    65  </span>
-<span id="L66" class="ln">    66  </span><span class="comment">// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise</span>
-<span id="L67" class="ln">    67  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L68" class="ln">    68  </span>func (o *TableResultV2DataAttributes) GetCreatedByOk() (*string, bool) {
-<span id="L69" class="ln">    69  </span>	if o == nil || o.CreatedBy == nil {
-<span id="L70" class="ln">    70  </span>		return nil, false
-<span id="L71" class="ln">    71  </span>	}
-<span id="L72" class="ln">    72  </span>	return o.CreatedBy, true
-<span id="L73" class="ln">    73  </span>}
-<span id="L74" class="ln">    74  </span>
-<span id="L75" class="ln">    75  </span><span class="comment">// HasCreatedBy returns a boolean if a field has been set.</span>
-<span id="L76" class="ln">    76  </span>func (o *TableResultV2DataAttributes) HasCreatedBy() bool {
-<span id="L77" class="ln">    77  </span>	return o != nil &amp;&amp; o.CreatedBy != nil
-<span id="L78" class="ln">    78  </span>}
-<span id="L79" class="ln">    79  </span>
-<span id="L80" class="ln">    80  </span><span class="comment">// SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.</span>
-<span id="L81" class="ln">    81  </span>func (o *TableResultV2DataAttributes) SetCreatedBy(v string) {
-<span id="L82" class="ln">    82  </span>	o.CreatedBy = &amp;v
-<span id="L83" class="ln">    83  </span>}
-<span id="L84" class="ln">    84  </span>
-<span id="L85" class="ln">    85  </span><span class="comment">// GetDescription returns the Description field value if set, zero value otherwise.</span>
-<span id="L86" class="ln">    86  </span>func (o *TableResultV2DataAttributes) GetDescription() string {
-<span id="L87" class="ln">    87  </span>	if o == nil || o.Description == nil {
-<span id="L88" class="ln">    88  </span>		var ret string
-<span id="L89" class="ln">    89  </span>		return ret
-<span id="L90" class="ln">    90  </span>	}
-<span id="L91" class="ln">    91  </span>	return *o.Description
-<span id="L92" class="ln">    92  </span>}
-<span id="L93" class="ln">    93  </span>
-<span id="L94" class="ln">    94  </span><span class="comment">// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise</span>
-<span id="L95" class="ln">    95  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L96" class="ln">    96  </span>func (o *TableResultV2DataAttributes) GetDescriptionOk() (*string, bool) {
-<span id="L97" class="ln">    97  </span>	if o == nil || o.Description == nil {
-<span id="L98" class="ln">    98  </span>		return nil, false
-<span id="L99" class="ln">    99  </span>	}
-<span id="L100" class="ln">   100  </span>	return o.Description, true
-<span id="L101" class="ln">   101  </span>}
-<span id="L102" class="ln">   102  </span>
-<span id="L103" class="ln">   103  </span><span class="comment">// HasDescription returns a boolean if a field has been set.</span>
-<span id="L104" class="ln">   104  </span>func (o *TableResultV2DataAttributes) HasDescription() bool {
-<span id="L105" class="ln">   105  </span>	return o != nil &amp;&amp; o.Description != nil
-<span id="L106" class="ln">   106  </span>}
-<span id="L107" class="ln">   107  </span>
-<span id="L108" class="ln">   108  </span><span class="comment">// SetDescription gets a reference to the given string and assigns it to the Description field.</span>
-<span id="L109" class="ln">   109  </span>func (o *TableResultV2DataAttributes) SetDescription(v string) {
-<span id="L110" class="ln">   110  </span>	o.Description = &amp;v
-<span id="L111" class="ln">   111  </span>}
-<span id="L112" class="ln">   112  </span>
-<span id="L113" class="ln">   113  </span><span class="comment">// GetFileMetadata returns the FileMetadata field value if set, zero value otherwise.</span>
-<span id="L114" class="ln">   114  </span>func (o *TableResultV2DataAttributes) GetFileMetadata() TableResultV2DataAttributesFileMetadata {
-<span id="L115" class="ln">   115  </span>	if o == nil || o.FileMetadata == nil {
-<span id="L116" class="ln">   116  </span>		var ret TableResultV2DataAttributesFileMetadata
-<span id="L117" class="ln">   117  </span>		return ret
-<span id="L118" class="ln">   118  </span>	}
-<span id="L119" class="ln">   119  </span>	return *o.FileMetadata
-<span id="L120" class="ln">   120  </span>}
-<span id="L121" class="ln">   121  </span>
-<span id="L122" class="ln">   122  </span><span class="comment">// GetFileMetadataOk returns a tuple with the FileMetadata field value if set, nil otherwise</span>
-<span id="L123" class="ln">   123  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L124" class="ln">   124  </span>func (o *TableResultV2DataAttributes) GetFileMetadataOk() (*TableResultV2DataAttributesFileMetadata, bool) {
-<span id="L125" class="ln">   125  </span>	if o == nil || o.FileMetadata == nil {
-<span id="L126" class="ln">   126  </span>		return nil, false
-<span id="L127" class="ln">   127  </span>	}
-<span id="L128" class="ln">   128  </span>	return o.FileMetadata, true
-<span id="L129" class="ln">   129  </span>}
-<span id="L130" class="ln">   130  </span>
-<span id="L131" class="ln">   131  </span><span class="comment">// HasFileMetadata returns a boolean if a field has been set.</span>
-<span id="L132" class="ln">   132  </span>func (o *TableResultV2DataAttributes) HasFileMetadata() bool {
-<span id="L133" class="ln">   133  </span>	return o != nil &amp;&amp; o.FileMetadata != nil
-<span id="L134" class="ln">   134  </span>}
-<span id="L135" class="ln">   135  </span>
-<span id="L136" class="ln">   136  </span><span class="comment">// SetFileMetadata gets a reference to the given TableResultV2DataAttributesFileMetadata and assigns it to the FileMetadata field.</span>
-<span id="L137" class="ln">   137  </span>func (o *TableResultV2DataAttributes) SetFileMetadata(v TableResultV2DataAttributesFileMetadata) {
-<span id="L138" class="ln">   138  </span>	o.FileMetadata = &amp;v
-<span id="L139" class="ln">   139  </span>}
-<span id="L140" class="ln">   140  </span>
-<span id="L141" class="ln">   141  </span><span class="comment">// GetLastUpdatedBy returns the LastUpdatedBy field value if set, zero value otherwise.</span>
-<span id="L142" class="ln">   142  </span>func (o *TableResultV2DataAttributes) GetLastUpdatedBy() string {
-<span id="L143" class="ln">   143  </span>	if o == nil || o.LastUpdatedBy == nil {
-<span id="L144" class="ln">   144  </span>		var ret string
-<span id="L145" class="ln">   145  </span>		return ret
-<span id="L146" class="ln">   146  </span>	}
-<span id="L147" class="ln">   147  </span>	return *o.LastUpdatedBy
-<span id="L148" class="ln">   148  </span>}
-<span id="L149" class="ln">   149  </span>
-<span id="L150" class="ln">   150  </span><span class="comment">// GetLastUpdatedByOk returns a tuple with the LastUpdatedBy field value if set, nil otherwise</span>
-<span id="L151" class="ln">   151  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L152" class="ln">   152  </span>func (o *TableResultV2DataAttributes) GetLastUpdatedByOk() (*string, bool) {
-<span id="L153" class="ln">   153  </span>	if o == nil || o.LastUpdatedBy == nil {
-<span id="L154" class="ln">   154  </span>		return nil, false
-<span id="L155" class="ln">   155  </span>	}
-<span id="L156" class="ln">   156  </span>	return o.LastUpdatedBy, true
-<span id="L157" class="ln">   157  </span>}
-<span id="L158" class="ln">   158  </span>
-<span id="L159" class="ln">   159  </span><span class="comment">// HasLastUpdatedBy returns a boolean if a field has been set.</span>
-<span id="L160" class="ln">   160  </span>func (o *TableResultV2DataAttributes) HasLastUpdatedBy() bool {
-<span id="L161" class="ln">   161  </span>	return o != nil &amp;&amp; o.LastUpdatedBy != nil
-<span id="L162" class="ln">   162  </span>}
-<span id="L163" class="ln">   163  </span>
-<span id="L164" class="ln">   164  </span><span class="comment">// SetLastUpdatedBy gets a reference to the given string and assigns it to the LastUpdatedBy field.</span>
-<span id="L165" class="ln">   165  </span>func (o *TableResultV2DataAttributes) SetLastUpdatedBy(v string) {
-<span id="L166" class="ln">   166  </span>	o.LastUpdatedBy = &amp;v
-<span id="L167" class="ln">   167  </span>}
-<span id="L168" class="ln">   168  </span>
-<span id="L169" class="ln">   169  </span><span class="comment">// GetRowCount returns the RowCount field value if set, zero value otherwise.</span>
-<span id="L170" class="ln">   170  </span>func (o *TableResultV2DataAttributes) GetRowCount() int64 {
-<span id="L171" class="ln">   171  </span>	if o == nil || o.RowCount == nil {
-<span id="L172" class="ln">   172  </span>		var ret int64
-<span id="L173" class="ln">   173  </span>		return ret
-<span id="L174" class="ln">   174  </span>	}
-<span id="L175" class="ln">   175  </span>	return *o.RowCount
-<span id="L176" class="ln">   176  </span>}
-<span id="L177" class="ln">   177  </span>
-<span id="L178" class="ln">   178  </span><span class="comment">// GetRowCountOk returns a tuple with the RowCount field value if set, nil otherwise</span>
-<span id="L179" class="ln">   179  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L180" class="ln">   180  </span>func (o *TableResultV2DataAttributes) GetRowCountOk() (*int64, bool) {
-<span id="L181" class="ln">   181  </span>	if o == nil || o.RowCount == nil {
-<span id="L182" class="ln">   182  </span>		return nil, false
-<span id="L183" class="ln">   183  </span>	}
-<span id="L184" class="ln">   184  </span>	return o.RowCount, true
-<span id="L185" class="ln">   185  </span>}
-<span id="L186" class="ln">   186  </span>
-<span id="L187" class="ln">   187  </span><span class="comment">// HasRowCount returns a boolean if a field has been set.</span>
-<span id="L188" class="ln">   188  </span>func (o *TableResultV2DataAttributes) HasRowCount() bool {
-<span id="L189" class="ln">   189  </span>	return o != nil &amp;&amp; o.RowCount != nil
-<span id="L190" class="ln">   190  </span>}
-<span id="L191" class="ln">   191  </span>
-<span id="L192" class="ln">   192  </span><span class="comment">// SetRowCount gets a reference to the given int64 and assigns it to the RowCount field.</span>
-<span id="L193" class="ln">   193  </span>func (o *TableResultV2DataAttributes) SetRowCount(v int64) {
-<span id="L194" class="ln">   194  </span>	o.RowCount = &amp;v
-<span id="L195" class="ln">   195  </span>}
-<span id="L196" class="ln">   196  </span>
-<span id="L197" class="ln">   197  </span><span class="comment">// GetSchema returns the Schema field value if set, zero value otherwise.</span>
-<span id="L198" class="ln">   198  </span>func (o *TableResultV2DataAttributes) GetSchema() TableResultV2DataAttributesSchema {
-<span id="L199" class="ln">   199  </span>	if o == nil || o.Schema == nil {
-<span id="L200" class="ln">   200  </span>		var ret TableResultV2DataAttributesSchema
-<span id="L201" class="ln">   201  </span>		return ret
-<span id="L202" class="ln">   202  </span>	}
-<span id="L203" class="ln">   203  </span>	return *o.Schema
-<span id="L204" class="ln">   204  </span>}
-<span id="L205" class="ln">   205  </span>
-<span id="L206" class="ln">   206  </span><span class="comment">// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise</span>
-<span id="L207" class="ln">   207  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L208" class="ln">   208  </span>func (o *TableResultV2DataAttributes) GetSchemaOk() (*TableResultV2DataAttributesSchema, bool) {
-<span id="L209" class="ln">   209  </span>	if o == nil || o.Schema == nil {
-<span id="L210" class="ln">   210  </span>		return nil, false
-<span id="L211" class="ln">   211  </span>	}
-<span id="L212" class="ln">   212  </span>	return o.Schema, true
-<span id="L213" class="ln">   213  </span>}
-<span id="L214" class="ln">   214  </span>
-<span id="L215" class="ln">   215  </span><span class="comment">// HasSchema returns a boolean if a field has been set.</span>
-<span id="L216" class="ln">   216  </span>func (o *TableResultV2DataAttributes) HasSchema() bool {
-<span id="L217" class="ln">   217  </span>	return o != nil &amp;&amp; o.Schema != nil
-<span id="L218" class="ln">   218  </span>}
-<span id="L219" class="ln">   219  </span>
-<span id="L220" class="ln">   220  </span><span class="comment">// SetSchema gets a reference to the given TableResultV2DataAttributesSchema and assigns it to the Schema field.</span>
-<span id="L221" class="ln">   221  </span>func (o *TableResultV2DataAttributes) SetSchema(v TableResultV2DataAttributesSchema) {
-<span id="L222" class="ln">   222  </span>	o.Schema = &amp;v
-<span id="L223" class="ln">   223  </span>}
-<span id="L224" class="ln">   224  </span>
-<span id="L225" class="ln">   225  </span><span class="comment">// GetSource returns the Source field value if set, zero value otherwise.</span>
-<span id="L226" class="ln">   226  </span>func (o *TableResultV2DataAttributes) GetSource() ReferenceTableSourceType {
-<span id="L227" class="ln">   227  </span>	if o == nil || o.Source == nil {
-<span id="L228" class="ln">   228  </span>		var ret ReferenceTableSourceType
-<span id="L229" class="ln">   229  </span>		return ret
-<span id="L230" class="ln">   230  </span>	}
-<span id="L231" class="ln">   231  </span>	return *o.Source
-<span id="L232" class="ln">   232  </span>}
-<span id="L233" class="ln">   233  </span>
-<span id="L234" class="ln">   234  </span><span class="comment">// GetSourceOk returns a tuple with the Source field value if set, nil otherwise</span>
-<span id="L235" class="ln">   235  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L236" class="ln">   236  </span>func (o *TableResultV2DataAttributes) GetSourceOk() (*ReferenceTableSourceType, bool) {
-<span id="L237" class="ln">   237  </span>	if o == nil || o.Source == nil {
-<span id="L238" class="ln">   238  </span>		return nil, false
-<span id="L239" class="ln">   239  </span>	}
-<span id="L240" class="ln">   240  </span>	return o.Source, true
-<span id="L241" class="ln">   241  </span>}
-<span id="L242" class="ln">   242  </span>
-<span id="L243" class="ln">   243  </span><span class="comment">// HasSource returns a boolean if a field has been set.</span>
-<span id="L244" class="ln">   244  </span>func (o *TableResultV2DataAttributes) HasSource() bool {
-<span id="L245" class="ln">   245  </span>	return o != nil &amp;&amp; o.Source != nil
-<span id="L246" class="ln">   246  </span>}
-<span id="L247" class="ln">   247  </span>
-<span id="L248" class="ln">   248  </span><span class="comment">// SetSource gets a reference to the given ReferenceTableSourceType and assigns it to the Source field.</span>
-<span id="L249" class="ln">   249  </span>func (o *TableResultV2DataAttributes) SetSource(v ReferenceTableSourceType) {
-<span id="L250" class="ln">   250  </span>	o.Source = &amp;v
-<span id="L251" class="ln">   251  </span>}
-<span id="L252" class="ln">   252  </span>
-<span id="L253" class="ln">   253  </span><span class="comment">// GetStatus returns the Status field value if set, zero value otherwise.</span>
-<span id="L254" class="ln">   254  </span>func (o *TableResultV2DataAttributes) GetStatus() string {
-<span id="L255" class="ln">   255  </span>	if o == nil || o.Status == nil {
-<span id="L256" class="ln">   256  </span>		var ret string
-<span id="L257" class="ln">   257  </span>		return ret
-<span id="L258" class="ln">   258  </span>	}
-<span id="L259" class="ln">   259  </span>	return *o.Status
-<span id="L260" class="ln">   260  </span>}
-<span id="L261" class="ln">   261  </span>
-<span id="L262" class="ln">   262  </span><span class="comment">// GetStatusOk returns a tuple with the Status field value if set, nil otherwise</span>
-<span id="L263" class="ln">   263  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L264" class="ln">   264  </span>func (o *TableResultV2DataAttributes) GetStatusOk() (*string, bool) {
-<span id="L265" class="ln">   265  </span>	if o == nil || o.Status == nil {
-<span id="L266" class="ln">   266  </span>		return nil, false
-<span id="L267" class="ln">   267  </span>	}
-<span id="L268" class="ln">   268  </span>	return o.Status, true
-<span id="L269" class="ln">   269  </span>}
-<span id="L270" class="ln">   270  </span>
-<span id="L271" class="ln">   271  </span><span class="comment">// HasStatus returns a boolean if a field has been set.</span>
-<span id="L272" class="ln">   272  </span>func (o *TableResultV2DataAttributes) HasStatus() bool {
-<span id="L273" class="ln">   273  </span>	return o != nil &amp;&amp; o.Status != nil
-<span id="L274" class="ln">   274  </span>}
-<span id="L275" class="ln">   275  </span>
-<span id="L276" class="ln">   276  </span><span class="comment">// SetStatus gets a reference to the given string and assigns it to the Status field.</span>
-<span id="L277" class="ln">   277  </span>func (o *TableResultV2DataAttributes) SetStatus(v string) {
-<span id="L278" class="ln">   278  </span>	o.Status = &amp;v
-<span id="L279" class="ln">   279  </span>}
-<span id="L280" class="ln">   280  </span>
-<span id="L281" class="ln">   281  </span><span class="comment">// GetTableName returns the TableName field value if set, zero value otherwise.</span>
-<span id="L282" class="ln">   282  </span>func (o *TableResultV2DataAttributes) GetTableName() string {
-<span id="L283" class="ln">   283  </span>	if o == nil || o.TableName == nil {
-<span id="L284" class="ln">   284  </span>		var ret string
-<span id="L285" class="ln">   285  </span>		return ret
-<span id="L286" class="ln">   286  </span>	}
-<span id="L287" class="ln">   287  </span>	return *o.TableName
-<span id="L288" class="ln">   288  </span>}
-<span id="L289" class="ln">   289  </span>
-<span id="L290" class="ln">   290  </span><span class="comment">// GetTableNameOk returns a tuple with the TableName field value if set, nil otherwise</span>
-<span id="L291" class="ln">   291  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L292" class="ln">   292  </span>func (o *TableResultV2DataAttributes) GetTableNameOk() (*string, bool) {
-<span id="L293" class="ln">   293  </span>	if o == nil || o.TableName == nil {
-<span id="L294" class="ln">   294  </span>		return nil, false
-<span id="L295" class="ln">   295  </span>	}
-<span id="L296" class="ln">   296  </span>	return o.TableName, true
-<span id="L297" class="ln">   297  </span>}
-<span id="L298" class="ln">   298  </span>
-<span id="L299" class="ln">   299  </span><span class="comment">// HasTableName returns a boolean if a field has been set.</span>
-<span id="L300" class="ln">   300  </span>func (o *TableResultV2DataAttributes) HasTableName() bool {
-<span id="L301" class="ln">   301  </span>	return o != nil &amp;&amp; o.TableName != nil
-<span id="L302" class="ln">   302  </span>}
-<span id="L303" class="ln">   303  </span>
-<span id="L304" class="ln">   304  </span><span class="comment">// SetTableName gets a reference to the given string and assigns it to the TableName field.</span>
-<span id="L305" class="ln">   305  </span>func (o *TableResultV2DataAttributes) SetTableName(v string) {
-<span id="L306" class="ln">   306  </span>	o.TableName = &amp;v
-<span id="L307" class="ln">   307  </span>}
-<span id="L308" class="ln">   308  </span>
-<span id="L309" class="ln">   309  </span><span class="comment">// GetTags returns the Tags field value if set, zero value otherwise.</span>
-<span id="L310" class="ln">   310  </span>func (o *TableResultV2DataAttributes) GetTags() []string {
-<span id="L311" class="ln">   311  </span>	if o == nil || o.Tags == nil {
-<span id="L312" class="ln">   312  </span>		var ret []string
-<span id="L313" class="ln">   313  </span>		return ret
-<span id="L314" class="ln">   314  </span>	}
-<span id="L315" class="ln">   315  </span>	return o.Tags
-<span id="L316" class="ln">   316  </span>}
-<span id="L317" class="ln">   317  </span>
-<span id="L318" class="ln">   318  </span><span class="comment">// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise</span>
-<span id="L319" class="ln">   319  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L320" class="ln">   320  </span>func (o *TableResultV2DataAttributes) GetTagsOk() (*[]string, bool) {
-<span id="L321" class="ln">   321  </span>	if o == nil || o.Tags == nil {
-<span id="L322" class="ln">   322  </span>		return nil, false
-<span id="L323" class="ln">   323  </span>	}
-<span id="L324" class="ln">   324  </span>	return &amp;o.Tags, true
-<span id="L325" class="ln">   325  </span>}
-<span id="L326" class="ln">   326  </span>
-<span id="L327" class="ln">   327  </span><span class="comment">// HasTags returns a boolean if a field has been set.</span>
-<span id="L328" class="ln">   328  </span>func (o *TableResultV2DataAttributes) HasTags() bool {
-<span id="L329" class="ln">   329  </span>	return o != nil &amp;&amp; o.Tags != nil
-<span id="L330" class="ln">   330  </span>}
-<span id="L331" class="ln">   331  </span>
-<span id="L332" class="ln">   332  </span><span class="comment">// SetTags gets a reference to the given []string and assigns it to the Tags field.</span>
-<span id="L333" class="ln">   333  </span>func (o *TableResultV2DataAttributes) SetTags(v []string) {
-<span id="L334" class="ln">   334  </span>	o.Tags = v
-<span id="L335" class="ln">   335  </span>}
-<span id="L336" class="ln">   336  </span>
-<span id="L337" class="ln">   337  </span><span class="comment">// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.</span>
-<span id="L338" class="ln">   338  </span>func (o *TableResultV2DataAttributes) GetUpdatedAt() string {
-<span id="L339" class="ln">   339  </span>	if o == nil || o.UpdatedAt == nil {
-<span id="L340" class="ln">   340  </span>		var ret string
-<span id="L341" class="ln">   341  </span>		return ret
-<span id="L342" class="ln">   342  </span>	}
-<span id="L343" class="ln">   343  </span>	return *o.UpdatedAt
-<span id="L344" class="ln">   344  </span>}
-<span id="L345" class="ln">   345  </span>
-<span id="L346" class="ln">   346  </span><span class="comment">// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise</span>
-<span id="L347" class="ln">   347  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L348" class="ln">   348  </span>func (o *TableResultV2DataAttributes) GetUpdatedAtOk() (*string, bool) {
-<span id="L349" class="ln">   349  </span>	if o == nil || o.UpdatedAt == nil {
-<span id="L350" class="ln">   350  </span>		return nil, false
-<span id="L351" class="ln">   351  </span>	}
-<span id="L352" class="ln">   352  </span>	return o.UpdatedAt, true
-<span id="L353" class="ln">   353  </span>}
-<span id="L354" class="ln">   354  </span>
-<span id="L355" class="ln">   355  </span><span class="comment">// HasUpdatedAt returns a boolean if a field has been set.</span>
-<span id="L356" class="ln">   356  </span>func (o *TableResultV2DataAttributes) HasUpdatedAt() bool {
-<span id="L357" class="ln">   357  </span>	return o != nil &amp;&amp; o.UpdatedAt != nil
-<span id="L358" class="ln">   358  </span>}
-<span id="L359" class="ln">   359  </span>
-<span id="L360" class="ln">   360  </span><span class="comment">// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.</span>
-<span id="L361" class="ln">   361  </span>func (o *TableResultV2DataAttributes) SetUpdatedAt(v string) {
-<span id="L362" class="ln">   362  </span>	o.UpdatedAt = &amp;v
-<span id="L363" class="ln">   363  </span>}
-<span id="L364" class="ln">   364  </span>
-<span id="L365" class="ln">   365  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L366" class="ln">   366  </span>func (o TableResultV2DataAttributes) MarshalJSON() ([]byte, error) {
-<span id="L367" class="ln">   367  </span>	toSerialize := map[string]interface{}{}
-<span id="L368" class="ln">   368  </span>	if o.UnparsedObject != nil {
-<span id="L369" class="ln">   369  </span>		return datadog.Marshal(o.UnparsedObject)
-<span id="L370" class="ln">   370  </span>	}
-<span id="L371" class="ln">   371  </span>	if o.CreatedBy != nil {
-<span id="L372" class="ln">   372  </span>		toSerialize[&#34;created_by&#34;] = o.CreatedBy
-<span id="L373" class="ln">   373  </span>	}
-<span id="L374" class="ln">   374  </span>	if o.Description != nil {
-<span id="L375" class="ln">   375  </span>		toSerialize[&#34;description&#34;] = o.Description
-<span id="L376" class="ln">   376  </span>	}
-<span id="L377" class="ln">   377  </span>	if o.FileMetadata != nil {
-<span id="L378" class="ln">   378  </span>		toSerialize[&#34;file_metadata&#34;] = o.FileMetadata
-<span id="L379" class="ln">   379  </span>	}
-<span id="L380" class="ln">   380  </span>	if o.LastUpdatedBy != nil {
-<span id="L381" class="ln">   381  </span>		toSerialize[&#34;last_updated_by&#34;] = o.LastUpdatedBy
-<span id="L382" class="ln">   382  </span>	}
-<span id="L383" class="ln">   383  </span>	if o.RowCount != nil {
-<span id="L384" class="ln">   384  </span>		toSerialize[&#34;row_count&#34;] = o.RowCount
-<span id="L385" class="ln">   385  </span>	}
-<span id="L386" class="ln">   386  </span>	if o.Schema != nil {
-<span id="L387" class="ln">   387  </span>		toSerialize[&#34;schema&#34;] = o.Schema
-<span id="L388" class="ln">   388  </span>	}
-<span id="L389" class="ln">   389  </span>	if o.Source != nil {
-<span id="L390" class="ln">   390  </span>		toSerialize[&#34;source&#34;] = o.Source
-<span id="L391" class="ln">   391  </span>	}
-<span id="L392" class="ln">   392  </span>	if o.Status != nil {
-<span id="L393" class="ln">   393  </span>		toSerialize[&#34;status&#34;] = o.Status
-<span id="L394" class="ln">   394  </span>	}
-<span id="L395" class="ln">   395  </span>	if o.TableName != nil {
-<span id="L396" class="ln">   396  </span>		toSerialize[&#34;table_name&#34;] = o.TableName
-<span id="L397" class="ln">   397  </span>	}
-<span id="L398" class="ln">   398  </span>	if o.Tags != nil {
-<span id="L399" class="ln">   399  </span>		toSerialize[&#34;tags&#34;] = o.Tags
-<span id="L400" class="ln">   400  </span>	}
-<span id="L401" class="ln">   401  </span>	if o.UpdatedAt != nil {
-<span id="L402" class="ln">   402  </span>		toSerialize[&#34;updated_at&#34;] = o.UpdatedAt
-<span id="L403" class="ln">   403  </span>	}
-<span id="L404" class="ln">   404  </span>
-<span id="L405" class="ln">   405  </span>	for key, value := range o.AdditionalProperties {
-<span id="L406" class="ln">   406  </span>		toSerialize[key] = value
-<span id="L407" class="ln">   407  </span>	}
-<span id="L408" class="ln">   408  </span>	return datadog.Marshal(toSerialize)
-<span id="L409" class="ln">   409  </span>}
-<span id="L410" class="ln">   410  </span>
-<span id="L411" class="ln">   411  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L412" class="ln">   412  </span>func (o *TableResultV2DataAttributes) UnmarshalJSON(bytes []byte) (err error) {
-<span id="L413" class="ln">   413  </span>	all := struct {
-<span id="L414" class="ln">   414  </span>		CreatedBy     *string                                  `json:&#34;created_by,omitempty&#34;`
-<span id="L415" class="ln">   415  </span>		Description   *string                                  `json:&#34;description,omitempty&#34;`
-<span id="L416" class="ln">   416  </span>		FileMetadata  *TableResultV2DataAttributesFileMetadata `json:&#34;file_metadata,omitempty&#34;`
-<span id="L417" class="ln">   417  </span>		LastUpdatedBy *string                                  `json:&#34;last_updated_by,omitempty&#34;`
-<span id="L418" class="ln">   418  </span>		RowCount      *int64                                   `json:&#34;row_count,omitempty&#34;`
-<span id="L419" class="ln">   419  </span>		Schema        *TableResultV2DataAttributesSchema       `json:&#34;schema,omitempty&#34;`
-<span id="L420" class="ln">   420  </span>		Source        *ReferenceTableSourceType                `json:&#34;source,omitempty&#34;`
-<span id="L421" class="ln">   421  </span>		Status        *string                                  `json:&#34;status,omitempty&#34;`
-<span id="L422" class="ln">   422  </span>		TableName     *string                                  `json:&#34;table_name,omitempty&#34;`
-<span id="L423" class="ln">   423  </span>		Tags          []string                                 `json:&#34;tags,omitempty&#34;`
-<span id="L424" class="ln">   424  </span>		UpdatedAt     *string                                  `json:&#34;updated_at,omitempty&#34;`
-<span id="L425" class="ln">   425  </span>	}{}
-<span id="L426" class="ln">   426  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
-<span id="L427" class="ln">   427  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L428" class="ln">   428  </span>	}
-<span id="L429" class="ln">   429  </span>	additionalProperties := make(map[string]interface{})
-<span id="L430" class="ln">   430  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L431" class="ln">   431  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;created_by&#34;, &#34;description&#34;, &#34;file_metadata&#34;, &#34;last_updated_by&#34;, &#34;row_count&#34;, &#34;schema&#34;, &#34;source&#34;, &#34;status&#34;, &#34;table_name&#34;, &#34;tags&#34;, &#34;updated_at&#34;})
-<span id="L432" class="ln">   432  </span>	} else {
-<span id="L433" class="ln">   433  </span>		return err
-<span id="L434" class="ln">   434  </span>	}
-<span id="L435" class="ln">   435  </span>
-<span id="L436" class="ln">   436  </span>	hasInvalidField := false
-<span id="L437" class="ln">   437  </span>	o.CreatedBy = all.CreatedBy
-<span id="L438" class="ln">   438  </span>	o.Description = all.Description
-<span id="L439" class="ln">   439  </span>	o.FileMetadata = all.FileMetadata
-<span id="L440" class="ln">   440  </span>	o.LastUpdatedBy = all.LastUpdatedBy
-<span id="L441" class="ln">   441  </span>	o.RowCount = all.RowCount
-<span id="L442" class="ln">   442  </span>	if all.Schema != nil &amp;&amp; all.Schema.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L443" class="ln">   443  </span>		hasInvalidField = true
-<span id="L444" class="ln">   444  </span>	}
-<span id="L445" class="ln">   445  </span>	o.Schema = all.Schema
-<span id="L446" class="ln">   446  </span>	if all.Source != nil &amp;&amp; !all.Source.IsValid() {
-<span id="L447" class="ln">   447  </span>		hasInvalidField = true
-<span id="L448" class="ln">   448  </span>	} else {
-<span id="L449" class="ln">   449  </span>		o.Source = all.Source
-<span id="L450" class="ln">   450  </span>	}
-<span id="L451" class="ln">   451  </span>	o.Status = all.Status
-<span id="L452" class="ln">   452  </span>	o.TableName = all.TableName
-<span id="L453" class="ln">   453  </span>	o.Tags = all.Tags
-<span id="L454" class="ln">   454  </span>	o.UpdatedAt = all.UpdatedAt
-<span id="L455" class="ln">   455  </span>
-<span id="L456" class="ln">   456  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L457" class="ln">   457  </span>		o.AdditionalProperties = additionalProperties
-<span id="L458" class="ln">   458  </span>	}
-<span id="L459" class="ln">   459  </span>
-<span id="L460" class="ln">   460  </span>	if hasInvalidField {
-<span id="L461" class="ln">   461  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L462" class="ln">   462  </span>	}
-<span id="L463" class="ln">   463  </span>
-<span id="L464" class="ln">   464  </span>	return nil
-<span id="L465" class="ln">   465  </span>}
+<span id="L57" class="ln">    57  </span><span class="comment">// NewTableResultV2DataAttributesWithDefaults instantiates a new TableResultV2DataAttributes object.</span>
+<span id="L58" class="ln">    58  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L59" class="ln">    59  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L60" class="ln">    60  </span>func NewTableResultV2DataAttributesWithDefaults() *TableResultV2DataAttributes {
+<span id="L61" class="ln">    61  </span>	this := TableResultV2DataAttributes{}
+<span id="L62" class="ln">    62  </span>	return &amp;this
+<span id="L63" class="ln">    63  </span>}
+<span id="L64" class="ln">    64  </span>
+<span id="L65" class="ln">    65  </span><span class="comment">// GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.</span>
+<span id="L66" class="ln">    66  </span>func (o *TableResultV2DataAttributes) GetCreatedBy() string {
+<span id="L67" class="ln">    67  </span>	if o == nil || o.CreatedBy == nil {
+<span id="L68" class="ln">    68  </span>		var ret string
+<span id="L69" class="ln">    69  </span>		return ret
+<span id="L70" class="ln">    70  </span>	}
+<span id="L71" class="ln">    71  </span>	return *o.CreatedBy
+<span id="L72" class="ln">    72  </span>}
+<span id="L73" class="ln">    73  </span>
+<span id="L74" class="ln">    74  </span><span class="comment">// GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise</span>
+<span id="L75" class="ln">    75  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L76" class="ln">    76  </span>func (o *TableResultV2DataAttributes) GetCreatedByOk() (*string, bool) {
+<span id="L77" class="ln">    77  </span>	if o == nil || o.CreatedBy == nil {
+<span id="L78" class="ln">    78  </span>		return nil, false
+<span id="L79" class="ln">    79  </span>	}
+<span id="L80" class="ln">    80  </span>	return o.CreatedBy, true
+<span id="L81" class="ln">    81  </span>}
+<span id="L82" class="ln">    82  </span>
+<span id="L83" class="ln">    83  </span><span class="comment">// HasCreatedBy returns a boolean if a field has been set.</span>
+<span id="L84" class="ln">    84  </span>func (o *TableResultV2DataAttributes) HasCreatedBy() bool {
+<span id="L85" class="ln">    85  </span>	return o != nil &amp;&amp; o.CreatedBy != nil
+<span id="L86" class="ln">    86  </span>}
+<span id="L87" class="ln">    87  </span>
+<span id="L88" class="ln">    88  </span><span class="comment">// SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.</span>
+<span id="L89" class="ln">    89  </span>func (o *TableResultV2DataAttributes) SetCreatedBy(v string) {
+<span id="L90" class="ln">    90  </span>	o.CreatedBy = &amp;v
+<span id="L91" class="ln">    91  </span>}
+<span id="L92" class="ln">    92  </span>
+<span id="L93" class="ln">    93  </span><span class="comment">// GetDescription returns the Description field value if set, zero value otherwise.</span>
+<span id="L94" class="ln">    94  </span>func (o *TableResultV2DataAttributes) GetDescription() string {
+<span id="L95" class="ln">    95  </span>	if o == nil || o.Description == nil {
+<span id="L96" class="ln">    96  </span>		var ret string
+<span id="L97" class="ln">    97  </span>		return ret
+<span id="L98" class="ln">    98  </span>	}
+<span id="L99" class="ln">    99  </span>	return *o.Description
+<span id="L100" class="ln">   100  </span>}
+<span id="L101" class="ln">   101  </span>
+<span id="L102" class="ln">   102  </span><span class="comment">// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise</span>
+<span id="L103" class="ln">   103  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L104" class="ln">   104  </span>func (o *TableResultV2DataAttributes) GetDescriptionOk() (*string, bool) {
+<span id="L105" class="ln">   105  </span>	if o == nil || o.Description == nil {
+<span id="L106" class="ln">   106  </span>		return nil, false
+<span id="L107" class="ln">   107  </span>	}
+<span id="L108" class="ln">   108  </span>	return o.Description, true
+<span id="L109" class="ln">   109  </span>}
+<span id="L110" class="ln">   110  </span>
+<span id="L111" class="ln">   111  </span><span class="comment">// HasDescription returns a boolean if a field has been set.</span>
+<span id="L112" class="ln">   112  </span>func (o *TableResultV2DataAttributes) HasDescription() bool {
+<span id="L113" class="ln">   113  </span>	return o != nil &amp;&amp; o.Description != nil
+<span id="L114" class="ln">   114  </span>}
+<span id="L115" class="ln">   115  </span>
+<span id="L116" class="ln">   116  </span><span class="comment">// SetDescription gets a reference to the given string and assigns it to the Description field.</span>
+<span id="L117" class="ln">   117  </span>func (o *TableResultV2DataAttributes) SetDescription(v string) {
+<span id="L118" class="ln">   118  </span>	o.Description = &amp;v
+<span id="L119" class="ln">   119  </span>}
+<span id="L120" class="ln">   120  </span>
+<span id="L121" class="ln">   121  </span><span class="comment">// GetFileMetadata returns the FileMetadata field value if set, zero value otherwise.</span>
+<span id="L122" class="ln">   122  </span>func (o *TableResultV2DataAttributes) GetFileMetadata() TableResultV2DataAttributesFileMetadata {
+<span id="L123" class="ln">   123  </span>	if o == nil || o.FileMetadata == nil {
+<span id="L124" class="ln">   124  </span>		var ret TableResultV2DataAttributesFileMetadata
+<span id="L125" class="ln">   125  </span>		return ret
+<span id="L126" class="ln">   126  </span>	}
+<span id="L127" class="ln">   127  </span>	return *o.FileMetadata
+<span id="L128" class="ln">   128  </span>}
+<span id="L129" class="ln">   129  </span>
+<span id="L130" class="ln">   130  </span><span class="comment">// GetFileMetadataOk returns a tuple with the FileMetadata field value if set, nil otherwise</span>
+<span id="L131" class="ln">   131  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L132" class="ln">   132  </span>func (o *TableResultV2DataAttributes) GetFileMetadataOk() (*TableResultV2DataAttributesFileMetadata, bool) {
+<span id="L133" class="ln">   133  </span>	if o == nil || o.FileMetadata == nil {
+<span id="L134" class="ln">   134  </span>		return nil, false
+<span id="L135" class="ln">   135  </span>	}
+<span id="L136" class="ln">   136  </span>	return o.FileMetadata, true
+<span id="L137" class="ln">   137  </span>}
+<span id="L138" class="ln">   138  </span>
+<span id="L139" class="ln">   139  </span><span class="comment">// HasFileMetadata returns a boolean if a field has been set.</span>
+<span id="L140" class="ln">   140  </span>func (o *TableResultV2DataAttributes) HasFileMetadata() bool {
+<span id="L141" class="ln">   141  </span>	return o != nil &amp;&amp; o.FileMetadata != nil
+<span id="L142" class="ln">   142  </span>}
+<span id="L143" class="ln">   143  </span>
+<span id="L144" class="ln">   144  </span><span class="comment">// SetFileMetadata gets a reference to the given TableResultV2DataAttributesFileMetadata and assigns it to the FileMetadata field.</span>
+<span id="L145" class="ln">   145  </span>func (o *TableResultV2DataAttributes) SetFileMetadata(v TableResultV2DataAttributesFileMetadata) {
+<span id="L146" class="ln">   146  </span>	o.FileMetadata = &amp;v
+<span id="L147" class="ln">   147  </span>}
+<span id="L148" class="ln">   148  </span>
+<span id="L149" class="ln">   149  </span><span class="comment">// GetLastUpdatedBy returns the LastUpdatedBy field value if set, zero value otherwise.</span>
+<span id="L150" class="ln">   150  </span>func (o *TableResultV2DataAttributes) GetLastUpdatedBy() string {
+<span id="L151" class="ln">   151  </span>	if o == nil || o.LastUpdatedBy == nil {
+<span id="L152" class="ln">   152  </span>		var ret string
+<span id="L153" class="ln">   153  </span>		return ret
+<span id="L154" class="ln">   154  </span>	}
+<span id="L155" class="ln">   155  </span>	return *o.LastUpdatedBy
+<span id="L156" class="ln">   156  </span>}
+<span id="L157" class="ln">   157  </span>
+<span id="L158" class="ln">   158  </span><span class="comment">// GetLastUpdatedByOk returns a tuple with the LastUpdatedBy field value if set, nil otherwise</span>
+<span id="L159" class="ln">   159  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L160" class="ln">   160  </span>func (o *TableResultV2DataAttributes) GetLastUpdatedByOk() (*string, bool) {
+<span id="L161" class="ln">   161  </span>	if o == nil || o.LastUpdatedBy == nil {
+<span id="L162" class="ln">   162  </span>		return nil, false
+<span id="L163" class="ln">   163  </span>	}
+<span id="L164" class="ln">   164  </span>	return o.LastUpdatedBy, true
+<span id="L165" class="ln">   165  </span>}
+<span id="L166" class="ln">   166  </span>
+<span id="L167" class="ln">   167  </span><span class="comment">// HasLastUpdatedBy returns a boolean if a field has been set.</span>
+<span id="L168" class="ln">   168  </span>func (o *TableResultV2DataAttributes) HasLastUpdatedBy() bool {
+<span id="L169" class="ln">   169  </span>	return o != nil &amp;&amp; o.LastUpdatedBy != nil
+<span id="L170" class="ln">   170  </span>}
+<span id="L171" class="ln">   171  </span>
+<span id="L172" class="ln">   172  </span><span class="comment">// SetLastUpdatedBy gets a reference to the given string and assigns it to the LastUpdatedBy field.</span>
+<span id="L173" class="ln">   173  </span>func (o *TableResultV2DataAttributes) SetLastUpdatedBy(v string) {
+<span id="L174" class="ln">   174  </span>	o.LastUpdatedBy = &amp;v
+<span id="L175" class="ln">   175  </span>}
+<span id="L176" class="ln">   176  </span>
+<span id="L177" class="ln">   177  </span><span class="comment">// GetRowCount returns the RowCount field value if set, zero value otherwise.</span>
+<span id="L178" class="ln">   178  </span>func (o *TableResultV2DataAttributes) GetRowCount() int64 {
+<span id="L179" class="ln">   179  </span>	if o == nil || o.RowCount == nil {
+<span id="L180" class="ln">   180  </span>		var ret int64
+<span id="L181" class="ln">   181  </span>		return ret
+<span id="L182" class="ln">   182  </span>	}
+<span id="L183" class="ln">   183  </span>	return *o.RowCount
+<span id="L184" class="ln">   184  </span>}
+<span id="L185" class="ln">   185  </span>
+<span id="L186" class="ln">   186  </span><span class="comment">// GetRowCountOk returns a tuple with the RowCount field value if set, nil otherwise</span>
+<span id="L187" class="ln">   187  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L188" class="ln">   188  </span>func (o *TableResultV2DataAttributes) GetRowCountOk() (*int64, bool) {
+<span id="L189" class="ln">   189  </span>	if o == nil || o.RowCount == nil {
+<span id="L190" class="ln">   190  </span>		return nil, false
+<span id="L191" class="ln">   191  </span>	}
+<span id="L192" class="ln">   192  </span>	return o.RowCount, true
+<span id="L193" class="ln">   193  </span>}
+<span id="L194" class="ln">   194  </span>
+<span id="L195" class="ln">   195  </span><span class="comment">// HasRowCount returns a boolean if a field has been set.</span>
+<span id="L196" class="ln">   196  </span>func (o *TableResultV2DataAttributes) HasRowCount() bool {
+<span id="L197" class="ln">   197  </span>	return o != nil &amp;&amp; o.RowCount != nil
+<span id="L198" class="ln">   198  </span>}
+<span id="L199" class="ln">   199  </span>
+<span id="L200" class="ln">   200  </span><span class="comment">// SetRowCount gets a reference to the given int64 and assigns it to the RowCount field.</span>
+<span id="L201" class="ln">   201  </span>func (o *TableResultV2DataAttributes) SetRowCount(v int64) {
+<span id="L202" class="ln">   202  </span>	o.RowCount = &amp;v
+<span id="L203" class="ln">   203  </span>}
+<span id="L204" class="ln">   204  </span>
+<span id="L205" class="ln">   205  </span><span class="comment">// GetSchema returns the Schema field value if set, zero value otherwise.</span>
+<span id="L206" class="ln">   206  </span>func (o *TableResultV2DataAttributes) GetSchema() TableResultV2DataAttributesSchema {
+<span id="L207" class="ln">   207  </span>	if o == nil || o.Schema == nil {
+<span id="L208" class="ln">   208  </span>		var ret TableResultV2DataAttributesSchema
+<span id="L209" class="ln">   209  </span>		return ret
+<span id="L210" class="ln">   210  </span>	}
+<span id="L211" class="ln">   211  </span>	return *o.Schema
+<span id="L212" class="ln">   212  </span>}
+<span id="L213" class="ln">   213  </span>
+<span id="L214" class="ln">   214  </span><span class="comment">// GetSchemaOk returns a tuple with the Schema field value if set, nil otherwise</span>
+<span id="L215" class="ln">   215  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L216" class="ln">   216  </span>func (o *TableResultV2DataAttributes) GetSchemaOk() (*TableResultV2DataAttributesSchema, bool) {
+<span id="L217" class="ln">   217  </span>	if o == nil || o.Schema == nil {
+<span id="L218" class="ln">   218  </span>		return nil, false
+<span id="L219" class="ln">   219  </span>	}
+<span id="L220" class="ln">   220  </span>	return o.Schema, true
+<span id="L221" class="ln">   221  </span>}
+<span id="L222" class="ln">   222  </span>
+<span id="L223" class="ln">   223  </span><span class="comment">// HasSchema returns a boolean if a field has been set.</span>
+<span id="L224" class="ln">   224  </span>func (o *TableResultV2DataAttributes) HasSchema() bool {
+<span id="L225" class="ln">   225  </span>	return o != nil &amp;&amp; o.Schema != nil
+<span id="L226" class="ln">   226  </span>}
+<span id="L227" class="ln">   227  </span>
+<span id="L228" class="ln">   228  </span><span class="comment">// SetSchema gets a reference to the given TableResultV2DataAttributesSchema and assigns it to the Schema field.</span>
+<span id="L229" class="ln">   229  </span>func (o *TableResultV2DataAttributes) SetSchema(v TableResultV2DataAttributesSchema) {
+<span id="L230" class="ln">   230  </span>	o.Schema = &amp;v
+<span id="L231" class="ln">   231  </span>}
+<span id="L232" class="ln">   232  </span>
+<span id="L233" class="ln">   233  </span><span class="comment">// GetSource returns the Source field value if set, zero value otherwise.</span>
+<span id="L234" class="ln">   234  </span>func (o *TableResultV2DataAttributes) GetSource() ReferenceTableSourceType {
+<span id="L235" class="ln">   235  </span>	if o == nil || o.Source == nil {
+<span id="L236" class="ln">   236  </span>		var ret ReferenceTableSourceType
+<span id="L237" class="ln">   237  </span>		return ret
+<span id="L238" class="ln">   238  </span>	}
+<span id="L239" class="ln">   239  </span>	return *o.Source
+<span id="L240" class="ln">   240  </span>}
+<span id="L241" class="ln">   241  </span>
+<span id="L242" class="ln">   242  </span><span class="comment">// GetSourceOk returns a tuple with the Source field value if set, nil otherwise</span>
+<span id="L243" class="ln">   243  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L244" class="ln">   244  </span>func (o *TableResultV2DataAttributes) GetSourceOk() (*ReferenceTableSourceType, bool) {
+<span id="L245" class="ln">   245  </span>	if o == nil || o.Source == nil {
+<span id="L246" class="ln">   246  </span>		return nil, false
+<span id="L247" class="ln">   247  </span>	}
+<span id="L248" class="ln">   248  </span>	return o.Source, true
+<span id="L249" class="ln">   249  </span>}
+<span id="L250" class="ln">   250  </span>
+<span id="L251" class="ln">   251  </span><span class="comment">// HasSource returns a boolean if a field has been set.</span>
+<span id="L252" class="ln">   252  </span>func (o *TableResultV2DataAttributes) HasSource() bool {
+<span id="L253" class="ln">   253  </span>	return o != nil &amp;&amp; o.Source != nil
+<span id="L254" class="ln">   254  </span>}
+<span id="L255" class="ln">   255  </span>
+<span id="L256" class="ln">   256  </span><span class="comment">// SetSource gets a reference to the given ReferenceTableSourceType and assigns it to the Source field.</span>
+<span id="L257" class="ln">   257  </span>func (o *TableResultV2DataAttributes) SetSource(v ReferenceTableSourceType) {
+<span id="L258" class="ln">   258  </span>	o.Source = &amp;v
+<span id="L259" class="ln">   259  </span>}
+<span id="L260" class="ln">   260  </span>
+<span id="L261" class="ln">   261  </span><span class="comment">// GetStatus returns the Status field value if set, zero value otherwise.</span>
+<span id="L262" class="ln">   262  </span>func (o *TableResultV2DataAttributes) GetStatus() string {
+<span id="L263" class="ln">   263  </span>	if o == nil || o.Status == nil {
+<span id="L264" class="ln">   264  </span>		var ret string
+<span id="L265" class="ln">   265  </span>		return ret
+<span id="L266" class="ln">   266  </span>	}
+<span id="L267" class="ln">   267  </span>	return *o.Status
+<span id="L268" class="ln">   268  </span>}
+<span id="L269" class="ln">   269  </span>
+<span id="L270" class="ln">   270  </span><span class="comment">// GetStatusOk returns a tuple with the Status field value if set, nil otherwise</span>
+<span id="L271" class="ln">   271  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L272" class="ln">   272  </span>func (o *TableResultV2DataAttributes) GetStatusOk() (*string, bool) {
+<span id="L273" class="ln">   273  </span>	if o == nil || o.Status == nil {
+<span id="L274" class="ln">   274  </span>		return nil, false
+<span id="L275" class="ln">   275  </span>	}
+<span id="L276" class="ln">   276  </span>	return o.Status, true
+<span id="L277" class="ln">   277  </span>}
+<span id="L278" class="ln">   278  </span>
+<span id="L279" class="ln">   279  </span><span class="comment">// HasStatus returns a boolean if a field has been set.</span>
+<span id="L280" class="ln">   280  </span>func (o *TableResultV2DataAttributes) HasStatus() bool {
+<span id="L281" class="ln">   281  </span>	return o != nil &amp;&amp; o.Status != nil
+<span id="L282" class="ln">   282  </span>}
+<span id="L283" class="ln">   283  </span>
+<span id="L284" class="ln">   284  </span><span class="comment">// SetStatus gets a reference to the given string and assigns it to the Status field.</span>
+<span id="L285" class="ln">   285  </span>func (o *TableResultV2DataAttributes) SetStatus(v string) {
+<span id="L286" class="ln">   286  </span>	o.Status = &amp;v
+<span id="L287" class="ln">   287  </span>}
+<span id="L288" class="ln">   288  </span>
+<span id="L289" class="ln">   289  </span><span class="comment">// GetTableName returns the TableName field value if set, zero value otherwise.</span>
+<span id="L290" class="ln">   290  </span>func (o *TableResultV2DataAttributes) GetTableName() string {
+<span id="L291" class="ln">   291  </span>	if o == nil || o.TableName == nil {
+<span id="L292" class="ln">   292  </span>		var ret string
+<span id="L293" class="ln">   293  </span>		return ret
+<span id="L294" class="ln">   294  </span>	}
+<span id="L295" class="ln">   295  </span>	return *o.TableName
+<span id="L296" class="ln">   296  </span>}
+<span id="L297" class="ln">   297  </span>
+<span id="L298" class="ln">   298  </span><span class="comment">// GetTableNameOk returns a tuple with the TableName field value if set, nil otherwise</span>
+<span id="L299" class="ln">   299  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L300" class="ln">   300  </span>func (o *TableResultV2DataAttributes) GetTableNameOk() (*string, bool) {
+<span id="L301" class="ln">   301  </span>	if o == nil || o.TableName == nil {
+<span id="L302" class="ln">   302  </span>		return nil, false
+<span id="L303" class="ln">   303  </span>	}
+<span id="L304" class="ln">   304  </span>	return o.TableName, true
+<span id="L305" class="ln">   305  </span>}
+<span id="L306" class="ln">   306  </span>
+<span id="L307" class="ln">   307  </span><span class="comment">// HasTableName returns a boolean if a field has been set.</span>
+<span id="L308" class="ln">   308  </span>func (o *TableResultV2DataAttributes) HasTableName() bool {
+<span id="L309" class="ln">   309  </span>	return o != nil &amp;&amp; o.TableName != nil
+<span id="L310" class="ln">   310  </span>}
+<span id="L311" class="ln">   311  </span>
+<span id="L312" class="ln">   312  </span><span class="comment">// SetTableName gets a reference to the given string and assigns it to the TableName field.</span>
+<span id="L313" class="ln">   313  </span>func (o *TableResultV2DataAttributes) SetTableName(v string) {
+<span id="L314" class="ln">   314  </span>	o.TableName = &amp;v
+<span id="L315" class="ln">   315  </span>}
+<span id="L316" class="ln">   316  </span>
+<span id="L317" class="ln">   317  </span><span class="comment">// GetTags returns the Tags field value if set, zero value otherwise.</span>
+<span id="L318" class="ln">   318  </span>func (o *TableResultV2DataAttributes) GetTags() []string {
+<span id="L319" class="ln">   319  </span>	if o == nil || o.Tags == nil {
+<span id="L320" class="ln">   320  </span>		var ret []string
+<span id="L321" class="ln">   321  </span>		return ret
+<span id="L322" class="ln">   322  </span>	}
+<span id="L323" class="ln">   323  </span>	return o.Tags
+<span id="L324" class="ln">   324  </span>}
+<span id="L325" class="ln">   325  </span>
+<span id="L326" class="ln">   326  </span><span class="comment">// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise</span>
+<span id="L327" class="ln">   327  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L328" class="ln">   328  </span>func (o *TableResultV2DataAttributes) GetTagsOk() (*[]string, bool) {
+<span id="L329" class="ln">   329  </span>	if o == nil || o.Tags == nil {
+<span id="L330" class="ln">   330  </span>		return nil, false
+<span id="L331" class="ln">   331  </span>	}
+<span id="L332" class="ln">   332  </span>	return &amp;o.Tags, true
+<span id="L333" class="ln">   333  </span>}
+<span id="L334" class="ln">   334  </span>
+<span id="L335" class="ln">   335  </span><span class="comment">// HasTags returns a boolean if a field has been set.</span>
+<span id="L336" class="ln">   336  </span>func (o *TableResultV2DataAttributes) HasTags() bool {
+<span id="L337" class="ln">   337  </span>	return o != nil &amp;&amp; o.Tags != nil
+<span id="L338" class="ln">   338  </span>}
+<span id="L339" class="ln">   339  </span>
+<span id="L340" class="ln">   340  </span><span class="comment">// SetTags gets a reference to the given []string and assigns it to the Tags field.</span>
+<span id="L341" class="ln">   341  </span>func (o *TableResultV2DataAttributes) SetTags(v []string) {
+<span id="L342" class="ln">   342  </span>	o.Tags = v
+<span id="L343" class="ln">   343  </span>}
+<span id="L344" class="ln">   344  </span>
+<span id="L345" class="ln">   345  </span><span class="comment">// GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.</span>
+<span id="L346" class="ln">   346  </span>func (o *TableResultV2DataAttributes) GetUpdatedAt() string {
+<span id="L347" class="ln">   347  </span>	if o == nil || o.UpdatedAt == nil {
+<span id="L348" class="ln">   348  </span>		var ret string
+<span id="L349" class="ln">   349  </span>		return ret
+<span id="L350" class="ln">   350  </span>	}
+<span id="L351" class="ln">   351  </span>	return *o.UpdatedAt
+<span id="L352" class="ln">   352  </span>}
+<span id="L353" class="ln">   353  </span>
+<span id="L354" class="ln">   354  </span><span class="comment">// GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise</span>
+<span id="L355" class="ln">   355  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L356" class="ln">   356  </span>func (o *TableResultV2DataAttributes) GetUpdatedAtOk() (*string, bool) {
+<span id="L357" class="ln">   357  </span>	if o == nil || o.UpdatedAt == nil {
+<span id="L358" class="ln">   358  </span>		return nil, false
+<span id="L359" class="ln">   359  </span>	}
+<span id="L360" class="ln">   360  </span>	return o.UpdatedAt, true
+<span id="L361" class="ln">   361  </span>}
+<span id="L362" class="ln">   362  </span>
+<span id="L363" class="ln">   363  </span><span class="comment">// HasUpdatedAt returns a boolean if a field has been set.</span>
+<span id="L364" class="ln">   364  </span>func (o *TableResultV2DataAttributes) HasUpdatedAt() bool {
+<span id="L365" class="ln">   365  </span>	return o != nil &amp;&amp; o.UpdatedAt != nil
+<span id="L366" class="ln">   366  </span>}
+<span id="L367" class="ln">   367  </span>
+<span id="L368" class="ln">   368  </span><span class="comment">// SetUpdatedAt gets a reference to the given string and assigns it to the UpdatedAt field.</span>
+<span id="L369" class="ln">   369  </span>func (o *TableResultV2DataAttributes) SetUpdatedAt(v string) {
+<span id="L370" class="ln">   370  </span>	o.UpdatedAt = &amp;v
+<span id="L371" class="ln">   371  </span>}
+<span id="L372" class="ln">   372  </span>
+<span id="L373" class="ln">   373  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L374" class="ln">   374  </span>func (o TableResultV2DataAttributes) MarshalJSON() ([]byte, error) {
+<span id="L375" class="ln">   375  </span>	toSerialize := map[string]interface{}{}
+<span id="L376" class="ln">   376  </span>	if o.UnparsedObject != nil {
+<span id="L377" class="ln">   377  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L378" class="ln">   378  </span>	}
+<span id="L379" class="ln">   379  </span>	if o.CreatedBy != nil {
+<span id="L380" class="ln">   380  </span>		toSerialize[&#34;created_by&#34;] = o.CreatedBy
+<span id="L381" class="ln">   381  </span>	}
+<span id="L382" class="ln">   382  </span>	if o.Description != nil {
+<span id="L383" class="ln">   383  </span>		toSerialize[&#34;description&#34;] = o.Description
+<span id="L384" class="ln">   384  </span>	}
+<span id="L385" class="ln">   385  </span>	if o.FileMetadata != nil {
+<span id="L386" class="ln">   386  </span>		toSerialize[&#34;file_metadata&#34;] = o.FileMetadata
+<span id="L387" class="ln">   387  </span>	}
+<span id="L388" class="ln">   388  </span>	if o.LastUpdatedBy != nil {
+<span id="L389" class="ln">   389  </span>		toSerialize[&#34;last_updated_by&#34;] = o.LastUpdatedBy
+<span id="L390" class="ln">   390  </span>	}
+<span id="L391" class="ln">   391  </span>	if o.RowCount != nil {
+<span id="L392" class="ln">   392  </span>		toSerialize[&#34;row_count&#34;] = o.RowCount
+<span id="L393" class="ln">   393  </span>	}
+<span id="L394" class="ln">   394  </span>	if o.Schema != nil {
+<span id="L395" class="ln">   395  </span>		toSerialize[&#34;schema&#34;] = o.Schema
+<span id="L396" class="ln">   396  </span>	}
+<span id="L397" class="ln">   397  </span>	if o.Source != nil {
+<span id="L398" class="ln">   398  </span>		toSerialize[&#34;source&#34;] = o.Source
+<span id="L399" class="ln">   399  </span>	}
+<span id="L400" class="ln">   400  </span>	if o.Status != nil {
+<span id="L401" class="ln">   401  </span>		toSerialize[&#34;status&#34;] = o.Status
+<span id="L402" class="ln">   402  </span>	}
+<span id="L403" class="ln">   403  </span>	if o.TableName != nil {
+<span id="L404" class="ln">   404  </span>		toSerialize[&#34;table_name&#34;] = o.TableName
+<span id="L405" class="ln">   405  </span>	}
+<span id="L406" class="ln">   406  </span>	if o.Tags != nil {
+<span id="L407" class="ln">   407  </span>		toSerialize[&#34;tags&#34;] = o.Tags
+<span id="L408" class="ln">   408  </span>	}
+<span id="L409" class="ln">   409  </span>	if o.UpdatedAt != nil {
+<span id="L410" class="ln">   410  </span>		toSerialize[&#34;updated_at&#34;] = o.UpdatedAt
+<span id="L411" class="ln">   411  </span>	}
+<span id="L412" class="ln">   412  </span>
+<span id="L413" class="ln">   413  </span>	for key, value := range o.AdditionalProperties {
+<span id="L414" class="ln">   414  </span>		toSerialize[key] = value
+<span id="L415" class="ln">   415  </span>	}
+<span id="L416" class="ln">   416  </span>	return datadog.Marshal(toSerialize)
+<span id="L417" class="ln">   417  </span>}
+<span id="L418" class="ln">   418  </span>
+<span id="L419" class="ln">   419  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L420" class="ln">   420  </span>func (o *TableResultV2DataAttributes) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L421" class="ln">   421  </span>	all := struct {
+<span id="L422" class="ln">   422  </span>		CreatedBy     *string                                  `json:&#34;created_by,omitempty&#34;`
+<span id="L423" class="ln">   423  </span>		Description   *string                                  `json:&#34;description,omitempty&#34;`
+<span id="L424" class="ln">   424  </span>		FileMetadata  *TableResultV2DataAttributesFileMetadata `json:&#34;file_metadata,omitempty&#34;`
+<span id="L425" class="ln">   425  </span>		LastUpdatedBy *string                                  `json:&#34;last_updated_by,omitempty&#34;`
+<span id="L426" class="ln">   426  </span>		RowCount      *int64                                   `json:&#34;row_count,omitempty&#34;`
+<span id="L427" class="ln">   427  </span>		Schema        *TableResultV2DataAttributesSchema       `json:&#34;schema,omitempty&#34;`
+<span id="L428" class="ln">   428  </span>		Source        *ReferenceTableSourceType                `json:&#34;source,omitempty&#34;`
+<span id="L429" class="ln">   429  </span>		Status        *string                                  `json:&#34;status,omitempty&#34;`
+<span id="L430" class="ln">   430  </span>		TableName     *string                                  `json:&#34;table_name,omitempty&#34;`
+<span id="L431" class="ln">   431  </span>		Tags          []string                                 `json:&#34;tags,omitempty&#34;`
+<span id="L432" class="ln">   432  </span>		UpdatedAt     *string                                  `json:&#34;updated_at,omitempty&#34;`
+<span id="L433" class="ln">   433  </span>	}{}
+<span id="L434" class="ln">   434  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L435" class="ln">   435  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L436" class="ln">   436  </span>	}
+<span id="L437" class="ln">   437  </span>	additionalProperties := make(map[string]interface{})
+<span id="L438" class="ln">   438  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L439" class="ln">   439  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;created_by&#34;, &#34;description&#34;, &#34;file_metadata&#34;, &#34;last_updated_by&#34;, &#34;row_count&#34;, &#34;schema&#34;, &#34;source&#34;, &#34;status&#34;, &#34;table_name&#34;, &#34;tags&#34;, &#34;updated_at&#34;})
+<span id="L440" class="ln">   440  </span>	} else {
+<span id="L441" class="ln">   441  </span>		return err
+<span id="L442" class="ln">   442  </span>	}
+<span id="L443" class="ln">   443  </span>
+<span id="L444" class="ln">   444  </span>	hasInvalidField := false
+<span id="L445" class="ln">   445  </span>	o.CreatedBy = all.CreatedBy
+<span id="L446" class="ln">   446  </span>	o.Description = all.Description
+<span id="L447" class="ln">   447  </span>	if all.FileMetadata != nil &amp;&amp; all.FileMetadata.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L448" class="ln">   448  </span>		hasInvalidField = true
+<span id="L449" class="ln">   449  </span>	}
+<span id="L450" class="ln">   450  </span>	o.FileMetadata = all.FileMetadata
+<span id="L451" class="ln">   451  </span>	o.LastUpdatedBy = all.LastUpdatedBy
+<span id="L452" class="ln">   452  </span>	o.RowCount = all.RowCount
+<span id="L453" class="ln">   453  </span>	if all.Schema != nil &amp;&amp; all.Schema.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L454" class="ln">   454  </span>		hasInvalidField = true
+<span id="L455" class="ln">   455  </span>	}
+<span id="L456" class="ln">   456  </span>	o.Schema = all.Schema
+<span id="L457" class="ln">   457  </span>	if all.Source != nil &amp;&amp; !all.Source.IsValid() {
+<span id="L458" class="ln">   458  </span>		hasInvalidField = true
+<span id="L459" class="ln">   459  </span>	} else {
+<span id="L460" class="ln">   460  </span>		o.Source = all.Source
+<span id="L461" class="ln">   461  </span>	}
+<span id="L462" class="ln">   462  </span>	o.Status = all.Status
+<span id="L463" class="ln">   463  </span>	o.TableName = all.TableName
+<span id="L464" class="ln">   464  </span>	o.Tags = all.Tags
+<span id="L465" class="ln">   465  </span>	o.UpdatedAt = all.UpdatedAt
 <span id="L466" class="ln">   466  </span>
+<span id="L467" class="ln">   467  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L468" class="ln">   468  </span>		o.AdditionalProperties = additionalProperties
+<span id="L469" class="ln">   469  </span>	}
+<span id="L470" class="ln">   470  </span>
+<span id="L471" class="ln">   471  </span>	if hasInvalidField {
+<span id="L472" class="ln">   472  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L473" class="ln">   473  </span>	}
+<span id="L474" class="ln">   474  </span>
+<span id="L475" class="ln">   475  </span>	return nil
+<span id="L476" class="ln">   476  </span>}
+<span id="L477" class="ln">   477  </span>
 </pre><p></p>
 
 <div id="footer">
