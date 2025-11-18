@@ -84,299 +84,334 @@
 <span id="L27" class="ln">    27  </span>	Restrictions []TimeRestriction `json:&#34;restrictions,omitempty&#34;`
 <span id="L28" class="ln">    28  </span>	<span class="comment">// The date/time when the rotation for this layer starts (in ISO 8601).</span>
 <span id="L29" class="ln">    29  </span>	RotationStart time.Time `json:&#34;rotation_start&#34;`
-<span id="L30" class="ln">    30  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
-<span id="L31" class="ln">    31  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L32" class="ln">    32  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
-<span id="L33" class="ln">    33  </span>}
-<span id="L34" class="ln">    34  </span>
-<span id="L35" class="ln">    35  </span><span class="comment">// NewScheduleCreateRequestDataAttributesLayersItems instantiates a new ScheduleCreateRequestDataAttributesLayersItems object.</span>
-<span id="L36" class="ln">    36  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
-<span id="L37" class="ln">    37  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
-<span id="L38" class="ln">    38  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L39" class="ln">    39  </span>func NewScheduleCreateRequestDataAttributesLayersItems(effectiveDate time.Time, interval LayerAttributesInterval, members []ScheduleRequestDataAttributesLayersItemsMembersItems, name string, rotationStart time.Time) *ScheduleCreateRequestDataAttributesLayersItems {
-<span id="L40" class="ln">    40  </span>	this := ScheduleCreateRequestDataAttributesLayersItems{}
-<span id="L41" class="ln">    41  </span>	this.EffectiveDate = effectiveDate
-<span id="L42" class="ln">    42  </span>	this.Interval = interval
-<span id="L43" class="ln">    43  </span>	this.Members = members
-<span id="L44" class="ln">    44  </span>	this.Name = name
-<span id="L45" class="ln">    45  </span>	this.RotationStart = rotationStart
-<span id="L46" class="ln">    46  </span>	return &amp;this
-<span id="L47" class="ln">    47  </span>}
-<span id="L48" class="ln">    48  </span>
-<span id="L49" class="ln">    49  </span><span class="comment">// NewScheduleCreateRequestDataAttributesLayersItemsWithDefaults instantiates a new ScheduleCreateRequestDataAttributesLayersItems object.</span>
-<span id="L50" class="ln">    50  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
-<span id="L51" class="ln">    51  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L52" class="ln">    52  </span>func NewScheduleCreateRequestDataAttributesLayersItemsWithDefaults() *ScheduleCreateRequestDataAttributesLayersItems {
-<span id="L53" class="ln">    53  </span>	this := ScheduleCreateRequestDataAttributesLayersItems{}
-<span id="L54" class="ln">    54  </span>	return &amp;this
-<span id="L55" class="ln">    55  </span>}
-<span id="L56" class="ln">    56  </span>
-<span id="L57" class="ln">    57  </span><span class="comment">// GetEffectiveDate returns the EffectiveDate field value.</span>
-<span id="L58" class="ln">    58  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetEffectiveDate() time.Time {
-<span id="L59" class="ln">    59  </span>	if o == nil {
-<span id="L60" class="ln">    60  </span>		var ret time.Time
-<span id="L61" class="ln">    61  </span>		return ret
-<span id="L62" class="ln">    62  </span>	}
-<span id="L63" class="ln">    63  </span>	return o.EffectiveDate
-<span id="L64" class="ln">    64  </span>}
-<span id="L65" class="ln">    65  </span>
-<span id="L66" class="ln">    66  </span><span class="comment">// GetEffectiveDateOk returns a tuple with the EffectiveDate field value</span>
-<span id="L67" class="ln">    67  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L68" class="ln">    68  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetEffectiveDateOk() (*time.Time, bool) {
-<span id="L69" class="ln">    69  </span>	if o == nil {
-<span id="L70" class="ln">    70  </span>		return nil, false
-<span id="L71" class="ln">    71  </span>	}
-<span id="L72" class="ln">    72  </span>	return &amp;o.EffectiveDate, true
-<span id="L73" class="ln">    73  </span>}
-<span id="L74" class="ln">    74  </span>
-<span id="L75" class="ln">    75  </span><span class="comment">// SetEffectiveDate sets field value.</span>
-<span id="L76" class="ln">    76  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetEffectiveDate(v time.Time) {
-<span id="L77" class="ln">    77  </span>	o.EffectiveDate = v
-<span id="L78" class="ln">    78  </span>}
-<span id="L79" class="ln">    79  </span>
-<span id="L80" class="ln">    80  </span><span class="comment">// GetEndDate returns the EndDate field value if set, zero value otherwise.</span>
-<span id="L81" class="ln">    81  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetEndDate() time.Time {
-<span id="L82" class="ln">    82  </span>	if o == nil || o.EndDate == nil {
-<span id="L83" class="ln">    83  </span>		var ret time.Time
-<span id="L84" class="ln">    84  </span>		return ret
-<span id="L85" class="ln">    85  </span>	}
-<span id="L86" class="ln">    86  </span>	return *o.EndDate
-<span id="L87" class="ln">    87  </span>}
-<span id="L88" class="ln">    88  </span>
-<span id="L89" class="ln">    89  </span><span class="comment">// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise</span>
-<span id="L90" class="ln">    90  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L91" class="ln">    91  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetEndDateOk() (*time.Time, bool) {
-<span id="L92" class="ln">    92  </span>	if o == nil || o.EndDate == nil {
-<span id="L93" class="ln">    93  </span>		return nil, false
-<span id="L94" class="ln">    94  </span>	}
-<span id="L95" class="ln">    95  </span>	return o.EndDate, true
-<span id="L96" class="ln">    96  </span>}
-<span id="L97" class="ln">    97  </span>
-<span id="L98" class="ln">    98  </span><span class="comment">// HasEndDate returns a boolean if a field has been set.</span>
-<span id="L99" class="ln">    99  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) HasEndDate() bool {
-<span id="L100" class="ln">   100  </span>	return o != nil &amp;&amp; o.EndDate != nil
-<span id="L101" class="ln">   101  </span>}
-<span id="L102" class="ln">   102  </span>
-<span id="L103" class="ln">   103  </span><span class="comment">// SetEndDate gets a reference to the given time.Time and assigns it to the EndDate field.</span>
-<span id="L104" class="ln">   104  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetEndDate(v time.Time) {
-<span id="L105" class="ln">   105  </span>	o.EndDate = &amp;v
-<span id="L106" class="ln">   106  </span>}
-<span id="L107" class="ln">   107  </span>
-<span id="L108" class="ln">   108  </span><span class="comment">// GetInterval returns the Interval field value.</span>
-<span id="L109" class="ln">   109  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetInterval() LayerAttributesInterval {
-<span id="L110" class="ln">   110  </span>	if o == nil {
-<span id="L111" class="ln">   111  </span>		var ret LayerAttributesInterval
-<span id="L112" class="ln">   112  </span>		return ret
-<span id="L113" class="ln">   113  </span>	}
-<span id="L114" class="ln">   114  </span>	return o.Interval
-<span id="L115" class="ln">   115  </span>}
-<span id="L116" class="ln">   116  </span>
-<span id="L117" class="ln">   117  </span><span class="comment">// GetIntervalOk returns a tuple with the Interval field value</span>
-<span id="L118" class="ln">   118  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L119" class="ln">   119  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetIntervalOk() (*LayerAttributesInterval, bool) {
-<span id="L120" class="ln">   120  </span>	if o == nil {
-<span id="L121" class="ln">   121  </span>		return nil, false
-<span id="L122" class="ln">   122  </span>	}
-<span id="L123" class="ln">   123  </span>	return &amp;o.Interval, true
-<span id="L124" class="ln">   124  </span>}
-<span id="L125" class="ln">   125  </span>
-<span id="L126" class="ln">   126  </span><span class="comment">// SetInterval sets field value.</span>
-<span id="L127" class="ln">   127  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetInterval(v LayerAttributesInterval) {
-<span id="L128" class="ln">   128  </span>	o.Interval = v
-<span id="L129" class="ln">   129  </span>}
-<span id="L130" class="ln">   130  </span>
-<span id="L131" class="ln">   131  </span><span class="comment">// GetMembers returns the Members field value.</span>
-<span id="L132" class="ln">   132  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetMembers() []ScheduleRequestDataAttributesLayersItemsMembersItems {
-<span id="L133" class="ln">   133  </span>	if o == nil {
-<span id="L134" class="ln">   134  </span>		var ret []ScheduleRequestDataAttributesLayersItemsMembersItems
-<span id="L135" class="ln">   135  </span>		return ret
-<span id="L136" class="ln">   136  </span>	}
-<span id="L137" class="ln">   137  </span>	return o.Members
-<span id="L138" class="ln">   138  </span>}
-<span id="L139" class="ln">   139  </span>
-<span id="L140" class="ln">   140  </span><span class="comment">// GetMembersOk returns a tuple with the Members field value</span>
-<span id="L141" class="ln">   141  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L142" class="ln">   142  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetMembersOk() (*[]ScheduleRequestDataAttributesLayersItemsMembersItems, bool) {
-<span id="L143" class="ln">   143  </span>	if o == nil {
-<span id="L144" class="ln">   144  </span>		return nil, false
-<span id="L145" class="ln">   145  </span>	}
-<span id="L146" class="ln">   146  </span>	return &amp;o.Members, true
-<span id="L147" class="ln">   147  </span>}
-<span id="L148" class="ln">   148  </span>
-<span id="L149" class="ln">   149  </span><span class="comment">// SetMembers sets field value.</span>
-<span id="L150" class="ln">   150  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetMembers(v []ScheduleRequestDataAttributesLayersItemsMembersItems) {
-<span id="L151" class="ln">   151  </span>	o.Members = v
-<span id="L152" class="ln">   152  </span>}
-<span id="L153" class="ln">   153  </span>
-<span id="L154" class="ln">   154  </span><span class="comment">// GetName returns the Name field value.</span>
-<span id="L155" class="ln">   155  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetName() string {
-<span id="L156" class="ln">   156  </span>	if o == nil {
-<span id="L157" class="ln">   157  </span>		var ret string
-<span id="L158" class="ln">   158  </span>		return ret
-<span id="L159" class="ln">   159  </span>	}
-<span id="L160" class="ln">   160  </span>	return o.Name
-<span id="L161" class="ln">   161  </span>}
-<span id="L162" class="ln">   162  </span>
-<span id="L163" class="ln">   163  </span><span class="comment">// GetNameOk returns a tuple with the Name field value</span>
-<span id="L164" class="ln">   164  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L165" class="ln">   165  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetNameOk() (*string, bool) {
-<span id="L166" class="ln">   166  </span>	if o == nil {
-<span id="L167" class="ln">   167  </span>		return nil, false
-<span id="L168" class="ln">   168  </span>	}
-<span id="L169" class="ln">   169  </span>	return &amp;o.Name, true
-<span id="L170" class="ln">   170  </span>}
-<span id="L171" class="ln">   171  </span>
-<span id="L172" class="ln">   172  </span><span class="comment">// SetName sets field value.</span>
-<span id="L173" class="ln">   173  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetName(v string) {
-<span id="L174" class="ln">   174  </span>	o.Name = v
-<span id="L175" class="ln">   175  </span>}
-<span id="L176" class="ln">   176  </span>
-<span id="L177" class="ln">   177  </span><span class="comment">// GetRestrictions returns the Restrictions field value if set, zero value otherwise.</span>
-<span id="L178" class="ln">   178  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetRestrictions() []TimeRestriction {
-<span id="L179" class="ln">   179  </span>	if o == nil || o.Restrictions == nil {
-<span id="L180" class="ln">   180  </span>		var ret []TimeRestriction
-<span id="L181" class="ln">   181  </span>		return ret
-<span id="L182" class="ln">   182  </span>	}
-<span id="L183" class="ln">   183  </span>	return o.Restrictions
-<span id="L184" class="ln">   184  </span>}
-<span id="L185" class="ln">   185  </span>
-<span id="L186" class="ln">   186  </span><span class="comment">// GetRestrictionsOk returns a tuple with the Restrictions field value if set, nil otherwise</span>
-<span id="L187" class="ln">   187  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L188" class="ln">   188  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetRestrictionsOk() (*[]TimeRestriction, bool) {
-<span id="L189" class="ln">   189  </span>	if o == nil || o.Restrictions == nil {
-<span id="L190" class="ln">   190  </span>		return nil, false
-<span id="L191" class="ln">   191  </span>	}
-<span id="L192" class="ln">   192  </span>	return &amp;o.Restrictions, true
-<span id="L193" class="ln">   193  </span>}
-<span id="L194" class="ln">   194  </span>
-<span id="L195" class="ln">   195  </span><span class="comment">// HasRestrictions returns a boolean if a field has been set.</span>
-<span id="L196" class="ln">   196  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) HasRestrictions() bool {
-<span id="L197" class="ln">   197  </span>	return o != nil &amp;&amp; o.Restrictions != nil
-<span id="L198" class="ln">   198  </span>}
-<span id="L199" class="ln">   199  </span>
-<span id="L200" class="ln">   200  </span><span class="comment">// SetRestrictions gets a reference to the given []TimeRestriction and assigns it to the Restrictions field.</span>
-<span id="L201" class="ln">   201  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetRestrictions(v []TimeRestriction) {
-<span id="L202" class="ln">   202  </span>	o.Restrictions = v
-<span id="L203" class="ln">   203  </span>}
-<span id="L204" class="ln">   204  </span>
-<span id="L205" class="ln">   205  </span><span class="comment">// GetRotationStart returns the RotationStart field value.</span>
-<span id="L206" class="ln">   206  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetRotationStart() time.Time {
-<span id="L207" class="ln">   207  </span>	if o == nil {
-<span id="L208" class="ln">   208  </span>		var ret time.Time
-<span id="L209" class="ln">   209  </span>		return ret
-<span id="L210" class="ln">   210  </span>	}
-<span id="L211" class="ln">   211  </span>	return o.RotationStart
-<span id="L212" class="ln">   212  </span>}
-<span id="L213" class="ln">   213  </span>
-<span id="L214" class="ln">   214  </span><span class="comment">// GetRotationStartOk returns a tuple with the RotationStart field value</span>
-<span id="L215" class="ln">   215  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L216" class="ln">   216  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetRotationStartOk() (*time.Time, bool) {
-<span id="L217" class="ln">   217  </span>	if o == nil {
-<span id="L218" class="ln">   218  </span>		return nil, false
-<span id="L219" class="ln">   219  </span>	}
-<span id="L220" class="ln">   220  </span>	return &amp;o.RotationStart, true
-<span id="L221" class="ln">   221  </span>}
-<span id="L222" class="ln">   222  </span>
-<span id="L223" class="ln">   223  </span><span class="comment">// SetRotationStart sets field value.</span>
-<span id="L224" class="ln">   224  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetRotationStart(v time.Time) {
-<span id="L225" class="ln">   225  </span>	o.RotationStart = v
-<span id="L226" class="ln">   226  </span>}
-<span id="L227" class="ln">   227  </span>
-<span id="L228" class="ln">   228  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L229" class="ln">   229  </span>func (o ScheduleCreateRequestDataAttributesLayersItems) MarshalJSON() ([]byte, error) {
-<span id="L230" class="ln">   230  </span>	toSerialize := map[string]interface{}{}
-<span id="L231" class="ln">   231  </span>	if o.UnparsedObject != nil {
-<span id="L232" class="ln">   232  </span>		return datadog.Marshal(o.UnparsedObject)
-<span id="L233" class="ln">   233  </span>	}
-<span id="L234" class="ln">   234  </span>	if o.EffectiveDate.Nanosecond() == 0 {
-<span id="L235" class="ln">   235  </span>		toSerialize[&#34;effective_date&#34;] = o.EffectiveDate.Format(&#34;2006-01-02T15:04:05Z07:00&#34;)
-<span id="L236" class="ln">   236  </span>	} else {
-<span id="L237" class="ln">   237  </span>		toSerialize[&#34;effective_date&#34;] = o.EffectiveDate.Format(&#34;2006-01-02T15:04:05.000Z07:00&#34;)
-<span id="L238" class="ln">   238  </span>	}
-<span id="L239" class="ln">   239  </span>	if o.EndDate != nil {
-<span id="L240" class="ln">   240  </span>		if o.EndDate.Nanosecond() == 0 {
-<span id="L241" class="ln">   241  </span>			toSerialize[&#34;end_date&#34;] = o.EndDate.Format(&#34;2006-01-02T15:04:05Z07:00&#34;)
-<span id="L242" class="ln">   242  </span>		} else {
-<span id="L243" class="ln">   243  </span>			toSerialize[&#34;end_date&#34;] = o.EndDate.Format(&#34;2006-01-02T15:04:05.000Z07:00&#34;)
-<span id="L244" class="ln">   244  </span>		}
-<span id="L245" class="ln">   245  </span>	}
-<span id="L246" class="ln">   246  </span>	toSerialize[&#34;interval&#34;] = o.Interval
-<span id="L247" class="ln">   247  </span>	toSerialize[&#34;members&#34;] = o.Members
-<span id="L248" class="ln">   248  </span>	toSerialize[&#34;name&#34;] = o.Name
-<span id="L249" class="ln">   249  </span>	if o.Restrictions != nil {
-<span id="L250" class="ln">   250  </span>		toSerialize[&#34;restrictions&#34;] = o.Restrictions
-<span id="L251" class="ln">   251  </span>	}
-<span id="L252" class="ln">   252  </span>	if o.RotationStart.Nanosecond() == 0 {
-<span id="L253" class="ln">   253  </span>		toSerialize[&#34;rotation_start&#34;] = o.RotationStart.Format(&#34;2006-01-02T15:04:05Z07:00&#34;)
-<span id="L254" class="ln">   254  </span>	} else {
-<span id="L255" class="ln">   255  </span>		toSerialize[&#34;rotation_start&#34;] = o.RotationStart.Format(&#34;2006-01-02T15:04:05.000Z07:00&#34;)
-<span id="L256" class="ln">   256  </span>	}
+<span id="L30" class="ln">    30  </span>	<span class="comment">// The time zone for this layer.</span>
+<span id="L31" class="ln">    31  </span>	TimeZone *string `json:&#34;time_zone,omitempty&#34;`
+<span id="L32" class="ln">    32  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L33" class="ln">    33  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L34" class="ln">    34  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L35" class="ln">    35  </span>}
+<span id="L36" class="ln">    36  </span>
+<span id="L37" class="ln">    37  </span><span class="comment">// NewScheduleCreateRequestDataAttributesLayersItems instantiates a new ScheduleCreateRequestDataAttributesLayersItems object.</span>
+<span id="L38" class="ln">    38  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L39" class="ln">    39  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L40" class="ln">    40  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L41" class="ln">    41  </span>func NewScheduleCreateRequestDataAttributesLayersItems(effectiveDate time.Time, interval LayerAttributesInterval, members []ScheduleRequestDataAttributesLayersItemsMembersItems, name string, rotationStart time.Time) *ScheduleCreateRequestDataAttributesLayersItems {
+<span id="L42" class="ln">    42  </span>	this := ScheduleCreateRequestDataAttributesLayersItems{}
+<span id="L43" class="ln">    43  </span>	this.EffectiveDate = effectiveDate
+<span id="L44" class="ln">    44  </span>	this.Interval = interval
+<span id="L45" class="ln">    45  </span>	this.Members = members
+<span id="L46" class="ln">    46  </span>	this.Name = name
+<span id="L47" class="ln">    47  </span>	this.RotationStart = rotationStart
+<span id="L48" class="ln">    48  </span>	return &amp;this
+<span id="L49" class="ln">    49  </span>}
+<span id="L50" class="ln">    50  </span>
+<span id="L51" class="ln">    51  </span><span class="comment">// NewScheduleCreateRequestDataAttributesLayersItemsWithDefaults instantiates a new ScheduleCreateRequestDataAttributesLayersItems object.</span>
+<span id="L52" class="ln">    52  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L53" class="ln">    53  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L54" class="ln">    54  </span>func NewScheduleCreateRequestDataAttributesLayersItemsWithDefaults() *ScheduleCreateRequestDataAttributesLayersItems {
+<span id="L55" class="ln">    55  </span>	this := ScheduleCreateRequestDataAttributesLayersItems{}
+<span id="L56" class="ln">    56  </span>	return &amp;this
+<span id="L57" class="ln">    57  </span>}
+<span id="L58" class="ln">    58  </span>
+<span id="L59" class="ln">    59  </span><span class="comment">// GetEffectiveDate returns the EffectiveDate field value.</span>
+<span id="L60" class="ln">    60  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetEffectiveDate() time.Time {
+<span id="L61" class="ln">    61  </span>	if o == nil {
+<span id="L62" class="ln">    62  </span>		var ret time.Time
+<span id="L63" class="ln">    63  </span>		return ret
+<span id="L64" class="ln">    64  </span>	}
+<span id="L65" class="ln">    65  </span>	return o.EffectiveDate
+<span id="L66" class="ln">    66  </span>}
+<span id="L67" class="ln">    67  </span>
+<span id="L68" class="ln">    68  </span><span class="comment">// GetEffectiveDateOk returns a tuple with the EffectiveDate field value</span>
+<span id="L69" class="ln">    69  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L70" class="ln">    70  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetEffectiveDateOk() (*time.Time, bool) {
+<span id="L71" class="ln">    71  </span>	if o == nil {
+<span id="L72" class="ln">    72  </span>		return nil, false
+<span id="L73" class="ln">    73  </span>	}
+<span id="L74" class="ln">    74  </span>	return &amp;o.EffectiveDate, true
+<span id="L75" class="ln">    75  </span>}
+<span id="L76" class="ln">    76  </span>
+<span id="L77" class="ln">    77  </span><span class="comment">// SetEffectiveDate sets field value.</span>
+<span id="L78" class="ln">    78  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetEffectiveDate(v time.Time) {
+<span id="L79" class="ln">    79  </span>	o.EffectiveDate = v
+<span id="L80" class="ln">    80  </span>}
+<span id="L81" class="ln">    81  </span>
+<span id="L82" class="ln">    82  </span><span class="comment">// GetEndDate returns the EndDate field value if set, zero value otherwise.</span>
+<span id="L83" class="ln">    83  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetEndDate() time.Time {
+<span id="L84" class="ln">    84  </span>	if o == nil || o.EndDate == nil {
+<span id="L85" class="ln">    85  </span>		var ret time.Time
+<span id="L86" class="ln">    86  </span>		return ret
+<span id="L87" class="ln">    87  </span>	}
+<span id="L88" class="ln">    88  </span>	return *o.EndDate
+<span id="L89" class="ln">    89  </span>}
+<span id="L90" class="ln">    90  </span>
+<span id="L91" class="ln">    91  </span><span class="comment">// GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise</span>
+<span id="L92" class="ln">    92  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L93" class="ln">    93  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetEndDateOk() (*time.Time, bool) {
+<span id="L94" class="ln">    94  </span>	if o == nil || o.EndDate == nil {
+<span id="L95" class="ln">    95  </span>		return nil, false
+<span id="L96" class="ln">    96  </span>	}
+<span id="L97" class="ln">    97  </span>	return o.EndDate, true
+<span id="L98" class="ln">    98  </span>}
+<span id="L99" class="ln">    99  </span>
+<span id="L100" class="ln">   100  </span><span class="comment">// HasEndDate returns a boolean if a field has been set.</span>
+<span id="L101" class="ln">   101  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) HasEndDate() bool {
+<span id="L102" class="ln">   102  </span>	return o != nil &amp;&amp; o.EndDate != nil
+<span id="L103" class="ln">   103  </span>}
+<span id="L104" class="ln">   104  </span>
+<span id="L105" class="ln">   105  </span><span class="comment">// SetEndDate gets a reference to the given time.Time and assigns it to the EndDate field.</span>
+<span id="L106" class="ln">   106  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetEndDate(v time.Time) {
+<span id="L107" class="ln">   107  </span>	o.EndDate = &amp;v
+<span id="L108" class="ln">   108  </span>}
+<span id="L109" class="ln">   109  </span>
+<span id="L110" class="ln">   110  </span><span class="comment">// GetInterval returns the Interval field value.</span>
+<span id="L111" class="ln">   111  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetInterval() LayerAttributesInterval {
+<span id="L112" class="ln">   112  </span>	if o == nil {
+<span id="L113" class="ln">   113  </span>		var ret LayerAttributesInterval
+<span id="L114" class="ln">   114  </span>		return ret
+<span id="L115" class="ln">   115  </span>	}
+<span id="L116" class="ln">   116  </span>	return o.Interval
+<span id="L117" class="ln">   117  </span>}
+<span id="L118" class="ln">   118  </span>
+<span id="L119" class="ln">   119  </span><span class="comment">// GetIntervalOk returns a tuple with the Interval field value</span>
+<span id="L120" class="ln">   120  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L121" class="ln">   121  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetIntervalOk() (*LayerAttributesInterval, bool) {
+<span id="L122" class="ln">   122  </span>	if o == nil {
+<span id="L123" class="ln">   123  </span>		return nil, false
+<span id="L124" class="ln">   124  </span>	}
+<span id="L125" class="ln">   125  </span>	return &amp;o.Interval, true
+<span id="L126" class="ln">   126  </span>}
+<span id="L127" class="ln">   127  </span>
+<span id="L128" class="ln">   128  </span><span class="comment">// SetInterval sets field value.</span>
+<span id="L129" class="ln">   129  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetInterval(v LayerAttributesInterval) {
+<span id="L130" class="ln">   130  </span>	o.Interval = v
+<span id="L131" class="ln">   131  </span>}
+<span id="L132" class="ln">   132  </span>
+<span id="L133" class="ln">   133  </span><span class="comment">// GetMembers returns the Members field value.</span>
+<span id="L134" class="ln">   134  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetMembers() []ScheduleRequestDataAttributesLayersItemsMembersItems {
+<span id="L135" class="ln">   135  </span>	if o == nil {
+<span id="L136" class="ln">   136  </span>		var ret []ScheduleRequestDataAttributesLayersItemsMembersItems
+<span id="L137" class="ln">   137  </span>		return ret
+<span id="L138" class="ln">   138  </span>	}
+<span id="L139" class="ln">   139  </span>	return o.Members
+<span id="L140" class="ln">   140  </span>}
+<span id="L141" class="ln">   141  </span>
+<span id="L142" class="ln">   142  </span><span class="comment">// GetMembersOk returns a tuple with the Members field value</span>
+<span id="L143" class="ln">   143  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L144" class="ln">   144  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetMembersOk() (*[]ScheduleRequestDataAttributesLayersItemsMembersItems, bool) {
+<span id="L145" class="ln">   145  </span>	if o == nil {
+<span id="L146" class="ln">   146  </span>		return nil, false
+<span id="L147" class="ln">   147  </span>	}
+<span id="L148" class="ln">   148  </span>	return &amp;o.Members, true
+<span id="L149" class="ln">   149  </span>}
+<span id="L150" class="ln">   150  </span>
+<span id="L151" class="ln">   151  </span><span class="comment">// SetMembers sets field value.</span>
+<span id="L152" class="ln">   152  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetMembers(v []ScheduleRequestDataAttributesLayersItemsMembersItems) {
+<span id="L153" class="ln">   153  </span>	o.Members = v
+<span id="L154" class="ln">   154  </span>}
+<span id="L155" class="ln">   155  </span>
+<span id="L156" class="ln">   156  </span><span class="comment">// GetName returns the Name field value.</span>
+<span id="L157" class="ln">   157  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetName() string {
+<span id="L158" class="ln">   158  </span>	if o == nil {
+<span id="L159" class="ln">   159  </span>		var ret string
+<span id="L160" class="ln">   160  </span>		return ret
+<span id="L161" class="ln">   161  </span>	}
+<span id="L162" class="ln">   162  </span>	return o.Name
+<span id="L163" class="ln">   163  </span>}
+<span id="L164" class="ln">   164  </span>
+<span id="L165" class="ln">   165  </span><span class="comment">// GetNameOk returns a tuple with the Name field value</span>
+<span id="L166" class="ln">   166  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L167" class="ln">   167  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetNameOk() (*string, bool) {
+<span id="L168" class="ln">   168  </span>	if o == nil {
+<span id="L169" class="ln">   169  </span>		return nil, false
+<span id="L170" class="ln">   170  </span>	}
+<span id="L171" class="ln">   171  </span>	return &amp;o.Name, true
+<span id="L172" class="ln">   172  </span>}
+<span id="L173" class="ln">   173  </span>
+<span id="L174" class="ln">   174  </span><span class="comment">// SetName sets field value.</span>
+<span id="L175" class="ln">   175  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetName(v string) {
+<span id="L176" class="ln">   176  </span>	o.Name = v
+<span id="L177" class="ln">   177  </span>}
+<span id="L178" class="ln">   178  </span>
+<span id="L179" class="ln">   179  </span><span class="comment">// GetRestrictions returns the Restrictions field value if set, zero value otherwise.</span>
+<span id="L180" class="ln">   180  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetRestrictions() []TimeRestriction {
+<span id="L181" class="ln">   181  </span>	if o == nil || o.Restrictions == nil {
+<span id="L182" class="ln">   182  </span>		var ret []TimeRestriction
+<span id="L183" class="ln">   183  </span>		return ret
+<span id="L184" class="ln">   184  </span>	}
+<span id="L185" class="ln">   185  </span>	return o.Restrictions
+<span id="L186" class="ln">   186  </span>}
+<span id="L187" class="ln">   187  </span>
+<span id="L188" class="ln">   188  </span><span class="comment">// GetRestrictionsOk returns a tuple with the Restrictions field value if set, nil otherwise</span>
+<span id="L189" class="ln">   189  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L190" class="ln">   190  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetRestrictionsOk() (*[]TimeRestriction, bool) {
+<span id="L191" class="ln">   191  </span>	if o == nil || o.Restrictions == nil {
+<span id="L192" class="ln">   192  </span>		return nil, false
+<span id="L193" class="ln">   193  </span>	}
+<span id="L194" class="ln">   194  </span>	return &amp;o.Restrictions, true
+<span id="L195" class="ln">   195  </span>}
+<span id="L196" class="ln">   196  </span>
+<span id="L197" class="ln">   197  </span><span class="comment">// HasRestrictions returns a boolean if a field has been set.</span>
+<span id="L198" class="ln">   198  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) HasRestrictions() bool {
+<span id="L199" class="ln">   199  </span>	return o != nil &amp;&amp; o.Restrictions != nil
+<span id="L200" class="ln">   200  </span>}
+<span id="L201" class="ln">   201  </span>
+<span id="L202" class="ln">   202  </span><span class="comment">// SetRestrictions gets a reference to the given []TimeRestriction and assigns it to the Restrictions field.</span>
+<span id="L203" class="ln">   203  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetRestrictions(v []TimeRestriction) {
+<span id="L204" class="ln">   204  </span>	o.Restrictions = v
+<span id="L205" class="ln">   205  </span>}
+<span id="L206" class="ln">   206  </span>
+<span id="L207" class="ln">   207  </span><span class="comment">// GetRotationStart returns the RotationStart field value.</span>
+<span id="L208" class="ln">   208  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetRotationStart() time.Time {
+<span id="L209" class="ln">   209  </span>	if o == nil {
+<span id="L210" class="ln">   210  </span>		var ret time.Time
+<span id="L211" class="ln">   211  </span>		return ret
+<span id="L212" class="ln">   212  </span>	}
+<span id="L213" class="ln">   213  </span>	return o.RotationStart
+<span id="L214" class="ln">   214  </span>}
+<span id="L215" class="ln">   215  </span>
+<span id="L216" class="ln">   216  </span><span class="comment">// GetRotationStartOk returns a tuple with the RotationStart field value</span>
+<span id="L217" class="ln">   217  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L218" class="ln">   218  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetRotationStartOk() (*time.Time, bool) {
+<span id="L219" class="ln">   219  </span>	if o == nil {
+<span id="L220" class="ln">   220  </span>		return nil, false
+<span id="L221" class="ln">   221  </span>	}
+<span id="L222" class="ln">   222  </span>	return &amp;o.RotationStart, true
+<span id="L223" class="ln">   223  </span>}
+<span id="L224" class="ln">   224  </span>
+<span id="L225" class="ln">   225  </span><span class="comment">// SetRotationStart sets field value.</span>
+<span id="L226" class="ln">   226  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetRotationStart(v time.Time) {
+<span id="L227" class="ln">   227  </span>	o.RotationStart = v
+<span id="L228" class="ln">   228  </span>}
+<span id="L229" class="ln">   229  </span>
+<span id="L230" class="ln">   230  </span><span class="comment">// GetTimeZone returns the TimeZone field value if set, zero value otherwise.</span>
+<span id="L231" class="ln">   231  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetTimeZone() string {
+<span id="L232" class="ln">   232  </span>	if o == nil || o.TimeZone == nil {
+<span id="L233" class="ln">   233  </span>		var ret string
+<span id="L234" class="ln">   234  </span>		return ret
+<span id="L235" class="ln">   235  </span>	}
+<span id="L236" class="ln">   236  </span>	return *o.TimeZone
+<span id="L237" class="ln">   237  </span>}
+<span id="L238" class="ln">   238  </span>
+<span id="L239" class="ln">   239  </span><span class="comment">// GetTimeZoneOk returns a tuple with the TimeZone field value if set, nil otherwise</span>
+<span id="L240" class="ln">   240  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L241" class="ln">   241  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) GetTimeZoneOk() (*string, bool) {
+<span id="L242" class="ln">   242  </span>	if o == nil || o.TimeZone == nil {
+<span id="L243" class="ln">   243  </span>		return nil, false
+<span id="L244" class="ln">   244  </span>	}
+<span id="L245" class="ln">   245  </span>	return o.TimeZone, true
+<span id="L246" class="ln">   246  </span>}
+<span id="L247" class="ln">   247  </span>
+<span id="L248" class="ln">   248  </span><span class="comment">// HasTimeZone returns a boolean if a field has been set.</span>
+<span id="L249" class="ln">   249  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) HasTimeZone() bool {
+<span id="L250" class="ln">   250  </span>	return o != nil &amp;&amp; o.TimeZone != nil
+<span id="L251" class="ln">   251  </span>}
+<span id="L252" class="ln">   252  </span>
+<span id="L253" class="ln">   253  </span><span class="comment">// SetTimeZone gets a reference to the given string and assigns it to the TimeZone field.</span>
+<span id="L254" class="ln">   254  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) SetTimeZone(v string) {
+<span id="L255" class="ln">   255  </span>	o.TimeZone = &amp;v
+<span id="L256" class="ln">   256  </span>}
 <span id="L257" class="ln">   257  </span>
-<span id="L258" class="ln">   258  </span>	for key, value := range o.AdditionalProperties {
-<span id="L259" class="ln">   259  </span>		toSerialize[key] = value
-<span id="L260" class="ln">   260  </span>	}
-<span id="L261" class="ln">   261  </span>	return datadog.Marshal(toSerialize)
-<span id="L262" class="ln">   262  </span>}
-<span id="L263" class="ln">   263  </span>
-<span id="L264" class="ln">   264  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L265" class="ln">   265  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) UnmarshalJSON(bytes []byte) (err error) {
-<span id="L266" class="ln">   266  </span>	all := struct {
-<span id="L267" class="ln">   267  </span>		EffectiveDate *time.Time                                              `json:&#34;effective_date&#34;`
-<span id="L268" class="ln">   268  </span>		EndDate       *time.Time                                              `json:&#34;end_date,omitempty&#34;`
-<span id="L269" class="ln">   269  </span>		Interval      *LayerAttributesInterval                                `json:&#34;interval&#34;`
-<span id="L270" class="ln">   270  </span>		Members       *[]ScheduleRequestDataAttributesLayersItemsMembersItems `json:&#34;members&#34;`
-<span id="L271" class="ln">   271  </span>		Name          *string                                                 `json:&#34;name&#34;`
-<span id="L272" class="ln">   272  </span>		Restrictions  []TimeRestriction                                       `json:&#34;restrictions,omitempty&#34;`
-<span id="L273" class="ln">   273  </span>		RotationStart *time.Time                                              `json:&#34;rotation_start&#34;`
-<span id="L274" class="ln">   274  </span>	}{}
-<span id="L275" class="ln">   275  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
-<span id="L276" class="ln">   276  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L277" class="ln">   277  </span>	}
-<span id="L278" class="ln">   278  </span>	if all.EffectiveDate == nil {
-<span id="L279" class="ln">   279  </span>		return fmt.Errorf(&#34;required field effective_date missing&#34;)
-<span id="L280" class="ln">   280  </span>	}
-<span id="L281" class="ln">   281  </span>	if all.Interval == nil {
-<span id="L282" class="ln">   282  </span>		return fmt.Errorf(&#34;required field interval missing&#34;)
-<span id="L283" class="ln">   283  </span>	}
-<span id="L284" class="ln">   284  </span>	if all.Members == nil {
-<span id="L285" class="ln">   285  </span>		return fmt.Errorf(&#34;required field members missing&#34;)
+<span id="L258" class="ln">   258  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L259" class="ln">   259  </span>func (o ScheduleCreateRequestDataAttributesLayersItems) MarshalJSON() ([]byte, error) {
+<span id="L260" class="ln">   260  </span>	toSerialize := map[string]interface{}{}
+<span id="L261" class="ln">   261  </span>	if o.UnparsedObject != nil {
+<span id="L262" class="ln">   262  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L263" class="ln">   263  </span>	}
+<span id="L264" class="ln">   264  </span>	if o.EffectiveDate.Nanosecond() == 0 {
+<span id="L265" class="ln">   265  </span>		toSerialize[&#34;effective_date&#34;] = o.EffectiveDate.Format(&#34;2006-01-02T15:04:05Z07:00&#34;)
+<span id="L266" class="ln">   266  </span>	} else {
+<span id="L267" class="ln">   267  </span>		toSerialize[&#34;effective_date&#34;] = o.EffectiveDate.Format(&#34;2006-01-02T15:04:05.000Z07:00&#34;)
+<span id="L268" class="ln">   268  </span>	}
+<span id="L269" class="ln">   269  </span>	if o.EndDate != nil {
+<span id="L270" class="ln">   270  </span>		if o.EndDate.Nanosecond() == 0 {
+<span id="L271" class="ln">   271  </span>			toSerialize[&#34;end_date&#34;] = o.EndDate.Format(&#34;2006-01-02T15:04:05Z07:00&#34;)
+<span id="L272" class="ln">   272  </span>		} else {
+<span id="L273" class="ln">   273  </span>			toSerialize[&#34;end_date&#34;] = o.EndDate.Format(&#34;2006-01-02T15:04:05.000Z07:00&#34;)
+<span id="L274" class="ln">   274  </span>		}
+<span id="L275" class="ln">   275  </span>	}
+<span id="L276" class="ln">   276  </span>	toSerialize[&#34;interval&#34;] = o.Interval
+<span id="L277" class="ln">   277  </span>	toSerialize[&#34;members&#34;] = o.Members
+<span id="L278" class="ln">   278  </span>	toSerialize[&#34;name&#34;] = o.Name
+<span id="L279" class="ln">   279  </span>	if o.Restrictions != nil {
+<span id="L280" class="ln">   280  </span>		toSerialize[&#34;restrictions&#34;] = o.Restrictions
+<span id="L281" class="ln">   281  </span>	}
+<span id="L282" class="ln">   282  </span>	if o.RotationStart.Nanosecond() == 0 {
+<span id="L283" class="ln">   283  </span>		toSerialize[&#34;rotation_start&#34;] = o.RotationStart.Format(&#34;2006-01-02T15:04:05Z07:00&#34;)
+<span id="L284" class="ln">   284  </span>	} else {
+<span id="L285" class="ln">   285  </span>		toSerialize[&#34;rotation_start&#34;] = o.RotationStart.Format(&#34;2006-01-02T15:04:05.000Z07:00&#34;)
 <span id="L286" class="ln">   286  </span>	}
-<span id="L287" class="ln">   287  </span>	if all.Name == nil {
-<span id="L288" class="ln">   288  </span>		return fmt.Errorf(&#34;required field name missing&#34;)
+<span id="L287" class="ln">   287  </span>	if o.TimeZone != nil {
+<span id="L288" class="ln">   288  </span>		toSerialize[&#34;time_zone&#34;] = o.TimeZone
 <span id="L289" class="ln">   289  </span>	}
-<span id="L290" class="ln">   290  </span>	if all.RotationStart == nil {
-<span id="L291" class="ln">   291  </span>		return fmt.Errorf(&#34;required field rotation_start missing&#34;)
-<span id="L292" class="ln">   292  </span>	}
-<span id="L293" class="ln">   293  </span>	additionalProperties := make(map[string]interface{})
-<span id="L294" class="ln">   294  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L295" class="ln">   295  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;effective_date&#34;, &#34;end_date&#34;, &#34;interval&#34;, &#34;members&#34;, &#34;name&#34;, &#34;restrictions&#34;, &#34;rotation_start&#34;})
-<span id="L296" class="ln">   296  </span>	} else {
-<span id="L297" class="ln">   297  </span>		return err
-<span id="L298" class="ln">   298  </span>	}
-<span id="L299" class="ln">   299  </span>
-<span id="L300" class="ln">   300  </span>	hasInvalidField := false
-<span id="L301" class="ln">   301  </span>	o.EffectiveDate = *all.EffectiveDate
-<span id="L302" class="ln">   302  </span>	o.EndDate = all.EndDate
-<span id="L303" class="ln">   303  </span>	if all.Interval.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L304" class="ln">   304  </span>		hasInvalidField = true
-<span id="L305" class="ln">   305  </span>	}
-<span id="L306" class="ln">   306  </span>	o.Interval = *all.Interval
-<span id="L307" class="ln">   307  </span>	o.Members = *all.Members
-<span id="L308" class="ln">   308  </span>	o.Name = *all.Name
-<span id="L309" class="ln">   309  </span>	o.Restrictions = all.Restrictions
-<span id="L310" class="ln">   310  </span>	o.RotationStart = *all.RotationStart
-<span id="L311" class="ln">   311  </span>
-<span id="L312" class="ln">   312  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L313" class="ln">   313  </span>		o.AdditionalProperties = additionalProperties
+<span id="L290" class="ln">   290  </span>
+<span id="L291" class="ln">   291  </span>	for key, value := range o.AdditionalProperties {
+<span id="L292" class="ln">   292  </span>		toSerialize[key] = value
+<span id="L293" class="ln">   293  </span>	}
+<span id="L294" class="ln">   294  </span>	return datadog.Marshal(toSerialize)
+<span id="L295" class="ln">   295  </span>}
+<span id="L296" class="ln">   296  </span>
+<span id="L297" class="ln">   297  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L298" class="ln">   298  </span>func (o *ScheduleCreateRequestDataAttributesLayersItems) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L299" class="ln">   299  </span>	all := struct {
+<span id="L300" class="ln">   300  </span>		EffectiveDate *time.Time                                              `json:&#34;effective_date&#34;`
+<span id="L301" class="ln">   301  </span>		EndDate       *time.Time                                              `json:&#34;end_date,omitempty&#34;`
+<span id="L302" class="ln">   302  </span>		Interval      *LayerAttributesInterval                                `json:&#34;interval&#34;`
+<span id="L303" class="ln">   303  </span>		Members       *[]ScheduleRequestDataAttributesLayersItemsMembersItems `json:&#34;members&#34;`
+<span id="L304" class="ln">   304  </span>		Name          *string                                                 `json:&#34;name&#34;`
+<span id="L305" class="ln">   305  </span>		Restrictions  []TimeRestriction                                       `json:&#34;restrictions,omitempty&#34;`
+<span id="L306" class="ln">   306  </span>		RotationStart *time.Time                                              `json:&#34;rotation_start&#34;`
+<span id="L307" class="ln">   307  </span>		TimeZone      *string                                                 `json:&#34;time_zone,omitempty&#34;`
+<span id="L308" class="ln">   308  </span>	}{}
+<span id="L309" class="ln">   309  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L310" class="ln">   310  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L311" class="ln">   311  </span>	}
+<span id="L312" class="ln">   312  </span>	if all.EffectiveDate == nil {
+<span id="L313" class="ln">   313  </span>		return fmt.Errorf(&#34;required field effective_date missing&#34;)
 <span id="L314" class="ln">   314  </span>	}
-<span id="L315" class="ln">   315  </span>
-<span id="L316" class="ln">   316  </span>	if hasInvalidField {
-<span id="L317" class="ln">   317  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L318" class="ln">   318  </span>	}
-<span id="L319" class="ln">   319  </span>
-<span id="L320" class="ln">   320  </span>	return nil
-<span id="L321" class="ln">   321  </span>}
-<span id="L322" class="ln">   322  </span>
+<span id="L315" class="ln">   315  </span>	if all.Interval == nil {
+<span id="L316" class="ln">   316  </span>		return fmt.Errorf(&#34;required field interval missing&#34;)
+<span id="L317" class="ln">   317  </span>	}
+<span id="L318" class="ln">   318  </span>	if all.Members == nil {
+<span id="L319" class="ln">   319  </span>		return fmt.Errorf(&#34;required field members missing&#34;)
+<span id="L320" class="ln">   320  </span>	}
+<span id="L321" class="ln">   321  </span>	if all.Name == nil {
+<span id="L322" class="ln">   322  </span>		return fmt.Errorf(&#34;required field name missing&#34;)
+<span id="L323" class="ln">   323  </span>	}
+<span id="L324" class="ln">   324  </span>	if all.RotationStart == nil {
+<span id="L325" class="ln">   325  </span>		return fmt.Errorf(&#34;required field rotation_start missing&#34;)
+<span id="L326" class="ln">   326  </span>	}
+<span id="L327" class="ln">   327  </span>	additionalProperties := make(map[string]interface{})
+<span id="L328" class="ln">   328  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L329" class="ln">   329  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;effective_date&#34;, &#34;end_date&#34;, &#34;interval&#34;, &#34;members&#34;, &#34;name&#34;, &#34;restrictions&#34;, &#34;rotation_start&#34;, &#34;time_zone&#34;})
+<span id="L330" class="ln">   330  </span>	} else {
+<span id="L331" class="ln">   331  </span>		return err
+<span id="L332" class="ln">   332  </span>	}
+<span id="L333" class="ln">   333  </span>
+<span id="L334" class="ln">   334  </span>	hasInvalidField := false
+<span id="L335" class="ln">   335  </span>	o.EffectiveDate = *all.EffectiveDate
+<span id="L336" class="ln">   336  </span>	o.EndDate = all.EndDate
+<span id="L337" class="ln">   337  </span>	if all.Interval.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L338" class="ln">   338  </span>		hasInvalidField = true
+<span id="L339" class="ln">   339  </span>	}
+<span id="L340" class="ln">   340  </span>	o.Interval = *all.Interval
+<span id="L341" class="ln">   341  </span>	o.Members = *all.Members
+<span id="L342" class="ln">   342  </span>	o.Name = *all.Name
+<span id="L343" class="ln">   343  </span>	o.Restrictions = all.Restrictions
+<span id="L344" class="ln">   344  </span>	o.RotationStart = *all.RotationStart
+<span id="L345" class="ln">   345  </span>	o.TimeZone = all.TimeZone
+<span id="L346" class="ln">   346  </span>
+<span id="L347" class="ln">   347  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L348" class="ln">   348  </span>		o.AdditionalProperties = additionalProperties
+<span id="L349" class="ln">   349  </span>	}
+<span id="L350" class="ln">   350  </span>
+<span id="L351" class="ln">   351  </span>	if hasInvalidField {
+<span id="L352" class="ln">   352  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L353" class="ln">   353  </span>	}
+<span id="L354" class="ln">   354  </span>
+<span id="L355" class="ln">   355  </span>	return nil
+<span id="L356" class="ln">   356  </span>}
+<span id="L357" class="ln">   357  </span>
 </pre><p></p>
 
 <div id="footer">
