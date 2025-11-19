@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"dry_run":true},"id":"invalid-gate-id","type":"deployment_gate"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PUT
+    url: https://api.datadoghq.com/api/v2/deployment_gates/invalid-gate-id
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"attribute \"id\"
+      Invalid id"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2

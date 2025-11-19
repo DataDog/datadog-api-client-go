@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"dry_run":false,"env":"production","identifier":"my-gate","service":"my-service"},"type":"deployment_gate"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/deployment_gates
+  response:
+    body: '{"data":{"id":"c7d0bed9-01dc-45d5-88ad-242123881f81","type":"deployment_gate","attributes":{"created_at":"2025-10-28T14:51:13.006792Z","created_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"dry_run":false,"env":"production","identifier":"my-gate","service":"my-service","updated_at":"2025-10-28T14:51:13.006792Z","updated_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"dry_run":false,"name":"test","options":{"excluded_resources":[]},"type":"fdd"},"type":"deployment_rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
+    url: https://api.datadoghq.com/api/v2/deployment_gates/c7d0bed9-01dc-45d5-88ad-242123881f81/rules
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"attribute \"type\"
+      must be one of \"monitor faulty_deployment_detection\""}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/deployment_gates/c7d0bed9-01dc-45d5-88ad-242123881f81
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
