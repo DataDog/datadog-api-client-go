@@ -50,11 +50,11 @@ type SLOResponseData struct {
 	MonitorTags []string `json:"monitor_tags,omitempty"`
 	// The name of the service level objective object.
 	Name *string `json:"name,omitempty"`
-	// A metric-based SLO. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator
+	// A metric-based SLO. Note that Datadog only allows the sum by aggregator
 	// to be used because this will sum up all request counts instead of averaging them, or taking the max or
 	// min of all of those requests.
 	Query *ServiceLevelObjectiveQuery `json:"query,omitempty"`
-	// A generic SLI specification. This is currently used for time-slice SLOs only.
+	// A generic SLI specification. This is currently used for time-slice and count-based SLOs only.
 	SliSpecification *SLOSliSpec `json:"sli_specification,omitempty"`
 	// A list of tags associated with this service level objective.
 	// Always included in service level objective responses (but may be empty).
@@ -69,8 +69,6 @@ type SLOResponseData struct {
 	// The SLO time window options. Note that "custom" is not a valid option for creating
 	// or updating SLOs. It is only used when querying SLO history over custom timeframes.
 	Timeframe *SLOTimeframe `json:"timeframe,omitempty"`
-	// The type of the service level objective.
-	Type *SLOType `json:"type,omitempty"`
 	// The optional warning threshold such that when the service level indicator is
 	// below this value for the given threshold, but above the target threshold, the
 	// objective appears in a "warning" state. This value must be greater than the target
@@ -557,34 +555,6 @@ func (o *SLOResponseData) SetTimeframe(v SLOTimeframe) {
 	o.Timeframe = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *SLOResponseData) GetType() SLOType {
-	if o == nil || o.Type == nil {
-		var ret SLOType
-		return ret
-	}
-	return *o.Type
-}
-
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SLOResponseData) GetTypeOk() (*SLOType, bool) {
-	if o == nil || o.Type == nil {
-		return nil, false
-	}
-	return o.Type, true
-}
-
-// HasType returns a boolean if a field has been set.
-func (o *SLOResponseData) HasType() bool {
-	return o != nil && o.Type != nil
-}
-
-// SetType gets a reference to the given SLOType and assigns it to the Type field.
-func (o *SLOResponseData) SetType(v SLOType) {
-	o.Type = &v
-}
-
 // GetWarningThreshold returns the WarningThreshold field value if set, zero value otherwise.
 func (o *SLOResponseData) GetWarningThreshold() float64 {
 	if o == nil || o.WarningThreshold == nil {
@@ -667,9 +637,6 @@ func (o SLOResponseData) MarshalJSON() ([]byte, error) {
 	if o.Timeframe != nil {
 		toSerialize["timeframe"] = o.Timeframe
 	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
 	if o.WarningThreshold != nil {
 		toSerialize["warning_threshold"] = o.WarningThreshold
 	}
@@ -699,7 +666,6 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		TargetThreshold    *float64                    `json:"target_threshold,omitempty"`
 		Thresholds         []SLOThreshold              `json:"thresholds,omitempty"`
 		Timeframe          *SLOTimeframe               `json:"timeframe,omitempty"`
-		Type               *SLOType                    `json:"type,omitempty"`
 		WarningThreshold   *float64                    `json:"warning_threshold,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -707,7 +673,7 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"configured_alert_ids", "created_at", "creator", "description", "groups", "id", "modified_at", "monitor_ids", "monitor_tags", "name", "query", "sli_specification", "tags", "target_threshold", "thresholds", "timeframe", "type", "warning_threshold"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"configured_alert_ids", "created_at", "creator", "description", "groups", "id", "modified_at", "monitor_ids", "monitor_tags", "name", "query", "sli_specification", "tags", "target_threshold", "thresholds", "timeframe", "warning_threshold"})
 	} else {
 		return err
 	}
@@ -738,11 +704,6 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	} else {
 		o.Timeframe = all.Timeframe
-	}
-	if all.Type != nil && !all.Type.IsValid() {
-		hasInvalidField = true
-	} else {
-		o.Type = all.Type
 	}
 	o.WarningThreshold = all.WarningThreshold
 
