@@ -27,17 +27,18 @@ func main() {
 								Type: datadogV2.OBSERVABILITYPIPELINEDATADOGLOGSDESTINATIONTYPE_DATADOG_LOGS,
 							}},
 					},
-					Processors: []datadogV2.ObservabilityPipelineConfigProcessorItem{
-						datadogV2.ObservabilityPipelineConfigProcessorItem{
-							ObservabilityPipelineFilterProcessor: &datadogV2.ObservabilityPipelineFilterProcessor{
-								Id:      "filter-processor",
-								Include: "service:my-service",
-								Inputs: []string{
-									"datadog-agent-source",
-								},
-								Type: datadogV2.OBSERVABILITYPIPELINEFILTERPROCESSORTYPE_FILTER,
-							}},
-					},
+					Processors: &datadogV2.ObservabilityPipelineConfigProcessors{
+						ObservabilityPipelineConfigProcessorsList: &[]datadogV2.ObservabilityPipelineConfigProcessorItem{
+							datadogV2.ObservabilityPipelineConfigProcessorItem{
+								ObservabilityPipelineFilterProcessor: &datadogV2.ObservabilityPipelineFilterProcessor{
+									Id:      "filter-processor",
+									Include: "service:my-service",
+									Inputs: []string{
+										"datadog-agent-source",
+									},
+									Type: datadogV2.OBSERVABILITYPIPELINEFILTERPROCESSORTYPE_FILTER,
+								}},
+						}},
 					Sources: []datadogV2.ObservabilityPipelineConfigSourceItem{
 						datadogV2.ObservabilityPipelineConfigSourceItem{
 							ObservabilityPipelineDatadogAgentSource: &datadogV2.ObservabilityPipelineDatadogAgentSource{

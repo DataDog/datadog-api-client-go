@@ -14,12 +14,14 @@ import (
 type ObservabilityPipelineParseGrokProcessor struct {
 	// If set to `true`, disables the default Grok rules provided by Datadog.
 	DisableLibraryRules *bool `json:"disable_library_rules,omitempty"`
+	// Whether this processor is enabled.
+	Enabled *bool `json:"enabled,omitempty"`
 	// A unique identifier for this processor.
 	Id string `json:"id"`
 	// A Datadog search query used to determine which logs this processor targets.
 	Include string `json:"include"`
-	// A list of component IDs whose output is used as the `input` for this component.
-	Inputs []string `json:"inputs"`
+	// A list of component IDs whose output is used as input for this processor. Required when used as a standalone processor, omit when used within a processor group.
+	Inputs []string `json:"inputs,omitempty"`
 	// The list of Grok parsing rules. If multiple matching rules are provided, they are evaluated in order. The first successful match is applied.
 	Rules []ObservabilityPipelineParseGrokProcessorRule `json:"rules"`
 	// The processor type. The value should always be `parse_grok`.
@@ -33,13 +35,12 @@ type ObservabilityPipelineParseGrokProcessor struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineParseGrokProcessor(id string, include string, inputs []string, rules []ObservabilityPipelineParseGrokProcessorRule, typeVar ObservabilityPipelineParseGrokProcessorType) *ObservabilityPipelineParseGrokProcessor {
+func NewObservabilityPipelineParseGrokProcessor(id string, include string, rules []ObservabilityPipelineParseGrokProcessorRule, typeVar ObservabilityPipelineParseGrokProcessorType) *ObservabilityPipelineParseGrokProcessor {
 	this := ObservabilityPipelineParseGrokProcessor{}
 	var disableLibraryRules bool = false
 	this.DisableLibraryRules = &disableLibraryRules
 	this.Id = id
 	this.Include = include
-	this.Inputs = inputs
 	this.Rules = rules
 	this.Type = typeVar
 	return &this
@@ -83,6 +84,34 @@ func (o *ObservabilityPipelineParseGrokProcessor) HasDisableLibraryRules() bool 
 // SetDisableLibraryRules gets a reference to the given bool and assigns it to the DisableLibraryRules field.
 func (o *ObservabilityPipelineParseGrokProcessor) SetDisableLibraryRules(v bool) {
 	o.DisableLibraryRules = &v
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *ObservabilityPipelineParseGrokProcessor) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineParseGrokProcessor) GetEnabledOk() (*bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *ObservabilityPipelineParseGrokProcessor) HasEnabled() bool {
+	return o != nil && o.Enabled != nil
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *ObservabilityPipelineParseGrokProcessor) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetId returns the Id field value.
@@ -131,25 +160,30 @@ func (o *ObservabilityPipelineParseGrokProcessor) SetInclude(v string) {
 	o.Include = v
 }
 
-// GetInputs returns the Inputs field value.
+// GetInputs returns the Inputs field value if set, zero value otherwise.
 func (o *ObservabilityPipelineParseGrokProcessor) GetInputs() []string {
-	if o == nil {
+	if o == nil || o.Inputs == nil {
 		var ret []string
 		return ret
 	}
 	return o.Inputs
 }
 
-// GetInputsOk returns a tuple with the Inputs field value
+// GetInputsOk returns a tuple with the Inputs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ObservabilityPipelineParseGrokProcessor) GetInputsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil || o.Inputs == nil {
 		return nil, false
 	}
 	return &o.Inputs, true
 }
 
-// SetInputs sets field value.
+// HasInputs returns a boolean if a field has been set.
+func (o *ObservabilityPipelineParseGrokProcessor) HasInputs() bool {
+	return o != nil && o.Inputs != nil
+}
+
+// SetInputs gets a reference to the given []string and assigns it to the Inputs field.
 func (o *ObservabilityPipelineParseGrokProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
@@ -209,9 +243,14 @@ func (o ObservabilityPipelineParseGrokProcessor) MarshalJSON() ([]byte, error) {
 	if o.DisableLibraryRules != nil {
 		toSerialize["disable_library_rules"] = o.DisableLibraryRules
 	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["include"] = o.Include
-	toSerialize["inputs"] = o.Inputs
+	if o.Inputs != nil {
+		toSerialize["inputs"] = o.Inputs
+	}
 	toSerialize["rules"] = o.Rules
 	toSerialize["type"] = o.Type
 
@@ -225,9 +264,10 @@ func (o ObservabilityPipelineParseGrokProcessor) MarshalJSON() ([]byte, error) {
 func (o *ObservabilityPipelineParseGrokProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		DisableLibraryRules *bool                                          `json:"disable_library_rules,omitempty"`
+		Enabled             *bool                                          `json:"enabled,omitempty"`
 		Id                  *string                                        `json:"id"`
 		Include             *string                                        `json:"include"`
-		Inputs              *[]string                                      `json:"inputs"`
+		Inputs              []string                                       `json:"inputs,omitempty"`
 		Rules               *[]ObservabilityPipelineParseGrokProcessorRule `json:"rules"`
 		Type                *ObservabilityPipelineParseGrokProcessorType   `json:"type"`
 	}{}
@@ -240,9 +280,6 @@ func (o *ObservabilityPipelineParseGrokProcessor) UnmarshalJSON(bytes []byte) (e
 	if all.Include == nil {
 		return fmt.Errorf("required field include missing")
 	}
-	if all.Inputs == nil {
-		return fmt.Errorf("required field inputs missing")
-	}
 	if all.Rules == nil {
 		return fmt.Errorf("required field rules missing")
 	}
@@ -251,16 +288,17 @@ func (o *ObservabilityPipelineParseGrokProcessor) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"disable_library_rules", "id", "include", "inputs", "rules", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"disable_library_rules", "enabled", "id", "include", "inputs", "rules", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.DisableLibraryRules = all.DisableLibraryRules
+	o.Enabled = all.Enabled
 	o.Id = *all.Id
 	o.Include = *all.Include
-	o.Inputs = *all.Inputs
+	o.Inputs = all.Inputs
 	o.Rules = *all.Rules
 	if !all.Type.IsValid() {
 		hasInvalidField = true
