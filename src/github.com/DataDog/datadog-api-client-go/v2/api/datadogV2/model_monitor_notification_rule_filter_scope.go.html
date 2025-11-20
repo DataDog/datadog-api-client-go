@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="theme-color" content="#375EAB"/>
 
-  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_monitor_notification_rule_filter_tags.go - Datadog</title>
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_monitor_notification_rule_filter_scope.go - Datadog</title>
 
 <link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
 
@@ -38,7 +38,7 @@
 
   <h1>
     Source file
-    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_monitor_notification_rule_filter_tags.go</span>
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_monitor_notification_rule_filter_scope.go</span>
   </h1>
 
 
@@ -67,77 +67,77 @@
 <span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L11" class="ln">    11  </span>)
 <span id="L12" class="ln">    12  </span>
-<span id="L13" class="ln">    13  </span><span class="comment">// MonitorNotificationRuleFilterTags Filter monitor notifications by tags. A monitor notification must match all tags.</span>
-<span id="L14" class="ln">    14  </span>type MonitorNotificationRuleFilterTags struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// A list of tags (key:value pairs), which can be used to filter monitor notifications on monitor and group tags.</span>
-<span id="L16" class="ln">    16  </span>	Tags []string `json:&#34;tags&#34;`
+<span id="L13" class="ln">    13  </span><span class="comment">// MonitorNotificationRuleFilterScope Filter monitor notifications. A monitor notification must match the scope.</span>
+<span id="L14" class="ln">    14  </span>type MonitorNotificationRuleFilterScope struct {
+<span id="L15" class="ln">    15  </span>	<span class="comment">// A scope composed of one or several key:value pairs, which can be used to filter monitor notifications on monitor and group tags.</span>
+<span id="L16" class="ln">    16  </span>	Scope string `json:&#34;scope&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L18" class="ln">    18  </span>	UnparsedObject map[string]interface{} `json:&#34;-&#34;`
 <span id="L19" class="ln">    19  </span>}
 <span id="L20" class="ln">    20  </span>
-<span id="L21" class="ln">    21  </span><span class="comment">// NewMonitorNotificationRuleFilterTags instantiates a new MonitorNotificationRuleFilterTags object.</span>
+<span id="L21" class="ln">    21  </span><span class="comment">// NewMonitorNotificationRuleFilterScope instantiates a new MonitorNotificationRuleFilterScope object.</span>
 <span id="L22" class="ln">    22  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
 <span id="L23" class="ln">    23  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
 <span id="L24" class="ln">    24  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L25" class="ln">    25  </span>func NewMonitorNotificationRuleFilterTags(tags []string) *MonitorNotificationRuleFilterTags {
-<span id="L26" class="ln">    26  </span>	this := MonitorNotificationRuleFilterTags{}
-<span id="L27" class="ln">    27  </span>	this.Tags = tags
+<span id="L25" class="ln">    25  </span>func NewMonitorNotificationRuleFilterScope(scope string) *MonitorNotificationRuleFilterScope {
+<span id="L26" class="ln">    26  </span>	this := MonitorNotificationRuleFilterScope{}
+<span id="L27" class="ln">    27  </span>	this.Scope = scope
 <span id="L28" class="ln">    28  </span>	return &amp;this
 <span id="L29" class="ln">    29  </span>}
 <span id="L30" class="ln">    30  </span>
-<span id="L31" class="ln">    31  </span><span class="comment">// NewMonitorNotificationRuleFilterTagsWithDefaults instantiates a new MonitorNotificationRuleFilterTags object.</span>
+<span id="L31" class="ln">    31  </span><span class="comment">// NewMonitorNotificationRuleFilterScopeWithDefaults instantiates a new MonitorNotificationRuleFilterScope object.</span>
 <span id="L32" class="ln">    32  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
 <span id="L33" class="ln">    33  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L34" class="ln">    34  </span>func NewMonitorNotificationRuleFilterTagsWithDefaults() *MonitorNotificationRuleFilterTags {
-<span id="L35" class="ln">    35  </span>	this := MonitorNotificationRuleFilterTags{}
+<span id="L34" class="ln">    34  </span>func NewMonitorNotificationRuleFilterScopeWithDefaults() *MonitorNotificationRuleFilterScope {
+<span id="L35" class="ln">    35  </span>	this := MonitorNotificationRuleFilterScope{}
 <span id="L36" class="ln">    36  </span>	return &amp;this
 <span id="L37" class="ln">    37  </span>}
 <span id="L38" class="ln">    38  </span>
-<span id="L39" class="ln">    39  </span><span class="comment">// GetTags returns the Tags field value.</span>
-<span id="L40" class="ln">    40  </span>func (o *MonitorNotificationRuleFilterTags) GetTags() []string {
+<span id="L39" class="ln">    39  </span><span class="comment">// GetScope returns the Scope field value.</span>
+<span id="L40" class="ln">    40  </span>func (o *MonitorNotificationRuleFilterScope) GetScope() string {
 <span id="L41" class="ln">    41  </span>	if o == nil {
-<span id="L42" class="ln">    42  </span>		var ret []string
+<span id="L42" class="ln">    42  </span>		var ret string
 <span id="L43" class="ln">    43  </span>		return ret
 <span id="L44" class="ln">    44  </span>	}
-<span id="L45" class="ln">    45  </span>	return o.Tags
+<span id="L45" class="ln">    45  </span>	return o.Scope
 <span id="L46" class="ln">    46  </span>}
 <span id="L47" class="ln">    47  </span>
-<span id="L48" class="ln">    48  </span><span class="comment">// GetTagsOk returns a tuple with the Tags field value</span>
+<span id="L48" class="ln">    48  </span><span class="comment">// GetScopeOk returns a tuple with the Scope field value</span>
 <span id="L49" class="ln">    49  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L50" class="ln">    50  </span>func (o *MonitorNotificationRuleFilterTags) GetTagsOk() (*[]string, bool) {
+<span id="L50" class="ln">    50  </span>func (o *MonitorNotificationRuleFilterScope) GetScopeOk() (*string, bool) {
 <span id="L51" class="ln">    51  </span>	if o == nil {
 <span id="L52" class="ln">    52  </span>		return nil, false
 <span id="L53" class="ln">    53  </span>	}
-<span id="L54" class="ln">    54  </span>	return &amp;o.Tags, true
+<span id="L54" class="ln">    54  </span>	return &amp;o.Scope, true
 <span id="L55" class="ln">    55  </span>}
 <span id="L56" class="ln">    56  </span>
-<span id="L57" class="ln">    57  </span><span class="comment">// SetTags sets field value.</span>
-<span id="L58" class="ln">    58  </span>func (o *MonitorNotificationRuleFilterTags) SetTags(v []string) {
-<span id="L59" class="ln">    59  </span>	o.Tags = v
+<span id="L57" class="ln">    57  </span><span class="comment">// SetScope sets field value.</span>
+<span id="L58" class="ln">    58  </span>func (o *MonitorNotificationRuleFilterScope) SetScope(v string) {
+<span id="L59" class="ln">    59  </span>	o.Scope = v
 <span id="L60" class="ln">    60  </span>}
 <span id="L61" class="ln">    61  </span>
 <span id="L62" class="ln">    62  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L63" class="ln">    63  </span>func (o MonitorNotificationRuleFilterTags) MarshalJSON() ([]byte, error) {
+<span id="L63" class="ln">    63  </span>func (o MonitorNotificationRuleFilterScope) MarshalJSON() ([]byte, error) {
 <span id="L64" class="ln">    64  </span>	toSerialize := map[string]interface{}{}
 <span id="L65" class="ln">    65  </span>	if o.UnparsedObject != nil {
 <span id="L66" class="ln">    66  </span>		return datadog.Marshal(o.UnparsedObject)
 <span id="L67" class="ln">    67  </span>	}
-<span id="L68" class="ln">    68  </span>	toSerialize[&#34;tags&#34;] = o.Tags
+<span id="L68" class="ln">    68  </span>	toSerialize[&#34;scope&#34;] = o.Scope
 <span id="L69" class="ln">    69  </span>	return datadog.Marshal(toSerialize)
 <span id="L70" class="ln">    70  </span>}
 <span id="L71" class="ln">    71  </span>
 <span id="L72" class="ln">    72  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L73" class="ln">    73  </span>func (o *MonitorNotificationRuleFilterTags) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L73" class="ln">    73  </span>func (o *MonitorNotificationRuleFilterScope) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L74" class="ln">    74  </span>	all := struct {
-<span id="L75" class="ln">    75  </span>		Tags *[]string `json:&#34;tags&#34;`
+<span id="L75" class="ln">    75  </span>		Scope *string `json:&#34;scope&#34;`
 <span id="L76" class="ln">    76  </span>	}{}
 <span id="L77" class="ln">    77  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L78" class="ln">    78  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
 <span id="L79" class="ln">    79  </span>	}
-<span id="L80" class="ln">    80  </span>	if all.Tags == nil {
-<span id="L81" class="ln">    81  </span>		return fmt.Errorf(&#34;required field tags missing&#34;)
+<span id="L80" class="ln">    80  </span>	if all.Scope == nil {
+<span id="L81" class="ln">    81  </span>		return fmt.Errorf(&#34;required field scope missing&#34;)
 <span id="L82" class="ln">    82  </span>	}
-<span id="L83" class="ln">    83  </span>	o.Tags = *all.Tags
+<span id="L83" class="ln">    83  </span>	o.Scope = *all.Scope
 <span id="L84" class="ln">    84  </span>
 <span id="L85" class="ln">    85  </span>	return nil
 <span id="L86" class="ln">    86  </span>}

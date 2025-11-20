@@ -69,7 +69,7 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// MonitorNotificationRuleCondition Conditions for `conditional_recipients`.</span>
 <span id="L14" class="ln">    14  </span>type MonitorNotificationRuleCondition struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// A list of recipients to notify. Uses the same format as the monitor `message` field. Must not start with an &#39;@&#39;.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// A list of recipients to notify. Uses the same format as the monitor `message` field. Must not start with an &#39;@&#39;. Cannot be used with `conditional_recipients`.</span>
 <span id="L16" class="ln">    16  </span>	Recipients []string `json:&#34;recipients&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// The scope to which the monitor applied.</span>
 <span id="L18" class="ln">    18  </span>	Scope string `json:&#34;scope&#34;`

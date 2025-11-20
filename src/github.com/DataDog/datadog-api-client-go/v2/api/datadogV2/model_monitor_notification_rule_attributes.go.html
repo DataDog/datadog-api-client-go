@@ -69,13 +69,13 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// MonitorNotificationRuleAttributes Attributes of the monitor notification rule.</span>
 <span id="L14" class="ln">    14  </span>type MonitorNotificationRuleAttributes struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// Use conditional recipients to define different recipients for different situations.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Use conditional recipients to define different recipients for different situations. Cannot be used with `recipients`.</span>
 <span id="L16" class="ln">    16  </span>	ConditionalRecipients *MonitorNotificationRuleConditionalRecipients `json:&#34;conditional_recipients,omitempty&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// Filter used to associate the notification rule with monitors.</span>
 <span id="L18" class="ln">    18  </span>	Filter *MonitorNotificationRuleFilter `json:&#34;filter,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// The name of the monitor notification rule.</span>
 <span id="L20" class="ln">    20  </span>	Name string `json:&#34;name&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// A list of recipients to notify. Uses the same format as the monitor `message` field. Must not start with an &#39;@&#39;.</span>
+<span id="L21" class="ln">    21  </span>	<span class="comment">// A list of recipients to notify. Uses the same format as the monitor `message` field. Must not start with an &#39;@&#39;. Cannot be used with `conditional_recipients`.</span>
 <span id="L22" class="ln">    22  </span>	Recipients []string `json:&#34;recipients,omitempty&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L24" class="ln">    24  </span>	UnparsedObject map[string]interface{} `json:&#34;-&#34;`
