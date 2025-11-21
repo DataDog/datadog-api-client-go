@@ -261,6 +261,7 @@
 //   - [FleetAutomationApi.CreateFleetDeploymentUpgrade]
 //   - [FleetAutomationApi.CreateFleetSchedule]
 //   - [FleetAutomationApi.DeleteFleetSchedule]
+//   - [FleetAutomationApi.GetFleetAgentInfo]
 //   - [FleetAutomationApi.GetFleetDeployment]
 //   - [FleetAutomationApi.GetFleetSchedule]
 //   - [FleetAutomationApi.ListFleetAgentVersions]
