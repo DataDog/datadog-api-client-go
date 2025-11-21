@@ -623,6 +623,7 @@
 //   - [StaticAnalysisApi.CreateSCAResolveVulnerableSymbols]
 //   - [StaticAnalysisApi.CreateSCAResult]
 //   - [SyntheticsApi.GetOnDemandConcurrencyCap]
+//   - [SyntheticsApi.PatchGlobalVariable]
 //   - [SyntheticsApi.SetOnDemandConcurrencyCap]
 //   - [TeamConnectionsApi.CreateTeamConnections]
 //   - [TeamConnectionsApi.DeleteTeamConnections]
