@@ -605,6 +605,7 @@ func NewConfiguration() *Configuration {
 			"v2.CreateFleetDeploymentUpgrade":            false,
 			"v2.CreateFleetSchedule":                     false,
 			"v2.DeleteFleetSchedule":                     false,
+			"v2.GetFleetAgentInfo":                       false,
 			"v2.GetFleetDeployment":                      false,
 			"v2.GetFleetSchedule":                        false,
 			"v2.ListFleetAgentVersions":                  false,
