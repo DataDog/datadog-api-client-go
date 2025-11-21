@@ -1,0 +1,20 @@
+interactions:
+- request:
+    body: |
+      {"data":{"relationships":{"findings":{"data":[{"id":"YzM2MTFjYzcyNmY0Zjg4MTAxZmRlNjQ1MWU1ZGQwYzR-YzI5NzE5Y2Y4MzU4ZjliNzhkNjYxNTY0ODIzZDQ2YTM=","type":"findings"}]}},"type":"cases"}}
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+      Content-Type:
+      - application/json
+    id: 0
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security/findings/cases
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
