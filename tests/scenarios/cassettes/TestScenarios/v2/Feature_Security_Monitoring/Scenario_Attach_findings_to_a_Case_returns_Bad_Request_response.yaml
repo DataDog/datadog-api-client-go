@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"id":"7d16945b-baf8-411e-ab2a-20fe43af1ea3","relationships":{"findings":{"data":[]}},"type":"cases"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/security/findings/cases/7d16945b-baf8-411e-ab2a-20fe43af1ea3
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"no finding provided"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
