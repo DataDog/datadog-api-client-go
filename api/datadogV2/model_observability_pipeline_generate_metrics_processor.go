@@ -13,14 +13,16 @@ import (
 // ObservabilityPipelineGenerateMetricsProcessor The `generate_datadog_metrics` processor creates custom metrics from logs and sends them to Datadog.
 // Metrics can be counters, gauges, or distributions and optionally grouped by log fields.
 type ObservabilityPipelineGenerateMetricsProcessor struct {
+	// Whether this processor is enabled.
+	Enabled *bool `json:"enabled,omitempty"`
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline.
 	Id string `json:"id"`
 	// A Datadog search query used to determine which logs this processor targets.
-	Include string `json:"include"`
-	// A list of component IDs whose output is used as the `input` for this processor.
-	Inputs []string `json:"inputs"`
+	Include *string `json:"include,omitempty"`
+	// A list of component IDs whose output is used as input for this processor. Required when used as a standalone processor, omit when used within a processor group.
+	Inputs []string `json:"inputs,omitempty"`
 	// Configuration for generating individual metrics.
-	Metrics []ObservabilityPipelineGeneratedMetric `json:"metrics"`
+	Metrics []ObservabilityPipelineGeneratedMetric `json:"metrics,omitempty"`
 	// The processor type. Always `generate_datadog_metrics`.
 	Type ObservabilityPipelineGenerateMetricsProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -32,12 +34,9 @@ type ObservabilityPipelineGenerateMetricsProcessor struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineGenerateMetricsProcessor(id string, include string, inputs []string, metrics []ObservabilityPipelineGeneratedMetric, typeVar ObservabilityPipelineGenerateMetricsProcessorType) *ObservabilityPipelineGenerateMetricsProcessor {
+func NewObservabilityPipelineGenerateMetricsProcessor(id string, typeVar ObservabilityPipelineGenerateMetricsProcessorType) *ObservabilityPipelineGenerateMetricsProcessor {
 	this := ObservabilityPipelineGenerateMetricsProcessor{}
 	this.Id = id
-	this.Include = include
-	this.Inputs = inputs
-	this.Metrics = metrics
 	this.Type = typeVar
 	return &this
 }
@@ -50,6 +49,34 @@ func NewObservabilityPipelineGenerateMetricsProcessorWithDefaults() *Observabili
 	var typeVar ObservabilityPipelineGenerateMetricsProcessorType = OBSERVABILITYPIPELINEGENERATEMETRICSPROCESSORTYPE_GENERATE_DATADOG_METRICS
 	this.Type = typeVar
 	return &this
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *ObservabilityPipelineGenerateMetricsProcessor) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineGenerateMetricsProcessor) GetEnabledOk() (*bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *ObservabilityPipelineGenerateMetricsProcessor) HasEnabled() bool {
+	return o != nil && o.Enabled != nil
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *ObservabilityPipelineGenerateMetricsProcessor) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetId returns the Id field value.
@@ -75,71 +102,86 @@ func (o *ObservabilityPipelineGenerateMetricsProcessor) SetId(v string) {
 	o.Id = v
 }
 
-// GetInclude returns the Include field value.
+// GetInclude returns the Include field value if set, zero value otherwise.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) GetInclude() string {
-	if o == nil {
+	if o == nil || o.Include == nil {
 		var ret string
 		return ret
 	}
-	return o.Include
+	return *o.Include
 }
 
-// GetIncludeOk returns a tuple with the Include field value
+// GetIncludeOk returns a tuple with the Include field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) GetIncludeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Include == nil {
 		return nil, false
 	}
-	return &o.Include, true
+	return o.Include, true
 }
 
-// SetInclude sets field value.
+// HasInclude returns a boolean if a field has been set.
+func (o *ObservabilityPipelineGenerateMetricsProcessor) HasInclude() bool {
+	return o != nil && o.Include != nil
+}
+
+// SetInclude gets a reference to the given string and assigns it to the Include field.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) SetInclude(v string) {
-	o.Include = v
+	o.Include = &v
 }
 
-// GetInputs returns the Inputs field value.
+// GetInputs returns the Inputs field value if set, zero value otherwise.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) GetInputs() []string {
-	if o == nil {
+	if o == nil || o.Inputs == nil {
 		var ret []string
 		return ret
 	}
 	return o.Inputs
 }
 
-// GetInputsOk returns a tuple with the Inputs field value
+// GetInputsOk returns a tuple with the Inputs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) GetInputsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil || o.Inputs == nil {
 		return nil, false
 	}
 	return &o.Inputs, true
 }
 
-// SetInputs sets field value.
+// HasInputs returns a boolean if a field has been set.
+func (o *ObservabilityPipelineGenerateMetricsProcessor) HasInputs() bool {
+	return o != nil && o.Inputs != nil
+}
+
+// SetInputs gets a reference to the given []string and assigns it to the Inputs field.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
 
-// GetMetrics returns the Metrics field value.
+// GetMetrics returns the Metrics field value if set, zero value otherwise.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) GetMetrics() []ObservabilityPipelineGeneratedMetric {
-	if o == nil {
+	if o == nil || o.Metrics == nil {
 		var ret []ObservabilityPipelineGeneratedMetric
 		return ret
 	}
 	return o.Metrics
 }
 
-// GetMetricsOk returns a tuple with the Metrics field value
+// GetMetricsOk returns a tuple with the Metrics field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) GetMetricsOk() (*[]ObservabilityPipelineGeneratedMetric, bool) {
-	if o == nil {
+	if o == nil || o.Metrics == nil {
 		return nil, false
 	}
 	return &o.Metrics, true
 }
 
-// SetMetrics sets field value.
+// HasMetrics returns a boolean if a field has been set.
+func (o *ObservabilityPipelineGenerateMetricsProcessor) HasMetrics() bool {
+	return o != nil && o.Metrics != nil
+}
+
+// SetMetrics gets a reference to the given []ObservabilityPipelineGeneratedMetric and assigns it to the Metrics field.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) SetMetrics(v []ObservabilityPipelineGeneratedMetric) {
 	o.Metrics = v
 }
@@ -173,10 +215,19 @@ func (o ObservabilityPipelineGenerateMetricsProcessor) MarshalJSON() ([]byte, er
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
 	toSerialize["id"] = o.Id
-	toSerialize["include"] = o.Include
-	toSerialize["inputs"] = o.Inputs
-	toSerialize["metrics"] = o.Metrics
+	if o.Include != nil {
+		toSerialize["include"] = o.Include
+	}
+	if o.Inputs != nil {
+		toSerialize["inputs"] = o.Inputs
+	}
+	if o.Metrics != nil {
+		toSerialize["metrics"] = o.Metrics
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -188,10 +239,11 @@ func (o ObservabilityPipelineGenerateMetricsProcessor) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineGenerateMetricsProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Enabled *bool                                              `json:"enabled,omitempty"`
 		Id      *string                                            `json:"id"`
-		Include *string                                            `json:"include"`
-		Inputs  *[]string                                          `json:"inputs"`
-		Metrics *[]ObservabilityPipelineGeneratedMetric            `json:"metrics"`
+		Include *string                                            `json:"include,omitempty"`
+		Inputs  []string                                           `json:"inputs,omitempty"`
+		Metrics []ObservabilityPipelineGeneratedMetric             `json:"metrics,omitempty"`
 		Type    *ObservabilityPipelineGenerateMetricsProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -200,30 +252,22 @@ func (o *ObservabilityPipelineGenerateMetricsProcessor) UnmarshalJSON(bytes []by
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
 	}
-	if all.Include == nil {
-		return fmt.Errorf("required field include missing")
-	}
-	if all.Inputs == nil {
-		return fmt.Errorf("required field inputs missing")
-	}
-	if all.Metrics == nil {
-		return fmt.Errorf("required field metrics missing")
-	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "include", "inputs", "metrics", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "id", "include", "inputs", "metrics", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Enabled = all.Enabled
 	o.Id = *all.Id
-	o.Include = *all.Include
-	o.Inputs = *all.Inputs
-	o.Metrics = *all.Metrics
+	o.Include = all.Include
+	o.Inputs = all.Inputs
+	o.Metrics = all.Metrics
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {

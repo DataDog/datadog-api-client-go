@@ -12,12 +12,14 @@ import (
 
 // ObservabilityPipelineSampleProcessor The `sample` processor allows probabilistic sampling of logs at a fixed rate.
 type ObservabilityPipelineSampleProcessor struct {
+	// Whether this processor is enabled.
+	Enabled *bool `json:"enabled,omitempty"`
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// A Datadog search query used to determine which logs this processor targets.
 	Include string `json:"include"`
-	// A list of component IDs whose output is used as the `input` for this component.
-	Inputs []string `json:"inputs"`
+	// A list of component IDs whose output is used as input for this processor. Required when used as a standalone processor, omit when used within a processor group.
+	Inputs []string `json:"inputs,omitempty"`
 	// The percentage of logs to sample.
 	Percentage *float64 `json:"percentage,omitempty"`
 	// Number of events to sample (1 in N).
@@ -33,11 +35,10 @@ type ObservabilityPipelineSampleProcessor struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineSampleProcessor(id string, include string, inputs []string, typeVar ObservabilityPipelineSampleProcessorType) *ObservabilityPipelineSampleProcessor {
+func NewObservabilityPipelineSampleProcessor(id string, include string, typeVar ObservabilityPipelineSampleProcessorType) *ObservabilityPipelineSampleProcessor {
 	this := ObservabilityPipelineSampleProcessor{}
 	this.Id = id
 	this.Include = include
-	this.Inputs = inputs
 	this.Type = typeVar
 	return &this
 }
@@ -50,6 +51,34 @@ func NewObservabilityPipelineSampleProcessorWithDefaults() *ObservabilityPipelin
 	var typeVar ObservabilityPipelineSampleProcessorType = OBSERVABILITYPIPELINESAMPLEPROCESSORTYPE_SAMPLE
 	this.Type = typeVar
 	return &this
+}
+
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *ObservabilityPipelineSampleProcessor) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineSampleProcessor) GetEnabledOk() (*bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *ObservabilityPipelineSampleProcessor) HasEnabled() bool {
+	return o != nil && o.Enabled != nil
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *ObservabilityPipelineSampleProcessor) SetEnabled(v bool) {
+	o.Enabled = &v
 }
 
 // GetId returns the Id field value.
@@ -98,25 +127,30 @@ func (o *ObservabilityPipelineSampleProcessor) SetInclude(v string) {
 	o.Include = v
 }
 
-// GetInputs returns the Inputs field value.
+// GetInputs returns the Inputs field value if set, zero value otherwise.
 func (o *ObservabilityPipelineSampleProcessor) GetInputs() []string {
-	if o == nil {
+	if o == nil || o.Inputs == nil {
 		var ret []string
 		return ret
 	}
 	return o.Inputs
 }
 
-// GetInputsOk returns a tuple with the Inputs field value
+// GetInputsOk returns a tuple with the Inputs field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *ObservabilityPipelineSampleProcessor) GetInputsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil || o.Inputs == nil {
 		return nil, false
 	}
 	return &o.Inputs, true
 }
 
-// SetInputs sets field value.
+// HasInputs returns a boolean if a field has been set.
+func (o *ObservabilityPipelineSampleProcessor) HasInputs() bool {
+	return o != nil && o.Inputs != nil
+}
+
+// SetInputs gets a reference to the given []string and assigns it to the Inputs field.
 func (o *ObservabilityPipelineSampleProcessor) SetInputs(v []string) {
 	o.Inputs = v
 }
@@ -206,9 +240,14 @@ func (o ObservabilityPipelineSampleProcessor) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["include"] = o.Include
-	toSerialize["inputs"] = o.Inputs
+	if o.Inputs != nil {
+		toSerialize["inputs"] = o.Inputs
+	}
 	if o.Percentage != nil {
 		toSerialize["percentage"] = o.Percentage
 	}
@@ -226,9 +265,10 @@ func (o ObservabilityPipelineSampleProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSampleProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Enabled    *bool                                     `json:"enabled,omitempty"`
 		Id         *string                                   `json:"id"`
 		Include    *string                                   `json:"include"`
-		Inputs     *[]string                                 `json:"inputs"`
+		Inputs     []string                                  `json:"inputs,omitempty"`
 		Percentage *float64                                  `json:"percentage,omitempty"`
 		Rate       *int64                                    `json:"rate,omitempty"`
 		Type       *ObservabilityPipelineSampleProcessorType `json:"type"`
@@ -242,23 +282,21 @@ func (o *ObservabilityPipelineSampleProcessor) UnmarshalJSON(bytes []byte) (err 
 	if all.Include == nil {
 		return fmt.Errorf("required field include missing")
 	}
-	if all.Inputs == nil {
-		return fmt.Errorf("required field inputs missing")
-	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "include", "inputs", "percentage", "rate", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "id", "include", "inputs", "percentage", "rate", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Enabled = all.Enabled
 	o.Id = *all.Id
 	o.Include = *all.Include
-	o.Inputs = *all.Inputs
+	o.Inputs = all.Inputs
 	o.Percentage = all.Percentage
 	o.Rate = all.Rate
 	if !all.Type.IsValid() {
