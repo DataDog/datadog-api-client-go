@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ServiceLevelObjectiveQuery A metric-based SLO. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator
+// ServiceLevelObjectiveQuery A metric-based SLO. Note that Datadog only allows the sum by aggregator
 // to be used because this will sum up all request counts instead of averaging them, or taking the max or
 // min of all of those requests.
 type ServiceLevelObjectiveQuery struct {
