@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"id":"3653d3c6-0c75-11ea-ad28-fb5701eabc7d","type":"roles"}}
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/logs/config/restriction_queries/00000000-0000-0000-0000-000000000000/roles
+  response:
+    body: '{"errors":["Role with id: 3653d3c6-0c75-11ea-ad28-fb5701eabc7d not found"]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 2
