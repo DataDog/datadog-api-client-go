@@ -1,4 +1,4 @@
-// Get the scheduled on-call user returns "OK" response
+// Get the schedule on-call user returns "OK" response
 
 package main
 
@@ -13,11 +13,14 @@ import (
 )
 
 func main() {
+	// there is a valid "schedule" in the system
+	ScheduleDataID := os.Getenv("SCHEDULE_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewOnCallApi(apiClient)
-	resp, r, err := api.GetScheduleOnCallUser(ctx, "3653d3c6-0c75-11ea-ad28-fb5701eabc7d", *datadogV2.NewGetScheduleOnCallUserOptionalParameters())
+	resp, r, err := api.GetScheduleOnCallUser(ctx, ScheduleDataID, *datadogV2.NewGetScheduleOnCallUserOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OnCallApi.GetScheduleOnCallUser`: %v\n", err)
