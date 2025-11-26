@@ -22,21 +22,29 @@ func main() {
 							ObservabilityPipelineDatadogLogsDestination: &datadogV2.ObservabilityPipelineDatadogLogsDestination{
 								Id: "datadog-logs-destination",
 								Inputs: []string{
-									"filter-processor",
+									"my-processor-group",
 								},
 								Type: datadogV2.OBSERVABILITYPIPELINEDATADOGLOGSDESTINATIONTYPE_DATADOG_LOGS,
 							}},
 					},
-					Processors: []datadogV2.ObservabilityPipelineConfigProcessorItem{
-						datadogV2.ObservabilityPipelineConfigProcessorItem{
-							ObservabilityPipelineFilterProcessor: &datadogV2.ObservabilityPipelineFilterProcessor{
-								Id:      "filter-processor",
-								Include: "service:my-service",
-								Inputs: []string{
-									"datadog-agent-source",
-								},
-								Type: datadogV2.OBSERVABILITYPIPELINEFILTERPROCESSORTYPE_FILTER,
-							}},
+					Processors: []datadogV2.ObservabilityPipelineConfigProcessorGroup{
+						{
+							Enabled: true,
+							Id:      "my-processor-group",
+							Include: "service:my-service",
+							Inputs: []string{
+								"datadog-agent-source",
+							},
+							Processors: []datadogV2.ObservabilityPipelineConfigProcessorItem{
+								datadogV2.ObservabilityPipelineConfigProcessorItem{
+									ObservabilityPipelineFilterProcessor: &datadogV2.ObservabilityPipelineFilterProcessor{
+										Enabled: true,
+										Id:      "filter-processor",
+										Include: "status:error",
+										Type:    datadogV2.OBSERVABILITYPIPELINEFILTERPROCESSORTYPE_FILTER,
+									}},
+							},
+						},
 					},
 					Sources: []datadogV2.ObservabilityPipelineConfigSourceItem{
 						datadogV2.ObservabilityPipelineConfigSourceItem{
