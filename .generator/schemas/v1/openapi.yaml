@@ -5892,6 +5892,7 @@ components:
           example: 360
           format: int64
           type: integer
+          nullable: true
         num_retention_days:
           description: 'The number of days logs are stored in Standard Tier before
             aging into the Flex Tier or being deleted from the index.
@@ -5975,6 +5976,7 @@ components:
           example: 360
           format: int64
           type: integer
+          nullable: true
         num_retention_days:
           description: 'The number of days logs are stored in Standard Tier before
             aging into the Flex Tier or being deleted from the index.

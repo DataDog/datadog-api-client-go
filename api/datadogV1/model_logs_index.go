@@ -33,7 +33,7 @@ type LogsIndex struct {
 	// If Standard Tier is enabled on this index, logs are first retained in Standard Tier for the number of days specified through `num_retention_days`,
 	// and then stored in Flex Tier until the number of days specified in `num_flex_logs_retention_days` is reached.
 	// The available values depend on retention plans specified in your organization's contract/subscriptions.
-	NumFlexLogsRetentionDays *int64 `json:"num_flex_logs_retention_days,omitempty"`
+	NumFlexLogsRetentionDays datadog.NullableInt64 `json:"num_flex_logs_retention_days,omitempty"`
 	// The number of days logs are stored in Standard Tier before aging into the Flex Tier or being deleted from the index.
 	// The available values depend on retention plans specified in your organization's contract/subscriptions.
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
@@ -247,32 +247,43 @@ func (o *LogsIndex) SetName(v string) {
 	o.Name = v
 }
 
-// GetNumFlexLogsRetentionDays returns the NumFlexLogsRetentionDays field value if set, zero value otherwise.
+// GetNumFlexLogsRetentionDays returns the NumFlexLogsRetentionDays field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *LogsIndex) GetNumFlexLogsRetentionDays() int64 {
-	if o == nil || o.NumFlexLogsRetentionDays == nil {
+	if o == nil || o.NumFlexLogsRetentionDays.Get() == nil {
 		var ret int64
 		return ret
 	}
-	return *o.NumFlexLogsRetentionDays
+	return *o.NumFlexLogsRetentionDays.Get()
 }
 
 // GetNumFlexLogsRetentionDaysOk returns a tuple with the NumFlexLogsRetentionDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *LogsIndex) GetNumFlexLogsRetentionDaysOk() (*int64, bool) {
-	if o == nil || o.NumFlexLogsRetentionDays == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.NumFlexLogsRetentionDays, true
+	return o.NumFlexLogsRetentionDays.Get(), o.NumFlexLogsRetentionDays.IsSet()
 }
 
 // HasNumFlexLogsRetentionDays returns a boolean if a field has been set.
 func (o *LogsIndex) HasNumFlexLogsRetentionDays() bool {
-	return o != nil && o.NumFlexLogsRetentionDays != nil
+	return o != nil && o.NumFlexLogsRetentionDays.IsSet()
 }
 
-// SetNumFlexLogsRetentionDays gets a reference to the given int64 and assigns it to the NumFlexLogsRetentionDays field.
+// SetNumFlexLogsRetentionDays gets a reference to the given datadog.NullableInt64 and assigns it to the NumFlexLogsRetentionDays field.
 func (o *LogsIndex) SetNumFlexLogsRetentionDays(v int64) {
-	o.NumFlexLogsRetentionDays = &v
+	o.NumFlexLogsRetentionDays.Set(&v)
+}
+
+// SetNumFlexLogsRetentionDaysNil sets the value for NumFlexLogsRetentionDays to be an explicit nil.
+func (o *LogsIndex) SetNumFlexLogsRetentionDaysNil() {
+	o.NumFlexLogsRetentionDays.Set(nil)
+}
+
+// UnsetNumFlexLogsRetentionDays ensures that no value is present for NumFlexLogsRetentionDays, not even an explicit nil.
+func (o *LogsIndex) UnsetNumFlexLogsRetentionDays() {
+	o.NumFlexLogsRetentionDays.Unset()
 }
 
 // GetNumRetentionDays returns the NumRetentionDays field value if set, zero value otherwise.
@@ -326,8 +337,8 @@ func (o LogsIndex) MarshalJSON() ([]byte, error) {
 		toSerialize["is_rate_limited"] = o.IsRateLimited
 	}
 	toSerialize["name"] = o.Name
-	if o.NumFlexLogsRetentionDays != nil {
-		toSerialize["num_flex_logs_retention_days"] = o.NumFlexLogsRetentionDays
+	if o.NumFlexLogsRetentionDays.IsSet() {
+		toSerialize["num_flex_logs_retention_days"] = o.NumFlexLogsRetentionDays.Get()
 	}
 	if o.NumRetentionDays != nil {
 		toSerialize["num_retention_days"] = o.NumRetentionDays
@@ -342,15 +353,15 @@ func (o LogsIndex) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DailyLimit                           *int64               `json:"daily_limit,omitempty"`
-		DailyLimitReset                      *LogsDailyLimitReset `json:"daily_limit_reset,omitempty"`
-		DailyLimitWarningThresholdPercentage *float64             `json:"daily_limit_warning_threshold_percentage,omitempty"`
-		ExclusionFilters                     []LogsExclusion      `json:"exclusion_filters,omitempty"`
-		Filter                               *LogsFilter          `json:"filter"`
-		IsRateLimited                        *bool                `json:"is_rate_limited,omitempty"`
-		Name                                 *string              `json:"name"`
-		NumFlexLogsRetentionDays             *int64               `json:"num_flex_logs_retention_days,omitempty"`
-		NumRetentionDays                     *int64               `json:"num_retention_days,omitempty"`
+		DailyLimit                           *int64                `json:"daily_limit,omitempty"`
+		DailyLimitReset                      *LogsDailyLimitReset  `json:"daily_limit_reset,omitempty"`
+		DailyLimitWarningThresholdPercentage *float64              `json:"daily_limit_warning_threshold_percentage,omitempty"`
+		ExclusionFilters                     []LogsExclusion       `json:"exclusion_filters,omitempty"`
+		Filter                               *LogsFilter           `json:"filter"`
+		IsRateLimited                        *bool                 `json:"is_rate_limited,omitempty"`
+		Name                                 *string               `json:"name"`
+		NumFlexLogsRetentionDays             datadog.NullableInt64 `json:"num_flex_logs_retention_days,omitempty"`
+		NumRetentionDays                     *int64                `json:"num_retention_days,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
