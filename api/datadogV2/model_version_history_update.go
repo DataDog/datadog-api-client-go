@@ -8,38 +8,38 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RuleVersionUpdate A change in a rule version.
-type RuleVersionUpdate struct {
+// VersionHistoryUpdate A change in a rule version.
+type VersionHistoryUpdate struct {
 	// The new value of the field.
 	Change *string `json:"change,omitempty"`
 	// The field that was changed.
 	Field *string `json:"field,omitempty"`
 	// The type of change.
-	Type *RuleVersionUpdateType `json:"type,omitempty"`
+	Type *VersionHistoryUpdateType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRuleVersionUpdate instantiates a new RuleVersionUpdate object.
+// NewVersionHistoryUpdate instantiates a new VersionHistoryUpdate object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRuleVersionUpdate() *RuleVersionUpdate {
-	this := RuleVersionUpdate{}
+func NewVersionHistoryUpdate() *VersionHistoryUpdate {
+	this := VersionHistoryUpdate{}
 	return &this
 }
 
-// NewRuleVersionUpdateWithDefaults instantiates a new RuleVersionUpdate object.
+// NewVersionHistoryUpdateWithDefaults instantiates a new VersionHistoryUpdate object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRuleVersionUpdateWithDefaults() *RuleVersionUpdate {
-	this := RuleVersionUpdate{}
+func NewVersionHistoryUpdateWithDefaults() *VersionHistoryUpdate {
+	this := VersionHistoryUpdate{}
 	return &this
 }
 
 // GetChange returns the Change field value if set, zero value otherwise.
-func (o *RuleVersionUpdate) GetChange() string {
+func (o *VersionHistoryUpdate) GetChange() string {
 	if o == nil || o.Change == nil {
 		var ret string
 		return ret
@@ -49,7 +49,7 @@ func (o *RuleVersionUpdate) GetChange() string {
 
 // GetChangeOk returns a tuple with the Change field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuleVersionUpdate) GetChangeOk() (*string, bool) {
+func (o *VersionHistoryUpdate) GetChangeOk() (*string, bool) {
 	if o == nil || o.Change == nil {
 		return nil, false
 	}
@@ -57,17 +57,17 @@ func (o *RuleVersionUpdate) GetChangeOk() (*string, bool) {
 }
 
 // HasChange returns a boolean if a field has been set.
-func (o *RuleVersionUpdate) HasChange() bool {
+func (o *VersionHistoryUpdate) HasChange() bool {
 	return o != nil && o.Change != nil
 }
 
 // SetChange gets a reference to the given string and assigns it to the Change field.
-func (o *RuleVersionUpdate) SetChange(v string) {
+func (o *VersionHistoryUpdate) SetChange(v string) {
 	o.Change = &v
 }
 
 // GetField returns the Field field value if set, zero value otherwise.
-func (o *RuleVersionUpdate) GetField() string {
+func (o *VersionHistoryUpdate) GetField() string {
 	if o == nil || o.Field == nil {
 		var ret string
 		return ret
@@ -77,7 +77,7 @@ func (o *RuleVersionUpdate) GetField() string {
 
 // GetFieldOk returns a tuple with the Field field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuleVersionUpdate) GetFieldOk() (*string, bool) {
+func (o *VersionHistoryUpdate) GetFieldOk() (*string, bool) {
 	if o == nil || o.Field == nil {
 		return nil, false
 	}
@@ -85,19 +85,19 @@ func (o *RuleVersionUpdate) GetFieldOk() (*string, bool) {
 }
 
 // HasField returns a boolean if a field has been set.
-func (o *RuleVersionUpdate) HasField() bool {
+func (o *VersionHistoryUpdate) HasField() bool {
 	return o != nil && o.Field != nil
 }
 
 // SetField gets a reference to the given string and assigns it to the Field field.
-func (o *RuleVersionUpdate) SetField(v string) {
+func (o *VersionHistoryUpdate) SetField(v string) {
 	o.Field = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *RuleVersionUpdate) GetType() RuleVersionUpdateType {
+func (o *VersionHistoryUpdate) GetType() VersionHistoryUpdateType {
 	if o == nil || o.Type == nil {
-		var ret RuleVersionUpdateType
+		var ret VersionHistoryUpdateType
 		return ret
 	}
 	return *o.Type
@@ -105,7 +105,7 @@ func (o *RuleVersionUpdate) GetType() RuleVersionUpdateType {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuleVersionUpdate) GetTypeOk() (*RuleVersionUpdateType, bool) {
+func (o *VersionHistoryUpdate) GetTypeOk() (*VersionHistoryUpdateType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -113,17 +113,17 @@ func (o *RuleVersionUpdate) GetTypeOk() (*RuleVersionUpdateType, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *RuleVersionUpdate) HasType() bool {
+func (o *VersionHistoryUpdate) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
-// SetType gets a reference to the given RuleVersionUpdateType and assigns it to the Type field.
-func (o *RuleVersionUpdate) SetType(v RuleVersionUpdateType) {
+// SetType gets a reference to the given VersionHistoryUpdateType and assigns it to the Type field.
+func (o *VersionHistoryUpdate) SetType(v VersionHistoryUpdateType) {
 	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RuleVersionUpdate) MarshalJSON() ([]byte, error) {
+func (o VersionHistoryUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -145,11 +145,11 @@ func (o RuleVersionUpdate) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RuleVersionUpdate) UnmarshalJSON(bytes []byte) (err error) {
+func (o *VersionHistoryUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Change *string                `json:"change,omitempty"`
-		Field  *string                `json:"field,omitempty"`
-		Type   *RuleVersionUpdateType `json:"type,omitempty"`
+		Change *string                   `json:"change,omitempty"`
+		Field  *string                   `json:"field,omitempty"`
+		Type   *VersionHistoryUpdateType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
