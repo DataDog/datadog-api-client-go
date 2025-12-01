@@ -1,0 +1,391 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_restriction_query_attributes.go - Datadog</title>
+
+<link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/datadog-api-client-go/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.24.10";</script>
+<script src="/datadog-api-client-go/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog | Datadog API client for GO</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_restriction_query_attributes.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">github.com/DataDog/datadog-api-client-go/v2/api/datadogV2</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span><span class="comment">// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.</span>
+<span id="L2" class="ln">     2  </span><span class="comment">// This product includes software developed at Datadog (https://www.datadoghq.com/).</span>
+<span id="L3" class="ln">     3  </span><span class="comment">// Copyright 2019-Present Datadog, Inc.</span>
+<span id="L4" class="ln">     4  </span>
+<span id="L5" class="ln">     5  </span>package datadogV2
+<span id="L6" class="ln">     6  </span>
+<span id="L7" class="ln">     7  </span>import (
+<span id="L8" class="ln">     8  </span>	&#34;time&#34;
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
+<span id="L11" class="ln">    11  </span>)
+<span id="L12" class="ln">    12  </span>
+<span id="L13" class="ln">    13  </span><span class="comment">// RestrictionQueryAttributes Attributes of the restriction query.</span>
+<span id="L14" class="ln">    14  </span>type RestrictionQueryAttributes struct {
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Creation time of the restriction query.</span>
+<span id="L16" class="ln">    16  </span>	CreatedAt *time.Time `json:&#34;created_at,omitempty&#34;`
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Email of the user who last modified this restriction query.</span>
+<span id="L18" class="ln">    18  </span>	LastModifierEmail *string `json:&#34;last_modifier_email,omitempty&#34;`
+<span id="L19" class="ln">    19  </span>	<span class="comment">// Name of the user who last modified this restriction query.</span>
+<span id="L20" class="ln">    20  </span>	LastModifierName *string `json:&#34;last_modifier_name,omitempty&#34;`
+<span id="L21" class="ln">    21  </span>	<span class="comment">// Time of last restriction query modification.</span>
+<span id="L22" class="ln">    22  </span>	ModifiedAt *time.Time `json:&#34;modified_at,omitempty&#34;`
+<span id="L23" class="ln">    23  </span>	<span class="comment">// The query that defines the restriction. Only the content matching the query can be returned.</span>
+<span id="L24" class="ln">    24  </span>	RestrictionQuery *string `json:&#34;restriction_query,omitempty&#34;`
+<span id="L25" class="ln">    25  </span>	<span class="comment">// Number of roles associated with this restriction query.</span>
+<span id="L26" class="ln">    26  </span>	RoleCount *int64 `json:&#34;role_count,omitempty&#34;`
+<span id="L27" class="ln">    27  </span>	<span class="comment">// Number of users associated with this restriction query.</span>
+<span id="L28" class="ln">    28  </span>	UserCount *int64 `json:&#34;user_count,omitempty&#34;`
+<span id="L29" class="ln">    29  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L30" class="ln">    30  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L31" class="ln">    31  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L32" class="ln">    32  </span>}
+<span id="L33" class="ln">    33  </span>
+<span id="L34" class="ln">    34  </span><span class="comment">// NewRestrictionQueryAttributes instantiates a new RestrictionQueryAttributes object.</span>
+<span id="L35" class="ln">    35  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L36" class="ln">    36  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L37" class="ln">    37  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L38" class="ln">    38  </span>func NewRestrictionQueryAttributes() *RestrictionQueryAttributes {
+<span id="L39" class="ln">    39  </span>	this := RestrictionQueryAttributes{}
+<span id="L40" class="ln">    40  </span>	return &amp;this
+<span id="L41" class="ln">    41  </span>}
+<span id="L42" class="ln">    42  </span>
+<span id="L43" class="ln">    43  </span><span class="comment">// NewRestrictionQueryAttributesWithDefaults instantiates a new RestrictionQueryAttributes object.</span>
+<span id="L44" class="ln">    44  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L45" class="ln">    45  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L46" class="ln">    46  </span>func NewRestrictionQueryAttributesWithDefaults() *RestrictionQueryAttributes {
+<span id="L47" class="ln">    47  </span>	this := RestrictionQueryAttributes{}
+<span id="L48" class="ln">    48  </span>	return &amp;this
+<span id="L49" class="ln">    49  </span>}
+<span id="L50" class="ln">    50  </span>
+<span id="L51" class="ln">    51  </span><span class="comment">// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.</span>
+<span id="L52" class="ln">    52  </span>func (o *RestrictionQueryAttributes) GetCreatedAt() time.Time {
+<span id="L53" class="ln">    53  </span>	if o == nil || o.CreatedAt == nil {
+<span id="L54" class="ln">    54  </span>		var ret time.Time
+<span id="L55" class="ln">    55  </span>		return ret
+<span id="L56" class="ln">    56  </span>	}
+<span id="L57" class="ln">    57  </span>	return *o.CreatedAt
+<span id="L58" class="ln">    58  </span>}
+<span id="L59" class="ln">    59  </span>
+<span id="L60" class="ln">    60  </span><span class="comment">// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise</span>
+<span id="L61" class="ln">    61  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L62" class="ln">    62  </span>func (o *RestrictionQueryAttributes) GetCreatedAtOk() (*time.Time, bool) {
+<span id="L63" class="ln">    63  </span>	if o == nil || o.CreatedAt == nil {
+<span id="L64" class="ln">    64  </span>		return nil, false
+<span id="L65" class="ln">    65  </span>	}
+<span id="L66" class="ln">    66  </span>	return o.CreatedAt, true
+<span id="L67" class="ln">    67  </span>}
+<span id="L68" class="ln">    68  </span>
+<span id="L69" class="ln">    69  </span><span class="comment">// HasCreatedAt returns a boolean if a field has been set.</span>
+<span id="L70" class="ln">    70  </span>func (o *RestrictionQueryAttributes) HasCreatedAt() bool {
+<span id="L71" class="ln">    71  </span>	return o != nil &amp;&amp; o.CreatedAt != nil
+<span id="L72" class="ln">    72  </span>}
+<span id="L73" class="ln">    73  </span>
+<span id="L74" class="ln">    74  </span><span class="comment">// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.</span>
+<span id="L75" class="ln">    75  </span>func (o *RestrictionQueryAttributes) SetCreatedAt(v time.Time) {
+<span id="L76" class="ln">    76  </span>	o.CreatedAt = &amp;v
+<span id="L77" class="ln">    77  </span>}
+<span id="L78" class="ln">    78  </span>
+<span id="L79" class="ln">    79  </span><span class="comment">// GetLastModifierEmail returns the LastModifierEmail field value if set, zero value otherwise.</span>
+<span id="L80" class="ln">    80  </span>func (o *RestrictionQueryAttributes) GetLastModifierEmail() string {
+<span id="L81" class="ln">    81  </span>	if o == nil || o.LastModifierEmail == nil {
+<span id="L82" class="ln">    82  </span>		var ret string
+<span id="L83" class="ln">    83  </span>		return ret
+<span id="L84" class="ln">    84  </span>	}
+<span id="L85" class="ln">    85  </span>	return *o.LastModifierEmail
+<span id="L86" class="ln">    86  </span>}
+<span id="L87" class="ln">    87  </span>
+<span id="L88" class="ln">    88  </span><span class="comment">// GetLastModifierEmailOk returns a tuple with the LastModifierEmail field value if set, nil otherwise</span>
+<span id="L89" class="ln">    89  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L90" class="ln">    90  </span>func (o *RestrictionQueryAttributes) GetLastModifierEmailOk() (*string, bool) {
+<span id="L91" class="ln">    91  </span>	if o == nil || o.LastModifierEmail == nil {
+<span id="L92" class="ln">    92  </span>		return nil, false
+<span id="L93" class="ln">    93  </span>	}
+<span id="L94" class="ln">    94  </span>	return o.LastModifierEmail, true
+<span id="L95" class="ln">    95  </span>}
+<span id="L96" class="ln">    96  </span>
+<span id="L97" class="ln">    97  </span><span class="comment">// HasLastModifierEmail returns a boolean if a field has been set.</span>
+<span id="L98" class="ln">    98  </span>func (o *RestrictionQueryAttributes) HasLastModifierEmail() bool {
+<span id="L99" class="ln">    99  </span>	return o != nil &amp;&amp; o.LastModifierEmail != nil
+<span id="L100" class="ln">   100  </span>}
+<span id="L101" class="ln">   101  </span>
+<span id="L102" class="ln">   102  </span><span class="comment">// SetLastModifierEmail gets a reference to the given string and assigns it to the LastModifierEmail field.</span>
+<span id="L103" class="ln">   103  </span>func (o *RestrictionQueryAttributes) SetLastModifierEmail(v string) {
+<span id="L104" class="ln">   104  </span>	o.LastModifierEmail = &amp;v
+<span id="L105" class="ln">   105  </span>}
+<span id="L106" class="ln">   106  </span>
+<span id="L107" class="ln">   107  </span><span class="comment">// GetLastModifierName returns the LastModifierName field value if set, zero value otherwise.</span>
+<span id="L108" class="ln">   108  </span>func (o *RestrictionQueryAttributes) GetLastModifierName() string {
+<span id="L109" class="ln">   109  </span>	if o == nil || o.LastModifierName == nil {
+<span id="L110" class="ln">   110  </span>		var ret string
+<span id="L111" class="ln">   111  </span>		return ret
+<span id="L112" class="ln">   112  </span>	}
+<span id="L113" class="ln">   113  </span>	return *o.LastModifierName
+<span id="L114" class="ln">   114  </span>}
+<span id="L115" class="ln">   115  </span>
+<span id="L116" class="ln">   116  </span><span class="comment">// GetLastModifierNameOk returns a tuple with the LastModifierName field value if set, nil otherwise</span>
+<span id="L117" class="ln">   117  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L118" class="ln">   118  </span>func (o *RestrictionQueryAttributes) GetLastModifierNameOk() (*string, bool) {
+<span id="L119" class="ln">   119  </span>	if o == nil || o.LastModifierName == nil {
+<span id="L120" class="ln">   120  </span>		return nil, false
+<span id="L121" class="ln">   121  </span>	}
+<span id="L122" class="ln">   122  </span>	return o.LastModifierName, true
+<span id="L123" class="ln">   123  </span>}
+<span id="L124" class="ln">   124  </span>
+<span id="L125" class="ln">   125  </span><span class="comment">// HasLastModifierName returns a boolean if a field has been set.</span>
+<span id="L126" class="ln">   126  </span>func (o *RestrictionQueryAttributes) HasLastModifierName() bool {
+<span id="L127" class="ln">   127  </span>	return o != nil &amp;&amp; o.LastModifierName != nil
+<span id="L128" class="ln">   128  </span>}
+<span id="L129" class="ln">   129  </span>
+<span id="L130" class="ln">   130  </span><span class="comment">// SetLastModifierName gets a reference to the given string and assigns it to the LastModifierName field.</span>
+<span id="L131" class="ln">   131  </span>func (o *RestrictionQueryAttributes) SetLastModifierName(v string) {
+<span id="L132" class="ln">   132  </span>	o.LastModifierName = &amp;v
+<span id="L133" class="ln">   133  </span>}
+<span id="L134" class="ln">   134  </span>
+<span id="L135" class="ln">   135  </span><span class="comment">// GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.</span>
+<span id="L136" class="ln">   136  </span>func (o *RestrictionQueryAttributes) GetModifiedAt() time.Time {
+<span id="L137" class="ln">   137  </span>	if o == nil || o.ModifiedAt == nil {
+<span id="L138" class="ln">   138  </span>		var ret time.Time
+<span id="L139" class="ln">   139  </span>		return ret
+<span id="L140" class="ln">   140  </span>	}
+<span id="L141" class="ln">   141  </span>	return *o.ModifiedAt
+<span id="L142" class="ln">   142  </span>}
+<span id="L143" class="ln">   143  </span>
+<span id="L144" class="ln">   144  </span><span class="comment">// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise</span>
+<span id="L145" class="ln">   145  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L146" class="ln">   146  </span>func (o *RestrictionQueryAttributes) GetModifiedAtOk() (*time.Time, bool) {
+<span id="L147" class="ln">   147  </span>	if o == nil || o.ModifiedAt == nil {
+<span id="L148" class="ln">   148  </span>		return nil, false
+<span id="L149" class="ln">   149  </span>	}
+<span id="L150" class="ln">   150  </span>	return o.ModifiedAt, true
+<span id="L151" class="ln">   151  </span>}
+<span id="L152" class="ln">   152  </span>
+<span id="L153" class="ln">   153  </span><span class="comment">// HasModifiedAt returns a boolean if a field has been set.</span>
+<span id="L154" class="ln">   154  </span>func (o *RestrictionQueryAttributes) HasModifiedAt() bool {
+<span id="L155" class="ln">   155  </span>	return o != nil &amp;&amp; o.ModifiedAt != nil
+<span id="L156" class="ln">   156  </span>}
+<span id="L157" class="ln">   157  </span>
+<span id="L158" class="ln">   158  </span><span class="comment">// SetModifiedAt gets a reference to the given time.Time and assigns it to the ModifiedAt field.</span>
+<span id="L159" class="ln">   159  </span>func (o *RestrictionQueryAttributes) SetModifiedAt(v time.Time) {
+<span id="L160" class="ln">   160  </span>	o.ModifiedAt = &amp;v
+<span id="L161" class="ln">   161  </span>}
+<span id="L162" class="ln">   162  </span>
+<span id="L163" class="ln">   163  </span><span class="comment">// GetRestrictionQuery returns the RestrictionQuery field value if set, zero value otherwise.</span>
+<span id="L164" class="ln">   164  </span>func (o *RestrictionQueryAttributes) GetRestrictionQuery() string {
+<span id="L165" class="ln">   165  </span>	if o == nil || o.RestrictionQuery == nil {
+<span id="L166" class="ln">   166  </span>		var ret string
+<span id="L167" class="ln">   167  </span>		return ret
+<span id="L168" class="ln">   168  </span>	}
+<span id="L169" class="ln">   169  </span>	return *o.RestrictionQuery
+<span id="L170" class="ln">   170  </span>}
+<span id="L171" class="ln">   171  </span>
+<span id="L172" class="ln">   172  </span><span class="comment">// GetRestrictionQueryOk returns a tuple with the RestrictionQuery field value if set, nil otherwise</span>
+<span id="L173" class="ln">   173  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L174" class="ln">   174  </span>func (o *RestrictionQueryAttributes) GetRestrictionQueryOk() (*string, bool) {
+<span id="L175" class="ln">   175  </span>	if o == nil || o.RestrictionQuery == nil {
+<span id="L176" class="ln">   176  </span>		return nil, false
+<span id="L177" class="ln">   177  </span>	}
+<span id="L178" class="ln">   178  </span>	return o.RestrictionQuery, true
+<span id="L179" class="ln">   179  </span>}
+<span id="L180" class="ln">   180  </span>
+<span id="L181" class="ln">   181  </span><span class="comment">// HasRestrictionQuery returns a boolean if a field has been set.</span>
+<span id="L182" class="ln">   182  </span>func (o *RestrictionQueryAttributes) HasRestrictionQuery() bool {
+<span id="L183" class="ln">   183  </span>	return o != nil &amp;&amp; o.RestrictionQuery != nil
+<span id="L184" class="ln">   184  </span>}
+<span id="L185" class="ln">   185  </span>
+<span id="L186" class="ln">   186  </span><span class="comment">// SetRestrictionQuery gets a reference to the given string and assigns it to the RestrictionQuery field.</span>
+<span id="L187" class="ln">   187  </span>func (o *RestrictionQueryAttributes) SetRestrictionQuery(v string) {
+<span id="L188" class="ln">   188  </span>	o.RestrictionQuery = &amp;v
+<span id="L189" class="ln">   189  </span>}
+<span id="L190" class="ln">   190  </span>
+<span id="L191" class="ln">   191  </span><span class="comment">// GetRoleCount returns the RoleCount field value if set, zero value otherwise.</span>
+<span id="L192" class="ln">   192  </span>func (o *RestrictionQueryAttributes) GetRoleCount() int64 {
+<span id="L193" class="ln">   193  </span>	if o == nil || o.RoleCount == nil {
+<span id="L194" class="ln">   194  </span>		var ret int64
+<span id="L195" class="ln">   195  </span>		return ret
+<span id="L196" class="ln">   196  </span>	}
+<span id="L197" class="ln">   197  </span>	return *o.RoleCount
+<span id="L198" class="ln">   198  </span>}
+<span id="L199" class="ln">   199  </span>
+<span id="L200" class="ln">   200  </span><span class="comment">// GetRoleCountOk returns a tuple with the RoleCount field value if set, nil otherwise</span>
+<span id="L201" class="ln">   201  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L202" class="ln">   202  </span>func (o *RestrictionQueryAttributes) GetRoleCountOk() (*int64, bool) {
+<span id="L203" class="ln">   203  </span>	if o == nil || o.RoleCount == nil {
+<span id="L204" class="ln">   204  </span>		return nil, false
+<span id="L205" class="ln">   205  </span>	}
+<span id="L206" class="ln">   206  </span>	return o.RoleCount, true
+<span id="L207" class="ln">   207  </span>}
+<span id="L208" class="ln">   208  </span>
+<span id="L209" class="ln">   209  </span><span class="comment">// HasRoleCount returns a boolean if a field has been set.</span>
+<span id="L210" class="ln">   210  </span>func (o *RestrictionQueryAttributes) HasRoleCount() bool {
+<span id="L211" class="ln">   211  </span>	return o != nil &amp;&amp; o.RoleCount != nil
+<span id="L212" class="ln">   212  </span>}
+<span id="L213" class="ln">   213  </span>
+<span id="L214" class="ln">   214  </span><span class="comment">// SetRoleCount gets a reference to the given int64 and assigns it to the RoleCount field.</span>
+<span id="L215" class="ln">   215  </span>func (o *RestrictionQueryAttributes) SetRoleCount(v int64) {
+<span id="L216" class="ln">   216  </span>	o.RoleCount = &amp;v
+<span id="L217" class="ln">   217  </span>}
+<span id="L218" class="ln">   218  </span>
+<span id="L219" class="ln">   219  </span><span class="comment">// GetUserCount returns the UserCount field value if set, zero value otherwise.</span>
+<span id="L220" class="ln">   220  </span>func (o *RestrictionQueryAttributes) GetUserCount() int64 {
+<span id="L221" class="ln">   221  </span>	if o == nil || o.UserCount == nil {
+<span id="L222" class="ln">   222  </span>		var ret int64
+<span id="L223" class="ln">   223  </span>		return ret
+<span id="L224" class="ln">   224  </span>	}
+<span id="L225" class="ln">   225  </span>	return *o.UserCount
+<span id="L226" class="ln">   226  </span>}
+<span id="L227" class="ln">   227  </span>
+<span id="L228" class="ln">   228  </span><span class="comment">// GetUserCountOk returns a tuple with the UserCount field value if set, nil otherwise</span>
+<span id="L229" class="ln">   229  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L230" class="ln">   230  </span>func (o *RestrictionQueryAttributes) GetUserCountOk() (*int64, bool) {
+<span id="L231" class="ln">   231  </span>	if o == nil || o.UserCount == nil {
+<span id="L232" class="ln">   232  </span>		return nil, false
+<span id="L233" class="ln">   233  </span>	}
+<span id="L234" class="ln">   234  </span>	return o.UserCount, true
+<span id="L235" class="ln">   235  </span>}
+<span id="L236" class="ln">   236  </span>
+<span id="L237" class="ln">   237  </span><span class="comment">// HasUserCount returns a boolean if a field has been set.</span>
+<span id="L238" class="ln">   238  </span>func (o *RestrictionQueryAttributes) HasUserCount() bool {
+<span id="L239" class="ln">   239  </span>	return o != nil &amp;&amp; o.UserCount != nil
+<span id="L240" class="ln">   240  </span>}
+<span id="L241" class="ln">   241  </span>
+<span id="L242" class="ln">   242  </span><span class="comment">// SetUserCount gets a reference to the given int64 and assigns it to the UserCount field.</span>
+<span id="L243" class="ln">   243  </span>func (o *RestrictionQueryAttributes) SetUserCount(v int64) {
+<span id="L244" class="ln">   244  </span>	o.UserCount = &amp;v
+<span id="L245" class="ln">   245  </span>}
+<span id="L246" class="ln">   246  </span>
+<span id="L247" class="ln">   247  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L248" class="ln">   248  </span>func (o RestrictionQueryAttributes) MarshalJSON() ([]byte, error) {
+<span id="L249" class="ln">   249  </span>	toSerialize := map[string]interface{}{}
+<span id="L250" class="ln">   250  </span>	if o.UnparsedObject != nil {
+<span id="L251" class="ln">   251  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L252" class="ln">   252  </span>	}
+<span id="L253" class="ln">   253  </span>	if o.CreatedAt != nil {
+<span id="L254" class="ln">   254  </span>		if o.CreatedAt.Nanosecond() == 0 {
+<span id="L255" class="ln">   255  </span>			toSerialize[&#34;created_at&#34;] = o.CreatedAt.Format(&#34;2006-01-02T15:04:05Z07:00&#34;)
+<span id="L256" class="ln">   256  </span>		} else {
+<span id="L257" class="ln">   257  </span>			toSerialize[&#34;created_at&#34;] = o.CreatedAt.Format(&#34;2006-01-02T15:04:05.000Z07:00&#34;)
+<span id="L258" class="ln">   258  </span>		}
+<span id="L259" class="ln">   259  </span>	}
+<span id="L260" class="ln">   260  </span>	if o.LastModifierEmail != nil {
+<span id="L261" class="ln">   261  </span>		toSerialize[&#34;last_modifier_email&#34;] = o.LastModifierEmail
+<span id="L262" class="ln">   262  </span>	}
+<span id="L263" class="ln">   263  </span>	if o.LastModifierName != nil {
+<span id="L264" class="ln">   264  </span>		toSerialize[&#34;last_modifier_name&#34;] = o.LastModifierName
+<span id="L265" class="ln">   265  </span>	}
+<span id="L266" class="ln">   266  </span>	if o.ModifiedAt != nil {
+<span id="L267" class="ln">   267  </span>		if o.ModifiedAt.Nanosecond() == 0 {
+<span id="L268" class="ln">   268  </span>			toSerialize[&#34;modified_at&#34;] = o.ModifiedAt.Format(&#34;2006-01-02T15:04:05Z07:00&#34;)
+<span id="L269" class="ln">   269  </span>		} else {
+<span id="L270" class="ln">   270  </span>			toSerialize[&#34;modified_at&#34;] = o.ModifiedAt.Format(&#34;2006-01-02T15:04:05.000Z07:00&#34;)
+<span id="L271" class="ln">   271  </span>		}
+<span id="L272" class="ln">   272  </span>	}
+<span id="L273" class="ln">   273  </span>	if o.RestrictionQuery != nil {
+<span id="L274" class="ln">   274  </span>		toSerialize[&#34;restriction_query&#34;] = o.RestrictionQuery
+<span id="L275" class="ln">   275  </span>	}
+<span id="L276" class="ln">   276  </span>	if o.RoleCount != nil {
+<span id="L277" class="ln">   277  </span>		toSerialize[&#34;role_count&#34;] = o.RoleCount
+<span id="L278" class="ln">   278  </span>	}
+<span id="L279" class="ln">   279  </span>	if o.UserCount != nil {
+<span id="L280" class="ln">   280  </span>		toSerialize[&#34;user_count&#34;] = o.UserCount
+<span id="L281" class="ln">   281  </span>	}
+<span id="L282" class="ln">   282  </span>
+<span id="L283" class="ln">   283  </span>	for key, value := range o.AdditionalProperties {
+<span id="L284" class="ln">   284  </span>		toSerialize[key] = value
+<span id="L285" class="ln">   285  </span>	}
+<span id="L286" class="ln">   286  </span>	return datadog.Marshal(toSerialize)
+<span id="L287" class="ln">   287  </span>}
+<span id="L288" class="ln">   288  </span>
+<span id="L289" class="ln">   289  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L290" class="ln">   290  </span>func (o *RestrictionQueryAttributes) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L291" class="ln">   291  </span>	all := struct {
+<span id="L292" class="ln">   292  </span>		CreatedAt         *time.Time `json:&#34;created_at,omitempty&#34;`
+<span id="L293" class="ln">   293  </span>		LastModifierEmail *string    `json:&#34;last_modifier_email,omitempty&#34;`
+<span id="L294" class="ln">   294  </span>		LastModifierName  *string    `json:&#34;last_modifier_name,omitempty&#34;`
+<span id="L295" class="ln">   295  </span>		ModifiedAt        *time.Time `json:&#34;modified_at,omitempty&#34;`
+<span id="L296" class="ln">   296  </span>		RestrictionQuery  *string    `json:&#34;restriction_query,omitempty&#34;`
+<span id="L297" class="ln">   297  </span>		RoleCount         *int64     `json:&#34;role_count,omitempty&#34;`
+<span id="L298" class="ln">   298  </span>		UserCount         *int64     `json:&#34;user_count,omitempty&#34;`
+<span id="L299" class="ln">   299  </span>	}{}
+<span id="L300" class="ln">   300  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L301" class="ln">   301  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L302" class="ln">   302  </span>	}
+<span id="L303" class="ln">   303  </span>	additionalProperties := make(map[string]interface{})
+<span id="L304" class="ln">   304  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L305" class="ln">   305  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;created_at&#34;, &#34;last_modifier_email&#34;, &#34;last_modifier_name&#34;, &#34;modified_at&#34;, &#34;restriction_query&#34;, &#34;role_count&#34;, &#34;user_count&#34;})
+<span id="L306" class="ln">   306  </span>	} else {
+<span id="L307" class="ln">   307  </span>		return err
+<span id="L308" class="ln">   308  </span>	}
+<span id="L309" class="ln">   309  </span>	o.CreatedAt = all.CreatedAt
+<span id="L310" class="ln">   310  </span>	o.LastModifierEmail = all.LastModifierEmail
+<span id="L311" class="ln">   311  </span>	o.LastModifierName = all.LastModifierName
+<span id="L312" class="ln">   312  </span>	o.ModifiedAt = all.ModifiedAt
+<span id="L313" class="ln">   313  </span>	o.RestrictionQuery = all.RestrictionQuery
+<span id="L314" class="ln">   314  </span>	o.RoleCount = all.RoleCount
+<span id="L315" class="ln">   315  </span>	o.UserCount = all.UserCount
+<span id="L316" class="ln">   316  </span>
+<span id="L317" class="ln">   317  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L318" class="ln">   318  </span>		o.AdditionalProperties = additionalProperties
+<span id="L319" class="ln">   319  </span>	}
+<span id="L320" class="ln">   320  </span>
+<span id="L321" class="ln">   321  </span>	return nil
+<span id="L322" class="ln">   322  </span>}
+<span id="L323" class="ln">   323  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.24.10.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

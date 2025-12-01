@@ -201,6 +201,56 @@
 <span id="L144" class="ln">   144  </span>	return nil
 <span id="L145" class="ln">   145  </span>}
 <span id="L146" class="ln">   146  </span>
+<span id="L147" class="ln">   147  </span><span class="comment">// NullableRelationshipToUserTeamPermissionData handles when a null is used for RelationshipToUserTeamPermissionData.</span>
+<span id="L148" class="ln">   148  </span>type NullableRelationshipToUserTeamPermissionData struct {
+<span id="L149" class="ln">   149  </span>	value *RelationshipToUserTeamPermissionData
+<span id="L150" class="ln">   150  </span>	isSet bool
+<span id="L151" class="ln">   151  </span>}
+<span id="L152" class="ln">   152  </span>
+<span id="L153" class="ln">   153  </span><span class="comment">// Get returns the associated value.</span>
+<span id="L154" class="ln">   154  </span>func (v NullableRelationshipToUserTeamPermissionData) Get() *RelationshipToUserTeamPermissionData {
+<span id="L155" class="ln">   155  </span>	return v.value
+<span id="L156" class="ln">   156  </span>}
+<span id="L157" class="ln">   157  </span>
+<span id="L158" class="ln">   158  </span><span class="comment">// Set changes the value and indicates it&#39;s been called.</span>
+<span id="L159" class="ln">   159  </span>func (v *NullableRelationshipToUserTeamPermissionData) Set(val *RelationshipToUserTeamPermissionData) {
+<span id="L160" class="ln">   160  </span>	v.value = val
+<span id="L161" class="ln">   161  </span>	v.isSet = true
+<span id="L162" class="ln">   162  </span>}
+<span id="L163" class="ln">   163  </span>
+<span id="L164" class="ln">   164  </span><span class="comment">// IsSet returns whether Set has been called.</span>
+<span id="L165" class="ln">   165  </span>func (v NullableRelationshipToUserTeamPermissionData) IsSet() bool {
+<span id="L166" class="ln">   166  </span>	return v.isSet
+<span id="L167" class="ln">   167  </span>}
+<span id="L168" class="ln">   168  </span>
+<span id="L169" class="ln">   169  </span><span class="comment">// Unset sets the value to nil and resets the set flag/</span>
+<span id="L170" class="ln">   170  </span>func (v *NullableRelationshipToUserTeamPermissionData) Unset() {
+<span id="L171" class="ln">   171  </span>	v.value = nil
+<span id="L172" class="ln">   172  </span>	v.isSet = false
+<span id="L173" class="ln">   173  </span>}
+<span id="L174" class="ln">   174  </span>
+<span id="L175" class="ln">   175  </span><span class="comment">// NewNullableRelationshipToUserTeamPermissionData initializes the struct as if Set has been called.</span>
+<span id="L176" class="ln">   176  </span>func NewNullableRelationshipToUserTeamPermissionData(val *RelationshipToUserTeamPermissionData) *NullableRelationshipToUserTeamPermissionData {
+<span id="L177" class="ln">   177  </span>	return &amp;NullableRelationshipToUserTeamPermissionData{value: val, isSet: true}
+<span id="L178" class="ln">   178  </span>}
+<span id="L179" class="ln">   179  </span>
+<span id="L180" class="ln">   180  </span><span class="comment">// MarshalJSON serializes the associated value.</span>
+<span id="L181" class="ln">   181  </span>func (v NullableRelationshipToUserTeamPermissionData) MarshalJSON() ([]byte, error) {
+<span id="L182" class="ln">   182  </span>	return datadog.Marshal(v.value)
+<span id="L183" class="ln">   183  </span>}
+<span id="L184" class="ln">   184  </span>
+<span id="L185" class="ln">   185  </span><span class="comment">// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.</span>
+<span id="L186" class="ln">   186  </span>func (v *NullableRelationshipToUserTeamPermissionData) UnmarshalJSON(src []byte) error {
+<span id="L187" class="ln">   187  </span>	v.isSet = true
+<span id="L188" class="ln">   188  </span>
+<span id="L189" class="ln">   189  </span>	<span class="comment">// this object is nullable so check if the payload is null or empty string</span>
+<span id="L190" class="ln">   190  </span>	if string(src) == &#34;&#34; || string(src) == &#34;{}&#34; {
+<span id="L191" class="ln">   191  </span>		return nil
+<span id="L192" class="ln">   192  </span>	}
+<span id="L193" class="ln">   193  </span>
+<span id="L194" class="ln">   194  </span>	return datadog.Unmarshal(src, &amp;v.value)
+<span id="L195" class="ln">   195  </span>}
+<span id="L196" class="ln">   196  </span>
 </pre><p></p>
 
 <div id="footer">
