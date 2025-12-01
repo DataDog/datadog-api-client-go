@@ -1,0 +1,32 @@
+// Get a team hierarchy link returns "OK" response
+
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"os"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+)
+
+func main() {
+	// there is a valid "team_hierarchy_link" in the system
+	TeamHierarchyLinkDataID := os.Getenv("TEAM_HIERARCHY_LINK_DATA_ID")
+
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewTeamsApi(apiClient)
+	resp, r, err := api.GetTeamHierarchyLink(ctx, TeamHierarchyLinkDataID)
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.GetTeamHierarchyLink`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+
+	responseContent, _ := json.MarshalIndent(resp, "", "  ")
+	fmt.Fprintf(os.Stdout, "Response from `TeamsApi.GetTeamHierarchyLink`:\n%s\n", responseContent)
+}

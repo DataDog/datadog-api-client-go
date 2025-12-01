@@ -1,0 +1,130 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"handle":"test-handle-6c891437b748aea8","name":"test-name-6c891437b748aea8"},"type":"team"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team
+  response:
+    body: '{"data":{"id":"4a9a1845-0ba7-4a6f-a34d-6e72a4ffda87","type":"team","attributes":{"avatar":null,"banner":0,"created_at":"2025-11-24T17:06:47.453319+00:00","description":null,"handle":"test-handle-6c891437b748aea8","hidden_modules":null,"is_managed":false,"link_count":0,"modified_at":"2025-11-24T17:06:47.453319+00:00","name":"test-name-6c891437b748aea8","summary":null,"user_count":0,"visible_modules":null},"relationships":{"team_links":{"data":[],"links":{"related":"/api/v2/team/4a9a1845-0ba7-4a6f-a34d-6e72a4ffda87/links"}},"user_team_permissions":{"data":null,"links":{"related":"/api/v2/team/4a9a1845-0ba7-4a6f-a34d-6e72a4ffda87/permission-settings"}}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"handle":"test-handle-2-6c891437b748aea8","name":"test-name-2-6c891437b748aea8"},"type":"team"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team
+  response:
+    body: '{"data":{"id":"21296c73-c9e2-4889-a33f-417d2974b2bd","type":"team","attributes":{"avatar":null,"banner":2,"created_at":"2025-11-24T17:06:48.020887+00:00","description":null,"handle":"test-handle-2-6c891437b748aea8","hidden_modules":null,"is_managed":false,"link_count":0,"modified_at":"2025-11-24T17:06:48.020887+00:00","name":"test-name-2-6c891437b748aea8","summary":null,"user_count":0,"visible_modules":null},"relationships":{"team_links":{"data":[],"links":{"related":"/api/v2/team/21296c73-c9e2-4889-a33f-417d2974b2bd/links"}},"user_team_permissions":{"data":null,"links":{"related":"/api/v2/team/21296c73-c9e2-4889-a33f-417d2974b2bd/permission-settings"}}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"relationships":{"parent_team":{"data":{"id":"4a9a1845-0ba7-4a6f-a34d-6e72a4ffda87","type":"team"}},"sub_team":{"data":{"id":"21296c73-c9e2-4889-a33f-417d2974b2bd","type":"team"}}},"type":"team_hierarchy_links"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 2
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team-hierarchy-links
+  response:
+    body: '{"data":{"id":"e980108e-d535-4bdf-84ca-5e8f84a68480","type":"team_hierarchy_links","attributes":{"created_at":"2025-11-24T17:06:48.279316439Z","provisioned_by":""},"relationships":{"parent_team":{"data":{"id":"4a9a1845-0ba7-4a6f-a34d-6e72a4ffda87","type":"team"}},"sub_team":{"data":{"id":"21296c73-c9e2-4889-a33f-417d2974b2bd","type":"team"}}}},"included":[{"id":"4a9a1845-0ba7-4a6f-a34d-6e72a4ffda87","type":"team","attributes":{"avatar":null,"banner":0,"handle":"test-handle-6c891437b748aea8","is_managed":false,"is_open_membership":false,"link_count":0,"name":"test-name-6c891437b748aea8","summary":null,"user_count":0}},{"id":"21296c73-c9e2-4889-a33f-417d2974b2bd","type":"team","attributes":{"avatar":null,"banner":2,"handle":"test-handle-2-6c891437b748aea8","is_managed":false,"is_open_membership":false,"link_count":0,"name":"test-name-2-6c891437b748aea8","summary":null,"user_count":0}}]}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"relationships":{"parent_team":{"data":{"id":"4a9a1845-0ba7-4a6f-a34d-6e72a4ffda87","type":"team"}},"sub_team":{"data":{"id":"21296c73-c9e2-4889-a33f-417d2974b2bd","type":"team"}}},"type":"team_hierarchy_links"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 3
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team-hierarchy-links
+  response:
+    body: '{"errors":["Conflict: could not add team 21296c73-c9e2-4889-a33f-417d2974b2bd
+      as a member team of team 4a9a1845-0ba7-4a6f-a34d-6e72a4ffda87 in org 321813:
+      team hierarchy link between super team 4a9a1845-0ba7-4a6f-a34d-6e72a4ffda87
+      and member team 21296c73-c9e2-4889-a33f-417d2974b2bd already exists in org 321813"]}'
+    code: 409
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 409 Conflict
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 4
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/team-hierarchy-links/e980108e-d535-4bdf-84ca-5e8f84a68480
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 5
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/team/21296c73-c9e2-4889-a33f-417d2974b2bd
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 6
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/team/4a9a1845-0ba7-4a6f-a34d-6e72a4ffda87
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
