@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/logs/config/restriction_queries/user/malformed_id
+  response:
+    body: '{"errors":["uuid is not proper type"]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 2
