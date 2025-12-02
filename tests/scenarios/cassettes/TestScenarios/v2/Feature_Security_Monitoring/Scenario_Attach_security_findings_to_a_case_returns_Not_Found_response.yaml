@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"id":"wrong-case-id","relationships":{"findings":{"data":[{"id":"ZGZhMDI3ZjdjMDM3YjJmNzcxNTlhZGMwMjdmZWNiNTZ-MTVlYTNmYWU3NjNlOTNlYTE2YjM4N2JmZmI4Yjk5N2Y=","type":"findings"}]}},"type":"cases"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/security/findings/cases/wrong-case-id
+  response:
+    body: '{"errors":[{"status":"404","title":"Not Found","detail":"failed to get
+      case: case not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

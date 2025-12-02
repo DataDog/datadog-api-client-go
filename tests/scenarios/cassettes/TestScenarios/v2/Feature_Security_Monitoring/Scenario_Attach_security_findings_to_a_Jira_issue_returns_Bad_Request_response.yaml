@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"jira_issue_url":"https://datadoghq-sandbox-538.atlassian.net/browse/CSMSEC-105476"},"relationships":{"findings":{"data":[]},"project":{"data":{"id":"959a6f71-bac8-4027-b1d3-2264f569296f","type":"projects"}}},"type":"jira_issues"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/security/findings/jira_issues
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"no finding provided"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
