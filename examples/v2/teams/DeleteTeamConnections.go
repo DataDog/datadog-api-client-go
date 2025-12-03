@@ -24,11 +24,11 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.DeleteTeamConnections", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewTeamConnectionsApi(apiClient)
+	api := datadogV2.NewTeamsApi(apiClient)
 	r, err := api.DeleteTeamConnections(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TeamConnectionsApi.DeleteTeamConnections`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.DeleteTeamConnections`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

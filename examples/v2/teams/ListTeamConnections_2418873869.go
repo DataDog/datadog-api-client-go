@@ -17,12 +17,12 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.ListTeamConnections", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewTeamConnectionsApi(apiClient)
+	api := datadogV2.NewTeamsApi(apiClient)
 	resp, _ := api.ListTeamConnectionsWithPagination(ctx, *datadogV2.NewListTeamConnectionsOptionalParameters())
 
 	for paginationResult := range resp {
 		if paginationResult.Error != nil {
-			fmt.Fprintf(os.Stderr, "Error when calling `TeamConnectionsApi.ListTeamConnections`: %v\n", paginationResult.Error)
+			fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.ListTeamConnections`: %v\n", paginationResult.Error)
 		}
 		responseContent, _ := json.MarshalIndent(paginationResult.Item, "", "  ")
 		fmt.Fprintf(os.Stdout, "%s\n", responseContent)
