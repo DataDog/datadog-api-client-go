@@ -10,40 +10,40 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ScheduleTarget Represents a schedule target for an escalation policy step, including its ID and resource type. This is a shortcut for a configured schedule target with position set to 'current'.
-type ScheduleTarget struct {
-	// Specifies the unique identifier of the schedule resource.
+// ConfiguredScheduleTarget Relationship reference to a configured schedule target.
+type ConfiguredScheduleTarget struct {
+	// Specifies the unique identifier of the configured schedule target.
 	Id string `json:"id"`
-	// Indicates that the resource is of type `schedules`.
-	Type ScheduleTargetType `json:"type"`
+	// Indicates that the resource is of type `schedule_target`.
+	Type ConfiguredScheduleTargetType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewScheduleTarget instantiates a new ScheduleTarget object.
+// NewConfiguredScheduleTarget instantiates a new ConfiguredScheduleTarget object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewScheduleTarget(id string, typeVar ScheduleTargetType) *ScheduleTarget {
-	this := ScheduleTarget{}
+func NewConfiguredScheduleTarget(id string, typeVar ConfiguredScheduleTargetType) *ConfiguredScheduleTarget {
+	this := ConfiguredScheduleTarget{}
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewScheduleTargetWithDefaults instantiates a new ScheduleTarget object.
+// NewConfiguredScheduleTargetWithDefaults instantiates a new ConfiguredScheduleTarget object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewScheduleTargetWithDefaults() *ScheduleTarget {
-	this := ScheduleTarget{}
-	var typeVar ScheduleTargetType = SCHEDULETARGETTYPE_SCHEDULES
+func NewConfiguredScheduleTargetWithDefaults() *ConfiguredScheduleTarget {
+	this := ConfiguredScheduleTarget{}
+	var typeVar ConfiguredScheduleTargetType = CONFIGUREDSCHEDULETARGETTYPE_SCHEDULE_TARGET
 	this.Type = typeVar
 	return &this
 }
 
 // GetId returns the Id field value.
-func (o *ScheduleTarget) GetId() string {
+func (o *ConfiguredScheduleTarget) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -53,7 +53,7 @@ func (o *ScheduleTarget) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ScheduleTarget) GetIdOk() (*string, bool) {
+func (o *ConfiguredScheduleTarget) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,14 +61,14 @@ func (o *ScheduleTarget) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *ScheduleTarget) SetId(v string) {
+func (o *ConfiguredScheduleTarget) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *ScheduleTarget) GetType() ScheduleTargetType {
+func (o *ConfiguredScheduleTarget) GetType() ConfiguredScheduleTargetType {
 	if o == nil {
-		var ret ScheduleTargetType
+		var ret ConfiguredScheduleTargetType
 		return ret
 	}
 	return o.Type
@@ -76,7 +76,7 @@ func (o *ScheduleTarget) GetType() ScheduleTargetType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ScheduleTarget) GetTypeOk() (*ScheduleTargetType, bool) {
+func (o *ConfiguredScheduleTarget) GetTypeOk() (*ConfiguredScheduleTargetType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,12 +84,12 @@ func (o *ScheduleTarget) GetTypeOk() (*ScheduleTargetType, bool) {
 }
 
 // SetType sets field value.
-func (o *ScheduleTarget) SetType(v ScheduleTargetType) {
+func (o *ConfiguredScheduleTarget) SetType(v ConfiguredScheduleTargetType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ScheduleTarget) MarshalJSON() ([]byte, error) {
+func (o ConfiguredScheduleTarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -104,10 +104,10 @@ func (o ScheduleTarget) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ScheduleTarget) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ConfiguredScheduleTarget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string             `json:"id"`
-		Type *ScheduleTargetType `json:"type"`
+		Id   *string                       `json:"id"`
+		Type *ConfiguredScheduleTargetType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
