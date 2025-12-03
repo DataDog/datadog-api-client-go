@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"dry_run":false,"env":"production","identifier":"my-gate-testdeletedeploymentrulereturnsnocontentresponse1764326921","service":"my-service"},"type":"deployment_gate"}}
+      {"data":{"attributes":{"dry_run":false,"env":"production","identifier":"my-gate","service":"my-service"},"type":"deployment_gate"}}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/deployment_gates
   response:
-    body: '{"data":{"id":"32ff7c01-1f90-4ae4-bef0-b759f1ad280f","type":"deployment_gate","attributes":{"created_at":"2025-11-28T10:48:41.325741Z","created_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
-      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"dry_run":false,"env":"production","identifier":"my-gate-testdeletedeploymentrulereturnsnocontentresponse1764326921","service":"my-service","updated_at":"2025-11-28T10:48:41.325741Z","updated_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+    body: '{"data":{"id":"051490b0-1383-4dd4-b719-fb17ab089898","type":"deployment_gate","attributes":{"created_at":"2025-12-02T17:11:59.799293Z","created_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"dry_run":false,"env":"production","identifier":"my-gate","service":"my-service","updated_at":"2025-12-02T17:11:59.799293Z","updated_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
       Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}}'
     code: 200
     duration: 0ms
@@ -32,11 +32,11 @@ interactions:
       - application/json
     id: 1
     method: POST
-    url: https://api.datadoghq.com/api/v2/deployment_gates/32ff7c01-1f90-4ae4-bef0-b759f1ad280f/rules
+    url: https://api.datadoghq.com/api/v2/deployment_gates/051490b0-1383-4dd4-b719-fb17ab089898/rules
   response:
-    body: '{"data":{"id":"8229075f-8014-432c-9597-ba549ae5cd83","type":"deployment_rule","attributes":{"created_at":"2025-11-28T10:48:41.470358Z","created_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
-      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"dry_run":false,"gate_id":"32ff7c01-1f90-4ae4-bef0-b759f1ad280f","name":"My
-      deployment rule","options":{},"type":"faulty_deployment_detection","updated_at":"2025-11-28T10:48:41.470358Z","updated_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+    body: '{"data":{"id":"29fb1e0d-d3f4-4f3a-a4de-1bd65cf57c16","type":"deployment_rule","attributes":{"created_at":"2025-12-02T17:11:59.98839Z","created_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"dry_run":false,"gate_id":"051490b0-1383-4dd4-b719-fb17ab089898","name":"My
+      deployment rule","options":{},"type":"faulty_deployment_detection","updated_at":"2025-12-02T17:11:59.98839Z","updated_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
       Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}}'
     code: 200
     duration: 0ms
@@ -52,7 +52,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/deployment_gates/32ff7c01-1f90-4ae4-bef0-b759f1ad280f/rules/8229075f-8014-432c-9597-ba549ae5cd83
+    url: https://api.datadoghq.com/api/v2/deployment_gates/051490b0-1383-4dd4-b719-fb17ab089898/rules/29fb1e0d-d3f4-4f3a-a4de-1bd65cf57c16
   response:
     body: ''
     code: 204
@@ -67,7 +67,7 @@ interactions:
       - '*/*'
     id: 3
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/deployment_gates/32ff7c01-1f90-4ae4-bef0-b759f1ad280f/rules/8229075f-8014-432c-9597-ba549ae5cd83
+    url: https://api.datadoghq.com/api/v2/deployment_gates/051490b0-1383-4dd4-b719-fb17ab089898/rules/29fb1e0d-d3f4-4f3a-a4de-1bd65cf57c16
   response:
     body: '{"errors":[{"status":"404","title":"Not Found","detail":"Rule does not
       exist"}]}'
@@ -85,7 +85,7 @@ interactions:
       - '*/*'
     id: 4
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/deployment_gates/32ff7c01-1f90-4ae4-bef0-b759f1ad280f
+    url: https://api.datadoghq.com/api/v2/deployment_gates/051490b0-1383-4dd4-b719-fb17ab089898
   response:
     body: ''
     code: 204
