@@ -45,14 +45,14 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.CreateTeamConnections", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewTeamConnectionsApi(apiClient)
+	api := datadogV2.NewTeamsApi(apiClient)
 	resp, r, err := api.CreateTeamConnections(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TeamConnectionsApi.CreateTeamConnections`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.CreateTeamConnections`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `TeamConnectionsApi.CreateTeamConnections`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `TeamsApi.CreateTeamConnections`:\n%s\n", responseContent)
 }

@@ -1,4 +1,4 @@
-// List team connections returns "OK" response
+// List team connections with filters returns "OK" response
 
 package main
 
@@ -17,14 +17,16 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.ListTeamConnections", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewTeamConnectionsApi(apiClient)
-	resp, r, err := api.ListTeamConnections(ctx, *datadogV2.NewListTeamConnectionsOptionalParameters())
+	api := datadogV2.NewTeamsApi(apiClient)
+	resp, r, err := api.ListTeamConnections(ctx, *datadogV2.NewListTeamConnectionsOptionalParameters().WithFilterSources([]string{
+		"github",
+	}).WithPageSize(10))
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TeamConnectionsApi.ListTeamConnections`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.ListTeamConnections`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `TeamConnectionsApi.ListTeamConnections`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `TeamsApi.ListTeamConnections`:\n%s\n", responseContent)
 }
