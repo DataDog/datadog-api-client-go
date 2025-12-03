@@ -42,6 +42,15 @@ func main() {
 								Type: datadogV2.ESCALATIONPOLICYSTEPTARGETTYPE_SCHEDULES.Ptr(),
 							},
 							{
+								Config: &datadogV2.EscalationPolicyStepTargetConfig{
+									Schedule: &datadogV2.EscalationPolicyStepTargetConfigSchedule{
+										Position: datadogV2.SCHEDULETARGETPOSITION_PREVIOUS.Ptr(),
+									},
+								},
+								Id:   datadog.PtrString(ScheduleDataID),
+								Type: datadogV2.ESCALATIONPOLICYSTEPTARGETTYPE_SCHEDULES.Ptr(),
+							},
+							{
 								Id:   datadog.PtrString(DdTeamDataID),
 								Type: datadogV2.ESCALATIONPOLICYSTEPTARGETTYPE_TEAMS.Ptr(),
 							},
