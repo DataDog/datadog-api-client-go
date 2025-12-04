@@ -1,4 +1,4 @@
-// Get hourly usage for Incident Management returns "OK" response
+// Get hourly usage for incident management returns "OK" response
 
 package main
 
@@ -18,7 +18,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewUsageMeteringApi(apiClient)
-	resp, r, err := api.GetIncidentManagement(ctx, time.Date(2021, 11, 11, 11, 11, 11, 111000, time.UTC), *datadogV1.NewGetIncidentManagementOptionalParameters())
+	resp, r, err := api.GetIncidentManagement(ctx, time.Now().AddDate(0, 0, -5), *datadogV1.NewGetIncidentManagementOptionalParameters().WithEndHr(time.Now().AddDate(0, 0, -3)))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetIncidentManagement`: %v\n", err)
