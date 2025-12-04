@@ -217,7 +217,7 @@ type UsageSummaryDateOrg struct {
 	HerokuHostTop99p *int64 `json:"heroku_host_top99p,omitempty"`
 	// The organization id.
 	Id *string `json:"id,omitempty"`
-	// Shows the high-water mark of incident management monthly active users over all hours in the current date for the given org.
+	// Shows the high-water mark of Incident Management monthly active users over all hours in the current date for the given org.
 	IncidentManagementMonthlyActiveUsersHwm *int64 `json:"incident_management_monthly_active_users_hwm,omitempty"`
 	// Shows the high-water mark of Incident Management seats over all hours on the current date for the given organization.
 	IncidentManagementSeatsHwm *int64 `json:"incident_management_seats_hwm,omitempty"`
