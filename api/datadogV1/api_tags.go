@@ -345,7 +345,7 @@ func (r *ListHostTagsOptionalParameters) WithSource(source string) *ListHostTags
 	return r
 }
 
-// ListHostTags Get Tags.
+// ListHostTags Get All Hosts Tags.
 // Return a mapping of tags to hosts for your whole infrastructure.
 func (a *TagsApi) ListHostTags(ctx _context.Context, o ...ListHostTagsOptionalParameters) (TagToHosts, *_nethttp.Response, error) {
 	var (
