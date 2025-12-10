@@ -655,6 +655,7 @@ func NewConfiguration() *Configuration {
 			"v2.DeleteDeploymentGate":                    false,
 			"v2.DeleteDeploymentRule":                    false,
 			"v2.GetDeploymentGate":                       false,
+			"v2.GetDeploymentGateRules":                  false,
 			"v2.GetDeploymentRule":                       false,
 			"v2.UpdateDeploymentGate":                    false,
 			"v2.UpdateDeploymentRule":                    false,

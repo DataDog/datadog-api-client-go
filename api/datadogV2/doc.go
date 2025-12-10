@@ -226,6 +226,7 @@
 //   - [DeploymentGatesApi.DeleteDeploymentGate]
 //   - [DeploymentGatesApi.DeleteDeploymentRule]
 //   - [DeploymentGatesApi.GetDeploymentGate]
+//   - [DeploymentGatesApi.GetDeploymentGateRules]
 //   - [DeploymentGatesApi.GetDeploymentRule]
 //   - [DeploymentGatesApi.UpdateDeploymentGate]
 //   - [DeploymentGatesApi.UpdateDeploymentRule]
