@@ -50,6 +50,7 @@ func main() {
 					}},
 				Category:      datadogV2.EVENTCATEGORY_CHANGE,
 				IntegrationId: datadogV2.EVENTPAYLOADINTEGRATIONID_CUSTOM_EVENTS.Ptr(),
+				Host:          datadog.PtrString("test-host"),
 				Message:       datadog.PtrString("payment_processed feature flag has been enabled"),
 				Tags: []string{
 					"env:api_client_test",
