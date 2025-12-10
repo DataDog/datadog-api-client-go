@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"dry_run":false,"env":"production","identifier":"my-gate","service":"my-service"},"type":"deployment_gate"}}
+      {"data":{"attributes":{"dry_run":false,"env":"production","identifier":"my-gate-testdeletedeploymentgatereturnsnocontentresponse1765358631","service":"my-service"},"type":"deployment_gate"}}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/deployment_gates
   response:
-    body: '{"data":{"id":"0d6b54a5-70ad-4e9a-9ee4-f7d99f25a3d5","type":"deployment_gate","attributes":{"created_at":"2025-12-02T17:11:59.349857Z","created_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
-      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"dry_run":false,"env":"production","identifier":"my-gate","service":"my-service","updated_at":"2025-12-02T17:11:59.349857Z","updated_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+    body: '{"data":{"id":"03a2ecd3-87ad-45aa-9dbb-fda1215a4087","type":"deployment_gate","attributes":{"created_at":"2025-12-10T09:23:51.052668Z","created_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"dry_run":false,"env":"production","identifier":"my-gate-testdeletedeploymentgatereturnsnocontentresponse1765358631","service":"my-service","updated_at":"2025-12-10T09:23:51.052668Z","updated_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
       Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}}'
     code: 200
     duration: 0ms
@@ -29,7 +29,7 @@ interactions:
       - '*/*'
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/deployment_gates/0d6b54a5-70ad-4e9a-9ee4-f7d99f25a3d5
+    url: https://api.datadoghq.com/api/v2/deployment_gates/03a2ecd3-87ad-45aa-9dbb-fda1215a4087
   response:
     body: ''
     code: 204
@@ -44,7 +44,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/deployment_gates/0d6b54a5-70ad-4e9a-9ee4-f7d99f25a3d5
+    url: https://api.datadoghq.com/api/v2/deployment_gates/03a2ecd3-87ad-45aa-9dbb-fda1215a4087
   response:
     body: '{"errors":[{"status":"404","title":"Not Found","detail":"Gate does not
       exist"}]}'
