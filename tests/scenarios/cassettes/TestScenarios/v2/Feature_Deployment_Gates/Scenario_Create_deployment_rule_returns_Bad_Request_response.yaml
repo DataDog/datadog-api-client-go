@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"dry_run":false,"env":"production","identifier":"my-gate","service":"my-service"},"type":"deployment_gate"}}
+      {"data":{"attributes":{"dry_run":false,"env":"production","identifier":"my-gate-testcreatedeploymentrulereturnsbadrequestresponse1765358629","service":"my-service"},"type":"deployment_gate"}}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/deployment_gates
   response:
-    body: '{"data":{"id":"daadd697-95f4-4608-b6cc-8e6337d692ab","type":"deployment_gate","attributes":{"created_at":"2025-12-02T17:11:58.225449Z","created_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
-      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"dry_run":false,"env":"production","identifier":"my-gate","service":"my-service","updated_at":"2025-12-02T17:11:58.225449Z","updated_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+    body: '{"data":{"id":"39b27cfd-44c1-4ec0-900b-3b46ca2ab8c1","type":"deployment_gate","attributes":{"created_at":"2025-12-10T09:23:50.404151Z","created_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"dry_run":false,"env":"production","identifier":"my-gate-testcreatedeploymentrulereturnsbadrequestresponse1765358629","service":"my-service","updated_at":"2025-12-10T09:23:50.404151Z","updated_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
       Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}}'
     code: 200
     duration: 0ms
@@ -32,7 +32,7 @@ interactions:
       - application/json
     id: 1
     method: POST
-    url: https://api.datadoghq.com/api/v2/deployment_gates/daadd697-95f4-4608-b6cc-8e6337d692ab/rules
+    url: https://api.datadoghq.com/api/v2/deployment_gates/39b27cfd-44c1-4ec0-900b-3b46ca2ab8c1/rules
   response:
     body: '{"errors":[{"status":"400","title":"Bad Request","detail":"attribute \"type\"
       must be one of \"monitor faulty_deployment_detection\""}]}'
@@ -50,7 +50,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/deployment_gates/daadd697-95f4-4608-b6cc-8e6337d692ab
+    url: https://api.datadoghq.com/api/v2/deployment_gates/39b27cfd-44c1-4ec0-900b-3b46ca2ab8c1
   response:
     body: ''
     code: 204
