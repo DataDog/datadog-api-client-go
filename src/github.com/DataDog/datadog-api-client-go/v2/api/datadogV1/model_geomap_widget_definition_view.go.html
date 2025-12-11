@@ -69,7 +69,7 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// GeomapWidgetDefinitionView The view of the world that the map should render.</span>
 <span id="L14" class="ln">    14  </span>type GeomapWidgetDefinitionView struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// The 2-letter ISO code of a country to focus the map on. Or `WORLD`.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// The 2-letter ISO code of a country to focus the map on, or `WORLD` for global view, or a region (`EMEA`, `APAC`, `LATAM`), or a continent (`NORTH_AMERICA`, `SOUTH_AMERICA`, `EUROPE`, `AFRICA`, `ASIA`, `OCEANIA`).</span>
 <span id="L16" class="ln">    16  </span>	Focus string `json:&#34;focus&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L18" class="ln">    18  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
