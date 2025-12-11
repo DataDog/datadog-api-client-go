@@ -34,12 +34,12 @@ func (r *CreateHostTagsOptionalParameters) WithSource(source string) *CreateHost
 
 // CreateHostTags Add tags to a host.
 // This endpoint allows you to add new tags to a host,
-// optionally specifying where these tags come from.
-func (a *TagsApi) CreateHostTags(ctx _context.Context, hostName string, body HostTags, o ...CreateHostTagsOptionalParameters) (HostTags, *_nethttp.Response, error) {
+// optionally specifying what source these tags come from.
+func (a *TagsApi) CreateHostTags(ctx _context.Context, hostName string, body HostTagsInput, o ...CreateHostTagsOptionalParameters) (HostTagsOutput, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue HostTags
+		localVarReturnValue HostTagsOutput
 		optionalParams      CreateHostTagsOptionalParameters
 	)
 
@@ -239,13 +239,13 @@ func (r *GetHostTagsOptionalParameters) WithSource(source string) *GetHostTagsOp
 	return r
 }
 
-// GetHostTags Get host tags.
+// GetHostTags Get Host Tags.
 // Return the list of tags that apply to a given host.
-func (a *TagsApi) GetHostTags(ctx _context.Context, hostName string, o ...GetHostTagsOptionalParameters) (HostTags, *_nethttp.Response, error) {
+func (a *TagsApi) GetHostTags(ctx _context.Context, hostName string, o ...GetHostTagsOptionalParameters) (HostTagsOutput, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue HostTags
+		localVarReturnValue HostTagsOutput
 		optionalParams      GetHostTagsOptionalParameters
 	)
 
@@ -345,8 +345,8 @@ func (r *ListHostTagsOptionalParameters) WithSource(source string) *ListHostTags
 	return r
 }
 
-// ListHostTags Get Tags.
-// Return a mapping of tags to hosts for your whole infrastructure.
+// ListHostTags Get All Host Tags.
+// Returns a mapping of tags to hosts. For each tag, the response returns a list of host names that contain this tag. There is a restriction of 10k host names from the org that can be attached to tags and returned.
 func (a *TagsApi) ListHostTags(ctx _context.Context, o ...ListHostTagsOptionalParameters) (TagToHosts, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -453,11 +453,11 @@ func (r *UpdateHostTagsOptionalParameters) WithSource(source string) *UpdateHost
 // UpdateHostTags Update host tags.
 // This endpoint allows you to update/replace all tags in
 // an integration source with those supplied in the request.
-func (a *TagsApi) UpdateHostTags(ctx _context.Context, hostName string, body HostTags, o ...UpdateHostTagsOptionalParameters) (HostTags, *_nethttp.Response, error) {
+func (a *TagsApi) UpdateHostTags(ctx _context.Context, hostName string, body HostTagsInput, o ...UpdateHostTagsOptionalParameters) (HostTagsOutput, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
-		localVarReturnValue HostTags
+		localVarReturnValue HostTagsOutput
 		optionalParams      UpdateHostTagsOptionalParameters
 	)
 

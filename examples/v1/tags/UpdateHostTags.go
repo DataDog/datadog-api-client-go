@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	body := datadogV1.HostTags{
+	body := datadogV1.HostTagsInput{
 		Host: datadog.PtrString("test.host"),
 		Tags: []string{
 			"environment:production",
