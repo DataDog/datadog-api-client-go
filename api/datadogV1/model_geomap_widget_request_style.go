@@ -5,68 +5,72 @@
 package datadogV1
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// GeomapWidgetDefinitionView The view of the world that the map should render.
-type GeomapWidgetDefinitionView struct {
-	// The 2-letter ISO code of a country to focus the map on, or `WORLD` for global view, or a region (`EMEA`, `APAC`, `LATAM`), or a continent (`NORTH_AMERICA`, `SOUTH_AMERICA`, `EUROPE`, `AFRICA`, `ASIA`, `OCEANIA`).
-	Focus string `json:"focus"`
+// GeomapWidgetRequestStyle The style to apply to the request for points layer.
+type GeomapWidgetRequestStyle struct {
+	// The category to color the points by.
+	ColorBy *string `json:"color_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewGeomapWidgetDefinitionView instantiates a new GeomapWidgetDefinitionView object.
+// NewGeomapWidgetRequestStyle instantiates a new GeomapWidgetRequestStyle object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGeomapWidgetDefinitionView(focus string) *GeomapWidgetDefinitionView {
-	this := GeomapWidgetDefinitionView{}
-	this.Focus = focus
+func NewGeomapWidgetRequestStyle() *GeomapWidgetRequestStyle {
+	this := GeomapWidgetRequestStyle{}
 	return &this
 }
 
-// NewGeomapWidgetDefinitionViewWithDefaults instantiates a new GeomapWidgetDefinitionView object.
+// NewGeomapWidgetRequestStyleWithDefaults instantiates a new GeomapWidgetRequestStyle object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewGeomapWidgetDefinitionViewWithDefaults() *GeomapWidgetDefinitionView {
-	this := GeomapWidgetDefinitionView{}
+func NewGeomapWidgetRequestStyleWithDefaults() *GeomapWidgetRequestStyle {
+	this := GeomapWidgetRequestStyle{}
 	return &this
 }
 
-// GetFocus returns the Focus field value.
-func (o *GeomapWidgetDefinitionView) GetFocus() string {
-	if o == nil {
+// GetColorBy returns the ColorBy field value if set, zero value otherwise.
+func (o *GeomapWidgetRequestStyle) GetColorBy() string {
+	if o == nil || o.ColorBy == nil {
 		var ret string
 		return ret
 	}
-	return o.Focus
+	return *o.ColorBy
 }
 
-// GetFocusOk returns a tuple with the Focus field value
+// GetColorByOk returns a tuple with the ColorBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GeomapWidgetDefinitionView) GetFocusOk() (*string, bool) {
-	if o == nil {
+func (o *GeomapWidgetRequestStyle) GetColorByOk() (*string, bool) {
+	if o == nil || o.ColorBy == nil {
 		return nil, false
 	}
-	return &o.Focus, true
+	return o.ColorBy, true
 }
 
-// SetFocus sets field value.
-func (o *GeomapWidgetDefinitionView) SetFocus(v string) {
-	o.Focus = v
+// HasColorBy returns a boolean if a field has been set.
+func (o *GeomapWidgetRequestStyle) HasColorBy() bool {
+	return o != nil && o.ColorBy != nil
+}
+
+// SetColorBy gets a reference to the given string and assigns it to the ColorBy field.
+func (o *GeomapWidgetRequestStyle) SetColorBy(v string) {
+	o.ColorBy = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o GeomapWidgetDefinitionView) MarshalJSON() ([]byte, error) {
+func (o GeomapWidgetRequestStyle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["focus"] = o.Focus
+	if o.ColorBy != nil {
+		toSerialize["color_by"] = o.ColorBy
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,23 +79,20 @@ func (o GeomapWidgetDefinitionView) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *GeomapWidgetDefinitionView) UnmarshalJSON(bytes []byte) (err error) {
+func (o *GeomapWidgetRequestStyle) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Focus *string `json:"focus"`
+		ColorBy *string `json:"color_by,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Focus == nil {
-		return fmt.Errorf("required field focus missing")
-	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"focus"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"color_by"})
 	} else {
 		return err
 	}
-	o.Focus = *all.Focus
+	o.ColorBy = all.ColorBy
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
