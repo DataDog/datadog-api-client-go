@@ -18,8 +18,8 @@ type RumRetentionFilterAttributes struct {
 	Name *string `json:"name,omitempty"`
 	// The query string for a RUM retention filter.
 	Query *string `json:"query,omitempty"`
-	// The sample rate for a RUM retention filter, between 0 and 100.
-	SampleRate *int64 `json:"sample_rate,omitempty"`
+	// The sample rate for a RUM retention filter, between 0.1 and 100.
+	SampleRate *float64 `json:"sample_rate,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -155,9 +155,9 @@ func (o *RumRetentionFilterAttributes) SetQuery(v string) {
 }
 
 // GetSampleRate returns the SampleRate field value if set, zero value otherwise.
-func (o *RumRetentionFilterAttributes) GetSampleRate() int64 {
+func (o *RumRetentionFilterAttributes) GetSampleRate() float64 {
 	if o == nil || o.SampleRate == nil {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.SampleRate
@@ -165,7 +165,7 @@ func (o *RumRetentionFilterAttributes) GetSampleRate() int64 {
 
 // GetSampleRateOk returns a tuple with the SampleRate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RumRetentionFilterAttributes) GetSampleRateOk() (*int64, bool) {
+func (o *RumRetentionFilterAttributes) GetSampleRateOk() (*float64, bool) {
 	if o == nil || o.SampleRate == nil {
 		return nil, false
 	}
@@ -177,8 +177,8 @@ func (o *RumRetentionFilterAttributes) HasSampleRate() bool {
 	return o != nil && o.SampleRate != nil
 }
 
-// SetSampleRate gets a reference to the given int64 and assigns it to the SampleRate field.
-func (o *RumRetentionFilterAttributes) SetSampleRate(v int64) {
+// SetSampleRate gets a reference to the given float64 and assigns it to the SampleRate field.
+func (o *RumRetentionFilterAttributes) SetSampleRate(v float64) {
 	o.SampleRate = &v
 }
 
@@ -217,7 +217,7 @@ func (o *RumRetentionFilterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		EventType  *RumRetentionFilterEventType `json:"event_type,omitempty"`
 		Name       *string                      `json:"name,omitempty"`
 		Query      *string                      `json:"query,omitempty"`
-		SampleRate *int64                       `json:"sample_rate,omitempty"`
+		SampleRate *float64                     `json:"sample_rate,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
