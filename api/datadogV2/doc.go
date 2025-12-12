@@ -8,6 +8,7 @@
 //   - [APIManagementApi.GetOpenAPI]
 //   - [APIManagementApi.ListAPIs]
 //   - [APIManagementApi.UpdateOpenAPI]
+//   - [APMApi.GetServiceList]
 //   - [APMRetentionFiltersApi.CreateApmRetentionFilter]
 //   - [APMRetentionFiltersApi.DeleteApmRetentionFilter]
 //   - [APMRetentionFiltersApi.GetApmRetentionFilter]
