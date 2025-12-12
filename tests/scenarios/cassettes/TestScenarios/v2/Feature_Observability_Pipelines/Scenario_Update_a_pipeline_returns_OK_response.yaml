@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"config":{"destinations":[{"id":"datadog-logs-destination","inputs":["filter-processor"],"type":"datadog_logs"}],"processors":[{"id":"filter-processor","include":"service:my-service","inputs":["datadog-agent-source"],"type":"filter"}],"sources":[{"id":"datadog-agent-source","type":"datadog_agent"}]},"name":"Main Observability Pipeline"},"type":"pipelines"}}
+      {"data":{"attributes":{"config":{"destinations":[{"id":"datadog-logs-destination","inputs":["processor-group-0"],"type":"datadog_logs"}],"processors":[{"enabled":true,"id":"processor-group-0","include":"service:my-service","inputs":["datadog-agent-source"],"processors":[{"enabled":true,"id":"filter-processor","include":"status:error","type":"filter"}]}],"sources":[{"id":"datadog-agent-source","type":"datadog_agent"}]},"name":"Main Observability Pipeline"},"type":"pipelines"}}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/remote_config/products/obs_pipelines/pipelines
   response:
-    body: '{"data":{"id":"e04d5230-21fa-11f0-96e6-da7ad0900002","type":"pipelines","attributes":{"name":"Main
-      Observability Pipeline","config":{"destinations":[{"id":"datadog-logs-destination","inputs":["filter-processor"],"type":"datadog_logs"}],"processors":[{"id":"filter-processor","include":"service:my-service","inputs":["datadog-agent-source"],"type":"filter"}],"sources":[{"id":"datadog-agent-source","type":"datadog_agent"}]}}}}
+    body: '{"data":{"id":"58407a12-d752-11f0-b262-da7ad0900002","type":"pipelines","attributes":{"name":"Main
+      Observability Pipeline","config":{"destinations":[{"id":"datadog-logs-destination","inputs":["processor-group-0"],"type":"datadog_logs"}],"processors":[{"enabled":true,"id":"processor-group-0","include":"service:my-service","inputs":["datadog-agent-source"],"processors":[{"enabled":true,"id":"filter-processor","include":"status:error","type":"filter"}]}],"sources":[{"id":"datadog-agent-source","type":"datadog_agent"}]}}}}
 
       '
     code: 201
@@ -24,7 +24,7 @@ interactions:
     status: 201 Created
 - request:
     body: |
-      {"data":{"attributes":{"config":{"destinations":[{"id":"updated-datadog-logs-destination-id","inputs":["filter-processor"],"type":"datadog_logs"}],"processors":[{"id":"filter-processor","include":"service:my-service","inputs":["datadog-agent-source"],"type":"filter"}],"sources":[{"id":"datadog-agent-source","type":"datadog_agent"}]},"name":"Updated Pipeline Name"},"id":"3fa85f64-5717-4562-b3fc-2c963f66afa6","type":"pipelines"}}
+      {"data":{"attributes":{"config":{"destinations":[{"id":"updated-datadog-logs-destination-id","inputs":["my-processor-group"],"type":"datadog_logs"}],"processors":[{"enabled":true,"id":"my-processor-group","include":"service:my-service","inputs":["datadog-agent-source"],"processors":[{"enabled":true,"id":"filter-processor","include":"status:error","type":"filter"}]}],"sources":[{"id":"datadog-agent-source","type":"datadog_agent"}]},"name":"Updated Pipeline Name"},"id":"3fa85f64-5717-4562-b3fc-2c963f66afa6","type":"pipelines"}}
     form: {}
     headers:
       Accept:
@@ -33,10 +33,10 @@ interactions:
       - application/json
     id: 1
     method: PUT
-    url: https://api.datadoghq.com/api/v2/remote_config/products/obs_pipelines/pipelines/e04d5230-21fa-11f0-96e6-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/remote_config/products/obs_pipelines/pipelines/58407a12-d752-11f0-b262-da7ad0900002
   response:
-    body: '{"data":{"id":"e04d5230-21fa-11f0-96e6-da7ad0900002","type":"pipelines","attributes":{"name":"Updated
-      Pipeline Name","config":{"destinations":[{"id":"updated-datadog-logs-destination-id","inputs":["filter-processor"],"type":"datadog_logs"}],"processors":[{"id":"filter-processor","include":"service:my-service","inputs":["datadog-agent-source"],"type":"filter"}],"sources":[{"id":"datadog-agent-source","type":"datadog_agent"}]}}}}
+    body: '{"data":{"id":"58407a12-d752-11f0-b262-da7ad0900002","type":"pipelines","attributes":{"name":"Updated
+      Pipeline Name","config":{"destinations":[{"id":"updated-datadog-logs-destination-id","inputs":["my-processor-group"],"type":"datadog_logs"}],"processors":[{"enabled":true,"id":"my-processor-group","include":"service:my-service","inputs":["datadog-agent-source"],"processors":[{"enabled":true,"id":"filter-processor","include":"status:error","type":"filter"}]}],"sources":[{"id":"datadog-agent-source","type":"datadog_agent"}]}}}}
 
       '
     code: 200
@@ -53,7 +53,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/obs_pipelines/pipelines/e04d5230-21fa-11f0-96e6-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/remote_config/products/obs_pipelines/pipelines/58407a12-d752-11f0-b262-da7ad0900002
   response:
     body: ''
     code: 204
