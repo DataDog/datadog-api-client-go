@@ -12,13 +12,11 @@ interactions:
     method: PATCH
     url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/non-existent-policy-id
   response:
-    body: '{"errors":[{"title":"failed to update policy"}]}
-
-      '
-    code: 400
+    body: '{"errors":[{"title":"Not Found"}]}'
+    code: 404
     duration: 0ms
     headers:
       Content-Type:
       - application/json
-    status: 400 Bad Request
+    status: 404 Not Found
 version: 2

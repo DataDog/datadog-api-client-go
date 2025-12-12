@@ -30,7 +30,7 @@ func main() {
 					{
 						Set: &datadogV2.CloudWorkloadSecurityAgentRuleActionSet{
 							Name:         datadog.PtrString("test_set"),
-							Expression:   datadog.PtrString("open.file.path"),
+							Expression:   datadog.PtrString("exec.file.path"),
 							DefaultValue: datadog.PtrString("/dev/null"),
 							Scope:        datadog.PtrString("process"),
 						},
