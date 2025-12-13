@@ -36,7 +36,7 @@ func main() {
 						},
 					},
 					{
-						Hash: map[string]interface{}{},
+						Hash: &datadogV2.CloudWorkloadSecurityAgentRuleActionHash{},
 					},
 				},
 			},
