@@ -8,29 +8,31 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DistributionWidgetXAxis X Axis controls for the distribution widget.
-type DistributionWidgetXAxis struct {
-	// True includes zero.
+// HeatMapWidgetYAxis Y Axis controls for the heat map widget.
+type HeatMapWidgetYAxis struct {
+	// Set to `true` to include zero.
 	IncludeZero *bool `json:"include_zero,omitempty"`
-	// Specifies maximum value to show on the x-axis. It takes a number, percentile (p90 === 90th percentile), or auto for default behavior.
+	// The label of the axis to display on the graph. Only usable on Scatterplot Widgets.
+	Label *string `json:"label,omitempty"`
+	// Specifies maximum numeric value to show on the axis. Defaults to `auto`.
 	Max *string `json:"max,omitempty"`
-	// Specifies minimum value to show on the x-axis. It takes a number, percentile (p90 === 90th percentile), or auto for default behavior.
+	// Specifies minimum numeric value to show on the axis. Defaults to `auto`.
 	Min *string `json:"min,omitempty"`
 	// Number of value buckets to target, aka the resolution of the value bins.
 	NumBuckets *int64 `json:"num_buckets,omitempty"`
-	// Specifies the scale type. Possible values are `linear`.
+	// Specifies the scale type. Possible values are `linear`, `log`, `sqrt`, and `pow##` (for example `pow2` or `pow0.5`).
 	Scale *string `json:"scale,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewDistributionWidgetXAxis instantiates a new DistributionWidgetXAxis object.
+// NewHeatMapWidgetYAxis instantiates a new HeatMapWidgetYAxis object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDistributionWidgetXAxis() *DistributionWidgetXAxis {
-	this := DistributionWidgetXAxis{}
+func NewHeatMapWidgetYAxis() *HeatMapWidgetYAxis {
+	this := HeatMapWidgetYAxis{}
 	var max string = "auto"
 	this.Max = &max
 	var min string = "auto"
@@ -40,11 +42,11 @@ func NewDistributionWidgetXAxis() *DistributionWidgetXAxis {
 	return &this
 }
 
-// NewDistributionWidgetXAxisWithDefaults instantiates a new DistributionWidgetXAxis object.
+// NewHeatMapWidgetYAxisWithDefaults instantiates a new HeatMapWidgetYAxis object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDistributionWidgetXAxisWithDefaults() *DistributionWidgetXAxis {
-	this := DistributionWidgetXAxis{}
+func NewHeatMapWidgetYAxisWithDefaults() *HeatMapWidgetYAxis {
+	this := HeatMapWidgetYAxis{}
 	var max string = "auto"
 	this.Max = &max
 	var min string = "auto"
@@ -55,7 +57,7 @@ func NewDistributionWidgetXAxisWithDefaults() *DistributionWidgetXAxis {
 }
 
 // GetIncludeZero returns the IncludeZero field value if set, zero value otherwise.
-func (o *DistributionWidgetXAxis) GetIncludeZero() bool {
+func (o *HeatMapWidgetYAxis) GetIncludeZero() bool {
 	if o == nil || o.IncludeZero == nil {
 		var ret bool
 		return ret
@@ -65,7 +67,7 @@ func (o *DistributionWidgetXAxis) GetIncludeZero() bool {
 
 // GetIncludeZeroOk returns a tuple with the IncludeZero field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DistributionWidgetXAxis) GetIncludeZeroOk() (*bool, bool) {
+func (o *HeatMapWidgetYAxis) GetIncludeZeroOk() (*bool, bool) {
 	if o == nil || o.IncludeZero == nil {
 		return nil, false
 	}
@@ -73,17 +75,45 @@ func (o *DistributionWidgetXAxis) GetIncludeZeroOk() (*bool, bool) {
 }
 
 // HasIncludeZero returns a boolean if a field has been set.
-func (o *DistributionWidgetXAxis) HasIncludeZero() bool {
+func (o *HeatMapWidgetYAxis) HasIncludeZero() bool {
 	return o != nil && o.IncludeZero != nil
 }
 
 // SetIncludeZero gets a reference to the given bool and assigns it to the IncludeZero field.
-func (o *DistributionWidgetXAxis) SetIncludeZero(v bool) {
+func (o *HeatMapWidgetYAxis) SetIncludeZero(v bool) {
 	o.IncludeZero = &v
 }
 
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *HeatMapWidgetYAxis) GetLabel() string {
+	if o == nil || o.Label == nil {
+		var ret string
+		return ret
+	}
+	return *o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HeatMapWidgetYAxis) GetLabelOk() (*string, bool) {
+	if o == nil || o.Label == nil {
+		return nil, false
+	}
+	return o.Label, true
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *HeatMapWidgetYAxis) HasLabel() bool {
+	return o != nil && o.Label != nil
+}
+
+// SetLabel gets a reference to the given string and assigns it to the Label field.
+func (o *HeatMapWidgetYAxis) SetLabel(v string) {
+	o.Label = &v
+}
+
 // GetMax returns the Max field value if set, zero value otherwise.
-func (o *DistributionWidgetXAxis) GetMax() string {
+func (o *HeatMapWidgetYAxis) GetMax() string {
 	if o == nil || o.Max == nil {
 		var ret string
 		return ret
@@ -93,7 +123,7 @@ func (o *DistributionWidgetXAxis) GetMax() string {
 
 // GetMaxOk returns a tuple with the Max field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DistributionWidgetXAxis) GetMaxOk() (*string, bool) {
+func (o *HeatMapWidgetYAxis) GetMaxOk() (*string, bool) {
 	if o == nil || o.Max == nil {
 		return nil, false
 	}
@@ -101,17 +131,17 @@ func (o *DistributionWidgetXAxis) GetMaxOk() (*string, bool) {
 }
 
 // HasMax returns a boolean if a field has been set.
-func (o *DistributionWidgetXAxis) HasMax() bool {
+func (o *HeatMapWidgetYAxis) HasMax() bool {
 	return o != nil && o.Max != nil
 }
 
 // SetMax gets a reference to the given string and assigns it to the Max field.
-func (o *DistributionWidgetXAxis) SetMax(v string) {
+func (o *HeatMapWidgetYAxis) SetMax(v string) {
 	o.Max = &v
 }
 
 // GetMin returns the Min field value if set, zero value otherwise.
-func (o *DistributionWidgetXAxis) GetMin() string {
+func (o *HeatMapWidgetYAxis) GetMin() string {
 	if o == nil || o.Min == nil {
 		var ret string
 		return ret
@@ -121,7 +151,7 @@ func (o *DistributionWidgetXAxis) GetMin() string {
 
 // GetMinOk returns a tuple with the Min field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DistributionWidgetXAxis) GetMinOk() (*string, bool) {
+func (o *HeatMapWidgetYAxis) GetMinOk() (*string, bool) {
 	if o == nil || o.Min == nil {
 		return nil, false
 	}
@@ -129,17 +159,17 @@ func (o *DistributionWidgetXAxis) GetMinOk() (*string, bool) {
 }
 
 // HasMin returns a boolean if a field has been set.
-func (o *DistributionWidgetXAxis) HasMin() bool {
+func (o *HeatMapWidgetYAxis) HasMin() bool {
 	return o != nil && o.Min != nil
 }
 
 // SetMin gets a reference to the given string and assigns it to the Min field.
-func (o *DistributionWidgetXAxis) SetMin(v string) {
+func (o *HeatMapWidgetYAxis) SetMin(v string) {
 	o.Min = &v
 }
 
 // GetNumBuckets returns the NumBuckets field value if set, zero value otherwise.
-func (o *DistributionWidgetXAxis) GetNumBuckets() int64 {
+func (o *HeatMapWidgetYAxis) GetNumBuckets() int64 {
 	if o == nil || o.NumBuckets == nil {
 		var ret int64
 		return ret
@@ -149,7 +179,7 @@ func (o *DistributionWidgetXAxis) GetNumBuckets() int64 {
 
 // GetNumBucketsOk returns a tuple with the NumBuckets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DistributionWidgetXAxis) GetNumBucketsOk() (*int64, bool) {
+func (o *HeatMapWidgetYAxis) GetNumBucketsOk() (*int64, bool) {
 	if o == nil || o.NumBuckets == nil {
 		return nil, false
 	}
@@ -157,17 +187,17 @@ func (o *DistributionWidgetXAxis) GetNumBucketsOk() (*int64, bool) {
 }
 
 // HasNumBuckets returns a boolean if a field has been set.
-func (o *DistributionWidgetXAxis) HasNumBuckets() bool {
+func (o *HeatMapWidgetYAxis) HasNumBuckets() bool {
 	return o != nil && o.NumBuckets != nil
 }
 
 // SetNumBuckets gets a reference to the given int64 and assigns it to the NumBuckets field.
-func (o *DistributionWidgetXAxis) SetNumBuckets(v int64) {
+func (o *HeatMapWidgetYAxis) SetNumBuckets(v int64) {
 	o.NumBuckets = &v
 }
 
 // GetScale returns the Scale field value if set, zero value otherwise.
-func (o *DistributionWidgetXAxis) GetScale() string {
+func (o *HeatMapWidgetYAxis) GetScale() string {
 	if o == nil || o.Scale == nil {
 		var ret string
 		return ret
@@ -177,7 +207,7 @@ func (o *DistributionWidgetXAxis) GetScale() string {
 
 // GetScaleOk returns a tuple with the Scale field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DistributionWidgetXAxis) GetScaleOk() (*string, bool) {
+func (o *HeatMapWidgetYAxis) GetScaleOk() (*string, bool) {
 	if o == nil || o.Scale == nil {
 		return nil, false
 	}
@@ -185,23 +215,26 @@ func (o *DistributionWidgetXAxis) GetScaleOk() (*string, bool) {
 }
 
 // HasScale returns a boolean if a field has been set.
-func (o *DistributionWidgetXAxis) HasScale() bool {
+func (o *HeatMapWidgetYAxis) HasScale() bool {
 	return o != nil && o.Scale != nil
 }
 
 // SetScale gets a reference to the given string and assigns it to the Scale field.
-func (o *DistributionWidgetXAxis) SetScale(v string) {
+func (o *HeatMapWidgetYAxis) SetScale(v string) {
 	o.Scale = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DistributionWidgetXAxis) MarshalJSON() ([]byte, error) {
+func (o HeatMapWidgetYAxis) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.IncludeZero != nil {
 		toSerialize["include_zero"] = o.IncludeZero
+	}
+	if o.Label != nil {
+		toSerialize["label"] = o.Label
 	}
 	if o.Max != nil {
 		toSerialize["max"] = o.Max
@@ -223,9 +256,10 @@ func (o DistributionWidgetXAxis) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DistributionWidgetXAxis) UnmarshalJSON(bytes []byte) (err error) {
+func (o *HeatMapWidgetYAxis) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		IncludeZero *bool   `json:"include_zero,omitempty"`
+		Label       *string `json:"label,omitempty"`
 		Max         *string `json:"max,omitempty"`
 		Min         *string `json:"min,omitempty"`
 		NumBuckets  *int64  `json:"num_buckets,omitempty"`
@@ -236,11 +270,12 @@ func (o *DistributionWidgetXAxis) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"include_zero", "max", "min", "num_buckets", "scale"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"include_zero", "label", "max", "min", "num_buckets", "scale"})
 	} else {
 		return err
 	}
 	o.IncludeZero = all.IncludeZero
+	o.Label = all.Label
 	o.Max = all.Max
 	o.Min = all.Min
 	o.NumBuckets = all.NumBuckets

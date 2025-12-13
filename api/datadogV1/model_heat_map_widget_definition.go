@@ -18,6 +18,8 @@ type HeatMapWidgetDefinition struct {
 	Events []WidgetEvent `json:"events,omitempty"`
 	// Available legend sizes for a widget. Should be one of "0", "2", "4", "8", "16", or "auto".
 	LegendSize *string `json:"legend_size,omitempty"`
+	// List of markers.
+	Markers []WidgetMarker `json:"markers,omitempty"`
 	// List of widget types.
 	Requests []HeatMapWidgetRequest `json:"requests"`
 	// Whether or not to display the legend on this widget.
@@ -32,8 +34,10 @@ type HeatMapWidgetDefinition struct {
 	TitleSize *string `json:"title_size,omitempty"`
 	// Type of the heat map widget.
 	Type HeatMapWidgetDefinitionType `json:"type"`
-	// Axis controls for the widget.
-	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
+	// X Axis controls for the heat map widget.
+	Xaxis *HeatMapWidgetXAxis `json:"xaxis,omitempty"`
+	// Y Axis controls for the heat map widget.
+	Yaxis *HeatMapWidgetYAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -142,6 +146,34 @@ func (o *HeatMapWidgetDefinition) HasLegendSize() bool {
 // SetLegendSize gets a reference to the given string and assigns it to the LegendSize field.
 func (o *HeatMapWidgetDefinition) SetLegendSize(v string) {
 	o.LegendSize = &v
+}
+
+// GetMarkers returns the Markers field value if set, zero value otherwise.
+func (o *HeatMapWidgetDefinition) GetMarkers() []WidgetMarker {
+	if o == nil || o.Markers == nil {
+		var ret []WidgetMarker
+		return ret
+	}
+	return o.Markers
+}
+
+// GetMarkersOk returns a tuple with the Markers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HeatMapWidgetDefinition) GetMarkersOk() (*[]WidgetMarker, bool) {
+	if o == nil || o.Markers == nil {
+		return nil, false
+	}
+	return &o.Markers, true
+}
+
+// HasMarkers returns a boolean if a field has been set.
+func (o *HeatMapWidgetDefinition) HasMarkers() bool {
+	return o != nil && o.Markers != nil
+}
+
+// SetMarkers gets a reference to the given []WidgetMarker and assigns it to the Markers field.
+func (o *HeatMapWidgetDefinition) SetMarkers(v []WidgetMarker) {
+	o.Markers = v
 }
 
 // GetRequests returns the Requests field value.
@@ -330,10 +362,38 @@ func (o *HeatMapWidgetDefinition) SetType(v HeatMapWidgetDefinitionType) {
 	o.Type = v
 }
 
+// GetXaxis returns the Xaxis field value if set, zero value otherwise.
+func (o *HeatMapWidgetDefinition) GetXaxis() HeatMapWidgetXAxis {
+	if o == nil || o.Xaxis == nil {
+		var ret HeatMapWidgetXAxis
+		return ret
+	}
+	return *o.Xaxis
+}
+
+// GetXaxisOk returns a tuple with the Xaxis field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HeatMapWidgetDefinition) GetXaxisOk() (*HeatMapWidgetXAxis, bool) {
+	if o == nil || o.Xaxis == nil {
+		return nil, false
+	}
+	return o.Xaxis, true
+}
+
+// HasXaxis returns a boolean if a field has been set.
+func (o *HeatMapWidgetDefinition) HasXaxis() bool {
+	return o != nil && o.Xaxis != nil
+}
+
+// SetXaxis gets a reference to the given HeatMapWidgetXAxis and assigns it to the Xaxis field.
+func (o *HeatMapWidgetDefinition) SetXaxis(v HeatMapWidgetXAxis) {
+	o.Xaxis = &v
+}
+
 // GetYaxis returns the Yaxis field value if set, zero value otherwise.
-func (o *HeatMapWidgetDefinition) GetYaxis() WidgetAxis {
+func (o *HeatMapWidgetDefinition) GetYaxis() HeatMapWidgetYAxis {
 	if o == nil || o.Yaxis == nil {
-		var ret WidgetAxis
+		var ret HeatMapWidgetYAxis
 		return ret
 	}
 	return *o.Yaxis
@@ -341,7 +401,7 @@ func (o *HeatMapWidgetDefinition) GetYaxis() WidgetAxis {
 
 // GetYaxisOk returns a tuple with the Yaxis field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HeatMapWidgetDefinition) GetYaxisOk() (*WidgetAxis, bool) {
+func (o *HeatMapWidgetDefinition) GetYaxisOk() (*HeatMapWidgetYAxis, bool) {
 	if o == nil || o.Yaxis == nil {
 		return nil, false
 	}
@@ -353,8 +413,8 @@ func (o *HeatMapWidgetDefinition) HasYaxis() bool {
 	return o != nil && o.Yaxis != nil
 }
 
-// SetYaxis gets a reference to the given WidgetAxis and assigns it to the Yaxis field.
-func (o *HeatMapWidgetDefinition) SetYaxis(v WidgetAxis) {
+// SetYaxis gets a reference to the given HeatMapWidgetYAxis and assigns it to the Yaxis field.
+func (o *HeatMapWidgetDefinition) SetYaxis(v HeatMapWidgetYAxis) {
 	o.Yaxis = &v
 }
 
@@ -373,6 +433,9 @@ func (o HeatMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.LegendSize != nil {
 		toSerialize["legend_size"] = o.LegendSize
 	}
+	if o.Markers != nil {
+		toSerialize["markers"] = o.Markers
+	}
 	toSerialize["requests"] = o.Requests
 	if o.ShowLegend != nil {
 		toSerialize["show_legend"] = o.ShowLegend
@@ -390,6 +453,9 @@ func (o HeatMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 		toSerialize["title_size"] = o.TitleSize
 	}
 	toSerialize["type"] = o.Type
+	if o.Xaxis != nil {
+		toSerialize["xaxis"] = o.Xaxis
+	}
 	if o.Yaxis != nil {
 		toSerialize["yaxis"] = o.Yaxis
 	}
@@ -406,6 +472,7 @@ func (o *HeatMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		CustomLinks []WidgetCustomLink           `json:"custom_links,omitempty"`
 		Events      []WidgetEvent                `json:"events,omitempty"`
 		LegendSize  *string                      `json:"legend_size,omitempty"`
+		Markers     []WidgetMarker               `json:"markers,omitempty"`
 		Requests    *[]HeatMapWidgetRequest      `json:"requests"`
 		ShowLegend  *bool                        `json:"show_legend,omitempty"`
 		Time        *WidgetTime                  `json:"time,omitempty"`
@@ -413,7 +480,8 @@ func (o *HeatMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		TitleAlign  *WidgetTextAlign             `json:"title_align,omitempty"`
 		TitleSize   *string                      `json:"title_size,omitempty"`
 		Type        *HeatMapWidgetDefinitionType `json:"type"`
-		Yaxis       *WidgetAxis                  `json:"yaxis,omitempty"`
+		Xaxis       *HeatMapWidgetXAxis          `json:"xaxis,omitempty"`
+		Yaxis       *HeatMapWidgetYAxis          `json:"yaxis,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -426,7 +494,7 @@ func (o *HeatMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom_links", "events", "legend_size", "requests", "show_legend", "time", "title", "title_align", "title_size", "type", "yaxis"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom_links", "events", "legend_size", "markers", "requests", "show_legend", "time", "title", "title_align", "title_size", "type", "xaxis", "yaxis"})
 	} else {
 		return err
 	}
@@ -435,6 +503,7 @@ func (o *HeatMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.CustomLinks = all.CustomLinks
 	o.Events = all.Events
 	o.LegendSize = all.LegendSize
+	o.Markers = all.Markers
 	o.Requests = *all.Requests
 	o.ShowLegend = all.ShowLegend
 	o.Time = all.Time
@@ -450,6 +519,10 @@ func (o *HeatMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.Type = *all.Type
 	}
+	if all.Xaxis != nil && all.Xaxis.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Xaxis = all.Xaxis
 	if all.Yaxis != nil && all.Yaxis.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
