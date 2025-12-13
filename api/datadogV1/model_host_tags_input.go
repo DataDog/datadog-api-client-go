@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HostTags Set of tags to associate with your host.
-type HostTags struct {
+// HostTagsInput Set of tags to associate with your host.
+type HostTagsInput struct {
 	// Your host name.
 	Host *string `json:"host,omitempty"`
 	// A list of tags to apply to the host.
@@ -19,25 +19,25 @@ type HostTags struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewHostTags instantiates a new HostTags object.
+// NewHostTagsInput instantiates a new HostTagsInput object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewHostTags() *HostTags {
-	this := HostTags{}
+func NewHostTagsInput() *HostTagsInput {
+	this := HostTagsInput{}
 	return &this
 }
 
-// NewHostTagsWithDefaults instantiates a new HostTags object.
+// NewHostTagsInputWithDefaults instantiates a new HostTagsInput object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewHostTagsWithDefaults() *HostTags {
-	this := HostTags{}
+func NewHostTagsInputWithDefaults() *HostTagsInput {
+	this := HostTagsInput{}
 	return &this
 }
 
 // GetHost returns the Host field value if set, zero value otherwise.
-func (o *HostTags) GetHost() string {
+func (o *HostTagsInput) GetHost() string {
 	if o == nil || o.Host == nil {
 		var ret string
 		return ret
@@ -47,7 +47,7 @@ func (o *HostTags) GetHost() string {
 
 // GetHostOk returns a tuple with the Host field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostTags) GetHostOk() (*string, bool) {
+func (o *HostTagsInput) GetHostOk() (*string, bool) {
 	if o == nil || o.Host == nil {
 		return nil, false
 	}
@@ -55,17 +55,17 @@ func (o *HostTags) GetHostOk() (*string, bool) {
 }
 
 // HasHost returns a boolean if a field has been set.
-func (o *HostTags) HasHost() bool {
+func (o *HostTagsInput) HasHost() bool {
 	return o != nil && o.Host != nil
 }
 
 // SetHost gets a reference to the given string and assigns it to the Host field.
-func (o *HostTags) SetHost(v string) {
+func (o *HostTagsInput) SetHost(v string) {
 	o.Host = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *HostTags) GetTags() []string {
+func (o *HostTagsInput) GetTags() []string {
 	if o == nil || o.Tags == nil {
 		var ret []string
 		return ret
@@ -75,7 +75,7 @@ func (o *HostTags) GetTags() []string {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostTags) GetTagsOk() (*[]string, bool) {
+func (o *HostTagsInput) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -83,17 +83,17 @@ func (o *HostTags) GetTagsOk() (*[]string, bool) {
 }
 
 // HasTags returns a boolean if a field has been set.
-func (o *HostTags) HasTags() bool {
+func (o *HostTagsInput) HasTags() bool {
 	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *HostTags) SetTags(v []string) {
+func (o *HostTagsInput) SetTags(v []string) {
 	o.Tags = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o HostTags) MarshalJSON() ([]byte, error) {
+func (o HostTagsInput) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -112,7 +112,7 @@ func (o HostTags) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *HostTags) UnmarshalJSON(bytes []byte) (err error) {
+func (o *HostTagsInput) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Host *string  `json:"host,omitempty"`
 		Tags []string `json:"tags,omitempty"`
