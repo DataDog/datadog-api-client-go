@@ -1,4 +1,4 @@
-// Get a list of attachments returns "OK" response
+// List incident attachments returns "OK" response
 
 package main
 
