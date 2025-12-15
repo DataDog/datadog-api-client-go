@@ -24,7 +24,7 @@ func main() {
 					Findings: datadogV2.Findings{
 						Data: []datadogV2.FindingData{
 							{
-								Id:   "ZGZhMDI3ZjdjMDM3YjJmNzcxNTlhZGMwMjdmZWNiNTZ-MTVlYTNmYWU3NjNlOTNlYTE2YjM4N2JmZmI4Yjk5N2Y=",
+								Id:   "YjdhNDM3N2QyNTFjYmUwYTY3NDdhMTg0YTk2Yjg5MDl-ZjNmMzAwOTFkZDNhNGQzYzI0MzgxNTk4MjRjZmE2NzE=",
 								Type: datadogV2.FINDINGDATATYPE_FINDINGS,
 							},
 						},
@@ -47,7 +47,7 @@ func main() {
 					Findings: datadogV2.Findings{
 						Data: []datadogV2.FindingData{
 							{
-								Id:   "MzZkNTMxODNmOGZlZmJiYzIyMDg4NzhmM2QyMDExZjB-ZmY5NzUwNDQzYTE0MGIyNDM1MTg4YjkxZDNmMDU4OGU=",
+								Id:   "OGRlMDIwYzk4MjFmZTZiNTQwMzk2ZjUxNzg0MDc0NjR-MTk3Yjk4MDI4ZDQ4YzI2ZGZiMWJmMTNhNDEwZGZkYWI=",
 								Type: datadogV2.FINDINGDATATYPE_FINDINGS,
 							},
 						},

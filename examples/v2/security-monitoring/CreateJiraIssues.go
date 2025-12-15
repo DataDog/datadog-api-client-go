@@ -16,100 +16,40 @@ func main() {
 	body := datadogV2.CreateJiraIssueRequestArray{
 		Data: []datadogV2.CreateJiraIssueRequestData{
 			{
-				Type:       datadogV2.JIRAISSUESDATATYPE_JIRA_ISSUES,
-				Attributes: &datadogV2.CreateJiraIssueRequestDataAttributes{},
+				Attributes: &datadogV2.CreateJiraIssueRequestDataAttributes{
+					AssigneeId:  datadog.PtrString("f315bdaf-9ee7-4808-a9c1-99c15bf0f4d0"),
+					Description: datadog.PtrString("A description of the Jira issue."),
+					Fields: map[string]interface{}{
+						"key1": "value",
+						"key2": "['value']",
+						"key3": "{'key4': 'value'}",
+					},
+					Priority: datadogV2.CASEPRIORITY_NOT_DEFINED.Ptr(),
+					Title:    datadog.PtrString("A title for the Jira issue."),
+				},
 				Relationships: &datadogV2.CreateJiraIssueRequestDataRelationships{
-					Case: datadogV2.CreateJiraIssueRequestDataRelationshipsCase{
-						Data: datadogV2.CreateJiraIssueRequestDataRelationshipsCaseData{
-							Type: datadogV2.CASEDATATYPE_CASES,
-							Id:   "53e242c6-a7d6-46ad-9680-b8d14753f716",
+					Findings: datadogV2.Findings{
+						Data: []datadogV2.FindingData{
+							{
+								Id:   "ZGVmLTAwcC1pZXJ-aS0wZjhjNjMyZDNmMzRlZTgzNw==",
+								Type: datadogV2.FINDINGDATATYPE_FINDINGS,
+							},
+						},
+					},
+					Project: datadogV2.CaseManagementProject{
+						Data: datadogV2.CaseManagementProjectData{
+							Id:   "aeadc05e-98a8-11ec-ac2c-da7ad0900001",
+							Type: datadogV2.CASEMANAGEMENTPROJECTDATATYPE_PROJECTS,
 						},
 					},
 				},
+				Type: datadogV2.JIRAISSUESDATATYPE_JIRA_ISSUES,
 			},
-			{
-				Type:       datadogV2.JIRAISSUESDATATYPE_JIRA_ISSUES,
-				Attributes: &datadogV2.CreateJiraIssueRequestDataAttributes{},
-				Relationships: &datadogV2.CreateJiraIssueRequestDataRelationships{
-					Case: datadogV2.CreateJiraIssueRequestDataRelationshipsCase{
-						Data: datadogV2.CreateJiraIssueRequestDataRelationshipsCaseData{
-							Type: datadogV2.CASEDATATYPE_CASES,
-							Id:   "195772b2-1f53-41d2-b81e-48c8e6c21d33",
-						},
-					},
-				},
-			},
-		},
-		Included: []datadogV2.CreateJiraIssueRequestArrayIncluded{
-			datadogV2.CreateJiraIssueRequestArrayIncluded{
-				CreateCaseRequestData: &datadogV2.CreateCaseRequestData{
-					Type: datadogV2.CASEDATATYPE_CASES,
-					Attributes: &datadogV2.CreateCaseRequestDataAttributes{
-						Title:       datadog.PtrString("A title"),
-						Description: datadog.PtrString("A description"),
-					},
-					Relationships: &datadogV2.CreateCaseRequestDataRelationships{
-						Project: datadogV2.CaseManagementProject{
-							Data: datadogV2.CaseManagementProjectData{
-								Type: datadogV2.CASEMANAGEMENTPROJECTDATATYPE_PROJECTS,
-								Id:   "959a6f71-bac8-4027-b1d3-2264f569296f",
-							},
-						},
-						Findings: datadogV2.Findings{
-							Data: []datadogV2.FindingData{
-								{
-									Type: datadogV2.FINDINGDATATYPE_FINDINGS,
-									Id:   "OTQ3NjJkMmYwMTIzMzMxNTc1Y2Q4MTA5NWU0NTBmMDl-ZjE3NjMxZWVkYzBjZGI1NDY2NWY2OGQxZDk4MDY4MmI=",
-								},
-							},
-						},
-					},
-					Id: datadog.PtrString("53e242c6-a7d6-46ad-9680-b8d14753f716"),
-				}},
-			datadogV2.CreateJiraIssueRequestArrayIncluded{
-				CreateCaseRequestData: &datadogV2.CreateCaseRequestData{
-					Type: datadogV2.CASEDATATYPE_CASES,
-					Attributes: &datadogV2.CreateCaseRequestDataAttributes{
-						Title:       datadog.PtrString("A title"),
-						Description: datadog.PtrString("A description"),
-					},
-					Relationships: &datadogV2.CreateCaseRequestDataRelationships{
-						Project: datadogV2.CaseManagementProject{
-							Data: datadogV2.CaseManagementProjectData{
-								Type: datadogV2.CASEMANAGEMENTPROJECTDATATYPE_PROJECTS,
-								Id:   "959a6f71-bac8-4027-b1d3-2264f569296f",
-							},
-						},
-						Findings: datadogV2.Findings{
-							Data: []datadogV2.FindingData{
-								{
-									Type: datadogV2.FINDINGDATATYPE_FINDINGS,
-									Id:   "MTNjN2ZmYWMzMDIxYmU1ZDFiZDRjNWUwN2I1NzVmY2F-YTA3MzllMTUzNWM3NmEyZjdiNzEzOWM5YmViZTMzOGM=",
-								},
-							},
-						},
-					},
-					Id: datadog.PtrString("195772b2-1f53-41d2-b81e-48c8e6c21d33"),
-				}},
-			datadogV2.CreateJiraIssueRequestArrayIncluded{
-				CaseManagementProjectData: &datadogV2.CaseManagementProjectData{
-					Type: datadogV2.CASEMANAGEMENTPROJECTDATATYPE_PROJECTS,
-					Id:   "959a6f71-bac8-4027-b1d3-2264f569296f",
-				}},
-			datadogV2.CreateJiraIssueRequestArrayIncluded{
-				FindingData: &datadogV2.FindingData{
-					Type: datadogV2.FINDINGDATATYPE_FINDINGS,
-					Id:   "OTQ3NjJkMmYwMTIzMzMxNTc1Y2Q4MTA5NWU0NTBmMDl-ZjE3NjMxZWVkYzBjZGI1NDY2NWY2OGQxZDk4MDY4MmI=",
-				}},
-			datadogV2.CreateJiraIssueRequestArrayIncluded{
-				FindingData: &datadogV2.FindingData{
-					Type: datadogV2.FINDINGDATATYPE_FINDINGS,
-					Id:   "MTNjN2ZmYWMzMDIxYmU1ZDFiZDRjNWUwN2I1NzVmY2F-YTA3MzllMTUzNWM3NmEyZjdiNzEzOWM5YmViZTMzOGM=",
-				}},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.CreateJiraIssues", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
 	resp, r, err := api.CreateJiraIssues(ctx, body)
