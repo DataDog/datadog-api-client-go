@@ -24,11 +24,11 @@ func main() {
 					Findings: datadogV2.Findings{
 						Data: []datadogV2.FindingData{
 							{
-								Id:   "ZGZhMDI3ZjdjMDM3YjJmNzcxNTlhZGMwMjdmZWNiNTZ-MTVlYTNmYWU3NjNlOTNlYTE2YjM4N2JmZmI4Yjk5N2Y=",
+								Id:   "ZTd5LWNuYi1seWV-aS0wMjI2NGZjZjRmZWQ5ODMyMg==",
 								Type: datadogV2.FINDINGDATATYPE_FINDINGS,
 							},
 							{
-								Id:   "MzZkNTMxODNmOGZlZmJiYzIyMDg4NzhmM2QyMDExZjB-ZmY5NzUwNDQzYTE0MGIyNDM1MTg4YjkxZDNmMDU4OGU=",
+								Id:   "c2FuLXhyaS1kZnN-aS0wODM3MjVhMTM2MDExNzNkOQ==",
 								Type: datadogV2.FINDINGDATATYPE_FINDINGS,
 							},
 						},

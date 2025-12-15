@@ -24,7 +24,7 @@ func main() {
 					Findings: datadogV2.Findings{
 						Data: []datadogV2.FindingData{
 							{
-								Id:   "ZGZhMDI3ZjdjMDM3YjJmNzcxNTlhZGMwMjdmZWNiNTZ-MTVlYTNmYWU3NjNlOTNlYTE2YjM4N2JmZmI4Yjk5N2Y=",
+								Id:   "YjdhNDM3N2QyNTFjYmUwYTY3NDdhMTg0YTk2Yjg5MDl-ZjNmMzAwOTFkZDNhNGQzYzI0MzgxNTk4MjRjZmE2NzE=",
 								Type: datadogV2.FINDINGDATATYPE_FINDINGS,
 							},
 						},
