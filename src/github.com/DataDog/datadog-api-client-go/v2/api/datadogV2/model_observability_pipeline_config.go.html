@@ -71,8 +71,8 @@
 <span id="L14" class="ln">    14  </span>type ObservabilityPipelineConfig struct {
 <span id="L15" class="ln">    15  </span>	<span class="comment">// A list of destination components where processed logs are sent.</span>
 <span id="L16" class="ln">    16  </span>	Destinations []ObservabilityPipelineConfigDestinationItem `json:&#34;destinations&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// A list of processors that transform or enrich log data.</span>
-<span id="L18" class="ln">    18  </span>	Processors []ObservabilityPipelineConfigProcessorItem `json:&#34;processors,omitempty&#34;`
+<span id="L17" class="ln">    17  </span>	<span class="comment">// A list of processor groups that transform or enrich log data.</span>
+<span id="L18" class="ln">    18  </span>	Processors []ObservabilityPipelineConfigProcessorGroup `json:&#34;processors,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// A list of configured data sources for the pipeline.</span>
 <span id="L20" class="ln">    20  </span>	Sources []ObservabilityPipelineConfigSourceItem `json:&#34;sources&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
@@ -123,9 +123,9 @@
 <span id="L66" class="ln">    66  </span>}
 <span id="L67" class="ln">    67  </span>
 <span id="L68" class="ln">    68  </span><span class="comment">// GetProcessors returns the Processors field value if set, zero value otherwise.</span>
-<span id="L69" class="ln">    69  </span>func (o *ObservabilityPipelineConfig) GetProcessors() []ObservabilityPipelineConfigProcessorItem {
+<span id="L69" class="ln">    69  </span>func (o *ObservabilityPipelineConfig) GetProcessors() []ObservabilityPipelineConfigProcessorGroup {
 <span id="L70" class="ln">    70  </span>	if o == nil || o.Processors == nil {
-<span id="L71" class="ln">    71  </span>		var ret []ObservabilityPipelineConfigProcessorItem
+<span id="L71" class="ln">    71  </span>		var ret []ObservabilityPipelineConfigProcessorGroup
 <span id="L72" class="ln">    72  </span>		return ret
 <span id="L73" class="ln">    73  </span>	}
 <span id="L74" class="ln">    74  </span>	return o.Processors
@@ -133,7 +133,7 @@
 <span id="L76" class="ln">    76  </span>
 <span id="L77" class="ln">    77  </span><span class="comment">// GetProcessorsOk returns a tuple with the Processors field value if set, nil otherwise</span>
 <span id="L78" class="ln">    78  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L79" class="ln">    79  </span>func (o *ObservabilityPipelineConfig) GetProcessorsOk() (*[]ObservabilityPipelineConfigProcessorItem, bool) {
+<span id="L79" class="ln">    79  </span>func (o *ObservabilityPipelineConfig) GetProcessorsOk() (*[]ObservabilityPipelineConfigProcessorGroup, bool) {
 <span id="L80" class="ln">    80  </span>	if o == nil || o.Processors == nil {
 <span id="L81" class="ln">    81  </span>		return nil, false
 <span id="L82" class="ln">    82  </span>	}
@@ -145,8 +145,8 @@
 <span id="L88" class="ln">    88  </span>	return o != nil &amp;&amp; o.Processors != nil
 <span id="L89" class="ln">    89  </span>}
 <span id="L90" class="ln">    90  </span>
-<span id="L91" class="ln">    91  </span><span class="comment">// SetProcessors gets a reference to the given []ObservabilityPipelineConfigProcessorItem and assigns it to the Processors field.</span>
-<span id="L92" class="ln">    92  </span>func (o *ObservabilityPipelineConfig) SetProcessors(v []ObservabilityPipelineConfigProcessorItem) {
+<span id="L91" class="ln">    91  </span><span class="comment">// SetProcessors gets a reference to the given []ObservabilityPipelineConfigProcessorGroup and assigns it to the Processors field.</span>
+<span id="L92" class="ln">    92  </span>func (o *ObservabilityPipelineConfig) SetProcessors(v []ObservabilityPipelineConfigProcessorGroup) {
 <span id="L93" class="ln">    93  </span>	o.Processors = v
 <span id="L94" class="ln">    94  </span>}
 <span id="L95" class="ln">    95  </span>
@@ -195,7 +195,7 @@
 <span id="L138" class="ln">   138  </span>func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L139" class="ln">   139  </span>	all := struct {
 <span id="L140" class="ln">   140  </span>		Destinations *[]ObservabilityPipelineConfigDestinationItem `json:&#34;destinations&#34;`
-<span id="L141" class="ln">   141  </span>		Processors   []ObservabilityPipelineConfigProcessorItem    `json:&#34;processors,omitempty&#34;`
+<span id="L141" class="ln">   141  </span>		Processors   []ObservabilityPipelineConfigProcessorGroup   `json:&#34;processors,omitempty&#34;`
 <span id="L142" class="ln">   142  </span>		Sources      *[]ObservabilityPipelineConfigSourceItem      `json:&#34;sources&#34;`
 <span id="L143" class="ln">   143  </span>	}{}
 <span id="L144" class="ln">   144  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {

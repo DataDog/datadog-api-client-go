@@ -69,14 +69,14 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// ObservabilityPipelineThrottleProcessor The `throttle` processor limits the number of events that pass through over a given time window.</span>
 <span id="L14" class="ln">    14  </span>type ObservabilityPipelineThrottleProcessor struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// Optional list of fields used to group events before the threshold has been reached.</span>
-<span id="L16" class="ln">    16  </span>	GroupBy []string `json:&#34;group_by,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// The unique identifier for this processor.</span>
-<span id="L18" class="ln">    18  </span>	Id string `json:&#34;id&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// A Datadog search query used to determine which logs this processor targets.</span>
-<span id="L20" class="ln">    20  </span>	Include string `json:&#34;include&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// A list of component IDs whose output is used as the input for this processor.</span>
-<span id="L22" class="ln">    22  </span>	Inputs []string `json:&#34;inputs&#34;`
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Whether this processor is enabled.</span>
+<span id="L16" class="ln">    16  </span>	Enabled bool `json:&#34;enabled&#34;`
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Optional list of fields used to group events before the threshold has been reached.</span>
+<span id="L18" class="ln">    18  </span>	GroupBy []string `json:&#34;group_by,omitempty&#34;`
+<span id="L19" class="ln">    19  </span>	<span class="comment">// The unique identifier for this processor.</span>
+<span id="L20" class="ln">    20  </span>	Id string `json:&#34;id&#34;`
+<span id="L21" class="ln">    21  </span>	<span class="comment">// A Datadog search query used to determine which logs this processor targets.</span>
+<span id="L22" class="ln">    22  </span>	Include string `json:&#34;include&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// the number of events allowed in a given time window. Events sent after the threshold has been reached, are dropped.</span>
 <span id="L24" class="ln">    24  </span>	Threshold int64 `json:&#34;threshold&#34;`
 <span id="L25" class="ln">    25  </span>	<span class="comment">// The processor type. The value should always be `throttle`.</span>
@@ -92,11 +92,11 @@
 <span id="L35" class="ln">    35  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
 <span id="L36" class="ln">    36  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
 <span id="L37" class="ln">    37  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L38" class="ln">    38  </span>func NewObservabilityPipelineThrottleProcessor(id string, include string, inputs []string, threshold int64, typeVar ObservabilityPipelineThrottleProcessorType, window float64) *ObservabilityPipelineThrottleProcessor {
+<span id="L38" class="ln">    38  </span>func NewObservabilityPipelineThrottleProcessor(enabled bool, id string, include string, threshold int64, typeVar ObservabilityPipelineThrottleProcessorType, window float64) *ObservabilityPipelineThrottleProcessor {
 <span id="L39" class="ln">    39  </span>	this := ObservabilityPipelineThrottleProcessor{}
-<span id="L40" class="ln">    40  </span>	this.Id = id
-<span id="L41" class="ln">    41  </span>	this.Include = include
-<span id="L42" class="ln">    42  </span>	this.Inputs = inputs
+<span id="L40" class="ln">    40  </span>	this.Enabled = enabled
+<span id="L41" class="ln">    41  </span>	this.Id = id
+<span id="L42" class="ln">    42  </span>	this.Include = include
 <span id="L43" class="ln">    43  </span>	this.Threshold = threshold
 <span id="L44" class="ln">    44  </span>	this.Type = typeVar
 <span id="L45" class="ln">    45  </span>	this.Window = window
@@ -113,101 +113,101 @@
 <span id="L56" class="ln">    56  </span>	return &amp;this
 <span id="L57" class="ln">    57  </span>}
 <span id="L58" class="ln">    58  </span>
-<span id="L59" class="ln">    59  </span><span class="comment">// GetGroupBy returns the GroupBy field value if set, zero value otherwise.</span>
-<span id="L60" class="ln">    60  </span>func (o *ObservabilityPipelineThrottleProcessor) GetGroupBy() []string {
-<span id="L61" class="ln">    61  </span>	if o == nil || o.GroupBy == nil {
-<span id="L62" class="ln">    62  </span>		var ret []string
+<span id="L59" class="ln">    59  </span><span class="comment">// GetEnabled returns the Enabled field value.</span>
+<span id="L60" class="ln">    60  </span>func (o *ObservabilityPipelineThrottleProcessor) GetEnabled() bool {
+<span id="L61" class="ln">    61  </span>	if o == nil {
+<span id="L62" class="ln">    62  </span>		var ret bool
 <span id="L63" class="ln">    63  </span>		return ret
 <span id="L64" class="ln">    64  </span>	}
-<span id="L65" class="ln">    65  </span>	return o.GroupBy
+<span id="L65" class="ln">    65  </span>	return o.Enabled
 <span id="L66" class="ln">    66  </span>}
 <span id="L67" class="ln">    67  </span>
-<span id="L68" class="ln">    68  </span><span class="comment">// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise</span>
+<span id="L68" class="ln">    68  </span><span class="comment">// GetEnabledOk returns a tuple with the Enabled field value</span>
 <span id="L69" class="ln">    69  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L70" class="ln">    70  </span>func (o *ObservabilityPipelineThrottleProcessor) GetGroupByOk() (*[]string, bool) {
-<span id="L71" class="ln">    71  </span>	if o == nil || o.GroupBy == nil {
+<span id="L70" class="ln">    70  </span>func (o *ObservabilityPipelineThrottleProcessor) GetEnabledOk() (*bool, bool) {
+<span id="L71" class="ln">    71  </span>	if o == nil {
 <span id="L72" class="ln">    72  </span>		return nil, false
 <span id="L73" class="ln">    73  </span>	}
-<span id="L74" class="ln">    74  </span>	return &amp;o.GroupBy, true
+<span id="L74" class="ln">    74  </span>	return &amp;o.Enabled, true
 <span id="L75" class="ln">    75  </span>}
 <span id="L76" class="ln">    76  </span>
-<span id="L77" class="ln">    77  </span><span class="comment">// HasGroupBy returns a boolean if a field has been set.</span>
-<span id="L78" class="ln">    78  </span>func (o *ObservabilityPipelineThrottleProcessor) HasGroupBy() bool {
-<span id="L79" class="ln">    79  </span>	return o != nil &amp;&amp; o.GroupBy != nil
+<span id="L77" class="ln">    77  </span><span class="comment">// SetEnabled sets field value.</span>
+<span id="L78" class="ln">    78  </span>func (o *ObservabilityPipelineThrottleProcessor) SetEnabled(v bool) {
+<span id="L79" class="ln">    79  </span>	o.Enabled = v
 <span id="L80" class="ln">    80  </span>}
 <span id="L81" class="ln">    81  </span>
-<span id="L82" class="ln">    82  </span><span class="comment">// SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.</span>
-<span id="L83" class="ln">    83  </span>func (o *ObservabilityPipelineThrottleProcessor) SetGroupBy(v []string) {
-<span id="L84" class="ln">    84  </span>	o.GroupBy = v
-<span id="L85" class="ln">    85  </span>}
-<span id="L86" class="ln">    86  </span>
-<span id="L87" class="ln">    87  </span><span class="comment">// GetId returns the Id field value.</span>
-<span id="L88" class="ln">    88  </span>func (o *ObservabilityPipelineThrottleProcessor) GetId() string {
-<span id="L89" class="ln">    89  </span>	if o == nil {
-<span id="L90" class="ln">    90  </span>		var ret string
-<span id="L91" class="ln">    91  </span>		return ret
-<span id="L92" class="ln">    92  </span>	}
-<span id="L93" class="ln">    93  </span>	return o.Id
-<span id="L94" class="ln">    94  </span>}
-<span id="L95" class="ln">    95  </span>
-<span id="L96" class="ln">    96  </span><span class="comment">// GetIdOk returns a tuple with the Id field value</span>
-<span id="L97" class="ln">    97  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L98" class="ln">    98  </span>func (o *ObservabilityPipelineThrottleProcessor) GetIdOk() (*string, bool) {
-<span id="L99" class="ln">    99  </span>	if o == nil {
-<span id="L100" class="ln">   100  </span>		return nil, false
-<span id="L101" class="ln">   101  </span>	}
-<span id="L102" class="ln">   102  </span>	return &amp;o.Id, true
+<span id="L82" class="ln">    82  </span><span class="comment">// GetGroupBy returns the GroupBy field value if set, zero value otherwise.</span>
+<span id="L83" class="ln">    83  </span>func (o *ObservabilityPipelineThrottleProcessor) GetGroupBy() []string {
+<span id="L84" class="ln">    84  </span>	if o == nil || o.GroupBy == nil {
+<span id="L85" class="ln">    85  </span>		var ret []string
+<span id="L86" class="ln">    86  </span>		return ret
+<span id="L87" class="ln">    87  </span>	}
+<span id="L88" class="ln">    88  </span>	return o.GroupBy
+<span id="L89" class="ln">    89  </span>}
+<span id="L90" class="ln">    90  </span>
+<span id="L91" class="ln">    91  </span><span class="comment">// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise</span>
+<span id="L92" class="ln">    92  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L93" class="ln">    93  </span>func (o *ObservabilityPipelineThrottleProcessor) GetGroupByOk() (*[]string, bool) {
+<span id="L94" class="ln">    94  </span>	if o == nil || o.GroupBy == nil {
+<span id="L95" class="ln">    95  </span>		return nil, false
+<span id="L96" class="ln">    96  </span>	}
+<span id="L97" class="ln">    97  </span>	return &amp;o.GroupBy, true
+<span id="L98" class="ln">    98  </span>}
+<span id="L99" class="ln">    99  </span>
+<span id="L100" class="ln">   100  </span><span class="comment">// HasGroupBy returns a boolean if a field has been set.</span>
+<span id="L101" class="ln">   101  </span>func (o *ObservabilityPipelineThrottleProcessor) HasGroupBy() bool {
+<span id="L102" class="ln">   102  </span>	return o != nil &amp;&amp; o.GroupBy != nil
 <span id="L103" class="ln">   103  </span>}
 <span id="L104" class="ln">   104  </span>
-<span id="L105" class="ln">   105  </span><span class="comment">// SetId sets field value.</span>
-<span id="L106" class="ln">   106  </span>func (o *ObservabilityPipelineThrottleProcessor) SetId(v string) {
-<span id="L107" class="ln">   107  </span>	o.Id = v
+<span id="L105" class="ln">   105  </span><span class="comment">// SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.</span>
+<span id="L106" class="ln">   106  </span>func (o *ObservabilityPipelineThrottleProcessor) SetGroupBy(v []string) {
+<span id="L107" class="ln">   107  </span>	o.GroupBy = v
 <span id="L108" class="ln">   108  </span>}
 <span id="L109" class="ln">   109  </span>
-<span id="L110" class="ln">   110  </span><span class="comment">// GetInclude returns the Include field value.</span>
-<span id="L111" class="ln">   111  </span>func (o *ObservabilityPipelineThrottleProcessor) GetInclude() string {
+<span id="L110" class="ln">   110  </span><span class="comment">// GetId returns the Id field value.</span>
+<span id="L111" class="ln">   111  </span>func (o *ObservabilityPipelineThrottleProcessor) GetId() string {
 <span id="L112" class="ln">   112  </span>	if o == nil {
 <span id="L113" class="ln">   113  </span>		var ret string
 <span id="L114" class="ln">   114  </span>		return ret
 <span id="L115" class="ln">   115  </span>	}
-<span id="L116" class="ln">   116  </span>	return o.Include
+<span id="L116" class="ln">   116  </span>	return o.Id
 <span id="L117" class="ln">   117  </span>}
 <span id="L118" class="ln">   118  </span>
-<span id="L119" class="ln">   119  </span><span class="comment">// GetIncludeOk returns a tuple with the Include field value</span>
+<span id="L119" class="ln">   119  </span><span class="comment">// GetIdOk returns a tuple with the Id field value</span>
 <span id="L120" class="ln">   120  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L121" class="ln">   121  </span>func (o *ObservabilityPipelineThrottleProcessor) GetIncludeOk() (*string, bool) {
+<span id="L121" class="ln">   121  </span>func (o *ObservabilityPipelineThrottleProcessor) GetIdOk() (*string, bool) {
 <span id="L122" class="ln">   122  </span>	if o == nil {
 <span id="L123" class="ln">   123  </span>		return nil, false
 <span id="L124" class="ln">   124  </span>	}
-<span id="L125" class="ln">   125  </span>	return &amp;o.Include, true
+<span id="L125" class="ln">   125  </span>	return &amp;o.Id, true
 <span id="L126" class="ln">   126  </span>}
 <span id="L127" class="ln">   127  </span>
-<span id="L128" class="ln">   128  </span><span class="comment">// SetInclude sets field value.</span>
-<span id="L129" class="ln">   129  </span>func (o *ObservabilityPipelineThrottleProcessor) SetInclude(v string) {
-<span id="L130" class="ln">   130  </span>	o.Include = v
+<span id="L128" class="ln">   128  </span><span class="comment">// SetId sets field value.</span>
+<span id="L129" class="ln">   129  </span>func (o *ObservabilityPipelineThrottleProcessor) SetId(v string) {
+<span id="L130" class="ln">   130  </span>	o.Id = v
 <span id="L131" class="ln">   131  </span>}
 <span id="L132" class="ln">   132  </span>
-<span id="L133" class="ln">   133  </span><span class="comment">// GetInputs returns the Inputs field value.</span>
-<span id="L134" class="ln">   134  </span>func (o *ObservabilityPipelineThrottleProcessor) GetInputs() []string {
+<span id="L133" class="ln">   133  </span><span class="comment">// GetInclude returns the Include field value.</span>
+<span id="L134" class="ln">   134  </span>func (o *ObservabilityPipelineThrottleProcessor) GetInclude() string {
 <span id="L135" class="ln">   135  </span>	if o == nil {
-<span id="L136" class="ln">   136  </span>		var ret []string
+<span id="L136" class="ln">   136  </span>		var ret string
 <span id="L137" class="ln">   137  </span>		return ret
 <span id="L138" class="ln">   138  </span>	}
-<span id="L139" class="ln">   139  </span>	return o.Inputs
+<span id="L139" class="ln">   139  </span>	return o.Include
 <span id="L140" class="ln">   140  </span>}
 <span id="L141" class="ln">   141  </span>
-<span id="L142" class="ln">   142  </span><span class="comment">// GetInputsOk returns a tuple with the Inputs field value</span>
+<span id="L142" class="ln">   142  </span><span class="comment">// GetIncludeOk returns a tuple with the Include field value</span>
 <span id="L143" class="ln">   143  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L144" class="ln">   144  </span>func (o *ObservabilityPipelineThrottleProcessor) GetInputsOk() (*[]string, bool) {
+<span id="L144" class="ln">   144  </span>func (o *ObservabilityPipelineThrottleProcessor) GetIncludeOk() (*string, bool) {
 <span id="L145" class="ln">   145  </span>	if o == nil {
 <span id="L146" class="ln">   146  </span>		return nil, false
 <span id="L147" class="ln">   147  </span>	}
-<span id="L148" class="ln">   148  </span>	return &amp;o.Inputs, true
+<span id="L148" class="ln">   148  </span>	return &amp;o.Include, true
 <span id="L149" class="ln">   149  </span>}
 <span id="L150" class="ln">   150  </span>
-<span id="L151" class="ln">   151  </span><span class="comment">// SetInputs sets field value.</span>
-<span id="L152" class="ln">   152  </span>func (o *ObservabilityPipelineThrottleProcessor) SetInputs(v []string) {
-<span id="L153" class="ln">   153  </span>	o.Inputs = v
+<span id="L151" class="ln">   151  </span><span class="comment">// SetInclude sets field value.</span>
+<span id="L152" class="ln">   152  </span>func (o *ObservabilityPipelineThrottleProcessor) SetInclude(v string) {
+<span id="L153" class="ln">   153  </span>	o.Include = v
 <span id="L154" class="ln">   154  </span>}
 <span id="L155" class="ln">   155  </span>
 <span id="L156" class="ln">   156  </span><span class="comment">// GetThreshold returns the Threshold field value.</span>
@@ -285,12 +285,12 @@
 <span id="L228" class="ln">   228  </span>	if o.UnparsedObject != nil {
 <span id="L229" class="ln">   229  </span>		return datadog.Marshal(o.UnparsedObject)
 <span id="L230" class="ln">   230  </span>	}
-<span id="L231" class="ln">   231  </span>	if o.GroupBy != nil {
-<span id="L232" class="ln">   232  </span>		toSerialize[&#34;group_by&#34;] = o.GroupBy
-<span id="L233" class="ln">   233  </span>	}
-<span id="L234" class="ln">   234  </span>	toSerialize[&#34;id&#34;] = o.Id
-<span id="L235" class="ln">   235  </span>	toSerialize[&#34;include&#34;] = o.Include
-<span id="L236" class="ln">   236  </span>	toSerialize[&#34;inputs&#34;] = o.Inputs
+<span id="L231" class="ln">   231  </span>	toSerialize[&#34;enabled&#34;] = o.Enabled
+<span id="L232" class="ln">   232  </span>	if o.GroupBy != nil {
+<span id="L233" class="ln">   233  </span>		toSerialize[&#34;group_by&#34;] = o.GroupBy
+<span id="L234" class="ln">   234  </span>	}
+<span id="L235" class="ln">   235  </span>	toSerialize[&#34;id&#34;] = o.Id
+<span id="L236" class="ln">   236  </span>	toSerialize[&#34;include&#34;] = o.Include
 <span id="L237" class="ln">   237  </span>	toSerialize[&#34;threshold&#34;] = o.Threshold
 <span id="L238" class="ln">   238  </span>	toSerialize[&#34;type&#34;] = o.Type
 <span id="L239" class="ln">   239  </span>	toSerialize[&#34;window&#34;] = o.Window
@@ -304,10 +304,10 @@
 <span id="L247" class="ln">   247  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L248" class="ln">   248  </span>func (o *ObservabilityPipelineThrottleProcessor) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L249" class="ln">   249  </span>	all := struct {
-<span id="L250" class="ln">   250  </span>		GroupBy   []string                                    `json:&#34;group_by,omitempty&#34;`
-<span id="L251" class="ln">   251  </span>		Id        *string                                     `json:&#34;id&#34;`
-<span id="L252" class="ln">   252  </span>		Include   *string                                     `json:&#34;include&#34;`
-<span id="L253" class="ln">   253  </span>		Inputs    *[]string                                   `json:&#34;inputs&#34;`
+<span id="L250" class="ln">   250  </span>		Enabled   *bool                                       `json:&#34;enabled&#34;`
+<span id="L251" class="ln">   251  </span>		GroupBy   []string                                    `json:&#34;group_by,omitempty&#34;`
+<span id="L252" class="ln">   252  </span>		Id        *string                                     `json:&#34;id&#34;`
+<span id="L253" class="ln">   253  </span>		Include   *string                                     `json:&#34;include&#34;`
 <span id="L254" class="ln">   254  </span>		Threshold *int64                                      `json:&#34;threshold&#34;`
 <span id="L255" class="ln">   255  </span>		Type      *ObservabilityPipelineThrottleProcessorType `json:&#34;type&#34;`
 <span id="L256" class="ln">   256  </span>		Window    *float64                                    `json:&#34;window&#34;`
@@ -315,14 +315,14 @@
 <span id="L258" class="ln">   258  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L259" class="ln">   259  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
 <span id="L260" class="ln">   260  </span>	}
-<span id="L261" class="ln">   261  </span>	if all.Id == nil {
-<span id="L262" class="ln">   262  </span>		return fmt.Errorf(&#34;required field id missing&#34;)
+<span id="L261" class="ln">   261  </span>	if all.Enabled == nil {
+<span id="L262" class="ln">   262  </span>		return fmt.Errorf(&#34;required field enabled missing&#34;)
 <span id="L263" class="ln">   263  </span>	}
-<span id="L264" class="ln">   264  </span>	if all.Include == nil {
-<span id="L265" class="ln">   265  </span>		return fmt.Errorf(&#34;required field include missing&#34;)
+<span id="L264" class="ln">   264  </span>	if all.Id == nil {
+<span id="L265" class="ln">   265  </span>		return fmt.Errorf(&#34;required field id missing&#34;)
 <span id="L266" class="ln">   266  </span>	}
-<span id="L267" class="ln">   267  </span>	if all.Inputs == nil {
-<span id="L268" class="ln">   268  </span>		return fmt.Errorf(&#34;required field inputs missing&#34;)
+<span id="L267" class="ln">   267  </span>	if all.Include == nil {
+<span id="L268" class="ln">   268  </span>		return fmt.Errorf(&#34;required field include missing&#34;)
 <span id="L269" class="ln">   269  </span>	}
 <span id="L270" class="ln">   270  </span>	if all.Threshold == nil {
 <span id="L271" class="ln">   271  </span>		return fmt.Errorf(&#34;required field threshold missing&#34;)
@@ -335,16 +335,16 @@
 <span id="L278" class="ln">   278  </span>	}
 <span id="L279" class="ln">   279  </span>	additionalProperties := make(map[string]interface{})
 <span id="L280" class="ln">   280  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L281" class="ln">   281  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;group_by&#34;, &#34;id&#34;, &#34;include&#34;, &#34;inputs&#34;, &#34;threshold&#34;, &#34;type&#34;, &#34;window&#34;})
+<span id="L281" class="ln">   281  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;enabled&#34;, &#34;group_by&#34;, &#34;id&#34;, &#34;include&#34;, &#34;threshold&#34;, &#34;type&#34;, &#34;window&#34;})
 <span id="L282" class="ln">   282  </span>	} else {
 <span id="L283" class="ln">   283  </span>		return err
 <span id="L284" class="ln">   284  </span>	}
 <span id="L285" class="ln">   285  </span>
 <span id="L286" class="ln">   286  </span>	hasInvalidField := false
-<span id="L287" class="ln">   287  </span>	o.GroupBy = all.GroupBy
-<span id="L288" class="ln">   288  </span>	o.Id = *all.Id
-<span id="L289" class="ln">   289  </span>	o.Include = *all.Include
-<span id="L290" class="ln">   290  </span>	o.Inputs = *all.Inputs
+<span id="L287" class="ln">   287  </span>	o.Enabled = *all.Enabled
+<span id="L288" class="ln">   288  </span>	o.GroupBy = all.GroupBy
+<span id="L289" class="ln">   289  </span>	o.Id = *all.Id
+<span id="L290" class="ln">   290  </span>	o.Include = *all.Include
 <span id="L291" class="ln">   291  </span>	o.Threshold = *all.Threshold
 <span id="L292" class="ln">   292  </span>	if !all.Type.IsValid() {
 <span id="L293" class="ln">   293  </span>		hasInvalidField = true
