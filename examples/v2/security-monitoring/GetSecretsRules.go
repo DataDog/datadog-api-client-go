@@ -1,4 +1,4 @@
-// Returns list of Secrets rules returns "OK" response
+// Returns a list of Secrets rules returns "OK" response
 
 package main
 
