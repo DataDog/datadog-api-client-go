@@ -67,11 +67,11 @@
 <span id="L10" class="ln">    10  </span>
 <span id="L11" class="ln">    11  </span><span class="comment">// CaseInsightsItems An insight of the case.</span>
 <span id="L12" class="ln">    12  </span>type CaseInsightsItems struct {
-<span id="L13" class="ln">    13  </span>	<span class="comment">// The reference of the insight.</span>
+<span id="L13" class="ln">    13  </span>	<span class="comment">// Reference of the insight.</span>
 <span id="L14" class="ln">    14  </span>	Ref *string `json:&#34;ref,omitempty&#34;`
-<span id="L15" class="ln">    15  </span>	<span class="comment">// The unique identifier of the resource. For example, the unique identifier of a security finding.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Unique identifier of the resource. For example, the unique identifier of a security finding.</span>
 <span id="L16" class="ln">    16  </span>	ResourceId *string `json:&#34;resource_id,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// The type of the resource. For example, the type of a security finding is &#34;SECURITY_FINDING&#34;.</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Type of the resource. For example, the type of a security finding is &#34;SECURITY_FINDING&#34;.</span>
 <span id="L18" class="ln">    18  </span>	Type *string `json:&#34;type,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L20" class="ln">    20  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`

@@ -67,13 +67,13 @@
 <span id="L10" class="ln">    10  </span>
 <span id="L11" class="ln">    11  </span><span class="comment">// FindingJiraIssueResult Result of the Jira issue creation.</span>
 <span id="L12" class="ln">    12  </span>type FindingJiraIssueResult struct {
-<span id="L13" class="ln">    13  </span>	<span class="comment">// The account ID of the Jira issue.</span>
+<span id="L13" class="ln">    13  </span>	<span class="comment">// Account ID of the Jira issue.</span>
 <span id="L14" class="ln">    14  </span>	AccountId *string `json:&#34;account_id,omitempty&#34;`
-<span id="L15" class="ln">    15  </span>	<span class="comment">// The unique identifier of the Jira issue.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Unique identifier of the Jira issue.</span>
 <span id="L16" class="ln">    16  </span>	IssueId *string `json:&#34;issue_id,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// The key of the Jira issue.</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Key of the Jira issue.</span>
 <span id="L18" class="ln">    18  </span>	IssueKey *string `json:&#34;issue_key,omitempty&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// The URL of the Jira issue.</span>
+<span id="L19" class="ln">    19  </span>	<span class="comment">// URL of the Jira issue.</span>
 <span id="L20" class="ln">    20  </span>	IssueUrl *string `json:&#34;issue_url,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L22" class="ln">    22  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
