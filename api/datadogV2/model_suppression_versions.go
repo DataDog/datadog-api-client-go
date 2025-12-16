@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RuleVersions A rule version with a list of updates.
-type RuleVersions struct {
+// SuppressionVersions A suppression version with a list of updates.
+type SuppressionVersions struct {
 	// A list of changes.
 	Changes []VersionHistoryUpdate `json:"changes,omitempty"`
-	// Create a new rule.
-	Rule *SecurityMonitoringRuleResponse `json:"rule,omitempty"`
+	// The attributes of the suppression rule.
+	Suppression *SecurityMonitoringSuppressionAttributes `json:"suppression,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRuleVersions instantiates a new RuleVersions object.
+// NewSuppressionVersions instantiates a new SuppressionVersions object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRuleVersions() *RuleVersions {
-	this := RuleVersions{}
+func NewSuppressionVersions() *SuppressionVersions {
+	this := SuppressionVersions{}
 	return &this
 }
 
-// NewRuleVersionsWithDefaults instantiates a new RuleVersions object.
+// NewSuppressionVersionsWithDefaults instantiates a new SuppressionVersions object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRuleVersionsWithDefaults() *RuleVersions {
-	this := RuleVersions{}
+func NewSuppressionVersionsWithDefaults() *SuppressionVersions {
+	this := SuppressionVersions{}
 	return &this
 }
 
 // GetChanges returns the Changes field value if set, zero value otherwise.
-func (o *RuleVersions) GetChanges() []VersionHistoryUpdate {
+func (o *SuppressionVersions) GetChanges() []VersionHistoryUpdate {
 	if o == nil || o.Changes == nil {
 		var ret []VersionHistoryUpdate
 		return ret
@@ -47,7 +47,7 @@ func (o *RuleVersions) GetChanges() []VersionHistoryUpdate {
 
 // GetChangesOk returns a tuple with the Changes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuleVersions) GetChangesOk() (*[]VersionHistoryUpdate, bool) {
+func (o *SuppressionVersions) GetChangesOk() (*[]VersionHistoryUpdate, bool) {
 	if o == nil || o.Changes == nil {
 		return nil, false
 	}
@@ -55,45 +55,45 @@ func (o *RuleVersions) GetChangesOk() (*[]VersionHistoryUpdate, bool) {
 }
 
 // HasChanges returns a boolean if a field has been set.
-func (o *RuleVersions) HasChanges() bool {
+func (o *SuppressionVersions) HasChanges() bool {
 	return o != nil && o.Changes != nil
 }
 
 // SetChanges gets a reference to the given []VersionHistoryUpdate and assigns it to the Changes field.
-func (o *RuleVersions) SetChanges(v []VersionHistoryUpdate) {
+func (o *SuppressionVersions) SetChanges(v []VersionHistoryUpdate) {
 	o.Changes = v
 }
 
-// GetRule returns the Rule field value if set, zero value otherwise.
-func (o *RuleVersions) GetRule() SecurityMonitoringRuleResponse {
-	if o == nil || o.Rule == nil {
-		var ret SecurityMonitoringRuleResponse
+// GetSuppression returns the Suppression field value if set, zero value otherwise.
+func (o *SuppressionVersions) GetSuppression() SecurityMonitoringSuppressionAttributes {
+	if o == nil || o.Suppression == nil {
+		var ret SecurityMonitoringSuppressionAttributes
 		return ret
 	}
-	return *o.Rule
+	return *o.Suppression
 }
 
-// GetRuleOk returns a tuple with the Rule field value if set, nil otherwise
+// GetSuppressionOk returns a tuple with the Suppression field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RuleVersions) GetRuleOk() (*SecurityMonitoringRuleResponse, bool) {
-	if o == nil || o.Rule == nil {
+func (o *SuppressionVersions) GetSuppressionOk() (*SecurityMonitoringSuppressionAttributes, bool) {
+	if o == nil || o.Suppression == nil {
 		return nil, false
 	}
-	return o.Rule, true
+	return o.Suppression, true
 }
 
-// HasRule returns a boolean if a field has been set.
-func (o *RuleVersions) HasRule() bool {
-	return o != nil && o.Rule != nil
+// HasSuppression returns a boolean if a field has been set.
+func (o *SuppressionVersions) HasSuppression() bool {
+	return o != nil && o.Suppression != nil
 }
 
-// SetRule gets a reference to the given SecurityMonitoringRuleResponse and assigns it to the Rule field.
-func (o *RuleVersions) SetRule(v SecurityMonitoringRuleResponse) {
-	o.Rule = &v
+// SetSuppression gets a reference to the given SecurityMonitoringSuppressionAttributes and assigns it to the Suppression field.
+func (o *SuppressionVersions) SetSuppression(v SecurityMonitoringSuppressionAttributes) {
+	o.Suppression = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RuleVersions) MarshalJSON() ([]byte, error) {
+func (o SuppressionVersions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -101,8 +101,8 @@ func (o RuleVersions) MarshalJSON() ([]byte, error) {
 	if o.Changes != nil {
 		toSerialize["changes"] = o.Changes
 	}
-	if o.Rule != nil {
-		toSerialize["rule"] = o.Rule
+	if o.Suppression != nil {
+		toSerialize["suppression"] = o.Suppression
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -112,25 +112,34 @@ func (o RuleVersions) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RuleVersions) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SuppressionVersions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Changes []VersionHistoryUpdate          `json:"changes,omitempty"`
-		Rule    *SecurityMonitoringRuleResponse `json:"rule,omitempty"`
+		Changes     []VersionHistoryUpdate                   `json:"changes,omitempty"`
+		Suppression *SecurityMonitoringSuppressionAttributes `json:"suppression,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"changes", "rule"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"changes", "suppression"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Changes = all.Changes
-	o.Rule = all.Rule
+	if all.Suppression != nil && all.Suppression.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Suppression = all.Suppression
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

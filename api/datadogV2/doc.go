@@ -563,6 +563,7 @@
 //   - [SecurityMonitoringApi.GetSecurityMonitoringSuppression]
 //   - [SecurityMonitoringApi.GetSignalNotificationRule]
 //   - [SecurityMonitoringApi.GetSignalNotificationRules]
+//   - [SecurityMonitoringApi.GetSuppressionVersionHistory]
 //   - [SecurityMonitoringApi.GetSuppressionsAffectingFutureRule]
 //   - [SecurityMonitoringApi.GetSuppressionsAffectingRule]
 //   - [SecurityMonitoringApi.GetThreatHuntingJob]
