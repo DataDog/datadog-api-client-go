@@ -68,7 +68,7 @@
 <span id="L11" class="ln">    11  </span><span class="comment">// RuleVersions A rule version with a list of updates.</span>
 <span id="L12" class="ln">    12  </span>type RuleVersions struct {
 <span id="L13" class="ln">    13  </span>	<span class="comment">// A list of changes.</span>
-<span id="L14" class="ln">    14  </span>	Changes []RuleVersionUpdate `json:&#34;changes,omitempty&#34;`
+<span id="L14" class="ln">    14  </span>	Changes []VersionHistoryUpdate `json:&#34;changes,omitempty&#34;`
 <span id="L15" class="ln">    15  </span>	<span class="comment">// Create a new rule.</span>
 <span id="L16" class="ln">    16  </span>	Rule *SecurityMonitoringRuleResponse `json:&#34;rule,omitempty&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
@@ -94,9 +94,9 @@
 <span id="L37" class="ln">    37  </span>}
 <span id="L38" class="ln">    38  </span>
 <span id="L39" class="ln">    39  </span><span class="comment">// GetChanges returns the Changes field value if set, zero value otherwise.</span>
-<span id="L40" class="ln">    40  </span>func (o *RuleVersions) GetChanges() []RuleVersionUpdate {
+<span id="L40" class="ln">    40  </span>func (o *RuleVersions) GetChanges() []VersionHistoryUpdate {
 <span id="L41" class="ln">    41  </span>	if o == nil || o.Changes == nil {
-<span id="L42" class="ln">    42  </span>		var ret []RuleVersionUpdate
+<span id="L42" class="ln">    42  </span>		var ret []VersionHistoryUpdate
 <span id="L43" class="ln">    43  </span>		return ret
 <span id="L44" class="ln">    44  </span>	}
 <span id="L45" class="ln">    45  </span>	return o.Changes
@@ -104,7 +104,7 @@
 <span id="L47" class="ln">    47  </span>
 <span id="L48" class="ln">    48  </span><span class="comment">// GetChangesOk returns a tuple with the Changes field value if set, nil otherwise</span>
 <span id="L49" class="ln">    49  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L50" class="ln">    50  </span>func (o *RuleVersions) GetChangesOk() (*[]RuleVersionUpdate, bool) {
+<span id="L50" class="ln">    50  </span>func (o *RuleVersions) GetChangesOk() (*[]VersionHistoryUpdate, bool) {
 <span id="L51" class="ln">    51  </span>	if o == nil || o.Changes == nil {
 <span id="L52" class="ln">    52  </span>		return nil, false
 <span id="L53" class="ln">    53  </span>	}
@@ -116,8 +116,8 @@
 <span id="L59" class="ln">    59  </span>	return o != nil &amp;&amp; o.Changes != nil
 <span id="L60" class="ln">    60  </span>}
 <span id="L61" class="ln">    61  </span>
-<span id="L62" class="ln">    62  </span><span class="comment">// SetChanges gets a reference to the given []RuleVersionUpdate and assigns it to the Changes field.</span>
-<span id="L63" class="ln">    63  </span>func (o *RuleVersions) SetChanges(v []RuleVersionUpdate) {
+<span id="L62" class="ln">    62  </span><span class="comment">// SetChanges gets a reference to the given []VersionHistoryUpdate and assigns it to the Changes field.</span>
+<span id="L63" class="ln">    63  </span>func (o *RuleVersions) SetChanges(v []VersionHistoryUpdate) {
 <span id="L64" class="ln">    64  </span>	o.Changes = v
 <span id="L65" class="ln">    65  </span>}
 <span id="L66" class="ln">    66  </span>
@@ -171,7 +171,7 @@
 <span id="L114" class="ln">   114  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L115" class="ln">   115  </span>func (o *RuleVersions) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L116" class="ln">   116  </span>	all := struct {
-<span id="L117" class="ln">   117  </span>		Changes []RuleVersionUpdate             `json:&#34;changes,omitempty&#34;`
+<span id="L117" class="ln">   117  </span>		Changes []VersionHistoryUpdate          `json:&#34;changes,omitempty&#34;`
 <span id="L118" class="ln">   118  </span>		Rule    *SecurityMonitoringRuleResponse `json:&#34;rule,omitempty&#34;`
 <span id="L119" class="ln">   119  </span>	}{}
 <span id="L120" class="ln">   120  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
