@@ -17,8 +17,9 @@ func main() {
 			{
 				Attributes: &datadogV2.BatchUpsertRowsRequestDataAttributes{
 					Values: map[string]interface{}{
-						"example_key_value": "primary_key_value",
-						"name":              "row_name",
+						"age":               {Int32: datadog.PtrInt32(25)},
+						"example_key_value": {String: datadog.PtrString("primary_key_value")},
+						"name":              {String: datadog.PtrString("row_name")},
 					},
 				},
 				Id:   "primary_key_value",

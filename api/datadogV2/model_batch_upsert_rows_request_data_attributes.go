@@ -12,7 +12,7 @@ import (
 
 // BatchUpsertRowsRequestDataAttributes Attributes containing row data values for row creation or update operations.
 type BatchUpsertRowsRequestDataAttributes struct {
-	// Key-value pairs representing row data, where keys are field names from the schema.
+	// Key-value pairs representing row data, where keys are schema field names and values match the corresponding column types.
 	Values map[string]interface{} `json:"values"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
