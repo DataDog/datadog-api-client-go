@@ -2560,8 +2560,8 @@ func (a *SecurityMonitoringApi) GetSBOM(ctx _context.Context, assetType AssetTyp
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetSecretsRules Returns list of Secrets rules.
-// Returns list of Secrets rules with ID, Pattern, Description, Priority, and SDS ID
+// GetSecretsRules Returns a list of Secrets rules.
+// Returns a list of Secrets rules with ID, Pattern, Description, Priority, and SDS ID.
 func (a *SecurityMonitoringApi) GetSecretsRules(ctx _context.Context) (SecretRuleArray, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -5490,6 +5490,7 @@ type ListVulnerabilitiesOptionalParameters struct {
 	FilterFixAvailable                       *bool
 	FilterRepoDigests                        *string
 	FilterOrigin                             *string
+	FilterRunningKernel                      *bool
 	FilterAssetName                          *string
 	FilterAssetType                          *AssetType
 	FilterAssetVersionFirst                  *string
@@ -5672,6 +5673,12 @@ func (r *ListVulnerabilitiesOptionalParameters) WithFilterRepoDigests(filterRepo
 // WithFilterOrigin sets the corresponding parameter name and returns the struct.
 func (r *ListVulnerabilitiesOptionalParameters) WithFilterOrigin(filterOrigin string) *ListVulnerabilitiesOptionalParameters {
 	r.FilterOrigin = &filterOrigin
+	return r
+}
+
+// WithFilterRunningKernel sets the corresponding parameter name and returns the struct.
+func (r *ListVulnerabilitiesOptionalParameters) WithFilterRunningKernel(filterRunningKernel bool) *ListVulnerabilitiesOptionalParameters {
+	r.FilterRunningKernel = &filterRunningKernel
 	return r
 }
 
@@ -5972,6 +5979,9 @@ func (a *SecurityMonitoringApi) ListVulnerabilities(ctx _context.Context, o ...L
 	}
 	if optionalParams.FilterOrigin != nil {
 		localVarQueryParams.Add("filter[origin]", datadog.ParameterToString(*optionalParams.FilterOrigin, ""))
+	}
+	if optionalParams.FilterRunningKernel != nil {
+		localVarQueryParams.Add("filter[running_kernel]", datadog.ParameterToString(*optionalParams.FilterRunningKernel, ""))
 	}
 	if optionalParams.FilterAssetName != nil {
 		localVarQueryParams.Add("filter[asset.name]", datadog.ParameterToString(*optionalParams.FilterAssetName, ""))
