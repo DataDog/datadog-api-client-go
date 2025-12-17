@@ -4834,6 +4834,218 @@ func (a *SecurityMonitoringApi) ListSecurityFilters(ctx _context.Context) (Secur
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListSecurityFindingsOptionalParameters holds optional parameters for ListSecurityFindings.
+type ListSecurityFindingsOptionalParameters struct {
+	FilterQuery *string
+	PageCursor  *string
+	PageLimit   *int64
+	Sort        *SecurityFindingsSort
+}
+
+// NewListSecurityFindingsOptionalParameters creates an empty struct for parameters.
+func NewListSecurityFindingsOptionalParameters() *ListSecurityFindingsOptionalParameters {
+	this := ListSecurityFindingsOptionalParameters{}
+	return &this
+}
+
+// WithFilterQuery sets the corresponding parameter name and returns the struct.
+func (r *ListSecurityFindingsOptionalParameters) WithFilterQuery(filterQuery string) *ListSecurityFindingsOptionalParameters {
+	r.FilterQuery = &filterQuery
+	return r
+}
+
+// WithPageCursor sets the corresponding parameter name and returns the struct.
+func (r *ListSecurityFindingsOptionalParameters) WithPageCursor(pageCursor string) *ListSecurityFindingsOptionalParameters {
+	r.PageCursor = &pageCursor
+	return r
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListSecurityFindingsOptionalParameters) WithPageLimit(pageLimit int64) *ListSecurityFindingsOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
+// WithSort sets the corresponding parameter name and returns the struct.
+func (r *ListSecurityFindingsOptionalParameters) WithSort(sort SecurityFindingsSort) *ListSecurityFindingsOptionalParameters {
+	r.Sort = &sort
+	return r
+}
+
+// ListSecurityFindings List security findings.
+// Get a list of security findings that match a search query.
+//
+// This endpoint requires one of the following permissions:
+// - `security_monitoring_findings_read`
+// - `appsec_vm_read`
+//
+// ### Query Syntax
+//
+// This endpoint uses the logs query syntax. Findings attributes (living in the custom. namespace) are prefixed by @ when queried. Tags are queried without a prefix.
+//
+// Example: `@severity:(critical OR high) @status:open team:platform`
+func (a *SecurityMonitoringApi) ListSecurityFindings(ctx _context.Context, o ...ListSecurityFindingsOptionalParameters) (ListSecurityFindingsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue ListSecurityFindingsResponse
+		optionalParams      ListSecurityFindingsOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListSecurityFindingsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.ListSecurityFindings"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.ListSecurityFindings")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/security/findings"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.FilterQuery != nil {
+		localVarQueryParams.Add("filter[query]", datadog.ParameterToString(*optionalParams.FilterQuery, ""))
+	}
+	if optionalParams.PageCursor != nil {
+		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*optionalParams.PageCursor, ""))
+	}
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListSecurityFindingsWithPagination provides a paginated version of ListSecurityFindings returning a channel with all items.
+func (a *SecurityMonitoringApi) ListSecurityFindingsWithPagination(ctx _context.Context, o ...ListSecurityFindingsOptionalParameters) (<-chan datadog.PaginationResult[SecurityFindingsData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(10)
+	if len(o) == 0 {
+		o = append(o, ListSecurityFindingsOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
+	}
+	o[0].PageLimit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[SecurityFindingsData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListSecurityFindings(ctx, o...)
+			if err != nil {
+				var returnItem SecurityFindingsData
+				items <- datadog.PaginationResult[SecurityFindingsData]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[SecurityFindingsData]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].PageCursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // ListSecurityMonitoringHistsignalsOptionalParameters holds optional parameters for ListSecurityMonitoringHistsignals.
 type ListSecurityMonitoringHistsignalsOptionalParameters struct {
 	FilterQuery *string
@@ -6862,6 +7074,171 @@ func (a *SecurityMonitoringApi) RunThreatHuntingJob(ctx _context.Context, body R
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// SearchSecurityFindings Search security findings.
+// Get a list of security findings that match a search query.
+//
+// This endpoint requires one of the following permissions:
+// - `security_monitoring_findings_read`
+// - `appsec_vm_read`
+//
+// ### Query Syntax
+//
+// The API uses the logs query syntax. Findings attributes (living in the custom. namespace) are prefixed by @ when queried. Tags are queried without a prefix.
+//
+// Example: `@severity:(critical OR high) @status:open team:platform`
+func (a *SecurityMonitoringApi) SearchSecurityFindings(ctx _context.Context, body SecurityFindingsSearchRequest) (ListSecurityFindingsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue ListSecurityFindingsResponse
+	)
+
+	operationId := "v2.SearchSecurityFindings"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.SearchSecurityFindings")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/security/findings/search"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// SearchSecurityFindingsWithPagination provides a paginated version of SearchSecurityFindings returning a channel with all items.
+func (a *SecurityMonitoringApi) SearchSecurityFindingsWithPagination(ctx _context.Context, body SecurityFindingsSearchRequest) (<-chan datadog.PaginationResult[SecurityFindingsData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(10)
+	if body.Data == nil {
+		body.Data = NewSecurityFindingsSearchRequestData()
+	}
+	if body.Data.Attributes == nil {
+		body.Data.Attributes = NewSecurityFindingsSearchRequestDataAttributes()
+	}
+	if body.Data.Attributes.Page == nil {
+		body.Data.Attributes.Page = NewSecurityFindingsSearchRequestPage()
+	}
+	if body.Data.Attributes.Page.Limit == nil {
+		// int64
+		body.Data.Attributes.Page.Limit = &pageSize_
+	} else {
+		pageSize_ = *body.Data.Attributes.Page.Limit
+	}
+
+	items := make(chan datadog.PaginationResult[SecurityFindingsData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.SearchSecurityFindings(ctx, body)
+			if err != nil {
+				var returnItem SecurityFindingsData
+				items <- datadog.PaginationResult[SecurityFindingsData]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[SecurityFindingsData]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			body.Data.Attributes.Page.Cursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel
 }
 
 // SearchSecurityMonitoringHistsignalsOptionalParameters holds optional parameters for SearchSecurityMonitoringHistsignals.
