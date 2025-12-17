@@ -10,6 +10,8 @@ import (
 
 // ThreatHuntingJobOptions Job options.
 type ThreatHuntingJobOptions struct {
+	// Options on anomaly detection method.
+	AnomalyDetectionOptions *SecurityMonitoringRuleAnomalyDetectionOptions `json:"anomalyDetectionOptions,omitempty"`
 	// The detection method.
 	DetectionMethod *SecurityMonitoringRuleDetectionMethod `json:"detectionMethod,omitempty"`
 	// A time window is specified to match when at least one of the cases matches true. This is a sliding window
@@ -49,6 +51,34 @@ func NewThreatHuntingJobOptions() *ThreatHuntingJobOptions {
 func NewThreatHuntingJobOptionsWithDefaults() *ThreatHuntingJobOptions {
 	this := ThreatHuntingJobOptions{}
 	return &this
+}
+
+// GetAnomalyDetectionOptions returns the AnomalyDetectionOptions field value if set, zero value otherwise.
+func (o *ThreatHuntingJobOptions) GetAnomalyDetectionOptions() SecurityMonitoringRuleAnomalyDetectionOptions {
+	if o == nil || o.AnomalyDetectionOptions == nil {
+		var ret SecurityMonitoringRuleAnomalyDetectionOptions
+		return ret
+	}
+	return *o.AnomalyDetectionOptions
+}
+
+// GetAnomalyDetectionOptionsOk returns a tuple with the AnomalyDetectionOptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ThreatHuntingJobOptions) GetAnomalyDetectionOptionsOk() (*SecurityMonitoringRuleAnomalyDetectionOptions, bool) {
+	if o == nil || o.AnomalyDetectionOptions == nil {
+		return nil, false
+	}
+	return o.AnomalyDetectionOptions, true
+}
+
+// HasAnomalyDetectionOptions returns a boolean if a field has been set.
+func (o *ThreatHuntingJobOptions) HasAnomalyDetectionOptions() bool {
+	return o != nil && o.AnomalyDetectionOptions != nil
+}
+
+// SetAnomalyDetectionOptions gets a reference to the given SecurityMonitoringRuleAnomalyDetectionOptions and assigns it to the AnomalyDetectionOptions field.
+func (o *ThreatHuntingJobOptions) SetAnomalyDetectionOptions(v SecurityMonitoringRuleAnomalyDetectionOptions) {
+	o.AnomalyDetectionOptions = &v
 }
 
 // GetDetectionMethod returns the DetectionMethod field value if set, zero value otherwise.
@@ -281,6 +311,9 @@ func (o ThreatHuntingJobOptions) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.AnomalyDetectionOptions != nil {
+		toSerialize["anomalyDetectionOptions"] = o.AnomalyDetectionOptions
+	}
 	if o.DetectionMethod != nil {
 		toSerialize["detectionMethod"] = o.DetectionMethod
 	}
@@ -315,6 +348,7 @@ func (o ThreatHuntingJobOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ThreatHuntingJobOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		AnomalyDetectionOptions  *SecurityMonitoringRuleAnomalyDetectionOptions  `json:"anomalyDetectionOptions,omitempty"`
 		DetectionMethod          *SecurityMonitoringRuleDetectionMethod          `json:"detectionMethod,omitempty"`
 		EvaluationWindow         *SecurityMonitoringRuleEvaluationWindow         `json:"evaluationWindow,omitempty"`
 		ImpossibleTravelOptions  *SecurityMonitoringRuleImpossibleTravelOptions  `json:"impossibleTravelOptions,omitempty"`
@@ -329,12 +363,16 @@ func (o *ThreatHuntingJobOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"detectionMethod", "evaluationWindow", "impossibleTravelOptions", "keepAlive", "maxSignalDuration", "newValueOptions", "sequenceDetectionOptions", "thirdPartyRuleOptions"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"anomalyDetectionOptions", "detectionMethod", "evaluationWindow", "impossibleTravelOptions", "keepAlive", "maxSignalDuration", "newValueOptions", "sequenceDetectionOptions", "thirdPartyRuleOptions"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	if all.AnomalyDetectionOptions != nil && all.AnomalyDetectionOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.AnomalyDetectionOptions = all.AnomalyDetectionOptions
 	if all.DetectionMethod != nil && !all.DetectionMethod.IsValid() {
 		hasInvalidField = true
 	} else {
