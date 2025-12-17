@@ -278,15 +278,6 @@ func (a *DatasetsApi) GetDataset(ctx _context.Context, datasetId string) (Datase
 		localVarReturnValue DatasetResponseSingle
 	)
 
-	operationId := "v2.GetDataset"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DatasetsApi.GetDataset")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
