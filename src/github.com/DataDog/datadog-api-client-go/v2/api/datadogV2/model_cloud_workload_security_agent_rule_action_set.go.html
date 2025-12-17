@@ -86,7 +86,7 @@
 <span id="L29" class="ln">    29  </span>	<span class="comment">// The time to live of the set action.</span>
 <span id="L30" class="ln">    30  </span>	Ttl *int64 `json:&#34;ttl,omitempty&#34;`
 <span id="L31" class="ln">    31  </span>	<span class="comment">// The value of the set action</span>
-<span id="L32" class="ln">    32  </span>	Value *string `json:&#34;value,omitempty&#34;`
+<span id="L32" class="ln">    32  </span>	Value *CloudWorkloadSecurityAgentRuleActionSetValue `json:&#34;value,omitempty&#34;`
 <span id="L33" class="ln">    33  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L34" class="ln">    34  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L35" class="ln">    35  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -362,9 +362,9 @@
 <span id="L305" class="ln">   305  </span>}
 <span id="L306" class="ln">   306  </span>
 <span id="L307" class="ln">   307  </span><span class="comment">// GetValue returns the Value field value if set, zero value otherwise.</span>
-<span id="L308" class="ln">   308  </span>func (o *CloudWorkloadSecurityAgentRuleActionSet) GetValue() string {
+<span id="L308" class="ln">   308  </span>func (o *CloudWorkloadSecurityAgentRuleActionSet) GetValue() CloudWorkloadSecurityAgentRuleActionSetValue {
 <span id="L309" class="ln">   309  </span>	if o == nil || o.Value == nil {
-<span id="L310" class="ln">   310  </span>		var ret string
+<span id="L310" class="ln">   310  </span>		var ret CloudWorkloadSecurityAgentRuleActionSetValue
 <span id="L311" class="ln">   311  </span>		return ret
 <span id="L312" class="ln">   312  </span>	}
 <span id="L313" class="ln">   313  </span>	return *o.Value
@@ -372,7 +372,7 @@
 <span id="L315" class="ln">   315  </span>
 <span id="L316" class="ln">   316  </span><span class="comment">// GetValueOk returns a tuple with the Value field value if set, nil otherwise</span>
 <span id="L317" class="ln">   317  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L318" class="ln">   318  </span>func (o *CloudWorkloadSecurityAgentRuleActionSet) GetValueOk() (*string, bool) {
+<span id="L318" class="ln">   318  </span>func (o *CloudWorkloadSecurityAgentRuleActionSet) GetValueOk() (*CloudWorkloadSecurityAgentRuleActionSetValue, bool) {
 <span id="L319" class="ln">   319  </span>	if o == nil || o.Value == nil {
 <span id="L320" class="ln">   320  </span>		return nil, false
 <span id="L321" class="ln">   321  </span>	}
@@ -384,8 +384,8 @@
 <span id="L327" class="ln">   327  </span>	return o != nil &amp;&amp; o.Value != nil
 <span id="L328" class="ln">   328  </span>}
 <span id="L329" class="ln">   329  </span>
-<span id="L330" class="ln">   330  </span><span class="comment">// SetValue gets a reference to the given string and assigns it to the Value field.</span>
-<span id="L331" class="ln">   331  </span>func (o *CloudWorkloadSecurityAgentRuleActionSet) SetValue(v string) {
+<span id="L330" class="ln">   330  </span><span class="comment">// SetValue gets a reference to the given CloudWorkloadSecurityAgentRuleActionSetValue and assigns it to the Value field.</span>
+<span id="L331" class="ln">   331  </span>func (o *CloudWorkloadSecurityAgentRuleActionSet) SetValue(v CloudWorkloadSecurityAgentRuleActionSetValue) {
 <span id="L332" class="ln">   332  </span>	o.Value = &amp;v
 <span id="L333" class="ln">   333  </span>}
 <span id="L334" class="ln">   334  </span>
@@ -435,16 +435,16 @@
 <span id="L378" class="ln">   378  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L379" class="ln">   379  </span>func (o *CloudWorkloadSecurityAgentRuleActionSet) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L380" class="ln">   380  </span>	all := struct {
-<span id="L381" class="ln">   381  </span>		Append       *bool   `json:&#34;append,omitempty&#34;`
-<span id="L382" class="ln">   382  </span>		DefaultValue *string `json:&#34;default_value,omitempty&#34;`
-<span id="L383" class="ln">   383  </span>		Expression   *string `json:&#34;expression,omitempty&#34;`
-<span id="L384" class="ln">   384  </span>		Field        *string `json:&#34;field,omitempty&#34;`
-<span id="L385" class="ln">   385  </span>		Inherited    *bool   `json:&#34;inherited,omitempty&#34;`
-<span id="L386" class="ln">   386  </span>		Name         *string `json:&#34;name,omitempty&#34;`
-<span id="L387" class="ln">   387  </span>		Scope        *string `json:&#34;scope,omitempty&#34;`
-<span id="L388" class="ln">   388  </span>		Size         *int64  `json:&#34;size,omitempty&#34;`
-<span id="L389" class="ln">   389  </span>		Ttl          *int64  `json:&#34;ttl,omitempty&#34;`
-<span id="L390" class="ln">   390  </span>		Value        *string `json:&#34;value,omitempty&#34;`
+<span id="L381" class="ln">   381  </span>		Append       *bool                                         `json:&#34;append,omitempty&#34;`
+<span id="L382" class="ln">   382  </span>		DefaultValue *string                                       `json:&#34;default_value,omitempty&#34;`
+<span id="L383" class="ln">   383  </span>		Expression   *string                                       `json:&#34;expression,omitempty&#34;`
+<span id="L384" class="ln">   384  </span>		Field        *string                                       `json:&#34;field,omitempty&#34;`
+<span id="L385" class="ln">   385  </span>		Inherited    *bool                                         `json:&#34;inherited,omitempty&#34;`
+<span id="L386" class="ln">   386  </span>		Name         *string                                       `json:&#34;name,omitempty&#34;`
+<span id="L387" class="ln">   387  </span>		Scope        *string                                       `json:&#34;scope,omitempty&#34;`
+<span id="L388" class="ln">   388  </span>		Size         *int64                                        `json:&#34;size,omitempty&#34;`
+<span id="L389" class="ln">   389  </span>		Ttl          *int64                                        `json:&#34;ttl,omitempty&#34;`
+<span id="L390" class="ln">   390  </span>		Value        *CloudWorkloadSecurityAgentRuleActionSetValue `json:&#34;value,omitempty&#34;`
 <span id="L391" class="ln">   391  </span>	}{}
 <span id="L392" class="ln">   392  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L393" class="ln">   393  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)

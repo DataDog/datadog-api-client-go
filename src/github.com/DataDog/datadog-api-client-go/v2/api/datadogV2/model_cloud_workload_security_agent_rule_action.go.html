@@ -69,8 +69,8 @@
 <span id="L12" class="ln">    12  </span>type CloudWorkloadSecurityAgentRuleAction struct {
 <span id="L13" class="ln">    13  </span>	<span class="comment">// SECL expression used to target the container to apply the action on</span>
 <span id="L14" class="ln">    14  </span>	Filter *string `json:&#34;filter,omitempty&#34;`
-<span id="L15" class="ln">    15  </span>	<span class="comment">// An empty object indicating the hash action</span>
-<span id="L16" class="ln">    16  </span>	Hash map[string]interface{} `json:&#34;hash,omitempty&#34;`
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Hash file specified by the field attribute</span>
+<span id="L16" class="ln">    16  </span>	Hash *CloudWorkloadSecurityAgentRuleActionHash `json:&#34;hash,omitempty&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// Kill system call applied on the container matching the rule</span>
 <span id="L18" class="ln">    18  </span>	Kill *CloudWorkloadSecurityAgentRuleKill `json:&#34;kill,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// The metadata action applied on the scope matching the rule</span>
@@ -128,21 +128,21 @@
 <span id="L71" class="ln">    71  </span>}
 <span id="L72" class="ln">    72  </span>
 <span id="L73" class="ln">    73  </span><span class="comment">// GetHash returns the Hash field value if set, zero value otherwise.</span>
-<span id="L74" class="ln">    74  </span>func (o *CloudWorkloadSecurityAgentRuleAction) GetHash() map[string]interface{} {
+<span id="L74" class="ln">    74  </span>func (o *CloudWorkloadSecurityAgentRuleAction) GetHash() CloudWorkloadSecurityAgentRuleActionHash {
 <span id="L75" class="ln">    75  </span>	if o == nil || o.Hash == nil {
-<span id="L76" class="ln">    76  </span>		var ret map[string]interface{}
+<span id="L76" class="ln">    76  </span>		var ret CloudWorkloadSecurityAgentRuleActionHash
 <span id="L77" class="ln">    77  </span>		return ret
 <span id="L78" class="ln">    78  </span>	}
-<span id="L79" class="ln">    79  </span>	return o.Hash
+<span id="L79" class="ln">    79  </span>	return *o.Hash
 <span id="L80" class="ln">    80  </span>}
 <span id="L81" class="ln">    81  </span>
 <span id="L82" class="ln">    82  </span><span class="comment">// GetHashOk returns a tuple with the Hash field value if set, nil otherwise</span>
 <span id="L83" class="ln">    83  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L84" class="ln">    84  </span>func (o *CloudWorkloadSecurityAgentRuleAction) GetHashOk() (*map[string]interface{}, bool) {
+<span id="L84" class="ln">    84  </span>func (o *CloudWorkloadSecurityAgentRuleAction) GetHashOk() (*CloudWorkloadSecurityAgentRuleActionHash, bool) {
 <span id="L85" class="ln">    85  </span>	if o == nil || o.Hash == nil {
 <span id="L86" class="ln">    86  </span>		return nil, false
 <span id="L87" class="ln">    87  </span>	}
-<span id="L88" class="ln">    88  </span>	return &amp;o.Hash, true
+<span id="L88" class="ln">    88  </span>	return o.Hash, true
 <span id="L89" class="ln">    89  </span>}
 <span id="L90" class="ln">    90  </span>
 <span id="L91" class="ln">    91  </span><span class="comment">// HasHash returns a boolean if a field has been set.</span>
@@ -150,9 +150,9 @@
 <span id="L93" class="ln">    93  </span>	return o != nil &amp;&amp; o.Hash != nil
 <span id="L94" class="ln">    94  </span>}
 <span id="L95" class="ln">    95  </span>
-<span id="L96" class="ln">    96  </span><span class="comment">// SetHash gets a reference to the given map[string]interface{} and assigns it to the Hash field.</span>
-<span id="L97" class="ln">    97  </span>func (o *CloudWorkloadSecurityAgentRuleAction) SetHash(v map[string]interface{}) {
-<span id="L98" class="ln">    98  </span>	o.Hash = v
+<span id="L96" class="ln">    96  </span><span class="comment">// SetHash gets a reference to the given CloudWorkloadSecurityAgentRuleActionHash and assigns it to the Hash field.</span>
+<span id="L97" class="ln">    97  </span>func (o *CloudWorkloadSecurityAgentRuleAction) SetHash(v CloudWorkloadSecurityAgentRuleActionHash) {
+<span id="L98" class="ln">    98  </span>	o.Hash = &amp;v
 <span id="L99" class="ln">    99  </span>}
 <span id="L100" class="ln">   100  </span>
 <span id="L101" class="ln">   101  </span><span class="comment">// GetKill returns the Kill field value if set, zero value otherwise.</span>
@@ -271,7 +271,7 @@
 <span id="L214" class="ln">   214  </span>func (o *CloudWorkloadSecurityAgentRuleAction) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L215" class="ln">   215  </span>	all := struct {
 <span id="L216" class="ln">   216  </span>		Filter   *string                                       `json:&#34;filter,omitempty&#34;`
-<span id="L217" class="ln">   217  </span>		Hash     map[string]interface{}                        `json:&#34;hash,omitempty&#34;`
+<span id="L217" class="ln">   217  </span>		Hash     *CloudWorkloadSecurityAgentRuleActionHash     `json:&#34;hash,omitempty&#34;`
 <span id="L218" class="ln">   218  </span>		Kill     *CloudWorkloadSecurityAgentRuleKill           `json:&#34;kill,omitempty&#34;`
 <span id="L219" class="ln">   219  </span>		Metadata *CloudWorkloadSecurityAgentRuleActionMetadata `json:&#34;metadata,omitempty&#34;`
 <span id="L220" class="ln">   220  </span>		Set      *CloudWorkloadSecurityAgentRuleActionSet      `json:&#34;set,omitempty&#34;`
@@ -288,31 +288,34 @@
 <span id="L231" class="ln">   231  </span>
 <span id="L232" class="ln">   232  </span>	hasInvalidField := false
 <span id="L233" class="ln">   233  </span>	o.Filter = all.Filter
-<span id="L234" class="ln">   234  </span>	o.Hash = all.Hash
-<span id="L235" class="ln">   235  </span>	if all.Kill != nil &amp;&amp; all.Kill.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L236" class="ln">   236  </span>		hasInvalidField = true
-<span id="L237" class="ln">   237  </span>	}
-<span id="L238" class="ln">   238  </span>	o.Kill = all.Kill
-<span id="L239" class="ln">   239  </span>	if all.Metadata != nil &amp;&amp; all.Metadata.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L240" class="ln">   240  </span>		hasInvalidField = true
-<span id="L241" class="ln">   241  </span>	}
-<span id="L242" class="ln">   242  </span>	o.Metadata = all.Metadata
-<span id="L243" class="ln">   243  </span>	if all.Set != nil &amp;&amp; all.Set.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L244" class="ln">   244  </span>		hasInvalidField = true
-<span id="L245" class="ln">   245  </span>	}
-<span id="L246" class="ln">   246  </span>	o.Set = all.Set
-<span id="L247" class="ln">   247  </span>
-<span id="L248" class="ln">   248  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L249" class="ln">   249  </span>		o.AdditionalProperties = additionalProperties
-<span id="L250" class="ln">   250  </span>	}
-<span id="L251" class="ln">   251  </span>
-<span id="L252" class="ln">   252  </span>	if hasInvalidField {
-<span id="L253" class="ln">   253  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L254" class="ln">   254  </span>	}
-<span id="L255" class="ln">   255  </span>
-<span id="L256" class="ln">   256  </span>	return nil
-<span id="L257" class="ln">   257  </span>}
+<span id="L234" class="ln">   234  </span>	if all.Hash != nil &amp;&amp; all.Hash.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L235" class="ln">   235  </span>		hasInvalidField = true
+<span id="L236" class="ln">   236  </span>	}
+<span id="L237" class="ln">   237  </span>	o.Hash = all.Hash
+<span id="L238" class="ln">   238  </span>	if all.Kill != nil &amp;&amp; all.Kill.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L239" class="ln">   239  </span>		hasInvalidField = true
+<span id="L240" class="ln">   240  </span>	}
+<span id="L241" class="ln">   241  </span>	o.Kill = all.Kill
+<span id="L242" class="ln">   242  </span>	if all.Metadata != nil &amp;&amp; all.Metadata.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L243" class="ln">   243  </span>		hasInvalidField = true
+<span id="L244" class="ln">   244  </span>	}
+<span id="L245" class="ln">   245  </span>	o.Metadata = all.Metadata
+<span id="L246" class="ln">   246  </span>	if all.Set != nil &amp;&amp; all.Set.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L247" class="ln">   247  </span>		hasInvalidField = true
+<span id="L248" class="ln">   248  </span>	}
+<span id="L249" class="ln">   249  </span>	o.Set = all.Set
+<span id="L250" class="ln">   250  </span>
+<span id="L251" class="ln">   251  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L252" class="ln">   252  </span>		o.AdditionalProperties = additionalProperties
+<span id="L253" class="ln">   253  </span>	}
+<span id="L254" class="ln">   254  </span>
+<span id="L255" class="ln">   255  </span>	if hasInvalidField {
+<span id="L256" class="ln">   256  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L257" class="ln">   257  </span>	}
 <span id="L258" class="ln">   258  </span>
+<span id="L259" class="ln">   259  </span>	return nil
+<span id="L260" class="ln">   260  </span>}
+<span id="L261" class="ln">   261  </span>
 </pre><p></p>
 
 <div id="footer">
