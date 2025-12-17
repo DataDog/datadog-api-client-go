@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListTeamConnections", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewTeamsApi(apiClient)
 	resp, _ := api.ListTeamConnectionsWithPagination(ctx, *datadogV2.NewListTeamConnectionsOptionalParameters())

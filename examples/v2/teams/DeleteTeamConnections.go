@@ -22,7 +22,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.DeleteTeamConnections", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewTeamsApi(apiClient)
 	r, err := api.DeleteTeamConnections(ctx, body)

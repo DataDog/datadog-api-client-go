@@ -273,15 +273,6 @@ func (a *TeamsApi) CreateTeamConnections(ctx _context.Context, body TeamConnecti
 		localVarReturnValue TeamConnectionsResponse
 	)
 
-	operationId := "v2.CreateTeamConnections"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TeamsApi.CreateTeamConnections")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -592,15 +583,6 @@ func (a *TeamsApi) DeleteTeamConnections(ctx _context.Context, body TeamConnecti
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.DeleteTeamConnections"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TeamsApi.DeleteTeamConnections")
 	if err != nil {
@@ -1389,15 +1371,6 @@ func (a *TeamsApi) GetTeamSync(ctx _context.Context, filterSource TeamSyncAttrib
 		localVarReturnValue TeamSyncResponse
 	)
 
-	operationId := "v2.GetTeamSync"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TeamsApi.GetTeamSync")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -1800,15 +1773,6 @@ func (a *TeamsApi) ListTeamConnections(ctx _context.Context, o ...ListTeamConnec
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
-	}
-
-	operationId := "v2.ListTeamConnections"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TeamsApi.ListTeamConnections")
@@ -2517,15 +2481,6 @@ func (a *TeamsApi) SyncTeams(ctx _context.Context, body TeamSyncRequest) (*_neth
 		localVarHTTPMethod = _nethttp.MethodPost
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.SyncTeams"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TeamsApi.SyncTeams")
 	if err != nil {

@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetTeamSync", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewTeamsApi(apiClient)
 	resp, r, err := api.GetTeamSync(ctx, datadogV2.TEAMSYNCATTRIBUTESSOURCE_GITHUB)
