@@ -23,7 +23,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.SyncTeams", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewTeamsApi(apiClient)
 	r, err := api.SyncTeams(ctx, body)
