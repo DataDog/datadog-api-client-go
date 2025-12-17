@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testdeleteaworkloadprotectionpolicyreturnsokresponse1760109663"},"type":"policy"}}
+      {"data":{"attributes":{"description":"My agent policy","enabled":true,"hostTags":["env:staging"],"name":"testdeleteaworkloadprotectionpolicyreturnsokresponse1765469372"},"type":"policy"}}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy
   response:
-    body: '{"data":{"id":"qdn-itt-2ed","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
-      agent policy","disabledRulesCount":1,"enabled":true,"hostTagsLists":[["env:staging"]],"monitoringRulesCount":7,"name":"testdeleteaworkloadprotectionpolicyreturnsokresponse1760109663","pinned":false,"policyVersion":"1","ruleCount":8,"updateDate":1760109664181,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
+    body: '{"data":{"id":"vsz-2f2-xdy","type":"policy","attributes":{"blockingRulesCount":0,"datadogManaged":false,"description":"My
+      agent policy","disabledRulesCount":1,"enabled":true,"hostTagsLists":[["env:staging"]],"monitoringRulesCount":7,"name":"testdeleteaworkloadprotectionpolicyreturnsokresponse1765469372","pinned":false,"policyVersion":"1","ruleCount":8,"updateDate":1765469373250,"updater":{"name":"frog","handle":"frog@datadoghq.com"}}}}'
     code: 200
     duration: 0ms
     headers:
@@ -28,7 +28,7 @@ interactions:
       - '*/*'
     id: 1
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/qdn-itt-2ed
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/vsz-2f2-xdy
   response:
     body: ''
     code: 204
@@ -45,7 +45,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/qdn-itt-2ed
+    url: https://api.datadoghq.com/api/v2/remote_config/products/cws/policy/vsz-2f2-xdy
   response:
     body: '{"errors":[{"title":"failed to delete policy"}]}
 
