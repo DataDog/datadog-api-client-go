@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IncidentAttachmentRelationships The incident attachment's relationships.
-type IncidentAttachmentRelationships struct {
-	// Relationship to user.
-	LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
+// AttachmentDataRelationships
+type AttachmentDataRelationships struct {
+	//
+	LastModifiedByUser *AttachmentDataRelationshipsLastModifiedByUser `json:"last_modified_by_user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewIncidentAttachmentRelationships instantiates a new IncidentAttachmentRelationships object.
+// NewAttachmentDataRelationships instantiates a new AttachmentDataRelationships object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewIncidentAttachmentRelationships() *IncidentAttachmentRelationships {
-	this := IncidentAttachmentRelationships{}
+func NewAttachmentDataRelationships() *AttachmentDataRelationships {
+	this := AttachmentDataRelationships{}
 	return &this
 }
 
-// NewIncidentAttachmentRelationshipsWithDefaults instantiates a new IncidentAttachmentRelationships object.
+// NewAttachmentDataRelationshipsWithDefaults instantiates a new AttachmentDataRelationships object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewIncidentAttachmentRelationshipsWithDefaults() *IncidentAttachmentRelationships {
-	this := IncidentAttachmentRelationships{}
+func NewAttachmentDataRelationshipsWithDefaults() *AttachmentDataRelationships {
+	this := AttachmentDataRelationships{}
 	return &this
 }
 
 // GetLastModifiedByUser returns the LastModifiedByUser field value if set, zero value otherwise.
-func (o *IncidentAttachmentRelationships) GetLastModifiedByUser() RelationshipToUser {
+func (o *AttachmentDataRelationships) GetLastModifiedByUser() AttachmentDataRelationshipsLastModifiedByUser {
 	if o == nil || o.LastModifiedByUser == nil {
-		var ret RelationshipToUser
+		var ret AttachmentDataRelationshipsLastModifiedByUser
 		return ret
 	}
 	return *o.LastModifiedByUser
@@ -45,7 +45,7 @@ func (o *IncidentAttachmentRelationships) GetLastModifiedByUser() RelationshipTo
 
 // GetLastModifiedByUserOk returns a tuple with the LastModifiedByUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentAttachmentRelationships) GetLastModifiedByUserOk() (*RelationshipToUser, bool) {
+func (o *AttachmentDataRelationships) GetLastModifiedByUserOk() (*AttachmentDataRelationshipsLastModifiedByUser, bool) {
 	if o == nil || o.LastModifiedByUser == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *IncidentAttachmentRelationships) GetLastModifiedByUserOk() (*Relationsh
 }
 
 // HasLastModifiedByUser returns a boolean if a field has been set.
-func (o *IncidentAttachmentRelationships) HasLastModifiedByUser() bool {
+func (o *AttachmentDataRelationships) HasLastModifiedByUser() bool {
 	return o != nil && o.LastModifiedByUser != nil
 }
 
-// SetLastModifiedByUser gets a reference to the given RelationshipToUser and assigns it to the LastModifiedByUser field.
-func (o *IncidentAttachmentRelationships) SetLastModifiedByUser(v RelationshipToUser) {
+// SetLastModifiedByUser gets a reference to the given AttachmentDataRelationshipsLastModifiedByUser and assigns it to the LastModifiedByUser field.
+func (o *AttachmentDataRelationships) SetLastModifiedByUser(v AttachmentDataRelationshipsLastModifiedByUser) {
 	o.LastModifiedByUser = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o IncidentAttachmentRelationships) MarshalJSON() ([]byte, error) {
+func (o AttachmentDataRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,9 +79,9 @@ func (o IncidentAttachmentRelationships) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *IncidentAttachmentRelationships) UnmarshalJSON(bytes []byte) (err error) {
+func (o *AttachmentDataRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
+		LastModifiedByUser *AttachmentDataRelationshipsLastModifiedByUser `json:"last_modified_by_user,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

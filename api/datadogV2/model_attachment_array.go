@@ -10,39 +10,39 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IncidentAttachmentsResponse The response object containing an incident's attachments.
-type IncidentAttachmentsResponse struct {
-	// An array of incident attachments.
-	Data []IncidentAttachmentData `json:"data"`
-	// Included related resources that the user requested.
-	Included []IncidentAttachmentsResponseIncludedItem `json:"included,omitempty"`
+// AttachmentArray
+type AttachmentArray struct {
+	//
+	Data []AttachmentData `json:"data"`
+	//
+	Included []AttachmentIncluded `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewIncidentAttachmentsResponse instantiates a new IncidentAttachmentsResponse object.
+// NewAttachmentArray instantiates a new AttachmentArray object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewIncidentAttachmentsResponse(data []IncidentAttachmentData) *IncidentAttachmentsResponse {
-	this := IncidentAttachmentsResponse{}
+func NewAttachmentArray(data []AttachmentData) *AttachmentArray {
+	this := AttachmentArray{}
 	this.Data = data
 	return &this
 }
 
-// NewIncidentAttachmentsResponseWithDefaults instantiates a new IncidentAttachmentsResponse object.
+// NewAttachmentArrayWithDefaults instantiates a new AttachmentArray object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewIncidentAttachmentsResponseWithDefaults() *IncidentAttachmentsResponse {
-	this := IncidentAttachmentsResponse{}
+func NewAttachmentArrayWithDefaults() *AttachmentArray {
+	this := AttachmentArray{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *IncidentAttachmentsResponse) GetData() []IncidentAttachmentData {
+func (o *AttachmentArray) GetData() []AttachmentData {
 	if o == nil {
-		var ret []IncidentAttachmentData
+		var ret []AttachmentData
 		return ret
 	}
 	return o.Data
@@ -50,7 +50,7 @@ func (o *IncidentAttachmentsResponse) GetData() []IncidentAttachmentData {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *IncidentAttachmentsResponse) GetDataOk() (*[]IncidentAttachmentData, bool) {
+func (o *AttachmentArray) GetDataOk() (*[]AttachmentData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -58,14 +58,14 @@ func (o *IncidentAttachmentsResponse) GetDataOk() (*[]IncidentAttachmentData, bo
 }
 
 // SetData sets field value.
-func (o *IncidentAttachmentsResponse) SetData(v []IncidentAttachmentData) {
+func (o *AttachmentArray) SetData(v []AttachmentData) {
 	o.Data = v
 }
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
-func (o *IncidentAttachmentsResponse) GetIncluded() []IncidentAttachmentsResponseIncludedItem {
+func (o *AttachmentArray) GetIncluded() []AttachmentIncluded {
 	if o == nil || o.Included == nil {
-		var ret []IncidentAttachmentsResponseIncludedItem
+		var ret []AttachmentIncluded
 		return ret
 	}
 	return o.Included
@@ -73,7 +73,7 @@ func (o *IncidentAttachmentsResponse) GetIncluded() []IncidentAttachmentsRespons
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentAttachmentsResponse) GetIncludedOk() (*[]IncidentAttachmentsResponseIncludedItem, bool) {
+func (o *AttachmentArray) GetIncludedOk() (*[]AttachmentIncluded, bool) {
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
@@ -81,17 +81,17 @@ func (o *IncidentAttachmentsResponse) GetIncludedOk() (*[]IncidentAttachmentsRes
 }
 
 // HasIncluded returns a boolean if a field has been set.
-func (o *IncidentAttachmentsResponse) HasIncluded() bool {
+func (o *AttachmentArray) HasIncluded() bool {
 	return o != nil && o.Included != nil
 }
 
-// SetIncluded gets a reference to the given []IncidentAttachmentsResponseIncludedItem and assigns it to the Included field.
-func (o *IncidentAttachmentsResponse) SetIncluded(v []IncidentAttachmentsResponseIncludedItem) {
+// SetIncluded gets a reference to the given []AttachmentIncluded and assigns it to the Included field.
+func (o *AttachmentArray) SetIncluded(v []AttachmentIncluded) {
 	o.Included = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o IncidentAttachmentsResponse) MarshalJSON() ([]byte, error) {
+func (o AttachmentArray) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -108,10 +108,10 @@ func (o IncidentAttachmentsResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *IncidentAttachmentsResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *AttachmentArray) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     *[]IncidentAttachmentData                 `json:"data"`
-		Included []IncidentAttachmentsResponseIncludedItem `json:"included,omitempty"`
+		Data     *[]AttachmentData    `json:"data"`
+		Included []AttachmentIncluded `json:"included,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

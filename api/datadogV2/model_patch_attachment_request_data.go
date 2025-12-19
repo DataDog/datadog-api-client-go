@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IncidentAttachmentUpdateData A single incident attachment.
-type IncidentAttachmentUpdateData struct {
-	// Incident attachment attributes.
-	Attributes *IncidentAttachmentUpdateAttributes `json:"attributes,omitempty"`
-	// A unique identifier that represents the incident attachment.
+// PatchAttachmentRequestData
+type PatchAttachmentRequestData struct {
+	//
+	Attributes *PatchAttachmentRequestDataAttributes `json:"attributes,omitempty"`
+	//
 	Id *string `json:"id,omitempty"`
 	// The incident attachment resource type.
 	Type IncidentAttachmentType `json:"type"`
@@ -23,30 +23,30 @@ type IncidentAttachmentUpdateData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewIncidentAttachmentUpdateData instantiates a new IncidentAttachmentUpdateData object.
+// NewPatchAttachmentRequestData instantiates a new PatchAttachmentRequestData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewIncidentAttachmentUpdateData(typeVar IncidentAttachmentType) *IncidentAttachmentUpdateData {
-	this := IncidentAttachmentUpdateData{}
+func NewPatchAttachmentRequestData(typeVar IncidentAttachmentType) *PatchAttachmentRequestData {
+	this := PatchAttachmentRequestData{}
 	this.Type = typeVar
 	return &this
 }
 
-// NewIncidentAttachmentUpdateDataWithDefaults instantiates a new IncidentAttachmentUpdateData object.
+// NewPatchAttachmentRequestDataWithDefaults instantiates a new PatchAttachmentRequestData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewIncidentAttachmentUpdateDataWithDefaults() *IncidentAttachmentUpdateData {
-	this := IncidentAttachmentUpdateData{}
+func NewPatchAttachmentRequestDataWithDefaults() *PatchAttachmentRequestData {
+	this := PatchAttachmentRequestData{}
 	var typeVar IncidentAttachmentType = INCIDENTATTACHMENTTYPE_INCIDENT_ATTACHMENTS
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *IncidentAttachmentUpdateData) GetAttributes() IncidentAttachmentUpdateAttributes {
+func (o *PatchAttachmentRequestData) GetAttributes() PatchAttachmentRequestDataAttributes {
 	if o == nil || o.Attributes == nil {
-		var ret IncidentAttachmentUpdateAttributes
+		var ret PatchAttachmentRequestDataAttributes
 		return ret
 	}
 	return *o.Attributes
@@ -54,7 +54,7 @@ func (o *IncidentAttachmentUpdateData) GetAttributes() IncidentAttachmentUpdateA
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentAttachmentUpdateData) GetAttributesOk() (*IncidentAttachmentUpdateAttributes, bool) {
+func (o *PatchAttachmentRequestData) GetAttributesOk() (*PatchAttachmentRequestDataAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -62,17 +62,17 @@ func (o *IncidentAttachmentUpdateData) GetAttributesOk() (*IncidentAttachmentUpd
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *IncidentAttachmentUpdateData) HasAttributes() bool {
+func (o *PatchAttachmentRequestData) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
-// SetAttributes gets a reference to the given IncidentAttachmentUpdateAttributes and assigns it to the Attributes field.
-func (o *IncidentAttachmentUpdateData) SetAttributes(v IncidentAttachmentUpdateAttributes) {
+// SetAttributes gets a reference to the given PatchAttachmentRequestDataAttributes and assigns it to the Attributes field.
+func (o *PatchAttachmentRequestData) SetAttributes(v PatchAttachmentRequestDataAttributes) {
 	o.Attributes = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *IncidentAttachmentUpdateData) GetId() string {
+func (o *PatchAttachmentRequestData) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -82,7 +82,7 @@ func (o *IncidentAttachmentUpdateData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentAttachmentUpdateData) GetIdOk() (*string, bool) {
+func (o *PatchAttachmentRequestData) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -90,17 +90,17 @@ func (o *IncidentAttachmentUpdateData) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *IncidentAttachmentUpdateData) HasId() bool {
+func (o *PatchAttachmentRequestData) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *IncidentAttachmentUpdateData) SetId(v string) {
+func (o *PatchAttachmentRequestData) SetId(v string) {
 	o.Id = &v
 }
 
 // GetType returns the Type field value.
-func (o *IncidentAttachmentUpdateData) GetType() IncidentAttachmentType {
+func (o *PatchAttachmentRequestData) GetType() IncidentAttachmentType {
 	if o == nil {
 		var ret IncidentAttachmentType
 		return ret
@@ -110,7 +110,7 @@ func (o *IncidentAttachmentUpdateData) GetType() IncidentAttachmentType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *IncidentAttachmentUpdateData) GetTypeOk() (*IncidentAttachmentType, bool) {
+func (o *PatchAttachmentRequestData) GetTypeOk() (*IncidentAttachmentType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -118,12 +118,12 @@ func (o *IncidentAttachmentUpdateData) GetTypeOk() (*IncidentAttachmentType, boo
 }
 
 // SetType sets field value.
-func (o *IncidentAttachmentUpdateData) SetType(v IncidentAttachmentType) {
+func (o *PatchAttachmentRequestData) SetType(v IncidentAttachmentType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o IncidentAttachmentUpdateData) MarshalJSON() ([]byte, error) {
+func (o PatchAttachmentRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -143,11 +143,11 @@ func (o IncidentAttachmentUpdateData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *IncidentAttachmentUpdateData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *PatchAttachmentRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *IncidentAttachmentUpdateAttributes `json:"attributes,omitempty"`
-		Id         *string                             `json:"id,omitempty"`
-		Type       *IncidentAttachmentType             `json:"type"`
+		Attributes *PatchAttachmentRequestDataAttributes `json:"attributes,omitempty"`
+		Id         *string                               `json:"id,omitempty"`
+		Type       *IncidentAttachmentType               `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -163,6 +163,9 @@ func (o *IncidentAttachmentUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
+	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
 	if !all.Type.IsValid() {

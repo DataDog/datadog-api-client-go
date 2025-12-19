@@ -10,40 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IncidentAttachmentUpdateRequest The update request for an incident's attachments.
-type IncidentAttachmentUpdateRequest struct {
-	// An array of incident attachments. An attachment object without an "id" key indicates that you want to
-	// create that attachment. An attachment object without an "attributes" key indicates that you want to
-	// delete that attachment. An attachment object with both the "id" key and a populated "attributes" object
-	// indicates that you want to update that attachment.
-	Data []IncidentAttachmentUpdateData `json:"data"`
+// AttachmentDataRelationshipsLastModifiedByUser
+type AttachmentDataRelationshipsLastModifiedByUser struct {
+	//
+	Data AttachmentDataRelationshipsLastModifiedByUserData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewIncidentAttachmentUpdateRequest instantiates a new IncidentAttachmentUpdateRequest object.
+// NewAttachmentDataRelationshipsLastModifiedByUser instantiates a new AttachmentDataRelationshipsLastModifiedByUser object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewIncidentAttachmentUpdateRequest(data []IncidentAttachmentUpdateData) *IncidentAttachmentUpdateRequest {
-	this := IncidentAttachmentUpdateRequest{}
+func NewAttachmentDataRelationshipsLastModifiedByUser(data AttachmentDataRelationshipsLastModifiedByUserData) *AttachmentDataRelationshipsLastModifiedByUser {
+	this := AttachmentDataRelationshipsLastModifiedByUser{}
 	this.Data = data
 	return &this
 }
 
-// NewIncidentAttachmentUpdateRequestWithDefaults instantiates a new IncidentAttachmentUpdateRequest object.
+// NewAttachmentDataRelationshipsLastModifiedByUserWithDefaults instantiates a new AttachmentDataRelationshipsLastModifiedByUser object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewIncidentAttachmentUpdateRequestWithDefaults() *IncidentAttachmentUpdateRequest {
-	this := IncidentAttachmentUpdateRequest{}
+func NewAttachmentDataRelationshipsLastModifiedByUserWithDefaults() *AttachmentDataRelationshipsLastModifiedByUser {
+	this := AttachmentDataRelationshipsLastModifiedByUser{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *IncidentAttachmentUpdateRequest) GetData() []IncidentAttachmentUpdateData {
+func (o *AttachmentDataRelationshipsLastModifiedByUser) GetData() AttachmentDataRelationshipsLastModifiedByUserData {
 	if o == nil {
-		var ret []IncidentAttachmentUpdateData
+		var ret AttachmentDataRelationshipsLastModifiedByUserData
 		return ret
 	}
 	return o.Data
@@ -51,7 +48,7 @@ func (o *IncidentAttachmentUpdateRequest) GetData() []IncidentAttachmentUpdateDa
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *IncidentAttachmentUpdateRequest) GetDataOk() (*[]IncidentAttachmentUpdateData, bool) {
+func (o *AttachmentDataRelationshipsLastModifiedByUser) GetDataOk() (*AttachmentDataRelationshipsLastModifiedByUserData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -59,12 +56,12 @@ func (o *IncidentAttachmentUpdateRequest) GetDataOk() (*[]IncidentAttachmentUpda
 }
 
 // SetData sets field value.
-func (o *IncidentAttachmentUpdateRequest) SetData(v []IncidentAttachmentUpdateData) {
+func (o *AttachmentDataRelationshipsLastModifiedByUser) SetData(v AttachmentDataRelationshipsLastModifiedByUserData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o IncidentAttachmentUpdateRequest) MarshalJSON() ([]byte, error) {
+func (o AttachmentDataRelationshipsLastModifiedByUser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -78,9 +75,9 @@ func (o IncidentAttachmentUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *IncidentAttachmentUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *AttachmentDataRelationshipsLastModifiedByUser) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *[]IncidentAttachmentUpdateData `json:"data"`
+		Data *AttachmentDataRelationshipsLastModifiedByUserData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -94,10 +91,19 @@ func (o *IncidentAttachmentUpdateRequest) UnmarshalJSON(bytes []byte) (err error
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
 	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
