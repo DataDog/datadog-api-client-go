@@ -12,6 +12,8 @@ import (
 
 // ObservabilityPipelineDedupeProcessor The `dedupe` processor removes duplicate fields in log events.
 type ObservabilityPipelineDedupeProcessor struct {
+	// The display name for a component.
+	DisplayName *string `json:"display_name,omitempty"`
 	// Whether this processor is enabled.
 	Enabled bool `json:"enabled"`
 	// A list of log field paths to check for duplicates.
@@ -52,6 +54,34 @@ func NewObservabilityPipelineDedupeProcessorWithDefaults() *ObservabilityPipelin
 	var typeVar ObservabilityPipelineDedupeProcessorType = OBSERVABILITYPIPELINEDEDUPEPROCESSORTYPE_DEDUPE
 	this.Type = typeVar
 	return &this
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
+func (o *ObservabilityPipelineDedupeProcessor) GetDisplayName() string {
+	if o == nil || o.DisplayName == nil {
+		var ret string
+		return ret
+	}
+	return *o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineDedupeProcessor) GetDisplayNameOk() (*string, bool) {
+	if o == nil || o.DisplayName == nil {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *ObservabilityPipelineDedupeProcessor) HasDisplayName() bool {
+	return o != nil && o.DisplayName != nil
+}
+
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
+func (o *ObservabilityPipelineDedupeProcessor) SetDisplayName(v string) {
+	o.DisplayName = &v
 }
 
 // GetEnabled returns the Enabled field value.
@@ -198,6 +228,9 @@ func (o ObservabilityPipelineDedupeProcessor) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.DisplayName != nil {
+		toSerialize["display_name"] = o.DisplayName
+	}
 	toSerialize["enabled"] = o.Enabled
 	toSerialize["fields"] = o.Fields
 	toSerialize["id"] = o.Id
@@ -214,12 +247,13 @@ func (o ObservabilityPipelineDedupeProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineDedupeProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enabled *bool                                     `json:"enabled"`
-		Fields  *[]string                                 `json:"fields"`
-		Id      *string                                   `json:"id"`
-		Include *string                                   `json:"include"`
-		Mode    *ObservabilityPipelineDedupeProcessorMode `json:"mode"`
-		Type    *ObservabilityPipelineDedupeProcessorType `json:"type"`
+		DisplayName *string                                   `json:"display_name,omitempty"`
+		Enabled     *bool                                     `json:"enabled"`
+		Fields      *[]string                                 `json:"fields"`
+		Id          *string                                   `json:"id"`
+		Include     *string                                   `json:"include"`
+		Mode        *ObservabilityPipelineDedupeProcessorMode `json:"mode"`
+		Type        *ObservabilityPipelineDedupeProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -244,12 +278,13 @@ func (o *ObservabilityPipelineDedupeProcessor) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "fields", "id", "include", "mode", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"display_name", "enabled", "fields", "id", "include", "mode", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.DisplayName = all.DisplayName
 	o.Enabled = *all.Enabled
 	o.Fields = *all.Fields
 	o.Id = *all.Id

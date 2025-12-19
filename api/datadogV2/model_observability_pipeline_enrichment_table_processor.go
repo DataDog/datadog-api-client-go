@@ -12,6 +12,8 @@ import (
 
 // ObservabilityPipelineEnrichmentTableProcessor The `enrichment_table` processor enriches logs using a static CSV file or GeoIP database.
 type ObservabilityPipelineEnrichmentTableProcessor struct {
+	// The display name for a component.
+	DisplayName *string `json:"display_name,omitempty"`
 	// Whether this processor is enabled.
 	Enabled bool `json:"enabled"`
 	// Defines a static enrichment table loaded from a CSV file.
@@ -53,6 +55,34 @@ func NewObservabilityPipelineEnrichmentTableProcessorWithDefaults() *Observabili
 	var typeVar ObservabilityPipelineEnrichmentTableProcessorType = OBSERVABILITYPIPELINEENRICHMENTTABLEPROCESSORTYPE_ENRICHMENT_TABLE
 	this.Type = typeVar
 	return &this
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
+func (o *ObservabilityPipelineEnrichmentTableProcessor) GetDisplayName() string {
+	if o == nil || o.DisplayName == nil {
+		var ret string
+		return ret
+	}
+	return *o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineEnrichmentTableProcessor) GetDisplayNameOk() (*string, bool) {
+	if o == nil || o.DisplayName == nil {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *ObservabilityPipelineEnrichmentTableProcessor) HasDisplayName() bool {
+	return o != nil && o.DisplayName != nil
+}
+
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
+func (o *ObservabilityPipelineEnrichmentTableProcessor) SetDisplayName(v string) {
+	o.DisplayName = &v
 }
 
 // GetEnabled returns the Enabled field value.
@@ -232,6 +262,9 @@ func (o ObservabilityPipelineEnrichmentTableProcessor) MarshalJSON() ([]byte, er
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.DisplayName != nil {
+		toSerialize["display_name"] = o.DisplayName
+	}
 	toSerialize["enabled"] = o.Enabled
 	if o.File != nil {
 		toSerialize["file"] = o.File
@@ -253,13 +286,14 @@ func (o ObservabilityPipelineEnrichmentTableProcessor) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineEnrichmentTableProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enabled *bool                                              `json:"enabled"`
-		File    *ObservabilityPipelineEnrichmentTableFile          `json:"file,omitempty"`
-		Geoip   *ObservabilityPipelineEnrichmentTableGeoIp         `json:"geoip,omitempty"`
-		Id      *string                                            `json:"id"`
-		Include *string                                            `json:"include"`
-		Target  *string                                            `json:"target"`
-		Type    *ObservabilityPipelineEnrichmentTableProcessorType `json:"type"`
+		DisplayName *string                                            `json:"display_name,omitempty"`
+		Enabled     *bool                                              `json:"enabled"`
+		File        *ObservabilityPipelineEnrichmentTableFile          `json:"file,omitempty"`
+		Geoip       *ObservabilityPipelineEnrichmentTableGeoIp         `json:"geoip,omitempty"`
+		Id          *string                                            `json:"id"`
+		Include     *string                                            `json:"include"`
+		Target      *string                                            `json:"target"`
+		Type        *ObservabilityPipelineEnrichmentTableProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -281,12 +315,13 @@ func (o *ObservabilityPipelineEnrichmentTableProcessor) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "file", "geoip", "id", "include", "target", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"display_name", "enabled", "file", "geoip", "id", "include", "target", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.DisplayName = all.DisplayName
 	o.Enabled = *all.Enabled
 	if all.File != nil && all.File.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true

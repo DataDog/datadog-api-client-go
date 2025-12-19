@@ -14,6 +14,8 @@ import (
 type ObservabilityPipelineDatadogTagsProcessor struct {
 	// The action to take on tags with matching keys.
 	Action ObservabilityPipelineDatadogTagsProcessorAction `json:"action"`
+	// The display name for a component.
+	DisplayName *string `json:"display_name,omitempty"`
 	// Whether this processor is enabled.
 	Enabled bool `json:"enabled"`
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (for example, as the `input` to downstream components).
@@ -78,6 +80,34 @@ func (o *ObservabilityPipelineDatadogTagsProcessor) GetActionOk() (*Observabilit
 // SetAction sets field value.
 func (o *ObservabilityPipelineDatadogTagsProcessor) SetAction(v ObservabilityPipelineDatadogTagsProcessorAction) {
 	o.Action = v
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
+func (o *ObservabilityPipelineDatadogTagsProcessor) GetDisplayName() string {
+	if o == nil || o.DisplayName == nil {
+		var ret string
+		return ret
+	}
+	return *o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineDatadogTagsProcessor) GetDisplayNameOk() (*string, bool) {
+	if o == nil || o.DisplayName == nil {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *ObservabilityPipelineDatadogTagsProcessor) HasDisplayName() bool {
+	return o != nil && o.DisplayName != nil
+}
+
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
+func (o *ObservabilityPipelineDatadogTagsProcessor) SetDisplayName(v string) {
+	o.DisplayName = &v
 }
 
 // GetEnabled returns the Enabled field value.
@@ -225,6 +255,9 @@ func (o ObservabilityPipelineDatadogTagsProcessor) MarshalJSON() ([]byte, error)
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["action"] = o.Action
+	if o.DisplayName != nil {
+		toSerialize["display_name"] = o.DisplayName
+	}
 	toSerialize["enabled"] = o.Enabled
 	toSerialize["id"] = o.Id
 	toSerialize["include"] = o.Include
@@ -241,13 +274,14 @@ func (o ObservabilityPipelineDatadogTagsProcessor) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineDatadogTagsProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Action  *ObservabilityPipelineDatadogTagsProcessorAction `json:"action"`
-		Enabled *bool                                            `json:"enabled"`
-		Id      *string                                          `json:"id"`
-		Include *string                                          `json:"include"`
-		Keys    *[]string                                        `json:"keys"`
-		Mode    *ObservabilityPipelineDatadogTagsProcessorMode   `json:"mode"`
-		Type    *ObservabilityPipelineDatadogTagsProcessorType   `json:"type"`
+		Action      *ObservabilityPipelineDatadogTagsProcessorAction `json:"action"`
+		DisplayName *string                                          `json:"display_name,omitempty"`
+		Enabled     *bool                                            `json:"enabled"`
+		Id          *string                                          `json:"id"`
+		Include     *string                                          `json:"include"`
+		Keys        *[]string                                        `json:"keys"`
+		Mode        *ObservabilityPipelineDatadogTagsProcessorMode   `json:"mode"`
+		Type        *ObservabilityPipelineDatadogTagsProcessorType   `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -275,7 +309,7 @@ func (o *ObservabilityPipelineDatadogTagsProcessor) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"action", "enabled", "id", "include", "keys", "mode", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"action", "display_name", "enabled", "id", "include", "keys", "mode", "type"})
 	} else {
 		return err
 	}
@@ -286,6 +320,7 @@ func (o *ObservabilityPipelineDatadogTagsProcessor) UnmarshalJSON(bytes []byte) 
 	} else {
 		o.Action = *all.Action
 	}
+	o.DisplayName = all.DisplayName
 	o.Enabled = *all.Enabled
 	o.Id = *all.Id
 	o.Include = *all.Include

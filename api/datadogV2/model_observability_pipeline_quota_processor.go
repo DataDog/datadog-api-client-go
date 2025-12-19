@@ -12,6 +12,8 @@ import (
 
 // ObservabilityPipelineQuotaProcessor The Quota Processor measures logging traffic for logs that match a specified filter. When the configured daily quota is met, the processor can drop or alert.
 type ObservabilityPipelineQuotaProcessor struct {
+	// The display name for a component.
+	DisplayName *string `json:"display_name,omitempty"`
 	// If set to `true`, logs that matched the quota filter and sent after the quota has been met are dropped; only logs that did not match the filter query continue through the pipeline.
 	DropEvents *bool `json:"drop_events,omitempty"`
 	// Whether this processor is enabled.
@@ -65,6 +67,34 @@ func NewObservabilityPipelineQuotaProcessorWithDefaults() *ObservabilityPipeline
 	var typeVar ObservabilityPipelineQuotaProcessorType = OBSERVABILITYPIPELINEQUOTAPROCESSORTYPE_QUOTA
 	this.Type = typeVar
 	return &this
+}
+
+// GetDisplayName returns the DisplayName field value if set, zero value otherwise.
+func (o *ObservabilityPipelineQuotaProcessor) GetDisplayName() string {
+	if o == nil || o.DisplayName == nil {
+		var ret string
+		return ret
+	}
+	return *o.DisplayName
+}
+
+// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineQuotaProcessor) GetDisplayNameOk() (*string, bool) {
+	if o == nil || o.DisplayName == nil {
+		return nil, false
+	}
+	return o.DisplayName, true
+}
+
+// HasDisplayName returns a boolean if a field has been set.
+func (o *ObservabilityPipelineQuotaProcessor) HasDisplayName() bool {
+	return o != nil && o.DisplayName != nil
+}
+
+// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.
+func (o *ObservabilityPipelineQuotaProcessor) SetDisplayName(v string) {
+	o.DisplayName = &v
 }
 
 // GetDropEvents returns the DropEvents field value if set, zero value otherwise.
@@ -351,6 +381,9 @@ func (o ObservabilityPipelineQuotaProcessor) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.DisplayName != nil {
+		toSerialize["display_name"] = o.DisplayName
+	}
 	if o.DropEvents != nil {
 		toSerialize["drop_events"] = o.DropEvents
 	}
@@ -382,6 +415,7 @@ func (o ObservabilityPipelineQuotaProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineQuotaProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		DisplayName                 *string                                            `json:"display_name,omitempty"`
 		DropEvents                  *bool                                              `json:"drop_events,omitempty"`
 		Enabled                     *bool                                              `json:"enabled"`
 		Id                          *string                                            `json:"id"`
@@ -417,12 +451,13 @@ func (o *ObservabilityPipelineQuotaProcessor) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"drop_events", "enabled", "id", "ignore_when_missing_partitions", "include", "limit", "name", "overflow_action", "overrides", "partition_fields", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"display_name", "drop_events", "enabled", "id", "ignore_when_missing_partitions", "include", "limit", "name", "overflow_action", "overrides", "partition_fields", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.DisplayName = all.DisplayName
 	o.DropEvents = all.DropEvents
 	o.Enabled = *all.Enabled
 	o.Id = *all.Id
