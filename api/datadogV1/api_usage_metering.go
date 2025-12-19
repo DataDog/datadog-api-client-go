@@ -212,6 +212,9 @@ func (r *GetHourlyUsageAttributionOptionalParameters) WithIncludeDescendants(inc
 //
 // END
 // ```
+// The following values have been **deprecated**:
+//
+//	`estimated_indexed_spans_usage`, `estimated_indexed_spans_percentage`, `estimated_ingested_spans_usage`, `estimated_ingested_spans_percentage`, `llm_observability_usage`, `llm_observability_percentage`.
 func (a *UsageMeteringApi) GetHourlyUsageAttribution(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
