@@ -55,7 +55,7 @@ func main() {
 										},
 										GroupBy: []datadogV1.FormulaAndFunctionEventQueryGroupBy{},
 									}},
-								RequestType: datadogV1.DISTRIBUTIONWIDGETHISTOGRAMREQUESTTYPE_HISTOGRAM.Ptr(),
+								RequestType: datadogV1.WIDGETHISTOGRAMREQUESTTYPE_HISTOGRAM.Ptr(),
 							},
 						},
 					}},
