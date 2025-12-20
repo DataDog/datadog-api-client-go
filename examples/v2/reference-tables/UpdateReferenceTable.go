@@ -42,7 +42,6 @@ func main() {
 						"id",
 					},
 				},
-				SyncEnabled: datadog.PtrBool(false),
 				Tags: []string{
 					"test_tag",
 				},
