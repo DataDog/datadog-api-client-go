@@ -28,6 +28,10 @@ type HeatMapWidgetRequest struct {
 	Q *string `json:"q,omitempty"`
 	// List of queries that can be returned directly or used in formulas.
 	Queries []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+	// A formula and functions metrics query.
+	Query *FormulaAndFunctionMetricQueryDefinition `json:"query,omitempty"`
+	// Request type for the histogram request.
+	RequestType *WidgetHistogramRequestType `json:"request_type,omitempty"`
 	// Timeseries, scalar, or event list response. Event list response formats are supported by Geomap widgets.
 	ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
 	// The log query.
@@ -310,6 +314,62 @@ func (o *HeatMapWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition)
 	o.Queries = v
 }
 
+// GetQuery returns the Query field value if set, zero value otherwise.
+func (o *HeatMapWidgetRequest) GetQuery() FormulaAndFunctionMetricQueryDefinition {
+	if o == nil || o.Query == nil {
+		var ret FormulaAndFunctionMetricQueryDefinition
+		return ret
+	}
+	return *o.Query
+}
+
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HeatMapWidgetRequest) GetQueryOk() (*FormulaAndFunctionMetricQueryDefinition, bool) {
+	if o == nil || o.Query == nil {
+		return nil, false
+	}
+	return o.Query, true
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (o *HeatMapWidgetRequest) HasQuery() bool {
+	return o != nil && o.Query != nil
+}
+
+// SetQuery gets a reference to the given FormulaAndFunctionMetricQueryDefinition and assigns it to the Query field.
+func (o *HeatMapWidgetRequest) SetQuery(v FormulaAndFunctionMetricQueryDefinition) {
+	o.Query = &v
+}
+
+// GetRequestType returns the RequestType field value if set, zero value otherwise.
+func (o *HeatMapWidgetRequest) GetRequestType() WidgetHistogramRequestType {
+	if o == nil || o.RequestType == nil {
+		var ret WidgetHistogramRequestType
+		return ret
+	}
+	return *o.RequestType
+}
+
+// GetRequestTypeOk returns a tuple with the RequestType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HeatMapWidgetRequest) GetRequestTypeOk() (*WidgetHistogramRequestType, bool) {
+	if o == nil || o.RequestType == nil {
+		return nil, false
+	}
+	return o.RequestType, true
+}
+
+// HasRequestType returns a boolean if a field has been set.
+func (o *HeatMapWidgetRequest) HasRequestType() bool {
+	return o != nil && o.RequestType != nil
+}
+
+// SetRequestType gets a reference to the given WidgetHistogramRequestType and assigns it to the RequestType field.
+func (o *HeatMapWidgetRequest) SetRequestType(v WidgetHistogramRequestType) {
+	o.RequestType = &v
+}
+
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
 	if o == nil || o.ResponseFormat == nil {
@@ -455,6 +515,12 @@ func (o HeatMapWidgetRequest) MarshalJSON() ([]byte, error) {
 	if o.Queries != nil {
 		toSerialize["queries"] = o.Queries
 	}
+	if o.Query != nil {
+		toSerialize["query"] = o.Query
+	}
+	if o.RequestType != nil {
+		toSerialize["request_type"] = o.RequestType
+	}
 	if o.ResponseFormat != nil {
 		toSerialize["response_format"] = o.ResponseFormat
 	}
@@ -477,26 +543,28 @@ func (o HeatMapWidgetRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HeatMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApmQuery            *LogQueryDefinition                 `json:"apm_query,omitempty"`
-		EventQuery          *EventQueryDefinition               `json:"event_query,omitempty"`
-		Formulas            []WidgetFormula                     `json:"formulas,omitempty"`
-		LogQuery            *LogQueryDefinition                 `json:"log_query,omitempty"`
-		NetworkQuery        *LogQueryDefinition                 `json:"network_query,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition             `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition                 `json:"profile_metrics_query,omitempty"`
-		Q                   *string                             `json:"q,omitempty"`
-		Queries             []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat      *FormulaAndFunctionResponseFormat   `json:"response_format,omitempty"`
-		RumQuery            *LogQueryDefinition                 `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition                 `json:"security_query,omitempty"`
-		Style               *WidgetStyle                        `json:"style,omitempty"`
+		ApmQuery            *LogQueryDefinition                      `json:"apm_query,omitempty"`
+		EventQuery          *EventQueryDefinition                    `json:"event_query,omitempty"`
+		Formulas            []WidgetFormula                          `json:"formulas,omitempty"`
+		LogQuery            *LogQueryDefinition                      `json:"log_query,omitempty"`
+		NetworkQuery        *LogQueryDefinition                      `json:"network_query,omitempty"`
+		ProcessQuery        *ProcessQueryDefinition                  `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition                      `json:"profile_metrics_query,omitempty"`
+		Q                   *string                                  `json:"q,omitempty"`
+		Queries             []FormulaAndFunctionQueryDefinition      `json:"queries,omitempty"`
+		Query               *FormulaAndFunctionMetricQueryDefinition `json:"query,omitempty"`
+		RequestType         *WidgetHistogramRequestType              `json:"request_type,omitempty"`
+		ResponseFormat      *FormulaAndFunctionResponseFormat        `json:"response_format,omitempty"`
+		RumQuery            *LogQueryDefinition                      `json:"rum_query,omitempty"`
+		SecurityQuery       *LogQueryDefinition                      `json:"security_query,omitempty"`
+		Style               *WidgetStyle                             `json:"style,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"apm_query", "event_query", "formulas", "log_query", "network_query", "process_query", "profile_metrics_query", "q", "queries", "response_format", "rum_query", "security_query", "style"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"apm_query", "event_query", "formulas", "log_query", "network_query", "process_query", "profile_metrics_query", "q", "queries", "query", "request_type", "response_format", "rum_query", "security_query", "style"})
 	} else {
 		return err
 	}
@@ -529,6 +597,15 @@ func (o *HeatMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.ProfileMetricsQuery = all.ProfileMetricsQuery
 	o.Q = all.Q
 	o.Queries = all.Queries
+	if all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Query = all.Query
+	if all.RequestType != nil && !all.RequestType.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.RequestType = all.RequestType
+	}
 	if all.ResponseFormat != nil && !all.ResponseFormat.IsValid() {
 		hasInvalidField = true
 	} else {
