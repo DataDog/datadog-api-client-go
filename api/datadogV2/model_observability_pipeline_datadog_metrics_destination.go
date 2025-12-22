@@ -10,45 +10,45 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineDatadogLogsDestination The `datadog_logs` destination forwards logs to Datadog Log Management.
+// ObservabilityPipelineDatadogMetricsDestination The `datadog_metrics` destination forwards metrics to Datadog.
 //
-// **Supported pipeline types:** logs
-type ObservabilityPipelineDatadogLogsDestination struct {
+// **Supported pipeline types:** metrics
+type ObservabilityPipelineDatadogMetricsDestination struct {
 	// The unique identifier for this component.
 	Id string `json:"id"`
-	// A list of component IDs whose output is used as the `input` for this component.
+	// A list of component IDs whose output is used as the input for this component.
 	Inputs []string `json:"inputs"`
-	// The destination type. The value should always be `datadog_logs`.
-	Type ObservabilityPipelineDatadogLogsDestinationType `json:"type"`
+	// The destination type. The value should always be `datadog_metrics`.
+	Type ObservabilityPipelineDatadogMetricsDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewObservabilityPipelineDatadogLogsDestination instantiates a new ObservabilityPipelineDatadogLogsDestination object.
+// NewObservabilityPipelineDatadogMetricsDestination instantiates a new ObservabilityPipelineDatadogMetricsDestination object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineDatadogLogsDestination(id string, inputs []string, typeVar ObservabilityPipelineDatadogLogsDestinationType) *ObservabilityPipelineDatadogLogsDestination {
-	this := ObservabilityPipelineDatadogLogsDestination{}
+func NewObservabilityPipelineDatadogMetricsDestination(id string, inputs []string, typeVar ObservabilityPipelineDatadogMetricsDestinationType) *ObservabilityPipelineDatadogMetricsDestination {
+	this := ObservabilityPipelineDatadogMetricsDestination{}
 	this.Id = id
 	this.Inputs = inputs
 	this.Type = typeVar
 	return &this
 }
 
-// NewObservabilityPipelineDatadogLogsDestinationWithDefaults instantiates a new ObservabilityPipelineDatadogLogsDestination object.
+// NewObservabilityPipelineDatadogMetricsDestinationWithDefaults instantiates a new ObservabilityPipelineDatadogMetricsDestination object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewObservabilityPipelineDatadogLogsDestinationWithDefaults() *ObservabilityPipelineDatadogLogsDestination {
-	this := ObservabilityPipelineDatadogLogsDestination{}
-	var typeVar ObservabilityPipelineDatadogLogsDestinationType = OBSERVABILITYPIPELINEDATADOGLOGSDESTINATIONTYPE_DATADOG_LOGS
+func NewObservabilityPipelineDatadogMetricsDestinationWithDefaults() *ObservabilityPipelineDatadogMetricsDestination {
+	this := ObservabilityPipelineDatadogMetricsDestination{}
+	var typeVar ObservabilityPipelineDatadogMetricsDestinationType = OBSERVABILITYPIPELINEDATADOGMETRICSDESTINATIONTYPE_DATADOG_METRICS
 	this.Type = typeVar
 	return &this
 }
 
 // GetId returns the Id field value.
-func (o *ObservabilityPipelineDatadogLogsDestination) GetId() string {
+func (o *ObservabilityPipelineDatadogMetricsDestination) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -58,7 +58,7 @@ func (o *ObservabilityPipelineDatadogLogsDestination) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineDatadogLogsDestination) GetIdOk() (*string, bool) {
+func (o *ObservabilityPipelineDatadogMetricsDestination) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -66,12 +66,12 @@ func (o *ObservabilityPipelineDatadogLogsDestination) GetIdOk() (*string, bool) 
 }
 
 // SetId sets field value.
-func (o *ObservabilityPipelineDatadogLogsDestination) SetId(v string) {
+func (o *ObservabilityPipelineDatadogMetricsDestination) SetId(v string) {
 	o.Id = v
 }
 
 // GetInputs returns the Inputs field value.
-func (o *ObservabilityPipelineDatadogLogsDestination) GetInputs() []string {
+func (o *ObservabilityPipelineDatadogMetricsDestination) GetInputs() []string {
 	if o == nil {
 		var ret []string
 		return ret
@@ -81,7 +81,7 @@ func (o *ObservabilityPipelineDatadogLogsDestination) GetInputs() []string {
 
 // GetInputsOk returns a tuple with the Inputs field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineDatadogLogsDestination) GetInputsOk() (*[]string, bool) {
+func (o *ObservabilityPipelineDatadogMetricsDestination) GetInputsOk() (*[]string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -89,14 +89,14 @@ func (o *ObservabilityPipelineDatadogLogsDestination) GetInputsOk() (*[]string, 
 }
 
 // SetInputs sets field value.
-func (o *ObservabilityPipelineDatadogLogsDestination) SetInputs(v []string) {
+func (o *ObservabilityPipelineDatadogMetricsDestination) SetInputs(v []string) {
 	o.Inputs = v
 }
 
 // GetType returns the Type field value.
-func (o *ObservabilityPipelineDatadogLogsDestination) GetType() ObservabilityPipelineDatadogLogsDestinationType {
+func (o *ObservabilityPipelineDatadogMetricsDestination) GetType() ObservabilityPipelineDatadogMetricsDestinationType {
 	if o == nil {
-		var ret ObservabilityPipelineDatadogLogsDestinationType
+		var ret ObservabilityPipelineDatadogMetricsDestinationType
 		return ret
 	}
 	return o.Type
@@ -104,7 +104,7 @@ func (o *ObservabilityPipelineDatadogLogsDestination) GetType() ObservabilityPip
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineDatadogLogsDestination) GetTypeOk() (*ObservabilityPipelineDatadogLogsDestinationType, bool) {
+func (o *ObservabilityPipelineDatadogMetricsDestination) GetTypeOk() (*ObservabilityPipelineDatadogMetricsDestinationType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -112,12 +112,12 @@ func (o *ObservabilityPipelineDatadogLogsDestination) GetTypeOk() (*Observabilit
 }
 
 // SetType sets field value.
-func (o *ObservabilityPipelineDatadogLogsDestination) SetType(v ObservabilityPipelineDatadogLogsDestinationType) {
+func (o *ObservabilityPipelineDatadogMetricsDestination) SetType(v ObservabilityPipelineDatadogMetricsDestinationType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ObservabilityPipelineDatadogLogsDestination) MarshalJSON() ([]byte, error) {
+func (o ObservabilityPipelineDatadogMetricsDestination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -133,11 +133,11 @@ func (o ObservabilityPipelineDatadogLogsDestination) MarshalJSON() ([]byte, erro
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ObservabilityPipelineDatadogLogsDestination) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ObservabilityPipelineDatadogMetricsDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id     *string                                          `json:"id"`
-		Inputs *[]string                                        `json:"inputs"`
-		Type   *ObservabilityPipelineDatadogLogsDestinationType `json:"type"`
+		Id     *string                                             `json:"id"`
+		Inputs *[]string                                           `json:"inputs"`
+		Type   *ObservabilityPipelineDatadogMetricsDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

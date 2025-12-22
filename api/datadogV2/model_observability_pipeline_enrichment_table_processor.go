@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineEnrichmentTableProcessor The `enrichment_table` processor enriches logs using a static CSV file or GeoIP database.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineEnrichmentTableProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`

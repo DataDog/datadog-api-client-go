@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineFluentBitSource The `fluent_bit` source ingests logs from Fluent Bit.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineFluentBitSource struct {
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (for example, as the `input` to downstream components).
 	Id string `json:"id"`
