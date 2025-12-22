@@ -10,7 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineQuotaProcessor The Quota Processor measures logging traffic for logs that match a specified filter. When the configured daily quota is met, the processor can drop or alert.
+// ObservabilityPipelineQuotaProcessor The `quota` processor measures logging traffic for logs that match a specified filter. When the configured daily quota is met, the processor can drop or alert.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineQuotaProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`

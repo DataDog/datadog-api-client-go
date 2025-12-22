@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineSentinelOneDestination The `sentinel_one` destination sends logs to SentinelOne.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineSentinelOneDestination struct {
 	// The unique identifier for this component.
 	Id string `json:"id"`
