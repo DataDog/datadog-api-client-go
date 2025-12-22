@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineThrottleProcessor The `throttle` processor limits the number of events that pass through over a given time window.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineThrottleProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`

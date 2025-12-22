@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineSplunkHecDestination The `splunk_hec` destination forwards logs to Splunk using the HTTP Event Collector (HEC).
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineSplunkHecDestination struct {
 	// If `true`, Splunk tries to extract timestamps from incoming log events.
 	// If `false`, Splunk assigns the time the event was received.

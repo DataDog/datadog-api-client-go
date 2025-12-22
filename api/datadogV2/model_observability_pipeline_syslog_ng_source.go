@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineSyslogNgSource The `syslog_ng` source listens for logs over TCP or UDP from a `syslog-ng` server using the syslog protocol.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineSyslogNgSource struct {
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (e.g., as input to downstream components).
 	Id string `json:"id"`

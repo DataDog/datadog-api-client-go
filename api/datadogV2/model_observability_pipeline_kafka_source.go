@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineKafkaSource The `kafka` source ingests data from Apache Kafka topics.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineKafkaSource struct {
 	// Consumer group ID used by the Kafka client.
 	GroupId string `json:"group_id"`

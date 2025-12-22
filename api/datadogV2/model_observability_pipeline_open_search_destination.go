@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineOpenSearchDestination The `opensearch` destination writes logs to an OpenSearch cluster.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineOpenSearchDestination struct {
 	// The index to write logs to.
 	BulkIndex *string `json:"bulk_index,omitempty"`

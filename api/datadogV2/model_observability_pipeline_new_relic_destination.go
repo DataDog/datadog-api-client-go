@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineNewRelicDestination The `new_relic` destination sends logs to the New Relic platform.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineNewRelicDestination struct {
 	// The unique identifier for this component.
 	Id string `json:"id"`

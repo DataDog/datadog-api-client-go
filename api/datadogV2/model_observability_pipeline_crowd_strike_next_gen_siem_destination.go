@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineCrowdStrikeNextGenSiemDestination The `crowdstrike_next_gen_siem` destination forwards logs to CrowdStrike Next Gen SIEM.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineCrowdStrikeNextGenSiemDestination struct {
 	// Compression configuration for log events.
 	Compression *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression `json:"compression,omitempty"`
