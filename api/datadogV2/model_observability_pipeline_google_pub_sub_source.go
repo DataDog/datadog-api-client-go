@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineGooglePubSubSource The `google_pubsub` source ingests logs from a Google Cloud Pub/Sub subscription.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineGooglePubSubSource struct {
 	// GCP credentials used to authenticate with Google Cloud Storage.
 	Auth *ObservabilityPipelineGcpAuth `json:"auth,omitempty"`

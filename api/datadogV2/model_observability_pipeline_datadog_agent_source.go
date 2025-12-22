@@ -10,7 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineDatadogAgentSource The `datadog_agent` source collects logs from the Datadog Agent.
+// ObservabilityPipelineDatadogAgentSource The `datadog_agent` source collects logs/metrics from the Datadog Agent.
+//
+// **Supported pipeline types:** logs, metrics
 type ObservabilityPipelineDatadogAgentSource struct {
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (e.g., as input to downstream components).
 	Id string `json:"id"`

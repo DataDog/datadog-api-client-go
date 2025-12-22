@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineAmazonSecurityLakeDestination The `amazon_security_lake` destination sends your logs to Amazon Security Lake.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineAmazonSecurityLakeDestination struct {
 	// AWS authentication credentials used for accessing AWS services such as S3.
 	// If omitted, the system’s default credentials are used (for example, the IAM role and environment variables).

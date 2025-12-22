@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineSampleProcessor The `sample` processor allows probabilistic sampling of logs at a fixed rate.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineSampleProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`

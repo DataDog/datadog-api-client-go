@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineHttpClientSource The `http_client` source scrapes logs from HTTP endpoints at regular intervals.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineHttpClientSource struct {
 	// Optional authentication strategy for HTTP requests.
 	AuthStrategy *ObservabilityPipelineHttpClientSourceAuthStrategy `json:"auth_strategy,omitempty"`

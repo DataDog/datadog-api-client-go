@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineOcsfMapperProcessor The `ocsf_mapper` processor transforms logs into the OCSF schema using a predefined mapping configuration.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineOcsfMapperProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
