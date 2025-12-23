@@ -10,7 +10,7 @@ interactions:
       - application/json
     id: 0
     method: POST
-    url: https://api.datadoghq.com/api/v2/remote_config/products/obs_pipelines/pipelines/validate
+    url: https://api.datadoghq.com/api/v2/obs-pipelines/pipelines/validate
   response:
     body: '{"errors":[{"title":"Field ''include'' is required","meta":{"field":"include","id":"filter-processor","message":"Field
       ''include'' is required"}}]}
