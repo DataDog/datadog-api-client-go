@@ -1,0 +1,74 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"handle":"test-handle-ee0eead53fe855d3","name":"test-name-ee0eead53fe855d3"},"type":"team"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team
+  response:
+    body: '{"data":{"id":"a7145aa7-d043-4f4d-bd45-fd02669b47d7","type":"team","attributes":{"avatar":null,"banner":14,"created_at":"2025-12-23T15:29:23.130502+00:00","description":null,"handle":"test-handle-ee0eead53fe855d3","hidden_modules":null,"is_managed":false,"link_count":0,"modified_at":"2025-12-23T15:29:23.130502+00:00","name":"test-name-ee0eead53fe855d3","summary":null,"user_count":0,"visible_modules":null},"relationships":{"team_links":{"data":[],"links":{"related":"/api/v2/team/a7145aa7-d043-4f4d-bd45-fd02669b47d7/links"}},"user_team_permissions":{"data":null,"links":{"related":"/api/v2/team/a7145aa7-d043-4f4d-bd45-fd02669b47d7/permission-settings"}}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"email":{"enabled":true},"slack":{"channel":"aaa-omg-ops","workspace":"Datadog"}},"type":"team_notification_rules"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team/a7145aa7-d043-4f4d-bd45-fd02669b47d7/notification-rules
+  response:
+    body: '{"data":{"id":"68717b60-b443-49ac-b7ca-75664cb53c29","type":"team_notification_rules","attributes":{"email":{"enabled":true},"slack":{"workspace":"Datadog","channel":"aaa-omg-ops"}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 2
+    method: GET
+    url: https://api.datadoghq.com/api/v2/team/a7145aa7-d043-4f4d-bd45-fd02669b47d7/notification-rules/68717b60-b443-49ac-b7ca-75664cb53c29
+  response:
+    body: '{"data":{"id":"68717b60-b443-49ac-b7ca-75664cb53c29","type":"team_notification_rules","attributes":{"email":{"enabled":true},"slack":{"workspace":"Datadog","channel":"aaa-omg-ops"}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 3
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/team/a7145aa7-d043-4f4d-bd45-fd02669b47d7
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
