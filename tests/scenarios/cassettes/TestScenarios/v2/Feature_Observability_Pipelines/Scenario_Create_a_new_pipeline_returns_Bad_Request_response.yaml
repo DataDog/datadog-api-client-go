@@ -10,7 +10,7 @@ interactions:
       - application/json
     id: 0
     method: POST
-    url: https://api.datadoghq.com/api/v2/remote_config/products/obs_pipelines/pipelines
+    url: https://api.datadoghq.com/api/v2/obs-pipelines/pipelines
   response:
     body: '{"errors":[{"title":"Component with ID my-processor-group is an unknown
       component","meta":{"message":"Component with ID my-processor-group is an unknown
