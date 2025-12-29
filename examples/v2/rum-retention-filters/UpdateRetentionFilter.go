@@ -21,7 +21,7 @@ func main() {
 				Name:       datadog.PtrString("Test updating retention filter"),
 				EventType:  datadogV2.RUMRETENTIONFILTEREVENTTYPE_VIEW.Ptr(),
 				Query:      datadog.PtrString("view_query"),
-				SampleRate: datadog.PtrInt64(100),
+				SampleRate: datadog.PtrFloat64(100),
 				Enabled:    datadog.PtrBool(true),
 			},
 		},
