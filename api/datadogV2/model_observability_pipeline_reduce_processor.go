@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineReduceProcessor The `reduce` processor aggregates and merges logs based on matching keys and merge strategies.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineReduceProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
