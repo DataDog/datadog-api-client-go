@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: |
+      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_heatmap_widget_with_markers_and_num_buckets-1765820343","widgets":[{"definition":{"markers":[{"display_type":"percentile","value":"50"},{"display_type":"percentile","value":"99"}],"requests":[{"query":{"data_source":"metrics","name":"query1","query":"histogram:trace.servlet.request{*}"},"request_type":"histogram"}],"title":"","title_align":"left","title_size":"16","type":"heatmap","xaxis":{"num_buckets":75},"yaxis":{"include_zero":true,"max":"auto","min":"auto","scale":"linear"}},"layout":{"height":4,"width":4,"x":0,"y":0}}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v1/dashboard
+  response:
+    body: '{"id":"r3p-kik-ven","title":"Test-Create_a_new_dashboard_with_heatmap_widget_with_markers_and_num_buckets-1765820343","description":null,"author_handle":"shishi.liu@datadoghq.com","author_name":"Shishi
+      Liu","layout_type":"ordered","url":"/dashboard/r3p-kik-ven/test-createanewdashboardwithheatmapwidgetwithmarkersandnumbuckets-1765820343","template_variables":null,"widgets":[{"definition":{"markers":[{"display_type":"percentile","value":"50"},{"display_type":"percentile","value":"99"}],"requests":[{"query":{"data_source":"metrics","name":"query1","query":"histogram:trace.servlet.request{*}"},"request_type":"histogram"}],"title":"","title_align":"left","title_size":"16","type":"heatmap","xaxis":{"num_buckets":75},"yaxis":{"include_zero":true,"max":"auto","min":"auto","scale":"linear"}},"layout":{"height":4,"width":4,"x":0,"y":0},"id":4627813855695599}],"notify_list":null,"created_at":"2025-12-15T17:39:03.852775+00:00","modified_at":"2025-12-15T17:39:03.852775+00:00","restricted_roles":[]}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/dashboard/r3p-kik-ven
+  response:
+    body: '{"deleted_dashboard_id":"r3p-kik-ven"}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 2

@@ -1,4 +1,4 @@
-// Create a distribution widget using a histogram request containing a formulas and functions metrics query
+// Create a new dashboard with heatmap widget with markers and num_buckets
 
 package main
 
@@ -18,41 +18,37 @@ func main() {
 		Widgets: []datadogV1.Widget{
 			{
 				Definition: datadogV1.WidgetDefinition{
-					DistributionWidgetDefinition: &datadogV1.DistributionWidgetDefinition{
-						Title:      datadog.PtrString("Metrics HOP"),
+					HeatMapWidgetDefinition: &datadogV1.HeatMapWidgetDefinition{
+						Title:      datadog.PtrString(""),
 						TitleSize:  datadog.PtrString("16"),
 						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
-						ShowLegend: datadog.PtrBool(false),
-						Type:       datadogV1.DISTRIBUTIONWIDGETDEFINITIONTYPE_DISTRIBUTION,
-						CustomLinks: []datadogV1.WidgetCustomLink{
+						Type:       datadogV1.HEATMAPWIDGETDEFINITIONTYPE_HEATMAP,
+						Xaxis: &datadogV1.HeatMapWidgetXAxis{
+							NumBuckets: datadog.PtrInt64(75),
+						},
+						Yaxis: &datadogV1.WidgetAxis{
+							Scale:       datadog.PtrString("linear"),
+							Min:         datadog.PtrString("auto"),
+							Max:         datadog.PtrString("auto"),
+							IncludeZero: datadog.PtrBool(true),
+						},
+						Markers: []datadogV1.WidgetMarker{
 							{
-								Label: datadog.PtrString("Example"),
-								Link:  datadog.PtrString("https://example.org/"),
+								DisplayType: datadog.PtrString("percentile"),
+								Value:       "50",
+							},
+							{
+								DisplayType: datadog.PtrString("percentile"),
+								Value:       "99",
 							},
 						},
-						Xaxis: &datadogV1.DistributionWidgetXAxis{
-							Max:         datadog.PtrString("auto"),
-							IncludeZero: datadog.PtrBool(true),
-							Scale:       datadog.PtrString("linear"),
-							Min:         datadog.PtrString("auto"),
-						},
-						Yaxis: &datadogV1.DistributionWidgetYAxis{
-							Max:         datadog.PtrString("auto"),
-							IncludeZero: datadog.PtrBool(true),
-							Scale:       datadog.PtrString("linear"),
-							Min:         datadog.PtrString("auto"),
-						},
-						Requests: []datadogV1.DistributionWidgetRequest{
+						Requests: []datadogV1.HeatMapWidgetRequest{
 							{
-								Query: &datadogV1.DistributionWidgetHistogramRequestQuery{
-									FormulaAndFunctionMetricQueryDefinition: &datadogV1.FormulaAndFunctionMetricQueryDefinition{
-										Query:      "histogram:trace.Load{*}",
-										DataSource: datadogV1.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
-										Name:       "query1",
-									}},
 								RequestType: datadogV1.WIDGETHISTOGRAMREQUESTTYPE_HISTOGRAM.Ptr(),
-								Style: &datadogV1.WidgetStyle{
-									Palette: datadog.PtrString("dog_classic"),
+								Query: &datadogV1.FormulaAndFunctionMetricQueryDefinition{
+									DataSource: datadogV1.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
+									Name:       "query1",
+									Query:      "histogram:trace.servlet.request{*}",
 								},
 							},
 						},
@@ -61,7 +57,7 @@ func main() {
 					X:      0,
 					Y:      0,
 					Width:  4,
-					Height: 2,
+					Height: 4,
 				},
 			},
 		},
