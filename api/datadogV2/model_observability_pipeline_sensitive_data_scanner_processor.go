@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineSensitiveDataScannerProcessor The `sensitive_data_scanner` processor detects and optionally redacts sensitive data in log events.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineSensitiveDataScannerProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
