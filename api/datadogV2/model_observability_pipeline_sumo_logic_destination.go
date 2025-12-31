@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineSumoLogicDestination The `sumo_logic` destination forwards logs to Sumo Logic.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineSumoLogicDestination struct {
 	// The output encoding format.
 	Encoding *ObservabilityPipelineSumoLogicDestinationEncoding `json:"encoding,omitempty"`

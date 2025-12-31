@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineAmazonS3Destination The `amazon_s3` destination sends your logs in Datadog-rehydratable format to an Amazon S3 bucket for archiving.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineAmazonS3Destination struct {
 	// AWS authentication credentials used for accessing AWS services such as S3.
 	// If omitted, the system’s default credentials are used (for example, the IAM role and environment variables).

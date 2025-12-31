@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineAddEnvVarsProcessor The `add_env_vars` processor adds environment variable values to log events.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineAddEnvVarsProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
