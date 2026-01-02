@@ -481,6 +481,7 @@
 //   - [PowerpackApi.ListPowerpacks]
 //   - [PowerpackApi.UpdatePowerpack]
 //   - [ProcessesApi.ListProcesses]
+//   - [ProductAnalyticsApi.SubmitProductAnalyticsEvent]
 //   - [RUMApi.AggregateRUMEvents]
 //   - [RUMApi.CreateRUMApplication]
 //   - [RUMApi.DeleteRUMApplication]
