@@ -15,7 +15,7 @@ type ObservabilityPipelineConfig struct {
 	// A list of destination components where processed logs are sent.
 	Destinations []ObservabilityPipelineConfigDestinationItem `json:"destinations"`
 	// A list of processor groups that transform or enrich log data.
-	Processors []ObservabilityPipelineConfigProcessorGroup `json:"processors,omitempty"`
+	ProcessorGroups []ObservabilityPipelineConfigProcessorGroup `json:"processor_groups,omitempty"`
 	// A list of configured data sources for the pipeline.
 	Sources []ObservabilityPipelineConfigSourceItem `json:"sources"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -65,32 +65,32 @@ func (o *ObservabilityPipelineConfig) SetDestinations(v []ObservabilityPipelineC
 	o.Destinations = v
 }
 
-// GetProcessors returns the Processors field value if set, zero value otherwise.
-func (o *ObservabilityPipelineConfig) GetProcessors() []ObservabilityPipelineConfigProcessorGroup {
-	if o == nil || o.Processors == nil {
+// GetProcessorGroups returns the ProcessorGroups field value if set, zero value otherwise.
+func (o *ObservabilityPipelineConfig) GetProcessorGroups() []ObservabilityPipelineConfigProcessorGroup {
+	if o == nil || o.ProcessorGroups == nil {
 		var ret []ObservabilityPipelineConfigProcessorGroup
 		return ret
 	}
-	return o.Processors
+	return o.ProcessorGroups
 }
 
-// GetProcessorsOk returns a tuple with the Processors field value if set, nil otherwise
+// GetProcessorGroupsOk returns a tuple with the ProcessorGroups field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineConfig) GetProcessorsOk() (*[]ObservabilityPipelineConfigProcessorGroup, bool) {
-	if o == nil || o.Processors == nil {
+func (o *ObservabilityPipelineConfig) GetProcessorGroupsOk() (*[]ObservabilityPipelineConfigProcessorGroup, bool) {
+	if o == nil || o.ProcessorGroups == nil {
 		return nil, false
 	}
-	return &o.Processors, true
+	return &o.ProcessorGroups, true
 }
 
-// HasProcessors returns a boolean if a field has been set.
-func (o *ObservabilityPipelineConfig) HasProcessors() bool {
-	return o != nil && o.Processors != nil
+// HasProcessorGroups returns a boolean if a field has been set.
+func (o *ObservabilityPipelineConfig) HasProcessorGroups() bool {
+	return o != nil && o.ProcessorGroups != nil
 }
 
-// SetProcessors gets a reference to the given []ObservabilityPipelineConfigProcessorGroup and assigns it to the Processors field.
-func (o *ObservabilityPipelineConfig) SetProcessors(v []ObservabilityPipelineConfigProcessorGroup) {
-	o.Processors = v
+// SetProcessorGroups gets a reference to the given []ObservabilityPipelineConfigProcessorGroup and assigns it to the ProcessorGroups field.
+func (o *ObservabilityPipelineConfig) SetProcessorGroups(v []ObservabilityPipelineConfigProcessorGroup) {
+	o.ProcessorGroups = v
 }
 
 // GetSources returns the Sources field value.
@@ -123,8 +123,8 @@ func (o ObservabilityPipelineConfig) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["destinations"] = o.Destinations
-	if o.Processors != nil {
-		toSerialize["processors"] = o.Processors
+	if o.ProcessorGroups != nil {
+		toSerialize["processor_groups"] = o.ProcessorGroups
 	}
 	toSerialize["sources"] = o.Sources
 
@@ -137,9 +137,9 @@ func (o ObservabilityPipelineConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Destinations *[]ObservabilityPipelineConfigDestinationItem `json:"destinations"`
-		Processors   []ObservabilityPipelineConfigProcessorGroup   `json:"processors,omitempty"`
-		Sources      *[]ObservabilityPipelineConfigSourceItem      `json:"sources"`
+		Destinations    *[]ObservabilityPipelineConfigDestinationItem `json:"destinations"`
+		ProcessorGroups []ObservabilityPipelineConfigProcessorGroup   `json:"processor_groups,omitempty"`
+		Sources         *[]ObservabilityPipelineConfigSourceItem      `json:"sources"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,12 +152,12 @@ func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"destinations", "processors", "sources"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"destinations", "processor_groups", "sources"})
 	} else {
 		return err
 	}
 	o.Destinations = *all.Destinations
-	o.Processors = all.Processors
+	o.ProcessorGroups = all.ProcessorGroups
 	o.Sources = *all.Sources
 
 	if len(additionalProperties) > 0 {
