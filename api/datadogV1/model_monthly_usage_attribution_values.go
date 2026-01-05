@@ -131,6 +131,10 @@ type MonthlyUsageAttributionValues struct {
 	FargatePercentage *float64 `json:"fargate_percentage,omitempty"`
 	// The Fargate usage by tags.
 	FargateUsage *float64 `json:"fargate_usage,omitempty"`
+	// The percentage of Flex Stored Logs usage by tags.
+	FlexStoredLogsPercentage *float64 `json:"flex_stored_logs_percentage,omitempty"`
+	// The Flex Stored Logs usage by tags.
+	FlexStoredLogsUsage *float64 `json:"flex_stored_logs_usage,omitempty"`
 	// The percentage of Lambda function usage by tag(s).
 	FunctionsPercentage *float64 `json:"functions_percentage,omitempty"`
 	// The Lambda function usage by tag(s).
@@ -2019,6 +2023,62 @@ func (o *MonthlyUsageAttributionValues) HasFargateUsage() bool {
 // SetFargateUsage gets a reference to the given float64 and assigns it to the FargateUsage field.
 func (o *MonthlyUsageAttributionValues) SetFargateUsage(v float64) {
 	o.FargateUsage = &v
+}
+
+// GetFlexStoredLogsPercentage returns the FlexStoredLogsPercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetFlexStoredLogsPercentage() float64 {
+	if o == nil || o.FlexStoredLogsPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.FlexStoredLogsPercentage
+}
+
+// GetFlexStoredLogsPercentageOk returns a tuple with the FlexStoredLogsPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetFlexStoredLogsPercentageOk() (*float64, bool) {
+	if o == nil || o.FlexStoredLogsPercentage == nil {
+		return nil, false
+	}
+	return o.FlexStoredLogsPercentage, true
+}
+
+// HasFlexStoredLogsPercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasFlexStoredLogsPercentage() bool {
+	return o != nil && o.FlexStoredLogsPercentage != nil
+}
+
+// SetFlexStoredLogsPercentage gets a reference to the given float64 and assigns it to the FlexStoredLogsPercentage field.
+func (o *MonthlyUsageAttributionValues) SetFlexStoredLogsPercentage(v float64) {
+	o.FlexStoredLogsPercentage = &v
+}
+
+// GetFlexStoredLogsUsage returns the FlexStoredLogsUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetFlexStoredLogsUsage() float64 {
+	if o == nil || o.FlexStoredLogsUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.FlexStoredLogsUsage
+}
+
+// GetFlexStoredLogsUsageOk returns a tuple with the FlexStoredLogsUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetFlexStoredLogsUsageOk() (*float64, bool) {
+	if o == nil || o.FlexStoredLogsUsage == nil {
+		return nil, false
+	}
+	return o.FlexStoredLogsUsage, true
+}
+
+// HasFlexStoredLogsUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasFlexStoredLogsUsage() bool {
+	return o != nil && o.FlexStoredLogsUsage != nil
+}
+
+// SetFlexStoredLogsUsage gets a reference to the given float64 and assigns it to the FlexStoredLogsUsage field.
+func (o *MonthlyUsageAttributionValues) SetFlexStoredLogsUsage(v float64) {
+	o.FlexStoredLogsUsage = &v
 }
 
 // GetFunctionsPercentage returns the FunctionsPercentage field value if set, zero value otherwise.
@@ -4839,6 +4899,12 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.FargateUsage != nil {
 		toSerialize["fargate_usage"] = o.FargateUsage
 	}
+	if o.FlexStoredLogsPercentage != nil {
+		toSerialize["flex_stored_logs_percentage"] = o.FlexStoredLogsPercentage
+	}
+	if o.FlexStoredLogsUsage != nil {
+		toSerialize["flex_stored_logs_usage"] = o.FlexStoredLogsUsage
+	}
 	if o.FunctionsPercentage != nil {
 		toSerialize["functions_percentage"] = o.FunctionsPercentage
 	}
@@ -5191,6 +5257,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 		EstimatedIngestedSpansUsage                    *float64 `json:"estimated_ingested_spans_usage,omitempty"`
 		FargatePercentage                              *float64 `json:"fargate_percentage,omitempty"`
 		FargateUsage                                   *float64 `json:"fargate_usage,omitempty"`
+		FlexStoredLogsPercentage                       *float64 `json:"flex_stored_logs_percentage,omitempty"`
+		FlexStoredLogsUsage                            *float64 `json:"flex_stored_logs_usage,omitempty"`
 		FunctionsPercentage                            *float64 `json:"functions_percentage,omitempty"`
 		FunctionsUsage                                 *float64 `json:"functions_usage,omitempty"`
 		IncidentManagementMonthlyActiveUsersPercentage *float64 `json:"incident_management_monthly_active_users_percentage,omitempty"`
@@ -5291,7 +5359,7 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "apm_usm_percentage", "apm_usm_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "asm_serverless_traced_invocations_percentage", "asm_serverless_traced_invocations_usage", "browser_percentage", "browser_usage", "ci_pipeline_indexed_spans_percentage", "ci_pipeline_indexed_spans_usage", "ci_test_indexed_spans_percentage", "ci_test_indexed_spans_usage", "ci_visibility_itr_percentage", "ci_visibility_itr_usage", "cloud_siem_percentage", "cloud_siem_usage", "code_security_host_percentage", "code_security_host_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_event_percentage", "custom_event_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_fargate_task_percentage", "cws_fargate_task_usage", "cws_hosts_percentage", "cws_hosts_usage", "data_jobs_monitoring_usage", "data_stream_monitoring_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "error_tracking_percentage", "error_tracking_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "fargate_percentage", "fargate_usage", "functions_percentage", "functions_usage", "incident_management_monthly_active_users_percentage", "incident_management_monthly_active_users_usage", "indexed_spans_percentage", "indexed_spans_usage", "infra_host_percentage", "infra_host_usage", "ingested_logs_bytes_percentage", "ingested_logs_bytes_usage", "ingested_spans_bytes_percentage", "ingested_spans_bytes_usage", "invocations_percentage", "invocations_usage", "lambda_traced_invocations_percentage", "lambda_traced_invocations_usage", "llm_observability_percentage", "llm_observability_usage", "llm_spans_percentage", "llm_spans_usage", "logs_indexed_15day_percentage", "logs_indexed_15day_usage", "logs_indexed_180day_percentage", "logs_indexed_180day_usage", "logs_indexed_1day_percentage", "logs_indexed_1day_usage", "logs_indexed_30day_percentage", "logs_indexed_30day_usage", "logs_indexed_360day_percentage", "logs_indexed_360day_usage", "logs_indexed_3day_percentage", "logs_indexed_3day_usage", "logs_indexed_45day_percentage", "logs_indexed_45day_usage", "logs_indexed_60day_percentage", "logs_indexed_60day_usage", "logs_indexed_7day_percentage", "logs_indexed_7day_usage", "logs_indexed_90day_percentage", "logs_indexed_90day_usage", "logs_indexed_custom_retention_percentage", "logs_indexed_custom_retention_usage", "mobile_app_testing_percentage", "mobile_app_testing_usage", "ndm_netflow_percentage", "ndm_netflow_usage", "network_device_wireless_percentage", "network_device_wireless_usage", "npm_host_percentage", "npm_host_usage", "obs_pipeline_bytes_percentage", "obs_pipeline_bytes_usage", "obs_pipelines_vcpu_percentage", "obs_pipelines_vcpu_usage", "online_archive_percentage", "online_archive_usage", "product_analytics_session_percentage", "product_analytics_session_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "published_app_percentage", "published_app_usage", "rum_browser_mobile_sessions_percentage", "rum_browser_mobile_sessions_usage", "rum_ingested_percentage", "rum_ingested_usage", "rum_investigate_percentage", "rum_investigate_usage", "rum_replay_sessions_percentage", "rum_replay_sessions_usage", "rum_session_replay_add_on_percentage", "rum_session_replay_add_on_usage", "sca_fargate_percentage", "sca_fargate_usage", "sds_scanned_bytes_percentage", "sds_scanned_bytes_usage", "serverless_apps_percentage", "serverless_apps_usage", "siem_analyzed_logs_add_on_percentage", "siem_analyzed_logs_add_on_usage", "siem_ingested_bytes_percentage", "siem_ingested_bytes_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage", "workflow_executions_percentage", "workflow_executions_usage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_percentage", "api_usage", "apm_fargate_percentage", "apm_fargate_usage", "apm_host_percentage", "apm_host_usage", "apm_usm_percentage", "apm_usm_usage", "appsec_fargate_percentage", "appsec_fargate_usage", "appsec_percentage", "appsec_usage", "asm_serverless_traced_invocations_percentage", "asm_serverless_traced_invocations_usage", "browser_percentage", "browser_usage", "ci_pipeline_indexed_spans_percentage", "ci_pipeline_indexed_spans_usage", "ci_test_indexed_spans_percentage", "ci_test_indexed_spans_usage", "ci_visibility_itr_percentage", "ci_visibility_itr_usage", "cloud_siem_percentage", "cloud_siem_usage", "code_security_host_percentage", "code_security_host_usage", "container_excl_agent_percentage", "container_excl_agent_usage", "container_percentage", "container_usage", "cspm_containers_percentage", "cspm_containers_usage", "cspm_hosts_percentage", "cspm_hosts_usage", "custom_event_percentage", "custom_event_usage", "custom_ingested_timeseries_percentage", "custom_ingested_timeseries_usage", "custom_timeseries_percentage", "custom_timeseries_usage", "cws_containers_percentage", "cws_containers_usage", "cws_fargate_task_percentage", "cws_fargate_task_usage", "cws_hosts_percentage", "cws_hosts_usage", "data_jobs_monitoring_usage", "data_stream_monitoring_usage", "dbm_hosts_percentage", "dbm_hosts_usage", "dbm_queries_percentage", "dbm_queries_usage", "error_tracking_percentage", "error_tracking_usage", "estimated_indexed_spans_percentage", "estimated_indexed_spans_usage", "estimated_ingested_spans_percentage", "estimated_ingested_spans_usage", "fargate_percentage", "fargate_usage", "flex_stored_logs_percentage", "flex_stored_logs_usage", "functions_percentage", "functions_usage", "incident_management_monthly_active_users_percentage", "incident_management_monthly_active_users_usage", "indexed_spans_percentage", "indexed_spans_usage", "infra_host_percentage", "infra_host_usage", "ingested_logs_bytes_percentage", "ingested_logs_bytes_usage", "ingested_spans_bytes_percentage", "ingested_spans_bytes_usage", "invocations_percentage", "invocations_usage", "lambda_traced_invocations_percentage", "lambda_traced_invocations_usage", "llm_observability_percentage", "llm_observability_usage", "llm_spans_percentage", "llm_spans_usage", "logs_indexed_15day_percentage", "logs_indexed_15day_usage", "logs_indexed_180day_percentage", "logs_indexed_180day_usage", "logs_indexed_1day_percentage", "logs_indexed_1day_usage", "logs_indexed_30day_percentage", "logs_indexed_30day_usage", "logs_indexed_360day_percentage", "logs_indexed_360day_usage", "logs_indexed_3day_percentage", "logs_indexed_3day_usage", "logs_indexed_45day_percentage", "logs_indexed_45day_usage", "logs_indexed_60day_percentage", "logs_indexed_60day_usage", "logs_indexed_7day_percentage", "logs_indexed_7day_usage", "logs_indexed_90day_percentage", "logs_indexed_90day_usage", "logs_indexed_custom_retention_percentage", "logs_indexed_custom_retention_usage", "mobile_app_testing_percentage", "mobile_app_testing_usage", "ndm_netflow_percentage", "ndm_netflow_usage", "network_device_wireless_percentage", "network_device_wireless_usage", "npm_host_percentage", "npm_host_usage", "obs_pipeline_bytes_percentage", "obs_pipeline_bytes_usage", "obs_pipelines_vcpu_percentage", "obs_pipelines_vcpu_usage", "online_archive_percentage", "online_archive_usage", "product_analytics_session_percentage", "product_analytics_session_usage", "profiled_container_percentage", "profiled_container_usage", "profiled_fargate_percentage", "profiled_fargate_usage", "profiled_host_percentage", "profiled_host_usage", "published_app_percentage", "published_app_usage", "rum_browser_mobile_sessions_percentage", "rum_browser_mobile_sessions_usage", "rum_ingested_percentage", "rum_ingested_usage", "rum_investigate_percentage", "rum_investigate_usage", "rum_replay_sessions_percentage", "rum_replay_sessions_usage", "rum_session_replay_add_on_percentage", "rum_session_replay_add_on_usage", "sca_fargate_percentage", "sca_fargate_usage", "sds_scanned_bytes_percentage", "sds_scanned_bytes_usage", "serverless_apps_percentage", "serverless_apps_usage", "siem_analyzed_logs_add_on_percentage", "siem_analyzed_logs_add_on_usage", "siem_ingested_bytes_percentage", "siem_ingested_bytes_usage", "snmp_percentage", "snmp_usage", "universal_service_monitoring_percentage", "universal_service_monitoring_usage", "vuln_management_hosts_percentage", "vuln_management_hosts_usage", "workflow_executions_percentage", "workflow_executions_usage"})
 	} else {
 		return err
 	}
@@ -5355,6 +5423,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.EstimatedIngestedSpansUsage = all.EstimatedIngestedSpansUsage
 	o.FargatePercentage = all.FargatePercentage
 	o.FargateUsage = all.FargateUsage
+	o.FlexStoredLogsPercentage = all.FlexStoredLogsPercentage
+	o.FlexStoredLogsUsage = all.FlexStoredLogsUsage
 	o.FunctionsPercentage = all.FunctionsPercentage
 	o.FunctionsUsage = all.FunctionsUsage
 	o.IncidentManagementMonthlyActiveUsersPercentage = all.IncidentManagementMonthlyActiveUsersPercentage

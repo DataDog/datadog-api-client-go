@@ -434,11 +434,11 @@ func (a *DORAMetricsApi) DeleteDORAFailure(ctx _context.Context, failureId strin
 
 // GetDORADeployment Get a deployment event.
 // Use this API endpoint to get a deployment event.
-func (a *DORAMetricsApi) GetDORADeployment(ctx _context.Context, deploymentId string) (DORADeploymentFetchResponse, *_nethttp.Response, error) {
+func (a *DORAMetricsApi) GetDORADeployment(ctx _context.Context, deploymentId string) (DORAFetchResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue DORADeploymentFetchResponse
+		localVarReturnValue DORAFetchResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.GetDORADeployment")
@@ -521,11 +521,11 @@ func (a *DORAMetricsApi) GetDORADeployment(ctx _context.Context, deploymentId st
 
 // GetDORAFailure Get a failure event.
 // Use this API endpoint to get a failure event.
-func (a *DORAMetricsApi) GetDORAFailure(ctx _context.Context, failureId string) (DORAFailureFetchResponse, *_nethttp.Response, error) {
+func (a *DORAMetricsApi) GetDORAFailure(ctx _context.Context, failureId string) (DORAFetchResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue DORAFailureFetchResponse
+		localVarReturnValue DORAFetchResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.GetDORAFailure")
@@ -608,11 +608,11 @@ func (a *DORAMetricsApi) GetDORAFailure(ctx _context.Context, failureId string) 
 
 // ListDORADeployments Get a list of deployment events.
 // Use this API endpoint to get a list of deployment events.
-func (a *DORAMetricsApi) ListDORADeployments(ctx _context.Context, body DORAListDeploymentsRequest) (DORADeploymentsListResponse, *_nethttp.Response, error) {
+func (a *DORAMetricsApi) ListDORADeployments(ctx _context.Context, body DORAListDeploymentsRequest) (DORAListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue DORADeploymentsListResponse
+		localVarReturnValue DORAListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.ListDORADeployments")
@@ -697,11 +697,11 @@ func (a *DORAMetricsApi) ListDORADeployments(ctx _context.Context, body DORAList
 
 // ListDORAFailures Get a list of failure events.
 // Use this API endpoint to get a list of failure events.
-func (a *DORAMetricsApi) ListDORAFailures(ctx _context.Context, body DORAListFailuresRequest) (DORAFailuresListResponse, *_nethttp.Response, error) {
+func (a *DORAMetricsApi) ListDORAFailures(ctx _context.Context, body DORAListFailuresRequest) (DORAListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue DORAFailuresListResponse
+		localVarReturnValue DORAListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DORAMetricsApi.ListDORAFailures")
