@@ -28,8 +28,6 @@ type DORAListFailuresRequestData struct {
 func NewDORAListFailuresRequestData(attributes DORAListFailuresRequestAttributes) *DORAListFailuresRequestData {
 	this := DORAListFailuresRequestData{}
 	this.Attributes = attributes
-	var typeVar DORAListFailuresRequestDataType = DORALISTFAILURESREQUESTDATATYPE_DORA_FAILURES_LIST_REQUEST
-	this.Type = &typeVar
 	return &this
 }
 
@@ -38,8 +36,6 @@ func NewDORAListFailuresRequestData(attributes DORAListFailuresRequestAttributes
 // but it doesn't guarantee that properties required by API are set.
 func NewDORAListFailuresRequestDataWithDefaults() *DORAListFailuresRequestData {
 	this := DORAListFailuresRequestData{}
-	var typeVar DORAListFailuresRequestDataType = DORALISTFAILURESREQUESTDATATYPE_DORA_FAILURES_LIST_REQUEST
-	this.Type = &typeVar
 	return &this
 }
 
