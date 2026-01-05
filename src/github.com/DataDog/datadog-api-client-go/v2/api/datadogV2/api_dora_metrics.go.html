@@ -491,11 +491,11 @@
 <span id="L434" class="ln">   434  </span>
 <span id="L435" class="ln">   435  </span><span class="comment">// GetDORADeployment Get a deployment event.</span>
 <span id="L436" class="ln">   436  </span><span class="comment">// Use this API endpoint to get a deployment event.</span>
-<span id="L437" class="ln">   437  </span>func (a *DORAMetricsApi) GetDORADeployment(ctx _context.Context, deploymentId string) (DORAFetchResponse, *_nethttp.Response, error) {
+<span id="L437" class="ln">   437  </span>func (a *DORAMetricsApi) GetDORADeployment(ctx _context.Context, deploymentId string) (DORADeploymentFetchResponse, *_nethttp.Response, error) {
 <span id="L438" class="ln">   438  </span>	var (
 <span id="L439" class="ln">   439  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L440" class="ln">   440  </span>		localVarPostBody    interface{}
-<span id="L441" class="ln">   441  </span>		localVarReturnValue DORAFetchResponse
+<span id="L441" class="ln">   441  </span>		localVarReturnValue DORADeploymentFetchResponse
 <span id="L442" class="ln">   442  </span>	)
 <span id="L443" class="ln">   443  </span>
 <span id="L444" class="ln">   444  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.DORAMetricsApi.GetDORADeployment&#34;)
@@ -578,11 +578,11 @@
 <span id="L521" class="ln">   521  </span>
 <span id="L522" class="ln">   522  </span><span class="comment">// GetDORAFailure Get a failure event.</span>
 <span id="L523" class="ln">   523  </span><span class="comment">// Use this API endpoint to get a failure event.</span>
-<span id="L524" class="ln">   524  </span>func (a *DORAMetricsApi) GetDORAFailure(ctx _context.Context, failureId string) (DORAFetchResponse, *_nethttp.Response, error) {
+<span id="L524" class="ln">   524  </span>func (a *DORAMetricsApi) GetDORAFailure(ctx _context.Context, failureId string) (DORAFailureFetchResponse, *_nethttp.Response, error) {
 <span id="L525" class="ln">   525  </span>	var (
 <span id="L526" class="ln">   526  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L527" class="ln">   527  </span>		localVarPostBody    interface{}
-<span id="L528" class="ln">   528  </span>		localVarReturnValue DORAFetchResponse
+<span id="L528" class="ln">   528  </span>		localVarReturnValue DORAFailureFetchResponse
 <span id="L529" class="ln">   529  </span>	)
 <span id="L530" class="ln">   530  </span>
 <span id="L531" class="ln">   531  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.DORAMetricsApi.GetDORAFailure&#34;)
@@ -665,11 +665,11 @@
 <span id="L608" class="ln">   608  </span>
 <span id="L609" class="ln">   609  </span><span class="comment">// ListDORADeployments Get a list of deployment events.</span>
 <span id="L610" class="ln">   610  </span><span class="comment">// Use this API endpoint to get a list of deployment events.</span>
-<span id="L611" class="ln">   611  </span>func (a *DORAMetricsApi) ListDORADeployments(ctx _context.Context, body DORAListDeploymentsRequest) (DORAListResponse, *_nethttp.Response, error) {
+<span id="L611" class="ln">   611  </span>func (a *DORAMetricsApi) ListDORADeployments(ctx _context.Context, body DORAListDeploymentsRequest) (DORADeploymentsListResponse, *_nethttp.Response, error) {
 <span id="L612" class="ln">   612  </span>	var (
 <span id="L613" class="ln">   613  </span>		localVarHTTPMethod  = _nethttp.MethodPost
 <span id="L614" class="ln">   614  </span>		localVarPostBody    interface{}
-<span id="L615" class="ln">   615  </span>		localVarReturnValue DORAListResponse
+<span id="L615" class="ln">   615  </span>		localVarReturnValue DORADeploymentsListResponse
 <span id="L616" class="ln">   616  </span>	)
 <span id="L617" class="ln">   617  </span>
 <span id="L618" class="ln">   618  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.DORAMetricsApi.ListDORADeployments&#34;)
@@ -754,11 +754,11 @@
 <span id="L697" class="ln">   697  </span>
 <span id="L698" class="ln">   698  </span><span class="comment">// ListDORAFailures Get a list of failure events.</span>
 <span id="L699" class="ln">   699  </span><span class="comment">// Use this API endpoint to get a list of failure events.</span>
-<span id="L700" class="ln">   700  </span>func (a *DORAMetricsApi) ListDORAFailures(ctx _context.Context, body DORAListFailuresRequest) (DORAListResponse, *_nethttp.Response, error) {
+<span id="L700" class="ln">   700  </span>func (a *DORAMetricsApi) ListDORAFailures(ctx _context.Context, body DORAListFailuresRequest) (DORAFailuresListResponse, *_nethttp.Response, error) {
 <span id="L701" class="ln">   701  </span>	var (
 <span id="L702" class="ln">   702  </span>		localVarHTTPMethod  = _nethttp.MethodPost
 <span id="L703" class="ln">   703  </span>		localVarPostBody    interface{}
-<span id="L704" class="ln">   704  </span>		localVarReturnValue DORAListResponse
+<span id="L704" class="ln">   704  </span>		localVarReturnValue DORAFailuresListResponse
 <span id="L705" class="ln">   705  </span>	)
 <span id="L706" class="ln">   706  </span>
 <span id="L707" class="ln">   707  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.DORAMetricsApi.ListDORAFailures&#34;)
