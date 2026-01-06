@@ -12,8 +12,6 @@ import (
 
 // CaseCreateAttributes Case creation attributes
 type CaseCreateAttributes struct {
-	// Case custom attributes
-	CustomAttributes map[string]CustomAttributeValue `json:"custom_attributes,omitempty"`
 	// Description
 	Description *string `json:"description,omitempty"`
 	// Case priority
@@ -48,34 +46,6 @@ func NewCaseCreateAttributesWithDefaults() *CaseCreateAttributes {
 	var priority CasePriority = CASEPRIORITY_NOT_DEFINED
 	this.Priority = &priority
 	return &this
-}
-
-// GetCustomAttributes returns the CustomAttributes field value if set, zero value otherwise.
-func (o *CaseCreateAttributes) GetCustomAttributes() map[string]CustomAttributeValue {
-	if o == nil || o.CustomAttributes == nil {
-		var ret map[string]CustomAttributeValue
-		return ret
-	}
-	return o.CustomAttributes
-}
-
-// GetCustomAttributesOk returns a tuple with the CustomAttributes field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CaseCreateAttributes) GetCustomAttributesOk() (*map[string]CustomAttributeValue, bool) {
-	if o == nil || o.CustomAttributes == nil {
-		return nil, false
-	}
-	return &o.CustomAttributes, true
-}
-
-// HasCustomAttributes returns a boolean if a field has been set.
-func (o *CaseCreateAttributes) HasCustomAttributes() bool {
-	return o != nil && o.CustomAttributes != nil
-}
-
-// SetCustomAttributes gets a reference to the given map[string]CustomAttributeValue and assigns it to the CustomAttributes field.
-func (o *CaseCreateAttributes) SetCustomAttributes(v map[string]CustomAttributeValue) {
-	o.CustomAttributes = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -186,9 +156,6 @@ func (o CaseCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.CustomAttributes != nil {
-		toSerialize["custom_attributes"] = o.CustomAttributes
-	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
@@ -207,11 +174,10 @@ func (o CaseCreateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CaseCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomAttributes map[string]CustomAttributeValue `json:"custom_attributes,omitempty"`
-		Description      *string                         `json:"description,omitempty"`
-		Priority         *CasePriority                   `json:"priority,omitempty"`
-		Title            *string                         `json:"title"`
-		TypeId           *string                         `json:"type_id"`
+		Description *string       `json:"description,omitempty"`
+		Priority    *CasePriority `json:"priority,omitempty"`
+		Title       *string       `json:"title"`
+		TypeId      *string       `json:"type_id"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -224,13 +190,12 @@ func (o *CaseCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom_attributes", "description", "priority", "title", "type_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "priority", "title", "type_id"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	o.CustomAttributes = all.CustomAttributes
 	o.Description = all.Description
 	if all.Priority != nil && !all.Priority.IsValid() {
 		hasInvalidField = true

@@ -35,6 +35,7 @@ type WidgetDefinition struct {
 	SLOListWidgetDefinition        *SLOListWidgetDefinition
 	SLOWidgetDefinition            *SLOWidgetDefinition
 	ScatterPlotWidgetDefinition    *ScatterPlotWidgetDefinition
+	SankeyWidgetDefinition         *SankeyWidgetDefinition
 	ServiceMapWidgetDefinition     *ServiceMapWidgetDefinition
 	ServiceSummaryWidgetDefinition *ServiceSummaryWidgetDefinition
 	SplitGraphWidgetDefinition     *SplitGraphWidgetDefinition
@@ -172,6 +173,11 @@ func SLOWidgetDefinitionAsWidgetDefinition(v *SLOWidgetDefinition) WidgetDefinit
 // ScatterPlotWidgetDefinitionAsWidgetDefinition is a convenience function that returns ScatterPlotWidgetDefinition wrapped in WidgetDefinition.
 func ScatterPlotWidgetDefinitionAsWidgetDefinition(v *ScatterPlotWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{ScatterPlotWidgetDefinition: v}
+}
+
+// SankeyWidgetDefinitionAsWidgetDefinition is a convenience function that returns SankeyWidgetDefinition wrapped in WidgetDefinition.
+func SankeyWidgetDefinitionAsWidgetDefinition(v *SankeyWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{SankeyWidgetDefinition: v}
 }
 
 // ServiceMapWidgetDefinitionAsWidgetDefinition is a convenience function that returns ServiceMapWidgetDefinition wrapped in WidgetDefinition.
@@ -648,6 +654,23 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.ScatterPlotWidgetDefinition = nil
 	}
 
+	// try to unmarshal data into SankeyWidgetDefinition
+	err = datadog.Unmarshal(data, &obj.SankeyWidgetDefinition)
+	if err == nil {
+		if obj.SankeyWidgetDefinition != nil && obj.SankeyWidgetDefinition.UnparsedObject == nil {
+			jsonSankeyWidgetDefinition, _ := datadog.Marshal(obj.SankeyWidgetDefinition)
+			if string(jsonSankeyWidgetDefinition) == "{}" { // empty struct
+				obj.SankeyWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.SankeyWidgetDefinition = nil
+		}
+	} else {
+		obj.SankeyWidgetDefinition = nil
+	}
+
 	// try to unmarshal data into ServiceMapWidgetDefinition
 	err = datadog.Unmarshal(data, &obj.ServiceMapWidgetDefinition)
 	if err == nil {
@@ -828,6 +851,7 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.SLOListWidgetDefinition = nil
 		obj.SLOWidgetDefinition = nil
 		obj.ScatterPlotWidgetDefinition = nil
+		obj.SankeyWidgetDefinition = nil
 		obj.ServiceMapWidgetDefinition = nil
 		obj.ServiceSummaryWidgetDefinition = nil
 		obj.SplitGraphWidgetDefinition = nil
@@ -942,6 +966,10 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if obj.ScatterPlotWidgetDefinition != nil {
 		return datadog.Marshal(&obj.ScatterPlotWidgetDefinition)
+	}
+
+	if obj.SankeyWidgetDefinition != nil {
+		return datadog.Marshal(&obj.SankeyWidgetDefinition)
 	}
 
 	if obj.ServiceMapWidgetDefinition != nil {
@@ -1086,6 +1114,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.ScatterPlotWidgetDefinition != nil {
 		return obj.ScatterPlotWidgetDefinition
+	}
+
+	if obj.SankeyWidgetDefinition != nil {
+		return obj.SankeyWidgetDefinition
 	}
 
 	if obj.ServiceMapWidgetDefinition != nil {
