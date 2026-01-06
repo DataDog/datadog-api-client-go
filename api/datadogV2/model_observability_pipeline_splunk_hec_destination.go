@@ -15,6 +15,8 @@ type ObservabilityPipelineSplunkHecDestination struct {
 	// If `true`, Splunk tries to extract timestamps from incoming log events.
 	// If `false`, Splunk assigns the time the event was received.
 	AutoExtractTimestamp *bool `json:"auto_extract_timestamp,omitempty"`
+	// Configuration for buffer settings on destination components.
+	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
 	// Encoding format for log events.
 	Encoding *ObservabilityPipelineSplunkHecDestinationEncoding `json:"encoding,omitempty"`
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (e.g., as input to downstream components).
@@ -80,6 +82,34 @@ func (o *ObservabilityPipelineSplunkHecDestination) HasAutoExtractTimestamp() bo
 // SetAutoExtractTimestamp gets a reference to the given bool and assigns it to the AutoExtractTimestamp field.
 func (o *ObservabilityPipelineSplunkHecDestination) SetAutoExtractTimestamp(v bool) {
 	o.AutoExtractTimestamp = &v
+}
+
+// GetBuffer returns the Buffer field value if set, zero value otherwise.
+func (o *ObservabilityPipelineSplunkHecDestination) GetBuffer() ObservabilityPipelineBufferOptions {
+	if o == nil || o.Buffer == nil {
+		var ret ObservabilityPipelineBufferOptions
+		return ret
+	}
+	return *o.Buffer
+}
+
+// GetBufferOk returns a tuple with the Buffer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineSplunkHecDestination) GetBufferOk() (*ObservabilityPipelineBufferOptions, bool) {
+	if o == nil || o.Buffer == nil {
+		return nil, false
+	}
+	return o.Buffer, true
+}
+
+// HasBuffer returns a boolean if a field has been set.
+func (o *ObservabilityPipelineSplunkHecDestination) HasBuffer() bool {
+	return o != nil && o.Buffer != nil
+}
+
+// SetBuffer gets a reference to the given ObservabilityPipelineBufferOptions and assigns it to the Buffer field.
+func (o *ObservabilityPipelineSplunkHecDestination) SetBuffer(v ObservabilityPipelineBufferOptions) {
+	o.Buffer = &v
 }
 
 // GetEncoding returns the Encoding field value if set, zero value otherwise.
@@ -244,6 +274,9 @@ func (o ObservabilityPipelineSplunkHecDestination) MarshalJSON() ([]byte, error)
 	if o.AutoExtractTimestamp != nil {
 		toSerialize["auto_extract_timestamp"] = o.AutoExtractTimestamp
 	}
+	if o.Buffer != nil {
+		toSerialize["buffer"] = o.Buffer
+	}
 	if o.Encoding != nil {
 		toSerialize["encoding"] = o.Encoding
 	}
@@ -267,6 +300,7 @@ func (o ObservabilityPipelineSplunkHecDestination) MarshalJSON() ([]byte, error)
 func (o *ObservabilityPipelineSplunkHecDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AutoExtractTimestamp *bool                                              `json:"auto_extract_timestamp,omitempty"`
+		Buffer               *ObservabilityPipelineBufferOptions                `json:"buffer,omitempty"`
 		Encoding             *ObservabilityPipelineSplunkHecDestinationEncoding `json:"encoding,omitempty"`
 		Id                   *string                                            `json:"id"`
 		Index                *string                                            `json:"index,omitempty"`
@@ -288,13 +322,14 @@ func (o *ObservabilityPipelineSplunkHecDestination) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auto_extract_timestamp", "encoding", "id", "index", "inputs", "sourcetype", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"auto_extract_timestamp", "buffer", "encoding", "id", "index", "inputs", "sourcetype", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.AutoExtractTimestamp = all.AutoExtractTimestamp
+	o.Buffer = all.Buffer
 	if all.Encoding != nil && !all.Encoding.IsValid() {
 		hasInvalidField = true
 	} else {
