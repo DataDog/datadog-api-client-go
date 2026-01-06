@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DORAFetchResponse Response for the DORA fetch endpoints.
-type DORAFetchResponse struct {
-	// A DORA event.
-	Data *DORAEvent `json:"data,omitempty"`
+// DORADeploymentFetchResponse Response for fetching a single deployment event.
+type DORADeploymentFetchResponse struct {
+	// A DORA deployment event.
+	Data *DORADeploymentObject `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewDORAFetchResponse instantiates a new DORAFetchResponse object.
+// NewDORADeploymentFetchResponse instantiates a new DORADeploymentFetchResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDORAFetchResponse() *DORAFetchResponse {
-	this := DORAFetchResponse{}
+func NewDORADeploymentFetchResponse() *DORADeploymentFetchResponse {
+	this := DORADeploymentFetchResponse{}
 	return &this
 }
 
-// NewDORAFetchResponseWithDefaults instantiates a new DORAFetchResponse object.
+// NewDORADeploymentFetchResponseWithDefaults instantiates a new DORADeploymentFetchResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDORAFetchResponseWithDefaults() *DORAFetchResponse {
-	this := DORAFetchResponse{}
+func NewDORADeploymentFetchResponseWithDefaults() *DORADeploymentFetchResponse {
+	this := DORADeploymentFetchResponse{}
 	return &this
 }
 
 // GetData returns the Data field value if set, zero value otherwise.
-func (o *DORAFetchResponse) GetData() DORAEvent {
+func (o *DORADeploymentFetchResponse) GetData() DORADeploymentObject {
 	if o == nil || o.Data == nil {
-		var ret DORAEvent
+		var ret DORADeploymentObject
 		return ret
 	}
 	return *o.Data
@@ -45,7 +45,7 @@ func (o *DORAFetchResponse) GetData() DORAEvent {
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAFetchResponse) GetDataOk() (*DORAEvent, bool) {
+func (o *DORADeploymentFetchResponse) GetDataOk() (*DORADeploymentObject, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *DORAFetchResponse) GetDataOk() (*DORAEvent, bool) {
 }
 
 // HasData returns a boolean if a field has been set.
-func (o *DORAFetchResponse) HasData() bool {
+func (o *DORADeploymentFetchResponse) HasData() bool {
 	return o != nil && o.Data != nil
 }
 
-// SetData gets a reference to the given DORAEvent and assigns it to the Data field.
-func (o *DORAFetchResponse) SetData(v DORAEvent) {
+// SetData gets a reference to the given DORADeploymentObject and assigns it to the Data field.
+func (o *DORADeploymentFetchResponse) SetData(v DORADeploymentObject) {
 	o.Data = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DORAFetchResponse) MarshalJSON() ([]byte, error) {
+func (o DORADeploymentFetchResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,9 +79,9 @@ func (o DORAFetchResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DORAFetchResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DORADeploymentFetchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *DORAEvent `json:"data,omitempty"`
+		Data *DORADeploymentObject `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
