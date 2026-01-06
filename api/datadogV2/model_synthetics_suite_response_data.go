@@ -8,68 +8,68 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DORAFetchResponse Response for the DORA fetch endpoints.
-type DORAFetchResponse struct {
-	// A DORA event.
-	Data *DORAEvent `json:"data,omitempty"`
+// SyntheticsSuiteResponseData Synthetics suite response data
+type SyntheticsSuiteResponseData struct {
+	// Object containing details about a Synthetic suite.
+	Attributes *SyntheticsSuite `json:"attributes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewDORAFetchResponse instantiates a new DORAFetchResponse object.
+// NewSyntheticsSuiteResponseData instantiates a new SyntheticsSuiteResponseData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDORAFetchResponse() *DORAFetchResponse {
-	this := DORAFetchResponse{}
+func NewSyntheticsSuiteResponseData() *SyntheticsSuiteResponseData {
+	this := SyntheticsSuiteResponseData{}
 	return &this
 }
 
-// NewDORAFetchResponseWithDefaults instantiates a new DORAFetchResponse object.
+// NewSyntheticsSuiteResponseDataWithDefaults instantiates a new SyntheticsSuiteResponseData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDORAFetchResponseWithDefaults() *DORAFetchResponse {
-	this := DORAFetchResponse{}
+func NewSyntheticsSuiteResponseDataWithDefaults() *SyntheticsSuiteResponseData {
+	this := SyntheticsSuiteResponseData{}
 	return &this
 }
 
-// GetData returns the Data field value if set, zero value otherwise.
-func (o *DORAFetchResponse) GetData() DORAEvent {
-	if o == nil || o.Data == nil {
-		var ret DORAEvent
+// GetAttributes returns the Attributes field value if set, zero value otherwise.
+func (o *SyntheticsSuiteResponseData) GetAttributes() SyntheticsSuite {
+	if o == nil || o.Attributes == nil {
+		var ret SyntheticsSuite
 		return ret
 	}
-	return *o.Data
+	return *o.Attributes
 }
 
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAFetchResponse) GetDataOk() (*DORAEvent, bool) {
-	if o == nil || o.Data == nil {
+func (o *SyntheticsSuiteResponseData) GetAttributesOk() (*SyntheticsSuite, bool) {
+	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return o.Attributes, true
 }
 
-// HasData returns a boolean if a field has been set.
-func (o *DORAFetchResponse) HasData() bool {
-	return o != nil && o.Data != nil
+// HasAttributes returns a boolean if a field has been set.
+func (o *SyntheticsSuiteResponseData) HasAttributes() bool {
+	return o != nil && o.Attributes != nil
 }
 
-// SetData gets a reference to the given DORAEvent and assigns it to the Data field.
-func (o *DORAFetchResponse) SetData(v DORAEvent) {
-	o.Data = &v
+// SetAttributes gets a reference to the given SyntheticsSuite and assigns it to the Attributes field.
+func (o *SyntheticsSuiteResponseData) SetAttributes(v SyntheticsSuite) {
+	o.Attributes = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DORAFetchResponse) MarshalJSON() ([]byte, error) {
+func (o SyntheticsSuiteResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Data != nil {
-		toSerialize["data"] = o.Data
+	if o.Attributes != nil {
+		toSerialize["attributes"] = o.Attributes
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -79,25 +79,25 @@ func (o DORAFetchResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DORAFetchResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SyntheticsSuiteResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *DORAEvent `json:"data,omitempty"`
+		Attributes *SyntheticsSuite `json:"attributes,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Data = all.Data
+	o.Attributes = all.Attributes
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

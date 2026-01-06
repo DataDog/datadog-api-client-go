@@ -10,43 +10,42 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DORAListFailuresRequestData The JSON:API data.
-type DORAListFailuresRequestData struct {
-	// Attributes to get a list of failures.
-	Attributes DORAListFailuresRequestAttributes `json:"attributes"`
-	// The definition of `DORAListFailuresRequestDataType` object.
-	Type *DORAListFailuresRequestDataType `json:"type,omitempty"`
+// SuiteCreateEdit
+type SuiteCreateEdit struct {
+	// Object containing details about a Synthetic suite.
+	Attributes SyntheticsSuite `json:"attributes"`
+	// Type for the Synthetics suites responses, `suites`.
+	Type SyntheticsSuiteTypes `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewDORAListFailuresRequestData instantiates a new DORAListFailuresRequestData object.
+// NewSuiteCreateEdit instantiates a new SuiteCreateEdit object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDORAListFailuresRequestData(attributes DORAListFailuresRequestAttributes) *DORAListFailuresRequestData {
-	this := DORAListFailuresRequestData{}
+func NewSuiteCreateEdit(attributes SyntheticsSuite, typeVar SyntheticsSuiteTypes) *SuiteCreateEdit {
+	this := SuiteCreateEdit{}
 	this.Attributes = attributes
-	var typeVar DORAListFailuresRequestDataType = DORALISTFAILURESREQUESTDATATYPE_DORA_FAILURES_LIST_REQUEST
-	this.Type = &typeVar
+	this.Type = typeVar
 	return &this
 }
 
-// NewDORAListFailuresRequestDataWithDefaults instantiates a new DORAListFailuresRequestData object.
+// NewSuiteCreateEditWithDefaults instantiates a new SuiteCreateEdit object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDORAListFailuresRequestDataWithDefaults() *DORAListFailuresRequestData {
-	this := DORAListFailuresRequestData{}
-	var typeVar DORAListFailuresRequestDataType = DORALISTFAILURESREQUESTDATATYPE_DORA_FAILURES_LIST_REQUEST
-	this.Type = &typeVar
+func NewSuiteCreateEditWithDefaults() *SuiteCreateEdit {
+	this := SuiteCreateEdit{}
+	var typeVar SyntheticsSuiteTypes = SYNTHETICSSUITETYPES_SUITES
+	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *DORAListFailuresRequestData) GetAttributes() DORAListFailuresRequestAttributes {
+func (o *SuiteCreateEdit) GetAttributes() SyntheticsSuite {
 	if o == nil {
-		var ret DORAListFailuresRequestAttributes
+		var ret SyntheticsSuite
 		return ret
 	}
 	return o.Attributes
@@ -54,7 +53,7 @@ func (o *DORAListFailuresRequestData) GetAttributes() DORAListFailuresRequestAtt
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *DORAListFailuresRequestData) GetAttributesOk() (*DORAListFailuresRequestAttributes, bool) {
+func (o *SuiteCreateEdit) GetAttributesOk() (*SyntheticsSuite, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,48 +61,41 @@ func (o *DORAListFailuresRequestData) GetAttributesOk() (*DORAListFailuresReques
 }
 
 // SetAttributes sets field value.
-func (o *DORAListFailuresRequestData) SetAttributes(v DORAListFailuresRequestAttributes) {
+func (o *SuiteCreateEdit) SetAttributes(v SyntheticsSuite) {
 	o.Attributes = v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
-func (o *DORAListFailuresRequestData) GetType() DORAListFailuresRequestDataType {
-	if o == nil || o.Type == nil {
-		var ret DORAListFailuresRequestDataType
+// GetType returns the Type field value.
+func (o *SuiteCreateEdit) GetType() SyntheticsSuiteTypes {
+	if o == nil {
+		var ret SyntheticsSuiteTypes
 		return ret
 	}
-	return *o.Type
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *DORAListFailuresRequestData) GetTypeOk() (*DORAListFailuresRequestDataType, bool) {
-	if o == nil || o.Type == nil {
+func (o *SuiteCreateEdit) GetTypeOk() (*SyntheticsSuiteTypes, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *DORAListFailuresRequestData) HasType() bool {
-	return o != nil && o.Type != nil
-}
-
-// SetType gets a reference to the given DORAListFailuresRequestDataType and assigns it to the Type field.
-func (o *DORAListFailuresRequestData) SetType(v DORAListFailuresRequestDataType) {
-	o.Type = &v
+// SetType sets field value.
+func (o *SuiteCreateEdit) SetType(v SyntheticsSuiteTypes) {
+	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DORAListFailuresRequestData) MarshalJSON() ([]byte, error) {
+func (o SuiteCreateEdit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["attributes"] = o.Attributes
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -112,16 +104,19 @@ func (o DORAListFailuresRequestData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DORAListFailuresRequestData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SuiteCreateEdit) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *DORAListFailuresRequestAttributes `json:"attributes"`
-		Type       *DORAListFailuresRequestDataType   `json:"type,omitempty"`
+		Attributes *SyntheticsSuite      `json:"attributes"`
+		Type       *SyntheticsSuiteTypes `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Attributes == nil {
 		return fmt.Errorf("required field attributes missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -135,10 +130,10 @@ func (o *DORAListFailuresRequestData) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	if all.Type != nil && !all.Type.IsValid() {
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Type = all.Type
+		o.Type = *all.Type
 	}
 
 	if len(additionalProperties) > 0 {

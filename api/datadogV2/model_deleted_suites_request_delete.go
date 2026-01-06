@@ -10,43 +10,45 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DORAListFailuresRequestData The JSON:API data.
-type DORAListFailuresRequestData struct {
-	// Attributes to get a list of failures.
-	Attributes DORAListFailuresRequestAttributes `json:"attributes"`
-	// The definition of `DORAListFailuresRequestDataType` object.
-	Type *DORAListFailuresRequestDataType `json:"type,omitempty"`
+// DeletedSuitesRequestDelete
+type DeletedSuitesRequestDelete struct {
+	//
+	Attributes DeletedSuitesRequestDeleteAttributes `json:"attributes"`
+	//
+	Id *string `json:"id,omitempty"`
+	//
+	Type *DeletedSuitesRequestType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewDORAListFailuresRequestData instantiates a new DORAListFailuresRequestData object.
+// NewDeletedSuitesRequestDelete instantiates a new DeletedSuitesRequestDelete object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDORAListFailuresRequestData(attributes DORAListFailuresRequestAttributes) *DORAListFailuresRequestData {
-	this := DORAListFailuresRequestData{}
+func NewDeletedSuitesRequestDelete(attributes DeletedSuitesRequestDeleteAttributes) *DeletedSuitesRequestDelete {
+	this := DeletedSuitesRequestDelete{}
 	this.Attributes = attributes
-	var typeVar DORAListFailuresRequestDataType = DORALISTFAILURESREQUESTDATATYPE_DORA_FAILURES_LIST_REQUEST
+	var typeVar DeletedSuitesRequestType = DELETEDSUITESREQUESTTYPE_DELETE_SUITES_REQUEST
 	this.Type = &typeVar
 	return &this
 }
 
-// NewDORAListFailuresRequestDataWithDefaults instantiates a new DORAListFailuresRequestData object.
+// NewDeletedSuitesRequestDeleteWithDefaults instantiates a new DeletedSuitesRequestDelete object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDORAListFailuresRequestDataWithDefaults() *DORAListFailuresRequestData {
-	this := DORAListFailuresRequestData{}
-	var typeVar DORAListFailuresRequestDataType = DORALISTFAILURESREQUESTDATATYPE_DORA_FAILURES_LIST_REQUEST
+func NewDeletedSuitesRequestDeleteWithDefaults() *DeletedSuitesRequestDelete {
+	this := DeletedSuitesRequestDelete{}
+	var typeVar DeletedSuitesRequestType = DELETEDSUITESREQUESTTYPE_DELETE_SUITES_REQUEST
 	this.Type = &typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *DORAListFailuresRequestData) GetAttributes() DORAListFailuresRequestAttributes {
+func (o *DeletedSuitesRequestDelete) GetAttributes() DeletedSuitesRequestDeleteAttributes {
 	if o == nil {
-		var ret DORAListFailuresRequestAttributes
+		var ret DeletedSuitesRequestDeleteAttributes
 		return ret
 	}
 	return o.Attributes
@@ -54,7 +56,7 @@ func (o *DORAListFailuresRequestData) GetAttributes() DORAListFailuresRequestAtt
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *DORAListFailuresRequestData) GetAttributesOk() (*DORAListFailuresRequestAttributes, bool) {
+func (o *DeletedSuitesRequestDelete) GetAttributesOk() (*DeletedSuitesRequestDeleteAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,14 +64,42 @@ func (o *DORAListFailuresRequestData) GetAttributesOk() (*DORAListFailuresReques
 }
 
 // SetAttributes sets field value.
-func (o *DORAListFailuresRequestData) SetAttributes(v DORAListFailuresRequestAttributes) {
+func (o *DeletedSuitesRequestDelete) SetAttributes(v DeletedSuitesRequestDeleteAttributes) {
 	o.Attributes = v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *DeletedSuitesRequestDelete) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeletedSuitesRequestDelete) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *DeletedSuitesRequestDelete) HasId() bool {
+	return o != nil && o.Id != nil
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *DeletedSuitesRequestDelete) SetId(v string) {
+	o.Id = &v
+}
+
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *DORAListFailuresRequestData) GetType() DORAListFailuresRequestDataType {
+func (o *DeletedSuitesRequestDelete) GetType() DeletedSuitesRequestType {
 	if o == nil || o.Type == nil {
-		var ret DORAListFailuresRequestDataType
+		var ret DeletedSuitesRequestType
 		return ret
 	}
 	return *o.Type
@@ -77,7 +107,7 @@ func (o *DORAListFailuresRequestData) GetType() DORAListFailuresRequestDataType 
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAListFailuresRequestData) GetTypeOk() (*DORAListFailuresRequestDataType, bool) {
+func (o *DeletedSuitesRequestDelete) GetTypeOk() (*DeletedSuitesRequestType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -85,22 +115,25 @@ func (o *DORAListFailuresRequestData) GetTypeOk() (*DORAListFailuresRequestDataT
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *DORAListFailuresRequestData) HasType() bool {
+func (o *DeletedSuitesRequestDelete) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
-// SetType gets a reference to the given DORAListFailuresRequestDataType and assigns it to the Type field.
-func (o *DORAListFailuresRequestData) SetType(v DORAListFailuresRequestDataType) {
+// SetType gets a reference to the given DeletedSuitesRequestType and assigns it to the Type field.
+func (o *DeletedSuitesRequestDelete) SetType(v DeletedSuitesRequestType) {
 	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DORAListFailuresRequestData) MarshalJSON() ([]byte, error) {
+func (o DeletedSuitesRequestDelete) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["attributes"] = o.Attributes
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
@@ -112,10 +145,11 @@ func (o DORAListFailuresRequestData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DORAListFailuresRequestData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DeletedSuitesRequestDelete) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *DORAListFailuresRequestAttributes `json:"attributes"`
-		Type       *DORAListFailuresRequestDataType   `json:"type,omitempty"`
+		Attributes *DeletedSuitesRequestDeleteAttributes `json:"attributes"`
+		Id         *string                               `json:"id,omitempty"`
+		Type       *DeletedSuitesRequestType             `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -125,7 +159,7 @@ func (o *DORAListFailuresRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
 	} else {
 		return err
 	}
@@ -135,6 +169,7 @@ func (o *DORAListFailuresRequestData) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
+	o.Id = all.Id
 	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
