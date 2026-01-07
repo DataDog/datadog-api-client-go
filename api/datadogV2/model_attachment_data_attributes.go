@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AttachmentDataAttributes
+// AttachmentDataAttributes The attachment's attributes.
 type AttachmentDataAttributes struct {
-	//
+	// The attachment object.
 	Attachment *AttachmentDataAttributesAttachment `json:"attachment,omitempty"`
-	//
+	// The type of the attachment.
 	AttachmentType *AttachmentDataAttributesAttachmentType `json:"attachment_type,omitempty"`
-	//
+	// Timestamp when the attachment was last modified.
 	Modified *time.Time `json:"modified,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
