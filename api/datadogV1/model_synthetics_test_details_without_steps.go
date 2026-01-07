@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsTestDetails Object containing details about your Synthetic test.
-type SyntheticsTestDetails struct {
+// SyntheticsTestDetailsWithoutSteps Object containing details about your Synthetic test, without test steps.
+type SyntheticsTestDetailsWithoutSteps struct {
 	// Configuration object for a Synthetic test.
 	Config *SyntheticsTestConfig `json:"config,omitempty"`
 	// Object describing the creator of the shared element.
@@ -29,8 +29,6 @@ type SyntheticsTestDetails struct {
 	// Define whether you want to start (`live`) or pause (`paused`) a
 	// Synthetic test.
 	Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
-	// The steps of the test if they exist.
-	Steps []SyntheticsStep `json:"steps,omitempty"`
 	// The subtype of the Synthetic API test, `http`, `ssl`, `tcp`,
 	// `dns`, `icmp`, `udp`, `websocket`, `grpc` or `multi`.
 	Subtype *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
@@ -43,25 +41,25 @@ type SyntheticsTestDetails struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewSyntheticsTestDetails instantiates a new SyntheticsTestDetails object.
+// NewSyntheticsTestDetailsWithoutSteps instantiates a new SyntheticsTestDetailsWithoutSteps object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSyntheticsTestDetails() *SyntheticsTestDetails {
-	this := SyntheticsTestDetails{}
+func NewSyntheticsTestDetailsWithoutSteps() *SyntheticsTestDetailsWithoutSteps {
+	this := SyntheticsTestDetailsWithoutSteps{}
 	return &this
 }
 
-// NewSyntheticsTestDetailsWithDefaults instantiates a new SyntheticsTestDetails object.
+// NewSyntheticsTestDetailsWithoutStepsWithDefaults instantiates a new SyntheticsTestDetailsWithoutSteps object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewSyntheticsTestDetailsWithDefaults() *SyntheticsTestDetails {
-	this := SyntheticsTestDetails{}
+func NewSyntheticsTestDetailsWithoutStepsWithDefaults() *SyntheticsTestDetailsWithoutSteps {
+	this := SyntheticsTestDetailsWithoutSteps{}
 	return &this
 }
 
 // GetConfig returns the Config field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetConfig() SyntheticsTestConfig {
+func (o *SyntheticsTestDetailsWithoutSteps) GetConfig() SyntheticsTestConfig {
 	if o == nil || o.Config == nil {
 		var ret SyntheticsTestConfig
 		return ret
@@ -71,7 +69,7 @@ func (o *SyntheticsTestDetails) GetConfig() SyntheticsTestConfig {
 
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetConfigOk() (*SyntheticsTestConfig, bool) {
+func (o *SyntheticsTestDetailsWithoutSteps) GetConfigOk() (*SyntheticsTestConfig, bool) {
 	if o == nil || o.Config == nil {
 		return nil, false
 	}
@@ -79,17 +77,17 @@ func (o *SyntheticsTestDetails) GetConfigOk() (*SyntheticsTestConfig, bool) {
 }
 
 // HasConfig returns a boolean if a field has been set.
-func (o *SyntheticsTestDetails) HasConfig() bool {
+func (o *SyntheticsTestDetailsWithoutSteps) HasConfig() bool {
 	return o != nil && o.Config != nil
 }
 
 // SetConfig gets a reference to the given SyntheticsTestConfig and assigns it to the Config field.
-func (o *SyntheticsTestDetails) SetConfig(v SyntheticsTestConfig) {
+func (o *SyntheticsTestDetailsWithoutSteps) SetConfig(v SyntheticsTestConfig) {
 	o.Config = &v
 }
 
 // GetCreator returns the Creator field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetCreator() Creator {
+func (o *SyntheticsTestDetailsWithoutSteps) GetCreator() Creator {
 	if o == nil || o.Creator == nil {
 		var ret Creator
 		return ret
@@ -99,7 +97,7 @@ func (o *SyntheticsTestDetails) GetCreator() Creator {
 
 // GetCreatorOk returns a tuple with the Creator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetCreatorOk() (*Creator, bool) {
+func (o *SyntheticsTestDetailsWithoutSteps) GetCreatorOk() (*Creator, bool) {
 	if o == nil || o.Creator == nil {
 		return nil, false
 	}
@@ -107,17 +105,17 @@ func (o *SyntheticsTestDetails) GetCreatorOk() (*Creator, bool) {
 }
 
 // HasCreator returns a boolean if a field has been set.
-func (o *SyntheticsTestDetails) HasCreator() bool {
+func (o *SyntheticsTestDetailsWithoutSteps) HasCreator() bool {
 	return o != nil && o.Creator != nil
 }
 
 // SetCreator gets a reference to the given Creator and assigns it to the Creator field.
-func (o *SyntheticsTestDetails) SetCreator(v Creator) {
+func (o *SyntheticsTestDetailsWithoutSteps) SetCreator(v Creator) {
 	o.Creator = &v
 }
 
 // GetLocations returns the Locations field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetLocations() []string {
+func (o *SyntheticsTestDetailsWithoutSteps) GetLocations() []string {
 	if o == nil || o.Locations == nil {
 		var ret []string
 		return ret
@@ -127,7 +125,7 @@ func (o *SyntheticsTestDetails) GetLocations() []string {
 
 // GetLocationsOk returns a tuple with the Locations field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetLocationsOk() (*[]string, bool) {
+func (o *SyntheticsTestDetailsWithoutSteps) GetLocationsOk() (*[]string, bool) {
 	if o == nil || o.Locations == nil {
 		return nil, false
 	}
@@ -135,17 +133,17 @@ func (o *SyntheticsTestDetails) GetLocationsOk() (*[]string, bool) {
 }
 
 // HasLocations returns a boolean if a field has been set.
-func (o *SyntheticsTestDetails) HasLocations() bool {
+func (o *SyntheticsTestDetailsWithoutSteps) HasLocations() bool {
 	return o != nil && o.Locations != nil
 }
 
 // SetLocations gets a reference to the given []string and assigns it to the Locations field.
-func (o *SyntheticsTestDetails) SetLocations(v []string) {
+func (o *SyntheticsTestDetailsWithoutSteps) SetLocations(v []string) {
 	o.Locations = v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetMessage() string {
+func (o *SyntheticsTestDetailsWithoutSteps) GetMessage() string {
 	if o == nil || o.Message == nil {
 		var ret string
 		return ret
@@ -155,7 +153,7 @@ func (o *SyntheticsTestDetails) GetMessage() string {
 
 // GetMessageOk returns a tuple with the Message field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetMessageOk() (*string, bool) {
+func (o *SyntheticsTestDetailsWithoutSteps) GetMessageOk() (*string, bool) {
 	if o == nil || o.Message == nil {
 		return nil, false
 	}
@@ -163,17 +161,17 @@ func (o *SyntheticsTestDetails) GetMessageOk() (*string, bool) {
 }
 
 // HasMessage returns a boolean if a field has been set.
-func (o *SyntheticsTestDetails) HasMessage() bool {
+func (o *SyntheticsTestDetailsWithoutSteps) HasMessage() bool {
 	return o != nil && o.Message != nil
 }
 
 // SetMessage gets a reference to the given string and assigns it to the Message field.
-func (o *SyntheticsTestDetails) SetMessage(v string) {
+func (o *SyntheticsTestDetailsWithoutSteps) SetMessage(v string) {
 	o.Message = &v
 }
 
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetMonitorId() int64 {
+func (o *SyntheticsTestDetailsWithoutSteps) GetMonitorId() int64 {
 	if o == nil || o.MonitorId == nil {
 		var ret int64
 		return ret
@@ -183,7 +181,7 @@ func (o *SyntheticsTestDetails) GetMonitorId() int64 {
 
 // GetMonitorIdOk returns a tuple with the MonitorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetMonitorIdOk() (*int64, bool) {
+func (o *SyntheticsTestDetailsWithoutSteps) GetMonitorIdOk() (*int64, bool) {
 	if o == nil || o.MonitorId == nil {
 		return nil, false
 	}
@@ -191,17 +189,17 @@ func (o *SyntheticsTestDetails) GetMonitorIdOk() (*int64, bool) {
 }
 
 // HasMonitorId returns a boolean if a field has been set.
-func (o *SyntheticsTestDetails) HasMonitorId() bool {
+func (o *SyntheticsTestDetailsWithoutSteps) HasMonitorId() bool {
 	return o != nil && o.MonitorId != nil
 }
 
 // SetMonitorId gets a reference to the given int64 and assigns it to the MonitorId field.
-func (o *SyntheticsTestDetails) SetMonitorId(v int64) {
+func (o *SyntheticsTestDetailsWithoutSteps) SetMonitorId(v int64) {
 	o.MonitorId = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetName() string {
+func (o *SyntheticsTestDetailsWithoutSteps) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -211,7 +209,7 @@ func (o *SyntheticsTestDetails) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetNameOk() (*string, bool) {
+func (o *SyntheticsTestDetailsWithoutSteps) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -219,17 +217,17 @@ func (o *SyntheticsTestDetails) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *SyntheticsTestDetails) HasName() bool {
+func (o *SyntheticsTestDetailsWithoutSteps) HasName() bool {
 	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *SyntheticsTestDetails) SetName(v string) {
+func (o *SyntheticsTestDetailsWithoutSteps) SetName(v string) {
 	o.Name = &v
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetOptions() SyntheticsTestOptions {
+func (o *SyntheticsTestDetailsWithoutSteps) GetOptions() SyntheticsTestOptions {
 	if o == nil || o.Options == nil {
 		var ret SyntheticsTestOptions
 		return ret
@@ -239,7 +237,7 @@ func (o *SyntheticsTestDetails) GetOptions() SyntheticsTestOptions {
 
 // GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetOptionsOk() (*SyntheticsTestOptions, bool) {
+func (o *SyntheticsTestDetailsWithoutSteps) GetOptionsOk() (*SyntheticsTestOptions, bool) {
 	if o == nil || o.Options == nil {
 		return nil, false
 	}
@@ -247,17 +245,17 @@ func (o *SyntheticsTestDetails) GetOptionsOk() (*SyntheticsTestOptions, bool) {
 }
 
 // HasOptions returns a boolean if a field has been set.
-func (o *SyntheticsTestDetails) HasOptions() bool {
+func (o *SyntheticsTestDetailsWithoutSteps) HasOptions() bool {
 	return o != nil && o.Options != nil
 }
 
 // SetOptions gets a reference to the given SyntheticsTestOptions and assigns it to the Options field.
-func (o *SyntheticsTestDetails) SetOptions(v SyntheticsTestOptions) {
+func (o *SyntheticsTestDetailsWithoutSteps) SetOptions(v SyntheticsTestOptions) {
 	o.Options = &v
 }
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetPublicId() string {
+func (o *SyntheticsTestDetailsWithoutSteps) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
 		var ret string
 		return ret
@@ -267,7 +265,7 @@ func (o *SyntheticsTestDetails) GetPublicId() string {
 
 // GetPublicIdOk returns a tuple with the PublicId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetPublicIdOk() (*string, bool) {
+func (o *SyntheticsTestDetailsWithoutSteps) GetPublicIdOk() (*string, bool) {
 	if o == nil || o.PublicId == nil {
 		return nil, false
 	}
@@ -275,17 +273,17 @@ func (o *SyntheticsTestDetails) GetPublicIdOk() (*string, bool) {
 }
 
 // HasPublicId returns a boolean if a field has been set.
-func (o *SyntheticsTestDetails) HasPublicId() bool {
+func (o *SyntheticsTestDetailsWithoutSteps) HasPublicId() bool {
 	return o != nil && o.PublicId != nil
 }
 
 // SetPublicId gets a reference to the given string and assigns it to the PublicId field.
-func (o *SyntheticsTestDetails) SetPublicId(v string) {
+func (o *SyntheticsTestDetailsWithoutSteps) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetStatus() SyntheticsTestPauseStatus {
+func (o *SyntheticsTestDetailsWithoutSteps) GetStatus() SyntheticsTestPauseStatus {
 	if o == nil || o.Status == nil {
 		var ret SyntheticsTestPauseStatus
 		return ret
@@ -295,7 +293,7 @@ func (o *SyntheticsTestDetails) GetStatus() SyntheticsTestPauseStatus {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetStatusOk() (*SyntheticsTestPauseStatus, bool) {
+func (o *SyntheticsTestDetailsWithoutSteps) GetStatusOk() (*SyntheticsTestPauseStatus, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -303,45 +301,17 @@ func (o *SyntheticsTestDetails) GetStatusOk() (*SyntheticsTestPauseStatus, bool)
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *SyntheticsTestDetails) HasStatus() bool {
+func (o *SyntheticsTestDetailsWithoutSteps) HasStatus() bool {
 	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given SyntheticsTestPauseStatus and assigns it to the Status field.
-func (o *SyntheticsTestDetails) SetStatus(v SyntheticsTestPauseStatus) {
+func (o *SyntheticsTestDetailsWithoutSteps) SetStatus(v SyntheticsTestPauseStatus) {
 	o.Status = &v
 }
 
-// GetSteps returns the Steps field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetSteps() []SyntheticsStep {
-	if o == nil || o.Steps == nil {
-		var ret []SyntheticsStep
-		return ret
-	}
-	return o.Steps
-}
-
-// GetStepsOk returns a tuple with the Steps field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetStepsOk() (*[]SyntheticsStep, bool) {
-	if o == nil || o.Steps == nil {
-		return nil, false
-	}
-	return &o.Steps, true
-}
-
-// HasSteps returns a boolean if a field has been set.
-func (o *SyntheticsTestDetails) HasSteps() bool {
-	return o != nil && o.Steps != nil
-}
-
-// SetSteps gets a reference to the given []SyntheticsStep and assigns it to the Steps field.
-func (o *SyntheticsTestDetails) SetSteps(v []SyntheticsStep) {
-	o.Steps = v
-}
-
 // GetSubtype returns the Subtype field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetSubtype() SyntheticsTestDetailsSubType {
+func (o *SyntheticsTestDetailsWithoutSteps) GetSubtype() SyntheticsTestDetailsSubType {
 	if o == nil || o.Subtype == nil {
 		var ret SyntheticsTestDetailsSubType
 		return ret
@@ -351,7 +321,7 @@ func (o *SyntheticsTestDetails) GetSubtype() SyntheticsTestDetailsSubType {
 
 // GetSubtypeOk returns a tuple with the Subtype field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetSubtypeOk() (*SyntheticsTestDetailsSubType, bool) {
+func (o *SyntheticsTestDetailsWithoutSteps) GetSubtypeOk() (*SyntheticsTestDetailsSubType, bool) {
 	if o == nil || o.Subtype == nil {
 		return nil, false
 	}
@@ -359,17 +329,17 @@ func (o *SyntheticsTestDetails) GetSubtypeOk() (*SyntheticsTestDetailsSubType, b
 }
 
 // HasSubtype returns a boolean if a field has been set.
-func (o *SyntheticsTestDetails) HasSubtype() bool {
+func (o *SyntheticsTestDetailsWithoutSteps) HasSubtype() bool {
 	return o != nil && o.Subtype != nil
 }
 
 // SetSubtype gets a reference to the given SyntheticsTestDetailsSubType and assigns it to the Subtype field.
-func (o *SyntheticsTestDetails) SetSubtype(v SyntheticsTestDetailsSubType) {
+func (o *SyntheticsTestDetailsWithoutSteps) SetSubtype(v SyntheticsTestDetailsSubType) {
 	o.Subtype = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetTags() []string {
+func (o *SyntheticsTestDetailsWithoutSteps) GetTags() []string {
 	if o == nil || o.Tags == nil {
 		var ret []string
 		return ret
@@ -379,7 +349,7 @@ func (o *SyntheticsTestDetails) GetTags() []string {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetTagsOk() (*[]string, bool) {
+func (o *SyntheticsTestDetailsWithoutSteps) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -387,17 +357,17 @@ func (o *SyntheticsTestDetails) GetTagsOk() (*[]string, bool) {
 }
 
 // HasTags returns a boolean if a field has been set.
-func (o *SyntheticsTestDetails) HasTags() bool {
+func (o *SyntheticsTestDetailsWithoutSteps) HasTags() bool {
 	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *SyntheticsTestDetails) SetTags(v []string) {
+func (o *SyntheticsTestDetailsWithoutSteps) SetTags(v []string) {
 	o.Tags = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *SyntheticsTestDetails) GetType() SyntheticsTestDetailsType {
+func (o *SyntheticsTestDetailsWithoutSteps) GetType() SyntheticsTestDetailsType {
 	if o == nil || o.Type == nil {
 		var ret SyntheticsTestDetailsType
 		return ret
@@ -407,7 +377,7 @@ func (o *SyntheticsTestDetails) GetType() SyntheticsTestDetailsType {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsTestDetails) GetTypeOk() (*SyntheticsTestDetailsType, bool) {
+func (o *SyntheticsTestDetailsWithoutSteps) GetTypeOk() (*SyntheticsTestDetailsType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -415,17 +385,17 @@ func (o *SyntheticsTestDetails) GetTypeOk() (*SyntheticsTestDetailsType, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *SyntheticsTestDetails) HasType() bool {
+func (o *SyntheticsTestDetailsWithoutSteps) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
 // SetType gets a reference to the given SyntheticsTestDetailsType and assigns it to the Type field.
-func (o *SyntheticsTestDetails) SetType(v SyntheticsTestDetailsType) {
+func (o *SyntheticsTestDetailsWithoutSteps) SetType(v SyntheticsTestDetailsType) {
 	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o SyntheticsTestDetails) MarshalJSON() ([]byte, error) {
+func (o SyntheticsTestDetailsWithoutSteps) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -457,9 +427,6 @@ func (o SyntheticsTestDetails) MarshalJSON() ([]byte, error) {
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
-	if o.Steps != nil {
-		toSerialize["steps"] = o.Steps
-	}
 	if o.Subtype != nil {
 		toSerialize["subtype"] = o.Subtype
 	}
@@ -477,7 +444,7 @@ func (o SyntheticsTestDetails) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *SyntheticsTestDetails) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SyntheticsTestDetailsWithoutSteps) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Config    *SyntheticsTestConfig         `json:"config,omitempty"`
 		Creator   *Creator                      `json:"creator,omitempty"`
@@ -488,7 +455,6 @@ func (o *SyntheticsTestDetails) UnmarshalJSON(bytes []byte) (err error) {
 		Options   *SyntheticsTestOptions        `json:"options,omitempty"`
 		PublicId  *string                       `json:"public_id,omitempty"`
 		Status    *SyntheticsTestPauseStatus    `json:"status,omitempty"`
-		Steps     []SyntheticsStep              `json:"steps,omitempty"`
 		Subtype   *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
 		Tags      []string                      `json:"tags,omitempty"`
 		Type      *SyntheticsTestDetailsType    `json:"type,omitempty"`
@@ -498,7 +464,7 @@ func (o *SyntheticsTestDetails) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"config", "creator", "locations", "message", "monitor_id", "name", "options", "public_id", "status", "steps", "subtype", "tags", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"config", "creator", "locations", "message", "monitor_id", "name", "options", "public_id", "status", "subtype", "tags", "type"})
 	} else {
 		return err
 	}
@@ -526,7 +492,6 @@ func (o *SyntheticsTestDetails) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.Status = all.Status
 	}
-	o.Steps = all.Steps
 	if all.Subtype != nil && !all.Subtype.IsValid() {
 		hasInvalidField = true
 	} else {
