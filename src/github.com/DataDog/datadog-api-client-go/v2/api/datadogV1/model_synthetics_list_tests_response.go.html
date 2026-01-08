@@ -68,7 +68,7 @@
 <span id="L11" class="ln">    11  </span><span class="comment">// SyntheticsListTestsResponse Object containing an array of Synthetic tests configuration.</span>
 <span id="L12" class="ln">    12  </span>type SyntheticsListTestsResponse struct {
 <span id="L13" class="ln">    13  </span>	<span class="comment">// Array of Synthetic tests configuration.</span>
-<span id="L14" class="ln">    14  </span>	Tests []SyntheticsTestDetails `json:&#34;tests,omitempty&#34;`
+<span id="L14" class="ln">    14  </span>	Tests []SyntheticsTestDetailsWithoutSteps `json:&#34;tests,omitempty&#34;`
 <span id="L15" class="ln">    15  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L16" class="ln">    16  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L17" class="ln">    17  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -92,9 +92,9 @@
 <span id="L35" class="ln">    35  </span>}
 <span id="L36" class="ln">    36  </span>
 <span id="L37" class="ln">    37  </span><span class="comment">// GetTests returns the Tests field value if set, zero value otherwise.</span>
-<span id="L38" class="ln">    38  </span>func (o *SyntheticsListTestsResponse) GetTests() []SyntheticsTestDetails {
+<span id="L38" class="ln">    38  </span>func (o *SyntheticsListTestsResponse) GetTests() []SyntheticsTestDetailsWithoutSteps {
 <span id="L39" class="ln">    39  </span>	if o == nil || o.Tests == nil {
-<span id="L40" class="ln">    40  </span>		var ret []SyntheticsTestDetails
+<span id="L40" class="ln">    40  </span>		var ret []SyntheticsTestDetailsWithoutSteps
 <span id="L41" class="ln">    41  </span>		return ret
 <span id="L42" class="ln">    42  </span>	}
 <span id="L43" class="ln">    43  </span>	return o.Tests
@@ -102,7 +102,7 @@
 <span id="L45" class="ln">    45  </span>
 <span id="L46" class="ln">    46  </span><span class="comment">// GetTestsOk returns a tuple with the Tests field value if set, nil otherwise</span>
 <span id="L47" class="ln">    47  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L48" class="ln">    48  </span>func (o *SyntheticsListTestsResponse) GetTestsOk() (*[]SyntheticsTestDetails, bool) {
+<span id="L48" class="ln">    48  </span>func (o *SyntheticsListTestsResponse) GetTestsOk() (*[]SyntheticsTestDetailsWithoutSteps, bool) {
 <span id="L49" class="ln">    49  </span>	if o == nil || o.Tests == nil {
 <span id="L50" class="ln">    50  </span>		return nil, false
 <span id="L51" class="ln">    51  </span>	}
@@ -114,8 +114,8 @@
 <span id="L57" class="ln">    57  </span>	return o != nil &amp;&amp; o.Tests != nil
 <span id="L58" class="ln">    58  </span>}
 <span id="L59" class="ln">    59  </span>
-<span id="L60" class="ln">    60  </span><span class="comment">// SetTests gets a reference to the given []SyntheticsTestDetails and assigns it to the Tests field.</span>
-<span id="L61" class="ln">    61  </span>func (o *SyntheticsListTestsResponse) SetTests(v []SyntheticsTestDetails) {
+<span id="L60" class="ln">    60  </span><span class="comment">// SetTests gets a reference to the given []SyntheticsTestDetailsWithoutSteps and assigns it to the Tests field.</span>
+<span id="L61" class="ln">    61  </span>func (o *SyntheticsListTestsResponse) SetTests(v []SyntheticsTestDetailsWithoutSteps) {
 <span id="L62" class="ln">    62  </span>	o.Tests = v
 <span id="L63" class="ln">    63  </span>}
 <span id="L64" class="ln">    64  </span>
@@ -138,7 +138,7 @@
 <span id="L81" class="ln">    81  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L82" class="ln">    82  </span>func (o *SyntheticsListTestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L83" class="ln">    83  </span>	all := struct {
-<span id="L84" class="ln">    84  </span>		Tests []SyntheticsTestDetails `json:&#34;tests,omitempty&#34;`
+<span id="L84" class="ln">    84  </span>		Tests []SyntheticsTestDetailsWithoutSteps `json:&#34;tests,omitempty&#34;`
 <span id="L85" class="ln">    85  </span>	}{}
 <span id="L86" class="ln">    86  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L87" class="ln">    87  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)

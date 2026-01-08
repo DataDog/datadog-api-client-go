@@ -1826,11 +1826,11 @@
 <span id="L1769" class="ln">  1769  </span>
 <span id="L1770" class="ln">  1770  </span><span class="comment">// GetTest Get a test configuration.</span>
 <span id="L1771" class="ln">  1771  </span><span class="comment">// Get the detailed configuration associated with a Synthetic test.</span>
-<span id="L1772" class="ln">  1772  </span>func (a *SyntheticsApi) GetTest(ctx _context.Context, publicId string) (SyntheticsTestDetails, *_nethttp.Response, error) {
+<span id="L1772" class="ln">  1772  </span>func (a *SyntheticsApi) GetTest(ctx _context.Context, publicId string) (SyntheticsTestDetailsWithoutSteps, *_nethttp.Response, error) {
 <span id="L1773" class="ln">  1773  </span>	var (
 <span id="L1774" class="ln">  1774  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L1775" class="ln">  1775  </span>		localVarPostBody    interface{}
-<span id="L1776" class="ln">  1776  </span>		localVarReturnValue SyntheticsTestDetails
+<span id="L1776" class="ln">  1776  </span>		localVarReturnValue SyntheticsTestDetailsWithoutSteps
 <span id="L1777" class="ln">  1777  </span>	)
 <span id="L1778" class="ln">  1778  </span>
 <span id="L1779" class="ln">  1779  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v1.SyntheticsApi.GetTest&#34;)
@@ -2173,7 +2173,7 @@
 <span id="L2116" class="ln">  2116  </span>}
 <span id="L2117" class="ln">  2117  </span>
 <span id="L2118" class="ln">  2118  </span><span class="comment">// ListTestsWithPagination provides a paginated version of ListTests returning a channel with all items.</span>
-<span id="L2119" class="ln">  2119  </span>func (a *SyntheticsApi) ListTestsWithPagination(ctx _context.Context, o ...ListTestsOptionalParameters) (&lt;-chan datadog.PaginationResult[SyntheticsTestDetails], func()) {
+<span id="L2119" class="ln">  2119  </span>func (a *SyntheticsApi) ListTestsWithPagination(ctx _context.Context, o ...ListTestsOptionalParameters) (&lt;-chan datadog.PaginationResult[SyntheticsTestDetailsWithoutSteps], func()) {
 <span id="L2120" class="ln">  2120  </span>	ctx, cancel := _context.WithCancel(ctx)
 <span id="L2121" class="ln">  2121  </span>	pageSize_ := int64(100)
 <span id="L2122" class="ln">  2122  </span>	if len(o) == 0 {
@@ -2186,13 +2186,13 @@
 <span id="L2129" class="ln">  2129  </span>	page_ := int64(0)
 <span id="L2130" class="ln">  2130  </span>	o[0].PageNumber = &amp;page_
 <span id="L2131" class="ln">  2131  </span>
-<span id="L2132" class="ln">  2132  </span>	items := make(chan datadog.PaginationResult[SyntheticsTestDetails], pageSize_)
+<span id="L2132" class="ln">  2132  </span>	items := make(chan datadog.PaginationResult[SyntheticsTestDetailsWithoutSteps], pageSize_)
 <span id="L2133" class="ln">  2133  </span>	go func() {
 <span id="L2134" class="ln">  2134  </span>		for {
 <span id="L2135" class="ln">  2135  </span>			resp, _, err := a.ListTests(ctx, o...)
 <span id="L2136" class="ln">  2136  </span>			if err != nil {
-<span id="L2137" class="ln">  2137  </span>				var returnItem SyntheticsTestDetails
-<span id="L2138" class="ln">  2138  </span>				items &lt;- datadog.PaginationResult[SyntheticsTestDetails]{Item: returnItem, Error: err}
+<span id="L2137" class="ln">  2137  </span>				var returnItem SyntheticsTestDetailsWithoutSteps
+<span id="L2138" class="ln">  2138  </span>				items &lt;- datadog.PaginationResult[SyntheticsTestDetailsWithoutSteps]{Item: returnItem, Error: err}
 <span id="L2139" class="ln">  2139  </span>				break
 <span id="L2140" class="ln">  2140  </span>			}
 <span id="L2141" class="ln">  2141  </span>			respTests, ok := resp.GetTestsOk()
@@ -2203,7 +2203,7 @@
 <span id="L2146" class="ln">  2146  </span>
 <span id="L2147" class="ln">  2147  </span>			for _, item := range results {
 <span id="L2148" class="ln">  2148  </span>				select {
-<span id="L2149" class="ln">  2149  </span>				case items &lt;- datadog.PaginationResult[SyntheticsTestDetails]{Item: item, Error: nil}:
+<span id="L2149" class="ln">  2149  </span>				case items &lt;- datadog.PaginationResult[SyntheticsTestDetailsWithoutSteps]{Item: item, Error: nil}:
 <span id="L2150" class="ln">  2150  </span>				case &lt;-ctx.Done():
 <span id="L2151" class="ln">  2151  </span>					close(items)
 <span id="L2152" class="ln">  2152  </span>					return
