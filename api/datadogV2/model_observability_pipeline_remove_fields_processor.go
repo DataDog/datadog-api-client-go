@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineRemoveFieldsProcessor The `remove_fields` processor deletes specified fields from logs.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineRemoveFieldsProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`

@@ -14,6 +14,8 @@ import (
 type ObservabilityPipelineConfig struct {
 	// A list of destination components where processed logs are sent.
 	Destinations []ObservabilityPipelineConfigDestinationItem `json:"destinations"`
+	// The type of data being ingested. Defaults to `logs` if not specified.
+	PipelineType *ObservabilityPipelineConfigPipelineType `json:"pipeline_type,omitempty"`
 	// A list of processor groups that transform or enrich log data.
 	Processors []ObservabilityPipelineConfigProcessorGroup `json:"processors,omitempty"`
 	// A list of configured data sources for the pipeline.
@@ -30,6 +32,8 @@ type ObservabilityPipelineConfig struct {
 func NewObservabilityPipelineConfig(destinations []ObservabilityPipelineConfigDestinationItem, sources []ObservabilityPipelineConfigSourceItem) *ObservabilityPipelineConfig {
 	this := ObservabilityPipelineConfig{}
 	this.Destinations = destinations
+	var pipelineType ObservabilityPipelineConfigPipelineType = OBSERVABILITYPIPELINECONFIGPIPELINETYPE_LOGS
+	this.PipelineType = &pipelineType
 	this.Sources = sources
 	return &this
 }
@@ -39,6 +43,8 @@ func NewObservabilityPipelineConfig(destinations []ObservabilityPipelineConfigDe
 // but it doesn't guarantee that properties required by API are set.
 func NewObservabilityPipelineConfigWithDefaults() *ObservabilityPipelineConfig {
 	this := ObservabilityPipelineConfig{}
+	var pipelineType ObservabilityPipelineConfigPipelineType = OBSERVABILITYPIPELINECONFIGPIPELINETYPE_LOGS
+	this.PipelineType = &pipelineType
 	return &this
 }
 
@@ -63,6 +69,34 @@ func (o *ObservabilityPipelineConfig) GetDestinationsOk() (*[]ObservabilityPipel
 // SetDestinations sets field value.
 func (o *ObservabilityPipelineConfig) SetDestinations(v []ObservabilityPipelineConfigDestinationItem) {
 	o.Destinations = v
+}
+
+// GetPipelineType returns the PipelineType field value if set, zero value otherwise.
+func (o *ObservabilityPipelineConfig) GetPipelineType() ObservabilityPipelineConfigPipelineType {
+	if o == nil || o.PipelineType == nil {
+		var ret ObservabilityPipelineConfigPipelineType
+		return ret
+	}
+	return *o.PipelineType
+}
+
+// GetPipelineTypeOk returns a tuple with the PipelineType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineConfig) GetPipelineTypeOk() (*ObservabilityPipelineConfigPipelineType, bool) {
+	if o == nil || o.PipelineType == nil {
+		return nil, false
+	}
+	return o.PipelineType, true
+}
+
+// HasPipelineType returns a boolean if a field has been set.
+func (o *ObservabilityPipelineConfig) HasPipelineType() bool {
+	return o != nil && o.PipelineType != nil
+}
+
+// SetPipelineType gets a reference to the given ObservabilityPipelineConfigPipelineType and assigns it to the PipelineType field.
+func (o *ObservabilityPipelineConfig) SetPipelineType(v ObservabilityPipelineConfigPipelineType) {
+	o.PipelineType = &v
 }
 
 // GetProcessors returns the Processors field value if set, zero value otherwise.
@@ -123,6 +157,9 @@ func (o ObservabilityPipelineConfig) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["destinations"] = o.Destinations
+	if o.PipelineType != nil {
+		toSerialize["pipeline_type"] = o.PipelineType
+	}
 	if o.Processors != nil {
 		toSerialize["processors"] = o.Processors
 	}
@@ -138,6 +175,7 @@ func (o ObservabilityPipelineConfig) MarshalJSON() ([]byte, error) {
 func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Destinations *[]ObservabilityPipelineConfigDestinationItem `json:"destinations"`
+		PipelineType *ObservabilityPipelineConfigPipelineType      `json:"pipeline_type,omitempty"`
 		Processors   []ObservabilityPipelineConfigProcessorGroup   `json:"processors,omitempty"`
 		Sources      *[]ObservabilityPipelineConfigSourceItem      `json:"sources"`
 	}{}
@@ -152,16 +190,27 @@ func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"destinations", "processors", "sources"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"destinations", "pipeline_type", "processors", "sources"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.Destinations = *all.Destinations
+	if all.PipelineType != nil && !all.PipelineType.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.PipelineType = all.PipelineType
+	}
 	o.Processors = all.Processors
 	o.Sources = *all.Sources
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

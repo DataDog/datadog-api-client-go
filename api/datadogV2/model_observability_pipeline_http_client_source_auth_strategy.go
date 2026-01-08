@@ -15,11 +15,13 @@ type ObservabilityPipelineHttpClientSourceAuthStrategy string
 
 // List of ObservabilityPipelineHttpClientSourceAuthStrategy.
 const (
+	OBSERVABILITYPIPELINEHTTPCLIENTSOURCEAUTHSTRATEGY_NONE   ObservabilityPipelineHttpClientSourceAuthStrategy = "none"
 	OBSERVABILITYPIPELINEHTTPCLIENTSOURCEAUTHSTRATEGY_BASIC  ObservabilityPipelineHttpClientSourceAuthStrategy = "basic"
 	OBSERVABILITYPIPELINEHTTPCLIENTSOURCEAUTHSTRATEGY_BEARER ObservabilityPipelineHttpClientSourceAuthStrategy = "bearer"
 )
 
 var allowedObservabilityPipelineHttpClientSourceAuthStrategyEnumValues = []ObservabilityPipelineHttpClientSourceAuthStrategy{
+	OBSERVABILITYPIPELINEHTTPCLIENTSOURCEAUTHSTRATEGY_NONE,
 	OBSERVABILITYPIPELINEHTTPCLIENTSOURCEAUTHSTRATEGY_BASIC,
 	OBSERVABILITYPIPELINEHTTPCLIENTSOURCEAUTHSTRATEGY_BEARER,
 }

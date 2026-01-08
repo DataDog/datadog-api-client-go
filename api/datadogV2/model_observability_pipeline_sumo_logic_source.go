@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineSumoLogicSource The `sumo_logic` source receives logs from Sumo Logic collectors.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineSumoLogicSource struct {
 	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (e.g., as input to downstream components).
 	Id string `json:"id"`
