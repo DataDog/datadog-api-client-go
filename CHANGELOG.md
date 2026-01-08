@@ -1,5 +1,25 @@
 # CHANGELOG
 
+## 2.53.0/2026-01-08
+
+### Added
+* Add new bits_ai usage attribution type to Usage Attribution Public API Documentation [#3566](https://github.com/DataDog/datadog-api-client-go/pull/3566)
+* Add Product Analytics Server-Side Events API endpoint [#3561](https://github.com/DataDog/datadog-api-client-go/pull/3561)
+* Update /api/v2/cases endpoint to add custom attributes support [#3558](https://github.com/DataDog/datadog-api-client-go/pull/3558)
+* Documentation for team notifications API [#3554](https://github.com/DataDog/datadog-api-client-go/pull/3554)
+* [RQ-7160] Add llm_spans and deprecate llm_observability [#3540](https://github.com/DataDog/datadog-api-client-go/pull/3540)
+* Add display_name to Observability Pipeline processors [#3538](https://github.com/DataDog/datadog-api-client-go/pull/3538)
+* Add a new includeDiscovered query parameter to Software Catalog APIs [#3535](https://github.com/DataDog/datadog-api-client-go/pull/3535)
+* Add routes for managing On-Call user notification rules [#3534](https://github.com/DataDog/datadog-api-client-go/pull/3534)
+* Add anomaly detection options to security monitoring rules [#3531](https://github.com/DataDog/datadog-api-client-go/pull/3531)
+* Remove preview/unstable tags from GitHub team sync and connections endpoints [#3529](https://github.com/DataDog/datadog-api-client-go/pull/3529)
+* Added spec for flex_stored_logs [#3523](https://github.com/DataDog/datadog-api-client-go/pull/3523)
+* Add documentation for synthetics global variable jsonpatch endpoint [#3484](https://github.com/DataDog/datadog-api-client-go/pull/3484)
+
+### Changed
+* Remove steps from certain expected synthetics api response [#3565](https://github.com/DataDog/datadog-api-client-go/pull/3565)
+* Add documentation for GET, POST, PATCH, and DELETE api/v2/incidents/incident_id/attachments endpoints [#3508](https://github.com/DataDog/datadog-api-client-go/pull/3508)
+
 ## 2.52.0/2025-12-17
 
 ### Changed
