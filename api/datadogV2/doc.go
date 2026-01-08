@@ -658,6 +658,7 @@
 //   - [StaticAnalysisApi.CreateSCAResolveVulnerableSymbols]
 //   - [StaticAnalysisApi.CreateSCAResult]
 //   - [SyntheticsApi.GetOnDemandConcurrencyCap]
+//   - [SyntheticsApi.PatchGlobalVariable]
 //   - [SyntheticsApi.SetOnDemandConcurrencyCap]
 //   - [TeamsApi.AddMemberTeam]
 //   - [TeamsApi.AddTeamHierarchyLink]
