@@ -10,17 +10,12 @@ import (
 
 // WidgetTime - Time setting for the widget.
 type WidgetTime struct {
-	WidgetLegacyLiveSpan *WidgetLegacyLiveSpan
 	WidgetNewLiveSpan    *WidgetNewLiveSpan
 	WidgetNewFixedSpan   *WidgetNewFixedSpan
+	WidgetLegacyLiveSpan *WidgetLegacyLiveSpan
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
-}
-
-// WidgetLegacyLiveSpanAsWidgetTime is a convenience function that returns WidgetLegacyLiveSpan wrapped in WidgetTime.
-func WidgetLegacyLiveSpanAsWidgetTime(v *WidgetLegacyLiveSpan) WidgetTime {
-	return WidgetTime{WidgetLegacyLiveSpan: v}
 }
 
 // WidgetNewLiveSpanAsWidgetTime is a convenience function that returns WidgetNewLiveSpan wrapped in WidgetTime.
@@ -33,27 +28,15 @@ func WidgetNewFixedSpanAsWidgetTime(v *WidgetNewFixedSpan) WidgetTime {
 	return WidgetTime{WidgetNewFixedSpan: v}
 }
 
+// WidgetLegacyLiveSpanAsWidgetTime is a convenience function that returns WidgetLegacyLiveSpan wrapped in WidgetTime.
+func WidgetLegacyLiveSpanAsWidgetTime(v *WidgetLegacyLiveSpan) WidgetTime {
+	return WidgetTime{WidgetLegacyLiveSpan: v}
+}
+
 // UnmarshalJSON turns data into one of the pointers in the struct.
 func (obj *WidgetTime) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into WidgetLegacyLiveSpan
-	err = datadog.Unmarshal(data, &obj.WidgetLegacyLiveSpan)
-	if err == nil {
-		if obj.WidgetLegacyLiveSpan != nil && obj.WidgetLegacyLiveSpan.UnparsedObject == nil {
-			jsonWidgetLegacyLiveSpan, _ := datadog.Marshal(obj.WidgetLegacyLiveSpan)
-			if string(jsonWidgetLegacyLiveSpan) == "{}" && string(data) != "{}" { // empty struct
-				obj.WidgetLegacyLiveSpan = nil
-			} else {
-				match++
-			}
-		} else {
-			obj.WidgetLegacyLiveSpan = nil
-		}
-	} else {
-		obj.WidgetLegacyLiveSpan = nil
-	}
-
 	// try to unmarshal data into WidgetNewLiveSpan
 	err = datadog.Unmarshal(data, &obj.WidgetNewLiveSpan)
 	if err == nil {
@@ -88,11 +71,28 @@ func (obj *WidgetTime) UnmarshalJSON(data []byte) error {
 		obj.WidgetNewFixedSpan = nil
 	}
 
+	// try to unmarshal data into WidgetLegacyLiveSpan
+	err = datadog.Unmarshal(data, &obj.WidgetLegacyLiveSpan)
+	if err == nil {
+		if obj.WidgetLegacyLiveSpan != nil && obj.WidgetLegacyLiveSpan.UnparsedObject == nil {
+			jsonWidgetLegacyLiveSpan, _ := datadog.Marshal(obj.WidgetLegacyLiveSpan)
+			if string(jsonWidgetLegacyLiveSpan) == "{}" && string(data) != "{}" { // empty struct
+				obj.WidgetLegacyLiveSpan = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.WidgetLegacyLiveSpan = nil
+		}
+	} else {
+		obj.WidgetLegacyLiveSpan = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
-		obj.WidgetLegacyLiveSpan = nil
 		obj.WidgetNewLiveSpan = nil
 		obj.WidgetNewFixedSpan = nil
+		obj.WidgetLegacyLiveSpan = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -100,16 +100,16 @@ func (obj *WidgetTime) UnmarshalJSON(data []byte) error {
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj WidgetTime) MarshalJSON() ([]byte, error) {
-	if obj.WidgetLegacyLiveSpan != nil {
-		return datadog.Marshal(&obj.WidgetLegacyLiveSpan)
-	}
-
 	if obj.WidgetNewLiveSpan != nil {
 		return datadog.Marshal(&obj.WidgetNewLiveSpan)
 	}
 
 	if obj.WidgetNewFixedSpan != nil {
 		return datadog.Marshal(&obj.WidgetNewFixedSpan)
+	}
+
+	if obj.WidgetLegacyLiveSpan != nil {
+		return datadog.Marshal(&obj.WidgetLegacyLiveSpan)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -120,16 +120,16 @@ func (obj WidgetTime) MarshalJSON() ([]byte, error) {
 
 // GetActualInstance returns the actual instance.
 func (obj *WidgetTime) GetActualInstance() interface{} {
-	if obj.WidgetLegacyLiveSpan != nil {
-		return obj.WidgetLegacyLiveSpan
-	}
-
 	if obj.WidgetNewLiveSpan != nil {
 		return obj.WidgetNewLiveSpan
 	}
 
 	if obj.WidgetNewFixedSpan != nil {
 		return obj.WidgetNewFixedSpan
+	}
+
+	if obj.WidgetLegacyLiveSpan != nil {
+		return obj.WidgetLegacyLiveSpan
 	}
 
 	// all schemas are nil
