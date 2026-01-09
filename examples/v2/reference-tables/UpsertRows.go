@@ -16,10 +16,7 @@ func main() {
 		Data: []datadogV2.BatchUpsertRowsRequestData{
 			{
 				Attributes: &datadogV2.BatchUpsertRowsRequestDataAttributes{
-					Values: map[string]interface{}{
-						"example_key_value": "primary_key_value",
-						"name":              "row_name",
-					},
+					Values: map[string]datadogV2.BatchUpsertRowsRequestDataAttributesValue{},
 				},
 				Id:   "primary_key_value",
 				Type: datadogV2.TABLEROWRESOURCEDATATYPE_ROW,
