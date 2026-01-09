@@ -11,8 +11,10 @@ import (
 )
 
 // ObservabilityPipelineFluentdSource The `fluentd` source ingests logs from a Fluentd-compatible service.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineFluentdSource struct {
-	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (for example, as the `input` to downstream components).
+	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// Configuration for enabling TLS encryption between the pipeline component and external services.
 	Tls *ObservabilityPipelineTls `json:"tls,omitempty"`

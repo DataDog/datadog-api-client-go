@@ -12,11 +12,13 @@ import (
 
 // ObservabilityPipelineAmazonS3Source The `amazon_s3` source ingests logs from an Amazon S3 bucket.
 // It supports AWS authentication and TLS encryption.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineAmazonS3Source struct {
 	// AWS authentication credentials used for accessing AWS services such as S3.
 	// If omitted, the system’s default credentials are used (for example, the IAM role and environment variables).
 	Auth *ObservabilityPipelineAwsAuth `json:"auth,omitempty"`
-	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (e.g., as input to downstream components).
+	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// AWS region where the S3 bucket resides.
 	Region string `json:"region"`
