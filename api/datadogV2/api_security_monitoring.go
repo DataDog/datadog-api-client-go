@@ -4875,10 +4875,6 @@ func (r *ListSecurityFindingsOptionalParameters) WithSort(sort SecurityFindingsS
 // ListSecurityFindings List security findings.
 // Get a list of security findings that match a search query.
 //
-// This endpoint requires one of the following permissions:
-// - `security_monitoring_findings_read`
-// - `appsec_vm_read`
-//
 // ### Query Syntax
 //
 // This endpoint uses the logs query syntax. Findings attributes (living in the custom. namespace) are prefixed by @ when queried. Tags are queried without a prefix.
@@ -4897,15 +4893,6 @@ func (a *SecurityMonitoringApi) ListSecurityFindings(ctx _context.Context, o ...
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
-	}
-
-	operationId := "v2.ListSecurityFindings"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.ListSecurityFindings")
@@ -7079,10 +7066,6 @@ func (a *SecurityMonitoringApi) RunThreatHuntingJob(ctx _context.Context, body R
 // SearchSecurityFindings Search security findings.
 // Get a list of security findings that match a search query.
 //
-// This endpoint requires one of the following permissions:
-// - `security_monitoring_findings_read`
-// - `appsec_vm_read`
-//
 // ### Query Syntax
 //
 // The API uses the logs query syntax. Findings attributes (living in the custom. namespace) are prefixed by @ when queried. Tags are queried without a prefix.
@@ -7094,15 +7077,6 @@ func (a *SecurityMonitoringApi) SearchSecurityFindings(ctx _context.Context, bod
 		localVarPostBody    interface{}
 		localVarReturnValue ListSecurityFindingsResponse
 	)
-
-	operationId := "v2.SearchSecurityFindings"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.SearchSecurityFindings")
 	if err != nil {
