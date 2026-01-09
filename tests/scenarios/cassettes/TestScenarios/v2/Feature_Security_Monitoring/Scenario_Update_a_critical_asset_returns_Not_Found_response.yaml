@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"severity":"high"},"type":"critical_assets"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/critical_assets/00000000-0000-0000-0000-000000000001
+  response:
+    body: '{"errors":["not_found(Critical asset with ID 00000000-0000-0000-0000-000000000001
+      not found)"]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 2

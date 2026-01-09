@@ -1,0 +1,54 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"creation_author_id":367742,"creation_date":1758896636212,"query":"security:monitoring","rule_query":"source:k9","severity":"medium","tags":["team:security"],"update_author_id":367742,"update_date":1758896636212,"version":1},"type":"critical_assets"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/critical_assets
+  response:
+    body: '{"data":{"id":"84ce6af7-785b-4c7c-b7ff-e16aaf56dc62","type":"critical_assets","attributes":{"creation_author_id":1445416,"creation_date":1767380952301,"creator":{"handle":"frog@datadoghq.com","name":"frog"},"enabled":true,"query":"security:monitoring","rule_query":"source:k9","severity":"medium","tags":["team:security"],"update_author_id":1445416,"update_date":1767380952301,"updater":{"handle":"frog@datadoghq.com","name":"frog"},"version":1}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 1
+    method: GET
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/critical_assets/84ce6af7-785b-4c7c-b7ff-e16aaf56dc62
+  response:
+    body: '{"data":{"id":"84ce6af7-785b-4c7c-b7ff-e16aaf56dc62","type":"critical_assets","attributes":{"creation_author_id":1445416,"creation_date":1767380952301,"creator":{"handle":"frog@datadoghq.com","name":"frog"},"enabled":true,"query":"security:monitoring","rule_query":"source:k9","severity":"medium","tags":["team:security"],"update_author_id":1445416,"update_date":1767380952301,"updater":{"handle":"frog@datadoghq.com","name":"frog"},"version":1}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/critical_assets/84ce6af7-785b-4c7c-b7ff-e16aaf56dc62
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
