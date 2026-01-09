@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"creation_author_id":367742,"creation_date":1758896636212,"query":"security:monitoring","rule_query":"source:k9","severity":"medium","tags":["team:security"],"update_author_id":367742,"update_date":1758896636212,"version":1},"type":"critical_assets"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/critical_assets
+  response:
+    body: '{"data":{"id":"2e1a5425-7a69-4b22-adad-5ce715029124","type":"critical_assets","attributes":{"creation_author_id":1445416,"creation_date":1767380964724,"creator":{"handle":"frog@datadoghq.com","name":"frog"},"enabled":true,"query":"security:monitoring","rule_query":"source:k9","severity":"medium","tags":["team:security"],"update_author_id":1445416,"update_date":1767380964724,"updater":{"handle":"frog@datadoghq.com","name":"frog"},"version":1}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"enabled":false,"query":"no:alert","rule_query":"type:(log_detection OR signal_correlation OR workload_security OR application_security) ruleId:djg-ktx-ipq","severity":"decrease","tags":["env:production"],"version":1},"type":"critical_assets"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/critical_assets/2e1a5425-7a69-4b22-adad-5ce715029124
+  response:
+    body: '{"data":{"id":"2e1a5425-7a69-4b22-adad-5ce715029124","type":"critical_assets","attributes":{"creation_author_id":1445416,"creation_date":1767380964724,"creator":{"handle":"frog@datadoghq.com","name":"frog"},"enabled":false,"query":"no:alert","rule_query":"type:(log_detection
+      OR signal_correlation OR workload_security OR application_security) ruleId:djg-ktx-ipq","severity":"decrease","tags":["env:production"],"update_author_id":1445416,"update_date":1767380964839,"updater":{"handle":"frog@datadoghq.com","name":"frog"},"version":2}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/critical_assets/2e1a5425-7a69-4b22-adad-5ce715029124
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
