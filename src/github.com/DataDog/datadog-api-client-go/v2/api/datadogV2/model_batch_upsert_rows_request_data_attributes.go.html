@@ -69,8 +69,8 @@
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// BatchUpsertRowsRequestDataAttributes Attributes containing row data values for row creation or update operations.</span>
 <span id="L14" class="ln">    14  </span>type BatchUpsertRowsRequestDataAttributes struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// Key-value pairs representing row data, where keys are field names from the schema.</span>
-<span id="L16" class="ln">    16  </span>	Values map[string]interface{} `json:&#34;values&#34;`
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Key-value pairs representing row data, where keys are schema field names and values match the corresponding column types.</span>
+<span id="L16" class="ln">    16  </span>	Values map[string]BatchUpsertRowsRequestDataAttributesValue `json:&#34;values&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L18" class="ln">    18  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L19" class="ln">    19  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -80,7 +80,7 @@
 <span id="L23" class="ln">    23  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
 <span id="L24" class="ln">    24  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
 <span id="L25" class="ln">    25  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L26" class="ln">    26  </span>func NewBatchUpsertRowsRequestDataAttributes(values map[string]interface{}) *BatchUpsertRowsRequestDataAttributes {
+<span id="L26" class="ln">    26  </span>func NewBatchUpsertRowsRequestDataAttributes(values map[string]BatchUpsertRowsRequestDataAttributesValue) *BatchUpsertRowsRequestDataAttributes {
 <span id="L27" class="ln">    27  </span>	this := BatchUpsertRowsRequestDataAttributes{}
 <span id="L28" class="ln">    28  </span>	this.Values = values
 <span id="L29" class="ln">    29  </span>	return &amp;this
@@ -95,9 +95,9 @@
 <span id="L38" class="ln">    38  </span>}
 <span id="L39" class="ln">    39  </span>
 <span id="L40" class="ln">    40  </span><span class="comment">// GetValues returns the Values field value.</span>
-<span id="L41" class="ln">    41  </span>func (o *BatchUpsertRowsRequestDataAttributes) GetValues() map[string]interface{} {
+<span id="L41" class="ln">    41  </span>func (o *BatchUpsertRowsRequestDataAttributes) GetValues() map[string]BatchUpsertRowsRequestDataAttributesValue {
 <span id="L42" class="ln">    42  </span>	if o == nil {
-<span id="L43" class="ln">    43  </span>		var ret map[string]interface{}
+<span id="L43" class="ln">    43  </span>		var ret map[string]BatchUpsertRowsRequestDataAttributesValue
 <span id="L44" class="ln">    44  </span>		return ret
 <span id="L45" class="ln">    45  </span>	}
 <span id="L46" class="ln">    46  </span>	return o.Values
@@ -105,7 +105,7 @@
 <span id="L48" class="ln">    48  </span>
 <span id="L49" class="ln">    49  </span><span class="comment">// GetValuesOk returns a tuple with the Values field value</span>
 <span id="L50" class="ln">    50  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L51" class="ln">    51  </span>func (o *BatchUpsertRowsRequestDataAttributes) GetValuesOk() (*map[string]interface{}, bool) {
+<span id="L51" class="ln">    51  </span>func (o *BatchUpsertRowsRequestDataAttributes) GetValuesOk() (*map[string]BatchUpsertRowsRequestDataAttributesValue, bool) {
 <span id="L52" class="ln">    52  </span>	if o == nil {
 <span id="L53" class="ln">    53  </span>		return nil, false
 <span id="L54" class="ln">    54  </span>	}
@@ -113,7 +113,7 @@
 <span id="L56" class="ln">    56  </span>}
 <span id="L57" class="ln">    57  </span>
 <span id="L58" class="ln">    58  </span><span class="comment">// SetValues sets field value.</span>
-<span id="L59" class="ln">    59  </span>func (o *BatchUpsertRowsRequestDataAttributes) SetValues(v map[string]interface{}) {
+<span id="L59" class="ln">    59  </span>func (o *BatchUpsertRowsRequestDataAttributes) SetValues(v map[string]BatchUpsertRowsRequestDataAttributesValue) {
 <span id="L60" class="ln">    60  </span>	o.Values = v
 <span id="L61" class="ln">    61  </span>}
 <span id="L62" class="ln">    62  </span>
@@ -134,7 +134,7 @@
 <span id="L77" class="ln">    77  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L78" class="ln">    78  </span>func (o *BatchUpsertRowsRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L79" class="ln">    79  </span>	all := struct {
-<span id="L80" class="ln">    80  </span>		Values *map[string]interface{} `json:&#34;values&#34;`
+<span id="L80" class="ln">    80  </span>		Values *map[string]BatchUpsertRowsRequestDataAttributesValue `json:&#34;values&#34;`
 <span id="L81" class="ln">    81  </span>	}{}
 <span id="L82" class="ln">    82  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L83" class="ln">    83  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
