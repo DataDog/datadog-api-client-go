@@ -1,4 +1,4 @@
-// Get host tags returns "OK" response
+// Get Host Tags returns "OK" response
 
 package main
 
