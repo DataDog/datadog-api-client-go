@@ -21,9 +21,7 @@ type ObservabilityPipelineSampleProcessor struct {
 	// A Datadog search query used to determine which logs this processor targets.
 	Include string `json:"include"`
 	// The percentage of logs to sample.
-	Percentage *float64 `json:"percentage,omitempty"`
-	// Number of events to sample (1 in N).
-	Rate *int64 `json:"rate,omitempty"`
+	Percentage float64 `json:"percentage"`
 	// The processor type. The value should always be `sample`.
 	Type ObservabilityPipelineSampleProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -35,11 +33,12 @@ type ObservabilityPipelineSampleProcessor struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineSampleProcessor(enabled bool, id string, include string, typeVar ObservabilityPipelineSampleProcessorType) *ObservabilityPipelineSampleProcessor {
+func NewObservabilityPipelineSampleProcessor(enabled bool, id string, include string, percentage float64, typeVar ObservabilityPipelineSampleProcessorType) *ObservabilityPipelineSampleProcessor {
 	this := ObservabilityPipelineSampleProcessor{}
 	this.Enabled = enabled
 	this.Id = id
 	this.Include = include
+	this.Percentage = percentage
 	this.Type = typeVar
 	return &this
 }
@@ -151,60 +150,27 @@ func (o *ObservabilityPipelineSampleProcessor) SetInclude(v string) {
 	o.Include = v
 }
 
-// GetPercentage returns the Percentage field value if set, zero value otherwise.
+// GetPercentage returns the Percentage field value.
 func (o *ObservabilityPipelineSampleProcessor) GetPercentage() float64 {
-	if o == nil || o.Percentage == nil {
+	if o == nil {
 		var ret float64
 		return ret
 	}
-	return *o.Percentage
+	return o.Percentage
 }
 
-// GetPercentageOk returns a tuple with the Percentage field value if set, nil otherwise
+// GetPercentageOk returns a tuple with the Percentage field value
 // and a boolean to check if the value has been set.
 func (o *ObservabilityPipelineSampleProcessor) GetPercentageOk() (*float64, bool) {
-	if o == nil || o.Percentage == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Percentage, true
+	return &o.Percentage, true
 }
 
-// HasPercentage returns a boolean if a field has been set.
-func (o *ObservabilityPipelineSampleProcessor) HasPercentage() bool {
-	return o != nil && o.Percentage != nil
-}
-
-// SetPercentage gets a reference to the given float64 and assigns it to the Percentage field.
+// SetPercentage sets field value.
 func (o *ObservabilityPipelineSampleProcessor) SetPercentage(v float64) {
-	o.Percentage = &v
-}
-
-// GetRate returns the Rate field value if set, zero value otherwise.
-func (o *ObservabilityPipelineSampleProcessor) GetRate() int64 {
-	if o == nil || o.Rate == nil {
-		var ret int64
-		return ret
-	}
-	return *o.Rate
-}
-
-// GetRateOk returns a tuple with the Rate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineSampleProcessor) GetRateOk() (*int64, bool) {
-	if o == nil || o.Rate == nil {
-		return nil, false
-	}
-	return o.Rate, true
-}
-
-// HasRate returns a boolean if a field has been set.
-func (o *ObservabilityPipelineSampleProcessor) HasRate() bool {
-	return o != nil && o.Rate != nil
-}
-
-// SetRate gets a reference to the given int64 and assigns it to the Rate field.
-func (o *ObservabilityPipelineSampleProcessor) SetRate(v int64) {
-	o.Rate = &v
+	o.Percentage = v
 }
 
 // GetType returns the Type field value.
@@ -242,12 +208,7 @@ func (o ObservabilityPipelineSampleProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize["enabled"] = o.Enabled
 	toSerialize["id"] = o.Id
 	toSerialize["include"] = o.Include
-	if o.Percentage != nil {
-		toSerialize["percentage"] = o.Percentage
-	}
-	if o.Rate != nil {
-		toSerialize["rate"] = o.Rate
-	}
+	toSerialize["percentage"] = o.Percentage
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -263,8 +224,7 @@ func (o *ObservabilityPipelineSampleProcessor) UnmarshalJSON(bytes []byte) (err 
 		Enabled     *bool                                     `json:"enabled"`
 		Id          *string                                   `json:"id"`
 		Include     *string                                   `json:"include"`
-		Percentage  *float64                                  `json:"percentage,omitempty"`
-		Rate        *int64                                    `json:"rate,omitempty"`
+		Percentage  *float64                                  `json:"percentage"`
 		Type        *ObservabilityPipelineSampleProcessorType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -279,12 +239,15 @@ func (o *ObservabilityPipelineSampleProcessor) UnmarshalJSON(bytes []byte) (err 
 	if all.Include == nil {
 		return fmt.Errorf("required field include missing")
 	}
+	if all.Percentage == nil {
+		return fmt.Errorf("required field percentage missing")
+	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"display_name", "enabled", "id", "include", "percentage", "rate", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"display_name", "enabled", "id", "include", "percentage", "type"})
 	} else {
 		return err
 	}
@@ -294,8 +257,7 @@ func (o *ObservabilityPipelineSampleProcessor) UnmarshalJSON(bytes []byte) (err 
 	o.Enabled = *all.Enabled
 	o.Id = *all.Id
 	o.Include = *all.Include
-	o.Percentage = all.Percentage
-	o.Rate = all.Rate
+	o.Percentage = *all.Percentage
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
