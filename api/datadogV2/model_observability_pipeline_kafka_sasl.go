@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineKafkaSourceSasl Specifies the SASL mechanism for authenticating with a Kafka cluster.
-type ObservabilityPipelineKafkaSourceSasl struct {
+// ObservabilityPipelineKafkaSasl Specifies the SASL mechanism for authenticating with a Kafka cluster.
+type ObservabilityPipelineKafkaSasl struct {
 	// SASL mechanism used for Kafka authentication.
-	Mechanism *ObservabilityPipelinePipelineKafkaSourceSaslMechanism `json:"mechanism,omitempty"`
+	Mechanism *ObservabilityPipelineKafkaSaslMechanism `json:"mechanism,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewObservabilityPipelineKafkaSourceSasl instantiates a new ObservabilityPipelineKafkaSourceSasl object.
+// NewObservabilityPipelineKafkaSasl instantiates a new ObservabilityPipelineKafkaSasl object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineKafkaSourceSasl() *ObservabilityPipelineKafkaSourceSasl {
-	this := ObservabilityPipelineKafkaSourceSasl{}
+func NewObservabilityPipelineKafkaSasl() *ObservabilityPipelineKafkaSasl {
+	this := ObservabilityPipelineKafkaSasl{}
 	return &this
 }
 
-// NewObservabilityPipelineKafkaSourceSaslWithDefaults instantiates a new ObservabilityPipelineKafkaSourceSasl object.
+// NewObservabilityPipelineKafkaSaslWithDefaults instantiates a new ObservabilityPipelineKafkaSasl object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewObservabilityPipelineKafkaSourceSaslWithDefaults() *ObservabilityPipelineKafkaSourceSasl {
-	this := ObservabilityPipelineKafkaSourceSasl{}
+func NewObservabilityPipelineKafkaSaslWithDefaults() *ObservabilityPipelineKafkaSasl {
+	this := ObservabilityPipelineKafkaSasl{}
 	return &this
 }
 
 // GetMechanism returns the Mechanism field value if set, zero value otherwise.
-func (o *ObservabilityPipelineKafkaSourceSasl) GetMechanism() ObservabilityPipelinePipelineKafkaSourceSaslMechanism {
+func (o *ObservabilityPipelineKafkaSasl) GetMechanism() ObservabilityPipelineKafkaSaslMechanism {
 	if o == nil || o.Mechanism == nil {
-		var ret ObservabilityPipelinePipelineKafkaSourceSaslMechanism
+		var ret ObservabilityPipelineKafkaSaslMechanism
 		return ret
 	}
 	return *o.Mechanism
@@ -45,7 +45,7 @@ func (o *ObservabilityPipelineKafkaSourceSasl) GetMechanism() ObservabilityPipel
 
 // GetMechanismOk returns a tuple with the Mechanism field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineKafkaSourceSasl) GetMechanismOk() (*ObservabilityPipelinePipelineKafkaSourceSaslMechanism, bool) {
+func (o *ObservabilityPipelineKafkaSasl) GetMechanismOk() (*ObservabilityPipelineKafkaSaslMechanism, bool) {
 	if o == nil || o.Mechanism == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *ObservabilityPipelineKafkaSourceSasl) GetMechanismOk() (*ObservabilityP
 }
 
 // HasMechanism returns a boolean if a field has been set.
-func (o *ObservabilityPipelineKafkaSourceSasl) HasMechanism() bool {
+func (o *ObservabilityPipelineKafkaSasl) HasMechanism() bool {
 	return o != nil && o.Mechanism != nil
 }
 
-// SetMechanism gets a reference to the given ObservabilityPipelinePipelineKafkaSourceSaslMechanism and assigns it to the Mechanism field.
-func (o *ObservabilityPipelineKafkaSourceSasl) SetMechanism(v ObservabilityPipelinePipelineKafkaSourceSaslMechanism) {
+// SetMechanism gets a reference to the given ObservabilityPipelineKafkaSaslMechanism and assigns it to the Mechanism field.
+func (o *ObservabilityPipelineKafkaSasl) SetMechanism(v ObservabilityPipelineKafkaSaslMechanism) {
 	o.Mechanism = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ObservabilityPipelineKafkaSourceSasl) MarshalJSON() ([]byte, error) {
+func (o ObservabilityPipelineKafkaSasl) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,9 +79,9 @@ func (o ObservabilityPipelineKafkaSourceSasl) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ObservabilityPipelineKafkaSourceSasl) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ObservabilityPipelineKafkaSasl) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Mechanism *ObservabilityPipelinePipelineKafkaSourceSaslMechanism `json:"mechanism,omitempty"`
+		Mechanism *ObservabilityPipelineKafkaSaslMechanism `json:"mechanism,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
