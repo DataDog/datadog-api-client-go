@@ -12,6 +12,8 @@ import (
 
 // ObservabilityPipelineAmazonS3Source The `amazon_s3` source ingests logs from an Amazon S3 bucket.
 // It supports AWS authentication and TLS encryption.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineAmazonS3Source struct {
 	// AWS authentication credentials used for accessing AWS services such as S3.
 	// If omitted, the system’s default credentials are used (for example, the IAM role and environment variables).

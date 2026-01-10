@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineElasticsearchDestination The `elasticsearch` destination writes logs to an Elasticsearch cluster.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineElasticsearchDestination struct {
 	// The Elasticsearch API version to use. Set to `auto` to auto-detect.
 	ApiVersion *ObservabilityPipelineElasticsearchDestinationApiVersion `json:"api_version,omitempty"`

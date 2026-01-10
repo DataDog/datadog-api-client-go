@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineAmazonDataFirehoseSource The `amazon_data_firehose` source ingests logs from AWS Data Firehose.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineAmazonDataFirehoseSource struct {
 	// AWS authentication credentials used for accessing AWS services such as S3.
 	// If omitted, the system’s default credentials are used (for example, the IAM role and environment variables).

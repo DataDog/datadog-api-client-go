@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineHttpServerSource The `http_server` source collects logs over HTTP POST from external services.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineHttpServerSource struct {
 	// HTTP authentication method.
 	AuthStrategy ObservabilityPipelineHttpServerSourceAuthStrategy `json:"auth_strategy"`
