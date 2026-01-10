@@ -25,17 +25,6 @@ func main() {
 					}},
 				AwsAccountId: "123456789012",
 				AwsPartition: datadogV2.AWSACCOUNTPARTITION_AWS,
-				CcmConfig: &datadogV2.AWSCCMConfig{
-					DataExportConfigs: []datadogV2.DataExportConfig{
-						{
-							BucketName:   datadog.PtrString("my-bucket"),
-							BucketRegion: datadog.PtrString("us-east-1"),
-							ReportName:   datadog.PtrString("my-report"),
-							ReportPrefix: datadog.PtrString("reports"),
-							ReportType:   datadog.PtrString("CUR2.0"),
-						},
-					},
-				},
 				LogsConfig: &datadogV2.AWSLogsConfig{
 					LambdaForwarder: &datadogV2.AWSLambdaForwarderConfig{
 						Lambdas: []string{
