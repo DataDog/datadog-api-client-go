@@ -5201,6 +5201,7 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringHistsignals(ctx _context.C
 type ListSecurityMonitoringRulesOptionalParameters struct {
 	PageSize   *int64
 	PageNumber *int64
+	Query      *string
 }
 
 // NewListSecurityMonitoringRulesOptionalParameters creates an empty struct for parameters.
@@ -5218,6 +5219,12 @@ func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageSize(pageSize in
 // WithPageNumber sets the corresponding parameter name and returns the struct.
 func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageNumber(pageNumber int64) *ListSecurityMonitoringRulesOptionalParameters {
 	r.PageNumber = &pageNumber
+	return r
+}
+
+// WithQuery sets the corresponding parameter name and returns the struct.
+func (r *ListSecurityMonitoringRulesOptionalParameters) WithQuery(query string) *ListSecurityMonitoringRulesOptionalParameters {
+	r.Query = &query
 	return r
 }
 
@@ -5253,6 +5260,9 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringRules(ctx _context.Context
 	}
 	if optionalParams.PageNumber != nil {
 		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*optionalParams.PageNumber, ""))
+	}
+	if optionalParams.Query != nil {
+		localVarQueryParams.Add("query", datadog.ParameterToString(*optionalParams.Query, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
