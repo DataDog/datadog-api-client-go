@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineSocketDestination The `socket` destination sends logs over TCP or UDP to a remote server.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineSocketDestination struct {
 	// Encoding format for log events.
 	Encoding ObservabilityPipelineSocketDestinationEncoding `json:"encoding"`

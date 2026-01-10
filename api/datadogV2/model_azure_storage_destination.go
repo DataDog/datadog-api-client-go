@@ -11,6 +11,8 @@ import (
 )
 
 // AzureStorageDestination The `azure_storage` destination forwards logs to an Azure Blob Storage container.
+//
+// **Supported pipeline types:** logs
 type AzureStorageDestination struct {
 	// Optional prefix for blobs written to the container.
 	BlobPrefix *string `json:"blob_prefix,omitempty"`

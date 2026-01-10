@@ -11,10 +11,12 @@ import (
 )
 
 // ObservabilityPipelineSocketSource The `socket` source ingests logs over TCP or UDP.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineSocketSource struct {
 	// Framing method configuration for the socket source.
 	Framing ObservabilityPipelineSocketSourceFraming `json:"framing"`
-	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (e.g., as input to downstream components).
+	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// Protocol used to receive logs.
 	Mode ObservabilityPipelineSocketSourceMode `json:"mode"`

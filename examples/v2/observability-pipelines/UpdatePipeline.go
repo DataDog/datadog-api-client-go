@@ -30,7 +30,7 @@ func main() {
 								Type: datadogV2.OBSERVABILITYPIPELINEDATADOGLOGSDESTINATIONTYPE_DATADOG_LOGS,
 							}},
 					},
-					Processors: []datadogV2.ObservabilityPipelineConfigProcessorGroup{
+					ProcessorGroups: []datadogV2.ObservabilityPipelineConfigProcessorGroup{
 						{
 							Enabled: true,
 							Id:      "my-processor-group",
