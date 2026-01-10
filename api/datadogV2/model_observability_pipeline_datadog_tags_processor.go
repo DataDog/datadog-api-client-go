@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineDatadogTagsProcessor The `datadog_tags` processor includes or excludes specific Datadog tags in your logs.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineDatadogTagsProcessor struct {
 	// The action to take on tags with matching keys.
 	Action ObservabilityPipelineDatadogTagsProcessorAction `json:"action"`

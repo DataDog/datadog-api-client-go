@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineSocketSource The `socket` source ingests logs over TCP or UDP.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineSocketSource struct {
 	// Framing method configuration for the socket source.
 	Framing ObservabilityPipelineSocketSourceFraming `json:"framing"`

@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineCustomProcessor The `custom_processor` processor transforms events using [Vector Remap Language (VRL)](https://vector.dev/docs/reference/vrl/) scripts with advanced filtering capabilities.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineCustomProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`

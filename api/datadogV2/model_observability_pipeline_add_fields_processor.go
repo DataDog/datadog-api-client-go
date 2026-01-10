@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineAddFieldsProcessor The `add_fields` processor adds static key-value fields to logs.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineAddFieldsProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
