@@ -17,7 +17,7 @@ type {{ name }} struct {
 {%- else %}
 {%- for attr, schema in model.get("properties", {}).items() %}
 {%- set propertyName = attr|attribute_name %}
-{%- set dataType = get_type(schema, alternative_name=name + propertyName, render_nullable=True) %}
+{%- set dataType = get_type(schema, alternative_name=name + propertyName, render_nullable=True, required=(attr in model.get("required", []))) %}
 	// {{ schema.description|block_comment(prefix="//", first_line=False)|indent("\t") }}
 {%- if schema.deprecated %}
 	// Deprecated
