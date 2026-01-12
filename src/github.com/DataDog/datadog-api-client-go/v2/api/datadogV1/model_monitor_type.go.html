@@ -91,71 +91,73 @@
 <span id="L34" class="ln">    34  </span>	MONITORTYPE_DATABASE_MONITORING_ALERT MonitorType = &#34;database-monitoring alert&#34;
 <span id="L35" class="ln">    35  </span>	MONITORTYPE_NETWORK_PERFORMANCE_ALERT MonitorType = &#34;network-performance alert&#34;
 <span id="L36" class="ln">    36  </span>	MONITORTYPE_COST_ALERT                MonitorType = &#34;cost alert&#34;
-<span id="L37" class="ln">    37  </span>)
-<span id="L38" class="ln">    38  </span>
-<span id="L39" class="ln">    39  </span>var allowedMonitorTypeEnumValues = []MonitorType{
-<span id="L40" class="ln">    40  </span>	MONITORTYPE_COMPOSITE,
-<span id="L41" class="ln">    41  </span>	MONITORTYPE_EVENT_ALERT,
-<span id="L42" class="ln">    42  </span>	MONITORTYPE_LOG_ALERT,
-<span id="L43" class="ln">    43  </span>	MONITORTYPE_METRIC_ALERT,
-<span id="L44" class="ln">    44  </span>	MONITORTYPE_PROCESS_ALERT,
-<span id="L45" class="ln">    45  </span>	MONITORTYPE_QUERY_ALERT,
-<span id="L46" class="ln">    46  </span>	MONITORTYPE_RUM_ALERT,
-<span id="L47" class="ln">    47  </span>	MONITORTYPE_SERVICE_CHECK,
-<span id="L48" class="ln">    48  </span>	MONITORTYPE_SYNTHETICS_ALERT,
-<span id="L49" class="ln">    49  </span>	MONITORTYPE_TRACE_ANALYTICS_ALERT,
-<span id="L50" class="ln">    50  </span>	MONITORTYPE_SLO_ALERT,
-<span id="L51" class="ln">    51  </span>	MONITORTYPE_EVENT_V2_ALERT,
-<span id="L52" class="ln">    52  </span>	MONITORTYPE_AUDIT_ALERT,
-<span id="L53" class="ln">    53  </span>	MONITORTYPE_CI_PIPELINES_ALERT,
-<span id="L54" class="ln">    54  </span>	MONITORTYPE_CI_TESTS_ALERT,
-<span id="L55" class="ln">    55  </span>	MONITORTYPE_ERROR_TRACKING_ALERT,
-<span id="L56" class="ln">    56  </span>	MONITORTYPE_DATABASE_MONITORING_ALERT,
-<span id="L57" class="ln">    57  </span>	MONITORTYPE_NETWORK_PERFORMANCE_ALERT,
-<span id="L58" class="ln">    58  </span>	MONITORTYPE_COST_ALERT,
-<span id="L59" class="ln">    59  </span>}
-<span id="L60" class="ln">    60  </span>
-<span id="L61" class="ln">    61  </span><span class="comment">// GetAllowedValues reeturns the list of possible values.</span>
-<span id="L62" class="ln">    62  </span>func (v *MonitorType) GetAllowedValues() []MonitorType {
-<span id="L63" class="ln">    63  </span>	return allowedMonitorTypeEnumValues
-<span id="L64" class="ln">    64  </span>}
-<span id="L65" class="ln">    65  </span>
-<span id="L66" class="ln">    66  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L67" class="ln">    67  </span>func (v *MonitorType) UnmarshalJSON(src []byte) error {
-<span id="L68" class="ln">    68  </span>	var value string
-<span id="L69" class="ln">    69  </span>	err := datadog.Unmarshal(src, &amp;value)
-<span id="L70" class="ln">    70  </span>	if err != nil {
-<span id="L71" class="ln">    71  </span>		return err
-<span id="L72" class="ln">    72  </span>	}
-<span id="L73" class="ln">    73  </span>	*v = MonitorType(value)
-<span id="L74" class="ln">    74  </span>	return nil
-<span id="L75" class="ln">    75  </span>}
-<span id="L76" class="ln">    76  </span>
-<span id="L77" class="ln">    77  </span><span class="comment">// NewMonitorTypeFromValue returns a pointer to a valid MonitorType</span>
-<span id="L78" class="ln">    78  </span><span class="comment">// for the value passed as argument, or an error if the value passed is not allowed by the enum.</span>
-<span id="L79" class="ln">    79  </span>func NewMonitorTypeFromValue(v string) (*MonitorType, error) {
-<span id="L80" class="ln">    80  </span>	ev := MonitorType(v)
-<span id="L81" class="ln">    81  </span>	if ev.IsValid() {
-<span id="L82" class="ln">    82  </span>		return &amp;ev, nil
-<span id="L83" class="ln">    83  </span>	}
-<span id="L84" class="ln">    84  </span>	return nil, fmt.Errorf(&#34;invalid value &#39;%v&#39; for MonitorType: valid values are %v&#34;, v, allowedMonitorTypeEnumValues)
-<span id="L85" class="ln">    85  </span>}
-<span id="L86" class="ln">    86  </span>
-<span id="L87" class="ln">    87  </span><span class="comment">// IsValid return true if the value is valid for the enum, false otherwise.</span>
-<span id="L88" class="ln">    88  </span>func (v MonitorType) IsValid() bool {
-<span id="L89" class="ln">    89  </span>	for _, existing := range allowedMonitorTypeEnumValues {
-<span id="L90" class="ln">    90  </span>		if existing == v {
-<span id="L91" class="ln">    91  </span>			return true
-<span id="L92" class="ln">    92  </span>		}
-<span id="L93" class="ln">    93  </span>	}
-<span id="L94" class="ln">    94  </span>	return false
-<span id="L95" class="ln">    95  </span>}
-<span id="L96" class="ln">    96  </span>
-<span id="L97" class="ln">    97  </span><span class="comment">// Ptr returns reference to MonitorType value.</span>
-<span id="L98" class="ln">    98  </span>func (v MonitorType) Ptr() *MonitorType {
-<span id="L99" class="ln">    99  </span>	return &amp;v
-<span id="L100" class="ln">   100  </span>}
-<span id="L101" class="ln">   101  </span>
+<span id="L37" class="ln">    37  </span>	MONITORTYPE_DATA_QUALITY_ALERT        MonitorType = &#34;data-quality alert&#34;
+<span id="L38" class="ln">    38  </span>)
+<span id="L39" class="ln">    39  </span>
+<span id="L40" class="ln">    40  </span>var allowedMonitorTypeEnumValues = []MonitorType{
+<span id="L41" class="ln">    41  </span>	MONITORTYPE_COMPOSITE,
+<span id="L42" class="ln">    42  </span>	MONITORTYPE_EVENT_ALERT,
+<span id="L43" class="ln">    43  </span>	MONITORTYPE_LOG_ALERT,
+<span id="L44" class="ln">    44  </span>	MONITORTYPE_METRIC_ALERT,
+<span id="L45" class="ln">    45  </span>	MONITORTYPE_PROCESS_ALERT,
+<span id="L46" class="ln">    46  </span>	MONITORTYPE_QUERY_ALERT,
+<span id="L47" class="ln">    47  </span>	MONITORTYPE_RUM_ALERT,
+<span id="L48" class="ln">    48  </span>	MONITORTYPE_SERVICE_CHECK,
+<span id="L49" class="ln">    49  </span>	MONITORTYPE_SYNTHETICS_ALERT,
+<span id="L50" class="ln">    50  </span>	MONITORTYPE_TRACE_ANALYTICS_ALERT,
+<span id="L51" class="ln">    51  </span>	MONITORTYPE_SLO_ALERT,
+<span id="L52" class="ln">    52  </span>	MONITORTYPE_EVENT_V2_ALERT,
+<span id="L53" class="ln">    53  </span>	MONITORTYPE_AUDIT_ALERT,
+<span id="L54" class="ln">    54  </span>	MONITORTYPE_CI_PIPELINES_ALERT,
+<span id="L55" class="ln">    55  </span>	MONITORTYPE_CI_TESTS_ALERT,
+<span id="L56" class="ln">    56  </span>	MONITORTYPE_ERROR_TRACKING_ALERT,
+<span id="L57" class="ln">    57  </span>	MONITORTYPE_DATABASE_MONITORING_ALERT,
+<span id="L58" class="ln">    58  </span>	MONITORTYPE_NETWORK_PERFORMANCE_ALERT,
+<span id="L59" class="ln">    59  </span>	MONITORTYPE_COST_ALERT,
+<span id="L60" class="ln">    60  </span>	MONITORTYPE_DATA_QUALITY_ALERT,
+<span id="L61" class="ln">    61  </span>}
+<span id="L62" class="ln">    62  </span>
+<span id="L63" class="ln">    63  </span><span class="comment">// GetAllowedValues reeturns the list of possible values.</span>
+<span id="L64" class="ln">    64  </span>func (v *MonitorType) GetAllowedValues() []MonitorType {
+<span id="L65" class="ln">    65  </span>	return allowedMonitorTypeEnumValues
+<span id="L66" class="ln">    66  </span>}
+<span id="L67" class="ln">    67  </span>
+<span id="L68" class="ln">    68  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L69" class="ln">    69  </span>func (v *MonitorType) UnmarshalJSON(src []byte) error {
+<span id="L70" class="ln">    70  </span>	var value string
+<span id="L71" class="ln">    71  </span>	err := datadog.Unmarshal(src, &amp;value)
+<span id="L72" class="ln">    72  </span>	if err != nil {
+<span id="L73" class="ln">    73  </span>		return err
+<span id="L74" class="ln">    74  </span>	}
+<span id="L75" class="ln">    75  </span>	*v = MonitorType(value)
+<span id="L76" class="ln">    76  </span>	return nil
+<span id="L77" class="ln">    77  </span>}
+<span id="L78" class="ln">    78  </span>
+<span id="L79" class="ln">    79  </span><span class="comment">// NewMonitorTypeFromValue returns a pointer to a valid MonitorType</span>
+<span id="L80" class="ln">    80  </span><span class="comment">// for the value passed as argument, or an error if the value passed is not allowed by the enum.</span>
+<span id="L81" class="ln">    81  </span>func NewMonitorTypeFromValue(v string) (*MonitorType, error) {
+<span id="L82" class="ln">    82  </span>	ev := MonitorType(v)
+<span id="L83" class="ln">    83  </span>	if ev.IsValid() {
+<span id="L84" class="ln">    84  </span>		return &amp;ev, nil
+<span id="L85" class="ln">    85  </span>	}
+<span id="L86" class="ln">    86  </span>	return nil, fmt.Errorf(&#34;invalid value &#39;%v&#39; for MonitorType: valid values are %v&#34;, v, allowedMonitorTypeEnumValues)
+<span id="L87" class="ln">    87  </span>}
+<span id="L88" class="ln">    88  </span>
+<span id="L89" class="ln">    89  </span><span class="comment">// IsValid return true if the value is valid for the enum, false otherwise.</span>
+<span id="L90" class="ln">    90  </span>func (v MonitorType) IsValid() bool {
+<span id="L91" class="ln">    91  </span>	for _, existing := range allowedMonitorTypeEnumValues {
+<span id="L92" class="ln">    92  </span>		if existing == v {
+<span id="L93" class="ln">    93  </span>			return true
+<span id="L94" class="ln">    94  </span>		}
+<span id="L95" class="ln">    95  </span>	}
+<span id="L96" class="ln">    96  </span>	return false
+<span id="L97" class="ln">    97  </span>}
+<span id="L98" class="ln">    98  </span>
+<span id="L99" class="ln">    99  </span><span class="comment">// Ptr returns reference to MonitorType value.</span>
+<span id="L100" class="ln">   100  </span>func (v MonitorType) Ptr() *MonitorType {
+<span id="L101" class="ln">   101  </span>	return &amp;v
+<span id="L102" class="ln">   102  </span>}
+<span id="L103" class="ln">   103  </span>
 </pre><p></p>
 
 <div id="footer">
