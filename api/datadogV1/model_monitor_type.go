@@ -34,6 +34,7 @@ const (
 	MONITORTYPE_DATABASE_MONITORING_ALERT MonitorType = "database-monitoring alert"
 	MONITORTYPE_NETWORK_PERFORMANCE_ALERT MonitorType = "network-performance alert"
 	MONITORTYPE_COST_ALERT                MonitorType = "cost alert"
+	MONITORTYPE_DATA_QUALITY_ALERT        MonitorType = "data-quality alert"
 )
 
 var allowedMonitorTypeEnumValues = []MonitorType{
@@ -56,6 +57,7 @@ var allowedMonitorTypeEnumValues = []MonitorType{
 	MONITORTYPE_DATABASE_MONITORING_ALERT,
 	MONITORTYPE_NETWORK_PERFORMANCE_ALERT,
 	MONITORTYPE_COST_ALERT,
+	MONITORTYPE_DATA_QUALITY_ALERT,
 }
 
 // GetAllowedValues reeturns the list of possible values.
