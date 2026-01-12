@@ -10,8 +10,9 @@ import (
 
 // MonitorFormulaAndFunctionQueryDefinition - A formula and function query.
 type MonitorFormulaAndFunctionQueryDefinition struct {
-	MonitorFormulaAndFunctionEventQueryDefinition *MonitorFormulaAndFunctionEventQueryDefinition
-	MonitorFormulaAndFunctionCostQueryDefinition  *MonitorFormulaAndFunctionCostQueryDefinition
+	MonitorFormulaAndFunctionEventQueryDefinition       *MonitorFormulaAndFunctionEventQueryDefinition
+	MonitorFormulaAndFunctionCostQueryDefinition        *MonitorFormulaAndFunctionCostQueryDefinition
+	MonitorFormulaAndFunctionDataQualityQueryDefinition *MonitorFormulaAndFunctionDataQualityQueryDefinition
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -25,6 +26,11 @@ func MonitorFormulaAndFunctionEventQueryDefinitionAsMonitorFormulaAndFunctionQue
 // MonitorFormulaAndFunctionCostQueryDefinitionAsMonitorFormulaAndFunctionQueryDefinition is a convenience function that returns MonitorFormulaAndFunctionCostQueryDefinition wrapped in MonitorFormulaAndFunctionQueryDefinition.
 func MonitorFormulaAndFunctionCostQueryDefinitionAsMonitorFormulaAndFunctionQueryDefinition(v *MonitorFormulaAndFunctionCostQueryDefinition) MonitorFormulaAndFunctionQueryDefinition {
 	return MonitorFormulaAndFunctionQueryDefinition{MonitorFormulaAndFunctionCostQueryDefinition: v}
+}
+
+// MonitorFormulaAndFunctionDataQualityQueryDefinitionAsMonitorFormulaAndFunctionQueryDefinition is a convenience function that returns MonitorFormulaAndFunctionDataQualityQueryDefinition wrapped in MonitorFormulaAndFunctionQueryDefinition.
+func MonitorFormulaAndFunctionDataQualityQueryDefinitionAsMonitorFormulaAndFunctionQueryDefinition(v *MonitorFormulaAndFunctionDataQualityQueryDefinition) MonitorFormulaAndFunctionQueryDefinition {
+	return MonitorFormulaAndFunctionQueryDefinition{MonitorFormulaAndFunctionDataQualityQueryDefinition: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -65,10 +71,28 @@ func (obj *MonitorFormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) 
 		obj.MonitorFormulaAndFunctionCostQueryDefinition = nil
 	}
 
+	// try to unmarshal data into MonitorFormulaAndFunctionDataQualityQueryDefinition
+	err = datadog.Unmarshal(data, &obj.MonitorFormulaAndFunctionDataQualityQueryDefinition)
+	if err == nil {
+		if obj.MonitorFormulaAndFunctionDataQualityQueryDefinition != nil && obj.MonitorFormulaAndFunctionDataQualityQueryDefinition.UnparsedObject == nil {
+			jsonMonitorFormulaAndFunctionDataQualityQueryDefinition, _ := datadog.Marshal(obj.MonitorFormulaAndFunctionDataQualityQueryDefinition)
+			if string(jsonMonitorFormulaAndFunctionDataQualityQueryDefinition) == "{}" { // empty struct
+				obj.MonitorFormulaAndFunctionDataQualityQueryDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.MonitorFormulaAndFunctionDataQualityQueryDefinition = nil
+		}
+	} else {
+		obj.MonitorFormulaAndFunctionDataQualityQueryDefinition = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.MonitorFormulaAndFunctionEventQueryDefinition = nil
 		obj.MonitorFormulaAndFunctionCostQueryDefinition = nil
+		obj.MonitorFormulaAndFunctionDataQualityQueryDefinition = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -82,6 +106,10 @@ func (obj MonitorFormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error
 
 	if obj.MonitorFormulaAndFunctionCostQueryDefinition != nil {
 		return datadog.Marshal(&obj.MonitorFormulaAndFunctionCostQueryDefinition)
+	}
+
+	if obj.MonitorFormulaAndFunctionDataQualityQueryDefinition != nil {
+		return datadog.Marshal(&obj.MonitorFormulaAndFunctionDataQualityQueryDefinition)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -98,6 +126,10 @@ func (obj *MonitorFormulaAndFunctionQueryDefinition) GetActualInstance() interfa
 
 	if obj.MonitorFormulaAndFunctionCostQueryDefinition != nil {
 		return obj.MonitorFormulaAndFunctionCostQueryDefinition
+	}
+
+	if obj.MonitorFormulaAndFunctionDataQualityQueryDefinition != nil {
+		return obj.MonitorFormulaAndFunctionDataQualityQueryDefinition
 	}
 
 	// all schemas are nil
