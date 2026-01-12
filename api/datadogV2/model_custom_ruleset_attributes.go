@@ -22,7 +22,7 @@ type CustomRulesetAttributes struct {
 	// Ruleset name
 	Name string `json:"name"`
 	// Rules in the ruleset
-	Rules []CustomRule `json:"rules"`
+	Rules datadog.NullableList[CustomRule] `json:"rules"`
 	// Base64-encoded short description
 	ShortDescription string `json:"short_description"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -34,7 +34,7 @@ type CustomRulesetAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCustomRulesetAttributes(createdAt time.Time, createdBy string, description string, name string, rules []CustomRule, shortDescription string) *CustomRulesetAttributes {
+func NewCustomRulesetAttributes(createdAt time.Time, createdBy string, description string, name string, rules datadog.NullableList[CustomRule], shortDescription string) *CustomRulesetAttributes {
 	this := CustomRulesetAttributes{}
 	this.CreatedAt = createdAt
 	this.CreatedBy = createdBy
@@ -152,22 +152,22 @@ func (o *CustomRulesetAttributes) GetRules() []CustomRule {
 		var ret []CustomRule
 		return ret
 	}
-	return o.Rules
+	return *o.Rules.Get()
 }
 
 // GetRulesOk returns a tuple with the Rules field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CustomRulesetAttributes) GetRulesOk() (*[]CustomRule, bool) {
-	if o == nil || o.Rules == nil {
+	if o == nil {
 		return nil, false
 	}
-	return &o.Rules, true
+	return o.Rules.Get(), o.Rules.IsSet()
 }
 
 // SetRules sets field value.
 func (o *CustomRulesetAttributes) SetRules(v []CustomRule) {
-	o.Rules = v
+	o.Rules.Set(&v)
 }
 
 // GetShortDescription returns the ShortDescription field value.
@@ -207,9 +207,7 @@ func (o CustomRulesetAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["created_by"] = o.CreatedBy
 	toSerialize["description"] = o.Description
 	toSerialize["name"] = o.Name
-	if o.Rules != nil {
-		toSerialize["rules"] = o.Rules
-	}
+	toSerialize["rules"] = o.Rules.Get()
 	toSerialize["short_description"] = o.ShortDescription
 
 	for key, value := range o.AdditionalProperties {
@@ -221,12 +219,12 @@ func (o CustomRulesetAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomRulesetAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt        *time.Time   `json:"created_at"`
-		CreatedBy        *string      `json:"created_by"`
-		Description      *string      `json:"description"`
-		Name             *string      `json:"name"`
-		Rules            []CustomRule `json:"rules"`
-		ShortDescription *string      `json:"short_description"`
+		CreatedAt        *time.Time                       `json:"created_at"`
+		CreatedBy        *string                          `json:"created_by"`
+		Description      *string                          `json:"description"`
+		Name             *string                          `json:"name"`
+		Rules            datadog.NullableList[CustomRule] `json:"rules"`
+		ShortDescription *string                          `json:"short_description"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
