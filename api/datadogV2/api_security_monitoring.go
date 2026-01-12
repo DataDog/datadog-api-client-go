@@ -4873,11 +4873,11 @@ func (r *ListSecurityFindingsOptionalParameters) WithSort(sort SecurityFindingsS
 }
 
 // ListSecurityFindings List security findings.
-// Get a list of security findings that match a search query.
+// Get a list of security findings that match a search query. [See the schema for security findings](https://docs.datadoghq.com/security/guide/findings-schema/).
 //
 // ### Query Syntax
 //
-// This endpoint uses the logs query syntax. Findings attributes (living in the custom. namespace) are prefixed by @ when queried. Tags are queried without a prefix.
+// This endpoint uses the logs query syntax. Findings attributes (living in the attributes.attributes. namespace) are prefixed by @ when queried. Tags are queried without a prefix.
 //
 // Example: `@severity:(critical OR high) @status:open team:platform`
 func (a *SecurityMonitoringApi) ListSecurityFindings(ctx _context.Context, o ...ListSecurityFindingsOptionalParameters) (ListSecurityFindingsResponse, *_nethttp.Response, error) {
@@ -7064,11 +7064,11 @@ func (a *SecurityMonitoringApi) RunThreatHuntingJob(ctx _context.Context, body R
 }
 
 // SearchSecurityFindings Search security findings.
-// Get a list of security findings that match a search query.
+// Get a list of security findings that match a search query. [See the schema for security findings](https://docs.datadoghq.com/security/guide/findings-schema/).
 //
 // ### Query Syntax
 //
-// The API uses the logs query syntax. Findings attributes (living in the custom. namespace) are prefixed by @ when queried. Tags are queried without a prefix.
+// The API uses the logs query syntax. Findings attributes (living in the attributes.attributes. namespace) are prefixed by @ when queried. Tags are queried without a prefix.
 //
 // Example: `@severity:(critical OR high) @status:open team:platform`
 func (a *SecurityMonitoringApi) SearchSecurityFindings(ctx _context.Context, body SecurityFindingsSearchRequest) (ListSecurityFindingsResponse, *_nethttp.Response, error) {
