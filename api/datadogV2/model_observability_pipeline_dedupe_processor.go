@@ -11,10 +11,12 @@ import (
 )
 
 // ObservabilityPipelineDedupeProcessor The `dedupe` processor removes duplicate fields in log events.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineDedupeProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
-	// Whether this processor is enabled.
+	// Indicates whether the processor is enabled.
 	Enabled bool `json:"enabled"`
 	// A list of log field paths to check for duplicates.
 	Fields []string `json:"fields"`

@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineDatadogLogsDestination The `datadog_logs` destination forwards logs to Datadog Log Management.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineDatadogLogsDestination struct {
 	// The unique identifier for this component.
 	Id string `json:"id"`

@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineAmazonOpenSearchDestination The `amazon_opensearch` destination writes logs to Amazon OpenSearch.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineAmazonOpenSearchDestination struct {
 	// Authentication settings for the Amazon OpenSearch destination.
 	// The `strategy` field determines whether basic or AWS-based authentication is used.

@@ -11,11 +11,13 @@ import (
 )
 
 // ObservabilityPipelineAmazonDataFirehoseSource The `amazon_data_firehose` source ingests logs from AWS Data Firehose.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineAmazonDataFirehoseSource struct {
 	// AWS authentication credentials used for accessing AWS services such as S3.
 	// If omitted, the system’s default credentials are used (for example, the IAM role and environment variables).
 	Auth *ObservabilityPipelineAwsAuth `json:"auth,omitempty"`
-	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (e.g., as input to downstream components).
+	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// Configuration for enabling TLS encryption between the pipeline component and external services.
 	Tls *ObservabilityPipelineTls `json:"tls,omitempty"`

@@ -11,6 +11,8 @@ import (
 )
 
 // ObservabilityPipelineGooglePubSubDestination The `google_pubsub` destination publishes logs to a Google Cloud Pub/Sub topic.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineGooglePubSubDestination struct {
 	// GCP credentials used to authenticate with Google Cloud Storage.
 	Auth *ObservabilityPipelineGcpAuth `json:"auth,omitempty"`

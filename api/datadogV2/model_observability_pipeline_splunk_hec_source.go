@@ -11,8 +11,10 @@ import (
 )
 
 // ObservabilityPipelineSplunkHecSource The `splunk_hec` source implements the Splunk HTTP Event Collector (HEC) API.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineSplunkHecSource struct {
-	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (e.g., as input to downstream components).
+	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// Configuration for enabling TLS encryption between the pipeline component and external services.
 	Tls *ObservabilityPipelineTls `json:"tls,omitempty"`

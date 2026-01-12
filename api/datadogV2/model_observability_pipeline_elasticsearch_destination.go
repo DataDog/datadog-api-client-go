@@ -11,11 +11,15 @@ import (
 )
 
 // ObservabilityPipelineElasticsearchDestination The `elasticsearch` destination writes logs to an Elasticsearch cluster.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineElasticsearchDestination struct {
 	// The Elasticsearch API version to use. Set to `auto` to auto-detect.
 	ApiVersion *ObservabilityPipelineElasticsearchDestinationApiVersion `json:"api_version,omitempty"`
 	// The index to write logs to in Elasticsearch.
 	BulkIndex *string `json:"bulk_index,omitempty"`
+	// Configuration options for writing to Elasticsearch Data Streams instead of a fixed index.
+	DataStream *ObservabilityPipelineElasticsearchDestinationDataStream `json:"data_stream,omitempty"`
 	// The unique identifier for this component.
 	Id string `json:"id"`
 	// A list of component IDs whose output is used as the `input` for this component.
@@ -105,6 +109,34 @@ func (o *ObservabilityPipelineElasticsearchDestination) SetBulkIndex(v string) {
 	o.BulkIndex = &v
 }
 
+// GetDataStream returns the DataStream field value if set, zero value otherwise.
+func (o *ObservabilityPipelineElasticsearchDestination) GetDataStream() ObservabilityPipelineElasticsearchDestinationDataStream {
+	if o == nil || o.DataStream == nil {
+		var ret ObservabilityPipelineElasticsearchDestinationDataStream
+		return ret
+	}
+	return *o.DataStream
+}
+
+// GetDataStreamOk returns a tuple with the DataStream field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineElasticsearchDestination) GetDataStreamOk() (*ObservabilityPipelineElasticsearchDestinationDataStream, bool) {
+	if o == nil || o.DataStream == nil {
+		return nil, false
+	}
+	return o.DataStream, true
+}
+
+// HasDataStream returns a boolean if a field has been set.
+func (o *ObservabilityPipelineElasticsearchDestination) HasDataStream() bool {
+	return o != nil && o.DataStream != nil
+}
+
+// SetDataStream gets a reference to the given ObservabilityPipelineElasticsearchDestinationDataStream and assigns it to the DataStream field.
+func (o *ObservabilityPipelineElasticsearchDestination) SetDataStream(v ObservabilityPipelineElasticsearchDestinationDataStream) {
+	o.DataStream = &v
+}
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineElasticsearchDestination) GetId() string {
 	if o == nil {
@@ -186,6 +218,9 @@ func (o ObservabilityPipelineElasticsearchDestination) MarshalJSON() ([]byte, er
 	if o.BulkIndex != nil {
 		toSerialize["bulk_index"] = o.BulkIndex
 	}
+	if o.DataStream != nil {
+		toSerialize["data_stream"] = o.DataStream
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["inputs"] = o.Inputs
 	toSerialize["type"] = o.Type
@@ -201,6 +236,7 @@ func (o *ObservabilityPipelineElasticsearchDestination) UnmarshalJSON(bytes []by
 	all := struct {
 		ApiVersion *ObservabilityPipelineElasticsearchDestinationApiVersion `json:"api_version,omitempty"`
 		BulkIndex  *string                                                  `json:"bulk_index,omitempty"`
+		DataStream *ObservabilityPipelineElasticsearchDestinationDataStream `json:"data_stream,omitempty"`
 		Id         *string                                                  `json:"id"`
 		Inputs     *[]string                                                `json:"inputs"`
 		Type       *ObservabilityPipelineElasticsearchDestinationType       `json:"type"`
@@ -219,7 +255,7 @@ func (o *ObservabilityPipelineElasticsearchDestination) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_version", "bulk_index", "id", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_version", "bulk_index", "data_stream", "id", "inputs", "type"})
 	} else {
 		return err
 	}
@@ -231,6 +267,10 @@ func (o *ObservabilityPipelineElasticsearchDestination) UnmarshalJSON(bytes []by
 		o.ApiVersion = all.ApiVersion
 	}
 	o.BulkIndex = all.BulkIndex
+	if all.DataStream != nil && all.DataStream.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.DataStream = all.DataStream
 	o.Id = *all.Id
 	o.Inputs = *all.Inputs
 	if !all.Type.IsValid() {

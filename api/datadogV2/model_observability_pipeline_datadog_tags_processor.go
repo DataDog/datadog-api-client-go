@@ -11,14 +11,16 @@ import (
 )
 
 // ObservabilityPipelineDatadogTagsProcessor The `datadog_tags` processor includes or excludes specific Datadog tags in your logs.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineDatadogTagsProcessor struct {
 	// The action to take on tags with matching keys.
 	Action ObservabilityPipelineDatadogTagsProcessorAction `json:"action"`
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
-	// Whether this processor is enabled.
+	// Indicates whether the processor is enabled.
 	Enabled bool `json:"enabled"`
-	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (for example, as the `input` to downstream components).
+	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// A Datadog search query used to determine which logs this processor targets.
 	Include string `json:"include"`
