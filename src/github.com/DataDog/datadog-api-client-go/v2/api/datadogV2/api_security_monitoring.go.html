@@ -4930,11 +4930,11 @@
 <span id="L4873" class="ln">  4873  </span>}
 <span id="L4874" class="ln">  4874  </span>
 <span id="L4875" class="ln">  4875  </span><span class="comment">// ListSecurityFindings List security findings.</span>
-<span id="L4876" class="ln">  4876  </span><span class="comment">// Get a list of security findings that match a search query.</span>
+<span id="L4876" class="ln">  4876  </span><span class="comment">// Get a list of security findings that match a search query. [See the schema for security findings](https://docs.datadoghq.com/security/guide/findings-schema/).</span>
 <span id="L4877" class="ln">  4877  </span><span class="comment">//</span>
 <span id="L4878" class="ln">  4878  </span><span class="comment">// ### Query Syntax</span>
 <span id="L4879" class="ln">  4879  </span><span class="comment">//</span>
-<span id="L4880" class="ln">  4880  </span><span class="comment">// This endpoint uses the logs query syntax. Findings attributes (living in the custom. namespace) are prefixed by @ when queried. Tags are queried without a prefix.</span>
+<span id="L4880" class="ln">  4880  </span><span class="comment">// This endpoint uses the logs query syntax. Findings attributes (living in the attributes.attributes. namespace) are prefixed by @ when queried. Tags are queried without a prefix.</span>
 <span id="L4881" class="ln">  4881  </span><span class="comment">//</span>
 <span id="L4882" class="ln">  4882  </span><span class="comment">// Example: `@severity:(critical OR high) @status:open team:platform`</span>
 <span id="L4883" class="ln">  4883  </span>func (a *SecurityMonitoringApi) ListSecurityFindings(ctx _context.Context, o ...ListSecurityFindingsOptionalParameters) (ListSecurityFindingsResponse, *_nethttp.Response, error) {
@@ -7121,11 +7121,11 @@
 <span id="L7064" class="ln">  7064  </span>}
 <span id="L7065" class="ln">  7065  </span>
 <span id="L7066" class="ln">  7066  </span><span class="comment">// SearchSecurityFindings Search security findings.</span>
-<span id="L7067" class="ln">  7067  </span><span class="comment">// Get a list of security findings that match a search query.</span>
+<span id="L7067" class="ln">  7067  </span><span class="comment">// Get a list of security findings that match a search query. [See the schema for security findings](https://docs.datadoghq.com/security/guide/findings-schema/).</span>
 <span id="L7068" class="ln">  7068  </span><span class="comment">//</span>
 <span id="L7069" class="ln">  7069  </span><span class="comment">// ### Query Syntax</span>
 <span id="L7070" class="ln">  7070  </span><span class="comment">//</span>
-<span id="L7071" class="ln">  7071  </span><span class="comment">// The API uses the logs query syntax. Findings attributes (living in the custom. namespace) are prefixed by @ when queried. Tags are queried without a prefix.</span>
+<span id="L7071" class="ln">  7071  </span><span class="comment">// The API uses the logs query syntax. Findings attributes (living in the attributes.attributes. namespace) are prefixed by @ when queried. Tags are queried without a prefix.</span>
 <span id="L7072" class="ln">  7072  </span><span class="comment">//</span>
 <span id="L7073" class="ln">  7073  </span><span class="comment">// Example: `@severity:(critical OR high) @status:open team:platform`</span>
 <span id="L7074" class="ln">  7074  </span>func (a *SecurityMonitoringApi) SearchSecurityFindings(ctx _context.Context, body SecurityFindingsSearchRequest) (ListSecurityFindingsResponse, *_nethttp.Response, error) {
