@@ -91,7 +91,7 @@
 <span id="L34" class="ln">    34  </span>
 <span id="L35" class="ln">    35  </span><span class="comment">// CreateHostTags Add tags to a host.</span>
 <span id="L36" class="ln">    36  </span><span class="comment">// This endpoint allows you to add new tags to a host,</span>
-<span id="L37" class="ln">    37  </span><span class="comment">// optionally specifying where these tags come from.</span>
+<span id="L37" class="ln">    37  </span><span class="comment">// optionally specifying what source these tags come from. If tags already exist, appends new tags to the tag list. If no source is specified, defaults to &#34;user&#34;.</span>
 <span id="L38" class="ln">    38  </span>func (a *TagsApi) CreateHostTags(ctx _context.Context, hostName string, body HostTags, o ...CreateHostTagsOptionalParameters) (HostTags, *_nethttp.Response, error) {
 <span id="L39" class="ln">    39  </span>	var (
 <span id="L40" class="ln">    40  </span>		localVarHTTPMethod  = _nethttp.MethodPost
@@ -200,8 +200,8 @@
 <span id="L143" class="ln">   143  </span>}
 <span id="L144" class="ln">   144  </span>
 <span id="L145" class="ln">   145  </span><span class="comment">// DeleteHostTags Remove host tags.</span>
-<span id="L146" class="ln">   146  </span><span class="comment">// This endpoint allows you to remove all user-assigned tags</span>
-<span id="L147" class="ln">   147  </span><span class="comment">// for a single host.</span>
+<span id="L146" class="ln">   146  </span><span class="comment">// This endpoint allows you to remove all tags</span>
+<span id="L147" class="ln">   147  </span><span class="comment">// for a single host. If no source is specified, only deletes from the source &#34;User&#34;.</span>
 <span id="L148" class="ln">   148  </span>func (a *TagsApi) DeleteHostTags(ctx _context.Context, hostName string, o ...DeleteHostTagsOptionalParameters) (*_nethttp.Response, error) {
 <span id="L149" class="ln">   149  </span>	var (
 <span id="L150" class="ln">   150  </span>		localVarHTTPMethod = _nethttp.MethodDelete
@@ -296,7 +296,7 @@
 <span id="L239" class="ln">   239  </span>	return r
 <span id="L240" class="ln">   240  </span>}
 <span id="L241" class="ln">   241  </span>
-<span id="L242" class="ln">   242  </span><span class="comment">// GetHostTags Get host tags.</span>
+<span id="L242" class="ln">   242  </span><span class="comment">// GetHostTags Get Host Tags.</span>
 <span id="L243" class="ln">   243  </span><span class="comment">// Return the list of tags that apply to a given host.</span>
 <span id="L244" class="ln">   244  </span>func (a *TagsApi) GetHostTags(ctx _context.Context, hostName string, o ...GetHostTagsOptionalParameters) (HostTags, *_nethttp.Response, error) {
 <span id="L245" class="ln">   245  </span>	var (
@@ -402,8 +402,8 @@
 <span id="L345" class="ln">   345  </span>	return r
 <span id="L346" class="ln">   346  </span>}
 <span id="L347" class="ln">   347  </span>
-<span id="L348" class="ln">   348  </span><span class="comment">// ListHostTags Get Tags.</span>
-<span id="L349" class="ln">   349  </span><span class="comment">// Return a mapping of tags to hosts for your whole infrastructure.</span>
+<span id="L348" class="ln">   348  </span><span class="comment">// ListHostTags Get All Host Tags.</span>
+<span id="L349" class="ln">   349  </span><span class="comment">// Returns a mapping of tags to hosts. For each tag, the response returns a list of host names that contain this tag. There is a restriction of 10k total host names from the org that can be attached to tags and returned.</span>
 <span id="L350" class="ln">   350  </span>func (a *TagsApi) ListHostTags(ctx _context.Context, o ...ListHostTagsOptionalParameters) (TagToHosts, *_nethttp.Response, error) {
 <span id="L351" class="ln">   351  </span>	var (
 <span id="L352" class="ln">   352  </span>		localVarHTTPMethod  = _nethttp.MethodGet
