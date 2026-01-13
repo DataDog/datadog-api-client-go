@@ -53,7 +53,7 @@ func main() {
 										PrimaryTagName: datadog.PtrString("datacenter"),
 										OperationName:  datadog.PtrString("universal.http.client"),
 									}},
-								RequestType: datadogV1.DISTRIBUTIONWIDGETHISTOGRAMREQUESTTYPE_HISTOGRAM.Ptr(),
+								RequestType: datadogV1.WIDGETHISTOGRAMREQUESTTYPE_HISTOGRAM.Ptr(),
 								Style: &datadogV1.WidgetStyle{
 									Palette: datadog.PtrString("dog_classic"),
 								},
