@@ -1,0 +1,676 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_observability_pipeline_kafka_destination.go - Datadog</title>
+
+<link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/datadog-api-client-go/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.24.11";</script>
+<script src="/datadog-api-client-go/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog | Datadog API client for GO</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_observability_pipeline_kafka_destination.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">github.com/DataDog/datadog-api-client-go/v2/api/datadogV2</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span><span class="comment">// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.</span>
+<span id="L2" class="ln">     2  </span><span class="comment">// This product includes software developed at Datadog (https://www.datadoghq.com/).</span>
+<span id="L3" class="ln">     3  </span><span class="comment">// Copyright 2019-Present Datadog, Inc.</span>
+<span id="L4" class="ln">     4  </span>
+<span id="L5" class="ln">     5  </span>package datadogV2
+<span id="L6" class="ln">     6  </span>
+<span id="L7" class="ln">     7  </span>import (
+<span id="L8" class="ln">     8  </span>	&#34;fmt&#34;
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
+<span id="L11" class="ln">    11  </span>)
+<span id="L12" class="ln">    12  </span>
+<span id="L13" class="ln">    13  </span><span class="comment">// ObservabilityPipelineKafkaDestination The `kafka` destination sends logs to Apache Kafka topics.</span>
+<span id="L14" class="ln">    14  </span><span class="comment">//</span>
+<span id="L15" class="ln">    15  </span><span class="comment">// **Supported pipeline types:** logs</span>
+<span id="L16" class="ln">    16  </span>type ObservabilityPipelineKafkaDestination struct {
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Compression codec for Kafka messages.</span>
+<span id="L18" class="ln">    18  </span>	Compression *ObservabilityPipelineKafkaDestinationCompression `json:&#34;compression,omitempty&#34;`
+<span id="L19" class="ln">    19  </span>	<span class="comment">// Encoding format for log events.</span>
+<span id="L20" class="ln">    20  </span>	Encoding ObservabilityPipelineKafkaDestinationEncoding `json:&#34;encoding&#34;`
+<span id="L21" class="ln">    21  </span>	<span class="comment">// The field name to use for Kafka message headers.</span>
+<span id="L22" class="ln">    22  </span>	HeadersKey *string `json:&#34;headers_key,omitempty&#34;`
+<span id="L23" class="ln">    23  </span>	<span class="comment">// The unique identifier for this component.</span>
+<span id="L24" class="ln">    24  </span>	Id string `json:&#34;id&#34;`
+<span id="L25" class="ln">    25  </span>	<span class="comment">// A list of component IDs whose output is used as the `input` for this component.</span>
+<span id="L26" class="ln">    26  </span>	Inputs []string `json:&#34;inputs&#34;`
+<span id="L27" class="ln">    27  </span>	<span class="comment">// The field name to use as the Kafka message key.</span>
+<span id="L28" class="ln">    28  </span>	KeyField *string `json:&#34;key_field,omitempty&#34;`
+<span id="L29" class="ln">    29  </span>	<span class="comment">// Optional list of advanced Kafka producer configuration options, defined as key-value pairs.</span>
+<span id="L30" class="ln">    30  </span>	LibrdkafkaOptions []ObservabilityPipelineKafkaLibrdkafkaOption `json:&#34;librdkafka_options,omitempty&#34;`
+<span id="L31" class="ln">    31  </span>	<span class="comment">// Maximum time in milliseconds to wait for message delivery confirmation.</span>
+<span id="L32" class="ln">    32  </span>	MessageTimeoutMs *int64 `json:&#34;message_timeout_ms,omitempty&#34;`
+<span id="L33" class="ln">    33  </span>	<span class="comment">// Duration in seconds for the rate limit window.</span>
+<span id="L34" class="ln">    34  </span>	RateLimitDurationSecs *int64 `json:&#34;rate_limit_duration_secs,omitempty&#34;`
+<span id="L35" class="ln">    35  </span>	<span class="comment">// Maximum number of messages allowed per rate limit duration.</span>
+<span id="L36" class="ln">    36  </span>	RateLimitNum *int64 `json:&#34;rate_limit_num,omitempty&#34;`
+<span id="L37" class="ln">    37  </span>	<span class="comment">// Specifies the SASL mechanism for authenticating with a Kafka cluster.</span>
+<span id="L38" class="ln">    38  </span>	Sasl *ObservabilityPipelineKafkaSasl `json:&#34;sasl,omitempty&#34;`
+<span id="L39" class="ln">    39  </span>	<span class="comment">// Socket timeout in milliseconds for network requests.</span>
+<span id="L40" class="ln">    40  </span>	SocketTimeoutMs *int64 `json:&#34;socket_timeout_ms,omitempty&#34;`
+<span id="L41" class="ln">    41  </span>	<span class="comment">// Configuration for enabling TLS encryption between the pipeline component and external services.</span>
+<span id="L42" class="ln">    42  </span>	Tls *ObservabilityPipelineTls `json:&#34;tls,omitempty&#34;`
+<span id="L43" class="ln">    43  </span>	<span class="comment">// The Kafka topic name to publish logs to.</span>
+<span id="L44" class="ln">    44  </span>	Topic string `json:&#34;topic&#34;`
+<span id="L45" class="ln">    45  </span>	<span class="comment">// The destination type. The value should always be `kafka`.</span>
+<span id="L46" class="ln">    46  </span>	Type ObservabilityPipelineKafkaDestinationType `json:&#34;type&#34;`
+<span id="L47" class="ln">    47  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L48" class="ln">    48  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L49" class="ln">    49  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L50" class="ln">    50  </span>}
+<span id="L51" class="ln">    51  </span>
+<span id="L52" class="ln">    52  </span><span class="comment">// NewObservabilityPipelineKafkaDestination instantiates a new ObservabilityPipelineKafkaDestination object.</span>
+<span id="L53" class="ln">    53  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L54" class="ln">    54  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L55" class="ln">    55  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L56" class="ln">    56  </span>func NewObservabilityPipelineKafkaDestination(encoding ObservabilityPipelineKafkaDestinationEncoding, id string, inputs []string, topic string, typeVar ObservabilityPipelineKafkaDestinationType) *ObservabilityPipelineKafkaDestination {
+<span id="L57" class="ln">    57  </span>	this := ObservabilityPipelineKafkaDestination{}
+<span id="L58" class="ln">    58  </span>	this.Encoding = encoding
+<span id="L59" class="ln">    59  </span>	this.Id = id
+<span id="L60" class="ln">    60  </span>	this.Inputs = inputs
+<span id="L61" class="ln">    61  </span>	this.Topic = topic
+<span id="L62" class="ln">    62  </span>	this.Type = typeVar
+<span id="L63" class="ln">    63  </span>	return &amp;this
+<span id="L64" class="ln">    64  </span>}
+<span id="L65" class="ln">    65  </span>
+<span id="L66" class="ln">    66  </span><span class="comment">// NewObservabilityPipelineKafkaDestinationWithDefaults instantiates a new ObservabilityPipelineKafkaDestination object.</span>
+<span id="L67" class="ln">    67  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L68" class="ln">    68  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L69" class="ln">    69  </span>func NewObservabilityPipelineKafkaDestinationWithDefaults() *ObservabilityPipelineKafkaDestination {
+<span id="L70" class="ln">    70  </span>	this := ObservabilityPipelineKafkaDestination{}
+<span id="L71" class="ln">    71  </span>	var typeVar ObservabilityPipelineKafkaDestinationType = OBSERVABILITYPIPELINEKAFKADESTINATIONTYPE_KAFKA
+<span id="L72" class="ln">    72  </span>	this.Type = typeVar
+<span id="L73" class="ln">    73  </span>	return &amp;this
+<span id="L74" class="ln">    74  </span>}
+<span id="L75" class="ln">    75  </span>
+<span id="L76" class="ln">    76  </span><span class="comment">// GetCompression returns the Compression field value if set, zero value otherwise.</span>
+<span id="L77" class="ln">    77  </span>func (o *ObservabilityPipelineKafkaDestination) GetCompression() ObservabilityPipelineKafkaDestinationCompression {
+<span id="L78" class="ln">    78  </span>	if o == nil || o.Compression == nil {
+<span id="L79" class="ln">    79  </span>		var ret ObservabilityPipelineKafkaDestinationCompression
+<span id="L80" class="ln">    80  </span>		return ret
+<span id="L81" class="ln">    81  </span>	}
+<span id="L82" class="ln">    82  </span>	return *o.Compression
+<span id="L83" class="ln">    83  </span>}
+<span id="L84" class="ln">    84  </span>
+<span id="L85" class="ln">    85  </span><span class="comment">// GetCompressionOk returns a tuple with the Compression field value if set, nil otherwise</span>
+<span id="L86" class="ln">    86  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L87" class="ln">    87  </span>func (o *ObservabilityPipelineKafkaDestination) GetCompressionOk() (*ObservabilityPipelineKafkaDestinationCompression, bool) {
+<span id="L88" class="ln">    88  </span>	if o == nil || o.Compression == nil {
+<span id="L89" class="ln">    89  </span>		return nil, false
+<span id="L90" class="ln">    90  </span>	}
+<span id="L91" class="ln">    91  </span>	return o.Compression, true
+<span id="L92" class="ln">    92  </span>}
+<span id="L93" class="ln">    93  </span>
+<span id="L94" class="ln">    94  </span><span class="comment">// HasCompression returns a boolean if a field has been set.</span>
+<span id="L95" class="ln">    95  </span>func (o *ObservabilityPipelineKafkaDestination) HasCompression() bool {
+<span id="L96" class="ln">    96  </span>	return o != nil &amp;&amp; o.Compression != nil
+<span id="L97" class="ln">    97  </span>}
+<span id="L98" class="ln">    98  </span>
+<span id="L99" class="ln">    99  </span><span class="comment">// SetCompression gets a reference to the given ObservabilityPipelineKafkaDestinationCompression and assigns it to the Compression field.</span>
+<span id="L100" class="ln">   100  </span>func (o *ObservabilityPipelineKafkaDestination) SetCompression(v ObservabilityPipelineKafkaDestinationCompression) {
+<span id="L101" class="ln">   101  </span>	o.Compression = &amp;v
+<span id="L102" class="ln">   102  </span>}
+<span id="L103" class="ln">   103  </span>
+<span id="L104" class="ln">   104  </span><span class="comment">// GetEncoding returns the Encoding field value.</span>
+<span id="L105" class="ln">   105  </span>func (o *ObservabilityPipelineKafkaDestination) GetEncoding() ObservabilityPipelineKafkaDestinationEncoding {
+<span id="L106" class="ln">   106  </span>	if o == nil {
+<span id="L107" class="ln">   107  </span>		var ret ObservabilityPipelineKafkaDestinationEncoding
+<span id="L108" class="ln">   108  </span>		return ret
+<span id="L109" class="ln">   109  </span>	}
+<span id="L110" class="ln">   110  </span>	return o.Encoding
+<span id="L111" class="ln">   111  </span>}
+<span id="L112" class="ln">   112  </span>
+<span id="L113" class="ln">   113  </span><span class="comment">// GetEncodingOk returns a tuple with the Encoding field value</span>
+<span id="L114" class="ln">   114  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L115" class="ln">   115  </span>func (o *ObservabilityPipelineKafkaDestination) GetEncodingOk() (*ObservabilityPipelineKafkaDestinationEncoding, bool) {
+<span id="L116" class="ln">   116  </span>	if o == nil {
+<span id="L117" class="ln">   117  </span>		return nil, false
+<span id="L118" class="ln">   118  </span>	}
+<span id="L119" class="ln">   119  </span>	return &amp;o.Encoding, true
+<span id="L120" class="ln">   120  </span>}
+<span id="L121" class="ln">   121  </span>
+<span id="L122" class="ln">   122  </span><span class="comment">// SetEncoding sets field value.</span>
+<span id="L123" class="ln">   123  </span>func (o *ObservabilityPipelineKafkaDestination) SetEncoding(v ObservabilityPipelineKafkaDestinationEncoding) {
+<span id="L124" class="ln">   124  </span>	o.Encoding = v
+<span id="L125" class="ln">   125  </span>}
+<span id="L126" class="ln">   126  </span>
+<span id="L127" class="ln">   127  </span><span class="comment">// GetHeadersKey returns the HeadersKey field value if set, zero value otherwise.</span>
+<span id="L128" class="ln">   128  </span>func (o *ObservabilityPipelineKafkaDestination) GetHeadersKey() string {
+<span id="L129" class="ln">   129  </span>	if o == nil || o.HeadersKey == nil {
+<span id="L130" class="ln">   130  </span>		var ret string
+<span id="L131" class="ln">   131  </span>		return ret
+<span id="L132" class="ln">   132  </span>	}
+<span id="L133" class="ln">   133  </span>	return *o.HeadersKey
+<span id="L134" class="ln">   134  </span>}
+<span id="L135" class="ln">   135  </span>
+<span id="L136" class="ln">   136  </span><span class="comment">// GetHeadersKeyOk returns a tuple with the HeadersKey field value if set, nil otherwise</span>
+<span id="L137" class="ln">   137  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L138" class="ln">   138  </span>func (o *ObservabilityPipelineKafkaDestination) GetHeadersKeyOk() (*string, bool) {
+<span id="L139" class="ln">   139  </span>	if o == nil || o.HeadersKey == nil {
+<span id="L140" class="ln">   140  </span>		return nil, false
+<span id="L141" class="ln">   141  </span>	}
+<span id="L142" class="ln">   142  </span>	return o.HeadersKey, true
+<span id="L143" class="ln">   143  </span>}
+<span id="L144" class="ln">   144  </span>
+<span id="L145" class="ln">   145  </span><span class="comment">// HasHeadersKey returns a boolean if a field has been set.</span>
+<span id="L146" class="ln">   146  </span>func (o *ObservabilityPipelineKafkaDestination) HasHeadersKey() bool {
+<span id="L147" class="ln">   147  </span>	return o != nil &amp;&amp; o.HeadersKey != nil
+<span id="L148" class="ln">   148  </span>}
+<span id="L149" class="ln">   149  </span>
+<span id="L150" class="ln">   150  </span><span class="comment">// SetHeadersKey gets a reference to the given string and assigns it to the HeadersKey field.</span>
+<span id="L151" class="ln">   151  </span>func (o *ObservabilityPipelineKafkaDestination) SetHeadersKey(v string) {
+<span id="L152" class="ln">   152  </span>	o.HeadersKey = &amp;v
+<span id="L153" class="ln">   153  </span>}
+<span id="L154" class="ln">   154  </span>
+<span id="L155" class="ln">   155  </span><span class="comment">// GetId returns the Id field value.</span>
+<span id="L156" class="ln">   156  </span>func (o *ObservabilityPipelineKafkaDestination) GetId() string {
+<span id="L157" class="ln">   157  </span>	if o == nil {
+<span id="L158" class="ln">   158  </span>		var ret string
+<span id="L159" class="ln">   159  </span>		return ret
+<span id="L160" class="ln">   160  </span>	}
+<span id="L161" class="ln">   161  </span>	return o.Id
+<span id="L162" class="ln">   162  </span>}
+<span id="L163" class="ln">   163  </span>
+<span id="L164" class="ln">   164  </span><span class="comment">// GetIdOk returns a tuple with the Id field value</span>
+<span id="L165" class="ln">   165  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L166" class="ln">   166  </span>func (o *ObservabilityPipelineKafkaDestination) GetIdOk() (*string, bool) {
+<span id="L167" class="ln">   167  </span>	if o == nil {
+<span id="L168" class="ln">   168  </span>		return nil, false
+<span id="L169" class="ln">   169  </span>	}
+<span id="L170" class="ln">   170  </span>	return &amp;o.Id, true
+<span id="L171" class="ln">   171  </span>}
+<span id="L172" class="ln">   172  </span>
+<span id="L173" class="ln">   173  </span><span class="comment">// SetId sets field value.</span>
+<span id="L174" class="ln">   174  </span>func (o *ObservabilityPipelineKafkaDestination) SetId(v string) {
+<span id="L175" class="ln">   175  </span>	o.Id = v
+<span id="L176" class="ln">   176  </span>}
+<span id="L177" class="ln">   177  </span>
+<span id="L178" class="ln">   178  </span><span class="comment">// GetInputs returns the Inputs field value.</span>
+<span id="L179" class="ln">   179  </span>func (o *ObservabilityPipelineKafkaDestination) GetInputs() []string {
+<span id="L180" class="ln">   180  </span>	if o == nil {
+<span id="L181" class="ln">   181  </span>		var ret []string
+<span id="L182" class="ln">   182  </span>		return ret
+<span id="L183" class="ln">   183  </span>	}
+<span id="L184" class="ln">   184  </span>	return o.Inputs
+<span id="L185" class="ln">   185  </span>}
+<span id="L186" class="ln">   186  </span>
+<span id="L187" class="ln">   187  </span><span class="comment">// GetInputsOk returns a tuple with the Inputs field value</span>
+<span id="L188" class="ln">   188  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L189" class="ln">   189  </span>func (o *ObservabilityPipelineKafkaDestination) GetInputsOk() (*[]string, bool) {
+<span id="L190" class="ln">   190  </span>	if o == nil {
+<span id="L191" class="ln">   191  </span>		return nil, false
+<span id="L192" class="ln">   192  </span>	}
+<span id="L193" class="ln">   193  </span>	return &amp;o.Inputs, true
+<span id="L194" class="ln">   194  </span>}
+<span id="L195" class="ln">   195  </span>
+<span id="L196" class="ln">   196  </span><span class="comment">// SetInputs sets field value.</span>
+<span id="L197" class="ln">   197  </span>func (o *ObservabilityPipelineKafkaDestination) SetInputs(v []string) {
+<span id="L198" class="ln">   198  </span>	o.Inputs = v
+<span id="L199" class="ln">   199  </span>}
+<span id="L200" class="ln">   200  </span>
+<span id="L201" class="ln">   201  </span><span class="comment">// GetKeyField returns the KeyField field value if set, zero value otherwise.</span>
+<span id="L202" class="ln">   202  </span>func (o *ObservabilityPipelineKafkaDestination) GetKeyField() string {
+<span id="L203" class="ln">   203  </span>	if o == nil || o.KeyField == nil {
+<span id="L204" class="ln">   204  </span>		var ret string
+<span id="L205" class="ln">   205  </span>		return ret
+<span id="L206" class="ln">   206  </span>	}
+<span id="L207" class="ln">   207  </span>	return *o.KeyField
+<span id="L208" class="ln">   208  </span>}
+<span id="L209" class="ln">   209  </span>
+<span id="L210" class="ln">   210  </span><span class="comment">// GetKeyFieldOk returns a tuple with the KeyField field value if set, nil otherwise</span>
+<span id="L211" class="ln">   211  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L212" class="ln">   212  </span>func (o *ObservabilityPipelineKafkaDestination) GetKeyFieldOk() (*string, bool) {
+<span id="L213" class="ln">   213  </span>	if o == nil || o.KeyField == nil {
+<span id="L214" class="ln">   214  </span>		return nil, false
+<span id="L215" class="ln">   215  </span>	}
+<span id="L216" class="ln">   216  </span>	return o.KeyField, true
+<span id="L217" class="ln">   217  </span>}
+<span id="L218" class="ln">   218  </span>
+<span id="L219" class="ln">   219  </span><span class="comment">// HasKeyField returns a boolean if a field has been set.</span>
+<span id="L220" class="ln">   220  </span>func (o *ObservabilityPipelineKafkaDestination) HasKeyField() bool {
+<span id="L221" class="ln">   221  </span>	return o != nil &amp;&amp; o.KeyField != nil
+<span id="L222" class="ln">   222  </span>}
+<span id="L223" class="ln">   223  </span>
+<span id="L224" class="ln">   224  </span><span class="comment">// SetKeyField gets a reference to the given string and assigns it to the KeyField field.</span>
+<span id="L225" class="ln">   225  </span>func (o *ObservabilityPipelineKafkaDestination) SetKeyField(v string) {
+<span id="L226" class="ln">   226  </span>	o.KeyField = &amp;v
+<span id="L227" class="ln">   227  </span>}
+<span id="L228" class="ln">   228  </span>
+<span id="L229" class="ln">   229  </span><span class="comment">// GetLibrdkafkaOptions returns the LibrdkafkaOptions field value if set, zero value otherwise.</span>
+<span id="L230" class="ln">   230  </span>func (o *ObservabilityPipelineKafkaDestination) GetLibrdkafkaOptions() []ObservabilityPipelineKafkaLibrdkafkaOption {
+<span id="L231" class="ln">   231  </span>	if o == nil || o.LibrdkafkaOptions == nil {
+<span id="L232" class="ln">   232  </span>		var ret []ObservabilityPipelineKafkaLibrdkafkaOption
+<span id="L233" class="ln">   233  </span>		return ret
+<span id="L234" class="ln">   234  </span>	}
+<span id="L235" class="ln">   235  </span>	return o.LibrdkafkaOptions
+<span id="L236" class="ln">   236  </span>}
+<span id="L237" class="ln">   237  </span>
+<span id="L238" class="ln">   238  </span><span class="comment">// GetLibrdkafkaOptionsOk returns a tuple with the LibrdkafkaOptions field value if set, nil otherwise</span>
+<span id="L239" class="ln">   239  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L240" class="ln">   240  </span>func (o *ObservabilityPipelineKafkaDestination) GetLibrdkafkaOptionsOk() (*[]ObservabilityPipelineKafkaLibrdkafkaOption, bool) {
+<span id="L241" class="ln">   241  </span>	if o == nil || o.LibrdkafkaOptions == nil {
+<span id="L242" class="ln">   242  </span>		return nil, false
+<span id="L243" class="ln">   243  </span>	}
+<span id="L244" class="ln">   244  </span>	return &amp;o.LibrdkafkaOptions, true
+<span id="L245" class="ln">   245  </span>}
+<span id="L246" class="ln">   246  </span>
+<span id="L247" class="ln">   247  </span><span class="comment">// HasLibrdkafkaOptions returns a boolean if a field has been set.</span>
+<span id="L248" class="ln">   248  </span>func (o *ObservabilityPipelineKafkaDestination) HasLibrdkafkaOptions() bool {
+<span id="L249" class="ln">   249  </span>	return o != nil &amp;&amp; o.LibrdkafkaOptions != nil
+<span id="L250" class="ln">   250  </span>}
+<span id="L251" class="ln">   251  </span>
+<span id="L252" class="ln">   252  </span><span class="comment">// SetLibrdkafkaOptions gets a reference to the given []ObservabilityPipelineKafkaLibrdkafkaOption and assigns it to the LibrdkafkaOptions field.</span>
+<span id="L253" class="ln">   253  </span>func (o *ObservabilityPipelineKafkaDestination) SetLibrdkafkaOptions(v []ObservabilityPipelineKafkaLibrdkafkaOption) {
+<span id="L254" class="ln">   254  </span>	o.LibrdkafkaOptions = v
+<span id="L255" class="ln">   255  </span>}
+<span id="L256" class="ln">   256  </span>
+<span id="L257" class="ln">   257  </span><span class="comment">// GetMessageTimeoutMs returns the MessageTimeoutMs field value if set, zero value otherwise.</span>
+<span id="L258" class="ln">   258  </span>func (o *ObservabilityPipelineKafkaDestination) GetMessageTimeoutMs() int64 {
+<span id="L259" class="ln">   259  </span>	if o == nil || o.MessageTimeoutMs == nil {
+<span id="L260" class="ln">   260  </span>		var ret int64
+<span id="L261" class="ln">   261  </span>		return ret
+<span id="L262" class="ln">   262  </span>	}
+<span id="L263" class="ln">   263  </span>	return *o.MessageTimeoutMs
+<span id="L264" class="ln">   264  </span>}
+<span id="L265" class="ln">   265  </span>
+<span id="L266" class="ln">   266  </span><span class="comment">// GetMessageTimeoutMsOk returns a tuple with the MessageTimeoutMs field value if set, nil otherwise</span>
+<span id="L267" class="ln">   267  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L268" class="ln">   268  </span>func (o *ObservabilityPipelineKafkaDestination) GetMessageTimeoutMsOk() (*int64, bool) {
+<span id="L269" class="ln">   269  </span>	if o == nil || o.MessageTimeoutMs == nil {
+<span id="L270" class="ln">   270  </span>		return nil, false
+<span id="L271" class="ln">   271  </span>	}
+<span id="L272" class="ln">   272  </span>	return o.MessageTimeoutMs, true
+<span id="L273" class="ln">   273  </span>}
+<span id="L274" class="ln">   274  </span>
+<span id="L275" class="ln">   275  </span><span class="comment">// HasMessageTimeoutMs returns a boolean if a field has been set.</span>
+<span id="L276" class="ln">   276  </span>func (o *ObservabilityPipelineKafkaDestination) HasMessageTimeoutMs() bool {
+<span id="L277" class="ln">   277  </span>	return o != nil &amp;&amp; o.MessageTimeoutMs != nil
+<span id="L278" class="ln">   278  </span>}
+<span id="L279" class="ln">   279  </span>
+<span id="L280" class="ln">   280  </span><span class="comment">// SetMessageTimeoutMs gets a reference to the given int64 and assigns it to the MessageTimeoutMs field.</span>
+<span id="L281" class="ln">   281  </span>func (o *ObservabilityPipelineKafkaDestination) SetMessageTimeoutMs(v int64) {
+<span id="L282" class="ln">   282  </span>	o.MessageTimeoutMs = &amp;v
+<span id="L283" class="ln">   283  </span>}
+<span id="L284" class="ln">   284  </span>
+<span id="L285" class="ln">   285  </span><span class="comment">// GetRateLimitDurationSecs returns the RateLimitDurationSecs field value if set, zero value otherwise.</span>
+<span id="L286" class="ln">   286  </span>func (o *ObservabilityPipelineKafkaDestination) GetRateLimitDurationSecs() int64 {
+<span id="L287" class="ln">   287  </span>	if o == nil || o.RateLimitDurationSecs == nil {
+<span id="L288" class="ln">   288  </span>		var ret int64
+<span id="L289" class="ln">   289  </span>		return ret
+<span id="L290" class="ln">   290  </span>	}
+<span id="L291" class="ln">   291  </span>	return *o.RateLimitDurationSecs
+<span id="L292" class="ln">   292  </span>}
+<span id="L293" class="ln">   293  </span>
+<span id="L294" class="ln">   294  </span><span class="comment">// GetRateLimitDurationSecsOk returns a tuple with the RateLimitDurationSecs field value if set, nil otherwise</span>
+<span id="L295" class="ln">   295  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L296" class="ln">   296  </span>func (o *ObservabilityPipelineKafkaDestination) GetRateLimitDurationSecsOk() (*int64, bool) {
+<span id="L297" class="ln">   297  </span>	if o == nil || o.RateLimitDurationSecs == nil {
+<span id="L298" class="ln">   298  </span>		return nil, false
+<span id="L299" class="ln">   299  </span>	}
+<span id="L300" class="ln">   300  </span>	return o.RateLimitDurationSecs, true
+<span id="L301" class="ln">   301  </span>}
+<span id="L302" class="ln">   302  </span>
+<span id="L303" class="ln">   303  </span><span class="comment">// HasRateLimitDurationSecs returns a boolean if a field has been set.</span>
+<span id="L304" class="ln">   304  </span>func (o *ObservabilityPipelineKafkaDestination) HasRateLimitDurationSecs() bool {
+<span id="L305" class="ln">   305  </span>	return o != nil &amp;&amp; o.RateLimitDurationSecs != nil
+<span id="L306" class="ln">   306  </span>}
+<span id="L307" class="ln">   307  </span>
+<span id="L308" class="ln">   308  </span><span class="comment">// SetRateLimitDurationSecs gets a reference to the given int64 and assigns it to the RateLimitDurationSecs field.</span>
+<span id="L309" class="ln">   309  </span>func (o *ObservabilityPipelineKafkaDestination) SetRateLimitDurationSecs(v int64) {
+<span id="L310" class="ln">   310  </span>	o.RateLimitDurationSecs = &amp;v
+<span id="L311" class="ln">   311  </span>}
+<span id="L312" class="ln">   312  </span>
+<span id="L313" class="ln">   313  </span><span class="comment">// GetRateLimitNum returns the RateLimitNum field value if set, zero value otherwise.</span>
+<span id="L314" class="ln">   314  </span>func (o *ObservabilityPipelineKafkaDestination) GetRateLimitNum() int64 {
+<span id="L315" class="ln">   315  </span>	if o == nil || o.RateLimitNum == nil {
+<span id="L316" class="ln">   316  </span>		var ret int64
+<span id="L317" class="ln">   317  </span>		return ret
+<span id="L318" class="ln">   318  </span>	}
+<span id="L319" class="ln">   319  </span>	return *o.RateLimitNum
+<span id="L320" class="ln">   320  </span>}
+<span id="L321" class="ln">   321  </span>
+<span id="L322" class="ln">   322  </span><span class="comment">// GetRateLimitNumOk returns a tuple with the RateLimitNum field value if set, nil otherwise</span>
+<span id="L323" class="ln">   323  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L324" class="ln">   324  </span>func (o *ObservabilityPipelineKafkaDestination) GetRateLimitNumOk() (*int64, bool) {
+<span id="L325" class="ln">   325  </span>	if o == nil || o.RateLimitNum == nil {
+<span id="L326" class="ln">   326  </span>		return nil, false
+<span id="L327" class="ln">   327  </span>	}
+<span id="L328" class="ln">   328  </span>	return o.RateLimitNum, true
+<span id="L329" class="ln">   329  </span>}
+<span id="L330" class="ln">   330  </span>
+<span id="L331" class="ln">   331  </span><span class="comment">// HasRateLimitNum returns a boolean if a field has been set.</span>
+<span id="L332" class="ln">   332  </span>func (o *ObservabilityPipelineKafkaDestination) HasRateLimitNum() bool {
+<span id="L333" class="ln">   333  </span>	return o != nil &amp;&amp; o.RateLimitNum != nil
+<span id="L334" class="ln">   334  </span>}
+<span id="L335" class="ln">   335  </span>
+<span id="L336" class="ln">   336  </span><span class="comment">// SetRateLimitNum gets a reference to the given int64 and assigns it to the RateLimitNum field.</span>
+<span id="L337" class="ln">   337  </span>func (o *ObservabilityPipelineKafkaDestination) SetRateLimitNum(v int64) {
+<span id="L338" class="ln">   338  </span>	o.RateLimitNum = &amp;v
+<span id="L339" class="ln">   339  </span>}
+<span id="L340" class="ln">   340  </span>
+<span id="L341" class="ln">   341  </span><span class="comment">// GetSasl returns the Sasl field value if set, zero value otherwise.</span>
+<span id="L342" class="ln">   342  </span>func (o *ObservabilityPipelineKafkaDestination) GetSasl() ObservabilityPipelineKafkaSasl {
+<span id="L343" class="ln">   343  </span>	if o == nil || o.Sasl == nil {
+<span id="L344" class="ln">   344  </span>		var ret ObservabilityPipelineKafkaSasl
+<span id="L345" class="ln">   345  </span>		return ret
+<span id="L346" class="ln">   346  </span>	}
+<span id="L347" class="ln">   347  </span>	return *o.Sasl
+<span id="L348" class="ln">   348  </span>}
+<span id="L349" class="ln">   349  </span>
+<span id="L350" class="ln">   350  </span><span class="comment">// GetSaslOk returns a tuple with the Sasl field value if set, nil otherwise</span>
+<span id="L351" class="ln">   351  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L352" class="ln">   352  </span>func (o *ObservabilityPipelineKafkaDestination) GetSaslOk() (*ObservabilityPipelineKafkaSasl, bool) {
+<span id="L353" class="ln">   353  </span>	if o == nil || o.Sasl == nil {
+<span id="L354" class="ln">   354  </span>		return nil, false
+<span id="L355" class="ln">   355  </span>	}
+<span id="L356" class="ln">   356  </span>	return o.Sasl, true
+<span id="L357" class="ln">   357  </span>}
+<span id="L358" class="ln">   358  </span>
+<span id="L359" class="ln">   359  </span><span class="comment">// HasSasl returns a boolean if a field has been set.</span>
+<span id="L360" class="ln">   360  </span>func (o *ObservabilityPipelineKafkaDestination) HasSasl() bool {
+<span id="L361" class="ln">   361  </span>	return o != nil &amp;&amp; o.Sasl != nil
+<span id="L362" class="ln">   362  </span>}
+<span id="L363" class="ln">   363  </span>
+<span id="L364" class="ln">   364  </span><span class="comment">// SetSasl gets a reference to the given ObservabilityPipelineKafkaSasl and assigns it to the Sasl field.</span>
+<span id="L365" class="ln">   365  </span>func (o *ObservabilityPipelineKafkaDestination) SetSasl(v ObservabilityPipelineKafkaSasl) {
+<span id="L366" class="ln">   366  </span>	o.Sasl = &amp;v
+<span id="L367" class="ln">   367  </span>}
+<span id="L368" class="ln">   368  </span>
+<span id="L369" class="ln">   369  </span><span class="comment">// GetSocketTimeoutMs returns the SocketTimeoutMs field value if set, zero value otherwise.</span>
+<span id="L370" class="ln">   370  </span>func (o *ObservabilityPipelineKafkaDestination) GetSocketTimeoutMs() int64 {
+<span id="L371" class="ln">   371  </span>	if o == nil || o.SocketTimeoutMs == nil {
+<span id="L372" class="ln">   372  </span>		var ret int64
+<span id="L373" class="ln">   373  </span>		return ret
+<span id="L374" class="ln">   374  </span>	}
+<span id="L375" class="ln">   375  </span>	return *o.SocketTimeoutMs
+<span id="L376" class="ln">   376  </span>}
+<span id="L377" class="ln">   377  </span>
+<span id="L378" class="ln">   378  </span><span class="comment">// GetSocketTimeoutMsOk returns a tuple with the SocketTimeoutMs field value if set, nil otherwise</span>
+<span id="L379" class="ln">   379  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L380" class="ln">   380  </span>func (o *ObservabilityPipelineKafkaDestination) GetSocketTimeoutMsOk() (*int64, bool) {
+<span id="L381" class="ln">   381  </span>	if o == nil || o.SocketTimeoutMs == nil {
+<span id="L382" class="ln">   382  </span>		return nil, false
+<span id="L383" class="ln">   383  </span>	}
+<span id="L384" class="ln">   384  </span>	return o.SocketTimeoutMs, true
+<span id="L385" class="ln">   385  </span>}
+<span id="L386" class="ln">   386  </span>
+<span id="L387" class="ln">   387  </span><span class="comment">// HasSocketTimeoutMs returns a boolean if a field has been set.</span>
+<span id="L388" class="ln">   388  </span>func (o *ObservabilityPipelineKafkaDestination) HasSocketTimeoutMs() bool {
+<span id="L389" class="ln">   389  </span>	return o != nil &amp;&amp; o.SocketTimeoutMs != nil
+<span id="L390" class="ln">   390  </span>}
+<span id="L391" class="ln">   391  </span>
+<span id="L392" class="ln">   392  </span><span class="comment">// SetSocketTimeoutMs gets a reference to the given int64 and assigns it to the SocketTimeoutMs field.</span>
+<span id="L393" class="ln">   393  </span>func (o *ObservabilityPipelineKafkaDestination) SetSocketTimeoutMs(v int64) {
+<span id="L394" class="ln">   394  </span>	o.SocketTimeoutMs = &amp;v
+<span id="L395" class="ln">   395  </span>}
+<span id="L396" class="ln">   396  </span>
+<span id="L397" class="ln">   397  </span><span class="comment">// GetTls returns the Tls field value if set, zero value otherwise.</span>
+<span id="L398" class="ln">   398  </span>func (o *ObservabilityPipelineKafkaDestination) GetTls() ObservabilityPipelineTls {
+<span id="L399" class="ln">   399  </span>	if o == nil || o.Tls == nil {
+<span id="L400" class="ln">   400  </span>		var ret ObservabilityPipelineTls
+<span id="L401" class="ln">   401  </span>		return ret
+<span id="L402" class="ln">   402  </span>	}
+<span id="L403" class="ln">   403  </span>	return *o.Tls
+<span id="L404" class="ln">   404  </span>}
+<span id="L405" class="ln">   405  </span>
+<span id="L406" class="ln">   406  </span><span class="comment">// GetTlsOk returns a tuple with the Tls field value if set, nil otherwise</span>
+<span id="L407" class="ln">   407  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L408" class="ln">   408  </span>func (o *ObservabilityPipelineKafkaDestination) GetTlsOk() (*ObservabilityPipelineTls, bool) {
+<span id="L409" class="ln">   409  </span>	if o == nil || o.Tls == nil {
+<span id="L410" class="ln">   410  </span>		return nil, false
+<span id="L411" class="ln">   411  </span>	}
+<span id="L412" class="ln">   412  </span>	return o.Tls, true
+<span id="L413" class="ln">   413  </span>}
+<span id="L414" class="ln">   414  </span>
+<span id="L415" class="ln">   415  </span><span class="comment">// HasTls returns a boolean if a field has been set.</span>
+<span id="L416" class="ln">   416  </span>func (o *ObservabilityPipelineKafkaDestination) HasTls() bool {
+<span id="L417" class="ln">   417  </span>	return o != nil &amp;&amp; o.Tls != nil
+<span id="L418" class="ln">   418  </span>}
+<span id="L419" class="ln">   419  </span>
+<span id="L420" class="ln">   420  </span><span class="comment">// SetTls gets a reference to the given ObservabilityPipelineTls and assigns it to the Tls field.</span>
+<span id="L421" class="ln">   421  </span>func (o *ObservabilityPipelineKafkaDestination) SetTls(v ObservabilityPipelineTls) {
+<span id="L422" class="ln">   422  </span>	o.Tls = &amp;v
+<span id="L423" class="ln">   423  </span>}
+<span id="L424" class="ln">   424  </span>
+<span id="L425" class="ln">   425  </span><span class="comment">// GetTopic returns the Topic field value.</span>
+<span id="L426" class="ln">   426  </span>func (o *ObservabilityPipelineKafkaDestination) GetTopic() string {
+<span id="L427" class="ln">   427  </span>	if o == nil {
+<span id="L428" class="ln">   428  </span>		var ret string
+<span id="L429" class="ln">   429  </span>		return ret
+<span id="L430" class="ln">   430  </span>	}
+<span id="L431" class="ln">   431  </span>	return o.Topic
+<span id="L432" class="ln">   432  </span>}
+<span id="L433" class="ln">   433  </span>
+<span id="L434" class="ln">   434  </span><span class="comment">// GetTopicOk returns a tuple with the Topic field value</span>
+<span id="L435" class="ln">   435  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L436" class="ln">   436  </span>func (o *ObservabilityPipelineKafkaDestination) GetTopicOk() (*string, bool) {
+<span id="L437" class="ln">   437  </span>	if o == nil {
+<span id="L438" class="ln">   438  </span>		return nil, false
+<span id="L439" class="ln">   439  </span>	}
+<span id="L440" class="ln">   440  </span>	return &amp;o.Topic, true
+<span id="L441" class="ln">   441  </span>}
+<span id="L442" class="ln">   442  </span>
+<span id="L443" class="ln">   443  </span><span class="comment">// SetTopic sets field value.</span>
+<span id="L444" class="ln">   444  </span>func (o *ObservabilityPipelineKafkaDestination) SetTopic(v string) {
+<span id="L445" class="ln">   445  </span>	o.Topic = v
+<span id="L446" class="ln">   446  </span>}
+<span id="L447" class="ln">   447  </span>
+<span id="L448" class="ln">   448  </span><span class="comment">// GetType returns the Type field value.</span>
+<span id="L449" class="ln">   449  </span>func (o *ObservabilityPipelineKafkaDestination) GetType() ObservabilityPipelineKafkaDestinationType {
+<span id="L450" class="ln">   450  </span>	if o == nil {
+<span id="L451" class="ln">   451  </span>		var ret ObservabilityPipelineKafkaDestinationType
+<span id="L452" class="ln">   452  </span>		return ret
+<span id="L453" class="ln">   453  </span>	}
+<span id="L454" class="ln">   454  </span>	return o.Type
+<span id="L455" class="ln">   455  </span>}
+<span id="L456" class="ln">   456  </span>
+<span id="L457" class="ln">   457  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value</span>
+<span id="L458" class="ln">   458  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L459" class="ln">   459  </span>func (o *ObservabilityPipelineKafkaDestination) GetTypeOk() (*ObservabilityPipelineKafkaDestinationType, bool) {
+<span id="L460" class="ln">   460  </span>	if o == nil {
+<span id="L461" class="ln">   461  </span>		return nil, false
+<span id="L462" class="ln">   462  </span>	}
+<span id="L463" class="ln">   463  </span>	return &amp;o.Type, true
+<span id="L464" class="ln">   464  </span>}
+<span id="L465" class="ln">   465  </span>
+<span id="L466" class="ln">   466  </span><span class="comment">// SetType sets field value.</span>
+<span id="L467" class="ln">   467  </span>func (o *ObservabilityPipelineKafkaDestination) SetType(v ObservabilityPipelineKafkaDestinationType) {
+<span id="L468" class="ln">   468  </span>	o.Type = v
+<span id="L469" class="ln">   469  </span>}
+<span id="L470" class="ln">   470  </span>
+<span id="L471" class="ln">   471  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L472" class="ln">   472  </span>func (o ObservabilityPipelineKafkaDestination) MarshalJSON() ([]byte, error) {
+<span id="L473" class="ln">   473  </span>	toSerialize := map[string]interface{}{}
+<span id="L474" class="ln">   474  </span>	if o.UnparsedObject != nil {
+<span id="L475" class="ln">   475  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L476" class="ln">   476  </span>	}
+<span id="L477" class="ln">   477  </span>	if o.Compression != nil {
+<span id="L478" class="ln">   478  </span>		toSerialize[&#34;compression&#34;] = o.Compression
+<span id="L479" class="ln">   479  </span>	}
+<span id="L480" class="ln">   480  </span>	toSerialize[&#34;encoding&#34;] = o.Encoding
+<span id="L481" class="ln">   481  </span>	if o.HeadersKey != nil {
+<span id="L482" class="ln">   482  </span>		toSerialize[&#34;headers_key&#34;] = o.HeadersKey
+<span id="L483" class="ln">   483  </span>	}
+<span id="L484" class="ln">   484  </span>	toSerialize[&#34;id&#34;] = o.Id
+<span id="L485" class="ln">   485  </span>	toSerialize[&#34;inputs&#34;] = o.Inputs
+<span id="L486" class="ln">   486  </span>	if o.KeyField != nil {
+<span id="L487" class="ln">   487  </span>		toSerialize[&#34;key_field&#34;] = o.KeyField
+<span id="L488" class="ln">   488  </span>	}
+<span id="L489" class="ln">   489  </span>	if o.LibrdkafkaOptions != nil {
+<span id="L490" class="ln">   490  </span>		toSerialize[&#34;librdkafka_options&#34;] = o.LibrdkafkaOptions
+<span id="L491" class="ln">   491  </span>	}
+<span id="L492" class="ln">   492  </span>	if o.MessageTimeoutMs != nil {
+<span id="L493" class="ln">   493  </span>		toSerialize[&#34;message_timeout_ms&#34;] = o.MessageTimeoutMs
+<span id="L494" class="ln">   494  </span>	}
+<span id="L495" class="ln">   495  </span>	if o.RateLimitDurationSecs != nil {
+<span id="L496" class="ln">   496  </span>		toSerialize[&#34;rate_limit_duration_secs&#34;] = o.RateLimitDurationSecs
+<span id="L497" class="ln">   497  </span>	}
+<span id="L498" class="ln">   498  </span>	if o.RateLimitNum != nil {
+<span id="L499" class="ln">   499  </span>		toSerialize[&#34;rate_limit_num&#34;] = o.RateLimitNum
+<span id="L500" class="ln">   500  </span>	}
+<span id="L501" class="ln">   501  </span>	if o.Sasl != nil {
+<span id="L502" class="ln">   502  </span>		toSerialize[&#34;sasl&#34;] = o.Sasl
+<span id="L503" class="ln">   503  </span>	}
+<span id="L504" class="ln">   504  </span>	if o.SocketTimeoutMs != nil {
+<span id="L505" class="ln">   505  </span>		toSerialize[&#34;socket_timeout_ms&#34;] = o.SocketTimeoutMs
+<span id="L506" class="ln">   506  </span>	}
+<span id="L507" class="ln">   507  </span>	if o.Tls != nil {
+<span id="L508" class="ln">   508  </span>		toSerialize[&#34;tls&#34;] = o.Tls
+<span id="L509" class="ln">   509  </span>	}
+<span id="L510" class="ln">   510  </span>	toSerialize[&#34;topic&#34;] = o.Topic
+<span id="L511" class="ln">   511  </span>	toSerialize[&#34;type&#34;] = o.Type
+<span id="L512" class="ln">   512  </span>
+<span id="L513" class="ln">   513  </span>	for key, value := range o.AdditionalProperties {
+<span id="L514" class="ln">   514  </span>		toSerialize[key] = value
+<span id="L515" class="ln">   515  </span>	}
+<span id="L516" class="ln">   516  </span>	return datadog.Marshal(toSerialize)
+<span id="L517" class="ln">   517  </span>}
+<span id="L518" class="ln">   518  </span>
+<span id="L519" class="ln">   519  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L520" class="ln">   520  </span>func (o *ObservabilityPipelineKafkaDestination) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L521" class="ln">   521  </span>	all := struct {
+<span id="L522" class="ln">   522  </span>		Compression           *ObservabilityPipelineKafkaDestinationCompression `json:&#34;compression,omitempty&#34;`
+<span id="L523" class="ln">   523  </span>		Encoding              *ObservabilityPipelineKafkaDestinationEncoding    `json:&#34;encoding&#34;`
+<span id="L524" class="ln">   524  </span>		HeadersKey            *string                                           `json:&#34;headers_key,omitempty&#34;`
+<span id="L525" class="ln">   525  </span>		Id                    *string                                           `json:&#34;id&#34;`
+<span id="L526" class="ln">   526  </span>		Inputs                *[]string                                         `json:&#34;inputs&#34;`
+<span id="L527" class="ln">   527  </span>		KeyField              *string                                           `json:&#34;key_field,omitempty&#34;`
+<span id="L528" class="ln">   528  </span>		LibrdkafkaOptions     []ObservabilityPipelineKafkaLibrdkafkaOption      `json:&#34;librdkafka_options,omitempty&#34;`
+<span id="L529" class="ln">   529  </span>		MessageTimeoutMs      *int64                                            `json:&#34;message_timeout_ms,omitempty&#34;`
+<span id="L530" class="ln">   530  </span>		RateLimitDurationSecs *int64                                            `json:&#34;rate_limit_duration_secs,omitempty&#34;`
+<span id="L531" class="ln">   531  </span>		RateLimitNum          *int64                                            `json:&#34;rate_limit_num,omitempty&#34;`
+<span id="L532" class="ln">   532  </span>		Sasl                  *ObservabilityPipelineKafkaSasl                   `json:&#34;sasl,omitempty&#34;`
+<span id="L533" class="ln">   533  </span>		SocketTimeoutMs       *int64                                            `json:&#34;socket_timeout_ms,omitempty&#34;`
+<span id="L534" class="ln">   534  </span>		Tls                   *ObservabilityPipelineTls                         `json:&#34;tls,omitempty&#34;`
+<span id="L535" class="ln">   535  </span>		Topic                 *string                                           `json:&#34;topic&#34;`
+<span id="L536" class="ln">   536  </span>		Type                  *ObservabilityPipelineKafkaDestinationType        `json:&#34;type&#34;`
+<span id="L537" class="ln">   537  </span>	}{}
+<span id="L538" class="ln">   538  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L539" class="ln">   539  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L540" class="ln">   540  </span>	}
+<span id="L541" class="ln">   541  </span>	if all.Encoding == nil {
+<span id="L542" class="ln">   542  </span>		return fmt.Errorf(&#34;required field encoding missing&#34;)
+<span id="L543" class="ln">   543  </span>	}
+<span id="L544" class="ln">   544  </span>	if all.Id == nil {
+<span id="L545" class="ln">   545  </span>		return fmt.Errorf(&#34;required field id missing&#34;)
+<span id="L546" class="ln">   546  </span>	}
+<span id="L547" class="ln">   547  </span>	if all.Inputs == nil {
+<span id="L548" class="ln">   548  </span>		return fmt.Errorf(&#34;required field inputs missing&#34;)
+<span id="L549" class="ln">   549  </span>	}
+<span id="L550" class="ln">   550  </span>	if all.Topic == nil {
+<span id="L551" class="ln">   551  </span>		return fmt.Errorf(&#34;required field topic missing&#34;)
+<span id="L552" class="ln">   552  </span>	}
+<span id="L553" class="ln">   553  </span>	if all.Type == nil {
+<span id="L554" class="ln">   554  </span>		return fmt.Errorf(&#34;required field type missing&#34;)
+<span id="L555" class="ln">   555  </span>	}
+<span id="L556" class="ln">   556  </span>	additionalProperties := make(map[string]interface{})
+<span id="L557" class="ln">   557  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L558" class="ln">   558  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;compression&#34;, &#34;encoding&#34;, &#34;headers_key&#34;, &#34;id&#34;, &#34;inputs&#34;, &#34;key_field&#34;, &#34;librdkafka_options&#34;, &#34;message_timeout_ms&#34;, &#34;rate_limit_duration_secs&#34;, &#34;rate_limit_num&#34;, &#34;sasl&#34;, &#34;socket_timeout_ms&#34;, &#34;tls&#34;, &#34;topic&#34;, &#34;type&#34;})
+<span id="L559" class="ln">   559  </span>	} else {
+<span id="L560" class="ln">   560  </span>		return err
+<span id="L561" class="ln">   561  </span>	}
+<span id="L562" class="ln">   562  </span>
+<span id="L563" class="ln">   563  </span>	hasInvalidField := false
+<span id="L564" class="ln">   564  </span>	if all.Compression != nil &amp;&amp; !all.Compression.IsValid() {
+<span id="L565" class="ln">   565  </span>		hasInvalidField = true
+<span id="L566" class="ln">   566  </span>	} else {
+<span id="L567" class="ln">   567  </span>		o.Compression = all.Compression
+<span id="L568" class="ln">   568  </span>	}
+<span id="L569" class="ln">   569  </span>	if !all.Encoding.IsValid() {
+<span id="L570" class="ln">   570  </span>		hasInvalidField = true
+<span id="L571" class="ln">   571  </span>	} else {
+<span id="L572" class="ln">   572  </span>		o.Encoding = *all.Encoding
+<span id="L573" class="ln">   573  </span>	}
+<span id="L574" class="ln">   574  </span>	o.HeadersKey = all.HeadersKey
+<span id="L575" class="ln">   575  </span>	o.Id = *all.Id
+<span id="L576" class="ln">   576  </span>	o.Inputs = *all.Inputs
+<span id="L577" class="ln">   577  </span>	o.KeyField = all.KeyField
+<span id="L578" class="ln">   578  </span>	o.LibrdkafkaOptions = all.LibrdkafkaOptions
+<span id="L579" class="ln">   579  </span>	o.MessageTimeoutMs = all.MessageTimeoutMs
+<span id="L580" class="ln">   580  </span>	o.RateLimitDurationSecs = all.RateLimitDurationSecs
+<span id="L581" class="ln">   581  </span>	o.RateLimitNum = all.RateLimitNum
+<span id="L582" class="ln">   582  </span>	if all.Sasl != nil &amp;&amp; all.Sasl.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L583" class="ln">   583  </span>		hasInvalidField = true
+<span id="L584" class="ln">   584  </span>	}
+<span id="L585" class="ln">   585  </span>	o.Sasl = all.Sasl
+<span id="L586" class="ln">   586  </span>	o.SocketTimeoutMs = all.SocketTimeoutMs
+<span id="L587" class="ln">   587  </span>	if all.Tls != nil &amp;&amp; all.Tls.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L588" class="ln">   588  </span>		hasInvalidField = true
+<span id="L589" class="ln">   589  </span>	}
+<span id="L590" class="ln">   590  </span>	o.Tls = all.Tls
+<span id="L591" class="ln">   591  </span>	o.Topic = *all.Topic
+<span id="L592" class="ln">   592  </span>	if !all.Type.IsValid() {
+<span id="L593" class="ln">   593  </span>		hasInvalidField = true
+<span id="L594" class="ln">   594  </span>	} else {
+<span id="L595" class="ln">   595  </span>		o.Type = *all.Type
+<span id="L596" class="ln">   596  </span>	}
+<span id="L597" class="ln">   597  </span>
+<span id="L598" class="ln">   598  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L599" class="ln">   599  </span>		o.AdditionalProperties = additionalProperties
+<span id="L600" class="ln">   600  </span>	}
+<span id="L601" class="ln">   601  </span>
+<span id="L602" class="ln">   602  </span>	if hasInvalidField {
+<span id="L603" class="ln">   603  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L604" class="ln">   604  </span>	}
+<span id="L605" class="ln">   605  </span>
+<span id="L606" class="ln">   606  </span>	return nil
+<span id="L607" class="ln">   607  </span>}
+<span id="L608" class="ln">   608  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.24.11.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

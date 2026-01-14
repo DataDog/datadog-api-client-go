@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="theme-color" content="#375EAB"/>
 
-  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_observability_pipeline_kafka_source_sasl.go - Datadog</title>
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_observability_pipeline_kafka_sasl.go - Datadog</title>
 
 <link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
 
@@ -38,7 +38,7 @@
 
   <h1>
     Source file
-    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_observability_pipeline_kafka_source_sasl.go</span>
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_observability_pipeline_kafka_sasl.go</span>
   </h1>
 
 
@@ -65,36 +65,36 @@
 <span id="L8" class="ln">     8  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L9" class="ln">     9  </span>)
 <span id="L10" class="ln">    10  </span>
-<span id="L11" class="ln">    11  </span><span class="comment">// ObservabilityPipelineKafkaSourceSasl Specifies the SASL mechanism for authenticating with a Kafka cluster.</span>
-<span id="L12" class="ln">    12  </span>type ObservabilityPipelineKafkaSourceSasl struct {
+<span id="L11" class="ln">    11  </span><span class="comment">// ObservabilityPipelineKafkaSasl Specifies the SASL mechanism for authenticating with a Kafka cluster.</span>
+<span id="L12" class="ln">    12  </span>type ObservabilityPipelineKafkaSasl struct {
 <span id="L13" class="ln">    13  </span>	<span class="comment">// SASL mechanism used for Kafka authentication.</span>
-<span id="L14" class="ln">    14  </span>	Mechanism *ObservabilityPipelinePipelineKafkaSourceSaslMechanism `json:&#34;mechanism,omitempty&#34;`
+<span id="L14" class="ln">    14  </span>	Mechanism *ObservabilityPipelineKafkaSaslMechanism `json:&#34;mechanism,omitempty&#34;`
 <span id="L15" class="ln">    15  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L16" class="ln">    16  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L17" class="ln">    17  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
 <span id="L18" class="ln">    18  </span>}
 <span id="L19" class="ln">    19  </span>
-<span id="L20" class="ln">    20  </span><span class="comment">// NewObservabilityPipelineKafkaSourceSasl instantiates a new ObservabilityPipelineKafkaSourceSasl object.</span>
+<span id="L20" class="ln">    20  </span><span class="comment">// NewObservabilityPipelineKafkaSasl instantiates a new ObservabilityPipelineKafkaSasl object.</span>
 <span id="L21" class="ln">    21  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
 <span id="L22" class="ln">    22  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
 <span id="L23" class="ln">    23  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L24" class="ln">    24  </span>func NewObservabilityPipelineKafkaSourceSasl() *ObservabilityPipelineKafkaSourceSasl {
-<span id="L25" class="ln">    25  </span>	this := ObservabilityPipelineKafkaSourceSasl{}
+<span id="L24" class="ln">    24  </span>func NewObservabilityPipelineKafkaSasl() *ObservabilityPipelineKafkaSasl {
+<span id="L25" class="ln">    25  </span>	this := ObservabilityPipelineKafkaSasl{}
 <span id="L26" class="ln">    26  </span>	return &amp;this
 <span id="L27" class="ln">    27  </span>}
 <span id="L28" class="ln">    28  </span>
-<span id="L29" class="ln">    29  </span><span class="comment">// NewObservabilityPipelineKafkaSourceSaslWithDefaults instantiates a new ObservabilityPipelineKafkaSourceSasl object.</span>
+<span id="L29" class="ln">    29  </span><span class="comment">// NewObservabilityPipelineKafkaSaslWithDefaults instantiates a new ObservabilityPipelineKafkaSasl object.</span>
 <span id="L30" class="ln">    30  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
 <span id="L31" class="ln">    31  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L32" class="ln">    32  </span>func NewObservabilityPipelineKafkaSourceSaslWithDefaults() *ObservabilityPipelineKafkaSourceSasl {
-<span id="L33" class="ln">    33  </span>	this := ObservabilityPipelineKafkaSourceSasl{}
+<span id="L32" class="ln">    32  </span>func NewObservabilityPipelineKafkaSaslWithDefaults() *ObservabilityPipelineKafkaSasl {
+<span id="L33" class="ln">    33  </span>	this := ObservabilityPipelineKafkaSasl{}
 <span id="L34" class="ln">    34  </span>	return &amp;this
 <span id="L35" class="ln">    35  </span>}
 <span id="L36" class="ln">    36  </span>
 <span id="L37" class="ln">    37  </span><span class="comment">// GetMechanism returns the Mechanism field value if set, zero value otherwise.</span>
-<span id="L38" class="ln">    38  </span>func (o *ObservabilityPipelineKafkaSourceSasl) GetMechanism() ObservabilityPipelinePipelineKafkaSourceSaslMechanism {
+<span id="L38" class="ln">    38  </span>func (o *ObservabilityPipelineKafkaSasl) GetMechanism() ObservabilityPipelineKafkaSaslMechanism {
 <span id="L39" class="ln">    39  </span>	if o == nil || o.Mechanism == nil {
-<span id="L40" class="ln">    40  </span>		var ret ObservabilityPipelinePipelineKafkaSourceSaslMechanism
+<span id="L40" class="ln">    40  </span>		var ret ObservabilityPipelineKafkaSaslMechanism
 <span id="L41" class="ln">    41  </span>		return ret
 <span id="L42" class="ln">    42  </span>	}
 <span id="L43" class="ln">    43  </span>	return *o.Mechanism
@@ -102,7 +102,7 @@
 <span id="L45" class="ln">    45  </span>
 <span id="L46" class="ln">    46  </span><span class="comment">// GetMechanismOk returns a tuple with the Mechanism field value if set, nil otherwise</span>
 <span id="L47" class="ln">    47  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L48" class="ln">    48  </span>func (o *ObservabilityPipelineKafkaSourceSasl) GetMechanismOk() (*ObservabilityPipelinePipelineKafkaSourceSaslMechanism, bool) {
+<span id="L48" class="ln">    48  </span>func (o *ObservabilityPipelineKafkaSasl) GetMechanismOk() (*ObservabilityPipelineKafkaSaslMechanism, bool) {
 <span id="L49" class="ln">    49  </span>	if o == nil || o.Mechanism == nil {
 <span id="L50" class="ln">    50  </span>		return nil, false
 <span id="L51" class="ln">    51  </span>	}
@@ -110,17 +110,17 @@
 <span id="L53" class="ln">    53  </span>}
 <span id="L54" class="ln">    54  </span>
 <span id="L55" class="ln">    55  </span><span class="comment">// HasMechanism returns a boolean if a field has been set.</span>
-<span id="L56" class="ln">    56  </span>func (o *ObservabilityPipelineKafkaSourceSasl) HasMechanism() bool {
+<span id="L56" class="ln">    56  </span>func (o *ObservabilityPipelineKafkaSasl) HasMechanism() bool {
 <span id="L57" class="ln">    57  </span>	return o != nil &amp;&amp; o.Mechanism != nil
 <span id="L58" class="ln">    58  </span>}
 <span id="L59" class="ln">    59  </span>
-<span id="L60" class="ln">    60  </span><span class="comment">// SetMechanism gets a reference to the given ObservabilityPipelinePipelineKafkaSourceSaslMechanism and assigns it to the Mechanism field.</span>
-<span id="L61" class="ln">    61  </span>func (o *ObservabilityPipelineKafkaSourceSasl) SetMechanism(v ObservabilityPipelinePipelineKafkaSourceSaslMechanism) {
+<span id="L60" class="ln">    60  </span><span class="comment">// SetMechanism gets a reference to the given ObservabilityPipelineKafkaSaslMechanism and assigns it to the Mechanism field.</span>
+<span id="L61" class="ln">    61  </span>func (o *ObservabilityPipelineKafkaSasl) SetMechanism(v ObservabilityPipelineKafkaSaslMechanism) {
 <span id="L62" class="ln">    62  </span>	o.Mechanism = &amp;v
 <span id="L63" class="ln">    63  </span>}
 <span id="L64" class="ln">    64  </span>
 <span id="L65" class="ln">    65  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L66" class="ln">    66  </span>func (o ObservabilityPipelineKafkaSourceSasl) MarshalJSON() ([]byte, error) {
+<span id="L66" class="ln">    66  </span>func (o ObservabilityPipelineKafkaSasl) MarshalJSON() ([]byte, error) {
 <span id="L67" class="ln">    67  </span>	toSerialize := map[string]interface{}{}
 <span id="L68" class="ln">    68  </span>	if o.UnparsedObject != nil {
 <span id="L69" class="ln">    69  </span>		return datadog.Marshal(o.UnparsedObject)
@@ -136,9 +136,9 @@
 <span id="L79" class="ln">    79  </span>}
 <span id="L80" class="ln">    80  </span>
 <span id="L81" class="ln">    81  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L82" class="ln">    82  </span>func (o *ObservabilityPipelineKafkaSourceSasl) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L82" class="ln">    82  </span>func (o *ObservabilityPipelineKafkaSasl) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L83" class="ln">    83  </span>	all := struct {
-<span id="L84" class="ln">    84  </span>		Mechanism *ObservabilityPipelinePipelineKafkaSourceSaslMechanism `json:&#34;mechanism,omitempty&#34;`
+<span id="L84" class="ln">    84  </span>		Mechanism *ObservabilityPipelineKafkaSaslMechanism `json:&#34;mechanism,omitempty&#34;`
 <span id="L85" class="ln">    85  </span>	}{}
 <span id="L86" class="ln">    86  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L87" class="ln">    87  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)

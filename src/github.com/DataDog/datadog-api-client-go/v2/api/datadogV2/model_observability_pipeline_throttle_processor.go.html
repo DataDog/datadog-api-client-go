@@ -68,337 +68,339 @@
 <span id="L11" class="ln">    11  </span>)
 <span id="L12" class="ln">    12  </span>
 <span id="L13" class="ln">    13  </span><span class="comment">// ObservabilityPipelineThrottleProcessor The `throttle` processor limits the number of events that pass through over a given time window.</span>
-<span id="L14" class="ln">    14  </span>type ObservabilityPipelineThrottleProcessor struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// The display name for a component.</span>
-<span id="L16" class="ln">    16  </span>	DisplayName *string `json:&#34;display_name,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// Whether this processor is enabled.</span>
-<span id="L18" class="ln">    18  </span>	Enabled bool `json:&#34;enabled&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// Optional list of fields used to group events before the threshold has been reached.</span>
-<span id="L20" class="ln">    20  </span>	GroupBy []string `json:&#34;group_by,omitempty&#34;`
-<span id="L21" class="ln">    21  </span>	<span class="comment">// The unique identifier for this processor.</span>
-<span id="L22" class="ln">    22  </span>	Id string `json:&#34;id&#34;`
-<span id="L23" class="ln">    23  </span>	<span class="comment">// A Datadog search query used to determine which logs this processor targets.</span>
-<span id="L24" class="ln">    24  </span>	Include string `json:&#34;include&#34;`
-<span id="L25" class="ln">    25  </span>	<span class="comment">// the number of events allowed in a given time window. Events sent after the threshold has been reached, are dropped.</span>
-<span id="L26" class="ln">    26  </span>	Threshold int64 `json:&#34;threshold&#34;`
-<span id="L27" class="ln">    27  </span>	<span class="comment">// The processor type. The value should always be `throttle`.</span>
-<span id="L28" class="ln">    28  </span>	Type ObservabilityPipelineThrottleProcessorType `json:&#34;type&#34;`
-<span id="L29" class="ln">    29  </span>	<span class="comment">// The time window in seconds over which the threshold applies.</span>
-<span id="L30" class="ln">    30  </span>	Window float64 `json:&#34;window&#34;`
-<span id="L31" class="ln">    31  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
-<span id="L32" class="ln">    32  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L33" class="ln">    33  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
-<span id="L34" class="ln">    34  </span>}
-<span id="L35" class="ln">    35  </span>
-<span id="L36" class="ln">    36  </span><span class="comment">// NewObservabilityPipelineThrottleProcessor instantiates a new ObservabilityPipelineThrottleProcessor object.</span>
-<span id="L37" class="ln">    37  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
-<span id="L38" class="ln">    38  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
-<span id="L39" class="ln">    39  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L40" class="ln">    40  </span>func NewObservabilityPipelineThrottleProcessor(enabled bool, id string, include string, threshold int64, typeVar ObservabilityPipelineThrottleProcessorType, window float64) *ObservabilityPipelineThrottleProcessor {
-<span id="L41" class="ln">    41  </span>	this := ObservabilityPipelineThrottleProcessor{}
-<span id="L42" class="ln">    42  </span>	this.Enabled = enabled
-<span id="L43" class="ln">    43  </span>	this.Id = id
-<span id="L44" class="ln">    44  </span>	this.Include = include
-<span id="L45" class="ln">    45  </span>	this.Threshold = threshold
-<span id="L46" class="ln">    46  </span>	this.Type = typeVar
-<span id="L47" class="ln">    47  </span>	this.Window = window
-<span id="L48" class="ln">    48  </span>	return &amp;this
-<span id="L49" class="ln">    49  </span>}
-<span id="L50" class="ln">    50  </span>
-<span id="L51" class="ln">    51  </span><span class="comment">// NewObservabilityPipelineThrottleProcessorWithDefaults instantiates a new ObservabilityPipelineThrottleProcessor object.</span>
-<span id="L52" class="ln">    52  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
-<span id="L53" class="ln">    53  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L54" class="ln">    54  </span>func NewObservabilityPipelineThrottleProcessorWithDefaults() *ObservabilityPipelineThrottleProcessor {
-<span id="L55" class="ln">    55  </span>	this := ObservabilityPipelineThrottleProcessor{}
-<span id="L56" class="ln">    56  </span>	var typeVar ObservabilityPipelineThrottleProcessorType = OBSERVABILITYPIPELINETHROTTLEPROCESSORTYPE_THROTTLE
-<span id="L57" class="ln">    57  </span>	this.Type = typeVar
-<span id="L58" class="ln">    58  </span>	return &amp;this
-<span id="L59" class="ln">    59  </span>}
-<span id="L60" class="ln">    60  </span>
-<span id="L61" class="ln">    61  </span><span class="comment">// GetDisplayName returns the DisplayName field value if set, zero value otherwise.</span>
-<span id="L62" class="ln">    62  </span>func (o *ObservabilityPipelineThrottleProcessor) GetDisplayName() string {
-<span id="L63" class="ln">    63  </span>	if o == nil || o.DisplayName == nil {
-<span id="L64" class="ln">    64  </span>		var ret string
-<span id="L65" class="ln">    65  </span>		return ret
-<span id="L66" class="ln">    66  </span>	}
-<span id="L67" class="ln">    67  </span>	return *o.DisplayName
-<span id="L68" class="ln">    68  </span>}
-<span id="L69" class="ln">    69  </span>
-<span id="L70" class="ln">    70  </span><span class="comment">// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise</span>
-<span id="L71" class="ln">    71  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L72" class="ln">    72  </span>func (o *ObservabilityPipelineThrottleProcessor) GetDisplayNameOk() (*string, bool) {
-<span id="L73" class="ln">    73  </span>	if o == nil || o.DisplayName == nil {
-<span id="L74" class="ln">    74  </span>		return nil, false
-<span id="L75" class="ln">    75  </span>	}
-<span id="L76" class="ln">    76  </span>	return o.DisplayName, true
-<span id="L77" class="ln">    77  </span>}
-<span id="L78" class="ln">    78  </span>
-<span id="L79" class="ln">    79  </span><span class="comment">// HasDisplayName returns a boolean if a field has been set.</span>
-<span id="L80" class="ln">    80  </span>func (o *ObservabilityPipelineThrottleProcessor) HasDisplayName() bool {
-<span id="L81" class="ln">    81  </span>	return o != nil &amp;&amp; o.DisplayName != nil
-<span id="L82" class="ln">    82  </span>}
-<span id="L83" class="ln">    83  </span>
-<span id="L84" class="ln">    84  </span><span class="comment">// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.</span>
-<span id="L85" class="ln">    85  </span>func (o *ObservabilityPipelineThrottleProcessor) SetDisplayName(v string) {
-<span id="L86" class="ln">    86  </span>	o.DisplayName = &amp;v
-<span id="L87" class="ln">    87  </span>}
-<span id="L88" class="ln">    88  </span>
-<span id="L89" class="ln">    89  </span><span class="comment">// GetEnabled returns the Enabled field value.</span>
-<span id="L90" class="ln">    90  </span>func (o *ObservabilityPipelineThrottleProcessor) GetEnabled() bool {
-<span id="L91" class="ln">    91  </span>	if o == nil {
-<span id="L92" class="ln">    92  </span>		var ret bool
-<span id="L93" class="ln">    93  </span>		return ret
-<span id="L94" class="ln">    94  </span>	}
-<span id="L95" class="ln">    95  </span>	return o.Enabled
-<span id="L96" class="ln">    96  </span>}
-<span id="L97" class="ln">    97  </span>
-<span id="L98" class="ln">    98  </span><span class="comment">// GetEnabledOk returns a tuple with the Enabled field value</span>
-<span id="L99" class="ln">    99  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L100" class="ln">   100  </span>func (o *ObservabilityPipelineThrottleProcessor) GetEnabledOk() (*bool, bool) {
-<span id="L101" class="ln">   101  </span>	if o == nil {
-<span id="L102" class="ln">   102  </span>		return nil, false
-<span id="L103" class="ln">   103  </span>	}
-<span id="L104" class="ln">   104  </span>	return &amp;o.Enabled, true
-<span id="L105" class="ln">   105  </span>}
-<span id="L106" class="ln">   106  </span>
-<span id="L107" class="ln">   107  </span><span class="comment">// SetEnabled sets field value.</span>
-<span id="L108" class="ln">   108  </span>func (o *ObservabilityPipelineThrottleProcessor) SetEnabled(v bool) {
-<span id="L109" class="ln">   109  </span>	o.Enabled = v
-<span id="L110" class="ln">   110  </span>}
-<span id="L111" class="ln">   111  </span>
-<span id="L112" class="ln">   112  </span><span class="comment">// GetGroupBy returns the GroupBy field value if set, zero value otherwise.</span>
-<span id="L113" class="ln">   113  </span>func (o *ObservabilityPipelineThrottleProcessor) GetGroupBy() []string {
-<span id="L114" class="ln">   114  </span>	if o == nil || o.GroupBy == nil {
-<span id="L115" class="ln">   115  </span>		var ret []string
-<span id="L116" class="ln">   116  </span>		return ret
-<span id="L117" class="ln">   117  </span>	}
-<span id="L118" class="ln">   118  </span>	return o.GroupBy
-<span id="L119" class="ln">   119  </span>}
-<span id="L120" class="ln">   120  </span>
-<span id="L121" class="ln">   121  </span><span class="comment">// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise</span>
-<span id="L122" class="ln">   122  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L123" class="ln">   123  </span>func (o *ObservabilityPipelineThrottleProcessor) GetGroupByOk() (*[]string, bool) {
-<span id="L124" class="ln">   124  </span>	if o == nil || o.GroupBy == nil {
-<span id="L125" class="ln">   125  </span>		return nil, false
-<span id="L126" class="ln">   126  </span>	}
-<span id="L127" class="ln">   127  </span>	return &amp;o.GroupBy, true
-<span id="L128" class="ln">   128  </span>}
-<span id="L129" class="ln">   129  </span>
-<span id="L130" class="ln">   130  </span><span class="comment">// HasGroupBy returns a boolean if a field has been set.</span>
-<span id="L131" class="ln">   131  </span>func (o *ObservabilityPipelineThrottleProcessor) HasGroupBy() bool {
-<span id="L132" class="ln">   132  </span>	return o != nil &amp;&amp; o.GroupBy != nil
-<span id="L133" class="ln">   133  </span>}
-<span id="L134" class="ln">   134  </span>
-<span id="L135" class="ln">   135  </span><span class="comment">// SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.</span>
-<span id="L136" class="ln">   136  </span>func (o *ObservabilityPipelineThrottleProcessor) SetGroupBy(v []string) {
-<span id="L137" class="ln">   137  </span>	o.GroupBy = v
-<span id="L138" class="ln">   138  </span>}
-<span id="L139" class="ln">   139  </span>
-<span id="L140" class="ln">   140  </span><span class="comment">// GetId returns the Id field value.</span>
-<span id="L141" class="ln">   141  </span>func (o *ObservabilityPipelineThrottleProcessor) GetId() string {
-<span id="L142" class="ln">   142  </span>	if o == nil {
-<span id="L143" class="ln">   143  </span>		var ret string
-<span id="L144" class="ln">   144  </span>		return ret
-<span id="L145" class="ln">   145  </span>	}
-<span id="L146" class="ln">   146  </span>	return o.Id
-<span id="L147" class="ln">   147  </span>}
-<span id="L148" class="ln">   148  </span>
-<span id="L149" class="ln">   149  </span><span class="comment">// GetIdOk returns a tuple with the Id field value</span>
-<span id="L150" class="ln">   150  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L151" class="ln">   151  </span>func (o *ObservabilityPipelineThrottleProcessor) GetIdOk() (*string, bool) {
-<span id="L152" class="ln">   152  </span>	if o == nil {
-<span id="L153" class="ln">   153  </span>		return nil, false
-<span id="L154" class="ln">   154  </span>	}
-<span id="L155" class="ln">   155  </span>	return &amp;o.Id, true
-<span id="L156" class="ln">   156  </span>}
-<span id="L157" class="ln">   157  </span>
-<span id="L158" class="ln">   158  </span><span class="comment">// SetId sets field value.</span>
-<span id="L159" class="ln">   159  </span>func (o *ObservabilityPipelineThrottleProcessor) SetId(v string) {
-<span id="L160" class="ln">   160  </span>	o.Id = v
-<span id="L161" class="ln">   161  </span>}
-<span id="L162" class="ln">   162  </span>
-<span id="L163" class="ln">   163  </span><span class="comment">// GetInclude returns the Include field value.</span>
-<span id="L164" class="ln">   164  </span>func (o *ObservabilityPipelineThrottleProcessor) GetInclude() string {
-<span id="L165" class="ln">   165  </span>	if o == nil {
-<span id="L166" class="ln">   166  </span>		var ret string
-<span id="L167" class="ln">   167  </span>		return ret
-<span id="L168" class="ln">   168  </span>	}
-<span id="L169" class="ln">   169  </span>	return o.Include
-<span id="L170" class="ln">   170  </span>}
-<span id="L171" class="ln">   171  </span>
-<span id="L172" class="ln">   172  </span><span class="comment">// GetIncludeOk returns a tuple with the Include field value</span>
-<span id="L173" class="ln">   173  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L174" class="ln">   174  </span>func (o *ObservabilityPipelineThrottleProcessor) GetIncludeOk() (*string, bool) {
-<span id="L175" class="ln">   175  </span>	if o == nil {
-<span id="L176" class="ln">   176  </span>		return nil, false
-<span id="L177" class="ln">   177  </span>	}
-<span id="L178" class="ln">   178  </span>	return &amp;o.Include, true
-<span id="L179" class="ln">   179  </span>}
-<span id="L180" class="ln">   180  </span>
-<span id="L181" class="ln">   181  </span><span class="comment">// SetInclude sets field value.</span>
-<span id="L182" class="ln">   182  </span>func (o *ObservabilityPipelineThrottleProcessor) SetInclude(v string) {
-<span id="L183" class="ln">   183  </span>	o.Include = v
-<span id="L184" class="ln">   184  </span>}
-<span id="L185" class="ln">   185  </span>
-<span id="L186" class="ln">   186  </span><span class="comment">// GetThreshold returns the Threshold field value.</span>
-<span id="L187" class="ln">   187  </span>func (o *ObservabilityPipelineThrottleProcessor) GetThreshold() int64 {
-<span id="L188" class="ln">   188  </span>	if o == nil {
-<span id="L189" class="ln">   189  </span>		var ret int64
-<span id="L190" class="ln">   190  </span>		return ret
-<span id="L191" class="ln">   191  </span>	}
-<span id="L192" class="ln">   192  </span>	return o.Threshold
-<span id="L193" class="ln">   193  </span>}
-<span id="L194" class="ln">   194  </span>
-<span id="L195" class="ln">   195  </span><span class="comment">// GetThresholdOk returns a tuple with the Threshold field value</span>
-<span id="L196" class="ln">   196  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L197" class="ln">   197  </span>func (o *ObservabilityPipelineThrottleProcessor) GetThresholdOk() (*int64, bool) {
-<span id="L198" class="ln">   198  </span>	if o == nil {
-<span id="L199" class="ln">   199  </span>		return nil, false
-<span id="L200" class="ln">   200  </span>	}
-<span id="L201" class="ln">   201  </span>	return &amp;o.Threshold, true
-<span id="L202" class="ln">   202  </span>}
-<span id="L203" class="ln">   203  </span>
-<span id="L204" class="ln">   204  </span><span class="comment">// SetThreshold sets field value.</span>
-<span id="L205" class="ln">   205  </span>func (o *ObservabilityPipelineThrottleProcessor) SetThreshold(v int64) {
-<span id="L206" class="ln">   206  </span>	o.Threshold = v
-<span id="L207" class="ln">   207  </span>}
-<span id="L208" class="ln">   208  </span>
-<span id="L209" class="ln">   209  </span><span class="comment">// GetType returns the Type field value.</span>
-<span id="L210" class="ln">   210  </span>func (o *ObservabilityPipelineThrottleProcessor) GetType() ObservabilityPipelineThrottleProcessorType {
-<span id="L211" class="ln">   211  </span>	if o == nil {
-<span id="L212" class="ln">   212  </span>		var ret ObservabilityPipelineThrottleProcessorType
-<span id="L213" class="ln">   213  </span>		return ret
-<span id="L214" class="ln">   214  </span>	}
-<span id="L215" class="ln">   215  </span>	return o.Type
-<span id="L216" class="ln">   216  </span>}
-<span id="L217" class="ln">   217  </span>
-<span id="L218" class="ln">   218  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value</span>
-<span id="L219" class="ln">   219  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L220" class="ln">   220  </span>func (o *ObservabilityPipelineThrottleProcessor) GetTypeOk() (*ObservabilityPipelineThrottleProcessorType, bool) {
-<span id="L221" class="ln">   221  </span>	if o == nil {
-<span id="L222" class="ln">   222  </span>		return nil, false
-<span id="L223" class="ln">   223  </span>	}
-<span id="L224" class="ln">   224  </span>	return &amp;o.Type, true
-<span id="L225" class="ln">   225  </span>}
-<span id="L226" class="ln">   226  </span>
-<span id="L227" class="ln">   227  </span><span class="comment">// SetType sets field value.</span>
-<span id="L228" class="ln">   228  </span>func (o *ObservabilityPipelineThrottleProcessor) SetType(v ObservabilityPipelineThrottleProcessorType) {
-<span id="L229" class="ln">   229  </span>	o.Type = v
-<span id="L230" class="ln">   230  </span>}
-<span id="L231" class="ln">   231  </span>
-<span id="L232" class="ln">   232  </span><span class="comment">// GetWindow returns the Window field value.</span>
-<span id="L233" class="ln">   233  </span>func (o *ObservabilityPipelineThrottleProcessor) GetWindow() float64 {
-<span id="L234" class="ln">   234  </span>	if o == nil {
-<span id="L235" class="ln">   235  </span>		var ret float64
-<span id="L236" class="ln">   236  </span>		return ret
-<span id="L237" class="ln">   237  </span>	}
-<span id="L238" class="ln">   238  </span>	return o.Window
-<span id="L239" class="ln">   239  </span>}
-<span id="L240" class="ln">   240  </span>
-<span id="L241" class="ln">   241  </span><span class="comment">// GetWindowOk returns a tuple with the Window field value</span>
-<span id="L242" class="ln">   242  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L243" class="ln">   243  </span>func (o *ObservabilityPipelineThrottleProcessor) GetWindowOk() (*float64, bool) {
-<span id="L244" class="ln">   244  </span>	if o == nil {
-<span id="L245" class="ln">   245  </span>		return nil, false
-<span id="L246" class="ln">   246  </span>	}
-<span id="L247" class="ln">   247  </span>	return &amp;o.Window, true
-<span id="L248" class="ln">   248  </span>}
-<span id="L249" class="ln">   249  </span>
-<span id="L250" class="ln">   250  </span><span class="comment">// SetWindow sets field value.</span>
-<span id="L251" class="ln">   251  </span>func (o *ObservabilityPipelineThrottleProcessor) SetWindow(v float64) {
-<span id="L252" class="ln">   252  </span>	o.Window = v
-<span id="L253" class="ln">   253  </span>}
-<span id="L254" class="ln">   254  </span>
-<span id="L255" class="ln">   255  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L256" class="ln">   256  </span>func (o ObservabilityPipelineThrottleProcessor) MarshalJSON() ([]byte, error) {
-<span id="L257" class="ln">   257  </span>	toSerialize := map[string]interface{}{}
-<span id="L258" class="ln">   258  </span>	if o.UnparsedObject != nil {
-<span id="L259" class="ln">   259  </span>		return datadog.Marshal(o.UnparsedObject)
-<span id="L260" class="ln">   260  </span>	}
-<span id="L261" class="ln">   261  </span>	if o.DisplayName != nil {
-<span id="L262" class="ln">   262  </span>		toSerialize[&#34;display_name&#34;] = o.DisplayName
-<span id="L263" class="ln">   263  </span>	}
-<span id="L264" class="ln">   264  </span>	toSerialize[&#34;enabled&#34;] = o.Enabled
-<span id="L265" class="ln">   265  </span>	if o.GroupBy != nil {
-<span id="L266" class="ln">   266  </span>		toSerialize[&#34;group_by&#34;] = o.GroupBy
-<span id="L267" class="ln">   267  </span>	}
-<span id="L268" class="ln">   268  </span>	toSerialize[&#34;id&#34;] = o.Id
-<span id="L269" class="ln">   269  </span>	toSerialize[&#34;include&#34;] = o.Include
-<span id="L270" class="ln">   270  </span>	toSerialize[&#34;threshold&#34;] = o.Threshold
-<span id="L271" class="ln">   271  </span>	toSerialize[&#34;type&#34;] = o.Type
-<span id="L272" class="ln">   272  </span>	toSerialize[&#34;window&#34;] = o.Window
-<span id="L273" class="ln">   273  </span>
-<span id="L274" class="ln">   274  </span>	for key, value := range o.AdditionalProperties {
-<span id="L275" class="ln">   275  </span>		toSerialize[key] = value
-<span id="L276" class="ln">   276  </span>	}
-<span id="L277" class="ln">   277  </span>	return datadog.Marshal(toSerialize)
-<span id="L278" class="ln">   278  </span>}
-<span id="L279" class="ln">   279  </span>
-<span id="L280" class="ln">   280  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L281" class="ln">   281  </span>func (o *ObservabilityPipelineThrottleProcessor) UnmarshalJSON(bytes []byte) (err error) {
-<span id="L282" class="ln">   282  </span>	all := struct {
-<span id="L283" class="ln">   283  </span>		DisplayName *string                                     `json:&#34;display_name,omitempty&#34;`
-<span id="L284" class="ln">   284  </span>		Enabled     *bool                                       `json:&#34;enabled&#34;`
-<span id="L285" class="ln">   285  </span>		GroupBy     []string                                    `json:&#34;group_by,omitempty&#34;`
-<span id="L286" class="ln">   286  </span>		Id          *string                                     `json:&#34;id&#34;`
-<span id="L287" class="ln">   287  </span>		Include     *string                                     `json:&#34;include&#34;`
-<span id="L288" class="ln">   288  </span>		Threshold   *int64                                      `json:&#34;threshold&#34;`
-<span id="L289" class="ln">   289  </span>		Type        *ObservabilityPipelineThrottleProcessorType `json:&#34;type&#34;`
-<span id="L290" class="ln">   290  </span>		Window      *float64                                    `json:&#34;window&#34;`
-<span id="L291" class="ln">   291  </span>	}{}
-<span id="L292" class="ln">   292  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
-<span id="L293" class="ln">   293  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L294" class="ln">   294  </span>	}
-<span id="L295" class="ln">   295  </span>	if all.Enabled == nil {
-<span id="L296" class="ln">   296  </span>		return fmt.Errorf(&#34;required field enabled missing&#34;)
-<span id="L297" class="ln">   297  </span>	}
-<span id="L298" class="ln">   298  </span>	if all.Id == nil {
-<span id="L299" class="ln">   299  </span>		return fmt.Errorf(&#34;required field id missing&#34;)
-<span id="L300" class="ln">   300  </span>	}
-<span id="L301" class="ln">   301  </span>	if all.Include == nil {
-<span id="L302" class="ln">   302  </span>		return fmt.Errorf(&#34;required field include missing&#34;)
-<span id="L303" class="ln">   303  </span>	}
-<span id="L304" class="ln">   304  </span>	if all.Threshold == nil {
-<span id="L305" class="ln">   305  </span>		return fmt.Errorf(&#34;required field threshold missing&#34;)
-<span id="L306" class="ln">   306  </span>	}
-<span id="L307" class="ln">   307  </span>	if all.Type == nil {
-<span id="L308" class="ln">   308  </span>		return fmt.Errorf(&#34;required field type missing&#34;)
-<span id="L309" class="ln">   309  </span>	}
-<span id="L310" class="ln">   310  </span>	if all.Window == nil {
-<span id="L311" class="ln">   311  </span>		return fmt.Errorf(&#34;required field window missing&#34;)
-<span id="L312" class="ln">   312  </span>	}
-<span id="L313" class="ln">   313  </span>	additionalProperties := make(map[string]interface{})
-<span id="L314" class="ln">   314  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L315" class="ln">   315  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;display_name&#34;, &#34;enabled&#34;, &#34;group_by&#34;, &#34;id&#34;, &#34;include&#34;, &#34;threshold&#34;, &#34;type&#34;, &#34;window&#34;})
-<span id="L316" class="ln">   316  </span>	} else {
-<span id="L317" class="ln">   317  </span>		return err
-<span id="L318" class="ln">   318  </span>	}
-<span id="L319" class="ln">   319  </span>
-<span id="L320" class="ln">   320  </span>	hasInvalidField := false
-<span id="L321" class="ln">   321  </span>	o.DisplayName = all.DisplayName
-<span id="L322" class="ln">   322  </span>	o.Enabled = *all.Enabled
-<span id="L323" class="ln">   323  </span>	o.GroupBy = all.GroupBy
-<span id="L324" class="ln">   324  </span>	o.Id = *all.Id
-<span id="L325" class="ln">   325  </span>	o.Include = *all.Include
-<span id="L326" class="ln">   326  </span>	o.Threshold = *all.Threshold
-<span id="L327" class="ln">   327  </span>	if !all.Type.IsValid() {
-<span id="L328" class="ln">   328  </span>		hasInvalidField = true
-<span id="L329" class="ln">   329  </span>	} else {
-<span id="L330" class="ln">   330  </span>		o.Type = *all.Type
-<span id="L331" class="ln">   331  </span>	}
-<span id="L332" class="ln">   332  </span>	o.Window = *all.Window
-<span id="L333" class="ln">   333  </span>
-<span id="L334" class="ln">   334  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L335" class="ln">   335  </span>		o.AdditionalProperties = additionalProperties
-<span id="L336" class="ln">   336  </span>	}
-<span id="L337" class="ln">   337  </span>
-<span id="L338" class="ln">   338  </span>	if hasInvalidField {
-<span id="L339" class="ln">   339  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L340" class="ln">   340  </span>	}
-<span id="L341" class="ln">   341  </span>
-<span id="L342" class="ln">   342  </span>	return nil
-<span id="L343" class="ln">   343  </span>}
-<span id="L344" class="ln">   344  </span>
+<span id="L14" class="ln">    14  </span><span class="comment">//</span>
+<span id="L15" class="ln">    15  </span><span class="comment">// **Supported pipeline types:** logs</span>
+<span id="L16" class="ln">    16  </span>type ObservabilityPipelineThrottleProcessor struct {
+<span id="L17" class="ln">    17  </span>	<span class="comment">// The display name for a component.</span>
+<span id="L18" class="ln">    18  </span>	DisplayName *string `json:&#34;display_name,omitempty&#34;`
+<span id="L19" class="ln">    19  </span>	<span class="comment">// Indicates whether the processor is enabled.</span>
+<span id="L20" class="ln">    20  </span>	Enabled bool `json:&#34;enabled&#34;`
+<span id="L21" class="ln">    21  </span>	<span class="comment">// Optional list of fields used to group events before the threshold has been reached.</span>
+<span id="L22" class="ln">    22  </span>	GroupBy []string `json:&#34;group_by,omitempty&#34;`
+<span id="L23" class="ln">    23  </span>	<span class="comment">// The unique identifier for this processor.</span>
+<span id="L24" class="ln">    24  </span>	Id string `json:&#34;id&#34;`
+<span id="L25" class="ln">    25  </span>	<span class="comment">// A Datadog search query used to determine which logs this processor targets.</span>
+<span id="L26" class="ln">    26  </span>	Include string `json:&#34;include&#34;`
+<span id="L27" class="ln">    27  </span>	<span class="comment">// the number of events allowed in a given time window. Events sent after the threshold has been reached, are dropped.</span>
+<span id="L28" class="ln">    28  </span>	Threshold int64 `json:&#34;threshold&#34;`
+<span id="L29" class="ln">    29  </span>	<span class="comment">// The processor type. The value should always be `throttle`.</span>
+<span id="L30" class="ln">    30  </span>	Type ObservabilityPipelineThrottleProcessorType `json:&#34;type&#34;`
+<span id="L31" class="ln">    31  </span>	<span class="comment">// The time window in seconds over which the threshold applies.</span>
+<span id="L32" class="ln">    32  </span>	Window float64 `json:&#34;window&#34;`
+<span id="L33" class="ln">    33  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L34" class="ln">    34  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L35" class="ln">    35  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L36" class="ln">    36  </span>}
+<span id="L37" class="ln">    37  </span>
+<span id="L38" class="ln">    38  </span><span class="comment">// NewObservabilityPipelineThrottleProcessor instantiates a new ObservabilityPipelineThrottleProcessor object.</span>
+<span id="L39" class="ln">    39  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L40" class="ln">    40  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L41" class="ln">    41  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L42" class="ln">    42  </span>func NewObservabilityPipelineThrottleProcessor(enabled bool, id string, include string, threshold int64, typeVar ObservabilityPipelineThrottleProcessorType, window float64) *ObservabilityPipelineThrottleProcessor {
+<span id="L43" class="ln">    43  </span>	this := ObservabilityPipelineThrottleProcessor{}
+<span id="L44" class="ln">    44  </span>	this.Enabled = enabled
+<span id="L45" class="ln">    45  </span>	this.Id = id
+<span id="L46" class="ln">    46  </span>	this.Include = include
+<span id="L47" class="ln">    47  </span>	this.Threshold = threshold
+<span id="L48" class="ln">    48  </span>	this.Type = typeVar
+<span id="L49" class="ln">    49  </span>	this.Window = window
+<span id="L50" class="ln">    50  </span>	return &amp;this
+<span id="L51" class="ln">    51  </span>}
+<span id="L52" class="ln">    52  </span>
+<span id="L53" class="ln">    53  </span><span class="comment">// NewObservabilityPipelineThrottleProcessorWithDefaults instantiates a new ObservabilityPipelineThrottleProcessor object.</span>
+<span id="L54" class="ln">    54  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L55" class="ln">    55  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L56" class="ln">    56  </span>func NewObservabilityPipelineThrottleProcessorWithDefaults() *ObservabilityPipelineThrottleProcessor {
+<span id="L57" class="ln">    57  </span>	this := ObservabilityPipelineThrottleProcessor{}
+<span id="L58" class="ln">    58  </span>	var typeVar ObservabilityPipelineThrottleProcessorType = OBSERVABILITYPIPELINETHROTTLEPROCESSORTYPE_THROTTLE
+<span id="L59" class="ln">    59  </span>	this.Type = typeVar
+<span id="L60" class="ln">    60  </span>	return &amp;this
+<span id="L61" class="ln">    61  </span>}
+<span id="L62" class="ln">    62  </span>
+<span id="L63" class="ln">    63  </span><span class="comment">// GetDisplayName returns the DisplayName field value if set, zero value otherwise.</span>
+<span id="L64" class="ln">    64  </span>func (o *ObservabilityPipelineThrottleProcessor) GetDisplayName() string {
+<span id="L65" class="ln">    65  </span>	if o == nil || o.DisplayName == nil {
+<span id="L66" class="ln">    66  </span>		var ret string
+<span id="L67" class="ln">    67  </span>		return ret
+<span id="L68" class="ln">    68  </span>	}
+<span id="L69" class="ln">    69  </span>	return *o.DisplayName
+<span id="L70" class="ln">    70  </span>}
+<span id="L71" class="ln">    71  </span>
+<span id="L72" class="ln">    72  </span><span class="comment">// GetDisplayNameOk returns a tuple with the DisplayName field value if set, nil otherwise</span>
+<span id="L73" class="ln">    73  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L74" class="ln">    74  </span>func (o *ObservabilityPipelineThrottleProcessor) GetDisplayNameOk() (*string, bool) {
+<span id="L75" class="ln">    75  </span>	if o == nil || o.DisplayName == nil {
+<span id="L76" class="ln">    76  </span>		return nil, false
+<span id="L77" class="ln">    77  </span>	}
+<span id="L78" class="ln">    78  </span>	return o.DisplayName, true
+<span id="L79" class="ln">    79  </span>}
+<span id="L80" class="ln">    80  </span>
+<span id="L81" class="ln">    81  </span><span class="comment">// HasDisplayName returns a boolean if a field has been set.</span>
+<span id="L82" class="ln">    82  </span>func (o *ObservabilityPipelineThrottleProcessor) HasDisplayName() bool {
+<span id="L83" class="ln">    83  </span>	return o != nil &amp;&amp; o.DisplayName != nil
+<span id="L84" class="ln">    84  </span>}
+<span id="L85" class="ln">    85  </span>
+<span id="L86" class="ln">    86  </span><span class="comment">// SetDisplayName gets a reference to the given string and assigns it to the DisplayName field.</span>
+<span id="L87" class="ln">    87  </span>func (o *ObservabilityPipelineThrottleProcessor) SetDisplayName(v string) {
+<span id="L88" class="ln">    88  </span>	o.DisplayName = &amp;v
+<span id="L89" class="ln">    89  </span>}
+<span id="L90" class="ln">    90  </span>
+<span id="L91" class="ln">    91  </span><span class="comment">// GetEnabled returns the Enabled field value.</span>
+<span id="L92" class="ln">    92  </span>func (o *ObservabilityPipelineThrottleProcessor) GetEnabled() bool {
+<span id="L93" class="ln">    93  </span>	if o == nil {
+<span id="L94" class="ln">    94  </span>		var ret bool
+<span id="L95" class="ln">    95  </span>		return ret
+<span id="L96" class="ln">    96  </span>	}
+<span id="L97" class="ln">    97  </span>	return o.Enabled
+<span id="L98" class="ln">    98  </span>}
+<span id="L99" class="ln">    99  </span>
+<span id="L100" class="ln">   100  </span><span class="comment">// GetEnabledOk returns a tuple with the Enabled field value</span>
+<span id="L101" class="ln">   101  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L102" class="ln">   102  </span>func (o *ObservabilityPipelineThrottleProcessor) GetEnabledOk() (*bool, bool) {
+<span id="L103" class="ln">   103  </span>	if o == nil {
+<span id="L104" class="ln">   104  </span>		return nil, false
+<span id="L105" class="ln">   105  </span>	}
+<span id="L106" class="ln">   106  </span>	return &amp;o.Enabled, true
+<span id="L107" class="ln">   107  </span>}
+<span id="L108" class="ln">   108  </span>
+<span id="L109" class="ln">   109  </span><span class="comment">// SetEnabled sets field value.</span>
+<span id="L110" class="ln">   110  </span>func (o *ObservabilityPipelineThrottleProcessor) SetEnabled(v bool) {
+<span id="L111" class="ln">   111  </span>	o.Enabled = v
+<span id="L112" class="ln">   112  </span>}
+<span id="L113" class="ln">   113  </span>
+<span id="L114" class="ln">   114  </span><span class="comment">// GetGroupBy returns the GroupBy field value if set, zero value otherwise.</span>
+<span id="L115" class="ln">   115  </span>func (o *ObservabilityPipelineThrottleProcessor) GetGroupBy() []string {
+<span id="L116" class="ln">   116  </span>	if o == nil || o.GroupBy == nil {
+<span id="L117" class="ln">   117  </span>		var ret []string
+<span id="L118" class="ln">   118  </span>		return ret
+<span id="L119" class="ln">   119  </span>	}
+<span id="L120" class="ln">   120  </span>	return o.GroupBy
+<span id="L121" class="ln">   121  </span>}
+<span id="L122" class="ln">   122  </span>
+<span id="L123" class="ln">   123  </span><span class="comment">// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise</span>
+<span id="L124" class="ln">   124  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L125" class="ln">   125  </span>func (o *ObservabilityPipelineThrottleProcessor) GetGroupByOk() (*[]string, bool) {
+<span id="L126" class="ln">   126  </span>	if o == nil || o.GroupBy == nil {
+<span id="L127" class="ln">   127  </span>		return nil, false
+<span id="L128" class="ln">   128  </span>	}
+<span id="L129" class="ln">   129  </span>	return &amp;o.GroupBy, true
+<span id="L130" class="ln">   130  </span>}
+<span id="L131" class="ln">   131  </span>
+<span id="L132" class="ln">   132  </span><span class="comment">// HasGroupBy returns a boolean if a field has been set.</span>
+<span id="L133" class="ln">   133  </span>func (o *ObservabilityPipelineThrottleProcessor) HasGroupBy() bool {
+<span id="L134" class="ln">   134  </span>	return o != nil &amp;&amp; o.GroupBy != nil
+<span id="L135" class="ln">   135  </span>}
+<span id="L136" class="ln">   136  </span>
+<span id="L137" class="ln">   137  </span><span class="comment">// SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.</span>
+<span id="L138" class="ln">   138  </span>func (o *ObservabilityPipelineThrottleProcessor) SetGroupBy(v []string) {
+<span id="L139" class="ln">   139  </span>	o.GroupBy = v
+<span id="L140" class="ln">   140  </span>}
+<span id="L141" class="ln">   141  </span>
+<span id="L142" class="ln">   142  </span><span class="comment">// GetId returns the Id field value.</span>
+<span id="L143" class="ln">   143  </span>func (o *ObservabilityPipelineThrottleProcessor) GetId() string {
+<span id="L144" class="ln">   144  </span>	if o == nil {
+<span id="L145" class="ln">   145  </span>		var ret string
+<span id="L146" class="ln">   146  </span>		return ret
+<span id="L147" class="ln">   147  </span>	}
+<span id="L148" class="ln">   148  </span>	return o.Id
+<span id="L149" class="ln">   149  </span>}
+<span id="L150" class="ln">   150  </span>
+<span id="L151" class="ln">   151  </span><span class="comment">// GetIdOk returns a tuple with the Id field value</span>
+<span id="L152" class="ln">   152  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L153" class="ln">   153  </span>func (o *ObservabilityPipelineThrottleProcessor) GetIdOk() (*string, bool) {
+<span id="L154" class="ln">   154  </span>	if o == nil {
+<span id="L155" class="ln">   155  </span>		return nil, false
+<span id="L156" class="ln">   156  </span>	}
+<span id="L157" class="ln">   157  </span>	return &amp;o.Id, true
+<span id="L158" class="ln">   158  </span>}
+<span id="L159" class="ln">   159  </span>
+<span id="L160" class="ln">   160  </span><span class="comment">// SetId sets field value.</span>
+<span id="L161" class="ln">   161  </span>func (o *ObservabilityPipelineThrottleProcessor) SetId(v string) {
+<span id="L162" class="ln">   162  </span>	o.Id = v
+<span id="L163" class="ln">   163  </span>}
+<span id="L164" class="ln">   164  </span>
+<span id="L165" class="ln">   165  </span><span class="comment">// GetInclude returns the Include field value.</span>
+<span id="L166" class="ln">   166  </span>func (o *ObservabilityPipelineThrottleProcessor) GetInclude() string {
+<span id="L167" class="ln">   167  </span>	if o == nil {
+<span id="L168" class="ln">   168  </span>		var ret string
+<span id="L169" class="ln">   169  </span>		return ret
+<span id="L170" class="ln">   170  </span>	}
+<span id="L171" class="ln">   171  </span>	return o.Include
+<span id="L172" class="ln">   172  </span>}
+<span id="L173" class="ln">   173  </span>
+<span id="L174" class="ln">   174  </span><span class="comment">// GetIncludeOk returns a tuple with the Include field value</span>
+<span id="L175" class="ln">   175  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L176" class="ln">   176  </span>func (o *ObservabilityPipelineThrottleProcessor) GetIncludeOk() (*string, bool) {
+<span id="L177" class="ln">   177  </span>	if o == nil {
+<span id="L178" class="ln">   178  </span>		return nil, false
+<span id="L179" class="ln">   179  </span>	}
+<span id="L180" class="ln">   180  </span>	return &amp;o.Include, true
+<span id="L181" class="ln">   181  </span>}
+<span id="L182" class="ln">   182  </span>
+<span id="L183" class="ln">   183  </span><span class="comment">// SetInclude sets field value.</span>
+<span id="L184" class="ln">   184  </span>func (o *ObservabilityPipelineThrottleProcessor) SetInclude(v string) {
+<span id="L185" class="ln">   185  </span>	o.Include = v
+<span id="L186" class="ln">   186  </span>}
+<span id="L187" class="ln">   187  </span>
+<span id="L188" class="ln">   188  </span><span class="comment">// GetThreshold returns the Threshold field value.</span>
+<span id="L189" class="ln">   189  </span>func (o *ObservabilityPipelineThrottleProcessor) GetThreshold() int64 {
+<span id="L190" class="ln">   190  </span>	if o == nil {
+<span id="L191" class="ln">   191  </span>		var ret int64
+<span id="L192" class="ln">   192  </span>		return ret
+<span id="L193" class="ln">   193  </span>	}
+<span id="L194" class="ln">   194  </span>	return o.Threshold
+<span id="L195" class="ln">   195  </span>}
+<span id="L196" class="ln">   196  </span>
+<span id="L197" class="ln">   197  </span><span class="comment">// GetThresholdOk returns a tuple with the Threshold field value</span>
+<span id="L198" class="ln">   198  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L199" class="ln">   199  </span>func (o *ObservabilityPipelineThrottleProcessor) GetThresholdOk() (*int64, bool) {
+<span id="L200" class="ln">   200  </span>	if o == nil {
+<span id="L201" class="ln">   201  </span>		return nil, false
+<span id="L202" class="ln">   202  </span>	}
+<span id="L203" class="ln">   203  </span>	return &amp;o.Threshold, true
+<span id="L204" class="ln">   204  </span>}
+<span id="L205" class="ln">   205  </span>
+<span id="L206" class="ln">   206  </span><span class="comment">// SetThreshold sets field value.</span>
+<span id="L207" class="ln">   207  </span>func (o *ObservabilityPipelineThrottleProcessor) SetThreshold(v int64) {
+<span id="L208" class="ln">   208  </span>	o.Threshold = v
+<span id="L209" class="ln">   209  </span>}
+<span id="L210" class="ln">   210  </span>
+<span id="L211" class="ln">   211  </span><span class="comment">// GetType returns the Type field value.</span>
+<span id="L212" class="ln">   212  </span>func (o *ObservabilityPipelineThrottleProcessor) GetType() ObservabilityPipelineThrottleProcessorType {
+<span id="L213" class="ln">   213  </span>	if o == nil {
+<span id="L214" class="ln">   214  </span>		var ret ObservabilityPipelineThrottleProcessorType
+<span id="L215" class="ln">   215  </span>		return ret
+<span id="L216" class="ln">   216  </span>	}
+<span id="L217" class="ln">   217  </span>	return o.Type
+<span id="L218" class="ln">   218  </span>}
+<span id="L219" class="ln">   219  </span>
+<span id="L220" class="ln">   220  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value</span>
+<span id="L221" class="ln">   221  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L222" class="ln">   222  </span>func (o *ObservabilityPipelineThrottleProcessor) GetTypeOk() (*ObservabilityPipelineThrottleProcessorType, bool) {
+<span id="L223" class="ln">   223  </span>	if o == nil {
+<span id="L224" class="ln">   224  </span>		return nil, false
+<span id="L225" class="ln">   225  </span>	}
+<span id="L226" class="ln">   226  </span>	return &amp;o.Type, true
+<span id="L227" class="ln">   227  </span>}
+<span id="L228" class="ln">   228  </span>
+<span id="L229" class="ln">   229  </span><span class="comment">// SetType sets field value.</span>
+<span id="L230" class="ln">   230  </span>func (o *ObservabilityPipelineThrottleProcessor) SetType(v ObservabilityPipelineThrottleProcessorType) {
+<span id="L231" class="ln">   231  </span>	o.Type = v
+<span id="L232" class="ln">   232  </span>}
+<span id="L233" class="ln">   233  </span>
+<span id="L234" class="ln">   234  </span><span class="comment">// GetWindow returns the Window field value.</span>
+<span id="L235" class="ln">   235  </span>func (o *ObservabilityPipelineThrottleProcessor) GetWindow() float64 {
+<span id="L236" class="ln">   236  </span>	if o == nil {
+<span id="L237" class="ln">   237  </span>		var ret float64
+<span id="L238" class="ln">   238  </span>		return ret
+<span id="L239" class="ln">   239  </span>	}
+<span id="L240" class="ln">   240  </span>	return o.Window
+<span id="L241" class="ln">   241  </span>}
+<span id="L242" class="ln">   242  </span>
+<span id="L243" class="ln">   243  </span><span class="comment">// GetWindowOk returns a tuple with the Window field value</span>
+<span id="L244" class="ln">   244  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L245" class="ln">   245  </span>func (o *ObservabilityPipelineThrottleProcessor) GetWindowOk() (*float64, bool) {
+<span id="L246" class="ln">   246  </span>	if o == nil {
+<span id="L247" class="ln">   247  </span>		return nil, false
+<span id="L248" class="ln">   248  </span>	}
+<span id="L249" class="ln">   249  </span>	return &amp;o.Window, true
+<span id="L250" class="ln">   250  </span>}
+<span id="L251" class="ln">   251  </span>
+<span id="L252" class="ln">   252  </span><span class="comment">// SetWindow sets field value.</span>
+<span id="L253" class="ln">   253  </span>func (o *ObservabilityPipelineThrottleProcessor) SetWindow(v float64) {
+<span id="L254" class="ln">   254  </span>	o.Window = v
+<span id="L255" class="ln">   255  </span>}
+<span id="L256" class="ln">   256  </span>
+<span id="L257" class="ln">   257  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L258" class="ln">   258  </span>func (o ObservabilityPipelineThrottleProcessor) MarshalJSON() ([]byte, error) {
+<span id="L259" class="ln">   259  </span>	toSerialize := map[string]interface{}{}
+<span id="L260" class="ln">   260  </span>	if o.UnparsedObject != nil {
+<span id="L261" class="ln">   261  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L262" class="ln">   262  </span>	}
+<span id="L263" class="ln">   263  </span>	if o.DisplayName != nil {
+<span id="L264" class="ln">   264  </span>		toSerialize[&#34;display_name&#34;] = o.DisplayName
+<span id="L265" class="ln">   265  </span>	}
+<span id="L266" class="ln">   266  </span>	toSerialize[&#34;enabled&#34;] = o.Enabled
+<span id="L267" class="ln">   267  </span>	if o.GroupBy != nil {
+<span id="L268" class="ln">   268  </span>		toSerialize[&#34;group_by&#34;] = o.GroupBy
+<span id="L269" class="ln">   269  </span>	}
+<span id="L270" class="ln">   270  </span>	toSerialize[&#34;id&#34;] = o.Id
+<span id="L271" class="ln">   271  </span>	toSerialize[&#34;include&#34;] = o.Include
+<span id="L272" class="ln">   272  </span>	toSerialize[&#34;threshold&#34;] = o.Threshold
+<span id="L273" class="ln">   273  </span>	toSerialize[&#34;type&#34;] = o.Type
+<span id="L274" class="ln">   274  </span>	toSerialize[&#34;window&#34;] = o.Window
+<span id="L275" class="ln">   275  </span>
+<span id="L276" class="ln">   276  </span>	for key, value := range o.AdditionalProperties {
+<span id="L277" class="ln">   277  </span>		toSerialize[key] = value
+<span id="L278" class="ln">   278  </span>	}
+<span id="L279" class="ln">   279  </span>	return datadog.Marshal(toSerialize)
+<span id="L280" class="ln">   280  </span>}
+<span id="L281" class="ln">   281  </span>
+<span id="L282" class="ln">   282  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L283" class="ln">   283  </span>func (o *ObservabilityPipelineThrottleProcessor) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L284" class="ln">   284  </span>	all := struct {
+<span id="L285" class="ln">   285  </span>		DisplayName *string                                     `json:&#34;display_name,omitempty&#34;`
+<span id="L286" class="ln">   286  </span>		Enabled     *bool                                       `json:&#34;enabled&#34;`
+<span id="L287" class="ln">   287  </span>		GroupBy     []string                                    `json:&#34;group_by,omitempty&#34;`
+<span id="L288" class="ln">   288  </span>		Id          *string                                     `json:&#34;id&#34;`
+<span id="L289" class="ln">   289  </span>		Include     *string                                     `json:&#34;include&#34;`
+<span id="L290" class="ln">   290  </span>		Threshold   *int64                                      `json:&#34;threshold&#34;`
+<span id="L291" class="ln">   291  </span>		Type        *ObservabilityPipelineThrottleProcessorType `json:&#34;type&#34;`
+<span id="L292" class="ln">   292  </span>		Window      *float64                                    `json:&#34;window&#34;`
+<span id="L293" class="ln">   293  </span>	}{}
+<span id="L294" class="ln">   294  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L295" class="ln">   295  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L296" class="ln">   296  </span>	}
+<span id="L297" class="ln">   297  </span>	if all.Enabled == nil {
+<span id="L298" class="ln">   298  </span>		return fmt.Errorf(&#34;required field enabled missing&#34;)
+<span id="L299" class="ln">   299  </span>	}
+<span id="L300" class="ln">   300  </span>	if all.Id == nil {
+<span id="L301" class="ln">   301  </span>		return fmt.Errorf(&#34;required field id missing&#34;)
+<span id="L302" class="ln">   302  </span>	}
+<span id="L303" class="ln">   303  </span>	if all.Include == nil {
+<span id="L304" class="ln">   304  </span>		return fmt.Errorf(&#34;required field include missing&#34;)
+<span id="L305" class="ln">   305  </span>	}
+<span id="L306" class="ln">   306  </span>	if all.Threshold == nil {
+<span id="L307" class="ln">   307  </span>		return fmt.Errorf(&#34;required field threshold missing&#34;)
+<span id="L308" class="ln">   308  </span>	}
+<span id="L309" class="ln">   309  </span>	if all.Type == nil {
+<span id="L310" class="ln">   310  </span>		return fmt.Errorf(&#34;required field type missing&#34;)
+<span id="L311" class="ln">   311  </span>	}
+<span id="L312" class="ln">   312  </span>	if all.Window == nil {
+<span id="L313" class="ln">   313  </span>		return fmt.Errorf(&#34;required field window missing&#34;)
+<span id="L314" class="ln">   314  </span>	}
+<span id="L315" class="ln">   315  </span>	additionalProperties := make(map[string]interface{})
+<span id="L316" class="ln">   316  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L317" class="ln">   317  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;display_name&#34;, &#34;enabled&#34;, &#34;group_by&#34;, &#34;id&#34;, &#34;include&#34;, &#34;threshold&#34;, &#34;type&#34;, &#34;window&#34;})
+<span id="L318" class="ln">   318  </span>	} else {
+<span id="L319" class="ln">   319  </span>		return err
+<span id="L320" class="ln">   320  </span>	}
+<span id="L321" class="ln">   321  </span>
+<span id="L322" class="ln">   322  </span>	hasInvalidField := false
+<span id="L323" class="ln">   323  </span>	o.DisplayName = all.DisplayName
+<span id="L324" class="ln">   324  </span>	o.Enabled = *all.Enabled
+<span id="L325" class="ln">   325  </span>	o.GroupBy = all.GroupBy
+<span id="L326" class="ln">   326  </span>	o.Id = *all.Id
+<span id="L327" class="ln">   327  </span>	o.Include = *all.Include
+<span id="L328" class="ln">   328  </span>	o.Threshold = *all.Threshold
+<span id="L329" class="ln">   329  </span>	if !all.Type.IsValid() {
+<span id="L330" class="ln">   330  </span>		hasInvalidField = true
+<span id="L331" class="ln">   331  </span>	} else {
+<span id="L332" class="ln">   332  </span>		o.Type = *all.Type
+<span id="L333" class="ln">   333  </span>	}
+<span id="L334" class="ln">   334  </span>	o.Window = *all.Window
+<span id="L335" class="ln">   335  </span>
+<span id="L336" class="ln">   336  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L337" class="ln">   337  </span>		o.AdditionalProperties = additionalProperties
+<span id="L338" class="ln">   338  </span>	}
+<span id="L339" class="ln">   339  </span>
+<span id="L340" class="ln">   340  </span>	if hasInvalidField {
+<span id="L341" class="ln">   341  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L342" class="ln">   342  </span>	}
+<span id="L343" class="ln">   343  </span>
+<span id="L344" class="ln">   344  </span>	return nil
+<span id="L345" class="ln">   345  </span>}
+<span id="L346" class="ln">   346  </span>
 </pre><p></p>
 
 <div id="footer">

@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="theme-color" content="#375EAB"/>
 
-  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_observability_pipeline_pipeline_kafka_source_sasl_mechanism.go - Datadog</title>
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_observability_pipeline_kafka_sasl_mechanism.go - Datadog</title>
 
 <link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
 
@@ -38,7 +38,7 @@
 
   <h1>
     Source file
-    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_observability_pipeline_pipeline_kafka_source_sasl_mechanism.go</span>
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_observability_pipeline_kafka_sasl_mechanism.go</span>
   </h1>
 
 
@@ -67,51 +67,51 @@
 <span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L11" class="ln">    11  </span>)
 <span id="L12" class="ln">    12  </span>
-<span id="L13" class="ln">    13  </span><span class="comment">// ObservabilityPipelinePipelineKafkaSourceSaslMechanism SASL mechanism used for Kafka authentication.</span>
-<span id="L14" class="ln">    14  </span>type ObservabilityPipelinePipelineKafkaSourceSaslMechanism string
+<span id="L13" class="ln">    13  </span><span class="comment">// ObservabilityPipelineKafkaSaslMechanism SASL mechanism used for Kafka authentication.</span>
+<span id="L14" class="ln">    14  </span>type ObservabilityPipelineKafkaSaslMechanism string
 <span id="L15" class="ln">    15  </span>
-<span id="L16" class="ln">    16  </span><span class="comment">// List of ObservabilityPipelinePipelineKafkaSourceSaslMechanism.</span>
+<span id="L16" class="ln">    16  </span><span class="comment">// List of ObservabilityPipelineKafkaSaslMechanism.</span>
 <span id="L17" class="ln">    17  </span>const (
-<span id="L18" class="ln">    18  </span>	OBSERVABILITYPIPELINEPIPELINEKAFKASOURCESASLMECHANISM_PLAIN               ObservabilityPipelinePipelineKafkaSourceSaslMechanism = &#34;PLAIN&#34;
-<span id="L19" class="ln">    19  </span>	OBSERVABILITYPIPELINEPIPELINEKAFKASOURCESASLMECHANISM_SCRAMNOT_SHANOT_256 ObservabilityPipelinePipelineKafkaSourceSaslMechanism = &#34;SCRAM-SHA-256&#34;
-<span id="L20" class="ln">    20  </span>	OBSERVABILITYPIPELINEPIPELINEKAFKASOURCESASLMECHANISM_SCRAMNOT_SHANOT_512 ObservabilityPipelinePipelineKafkaSourceSaslMechanism = &#34;SCRAM-SHA-512&#34;
+<span id="L18" class="ln">    18  </span>	OBSERVABILITYPIPELINEKAFKASASLMECHANISM_PLAIN               ObservabilityPipelineKafkaSaslMechanism = &#34;PLAIN&#34;
+<span id="L19" class="ln">    19  </span>	OBSERVABILITYPIPELINEKAFKASASLMECHANISM_SCRAMNOT_SHANOT_256 ObservabilityPipelineKafkaSaslMechanism = &#34;SCRAM-SHA-256&#34;
+<span id="L20" class="ln">    20  </span>	OBSERVABILITYPIPELINEKAFKASASLMECHANISM_SCRAMNOT_SHANOT_512 ObservabilityPipelineKafkaSaslMechanism = &#34;SCRAM-SHA-512&#34;
 <span id="L21" class="ln">    21  </span>)
 <span id="L22" class="ln">    22  </span>
-<span id="L23" class="ln">    23  </span>var allowedObservabilityPipelinePipelineKafkaSourceSaslMechanismEnumValues = []ObservabilityPipelinePipelineKafkaSourceSaslMechanism{
-<span id="L24" class="ln">    24  </span>	OBSERVABILITYPIPELINEPIPELINEKAFKASOURCESASLMECHANISM_PLAIN,
-<span id="L25" class="ln">    25  </span>	OBSERVABILITYPIPELINEPIPELINEKAFKASOURCESASLMECHANISM_SCRAMNOT_SHANOT_256,
-<span id="L26" class="ln">    26  </span>	OBSERVABILITYPIPELINEPIPELINEKAFKASOURCESASLMECHANISM_SCRAMNOT_SHANOT_512,
+<span id="L23" class="ln">    23  </span>var allowedObservabilityPipelineKafkaSaslMechanismEnumValues = []ObservabilityPipelineKafkaSaslMechanism{
+<span id="L24" class="ln">    24  </span>	OBSERVABILITYPIPELINEKAFKASASLMECHANISM_PLAIN,
+<span id="L25" class="ln">    25  </span>	OBSERVABILITYPIPELINEKAFKASASLMECHANISM_SCRAMNOT_SHANOT_256,
+<span id="L26" class="ln">    26  </span>	OBSERVABILITYPIPELINEKAFKASASLMECHANISM_SCRAMNOT_SHANOT_512,
 <span id="L27" class="ln">    27  </span>}
 <span id="L28" class="ln">    28  </span>
 <span id="L29" class="ln">    29  </span><span class="comment">// GetAllowedValues reeturns the list of possible values.</span>
-<span id="L30" class="ln">    30  </span>func (v *ObservabilityPipelinePipelineKafkaSourceSaslMechanism) GetAllowedValues() []ObservabilityPipelinePipelineKafkaSourceSaslMechanism {
-<span id="L31" class="ln">    31  </span>	return allowedObservabilityPipelinePipelineKafkaSourceSaslMechanismEnumValues
+<span id="L30" class="ln">    30  </span>func (v *ObservabilityPipelineKafkaSaslMechanism) GetAllowedValues() []ObservabilityPipelineKafkaSaslMechanism {
+<span id="L31" class="ln">    31  </span>	return allowedObservabilityPipelineKafkaSaslMechanismEnumValues
 <span id="L32" class="ln">    32  </span>}
 <span id="L33" class="ln">    33  </span>
 <span id="L34" class="ln">    34  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L35" class="ln">    35  </span>func (v *ObservabilityPipelinePipelineKafkaSourceSaslMechanism) UnmarshalJSON(src []byte) error {
+<span id="L35" class="ln">    35  </span>func (v *ObservabilityPipelineKafkaSaslMechanism) UnmarshalJSON(src []byte) error {
 <span id="L36" class="ln">    36  </span>	var value string
 <span id="L37" class="ln">    37  </span>	err := datadog.Unmarshal(src, &amp;value)
 <span id="L38" class="ln">    38  </span>	if err != nil {
 <span id="L39" class="ln">    39  </span>		return err
 <span id="L40" class="ln">    40  </span>	}
-<span id="L41" class="ln">    41  </span>	*v = ObservabilityPipelinePipelineKafkaSourceSaslMechanism(value)
+<span id="L41" class="ln">    41  </span>	*v = ObservabilityPipelineKafkaSaslMechanism(value)
 <span id="L42" class="ln">    42  </span>	return nil
 <span id="L43" class="ln">    43  </span>}
 <span id="L44" class="ln">    44  </span>
-<span id="L45" class="ln">    45  </span><span class="comment">// NewObservabilityPipelinePipelineKafkaSourceSaslMechanismFromValue returns a pointer to a valid ObservabilityPipelinePipelineKafkaSourceSaslMechanism</span>
+<span id="L45" class="ln">    45  </span><span class="comment">// NewObservabilityPipelineKafkaSaslMechanismFromValue returns a pointer to a valid ObservabilityPipelineKafkaSaslMechanism</span>
 <span id="L46" class="ln">    46  </span><span class="comment">// for the value passed as argument, or an error if the value passed is not allowed by the enum.</span>
-<span id="L47" class="ln">    47  </span>func NewObservabilityPipelinePipelineKafkaSourceSaslMechanismFromValue(v string) (*ObservabilityPipelinePipelineKafkaSourceSaslMechanism, error) {
-<span id="L48" class="ln">    48  </span>	ev := ObservabilityPipelinePipelineKafkaSourceSaslMechanism(v)
+<span id="L47" class="ln">    47  </span>func NewObservabilityPipelineKafkaSaslMechanismFromValue(v string) (*ObservabilityPipelineKafkaSaslMechanism, error) {
+<span id="L48" class="ln">    48  </span>	ev := ObservabilityPipelineKafkaSaslMechanism(v)
 <span id="L49" class="ln">    49  </span>	if ev.IsValid() {
 <span id="L50" class="ln">    50  </span>		return &amp;ev, nil
 <span id="L51" class="ln">    51  </span>	}
-<span id="L52" class="ln">    52  </span>	return nil, fmt.Errorf(&#34;invalid value &#39;%v&#39; for ObservabilityPipelinePipelineKafkaSourceSaslMechanism: valid values are %v&#34;, v, allowedObservabilityPipelinePipelineKafkaSourceSaslMechanismEnumValues)
+<span id="L52" class="ln">    52  </span>	return nil, fmt.Errorf(&#34;invalid value &#39;%v&#39; for ObservabilityPipelineKafkaSaslMechanism: valid values are %v&#34;, v, allowedObservabilityPipelineKafkaSaslMechanismEnumValues)
 <span id="L53" class="ln">    53  </span>}
 <span id="L54" class="ln">    54  </span>
 <span id="L55" class="ln">    55  </span><span class="comment">// IsValid return true if the value is valid for the enum, false otherwise.</span>
-<span id="L56" class="ln">    56  </span>func (v ObservabilityPipelinePipelineKafkaSourceSaslMechanism) IsValid() bool {
-<span id="L57" class="ln">    57  </span>	for _, existing := range allowedObservabilityPipelinePipelineKafkaSourceSaslMechanismEnumValues {
+<span id="L56" class="ln">    56  </span>func (v ObservabilityPipelineKafkaSaslMechanism) IsValid() bool {
+<span id="L57" class="ln">    57  </span>	for _, existing := range allowedObservabilityPipelineKafkaSaslMechanismEnumValues {
 <span id="L58" class="ln">    58  </span>		if existing == v {
 <span id="L59" class="ln">    59  </span>			return true
 <span id="L60" class="ln">    60  </span>		}
@@ -119,8 +119,8 @@
 <span id="L62" class="ln">    62  </span>	return false
 <span id="L63" class="ln">    63  </span>}
 <span id="L64" class="ln">    64  </span>
-<span id="L65" class="ln">    65  </span><span class="comment">// Ptr returns reference to ObservabilityPipelinePipelineKafkaSourceSaslMechanism value.</span>
-<span id="L66" class="ln">    66  </span>func (v ObservabilityPipelinePipelineKafkaSourceSaslMechanism) Ptr() *ObservabilityPipelinePipelineKafkaSourceSaslMechanism {
+<span id="L65" class="ln">    65  </span><span class="comment">// Ptr returns reference to ObservabilityPipelineKafkaSaslMechanism value.</span>
+<span id="L66" class="ln">    66  </span>func (v ObservabilityPipelineKafkaSaslMechanism) Ptr() *ObservabilityPipelineKafkaSaslMechanism {
 <span id="L67" class="ln">    67  </span>	return &amp;v
 <span id="L68" class="ln">    68  </span>}
 <span id="L69" class="ln">    69  </span>
