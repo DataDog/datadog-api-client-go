@@ -17,7 +17,7 @@ type {{ name }} struct {
 {%- else %}
 {%- for attr, schema in model.get("properties", {}).items() %}
 {%- set propertyName = attr|attribute_name %}
-{%- set dataType = get_type(schema, alternative_name=name + propertyName, render_nullable=True) %}
+{%- set dataType = get_type(schema, alternative_name=name + propertyName, render_nullable=True, required=(attr in model.get("required", []))) %}
 	// {{ schema.description|block_comment(prefix="//", first_line=False)|indent("\t") }}
 {%- if schema.deprecated %}
 	// Deprecated
@@ -37,7 +37,7 @@ type {{ name }} struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func New{{ name }}({%- for attr, spec in model.get("properties", {}).items() if attr in model.get("required", []) %}{{ attr|variable_name }} {{ get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True) }}{% if not loop.last %}, {% endif %}{% endfor %}) *{{ name }} {
+func New{{ name }}({%- for attr, spec in model.get("properties", {}).items() if attr in model.get("required", []) %}{{ attr|variable_name }} {{ get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True, required=True) }}{% if not loop.last %}, {% endif %}{% endfor %}) *{{ name }} {
 	this := {{ name }}{}
 {%- for attr, spec in model.get("properties", {}).items() %}
 {%- if attr in model.get("required", []) %}
@@ -92,12 +92,13 @@ func New{{ name }}WithDefaults() *{{ name }} {
 
 {%- for attr, spec in model.get("properties", {}).items() %}
 {%- set propertyName = attr|attribute_name %}
-{%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True) %}
+{%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True, required=(attr in model.get("required", []))) %}
 {%- set baseType = get_type(spec, alternative_name=name + propertyName) %}
 {%- set isNullable = spec.nullable %}
 {%- set isContainer = spec.type == "array" %}
 {%- set isAdditionalPropertiesContainer = spec.type == "object" and spec.additionalProperties is defined and spec.additionalProperties is not false and not spec.get("properties") %}
 {%- set isPrimitiveContainer = spec.type == "array" and spec["items"]|is_primitive %}
+{%- set isRequiredNullableArray = spec.type == "array" and spec.nullable and attr in model.get("required", []) %}
 {%- set isAnyType = not dataType.startswith("[]") and not dataType.startswith("map[") %}
 {%- if attr in model.get("required", []) %}
 // Get{{ propertyName }} returns the {{ propertyName }} field value.
@@ -114,7 +115,7 @@ func (o *{{ name }}) Get{{ propertyName }}() {{ baseType }} {
 	}
 
 {%- if isNullable %}
-{%- if (isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}
+{%- if (isContainer and not isPrimitiveContainer and not isRequiredNullableArray) or isAdditionalPropertiesContainer %}
 	return o.{{ propertyName }}
 {%- else %}
 	return *o.{{ propertyName }}.Get()
@@ -133,11 +134,11 @@ func (o *{{ name }}) Get{{ propertyName }}() {{ baseType }} {
 // Deprecated
 {%- endif %}
 func (o *{{ name }}) Get{{ propertyName }}Ok() (*{{ baseType }}, bool) {
-	if o == nil {%- if isNullable and ((isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer) %}|| o.{{ propertyName }} == nil{%- endif %} {
+	if o == nil {%- if isNullable and ((isContainer and not isPrimitiveContainer and not isRequiredNullableArray) or isAdditionalPropertiesContainer) %}|| o.{{ propertyName }} == nil{%- endif %} {
 		return nil, false
 	}
 {%- if isNullable %}
-{%- if (isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}
+{%- if (isContainer and not isPrimitiveContainer and not isRequiredNullableArray) or isAdditionalPropertiesContainer %}
 	return &o.{{ propertyName }}, true
 {%- else %}
 	return o.{{ propertyName }}.Get(), o.{{ propertyName }}.IsSet()
@@ -153,7 +154,7 @@ func (o *{{ name }}) Get{{ propertyName }}Ok() (*{{ baseType }}, bool) {
 {%- endif %}
 func (o *{{ name }}) Set{{ propertyName }}(v {{ baseType }}) {
 {%- if isNullable %}
-{%- if (isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}
+{%- if (isContainer and not isPrimitiveContainer and not isRequiredNullableArray) or isAdditionalPropertiesContainer %}
 	o.{{ propertyName }} = v
 {%- else %}
 	o.{{ propertyName }}.Set(&v)
@@ -267,14 +268,15 @@ func (o {{ name }}) MarshalJSON() ([]byte, error) {
 	{%- set isAdditionalPropertiesContainer = spec.type == "object" and spec.additionalProperties is defined and spec.additionalProperties is not false and not spec.get("properties") %}
 	{%- set isPrimitiveContainer = spec.type == "array" and spec["items"]|is_primitive %}
 	{%- set isAnyType = not dataType.startswith("[]") and not dataType.startswith("map[") %}
+	{%- set isRequiredNullableArray = spec.type == "array" and spec.nullable and attr in model.get("required", []) %}
 	{#- if argument is nullable, only serialize it if it is set #}
 	{%- if isNullable %}
-	{%- if (isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer %}
+	{%- if (isContainer and not isPrimitiveContainer and not isRequiredNullableArray) or isAdditionalPropertiesContainer %}
 	if o.{{ propertyName }} != nil {
 		toSerialize["{{ attr }}"] = o.{{ propertyName }}
 	}
 	{%- endif %}
-	{%- if not ((isContainer and not isPrimitiveContainer) or isAdditionalPropertiesContainer) %}
+	{%- if not ((isContainer and not isPrimitiveContainer and not isRequiredNullableArray) or isAdditionalPropertiesContainer) %}
 	{%- if isRequired %}
 	toSerialize["{{ attr }}"] = o.{{ propertyName }}.Get()
 	{%- else %}
@@ -342,7 +344,7 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 	{%- for attr, spec in model.get("properties", {}).items() %}
 	{%- set propertyName = attr|attribute_name %}
-	{%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True) %}
+	{%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True, required=(attr in model.get("required", []))) %}
 	{%- if attr in model.get("required", []) %}
 		{{ propertyName }} {% if not spec.nullable %}*{% endif %}{{ dataType }} `json:"{{ attr }}"`
 	{%- else %}
