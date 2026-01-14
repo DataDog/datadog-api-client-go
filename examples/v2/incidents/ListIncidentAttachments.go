@@ -13,12 +13,15 @@ import (
 )
 
 func main() {
+	// there is a valid "incident" in the system
+	IncidentDataID := os.Getenv("INCIDENT_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.ListIncidentAttachments", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewIncidentsApi(apiClient)
-	resp, r, err := api.ListIncidentAttachments(ctx, "incident_id", *datadogV2.NewListIncidentAttachmentsOptionalParameters())
+	resp, r, err := api.ListIncidentAttachments(ctx, IncidentDataID, *datadogV2.NewListIncidentAttachmentsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.ListIncidentAttachments`: %v\n", err)

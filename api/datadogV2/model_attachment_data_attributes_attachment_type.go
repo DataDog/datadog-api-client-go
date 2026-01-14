@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AttachmentDataAttributesAttachmentType
+// AttachmentDataAttributesAttachmentType The type of the attachment.
 type AttachmentDataAttributesAttachmentType string
 
 // List of AttachmentDataAttributesAttachmentType.
