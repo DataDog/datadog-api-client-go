@@ -37,7 +37,7 @@ type {{ name }} struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func New{{ name }}({%- for attr, spec in model.get("properties", {}).items() if attr in model.get("required", []) %}{{ attr|variable_name }} {{ get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True, required=(attr in model.get("required", []))) }}{% if not loop.last %}, {% endif %}{% endfor %}) *{{ name }} {
+func New{{ name }}({%- for attr, spec in model.get("properties", {}).items() if attr in model.get("required", []) %}{{ attr|variable_name }} {{ get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True, required=True) }}{% if not loop.last %}, {% endif %}{% endfor %}) *{{ name }} {
 	this := {{ name }}{}
 {%- for attr, spec in model.get("properties", {}).items() %}
 {%- if attr in model.get("required", []) %}
