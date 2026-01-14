@@ -40,7 +40,7 @@ func (a *ObservabilityPipelinesApi) CreatePipeline(ctx _context.Context, body Ob
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/remote_config/products/obs_pipelines/pipelines"
+	localVarPath := localBasePath + "/api/v2/obs-pipelines/pipelines"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -128,7 +128,7 @@ func (a *ObservabilityPipelinesApi) DeletePipeline(ctx _context.Context, pipelin
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/remote_config/products/obs_pipelines/pipelines/{pipeline_id}"
+	localVarPath := localBasePath + "/api/v2/obs-pipelines/pipelines/{pipeline_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{pipeline_id}", _neturl.PathEscape(datadog.ParameterToString(pipelineId, "")))
 
 	localVarHeaderParams := make(map[string]string)
@@ -206,7 +206,7 @@ func (a *ObservabilityPipelinesApi) GetPipeline(ctx _context.Context, pipelineId
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/remote_config/products/obs_pipelines/pipelines/{pipeline_id}"
+	localVarPath := localBasePath + "/api/v2/obs-pipelines/pipelines/{pipeline_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{pipeline_id}", _neturl.PathEscape(datadog.ParameterToString(pipelineId, "")))
 
 	localVarHeaderParams := make(map[string]string)
@@ -325,7 +325,7 @@ func (a *ObservabilityPipelinesApi) ListPipelines(ctx _context.Context, o ...Lis
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/remote_config/products/obs_pipelines/pipelines"
+	localVarPath := localBasePath + "/api/v2/obs-pipelines/pipelines"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -417,7 +417,7 @@ func (a *ObservabilityPipelinesApi) UpdatePipeline(ctx _context.Context, pipelin
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/remote_config/products/obs_pipelines/pipelines/{pipeline_id}"
+	localVarPath := localBasePath + "/api/v2/obs-pipelines/pipelines/{pipeline_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{pipeline_id}", _neturl.PathEscape(datadog.ParameterToString(pipelineId, "")))
 
 	localVarHeaderParams := make(map[string]string)
@@ -508,7 +508,7 @@ func (a *ObservabilityPipelinesApi) ValidatePipeline(ctx _context.Context, body 
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/remote_config/products/obs_pipelines/pipelines/validate"
+	localVarPath := localBasePath + "/api/v2/obs-pipelines/pipelines/validate"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

@@ -11,13 +11,15 @@ import (
 )
 
 // ObservabilityPipelineSplunkHecDestination The `splunk_hec` destination forwards logs to Splunk using the HTTP Event Collector (HEC).
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineSplunkHecDestination struct {
 	// If `true`, Splunk tries to extract timestamps from incoming log events.
 	// If `false`, Splunk assigns the time the event was received.
 	AutoExtractTimestamp *bool `json:"auto_extract_timestamp,omitempty"`
 	// Encoding format for log events.
 	Encoding *ObservabilityPipelineSplunkHecDestinationEncoding `json:"encoding,omitempty"`
-	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (e.g., as input to downstream components).
+	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// Optional name of the Splunk index where logs are written.
 	Index *string `json:"index,omitempty"`

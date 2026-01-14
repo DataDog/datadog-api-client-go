@@ -11,10 +11,12 @@ import (
 )
 
 // ObservabilityPipelineRenameFieldsProcessor The `rename_fields` processor changes field names.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineRenameFieldsProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
-	// Whether this processor is enabled.
+	// Indicates whether the processor is enabled.
 	Enabled bool `json:"enabled"`
 	// A list of rename rules specifying which fields to rename in the event, what to rename them to, and whether to preserve the original fields.
 	Fields []ObservabilityPipelineRenameFieldsProcessorField `json:"fields"`

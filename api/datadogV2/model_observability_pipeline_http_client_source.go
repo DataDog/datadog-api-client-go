@@ -11,12 +11,14 @@ import (
 )
 
 // ObservabilityPipelineHttpClientSource The `http_client` source scrapes logs from HTTP endpoints at regular intervals.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineHttpClientSource struct {
 	// Optional authentication strategy for HTTP requests.
 	AuthStrategy *ObservabilityPipelineHttpClientSourceAuthStrategy `json:"auth_strategy,omitempty"`
 	// The decoding format used to interpret incoming logs.
 	Decoding ObservabilityPipelineDecoding `json:"decoding"`
-	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (e.g., as input to downstream components).
+	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// The interval (in seconds) between HTTP scrape requests.
 	ScrapeIntervalSecs *int64 `json:"scrape_interval_secs,omitempty"`

@@ -11,12 +11,14 @@ import (
 )
 
 // ObservabilityPipelineParseGrokProcessor The `parse_grok` processor extracts structured fields from unstructured log messages using Grok patterns.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineParseGrokProcessor struct {
 	// If set to `true`, disables the default Grok rules provided by Datadog.
 	DisableLibraryRules *bool `json:"disable_library_rules,omitempty"`
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
-	// Whether this processor is enabled.
+	// Indicates whether the processor is enabled.
 	Enabled bool `json:"enabled"`
 	// A unique identifier for this processor.
 	Id string `json:"id"`

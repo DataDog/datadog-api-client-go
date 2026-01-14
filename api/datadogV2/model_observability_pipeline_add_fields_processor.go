@@ -11,14 +11,16 @@ import (
 )
 
 // ObservabilityPipelineAddFieldsProcessor The `add_fields` processor adds static key-value fields to logs.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineAddFieldsProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
-	// Whether this processor is enabled.
+	// Indicates whether the processor is enabled.
 	Enabled bool `json:"enabled"`
 	// A list of static fields (key-value pairs) that is added to each log event processed by this component.
 	Fields []ObservabilityPipelineFieldValue `json:"fields"`
-	// The unique identifier for this component. Used to reference this component in other parts of the pipeline (for example, as the `input` to downstream components).
+	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// A Datadog search query used to determine which logs this processor targets.
 	Include string `json:"include"`

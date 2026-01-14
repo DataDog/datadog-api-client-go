@@ -11,10 +11,12 @@ import (
 )
 
 // ObservabilityPipelineParseJSONProcessor The `parse_json` processor extracts JSON from a specified field and flattens it into the event. This is useful when logs contain embedded JSON as a string.
+//
+// **Supported pipeline types:** logs
 type ObservabilityPipelineParseJSONProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
-	// Whether this processor is enabled.
+	// Indicates whether the processor is enabled.
 	Enabled bool `json:"enabled"`
 	// The name of the log field that contains a JSON string.
 	Field string `json:"field"`
