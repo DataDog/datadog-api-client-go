@@ -592,7 +592,7 @@ def format_data_with_schema_list(
             parameters = f"{{\n{parameters}}}"
         return parameters
 
-    if nullable and (is_primitive(list_schema) or required is True):
+    if nullable and (is_primitive(list_schema) or required):
         name_prefix = "datadog.NewNullableList"
         return f"*{name_prefix}(&{nested_simple_type_name}{{\n{parameters}}})"
 
