@@ -12,6 +12,7 @@ import (
 type WidgetDefinition struct {
 	AlertGraphWidgetDefinition     *AlertGraphWidgetDefinition
 	AlertValueWidgetDefinition     *AlertValueWidgetDefinition
+	BarChartWidgetDefinition       *BarChartWidgetDefinition
 	ChangeWidgetDefinition         *ChangeWidgetDefinition
 	CheckStatusWidgetDefinition    *CheckStatusWidgetDefinition
 	DistributionWidgetDefinition   *DistributionWidgetDefinition
@@ -57,6 +58,11 @@ func AlertGraphWidgetDefinitionAsWidgetDefinition(v *AlertGraphWidgetDefinition)
 // AlertValueWidgetDefinitionAsWidgetDefinition is a convenience function that returns AlertValueWidgetDefinition wrapped in WidgetDefinition.
 func AlertValueWidgetDefinitionAsWidgetDefinition(v *AlertValueWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{AlertValueWidgetDefinition: v}
+}
+
+// BarChartWidgetDefinitionAsWidgetDefinition is a convenience function that returns BarChartWidgetDefinition wrapped in WidgetDefinition.
+func BarChartWidgetDefinitionAsWidgetDefinition(v *BarChartWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{BarChartWidgetDefinition: v}
 }
 
 // ChangeWidgetDefinitionAsWidgetDefinition is a convenience function that returns ChangeWidgetDefinition wrapped in WidgetDefinition.
@@ -255,6 +261,23 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		}
 	} else {
 		obj.AlertValueWidgetDefinition = nil
+	}
+
+	// try to unmarshal data into BarChartWidgetDefinition
+	err = datadog.Unmarshal(data, &obj.BarChartWidgetDefinition)
+	if err == nil {
+		if obj.BarChartWidgetDefinition != nil && obj.BarChartWidgetDefinition.UnparsedObject == nil {
+			jsonBarChartWidgetDefinition, _ := datadog.Marshal(obj.BarChartWidgetDefinition)
+			if string(jsonBarChartWidgetDefinition) == "{}" { // empty struct
+				obj.BarChartWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.BarChartWidgetDefinition = nil
+		}
+	} else {
+		obj.BarChartWidgetDefinition = nil
 	}
 
 	// try to unmarshal data into ChangeWidgetDefinition
@@ -805,6 +828,7 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		obj.AlertGraphWidgetDefinition = nil
 		obj.AlertValueWidgetDefinition = nil
+		obj.BarChartWidgetDefinition = nil
 		obj.ChangeWidgetDefinition = nil
 		obj.CheckStatusWidgetDefinition = nil
 		obj.DistributionWidgetDefinition = nil
@@ -850,6 +874,10 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if obj.AlertValueWidgetDefinition != nil {
 		return datadog.Marshal(&obj.AlertValueWidgetDefinition)
+	}
+
+	if obj.BarChartWidgetDefinition != nil {
+		return datadog.Marshal(&obj.BarChartWidgetDefinition)
 	}
 
 	if obj.ChangeWidgetDefinition != nil {
@@ -994,6 +1022,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.AlertValueWidgetDefinition != nil {
 		return obj.AlertValueWidgetDefinition
+	}
+
+	if obj.BarChartWidgetDefinition != nil {
+		return obj.BarChartWidgetDefinition
 	}
 
 	if obj.ChangeWidgetDefinition != nil {
