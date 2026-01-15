@@ -1,0 +1,38 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"query":"host:testcreateacriticalassetreturnsokresponse1767380942","rule_query":"type:(log_detection OR signal_correlation OR workload_security OR application_security) source:cloudtrail","severity":"decrease","tags":["team:security","env:test"]},"type":"critical_assets"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/critical_assets
+  response:
+    body: '{"data":{"id":"93d5a224-589d-4d6d-adbf-f6657f484ecc","type":"critical_assets","attributes":{"creation_author_id":1445416,"creation_date":1767380942322,"creator":{"handle":"frog@datadoghq.com","name":"frog"},"enabled":true,"query":"host:testcreateacriticalassetreturnsokresponse1767380942","rule_query":"type:(log_detection
+      OR signal_correlation OR workload_security OR application_security) source:cloudtrail","severity":"decrease","tags":["team:security","env:test"],"update_author_id":1445416,"update_date":1767380942322,"updater":{"handle":"frog@datadoghq.com","name":"frog"},"version":1}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/critical_assets/93d5a224-589d-4d6d-adbf-f6657f484ecc
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
