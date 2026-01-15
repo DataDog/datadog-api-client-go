@@ -20,7 +20,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMetricsApi(apiClient)
-	resp, r, err := api.ListTagsByMetricName(ctx, MetricTagConfigurationDataID)
+	resp, r, err := api.ListTagsByMetricName(ctx, MetricTagConfigurationDataID, *datadogV2.NewListTagsByMetricNameOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagsByMetricName`: %v\n", err)
