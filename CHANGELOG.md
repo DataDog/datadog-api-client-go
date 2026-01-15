@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 2.54.0/2026-01-15
+
+### Added
+* Add subtest for synthetics multistep tests [#3596](https://github.com/DataDog/datadog-api-client-go/pull/3596)
+* feat - Add data-quality alert monitor type support [#3594](https://github.com/DataDog/datadog-api-client-go/pull/3594)
+* Add a new end point that allows the SPA recommendation to be called without the shard parameter [#3585](https://github.com/DataDog/datadog-api-client-go/pull/3585)
+* Add Critical Assets specs to security_monitoring feature [#3581](https://github.com/DataDog/datadog-api-client-go/pull/3581)
+* Add new Observability Pipelines components [#3576](https://github.com/DataDog/datadog-api-client-go/pull/3576)
+* Specify accepted types for UpsertRows values [#3567](https://github.com/DataDog/datadog-api-client-go/pull/3567)
+* Add subtest for synthetics multistep tests [#3555](https://github.com/DataDog/datadog-api-client-go/pull/3555)
+* Add `query` param in rules list endpoint [#3547](https://github.com/DataDog/datadog-api-client-go/pull/3547)
+* Add Security Findings Public API beta endpoints [#3532](https://github.com/DataDog/datadog-api-client-go/pull/3532)
+* Add bar chart widget to Dashboards API [#3505](https://github.com/DataDog/datadog-api-client-go/pull/3505)
+* Update distribution and heatmap's `markers` ,`num_buckets` properties and allowed request/query [#3504](https://github.com/DataDog/datadog-api-client-go/pull/3504)
+* Add region_filter_configs and is_global_location_enabled to v2 GCP API [#3497](https://github.com/DataDog/datadog-api-client-go/pull/3497)
+
+### Deprecated
+* Update docs for Security Finding API endpoints [#3592](https://github.com/DataDog/datadog-api-client-go/pull/3592)
+
+### Fixed
+* Use nullable list for non-primitives types as well [#3589](https://github.com/DataDog/datadog-api-client-go/pull/3589)
+* remove duplicate sync_enabled field for PATCH Reference Tables request schema [#3478](https://github.com/DataDog/datadog-api-client-go/pull/3478)
+
+### Removed
+* Revert - Update specs for AWS account updates and creation for CCM configs [#3579](https://github.com/DataDog/datadog-api-client-go/pull/3579)
+
 ## 2.53.0/2026-01-08
 
 ### Added
