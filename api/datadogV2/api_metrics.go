@@ -1080,14 +1080,75 @@ func (a *MetricsApi) ListTagConfigurationsWithPagination(ctx _context.Context, o
 	return items, cancel
 }
 
+// ListTagsByMetricNameOptionalParameters holds optional parameters for ListTagsByMetricName.
+type ListTagsByMetricNameOptionalParameters struct {
+	WindowSeconds          *int64
+	FilterTags             *string
+	FilterMatch            *string
+	FilterIncludeTagValues *bool
+	FilterAllowPartial     *bool
+	PageLimit              *int32
+}
+
+// NewListTagsByMetricNameOptionalParameters creates an empty struct for parameters.
+func NewListTagsByMetricNameOptionalParameters() *ListTagsByMetricNameOptionalParameters {
+	this := ListTagsByMetricNameOptionalParameters{}
+	return &this
+}
+
+// WithWindowSeconds sets the corresponding parameter name and returns the struct.
+func (r *ListTagsByMetricNameOptionalParameters) WithWindowSeconds(windowSeconds int64) *ListTagsByMetricNameOptionalParameters {
+	r.WindowSeconds = &windowSeconds
+	return r
+}
+
+// WithFilterTags sets the corresponding parameter name and returns the struct.
+func (r *ListTagsByMetricNameOptionalParameters) WithFilterTags(filterTags string) *ListTagsByMetricNameOptionalParameters {
+	r.FilterTags = &filterTags
+	return r
+}
+
+// WithFilterMatch sets the corresponding parameter name and returns the struct.
+func (r *ListTagsByMetricNameOptionalParameters) WithFilterMatch(filterMatch string) *ListTagsByMetricNameOptionalParameters {
+	r.FilterMatch = &filterMatch
+	return r
+}
+
+// WithFilterIncludeTagValues sets the corresponding parameter name and returns the struct.
+func (r *ListTagsByMetricNameOptionalParameters) WithFilterIncludeTagValues(filterIncludeTagValues bool) *ListTagsByMetricNameOptionalParameters {
+	r.FilterIncludeTagValues = &filterIncludeTagValues
+	return r
+}
+
+// WithFilterAllowPartial sets the corresponding parameter name and returns the struct.
+func (r *ListTagsByMetricNameOptionalParameters) WithFilterAllowPartial(filterAllowPartial bool) *ListTagsByMetricNameOptionalParameters {
+	r.FilterAllowPartial = &filterAllowPartial
+	return r
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListTagsByMetricNameOptionalParameters) WithPageLimit(pageLimit int32) *ListTagsByMetricNameOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
 // ListTagsByMetricName List tags by metric name.
-// View indexed tag key-value pairs for a given metric name over the previous hour.
-func (a *MetricsApi) ListTagsByMetricName(ctx _context.Context, metricName string) (MetricAllTagsResponse, *_nethttp.Response, error) {
+// View indexed and ingested tags for a given metric name.
+// Results are filtered by the `window[seconds]` parameter, which defaults to 14400 (4 hours).
+func (a *MetricsApi) ListTagsByMetricName(ctx _context.Context, metricName string, o ...ListTagsByMetricNameOptionalParameters) (MetricAllTagsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue MetricAllTagsResponse
+		optionalParams      ListTagsByMetricNameOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListTagsByMetricNameOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.ListTagsByMetricName")
 	if err != nil {
@@ -1100,6 +1161,24 @@ func (a *MetricsApi) ListTagsByMetricName(ctx _context.Context, metricName strin
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.WindowSeconds != nil {
+		localVarQueryParams.Add("window[seconds]", datadog.ParameterToString(*optionalParams.WindowSeconds, ""))
+	}
+	if optionalParams.FilterTags != nil {
+		localVarQueryParams.Add("filter[tags]", datadog.ParameterToString(*optionalParams.FilterTags, ""))
+	}
+	if optionalParams.FilterMatch != nil {
+		localVarQueryParams.Add("filter[match]", datadog.ParameterToString(*optionalParams.FilterMatch, ""))
+	}
+	if optionalParams.FilterIncludeTagValues != nil {
+		localVarQueryParams.Add("filter[include_tag_values]", datadog.ParameterToString(*optionalParams.FilterIncludeTagValues, ""))
+	}
+	if optionalParams.FilterAllowPartial != nil {
+		localVarQueryParams.Add("filter[allow_partial]", datadog.ParameterToString(*optionalParams.FilterAllowPartial, ""))
+	}
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {
