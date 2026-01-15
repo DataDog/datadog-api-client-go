@@ -1,0 +1,56 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Test-Delete_organization_handle_returns_OK_response-1768440800","space_resource_name":"spaces/AAQA-zFIks8"},"type":"google-chat-organization-handle"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/integration/google-chat/organizations/e54cb570-c674-529c-769d-84b312288ed7/organization-handles
+  response:
+    body: '{"data":{"id":"a898bd94-283d-4801-bc1c-dbd4776dd6a8","type":"google-chat-organization-handle","attributes":{"name":"Test-Delete_organization_handle_returns_OK_response-1768440800","space_display_name":"api-test-space","space_resource_name":"spaces/AAQA-zFIks8"}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/integration/google-chat/organizations/e54cb570-c674-529c-769d-84b312288ed7/organization-handles/a898bd94-283d-4801-bc1c-dbd4776dd6a8
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/integration/google-chat/organizations/%7Borganization_binding_id%7D/organization-handles/a898bd94-283d-4801-bc1c-dbd4776dd6a8
+  response:
+    body: '{"errors":[{"status":"400","title":"Invalid Parameter","detail":"invalid
+      parameter \"google_chat_organization_binding_id\" in \"path\"; expected type
+      \"uuid\""}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
