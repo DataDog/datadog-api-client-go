@@ -1,0 +1,40 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"ccm_config":{"data_export_configs":[{"bucket_name":"billing","bucket_region":"us-east-1","report_name":"cost-and-usage-report","report_prefix":"reports","report_type":"CUR2.0"}]}},"type":"ccm_config"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://frog.datadoghq.com/api/v2/integration/aws/accounts/873c7e78-8915-4c7a-a3a7-33a57adf54f4/ccm_config
+  response:
+    body: '{"data":{"id":"873c7e78-8915-4c7a-a3a7-33a57adf54f4","type":"ccm_config","attributes":{"data_export_configs":[{"report_name":"cost-and-usage-report","report_prefix":"reports","report_type":"CUR2.0","bucket_name":"billing","bucket_region":"us-east-1"}]}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://frog.datadoghq.com/api/v2/integration/aws/accounts/%7Baws_account_config_id%7D/ccm_config
+  response:
+    body: '{"errors":[{"status":"400","title":"Invalid Parameter","detail":"invalid
+      parameter \"aws_account_config_id\" in \"path\"; expected type \"uuid\""}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
