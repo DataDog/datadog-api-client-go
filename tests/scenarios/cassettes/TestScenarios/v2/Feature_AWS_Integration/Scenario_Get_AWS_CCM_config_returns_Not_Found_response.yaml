@@ -1,0 +1,20 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://frog.datadoghq.com/api/v2/integration/aws/accounts/00000000-0000-0000-0000-000000000000/ccm_config
+  response:
+    body: '{"errors":[{"status":"404","title":"Account not found","detail":"AWS account
+      with provided id is not integrated"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2
