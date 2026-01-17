@@ -1,0 +1,42 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Test-Update_integration_account_returns_OK_response-1768522916","secrets":{"api_key_token":"test_secret_token_value"},"settings":{"account_sid":"ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","alerts":true,"api_key":"SKxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","call_summaries":true,"ccm_enabled":true,"censor_logs":true,"events":true,"messages":true}},"type":"Account"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/web-integrations/twilio/accounts
+  response:
+    body: '{"data":{"id":"4458ffbb-09e3-4b11-8b59-7ac39a766164","type":"Account","attributes":{"name":"Test-Update_integration_account_returns_OK_response-1768522916","settings":{"account_sid":"ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","alerts":true,"api_key":"SKxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","call_summaries":true,"ccm_enabled":true,"censor_logs":true,"events":true,"messages":true}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Test-Update_integration_account_returns_OK_response-1768522916-updated","settings":{"ccm_enabled":false,"events":false,"messages":false}},"type":"Account"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/web-integrations/twilio/accounts/4458ffbb-09e3-4b11-8b59-7ac39a766164
+  response:
+    body: '{"data":{"id":"4458ffbb-09e3-4b11-8b59-7ac39a766164","type":"Account","attributes":{"name":"Test-Update_integration_account_returns_OK_response-1768522916-updated","settings":{"account_sid":"ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","alerts":true,"api_key":"SKxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","call_summaries":true,"ccm_enabled":false,"censor_logs":true,"events":false,"messages":false}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2
