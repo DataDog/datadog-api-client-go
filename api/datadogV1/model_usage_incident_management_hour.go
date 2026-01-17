@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UsageIncidentManagementHour Incident management usage for a given organization for a given hour.
+// UsageIncidentManagementHour Incident Management usage for a given organization for a given hour.
 type UsageIncidentManagementHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
