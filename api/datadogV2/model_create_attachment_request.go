@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateAttachmentRequest
+// CreateAttachmentRequest Create request for an attachment.
 type CreateAttachmentRequest struct {
-	//
+	// Attachment data for a create request.
 	Data *CreateAttachmentRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

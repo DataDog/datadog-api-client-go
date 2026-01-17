@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AttachmentArray
+// AttachmentArray A list of incident attachments.
 type AttachmentArray struct {
 	//
 	Data []AttachmentData `json:"data"`

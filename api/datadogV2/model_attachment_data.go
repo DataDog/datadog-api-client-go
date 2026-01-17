@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AttachmentData
+// AttachmentData Attachment data from a response.
 type AttachmentData struct {
-	//
+	// The attachment's attributes.
 	Attributes AttachmentDataAttributes `json:"attributes"`
-	//
+	// The unique identifier of the attachment.
 	Id string `json:"id"`
-	//
+	// The attachment's resource relationships.
 	Relationships AttachmentDataRelationships `json:"relationships"`
 	// The incident attachment resource type.
 	Type IncidentAttachmentType `json:"type"`
