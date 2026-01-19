@@ -296,6 +296,7 @@
 //   - [IncidentsApi.CreateIncidentIntegration]
 //   - [IncidentsApi.CreateIncidentNotificationRule]
 //   - [IncidentsApi.CreateIncidentNotificationTemplate]
+//   - [IncidentsApi.CreateIncidentPostmortemAttachment]
 //   - [IncidentsApi.CreateIncidentTodo]
 //   - [IncidentsApi.CreateIncidentType]
 //   - [IncidentsApi.DeleteIncident]

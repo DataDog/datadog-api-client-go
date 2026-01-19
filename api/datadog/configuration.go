@@ -717,6 +717,7 @@ func NewConfiguration() *Configuration {
 			"v2.CreateIncidentIntegration":               false,
 			"v2.CreateIncidentNotificationRule":          false,
 			"v2.CreateIncidentNotificationTemplate":      false,
+			"v2.CreateIncidentPostmortemAttachment":      false,
 			"v2.CreateIncidentTodo":                      false,
 			"v2.CreateIncidentType":                      false,
 			"v2.DeleteIncident":                          false,
