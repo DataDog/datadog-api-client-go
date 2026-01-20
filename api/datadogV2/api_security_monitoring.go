@@ -5948,7 +5948,10 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx 
 
 // ListSecurityMonitoringSuppressionsOptionalParameters holds optional parameters for ListSecurityMonitoringSuppressions.
 type ListSecurityMonitoringSuppressionsOptionalParameters struct {
-	Query *string
+	Query      *string
+	Sort       *SecurityMonitoringSuppressionSort
+	PageSize   *int64
+	PageNumber *int64
 }
 
 // NewListSecurityMonitoringSuppressionsOptionalParameters creates an empty struct for parameters.
@@ -5963,13 +5966,31 @@ func (r *ListSecurityMonitoringSuppressionsOptionalParameters) WithQuery(query s
 	return r
 }
 
+// WithSort sets the corresponding parameter name and returns the struct.
+func (r *ListSecurityMonitoringSuppressionsOptionalParameters) WithSort(sort SecurityMonitoringSuppressionSort) *ListSecurityMonitoringSuppressionsOptionalParameters {
+	r.Sort = &sort
+	return r
+}
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
+func (r *ListSecurityMonitoringSuppressionsOptionalParameters) WithPageSize(pageSize int64) *ListSecurityMonitoringSuppressionsOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
+func (r *ListSecurityMonitoringSuppressionsOptionalParameters) WithPageNumber(pageNumber int64) *ListSecurityMonitoringSuppressionsOptionalParameters {
+	r.PageNumber = &pageNumber
+	return r
+}
+
 // ListSecurityMonitoringSuppressions Get all suppression rules.
 // Get the list of all suppression rules.
-func (a *SecurityMonitoringApi) ListSecurityMonitoringSuppressions(ctx _context.Context, o ...ListSecurityMonitoringSuppressionsOptionalParameters) (SecurityMonitoringSuppressionsResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ListSecurityMonitoringSuppressions(ctx _context.Context, o ...ListSecurityMonitoringSuppressionsOptionalParameters) (SecurityMonitoringPaginatedSuppressionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue SecurityMonitoringSuppressionsResponse
+		localVarReturnValue SecurityMonitoringPaginatedSuppressionsResponse
 		optionalParams      ListSecurityMonitoringSuppressionsOptionalParameters
 	)
 
@@ -5992,6 +6013,15 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSuppressions(ctx _context.
 	localVarFormParams := _neturl.Values{}
 	if optionalParams.Query != nil {
 		localVarQueryParams.Add("query", datadog.ParameterToString(*optionalParams.Query, ""))
+	}
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
+	}
+	if optionalParams.PageSize != nil {
+		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))
+	}
+	if optionalParams.PageNumber != nil {
+		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*optionalParams.PageNumber, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
