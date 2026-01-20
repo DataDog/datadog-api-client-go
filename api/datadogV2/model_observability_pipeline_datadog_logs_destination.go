@@ -18,6 +18,8 @@ type ObservabilityPipelineDatadogLogsDestination struct {
 	Id string `json:"id"`
 	// A list of component IDs whose output is used as the `input` for this component.
 	Inputs []string `json:"inputs"`
+	// A list of routing rules that forward matching logs to Datadog using dedicated API keys.
+	Routes []ObservabilityPipelineDatadogLogsDestinationRoute `json:"routes,omitempty"`
 	// The destination type. The value should always be `datadog_logs`.
 	Type ObservabilityPipelineDatadogLogsDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -93,6 +95,34 @@ func (o *ObservabilityPipelineDatadogLogsDestination) SetInputs(v []string) {
 	o.Inputs = v
 }
 
+// GetRoutes returns the Routes field value if set, zero value otherwise.
+func (o *ObservabilityPipelineDatadogLogsDestination) GetRoutes() []ObservabilityPipelineDatadogLogsDestinationRoute {
+	if o == nil || o.Routes == nil {
+		var ret []ObservabilityPipelineDatadogLogsDestinationRoute
+		return ret
+	}
+	return o.Routes
+}
+
+// GetRoutesOk returns a tuple with the Routes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineDatadogLogsDestination) GetRoutesOk() (*[]ObservabilityPipelineDatadogLogsDestinationRoute, bool) {
+	if o == nil || o.Routes == nil {
+		return nil, false
+	}
+	return &o.Routes, true
+}
+
+// HasRoutes returns a boolean if a field has been set.
+func (o *ObservabilityPipelineDatadogLogsDestination) HasRoutes() bool {
+	return o != nil && o.Routes != nil
+}
+
+// SetRoutes gets a reference to the given []ObservabilityPipelineDatadogLogsDestinationRoute and assigns it to the Routes field.
+func (o *ObservabilityPipelineDatadogLogsDestination) SetRoutes(v []ObservabilityPipelineDatadogLogsDestinationRoute) {
+	o.Routes = v
+}
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineDatadogLogsDestination) GetType() ObservabilityPipelineDatadogLogsDestinationType {
 	if o == nil {
@@ -124,6 +154,9 @@ func (o ObservabilityPipelineDatadogLogsDestination) MarshalJSON() ([]byte, erro
 	}
 	toSerialize["id"] = o.Id
 	toSerialize["inputs"] = o.Inputs
+	if o.Routes != nil {
+		toSerialize["routes"] = o.Routes
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -135,9 +168,10 @@ func (o ObservabilityPipelineDatadogLogsDestination) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineDatadogLogsDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id     *string                                          `json:"id"`
-		Inputs *[]string                                        `json:"inputs"`
-		Type   *ObservabilityPipelineDatadogLogsDestinationType `json:"type"`
+		Id     *string                                            `json:"id"`
+		Inputs *[]string                                          `json:"inputs"`
+		Routes []ObservabilityPipelineDatadogLogsDestinationRoute `json:"routes,omitempty"`
+		Type   *ObservabilityPipelineDatadogLogsDestinationType   `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -153,7 +187,7 @@ func (o *ObservabilityPipelineDatadogLogsDestination) UnmarshalJSON(bytes []byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"id", "inputs", "routes", "type"})
 	} else {
 		return err
 	}
@@ -161,6 +195,7 @@ func (o *ObservabilityPipelineDatadogLogsDestination) UnmarshalJSON(bytes []byte
 	hasInvalidField := false
 	o.Id = *all.Id
 	o.Inputs = *all.Inputs
+	o.Routes = all.Routes
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
