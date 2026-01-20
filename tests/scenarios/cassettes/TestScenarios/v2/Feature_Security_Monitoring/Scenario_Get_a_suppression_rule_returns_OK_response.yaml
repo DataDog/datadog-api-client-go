@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"Test-Get_a_suppression_rule_returns_OK_response-1762518447","enabled":true,"name":"Test-Get_a_suppression_rule_returns_OK_response-1762518447","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["technique:T1110-brute-force","source:cloudtrail"]},"type":"suppressions"}}
+      {"data":{"attributes":{"description":"Test-Get_a_suppression_rule_returns_OK_response-1768411744","enabled":true,"name":"suppression Test-Get_a_suppression_rule_returns_OK_response-1768411744","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["technique:T1110-brute-force","source:cloudtrail"]},"type":"suppressions"}}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,9 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions
   response:
-    body: '{"data":{"id":"ylq-igi-icg","type":"suppressions","attributes":{"creation_date":1762518447901,"creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
-      Account"},"data_exclusion_query":"","description":"Test-Get_a_suppression_rule_returns_OK_response-1762518447","editable":true,"enabled":true,"name":"Test-Get_a_suppression_rule_returns_OK_response-1762518447","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1762518447901,"updater":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+    body: '{"data":{"id":"xno-kwg-8df","type":"suppressions","attributes":{"creation_date":1768411744987,"creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"data_exclusion_query":"","description":"Test-Get_a_suppression_rule_returns_OK_response-1768411744","editable":true,"enabled":true,"name":"suppression
+      Test-Get_a_suppression_rule_returns_OK_response-1768411744","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1768411744987,"updater":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
       Account"},"version":1}}}'
     code: 200
     duration: 0ms
@@ -29,10 +30,11 @@ interactions:
       - application/json
     id: 1
     method: GET
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/ylq-igi-icg
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/xno-kwg-8df
   response:
-    body: '{"data":{"id":"ylq-igi-icg","type":"suppressions","attributes":{"creation_date":1762518447901,"creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
-      Account"},"data_exclusion_query":"","description":"Test-Get_a_suppression_rule_returns_OK_response-1762518447","editable":true,"enabled":true,"name":"Test-Get_a_suppression_rule_returns_OK_response-1762518447","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1762518447901,"updater":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+    body: '{"data":{"id":"xno-kwg-8df","type":"suppressions","attributes":{"creation_date":1768411744987,"creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"data_exclusion_query":"","description":"Test-Get_a_suppression_rule_returns_OK_response-1768411744","editable":true,"enabled":true,"name":"suppression
+      Test-Get_a_suppression_rule_returns_OK_response-1768411744","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1768411744987,"updater":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
       Account"},"version":1}}}'
     code: 200
     duration: 0ms
@@ -48,7 +50,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/ylq-igi-icg
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/xno-kwg-8df
   response:
     body: ''
     code: 204
