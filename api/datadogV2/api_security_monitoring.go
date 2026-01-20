@@ -5948,7 +5948,10 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx 
 
 // ListSecurityMonitoringSuppressionsOptionalParameters holds optional parameters for ListSecurityMonitoringSuppressions.
 type ListSecurityMonitoringSuppressionsOptionalParameters struct {
-	Query *string
+	Query      *string
+	Sort       *SecurityMonitoringSuppressionSort
+	PageSize   *int64
+	PageNumber *int64
 }
 
 // NewListSecurityMonitoringSuppressionsOptionalParameters creates an empty struct for parameters.
@@ -5963,13 +5966,31 @@ func (r *ListSecurityMonitoringSuppressionsOptionalParameters) WithQuery(query s
 	return r
 }
 
+// WithSort sets the corresponding parameter name and returns the struct.
+func (r *ListSecurityMonitoringSuppressionsOptionalParameters) WithSort(sort SecurityMonitoringSuppressionSort) *ListSecurityMonitoringSuppressionsOptionalParameters {
+	r.Sort = &sort
+	return r
+}
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
+func (r *ListSecurityMonitoringSuppressionsOptionalParameters) WithPageSize(pageSize int64) *ListSecurityMonitoringSuppressionsOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
+func (r *ListSecurityMonitoringSuppressionsOptionalParameters) WithPageNumber(pageNumber int64) *ListSecurityMonitoringSuppressionsOptionalParameters {
+	r.PageNumber = &pageNumber
+	return r
+}
+
 // ListSecurityMonitoringSuppressions Get all suppression rules.
 // Get the list of all suppression rules.
-func (a *SecurityMonitoringApi) ListSecurityMonitoringSuppressions(ctx _context.Context, o ...ListSecurityMonitoringSuppressionsOptionalParameters) (SecurityMonitoringSuppressionsResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ListSecurityMonitoringSuppressions(ctx _context.Context, o ...ListSecurityMonitoringSuppressionsOptionalParameters) (SecurityMonitoringPaginatedSuppressionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue SecurityMonitoringSuppressionsResponse
+		localVarReturnValue SecurityMonitoringPaginatedSuppressionsResponse
 		optionalParams      ListSecurityMonitoringSuppressionsOptionalParameters
 	)
 
@@ -5992,6 +6013,15 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSuppressions(ctx _context.
 	localVarFormParams := _neturl.Values{}
 	if optionalParams.Query != nil {
 		localVarQueryParams.Add("query", datadog.ParameterToString(*optionalParams.Query, ""))
+	}
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
+	}
+	if optionalParams.PageSize != nil {
+		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))
+	}
+	if optionalParams.PageNumber != nil {
+		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*optionalParams.PageNumber, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
@@ -7372,6 +7402,87 @@ func (a *SecurityMonitoringApi) PatchVulnerabilityNotificationRule(ctx _context.
 		}
 		if localVarHTTPResponse.StatusCode == 422 {
 			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// PreviewSecurityMonitoringRuleQuery Preview a rule query with applied filters.
+// Preview a security monitoring rule query with security filters, group by fields, and distinct fields applied.
+// This endpoint is used in the rule editor to show how the query will be transformed after applying additional filters.
+func (a *SecurityMonitoringApi) PreviewSecurityMonitoringRuleQuery(ctx _context.Context, body SecurityMonitoringRuleLivetailRequest) (SecurityMonitoringRuleLivetailResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SecurityMonitoringRuleLivetailResponse
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.PreviewSecurityMonitoringRuleQuery")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/security_monitoring/livetail"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
