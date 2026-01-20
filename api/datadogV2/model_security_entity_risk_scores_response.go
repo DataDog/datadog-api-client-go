@@ -10,37 +10,40 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SuiteCreateEditRequest
-type SuiteCreateEditRequest struct {
+// SecurityEntityRiskScoresResponse Response containing a list of entity risk scores
+type SecurityEntityRiskScoresResponse struct {
 	//
-	Data SuiteCreateEdit `json:"data"`
+	Data []SecurityEntityRiskScore `json:"data"`
+	// Metadata for pagination
+	Meta SecurityEntityRiskScoresMeta `json:"meta"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewSuiteCreateEditRequest instantiates a new SuiteCreateEditRequest object.
+// NewSecurityEntityRiskScoresResponse instantiates a new SecurityEntityRiskScoresResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSuiteCreateEditRequest(data SuiteCreateEdit) *SuiteCreateEditRequest {
-	this := SuiteCreateEditRequest{}
+func NewSecurityEntityRiskScoresResponse(data []SecurityEntityRiskScore, meta SecurityEntityRiskScoresMeta) *SecurityEntityRiskScoresResponse {
+	this := SecurityEntityRiskScoresResponse{}
 	this.Data = data
+	this.Meta = meta
 	return &this
 }
 
-// NewSuiteCreateEditRequestWithDefaults instantiates a new SuiteCreateEditRequest object.
+// NewSecurityEntityRiskScoresResponseWithDefaults instantiates a new SecurityEntityRiskScoresResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewSuiteCreateEditRequestWithDefaults() *SuiteCreateEditRequest {
-	this := SuiteCreateEditRequest{}
+func NewSecurityEntityRiskScoresResponseWithDefaults() *SecurityEntityRiskScoresResponse {
+	this := SecurityEntityRiskScoresResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *SuiteCreateEditRequest) GetData() SuiteCreateEdit {
+func (o *SecurityEntityRiskScoresResponse) GetData() []SecurityEntityRiskScore {
 	if o == nil {
-		var ret SuiteCreateEdit
+		var ret []SecurityEntityRiskScore
 		return ret
 	}
 	return o.Data
@@ -48,7 +51,7 @@ func (o *SuiteCreateEditRequest) GetData() SuiteCreateEdit {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *SuiteCreateEditRequest) GetDataOk() (*SuiteCreateEdit, bool) {
+func (o *SecurityEntityRiskScoresResponse) GetDataOk() (*[]SecurityEntityRiskScore, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,17 +59,41 @@ func (o *SuiteCreateEditRequest) GetDataOk() (*SuiteCreateEdit, bool) {
 }
 
 // SetData sets field value.
-func (o *SuiteCreateEditRequest) SetData(v SuiteCreateEdit) {
+func (o *SecurityEntityRiskScoresResponse) SetData(v []SecurityEntityRiskScore) {
 	o.Data = v
 }
 
+// GetMeta returns the Meta field value.
+func (o *SecurityEntityRiskScoresResponse) GetMeta() SecurityEntityRiskScoresMeta {
+	if o == nil {
+		var ret SecurityEntityRiskScoresMeta
+		return ret
+	}
+	return o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value
+// and a boolean to check if the value has been set.
+func (o *SecurityEntityRiskScoresResponse) GetMetaOk() (*SecurityEntityRiskScoresMeta, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Meta, true
+}
+
+// SetMeta sets field value.
+func (o *SecurityEntityRiskScoresResponse) SetMeta(v SecurityEntityRiskScoresMeta) {
+	o.Meta = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
-func (o SuiteCreateEditRequest) MarshalJSON() ([]byte, error) {
+func (o SecurityEntityRiskScoresResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["data"] = o.Data
+	toSerialize["meta"] = o.Meta
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,9 +102,10 @@ func (o SuiteCreateEditRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *SuiteCreateEditRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SecurityEntityRiskScoresResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *SuiteCreateEdit `json:"data"`
+		Data *[]SecurityEntityRiskScore    `json:"data"`
+		Meta *SecurityEntityRiskScoresMeta `json:"meta"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -85,18 +113,22 @@ func (o *SuiteCreateEditRequest) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Data == nil {
 		return fmt.Errorf("required field data missing")
 	}
+	if all.Meta == nil {
+		return fmt.Errorf("required field meta missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	o.Data = *all.Data
+	if all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Data = *all.Data
+	o.Meta = *all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

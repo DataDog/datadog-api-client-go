@@ -1,4 +1,4 @@
-// Synthetics: Get a suite returns "OK" response
+// List Entity Risk Scores returns "OK" response
 
 package main
 
@@ -15,15 +15,16 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.ListEntityRiskScores", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewSyntheticsApi(apiClient)
-	resp, r, err := api.GetSyntheticsSuite(ctx, "public_id")
+	api := datadogV2.NewEntityRiskScoresApi(apiClient)
+	resp, r, err := api.ListEntityRiskScores(ctx, *datadogV2.NewListEntityRiskScoresOptionalParameters())
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetSyntheticsSuite`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `EntityRiskScoresApi.ListEntityRiskScores`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.GetSyntheticsSuite`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `EntityRiskScoresApi.ListEntityRiskScores`:\n%s\n", responseContent)
 }
