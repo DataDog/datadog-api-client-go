@@ -89,6 +89,7 @@ func newRequest(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	ctx.Set(requestParamsKey{}, make(map[string]interface{}))
 	ctx.Set(requestArgsKey{}, make([]interface{}, 0))
 	ctx.Set(pathParamCountKey{}, 1)
+	ClearPathParameters(ctx)
 
 }
 func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
@@ -141,9 +142,13 @@ func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path str
 		datadog.Unmarshal(data, varType.Interface())
 		GetRequestParameters(ctx)[name] = varType.Elem()
 		ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), varType.Elem()))
+		// Store path parameter for undo operations
+		SetPathParameter(ctx, name, varType.Elem().Interface())
 	} else {
 		GetRequestParameters(ctx)[name] = value
 		ctx.Set(requestArgsKey{}, append(GetRequestArguments(ctx), value))
+		// Store path parameter for undo operations
+		SetPathParameter(ctx, name, value.Interface())
 	}
 }
 
@@ -159,6 +164,10 @@ func addPathArgumentWithValue(t gobdd.StepTest, ctx gobdd.Context, param string,
 	ctx.Set(pathParamCountKey{}, pathCount.(int)+1)
 
 	templatedValue := Templated(t, GetData(ctx), value)
+
+	// Store path parameter by name for undo operations
+	SetPathParameter(ctx, param, templatedValue)
+
 	var varType reflect.Value
 
 	if request.Type().IsVariadic() && pathCount.(int) > numArgs-2 {
