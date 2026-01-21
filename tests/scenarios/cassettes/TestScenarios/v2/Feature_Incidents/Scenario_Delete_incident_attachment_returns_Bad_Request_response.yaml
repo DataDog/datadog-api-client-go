@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 0
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/incidents/00000000-0000-0000-0000-000000000000/attachments/00000000-0000-0000-0000-000000000000
+  response:
+    body: '{"errors":[{"title":"Generic Error","detail":"incident not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

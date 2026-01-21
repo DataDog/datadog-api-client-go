@@ -959,7 +959,7 @@ func (a *IncidentsApi) DeleteIncident(ctx _context.Context, incidentId string) (
 
 // DeleteIncidentAttachment Delete incident attachment.
 
-func (a *IncidentsApi) DeleteIncidentAttachment(ctx _context.Context, incidentId string, attachmentId interface{}) (*_nethttp.Response, error) {
+func (a *IncidentsApi) DeleteIncidentAttachment(ctx _context.Context, incidentId string, attachmentId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -3436,7 +3436,7 @@ func (r *UpdateIncidentAttachmentOptionalParameters) WithInclude(include string)
 
 // UpdateIncidentAttachment Update incident attachment.
 
-func (a *IncidentsApi) UpdateIncidentAttachment(ctx _context.Context, incidentId string, attachmentId interface{}, body PatchAttachmentRequest, o ...UpdateIncidentAttachmentOptionalParameters) (Attachment, *_nethttp.Response, error) {
+func (a *IncidentsApi) UpdateIncidentAttachment(ctx _context.Context, incidentId string, attachmentId string, body PatchAttachmentRequest, o ...UpdateIncidentAttachmentOptionalParameters) (Attachment, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}

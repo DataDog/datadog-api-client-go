@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"attachment":{"documentUrl":"https://app.datadoghq.com/notebook/124/Postmortem-IR-124","title":"Postmortem-IR-124"}},"id":"00000000-abcd-0002-0000-000000000000","type":"incident_attachments"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/incidents/00000000-0000-0000-0000-000000000001/attachments/00000000-0000-0000-0000-000000000001
+  response:
+    body: '{"errors":[{"title":"Generic Error","detail":"incident not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2
