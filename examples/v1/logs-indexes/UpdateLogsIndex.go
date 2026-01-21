@@ -35,6 +35,10 @@ func main() {
 		},
 		NumFlexLogsRetentionDays: datadog.PtrInt64(360),
 		NumRetentionDays:         datadog.PtrInt64(15),
+		Tags: []string{
+			"team:backend",
+			"env:production",
+		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
