@@ -77,8 +77,8 @@
 <span id="L20" class="ln">    20  </span>	Name string `json:&#34;name&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// The query string for a RUM retention filter.</span>
 <span id="L22" class="ln">    22  </span>	Query *string `json:&#34;query,omitempty&#34;`
-<span id="L23" class="ln">    23  </span>	<span class="comment">// The sample rate for a RUM retention filter, between 0 and 100.</span>
-<span id="L24" class="ln">    24  </span>	SampleRate int64 `json:&#34;sample_rate&#34;`
+<span id="L23" class="ln">    23  </span>	<span class="comment">// The sample rate for a RUM retention filter, between 0.1 and 100.</span>
+<span id="L24" class="ln">    24  </span>	SampleRate float64 `json:&#34;sample_rate&#34;`
 <span id="L25" class="ln">    25  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L26" class="ln">    26  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
 <span id="L27" class="ln">    27  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
@@ -88,7 +88,7 @@
 <span id="L31" class="ln">    31  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
 <span id="L32" class="ln">    32  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
 <span id="L33" class="ln">    33  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L34" class="ln">    34  </span>func NewRumRetentionFilterCreateAttributes(eventType RumRetentionFilterEventType, name string, sampleRate int64) *RumRetentionFilterCreateAttributes {
+<span id="L34" class="ln">    34  </span>func NewRumRetentionFilterCreateAttributes(eventType RumRetentionFilterEventType, name string, sampleRate float64) *RumRetentionFilterCreateAttributes {
 <span id="L35" class="ln">    35  </span>	this := RumRetentionFilterCreateAttributes{}
 <span id="L36" class="ln">    36  </span>	this.EventType = eventType
 <span id="L37" class="ln">    37  </span>	this.Name = name
@@ -207,9 +207,9 @@
 <span id="L150" class="ln">   150  </span>}
 <span id="L151" class="ln">   151  </span>
 <span id="L152" class="ln">   152  </span><span class="comment">// GetSampleRate returns the SampleRate field value.</span>
-<span id="L153" class="ln">   153  </span>func (o *RumRetentionFilterCreateAttributes) GetSampleRate() int64 {
+<span id="L153" class="ln">   153  </span>func (o *RumRetentionFilterCreateAttributes) GetSampleRate() float64 {
 <span id="L154" class="ln">   154  </span>	if o == nil {
-<span id="L155" class="ln">   155  </span>		var ret int64
+<span id="L155" class="ln">   155  </span>		var ret float64
 <span id="L156" class="ln">   156  </span>		return ret
 <span id="L157" class="ln">   157  </span>	}
 <span id="L158" class="ln">   158  </span>	return o.SampleRate
@@ -217,7 +217,7 @@
 <span id="L160" class="ln">   160  </span>
 <span id="L161" class="ln">   161  </span><span class="comment">// GetSampleRateOk returns a tuple with the SampleRate field value</span>
 <span id="L162" class="ln">   162  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L163" class="ln">   163  </span>func (o *RumRetentionFilterCreateAttributes) GetSampleRateOk() (*int64, bool) {
+<span id="L163" class="ln">   163  </span>func (o *RumRetentionFilterCreateAttributes) GetSampleRateOk() (*float64, bool) {
 <span id="L164" class="ln">   164  </span>	if o == nil {
 <span id="L165" class="ln">   165  </span>		return nil, false
 <span id="L166" class="ln">   166  </span>	}
@@ -225,7 +225,7 @@
 <span id="L168" class="ln">   168  </span>}
 <span id="L169" class="ln">   169  </span>
 <span id="L170" class="ln">   170  </span><span class="comment">// SetSampleRate sets field value.</span>
-<span id="L171" class="ln">   171  </span>func (o *RumRetentionFilterCreateAttributes) SetSampleRate(v int64) {
+<span id="L171" class="ln">   171  </span>func (o *RumRetentionFilterCreateAttributes) SetSampleRate(v float64) {
 <span id="L172" class="ln">   172  </span>	o.SampleRate = v
 <span id="L173" class="ln">   173  </span>}
 <span id="L174" class="ln">   174  </span>
@@ -258,7 +258,7 @@
 <span id="L201" class="ln">   201  </span>		EventType  *RumRetentionFilterEventType `json:&#34;event_type&#34;`
 <span id="L202" class="ln">   202  </span>		Name       *string                      `json:&#34;name&#34;`
 <span id="L203" class="ln">   203  </span>		Query      *string                      `json:&#34;query,omitempty&#34;`
-<span id="L204" class="ln">   204  </span>		SampleRate *int64                       `json:&#34;sample_rate&#34;`
+<span id="L204" class="ln">   204  </span>		SampleRate *float64                     `json:&#34;sample_rate&#34;`
 <span id="L205" class="ln">   205  </span>	}{}
 <span id="L206" class="ln">   206  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L207" class="ln">   207  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
