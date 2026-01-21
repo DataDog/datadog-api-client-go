@@ -548,6 +548,7 @@
 //   - [RumRetentionFiltersApi.UpdateRetentionFilter]
 //   - [SecurityMonitoringApi.AttachCase]
 //   - [SecurityMonitoringApi.AttachJiraIssue]
+//   - [SecurityMonitoringApi.BulkExportSecurityMonitoringRules]
 //   - [SecurityMonitoringApi.CancelThreatHuntingJob]
 //   - [SecurityMonitoringApi.ConvertExistingSecurityMonitoringRule]
 //   - [SecurityMonitoringApi.ConvertJobResultToSignal]
