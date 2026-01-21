@@ -797,6 +797,7 @@ func NewConfiguration() *Configuration {
 			"v2.ListScorecardRules":                      false,
 			"v2.UpdateScorecardOutcomesAsync":            false,
 			"v2.UpdateScorecardRule":                     false,
+			"v2.ListEntityRiskScores":                    false,
 			"v2.CreateIncidentService":                   false,
 			"v2.DeleteIncidentService":                   false,
 			"v2.GetIncidentService":                      false,

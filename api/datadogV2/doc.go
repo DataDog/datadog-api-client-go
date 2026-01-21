@@ -239,6 +239,7 @@
 //   - [DowntimesApi.ListDowntimes]
 //   - [DowntimesApi.ListMonitorDowntimes]
 //   - [DowntimesApi.UpdateDowntime]
+//   - [EntityRiskScoresApi.ListEntityRiskScores]
 //   - [ErrorTrackingApi.DeleteIssueAssignee]
 //   - [ErrorTrackingApi.GetIssue]
 //   - [ErrorTrackingApi.SearchIssues]
