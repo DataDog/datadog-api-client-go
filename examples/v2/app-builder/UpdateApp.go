@@ -23,7 +23,7 @@ func main() {
 				Name:             datadog.PtrString("Updated Name"),
 				RootInstanceName: datadog.PtrString("grid0"),
 			},
-			Id:   &AppDataID,
+			Id:   datadog.PtrUUID(AppDataID),
 			Type: datadogV2.APPDEFINITIONTYPE_APPDEFINITIONS,
 		},
 	}
