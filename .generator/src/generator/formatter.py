@@ -252,7 +252,7 @@ def reference_to_value(schema, value, print_nullable=True, **kwargs):
 
     if type_name == "string":
         if type_format == "uuid":
-            return f"&{value}"
+            return f"datadog.PtrUUID({value})"
 
         function_name = {
             "date": "Time",
