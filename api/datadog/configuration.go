@@ -712,6 +712,8 @@ func NewConfiguration() *Configuration {
 			"v2.GetDeploymentRule":                       false,
 			"v2.UpdateDeploymentGate":                    false,
 			"v2.UpdateDeploymentRule":                    false,
+			"v2.CreateHamrOrgConnection":                 false,
+			"v2.GetHamrOrgConnection":                    false,
 			"v2.CreateIncident":                          false,
 			"v2.CreateIncidentAttachment":                false,
 			"v2.CreateIncidentIntegration":               false,
