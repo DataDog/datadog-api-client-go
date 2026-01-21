@@ -20,8 +20,8 @@ type RumRetentionFilterCreateAttributes struct {
 	Name string `json:"name"`
 	// The query string for a RUM retention filter.
 	Query *string `json:"query,omitempty"`
-	// The sample rate for a RUM retention filter, between 0 and 100.
-	SampleRate int64 `json:"sample_rate"`
+	// The sample rate for a RUM retention filter, between 0.1 and 100.
+	SampleRate float64 `json:"sample_rate"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -31,7 +31,7 @@ type RumRetentionFilterCreateAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRumRetentionFilterCreateAttributes(eventType RumRetentionFilterEventType, name string, sampleRate int64) *RumRetentionFilterCreateAttributes {
+func NewRumRetentionFilterCreateAttributes(eventType RumRetentionFilterEventType, name string, sampleRate float64) *RumRetentionFilterCreateAttributes {
 	this := RumRetentionFilterCreateAttributes{}
 	this.EventType = eventType
 	this.Name = name
@@ -150,9 +150,9 @@ func (o *RumRetentionFilterCreateAttributes) SetQuery(v string) {
 }
 
 // GetSampleRate returns the SampleRate field value.
-func (o *RumRetentionFilterCreateAttributes) GetSampleRate() int64 {
+func (o *RumRetentionFilterCreateAttributes) GetSampleRate() float64 {
 	if o == nil {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return o.SampleRate
@@ -160,7 +160,7 @@ func (o *RumRetentionFilterCreateAttributes) GetSampleRate() int64 {
 
 // GetSampleRateOk returns a tuple with the SampleRate field value
 // and a boolean to check if the value has been set.
-func (o *RumRetentionFilterCreateAttributes) GetSampleRateOk() (*int64, bool) {
+func (o *RumRetentionFilterCreateAttributes) GetSampleRateOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -168,7 +168,7 @@ func (o *RumRetentionFilterCreateAttributes) GetSampleRateOk() (*int64, bool) {
 }
 
 // SetSampleRate sets field value.
-func (o *RumRetentionFilterCreateAttributes) SetSampleRate(v int64) {
+func (o *RumRetentionFilterCreateAttributes) SetSampleRate(v float64) {
 	o.SampleRate = v
 }
 
@@ -201,7 +201,7 @@ func (o *RumRetentionFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err er
 		EventType  *RumRetentionFilterEventType `json:"event_type"`
 		Name       *string                      `json:"name"`
 		Query      *string                      `json:"query,omitempty"`
-		SampleRate *int64                       `json:"sample_rate"`
+		SampleRate *float64                     `json:"sample_rate"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
