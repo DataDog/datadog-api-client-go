@@ -279,6 +279,8 @@
 //   - [GCPIntegrationApi.ListGCPSTSAccounts]
 //   - [GCPIntegrationApi.MakeGCPSTSDelegate]
 //   - [GCPIntegrationApi.UpdateGCPSTSAccount]
+//   - [HighAvailabilityMultiRegionApi.CreateHamrOrgConnection]
+//   - [HighAvailabilityMultiRegionApi.GetHamrOrgConnection]
 //   - [IPAllowlistApi.GetIPAllowlist]
 //   - [IPAllowlistApi.UpdateIPAllowlist]
 //   - [IncidentServicesApi.CreateIncidentService]
