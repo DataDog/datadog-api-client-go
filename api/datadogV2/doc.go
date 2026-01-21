@@ -611,6 +611,7 @@
 //   - [SecurityMonitoringApi.MuteFindings]
 //   - [SecurityMonitoringApi.PatchSignalNotificationRule]
 //   - [SecurityMonitoringApi.PatchVulnerabilityNotificationRule]
+//   - [SecurityMonitoringApi.PreviewSecurityMonitoringRuleQuery]
 //   - [SecurityMonitoringApi.RunThreatHuntingJob]
 //   - [SecurityMonitoringApi.SearchSecurityFindings]
 //   - [SecurityMonitoringApi.SearchSecurityMonitoringHistsignals]
