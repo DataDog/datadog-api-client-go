@@ -738,6 +738,7 @@
 //   - [TeamsApi.UpdateTeamNotificationRule]
 //   - [TeamsApi.UpdateTeamPermissionSetting]
 //   - [TestOptimizationApi.SearchFlakyTests]
+//   - [TestOptimizationApi.UpdateFlakyTests]
 //   - [UsageMeteringApi.GetActiveBillingDimensions]
 //   - [UsageMeteringApi.GetBillingDimensionMapping]
 //   - [UsageMeteringApi.GetCostByOrg]
