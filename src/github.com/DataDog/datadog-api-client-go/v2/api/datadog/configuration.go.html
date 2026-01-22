@@ -876,232 +876,233 @@
 <span id="L819" class="ln">   819  </span>			&#34;v2.ListIncidentTeams&#34;:                       false,
 <span id="L820" class="ln">   820  </span>			&#34;v2.UpdateIncidentTeam&#34;:                      false,
 <span id="L821" class="ln">   821  </span>			&#34;v2.SearchFlakyTests&#34;:                        false,
-<span id="L822" class="ln">   822  </span>		},
-<span id="L823" class="ln">   823  </span>		RetryConfiguration: RetryConfiguration{
-<span id="L824" class="ln">   824  </span>			EnableRetry:       false,
-<span id="L825" class="ln">   825  </span>			BackOffMultiplier: 2,
-<span id="L826" class="ln">   826  </span>			BackOffBase:       2,
-<span id="L827" class="ln">   827  </span>			HTTPRetryTimeout:  60 * time.Second,
-<span id="L828" class="ln">   828  </span>			MaxRetries:        3,
-<span id="L829" class="ln">   829  </span>		},
-<span id="L830" class="ln">   830  </span>	}
-<span id="L831" class="ln">   831  </span>	return cfg
-<span id="L832" class="ln">   832  </span>}
-<span id="L833" class="ln">   833  </span>
-<span id="L834" class="ln">   834  </span><span class="comment">// AddDefaultHeader adds a new HTTP header to the default header in the request.</span>
-<span id="L835" class="ln">   835  </span>func (c *Configuration) AddDefaultHeader(key string, value string) {
-<span id="L836" class="ln">   836  </span>	c.DefaultHeader[key] = value
-<span id="L837" class="ln">   837  </span>}
-<span id="L838" class="ln">   838  </span>
-<span id="L839" class="ln">   839  </span><span class="comment">// URL formats template on a index using given variables.</span>
-<span id="L840" class="ln">   840  </span>func (sc ServerConfigurations) URL(index int, variables map[string]string) (string, error) {
-<span id="L841" class="ln">   841  </span>	if index &lt; 0 || len(sc) &lt;= index {
-<span id="L842" class="ln">   842  </span>		return &#34;&#34;, fmt.Errorf(&#34;index %v out of range %v&#34;, index, len(sc)-1)
-<span id="L843" class="ln">   843  </span>	}
-<span id="L844" class="ln">   844  </span>	server := sc[index]
-<span id="L845" class="ln">   845  </span>	url := server.URL
-<span id="L846" class="ln">   846  </span>
-<span id="L847" class="ln">   847  </span>	<span class="comment">// go through variables and replace placeholders</span>
-<span id="L848" class="ln">   848  </span>	for name, variable := range server.Variables {
-<span id="L849" class="ln">   849  </span>		if value, ok := variables[name]; ok {
-<span id="L850" class="ln">   850  </span>			found := bool(len(variable.EnumValues) == 0)
-<span id="L851" class="ln">   851  </span>			for _, enumValue := range variable.EnumValues {
-<span id="L852" class="ln">   852  </span>				if value == enumValue {
-<span id="L853" class="ln">   853  </span>					found = true
-<span id="L854" class="ln">   854  </span>				}
-<span id="L855" class="ln">   855  </span>			}
-<span id="L856" class="ln">   856  </span>			if !found {
-<span id="L857" class="ln">   857  </span>				return &#34;&#34;, fmt.Errorf(&#34;the variable %s in the server URL has invalid value %v. Must be %v&#34;, name, value, variable.EnumValues)
-<span id="L858" class="ln">   858  </span>			}
-<span id="L859" class="ln">   859  </span>			url = strings.Replace(url, &#34;{&#34;+name+&#34;}&#34;, value, -1)
-<span id="L860" class="ln">   860  </span>		} else {
-<span id="L861" class="ln">   861  </span>			url = strings.Replace(url, &#34;{&#34;+name+&#34;}&#34;, variable.DefaultValue, -1)
-<span id="L862" class="ln">   862  </span>		}
-<span id="L863" class="ln">   863  </span>	}
-<span id="L864" class="ln">   864  </span>	return url, nil
-<span id="L865" class="ln">   865  </span>}
-<span id="L866" class="ln">   866  </span>
-<span id="L867" class="ln">   867  </span><span class="comment">// ServerURL returns URL based on server settings.</span>
-<span id="L868" class="ln">   868  </span>func (c *Configuration) ServerURL(index int, variables map[string]string) (string, error) {
-<span id="L869" class="ln">   869  </span>	return c.Servers.URL(index, variables)
-<span id="L870" class="ln">   870  </span>}
-<span id="L871" class="ln">   871  </span>
-<span id="L872" class="ln">   872  </span>func getServerIndex(ctx context.Context) (int, error) {
-<span id="L873" class="ln">   873  </span>	si := ctx.Value(ContextServerIndex)
-<span id="L874" class="ln">   874  </span>	if si != nil {
-<span id="L875" class="ln">   875  </span>		if index, ok := si.(int); ok {
-<span id="L876" class="ln">   876  </span>			return index, nil
-<span id="L877" class="ln">   877  </span>		}
-<span id="L878" class="ln">   878  </span>		return 0, ReportError(&#34;invalid type %T should be int&#34;, si)
-<span id="L879" class="ln">   879  </span>	}
-<span id="L880" class="ln">   880  </span>	return 0, nil
-<span id="L881" class="ln">   881  </span>}
-<span id="L882" class="ln">   882  </span>
-<span id="L883" class="ln">   883  </span>func getServerOperationIndex(ctx context.Context, endpoint string) (int, error) {
-<span id="L884" class="ln">   884  </span>	osi := ctx.Value(ContextOperationServerIndices)
-<span id="L885" class="ln">   885  </span>	if osi != nil {
-<span id="L886" class="ln">   886  </span>		operationIndices, ok := osi.(map[string]int)
-<span id="L887" class="ln">   887  </span>		if !ok {
-<span id="L888" class="ln">   888  </span>			return 0, ReportError(&#34;invalid type %T should be map[string]int&#34;, osi)
-<span id="L889" class="ln">   889  </span>		}
-<span id="L890" class="ln">   890  </span>		index, ok := operationIndices[endpoint]
-<span id="L891" class="ln">   891  </span>		if ok {
-<span id="L892" class="ln">   892  </span>			return index, nil
-<span id="L893" class="ln">   893  </span>		}
-<span id="L894" class="ln">   894  </span>	}
-<span id="L895" class="ln">   895  </span>	return getServerIndex(ctx)
-<span id="L896" class="ln">   896  </span>}
-<span id="L897" class="ln">   897  </span>
-<span id="L898" class="ln">   898  </span>func getServerVariables(ctx context.Context) (map[string]string, error) {
-<span id="L899" class="ln">   899  </span>	sv := ctx.Value(ContextServerVariables)
-<span id="L900" class="ln">   900  </span>	if sv != nil {
-<span id="L901" class="ln">   901  </span>		if variables, ok := sv.(map[string]string); ok {
-<span id="L902" class="ln">   902  </span>			return variables, nil
-<span id="L903" class="ln">   903  </span>		}
-<span id="L904" class="ln">   904  </span>		return nil, ReportError(&#34;ctx value of ContextServerVariables has invalid type %T should be map[string]string&#34;, sv)
-<span id="L905" class="ln">   905  </span>	}
-<span id="L906" class="ln">   906  </span>	return nil, nil
-<span id="L907" class="ln">   907  </span>}
-<span id="L908" class="ln">   908  </span>
-<span id="L909" class="ln">   909  </span>func getServerOperationVariables(ctx context.Context, endpoint string) (map[string]string, error) {
-<span id="L910" class="ln">   910  </span>	osv := ctx.Value(ContextOperationServerVariables)
-<span id="L911" class="ln">   911  </span>	if osv != nil {
-<span id="L912" class="ln">   912  </span>		operationVariables, ok := osv.(map[string]map[string]string)
-<span id="L913" class="ln">   913  </span>		if !ok {
-<span id="L914" class="ln">   914  </span>			return nil, ReportError(&#34;ctx value of ContextOperationServerVariables has invalid type %T should be map[string]map[string]string&#34;, osv)
-<span id="L915" class="ln">   915  </span>		}
-<span id="L916" class="ln">   916  </span>		variables, ok := operationVariables[endpoint]
-<span id="L917" class="ln">   917  </span>		if ok {
-<span id="L918" class="ln">   918  </span>			return variables, nil
-<span id="L919" class="ln">   919  </span>		}
-<span id="L920" class="ln">   920  </span>	}
-<span id="L921" class="ln">   921  </span>	return getServerVariables(ctx)
-<span id="L922" class="ln">   922  </span>}
-<span id="L923" class="ln">   923  </span>
-<span id="L924" class="ln">   924  </span><span class="comment">// ServerURLWithContext returns a new server URL given an endpoint.</span>
-<span id="L925" class="ln">   925  </span>func (c *Configuration) ServerURLWithContext(ctx context.Context, endpoint string) (string, error) {
-<span id="L926" class="ln">   926  </span>	sc, ok := c.OperationServers[endpoint]
-<span id="L927" class="ln">   927  </span>	if !ok {
-<span id="L928" class="ln">   928  </span>		sc = c.Servers
-<span id="L929" class="ln">   929  </span>	}
-<span id="L930" class="ln">   930  </span>
-<span id="L931" class="ln">   931  </span>	if ctx == nil {
-<span id="L932" class="ln">   932  </span>		return sc.URL(0, nil)
-<span id="L933" class="ln">   933  </span>	}
-<span id="L934" class="ln">   934  </span>
-<span id="L935" class="ln">   935  </span>	index, err := getServerOperationIndex(ctx, endpoint)
-<span id="L936" class="ln">   936  </span>	if err != nil {
-<span id="L937" class="ln">   937  </span>		return &#34;&#34;, err
-<span id="L938" class="ln">   938  </span>	}
-<span id="L939" class="ln">   939  </span>
-<span id="L940" class="ln">   940  </span>	variables, err := getServerOperationVariables(ctx, endpoint)
-<span id="L941" class="ln">   941  </span>	if err != nil {
-<span id="L942" class="ln">   942  </span>		return &#34;&#34;, err
-<span id="L943" class="ln">   943  </span>	}
-<span id="L944" class="ln">   944  </span>
-<span id="L945" class="ln">   945  </span>	return sc.URL(index, variables)
-<span id="L946" class="ln">   946  </span>}
-<span id="L947" class="ln">   947  </span>
-<span id="L948" class="ln">   948  </span><span class="comment">// GetUnstableOperations returns a slice with all unstable operation Ids.</span>
-<span id="L949" class="ln">   949  </span>func (c *Configuration) GetUnstableOperations() []string {
-<span id="L950" class="ln">   950  </span>	ids := make([]string, len(c.unstableOperations))
-<span id="L951" class="ln">   951  </span>	for id := range c.unstableOperations {
-<span id="L952" class="ln">   952  </span>		ids = append(ids, id)
-<span id="L953" class="ln">   953  </span>	}
-<span id="L954" class="ln">   954  </span>	return ids
-<span id="L955" class="ln">   955  </span>}
-<span id="L956" class="ln">   956  </span>
-<span id="L957" class="ln">   957  </span><span class="comment">// SetUnstableOperationEnabled sets an unstable operation as enabled (true) or disabled (false).</span>
-<span id="L958" class="ln">   958  </span><span class="comment">// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. &#34;CreateFoo&#34;</span>
-<span id="L959" class="ln">   959  </span><span class="comment">// Returns true if the operation is marked as unstable and thus was enabled/disabled, false otherwise.</span>
-<span id="L960" class="ln">   960  </span>func (c *Configuration) SetUnstableOperationEnabled(operation string, enabled bool) bool {
-<span id="L961" class="ln">   961  </span>	if _, ok := c.unstableOperations[operation]; ok {
-<span id="L962" class="ln">   962  </span>		c.unstableOperations[operation] = enabled
-<span id="L963" class="ln">   963  </span>		return true
-<span id="L964" class="ln">   964  </span>	}
-<span id="L965" class="ln">   965  </span>	log.Printf(&#34;WARNING: &#39;%s&#39; is not an unstable operation, can&#39;t enable/disable&#34;, operation)
-<span id="L966" class="ln">   966  </span>	return false
-<span id="L967" class="ln">   967  </span>}
-<span id="L968" class="ln">   968  </span>
-<span id="L969" class="ln">   969  </span><span class="comment">// IsUnstableOperation determines whether an operation is an unstable operation.</span>
-<span id="L970" class="ln">   970  </span><span class="comment">// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. &#34;CreateFoo&#34;.</span>
-<span id="L971" class="ln">   971  </span>func (c *Configuration) IsUnstableOperation(operation string) bool {
-<span id="L972" class="ln">   972  </span>	_, present := c.unstableOperations[operation]
-<span id="L973" class="ln">   973  </span>	return present
-<span id="L974" class="ln">   974  </span>}
-<span id="L975" class="ln">   975  </span>
-<span id="L976" class="ln">   976  </span><span class="comment">// IsUnstableOperationEnabled determines whether an unstable operation is enabled.</span>
-<span id="L977" class="ln">   977  </span><span class="comment">// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. &#34;CreateFoo&#34;</span>
-<span id="L978" class="ln">   978  </span><span class="comment">// Returns true if the operation is unstable and it is enabled, false otherwise.</span>
-<span id="L979" class="ln">   979  </span>func (c *Configuration) IsUnstableOperationEnabled(operation string) bool {
-<span id="L980" class="ln">   980  </span>	if enabled, present := c.unstableOperations[operation]; present {
-<span id="L981" class="ln">   981  </span>		return enabled
-<span id="L982" class="ln">   982  </span>	}
-<span id="L983" class="ln">   983  </span>	log.Printf(&#34;WARNING: &#39;%s&#39; is not an unstable operation, is always enabled&#34;, operation)
-<span id="L984" class="ln">   984  </span>	return false
-<span id="L985" class="ln">   985  </span>}
-<span id="L986" class="ln">   986  </span>
-<span id="L987" class="ln">   987  </span>func GetUserAgent() string {
-<span id="L988" class="ln">   988  </span>	return fmt.Sprintf(
-<span id="L989" class="ln">   989  </span>		&#34;datadog-api-client-go/%s (go %s; os %s; arch %s)&#34;,
-<span id="L990" class="ln">   990  </span>		client.Version,
-<span id="L991" class="ln">   991  </span>		runtime.Version(),
-<span id="L992" class="ln">   992  </span>		runtime.GOOS,
-<span id="L993" class="ln">   993  </span>		runtime.GOARCH,
-<span id="L994" class="ln">   994  </span>	)
-<span id="L995" class="ln">   995  </span>}
-<span id="L996" class="ln">   996  </span>
-<span id="L997" class="ln">   997  </span><span class="comment">// NewDefaultContext returns a new context setup with environment variables.</span>
-<span id="L998" class="ln">   998  </span>func NewDefaultContext(ctx context.Context) context.Context {
-<span id="L999" class="ln">   999  </span>	if ctx == nil {
-<span id="L1000" class="ln">  1000  </span>		ctx = context.Background()
-<span id="L1001" class="ln">  1001  </span>	}
-<span id="L1002" class="ln">  1002  </span>
-<span id="L1003" class="ln">  1003  </span>	if site, ok := os.LookupEnv(&#34;DD_SITE&#34;); ok {
-<span id="L1004" class="ln">  1004  </span>		ctx = context.WithValue(
-<span id="L1005" class="ln">  1005  </span>			ctx,
-<span id="L1006" class="ln">  1006  </span>			ContextServerVariables,
-<span id="L1007" class="ln">  1007  </span>			map[string]string{&#34;site&#34;: site},
-<span id="L1008" class="ln">  1008  </span>		)
-<span id="L1009" class="ln">  1009  </span>	}
-<span id="L1010" class="ln">  1010  </span>
-<span id="L1011" class="ln">  1011  </span>	keys := make(map[string]APIKey)
-<span id="L1012" class="ln">  1012  </span>	if apiKey, ok := os.LookupEnv(&#34;DD_API_KEY&#34;); ok {
-<span id="L1013" class="ln">  1013  </span>		keys[&#34;apiKeyAuth&#34;] = APIKey{Key: apiKey}
-<span id="L1014" class="ln">  1014  </span>	}
-<span id="L1015" class="ln">  1015  </span>	if apiKey, ok := os.LookupEnv(&#34;DD_APP_KEY&#34;); ok {
-<span id="L1016" class="ln">  1016  </span>		keys[&#34;appKeyAuth&#34;] = APIKey{Key: apiKey}
-<span id="L1017" class="ln">  1017  </span>	}
-<span id="L1018" class="ln">  1018  </span>	ctx = context.WithValue(
-<span id="L1019" class="ln">  1019  </span>		ctx,
-<span id="L1020" class="ln">  1020  </span>		ContextAPIKeys,
-<span id="L1021" class="ln">  1021  </span>		keys,
-<span id="L1022" class="ln">  1022  </span>	)
-<span id="L1023" class="ln">  1023  </span>
-<span id="L1024" class="ln">  1024  </span>	awsKeys := make(map[string]string)
-<span id="L1025" class="ln">  1025  </span>	if accessKey, ok := os.LookupEnv(AWSAccessKeyIdName); ok {
-<span id="L1026" class="ln">  1026  </span>		awsKeys[AWSAccessKeyIdName] = accessKey
-<span id="L1027" class="ln">  1027  </span>	}
-<span id="L1028" class="ln">  1028  </span>	if secretKey, ok := os.LookupEnv(AWSSecretAccessKeyName); ok {
-<span id="L1029" class="ln">  1029  </span>		awsKeys[AWSSecretAccessKeyName] = secretKey
-<span id="L1030" class="ln">  1030  </span>	}
-<span id="L1031" class="ln">  1031  </span>	if sessionToken, ok := os.LookupEnv(AWSSessionTokenName); ok {
-<span id="L1032" class="ln">  1032  </span>		awsKeys[AWSSessionTokenName] = sessionToken
-<span id="L1033" class="ln">  1033  </span>	}
-<span id="L1034" class="ln">  1034  </span>	ctx = context.WithValue(
-<span id="L1035" class="ln">  1035  </span>		ctx,
-<span id="L1036" class="ln">  1036  </span>		ContextAWSVariables,
-<span id="L1037" class="ln">  1037  </span>		awsKeys,
-<span id="L1038" class="ln">  1038  </span>	)
-<span id="L1039" class="ln">  1039  </span>
-<span id="L1040" class="ln">  1040  </span>	ctx = context.WithValue(
-<span id="L1041" class="ln">  1041  </span>		ctx,
-<span id="L1042" class="ln">  1042  </span>		ContextDelegatedToken,
-<span id="L1043" class="ln">  1043  </span>		&amp;DelegatedTokenCredentials{},
-<span id="L1044" class="ln">  1044  </span>	)
-<span id="L1045" class="ln">  1045  </span>	return ctx
-<span id="L1046" class="ln">  1046  </span>}
-<span id="L1047" class="ln">  1047  </span>
+<span id="L822" class="ln">   822  </span>			&#34;v2.UpdateFlakyTests&#34;:                        false,
+<span id="L823" class="ln">   823  </span>		},
+<span id="L824" class="ln">   824  </span>		RetryConfiguration: RetryConfiguration{
+<span id="L825" class="ln">   825  </span>			EnableRetry:       false,
+<span id="L826" class="ln">   826  </span>			BackOffMultiplier: 2,
+<span id="L827" class="ln">   827  </span>			BackOffBase:       2,
+<span id="L828" class="ln">   828  </span>			HTTPRetryTimeout:  60 * time.Second,
+<span id="L829" class="ln">   829  </span>			MaxRetries:        3,
+<span id="L830" class="ln">   830  </span>		},
+<span id="L831" class="ln">   831  </span>	}
+<span id="L832" class="ln">   832  </span>	return cfg
+<span id="L833" class="ln">   833  </span>}
+<span id="L834" class="ln">   834  </span>
+<span id="L835" class="ln">   835  </span><span class="comment">// AddDefaultHeader adds a new HTTP header to the default header in the request.</span>
+<span id="L836" class="ln">   836  </span>func (c *Configuration) AddDefaultHeader(key string, value string) {
+<span id="L837" class="ln">   837  </span>	c.DefaultHeader[key] = value
+<span id="L838" class="ln">   838  </span>}
+<span id="L839" class="ln">   839  </span>
+<span id="L840" class="ln">   840  </span><span class="comment">// URL formats template on a index using given variables.</span>
+<span id="L841" class="ln">   841  </span>func (sc ServerConfigurations) URL(index int, variables map[string]string) (string, error) {
+<span id="L842" class="ln">   842  </span>	if index &lt; 0 || len(sc) &lt;= index {
+<span id="L843" class="ln">   843  </span>		return &#34;&#34;, fmt.Errorf(&#34;index %v out of range %v&#34;, index, len(sc)-1)
+<span id="L844" class="ln">   844  </span>	}
+<span id="L845" class="ln">   845  </span>	server := sc[index]
+<span id="L846" class="ln">   846  </span>	url := server.URL
+<span id="L847" class="ln">   847  </span>
+<span id="L848" class="ln">   848  </span>	<span class="comment">// go through variables and replace placeholders</span>
+<span id="L849" class="ln">   849  </span>	for name, variable := range server.Variables {
+<span id="L850" class="ln">   850  </span>		if value, ok := variables[name]; ok {
+<span id="L851" class="ln">   851  </span>			found := bool(len(variable.EnumValues) == 0)
+<span id="L852" class="ln">   852  </span>			for _, enumValue := range variable.EnumValues {
+<span id="L853" class="ln">   853  </span>				if value == enumValue {
+<span id="L854" class="ln">   854  </span>					found = true
+<span id="L855" class="ln">   855  </span>				}
+<span id="L856" class="ln">   856  </span>			}
+<span id="L857" class="ln">   857  </span>			if !found {
+<span id="L858" class="ln">   858  </span>				return &#34;&#34;, fmt.Errorf(&#34;the variable %s in the server URL has invalid value %v. Must be %v&#34;, name, value, variable.EnumValues)
+<span id="L859" class="ln">   859  </span>			}
+<span id="L860" class="ln">   860  </span>			url = strings.Replace(url, &#34;{&#34;+name+&#34;}&#34;, value, -1)
+<span id="L861" class="ln">   861  </span>		} else {
+<span id="L862" class="ln">   862  </span>			url = strings.Replace(url, &#34;{&#34;+name+&#34;}&#34;, variable.DefaultValue, -1)
+<span id="L863" class="ln">   863  </span>		}
+<span id="L864" class="ln">   864  </span>	}
+<span id="L865" class="ln">   865  </span>	return url, nil
+<span id="L866" class="ln">   866  </span>}
+<span id="L867" class="ln">   867  </span>
+<span id="L868" class="ln">   868  </span><span class="comment">// ServerURL returns URL based on server settings.</span>
+<span id="L869" class="ln">   869  </span>func (c *Configuration) ServerURL(index int, variables map[string]string) (string, error) {
+<span id="L870" class="ln">   870  </span>	return c.Servers.URL(index, variables)
+<span id="L871" class="ln">   871  </span>}
+<span id="L872" class="ln">   872  </span>
+<span id="L873" class="ln">   873  </span>func getServerIndex(ctx context.Context) (int, error) {
+<span id="L874" class="ln">   874  </span>	si := ctx.Value(ContextServerIndex)
+<span id="L875" class="ln">   875  </span>	if si != nil {
+<span id="L876" class="ln">   876  </span>		if index, ok := si.(int); ok {
+<span id="L877" class="ln">   877  </span>			return index, nil
+<span id="L878" class="ln">   878  </span>		}
+<span id="L879" class="ln">   879  </span>		return 0, ReportError(&#34;invalid type %T should be int&#34;, si)
+<span id="L880" class="ln">   880  </span>	}
+<span id="L881" class="ln">   881  </span>	return 0, nil
+<span id="L882" class="ln">   882  </span>}
+<span id="L883" class="ln">   883  </span>
+<span id="L884" class="ln">   884  </span>func getServerOperationIndex(ctx context.Context, endpoint string) (int, error) {
+<span id="L885" class="ln">   885  </span>	osi := ctx.Value(ContextOperationServerIndices)
+<span id="L886" class="ln">   886  </span>	if osi != nil {
+<span id="L887" class="ln">   887  </span>		operationIndices, ok := osi.(map[string]int)
+<span id="L888" class="ln">   888  </span>		if !ok {
+<span id="L889" class="ln">   889  </span>			return 0, ReportError(&#34;invalid type %T should be map[string]int&#34;, osi)
+<span id="L890" class="ln">   890  </span>		}
+<span id="L891" class="ln">   891  </span>		index, ok := operationIndices[endpoint]
+<span id="L892" class="ln">   892  </span>		if ok {
+<span id="L893" class="ln">   893  </span>			return index, nil
+<span id="L894" class="ln">   894  </span>		}
+<span id="L895" class="ln">   895  </span>	}
+<span id="L896" class="ln">   896  </span>	return getServerIndex(ctx)
+<span id="L897" class="ln">   897  </span>}
+<span id="L898" class="ln">   898  </span>
+<span id="L899" class="ln">   899  </span>func getServerVariables(ctx context.Context) (map[string]string, error) {
+<span id="L900" class="ln">   900  </span>	sv := ctx.Value(ContextServerVariables)
+<span id="L901" class="ln">   901  </span>	if sv != nil {
+<span id="L902" class="ln">   902  </span>		if variables, ok := sv.(map[string]string); ok {
+<span id="L903" class="ln">   903  </span>			return variables, nil
+<span id="L904" class="ln">   904  </span>		}
+<span id="L905" class="ln">   905  </span>		return nil, ReportError(&#34;ctx value of ContextServerVariables has invalid type %T should be map[string]string&#34;, sv)
+<span id="L906" class="ln">   906  </span>	}
+<span id="L907" class="ln">   907  </span>	return nil, nil
+<span id="L908" class="ln">   908  </span>}
+<span id="L909" class="ln">   909  </span>
+<span id="L910" class="ln">   910  </span>func getServerOperationVariables(ctx context.Context, endpoint string) (map[string]string, error) {
+<span id="L911" class="ln">   911  </span>	osv := ctx.Value(ContextOperationServerVariables)
+<span id="L912" class="ln">   912  </span>	if osv != nil {
+<span id="L913" class="ln">   913  </span>		operationVariables, ok := osv.(map[string]map[string]string)
+<span id="L914" class="ln">   914  </span>		if !ok {
+<span id="L915" class="ln">   915  </span>			return nil, ReportError(&#34;ctx value of ContextOperationServerVariables has invalid type %T should be map[string]map[string]string&#34;, osv)
+<span id="L916" class="ln">   916  </span>		}
+<span id="L917" class="ln">   917  </span>		variables, ok := operationVariables[endpoint]
+<span id="L918" class="ln">   918  </span>		if ok {
+<span id="L919" class="ln">   919  </span>			return variables, nil
+<span id="L920" class="ln">   920  </span>		}
+<span id="L921" class="ln">   921  </span>	}
+<span id="L922" class="ln">   922  </span>	return getServerVariables(ctx)
+<span id="L923" class="ln">   923  </span>}
+<span id="L924" class="ln">   924  </span>
+<span id="L925" class="ln">   925  </span><span class="comment">// ServerURLWithContext returns a new server URL given an endpoint.</span>
+<span id="L926" class="ln">   926  </span>func (c *Configuration) ServerURLWithContext(ctx context.Context, endpoint string) (string, error) {
+<span id="L927" class="ln">   927  </span>	sc, ok := c.OperationServers[endpoint]
+<span id="L928" class="ln">   928  </span>	if !ok {
+<span id="L929" class="ln">   929  </span>		sc = c.Servers
+<span id="L930" class="ln">   930  </span>	}
+<span id="L931" class="ln">   931  </span>
+<span id="L932" class="ln">   932  </span>	if ctx == nil {
+<span id="L933" class="ln">   933  </span>		return sc.URL(0, nil)
+<span id="L934" class="ln">   934  </span>	}
+<span id="L935" class="ln">   935  </span>
+<span id="L936" class="ln">   936  </span>	index, err := getServerOperationIndex(ctx, endpoint)
+<span id="L937" class="ln">   937  </span>	if err != nil {
+<span id="L938" class="ln">   938  </span>		return &#34;&#34;, err
+<span id="L939" class="ln">   939  </span>	}
+<span id="L940" class="ln">   940  </span>
+<span id="L941" class="ln">   941  </span>	variables, err := getServerOperationVariables(ctx, endpoint)
+<span id="L942" class="ln">   942  </span>	if err != nil {
+<span id="L943" class="ln">   943  </span>		return &#34;&#34;, err
+<span id="L944" class="ln">   944  </span>	}
+<span id="L945" class="ln">   945  </span>
+<span id="L946" class="ln">   946  </span>	return sc.URL(index, variables)
+<span id="L947" class="ln">   947  </span>}
+<span id="L948" class="ln">   948  </span>
+<span id="L949" class="ln">   949  </span><span class="comment">// GetUnstableOperations returns a slice with all unstable operation Ids.</span>
+<span id="L950" class="ln">   950  </span>func (c *Configuration) GetUnstableOperations() []string {
+<span id="L951" class="ln">   951  </span>	ids := make([]string, len(c.unstableOperations))
+<span id="L952" class="ln">   952  </span>	for id := range c.unstableOperations {
+<span id="L953" class="ln">   953  </span>		ids = append(ids, id)
+<span id="L954" class="ln">   954  </span>	}
+<span id="L955" class="ln">   955  </span>	return ids
+<span id="L956" class="ln">   956  </span>}
+<span id="L957" class="ln">   957  </span>
+<span id="L958" class="ln">   958  </span><span class="comment">// SetUnstableOperationEnabled sets an unstable operation as enabled (true) or disabled (false).</span>
+<span id="L959" class="ln">   959  </span><span class="comment">// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. &#34;CreateFoo&#34;</span>
+<span id="L960" class="ln">   960  </span><span class="comment">// Returns true if the operation is marked as unstable and thus was enabled/disabled, false otherwise.</span>
+<span id="L961" class="ln">   961  </span>func (c *Configuration) SetUnstableOperationEnabled(operation string, enabled bool) bool {
+<span id="L962" class="ln">   962  </span>	if _, ok := c.unstableOperations[operation]; ok {
+<span id="L963" class="ln">   963  </span>		c.unstableOperations[operation] = enabled
+<span id="L964" class="ln">   964  </span>		return true
+<span id="L965" class="ln">   965  </span>	}
+<span id="L966" class="ln">   966  </span>	log.Printf(&#34;WARNING: &#39;%s&#39; is not an unstable operation, can&#39;t enable/disable&#34;, operation)
+<span id="L967" class="ln">   967  </span>	return false
+<span id="L968" class="ln">   968  </span>}
+<span id="L969" class="ln">   969  </span>
+<span id="L970" class="ln">   970  </span><span class="comment">// IsUnstableOperation determines whether an operation is an unstable operation.</span>
+<span id="L971" class="ln">   971  </span><span class="comment">// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. &#34;CreateFoo&#34;.</span>
+<span id="L972" class="ln">   972  </span>func (c *Configuration) IsUnstableOperation(operation string) bool {
+<span id="L973" class="ln">   973  </span>	_, present := c.unstableOperations[operation]
+<span id="L974" class="ln">   974  </span>	return present
+<span id="L975" class="ln">   975  </span>}
+<span id="L976" class="ln">   976  </span>
+<span id="L977" class="ln">   977  </span><span class="comment">// IsUnstableOperationEnabled determines whether an unstable operation is enabled.</span>
+<span id="L978" class="ln">   978  </span><span class="comment">// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. &#34;CreateFoo&#34;</span>
+<span id="L979" class="ln">   979  </span><span class="comment">// Returns true if the operation is unstable and it is enabled, false otherwise.</span>
+<span id="L980" class="ln">   980  </span>func (c *Configuration) IsUnstableOperationEnabled(operation string) bool {
+<span id="L981" class="ln">   981  </span>	if enabled, present := c.unstableOperations[operation]; present {
+<span id="L982" class="ln">   982  </span>		return enabled
+<span id="L983" class="ln">   983  </span>	}
+<span id="L984" class="ln">   984  </span>	log.Printf(&#34;WARNING: &#39;%s&#39; is not an unstable operation, is always enabled&#34;, operation)
+<span id="L985" class="ln">   985  </span>	return false
+<span id="L986" class="ln">   986  </span>}
+<span id="L987" class="ln">   987  </span>
+<span id="L988" class="ln">   988  </span>func GetUserAgent() string {
+<span id="L989" class="ln">   989  </span>	return fmt.Sprintf(
+<span id="L990" class="ln">   990  </span>		&#34;datadog-api-client-go/%s (go %s; os %s; arch %s)&#34;,
+<span id="L991" class="ln">   991  </span>		client.Version,
+<span id="L992" class="ln">   992  </span>		runtime.Version(),
+<span id="L993" class="ln">   993  </span>		runtime.GOOS,
+<span id="L994" class="ln">   994  </span>		runtime.GOARCH,
+<span id="L995" class="ln">   995  </span>	)
+<span id="L996" class="ln">   996  </span>}
+<span id="L997" class="ln">   997  </span>
+<span id="L998" class="ln">   998  </span><span class="comment">// NewDefaultContext returns a new context setup with environment variables.</span>
+<span id="L999" class="ln">   999  </span>func NewDefaultContext(ctx context.Context) context.Context {
+<span id="L1000" class="ln">  1000  </span>	if ctx == nil {
+<span id="L1001" class="ln">  1001  </span>		ctx = context.Background()
+<span id="L1002" class="ln">  1002  </span>	}
+<span id="L1003" class="ln">  1003  </span>
+<span id="L1004" class="ln">  1004  </span>	if site, ok := os.LookupEnv(&#34;DD_SITE&#34;); ok {
+<span id="L1005" class="ln">  1005  </span>		ctx = context.WithValue(
+<span id="L1006" class="ln">  1006  </span>			ctx,
+<span id="L1007" class="ln">  1007  </span>			ContextServerVariables,
+<span id="L1008" class="ln">  1008  </span>			map[string]string{&#34;site&#34;: site},
+<span id="L1009" class="ln">  1009  </span>		)
+<span id="L1010" class="ln">  1010  </span>	}
+<span id="L1011" class="ln">  1011  </span>
+<span id="L1012" class="ln">  1012  </span>	keys := make(map[string]APIKey)
+<span id="L1013" class="ln">  1013  </span>	if apiKey, ok := os.LookupEnv(&#34;DD_API_KEY&#34;); ok {
+<span id="L1014" class="ln">  1014  </span>		keys[&#34;apiKeyAuth&#34;] = APIKey{Key: apiKey}
+<span id="L1015" class="ln">  1015  </span>	}
+<span id="L1016" class="ln">  1016  </span>	if apiKey, ok := os.LookupEnv(&#34;DD_APP_KEY&#34;); ok {
+<span id="L1017" class="ln">  1017  </span>		keys[&#34;appKeyAuth&#34;] = APIKey{Key: apiKey}
+<span id="L1018" class="ln">  1018  </span>	}
+<span id="L1019" class="ln">  1019  </span>	ctx = context.WithValue(
+<span id="L1020" class="ln">  1020  </span>		ctx,
+<span id="L1021" class="ln">  1021  </span>		ContextAPIKeys,
+<span id="L1022" class="ln">  1022  </span>		keys,
+<span id="L1023" class="ln">  1023  </span>	)
+<span id="L1024" class="ln">  1024  </span>
+<span id="L1025" class="ln">  1025  </span>	awsKeys := make(map[string]string)
+<span id="L1026" class="ln">  1026  </span>	if accessKey, ok := os.LookupEnv(AWSAccessKeyIdName); ok {
+<span id="L1027" class="ln">  1027  </span>		awsKeys[AWSAccessKeyIdName] = accessKey
+<span id="L1028" class="ln">  1028  </span>	}
+<span id="L1029" class="ln">  1029  </span>	if secretKey, ok := os.LookupEnv(AWSSecretAccessKeyName); ok {
+<span id="L1030" class="ln">  1030  </span>		awsKeys[AWSSecretAccessKeyName] = secretKey
+<span id="L1031" class="ln">  1031  </span>	}
+<span id="L1032" class="ln">  1032  </span>	if sessionToken, ok := os.LookupEnv(AWSSessionTokenName); ok {
+<span id="L1033" class="ln">  1033  </span>		awsKeys[AWSSessionTokenName] = sessionToken
+<span id="L1034" class="ln">  1034  </span>	}
+<span id="L1035" class="ln">  1035  </span>	ctx = context.WithValue(
+<span id="L1036" class="ln">  1036  </span>		ctx,
+<span id="L1037" class="ln">  1037  </span>		ContextAWSVariables,
+<span id="L1038" class="ln">  1038  </span>		awsKeys,
+<span id="L1039" class="ln">  1039  </span>	)
+<span id="L1040" class="ln">  1040  </span>
+<span id="L1041" class="ln">  1041  </span>	ctx = context.WithValue(
+<span id="L1042" class="ln">  1042  </span>		ctx,
+<span id="L1043" class="ln">  1043  </span>		ContextDelegatedToken,
+<span id="L1044" class="ln">  1044  </span>		&amp;DelegatedTokenCredentials{},
+<span id="L1045" class="ln">  1045  </span>	)
+<span id="L1046" class="ln">  1046  </span>	return ctx
+<span id="L1047" class="ln">  1047  </span>}
+<span id="L1048" class="ln">  1048  </span>
 </pre><p></p>
 
 <div id="footer">

@@ -260,13 +260,102 @@
 <span id="L203" class="ln">   203  </span>	return items, cancel
 <span id="L204" class="ln">   204  </span>}
 <span id="L205" class="ln">   205  </span>
-<span id="L206" class="ln">   206  </span><span class="comment">// NewTestOptimizationApi Returns NewTestOptimizationApi.</span>
-<span id="L207" class="ln">   207  </span>func NewTestOptimizationApi(client *datadog.APIClient) *TestOptimizationApi {
-<span id="L208" class="ln">   208  </span>	return &amp;TestOptimizationApi{
-<span id="L209" class="ln">   209  </span>		Client: client,
-<span id="L210" class="ln">   210  </span>	}
-<span id="L211" class="ln">   211  </span>}
-<span id="L212" class="ln">   212  </span>
+<span id="L206" class="ln">   206  </span><span class="comment">// UpdateFlakyTests Update flaky test states.</span>
+<span id="L207" class="ln">   207  </span><span class="comment">// Update the state of multiple flaky tests in Flaky Test Management.</span>
+<span id="L208" class="ln">   208  </span>func (a *TestOptimizationApi) UpdateFlakyTests(ctx _context.Context, body UpdateFlakyTestsRequest) (UpdateFlakyTestsResponse, *_nethttp.Response, error) {
+<span id="L209" class="ln">   209  </span>	var (
+<span id="L210" class="ln">   210  </span>		localVarHTTPMethod  = _nethttp.MethodPatch
+<span id="L211" class="ln">   211  </span>		localVarPostBody    interface{}
+<span id="L212" class="ln">   212  </span>		localVarReturnValue UpdateFlakyTestsResponse
+<span id="L213" class="ln">   213  </span>	)
+<span id="L214" class="ln">   214  </span>
+<span id="L215" class="ln">   215  </span>	operationId := &#34;v2.UpdateFlakyTests&#34;
+<span id="L216" class="ln">   216  </span>	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+<span id="L217" class="ln">   217  </span>	if !isOperationEnabled {
+<span id="L218" class="ln">   218  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf(&#34;Unstable operation &#39;%s&#39; is disabled&#34;, operationId)}
+<span id="L219" class="ln">   219  </span>	}
+<span id="L220" class="ln">   220  </span>	if isOperationEnabled &amp;&amp; a.Client.Cfg.Debug {
+<span id="L221" class="ln">   221  </span>		_log.Printf(&#34;WARNING: Using unstable operation &#39;%s&#39;&#34;, operationId)
+<span id="L222" class="ln">   222  </span>	}
+<span id="L223" class="ln">   223  </span>
+<span id="L224" class="ln">   224  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.TestOptimizationApi.UpdateFlakyTests&#34;)
+<span id="L225" class="ln">   225  </span>	if err != nil {
+<span id="L226" class="ln">   226  </span>		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+<span id="L227" class="ln">   227  </span>	}
+<span id="L228" class="ln">   228  </span>
+<span id="L229" class="ln">   229  </span>	localVarPath := localBasePath + &#34;/api/v2/test/flaky-test-management/tests&#34;
+<span id="L230" class="ln">   230  </span>
+<span id="L231" class="ln">   231  </span>	localVarHeaderParams := make(map[string]string)
+<span id="L232" class="ln">   232  </span>	localVarQueryParams := _neturl.Values{}
+<span id="L233" class="ln">   233  </span>	localVarFormParams := _neturl.Values{}
+<span id="L234" class="ln">   234  </span>	localVarHeaderParams[&#34;Content-Type&#34;] = &#34;application/json&#34;
+<span id="L235" class="ln">   235  </span>	localVarHeaderParams[&#34;Accept&#34;] = &#34;application/json&#34;
+<span id="L236" class="ln">   236  </span>
+<span id="L237" class="ln">   237  </span>	<span class="comment">// body params</span>
+<span id="L238" class="ln">   238  </span>	localVarPostBody = &amp;body
+<span id="L239" class="ln">   239  </span>	if a.Client.Cfg.DelegatedTokenConfig != nil {
+<span id="L240" class="ln">   240  </span>		err = datadog.UseDelegatedTokenAuth(ctx, &amp;localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+<span id="L241" class="ln">   241  </span>		if err != nil {
+<span id="L242" class="ln">   242  </span>			return localVarReturnValue, nil, err
+<span id="L243" class="ln">   243  </span>		}
+<span id="L244" class="ln">   244  </span>	} else {
+<span id="L245" class="ln">   245  </span>		datadog.SetAuthKeys(
+<span id="L246" class="ln">   246  </span>			ctx,
+<span id="L247" class="ln">   247  </span>			&amp;localVarHeaderParams,
+<span id="L248" class="ln">   248  </span>			[2]string{&#34;apiKeyAuth&#34;, &#34;DD-API-KEY&#34;},
+<span id="L249" class="ln">   249  </span>			[2]string{&#34;appKeyAuth&#34;, &#34;DD-APPLICATION-KEY&#34;},
+<span id="L250" class="ln">   250  </span>		)
+<span id="L251" class="ln">   251  </span>	}
+<span id="L252" class="ln">   252  </span>	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+<span id="L253" class="ln">   253  </span>	if err != nil {
+<span id="L254" class="ln">   254  </span>		return localVarReturnValue, nil, err
+<span id="L255" class="ln">   255  </span>	}
+<span id="L256" class="ln">   256  </span>
+<span id="L257" class="ln">   257  </span>	localVarHTTPResponse, err := a.Client.CallAPI(req)
+<span id="L258" class="ln">   258  </span>	if err != nil || localVarHTTPResponse == nil {
+<span id="L259" class="ln">   259  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L260" class="ln">   260  </span>	}
+<span id="L261" class="ln">   261  </span>
+<span id="L262" class="ln">   262  </span>	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+<span id="L263" class="ln">   263  </span>	if err != nil {
+<span id="L264" class="ln">   264  </span>		return localVarReturnValue, localVarHTTPResponse, err
+<span id="L265" class="ln">   265  </span>	}
+<span id="L266" class="ln">   266  </span>
+<span id="L267" class="ln">   267  </span>	if localVarHTTPResponse.StatusCode &gt;= 300 {
+<span id="L268" class="ln">   268  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L269" class="ln">   269  </span>			ErrorBody:    localVarBody,
+<span id="L270" class="ln">   270  </span>			ErrorMessage: localVarHTTPResponse.Status,
+<span id="L271" class="ln">   271  </span>		}
+<span id="L272" class="ln">   272  </span>		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+<span id="L273" class="ln">   273  </span>			var v APIErrorResponse
+<span id="L274" class="ln">   274  </span>			err = a.Client.Decode(&amp;v, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L275" class="ln">   275  </span>			if err != nil {
+<span id="L276" class="ln">   276  </span>				return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L277" class="ln">   277  </span>			}
+<span id="L278" class="ln">   278  </span>			newErr.ErrorModel = v
+<span id="L279" class="ln">   279  </span>		}
+<span id="L280" class="ln">   280  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L281" class="ln">   281  </span>	}
+<span id="L282" class="ln">   282  </span>
+<span id="L283" class="ln">   283  </span>	err = a.Client.Decode(&amp;localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get(&#34;Content-Type&#34;))
+<span id="L284" class="ln">   284  </span>	if err != nil {
+<span id="L285" class="ln">   285  </span>		newErr := datadog.GenericOpenAPIError{
+<span id="L286" class="ln">   286  </span>			ErrorBody:    localVarBody,
+<span id="L287" class="ln">   287  </span>			ErrorMessage: err.Error(),
+<span id="L288" class="ln">   288  </span>		}
+<span id="L289" class="ln">   289  </span>		return localVarReturnValue, localVarHTTPResponse, newErr
+<span id="L290" class="ln">   290  </span>	}
+<span id="L291" class="ln">   291  </span>
+<span id="L292" class="ln">   292  </span>	return localVarReturnValue, localVarHTTPResponse, nil
+<span id="L293" class="ln">   293  </span>}
+<span id="L294" class="ln">   294  </span>
+<span id="L295" class="ln">   295  </span><span class="comment">// NewTestOptimizationApi Returns NewTestOptimizationApi.</span>
+<span id="L296" class="ln">   296  </span>func NewTestOptimizationApi(client *datadog.APIClient) *TestOptimizationApi {
+<span id="L297" class="ln">   297  </span>	return &amp;TestOptimizationApi{
+<span id="L298" class="ln">   298  </span>		Client: client,
+<span id="L299" class="ln">   299  </span>	}
+<span id="L300" class="ln">   300  </span>}
+<span id="L301" class="ln">   301  </span>
 </pre><p></p>
 
 <div id="footer">
