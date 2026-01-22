@@ -16,6 +16,8 @@ import (
 type ObservabilityPipelineOpenSearchDestination struct {
 	// The index to write logs to.
 	BulkIndex *string `json:"bulk_index,omitempty"`
+	// Configuration options for writing to OpenSearch Data Streams instead of a fixed index.
+	DataStream *ObservabilityPipelineOpenSearchDestinationDataStream `json:"data_stream,omitempty"`
 	// The unique identifier for this component.
 	Id string `json:"id"`
 	// A list of component IDs whose output is used as the `input` for this component.
@@ -75,6 +77,34 @@ func (o *ObservabilityPipelineOpenSearchDestination) HasBulkIndex() bool {
 // SetBulkIndex gets a reference to the given string and assigns it to the BulkIndex field.
 func (o *ObservabilityPipelineOpenSearchDestination) SetBulkIndex(v string) {
 	o.BulkIndex = &v
+}
+
+// GetDataStream returns the DataStream field value if set, zero value otherwise.
+func (o *ObservabilityPipelineOpenSearchDestination) GetDataStream() ObservabilityPipelineOpenSearchDestinationDataStream {
+	if o == nil || o.DataStream == nil {
+		var ret ObservabilityPipelineOpenSearchDestinationDataStream
+		return ret
+	}
+	return *o.DataStream
+}
+
+// GetDataStreamOk returns a tuple with the DataStream field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineOpenSearchDestination) GetDataStreamOk() (*ObservabilityPipelineOpenSearchDestinationDataStream, bool) {
+	if o == nil || o.DataStream == nil {
+		return nil, false
+	}
+	return o.DataStream, true
+}
+
+// HasDataStream returns a boolean if a field has been set.
+func (o *ObservabilityPipelineOpenSearchDestination) HasDataStream() bool {
+	return o != nil && o.DataStream != nil
+}
+
+// SetDataStream gets a reference to the given ObservabilityPipelineOpenSearchDestinationDataStream and assigns it to the DataStream field.
+func (o *ObservabilityPipelineOpenSearchDestination) SetDataStream(v ObservabilityPipelineOpenSearchDestinationDataStream) {
+	o.DataStream = &v
 }
 
 // GetId returns the Id field value.
@@ -155,6 +185,9 @@ func (o ObservabilityPipelineOpenSearchDestination) MarshalJSON() ([]byte, error
 	if o.BulkIndex != nil {
 		toSerialize["bulk_index"] = o.BulkIndex
 	}
+	if o.DataStream != nil {
+		toSerialize["data_stream"] = o.DataStream
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["inputs"] = o.Inputs
 	toSerialize["type"] = o.Type
@@ -168,10 +201,11 @@ func (o ObservabilityPipelineOpenSearchDestination) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineOpenSearchDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BulkIndex *string                                         `json:"bulk_index,omitempty"`
-		Id        *string                                         `json:"id"`
-		Inputs    *[]string                                       `json:"inputs"`
-		Type      *ObservabilityPipelineOpenSearchDestinationType `json:"type"`
+		BulkIndex  *string                                               `json:"bulk_index,omitempty"`
+		DataStream *ObservabilityPipelineOpenSearchDestinationDataStream `json:"data_stream,omitempty"`
+		Id         *string                                               `json:"id"`
+		Inputs     *[]string                                             `json:"inputs"`
+		Type       *ObservabilityPipelineOpenSearchDestinationType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -187,13 +221,17 @@ func (o *ObservabilityPipelineOpenSearchDestination) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"bulk_index", "id", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"bulk_index", "data_stream", "id", "inputs", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.BulkIndex = all.BulkIndex
+	if all.DataStream != nil && all.DataStream.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.DataStream = all.DataStream
 	o.Id = *all.Id
 	o.Inputs = *all.Inputs
 	if !all.Type.IsValid() {
