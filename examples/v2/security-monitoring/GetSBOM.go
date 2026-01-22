@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetSBOM", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
 	resp, r, err := api.GetSBOM(ctx, datadogV2.ASSETTYPE_REPOSITORY, "github.com/datadog/datadog-agent", *datadogV2.NewGetSBOMOptionalParameters())

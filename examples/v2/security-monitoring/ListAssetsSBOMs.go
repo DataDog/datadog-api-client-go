@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListAssetsSBOMs", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
 	resp, r, err := api.ListAssetsSBOMs(ctx, *datadogV2.NewListAssetsSBOMsOptionalParameters().WithFilterPackageName("pandas").WithFilterAssetType(datadogV2.ASSETTYPE_SERVICE))
