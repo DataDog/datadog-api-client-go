@@ -8,54 +8,54 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BudgetAttributes The attributes of a budget.
-type BudgetAttributes struct {
-	// The timestamp when the budget was created.
+// BudgetWithEntriesDataAttributes
+type BudgetWithEntriesDataAttributes struct {
+	//
 	CreatedAt *int64 `json:"created_at,omitempty"`
-	// The id of the user that created the budget.
+	//
 	CreatedBy *string `json:"created_by,omitempty"`
-	// The month when the budget ends.
+	//
 	EndMonth *int64 `json:"end_month,omitempty"`
 	//
 	Entries []BudgetWithEntriesDataAttributesEntriesItems `json:"entries,omitempty"`
-	// The cost query used to track against the budget.
+	//
 	MetricsQuery *string `json:"metrics_query,omitempty"`
-	// The name of the budget.
+	//
 	Name *string `json:"name,omitempty"`
-	// The id of the org the budget belongs to.
+	//
 	OrgId *int64 `json:"org_id,omitempty"`
-	// The month when the budget starts.
+	//
 	StartMonth *int64 `json:"start_month,omitempty"`
-	// The sum of all budget entries' amounts.
+	//
 	TotalAmount *float64 `json:"total_amount,omitempty"`
-	// The timestamp when the budget was last updated.
+	//
 	UpdatedAt *int64 `json:"updated_at,omitempty"`
-	// The id of the user that created the budget.
+	//
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewBudgetAttributes instantiates a new BudgetAttributes object.
+// NewBudgetWithEntriesDataAttributes instantiates a new BudgetWithEntriesDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewBudgetAttributes() *BudgetAttributes {
-	this := BudgetAttributes{}
+func NewBudgetWithEntriesDataAttributes() *BudgetWithEntriesDataAttributes {
+	this := BudgetWithEntriesDataAttributes{}
 	return &this
 }
 
-// NewBudgetAttributesWithDefaults instantiates a new BudgetAttributes object.
+// NewBudgetWithEntriesDataAttributesWithDefaults instantiates a new BudgetWithEntriesDataAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewBudgetAttributesWithDefaults() *BudgetAttributes {
-	this := BudgetAttributes{}
+func NewBudgetWithEntriesDataAttributesWithDefaults() *BudgetWithEntriesDataAttributes {
+	this := BudgetWithEntriesDataAttributes{}
 	return &this
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
-func (o *BudgetAttributes) GetCreatedAt() int64 {
+func (o *BudgetWithEntriesDataAttributes) GetCreatedAt() int64 {
 	if o == nil || o.CreatedAt == nil {
 		var ret int64
 		return ret
@@ -65,7 +65,7 @@ func (o *BudgetAttributes) GetCreatedAt() int64 {
 
 // GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BudgetAttributes) GetCreatedAtOk() (*int64, bool) {
+func (o *BudgetWithEntriesDataAttributes) GetCreatedAtOk() (*int64, bool) {
 	if o == nil || o.CreatedAt == nil {
 		return nil, false
 	}
@@ -73,17 +73,17 @@ func (o *BudgetAttributes) GetCreatedAtOk() (*int64, bool) {
 }
 
 // HasCreatedAt returns a boolean if a field has been set.
-func (o *BudgetAttributes) HasCreatedAt() bool {
+func (o *BudgetWithEntriesDataAttributes) HasCreatedAt() bool {
 	return o != nil && o.CreatedAt != nil
 }
 
 // SetCreatedAt gets a reference to the given int64 and assigns it to the CreatedAt field.
-func (o *BudgetAttributes) SetCreatedAt(v int64) {
+func (o *BudgetWithEntriesDataAttributes) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
-func (o *BudgetAttributes) GetCreatedBy() string {
+func (o *BudgetWithEntriesDataAttributes) GetCreatedBy() string {
 	if o == nil || o.CreatedBy == nil {
 		var ret string
 		return ret
@@ -93,7 +93,7 @@ func (o *BudgetAttributes) GetCreatedBy() string {
 
 // GetCreatedByOk returns a tuple with the CreatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BudgetAttributes) GetCreatedByOk() (*string, bool) {
+func (o *BudgetWithEntriesDataAttributes) GetCreatedByOk() (*string, bool) {
 	if o == nil || o.CreatedBy == nil {
 		return nil, false
 	}
@@ -101,17 +101,17 @@ func (o *BudgetAttributes) GetCreatedByOk() (*string, bool) {
 }
 
 // HasCreatedBy returns a boolean if a field has been set.
-func (o *BudgetAttributes) HasCreatedBy() bool {
+func (o *BudgetWithEntriesDataAttributes) HasCreatedBy() bool {
 	return o != nil && o.CreatedBy != nil
 }
 
 // SetCreatedBy gets a reference to the given string and assigns it to the CreatedBy field.
-func (o *BudgetAttributes) SetCreatedBy(v string) {
+func (o *BudgetWithEntriesDataAttributes) SetCreatedBy(v string) {
 	o.CreatedBy = &v
 }
 
 // GetEndMonth returns the EndMonth field value if set, zero value otherwise.
-func (o *BudgetAttributes) GetEndMonth() int64 {
+func (o *BudgetWithEntriesDataAttributes) GetEndMonth() int64 {
 	if o == nil || o.EndMonth == nil {
 		var ret int64
 		return ret
@@ -121,7 +121,7 @@ func (o *BudgetAttributes) GetEndMonth() int64 {
 
 // GetEndMonthOk returns a tuple with the EndMonth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BudgetAttributes) GetEndMonthOk() (*int64, bool) {
+func (o *BudgetWithEntriesDataAttributes) GetEndMonthOk() (*int64, bool) {
 	if o == nil || o.EndMonth == nil {
 		return nil, false
 	}
@@ -129,17 +129,17 @@ func (o *BudgetAttributes) GetEndMonthOk() (*int64, bool) {
 }
 
 // HasEndMonth returns a boolean if a field has been set.
-func (o *BudgetAttributes) HasEndMonth() bool {
+func (o *BudgetWithEntriesDataAttributes) HasEndMonth() bool {
 	return o != nil && o.EndMonth != nil
 }
 
 // SetEndMonth gets a reference to the given int64 and assigns it to the EndMonth field.
-func (o *BudgetAttributes) SetEndMonth(v int64) {
+func (o *BudgetWithEntriesDataAttributes) SetEndMonth(v int64) {
 	o.EndMonth = &v
 }
 
 // GetEntries returns the Entries field value if set, zero value otherwise.
-func (o *BudgetAttributes) GetEntries() []BudgetWithEntriesDataAttributesEntriesItems {
+func (o *BudgetWithEntriesDataAttributes) GetEntries() []BudgetWithEntriesDataAttributesEntriesItems {
 	if o == nil || o.Entries == nil {
 		var ret []BudgetWithEntriesDataAttributesEntriesItems
 		return ret
@@ -149,7 +149,7 @@ func (o *BudgetAttributes) GetEntries() []BudgetWithEntriesDataAttributesEntries
 
 // GetEntriesOk returns a tuple with the Entries field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BudgetAttributes) GetEntriesOk() (*[]BudgetWithEntriesDataAttributesEntriesItems, bool) {
+func (o *BudgetWithEntriesDataAttributes) GetEntriesOk() (*[]BudgetWithEntriesDataAttributesEntriesItems, bool) {
 	if o == nil || o.Entries == nil {
 		return nil, false
 	}
@@ -157,17 +157,17 @@ func (o *BudgetAttributes) GetEntriesOk() (*[]BudgetWithEntriesDataAttributesEnt
 }
 
 // HasEntries returns a boolean if a field has been set.
-func (o *BudgetAttributes) HasEntries() bool {
+func (o *BudgetWithEntriesDataAttributes) HasEntries() bool {
 	return o != nil && o.Entries != nil
 }
 
 // SetEntries gets a reference to the given []BudgetWithEntriesDataAttributesEntriesItems and assigns it to the Entries field.
-func (o *BudgetAttributes) SetEntries(v []BudgetWithEntriesDataAttributesEntriesItems) {
+func (o *BudgetWithEntriesDataAttributes) SetEntries(v []BudgetWithEntriesDataAttributesEntriesItems) {
 	o.Entries = v
 }
 
 // GetMetricsQuery returns the MetricsQuery field value if set, zero value otherwise.
-func (o *BudgetAttributes) GetMetricsQuery() string {
+func (o *BudgetWithEntriesDataAttributes) GetMetricsQuery() string {
 	if o == nil || o.MetricsQuery == nil {
 		var ret string
 		return ret
@@ -177,7 +177,7 @@ func (o *BudgetAttributes) GetMetricsQuery() string {
 
 // GetMetricsQueryOk returns a tuple with the MetricsQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BudgetAttributes) GetMetricsQueryOk() (*string, bool) {
+func (o *BudgetWithEntriesDataAttributes) GetMetricsQueryOk() (*string, bool) {
 	if o == nil || o.MetricsQuery == nil {
 		return nil, false
 	}
@@ -185,17 +185,17 @@ func (o *BudgetAttributes) GetMetricsQueryOk() (*string, bool) {
 }
 
 // HasMetricsQuery returns a boolean if a field has been set.
-func (o *BudgetAttributes) HasMetricsQuery() bool {
+func (o *BudgetWithEntriesDataAttributes) HasMetricsQuery() bool {
 	return o != nil && o.MetricsQuery != nil
 }
 
 // SetMetricsQuery gets a reference to the given string and assigns it to the MetricsQuery field.
-func (o *BudgetAttributes) SetMetricsQuery(v string) {
+func (o *BudgetWithEntriesDataAttributes) SetMetricsQuery(v string) {
 	o.MetricsQuery = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *BudgetAttributes) GetName() string {
+func (o *BudgetWithEntriesDataAttributes) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -205,7 +205,7 @@ func (o *BudgetAttributes) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BudgetAttributes) GetNameOk() (*string, bool) {
+func (o *BudgetWithEntriesDataAttributes) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -213,17 +213,17 @@ func (o *BudgetAttributes) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *BudgetAttributes) HasName() bool {
+func (o *BudgetWithEntriesDataAttributes) HasName() bool {
 	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *BudgetAttributes) SetName(v string) {
+func (o *BudgetWithEntriesDataAttributes) SetName(v string) {
 	o.Name = &v
 }
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
-func (o *BudgetAttributes) GetOrgId() int64 {
+func (o *BudgetWithEntriesDataAttributes) GetOrgId() int64 {
 	if o == nil || o.OrgId == nil {
 		var ret int64
 		return ret
@@ -233,7 +233,7 @@ func (o *BudgetAttributes) GetOrgId() int64 {
 
 // GetOrgIdOk returns a tuple with the OrgId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BudgetAttributes) GetOrgIdOk() (*int64, bool) {
+func (o *BudgetWithEntriesDataAttributes) GetOrgIdOk() (*int64, bool) {
 	if o == nil || o.OrgId == nil {
 		return nil, false
 	}
@@ -241,17 +241,17 @@ func (o *BudgetAttributes) GetOrgIdOk() (*int64, bool) {
 }
 
 // HasOrgId returns a boolean if a field has been set.
-func (o *BudgetAttributes) HasOrgId() bool {
+func (o *BudgetWithEntriesDataAttributes) HasOrgId() bool {
 	return o != nil && o.OrgId != nil
 }
 
 // SetOrgId gets a reference to the given int64 and assigns it to the OrgId field.
-func (o *BudgetAttributes) SetOrgId(v int64) {
+func (o *BudgetWithEntriesDataAttributes) SetOrgId(v int64) {
 	o.OrgId = &v
 }
 
 // GetStartMonth returns the StartMonth field value if set, zero value otherwise.
-func (o *BudgetAttributes) GetStartMonth() int64 {
+func (o *BudgetWithEntriesDataAttributes) GetStartMonth() int64 {
 	if o == nil || o.StartMonth == nil {
 		var ret int64
 		return ret
@@ -261,7 +261,7 @@ func (o *BudgetAttributes) GetStartMonth() int64 {
 
 // GetStartMonthOk returns a tuple with the StartMonth field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BudgetAttributes) GetStartMonthOk() (*int64, bool) {
+func (o *BudgetWithEntriesDataAttributes) GetStartMonthOk() (*int64, bool) {
 	if o == nil || o.StartMonth == nil {
 		return nil, false
 	}
@@ -269,17 +269,17 @@ func (o *BudgetAttributes) GetStartMonthOk() (*int64, bool) {
 }
 
 // HasStartMonth returns a boolean if a field has been set.
-func (o *BudgetAttributes) HasStartMonth() bool {
+func (o *BudgetWithEntriesDataAttributes) HasStartMonth() bool {
 	return o != nil && o.StartMonth != nil
 }
 
 // SetStartMonth gets a reference to the given int64 and assigns it to the StartMonth field.
-func (o *BudgetAttributes) SetStartMonth(v int64) {
+func (o *BudgetWithEntriesDataAttributes) SetStartMonth(v int64) {
 	o.StartMonth = &v
 }
 
 // GetTotalAmount returns the TotalAmount field value if set, zero value otherwise.
-func (o *BudgetAttributes) GetTotalAmount() float64 {
+func (o *BudgetWithEntriesDataAttributes) GetTotalAmount() float64 {
 	if o == nil || o.TotalAmount == nil {
 		var ret float64
 		return ret
@@ -289,7 +289,7 @@ func (o *BudgetAttributes) GetTotalAmount() float64 {
 
 // GetTotalAmountOk returns a tuple with the TotalAmount field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BudgetAttributes) GetTotalAmountOk() (*float64, bool) {
+func (o *BudgetWithEntriesDataAttributes) GetTotalAmountOk() (*float64, bool) {
 	if o == nil || o.TotalAmount == nil {
 		return nil, false
 	}
@@ -297,17 +297,17 @@ func (o *BudgetAttributes) GetTotalAmountOk() (*float64, bool) {
 }
 
 // HasTotalAmount returns a boolean if a field has been set.
-func (o *BudgetAttributes) HasTotalAmount() bool {
+func (o *BudgetWithEntriesDataAttributes) HasTotalAmount() bool {
 	return o != nil && o.TotalAmount != nil
 }
 
 // SetTotalAmount gets a reference to the given float64 and assigns it to the TotalAmount field.
-func (o *BudgetAttributes) SetTotalAmount(v float64) {
+func (o *BudgetWithEntriesDataAttributes) SetTotalAmount(v float64) {
 	o.TotalAmount = &v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
-func (o *BudgetAttributes) GetUpdatedAt() int64 {
+func (o *BudgetWithEntriesDataAttributes) GetUpdatedAt() int64 {
 	if o == nil || o.UpdatedAt == nil {
 		var ret int64
 		return ret
@@ -317,7 +317,7 @@ func (o *BudgetAttributes) GetUpdatedAt() int64 {
 
 // GetUpdatedAtOk returns a tuple with the UpdatedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BudgetAttributes) GetUpdatedAtOk() (*int64, bool) {
+func (o *BudgetWithEntriesDataAttributes) GetUpdatedAtOk() (*int64, bool) {
 	if o == nil || o.UpdatedAt == nil {
 		return nil, false
 	}
@@ -325,17 +325,17 @@ func (o *BudgetAttributes) GetUpdatedAtOk() (*int64, bool) {
 }
 
 // HasUpdatedAt returns a boolean if a field has been set.
-func (o *BudgetAttributes) HasUpdatedAt() bool {
+func (o *BudgetWithEntriesDataAttributes) HasUpdatedAt() bool {
 	return o != nil && o.UpdatedAt != nil
 }
 
 // SetUpdatedAt gets a reference to the given int64 and assigns it to the UpdatedAt field.
-func (o *BudgetAttributes) SetUpdatedAt(v int64) {
+func (o *BudgetWithEntriesDataAttributes) SetUpdatedAt(v int64) {
 	o.UpdatedAt = &v
 }
 
 // GetUpdatedBy returns the UpdatedBy field value if set, zero value otherwise.
-func (o *BudgetAttributes) GetUpdatedBy() string {
+func (o *BudgetWithEntriesDataAttributes) GetUpdatedBy() string {
 	if o == nil || o.UpdatedBy == nil {
 		var ret string
 		return ret
@@ -345,7 +345,7 @@ func (o *BudgetAttributes) GetUpdatedBy() string {
 
 // GetUpdatedByOk returns a tuple with the UpdatedBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BudgetAttributes) GetUpdatedByOk() (*string, bool) {
+func (o *BudgetWithEntriesDataAttributes) GetUpdatedByOk() (*string, bool) {
 	if o == nil || o.UpdatedBy == nil {
 		return nil, false
 	}
@@ -353,17 +353,17 @@ func (o *BudgetAttributes) GetUpdatedByOk() (*string, bool) {
 }
 
 // HasUpdatedBy returns a boolean if a field has been set.
-func (o *BudgetAttributes) HasUpdatedBy() bool {
+func (o *BudgetWithEntriesDataAttributes) HasUpdatedBy() bool {
 	return o != nil && o.UpdatedBy != nil
 }
 
 // SetUpdatedBy gets a reference to the given string and assigns it to the UpdatedBy field.
-func (o *BudgetAttributes) SetUpdatedBy(v string) {
+func (o *BudgetWithEntriesDataAttributes) SetUpdatedBy(v string) {
 	o.UpdatedBy = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o BudgetAttributes) MarshalJSON() ([]byte, error) {
+func (o BudgetWithEntriesDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -409,7 +409,7 @@ func (o BudgetAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *BudgetAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *BudgetWithEntriesDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CreatedAt    *int64                                        `json:"created_at,omitempty"`
 		CreatedBy    *string                                       `json:"created_by,omitempty"`

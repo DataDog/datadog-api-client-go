@@ -10,41 +10,43 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Budget A budget.
-type Budget struct {
-	// The attributes of a budget.
-	Attributes *BudgetAttributes `json:"attributes,omitempty"`
-	// The id of the budget.
+// BudgetValidationResponseData
+type BudgetValidationResponseData struct {
+	//
+	Attributes *BudgetValidationResponseDataAttributes `json:"attributes,omitempty"`
+	//
 	Id *string `json:"id,omitempty"`
-	// The type of the object, must be `budget`.
-	Type string `json:"type"`
+	// Budget validation resource type.
+	Type BudgetValidationResponseDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewBudget instantiates a new Budget object.
+// NewBudgetValidationResponseData instantiates a new BudgetValidationResponseData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewBudget(typeVar string) *Budget {
-	this := Budget{}
+func NewBudgetValidationResponseData(typeVar BudgetValidationResponseDataType) *BudgetValidationResponseData {
+	this := BudgetValidationResponseData{}
 	this.Type = typeVar
 	return &this
 }
 
-// NewBudgetWithDefaults instantiates a new Budget object.
+// NewBudgetValidationResponseDataWithDefaults instantiates a new BudgetValidationResponseData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewBudgetWithDefaults() *Budget {
-	this := Budget{}
+func NewBudgetValidationResponseDataWithDefaults() *BudgetValidationResponseData {
+	this := BudgetValidationResponseData{}
+	var typeVar BudgetValidationResponseDataType = BUDGETVALIDATIONRESPONSEDATATYPE_BUDGET_VALIDATION
+	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *Budget) GetAttributes() BudgetAttributes {
+func (o *BudgetValidationResponseData) GetAttributes() BudgetValidationResponseDataAttributes {
 	if o == nil || o.Attributes == nil {
-		var ret BudgetAttributes
+		var ret BudgetValidationResponseDataAttributes
 		return ret
 	}
 	return *o.Attributes
@@ -52,7 +54,7 @@ func (o *Budget) GetAttributes() BudgetAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Budget) GetAttributesOk() (*BudgetAttributes, bool) {
+func (o *BudgetValidationResponseData) GetAttributesOk() (*BudgetValidationResponseDataAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -60,17 +62,17 @@ func (o *Budget) GetAttributesOk() (*BudgetAttributes, bool) {
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *Budget) HasAttributes() bool {
+func (o *BudgetValidationResponseData) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
-// SetAttributes gets a reference to the given BudgetAttributes and assigns it to the Attributes field.
-func (o *Budget) SetAttributes(v BudgetAttributes) {
+// SetAttributes gets a reference to the given BudgetValidationResponseDataAttributes and assigns it to the Attributes field.
+func (o *BudgetValidationResponseData) SetAttributes(v BudgetValidationResponseDataAttributes) {
 	o.Attributes = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
-func (o *Budget) GetId() string {
+func (o *BudgetValidationResponseData) GetId() string {
 	if o == nil || o.Id == nil {
 		var ret string
 		return ret
@@ -80,7 +82,7 @@ func (o *Budget) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Budget) GetIdOk() (*string, bool) {
+func (o *BudgetValidationResponseData) GetIdOk() (*string, bool) {
 	if o == nil || o.Id == nil {
 		return nil, false
 	}
@@ -88,19 +90,19 @@ func (o *Budget) GetIdOk() (*string, bool) {
 }
 
 // HasId returns a boolean if a field has been set.
-func (o *Budget) HasId() bool {
+func (o *BudgetValidationResponseData) HasId() bool {
 	return o != nil && o.Id != nil
 }
 
 // SetId gets a reference to the given string and assigns it to the Id field.
-func (o *Budget) SetId(v string) {
+func (o *BudgetValidationResponseData) SetId(v string) {
 	o.Id = &v
 }
 
 // GetType returns the Type field value.
-func (o *Budget) GetType() string {
+func (o *BudgetValidationResponseData) GetType() BudgetValidationResponseDataType {
 	if o == nil {
-		var ret string
+		var ret BudgetValidationResponseDataType
 		return ret
 	}
 	return o.Type
@@ -108,7 +110,7 @@ func (o *Budget) GetType() string {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *Budget) GetTypeOk() (*string, bool) {
+func (o *BudgetValidationResponseData) GetTypeOk() (*BudgetValidationResponseDataType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -116,12 +118,12 @@ func (o *Budget) GetTypeOk() (*string, bool) {
 }
 
 // SetType sets field value.
-func (o *Budget) SetType(v string) {
+func (o *BudgetValidationResponseData) SetType(v BudgetValidationResponseDataType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o Budget) MarshalJSON() ([]byte, error) {
+func (o BudgetValidationResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -141,11 +143,11 @@ func (o Budget) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *Budget) UnmarshalJSON(bytes []byte) (err error) {
+func (o *BudgetValidationResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *BudgetAttributes `json:"attributes,omitempty"`
-		Id         *string           `json:"id,omitempty"`
-		Type       *string           `json:"type"`
+		Attributes *BudgetValidationResponseDataAttributes `json:"attributes,omitempty"`
+		Id         *string                                 `json:"id,omitempty"`
+		Type       *BudgetValidationResponseDataType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -166,7 +168,11 @@ func (o *Budget) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	o.Type = *all.Type
+	if !all.Type.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Type = *all.Type
+	}
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

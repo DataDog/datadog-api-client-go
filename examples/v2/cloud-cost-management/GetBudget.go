@@ -1,4 +1,4 @@
-// Get a budget returns "OK" response
+// Get budget returns "OK" response
 
 package main
 

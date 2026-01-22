@@ -1,4 +1,4 @@
-// Create or update a budget returns "OK" response
+// Validate budget returns "OK" response
 
 package main
 
@@ -13,16 +13,31 @@ import (
 )
 
 func main() {
-	body := datadogV2.BudgetWithEntries{
-		Data: &datadogV2.BudgetWithEntriesData{
-			Attributes: &datadogV2.BudgetAttributes{
+	body := datadogV2.BudgetValidationRequest{
+		Data: &datadogV2.BudgetValidationRequestData{
+			Attributes: &datadogV2.BudgetWithEntriesDataAttributes{
 				CreatedAt: datadog.PtrInt64(1738258683590),
 				CreatedBy: datadog.PtrString("00000000-0a0a-0a0a-aaa0-00000000000a"),
 				EndMonth:  datadog.PtrInt64(202502),
 				Entries: []datadogV2.BudgetWithEntriesDataAttributesEntriesItems{
 					{
+						Amount: datadog.PtrFloat64(500),
+						Month:  datadog.PtrInt64(202501),
 						TagFilters: []datadogV2.BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems{
-							{},
+							{
+								TagKey:   datadog.PtrString("service"),
+								TagValue: datadog.PtrString("ec2"),
+							},
+						},
+					},
+					{
+						Amount: datadog.PtrFloat64(500),
+						Month:  datadog.PtrInt64(202502),
+						TagFilters: []datadogV2.BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems{
+							{
+								TagKey:   datadog.PtrString("service"),
+								TagValue: datadog.PtrString("ec2"),
+							},
 						},
 					},
 				},
@@ -34,21 +49,21 @@ func main() {
 				UpdatedAt:    datadog.PtrInt64(1738258683590),
 				UpdatedBy:    datadog.PtrString("00000000-0a0a-0a0a-aaa0-00000000000a"),
 			},
-			Id:   datadog.PtrString("00000000-0a0a-0a0a-aaa0-00000000000a"),
-			Type: datadog.PtrString(""),
+			Id:   datadog.PtrString("1"),
+			Type: datadogV2.BUDGETWITHENTRIESDATATYPE_BUDGET,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudCostManagementApi(apiClient)
-	resp, r, err := api.UpsertBudget(ctx, body)
+	resp, r, err := api.ValidateBudget(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CloudCostManagementApi.UpsertBudget`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CloudCostManagementApi.ValidateBudget`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `CloudCostManagementApi.UpsertBudget`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `CloudCostManagementApi.ValidateBudget`:\n%s\n", responseContent)
 }

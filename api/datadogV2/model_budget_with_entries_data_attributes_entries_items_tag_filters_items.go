@@ -8,36 +8,36 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TagFilter Tag filter for the budget's entries.
-type TagFilter struct {
-	// The key of the tag.
+// BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems
+type BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems struct {
+	//
 	TagKey *string `json:"tag_key,omitempty"`
-	// The value of the tag.
+	//
 	TagValue *string `json:"tag_value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTagFilter instantiates a new TagFilter object.
+// NewBudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems instantiates a new BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTagFilter() *TagFilter {
-	this := TagFilter{}
+func NewBudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems() *BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems {
+	this := BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems{}
 	return &this
 }
 
-// NewTagFilterWithDefaults instantiates a new TagFilter object.
+// NewBudgetWithEntriesDataAttributesEntriesItemsTagFiltersItemsWithDefaults instantiates a new BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTagFilterWithDefaults() *TagFilter {
-	this := TagFilter{}
+func NewBudgetWithEntriesDataAttributesEntriesItemsTagFiltersItemsWithDefaults() *BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems {
+	this := BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems{}
 	return &this
 }
 
 // GetTagKey returns the TagKey field value if set, zero value otherwise.
-func (o *TagFilter) GetTagKey() string {
+func (o *BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems) GetTagKey() string {
 	if o == nil || o.TagKey == nil {
 		var ret string
 		return ret
@@ -47,7 +47,7 @@ func (o *TagFilter) GetTagKey() string {
 
 // GetTagKeyOk returns a tuple with the TagKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TagFilter) GetTagKeyOk() (*string, bool) {
+func (o *BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems) GetTagKeyOk() (*string, bool) {
 	if o == nil || o.TagKey == nil {
 		return nil, false
 	}
@@ -55,17 +55,17 @@ func (o *TagFilter) GetTagKeyOk() (*string, bool) {
 }
 
 // HasTagKey returns a boolean if a field has been set.
-func (o *TagFilter) HasTagKey() bool {
+func (o *BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems) HasTagKey() bool {
 	return o != nil && o.TagKey != nil
 }
 
 // SetTagKey gets a reference to the given string and assigns it to the TagKey field.
-func (o *TagFilter) SetTagKey(v string) {
+func (o *BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems) SetTagKey(v string) {
 	o.TagKey = &v
 }
 
 // GetTagValue returns the TagValue field value if set, zero value otherwise.
-func (o *TagFilter) GetTagValue() string {
+func (o *BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems) GetTagValue() string {
 	if o == nil || o.TagValue == nil {
 		var ret string
 		return ret
@@ -75,7 +75,7 @@ func (o *TagFilter) GetTagValue() string {
 
 // GetTagValueOk returns a tuple with the TagValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TagFilter) GetTagValueOk() (*string, bool) {
+func (o *BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems) GetTagValueOk() (*string, bool) {
 	if o == nil || o.TagValue == nil {
 		return nil, false
 	}
@@ -83,17 +83,17 @@ func (o *TagFilter) GetTagValueOk() (*string, bool) {
 }
 
 // HasTagValue returns a boolean if a field has been set.
-func (o *TagFilter) HasTagValue() bool {
+func (o *BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems) HasTagValue() bool {
 	return o != nil && o.TagValue != nil
 }
 
 // SetTagValue gets a reference to the given string and assigns it to the TagValue field.
-func (o *TagFilter) SetTagValue(v string) {
+func (o *BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems) SetTagValue(v string) {
 	o.TagValue = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TagFilter) MarshalJSON() ([]byte, error) {
+func (o BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -112,7 +112,7 @@ func (o TagFilter) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TagFilter) UnmarshalJSON(bytes []byte) (err error) {
+func (o *BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		TagKey   *string `json:"tag_key,omitempty"`
 		TagValue *string `json:"tag_value,omitempty"`

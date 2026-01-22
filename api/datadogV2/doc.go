@@ -181,6 +181,8 @@
 //   - [CloudCostManagementApi.UpdateTagPipelinesRuleset]
 //   - [CloudCostManagementApi.UploadCustomCostsFile]
 //   - [CloudCostManagementApi.UpsertBudget]
+//   - [CloudCostManagementApi.ValidateBudget]
+//   - [CloudCostManagementApi.ValidateCsvBudget]
 //   - [CloudCostManagementApi.ValidateQuery]
 //   - [CloudNetworkMonitoringApi.GetAggregatedConnections]
 //   - [CloudNetworkMonitoringApi.GetAggregatedDns]
