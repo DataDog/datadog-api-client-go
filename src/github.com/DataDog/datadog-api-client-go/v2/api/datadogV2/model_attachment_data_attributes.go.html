@@ -67,13 +67,13 @@
 <span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L11" class="ln">    11  </span>)
 <span id="L12" class="ln">    12  </span>
-<span id="L13" class="ln">    13  </span><span class="comment">// AttachmentDataAttributes</span>
+<span id="L13" class="ln">    13  </span><span class="comment">// AttachmentDataAttributes The attachment&#39;s attributes.</span>
 <span id="L14" class="ln">    14  </span>type AttachmentDataAttributes struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">//</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// The attachment object.</span>
 <span id="L16" class="ln">    16  </span>	Attachment *AttachmentDataAttributesAttachment `json:&#34;attachment,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">//</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// The type of the attachment.</span>
 <span id="L18" class="ln">    18  </span>	AttachmentType *AttachmentDataAttributesAttachmentType `json:&#34;attachment_type,omitempty&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">//</span>
+<span id="L19" class="ln">    19  </span>	<span class="comment">// Timestamp when the attachment was last modified.</span>
 <span id="L20" class="ln">    20  </span>	Modified *time.Time `json:&#34;modified,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L22" class="ln">    22  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`

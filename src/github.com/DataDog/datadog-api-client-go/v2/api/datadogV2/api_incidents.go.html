@@ -1016,7 +1016,7 @@
 <span id="L959" class="ln">   959  </span>
 <span id="L960" class="ln">   960  </span><span class="comment">// DeleteIncidentAttachment Delete incident attachment.</span>
 <span id="L961" class="ln">   961  </span>
-<span id="L962" class="ln">   962  </span>func (a *IncidentsApi) DeleteIncidentAttachment(ctx _context.Context, incidentId string, attachmentId interface{}) (*_nethttp.Response, error) {
+<span id="L962" class="ln">   962  </span>func (a *IncidentsApi) DeleteIncidentAttachment(ctx _context.Context, incidentId string, attachmentId string) (*_nethttp.Response, error) {
 <span id="L963" class="ln">   963  </span>	var (
 <span id="L964" class="ln">   964  </span>		localVarHTTPMethod = _nethttp.MethodDelete
 <span id="L965" class="ln">   965  </span>		localVarPostBody   interface{}
@@ -3493,7 +3493,7 @@
 <span id="L3436" class="ln">  3436  </span>
 <span id="L3437" class="ln">  3437  </span><span class="comment">// UpdateIncidentAttachment Update incident attachment.</span>
 <span id="L3438" class="ln">  3438  </span>
-<span id="L3439" class="ln">  3439  </span>func (a *IncidentsApi) UpdateIncidentAttachment(ctx _context.Context, incidentId string, attachmentId interface{}, body PatchAttachmentRequest, o ...UpdateIncidentAttachmentOptionalParameters) (Attachment, *_nethttp.Response, error) {
+<span id="L3439" class="ln">  3439  </span>func (a *IncidentsApi) UpdateIncidentAttachment(ctx _context.Context, incidentId string, attachmentId string, body PatchAttachmentRequest, o ...UpdateIncidentAttachmentOptionalParameters) (Attachment, *_nethttp.Response, error) {
 <span id="L3440" class="ln">  3440  </span>	var (
 <span id="L3441" class="ln">  3441  </span>		localVarHTTPMethod  = _nethttp.MethodPatch
 <span id="L3442" class="ln">  3442  </span>		localVarPostBody    interface{}
