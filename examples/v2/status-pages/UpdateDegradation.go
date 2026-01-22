@@ -25,7 +25,7 @@ func main() {
 			Attributes: &datadogV2.PatchDegradationRequestDataAttributes{
 				Title: datadog.PtrString("Elevated API Latency in US1"),
 			},
-			Id:   &DegradationDataID,
+			Id:   datadog.PtrUUID(DegradationDataID),
 			Type: datadogV2.PATCHDEGRADATIONREQUESTDATATYPE_DEGRADATIONS,
 		},
 	}

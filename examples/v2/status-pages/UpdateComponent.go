@@ -23,7 +23,7 @@ func main() {
 			Attributes: &datadogV2.PatchComponentRequestDataAttributes{
 				Name: datadog.PtrString("Logs Indexing"),
 			},
-			Id:   &StatusPageDataAttributesComponents0ID,
+			Id:   datadog.PtrUUID(StatusPageDataAttributesComponents0ID),
 			Type: datadogV2.STATUSPAGESCOMPONENTGROUPTYPE_COMPONENTS,
 		},
 	}

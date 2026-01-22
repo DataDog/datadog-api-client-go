@@ -22,7 +22,7 @@ func main() {
 			Attributes: &datadogV2.PatchStatusPageRequestDataAttributes{
 				Name: datadog.PtrString("A Status Page in US1"),
 			},
-			Id:   &StatusPageDataID,
+			Id:   datadog.PtrUUID(StatusPageDataID),
 			Type: datadogV2.STATUSPAGEDATATYPE_STATUS_PAGES,
 		},
 	}
