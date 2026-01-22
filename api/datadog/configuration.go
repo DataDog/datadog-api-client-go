@@ -821,6 +821,7 @@ func NewConfiguration() *Configuration {
 			"v2.ListIncidentTeams":                       false,
 			"v2.UpdateIncidentTeam":                      false,
 			"v2.SearchFlakyTests":                        false,
+			"v2.UpdateFlakyTests":                        false,
 		},
 		RetryConfiguration: RetryConfiguration{
 			EnableRetry:       false,
