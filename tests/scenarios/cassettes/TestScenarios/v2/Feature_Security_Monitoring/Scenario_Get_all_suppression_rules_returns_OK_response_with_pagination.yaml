@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"Test-Get_all_suppression_rules_returns_OK_response_with_pagination-1768410748","enabled":true,"name":"suppression Test-Get_all_suppression_rules_returns_OK_response_with_pagination-1768410748","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["technique:T1110-brute-force","source:cloudtrail"]},"type":"suppressions"}}
+      {"data":{"attributes":{"description":"Test-Get_all_suppression_rules_returns_OK_response_with_pagination-1769009706","enabled":true,"name":"suppression 5a71acf7699e3a9e","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["technique:T1110-brute-force","source:cloudtrail"]},"type":"suppressions"}}
     form: {}
     headers:
       Accept:
@@ -12,8 +12,10 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions
   response:
-    body: '{"data":{"id":"fgz-hyr-ibu","type":"suppressions","attributes":{"creation_date":1768410748883,"creator":{"handle":"frog@datadoghq.com","name":"frog"},"data_exclusion_query":"","description":"Test-Get_all_suppression_rules_returns_OK_response_with_pagination-1768410748","editable":true,"enabled":true,"name":"suppression
-      Test-Get_all_suppression_rules_returns_OK_response_with_pagination-1768410748","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1768410748883,"updater":{"handle":"frog@datadoghq.com","name":"frog"},"version":1}}}'
+    body: '{"data":{"id":"dgv-9mh-i77","type":"suppressions","attributes":{"creation_date":1769009706064,"creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"data_exclusion_query":"","description":"Test-Get_all_suppression_rules_returns_OK_response_with_pagination-1769009706","editable":true,"enabled":true,"name":"suppression
+      5a71acf7699e3a9e","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1769009706064,"updater":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"version":1}}}'
     code: 200
     duration: 0ms
     headers:
@@ -22,7 +24,7 @@ interactions:
     status: 200 OK
 - request:
     body: |
-      {"data":{"attributes":{"description":"Test-Get_all_suppression_rules_returns_OK_response_with_pagination-1768410748","enabled":true,"name":"suppression2 Test-Get_all_suppression_rules_returns_OK_response_with_pagination-1768410748","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["technique:T1110-brute-force","source:cloudtrail"]},"type":"suppressions"}}
+      {"data":{"attributes":{"description":"Test-Get_all_suppression_rules_returns_OK_response_with_pagination-1769009706","enabled":true,"name":"suppression2 5a71acf7699e3a9e","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["technique:T1110-brute-force","source:cloudtrail"]},"type":"suppressions"}}
     form: {}
     headers:
       Accept:
@@ -33,8 +35,10 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions
   response:
-    body: '{"data":{"id":"lgh-7no-380","type":"suppressions","attributes":{"creation_date":1768410749324,"creator":{"handle":"frog@datadoghq.com","name":"frog"},"data_exclusion_query":"","description":"Test-Get_all_suppression_rules_returns_OK_response_with_pagination-1768410748","editable":true,"enabled":true,"name":"suppression2
-      Test-Get_all_suppression_rules_returns_OK_response_with_pagination-1768410748","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1768410749324,"updater":{"handle":"frog@datadoghq.com","name":"frog"},"version":1}}}'
+    body: '{"data":{"id":"23j-s8c-mlt","type":"suppressions","attributes":{"creation_date":1769009706152,"creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"data_exclusion_query":"","description":"Test-Get_all_suppression_rules_returns_OK_response_with_pagination-1769009706","editable":true,"enabled":true,"name":"suppression2
+      5a71acf7699e3a9e","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1769009706152,"updater":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"version":1}}}'
     code: 200
     duration: 0ms
     headers:
@@ -49,10 +53,12 @@ interactions:
       - application/json
     id: 2
     method: GET
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions?page%5Bsize%5D=1&page%5Bnumber%5D=0&query=id%3Afgz-hyr-ibu%20OR%20id%3Algh-7no-380
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions?page%5Bsize%5D=1&page%5Bnumber%5D=0&query=id%3Adgv-9mh-i77%20OR%20id%3A23j-s8c-mlt
   response:
-    body: '{"data":[{"id":"fgz-hyr-ibu","type":"suppressions","attributes":{"creation_date":1768410748883,"creator":{"handle":"frog@datadoghq.com","name":"frog"},"data_exclusion_query":"","description":"Test-Get_all_suppression_rules_returns_OK_response_with_pagination-1768410748","editable":true,"enabled":true,"name":"suppression
-      Test-Get_all_suppression_rules_returns_OK_response_with_pagination-1768410748","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1768410748883,"updater":{"handle":"frog@datadoghq.com","name":"frog"},"version":1}}],"meta":{"page":{"totalCount":2,"pageSize":1,"pageNumber":0}}}'
+    body: '{"data":[{"id":"dgv-9mh-i77","type":"suppressions","attributes":{"creation_date":1769009706064,"creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"data_exclusion_query":"","description":"Test-Get_all_suppression_rules_returns_OK_response_with_pagination-1769009706","editable":true,"enabled":true,"name":"suppression
+      5a71acf7699e3a9e","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1769009706064,"updater":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"version":1}}],"meta":{"page":{"totalCount":2,"pageSize":1,"pageNumber":0}}}'
     code: 200
     duration: 0ms
     headers:
@@ -67,7 +73,7 @@ interactions:
       - '*/*'
     id: 3
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/lgh-7no-380
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/23j-s8c-mlt
   response:
     body: ''
     code: 204
@@ -82,7 +88,7 @@ interactions:
       - '*/*'
     id: 4
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/fgz-hyr-ibu
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/dgv-9mh-i77
   response:
     body: ''
     code: 204

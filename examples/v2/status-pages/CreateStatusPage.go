@@ -17,7 +17,7 @@ func main() {
 		Data: &datadogV2.CreateStatusPageRequestData{
 			Attributes: &datadogV2.CreateStatusPageRequestDataAttributes{
 				Name:         "A Status Page",
-				DomainPrefix: "status-page-5e2fd69be33e79aa",
+				DomainPrefix: "5e2fd69be33e79aa",
 				Components: []datadogV2.CreateStatusPageRequestDataAttributesComponentsItems{
 					{
 						Name:     datadog.PtrString("Login"),
