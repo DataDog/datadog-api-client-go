@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Attachment
+// Attachment An attachment response containing the attachment data and related objects.
 type Attachment struct {
-	//
+	// Attachment data from a response.
 	Data *AttachmentData `json:"data,omitempty"`
 	//
 	Included []AttachmentIncluded `json:"included,omitempty"`

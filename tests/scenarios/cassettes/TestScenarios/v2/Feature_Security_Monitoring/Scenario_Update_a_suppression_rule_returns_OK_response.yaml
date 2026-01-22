@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"description":"Test-Update_a_suppression_rule_returns_OK_response-1769009707","enabled":true,"name":"suppression 181539185fcb1be7","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["technique:T1110-brute-force","source:cloudtrail"]},"type":"suppressions"}}
+      {"data":{"attributes":{"description":"Test-Update_a_suppression_rule_returns_OK_response-1768411745","enabled":true,"name":"suppression Test-Update_a_suppression_rule_returns_OK_response-1768411745","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["technique:T1110-brute-force","source:cloudtrail"]},"type":"suppressions"}}
     form: {}
     headers:
       Accept:
@@ -12,9 +12,9 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions
   response:
-    body: '{"data":{"id":"h6t-xj1-5jw","type":"suppressions","attributes":{"creation_date":1769009707555,"creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
-      Account"},"data_exclusion_query":"","description":"Test-Update_a_suppression_rule_returns_OK_response-1769009707","editable":true,"enabled":true,"name":"suppression
-      181539185fcb1be7","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1769009707555,"updater":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+    body: '{"data":{"id":"ucv-bpf-4bc","type":"suppressions","attributes":{"creation_date":1768411745950,"creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"data_exclusion_query":"","description":"Test-Update_a_suppression_rule_returns_OK_response-1768411745","editable":true,"enabled":true,"name":"suppression
+      Test-Update_a_suppression_rule_returns_OK_response-1768411745","rule_query":"source:cloudtrail","suppression_query":"env:test","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1768411745950,"updater":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
       Account"},"version":1}}}'
     code: 200
     duration: 0ms
@@ -33,12 +33,12 @@ interactions:
       - application/json
     id: 1
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/h6t-xj1-5jw
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/ucv-bpf-4bc
   response:
-    body: '{"data":{"id":"h6t-xj1-5jw","type":"suppressions","attributes":{"creation_date":1769009707555,"creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
-      Account"},"data_exclusion_query":"","description":"Test-Update_a_suppression_rule_returns_OK_response-1769009707","editable":true,"enabled":true,"name":"suppression
-      181539185fcb1be7","rule_query":"source:cloudtrail","suppression_query":"env:staging
-      status:low","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1769009707651,"updater":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+    body: '{"data":{"id":"ucv-bpf-4bc","type":"suppressions","attributes":{"creation_date":1768411745950,"creator":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"data_exclusion_query":"","description":"Test-Update_a_suppression_rule_returns_OK_response-1768411745","editable":true,"enabled":true,"name":"suppression
+      Test-Update_a_suppression_rule_returns_OK_response-1768411745","rule_query":"source:cloudtrail","suppression_query":"env:staging
+      status:low","tags":["source:cloudtrail","technique:T1110-brute-force"],"update_date":1768411746111,"updater":{"handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
       Account"},"version":2}}}'
     code: 200
     duration: 0ms
@@ -54,7 +54,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/h6t-xj1-5jw
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/suppressions/ucv-bpf-4bc
   response:
     body: ''
     code: 204

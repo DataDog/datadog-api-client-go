@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateAttachmentRequestDataAttributesAttachment
+// CreateAttachmentRequestDataAttributesAttachment The attachment object for creating an attachment.
 type CreateAttachmentRequestDataAttributesAttachment struct {
-	//
+	// The URL of the attachment.
 	DocumentUrl *string `json:"documentUrl,omitempty"`
-	//
+	// The title of the attachment.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -13,14 +13,21 @@ import (
 )
 
 func main() {
+	// there is a valid "incident" in the system
+	IncidentDataID := os.Getenv("INCIDENT_DATA_ID")
+
+	// there is a valid "incident_attachment" in the system
+	IncidentAttachmentDataID := os.Getenv("INCIDENT_ATTACHMENT_DATA_ID")
+
 	body := datadogV2.PatchAttachmentRequest{
 		Data: &datadogV2.PatchAttachmentRequestData{
 			Attributes: &datadogV2.PatchAttachmentRequestDataAttributes{
 				Attachment: &datadogV2.PatchAttachmentRequestDataAttributesAttachment{
-					DocumentUrl: datadog.PtrString("https://app.datadoghq.com/notebook/124/Postmortem-IR-124"),
-					Title:       datadog.PtrString("Postmortem-IR-124"),
+					DocumentUrl: datadog.PtrString("https://app.datadoghq.com/notebook/124/Example-Incident"),
+					Title:       datadog.PtrString("Example-Incident"),
 				},
 			},
+			Id:   datadog.PtrString(IncidentAttachmentDataID),
 			Type: datadogV2.INCIDENTATTACHMENTTYPE_INCIDENT_ATTACHMENTS,
 		},
 	}
@@ -29,7 +36,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.UpdateIncidentAttachment", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewIncidentsApi(apiClient)
-	resp, r, err := api.UpdateIncidentAttachment(ctx, "incident_id", "00000000-0000-0000-0000-000000000002", body, *datadogV2.NewUpdateIncidentAttachmentOptionalParameters())
+	resp, r, err := api.UpdateIncidentAttachment(ctx, IncidentDataID, IncidentAttachmentDataID, body, *datadogV2.NewUpdateIncidentAttachmentOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.UpdateIncidentAttachment`: %v\n", err)

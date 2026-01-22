@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchAttachmentRequestData
+// PatchAttachmentRequestData Attachment data for an update request.
 type PatchAttachmentRequestData struct {
-	//
+	// The attributes for updating an attachment.
 	Attributes *PatchAttachmentRequestDataAttributes `json:"attributes,omitempty"`
-	//
+	// The unique identifier of the attachment.
 	Id *string `json:"id,omitempty"`
 	// The incident attachment resource type.
 	Type IncidentAttachmentType `json:"type"`

@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchAttachmentRequest
+// PatchAttachmentRequest Request to update an attachment.
 type PatchAttachmentRequest struct {
-	//
+	// Attachment data for an update request.
 	Data *PatchAttachmentRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

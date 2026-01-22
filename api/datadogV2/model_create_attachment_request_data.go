@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateAttachmentRequestData
+// CreateAttachmentRequestData Attachment data for a create request.
 type CreateAttachmentRequestData struct {
-	//
+	// The attributes for creating an attachment.
 	Attributes *CreateAttachmentRequestDataAttributes `json:"attributes,omitempty"`
 	//
 	Id *string `json:"id,omitempty"`

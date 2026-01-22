@@ -8,10 +8,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AttachmentDataRelationships
+// AttachmentDataRelationships The attachment's resource relationships.
 type AttachmentDataRelationships struct {
-	//
-	LastModifiedByUser *AttachmentDataRelationshipsLastModifiedByUser `json:"last_modified_by_user,omitempty"`
+	// Relationship to incident.
+	Incident *RelationshipToIncident `json:"incident,omitempty"`
+	// Relationship to user.
+	LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -34,10 +36,38 @@ func NewAttachmentDataRelationshipsWithDefaults() *AttachmentDataRelationships {
 	return &this
 }
 
+// GetIncident returns the Incident field value if set, zero value otherwise.
+func (o *AttachmentDataRelationships) GetIncident() RelationshipToIncident {
+	if o == nil || o.Incident == nil {
+		var ret RelationshipToIncident
+		return ret
+	}
+	return *o.Incident
+}
+
+// GetIncidentOk returns a tuple with the Incident field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AttachmentDataRelationships) GetIncidentOk() (*RelationshipToIncident, bool) {
+	if o == nil || o.Incident == nil {
+		return nil, false
+	}
+	return o.Incident, true
+}
+
+// HasIncident returns a boolean if a field has been set.
+func (o *AttachmentDataRelationships) HasIncident() bool {
+	return o != nil && o.Incident != nil
+}
+
+// SetIncident gets a reference to the given RelationshipToIncident and assigns it to the Incident field.
+func (o *AttachmentDataRelationships) SetIncident(v RelationshipToIncident) {
+	o.Incident = &v
+}
+
 // GetLastModifiedByUser returns the LastModifiedByUser field value if set, zero value otherwise.
-func (o *AttachmentDataRelationships) GetLastModifiedByUser() AttachmentDataRelationshipsLastModifiedByUser {
+func (o *AttachmentDataRelationships) GetLastModifiedByUser() RelationshipToUser {
 	if o == nil || o.LastModifiedByUser == nil {
-		var ret AttachmentDataRelationshipsLastModifiedByUser
+		var ret RelationshipToUser
 		return ret
 	}
 	return *o.LastModifiedByUser
@@ -45,7 +75,7 @@ func (o *AttachmentDataRelationships) GetLastModifiedByUser() AttachmentDataRela
 
 // GetLastModifiedByUserOk returns a tuple with the LastModifiedByUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AttachmentDataRelationships) GetLastModifiedByUserOk() (*AttachmentDataRelationshipsLastModifiedByUser, bool) {
+func (o *AttachmentDataRelationships) GetLastModifiedByUserOk() (*RelationshipToUser, bool) {
 	if o == nil || o.LastModifiedByUser == nil {
 		return nil, false
 	}
@@ -57,8 +87,8 @@ func (o *AttachmentDataRelationships) HasLastModifiedByUser() bool {
 	return o != nil && o.LastModifiedByUser != nil
 }
 
-// SetLastModifiedByUser gets a reference to the given AttachmentDataRelationshipsLastModifiedByUser and assigns it to the LastModifiedByUser field.
-func (o *AttachmentDataRelationships) SetLastModifiedByUser(v AttachmentDataRelationshipsLastModifiedByUser) {
+// SetLastModifiedByUser gets a reference to the given RelationshipToUser and assigns it to the LastModifiedByUser field.
+func (o *AttachmentDataRelationships) SetLastModifiedByUser(v RelationshipToUser) {
 	o.LastModifiedByUser = &v
 }
 
@@ -67,6 +97,9 @@ func (o AttachmentDataRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
+	}
+	if o.Incident != nil {
+		toSerialize["incident"] = o.Incident
 	}
 	if o.LastModifiedByUser != nil {
 		toSerialize["last_modified_by_user"] = o.LastModifiedByUser
@@ -81,19 +114,24 @@ func (o AttachmentDataRelationships) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AttachmentDataRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		LastModifiedByUser *AttachmentDataRelationshipsLastModifiedByUser `json:"last_modified_by_user,omitempty"`
+		Incident           *RelationshipToIncident `json:"incident,omitempty"`
+		LastModifiedByUser *RelationshipToUser     `json:"last_modified_by_user,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"last_modified_by_user"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"incident", "last_modified_by_user"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	if all.Incident != nil && all.Incident.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Incident = all.Incident
 	if all.LastModifiedByUser != nil && all.LastModifiedByUser.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
