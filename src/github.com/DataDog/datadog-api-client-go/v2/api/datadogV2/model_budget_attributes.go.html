@@ -73,8 +73,8 @@
 <span id="L16" class="ln">    16  </span>	CreatedBy *string `json:&#34;created_by,omitempty&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// The month when the budget ends.</span>
 <span id="L18" class="ln">    18  </span>	EndMonth *int64 `json:&#34;end_month,omitempty&#34;`
-<span id="L19" class="ln">    19  </span>	<span class="comment">// The entries of the budget.</span>
-<span id="L20" class="ln">    20  </span>	Entries []BudgetEntry `json:&#34;entries,omitempty&#34;`
+<span id="L19" class="ln">    19  </span>	<span class="comment">//</span>
+<span id="L20" class="ln">    20  </span>	Entries []BudgetWithEntriesDataAttributesEntriesItems `json:&#34;entries,omitempty&#34;`
 <span id="L21" class="ln">    21  </span>	<span class="comment">// The cost query used to track against the budget.</span>
 <span id="L22" class="ln">    22  </span>	MetricsQuery *string `json:&#34;metrics_query,omitempty&#34;`
 <span id="L23" class="ln">    23  </span>	<span class="comment">// The name of the budget.</span>
@@ -196,9 +196,9 @@
 <span id="L139" class="ln">   139  </span>}
 <span id="L140" class="ln">   140  </span>
 <span id="L141" class="ln">   141  </span><span class="comment">// GetEntries returns the Entries field value if set, zero value otherwise.</span>
-<span id="L142" class="ln">   142  </span>func (o *BudgetAttributes) GetEntries() []BudgetEntry {
+<span id="L142" class="ln">   142  </span>func (o *BudgetAttributes) GetEntries() []BudgetWithEntriesDataAttributesEntriesItems {
 <span id="L143" class="ln">   143  </span>	if o == nil || o.Entries == nil {
-<span id="L144" class="ln">   144  </span>		var ret []BudgetEntry
+<span id="L144" class="ln">   144  </span>		var ret []BudgetWithEntriesDataAttributesEntriesItems
 <span id="L145" class="ln">   145  </span>		return ret
 <span id="L146" class="ln">   146  </span>	}
 <span id="L147" class="ln">   147  </span>	return o.Entries
@@ -206,7 +206,7 @@
 <span id="L149" class="ln">   149  </span>
 <span id="L150" class="ln">   150  </span><span class="comment">// GetEntriesOk returns a tuple with the Entries field value if set, nil otherwise</span>
 <span id="L151" class="ln">   151  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L152" class="ln">   152  </span>func (o *BudgetAttributes) GetEntriesOk() (*[]BudgetEntry, bool) {
+<span id="L152" class="ln">   152  </span>func (o *BudgetAttributes) GetEntriesOk() (*[]BudgetWithEntriesDataAttributesEntriesItems, bool) {
 <span id="L153" class="ln">   153  </span>	if o == nil || o.Entries == nil {
 <span id="L154" class="ln">   154  </span>		return nil, false
 <span id="L155" class="ln">   155  </span>	}
@@ -218,8 +218,8 @@
 <span id="L161" class="ln">   161  </span>	return o != nil &amp;&amp; o.Entries != nil
 <span id="L162" class="ln">   162  </span>}
 <span id="L163" class="ln">   163  </span>
-<span id="L164" class="ln">   164  </span><span class="comment">// SetEntries gets a reference to the given []BudgetEntry and assigns it to the Entries field.</span>
-<span id="L165" class="ln">   165  </span>func (o *BudgetAttributes) SetEntries(v []BudgetEntry) {
+<span id="L164" class="ln">   164  </span><span class="comment">// SetEntries gets a reference to the given []BudgetWithEntriesDataAttributesEntriesItems and assigns it to the Entries field.</span>
+<span id="L165" class="ln">   165  </span>func (o *BudgetAttributes) SetEntries(v []BudgetWithEntriesDataAttributesEntriesItems) {
 <span id="L166" class="ln">   166  </span>	o.Entries = v
 <span id="L167" class="ln">   167  </span>}
 <span id="L168" class="ln">   168  </span>
@@ -468,17 +468,17 @@
 <span id="L411" class="ln">   411  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
 <span id="L412" class="ln">   412  </span>func (o *BudgetAttributes) UnmarshalJSON(bytes []byte) (err error) {
 <span id="L413" class="ln">   413  </span>	all := struct {
-<span id="L414" class="ln">   414  </span>		CreatedAt    *int64        `json:&#34;created_at,omitempty&#34;`
-<span id="L415" class="ln">   415  </span>		CreatedBy    *string       `json:&#34;created_by,omitempty&#34;`
-<span id="L416" class="ln">   416  </span>		EndMonth     *int64        `json:&#34;end_month,omitempty&#34;`
-<span id="L417" class="ln">   417  </span>		Entries      []BudgetEntry `json:&#34;entries,omitempty&#34;`
-<span id="L418" class="ln">   418  </span>		MetricsQuery *string       `json:&#34;metrics_query,omitempty&#34;`
-<span id="L419" class="ln">   419  </span>		Name         *string       `json:&#34;name,omitempty&#34;`
-<span id="L420" class="ln">   420  </span>		OrgId        *int64        `json:&#34;org_id,omitempty&#34;`
-<span id="L421" class="ln">   421  </span>		StartMonth   *int64        `json:&#34;start_month,omitempty&#34;`
-<span id="L422" class="ln">   422  </span>		TotalAmount  *float64      `json:&#34;total_amount,omitempty&#34;`
-<span id="L423" class="ln">   423  </span>		UpdatedAt    *int64        `json:&#34;updated_at,omitempty&#34;`
-<span id="L424" class="ln">   424  </span>		UpdatedBy    *string       `json:&#34;updated_by,omitempty&#34;`
+<span id="L414" class="ln">   414  </span>		CreatedAt    *int64                                        `json:&#34;created_at,omitempty&#34;`
+<span id="L415" class="ln">   415  </span>		CreatedBy    *string                                       `json:&#34;created_by,omitempty&#34;`
+<span id="L416" class="ln">   416  </span>		EndMonth     *int64                                        `json:&#34;end_month,omitempty&#34;`
+<span id="L417" class="ln">   417  </span>		Entries      []BudgetWithEntriesDataAttributesEntriesItems `json:&#34;entries,omitempty&#34;`
+<span id="L418" class="ln">   418  </span>		MetricsQuery *string                                       `json:&#34;metrics_query,omitempty&#34;`
+<span id="L419" class="ln">   419  </span>		Name         *string                                       `json:&#34;name,omitempty&#34;`
+<span id="L420" class="ln">   420  </span>		OrgId        *int64                                        `json:&#34;org_id,omitempty&#34;`
+<span id="L421" class="ln">   421  </span>		StartMonth   *int64                                        `json:&#34;start_month,omitempty&#34;`
+<span id="L422" class="ln">   422  </span>		TotalAmount  *float64                                      `json:&#34;total_amount,omitempty&#34;`
+<span id="L423" class="ln">   423  </span>		UpdatedAt    *int64                                        `json:&#34;updated_at,omitempty&#34;`
+<span id="L424" class="ln">   424  </span>		UpdatedBy    *string                                       `json:&#34;updated_by,omitempty&#34;`
 <span id="L425" class="ln">   425  </span>	}{}
 <span id="L426" class="ln">   426  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
 <span id="L427" class="ln">   427  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
