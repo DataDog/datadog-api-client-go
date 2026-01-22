@@ -67,97 +67,101 @@
 <span id="L10" class="ln">    10  </span>
 <span id="L11" class="ln">    11  </span><span class="comment">// SyntheticsPrivateLocationMetadata Object containing metadata about the private location.</span>
 <span id="L12" class="ln">    12  </span>type SyntheticsPrivateLocationMetadata struct {
-<span id="L13" class="ln">    13  </span>	<span class="comment">// A list of role identifiers that can be pulled from the Roles API, for restricting read and write access.</span>
-<span id="L14" class="ln">    14  </span>	RestrictedRoles []string `json:&#34;restricted_roles,omitempty&#34;`
-<span id="L15" class="ln">    15  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
-<span id="L16" class="ln">    16  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L17" class="ln">    17  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
-<span id="L18" class="ln">    18  </span>}
-<span id="L19" class="ln">    19  </span>
-<span id="L20" class="ln">    20  </span><span class="comment">// NewSyntheticsPrivateLocationMetadata instantiates a new SyntheticsPrivateLocationMetadata object.</span>
-<span id="L21" class="ln">    21  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
-<span id="L22" class="ln">    22  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
-<span id="L23" class="ln">    23  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L24" class="ln">    24  </span>func NewSyntheticsPrivateLocationMetadata() *SyntheticsPrivateLocationMetadata {
-<span id="L25" class="ln">    25  </span>	this := SyntheticsPrivateLocationMetadata{}
-<span id="L26" class="ln">    26  </span>	return &amp;this
-<span id="L27" class="ln">    27  </span>}
-<span id="L28" class="ln">    28  </span>
-<span id="L29" class="ln">    29  </span><span class="comment">// NewSyntheticsPrivateLocationMetadataWithDefaults instantiates a new SyntheticsPrivateLocationMetadata object.</span>
-<span id="L30" class="ln">    30  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
-<span id="L31" class="ln">    31  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L32" class="ln">    32  </span>func NewSyntheticsPrivateLocationMetadataWithDefaults() *SyntheticsPrivateLocationMetadata {
-<span id="L33" class="ln">    33  </span>	this := SyntheticsPrivateLocationMetadata{}
-<span id="L34" class="ln">    34  </span>	return &amp;this
-<span id="L35" class="ln">    35  </span>}
-<span id="L36" class="ln">    36  </span>
-<span id="L37" class="ln">    37  </span><span class="comment">// GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.</span>
-<span id="L38" class="ln">    38  </span>func (o *SyntheticsPrivateLocationMetadata) GetRestrictedRoles() []string {
-<span id="L39" class="ln">    39  </span>	if o == nil || o.RestrictedRoles == nil {
-<span id="L40" class="ln">    40  </span>		var ret []string
-<span id="L41" class="ln">    41  </span>		return ret
-<span id="L42" class="ln">    42  </span>	}
-<span id="L43" class="ln">    43  </span>	return o.RestrictedRoles
-<span id="L44" class="ln">    44  </span>}
-<span id="L45" class="ln">    45  </span>
-<span id="L46" class="ln">    46  </span><span class="comment">// GetRestrictedRolesOk returns a tuple with the RestrictedRoles field value if set, nil otherwise</span>
-<span id="L47" class="ln">    47  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L48" class="ln">    48  </span>func (o *SyntheticsPrivateLocationMetadata) GetRestrictedRolesOk() (*[]string, bool) {
-<span id="L49" class="ln">    49  </span>	if o == nil || o.RestrictedRoles == nil {
-<span id="L50" class="ln">    50  </span>		return nil, false
-<span id="L51" class="ln">    51  </span>	}
-<span id="L52" class="ln">    52  </span>	return &amp;o.RestrictedRoles, true
-<span id="L53" class="ln">    53  </span>}
-<span id="L54" class="ln">    54  </span>
-<span id="L55" class="ln">    55  </span><span class="comment">// HasRestrictedRoles returns a boolean if a field has been set.</span>
-<span id="L56" class="ln">    56  </span>func (o *SyntheticsPrivateLocationMetadata) HasRestrictedRoles() bool {
-<span id="L57" class="ln">    57  </span>	return o != nil &amp;&amp; o.RestrictedRoles != nil
-<span id="L58" class="ln">    58  </span>}
-<span id="L59" class="ln">    59  </span>
-<span id="L60" class="ln">    60  </span><span class="comment">// SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.</span>
-<span id="L61" class="ln">    61  </span>func (o *SyntheticsPrivateLocationMetadata) SetRestrictedRoles(v []string) {
-<span id="L62" class="ln">    62  </span>	o.RestrictedRoles = v
-<span id="L63" class="ln">    63  </span>}
-<span id="L64" class="ln">    64  </span>
-<span id="L65" class="ln">    65  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L66" class="ln">    66  </span>func (o SyntheticsPrivateLocationMetadata) MarshalJSON() ([]byte, error) {
-<span id="L67" class="ln">    67  </span>	toSerialize := map[string]interface{}{}
-<span id="L68" class="ln">    68  </span>	if o.UnparsedObject != nil {
-<span id="L69" class="ln">    69  </span>		return datadog.Marshal(o.UnparsedObject)
-<span id="L70" class="ln">    70  </span>	}
-<span id="L71" class="ln">    71  </span>	if o.RestrictedRoles != nil {
-<span id="L72" class="ln">    72  </span>		toSerialize[&#34;restricted_roles&#34;] = o.RestrictedRoles
-<span id="L73" class="ln">    73  </span>	}
-<span id="L74" class="ln">    74  </span>
-<span id="L75" class="ln">    75  </span>	for key, value := range o.AdditionalProperties {
-<span id="L76" class="ln">    76  </span>		toSerialize[key] = value
+<span id="L13" class="ln">    13  </span>	<span class="comment">// A list of role identifiers that can be pulled from the Roles API, for restricting read and write access. This field is deprecated. Use the restriction policies API to manage permissions.</span>
+<span id="L14" class="ln">    14  </span>	<span class="comment">// Deprecated</span>
+<span id="L15" class="ln">    15  </span>	RestrictedRoles []string `json:&#34;restricted_roles,omitempty&#34;`
+<span id="L16" class="ln">    16  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L17" class="ln">    17  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L18" class="ln">    18  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L19" class="ln">    19  </span>}
+<span id="L20" class="ln">    20  </span>
+<span id="L21" class="ln">    21  </span><span class="comment">// NewSyntheticsPrivateLocationMetadata instantiates a new SyntheticsPrivateLocationMetadata object.</span>
+<span id="L22" class="ln">    22  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L23" class="ln">    23  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L24" class="ln">    24  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L25" class="ln">    25  </span>func NewSyntheticsPrivateLocationMetadata() *SyntheticsPrivateLocationMetadata {
+<span id="L26" class="ln">    26  </span>	this := SyntheticsPrivateLocationMetadata{}
+<span id="L27" class="ln">    27  </span>	return &amp;this
+<span id="L28" class="ln">    28  </span>}
+<span id="L29" class="ln">    29  </span>
+<span id="L30" class="ln">    30  </span><span class="comment">// NewSyntheticsPrivateLocationMetadataWithDefaults instantiates a new SyntheticsPrivateLocationMetadata object.</span>
+<span id="L31" class="ln">    31  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L32" class="ln">    32  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L33" class="ln">    33  </span>func NewSyntheticsPrivateLocationMetadataWithDefaults() *SyntheticsPrivateLocationMetadata {
+<span id="L34" class="ln">    34  </span>	this := SyntheticsPrivateLocationMetadata{}
+<span id="L35" class="ln">    35  </span>	return &amp;this
+<span id="L36" class="ln">    36  </span>}
+<span id="L37" class="ln">    37  </span>
+<span id="L38" class="ln">    38  </span><span class="comment">// GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.</span>
+<span id="L39" class="ln">    39  </span><span class="comment">// Deprecated</span>
+<span id="L40" class="ln">    40  </span>func (o *SyntheticsPrivateLocationMetadata) GetRestrictedRoles() []string {
+<span id="L41" class="ln">    41  </span>	if o == nil || o.RestrictedRoles == nil {
+<span id="L42" class="ln">    42  </span>		var ret []string
+<span id="L43" class="ln">    43  </span>		return ret
+<span id="L44" class="ln">    44  </span>	}
+<span id="L45" class="ln">    45  </span>	return o.RestrictedRoles
+<span id="L46" class="ln">    46  </span>}
+<span id="L47" class="ln">    47  </span>
+<span id="L48" class="ln">    48  </span><span class="comment">// GetRestrictedRolesOk returns a tuple with the RestrictedRoles field value if set, nil otherwise</span>
+<span id="L49" class="ln">    49  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L50" class="ln">    50  </span><span class="comment">// Deprecated</span>
+<span id="L51" class="ln">    51  </span>func (o *SyntheticsPrivateLocationMetadata) GetRestrictedRolesOk() (*[]string, bool) {
+<span id="L52" class="ln">    52  </span>	if o == nil || o.RestrictedRoles == nil {
+<span id="L53" class="ln">    53  </span>		return nil, false
+<span id="L54" class="ln">    54  </span>	}
+<span id="L55" class="ln">    55  </span>	return &amp;o.RestrictedRoles, true
+<span id="L56" class="ln">    56  </span>}
+<span id="L57" class="ln">    57  </span>
+<span id="L58" class="ln">    58  </span><span class="comment">// HasRestrictedRoles returns a boolean if a field has been set.</span>
+<span id="L59" class="ln">    59  </span>func (o *SyntheticsPrivateLocationMetadata) HasRestrictedRoles() bool {
+<span id="L60" class="ln">    60  </span>	return o != nil &amp;&amp; o.RestrictedRoles != nil
+<span id="L61" class="ln">    61  </span>}
+<span id="L62" class="ln">    62  </span>
+<span id="L63" class="ln">    63  </span><span class="comment">// SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.</span>
+<span id="L64" class="ln">    64  </span><span class="comment">// Deprecated</span>
+<span id="L65" class="ln">    65  </span>func (o *SyntheticsPrivateLocationMetadata) SetRestrictedRoles(v []string) {
+<span id="L66" class="ln">    66  </span>	o.RestrictedRoles = v
+<span id="L67" class="ln">    67  </span>}
+<span id="L68" class="ln">    68  </span>
+<span id="L69" class="ln">    69  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L70" class="ln">    70  </span>func (o SyntheticsPrivateLocationMetadata) MarshalJSON() ([]byte, error) {
+<span id="L71" class="ln">    71  </span>	toSerialize := map[string]interface{}{}
+<span id="L72" class="ln">    72  </span>	if o.UnparsedObject != nil {
+<span id="L73" class="ln">    73  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L74" class="ln">    74  </span>	}
+<span id="L75" class="ln">    75  </span>	if o.RestrictedRoles != nil {
+<span id="L76" class="ln">    76  </span>		toSerialize[&#34;restricted_roles&#34;] = o.RestrictedRoles
 <span id="L77" class="ln">    77  </span>	}
-<span id="L78" class="ln">    78  </span>	return datadog.Marshal(toSerialize)
-<span id="L79" class="ln">    79  </span>}
-<span id="L80" class="ln">    80  </span>
-<span id="L81" class="ln">    81  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L82" class="ln">    82  </span>func (o *SyntheticsPrivateLocationMetadata) UnmarshalJSON(bytes []byte) (err error) {
-<span id="L83" class="ln">    83  </span>	all := struct {
-<span id="L84" class="ln">    84  </span>		RestrictedRoles []string `json:&#34;restricted_roles,omitempty&#34;`
-<span id="L85" class="ln">    85  </span>	}{}
-<span id="L86" class="ln">    86  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
-<span id="L87" class="ln">    87  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L88" class="ln">    88  </span>	}
-<span id="L89" class="ln">    89  </span>	additionalProperties := make(map[string]interface{})
-<span id="L90" class="ln">    90  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L91" class="ln">    91  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;restricted_roles&#34;})
-<span id="L92" class="ln">    92  </span>	} else {
-<span id="L93" class="ln">    93  </span>		return err
-<span id="L94" class="ln">    94  </span>	}
-<span id="L95" class="ln">    95  </span>	o.RestrictedRoles = all.RestrictedRoles
-<span id="L96" class="ln">    96  </span>
-<span id="L97" class="ln">    97  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L98" class="ln">    98  </span>		o.AdditionalProperties = additionalProperties
-<span id="L99" class="ln">    99  </span>	}
+<span id="L78" class="ln">    78  </span>
+<span id="L79" class="ln">    79  </span>	for key, value := range o.AdditionalProperties {
+<span id="L80" class="ln">    80  </span>		toSerialize[key] = value
+<span id="L81" class="ln">    81  </span>	}
+<span id="L82" class="ln">    82  </span>	return datadog.Marshal(toSerialize)
+<span id="L83" class="ln">    83  </span>}
+<span id="L84" class="ln">    84  </span>
+<span id="L85" class="ln">    85  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L86" class="ln">    86  </span>func (o *SyntheticsPrivateLocationMetadata) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L87" class="ln">    87  </span>	all := struct {
+<span id="L88" class="ln">    88  </span>		RestrictedRoles []string `json:&#34;restricted_roles,omitempty&#34;`
+<span id="L89" class="ln">    89  </span>	}{}
+<span id="L90" class="ln">    90  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L91" class="ln">    91  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L92" class="ln">    92  </span>	}
+<span id="L93" class="ln">    93  </span>	additionalProperties := make(map[string]interface{})
+<span id="L94" class="ln">    94  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L95" class="ln">    95  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;restricted_roles&#34;})
+<span id="L96" class="ln">    96  </span>	} else {
+<span id="L97" class="ln">    97  </span>		return err
+<span id="L98" class="ln">    98  </span>	}
+<span id="L99" class="ln">    99  </span>	o.RestrictedRoles = all.RestrictedRoles
 <span id="L100" class="ln">   100  </span>
-<span id="L101" class="ln">   101  </span>	return nil
-<span id="L102" class="ln">   102  </span>}
-<span id="L103" class="ln">   103  </span>
+<span id="L101" class="ln">   101  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L102" class="ln">   102  </span>		o.AdditionalProperties = additionalProperties
+<span id="L103" class="ln">   103  </span>	}
+<span id="L104" class="ln">   104  </span>
+<span id="L105" class="ln">   105  </span>	return nil
+<span id="L106" class="ln">   106  </span>}
+<span id="L107" class="ln">   107  </span>
 </pre><p></p>
 
 <div id="footer">

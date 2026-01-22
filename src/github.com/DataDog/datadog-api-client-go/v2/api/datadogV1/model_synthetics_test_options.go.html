@@ -113,968 +113,972 @@
 <span id="L56" class="ln">    56  </span>	MonitorPriority *int32 `json:&#34;monitor_priority,omitempty&#34;`
 <span id="L57" class="ln">    57  </span>	<span class="comment">// Prevents saving screenshots of the steps.</span>
 <span id="L58" class="ln">    58  </span>	NoScreenshot *bool `json:&#34;noScreenshot,omitempty&#34;`
-<span id="L59" class="ln">    59  </span>	<span class="comment">// A list of role identifiers that can be pulled from the Roles API, for restricting read and write access.</span>
-<span id="L60" class="ln">    60  </span>	RestrictedRoles []string `json:&#34;restricted_roles,omitempty&#34;`
-<span id="L61" class="ln">    61  </span>	<span class="comment">// Object describing the retry strategy to apply to a Synthetic test.</span>
-<span id="L62" class="ln">    62  </span>	Retry *SyntheticsTestOptionsRetry `json:&#34;retry,omitempty&#34;`
-<span id="L63" class="ln">    63  </span>	<span class="comment">// The RUM data collection settings for the Synthetic browser test.</span>
-<span id="L64" class="ln">    64  </span>	<span class="comment">// **Note:** There are 3 ways to format RUM settings:</span>
-<span id="L65" class="ln">    65  </span>	<span class="comment">//</span>
-<span id="L66" class="ln">    66  </span>	<span class="comment">// `{ isEnabled: false }`</span>
-<span id="L67" class="ln">    67  </span>	<span class="comment">// RUM data is not collected.</span>
-<span id="L68" class="ln">    68  </span>	<span class="comment">//</span>
-<span id="L69" class="ln">    69  </span>	<span class="comment">// `{ isEnabled: true }`</span>
-<span id="L70" class="ln">    70  </span>	<span class="comment">// RUM data is collected from the Synthetic test&#39;s default application.</span>
-<span id="L71" class="ln">    71  </span>	<span class="comment">//</span>
-<span id="L72" class="ln">    72  </span>	<span class="comment">// `{ isEnabled: true, applicationId: &#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&#34;, clientTokenId: 12345 }`</span>
-<span id="L73" class="ln">    73  </span>	<span class="comment">// RUM data is collected using the specified application.</span>
-<span id="L74" class="ln">    74  </span>	RumSettings *SyntheticsBrowserTestRumSettings `json:&#34;rumSettings,omitempty&#34;`
-<span id="L75" class="ln">    75  </span>	<span class="comment">// Object containing timeframes and timezone used for advanced scheduling.</span>
-<span id="L76" class="ln">    76  </span>	Scheduling *SyntheticsTestOptionsScheduling `json:&#34;scheduling,omitempty&#34;`
-<span id="L77" class="ln">    77  </span>	<span class="comment">// The frequency at which to run the Synthetic test (in seconds).</span>
-<span id="L78" class="ln">    78  </span>	TickEvery *int64 `json:&#34;tick_every,omitempty&#34;`
-<span id="L79" class="ln">    79  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
-<span id="L80" class="ln">    80  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L81" class="ln">    81  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
-<span id="L82" class="ln">    82  </span>}
-<span id="L83" class="ln">    83  </span>
-<span id="L84" class="ln">    84  </span><span class="comment">// NewSyntheticsTestOptions instantiates a new SyntheticsTestOptions object.</span>
-<span id="L85" class="ln">    85  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
-<span id="L86" class="ln">    86  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
-<span id="L87" class="ln">    87  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L88" class="ln">    88  </span>func NewSyntheticsTestOptions() *SyntheticsTestOptions {
-<span id="L89" class="ln">    89  </span>	this := SyntheticsTestOptions{}
-<span id="L90" class="ln">    90  </span>	return &amp;this
-<span id="L91" class="ln">    91  </span>}
-<span id="L92" class="ln">    92  </span>
-<span id="L93" class="ln">    93  </span><span class="comment">// NewSyntheticsTestOptionsWithDefaults instantiates a new SyntheticsTestOptions object.</span>
-<span id="L94" class="ln">    94  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
-<span id="L95" class="ln">    95  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L96" class="ln">    96  </span>func NewSyntheticsTestOptionsWithDefaults() *SyntheticsTestOptions {
-<span id="L97" class="ln">    97  </span>	this := SyntheticsTestOptions{}
-<span id="L98" class="ln">    98  </span>	return &amp;this
-<span id="L99" class="ln">    99  </span>}
-<span id="L100" class="ln">   100  </span>
-<span id="L101" class="ln">   101  </span><span class="comment">// GetAcceptSelfSigned returns the AcceptSelfSigned field value if set, zero value otherwise.</span>
-<span id="L102" class="ln">   102  </span>func (o *SyntheticsTestOptions) GetAcceptSelfSigned() bool {
-<span id="L103" class="ln">   103  </span>	if o == nil || o.AcceptSelfSigned == nil {
-<span id="L104" class="ln">   104  </span>		var ret bool
-<span id="L105" class="ln">   105  </span>		return ret
-<span id="L106" class="ln">   106  </span>	}
-<span id="L107" class="ln">   107  </span>	return *o.AcceptSelfSigned
-<span id="L108" class="ln">   108  </span>}
-<span id="L109" class="ln">   109  </span>
-<span id="L110" class="ln">   110  </span><span class="comment">// GetAcceptSelfSignedOk returns a tuple with the AcceptSelfSigned field value if set, nil otherwise</span>
-<span id="L111" class="ln">   111  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L112" class="ln">   112  </span>func (o *SyntheticsTestOptions) GetAcceptSelfSignedOk() (*bool, bool) {
-<span id="L113" class="ln">   113  </span>	if o == nil || o.AcceptSelfSigned == nil {
-<span id="L114" class="ln">   114  </span>		return nil, false
-<span id="L115" class="ln">   115  </span>	}
-<span id="L116" class="ln">   116  </span>	return o.AcceptSelfSigned, true
-<span id="L117" class="ln">   117  </span>}
-<span id="L118" class="ln">   118  </span>
-<span id="L119" class="ln">   119  </span><span class="comment">// HasAcceptSelfSigned returns a boolean if a field has been set.</span>
-<span id="L120" class="ln">   120  </span>func (o *SyntheticsTestOptions) HasAcceptSelfSigned() bool {
-<span id="L121" class="ln">   121  </span>	return o != nil &amp;&amp; o.AcceptSelfSigned != nil
-<span id="L122" class="ln">   122  </span>}
-<span id="L123" class="ln">   123  </span>
-<span id="L124" class="ln">   124  </span><span class="comment">// SetAcceptSelfSigned gets a reference to the given bool and assigns it to the AcceptSelfSigned field.</span>
-<span id="L125" class="ln">   125  </span>func (o *SyntheticsTestOptions) SetAcceptSelfSigned(v bool) {
-<span id="L126" class="ln">   126  </span>	o.AcceptSelfSigned = &amp;v
-<span id="L127" class="ln">   127  </span>}
-<span id="L128" class="ln">   128  </span>
-<span id="L129" class="ln">   129  </span><span class="comment">// GetAllowInsecure returns the AllowInsecure field value if set, zero value otherwise.</span>
-<span id="L130" class="ln">   130  </span>func (o *SyntheticsTestOptions) GetAllowInsecure() bool {
-<span id="L131" class="ln">   131  </span>	if o == nil || o.AllowInsecure == nil {
-<span id="L132" class="ln">   132  </span>		var ret bool
-<span id="L133" class="ln">   133  </span>		return ret
-<span id="L134" class="ln">   134  </span>	}
-<span id="L135" class="ln">   135  </span>	return *o.AllowInsecure
-<span id="L136" class="ln">   136  </span>}
-<span id="L137" class="ln">   137  </span>
-<span id="L138" class="ln">   138  </span><span class="comment">// GetAllowInsecureOk returns a tuple with the AllowInsecure field value if set, nil otherwise</span>
-<span id="L139" class="ln">   139  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L140" class="ln">   140  </span>func (o *SyntheticsTestOptions) GetAllowInsecureOk() (*bool, bool) {
-<span id="L141" class="ln">   141  </span>	if o == nil || o.AllowInsecure == nil {
-<span id="L142" class="ln">   142  </span>		return nil, false
-<span id="L143" class="ln">   143  </span>	}
-<span id="L144" class="ln">   144  </span>	return o.AllowInsecure, true
-<span id="L145" class="ln">   145  </span>}
-<span id="L146" class="ln">   146  </span>
-<span id="L147" class="ln">   147  </span><span class="comment">// HasAllowInsecure returns a boolean if a field has been set.</span>
-<span id="L148" class="ln">   148  </span>func (o *SyntheticsTestOptions) HasAllowInsecure() bool {
-<span id="L149" class="ln">   149  </span>	return o != nil &amp;&amp; o.AllowInsecure != nil
-<span id="L150" class="ln">   150  </span>}
-<span id="L151" class="ln">   151  </span>
-<span id="L152" class="ln">   152  </span><span class="comment">// SetAllowInsecure gets a reference to the given bool and assigns it to the AllowInsecure field.</span>
-<span id="L153" class="ln">   153  </span>func (o *SyntheticsTestOptions) SetAllowInsecure(v bool) {
-<span id="L154" class="ln">   154  </span>	o.AllowInsecure = &amp;v
-<span id="L155" class="ln">   155  </span>}
-<span id="L156" class="ln">   156  </span>
-<span id="L157" class="ln">   157  </span><span class="comment">// GetBlockedRequestPatterns returns the BlockedRequestPatterns field value if set, zero value otherwise.</span>
-<span id="L158" class="ln">   158  </span>func (o *SyntheticsTestOptions) GetBlockedRequestPatterns() []string {
-<span id="L159" class="ln">   159  </span>	if o == nil || o.BlockedRequestPatterns == nil {
-<span id="L160" class="ln">   160  </span>		var ret []string
-<span id="L161" class="ln">   161  </span>		return ret
-<span id="L162" class="ln">   162  </span>	}
-<span id="L163" class="ln">   163  </span>	return o.BlockedRequestPatterns
-<span id="L164" class="ln">   164  </span>}
-<span id="L165" class="ln">   165  </span>
-<span id="L166" class="ln">   166  </span><span class="comment">// GetBlockedRequestPatternsOk returns a tuple with the BlockedRequestPatterns field value if set, nil otherwise</span>
-<span id="L167" class="ln">   167  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L168" class="ln">   168  </span>func (o *SyntheticsTestOptions) GetBlockedRequestPatternsOk() (*[]string, bool) {
-<span id="L169" class="ln">   169  </span>	if o == nil || o.BlockedRequestPatterns == nil {
-<span id="L170" class="ln">   170  </span>		return nil, false
-<span id="L171" class="ln">   171  </span>	}
-<span id="L172" class="ln">   172  </span>	return &amp;o.BlockedRequestPatterns, true
-<span id="L173" class="ln">   173  </span>}
-<span id="L174" class="ln">   174  </span>
-<span id="L175" class="ln">   175  </span><span class="comment">// HasBlockedRequestPatterns returns a boolean if a field has been set.</span>
-<span id="L176" class="ln">   176  </span>func (o *SyntheticsTestOptions) HasBlockedRequestPatterns() bool {
-<span id="L177" class="ln">   177  </span>	return o != nil &amp;&amp; o.BlockedRequestPatterns != nil
-<span id="L178" class="ln">   178  </span>}
-<span id="L179" class="ln">   179  </span>
-<span id="L180" class="ln">   180  </span><span class="comment">// SetBlockedRequestPatterns gets a reference to the given []string and assigns it to the BlockedRequestPatterns field.</span>
-<span id="L181" class="ln">   181  </span>func (o *SyntheticsTestOptions) SetBlockedRequestPatterns(v []string) {
-<span id="L182" class="ln">   182  </span>	o.BlockedRequestPatterns = v
-<span id="L183" class="ln">   183  </span>}
-<span id="L184" class="ln">   184  </span>
-<span id="L185" class="ln">   185  </span><span class="comment">// GetCheckCertificateRevocation returns the CheckCertificateRevocation field value if set, zero value otherwise.</span>
-<span id="L186" class="ln">   186  </span>func (o *SyntheticsTestOptions) GetCheckCertificateRevocation() bool {
-<span id="L187" class="ln">   187  </span>	if o == nil || o.CheckCertificateRevocation == nil {
-<span id="L188" class="ln">   188  </span>		var ret bool
-<span id="L189" class="ln">   189  </span>		return ret
-<span id="L190" class="ln">   190  </span>	}
-<span id="L191" class="ln">   191  </span>	return *o.CheckCertificateRevocation
-<span id="L192" class="ln">   192  </span>}
-<span id="L193" class="ln">   193  </span>
-<span id="L194" class="ln">   194  </span><span class="comment">// GetCheckCertificateRevocationOk returns a tuple with the CheckCertificateRevocation field value if set, nil otherwise</span>
-<span id="L195" class="ln">   195  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L196" class="ln">   196  </span>func (o *SyntheticsTestOptions) GetCheckCertificateRevocationOk() (*bool, bool) {
-<span id="L197" class="ln">   197  </span>	if o == nil || o.CheckCertificateRevocation == nil {
-<span id="L198" class="ln">   198  </span>		return nil, false
-<span id="L199" class="ln">   199  </span>	}
-<span id="L200" class="ln">   200  </span>	return o.CheckCertificateRevocation, true
-<span id="L201" class="ln">   201  </span>}
-<span id="L202" class="ln">   202  </span>
-<span id="L203" class="ln">   203  </span><span class="comment">// HasCheckCertificateRevocation returns a boolean if a field has been set.</span>
-<span id="L204" class="ln">   204  </span>func (o *SyntheticsTestOptions) HasCheckCertificateRevocation() bool {
-<span id="L205" class="ln">   205  </span>	return o != nil &amp;&amp; o.CheckCertificateRevocation != nil
-<span id="L206" class="ln">   206  </span>}
-<span id="L207" class="ln">   207  </span>
-<span id="L208" class="ln">   208  </span><span class="comment">// SetCheckCertificateRevocation gets a reference to the given bool and assigns it to the CheckCertificateRevocation field.</span>
-<span id="L209" class="ln">   209  </span>func (o *SyntheticsTestOptions) SetCheckCertificateRevocation(v bool) {
-<span id="L210" class="ln">   210  </span>	o.CheckCertificateRevocation = &amp;v
-<span id="L211" class="ln">   211  </span>}
-<span id="L212" class="ln">   212  </span>
-<span id="L213" class="ln">   213  </span><span class="comment">// GetCi returns the Ci field value if set, zero value otherwise.</span>
-<span id="L214" class="ln">   214  </span>func (o *SyntheticsTestOptions) GetCi() SyntheticsTestCiOptions {
-<span id="L215" class="ln">   215  </span>	if o == nil || o.Ci == nil {
-<span id="L216" class="ln">   216  </span>		var ret SyntheticsTestCiOptions
-<span id="L217" class="ln">   217  </span>		return ret
-<span id="L218" class="ln">   218  </span>	}
-<span id="L219" class="ln">   219  </span>	return *o.Ci
-<span id="L220" class="ln">   220  </span>}
-<span id="L221" class="ln">   221  </span>
-<span id="L222" class="ln">   222  </span><span class="comment">// GetCiOk returns a tuple with the Ci field value if set, nil otherwise</span>
-<span id="L223" class="ln">   223  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L224" class="ln">   224  </span>func (o *SyntheticsTestOptions) GetCiOk() (*SyntheticsTestCiOptions, bool) {
-<span id="L225" class="ln">   225  </span>	if o == nil || o.Ci == nil {
-<span id="L226" class="ln">   226  </span>		return nil, false
-<span id="L227" class="ln">   227  </span>	}
-<span id="L228" class="ln">   228  </span>	return o.Ci, true
-<span id="L229" class="ln">   229  </span>}
-<span id="L230" class="ln">   230  </span>
-<span id="L231" class="ln">   231  </span><span class="comment">// HasCi returns a boolean if a field has been set.</span>
-<span id="L232" class="ln">   232  </span>func (o *SyntheticsTestOptions) HasCi() bool {
-<span id="L233" class="ln">   233  </span>	return o != nil &amp;&amp; o.Ci != nil
-<span id="L234" class="ln">   234  </span>}
-<span id="L235" class="ln">   235  </span>
-<span id="L236" class="ln">   236  </span><span class="comment">// SetCi gets a reference to the given SyntheticsTestCiOptions and assigns it to the Ci field.</span>
-<span id="L237" class="ln">   237  </span>func (o *SyntheticsTestOptions) SetCi(v SyntheticsTestCiOptions) {
-<span id="L238" class="ln">   238  </span>	o.Ci = &amp;v
-<span id="L239" class="ln">   239  </span>}
-<span id="L240" class="ln">   240  </span>
-<span id="L241" class="ln">   241  </span><span class="comment">// GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.</span>
-<span id="L242" class="ln">   242  </span>func (o *SyntheticsTestOptions) GetDeviceIds() []string {
-<span id="L243" class="ln">   243  </span>	if o == nil || o.DeviceIds == nil {
-<span id="L244" class="ln">   244  </span>		var ret []string
-<span id="L245" class="ln">   245  </span>		return ret
-<span id="L246" class="ln">   246  </span>	}
-<span id="L247" class="ln">   247  </span>	return o.DeviceIds
-<span id="L248" class="ln">   248  </span>}
-<span id="L249" class="ln">   249  </span>
-<span id="L250" class="ln">   250  </span><span class="comment">// GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, nil otherwise</span>
-<span id="L251" class="ln">   251  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L252" class="ln">   252  </span>func (o *SyntheticsTestOptions) GetDeviceIdsOk() (*[]string, bool) {
-<span id="L253" class="ln">   253  </span>	if o == nil || o.DeviceIds == nil {
-<span id="L254" class="ln">   254  </span>		return nil, false
-<span id="L255" class="ln">   255  </span>	}
-<span id="L256" class="ln">   256  </span>	return &amp;o.DeviceIds, true
-<span id="L257" class="ln">   257  </span>}
-<span id="L258" class="ln">   258  </span>
-<span id="L259" class="ln">   259  </span><span class="comment">// HasDeviceIds returns a boolean if a field has been set.</span>
-<span id="L260" class="ln">   260  </span>func (o *SyntheticsTestOptions) HasDeviceIds() bool {
-<span id="L261" class="ln">   261  </span>	return o != nil &amp;&amp; o.DeviceIds != nil
-<span id="L262" class="ln">   262  </span>}
-<span id="L263" class="ln">   263  </span>
-<span id="L264" class="ln">   264  </span><span class="comment">// SetDeviceIds gets a reference to the given []string and assigns it to the DeviceIds field.</span>
-<span id="L265" class="ln">   265  </span>func (o *SyntheticsTestOptions) SetDeviceIds(v []string) {
-<span id="L266" class="ln">   266  </span>	o.DeviceIds = v
-<span id="L267" class="ln">   267  </span>}
-<span id="L268" class="ln">   268  </span>
-<span id="L269" class="ln">   269  </span><span class="comment">// GetDisableAiaIntermediateFetching returns the DisableAiaIntermediateFetching field value if set, zero value otherwise.</span>
-<span id="L270" class="ln">   270  </span>func (o *SyntheticsTestOptions) GetDisableAiaIntermediateFetching() bool {
-<span id="L271" class="ln">   271  </span>	if o == nil || o.DisableAiaIntermediateFetching == nil {
-<span id="L272" class="ln">   272  </span>		var ret bool
-<span id="L273" class="ln">   273  </span>		return ret
-<span id="L274" class="ln">   274  </span>	}
-<span id="L275" class="ln">   275  </span>	return *o.DisableAiaIntermediateFetching
-<span id="L276" class="ln">   276  </span>}
-<span id="L277" class="ln">   277  </span>
-<span id="L278" class="ln">   278  </span><span class="comment">// GetDisableAiaIntermediateFetchingOk returns a tuple with the DisableAiaIntermediateFetching field value if set, nil otherwise</span>
-<span id="L279" class="ln">   279  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L280" class="ln">   280  </span>func (o *SyntheticsTestOptions) GetDisableAiaIntermediateFetchingOk() (*bool, bool) {
-<span id="L281" class="ln">   281  </span>	if o == nil || o.DisableAiaIntermediateFetching == nil {
-<span id="L282" class="ln">   282  </span>		return nil, false
-<span id="L283" class="ln">   283  </span>	}
-<span id="L284" class="ln">   284  </span>	return o.DisableAiaIntermediateFetching, true
-<span id="L285" class="ln">   285  </span>}
-<span id="L286" class="ln">   286  </span>
-<span id="L287" class="ln">   287  </span><span class="comment">// HasDisableAiaIntermediateFetching returns a boolean if a field has been set.</span>
-<span id="L288" class="ln">   288  </span>func (o *SyntheticsTestOptions) HasDisableAiaIntermediateFetching() bool {
-<span id="L289" class="ln">   289  </span>	return o != nil &amp;&amp; o.DisableAiaIntermediateFetching != nil
-<span id="L290" class="ln">   290  </span>}
-<span id="L291" class="ln">   291  </span>
-<span id="L292" class="ln">   292  </span><span class="comment">// SetDisableAiaIntermediateFetching gets a reference to the given bool and assigns it to the DisableAiaIntermediateFetching field.</span>
-<span id="L293" class="ln">   293  </span>func (o *SyntheticsTestOptions) SetDisableAiaIntermediateFetching(v bool) {
-<span id="L294" class="ln">   294  </span>	o.DisableAiaIntermediateFetching = &amp;v
-<span id="L295" class="ln">   295  </span>}
-<span id="L296" class="ln">   296  </span>
-<span id="L297" class="ln">   297  </span><span class="comment">// GetDisableCors returns the DisableCors field value if set, zero value otherwise.</span>
-<span id="L298" class="ln">   298  </span>func (o *SyntheticsTestOptions) GetDisableCors() bool {
-<span id="L299" class="ln">   299  </span>	if o == nil || o.DisableCors == nil {
-<span id="L300" class="ln">   300  </span>		var ret bool
-<span id="L301" class="ln">   301  </span>		return ret
-<span id="L302" class="ln">   302  </span>	}
-<span id="L303" class="ln">   303  </span>	return *o.DisableCors
-<span id="L304" class="ln">   304  </span>}
-<span id="L305" class="ln">   305  </span>
-<span id="L306" class="ln">   306  </span><span class="comment">// GetDisableCorsOk returns a tuple with the DisableCors field value if set, nil otherwise</span>
-<span id="L307" class="ln">   307  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L308" class="ln">   308  </span>func (o *SyntheticsTestOptions) GetDisableCorsOk() (*bool, bool) {
-<span id="L309" class="ln">   309  </span>	if o == nil || o.DisableCors == nil {
-<span id="L310" class="ln">   310  </span>		return nil, false
-<span id="L311" class="ln">   311  </span>	}
-<span id="L312" class="ln">   312  </span>	return o.DisableCors, true
-<span id="L313" class="ln">   313  </span>}
-<span id="L314" class="ln">   314  </span>
-<span id="L315" class="ln">   315  </span><span class="comment">// HasDisableCors returns a boolean if a field has been set.</span>
-<span id="L316" class="ln">   316  </span>func (o *SyntheticsTestOptions) HasDisableCors() bool {
-<span id="L317" class="ln">   317  </span>	return o != nil &amp;&amp; o.DisableCors != nil
-<span id="L318" class="ln">   318  </span>}
-<span id="L319" class="ln">   319  </span>
-<span id="L320" class="ln">   320  </span><span class="comment">// SetDisableCors gets a reference to the given bool and assigns it to the DisableCors field.</span>
-<span id="L321" class="ln">   321  </span>func (o *SyntheticsTestOptions) SetDisableCors(v bool) {
-<span id="L322" class="ln">   322  </span>	o.DisableCors = &amp;v
-<span id="L323" class="ln">   323  </span>}
-<span id="L324" class="ln">   324  </span>
-<span id="L325" class="ln">   325  </span><span class="comment">// GetDisableCsp returns the DisableCsp field value if set, zero value otherwise.</span>
-<span id="L326" class="ln">   326  </span>func (o *SyntheticsTestOptions) GetDisableCsp() bool {
-<span id="L327" class="ln">   327  </span>	if o == nil || o.DisableCsp == nil {
-<span id="L328" class="ln">   328  </span>		var ret bool
-<span id="L329" class="ln">   329  </span>		return ret
-<span id="L330" class="ln">   330  </span>	}
-<span id="L331" class="ln">   331  </span>	return *o.DisableCsp
-<span id="L332" class="ln">   332  </span>}
-<span id="L333" class="ln">   333  </span>
-<span id="L334" class="ln">   334  </span><span class="comment">// GetDisableCspOk returns a tuple with the DisableCsp field value if set, nil otherwise</span>
-<span id="L335" class="ln">   335  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L336" class="ln">   336  </span>func (o *SyntheticsTestOptions) GetDisableCspOk() (*bool, bool) {
-<span id="L337" class="ln">   337  </span>	if o == nil || o.DisableCsp == nil {
-<span id="L338" class="ln">   338  </span>		return nil, false
-<span id="L339" class="ln">   339  </span>	}
-<span id="L340" class="ln">   340  </span>	return o.DisableCsp, true
-<span id="L341" class="ln">   341  </span>}
-<span id="L342" class="ln">   342  </span>
-<span id="L343" class="ln">   343  </span><span class="comment">// HasDisableCsp returns a boolean if a field has been set.</span>
-<span id="L344" class="ln">   344  </span>func (o *SyntheticsTestOptions) HasDisableCsp() bool {
-<span id="L345" class="ln">   345  </span>	return o != nil &amp;&amp; o.DisableCsp != nil
-<span id="L346" class="ln">   346  </span>}
-<span id="L347" class="ln">   347  </span>
-<span id="L348" class="ln">   348  </span><span class="comment">// SetDisableCsp gets a reference to the given bool and assigns it to the DisableCsp field.</span>
-<span id="L349" class="ln">   349  </span>func (o *SyntheticsTestOptions) SetDisableCsp(v bool) {
-<span id="L350" class="ln">   350  </span>	o.DisableCsp = &amp;v
-<span id="L351" class="ln">   351  </span>}
-<span id="L352" class="ln">   352  </span>
-<span id="L353" class="ln">   353  </span><span class="comment">// GetEnableProfiling returns the EnableProfiling field value if set, zero value otherwise.</span>
-<span id="L354" class="ln">   354  </span>func (o *SyntheticsTestOptions) GetEnableProfiling() bool {
-<span id="L355" class="ln">   355  </span>	if o == nil || o.EnableProfiling == nil {
-<span id="L356" class="ln">   356  </span>		var ret bool
-<span id="L357" class="ln">   357  </span>		return ret
-<span id="L358" class="ln">   358  </span>	}
-<span id="L359" class="ln">   359  </span>	return *o.EnableProfiling
-<span id="L360" class="ln">   360  </span>}
-<span id="L361" class="ln">   361  </span>
-<span id="L362" class="ln">   362  </span><span class="comment">// GetEnableProfilingOk returns a tuple with the EnableProfiling field value if set, nil otherwise</span>
-<span id="L363" class="ln">   363  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L364" class="ln">   364  </span>func (o *SyntheticsTestOptions) GetEnableProfilingOk() (*bool, bool) {
-<span id="L365" class="ln">   365  </span>	if o == nil || o.EnableProfiling == nil {
-<span id="L366" class="ln">   366  </span>		return nil, false
-<span id="L367" class="ln">   367  </span>	}
-<span id="L368" class="ln">   368  </span>	return o.EnableProfiling, true
-<span id="L369" class="ln">   369  </span>}
-<span id="L370" class="ln">   370  </span>
-<span id="L371" class="ln">   371  </span><span class="comment">// HasEnableProfiling returns a boolean if a field has been set.</span>
-<span id="L372" class="ln">   372  </span>func (o *SyntheticsTestOptions) HasEnableProfiling() bool {
-<span id="L373" class="ln">   373  </span>	return o != nil &amp;&amp; o.EnableProfiling != nil
-<span id="L374" class="ln">   374  </span>}
-<span id="L375" class="ln">   375  </span>
-<span id="L376" class="ln">   376  </span><span class="comment">// SetEnableProfiling gets a reference to the given bool and assigns it to the EnableProfiling field.</span>
-<span id="L377" class="ln">   377  </span>func (o *SyntheticsTestOptions) SetEnableProfiling(v bool) {
-<span id="L378" class="ln">   378  </span>	o.EnableProfiling = &amp;v
-<span id="L379" class="ln">   379  </span>}
-<span id="L380" class="ln">   380  </span>
-<span id="L381" class="ln">   381  </span><span class="comment">// GetEnableSecurityTesting returns the EnableSecurityTesting field value if set, zero value otherwise.</span>
-<span id="L382" class="ln">   382  </span><span class="comment">// Deprecated</span>
-<span id="L383" class="ln">   383  </span>func (o *SyntheticsTestOptions) GetEnableSecurityTesting() bool {
-<span id="L384" class="ln">   384  </span>	if o == nil || o.EnableSecurityTesting == nil {
-<span id="L385" class="ln">   385  </span>		var ret bool
-<span id="L386" class="ln">   386  </span>		return ret
-<span id="L387" class="ln">   387  </span>	}
-<span id="L388" class="ln">   388  </span>	return *o.EnableSecurityTesting
-<span id="L389" class="ln">   389  </span>}
-<span id="L390" class="ln">   390  </span>
-<span id="L391" class="ln">   391  </span><span class="comment">// GetEnableSecurityTestingOk returns a tuple with the EnableSecurityTesting field value if set, nil otherwise</span>
-<span id="L392" class="ln">   392  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L393" class="ln">   393  </span><span class="comment">// Deprecated</span>
-<span id="L394" class="ln">   394  </span>func (o *SyntheticsTestOptions) GetEnableSecurityTestingOk() (*bool, bool) {
-<span id="L395" class="ln">   395  </span>	if o == nil || o.EnableSecurityTesting == nil {
-<span id="L396" class="ln">   396  </span>		return nil, false
-<span id="L397" class="ln">   397  </span>	}
-<span id="L398" class="ln">   398  </span>	return o.EnableSecurityTesting, true
-<span id="L399" class="ln">   399  </span>}
-<span id="L400" class="ln">   400  </span>
-<span id="L401" class="ln">   401  </span><span class="comment">// HasEnableSecurityTesting returns a boolean if a field has been set.</span>
-<span id="L402" class="ln">   402  </span>func (o *SyntheticsTestOptions) HasEnableSecurityTesting() bool {
-<span id="L403" class="ln">   403  </span>	return o != nil &amp;&amp; o.EnableSecurityTesting != nil
-<span id="L404" class="ln">   404  </span>}
-<span id="L405" class="ln">   405  </span>
-<span id="L406" class="ln">   406  </span><span class="comment">// SetEnableSecurityTesting gets a reference to the given bool and assigns it to the EnableSecurityTesting field.</span>
-<span id="L407" class="ln">   407  </span><span class="comment">// Deprecated</span>
-<span id="L408" class="ln">   408  </span>func (o *SyntheticsTestOptions) SetEnableSecurityTesting(v bool) {
-<span id="L409" class="ln">   409  </span>	o.EnableSecurityTesting = &amp;v
-<span id="L410" class="ln">   410  </span>}
-<span id="L411" class="ln">   411  </span>
-<span id="L412" class="ln">   412  </span><span class="comment">// GetFollowRedirects returns the FollowRedirects field value if set, zero value otherwise.</span>
-<span id="L413" class="ln">   413  </span>func (o *SyntheticsTestOptions) GetFollowRedirects() bool {
-<span id="L414" class="ln">   414  </span>	if o == nil || o.FollowRedirects == nil {
-<span id="L415" class="ln">   415  </span>		var ret bool
-<span id="L416" class="ln">   416  </span>		return ret
-<span id="L417" class="ln">   417  </span>	}
-<span id="L418" class="ln">   418  </span>	return *o.FollowRedirects
-<span id="L419" class="ln">   419  </span>}
-<span id="L420" class="ln">   420  </span>
-<span id="L421" class="ln">   421  </span><span class="comment">// GetFollowRedirectsOk returns a tuple with the FollowRedirects field value if set, nil otherwise</span>
-<span id="L422" class="ln">   422  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L423" class="ln">   423  </span>func (o *SyntheticsTestOptions) GetFollowRedirectsOk() (*bool, bool) {
-<span id="L424" class="ln">   424  </span>	if o == nil || o.FollowRedirects == nil {
-<span id="L425" class="ln">   425  </span>		return nil, false
-<span id="L426" class="ln">   426  </span>	}
-<span id="L427" class="ln">   427  </span>	return o.FollowRedirects, true
-<span id="L428" class="ln">   428  </span>}
-<span id="L429" class="ln">   429  </span>
-<span id="L430" class="ln">   430  </span><span class="comment">// HasFollowRedirects returns a boolean if a field has been set.</span>
-<span id="L431" class="ln">   431  </span>func (o *SyntheticsTestOptions) HasFollowRedirects() bool {
-<span id="L432" class="ln">   432  </span>	return o != nil &amp;&amp; o.FollowRedirects != nil
-<span id="L433" class="ln">   433  </span>}
-<span id="L434" class="ln">   434  </span>
-<span id="L435" class="ln">   435  </span><span class="comment">// SetFollowRedirects gets a reference to the given bool and assigns it to the FollowRedirects field.</span>
-<span id="L436" class="ln">   436  </span>func (o *SyntheticsTestOptions) SetFollowRedirects(v bool) {
-<span id="L437" class="ln">   437  </span>	o.FollowRedirects = &amp;v
-<span id="L438" class="ln">   438  </span>}
-<span id="L439" class="ln">   439  </span>
-<span id="L440" class="ln">   440  </span><span class="comment">// GetHttpVersion returns the HttpVersion field value if set, zero value otherwise.</span>
-<span id="L441" class="ln">   441  </span>func (o *SyntheticsTestOptions) GetHttpVersion() SyntheticsTestOptionsHTTPVersion {
-<span id="L442" class="ln">   442  </span>	if o == nil || o.HttpVersion == nil {
-<span id="L443" class="ln">   443  </span>		var ret SyntheticsTestOptionsHTTPVersion
-<span id="L444" class="ln">   444  </span>		return ret
-<span id="L445" class="ln">   445  </span>	}
-<span id="L446" class="ln">   446  </span>	return *o.HttpVersion
-<span id="L447" class="ln">   447  </span>}
-<span id="L448" class="ln">   448  </span>
-<span id="L449" class="ln">   449  </span><span class="comment">// GetHttpVersionOk returns a tuple with the HttpVersion field value if set, nil otherwise</span>
-<span id="L450" class="ln">   450  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L451" class="ln">   451  </span>func (o *SyntheticsTestOptions) GetHttpVersionOk() (*SyntheticsTestOptionsHTTPVersion, bool) {
-<span id="L452" class="ln">   452  </span>	if o == nil || o.HttpVersion == nil {
-<span id="L453" class="ln">   453  </span>		return nil, false
-<span id="L454" class="ln">   454  </span>	}
-<span id="L455" class="ln">   455  </span>	return o.HttpVersion, true
-<span id="L456" class="ln">   456  </span>}
-<span id="L457" class="ln">   457  </span>
-<span id="L458" class="ln">   458  </span><span class="comment">// HasHttpVersion returns a boolean if a field has been set.</span>
-<span id="L459" class="ln">   459  </span>func (o *SyntheticsTestOptions) HasHttpVersion() bool {
-<span id="L460" class="ln">   460  </span>	return o != nil &amp;&amp; o.HttpVersion != nil
-<span id="L461" class="ln">   461  </span>}
-<span id="L462" class="ln">   462  </span>
-<span id="L463" class="ln">   463  </span><span class="comment">// SetHttpVersion gets a reference to the given SyntheticsTestOptionsHTTPVersion and assigns it to the HttpVersion field.</span>
-<span id="L464" class="ln">   464  </span>func (o *SyntheticsTestOptions) SetHttpVersion(v SyntheticsTestOptionsHTTPVersion) {
-<span id="L465" class="ln">   465  </span>	o.HttpVersion = &amp;v
-<span id="L466" class="ln">   466  </span>}
-<span id="L467" class="ln">   467  </span>
-<span id="L468" class="ln">   468  </span><span class="comment">// GetIgnoreServerCertificateError returns the IgnoreServerCertificateError field value if set, zero value otherwise.</span>
-<span id="L469" class="ln">   469  </span>func (o *SyntheticsTestOptions) GetIgnoreServerCertificateError() bool {
-<span id="L470" class="ln">   470  </span>	if o == nil || o.IgnoreServerCertificateError == nil {
-<span id="L471" class="ln">   471  </span>		var ret bool
-<span id="L472" class="ln">   472  </span>		return ret
-<span id="L473" class="ln">   473  </span>	}
-<span id="L474" class="ln">   474  </span>	return *o.IgnoreServerCertificateError
-<span id="L475" class="ln">   475  </span>}
-<span id="L476" class="ln">   476  </span>
-<span id="L477" class="ln">   477  </span><span class="comment">// GetIgnoreServerCertificateErrorOk returns a tuple with the IgnoreServerCertificateError field value if set, nil otherwise</span>
-<span id="L478" class="ln">   478  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L479" class="ln">   479  </span>func (o *SyntheticsTestOptions) GetIgnoreServerCertificateErrorOk() (*bool, bool) {
-<span id="L480" class="ln">   480  </span>	if o == nil || o.IgnoreServerCertificateError == nil {
-<span id="L481" class="ln">   481  </span>		return nil, false
-<span id="L482" class="ln">   482  </span>	}
-<span id="L483" class="ln">   483  </span>	return o.IgnoreServerCertificateError, true
-<span id="L484" class="ln">   484  </span>}
-<span id="L485" class="ln">   485  </span>
-<span id="L486" class="ln">   486  </span><span class="comment">// HasIgnoreServerCertificateError returns a boolean if a field has been set.</span>
-<span id="L487" class="ln">   487  </span>func (o *SyntheticsTestOptions) HasIgnoreServerCertificateError() bool {
-<span id="L488" class="ln">   488  </span>	return o != nil &amp;&amp; o.IgnoreServerCertificateError != nil
-<span id="L489" class="ln">   489  </span>}
-<span id="L490" class="ln">   490  </span>
-<span id="L491" class="ln">   491  </span><span class="comment">// SetIgnoreServerCertificateError gets a reference to the given bool and assigns it to the IgnoreServerCertificateError field.</span>
-<span id="L492" class="ln">   492  </span>func (o *SyntheticsTestOptions) SetIgnoreServerCertificateError(v bool) {
-<span id="L493" class="ln">   493  </span>	o.IgnoreServerCertificateError = &amp;v
-<span id="L494" class="ln">   494  </span>}
-<span id="L495" class="ln">   495  </span>
-<span id="L496" class="ln">   496  </span><span class="comment">// GetInitialNavigationTimeout returns the InitialNavigationTimeout field value if set, zero value otherwise.</span>
-<span id="L497" class="ln">   497  </span>func (o *SyntheticsTestOptions) GetInitialNavigationTimeout() int64 {
-<span id="L498" class="ln">   498  </span>	if o == nil || o.InitialNavigationTimeout == nil {
-<span id="L499" class="ln">   499  </span>		var ret int64
-<span id="L500" class="ln">   500  </span>		return ret
-<span id="L501" class="ln">   501  </span>	}
-<span id="L502" class="ln">   502  </span>	return *o.InitialNavigationTimeout
-<span id="L503" class="ln">   503  </span>}
-<span id="L504" class="ln">   504  </span>
-<span id="L505" class="ln">   505  </span><span class="comment">// GetInitialNavigationTimeoutOk returns a tuple with the InitialNavigationTimeout field value if set, nil otherwise</span>
-<span id="L506" class="ln">   506  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L507" class="ln">   507  </span>func (o *SyntheticsTestOptions) GetInitialNavigationTimeoutOk() (*int64, bool) {
-<span id="L508" class="ln">   508  </span>	if o == nil || o.InitialNavigationTimeout == nil {
-<span id="L509" class="ln">   509  </span>		return nil, false
-<span id="L510" class="ln">   510  </span>	}
-<span id="L511" class="ln">   511  </span>	return o.InitialNavigationTimeout, true
-<span id="L512" class="ln">   512  </span>}
-<span id="L513" class="ln">   513  </span>
-<span id="L514" class="ln">   514  </span><span class="comment">// HasInitialNavigationTimeout returns a boolean if a field has been set.</span>
-<span id="L515" class="ln">   515  </span>func (o *SyntheticsTestOptions) HasInitialNavigationTimeout() bool {
-<span id="L516" class="ln">   516  </span>	return o != nil &amp;&amp; o.InitialNavigationTimeout != nil
-<span id="L517" class="ln">   517  </span>}
-<span id="L518" class="ln">   518  </span>
-<span id="L519" class="ln">   519  </span><span class="comment">// SetInitialNavigationTimeout gets a reference to the given int64 and assigns it to the InitialNavigationTimeout field.</span>
-<span id="L520" class="ln">   520  </span>func (o *SyntheticsTestOptions) SetInitialNavigationTimeout(v int64) {
-<span id="L521" class="ln">   521  </span>	o.InitialNavigationTimeout = &amp;v
-<span id="L522" class="ln">   522  </span>}
-<span id="L523" class="ln">   523  </span>
-<span id="L524" class="ln">   524  </span><span class="comment">// GetMinFailureDuration returns the MinFailureDuration field value if set, zero value otherwise.</span>
-<span id="L525" class="ln">   525  </span>func (o *SyntheticsTestOptions) GetMinFailureDuration() int64 {
-<span id="L526" class="ln">   526  </span>	if o == nil || o.MinFailureDuration == nil {
-<span id="L527" class="ln">   527  </span>		var ret int64
-<span id="L528" class="ln">   528  </span>		return ret
-<span id="L529" class="ln">   529  </span>	}
-<span id="L530" class="ln">   530  </span>	return *o.MinFailureDuration
-<span id="L531" class="ln">   531  </span>}
-<span id="L532" class="ln">   532  </span>
-<span id="L533" class="ln">   533  </span><span class="comment">// GetMinFailureDurationOk returns a tuple with the MinFailureDuration field value if set, nil otherwise</span>
-<span id="L534" class="ln">   534  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L535" class="ln">   535  </span>func (o *SyntheticsTestOptions) GetMinFailureDurationOk() (*int64, bool) {
-<span id="L536" class="ln">   536  </span>	if o == nil || o.MinFailureDuration == nil {
-<span id="L537" class="ln">   537  </span>		return nil, false
-<span id="L538" class="ln">   538  </span>	}
-<span id="L539" class="ln">   539  </span>	return o.MinFailureDuration, true
-<span id="L540" class="ln">   540  </span>}
-<span id="L541" class="ln">   541  </span>
-<span id="L542" class="ln">   542  </span><span class="comment">// HasMinFailureDuration returns a boolean if a field has been set.</span>
-<span id="L543" class="ln">   543  </span>func (o *SyntheticsTestOptions) HasMinFailureDuration() bool {
-<span id="L544" class="ln">   544  </span>	return o != nil &amp;&amp; o.MinFailureDuration != nil
-<span id="L545" class="ln">   545  </span>}
-<span id="L546" class="ln">   546  </span>
-<span id="L547" class="ln">   547  </span><span class="comment">// SetMinFailureDuration gets a reference to the given int64 and assigns it to the MinFailureDuration field.</span>
-<span id="L548" class="ln">   548  </span>func (o *SyntheticsTestOptions) SetMinFailureDuration(v int64) {
-<span id="L549" class="ln">   549  </span>	o.MinFailureDuration = &amp;v
-<span id="L550" class="ln">   550  </span>}
-<span id="L551" class="ln">   551  </span>
-<span id="L552" class="ln">   552  </span><span class="comment">// GetMinLocationFailed returns the MinLocationFailed field value if set, zero value otherwise.</span>
-<span id="L553" class="ln">   553  </span>func (o *SyntheticsTestOptions) GetMinLocationFailed() int64 {
-<span id="L554" class="ln">   554  </span>	if o == nil || o.MinLocationFailed == nil {
-<span id="L555" class="ln">   555  </span>		var ret int64
-<span id="L556" class="ln">   556  </span>		return ret
-<span id="L557" class="ln">   557  </span>	}
-<span id="L558" class="ln">   558  </span>	return *o.MinLocationFailed
-<span id="L559" class="ln">   559  </span>}
-<span id="L560" class="ln">   560  </span>
-<span id="L561" class="ln">   561  </span><span class="comment">// GetMinLocationFailedOk returns a tuple with the MinLocationFailed field value if set, nil otherwise</span>
-<span id="L562" class="ln">   562  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L563" class="ln">   563  </span>func (o *SyntheticsTestOptions) GetMinLocationFailedOk() (*int64, bool) {
-<span id="L564" class="ln">   564  </span>	if o == nil || o.MinLocationFailed == nil {
-<span id="L565" class="ln">   565  </span>		return nil, false
-<span id="L566" class="ln">   566  </span>	}
-<span id="L567" class="ln">   567  </span>	return o.MinLocationFailed, true
-<span id="L568" class="ln">   568  </span>}
-<span id="L569" class="ln">   569  </span>
-<span id="L570" class="ln">   570  </span><span class="comment">// HasMinLocationFailed returns a boolean if a field has been set.</span>
-<span id="L571" class="ln">   571  </span>func (o *SyntheticsTestOptions) HasMinLocationFailed() bool {
-<span id="L572" class="ln">   572  </span>	return o != nil &amp;&amp; o.MinLocationFailed != nil
-<span id="L573" class="ln">   573  </span>}
-<span id="L574" class="ln">   574  </span>
-<span id="L575" class="ln">   575  </span><span class="comment">// SetMinLocationFailed gets a reference to the given int64 and assigns it to the MinLocationFailed field.</span>
-<span id="L576" class="ln">   576  </span>func (o *SyntheticsTestOptions) SetMinLocationFailed(v int64) {
-<span id="L577" class="ln">   577  </span>	o.MinLocationFailed = &amp;v
-<span id="L578" class="ln">   578  </span>}
-<span id="L579" class="ln">   579  </span>
-<span id="L580" class="ln">   580  </span><span class="comment">// GetMonitorName returns the MonitorName field value if set, zero value otherwise.</span>
-<span id="L581" class="ln">   581  </span>func (o *SyntheticsTestOptions) GetMonitorName() string {
-<span id="L582" class="ln">   582  </span>	if o == nil || o.MonitorName == nil {
-<span id="L583" class="ln">   583  </span>		var ret string
-<span id="L584" class="ln">   584  </span>		return ret
-<span id="L585" class="ln">   585  </span>	}
-<span id="L586" class="ln">   586  </span>	return *o.MonitorName
-<span id="L587" class="ln">   587  </span>}
-<span id="L588" class="ln">   588  </span>
-<span id="L589" class="ln">   589  </span><span class="comment">// GetMonitorNameOk returns a tuple with the MonitorName field value if set, nil otherwise</span>
-<span id="L590" class="ln">   590  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L591" class="ln">   591  </span>func (o *SyntheticsTestOptions) GetMonitorNameOk() (*string, bool) {
-<span id="L592" class="ln">   592  </span>	if o == nil || o.MonitorName == nil {
-<span id="L593" class="ln">   593  </span>		return nil, false
-<span id="L594" class="ln">   594  </span>	}
-<span id="L595" class="ln">   595  </span>	return o.MonitorName, true
-<span id="L596" class="ln">   596  </span>}
-<span id="L597" class="ln">   597  </span>
-<span id="L598" class="ln">   598  </span><span class="comment">// HasMonitorName returns a boolean if a field has been set.</span>
-<span id="L599" class="ln">   599  </span>func (o *SyntheticsTestOptions) HasMonitorName() bool {
-<span id="L600" class="ln">   600  </span>	return o != nil &amp;&amp; o.MonitorName != nil
-<span id="L601" class="ln">   601  </span>}
-<span id="L602" class="ln">   602  </span>
-<span id="L603" class="ln">   603  </span><span class="comment">// SetMonitorName gets a reference to the given string and assigns it to the MonitorName field.</span>
-<span id="L604" class="ln">   604  </span>func (o *SyntheticsTestOptions) SetMonitorName(v string) {
-<span id="L605" class="ln">   605  </span>	o.MonitorName = &amp;v
-<span id="L606" class="ln">   606  </span>}
-<span id="L607" class="ln">   607  </span>
-<span id="L608" class="ln">   608  </span><span class="comment">// GetMonitorOptions returns the MonitorOptions field value if set, zero value otherwise.</span>
-<span id="L609" class="ln">   609  </span>func (o *SyntheticsTestOptions) GetMonitorOptions() SyntheticsTestOptionsMonitorOptions {
-<span id="L610" class="ln">   610  </span>	if o == nil || o.MonitorOptions == nil {
-<span id="L611" class="ln">   611  </span>		var ret SyntheticsTestOptionsMonitorOptions
-<span id="L612" class="ln">   612  </span>		return ret
-<span id="L613" class="ln">   613  </span>	}
-<span id="L614" class="ln">   614  </span>	return *o.MonitorOptions
-<span id="L615" class="ln">   615  </span>}
-<span id="L616" class="ln">   616  </span>
-<span id="L617" class="ln">   617  </span><span class="comment">// GetMonitorOptionsOk returns a tuple with the MonitorOptions field value if set, nil otherwise</span>
-<span id="L618" class="ln">   618  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L619" class="ln">   619  </span>func (o *SyntheticsTestOptions) GetMonitorOptionsOk() (*SyntheticsTestOptionsMonitorOptions, bool) {
-<span id="L620" class="ln">   620  </span>	if o == nil || o.MonitorOptions == nil {
-<span id="L621" class="ln">   621  </span>		return nil, false
-<span id="L622" class="ln">   622  </span>	}
-<span id="L623" class="ln">   623  </span>	return o.MonitorOptions, true
-<span id="L624" class="ln">   624  </span>}
-<span id="L625" class="ln">   625  </span>
-<span id="L626" class="ln">   626  </span><span class="comment">// HasMonitorOptions returns a boolean if a field has been set.</span>
-<span id="L627" class="ln">   627  </span>func (o *SyntheticsTestOptions) HasMonitorOptions() bool {
-<span id="L628" class="ln">   628  </span>	return o != nil &amp;&amp; o.MonitorOptions != nil
-<span id="L629" class="ln">   629  </span>}
-<span id="L630" class="ln">   630  </span>
-<span id="L631" class="ln">   631  </span><span class="comment">// SetMonitorOptions gets a reference to the given SyntheticsTestOptionsMonitorOptions and assigns it to the MonitorOptions field.</span>
-<span id="L632" class="ln">   632  </span>func (o *SyntheticsTestOptions) SetMonitorOptions(v SyntheticsTestOptionsMonitorOptions) {
-<span id="L633" class="ln">   633  </span>	o.MonitorOptions = &amp;v
-<span id="L634" class="ln">   634  </span>}
-<span id="L635" class="ln">   635  </span>
-<span id="L636" class="ln">   636  </span><span class="comment">// GetMonitorPriority returns the MonitorPriority field value if set, zero value otherwise.</span>
-<span id="L637" class="ln">   637  </span>func (o *SyntheticsTestOptions) GetMonitorPriority() int32 {
-<span id="L638" class="ln">   638  </span>	if o == nil || o.MonitorPriority == nil {
-<span id="L639" class="ln">   639  </span>		var ret int32
-<span id="L640" class="ln">   640  </span>		return ret
-<span id="L641" class="ln">   641  </span>	}
-<span id="L642" class="ln">   642  </span>	return *o.MonitorPriority
-<span id="L643" class="ln">   643  </span>}
-<span id="L644" class="ln">   644  </span>
-<span id="L645" class="ln">   645  </span><span class="comment">// GetMonitorPriorityOk returns a tuple with the MonitorPriority field value if set, nil otherwise</span>
-<span id="L646" class="ln">   646  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L647" class="ln">   647  </span>func (o *SyntheticsTestOptions) GetMonitorPriorityOk() (*int32, bool) {
-<span id="L648" class="ln">   648  </span>	if o == nil || o.MonitorPriority == nil {
-<span id="L649" class="ln">   649  </span>		return nil, false
-<span id="L650" class="ln">   650  </span>	}
-<span id="L651" class="ln">   651  </span>	return o.MonitorPriority, true
-<span id="L652" class="ln">   652  </span>}
-<span id="L653" class="ln">   653  </span>
-<span id="L654" class="ln">   654  </span><span class="comment">// HasMonitorPriority returns a boolean if a field has been set.</span>
-<span id="L655" class="ln">   655  </span>func (o *SyntheticsTestOptions) HasMonitorPriority() bool {
-<span id="L656" class="ln">   656  </span>	return o != nil &amp;&amp; o.MonitorPriority != nil
-<span id="L657" class="ln">   657  </span>}
-<span id="L658" class="ln">   658  </span>
-<span id="L659" class="ln">   659  </span><span class="comment">// SetMonitorPriority gets a reference to the given int32 and assigns it to the MonitorPriority field.</span>
-<span id="L660" class="ln">   660  </span>func (o *SyntheticsTestOptions) SetMonitorPriority(v int32) {
-<span id="L661" class="ln">   661  </span>	o.MonitorPriority = &amp;v
-<span id="L662" class="ln">   662  </span>}
-<span id="L663" class="ln">   663  </span>
-<span id="L664" class="ln">   664  </span><span class="comment">// GetNoScreenshot returns the NoScreenshot field value if set, zero value otherwise.</span>
-<span id="L665" class="ln">   665  </span>func (o *SyntheticsTestOptions) GetNoScreenshot() bool {
-<span id="L666" class="ln">   666  </span>	if o == nil || o.NoScreenshot == nil {
-<span id="L667" class="ln">   667  </span>		var ret bool
-<span id="L668" class="ln">   668  </span>		return ret
-<span id="L669" class="ln">   669  </span>	}
-<span id="L670" class="ln">   670  </span>	return *o.NoScreenshot
-<span id="L671" class="ln">   671  </span>}
-<span id="L672" class="ln">   672  </span>
-<span id="L673" class="ln">   673  </span><span class="comment">// GetNoScreenshotOk returns a tuple with the NoScreenshot field value if set, nil otherwise</span>
-<span id="L674" class="ln">   674  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L675" class="ln">   675  </span>func (o *SyntheticsTestOptions) GetNoScreenshotOk() (*bool, bool) {
-<span id="L676" class="ln">   676  </span>	if o == nil || o.NoScreenshot == nil {
-<span id="L677" class="ln">   677  </span>		return nil, false
-<span id="L678" class="ln">   678  </span>	}
-<span id="L679" class="ln">   679  </span>	return o.NoScreenshot, true
-<span id="L680" class="ln">   680  </span>}
-<span id="L681" class="ln">   681  </span>
-<span id="L682" class="ln">   682  </span><span class="comment">// HasNoScreenshot returns a boolean if a field has been set.</span>
-<span id="L683" class="ln">   683  </span>func (o *SyntheticsTestOptions) HasNoScreenshot() bool {
-<span id="L684" class="ln">   684  </span>	return o != nil &amp;&amp; o.NoScreenshot != nil
-<span id="L685" class="ln">   685  </span>}
-<span id="L686" class="ln">   686  </span>
-<span id="L687" class="ln">   687  </span><span class="comment">// SetNoScreenshot gets a reference to the given bool and assigns it to the NoScreenshot field.</span>
-<span id="L688" class="ln">   688  </span>func (o *SyntheticsTestOptions) SetNoScreenshot(v bool) {
-<span id="L689" class="ln">   689  </span>	o.NoScreenshot = &amp;v
-<span id="L690" class="ln">   690  </span>}
-<span id="L691" class="ln">   691  </span>
-<span id="L692" class="ln">   692  </span><span class="comment">// GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.</span>
-<span id="L693" class="ln">   693  </span>func (o *SyntheticsTestOptions) GetRestrictedRoles() []string {
-<span id="L694" class="ln">   694  </span>	if o == nil || o.RestrictedRoles == nil {
-<span id="L695" class="ln">   695  </span>		var ret []string
-<span id="L696" class="ln">   696  </span>		return ret
-<span id="L697" class="ln">   697  </span>	}
-<span id="L698" class="ln">   698  </span>	return o.RestrictedRoles
-<span id="L699" class="ln">   699  </span>}
-<span id="L700" class="ln">   700  </span>
-<span id="L701" class="ln">   701  </span><span class="comment">// GetRestrictedRolesOk returns a tuple with the RestrictedRoles field value if set, nil otherwise</span>
-<span id="L702" class="ln">   702  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L703" class="ln">   703  </span>func (o *SyntheticsTestOptions) GetRestrictedRolesOk() (*[]string, bool) {
-<span id="L704" class="ln">   704  </span>	if o == nil || o.RestrictedRoles == nil {
-<span id="L705" class="ln">   705  </span>		return nil, false
-<span id="L706" class="ln">   706  </span>	}
-<span id="L707" class="ln">   707  </span>	return &amp;o.RestrictedRoles, true
-<span id="L708" class="ln">   708  </span>}
-<span id="L709" class="ln">   709  </span>
-<span id="L710" class="ln">   710  </span><span class="comment">// HasRestrictedRoles returns a boolean if a field has been set.</span>
-<span id="L711" class="ln">   711  </span>func (o *SyntheticsTestOptions) HasRestrictedRoles() bool {
-<span id="L712" class="ln">   712  </span>	return o != nil &amp;&amp; o.RestrictedRoles != nil
-<span id="L713" class="ln">   713  </span>}
-<span id="L714" class="ln">   714  </span>
-<span id="L715" class="ln">   715  </span><span class="comment">// SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.</span>
-<span id="L716" class="ln">   716  </span>func (o *SyntheticsTestOptions) SetRestrictedRoles(v []string) {
-<span id="L717" class="ln">   717  </span>	o.RestrictedRoles = v
-<span id="L718" class="ln">   718  </span>}
-<span id="L719" class="ln">   719  </span>
-<span id="L720" class="ln">   720  </span><span class="comment">// GetRetry returns the Retry field value if set, zero value otherwise.</span>
-<span id="L721" class="ln">   721  </span>func (o *SyntheticsTestOptions) GetRetry() SyntheticsTestOptionsRetry {
-<span id="L722" class="ln">   722  </span>	if o == nil || o.Retry == nil {
-<span id="L723" class="ln">   723  </span>		var ret SyntheticsTestOptionsRetry
-<span id="L724" class="ln">   724  </span>		return ret
-<span id="L725" class="ln">   725  </span>	}
-<span id="L726" class="ln">   726  </span>	return *o.Retry
-<span id="L727" class="ln">   727  </span>}
-<span id="L728" class="ln">   728  </span>
-<span id="L729" class="ln">   729  </span><span class="comment">// GetRetryOk returns a tuple with the Retry field value if set, nil otherwise</span>
-<span id="L730" class="ln">   730  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L731" class="ln">   731  </span>func (o *SyntheticsTestOptions) GetRetryOk() (*SyntheticsTestOptionsRetry, bool) {
-<span id="L732" class="ln">   732  </span>	if o == nil || o.Retry == nil {
-<span id="L733" class="ln">   733  </span>		return nil, false
-<span id="L734" class="ln">   734  </span>	}
-<span id="L735" class="ln">   735  </span>	return o.Retry, true
-<span id="L736" class="ln">   736  </span>}
-<span id="L737" class="ln">   737  </span>
-<span id="L738" class="ln">   738  </span><span class="comment">// HasRetry returns a boolean if a field has been set.</span>
-<span id="L739" class="ln">   739  </span>func (o *SyntheticsTestOptions) HasRetry() bool {
-<span id="L740" class="ln">   740  </span>	return o != nil &amp;&amp; o.Retry != nil
-<span id="L741" class="ln">   741  </span>}
-<span id="L742" class="ln">   742  </span>
-<span id="L743" class="ln">   743  </span><span class="comment">// SetRetry gets a reference to the given SyntheticsTestOptionsRetry and assigns it to the Retry field.</span>
-<span id="L744" class="ln">   744  </span>func (o *SyntheticsTestOptions) SetRetry(v SyntheticsTestOptionsRetry) {
-<span id="L745" class="ln">   745  </span>	o.Retry = &amp;v
-<span id="L746" class="ln">   746  </span>}
-<span id="L747" class="ln">   747  </span>
-<span id="L748" class="ln">   748  </span><span class="comment">// GetRumSettings returns the RumSettings field value if set, zero value otherwise.</span>
-<span id="L749" class="ln">   749  </span>func (o *SyntheticsTestOptions) GetRumSettings() SyntheticsBrowserTestRumSettings {
-<span id="L750" class="ln">   750  </span>	if o == nil || o.RumSettings == nil {
-<span id="L751" class="ln">   751  </span>		var ret SyntheticsBrowserTestRumSettings
-<span id="L752" class="ln">   752  </span>		return ret
-<span id="L753" class="ln">   753  </span>	}
-<span id="L754" class="ln">   754  </span>	return *o.RumSettings
-<span id="L755" class="ln">   755  </span>}
-<span id="L756" class="ln">   756  </span>
-<span id="L757" class="ln">   757  </span><span class="comment">// GetRumSettingsOk returns a tuple with the RumSettings field value if set, nil otherwise</span>
-<span id="L758" class="ln">   758  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L759" class="ln">   759  </span>func (o *SyntheticsTestOptions) GetRumSettingsOk() (*SyntheticsBrowserTestRumSettings, bool) {
-<span id="L760" class="ln">   760  </span>	if o == nil || o.RumSettings == nil {
-<span id="L761" class="ln">   761  </span>		return nil, false
-<span id="L762" class="ln">   762  </span>	}
-<span id="L763" class="ln">   763  </span>	return o.RumSettings, true
-<span id="L764" class="ln">   764  </span>}
-<span id="L765" class="ln">   765  </span>
-<span id="L766" class="ln">   766  </span><span class="comment">// HasRumSettings returns a boolean if a field has been set.</span>
-<span id="L767" class="ln">   767  </span>func (o *SyntheticsTestOptions) HasRumSettings() bool {
-<span id="L768" class="ln">   768  </span>	return o != nil &amp;&amp; o.RumSettings != nil
-<span id="L769" class="ln">   769  </span>}
-<span id="L770" class="ln">   770  </span>
-<span id="L771" class="ln">   771  </span><span class="comment">// SetRumSettings gets a reference to the given SyntheticsBrowserTestRumSettings and assigns it to the RumSettings field.</span>
-<span id="L772" class="ln">   772  </span>func (o *SyntheticsTestOptions) SetRumSettings(v SyntheticsBrowserTestRumSettings) {
-<span id="L773" class="ln">   773  </span>	o.RumSettings = &amp;v
-<span id="L774" class="ln">   774  </span>}
-<span id="L775" class="ln">   775  </span>
-<span id="L776" class="ln">   776  </span><span class="comment">// GetScheduling returns the Scheduling field value if set, zero value otherwise.</span>
-<span id="L777" class="ln">   777  </span>func (o *SyntheticsTestOptions) GetScheduling() SyntheticsTestOptionsScheduling {
-<span id="L778" class="ln">   778  </span>	if o == nil || o.Scheduling == nil {
-<span id="L779" class="ln">   779  </span>		var ret SyntheticsTestOptionsScheduling
-<span id="L780" class="ln">   780  </span>		return ret
-<span id="L781" class="ln">   781  </span>	}
-<span id="L782" class="ln">   782  </span>	return *o.Scheduling
-<span id="L783" class="ln">   783  </span>}
-<span id="L784" class="ln">   784  </span>
-<span id="L785" class="ln">   785  </span><span class="comment">// GetSchedulingOk returns a tuple with the Scheduling field value if set, nil otherwise</span>
-<span id="L786" class="ln">   786  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L787" class="ln">   787  </span>func (o *SyntheticsTestOptions) GetSchedulingOk() (*SyntheticsTestOptionsScheduling, bool) {
-<span id="L788" class="ln">   788  </span>	if o == nil || o.Scheduling == nil {
-<span id="L789" class="ln">   789  </span>		return nil, false
-<span id="L790" class="ln">   790  </span>	}
-<span id="L791" class="ln">   791  </span>	return o.Scheduling, true
-<span id="L792" class="ln">   792  </span>}
-<span id="L793" class="ln">   793  </span>
-<span id="L794" class="ln">   794  </span><span class="comment">// HasScheduling returns a boolean if a field has been set.</span>
-<span id="L795" class="ln">   795  </span>func (o *SyntheticsTestOptions) HasScheduling() bool {
-<span id="L796" class="ln">   796  </span>	return o != nil &amp;&amp; o.Scheduling != nil
-<span id="L797" class="ln">   797  </span>}
-<span id="L798" class="ln">   798  </span>
-<span id="L799" class="ln">   799  </span><span class="comment">// SetScheduling gets a reference to the given SyntheticsTestOptionsScheduling and assigns it to the Scheduling field.</span>
-<span id="L800" class="ln">   800  </span>func (o *SyntheticsTestOptions) SetScheduling(v SyntheticsTestOptionsScheduling) {
-<span id="L801" class="ln">   801  </span>	o.Scheduling = &amp;v
-<span id="L802" class="ln">   802  </span>}
-<span id="L803" class="ln">   803  </span>
-<span id="L804" class="ln">   804  </span><span class="comment">// GetTickEvery returns the TickEvery field value if set, zero value otherwise.</span>
-<span id="L805" class="ln">   805  </span>func (o *SyntheticsTestOptions) GetTickEvery() int64 {
-<span id="L806" class="ln">   806  </span>	if o == nil || o.TickEvery == nil {
-<span id="L807" class="ln">   807  </span>		var ret int64
-<span id="L808" class="ln">   808  </span>		return ret
-<span id="L809" class="ln">   809  </span>	}
-<span id="L810" class="ln">   810  </span>	return *o.TickEvery
-<span id="L811" class="ln">   811  </span>}
-<span id="L812" class="ln">   812  </span>
-<span id="L813" class="ln">   813  </span><span class="comment">// GetTickEveryOk returns a tuple with the TickEvery field value if set, nil otherwise</span>
-<span id="L814" class="ln">   814  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L815" class="ln">   815  </span>func (o *SyntheticsTestOptions) GetTickEveryOk() (*int64, bool) {
-<span id="L816" class="ln">   816  </span>	if o == nil || o.TickEvery == nil {
-<span id="L817" class="ln">   817  </span>		return nil, false
-<span id="L818" class="ln">   818  </span>	}
-<span id="L819" class="ln">   819  </span>	return o.TickEvery, true
-<span id="L820" class="ln">   820  </span>}
-<span id="L821" class="ln">   821  </span>
-<span id="L822" class="ln">   822  </span><span class="comment">// HasTickEvery returns a boolean if a field has been set.</span>
-<span id="L823" class="ln">   823  </span>func (o *SyntheticsTestOptions) HasTickEvery() bool {
-<span id="L824" class="ln">   824  </span>	return o != nil &amp;&amp; o.TickEvery != nil
-<span id="L825" class="ln">   825  </span>}
-<span id="L826" class="ln">   826  </span>
-<span id="L827" class="ln">   827  </span><span class="comment">// SetTickEvery gets a reference to the given int64 and assigns it to the TickEvery field.</span>
-<span id="L828" class="ln">   828  </span>func (o *SyntheticsTestOptions) SetTickEvery(v int64) {
-<span id="L829" class="ln">   829  </span>	o.TickEvery = &amp;v
-<span id="L830" class="ln">   830  </span>}
-<span id="L831" class="ln">   831  </span>
-<span id="L832" class="ln">   832  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L833" class="ln">   833  </span>func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
-<span id="L834" class="ln">   834  </span>	toSerialize := map[string]interface{}{}
-<span id="L835" class="ln">   835  </span>	if o.UnparsedObject != nil {
-<span id="L836" class="ln">   836  </span>		return datadog.Marshal(o.UnparsedObject)
-<span id="L837" class="ln">   837  </span>	}
-<span id="L838" class="ln">   838  </span>	if o.AcceptSelfSigned != nil {
-<span id="L839" class="ln">   839  </span>		toSerialize[&#34;accept_self_signed&#34;] = o.AcceptSelfSigned
-<span id="L840" class="ln">   840  </span>	}
-<span id="L841" class="ln">   841  </span>	if o.AllowInsecure != nil {
-<span id="L842" class="ln">   842  </span>		toSerialize[&#34;allow_insecure&#34;] = o.AllowInsecure
-<span id="L843" class="ln">   843  </span>	}
-<span id="L844" class="ln">   844  </span>	if o.BlockedRequestPatterns != nil {
-<span id="L845" class="ln">   845  </span>		toSerialize[&#34;blockedRequestPatterns&#34;] = o.BlockedRequestPatterns
-<span id="L846" class="ln">   846  </span>	}
-<span id="L847" class="ln">   847  </span>	if o.CheckCertificateRevocation != nil {
-<span id="L848" class="ln">   848  </span>		toSerialize[&#34;checkCertificateRevocation&#34;] = o.CheckCertificateRevocation
-<span id="L849" class="ln">   849  </span>	}
-<span id="L850" class="ln">   850  </span>	if o.Ci != nil {
-<span id="L851" class="ln">   851  </span>		toSerialize[&#34;ci&#34;] = o.Ci
-<span id="L852" class="ln">   852  </span>	}
-<span id="L853" class="ln">   853  </span>	if o.DeviceIds != nil {
-<span id="L854" class="ln">   854  </span>		toSerialize[&#34;device_ids&#34;] = o.DeviceIds
-<span id="L855" class="ln">   855  </span>	}
-<span id="L856" class="ln">   856  </span>	if o.DisableAiaIntermediateFetching != nil {
-<span id="L857" class="ln">   857  </span>		toSerialize[&#34;disableAiaIntermediateFetching&#34;] = o.DisableAiaIntermediateFetching
-<span id="L858" class="ln">   858  </span>	}
-<span id="L859" class="ln">   859  </span>	if o.DisableCors != nil {
-<span id="L860" class="ln">   860  </span>		toSerialize[&#34;disableCors&#34;] = o.DisableCors
-<span id="L861" class="ln">   861  </span>	}
-<span id="L862" class="ln">   862  </span>	if o.DisableCsp != nil {
-<span id="L863" class="ln">   863  </span>		toSerialize[&#34;disableCsp&#34;] = o.DisableCsp
-<span id="L864" class="ln">   864  </span>	}
-<span id="L865" class="ln">   865  </span>	if o.EnableProfiling != nil {
-<span id="L866" class="ln">   866  </span>		toSerialize[&#34;enableProfiling&#34;] = o.EnableProfiling
-<span id="L867" class="ln">   867  </span>	}
-<span id="L868" class="ln">   868  </span>	if o.EnableSecurityTesting != nil {
-<span id="L869" class="ln">   869  </span>		toSerialize[&#34;enableSecurityTesting&#34;] = o.EnableSecurityTesting
-<span id="L870" class="ln">   870  </span>	}
-<span id="L871" class="ln">   871  </span>	if o.FollowRedirects != nil {
-<span id="L872" class="ln">   872  </span>		toSerialize[&#34;follow_redirects&#34;] = o.FollowRedirects
-<span id="L873" class="ln">   873  </span>	}
-<span id="L874" class="ln">   874  </span>	if o.HttpVersion != nil {
-<span id="L875" class="ln">   875  </span>		toSerialize[&#34;httpVersion&#34;] = o.HttpVersion
-<span id="L876" class="ln">   876  </span>	}
-<span id="L877" class="ln">   877  </span>	if o.IgnoreServerCertificateError != nil {
-<span id="L878" class="ln">   878  </span>		toSerialize[&#34;ignoreServerCertificateError&#34;] = o.IgnoreServerCertificateError
-<span id="L879" class="ln">   879  </span>	}
-<span id="L880" class="ln">   880  </span>	if o.InitialNavigationTimeout != nil {
-<span id="L881" class="ln">   881  </span>		toSerialize[&#34;initialNavigationTimeout&#34;] = o.InitialNavigationTimeout
-<span id="L882" class="ln">   882  </span>	}
-<span id="L883" class="ln">   883  </span>	if o.MinFailureDuration != nil {
-<span id="L884" class="ln">   884  </span>		toSerialize[&#34;min_failure_duration&#34;] = o.MinFailureDuration
-<span id="L885" class="ln">   885  </span>	}
-<span id="L886" class="ln">   886  </span>	if o.MinLocationFailed != nil {
-<span id="L887" class="ln">   887  </span>		toSerialize[&#34;min_location_failed&#34;] = o.MinLocationFailed
-<span id="L888" class="ln">   888  </span>	}
-<span id="L889" class="ln">   889  </span>	if o.MonitorName != nil {
-<span id="L890" class="ln">   890  </span>		toSerialize[&#34;monitor_name&#34;] = o.MonitorName
-<span id="L891" class="ln">   891  </span>	}
-<span id="L892" class="ln">   892  </span>	if o.MonitorOptions != nil {
-<span id="L893" class="ln">   893  </span>		toSerialize[&#34;monitor_options&#34;] = o.MonitorOptions
-<span id="L894" class="ln">   894  </span>	}
-<span id="L895" class="ln">   895  </span>	if o.MonitorPriority != nil {
-<span id="L896" class="ln">   896  </span>		toSerialize[&#34;monitor_priority&#34;] = o.MonitorPriority
-<span id="L897" class="ln">   897  </span>	}
-<span id="L898" class="ln">   898  </span>	if o.NoScreenshot != nil {
-<span id="L899" class="ln">   899  </span>		toSerialize[&#34;noScreenshot&#34;] = o.NoScreenshot
-<span id="L900" class="ln">   900  </span>	}
-<span id="L901" class="ln">   901  </span>	if o.RestrictedRoles != nil {
-<span id="L902" class="ln">   902  </span>		toSerialize[&#34;restricted_roles&#34;] = o.RestrictedRoles
-<span id="L903" class="ln">   903  </span>	}
-<span id="L904" class="ln">   904  </span>	if o.Retry != nil {
-<span id="L905" class="ln">   905  </span>		toSerialize[&#34;retry&#34;] = o.Retry
-<span id="L906" class="ln">   906  </span>	}
-<span id="L907" class="ln">   907  </span>	if o.RumSettings != nil {
-<span id="L908" class="ln">   908  </span>		toSerialize[&#34;rumSettings&#34;] = o.RumSettings
-<span id="L909" class="ln">   909  </span>	}
-<span id="L910" class="ln">   910  </span>	if o.Scheduling != nil {
-<span id="L911" class="ln">   911  </span>		toSerialize[&#34;scheduling&#34;] = o.Scheduling
-<span id="L912" class="ln">   912  </span>	}
-<span id="L913" class="ln">   913  </span>	if o.TickEvery != nil {
-<span id="L914" class="ln">   914  </span>		toSerialize[&#34;tick_every&#34;] = o.TickEvery
-<span id="L915" class="ln">   915  </span>	}
-<span id="L916" class="ln">   916  </span>
-<span id="L917" class="ln">   917  </span>	for key, value := range o.AdditionalProperties {
-<span id="L918" class="ln">   918  </span>		toSerialize[key] = value
+<span id="L59" class="ln">    59  </span>	<span class="comment">// A list of role identifiers that can be pulled from the Roles API, for restricting read and write access. This field is deprecated. Use the restriction policies API to manage permissions.</span>
+<span id="L60" class="ln">    60  </span>	<span class="comment">// Deprecated</span>
+<span id="L61" class="ln">    61  </span>	RestrictedRoles []string `json:&#34;restricted_roles,omitempty&#34;`
+<span id="L62" class="ln">    62  </span>	<span class="comment">// Object describing the retry strategy to apply to a Synthetic test.</span>
+<span id="L63" class="ln">    63  </span>	Retry *SyntheticsTestOptionsRetry `json:&#34;retry,omitempty&#34;`
+<span id="L64" class="ln">    64  </span>	<span class="comment">// The RUM data collection settings for the Synthetic browser test.</span>
+<span id="L65" class="ln">    65  </span>	<span class="comment">// **Note:** There are 3 ways to format RUM settings:</span>
+<span id="L66" class="ln">    66  </span>	<span class="comment">//</span>
+<span id="L67" class="ln">    67  </span>	<span class="comment">// `{ isEnabled: false }`</span>
+<span id="L68" class="ln">    68  </span>	<span class="comment">// RUM data is not collected.</span>
+<span id="L69" class="ln">    69  </span>	<span class="comment">//</span>
+<span id="L70" class="ln">    70  </span>	<span class="comment">// `{ isEnabled: true }`</span>
+<span id="L71" class="ln">    71  </span>	<span class="comment">// RUM data is collected from the Synthetic test&#39;s default application.</span>
+<span id="L72" class="ln">    72  </span>	<span class="comment">//</span>
+<span id="L73" class="ln">    73  </span>	<span class="comment">// `{ isEnabled: true, applicationId: &#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&#34;, clientTokenId: 12345 }`</span>
+<span id="L74" class="ln">    74  </span>	<span class="comment">// RUM data is collected using the specified application.</span>
+<span id="L75" class="ln">    75  </span>	RumSettings *SyntheticsBrowserTestRumSettings `json:&#34;rumSettings,omitempty&#34;`
+<span id="L76" class="ln">    76  </span>	<span class="comment">// Object containing timeframes and timezone used for advanced scheduling.</span>
+<span id="L77" class="ln">    77  </span>	Scheduling *SyntheticsTestOptionsScheduling `json:&#34;scheduling,omitempty&#34;`
+<span id="L78" class="ln">    78  </span>	<span class="comment">// The frequency at which to run the Synthetic test (in seconds).</span>
+<span id="L79" class="ln">    79  </span>	TickEvery *int64 `json:&#34;tick_every,omitempty&#34;`
+<span id="L80" class="ln">    80  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L81" class="ln">    81  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L82" class="ln">    82  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L83" class="ln">    83  </span>}
+<span id="L84" class="ln">    84  </span>
+<span id="L85" class="ln">    85  </span><span class="comment">// NewSyntheticsTestOptions instantiates a new SyntheticsTestOptions object.</span>
+<span id="L86" class="ln">    86  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L87" class="ln">    87  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L88" class="ln">    88  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L89" class="ln">    89  </span>func NewSyntheticsTestOptions() *SyntheticsTestOptions {
+<span id="L90" class="ln">    90  </span>	this := SyntheticsTestOptions{}
+<span id="L91" class="ln">    91  </span>	return &amp;this
+<span id="L92" class="ln">    92  </span>}
+<span id="L93" class="ln">    93  </span>
+<span id="L94" class="ln">    94  </span><span class="comment">// NewSyntheticsTestOptionsWithDefaults instantiates a new SyntheticsTestOptions object.</span>
+<span id="L95" class="ln">    95  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L96" class="ln">    96  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L97" class="ln">    97  </span>func NewSyntheticsTestOptionsWithDefaults() *SyntheticsTestOptions {
+<span id="L98" class="ln">    98  </span>	this := SyntheticsTestOptions{}
+<span id="L99" class="ln">    99  </span>	return &amp;this
+<span id="L100" class="ln">   100  </span>}
+<span id="L101" class="ln">   101  </span>
+<span id="L102" class="ln">   102  </span><span class="comment">// GetAcceptSelfSigned returns the AcceptSelfSigned field value if set, zero value otherwise.</span>
+<span id="L103" class="ln">   103  </span>func (o *SyntheticsTestOptions) GetAcceptSelfSigned() bool {
+<span id="L104" class="ln">   104  </span>	if o == nil || o.AcceptSelfSigned == nil {
+<span id="L105" class="ln">   105  </span>		var ret bool
+<span id="L106" class="ln">   106  </span>		return ret
+<span id="L107" class="ln">   107  </span>	}
+<span id="L108" class="ln">   108  </span>	return *o.AcceptSelfSigned
+<span id="L109" class="ln">   109  </span>}
+<span id="L110" class="ln">   110  </span>
+<span id="L111" class="ln">   111  </span><span class="comment">// GetAcceptSelfSignedOk returns a tuple with the AcceptSelfSigned field value if set, nil otherwise</span>
+<span id="L112" class="ln">   112  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L113" class="ln">   113  </span>func (o *SyntheticsTestOptions) GetAcceptSelfSignedOk() (*bool, bool) {
+<span id="L114" class="ln">   114  </span>	if o == nil || o.AcceptSelfSigned == nil {
+<span id="L115" class="ln">   115  </span>		return nil, false
+<span id="L116" class="ln">   116  </span>	}
+<span id="L117" class="ln">   117  </span>	return o.AcceptSelfSigned, true
+<span id="L118" class="ln">   118  </span>}
+<span id="L119" class="ln">   119  </span>
+<span id="L120" class="ln">   120  </span><span class="comment">// HasAcceptSelfSigned returns a boolean if a field has been set.</span>
+<span id="L121" class="ln">   121  </span>func (o *SyntheticsTestOptions) HasAcceptSelfSigned() bool {
+<span id="L122" class="ln">   122  </span>	return o != nil &amp;&amp; o.AcceptSelfSigned != nil
+<span id="L123" class="ln">   123  </span>}
+<span id="L124" class="ln">   124  </span>
+<span id="L125" class="ln">   125  </span><span class="comment">// SetAcceptSelfSigned gets a reference to the given bool and assigns it to the AcceptSelfSigned field.</span>
+<span id="L126" class="ln">   126  </span>func (o *SyntheticsTestOptions) SetAcceptSelfSigned(v bool) {
+<span id="L127" class="ln">   127  </span>	o.AcceptSelfSigned = &amp;v
+<span id="L128" class="ln">   128  </span>}
+<span id="L129" class="ln">   129  </span>
+<span id="L130" class="ln">   130  </span><span class="comment">// GetAllowInsecure returns the AllowInsecure field value if set, zero value otherwise.</span>
+<span id="L131" class="ln">   131  </span>func (o *SyntheticsTestOptions) GetAllowInsecure() bool {
+<span id="L132" class="ln">   132  </span>	if o == nil || o.AllowInsecure == nil {
+<span id="L133" class="ln">   133  </span>		var ret bool
+<span id="L134" class="ln">   134  </span>		return ret
+<span id="L135" class="ln">   135  </span>	}
+<span id="L136" class="ln">   136  </span>	return *o.AllowInsecure
+<span id="L137" class="ln">   137  </span>}
+<span id="L138" class="ln">   138  </span>
+<span id="L139" class="ln">   139  </span><span class="comment">// GetAllowInsecureOk returns a tuple with the AllowInsecure field value if set, nil otherwise</span>
+<span id="L140" class="ln">   140  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L141" class="ln">   141  </span>func (o *SyntheticsTestOptions) GetAllowInsecureOk() (*bool, bool) {
+<span id="L142" class="ln">   142  </span>	if o == nil || o.AllowInsecure == nil {
+<span id="L143" class="ln">   143  </span>		return nil, false
+<span id="L144" class="ln">   144  </span>	}
+<span id="L145" class="ln">   145  </span>	return o.AllowInsecure, true
+<span id="L146" class="ln">   146  </span>}
+<span id="L147" class="ln">   147  </span>
+<span id="L148" class="ln">   148  </span><span class="comment">// HasAllowInsecure returns a boolean if a field has been set.</span>
+<span id="L149" class="ln">   149  </span>func (o *SyntheticsTestOptions) HasAllowInsecure() bool {
+<span id="L150" class="ln">   150  </span>	return o != nil &amp;&amp; o.AllowInsecure != nil
+<span id="L151" class="ln">   151  </span>}
+<span id="L152" class="ln">   152  </span>
+<span id="L153" class="ln">   153  </span><span class="comment">// SetAllowInsecure gets a reference to the given bool and assigns it to the AllowInsecure field.</span>
+<span id="L154" class="ln">   154  </span>func (o *SyntheticsTestOptions) SetAllowInsecure(v bool) {
+<span id="L155" class="ln">   155  </span>	o.AllowInsecure = &amp;v
+<span id="L156" class="ln">   156  </span>}
+<span id="L157" class="ln">   157  </span>
+<span id="L158" class="ln">   158  </span><span class="comment">// GetBlockedRequestPatterns returns the BlockedRequestPatterns field value if set, zero value otherwise.</span>
+<span id="L159" class="ln">   159  </span>func (o *SyntheticsTestOptions) GetBlockedRequestPatterns() []string {
+<span id="L160" class="ln">   160  </span>	if o == nil || o.BlockedRequestPatterns == nil {
+<span id="L161" class="ln">   161  </span>		var ret []string
+<span id="L162" class="ln">   162  </span>		return ret
+<span id="L163" class="ln">   163  </span>	}
+<span id="L164" class="ln">   164  </span>	return o.BlockedRequestPatterns
+<span id="L165" class="ln">   165  </span>}
+<span id="L166" class="ln">   166  </span>
+<span id="L167" class="ln">   167  </span><span class="comment">// GetBlockedRequestPatternsOk returns a tuple with the BlockedRequestPatterns field value if set, nil otherwise</span>
+<span id="L168" class="ln">   168  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L169" class="ln">   169  </span>func (o *SyntheticsTestOptions) GetBlockedRequestPatternsOk() (*[]string, bool) {
+<span id="L170" class="ln">   170  </span>	if o == nil || o.BlockedRequestPatterns == nil {
+<span id="L171" class="ln">   171  </span>		return nil, false
+<span id="L172" class="ln">   172  </span>	}
+<span id="L173" class="ln">   173  </span>	return &amp;o.BlockedRequestPatterns, true
+<span id="L174" class="ln">   174  </span>}
+<span id="L175" class="ln">   175  </span>
+<span id="L176" class="ln">   176  </span><span class="comment">// HasBlockedRequestPatterns returns a boolean if a field has been set.</span>
+<span id="L177" class="ln">   177  </span>func (o *SyntheticsTestOptions) HasBlockedRequestPatterns() bool {
+<span id="L178" class="ln">   178  </span>	return o != nil &amp;&amp; o.BlockedRequestPatterns != nil
+<span id="L179" class="ln">   179  </span>}
+<span id="L180" class="ln">   180  </span>
+<span id="L181" class="ln">   181  </span><span class="comment">// SetBlockedRequestPatterns gets a reference to the given []string and assigns it to the BlockedRequestPatterns field.</span>
+<span id="L182" class="ln">   182  </span>func (o *SyntheticsTestOptions) SetBlockedRequestPatterns(v []string) {
+<span id="L183" class="ln">   183  </span>	o.BlockedRequestPatterns = v
+<span id="L184" class="ln">   184  </span>}
+<span id="L185" class="ln">   185  </span>
+<span id="L186" class="ln">   186  </span><span class="comment">// GetCheckCertificateRevocation returns the CheckCertificateRevocation field value if set, zero value otherwise.</span>
+<span id="L187" class="ln">   187  </span>func (o *SyntheticsTestOptions) GetCheckCertificateRevocation() bool {
+<span id="L188" class="ln">   188  </span>	if o == nil || o.CheckCertificateRevocation == nil {
+<span id="L189" class="ln">   189  </span>		var ret bool
+<span id="L190" class="ln">   190  </span>		return ret
+<span id="L191" class="ln">   191  </span>	}
+<span id="L192" class="ln">   192  </span>	return *o.CheckCertificateRevocation
+<span id="L193" class="ln">   193  </span>}
+<span id="L194" class="ln">   194  </span>
+<span id="L195" class="ln">   195  </span><span class="comment">// GetCheckCertificateRevocationOk returns a tuple with the CheckCertificateRevocation field value if set, nil otherwise</span>
+<span id="L196" class="ln">   196  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L197" class="ln">   197  </span>func (o *SyntheticsTestOptions) GetCheckCertificateRevocationOk() (*bool, bool) {
+<span id="L198" class="ln">   198  </span>	if o == nil || o.CheckCertificateRevocation == nil {
+<span id="L199" class="ln">   199  </span>		return nil, false
+<span id="L200" class="ln">   200  </span>	}
+<span id="L201" class="ln">   201  </span>	return o.CheckCertificateRevocation, true
+<span id="L202" class="ln">   202  </span>}
+<span id="L203" class="ln">   203  </span>
+<span id="L204" class="ln">   204  </span><span class="comment">// HasCheckCertificateRevocation returns a boolean if a field has been set.</span>
+<span id="L205" class="ln">   205  </span>func (o *SyntheticsTestOptions) HasCheckCertificateRevocation() bool {
+<span id="L206" class="ln">   206  </span>	return o != nil &amp;&amp; o.CheckCertificateRevocation != nil
+<span id="L207" class="ln">   207  </span>}
+<span id="L208" class="ln">   208  </span>
+<span id="L209" class="ln">   209  </span><span class="comment">// SetCheckCertificateRevocation gets a reference to the given bool and assigns it to the CheckCertificateRevocation field.</span>
+<span id="L210" class="ln">   210  </span>func (o *SyntheticsTestOptions) SetCheckCertificateRevocation(v bool) {
+<span id="L211" class="ln">   211  </span>	o.CheckCertificateRevocation = &amp;v
+<span id="L212" class="ln">   212  </span>}
+<span id="L213" class="ln">   213  </span>
+<span id="L214" class="ln">   214  </span><span class="comment">// GetCi returns the Ci field value if set, zero value otherwise.</span>
+<span id="L215" class="ln">   215  </span>func (o *SyntheticsTestOptions) GetCi() SyntheticsTestCiOptions {
+<span id="L216" class="ln">   216  </span>	if o == nil || o.Ci == nil {
+<span id="L217" class="ln">   217  </span>		var ret SyntheticsTestCiOptions
+<span id="L218" class="ln">   218  </span>		return ret
+<span id="L219" class="ln">   219  </span>	}
+<span id="L220" class="ln">   220  </span>	return *o.Ci
+<span id="L221" class="ln">   221  </span>}
+<span id="L222" class="ln">   222  </span>
+<span id="L223" class="ln">   223  </span><span class="comment">// GetCiOk returns a tuple with the Ci field value if set, nil otherwise</span>
+<span id="L224" class="ln">   224  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L225" class="ln">   225  </span>func (o *SyntheticsTestOptions) GetCiOk() (*SyntheticsTestCiOptions, bool) {
+<span id="L226" class="ln">   226  </span>	if o == nil || o.Ci == nil {
+<span id="L227" class="ln">   227  </span>		return nil, false
+<span id="L228" class="ln">   228  </span>	}
+<span id="L229" class="ln">   229  </span>	return o.Ci, true
+<span id="L230" class="ln">   230  </span>}
+<span id="L231" class="ln">   231  </span>
+<span id="L232" class="ln">   232  </span><span class="comment">// HasCi returns a boolean if a field has been set.</span>
+<span id="L233" class="ln">   233  </span>func (o *SyntheticsTestOptions) HasCi() bool {
+<span id="L234" class="ln">   234  </span>	return o != nil &amp;&amp; o.Ci != nil
+<span id="L235" class="ln">   235  </span>}
+<span id="L236" class="ln">   236  </span>
+<span id="L237" class="ln">   237  </span><span class="comment">// SetCi gets a reference to the given SyntheticsTestCiOptions and assigns it to the Ci field.</span>
+<span id="L238" class="ln">   238  </span>func (o *SyntheticsTestOptions) SetCi(v SyntheticsTestCiOptions) {
+<span id="L239" class="ln">   239  </span>	o.Ci = &amp;v
+<span id="L240" class="ln">   240  </span>}
+<span id="L241" class="ln">   241  </span>
+<span id="L242" class="ln">   242  </span><span class="comment">// GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.</span>
+<span id="L243" class="ln">   243  </span>func (o *SyntheticsTestOptions) GetDeviceIds() []string {
+<span id="L244" class="ln">   244  </span>	if o == nil || o.DeviceIds == nil {
+<span id="L245" class="ln">   245  </span>		var ret []string
+<span id="L246" class="ln">   246  </span>		return ret
+<span id="L247" class="ln">   247  </span>	}
+<span id="L248" class="ln">   248  </span>	return o.DeviceIds
+<span id="L249" class="ln">   249  </span>}
+<span id="L250" class="ln">   250  </span>
+<span id="L251" class="ln">   251  </span><span class="comment">// GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, nil otherwise</span>
+<span id="L252" class="ln">   252  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L253" class="ln">   253  </span>func (o *SyntheticsTestOptions) GetDeviceIdsOk() (*[]string, bool) {
+<span id="L254" class="ln">   254  </span>	if o == nil || o.DeviceIds == nil {
+<span id="L255" class="ln">   255  </span>		return nil, false
+<span id="L256" class="ln">   256  </span>	}
+<span id="L257" class="ln">   257  </span>	return &amp;o.DeviceIds, true
+<span id="L258" class="ln">   258  </span>}
+<span id="L259" class="ln">   259  </span>
+<span id="L260" class="ln">   260  </span><span class="comment">// HasDeviceIds returns a boolean if a field has been set.</span>
+<span id="L261" class="ln">   261  </span>func (o *SyntheticsTestOptions) HasDeviceIds() bool {
+<span id="L262" class="ln">   262  </span>	return o != nil &amp;&amp; o.DeviceIds != nil
+<span id="L263" class="ln">   263  </span>}
+<span id="L264" class="ln">   264  </span>
+<span id="L265" class="ln">   265  </span><span class="comment">// SetDeviceIds gets a reference to the given []string and assigns it to the DeviceIds field.</span>
+<span id="L266" class="ln">   266  </span>func (o *SyntheticsTestOptions) SetDeviceIds(v []string) {
+<span id="L267" class="ln">   267  </span>	o.DeviceIds = v
+<span id="L268" class="ln">   268  </span>}
+<span id="L269" class="ln">   269  </span>
+<span id="L270" class="ln">   270  </span><span class="comment">// GetDisableAiaIntermediateFetching returns the DisableAiaIntermediateFetching field value if set, zero value otherwise.</span>
+<span id="L271" class="ln">   271  </span>func (o *SyntheticsTestOptions) GetDisableAiaIntermediateFetching() bool {
+<span id="L272" class="ln">   272  </span>	if o == nil || o.DisableAiaIntermediateFetching == nil {
+<span id="L273" class="ln">   273  </span>		var ret bool
+<span id="L274" class="ln">   274  </span>		return ret
+<span id="L275" class="ln">   275  </span>	}
+<span id="L276" class="ln">   276  </span>	return *o.DisableAiaIntermediateFetching
+<span id="L277" class="ln">   277  </span>}
+<span id="L278" class="ln">   278  </span>
+<span id="L279" class="ln">   279  </span><span class="comment">// GetDisableAiaIntermediateFetchingOk returns a tuple with the DisableAiaIntermediateFetching field value if set, nil otherwise</span>
+<span id="L280" class="ln">   280  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L281" class="ln">   281  </span>func (o *SyntheticsTestOptions) GetDisableAiaIntermediateFetchingOk() (*bool, bool) {
+<span id="L282" class="ln">   282  </span>	if o == nil || o.DisableAiaIntermediateFetching == nil {
+<span id="L283" class="ln">   283  </span>		return nil, false
+<span id="L284" class="ln">   284  </span>	}
+<span id="L285" class="ln">   285  </span>	return o.DisableAiaIntermediateFetching, true
+<span id="L286" class="ln">   286  </span>}
+<span id="L287" class="ln">   287  </span>
+<span id="L288" class="ln">   288  </span><span class="comment">// HasDisableAiaIntermediateFetching returns a boolean if a field has been set.</span>
+<span id="L289" class="ln">   289  </span>func (o *SyntheticsTestOptions) HasDisableAiaIntermediateFetching() bool {
+<span id="L290" class="ln">   290  </span>	return o != nil &amp;&amp; o.DisableAiaIntermediateFetching != nil
+<span id="L291" class="ln">   291  </span>}
+<span id="L292" class="ln">   292  </span>
+<span id="L293" class="ln">   293  </span><span class="comment">// SetDisableAiaIntermediateFetching gets a reference to the given bool and assigns it to the DisableAiaIntermediateFetching field.</span>
+<span id="L294" class="ln">   294  </span>func (o *SyntheticsTestOptions) SetDisableAiaIntermediateFetching(v bool) {
+<span id="L295" class="ln">   295  </span>	o.DisableAiaIntermediateFetching = &amp;v
+<span id="L296" class="ln">   296  </span>}
+<span id="L297" class="ln">   297  </span>
+<span id="L298" class="ln">   298  </span><span class="comment">// GetDisableCors returns the DisableCors field value if set, zero value otherwise.</span>
+<span id="L299" class="ln">   299  </span>func (o *SyntheticsTestOptions) GetDisableCors() bool {
+<span id="L300" class="ln">   300  </span>	if o == nil || o.DisableCors == nil {
+<span id="L301" class="ln">   301  </span>		var ret bool
+<span id="L302" class="ln">   302  </span>		return ret
+<span id="L303" class="ln">   303  </span>	}
+<span id="L304" class="ln">   304  </span>	return *o.DisableCors
+<span id="L305" class="ln">   305  </span>}
+<span id="L306" class="ln">   306  </span>
+<span id="L307" class="ln">   307  </span><span class="comment">// GetDisableCorsOk returns a tuple with the DisableCors field value if set, nil otherwise</span>
+<span id="L308" class="ln">   308  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L309" class="ln">   309  </span>func (o *SyntheticsTestOptions) GetDisableCorsOk() (*bool, bool) {
+<span id="L310" class="ln">   310  </span>	if o == nil || o.DisableCors == nil {
+<span id="L311" class="ln">   311  </span>		return nil, false
+<span id="L312" class="ln">   312  </span>	}
+<span id="L313" class="ln">   313  </span>	return o.DisableCors, true
+<span id="L314" class="ln">   314  </span>}
+<span id="L315" class="ln">   315  </span>
+<span id="L316" class="ln">   316  </span><span class="comment">// HasDisableCors returns a boolean if a field has been set.</span>
+<span id="L317" class="ln">   317  </span>func (o *SyntheticsTestOptions) HasDisableCors() bool {
+<span id="L318" class="ln">   318  </span>	return o != nil &amp;&amp; o.DisableCors != nil
+<span id="L319" class="ln">   319  </span>}
+<span id="L320" class="ln">   320  </span>
+<span id="L321" class="ln">   321  </span><span class="comment">// SetDisableCors gets a reference to the given bool and assigns it to the DisableCors field.</span>
+<span id="L322" class="ln">   322  </span>func (o *SyntheticsTestOptions) SetDisableCors(v bool) {
+<span id="L323" class="ln">   323  </span>	o.DisableCors = &amp;v
+<span id="L324" class="ln">   324  </span>}
+<span id="L325" class="ln">   325  </span>
+<span id="L326" class="ln">   326  </span><span class="comment">// GetDisableCsp returns the DisableCsp field value if set, zero value otherwise.</span>
+<span id="L327" class="ln">   327  </span>func (o *SyntheticsTestOptions) GetDisableCsp() bool {
+<span id="L328" class="ln">   328  </span>	if o == nil || o.DisableCsp == nil {
+<span id="L329" class="ln">   329  </span>		var ret bool
+<span id="L330" class="ln">   330  </span>		return ret
+<span id="L331" class="ln">   331  </span>	}
+<span id="L332" class="ln">   332  </span>	return *o.DisableCsp
+<span id="L333" class="ln">   333  </span>}
+<span id="L334" class="ln">   334  </span>
+<span id="L335" class="ln">   335  </span><span class="comment">// GetDisableCspOk returns a tuple with the DisableCsp field value if set, nil otherwise</span>
+<span id="L336" class="ln">   336  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L337" class="ln">   337  </span>func (o *SyntheticsTestOptions) GetDisableCspOk() (*bool, bool) {
+<span id="L338" class="ln">   338  </span>	if o == nil || o.DisableCsp == nil {
+<span id="L339" class="ln">   339  </span>		return nil, false
+<span id="L340" class="ln">   340  </span>	}
+<span id="L341" class="ln">   341  </span>	return o.DisableCsp, true
+<span id="L342" class="ln">   342  </span>}
+<span id="L343" class="ln">   343  </span>
+<span id="L344" class="ln">   344  </span><span class="comment">// HasDisableCsp returns a boolean if a field has been set.</span>
+<span id="L345" class="ln">   345  </span>func (o *SyntheticsTestOptions) HasDisableCsp() bool {
+<span id="L346" class="ln">   346  </span>	return o != nil &amp;&amp; o.DisableCsp != nil
+<span id="L347" class="ln">   347  </span>}
+<span id="L348" class="ln">   348  </span>
+<span id="L349" class="ln">   349  </span><span class="comment">// SetDisableCsp gets a reference to the given bool and assigns it to the DisableCsp field.</span>
+<span id="L350" class="ln">   350  </span>func (o *SyntheticsTestOptions) SetDisableCsp(v bool) {
+<span id="L351" class="ln">   351  </span>	o.DisableCsp = &amp;v
+<span id="L352" class="ln">   352  </span>}
+<span id="L353" class="ln">   353  </span>
+<span id="L354" class="ln">   354  </span><span class="comment">// GetEnableProfiling returns the EnableProfiling field value if set, zero value otherwise.</span>
+<span id="L355" class="ln">   355  </span>func (o *SyntheticsTestOptions) GetEnableProfiling() bool {
+<span id="L356" class="ln">   356  </span>	if o == nil || o.EnableProfiling == nil {
+<span id="L357" class="ln">   357  </span>		var ret bool
+<span id="L358" class="ln">   358  </span>		return ret
+<span id="L359" class="ln">   359  </span>	}
+<span id="L360" class="ln">   360  </span>	return *o.EnableProfiling
+<span id="L361" class="ln">   361  </span>}
+<span id="L362" class="ln">   362  </span>
+<span id="L363" class="ln">   363  </span><span class="comment">// GetEnableProfilingOk returns a tuple with the EnableProfiling field value if set, nil otherwise</span>
+<span id="L364" class="ln">   364  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L365" class="ln">   365  </span>func (o *SyntheticsTestOptions) GetEnableProfilingOk() (*bool, bool) {
+<span id="L366" class="ln">   366  </span>	if o == nil || o.EnableProfiling == nil {
+<span id="L367" class="ln">   367  </span>		return nil, false
+<span id="L368" class="ln">   368  </span>	}
+<span id="L369" class="ln">   369  </span>	return o.EnableProfiling, true
+<span id="L370" class="ln">   370  </span>}
+<span id="L371" class="ln">   371  </span>
+<span id="L372" class="ln">   372  </span><span class="comment">// HasEnableProfiling returns a boolean if a field has been set.</span>
+<span id="L373" class="ln">   373  </span>func (o *SyntheticsTestOptions) HasEnableProfiling() bool {
+<span id="L374" class="ln">   374  </span>	return o != nil &amp;&amp; o.EnableProfiling != nil
+<span id="L375" class="ln">   375  </span>}
+<span id="L376" class="ln">   376  </span>
+<span id="L377" class="ln">   377  </span><span class="comment">// SetEnableProfiling gets a reference to the given bool and assigns it to the EnableProfiling field.</span>
+<span id="L378" class="ln">   378  </span>func (o *SyntheticsTestOptions) SetEnableProfiling(v bool) {
+<span id="L379" class="ln">   379  </span>	o.EnableProfiling = &amp;v
+<span id="L380" class="ln">   380  </span>}
+<span id="L381" class="ln">   381  </span>
+<span id="L382" class="ln">   382  </span><span class="comment">// GetEnableSecurityTesting returns the EnableSecurityTesting field value if set, zero value otherwise.</span>
+<span id="L383" class="ln">   383  </span><span class="comment">// Deprecated</span>
+<span id="L384" class="ln">   384  </span>func (o *SyntheticsTestOptions) GetEnableSecurityTesting() bool {
+<span id="L385" class="ln">   385  </span>	if o == nil || o.EnableSecurityTesting == nil {
+<span id="L386" class="ln">   386  </span>		var ret bool
+<span id="L387" class="ln">   387  </span>		return ret
+<span id="L388" class="ln">   388  </span>	}
+<span id="L389" class="ln">   389  </span>	return *o.EnableSecurityTesting
+<span id="L390" class="ln">   390  </span>}
+<span id="L391" class="ln">   391  </span>
+<span id="L392" class="ln">   392  </span><span class="comment">// GetEnableSecurityTestingOk returns a tuple with the EnableSecurityTesting field value if set, nil otherwise</span>
+<span id="L393" class="ln">   393  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L394" class="ln">   394  </span><span class="comment">// Deprecated</span>
+<span id="L395" class="ln">   395  </span>func (o *SyntheticsTestOptions) GetEnableSecurityTestingOk() (*bool, bool) {
+<span id="L396" class="ln">   396  </span>	if o == nil || o.EnableSecurityTesting == nil {
+<span id="L397" class="ln">   397  </span>		return nil, false
+<span id="L398" class="ln">   398  </span>	}
+<span id="L399" class="ln">   399  </span>	return o.EnableSecurityTesting, true
+<span id="L400" class="ln">   400  </span>}
+<span id="L401" class="ln">   401  </span>
+<span id="L402" class="ln">   402  </span><span class="comment">// HasEnableSecurityTesting returns a boolean if a field has been set.</span>
+<span id="L403" class="ln">   403  </span>func (o *SyntheticsTestOptions) HasEnableSecurityTesting() bool {
+<span id="L404" class="ln">   404  </span>	return o != nil &amp;&amp; o.EnableSecurityTesting != nil
+<span id="L405" class="ln">   405  </span>}
+<span id="L406" class="ln">   406  </span>
+<span id="L407" class="ln">   407  </span><span class="comment">// SetEnableSecurityTesting gets a reference to the given bool and assigns it to the EnableSecurityTesting field.</span>
+<span id="L408" class="ln">   408  </span><span class="comment">// Deprecated</span>
+<span id="L409" class="ln">   409  </span>func (o *SyntheticsTestOptions) SetEnableSecurityTesting(v bool) {
+<span id="L410" class="ln">   410  </span>	o.EnableSecurityTesting = &amp;v
+<span id="L411" class="ln">   411  </span>}
+<span id="L412" class="ln">   412  </span>
+<span id="L413" class="ln">   413  </span><span class="comment">// GetFollowRedirects returns the FollowRedirects field value if set, zero value otherwise.</span>
+<span id="L414" class="ln">   414  </span>func (o *SyntheticsTestOptions) GetFollowRedirects() bool {
+<span id="L415" class="ln">   415  </span>	if o == nil || o.FollowRedirects == nil {
+<span id="L416" class="ln">   416  </span>		var ret bool
+<span id="L417" class="ln">   417  </span>		return ret
+<span id="L418" class="ln">   418  </span>	}
+<span id="L419" class="ln">   419  </span>	return *o.FollowRedirects
+<span id="L420" class="ln">   420  </span>}
+<span id="L421" class="ln">   421  </span>
+<span id="L422" class="ln">   422  </span><span class="comment">// GetFollowRedirectsOk returns a tuple with the FollowRedirects field value if set, nil otherwise</span>
+<span id="L423" class="ln">   423  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L424" class="ln">   424  </span>func (o *SyntheticsTestOptions) GetFollowRedirectsOk() (*bool, bool) {
+<span id="L425" class="ln">   425  </span>	if o == nil || o.FollowRedirects == nil {
+<span id="L426" class="ln">   426  </span>		return nil, false
+<span id="L427" class="ln">   427  </span>	}
+<span id="L428" class="ln">   428  </span>	return o.FollowRedirects, true
+<span id="L429" class="ln">   429  </span>}
+<span id="L430" class="ln">   430  </span>
+<span id="L431" class="ln">   431  </span><span class="comment">// HasFollowRedirects returns a boolean if a field has been set.</span>
+<span id="L432" class="ln">   432  </span>func (o *SyntheticsTestOptions) HasFollowRedirects() bool {
+<span id="L433" class="ln">   433  </span>	return o != nil &amp;&amp; o.FollowRedirects != nil
+<span id="L434" class="ln">   434  </span>}
+<span id="L435" class="ln">   435  </span>
+<span id="L436" class="ln">   436  </span><span class="comment">// SetFollowRedirects gets a reference to the given bool and assigns it to the FollowRedirects field.</span>
+<span id="L437" class="ln">   437  </span>func (o *SyntheticsTestOptions) SetFollowRedirects(v bool) {
+<span id="L438" class="ln">   438  </span>	o.FollowRedirects = &amp;v
+<span id="L439" class="ln">   439  </span>}
+<span id="L440" class="ln">   440  </span>
+<span id="L441" class="ln">   441  </span><span class="comment">// GetHttpVersion returns the HttpVersion field value if set, zero value otherwise.</span>
+<span id="L442" class="ln">   442  </span>func (o *SyntheticsTestOptions) GetHttpVersion() SyntheticsTestOptionsHTTPVersion {
+<span id="L443" class="ln">   443  </span>	if o == nil || o.HttpVersion == nil {
+<span id="L444" class="ln">   444  </span>		var ret SyntheticsTestOptionsHTTPVersion
+<span id="L445" class="ln">   445  </span>		return ret
+<span id="L446" class="ln">   446  </span>	}
+<span id="L447" class="ln">   447  </span>	return *o.HttpVersion
+<span id="L448" class="ln">   448  </span>}
+<span id="L449" class="ln">   449  </span>
+<span id="L450" class="ln">   450  </span><span class="comment">// GetHttpVersionOk returns a tuple with the HttpVersion field value if set, nil otherwise</span>
+<span id="L451" class="ln">   451  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L452" class="ln">   452  </span>func (o *SyntheticsTestOptions) GetHttpVersionOk() (*SyntheticsTestOptionsHTTPVersion, bool) {
+<span id="L453" class="ln">   453  </span>	if o == nil || o.HttpVersion == nil {
+<span id="L454" class="ln">   454  </span>		return nil, false
+<span id="L455" class="ln">   455  </span>	}
+<span id="L456" class="ln">   456  </span>	return o.HttpVersion, true
+<span id="L457" class="ln">   457  </span>}
+<span id="L458" class="ln">   458  </span>
+<span id="L459" class="ln">   459  </span><span class="comment">// HasHttpVersion returns a boolean if a field has been set.</span>
+<span id="L460" class="ln">   460  </span>func (o *SyntheticsTestOptions) HasHttpVersion() bool {
+<span id="L461" class="ln">   461  </span>	return o != nil &amp;&amp; o.HttpVersion != nil
+<span id="L462" class="ln">   462  </span>}
+<span id="L463" class="ln">   463  </span>
+<span id="L464" class="ln">   464  </span><span class="comment">// SetHttpVersion gets a reference to the given SyntheticsTestOptionsHTTPVersion and assigns it to the HttpVersion field.</span>
+<span id="L465" class="ln">   465  </span>func (o *SyntheticsTestOptions) SetHttpVersion(v SyntheticsTestOptionsHTTPVersion) {
+<span id="L466" class="ln">   466  </span>	o.HttpVersion = &amp;v
+<span id="L467" class="ln">   467  </span>}
+<span id="L468" class="ln">   468  </span>
+<span id="L469" class="ln">   469  </span><span class="comment">// GetIgnoreServerCertificateError returns the IgnoreServerCertificateError field value if set, zero value otherwise.</span>
+<span id="L470" class="ln">   470  </span>func (o *SyntheticsTestOptions) GetIgnoreServerCertificateError() bool {
+<span id="L471" class="ln">   471  </span>	if o == nil || o.IgnoreServerCertificateError == nil {
+<span id="L472" class="ln">   472  </span>		var ret bool
+<span id="L473" class="ln">   473  </span>		return ret
+<span id="L474" class="ln">   474  </span>	}
+<span id="L475" class="ln">   475  </span>	return *o.IgnoreServerCertificateError
+<span id="L476" class="ln">   476  </span>}
+<span id="L477" class="ln">   477  </span>
+<span id="L478" class="ln">   478  </span><span class="comment">// GetIgnoreServerCertificateErrorOk returns a tuple with the IgnoreServerCertificateError field value if set, nil otherwise</span>
+<span id="L479" class="ln">   479  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L480" class="ln">   480  </span>func (o *SyntheticsTestOptions) GetIgnoreServerCertificateErrorOk() (*bool, bool) {
+<span id="L481" class="ln">   481  </span>	if o == nil || o.IgnoreServerCertificateError == nil {
+<span id="L482" class="ln">   482  </span>		return nil, false
+<span id="L483" class="ln">   483  </span>	}
+<span id="L484" class="ln">   484  </span>	return o.IgnoreServerCertificateError, true
+<span id="L485" class="ln">   485  </span>}
+<span id="L486" class="ln">   486  </span>
+<span id="L487" class="ln">   487  </span><span class="comment">// HasIgnoreServerCertificateError returns a boolean if a field has been set.</span>
+<span id="L488" class="ln">   488  </span>func (o *SyntheticsTestOptions) HasIgnoreServerCertificateError() bool {
+<span id="L489" class="ln">   489  </span>	return o != nil &amp;&amp; o.IgnoreServerCertificateError != nil
+<span id="L490" class="ln">   490  </span>}
+<span id="L491" class="ln">   491  </span>
+<span id="L492" class="ln">   492  </span><span class="comment">// SetIgnoreServerCertificateError gets a reference to the given bool and assigns it to the IgnoreServerCertificateError field.</span>
+<span id="L493" class="ln">   493  </span>func (o *SyntheticsTestOptions) SetIgnoreServerCertificateError(v bool) {
+<span id="L494" class="ln">   494  </span>	o.IgnoreServerCertificateError = &amp;v
+<span id="L495" class="ln">   495  </span>}
+<span id="L496" class="ln">   496  </span>
+<span id="L497" class="ln">   497  </span><span class="comment">// GetInitialNavigationTimeout returns the InitialNavigationTimeout field value if set, zero value otherwise.</span>
+<span id="L498" class="ln">   498  </span>func (o *SyntheticsTestOptions) GetInitialNavigationTimeout() int64 {
+<span id="L499" class="ln">   499  </span>	if o == nil || o.InitialNavigationTimeout == nil {
+<span id="L500" class="ln">   500  </span>		var ret int64
+<span id="L501" class="ln">   501  </span>		return ret
+<span id="L502" class="ln">   502  </span>	}
+<span id="L503" class="ln">   503  </span>	return *o.InitialNavigationTimeout
+<span id="L504" class="ln">   504  </span>}
+<span id="L505" class="ln">   505  </span>
+<span id="L506" class="ln">   506  </span><span class="comment">// GetInitialNavigationTimeoutOk returns a tuple with the InitialNavigationTimeout field value if set, nil otherwise</span>
+<span id="L507" class="ln">   507  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L508" class="ln">   508  </span>func (o *SyntheticsTestOptions) GetInitialNavigationTimeoutOk() (*int64, bool) {
+<span id="L509" class="ln">   509  </span>	if o == nil || o.InitialNavigationTimeout == nil {
+<span id="L510" class="ln">   510  </span>		return nil, false
+<span id="L511" class="ln">   511  </span>	}
+<span id="L512" class="ln">   512  </span>	return o.InitialNavigationTimeout, true
+<span id="L513" class="ln">   513  </span>}
+<span id="L514" class="ln">   514  </span>
+<span id="L515" class="ln">   515  </span><span class="comment">// HasInitialNavigationTimeout returns a boolean if a field has been set.</span>
+<span id="L516" class="ln">   516  </span>func (o *SyntheticsTestOptions) HasInitialNavigationTimeout() bool {
+<span id="L517" class="ln">   517  </span>	return o != nil &amp;&amp; o.InitialNavigationTimeout != nil
+<span id="L518" class="ln">   518  </span>}
+<span id="L519" class="ln">   519  </span>
+<span id="L520" class="ln">   520  </span><span class="comment">// SetInitialNavigationTimeout gets a reference to the given int64 and assigns it to the InitialNavigationTimeout field.</span>
+<span id="L521" class="ln">   521  </span>func (o *SyntheticsTestOptions) SetInitialNavigationTimeout(v int64) {
+<span id="L522" class="ln">   522  </span>	o.InitialNavigationTimeout = &amp;v
+<span id="L523" class="ln">   523  </span>}
+<span id="L524" class="ln">   524  </span>
+<span id="L525" class="ln">   525  </span><span class="comment">// GetMinFailureDuration returns the MinFailureDuration field value if set, zero value otherwise.</span>
+<span id="L526" class="ln">   526  </span>func (o *SyntheticsTestOptions) GetMinFailureDuration() int64 {
+<span id="L527" class="ln">   527  </span>	if o == nil || o.MinFailureDuration == nil {
+<span id="L528" class="ln">   528  </span>		var ret int64
+<span id="L529" class="ln">   529  </span>		return ret
+<span id="L530" class="ln">   530  </span>	}
+<span id="L531" class="ln">   531  </span>	return *o.MinFailureDuration
+<span id="L532" class="ln">   532  </span>}
+<span id="L533" class="ln">   533  </span>
+<span id="L534" class="ln">   534  </span><span class="comment">// GetMinFailureDurationOk returns a tuple with the MinFailureDuration field value if set, nil otherwise</span>
+<span id="L535" class="ln">   535  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L536" class="ln">   536  </span>func (o *SyntheticsTestOptions) GetMinFailureDurationOk() (*int64, bool) {
+<span id="L537" class="ln">   537  </span>	if o == nil || o.MinFailureDuration == nil {
+<span id="L538" class="ln">   538  </span>		return nil, false
+<span id="L539" class="ln">   539  </span>	}
+<span id="L540" class="ln">   540  </span>	return o.MinFailureDuration, true
+<span id="L541" class="ln">   541  </span>}
+<span id="L542" class="ln">   542  </span>
+<span id="L543" class="ln">   543  </span><span class="comment">// HasMinFailureDuration returns a boolean if a field has been set.</span>
+<span id="L544" class="ln">   544  </span>func (o *SyntheticsTestOptions) HasMinFailureDuration() bool {
+<span id="L545" class="ln">   545  </span>	return o != nil &amp;&amp; o.MinFailureDuration != nil
+<span id="L546" class="ln">   546  </span>}
+<span id="L547" class="ln">   547  </span>
+<span id="L548" class="ln">   548  </span><span class="comment">// SetMinFailureDuration gets a reference to the given int64 and assigns it to the MinFailureDuration field.</span>
+<span id="L549" class="ln">   549  </span>func (o *SyntheticsTestOptions) SetMinFailureDuration(v int64) {
+<span id="L550" class="ln">   550  </span>	o.MinFailureDuration = &amp;v
+<span id="L551" class="ln">   551  </span>}
+<span id="L552" class="ln">   552  </span>
+<span id="L553" class="ln">   553  </span><span class="comment">// GetMinLocationFailed returns the MinLocationFailed field value if set, zero value otherwise.</span>
+<span id="L554" class="ln">   554  </span>func (o *SyntheticsTestOptions) GetMinLocationFailed() int64 {
+<span id="L555" class="ln">   555  </span>	if o == nil || o.MinLocationFailed == nil {
+<span id="L556" class="ln">   556  </span>		var ret int64
+<span id="L557" class="ln">   557  </span>		return ret
+<span id="L558" class="ln">   558  </span>	}
+<span id="L559" class="ln">   559  </span>	return *o.MinLocationFailed
+<span id="L560" class="ln">   560  </span>}
+<span id="L561" class="ln">   561  </span>
+<span id="L562" class="ln">   562  </span><span class="comment">// GetMinLocationFailedOk returns a tuple with the MinLocationFailed field value if set, nil otherwise</span>
+<span id="L563" class="ln">   563  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L564" class="ln">   564  </span>func (o *SyntheticsTestOptions) GetMinLocationFailedOk() (*int64, bool) {
+<span id="L565" class="ln">   565  </span>	if o == nil || o.MinLocationFailed == nil {
+<span id="L566" class="ln">   566  </span>		return nil, false
+<span id="L567" class="ln">   567  </span>	}
+<span id="L568" class="ln">   568  </span>	return o.MinLocationFailed, true
+<span id="L569" class="ln">   569  </span>}
+<span id="L570" class="ln">   570  </span>
+<span id="L571" class="ln">   571  </span><span class="comment">// HasMinLocationFailed returns a boolean if a field has been set.</span>
+<span id="L572" class="ln">   572  </span>func (o *SyntheticsTestOptions) HasMinLocationFailed() bool {
+<span id="L573" class="ln">   573  </span>	return o != nil &amp;&amp; o.MinLocationFailed != nil
+<span id="L574" class="ln">   574  </span>}
+<span id="L575" class="ln">   575  </span>
+<span id="L576" class="ln">   576  </span><span class="comment">// SetMinLocationFailed gets a reference to the given int64 and assigns it to the MinLocationFailed field.</span>
+<span id="L577" class="ln">   577  </span>func (o *SyntheticsTestOptions) SetMinLocationFailed(v int64) {
+<span id="L578" class="ln">   578  </span>	o.MinLocationFailed = &amp;v
+<span id="L579" class="ln">   579  </span>}
+<span id="L580" class="ln">   580  </span>
+<span id="L581" class="ln">   581  </span><span class="comment">// GetMonitorName returns the MonitorName field value if set, zero value otherwise.</span>
+<span id="L582" class="ln">   582  </span>func (o *SyntheticsTestOptions) GetMonitorName() string {
+<span id="L583" class="ln">   583  </span>	if o == nil || o.MonitorName == nil {
+<span id="L584" class="ln">   584  </span>		var ret string
+<span id="L585" class="ln">   585  </span>		return ret
+<span id="L586" class="ln">   586  </span>	}
+<span id="L587" class="ln">   587  </span>	return *o.MonitorName
+<span id="L588" class="ln">   588  </span>}
+<span id="L589" class="ln">   589  </span>
+<span id="L590" class="ln">   590  </span><span class="comment">// GetMonitorNameOk returns a tuple with the MonitorName field value if set, nil otherwise</span>
+<span id="L591" class="ln">   591  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L592" class="ln">   592  </span>func (o *SyntheticsTestOptions) GetMonitorNameOk() (*string, bool) {
+<span id="L593" class="ln">   593  </span>	if o == nil || o.MonitorName == nil {
+<span id="L594" class="ln">   594  </span>		return nil, false
+<span id="L595" class="ln">   595  </span>	}
+<span id="L596" class="ln">   596  </span>	return o.MonitorName, true
+<span id="L597" class="ln">   597  </span>}
+<span id="L598" class="ln">   598  </span>
+<span id="L599" class="ln">   599  </span><span class="comment">// HasMonitorName returns a boolean if a field has been set.</span>
+<span id="L600" class="ln">   600  </span>func (o *SyntheticsTestOptions) HasMonitorName() bool {
+<span id="L601" class="ln">   601  </span>	return o != nil &amp;&amp; o.MonitorName != nil
+<span id="L602" class="ln">   602  </span>}
+<span id="L603" class="ln">   603  </span>
+<span id="L604" class="ln">   604  </span><span class="comment">// SetMonitorName gets a reference to the given string and assigns it to the MonitorName field.</span>
+<span id="L605" class="ln">   605  </span>func (o *SyntheticsTestOptions) SetMonitorName(v string) {
+<span id="L606" class="ln">   606  </span>	o.MonitorName = &amp;v
+<span id="L607" class="ln">   607  </span>}
+<span id="L608" class="ln">   608  </span>
+<span id="L609" class="ln">   609  </span><span class="comment">// GetMonitorOptions returns the MonitorOptions field value if set, zero value otherwise.</span>
+<span id="L610" class="ln">   610  </span>func (o *SyntheticsTestOptions) GetMonitorOptions() SyntheticsTestOptionsMonitorOptions {
+<span id="L611" class="ln">   611  </span>	if o == nil || o.MonitorOptions == nil {
+<span id="L612" class="ln">   612  </span>		var ret SyntheticsTestOptionsMonitorOptions
+<span id="L613" class="ln">   613  </span>		return ret
+<span id="L614" class="ln">   614  </span>	}
+<span id="L615" class="ln">   615  </span>	return *o.MonitorOptions
+<span id="L616" class="ln">   616  </span>}
+<span id="L617" class="ln">   617  </span>
+<span id="L618" class="ln">   618  </span><span class="comment">// GetMonitorOptionsOk returns a tuple with the MonitorOptions field value if set, nil otherwise</span>
+<span id="L619" class="ln">   619  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L620" class="ln">   620  </span>func (o *SyntheticsTestOptions) GetMonitorOptionsOk() (*SyntheticsTestOptionsMonitorOptions, bool) {
+<span id="L621" class="ln">   621  </span>	if o == nil || o.MonitorOptions == nil {
+<span id="L622" class="ln">   622  </span>		return nil, false
+<span id="L623" class="ln">   623  </span>	}
+<span id="L624" class="ln">   624  </span>	return o.MonitorOptions, true
+<span id="L625" class="ln">   625  </span>}
+<span id="L626" class="ln">   626  </span>
+<span id="L627" class="ln">   627  </span><span class="comment">// HasMonitorOptions returns a boolean if a field has been set.</span>
+<span id="L628" class="ln">   628  </span>func (o *SyntheticsTestOptions) HasMonitorOptions() bool {
+<span id="L629" class="ln">   629  </span>	return o != nil &amp;&amp; o.MonitorOptions != nil
+<span id="L630" class="ln">   630  </span>}
+<span id="L631" class="ln">   631  </span>
+<span id="L632" class="ln">   632  </span><span class="comment">// SetMonitorOptions gets a reference to the given SyntheticsTestOptionsMonitorOptions and assigns it to the MonitorOptions field.</span>
+<span id="L633" class="ln">   633  </span>func (o *SyntheticsTestOptions) SetMonitorOptions(v SyntheticsTestOptionsMonitorOptions) {
+<span id="L634" class="ln">   634  </span>	o.MonitorOptions = &amp;v
+<span id="L635" class="ln">   635  </span>}
+<span id="L636" class="ln">   636  </span>
+<span id="L637" class="ln">   637  </span><span class="comment">// GetMonitorPriority returns the MonitorPriority field value if set, zero value otherwise.</span>
+<span id="L638" class="ln">   638  </span>func (o *SyntheticsTestOptions) GetMonitorPriority() int32 {
+<span id="L639" class="ln">   639  </span>	if o == nil || o.MonitorPriority == nil {
+<span id="L640" class="ln">   640  </span>		var ret int32
+<span id="L641" class="ln">   641  </span>		return ret
+<span id="L642" class="ln">   642  </span>	}
+<span id="L643" class="ln">   643  </span>	return *o.MonitorPriority
+<span id="L644" class="ln">   644  </span>}
+<span id="L645" class="ln">   645  </span>
+<span id="L646" class="ln">   646  </span><span class="comment">// GetMonitorPriorityOk returns a tuple with the MonitorPriority field value if set, nil otherwise</span>
+<span id="L647" class="ln">   647  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L648" class="ln">   648  </span>func (o *SyntheticsTestOptions) GetMonitorPriorityOk() (*int32, bool) {
+<span id="L649" class="ln">   649  </span>	if o == nil || o.MonitorPriority == nil {
+<span id="L650" class="ln">   650  </span>		return nil, false
+<span id="L651" class="ln">   651  </span>	}
+<span id="L652" class="ln">   652  </span>	return o.MonitorPriority, true
+<span id="L653" class="ln">   653  </span>}
+<span id="L654" class="ln">   654  </span>
+<span id="L655" class="ln">   655  </span><span class="comment">// HasMonitorPriority returns a boolean if a field has been set.</span>
+<span id="L656" class="ln">   656  </span>func (o *SyntheticsTestOptions) HasMonitorPriority() bool {
+<span id="L657" class="ln">   657  </span>	return o != nil &amp;&amp; o.MonitorPriority != nil
+<span id="L658" class="ln">   658  </span>}
+<span id="L659" class="ln">   659  </span>
+<span id="L660" class="ln">   660  </span><span class="comment">// SetMonitorPriority gets a reference to the given int32 and assigns it to the MonitorPriority field.</span>
+<span id="L661" class="ln">   661  </span>func (o *SyntheticsTestOptions) SetMonitorPriority(v int32) {
+<span id="L662" class="ln">   662  </span>	o.MonitorPriority = &amp;v
+<span id="L663" class="ln">   663  </span>}
+<span id="L664" class="ln">   664  </span>
+<span id="L665" class="ln">   665  </span><span class="comment">// GetNoScreenshot returns the NoScreenshot field value if set, zero value otherwise.</span>
+<span id="L666" class="ln">   666  </span>func (o *SyntheticsTestOptions) GetNoScreenshot() bool {
+<span id="L667" class="ln">   667  </span>	if o == nil || o.NoScreenshot == nil {
+<span id="L668" class="ln">   668  </span>		var ret bool
+<span id="L669" class="ln">   669  </span>		return ret
+<span id="L670" class="ln">   670  </span>	}
+<span id="L671" class="ln">   671  </span>	return *o.NoScreenshot
+<span id="L672" class="ln">   672  </span>}
+<span id="L673" class="ln">   673  </span>
+<span id="L674" class="ln">   674  </span><span class="comment">// GetNoScreenshotOk returns a tuple with the NoScreenshot field value if set, nil otherwise</span>
+<span id="L675" class="ln">   675  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L676" class="ln">   676  </span>func (o *SyntheticsTestOptions) GetNoScreenshotOk() (*bool, bool) {
+<span id="L677" class="ln">   677  </span>	if o == nil || o.NoScreenshot == nil {
+<span id="L678" class="ln">   678  </span>		return nil, false
+<span id="L679" class="ln">   679  </span>	}
+<span id="L680" class="ln">   680  </span>	return o.NoScreenshot, true
+<span id="L681" class="ln">   681  </span>}
+<span id="L682" class="ln">   682  </span>
+<span id="L683" class="ln">   683  </span><span class="comment">// HasNoScreenshot returns a boolean if a field has been set.</span>
+<span id="L684" class="ln">   684  </span>func (o *SyntheticsTestOptions) HasNoScreenshot() bool {
+<span id="L685" class="ln">   685  </span>	return o != nil &amp;&amp; o.NoScreenshot != nil
+<span id="L686" class="ln">   686  </span>}
+<span id="L687" class="ln">   687  </span>
+<span id="L688" class="ln">   688  </span><span class="comment">// SetNoScreenshot gets a reference to the given bool and assigns it to the NoScreenshot field.</span>
+<span id="L689" class="ln">   689  </span>func (o *SyntheticsTestOptions) SetNoScreenshot(v bool) {
+<span id="L690" class="ln">   690  </span>	o.NoScreenshot = &amp;v
+<span id="L691" class="ln">   691  </span>}
+<span id="L692" class="ln">   692  </span>
+<span id="L693" class="ln">   693  </span><span class="comment">// GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.</span>
+<span id="L694" class="ln">   694  </span><span class="comment">// Deprecated</span>
+<span id="L695" class="ln">   695  </span>func (o *SyntheticsTestOptions) GetRestrictedRoles() []string {
+<span id="L696" class="ln">   696  </span>	if o == nil || o.RestrictedRoles == nil {
+<span id="L697" class="ln">   697  </span>		var ret []string
+<span id="L698" class="ln">   698  </span>		return ret
+<span id="L699" class="ln">   699  </span>	}
+<span id="L700" class="ln">   700  </span>	return o.RestrictedRoles
+<span id="L701" class="ln">   701  </span>}
+<span id="L702" class="ln">   702  </span>
+<span id="L703" class="ln">   703  </span><span class="comment">// GetRestrictedRolesOk returns a tuple with the RestrictedRoles field value if set, nil otherwise</span>
+<span id="L704" class="ln">   704  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L705" class="ln">   705  </span><span class="comment">// Deprecated</span>
+<span id="L706" class="ln">   706  </span>func (o *SyntheticsTestOptions) GetRestrictedRolesOk() (*[]string, bool) {
+<span id="L707" class="ln">   707  </span>	if o == nil || o.RestrictedRoles == nil {
+<span id="L708" class="ln">   708  </span>		return nil, false
+<span id="L709" class="ln">   709  </span>	}
+<span id="L710" class="ln">   710  </span>	return &amp;o.RestrictedRoles, true
+<span id="L711" class="ln">   711  </span>}
+<span id="L712" class="ln">   712  </span>
+<span id="L713" class="ln">   713  </span><span class="comment">// HasRestrictedRoles returns a boolean if a field has been set.</span>
+<span id="L714" class="ln">   714  </span>func (o *SyntheticsTestOptions) HasRestrictedRoles() bool {
+<span id="L715" class="ln">   715  </span>	return o != nil &amp;&amp; o.RestrictedRoles != nil
+<span id="L716" class="ln">   716  </span>}
+<span id="L717" class="ln">   717  </span>
+<span id="L718" class="ln">   718  </span><span class="comment">// SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.</span>
+<span id="L719" class="ln">   719  </span><span class="comment">// Deprecated</span>
+<span id="L720" class="ln">   720  </span>func (o *SyntheticsTestOptions) SetRestrictedRoles(v []string) {
+<span id="L721" class="ln">   721  </span>	o.RestrictedRoles = v
+<span id="L722" class="ln">   722  </span>}
+<span id="L723" class="ln">   723  </span>
+<span id="L724" class="ln">   724  </span><span class="comment">// GetRetry returns the Retry field value if set, zero value otherwise.</span>
+<span id="L725" class="ln">   725  </span>func (o *SyntheticsTestOptions) GetRetry() SyntheticsTestOptionsRetry {
+<span id="L726" class="ln">   726  </span>	if o == nil || o.Retry == nil {
+<span id="L727" class="ln">   727  </span>		var ret SyntheticsTestOptionsRetry
+<span id="L728" class="ln">   728  </span>		return ret
+<span id="L729" class="ln">   729  </span>	}
+<span id="L730" class="ln">   730  </span>	return *o.Retry
+<span id="L731" class="ln">   731  </span>}
+<span id="L732" class="ln">   732  </span>
+<span id="L733" class="ln">   733  </span><span class="comment">// GetRetryOk returns a tuple with the Retry field value if set, nil otherwise</span>
+<span id="L734" class="ln">   734  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L735" class="ln">   735  </span>func (o *SyntheticsTestOptions) GetRetryOk() (*SyntheticsTestOptionsRetry, bool) {
+<span id="L736" class="ln">   736  </span>	if o == nil || o.Retry == nil {
+<span id="L737" class="ln">   737  </span>		return nil, false
+<span id="L738" class="ln">   738  </span>	}
+<span id="L739" class="ln">   739  </span>	return o.Retry, true
+<span id="L740" class="ln">   740  </span>}
+<span id="L741" class="ln">   741  </span>
+<span id="L742" class="ln">   742  </span><span class="comment">// HasRetry returns a boolean if a field has been set.</span>
+<span id="L743" class="ln">   743  </span>func (o *SyntheticsTestOptions) HasRetry() bool {
+<span id="L744" class="ln">   744  </span>	return o != nil &amp;&amp; o.Retry != nil
+<span id="L745" class="ln">   745  </span>}
+<span id="L746" class="ln">   746  </span>
+<span id="L747" class="ln">   747  </span><span class="comment">// SetRetry gets a reference to the given SyntheticsTestOptionsRetry and assigns it to the Retry field.</span>
+<span id="L748" class="ln">   748  </span>func (o *SyntheticsTestOptions) SetRetry(v SyntheticsTestOptionsRetry) {
+<span id="L749" class="ln">   749  </span>	o.Retry = &amp;v
+<span id="L750" class="ln">   750  </span>}
+<span id="L751" class="ln">   751  </span>
+<span id="L752" class="ln">   752  </span><span class="comment">// GetRumSettings returns the RumSettings field value if set, zero value otherwise.</span>
+<span id="L753" class="ln">   753  </span>func (o *SyntheticsTestOptions) GetRumSettings() SyntheticsBrowserTestRumSettings {
+<span id="L754" class="ln">   754  </span>	if o == nil || o.RumSettings == nil {
+<span id="L755" class="ln">   755  </span>		var ret SyntheticsBrowserTestRumSettings
+<span id="L756" class="ln">   756  </span>		return ret
+<span id="L757" class="ln">   757  </span>	}
+<span id="L758" class="ln">   758  </span>	return *o.RumSettings
+<span id="L759" class="ln">   759  </span>}
+<span id="L760" class="ln">   760  </span>
+<span id="L761" class="ln">   761  </span><span class="comment">// GetRumSettingsOk returns a tuple with the RumSettings field value if set, nil otherwise</span>
+<span id="L762" class="ln">   762  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L763" class="ln">   763  </span>func (o *SyntheticsTestOptions) GetRumSettingsOk() (*SyntheticsBrowserTestRumSettings, bool) {
+<span id="L764" class="ln">   764  </span>	if o == nil || o.RumSettings == nil {
+<span id="L765" class="ln">   765  </span>		return nil, false
+<span id="L766" class="ln">   766  </span>	}
+<span id="L767" class="ln">   767  </span>	return o.RumSettings, true
+<span id="L768" class="ln">   768  </span>}
+<span id="L769" class="ln">   769  </span>
+<span id="L770" class="ln">   770  </span><span class="comment">// HasRumSettings returns a boolean if a field has been set.</span>
+<span id="L771" class="ln">   771  </span>func (o *SyntheticsTestOptions) HasRumSettings() bool {
+<span id="L772" class="ln">   772  </span>	return o != nil &amp;&amp; o.RumSettings != nil
+<span id="L773" class="ln">   773  </span>}
+<span id="L774" class="ln">   774  </span>
+<span id="L775" class="ln">   775  </span><span class="comment">// SetRumSettings gets a reference to the given SyntheticsBrowserTestRumSettings and assigns it to the RumSettings field.</span>
+<span id="L776" class="ln">   776  </span>func (o *SyntheticsTestOptions) SetRumSettings(v SyntheticsBrowserTestRumSettings) {
+<span id="L777" class="ln">   777  </span>	o.RumSettings = &amp;v
+<span id="L778" class="ln">   778  </span>}
+<span id="L779" class="ln">   779  </span>
+<span id="L780" class="ln">   780  </span><span class="comment">// GetScheduling returns the Scheduling field value if set, zero value otherwise.</span>
+<span id="L781" class="ln">   781  </span>func (o *SyntheticsTestOptions) GetScheduling() SyntheticsTestOptionsScheduling {
+<span id="L782" class="ln">   782  </span>	if o == nil || o.Scheduling == nil {
+<span id="L783" class="ln">   783  </span>		var ret SyntheticsTestOptionsScheduling
+<span id="L784" class="ln">   784  </span>		return ret
+<span id="L785" class="ln">   785  </span>	}
+<span id="L786" class="ln">   786  </span>	return *o.Scheduling
+<span id="L787" class="ln">   787  </span>}
+<span id="L788" class="ln">   788  </span>
+<span id="L789" class="ln">   789  </span><span class="comment">// GetSchedulingOk returns a tuple with the Scheduling field value if set, nil otherwise</span>
+<span id="L790" class="ln">   790  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L791" class="ln">   791  </span>func (o *SyntheticsTestOptions) GetSchedulingOk() (*SyntheticsTestOptionsScheduling, bool) {
+<span id="L792" class="ln">   792  </span>	if o == nil || o.Scheduling == nil {
+<span id="L793" class="ln">   793  </span>		return nil, false
+<span id="L794" class="ln">   794  </span>	}
+<span id="L795" class="ln">   795  </span>	return o.Scheduling, true
+<span id="L796" class="ln">   796  </span>}
+<span id="L797" class="ln">   797  </span>
+<span id="L798" class="ln">   798  </span><span class="comment">// HasScheduling returns a boolean if a field has been set.</span>
+<span id="L799" class="ln">   799  </span>func (o *SyntheticsTestOptions) HasScheduling() bool {
+<span id="L800" class="ln">   800  </span>	return o != nil &amp;&amp; o.Scheduling != nil
+<span id="L801" class="ln">   801  </span>}
+<span id="L802" class="ln">   802  </span>
+<span id="L803" class="ln">   803  </span><span class="comment">// SetScheduling gets a reference to the given SyntheticsTestOptionsScheduling and assigns it to the Scheduling field.</span>
+<span id="L804" class="ln">   804  </span>func (o *SyntheticsTestOptions) SetScheduling(v SyntheticsTestOptionsScheduling) {
+<span id="L805" class="ln">   805  </span>	o.Scheduling = &amp;v
+<span id="L806" class="ln">   806  </span>}
+<span id="L807" class="ln">   807  </span>
+<span id="L808" class="ln">   808  </span><span class="comment">// GetTickEvery returns the TickEvery field value if set, zero value otherwise.</span>
+<span id="L809" class="ln">   809  </span>func (o *SyntheticsTestOptions) GetTickEvery() int64 {
+<span id="L810" class="ln">   810  </span>	if o == nil || o.TickEvery == nil {
+<span id="L811" class="ln">   811  </span>		var ret int64
+<span id="L812" class="ln">   812  </span>		return ret
+<span id="L813" class="ln">   813  </span>	}
+<span id="L814" class="ln">   814  </span>	return *o.TickEvery
+<span id="L815" class="ln">   815  </span>}
+<span id="L816" class="ln">   816  </span>
+<span id="L817" class="ln">   817  </span><span class="comment">// GetTickEveryOk returns a tuple with the TickEvery field value if set, nil otherwise</span>
+<span id="L818" class="ln">   818  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L819" class="ln">   819  </span>func (o *SyntheticsTestOptions) GetTickEveryOk() (*int64, bool) {
+<span id="L820" class="ln">   820  </span>	if o == nil || o.TickEvery == nil {
+<span id="L821" class="ln">   821  </span>		return nil, false
+<span id="L822" class="ln">   822  </span>	}
+<span id="L823" class="ln">   823  </span>	return o.TickEvery, true
+<span id="L824" class="ln">   824  </span>}
+<span id="L825" class="ln">   825  </span>
+<span id="L826" class="ln">   826  </span><span class="comment">// HasTickEvery returns a boolean if a field has been set.</span>
+<span id="L827" class="ln">   827  </span>func (o *SyntheticsTestOptions) HasTickEvery() bool {
+<span id="L828" class="ln">   828  </span>	return o != nil &amp;&amp; o.TickEvery != nil
+<span id="L829" class="ln">   829  </span>}
+<span id="L830" class="ln">   830  </span>
+<span id="L831" class="ln">   831  </span><span class="comment">// SetTickEvery gets a reference to the given int64 and assigns it to the TickEvery field.</span>
+<span id="L832" class="ln">   832  </span>func (o *SyntheticsTestOptions) SetTickEvery(v int64) {
+<span id="L833" class="ln">   833  </span>	o.TickEvery = &amp;v
+<span id="L834" class="ln">   834  </span>}
+<span id="L835" class="ln">   835  </span>
+<span id="L836" class="ln">   836  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L837" class="ln">   837  </span>func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
+<span id="L838" class="ln">   838  </span>	toSerialize := map[string]interface{}{}
+<span id="L839" class="ln">   839  </span>	if o.UnparsedObject != nil {
+<span id="L840" class="ln">   840  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L841" class="ln">   841  </span>	}
+<span id="L842" class="ln">   842  </span>	if o.AcceptSelfSigned != nil {
+<span id="L843" class="ln">   843  </span>		toSerialize[&#34;accept_self_signed&#34;] = o.AcceptSelfSigned
+<span id="L844" class="ln">   844  </span>	}
+<span id="L845" class="ln">   845  </span>	if o.AllowInsecure != nil {
+<span id="L846" class="ln">   846  </span>		toSerialize[&#34;allow_insecure&#34;] = o.AllowInsecure
+<span id="L847" class="ln">   847  </span>	}
+<span id="L848" class="ln">   848  </span>	if o.BlockedRequestPatterns != nil {
+<span id="L849" class="ln">   849  </span>		toSerialize[&#34;blockedRequestPatterns&#34;] = o.BlockedRequestPatterns
+<span id="L850" class="ln">   850  </span>	}
+<span id="L851" class="ln">   851  </span>	if o.CheckCertificateRevocation != nil {
+<span id="L852" class="ln">   852  </span>		toSerialize[&#34;checkCertificateRevocation&#34;] = o.CheckCertificateRevocation
+<span id="L853" class="ln">   853  </span>	}
+<span id="L854" class="ln">   854  </span>	if o.Ci != nil {
+<span id="L855" class="ln">   855  </span>		toSerialize[&#34;ci&#34;] = o.Ci
+<span id="L856" class="ln">   856  </span>	}
+<span id="L857" class="ln">   857  </span>	if o.DeviceIds != nil {
+<span id="L858" class="ln">   858  </span>		toSerialize[&#34;device_ids&#34;] = o.DeviceIds
+<span id="L859" class="ln">   859  </span>	}
+<span id="L860" class="ln">   860  </span>	if o.DisableAiaIntermediateFetching != nil {
+<span id="L861" class="ln">   861  </span>		toSerialize[&#34;disableAiaIntermediateFetching&#34;] = o.DisableAiaIntermediateFetching
+<span id="L862" class="ln">   862  </span>	}
+<span id="L863" class="ln">   863  </span>	if o.DisableCors != nil {
+<span id="L864" class="ln">   864  </span>		toSerialize[&#34;disableCors&#34;] = o.DisableCors
+<span id="L865" class="ln">   865  </span>	}
+<span id="L866" class="ln">   866  </span>	if o.DisableCsp != nil {
+<span id="L867" class="ln">   867  </span>		toSerialize[&#34;disableCsp&#34;] = o.DisableCsp
+<span id="L868" class="ln">   868  </span>	}
+<span id="L869" class="ln">   869  </span>	if o.EnableProfiling != nil {
+<span id="L870" class="ln">   870  </span>		toSerialize[&#34;enableProfiling&#34;] = o.EnableProfiling
+<span id="L871" class="ln">   871  </span>	}
+<span id="L872" class="ln">   872  </span>	if o.EnableSecurityTesting != nil {
+<span id="L873" class="ln">   873  </span>		toSerialize[&#34;enableSecurityTesting&#34;] = o.EnableSecurityTesting
+<span id="L874" class="ln">   874  </span>	}
+<span id="L875" class="ln">   875  </span>	if o.FollowRedirects != nil {
+<span id="L876" class="ln">   876  </span>		toSerialize[&#34;follow_redirects&#34;] = o.FollowRedirects
+<span id="L877" class="ln">   877  </span>	}
+<span id="L878" class="ln">   878  </span>	if o.HttpVersion != nil {
+<span id="L879" class="ln">   879  </span>		toSerialize[&#34;httpVersion&#34;] = o.HttpVersion
+<span id="L880" class="ln">   880  </span>	}
+<span id="L881" class="ln">   881  </span>	if o.IgnoreServerCertificateError != nil {
+<span id="L882" class="ln">   882  </span>		toSerialize[&#34;ignoreServerCertificateError&#34;] = o.IgnoreServerCertificateError
+<span id="L883" class="ln">   883  </span>	}
+<span id="L884" class="ln">   884  </span>	if o.InitialNavigationTimeout != nil {
+<span id="L885" class="ln">   885  </span>		toSerialize[&#34;initialNavigationTimeout&#34;] = o.InitialNavigationTimeout
+<span id="L886" class="ln">   886  </span>	}
+<span id="L887" class="ln">   887  </span>	if o.MinFailureDuration != nil {
+<span id="L888" class="ln">   888  </span>		toSerialize[&#34;min_failure_duration&#34;] = o.MinFailureDuration
+<span id="L889" class="ln">   889  </span>	}
+<span id="L890" class="ln">   890  </span>	if o.MinLocationFailed != nil {
+<span id="L891" class="ln">   891  </span>		toSerialize[&#34;min_location_failed&#34;] = o.MinLocationFailed
+<span id="L892" class="ln">   892  </span>	}
+<span id="L893" class="ln">   893  </span>	if o.MonitorName != nil {
+<span id="L894" class="ln">   894  </span>		toSerialize[&#34;monitor_name&#34;] = o.MonitorName
+<span id="L895" class="ln">   895  </span>	}
+<span id="L896" class="ln">   896  </span>	if o.MonitorOptions != nil {
+<span id="L897" class="ln">   897  </span>		toSerialize[&#34;monitor_options&#34;] = o.MonitorOptions
+<span id="L898" class="ln">   898  </span>	}
+<span id="L899" class="ln">   899  </span>	if o.MonitorPriority != nil {
+<span id="L900" class="ln">   900  </span>		toSerialize[&#34;monitor_priority&#34;] = o.MonitorPriority
+<span id="L901" class="ln">   901  </span>	}
+<span id="L902" class="ln">   902  </span>	if o.NoScreenshot != nil {
+<span id="L903" class="ln">   903  </span>		toSerialize[&#34;noScreenshot&#34;] = o.NoScreenshot
+<span id="L904" class="ln">   904  </span>	}
+<span id="L905" class="ln">   905  </span>	if o.RestrictedRoles != nil {
+<span id="L906" class="ln">   906  </span>		toSerialize[&#34;restricted_roles&#34;] = o.RestrictedRoles
+<span id="L907" class="ln">   907  </span>	}
+<span id="L908" class="ln">   908  </span>	if o.Retry != nil {
+<span id="L909" class="ln">   909  </span>		toSerialize[&#34;retry&#34;] = o.Retry
+<span id="L910" class="ln">   910  </span>	}
+<span id="L911" class="ln">   911  </span>	if o.RumSettings != nil {
+<span id="L912" class="ln">   912  </span>		toSerialize[&#34;rumSettings&#34;] = o.RumSettings
+<span id="L913" class="ln">   913  </span>	}
+<span id="L914" class="ln">   914  </span>	if o.Scheduling != nil {
+<span id="L915" class="ln">   915  </span>		toSerialize[&#34;scheduling&#34;] = o.Scheduling
+<span id="L916" class="ln">   916  </span>	}
+<span id="L917" class="ln">   917  </span>	if o.TickEvery != nil {
+<span id="L918" class="ln">   918  </span>		toSerialize[&#34;tick_every&#34;] = o.TickEvery
 <span id="L919" class="ln">   919  </span>	}
-<span id="L920" class="ln">   920  </span>	return datadog.Marshal(toSerialize)
-<span id="L921" class="ln">   921  </span>}
-<span id="L922" class="ln">   922  </span>
-<span id="L923" class="ln">   923  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L924" class="ln">   924  </span>func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
-<span id="L925" class="ln">   925  </span>	all := struct {
-<span id="L926" class="ln">   926  </span>		AcceptSelfSigned               *bool                                `json:&#34;accept_self_signed,omitempty&#34;`
-<span id="L927" class="ln">   927  </span>		AllowInsecure                  *bool                                `json:&#34;allow_insecure,omitempty&#34;`
-<span id="L928" class="ln">   928  </span>		BlockedRequestPatterns         []string                             `json:&#34;blockedRequestPatterns,omitempty&#34;`
-<span id="L929" class="ln">   929  </span>		CheckCertificateRevocation     *bool                                `json:&#34;checkCertificateRevocation,omitempty&#34;`
-<span id="L930" class="ln">   930  </span>		Ci                             *SyntheticsTestCiOptions             `json:&#34;ci,omitempty&#34;`
-<span id="L931" class="ln">   931  </span>		DeviceIds                      []string                             `json:&#34;device_ids,omitempty&#34;`
-<span id="L932" class="ln">   932  </span>		DisableAiaIntermediateFetching *bool                                `json:&#34;disableAiaIntermediateFetching,omitempty&#34;`
-<span id="L933" class="ln">   933  </span>		DisableCors                    *bool                                `json:&#34;disableCors,omitempty&#34;`
-<span id="L934" class="ln">   934  </span>		DisableCsp                     *bool                                `json:&#34;disableCsp,omitempty&#34;`
-<span id="L935" class="ln">   935  </span>		EnableProfiling                *bool                                `json:&#34;enableProfiling,omitempty&#34;`
-<span id="L936" class="ln">   936  </span>		EnableSecurityTesting          *bool                                `json:&#34;enableSecurityTesting,omitempty&#34;`
-<span id="L937" class="ln">   937  </span>		FollowRedirects                *bool                                `json:&#34;follow_redirects,omitempty&#34;`
-<span id="L938" class="ln">   938  </span>		HttpVersion                    *SyntheticsTestOptionsHTTPVersion    `json:&#34;httpVersion,omitempty&#34;`
-<span id="L939" class="ln">   939  </span>		IgnoreServerCertificateError   *bool                                `json:&#34;ignoreServerCertificateError,omitempty&#34;`
-<span id="L940" class="ln">   940  </span>		InitialNavigationTimeout       *int64                               `json:&#34;initialNavigationTimeout,omitempty&#34;`
-<span id="L941" class="ln">   941  </span>		MinFailureDuration             *int64                               `json:&#34;min_failure_duration,omitempty&#34;`
-<span id="L942" class="ln">   942  </span>		MinLocationFailed              *int64                               `json:&#34;min_location_failed,omitempty&#34;`
-<span id="L943" class="ln">   943  </span>		MonitorName                    *string                              `json:&#34;monitor_name,omitempty&#34;`
-<span id="L944" class="ln">   944  </span>		MonitorOptions                 *SyntheticsTestOptionsMonitorOptions `json:&#34;monitor_options,omitempty&#34;`
-<span id="L945" class="ln">   945  </span>		MonitorPriority                *int32                               `json:&#34;monitor_priority,omitempty&#34;`
-<span id="L946" class="ln">   946  </span>		NoScreenshot                   *bool                                `json:&#34;noScreenshot,omitempty&#34;`
-<span id="L947" class="ln">   947  </span>		RestrictedRoles                []string                             `json:&#34;restricted_roles,omitempty&#34;`
-<span id="L948" class="ln">   948  </span>		Retry                          *SyntheticsTestOptionsRetry          `json:&#34;retry,omitempty&#34;`
-<span id="L949" class="ln">   949  </span>		RumSettings                    *SyntheticsBrowserTestRumSettings    `json:&#34;rumSettings,omitempty&#34;`
-<span id="L950" class="ln">   950  </span>		Scheduling                     *SyntheticsTestOptionsScheduling     `json:&#34;scheduling,omitempty&#34;`
-<span id="L951" class="ln">   951  </span>		TickEvery                      *int64                               `json:&#34;tick_every,omitempty&#34;`
-<span id="L952" class="ln">   952  </span>	}{}
-<span id="L953" class="ln">   953  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
-<span id="L954" class="ln">   954  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L955" class="ln">   955  </span>	}
-<span id="L956" class="ln">   956  </span>	additionalProperties := make(map[string]interface{})
-<span id="L957" class="ln">   957  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L958" class="ln">   958  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;accept_self_signed&#34;, &#34;allow_insecure&#34;, &#34;blockedRequestPatterns&#34;, &#34;checkCertificateRevocation&#34;, &#34;ci&#34;, &#34;device_ids&#34;, &#34;disableAiaIntermediateFetching&#34;, &#34;disableCors&#34;, &#34;disableCsp&#34;, &#34;enableProfiling&#34;, &#34;enableSecurityTesting&#34;, &#34;follow_redirects&#34;, &#34;httpVersion&#34;, &#34;ignoreServerCertificateError&#34;, &#34;initialNavigationTimeout&#34;, &#34;min_failure_duration&#34;, &#34;min_location_failed&#34;, &#34;monitor_name&#34;, &#34;monitor_options&#34;, &#34;monitor_priority&#34;, &#34;noScreenshot&#34;, &#34;restricted_roles&#34;, &#34;retry&#34;, &#34;rumSettings&#34;, &#34;scheduling&#34;, &#34;tick_every&#34;})
-<span id="L959" class="ln">   959  </span>	} else {
-<span id="L960" class="ln">   960  </span>		return err
-<span id="L961" class="ln">   961  </span>	}
-<span id="L962" class="ln">   962  </span>
-<span id="L963" class="ln">   963  </span>	hasInvalidField := false
-<span id="L964" class="ln">   964  </span>	o.AcceptSelfSigned = all.AcceptSelfSigned
-<span id="L965" class="ln">   965  </span>	o.AllowInsecure = all.AllowInsecure
-<span id="L966" class="ln">   966  </span>	o.BlockedRequestPatterns = all.BlockedRequestPatterns
-<span id="L967" class="ln">   967  </span>	o.CheckCertificateRevocation = all.CheckCertificateRevocation
-<span id="L968" class="ln">   968  </span>	if all.Ci != nil &amp;&amp; all.Ci.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L969" class="ln">   969  </span>		hasInvalidField = true
-<span id="L970" class="ln">   970  </span>	}
-<span id="L971" class="ln">   971  </span>	o.Ci = all.Ci
-<span id="L972" class="ln">   972  </span>	o.DeviceIds = all.DeviceIds
-<span id="L973" class="ln">   973  </span>	o.DisableAiaIntermediateFetching = all.DisableAiaIntermediateFetching
-<span id="L974" class="ln">   974  </span>	o.DisableCors = all.DisableCors
-<span id="L975" class="ln">   975  </span>	o.DisableCsp = all.DisableCsp
-<span id="L976" class="ln">   976  </span>	o.EnableProfiling = all.EnableProfiling
-<span id="L977" class="ln">   977  </span>	o.EnableSecurityTesting = all.EnableSecurityTesting
-<span id="L978" class="ln">   978  </span>	o.FollowRedirects = all.FollowRedirects
-<span id="L979" class="ln">   979  </span>	if all.HttpVersion != nil &amp;&amp; !all.HttpVersion.IsValid() {
-<span id="L980" class="ln">   980  </span>		hasInvalidField = true
-<span id="L981" class="ln">   981  </span>	} else {
-<span id="L982" class="ln">   982  </span>		o.HttpVersion = all.HttpVersion
-<span id="L983" class="ln">   983  </span>	}
-<span id="L984" class="ln">   984  </span>	o.IgnoreServerCertificateError = all.IgnoreServerCertificateError
-<span id="L985" class="ln">   985  </span>	o.InitialNavigationTimeout = all.InitialNavigationTimeout
-<span id="L986" class="ln">   986  </span>	o.MinFailureDuration = all.MinFailureDuration
-<span id="L987" class="ln">   987  </span>	o.MinLocationFailed = all.MinLocationFailed
-<span id="L988" class="ln">   988  </span>	o.MonitorName = all.MonitorName
-<span id="L989" class="ln">   989  </span>	if all.MonitorOptions != nil &amp;&amp; all.MonitorOptions.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L990" class="ln">   990  </span>		hasInvalidField = true
-<span id="L991" class="ln">   991  </span>	}
-<span id="L992" class="ln">   992  </span>	o.MonitorOptions = all.MonitorOptions
-<span id="L993" class="ln">   993  </span>	o.MonitorPriority = all.MonitorPriority
-<span id="L994" class="ln">   994  </span>	o.NoScreenshot = all.NoScreenshot
-<span id="L995" class="ln">   995  </span>	o.RestrictedRoles = all.RestrictedRoles
-<span id="L996" class="ln">   996  </span>	if all.Retry != nil &amp;&amp; all.Retry.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
-<span id="L997" class="ln">   997  </span>		hasInvalidField = true
-<span id="L998" class="ln">   998  </span>	}
-<span id="L999" class="ln">   999  </span>	o.Retry = all.Retry
-<span id="L1000" class="ln">  1000  </span>	if all.RumSettings != nil &amp;&amp; all.RumSettings.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L920" class="ln">   920  </span>
+<span id="L921" class="ln">   921  </span>	for key, value := range o.AdditionalProperties {
+<span id="L922" class="ln">   922  </span>		toSerialize[key] = value
+<span id="L923" class="ln">   923  </span>	}
+<span id="L924" class="ln">   924  </span>	return datadog.Marshal(toSerialize)
+<span id="L925" class="ln">   925  </span>}
+<span id="L926" class="ln">   926  </span>
+<span id="L927" class="ln">   927  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L928" class="ln">   928  </span>func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L929" class="ln">   929  </span>	all := struct {
+<span id="L930" class="ln">   930  </span>		AcceptSelfSigned               *bool                                `json:&#34;accept_self_signed,omitempty&#34;`
+<span id="L931" class="ln">   931  </span>		AllowInsecure                  *bool                                `json:&#34;allow_insecure,omitempty&#34;`
+<span id="L932" class="ln">   932  </span>		BlockedRequestPatterns         []string                             `json:&#34;blockedRequestPatterns,omitempty&#34;`
+<span id="L933" class="ln">   933  </span>		CheckCertificateRevocation     *bool                                `json:&#34;checkCertificateRevocation,omitempty&#34;`
+<span id="L934" class="ln">   934  </span>		Ci                             *SyntheticsTestCiOptions             `json:&#34;ci,omitempty&#34;`
+<span id="L935" class="ln">   935  </span>		DeviceIds                      []string                             `json:&#34;device_ids,omitempty&#34;`
+<span id="L936" class="ln">   936  </span>		DisableAiaIntermediateFetching *bool                                `json:&#34;disableAiaIntermediateFetching,omitempty&#34;`
+<span id="L937" class="ln">   937  </span>		DisableCors                    *bool                                `json:&#34;disableCors,omitempty&#34;`
+<span id="L938" class="ln">   938  </span>		DisableCsp                     *bool                                `json:&#34;disableCsp,omitempty&#34;`
+<span id="L939" class="ln">   939  </span>		EnableProfiling                *bool                                `json:&#34;enableProfiling,omitempty&#34;`
+<span id="L940" class="ln">   940  </span>		EnableSecurityTesting          *bool                                `json:&#34;enableSecurityTesting,omitempty&#34;`
+<span id="L941" class="ln">   941  </span>		FollowRedirects                *bool                                `json:&#34;follow_redirects,omitempty&#34;`
+<span id="L942" class="ln">   942  </span>		HttpVersion                    *SyntheticsTestOptionsHTTPVersion    `json:&#34;httpVersion,omitempty&#34;`
+<span id="L943" class="ln">   943  </span>		IgnoreServerCertificateError   *bool                                `json:&#34;ignoreServerCertificateError,omitempty&#34;`
+<span id="L944" class="ln">   944  </span>		InitialNavigationTimeout       *int64                               `json:&#34;initialNavigationTimeout,omitempty&#34;`
+<span id="L945" class="ln">   945  </span>		MinFailureDuration             *int64                               `json:&#34;min_failure_duration,omitempty&#34;`
+<span id="L946" class="ln">   946  </span>		MinLocationFailed              *int64                               `json:&#34;min_location_failed,omitempty&#34;`
+<span id="L947" class="ln">   947  </span>		MonitorName                    *string                              `json:&#34;monitor_name,omitempty&#34;`
+<span id="L948" class="ln">   948  </span>		MonitorOptions                 *SyntheticsTestOptionsMonitorOptions `json:&#34;monitor_options,omitempty&#34;`
+<span id="L949" class="ln">   949  </span>		MonitorPriority                *int32                               `json:&#34;monitor_priority,omitempty&#34;`
+<span id="L950" class="ln">   950  </span>		NoScreenshot                   *bool                                `json:&#34;noScreenshot,omitempty&#34;`
+<span id="L951" class="ln">   951  </span>		RestrictedRoles                []string                             `json:&#34;restricted_roles,omitempty&#34;`
+<span id="L952" class="ln">   952  </span>		Retry                          *SyntheticsTestOptionsRetry          `json:&#34;retry,omitempty&#34;`
+<span id="L953" class="ln">   953  </span>		RumSettings                    *SyntheticsBrowserTestRumSettings    `json:&#34;rumSettings,omitempty&#34;`
+<span id="L954" class="ln">   954  </span>		Scheduling                     *SyntheticsTestOptionsScheduling     `json:&#34;scheduling,omitempty&#34;`
+<span id="L955" class="ln">   955  </span>		TickEvery                      *int64                               `json:&#34;tick_every,omitempty&#34;`
+<span id="L956" class="ln">   956  </span>	}{}
+<span id="L957" class="ln">   957  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L958" class="ln">   958  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L959" class="ln">   959  </span>	}
+<span id="L960" class="ln">   960  </span>	additionalProperties := make(map[string]interface{})
+<span id="L961" class="ln">   961  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L962" class="ln">   962  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;accept_self_signed&#34;, &#34;allow_insecure&#34;, &#34;blockedRequestPatterns&#34;, &#34;checkCertificateRevocation&#34;, &#34;ci&#34;, &#34;device_ids&#34;, &#34;disableAiaIntermediateFetching&#34;, &#34;disableCors&#34;, &#34;disableCsp&#34;, &#34;enableProfiling&#34;, &#34;enableSecurityTesting&#34;, &#34;follow_redirects&#34;, &#34;httpVersion&#34;, &#34;ignoreServerCertificateError&#34;, &#34;initialNavigationTimeout&#34;, &#34;min_failure_duration&#34;, &#34;min_location_failed&#34;, &#34;monitor_name&#34;, &#34;monitor_options&#34;, &#34;monitor_priority&#34;, &#34;noScreenshot&#34;, &#34;restricted_roles&#34;, &#34;retry&#34;, &#34;rumSettings&#34;, &#34;scheduling&#34;, &#34;tick_every&#34;})
+<span id="L963" class="ln">   963  </span>	} else {
+<span id="L964" class="ln">   964  </span>		return err
+<span id="L965" class="ln">   965  </span>	}
+<span id="L966" class="ln">   966  </span>
+<span id="L967" class="ln">   967  </span>	hasInvalidField := false
+<span id="L968" class="ln">   968  </span>	o.AcceptSelfSigned = all.AcceptSelfSigned
+<span id="L969" class="ln">   969  </span>	o.AllowInsecure = all.AllowInsecure
+<span id="L970" class="ln">   970  </span>	o.BlockedRequestPatterns = all.BlockedRequestPatterns
+<span id="L971" class="ln">   971  </span>	o.CheckCertificateRevocation = all.CheckCertificateRevocation
+<span id="L972" class="ln">   972  </span>	if all.Ci != nil &amp;&amp; all.Ci.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L973" class="ln">   973  </span>		hasInvalidField = true
+<span id="L974" class="ln">   974  </span>	}
+<span id="L975" class="ln">   975  </span>	o.Ci = all.Ci
+<span id="L976" class="ln">   976  </span>	o.DeviceIds = all.DeviceIds
+<span id="L977" class="ln">   977  </span>	o.DisableAiaIntermediateFetching = all.DisableAiaIntermediateFetching
+<span id="L978" class="ln">   978  </span>	o.DisableCors = all.DisableCors
+<span id="L979" class="ln">   979  </span>	o.DisableCsp = all.DisableCsp
+<span id="L980" class="ln">   980  </span>	o.EnableProfiling = all.EnableProfiling
+<span id="L981" class="ln">   981  </span>	o.EnableSecurityTesting = all.EnableSecurityTesting
+<span id="L982" class="ln">   982  </span>	o.FollowRedirects = all.FollowRedirects
+<span id="L983" class="ln">   983  </span>	if all.HttpVersion != nil &amp;&amp; !all.HttpVersion.IsValid() {
+<span id="L984" class="ln">   984  </span>		hasInvalidField = true
+<span id="L985" class="ln">   985  </span>	} else {
+<span id="L986" class="ln">   986  </span>		o.HttpVersion = all.HttpVersion
+<span id="L987" class="ln">   987  </span>	}
+<span id="L988" class="ln">   988  </span>	o.IgnoreServerCertificateError = all.IgnoreServerCertificateError
+<span id="L989" class="ln">   989  </span>	o.InitialNavigationTimeout = all.InitialNavigationTimeout
+<span id="L990" class="ln">   990  </span>	o.MinFailureDuration = all.MinFailureDuration
+<span id="L991" class="ln">   991  </span>	o.MinLocationFailed = all.MinLocationFailed
+<span id="L992" class="ln">   992  </span>	o.MonitorName = all.MonitorName
+<span id="L993" class="ln">   993  </span>	if all.MonitorOptions != nil &amp;&amp; all.MonitorOptions.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L994" class="ln">   994  </span>		hasInvalidField = true
+<span id="L995" class="ln">   995  </span>	}
+<span id="L996" class="ln">   996  </span>	o.MonitorOptions = all.MonitorOptions
+<span id="L997" class="ln">   997  </span>	o.MonitorPriority = all.MonitorPriority
+<span id="L998" class="ln">   998  </span>	o.NoScreenshot = all.NoScreenshot
+<span id="L999" class="ln">   999  </span>	o.RestrictedRoles = all.RestrictedRoles
+<span id="L1000" class="ln">  1000  </span>	if all.Retry != nil &amp;&amp; all.Retry.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
 <span id="L1001" class="ln">  1001  </span>		hasInvalidField = true
 <span id="L1002" class="ln">  1002  </span>	}
-<span id="L1003" class="ln">  1003  </span>	o.RumSettings = all.RumSettings
-<span id="L1004" class="ln">  1004  </span>	if all.Scheduling != nil &amp;&amp; all.Scheduling.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L1003" class="ln">  1003  </span>	o.Retry = all.Retry
+<span id="L1004" class="ln">  1004  </span>	if all.RumSettings != nil &amp;&amp; all.RumSettings.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
 <span id="L1005" class="ln">  1005  </span>		hasInvalidField = true
 <span id="L1006" class="ln">  1006  </span>	}
-<span id="L1007" class="ln">  1007  </span>	o.Scheduling = all.Scheduling
-<span id="L1008" class="ln">  1008  </span>	o.TickEvery = all.TickEvery
-<span id="L1009" class="ln">  1009  </span>
-<span id="L1010" class="ln">  1010  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L1011" class="ln">  1011  </span>		o.AdditionalProperties = additionalProperties
-<span id="L1012" class="ln">  1012  </span>	}
+<span id="L1007" class="ln">  1007  </span>	o.RumSettings = all.RumSettings
+<span id="L1008" class="ln">  1008  </span>	if all.Scheduling != nil &amp;&amp; all.Scheduling.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L1009" class="ln">  1009  </span>		hasInvalidField = true
+<span id="L1010" class="ln">  1010  </span>	}
+<span id="L1011" class="ln">  1011  </span>	o.Scheduling = all.Scheduling
+<span id="L1012" class="ln">  1012  </span>	o.TickEvery = all.TickEvery
 <span id="L1013" class="ln">  1013  </span>
-<span id="L1014" class="ln">  1014  </span>	if hasInvalidField {
-<span id="L1015" class="ln">  1015  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L1014" class="ln">  1014  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L1015" class="ln">  1015  </span>		o.AdditionalProperties = additionalProperties
 <span id="L1016" class="ln">  1016  </span>	}
 <span id="L1017" class="ln">  1017  </span>
-<span id="L1018" class="ln">  1018  </span>	return nil
-<span id="L1019" class="ln">  1019  </span>}
-<span id="L1020" class="ln">  1020  </span>
+<span id="L1018" class="ln">  1018  </span>	if hasInvalidField {
+<span id="L1019" class="ln">  1019  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L1020" class="ln">  1020  </span>	}
+<span id="L1021" class="ln">  1021  </span>
+<span id="L1022" class="ln">  1022  </span>	return nil
+<span id="L1023" class="ln">  1023  </span>}
+<span id="L1024" class="ln">  1024  </span>
 </pre><p></p>
 
 <div id="footer">
