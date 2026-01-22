@@ -1,9 +1,10 @@
-// Delete budget returns "No Content" response
+// Validate CSV budget returns "OK" response
 
 package main
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -16,10 +17,13 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudCostManagementApi(apiClient)
-	r, err := api.DeleteBudget(ctx, "budget_id")
+	resp, r, err := api.ValidateCsvBudget(ctx)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CloudCostManagementApi.DeleteBudget`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CloudCostManagementApi.ValidateCsvBudget`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
+
+	responseContent, _ := json.MarshalIndent(resp, "", "  ")
+	fmt.Fprintf(os.Stdout, "Response from `CloudCostManagementApi.ValidateCsvBudget`:\n%s\n", responseContent)
 }

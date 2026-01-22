@@ -5,68 +5,72 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BudgetArray An array of budgets.
-type BudgetArray struct {
-	// The `BudgetArray` `data`.
-	Data []Budget `json:"data"`
+// BudgetValidationRequest
+type BudgetValidationRequest struct {
+	//
+	Data *BudgetValidationRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewBudgetArray instantiates a new BudgetArray object.
+// NewBudgetValidationRequest instantiates a new BudgetValidationRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewBudgetArray(data []Budget) *BudgetArray {
-	this := BudgetArray{}
-	this.Data = data
+func NewBudgetValidationRequest() *BudgetValidationRequest {
+	this := BudgetValidationRequest{}
 	return &this
 }
 
-// NewBudgetArrayWithDefaults instantiates a new BudgetArray object.
+// NewBudgetValidationRequestWithDefaults instantiates a new BudgetValidationRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewBudgetArrayWithDefaults() *BudgetArray {
-	this := BudgetArray{}
+func NewBudgetValidationRequestWithDefaults() *BudgetValidationRequest {
+	this := BudgetValidationRequest{}
 	return &this
 }
 
-// GetData returns the Data field value.
-func (o *BudgetArray) GetData() []Budget {
-	if o == nil {
-		var ret []Budget
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *BudgetValidationRequest) GetData() BudgetValidationRequestData {
+	if o == nil || o.Data == nil {
+		var ret BudgetValidationRequestData
 		return ret
 	}
-	return o.Data
+	return *o.Data
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BudgetArray) GetDataOk() (*[]Budget, bool) {
-	if o == nil {
+func (o *BudgetValidationRequest) GetDataOk() (*BudgetValidationRequestData, bool) {
+	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return &o.Data, true
+	return o.Data, true
 }
 
-// SetData sets field value.
-func (o *BudgetArray) SetData(v []Budget) {
-	o.Data = v
+// HasData returns a boolean if a field has been set.
+func (o *BudgetValidationRequest) HasData() bool {
+	return o != nil && o.Data != nil
+}
+
+// SetData gets a reference to the given BudgetValidationRequestData and assigns it to the Data field.
+func (o *BudgetValidationRequest) SetData(v BudgetValidationRequestData) {
+	o.Data = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o BudgetArray) MarshalJSON() ([]byte, error) {
+func (o BudgetValidationRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["data"] = o.Data
+	if o.Data != nil {
+		toSerialize["data"] = o.Data
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,15 +79,12 @@ func (o BudgetArray) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *BudgetArray) UnmarshalJSON(bytes []byte) (err error) {
+func (o *BudgetValidationRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *[]Budget `json:"data"`
+		Data *BudgetValidationRequestData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.Data == nil {
-		return fmt.Errorf("required field data missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -91,10 +92,19 @@ func (o *BudgetArray) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	o.Data = *all.Data
+
+	hasInvalidField := false
+	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Data = all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
