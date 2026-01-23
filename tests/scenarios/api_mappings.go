@@ -86,6 +86,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "JiraIntegrationApi": reflect.ValueOf(datadogV2.NewJiraIntegrationApi),
 	    "MicrosoftTeamsIntegrationApi": reflect.ValueOf(datadogV2.NewMicrosoftTeamsIntegrationApi),
 	    "OpsgenieIntegrationApi": reflect.ValueOf(datadogV2.NewOpsgenieIntegrationApi),
+	    "ServiceNowIntegrationApi": reflect.ValueOf(datadogV2.NewServiceNowIntegrationApi),
 	    "CloudflareIntegrationApi": reflect.ValueOf(datadogV2.NewCloudflareIntegrationApi),
 	    "ConfluentCloudApi": reflect.ValueOf(datadogV2.NewConfluentCloudApi),
 	    "FastlyIntegrationApi": reflect.ValueOf(datadogV2.NewFastlyIntegrationApi),
