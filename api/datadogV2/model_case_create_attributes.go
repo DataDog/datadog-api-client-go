@@ -18,6 +18,8 @@ type CaseCreateAttributes struct {
 	Description *string `json:"description,omitempty"`
 	// Case priority
 	Priority *CasePriority `json:"priority,omitempty"`
+	// Status of the case. Must be one of the existing statuses for the case's type.
+	StatusName *string `json:"status_name,omitempty"`
 	// Title
 	Title string `json:"title"`
 	// Case type UUID
@@ -134,6 +136,34 @@ func (o *CaseCreateAttributes) SetPriority(v CasePriority) {
 	o.Priority = &v
 }
 
+// GetStatusName returns the StatusName field value if set, zero value otherwise.
+func (o *CaseCreateAttributes) GetStatusName() string {
+	if o == nil || o.StatusName == nil {
+		var ret string
+		return ret
+	}
+	return *o.StatusName
+}
+
+// GetStatusNameOk returns a tuple with the StatusName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CaseCreateAttributes) GetStatusNameOk() (*string, bool) {
+	if o == nil || o.StatusName == nil {
+		return nil, false
+	}
+	return o.StatusName, true
+}
+
+// HasStatusName returns a boolean if a field has been set.
+func (o *CaseCreateAttributes) HasStatusName() bool {
+	return o != nil && o.StatusName != nil
+}
+
+// SetStatusName gets a reference to the given string and assigns it to the StatusName field.
+func (o *CaseCreateAttributes) SetStatusName(v string) {
+	o.StatusName = &v
+}
+
 // GetTitle returns the Title field value.
 func (o *CaseCreateAttributes) GetTitle() string {
 	if o == nil {
@@ -195,6 +225,9 @@ func (o CaseCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.Priority != nil {
 		toSerialize["priority"] = o.Priority
 	}
+	if o.StatusName != nil {
+		toSerialize["status_name"] = o.StatusName
+	}
 	toSerialize["title"] = o.Title
 	toSerialize["type_id"] = o.TypeId
 
@@ -210,6 +243,7 @@ func (o *CaseCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		CustomAttributes map[string]CustomAttributeValue `json:"custom_attributes,omitempty"`
 		Description      *string                         `json:"description,omitempty"`
 		Priority         *CasePriority                   `json:"priority,omitempty"`
+		StatusName       *string                         `json:"status_name,omitempty"`
 		Title            *string                         `json:"title"`
 		TypeId           *string                         `json:"type_id"`
 	}{}
@@ -224,7 +258,7 @@ func (o *CaseCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom_attributes", "description", "priority", "title", "type_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom_attributes", "description", "priority", "status_name", "title", "type_id"})
 	} else {
 		return err
 	}
@@ -237,6 +271,7 @@ func (o *CaseCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.Priority = all.Priority
 	}
+	o.StatusName = all.StatusName
 	o.Title = *all.Title
 	o.TypeId = *all.TypeId
 

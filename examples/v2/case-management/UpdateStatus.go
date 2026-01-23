@@ -19,7 +19,7 @@ func main() {
 	body := datadogV2.CaseUpdateStatusRequest{
 		Data: datadogV2.CaseUpdateStatus{
 			Attributes: datadogV2.CaseUpdateStatusAttributes{
-				Status: datadogV2.CASESTATUS_IN_PROGRESS,
+				Status: datadogV2.CASESTATUS_IN_PROGRESS.Ptr(),
 			},
 			Type: datadogV2.CASERESOURCETYPE_CASE,
 		},
