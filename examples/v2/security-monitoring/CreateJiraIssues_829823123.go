@@ -1,4 +1,4 @@
-// Create Jira issues for security findings returns "Created" response
+// Create Jira issue for security findings returns "Created" response
 
 package main
 
@@ -24,30 +24,11 @@ func main() {
 					Findings: datadogV2.Findings{
 						Data: []datadogV2.FindingData{
 							{
-								Id:   "eWswLWJsdC1hZm5-aS0wMjRlYTgwMzVkZTU1MGIwYQ==",
+								Id:   "a3ZoLXNjbS14eXV-aS0wNWY5MGYwMGE4NDg2ODdlOA==",
 								Type: datadogV2.FINDINGDATATYPE_FINDINGS,
 							},
-						},
-					},
-					Project: datadogV2.CaseManagementProject{
-						Data: datadogV2.CaseManagementProjectData{
-							Id:   "959a6f71-bac8-4027-b1d3-2264f569296f",
-							Type: datadogV2.CASEMANAGEMENTPROJECTDATATYPE_PROJECTS,
-						},
-					},
-				},
-				Type: datadogV2.JIRAISSUESDATATYPE_JIRA_ISSUES,
-			},
-			{
-				Attributes: &datadogV2.CreateJiraIssueRequestDataAttributes{
-					Title:       datadog.PtrString("A title"),
-					Description: datadog.PtrString("A description"),
-				},
-				Relationships: &datadogV2.CreateJiraIssueRequestDataRelationships{
-					Findings: datadogV2.Findings{
-						Data: []datadogV2.FindingData{
 							{
-								Id:   "a3ZoLXNjbS14eXV-aS0wNWY5MGYwMGE4NDg2ODdlOA==",
+								Id:   "eWswLWJsdC1hZm5-aS0wMjRlYTgwMzVkZTU1MGIwYQ==",
 								Type: datadogV2.FINDINGDATATYPE_FINDINGS,
 							},
 						},

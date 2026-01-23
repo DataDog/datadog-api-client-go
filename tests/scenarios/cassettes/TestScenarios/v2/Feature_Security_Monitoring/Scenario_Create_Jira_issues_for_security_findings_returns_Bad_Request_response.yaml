@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":[{"attributes":{},"relationships":{"findings":{"data":[]},"project":{"data":{"id":"7f198869-c7ef-4afc-97cf-da5cdc13b5c3","type":"projects"}}},"type":"jira_issues"}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security/findings/jira_issues
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"no finding provided"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
