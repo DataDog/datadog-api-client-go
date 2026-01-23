@@ -905,11 +905,11 @@ func (a *CloudCostManagementApi) DeleteTagPipelinesRuleset(ctx _context.Context,
 
 // GetBudget Get budget.
 // Get a budget
-func (a *CloudCostManagementApi) GetBudget(ctx _context.Context, budgetId string) (BudgetValidationRequest, *_nethttp.Response, error) {
+func (a *CloudCostManagementApi) GetBudget(ctx _context.Context, budgetId string) (BudgetWithEntries, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue BudgetValidationRequest
+		localVarReturnValue BudgetWithEntries
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.GetBudget")
