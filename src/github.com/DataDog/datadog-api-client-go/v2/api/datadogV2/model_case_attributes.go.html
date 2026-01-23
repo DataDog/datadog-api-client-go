@@ -91,650 +91,728 @@
 <span id="L34" class="ln">    34  </span>	Priority *CasePriority `json:&#34;priority,omitempty&#34;`
 <span id="L35" class="ln">    35  </span>	<span class="comment">// ServiceNow ticket attached to case</span>
 <span id="L36" class="ln">    36  </span>	ServiceNowTicket NullableServiceNowTicket `json:&#34;service_now_ticket,omitempty&#34;`
-<span id="L37" class="ln">    37  </span>	<span class="comment">// Case status</span>
-<span id="L38" class="ln">    38  </span>	Status *CaseStatus `json:&#34;status,omitempty&#34;`
-<span id="L39" class="ln">    39  </span>	<span class="comment">// Title</span>
-<span id="L40" class="ln">    40  </span>	Title *string `json:&#34;title,omitempty&#34;`
-<span id="L41" class="ln">    41  </span>	<span class="comment">// Case type</span>
-<span id="L42" class="ln">    42  </span>	<span class="comment">// Deprecated</span>
-<span id="L43" class="ln">    43  </span>	Type *CaseType `json:&#34;type,omitempty&#34;`
-<span id="L44" class="ln">    44  </span>	<span class="comment">// Case type UUID</span>
-<span id="L45" class="ln">    45  </span>	TypeId *string `json:&#34;type_id,omitempty&#34;`
-<span id="L46" class="ln">    46  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
-<span id="L47" class="ln">    47  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L48" class="ln">    48  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
-<span id="L49" class="ln">    49  </span>}
-<span id="L50" class="ln">    50  </span>
-<span id="L51" class="ln">    51  </span><span class="comment">// NewCaseAttributes instantiates a new CaseAttributes object.</span>
-<span id="L52" class="ln">    52  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
-<span id="L53" class="ln">    53  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
-<span id="L54" class="ln">    54  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L55" class="ln">    55  </span>func NewCaseAttributes() *CaseAttributes {
-<span id="L56" class="ln">    56  </span>	this := CaseAttributes{}
-<span id="L57" class="ln">    57  </span>	var priority CasePriority = CASEPRIORITY_NOT_DEFINED
-<span id="L58" class="ln">    58  </span>	this.Priority = &amp;priority
-<span id="L59" class="ln">    59  </span>	return &amp;this
-<span id="L60" class="ln">    60  </span>}
-<span id="L61" class="ln">    61  </span>
-<span id="L62" class="ln">    62  </span><span class="comment">// NewCaseAttributesWithDefaults instantiates a new CaseAttributes object.</span>
-<span id="L63" class="ln">    63  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
-<span id="L64" class="ln">    64  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L65" class="ln">    65  </span>func NewCaseAttributesWithDefaults() *CaseAttributes {
-<span id="L66" class="ln">    66  </span>	this := CaseAttributes{}
-<span id="L67" class="ln">    67  </span>	var priority CasePriority = CASEPRIORITY_NOT_DEFINED
-<span id="L68" class="ln">    68  </span>	this.Priority = &amp;priority
-<span id="L69" class="ln">    69  </span>	return &amp;this
-<span id="L70" class="ln">    70  </span>}
-<span id="L71" class="ln">    71  </span>
-<span id="L72" class="ln">    72  </span><span class="comment">// GetArchivedAt returns the ArchivedAt field value if set, zero value otherwise (both if not set or set to explicit null).</span>
-<span id="L73" class="ln">    73  </span>func (o *CaseAttributes) GetArchivedAt() time.Time {
-<span id="L74" class="ln">    74  </span>	if o == nil || o.ArchivedAt.Get() == nil {
-<span id="L75" class="ln">    75  </span>		var ret time.Time
-<span id="L76" class="ln">    76  </span>		return ret
-<span id="L77" class="ln">    77  </span>	}
-<span id="L78" class="ln">    78  </span>	return *o.ArchivedAt.Get()
-<span id="L79" class="ln">    79  </span>}
-<span id="L80" class="ln">    80  </span>
-<span id="L81" class="ln">    81  </span><span class="comment">// GetArchivedAtOk returns a tuple with the ArchivedAt field value if set, nil otherwise</span>
-<span id="L82" class="ln">    82  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L83" class="ln">    83  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
-<span id="L84" class="ln">    84  </span>func (o *CaseAttributes) GetArchivedAtOk() (*time.Time, bool) {
-<span id="L85" class="ln">    85  </span>	if o == nil {
-<span id="L86" class="ln">    86  </span>		return nil, false
-<span id="L87" class="ln">    87  </span>	}
-<span id="L88" class="ln">    88  </span>	return o.ArchivedAt.Get(), o.ArchivedAt.IsSet()
-<span id="L89" class="ln">    89  </span>}
-<span id="L90" class="ln">    90  </span>
-<span id="L91" class="ln">    91  </span><span class="comment">// HasArchivedAt returns a boolean if a field has been set.</span>
-<span id="L92" class="ln">    92  </span>func (o *CaseAttributes) HasArchivedAt() bool {
-<span id="L93" class="ln">    93  </span>	return o != nil &amp;&amp; o.ArchivedAt.IsSet()
+<span id="L37" class="ln">    37  </span>	<span class="comment">// Deprecated way of representing the case status, which only supports OPEN, IN_PROGRESS, and CLOSED statuses. Use `status_name` instead.</span>
+<span id="L38" class="ln">    38  </span>	<span class="comment">// Deprecated</span>
+<span id="L39" class="ln">    39  </span>	Status *CaseStatus `json:&#34;status,omitempty&#34;`
+<span id="L40" class="ln">    40  </span>	<span class="comment">// Status group of the case.</span>
+<span id="L41" class="ln">    41  </span>	StatusGroup *CaseStatusGroup `json:&#34;status_group,omitempty&#34;`
+<span id="L42" class="ln">    42  </span>	<span class="comment">// Status of the case. Must be one of the existing statuses for the case&#39;s type.</span>
+<span id="L43" class="ln">    43  </span>	StatusName *string `json:&#34;status_name,omitempty&#34;`
+<span id="L44" class="ln">    44  </span>	<span class="comment">// Title</span>
+<span id="L45" class="ln">    45  </span>	Title *string `json:&#34;title,omitempty&#34;`
+<span id="L46" class="ln">    46  </span>	<span class="comment">// Case type</span>
+<span id="L47" class="ln">    47  </span>	<span class="comment">// Deprecated</span>
+<span id="L48" class="ln">    48  </span>	Type *CaseType `json:&#34;type,omitempty&#34;`
+<span id="L49" class="ln">    49  </span>	<span class="comment">// Case type UUID</span>
+<span id="L50" class="ln">    50  </span>	TypeId *string `json:&#34;type_id,omitempty&#34;`
+<span id="L51" class="ln">    51  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L52" class="ln">    52  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L53" class="ln">    53  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L54" class="ln">    54  </span>}
+<span id="L55" class="ln">    55  </span>
+<span id="L56" class="ln">    56  </span><span class="comment">// NewCaseAttributes instantiates a new CaseAttributes object.</span>
+<span id="L57" class="ln">    57  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L58" class="ln">    58  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L59" class="ln">    59  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L60" class="ln">    60  </span>func NewCaseAttributes() *CaseAttributes {
+<span id="L61" class="ln">    61  </span>	this := CaseAttributes{}
+<span id="L62" class="ln">    62  </span>	var priority CasePriority = CASEPRIORITY_NOT_DEFINED
+<span id="L63" class="ln">    63  </span>	this.Priority = &amp;priority
+<span id="L64" class="ln">    64  </span>	return &amp;this
+<span id="L65" class="ln">    65  </span>}
+<span id="L66" class="ln">    66  </span>
+<span id="L67" class="ln">    67  </span><span class="comment">// NewCaseAttributesWithDefaults instantiates a new CaseAttributes object.</span>
+<span id="L68" class="ln">    68  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L69" class="ln">    69  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L70" class="ln">    70  </span>func NewCaseAttributesWithDefaults() *CaseAttributes {
+<span id="L71" class="ln">    71  </span>	this := CaseAttributes{}
+<span id="L72" class="ln">    72  </span>	var priority CasePriority = CASEPRIORITY_NOT_DEFINED
+<span id="L73" class="ln">    73  </span>	this.Priority = &amp;priority
+<span id="L74" class="ln">    74  </span>	return &amp;this
+<span id="L75" class="ln">    75  </span>}
+<span id="L76" class="ln">    76  </span>
+<span id="L77" class="ln">    77  </span><span class="comment">// GetArchivedAt returns the ArchivedAt field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L78" class="ln">    78  </span>func (o *CaseAttributes) GetArchivedAt() time.Time {
+<span id="L79" class="ln">    79  </span>	if o == nil || o.ArchivedAt.Get() == nil {
+<span id="L80" class="ln">    80  </span>		var ret time.Time
+<span id="L81" class="ln">    81  </span>		return ret
+<span id="L82" class="ln">    82  </span>	}
+<span id="L83" class="ln">    83  </span>	return *o.ArchivedAt.Get()
+<span id="L84" class="ln">    84  </span>}
+<span id="L85" class="ln">    85  </span>
+<span id="L86" class="ln">    86  </span><span class="comment">// GetArchivedAtOk returns a tuple with the ArchivedAt field value if set, nil otherwise</span>
+<span id="L87" class="ln">    87  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L88" class="ln">    88  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L89" class="ln">    89  </span>func (o *CaseAttributes) GetArchivedAtOk() (*time.Time, bool) {
+<span id="L90" class="ln">    90  </span>	if o == nil {
+<span id="L91" class="ln">    91  </span>		return nil, false
+<span id="L92" class="ln">    92  </span>	}
+<span id="L93" class="ln">    93  </span>	return o.ArchivedAt.Get(), o.ArchivedAt.IsSet()
 <span id="L94" class="ln">    94  </span>}
 <span id="L95" class="ln">    95  </span>
-<span id="L96" class="ln">    96  </span><span class="comment">// SetArchivedAt gets a reference to the given datadog.NullableTime and assigns it to the ArchivedAt field.</span>
-<span id="L97" class="ln">    97  </span>func (o *CaseAttributes) SetArchivedAt(v time.Time) {
-<span id="L98" class="ln">    98  </span>	o.ArchivedAt.Set(&amp;v)
+<span id="L96" class="ln">    96  </span><span class="comment">// HasArchivedAt returns a boolean if a field has been set.</span>
+<span id="L97" class="ln">    97  </span>func (o *CaseAttributes) HasArchivedAt() bool {
+<span id="L98" class="ln">    98  </span>	return o != nil &amp;&amp; o.ArchivedAt.IsSet()
 <span id="L99" class="ln">    99  </span>}
 <span id="L100" class="ln">   100  </span>
-<span id="L101" class="ln">   101  </span><span class="comment">// SetArchivedAtNil sets the value for ArchivedAt to be an explicit nil.</span>
-<span id="L102" class="ln">   102  </span>func (o *CaseAttributes) SetArchivedAtNil() {
-<span id="L103" class="ln">   103  </span>	o.ArchivedAt.Set(nil)
+<span id="L101" class="ln">   101  </span><span class="comment">// SetArchivedAt gets a reference to the given datadog.NullableTime and assigns it to the ArchivedAt field.</span>
+<span id="L102" class="ln">   102  </span>func (o *CaseAttributes) SetArchivedAt(v time.Time) {
+<span id="L103" class="ln">   103  </span>	o.ArchivedAt.Set(&amp;v)
 <span id="L104" class="ln">   104  </span>}
 <span id="L105" class="ln">   105  </span>
-<span id="L106" class="ln">   106  </span><span class="comment">// UnsetArchivedAt ensures that no value is present for ArchivedAt, not even an explicit nil.</span>
-<span id="L107" class="ln">   107  </span>func (o *CaseAttributes) UnsetArchivedAt() {
-<span id="L108" class="ln">   108  </span>	o.ArchivedAt.Unset()
+<span id="L106" class="ln">   106  </span><span class="comment">// SetArchivedAtNil sets the value for ArchivedAt to be an explicit nil.</span>
+<span id="L107" class="ln">   107  </span>func (o *CaseAttributes) SetArchivedAtNil() {
+<span id="L108" class="ln">   108  </span>	o.ArchivedAt.Set(nil)
 <span id="L109" class="ln">   109  </span>}
 <span id="L110" class="ln">   110  </span>
-<span id="L111" class="ln">   111  </span><span class="comment">// GetAttributes returns the Attributes field value if set, zero value otherwise.</span>
-<span id="L112" class="ln">   112  </span>func (o *CaseAttributes) GetAttributes() map[string][]string {
-<span id="L113" class="ln">   113  </span>	if o == nil || o.Attributes == nil {
-<span id="L114" class="ln">   114  </span>		var ret map[string][]string
-<span id="L115" class="ln">   115  </span>		return ret
-<span id="L116" class="ln">   116  </span>	}
-<span id="L117" class="ln">   117  </span>	return o.Attributes
-<span id="L118" class="ln">   118  </span>}
-<span id="L119" class="ln">   119  </span>
-<span id="L120" class="ln">   120  </span><span class="comment">// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise</span>
-<span id="L121" class="ln">   121  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L122" class="ln">   122  </span>func (o *CaseAttributes) GetAttributesOk() (*map[string][]string, bool) {
-<span id="L123" class="ln">   123  </span>	if o == nil || o.Attributes == nil {
-<span id="L124" class="ln">   124  </span>		return nil, false
-<span id="L125" class="ln">   125  </span>	}
-<span id="L126" class="ln">   126  </span>	return &amp;o.Attributes, true
-<span id="L127" class="ln">   127  </span>}
-<span id="L128" class="ln">   128  </span>
-<span id="L129" class="ln">   129  </span><span class="comment">// HasAttributes returns a boolean if a field has been set.</span>
-<span id="L130" class="ln">   130  </span>func (o *CaseAttributes) HasAttributes() bool {
-<span id="L131" class="ln">   131  </span>	return o != nil &amp;&amp; o.Attributes != nil
+<span id="L111" class="ln">   111  </span><span class="comment">// UnsetArchivedAt ensures that no value is present for ArchivedAt, not even an explicit nil.</span>
+<span id="L112" class="ln">   112  </span>func (o *CaseAttributes) UnsetArchivedAt() {
+<span id="L113" class="ln">   113  </span>	o.ArchivedAt.Unset()
+<span id="L114" class="ln">   114  </span>}
+<span id="L115" class="ln">   115  </span>
+<span id="L116" class="ln">   116  </span><span class="comment">// GetAttributes returns the Attributes field value if set, zero value otherwise.</span>
+<span id="L117" class="ln">   117  </span>func (o *CaseAttributes) GetAttributes() map[string][]string {
+<span id="L118" class="ln">   118  </span>	if o == nil || o.Attributes == nil {
+<span id="L119" class="ln">   119  </span>		var ret map[string][]string
+<span id="L120" class="ln">   120  </span>		return ret
+<span id="L121" class="ln">   121  </span>	}
+<span id="L122" class="ln">   122  </span>	return o.Attributes
+<span id="L123" class="ln">   123  </span>}
+<span id="L124" class="ln">   124  </span>
+<span id="L125" class="ln">   125  </span><span class="comment">// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise</span>
+<span id="L126" class="ln">   126  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L127" class="ln">   127  </span>func (o *CaseAttributes) GetAttributesOk() (*map[string][]string, bool) {
+<span id="L128" class="ln">   128  </span>	if o == nil || o.Attributes == nil {
+<span id="L129" class="ln">   129  </span>		return nil, false
+<span id="L130" class="ln">   130  </span>	}
+<span id="L131" class="ln">   131  </span>	return &amp;o.Attributes, true
 <span id="L132" class="ln">   132  </span>}
 <span id="L133" class="ln">   133  </span>
-<span id="L134" class="ln">   134  </span><span class="comment">// SetAttributes gets a reference to the given map[string][]string and assigns it to the Attributes field.</span>
-<span id="L135" class="ln">   135  </span>func (o *CaseAttributes) SetAttributes(v map[string][]string) {
-<span id="L136" class="ln">   136  </span>	o.Attributes = v
+<span id="L134" class="ln">   134  </span><span class="comment">// HasAttributes returns a boolean if a field has been set.</span>
+<span id="L135" class="ln">   135  </span>func (o *CaseAttributes) HasAttributes() bool {
+<span id="L136" class="ln">   136  </span>	return o != nil &amp;&amp; o.Attributes != nil
 <span id="L137" class="ln">   137  </span>}
 <span id="L138" class="ln">   138  </span>
-<span id="L139" class="ln">   139  </span><span class="comment">// GetClosedAt returns the ClosedAt field value if set, zero value otherwise (both if not set or set to explicit null).</span>
-<span id="L140" class="ln">   140  </span>func (o *CaseAttributes) GetClosedAt() time.Time {
-<span id="L141" class="ln">   141  </span>	if o == nil || o.ClosedAt.Get() == nil {
-<span id="L142" class="ln">   142  </span>		var ret time.Time
-<span id="L143" class="ln">   143  </span>		return ret
-<span id="L144" class="ln">   144  </span>	}
-<span id="L145" class="ln">   145  </span>	return *o.ClosedAt.Get()
-<span id="L146" class="ln">   146  </span>}
-<span id="L147" class="ln">   147  </span>
-<span id="L148" class="ln">   148  </span><span class="comment">// GetClosedAtOk returns a tuple with the ClosedAt field value if set, nil otherwise</span>
-<span id="L149" class="ln">   149  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L150" class="ln">   150  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
-<span id="L151" class="ln">   151  </span>func (o *CaseAttributes) GetClosedAtOk() (*time.Time, bool) {
-<span id="L152" class="ln">   152  </span>	if o == nil {
-<span id="L153" class="ln">   153  </span>		return nil, false
-<span id="L154" class="ln">   154  </span>	}
-<span id="L155" class="ln">   155  </span>	return o.ClosedAt.Get(), o.ClosedAt.IsSet()
-<span id="L156" class="ln">   156  </span>}
-<span id="L157" class="ln">   157  </span>
-<span id="L158" class="ln">   158  </span><span class="comment">// HasClosedAt returns a boolean if a field has been set.</span>
-<span id="L159" class="ln">   159  </span>func (o *CaseAttributes) HasClosedAt() bool {
-<span id="L160" class="ln">   160  </span>	return o != nil &amp;&amp; o.ClosedAt.IsSet()
+<span id="L139" class="ln">   139  </span><span class="comment">// SetAttributes gets a reference to the given map[string][]string and assigns it to the Attributes field.</span>
+<span id="L140" class="ln">   140  </span>func (o *CaseAttributes) SetAttributes(v map[string][]string) {
+<span id="L141" class="ln">   141  </span>	o.Attributes = v
+<span id="L142" class="ln">   142  </span>}
+<span id="L143" class="ln">   143  </span>
+<span id="L144" class="ln">   144  </span><span class="comment">// GetClosedAt returns the ClosedAt field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L145" class="ln">   145  </span>func (o *CaseAttributes) GetClosedAt() time.Time {
+<span id="L146" class="ln">   146  </span>	if o == nil || o.ClosedAt.Get() == nil {
+<span id="L147" class="ln">   147  </span>		var ret time.Time
+<span id="L148" class="ln">   148  </span>		return ret
+<span id="L149" class="ln">   149  </span>	}
+<span id="L150" class="ln">   150  </span>	return *o.ClosedAt.Get()
+<span id="L151" class="ln">   151  </span>}
+<span id="L152" class="ln">   152  </span>
+<span id="L153" class="ln">   153  </span><span class="comment">// GetClosedAtOk returns a tuple with the ClosedAt field value if set, nil otherwise</span>
+<span id="L154" class="ln">   154  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L155" class="ln">   155  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L156" class="ln">   156  </span>func (o *CaseAttributes) GetClosedAtOk() (*time.Time, bool) {
+<span id="L157" class="ln">   157  </span>	if o == nil {
+<span id="L158" class="ln">   158  </span>		return nil, false
+<span id="L159" class="ln">   159  </span>	}
+<span id="L160" class="ln">   160  </span>	return o.ClosedAt.Get(), o.ClosedAt.IsSet()
 <span id="L161" class="ln">   161  </span>}
 <span id="L162" class="ln">   162  </span>
-<span id="L163" class="ln">   163  </span><span class="comment">// SetClosedAt gets a reference to the given datadog.NullableTime and assigns it to the ClosedAt field.</span>
-<span id="L164" class="ln">   164  </span>func (o *CaseAttributes) SetClosedAt(v time.Time) {
-<span id="L165" class="ln">   165  </span>	o.ClosedAt.Set(&amp;v)
+<span id="L163" class="ln">   163  </span><span class="comment">// HasClosedAt returns a boolean if a field has been set.</span>
+<span id="L164" class="ln">   164  </span>func (o *CaseAttributes) HasClosedAt() bool {
+<span id="L165" class="ln">   165  </span>	return o != nil &amp;&amp; o.ClosedAt.IsSet()
 <span id="L166" class="ln">   166  </span>}
 <span id="L167" class="ln">   167  </span>
-<span id="L168" class="ln">   168  </span><span class="comment">// SetClosedAtNil sets the value for ClosedAt to be an explicit nil.</span>
-<span id="L169" class="ln">   169  </span>func (o *CaseAttributes) SetClosedAtNil() {
-<span id="L170" class="ln">   170  </span>	o.ClosedAt.Set(nil)
+<span id="L168" class="ln">   168  </span><span class="comment">// SetClosedAt gets a reference to the given datadog.NullableTime and assigns it to the ClosedAt field.</span>
+<span id="L169" class="ln">   169  </span>func (o *CaseAttributes) SetClosedAt(v time.Time) {
+<span id="L170" class="ln">   170  </span>	o.ClosedAt.Set(&amp;v)
 <span id="L171" class="ln">   171  </span>}
 <span id="L172" class="ln">   172  </span>
-<span id="L173" class="ln">   173  </span><span class="comment">// UnsetClosedAt ensures that no value is present for ClosedAt, not even an explicit nil.</span>
-<span id="L174" class="ln">   174  </span>func (o *CaseAttributes) UnsetClosedAt() {
-<span id="L175" class="ln">   175  </span>	o.ClosedAt.Unset()
+<span id="L173" class="ln">   173  </span><span class="comment">// SetClosedAtNil sets the value for ClosedAt to be an explicit nil.</span>
+<span id="L174" class="ln">   174  </span>func (o *CaseAttributes) SetClosedAtNil() {
+<span id="L175" class="ln">   175  </span>	o.ClosedAt.Set(nil)
 <span id="L176" class="ln">   176  </span>}
 <span id="L177" class="ln">   177  </span>
-<span id="L178" class="ln">   178  </span><span class="comment">// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.</span>
-<span id="L179" class="ln">   179  </span>func (o *CaseAttributes) GetCreatedAt() time.Time {
-<span id="L180" class="ln">   180  </span>	if o == nil || o.CreatedAt == nil {
-<span id="L181" class="ln">   181  </span>		var ret time.Time
-<span id="L182" class="ln">   182  </span>		return ret
-<span id="L183" class="ln">   183  </span>	}
-<span id="L184" class="ln">   184  </span>	return *o.CreatedAt
-<span id="L185" class="ln">   185  </span>}
-<span id="L186" class="ln">   186  </span>
-<span id="L187" class="ln">   187  </span><span class="comment">// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise</span>
-<span id="L188" class="ln">   188  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L189" class="ln">   189  </span>func (o *CaseAttributes) GetCreatedAtOk() (*time.Time, bool) {
-<span id="L190" class="ln">   190  </span>	if o == nil || o.CreatedAt == nil {
-<span id="L191" class="ln">   191  </span>		return nil, false
-<span id="L192" class="ln">   192  </span>	}
-<span id="L193" class="ln">   193  </span>	return o.CreatedAt, true
-<span id="L194" class="ln">   194  </span>}
-<span id="L195" class="ln">   195  </span>
-<span id="L196" class="ln">   196  </span><span class="comment">// HasCreatedAt returns a boolean if a field has been set.</span>
-<span id="L197" class="ln">   197  </span>func (o *CaseAttributes) HasCreatedAt() bool {
-<span id="L198" class="ln">   198  </span>	return o != nil &amp;&amp; o.CreatedAt != nil
+<span id="L178" class="ln">   178  </span><span class="comment">// UnsetClosedAt ensures that no value is present for ClosedAt, not even an explicit nil.</span>
+<span id="L179" class="ln">   179  </span>func (o *CaseAttributes) UnsetClosedAt() {
+<span id="L180" class="ln">   180  </span>	o.ClosedAt.Unset()
+<span id="L181" class="ln">   181  </span>}
+<span id="L182" class="ln">   182  </span>
+<span id="L183" class="ln">   183  </span><span class="comment">// GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.</span>
+<span id="L184" class="ln">   184  </span>func (o *CaseAttributes) GetCreatedAt() time.Time {
+<span id="L185" class="ln">   185  </span>	if o == nil || o.CreatedAt == nil {
+<span id="L186" class="ln">   186  </span>		var ret time.Time
+<span id="L187" class="ln">   187  </span>		return ret
+<span id="L188" class="ln">   188  </span>	}
+<span id="L189" class="ln">   189  </span>	return *o.CreatedAt
+<span id="L190" class="ln">   190  </span>}
+<span id="L191" class="ln">   191  </span>
+<span id="L192" class="ln">   192  </span><span class="comment">// GetCreatedAtOk returns a tuple with the CreatedAt field value if set, nil otherwise</span>
+<span id="L193" class="ln">   193  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L194" class="ln">   194  </span>func (o *CaseAttributes) GetCreatedAtOk() (*time.Time, bool) {
+<span id="L195" class="ln">   195  </span>	if o == nil || o.CreatedAt == nil {
+<span id="L196" class="ln">   196  </span>		return nil, false
+<span id="L197" class="ln">   197  </span>	}
+<span id="L198" class="ln">   198  </span>	return o.CreatedAt, true
 <span id="L199" class="ln">   199  </span>}
 <span id="L200" class="ln">   200  </span>
-<span id="L201" class="ln">   201  </span><span class="comment">// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.</span>
-<span id="L202" class="ln">   202  </span>func (o *CaseAttributes) SetCreatedAt(v time.Time) {
-<span id="L203" class="ln">   203  </span>	o.CreatedAt = &amp;v
+<span id="L201" class="ln">   201  </span><span class="comment">// HasCreatedAt returns a boolean if a field has been set.</span>
+<span id="L202" class="ln">   202  </span>func (o *CaseAttributes) HasCreatedAt() bool {
+<span id="L203" class="ln">   203  </span>	return o != nil &amp;&amp; o.CreatedAt != nil
 <span id="L204" class="ln">   204  </span>}
 <span id="L205" class="ln">   205  </span>
-<span id="L206" class="ln">   206  </span><span class="comment">// GetCustomAttributes returns the CustomAttributes field value if set, zero value otherwise.</span>
-<span id="L207" class="ln">   207  </span>func (o *CaseAttributes) GetCustomAttributes() map[string]CustomAttributeValue {
-<span id="L208" class="ln">   208  </span>	if o == nil || o.CustomAttributes == nil {
-<span id="L209" class="ln">   209  </span>		var ret map[string]CustomAttributeValue
-<span id="L210" class="ln">   210  </span>		return ret
-<span id="L211" class="ln">   211  </span>	}
-<span id="L212" class="ln">   212  </span>	return o.CustomAttributes
-<span id="L213" class="ln">   213  </span>}
-<span id="L214" class="ln">   214  </span>
-<span id="L215" class="ln">   215  </span><span class="comment">// GetCustomAttributesOk returns a tuple with the CustomAttributes field value if set, nil otherwise</span>
-<span id="L216" class="ln">   216  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L217" class="ln">   217  </span>func (o *CaseAttributes) GetCustomAttributesOk() (*map[string]CustomAttributeValue, bool) {
-<span id="L218" class="ln">   218  </span>	if o == nil || o.CustomAttributes == nil {
-<span id="L219" class="ln">   219  </span>		return nil, false
-<span id="L220" class="ln">   220  </span>	}
-<span id="L221" class="ln">   221  </span>	return &amp;o.CustomAttributes, true
-<span id="L222" class="ln">   222  </span>}
-<span id="L223" class="ln">   223  </span>
-<span id="L224" class="ln">   224  </span><span class="comment">// HasCustomAttributes returns a boolean if a field has been set.</span>
-<span id="L225" class="ln">   225  </span>func (o *CaseAttributes) HasCustomAttributes() bool {
-<span id="L226" class="ln">   226  </span>	return o != nil &amp;&amp; o.CustomAttributes != nil
+<span id="L206" class="ln">   206  </span><span class="comment">// SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.</span>
+<span id="L207" class="ln">   207  </span>func (o *CaseAttributes) SetCreatedAt(v time.Time) {
+<span id="L208" class="ln">   208  </span>	o.CreatedAt = &amp;v
+<span id="L209" class="ln">   209  </span>}
+<span id="L210" class="ln">   210  </span>
+<span id="L211" class="ln">   211  </span><span class="comment">// GetCustomAttributes returns the CustomAttributes field value if set, zero value otherwise.</span>
+<span id="L212" class="ln">   212  </span>func (o *CaseAttributes) GetCustomAttributes() map[string]CustomAttributeValue {
+<span id="L213" class="ln">   213  </span>	if o == nil || o.CustomAttributes == nil {
+<span id="L214" class="ln">   214  </span>		var ret map[string]CustomAttributeValue
+<span id="L215" class="ln">   215  </span>		return ret
+<span id="L216" class="ln">   216  </span>	}
+<span id="L217" class="ln">   217  </span>	return o.CustomAttributes
+<span id="L218" class="ln">   218  </span>}
+<span id="L219" class="ln">   219  </span>
+<span id="L220" class="ln">   220  </span><span class="comment">// GetCustomAttributesOk returns a tuple with the CustomAttributes field value if set, nil otherwise</span>
+<span id="L221" class="ln">   221  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L222" class="ln">   222  </span>func (o *CaseAttributes) GetCustomAttributesOk() (*map[string]CustomAttributeValue, bool) {
+<span id="L223" class="ln">   223  </span>	if o == nil || o.CustomAttributes == nil {
+<span id="L224" class="ln">   224  </span>		return nil, false
+<span id="L225" class="ln">   225  </span>	}
+<span id="L226" class="ln">   226  </span>	return &amp;o.CustomAttributes, true
 <span id="L227" class="ln">   227  </span>}
 <span id="L228" class="ln">   228  </span>
-<span id="L229" class="ln">   229  </span><span class="comment">// SetCustomAttributes gets a reference to the given map[string]CustomAttributeValue and assigns it to the CustomAttributes field.</span>
-<span id="L230" class="ln">   230  </span>func (o *CaseAttributes) SetCustomAttributes(v map[string]CustomAttributeValue) {
-<span id="L231" class="ln">   231  </span>	o.CustomAttributes = v
+<span id="L229" class="ln">   229  </span><span class="comment">// HasCustomAttributes returns a boolean if a field has been set.</span>
+<span id="L230" class="ln">   230  </span>func (o *CaseAttributes) HasCustomAttributes() bool {
+<span id="L231" class="ln">   231  </span>	return o != nil &amp;&amp; o.CustomAttributes != nil
 <span id="L232" class="ln">   232  </span>}
 <span id="L233" class="ln">   233  </span>
-<span id="L234" class="ln">   234  </span><span class="comment">// GetDescription returns the Description field value if set, zero value otherwise.</span>
-<span id="L235" class="ln">   235  </span>func (o *CaseAttributes) GetDescription() string {
-<span id="L236" class="ln">   236  </span>	if o == nil || o.Description == nil {
-<span id="L237" class="ln">   237  </span>		var ret string
-<span id="L238" class="ln">   238  </span>		return ret
-<span id="L239" class="ln">   239  </span>	}
-<span id="L240" class="ln">   240  </span>	return *o.Description
-<span id="L241" class="ln">   241  </span>}
-<span id="L242" class="ln">   242  </span>
-<span id="L243" class="ln">   243  </span><span class="comment">// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise</span>
-<span id="L244" class="ln">   244  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L245" class="ln">   245  </span>func (o *CaseAttributes) GetDescriptionOk() (*string, bool) {
-<span id="L246" class="ln">   246  </span>	if o == nil || o.Description == nil {
-<span id="L247" class="ln">   247  </span>		return nil, false
-<span id="L248" class="ln">   248  </span>	}
-<span id="L249" class="ln">   249  </span>	return o.Description, true
-<span id="L250" class="ln">   250  </span>}
-<span id="L251" class="ln">   251  </span>
-<span id="L252" class="ln">   252  </span><span class="comment">// HasDescription returns a boolean if a field has been set.</span>
-<span id="L253" class="ln">   253  </span>func (o *CaseAttributes) HasDescription() bool {
-<span id="L254" class="ln">   254  </span>	return o != nil &amp;&amp; o.Description != nil
+<span id="L234" class="ln">   234  </span><span class="comment">// SetCustomAttributes gets a reference to the given map[string]CustomAttributeValue and assigns it to the CustomAttributes field.</span>
+<span id="L235" class="ln">   235  </span>func (o *CaseAttributes) SetCustomAttributes(v map[string]CustomAttributeValue) {
+<span id="L236" class="ln">   236  </span>	o.CustomAttributes = v
+<span id="L237" class="ln">   237  </span>}
+<span id="L238" class="ln">   238  </span>
+<span id="L239" class="ln">   239  </span><span class="comment">// GetDescription returns the Description field value if set, zero value otherwise.</span>
+<span id="L240" class="ln">   240  </span>func (o *CaseAttributes) GetDescription() string {
+<span id="L241" class="ln">   241  </span>	if o == nil || o.Description == nil {
+<span id="L242" class="ln">   242  </span>		var ret string
+<span id="L243" class="ln">   243  </span>		return ret
+<span id="L244" class="ln">   244  </span>	}
+<span id="L245" class="ln">   245  </span>	return *o.Description
+<span id="L246" class="ln">   246  </span>}
+<span id="L247" class="ln">   247  </span>
+<span id="L248" class="ln">   248  </span><span class="comment">// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise</span>
+<span id="L249" class="ln">   249  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L250" class="ln">   250  </span>func (o *CaseAttributes) GetDescriptionOk() (*string, bool) {
+<span id="L251" class="ln">   251  </span>	if o == nil || o.Description == nil {
+<span id="L252" class="ln">   252  </span>		return nil, false
+<span id="L253" class="ln">   253  </span>	}
+<span id="L254" class="ln">   254  </span>	return o.Description, true
 <span id="L255" class="ln">   255  </span>}
 <span id="L256" class="ln">   256  </span>
-<span id="L257" class="ln">   257  </span><span class="comment">// SetDescription gets a reference to the given string and assigns it to the Description field.</span>
-<span id="L258" class="ln">   258  </span>func (o *CaseAttributes) SetDescription(v string) {
-<span id="L259" class="ln">   259  </span>	o.Description = &amp;v
+<span id="L257" class="ln">   257  </span><span class="comment">// HasDescription returns a boolean if a field has been set.</span>
+<span id="L258" class="ln">   258  </span>func (o *CaseAttributes) HasDescription() bool {
+<span id="L259" class="ln">   259  </span>	return o != nil &amp;&amp; o.Description != nil
 <span id="L260" class="ln">   260  </span>}
 <span id="L261" class="ln">   261  </span>
-<span id="L262" class="ln">   262  </span><span class="comment">// GetJiraIssue returns the JiraIssue field value if set, zero value otherwise (both if not set or set to explicit null).</span>
-<span id="L263" class="ln">   263  </span>func (o *CaseAttributes) GetJiraIssue() JiraIssue {
-<span id="L264" class="ln">   264  </span>	if o == nil || o.JiraIssue.Get() == nil {
-<span id="L265" class="ln">   265  </span>		var ret JiraIssue
-<span id="L266" class="ln">   266  </span>		return ret
-<span id="L267" class="ln">   267  </span>	}
-<span id="L268" class="ln">   268  </span>	return *o.JiraIssue.Get()
-<span id="L269" class="ln">   269  </span>}
-<span id="L270" class="ln">   270  </span>
-<span id="L271" class="ln">   271  </span><span class="comment">// GetJiraIssueOk returns a tuple with the JiraIssue field value if set, nil otherwise</span>
-<span id="L272" class="ln">   272  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L273" class="ln">   273  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
-<span id="L274" class="ln">   274  </span>func (o *CaseAttributes) GetJiraIssueOk() (*JiraIssue, bool) {
-<span id="L275" class="ln">   275  </span>	if o == nil {
-<span id="L276" class="ln">   276  </span>		return nil, false
-<span id="L277" class="ln">   277  </span>	}
-<span id="L278" class="ln">   278  </span>	return o.JiraIssue.Get(), o.JiraIssue.IsSet()
-<span id="L279" class="ln">   279  </span>}
-<span id="L280" class="ln">   280  </span>
-<span id="L281" class="ln">   281  </span><span class="comment">// HasJiraIssue returns a boolean if a field has been set.</span>
-<span id="L282" class="ln">   282  </span>func (o *CaseAttributes) HasJiraIssue() bool {
-<span id="L283" class="ln">   283  </span>	return o != nil &amp;&amp; o.JiraIssue.IsSet()
+<span id="L262" class="ln">   262  </span><span class="comment">// SetDescription gets a reference to the given string and assigns it to the Description field.</span>
+<span id="L263" class="ln">   263  </span>func (o *CaseAttributes) SetDescription(v string) {
+<span id="L264" class="ln">   264  </span>	o.Description = &amp;v
+<span id="L265" class="ln">   265  </span>}
+<span id="L266" class="ln">   266  </span>
+<span id="L267" class="ln">   267  </span><span class="comment">// GetJiraIssue returns the JiraIssue field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L268" class="ln">   268  </span>func (o *CaseAttributes) GetJiraIssue() JiraIssue {
+<span id="L269" class="ln">   269  </span>	if o == nil || o.JiraIssue.Get() == nil {
+<span id="L270" class="ln">   270  </span>		var ret JiraIssue
+<span id="L271" class="ln">   271  </span>		return ret
+<span id="L272" class="ln">   272  </span>	}
+<span id="L273" class="ln">   273  </span>	return *o.JiraIssue.Get()
+<span id="L274" class="ln">   274  </span>}
+<span id="L275" class="ln">   275  </span>
+<span id="L276" class="ln">   276  </span><span class="comment">// GetJiraIssueOk returns a tuple with the JiraIssue field value if set, nil otherwise</span>
+<span id="L277" class="ln">   277  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L278" class="ln">   278  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L279" class="ln">   279  </span>func (o *CaseAttributes) GetJiraIssueOk() (*JiraIssue, bool) {
+<span id="L280" class="ln">   280  </span>	if o == nil {
+<span id="L281" class="ln">   281  </span>		return nil, false
+<span id="L282" class="ln">   282  </span>	}
+<span id="L283" class="ln">   283  </span>	return o.JiraIssue.Get(), o.JiraIssue.IsSet()
 <span id="L284" class="ln">   284  </span>}
 <span id="L285" class="ln">   285  </span>
-<span id="L286" class="ln">   286  </span><span class="comment">// SetJiraIssue gets a reference to the given NullableJiraIssue and assigns it to the JiraIssue field.</span>
-<span id="L287" class="ln">   287  </span>func (o *CaseAttributes) SetJiraIssue(v JiraIssue) {
-<span id="L288" class="ln">   288  </span>	o.JiraIssue.Set(&amp;v)
+<span id="L286" class="ln">   286  </span><span class="comment">// HasJiraIssue returns a boolean if a field has been set.</span>
+<span id="L287" class="ln">   287  </span>func (o *CaseAttributes) HasJiraIssue() bool {
+<span id="L288" class="ln">   288  </span>	return o != nil &amp;&amp; o.JiraIssue.IsSet()
 <span id="L289" class="ln">   289  </span>}
 <span id="L290" class="ln">   290  </span>
-<span id="L291" class="ln">   291  </span><span class="comment">// SetJiraIssueNil sets the value for JiraIssue to be an explicit nil.</span>
-<span id="L292" class="ln">   292  </span>func (o *CaseAttributes) SetJiraIssueNil() {
-<span id="L293" class="ln">   293  </span>	o.JiraIssue.Set(nil)
+<span id="L291" class="ln">   291  </span><span class="comment">// SetJiraIssue gets a reference to the given NullableJiraIssue and assigns it to the JiraIssue field.</span>
+<span id="L292" class="ln">   292  </span>func (o *CaseAttributes) SetJiraIssue(v JiraIssue) {
+<span id="L293" class="ln">   293  </span>	o.JiraIssue.Set(&amp;v)
 <span id="L294" class="ln">   294  </span>}
 <span id="L295" class="ln">   295  </span>
-<span id="L296" class="ln">   296  </span><span class="comment">// UnsetJiraIssue ensures that no value is present for JiraIssue, not even an explicit nil.</span>
-<span id="L297" class="ln">   297  </span>func (o *CaseAttributes) UnsetJiraIssue() {
-<span id="L298" class="ln">   298  </span>	o.JiraIssue.Unset()
+<span id="L296" class="ln">   296  </span><span class="comment">// SetJiraIssueNil sets the value for JiraIssue to be an explicit nil.</span>
+<span id="L297" class="ln">   297  </span>func (o *CaseAttributes) SetJiraIssueNil() {
+<span id="L298" class="ln">   298  </span>	o.JiraIssue.Set(nil)
 <span id="L299" class="ln">   299  </span>}
 <span id="L300" class="ln">   300  </span>
-<span id="L301" class="ln">   301  </span><span class="comment">// GetKey returns the Key field value if set, zero value otherwise.</span>
-<span id="L302" class="ln">   302  </span>func (o *CaseAttributes) GetKey() string {
-<span id="L303" class="ln">   303  </span>	if o == nil || o.Key == nil {
-<span id="L304" class="ln">   304  </span>		var ret string
-<span id="L305" class="ln">   305  </span>		return ret
-<span id="L306" class="ln">   306  </span>	}
-<span id="L307" class="ln">   307  </span>	return *o.Key
-<span id="L308" class="ln">   308  </span>}
-<span id="L309" class="ln">   309  </span>
-<span id="L310" class="ln">   310  </span><span class="comment">// GetKeyOk returns a tuple with the Key field value if set, nil otherwise</span>
-<span id="L311" class="ln">   311  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L312" class="ln">   312  </span>func (o *CaseAttributes) GetKeyOk() (*string, bool) {
-<span id="L313" class="ln">   313  </span>	if o == nil || o.Key == nil {
-<span id="L314" class="ln">   314  </span>		return nil, false
-<span id="L315" class="ln">   315  </span>	}
-<span id="L316" class="ln">   316  </span>	return o.Key, true
-<span id="L317" class="ln">   317  </span>}
-<span id="L318" class="ln">   318  </span>
-<span id="L319" class="ln">   319  </span><span class="comment">// HasKey returns a boolean if a field has been set.</span>
-<span id="L320" class="ln">   320  </span>func (o *CaseAttributes) HasKey() bool {
-<span id="L321" class="ln">   321  </span>	return o != nil &amp;&amp; o.Key != nil
+<span id="L301" class="ln">   301  </span><span class="comment">// UnsetJiraIssue ensures that no value is present for JiraIssue, not even an explicit nil.</span>
+<span id="L302" class="ln">   302  </span>func (o *CaseAttributes) UnsetJiraIssue() {
+<span id="L303" class="ln">   303  </span>	o.JiraIssue.Unset()
+<span id="L304" class="ln">   304  </span>}
+<span id="L305" class="ln">   305  </span>
+<span id="L306" class="ln">   306  </span><span class="comment">// GetKey returns the Key field value if set, zero value otherwise.</span>
+<span id="L307" class="ln">   307  </span>func (o *CaseAttributes) GetKey() string {
+<span id="L308" class="ln">   308  </span>	if o == nil || o.Key == nil {
+<span id="L309" class="ln">   309  </span>		var ret string
+<span id="L310" class="ln">   310  </span>		return ret
+<span id="L311" class="ln">   311  </span>	}
+<span id="L312" class="ln">   312  </span>	return *o.Key
+<span id="L313" class="ln">   313  </span>}
+<span id="L314" class="ln">   314  </span>
+<span id="L315" class="ln">   315  </span><span class="comment">// GetKeyOk returns a tuple with the Key field value if set, nil otherwise</span>
+<span id="L316" class="ln">   316  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L317" class="ln">   317  </span>func (o *CaseAttributes) GetKeyOk() (*string, bool) {
+<span id="L318" class="ln">   318  </span>	if o == nil || o.Key == nil {
+<span id="L319" class="ln">   319  </span>		return nil, false
+<span id="L320" class="ln">   320  </span>	}
+<span id="L321" class="ln">   321  </span>	return o.Key, true
 <span id="L322" class="ln">   322  </span>}
 <span id="L323" class="ln">   323  </span>
-<span id="L324" class="ln">   324  </span><span class="comment">// SetKey gets a reference to the given string and assigns it to the Key field.</span>
-<span id="L325" class="ln">   325  </span>func (o *CaseAttributes) SetKey(v string) {
-<span id="L326" class="ln">   326  </span>	o.Key = &amp;v
+<span id="L324" class="ln">   324  </span><span class="comment">// HasKey returns a boolean if a field has been set.</span>
+<span id="L325" class="ln">   325  </span>func (o *CaseAttributes) HasKey() bool {
+<span id="L326" class="ln">   326  </span>	return o != nil &amp;&amp; o.Key != nil
 <span id="L327" class="ln">   327  </span>}
 <span id="L328" class="ln">   328  </span>
-<span id="L329" class="ln">   329  </span><span class="comment">// GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).</span>
-<span id="L330" class="ln">   330  </span>func (o *CaseAttributes) GetModifiedAt() time.Time {
-<span id="L331" class="ln">   331  </span>	if o == nil || o.ModifiedAt.Get() == nil {
-<span id="L332" class="ln">   332  </span>		var ret time.Time
-<span id="L333" class="ln">   333  </span>		return ret
-<span id="L334" class="ln">   334  </span>	}
-<span id="L335" class="ln">   335  </span>	return *o.ModifiedAt.Get()
-<span id="L336" class="ln">   336  </span>}
-<span id="L337" class="ln">   337  </span>
-<span id="L338" class="ln">   338  </span><span class="comment">// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise</span>
-<span id="L339" class="ln">   339  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L340" class="ln">   340  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
-<span id="L341" class="ln">   341  </span>func (o *CaseAttributes) GetModifiedAtOk() (*time.Time, bool) {
-<span id="L342" class="ln">   342  </span>	if o == nil {
-<span id="L343" class="ln">   343  </span>		return nil, false
-<span id="L344" class="ln">   344  </span>	}
-<span id="L345" class="ln">   345  </span>	return o.ModifiedAt.Get(), o.ModifiedAt.IsSet()
-<span id="L346" class="ln">   346  </span>}
-<span id="L347" class="ln">   347  </span>
-<span id="L348" class="ln">   348  </span><span class="comment">// HasModifiedAt returns a boolean if a field has been set.</span>
-<span id="L349" class="ln">   349  </span>func (o *CaseAttributes) HasModifiedAt() bool {
-<span id="L350" class="ln">   350  </span>	return o != nil &amp;&amp; o.ModifiedAt.IsSet()
+<span id="L329" class="ln">   329  </span><span class="comment">// SetKey gets a reference to the given string and assigns it to the Key field.</span>
+<span id="L330" class="ln">   330  </span>func (o *CaseAttributes) SetKey(v string) {
+<span id="L331" class="ln">   331  </span>	o.Key = &amp;v
+<span id="L332" class="ln">   332  </span>}
+<span id="L333" class="ln">   333  </span>
+<span id="L334" class="ln">   334  </span><span class="comment">// GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L335" class="ln">   335  </span>func (o *CaseAttributes) GetModifiedAt() time.Time {
+<span id="L336" class="ln">   336  </span>	if o == nil || o.ModifiedAt.Get() == nil {
+<span id="L337" class="ln">   337  </span>		var ret time.Time
+<span id="L338" class="ln">   338  </span>		return ret
+<span id="L339" class="ln">   339  </span>	}
+<span id="L340" class="ln">   340  </span>	return *o.ModifiedAt.Get()
+<span id="L341" class="ln">   341  </span>}
+<span id="L342" class="ln">   342  </span>
+<span id="L343" class="ln">   343  </span><span class="comment">// GetModifiedAtOk returns a tuple with the ModifiedAt field value if set, nil otherwise</span>
+<span id="L344" class="ln">   344  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L345" class="ln">   345  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L346" class="ln">   346  </span>func (o *CaseAttributes) GetModifiedAtOk() (*time.Time, bool) {
+<span id="L347" class="ln">   347  </span>	if o == nil {
+<span id="L348" class="ln">   348  </span>		return nil, false
+<span id="L349" class="ln">   349  </span>	}
+<span id="L350" class="ln">   350  </span>	return o.ModifiedAt.Get(), o.ModifiedAt.IsSet()
 <span id="L351" class="ln">   351  </span>}
 <span id="L352" class="ln">   352  </span>
-<span id="L353" class="ln">   353  </span><span class="comment">// SetModifiedAt gets a reference to the given datadog.NullableTime and assigns it to the ModifiedAt field.</span>
-<span id="L354" class="ln">   354  </span>func (o *CaseAttributes) SetModifiedAt(v time.Time) {
-<span id="L355" class="ln">   355  </span>	o.ModifiedAt.Set(&amp;v)
+<span id="L353" class="ln">   353  </span><span class="comment">// HasModifiedAt returns a boolean if a field has been set.</span>
+<span id="L354" class="ln">   354  </span>func (o *CaseAttributes) HasModifiedAt() bool {
+<span id="L355" class="ln">   355  </span>	return o != nil &amp;&amp; o.ModifiedAt.IsSet()
 <span id="L356" class="ln">   356  </span>}
 <span id="L357" class="ln">   357  </span>
-<span id="L358" class="ln">   358  </span><span class="comment">// SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil.</span>
-<span id="L359" class="ln">   359  </span>func (o *CaseAttributes) SetModifiedAtNil() {
-<span id="L360" class="ln">   360  </span>	o.ModifiedAt.Set(nil)
+<span id="L358" class="ln">   358  </span><span class="comment">// SetModifiedAt gets a reference to the given datadog.NullableTime and assigns it to the ModifiedAt field.</span>
+<span id="L359" class="ln">   359  </span>func (o *CaseAttributes) SetModifiedAt(v time.Time) {
+<span id="L360" class="ln">   360  </span>	o.ModifiedAt.Set(&amp;v)
 <span id="L361" class="ln">   361  </span>}
 <span id="L362" class="ln">   362  </span>
-<span id="L363" class="ln">   363  </span><span class="comment">// UnsetModifiedAt ensures that no value is present for ModifiedAt, not even an explicit nil.</span>
-<span id="L364" class="ln">   364  </span>func (o *CaseAttributes) UnsetModifiedAt() {
-<span id="L365" class="ln">   365  </span>	o.ModifiedAt.Unset()
+<span id="L363" class="ln">   363  </span><span class="comment">// SetModifiedAtNil sets the value for ModifiedAt to be an explicit nil.</span>
+<span id="L364" class="ln">   364  </span>func (o *CaseAttributes) SetModifiedAtNil() {
+<span id="L365" class="ln">   365  </span>	o.ModifiedAt.Set(nil)
 <span id="L366" class="ln">   366  </span>}
 <span id="L367" class="ln">   367  </span>
-<span id="L368" class="ln">   368  </span><span class="comment">// GetPriority returns the Priority field value if set, zero value otherwise.</span>
-<span id="L369" class="ln">   369  </span>func (o *CaseAttributes) GetPriority() CasePriority {
-<span id="L370" class="ln">   370  </span>	if o == nil || o.Priority == nil {
-<span id="L371" class="ln">   371  </span>		var ret CasePriority
-<span id="L372" class="ln">   372  </span>		return ret
-<span id="L373" class="ln">   373  </span>	}
-<span id="L374" class="ln">   374  </span>	return *o.Priority
-<span id="L375" class="ln">   375  </span>}
-<span id="L376" class="ln">   376  </span>
-<span id="L377" class="ln">   377  </span><span class="comment">// GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise</span>
-<span id="L378" class="ln">   378  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L379" class="ln">   379  </span>func (o *CaseAttributes) GetPriorityOk() (*CasePriority, bool) {
-<span id="L380" class="ln">   380  </span>	if o == nil || o.Priority == nil {
-<span id="L381" class="ln">   381  </span>		return nil, false
-<span id="L382" class="ln">   382  </span>	}
-<span id="L383" class="ln">   383  </span>	return o.Priority, true
-<span id="L384" class="ln">   384  </span>}
-<span id="L385" class="ln">   385  </span>
-<span id="L386" class="ln">   386  </span><span class="comment">// HasPriority returns a boolean if a field has been set.</span>
-<span id="L387" class="ln">   387  </span>func (o *CaseAttributes) HasPriority() bool {
-<span id="L388" class="ln">   388  </span>	return o != nil &amp;&amp; o.Priority != nil
+<span id="L368" class="ln">   368  </span><span class="comment">// UnsetModifiedAt ensures that no value is present for ModifiedAt, not even an explicit nil.</span>
+<span id="L369" class="ln">   369  </span>func (o *CaseAttributes) UnsetModifiedAt() {
+<span id="L370" class="ln">   370  </span>	o.ModifiedAt.Unset()
+<span id="L371" class="ln">   371  </span>}
+<span id="L372" class="ln">   372  </span>
+<span id="L373" class="ln">   373  </span><span class="comment">// GetPriority returns the Priority field value if set, zero value otherwise.</span>
+<span id="L374" class="ln">   374  </span>func (o *CaseAttributes) GetPriority() CasePriority {
+<span id="L375" class="ln">   375  </span>	if o == nil || o.Priority == nil {
+<span id="L376" class="ln">   376  </span>		var ret CasePriority
+<span id="L377" class="ln">   377  </span>		return ret
+<span id="L378" class="ln">   378  </span>	}
+<span id="L379" class="ln">   379  </span>	return *o.Priority
+<span id="L380" class="ln">   380  </span>}
+<span id="L381" class="ln">   381  </span>
+<span id="L382" class="ln">   382  </span><span class="comment">// GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise</span>
+<span id="L383" class="ln">   383  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L384" class="ln">   384  </span>func (o *CaseAttributes) GetPriorityOk() (*CasePriority, bool) {
+<span id="L385" class="ln">   385  </span>	if o == nil || o.Priority == nil {
+<span id="L386" class="ln">   386  </span>		return nil, false
+<span id="L387" class="ln">   387  </span>	}
+<span id="L388" class="ln">   388  </span>	return o.Priority, true
 <span id="L389" class="ln">   389  </span>}
 <span id="L390" class="ln">   390  </span>
-<span id="L391" class="ln">   391  </span><span class="comment">// SetPriority gets a reference to the given CasePriority and assigns it to the Priority field.</span>
-<span id="L392" class="ln">   392  </span>func (o *CaseAttributes) SetPriority(v CasePriority) {
-<span id="L393" class="ln">   393  </span>	o.Priority = &amp;v
+<span id="L391" class="ln">   391  </span><span class="comment">// HasPriority returns a boolean if a field has been set.</span>
+<span id="L392" class="ln">   392  </span>func (o *CaseAttributes) HasPriority() bool {
+<span id="L393" class="ln">   393  </span>	return o != nil &amp;&amp; o.Priority != nil
 <span id="L394" class="ln">   394  </span>}
 <span id="L395" class="ln">   395  </span>
-<span id="L396" class="ln">   396  </span><span class="comment">// GetServiceNowTicket returns the ServiceNowTicket field value if set, zero value otherwise (both if not set or set to explicit null).</span>
-<span id="L397" class="ln">   397  </span>func (o *CaseAttributes) GetServiceNowTicket() ServiceNowTicket {
-<span id="L398" class="ln">   398  </span>	if o == nil || o.ServiceNowTicket.Get() == nil {
-<span id="L399" class="ln">   399  </span>		var ret ServiceNowTicket
-<span id="L400" class="ln">   400  </span>		return ret
-<span id="L401" class="ln">   401  </span>	}
-<span id="L402" class="ln">   402  </span>	return *o.ServiceNowTicket.Get()
-<span id="L403" class="ln">   403  </span>}
-<span id="L404" class="ln">   404  </span>
-<span id="L405" class="ln">   405  </span><span class="comment">// GetServiceNowTicketOk returns a tuple with the ServiceNowTicket field value if set, nil otherwise</span>
-<span id="L406" class="ln">   406  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L407" class="ln">   407  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
-<span id="L408" class="ln">   408  </span>func (o *CaseAttributes) GetServiceNowTicketOk() (*ServiceNowTicket, bool) {
-<span id="L409" class="ln">   409  </span>	if o == nil {
-<span id="L410" class="ln">   410  </span>		return nil, false
-<span id="L411" class="ln">   411  </span>	}
-<span id="L412" class="ln">   412  </span>	return o.ServiceNowTicket.Get(), o.ServiceNowTicket.IsSet()
-<span id="L413" class="ln">   413  </span>}
-<span id="L414" class="ln">   414  </span>
-<span id="L415" class="ln">   415  </span><span class="comment">// HasServiceNowTicket returns a boolean if a field has been set.</span>
-<span id="L416" class="ln">   416  </span>func (o *CaseAttributes) HasServiceNowTicket() bool {
-<span id="L417" class="ln">   417  </span>	return o != nil &amp;&amp; o.ServiceNowTicket.IsSet()
+<span id="L396" class="ln">   396  </span><span class="comment">// SetPriority gets a reference to the given CasePriority and assigns it to the Priority field.</span>
+<span id="L397" class="ln">   397  </span>func (o *CaseAttributes) SetPriority(v CasePriority) {
+<span id="L398" class="ln">   398  </span>	o.Priority = &amp;v
+<span id="L399" class="ln">   399  </span>}
+<span id="L400" class="ln">   400  </span>
+<span id="L401" class="ln">   401  </span><span class="comment">// GetServiceNowTicket returns the ServiceNowTicket field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L402" class="ln">   402  </span>func (o *CaseAttributes) GetServiceNowTicket() ServiceNowTicket {
+<span id="L403" class="ln">   403  </span>	if o == nil || o.ServiceNowTicket.Get() == nil {
+<span id="L404" class="ln">   404  </span>		var ret ServiceNowTicket
+<span id="L405" class="ln">   405  </span>		return ret
+<span id="L406" class="ln">   406  </span>	}
+<span id="L407" class="ln">   407  </span>	return *o.ServiceNowTicket.Get()
+<span id="L408" class="ln">   408  </span>}
+<span id="L409" class="ln">   409  </span>
+<span id="L410" class="ln">   410  </span><span class="comment">// GetServiceNowTicketOk returns a tuple with the ServiceNowTicket field value if set, nil otherwise</span>
+<span id="L411" class="ln">   411  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L412" class="ln">   412  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L413" class="ln">   413  </span>func (o *CaseAttributes) GetServiceNowTicketOk() (*ServiceNowTicket, bool) {
+<span id="L414" class="ln">   414  </span>	if o == nil {
+<span id="L415" class="ln">   415  </span>		return nil, false
+<span id="L416" class="ln">   416  </span>	}
+<span id="L417" class="ln">   417  </span>	return o.ServiceNowTicket.Get(), o.ServiceNowTicket.IsSet()
 <span id="L418" class="ln">   418  </span>}
 <span id="L419" class="ln">   419  </span>
-<span id="L420" class="ln">   420  </span><span class="comment">// SetServiceNowTicket gets a reference to the given NullableServiceNowTicket and assigns it to the ServiceNowTicket field.</span>
-<span id="L421" class="ln">   421  </span>func (o *CaseAttributes) SetServiceNowTicket(v ServiceNowTicket) {
-<span id="L422" class="ln">   422  </span>	o.ServiceNowTicket.Set(&amp;v)
+<span id="L420" class="ln">   420  </span><span class="comment">// HasServiceNowTicket returns a boolean if a field has been set.</span>
+<span id="L421" class="ln">   421  </span>func (o *CaseAttributes) HasServiceNowTicket() bool {
+<span id="L422" class="ln">   422  </span>	return o != nil &amp;&amp; o.ServiceNowTicket.IsSet()
 <span id="L423" class="ln">   423  </span>}
 <span id="L424" class="ln">   424  </span>
-<span id="L425" class="ln">   425  </span><span class="comment">// SetServiceNowTicketNil sets the value for ServiceNowTicket to be an explicit nil.</span>
-<span id="L426" class="ln">   426  </span>func (o *CaseAttributes) SetServiceNowTicketNil() {
-<span id="L427" class="ln">   427  </span>	o.ServiceNowTicket.Set(nil)
+<span id="L425" class="ln">   425  </span><span class="comment">// SetServiceNowTicket gets a reference to the given NullableServiceNowTicket and assigns it to the ServiceNowTicket field.</span>
+<span id="L426" class="ln">   426  </span>func (o *CaseAttributes) SetServiceNowTicket(v ServiceNowTicket) {
+<span id="L427" class="ln">   427  </span>	o.ServiceNowTicket.Set(&amp;v)
 <span id="L428" class="ln">   428  </span>}
 <span id="L429" class="ln">   429  </span>
-<span id="L430" class="ln">   430  </span><span class="comment">// UnsetServiceNowTicket ensures that no value is present for ServiceNowTicket, not even an explicit nil.</span>
-<span id="L431" class="ln">   431  </span>func (o *CaseAttributes) UnsetServiceNowTicket() {
-<span id="L432" class="ln">   432  </span>	o.ServiceNowTicket.Unset()
+<span id="L430" class="ln">   430  </span><span class="comment">// SetServiceNowTicketNil sets the value for ServiceNowTicket to be an explicit nil.</span>
+<span id="L431" class="ln">   431  </span>func (o *CaseAttributes) SetServiceNowTicketNil() {
+<span id="L432" class="ln">   432  </span>	o.ServiceNowTicket.Set(nil)
 <span id="L433" class="ln">   433  </span>}
 <span id="L434" class="ln">   434  </span>
-<span id="L435" class="ln">   435  </span><span class="comment">// GetStatus returns the Status field value if set, zero value otherwise.</span>
-<span id="L436" class="ln">   436  </span>func (o *CaseAttributes) GetStatus() CaseStatus {
-<span id="L437" class="ln">   437  </span>	if o == nil || o.Status == nil {
-<span id="L438" class="ln">   438  </span>		var ret CaseStatus
-<span id="L439" class="ln">   439  </span>		return ret
-<span id="L440" class="ln">   440  </span>	}
-<span id="L441" class="ln">   441  </span>	return *o.Status
-<span id="L442" class="ln">   442  </span>}
-<span id="L443" class="ln">   443  </span>
-<span id="L444" class="ln">   444  </span><span class="comment">// GetStatusOk returns a tuple with the Status field value if set, nil otherwise</span>
-<span id="L445" class="ln">   445  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L446" class="ln">   446  </span>func (o *CaseAttributes) GetStatusOk() (*CaseStatus, bool) {
-<span id="L447" class="ln">   447  </span>	if o == nil || o.Status == nil {
-<span id="L448" class="ln">   448  </span>		return nil, false
-<span id="L449" class="ln">   449  </span>	}
-<span id="L450" class="ln">   450  </span>	return o.Status, true
-<span id="L451" class="ln">   451  </span>}
-<span id="L452" class="ln">   452  </span>
-<span id="L453" class="ln">   453  </span><span class="comment">// HasStatus returns a boolean if a field has been set.</span>
-<span id="L454" class="ln">   454  </span>func (o *CaseAttributes) HasStatus() bool {
-<span id="L455" class="ln">   455  </span>	return o != nil &amp;&amp; o.Status != nil
-<span id="L456" class="ln">   456  </span>}
-<span id="L457" class="ln">   457  </span>
-<span id="L458" class="ln">   458  </span><span class="comment">// SetStatus gets a reference to the given CaseStatus and assigns it to the Status field.</span>
-<span id="L459" class="ln">   459  </span>func (o *CaseAttributes) SetStatus(v CaseStatus) {
-<span id="L460" class="ln">   460  </span>	o.Status = &amp;v
-<span id="L461" class="ln">   461  </span>}
-<span id="L462" class="ln">   462  </span>
-<span id="L463" class="ln">   463  </span><span class="comment">// GetTitle returns the Title field value if set, zero value otherwise.</span>
-<span id="L464" class="ln">   464  </span>func (o *CaseAttributes) GetTitle() string {
-<span id="L465" class="ln">   465  </span>	if o == nil || o.Title == nil {
-<span id="L466" class="ln">   466  </span>		var ret string
-<span id="L467" class="ln">   467  </span>		return ret
-<span id="L468" class="ln">   468  </span>	}
-<span id="L469" class="ln">   469  </span>	return *o.Title
-<span id="L470" class="ln">   470  </span>}
-<span id="L471" class="ln">   471  </span>
-<span id="L472" class="ln">   472  </span><span class="comment">// GetTitleOk returns a tuple with the Title field value if set, nil otherwise</span>
-<span id="L473" class="ln">   473  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L474" class="ln">   474  </span>func (o *CaseAttributes) GetTitleOk() (*string, bool) {
-<span id="L475" class="ln">   475  </span>	if o == nil || o.Title == nil {
-<span id="L476" class="ln">   476  </span>		return nil, false
-<span id="L477" class="ln">   477  </span>	}
-<span id="L478" class="ln">   478  </span>	return o.Title, true
-<span id="L479" class="ln">   479  </span>}
-<span id="L480" class="ln">   480  </span>
-<span id="L481" class="ln">   481  </span><span class="comment">// HasTitle returns a boolean if a field has been set.</span>
-<span id="L482" class="ln">   482  </span>func (o *CaseAttributes) HasTitle() bool {
-<span id="L483" class="ln">   483  </span>	return o != nil &amp;&amp; o.Title != nil
-<span id="L484" class="ln">   484  </span>}
-<span id="L485" class="ln">   485  </span>
-<span id="L486" class="ln">   486  </span><span class="comment">// SetTitle gets a reference to the given string and assigns it to the Title field.</span>
-<span id="L487" class="ln">   487  </span>func (o *CaseAttributes) SetTitle(v string) {
-<span id="L488" class="ln">   488  </span>	o.Title = &amp;v
-<span id="L489" class="ln">   489  </span>}
-<span id="L490" class="ln">   490  </span>
-<span id="L491" class="ln">   491  </span><span class="comment">// GetType returns the Type field value if set, zero value otherwise.</span>
-<span id="L492" class="ln">   492  </span><span class="comment">// Deprecated</span>
-<span id="L493" class="ln">   493  </span>func (o *CaseAttributes) GetType() CaseType {
-<span id="L494" class="ln">   494  </span>	if o == nil || o.Type == nil {
-<span id="L495" class="ln">   495  </span>		var ret CaseType
-<span id="L496" class="ln">   496  </span>		return ret
-<span id="L497" class="ln">   497  </span>	}
-<span id="L498" class="ln">   498  </span>	return *o.Type
-<span id="L499" class="ln">   499  </span>}
-<span id="L500" class="ln">   500  </span>
-<span id="L501" class="ln">   501  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value if set, nil otherwise</span>
-<span id="L502" class="ln">   502  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L503" class="ln">   503  </span><span class="comment">// Deprecated</span>
-<span id="L504" class="ln">   504  </span>func (o *CaseAttributes) GetTypeOk() (*CaseType, bool) {
-<span id="L505" class="ln">   505  </span>	if o == nil || o.Type == nil {
-<span id="L506" class="ln">   506  </span>		return nil, false
-<span id="L507" class="ln">   507  </span>	}
-<span id="L508" class="ln">   508  </span>	return o.Type, true
-<span id="L509" class="ln">   509  </span>}
-<span id="L510" class="ln">   510  </span>
-<span id="L511" class="ln">   511  </span><span class="comment">// HasType returns a boolean if a field has been set.</span>
-<span id="L512" class="ln">   512  </span>func (o *CaseAttributes) HasType() bool {
-<span id="L513" class="ln">   513  </span>	return o != nil &amp;&amp; o.Type != nil
-<span id="L514" class="ln">   514  </span>}
-<span id="L515" class="ln">   515  </span>
-<span id="L516" class="ln">   516  </span><span class="comment">// SetType gets a reference to the given CaseType and assigns it to the Type field.</span>
-<span id="L517" class="ln">   517  </span><span class="comment">// Deprecated</span>
-<span id="L518" class="ln">   518  </span>func (o *CaseAttributes) SetType(v CaseType) {
-<span id="L519" class="ln">   519  </span>	o.Type = &amp;v
+<span id="L435" class="ln">   435  </span><span class="comment">// UnsetServiceNowTicket ensures that no value is present for ServiceNowTicket, not even an explicit nil.</span>
+<span id="L436" class="ln">   436  </span>func (o *CaseAttributes) UnsetServiceNowTicket() {
+<span id="L437" class="ln">   437  </span>	o.ServiceNowTicket.Unset()
+<span id="L438" class="ln">   438  </span>}
+<span id="L439" class="ln">   439  </span>
+<span id="L440" class="ln">   440  </span><span class="comment">// GetStatus returns the Status field value if set, zero value otherwise.</span>
+<span id="L441" class="ln">   441  </span><span class="comment">// Deprecated</span>
+<span id="L442" class="ln">   442  </span>func (o *CaseAttributes) GetStatus() CaseStatus {
+<span id="L443" class="ln">   443  </span>	if o == nil || o.Status == nil {
+<span id="L444" class="ln">   444  </span>		var ret CaseStatus
+<span id="L445" class="ln">   445  </span>		return ret
+<span id="L446" class="ln">   446  </span>	}
+<span id="L447" class="ln">   447  </span>	return *o.Status
+<span id="L448" class="ln">   448  </span>}
+<span id="L449" class="ln">   449  </span>
+<span id="L450" class="ln">   450  </span><span class="comment">// GetStatusOk returns a tuple with the Status field value if set, nil otherwise</span>
+<span id="L451" class="ln">   451  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L452" class="ln">   452  </span><span class="comment">// Deprecated</span>
+<span id="L453" class="ln">   453  </span>func (o *CaseAttributes) GetStatusOk() (*CaseStatus, bool) {
+<span id="L454" class="ln">   454  </span>	if o == nil || o.Status == nil {
+<span id="L455" class="ln">   455  </span>		return nil, false
+<span id="L456" class="ln">   456  </span>	}
+<span id="L457" class="ln">   457  </span>	return o.Status, true
+<span id="L458" class="ln">   458  </span>}
+<span id="L459" class="ln">   459  </span>
+<span id="L460" class="ln">   460  </span><span class="comment">// HasStatus returns a boolean if a field has been set.</span>
+<span id="L461" class="ln">   461  </span>func (o *CaseAttributes) HasStatus() bool {
+<span id="L462" class="ln">   462  </span>	return o != nil &amp;&amp; o.Status != nil
+<span id="L463" class="ln">   463  </span>}
+<span id="L464" class="ln">   464  </span>
+<span id="L465" class="ln">   465  </span><span class="comment">// SetStatus gets a reference to the given CaseStatus and assigns it to the Status field.</span>
+<span id="L466" class="ln">   466  </span><span class="comment">// Deprecated</span>
+<span id="L467" class="ln">   467  </span>func (o *CaseAttributes) SetStatus(v CaseStatus) {
+<span id="L468" class="ln">   468  </span>	o.Status = &amp;v
+<span id="L469" class="ln">   469  </span>}
+<span id="L470" class="ln">   470  </span>
+<span id="L471" class="ln">   471  </span><span class="comment">// GetStatusGroup returns the StatusGroup field value if set, zero value otherwise.</span>
+<span id="L472" class="ln">   472  </span>func (o *CaseAttributes) GetStatusGroup() CaseStatusGroup {
+<span id="L473" class="ln">   473  </span>	if o == nil || o.StatusGroup == nil {
+<span id="L474" class="ln">   474  </span>		var ret CaseStatusGroup
+<span id="L475" class="ln">   475  </span>		return ret
+<span id="L476" class="ln">   476  </span>	}
+<span id="L477" class="ln">   477  </span>	return *o.StatusGroup
+<span id="L478" class="ln">   478  </span>}
+<span id="L479" class="ln">   479  </span>
+<span id="L480" class="ln">   480  </span><span class="comment">// GetStatusGroupOk returns a tuple with the StatusGroup field value if set, nil otherwise</span>
+<span id="L481" class="ln">   481  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L482" class="ln">   482  </span>func (o *CaseAttributes) GetStatusGroupOk() (*CaseStatusGroup, bool) {
+<span id="L483" class="ln">   483  </span>	if o == nil || o.StatusGroup == nil {
+<span id="L484" class="ln">   484  </span>		return nil, false
+<span id="L485" class="ln">   485  </span>	}
+<span id="L486" class="ln">   486  </span>	return o.StatusGroup, true
+<span id="L487" class="ln">   487  </span>}
+<span id="L488" class="ln">   488  </span>
+<span id="L489" class="ln">   489  </span><span class="comment">// HasStatusGroup returns a boolean if a field has been set.</span>
+<span id="L490" class="ln">   490  </span>func (o *CaseAttributes) HasStatusGroup() bool {
+<span id="L491" class="ln">   491  </span>	return o != nil &amp;&amp; o.StatusGroup != nil
+<span id="L492" class="ln">   492  </span>}
+<span id="L493" class="ln">   493  </span>
+<span id="L494" class="ln">   494  </span><span class="comment">// SetStatusGroup gets a reference to the given CaseStatusGroup and assigns it to the StatusGroup field.</span>
+<span id="L495" class="ln">   495  </span>func (o *CaseAttributes) SetStatusGroup(v CaseStatusGroup) {
+<span id="L496" class="ln">   496  </span>	o.StatusGroup = &amp;v
+<span id="L497" class="ln">   497  </span>}
+<span id="L498" class="ln">   498  </span>
+<span id="L499" class="ln">   499  </span><span class="comment">// GetStatusName returns the StatusName field value if set, zero value otherwise.</span>
+<span id="L500" class="ln">   500  </span>func (o *CaseAttributes) GetStatusName() string {
+<span id="L501" class="ln">   501  </span>	if o == nil || o.StatusName == nil {
+<span id="L502" class="ln">   502  </span>		var ret string
+<span id="L503" class="ln">   503  </span>		return ret
+<span id="L504" class="ln">   504  </span>	}
+<span id="L505" class="ln">   505  </span>	return *o.StatusName
+<span id="L506" class="ln">   506  </span>}
+<span id="L507" class="ln">   507  </span>
+<span id="L508" class="ln">   508  </span><span class="comment">// GetStatusNameOk returns a tuple with the StatusName field value if set, nil otherwise</span>
+<span id="L509" class="ln">   509  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L510" class="ln">   510  </span>func (o *CaseAttributes) GetStatusNameOk() (*string, bool) {
+<span id="L511" class="ln">   511  </span>	if o == nil || o.StatusName == nil {
+<span id="L512" class="ln">   512  </span>		return nil, false
+<span id="L513" class="ln">   513  </span>	}
+<span id="L514" class="ln">   514  </span>	return o.StatusName, true
+<span id="L515" class="ln">   515  </span>}
+<span id="L516" class="ln">   516  </span>
+<span id="L517" class="ln">   517  </span><span class="comment">// HasStatusName returns a boolean if a field has been set.</span>
+<span id="L518" class="ln">   518  </span>func (o *CaseAttributes) HasStatusName() bool {
+<span id="L519" class="ln">   519  </span>	return o != nil &amp;&amp; o.StatusName != nil
 <span id="L520" class="ln">   520  </span>}
 <span id="L521" class="ln">   521  </span>
-<span id="L522" class="ln">   522  </span><span class="comment">// GetTypeId returns the TypeId field value if set, zero value otherwise.</span>
-<span id="L523" class="ln">   523  </span>func (o *CaseAttributes) GetTypeId() string {
-<span id="L524" class="ln">   524  </span>	if o == nil || o.TypeId == nil {
-<span id="L525" class="ln">   525  </span>		var ret string
-<span id="L526" class="ln">   526  </span>		return ret
-<span id="L527" class="ln">   527  </span>	}
-<span id="L528" class="ln">   528  </span>	return *o.TypeId
-<span id="L529" class="ln">   529  </span>}
-<span id="L530" class="ln">   530  </span>
-<span id="L531" class="ln">   531  </span><span class="comment">// GetTypeIdOk returns a tuple with the TypeId field value if set, nil otherwise</span>
-<span id="L532" class="ln">   532  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L533" class="ln">   533  </span>func (o *CaseAttributes) GetTypeIdOk() (*string, bool) {
-<span id="L534" class="ln">   534  </span>	if o == nil || o.TypeId == nil {
-<span id="L535" class="ln">   535  </span>		return nil, false
-<span id="L536" class="ln">   536  </span>	}
-<span id="L537" class="ln">   537  </span>	return o.TypeId, true
-<span id="L538" class="ln">   538  </span>}
-<span id="L539" class="ln">   539  </span>
-<span id="L540" class="ln">   540  </span><span class="comment">// HasTypeId returns a boolean if a field has been set.</span>
-<span id="L541" class="ln">   541  </span>func (o *CaseAttributes) HasTypeId() bool {
-<span id="L542" class="ln">   542  </span>	return o != nil &amp;&amp; o.TypeId != nil
+<span id="L522" class="ln">   522  </span><span class="comment">// SetStatusName gets a reference to the given string and assigns it to the StatusName field.</span>
+<span id="L523" class="ln">   523  </span>func (o *CaseAttributes) SetStatusName(v string) {
+<span id="L524" class="ln">   524  </span>	o.StatusName = &amp;v
+<span id="L525" class="ln">   525  </span>}
+<span id="L526" class="ln">   526  </span>
+<span id="L527" class="ln">   527  </span><span class="comment">// GetTitle returns the Title field value if set, zero value otherwise.</span>
+<span id="L528" class="ln">   528  </span>func (o *CaseAttributes) GetTitle() string {
+<span id="L529" class="ln">   529  </span>	if o == nil || o.Title == nil {
+<span id="L530" class="ln">   530  </span>		var ret string
+<span id="L531" class="ln">   531  </span>		return ret
+<span id="L532" class="ln">   532  </span>	}
+<span id="L533" class="ln">   533  </span>	return *o.Title
+<span id="L534" class="ln">   534  </span>}
+<span id="L535" class="ln">   535  </span>
+<span id="L536" class="ln">   536  </span><span class="comment">// GetTitleOk returns a tuple with the Title field value if set, nil otherwise</span>
+<span id="L537" class="ln">   537  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L538" class="ln">   538  </span>func (o *CaseAttributes) GetTitleOk() (*string, bool) {
+<span id="L539" class="ln">   539  </span>	if o == nil || o.Title == nil {
+<span id="L540" class="ln">   540  </span>		return nil, false
+<span id="L541" class="ln">   541  </span>	}
+<span id="L542" class="ln">   542  </span>	return o.Title, true
 <span id="L543" class="ln">   543  </span>}
 <span id="L544" class="ln">   544  </span>
-<span id="L545" class="ln">   545  </span><span class="comment">// SetTypeId gets a reference to the given string and assigns it to the TypeId field.</span>
-<span id="L546" class="ln">   546  </span>func (o *CaseAttributes) SetTypeId(v string) {
-<span id="L547" class="ln">   547  </span>	o.TypeId = &amp;v
+<span id="L545" class="ln">   545  </span><span class="comment">// HasTitle returns a boolean if a field has been set.</span>
+<span id="L546" class="ln">   546  </span>func (o *CaseAttributes) HasTitle() bool {
+<span id="L547" class="ln">   547  </span>	return o != nil &amp;&amp; o.Title != nil
 <span id="L548" class="ln">   548  </span>}
 <span id="L549" class="ln">   549  </span>
-<span id="L550" class="ln">   550  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L551" class="ln">   551  </span>func (o CaseAttributes) MarshalJSON() ([]byte, error) {
-<span id="L552" class="ln">   552  </span>	toSerialize := map[string]interface{}{}
-<span id="L553" class="ln">   553  </span>	if o.UnparsedObject != nil {
-<span id="L554" class="ln">   554  </span>		return datadog.Marshal(o.UnparsedObject)
-<span id="L555" class="ln">   555  </span>	}
-<span id="L556" class="ln">   556  </span>	if o.ArchivedAt.IsSet() {
-<span id="L557" class="ln">   557  </span>		toSerialize[&#34;archived_at&#34;] = o.ArchivedAt.Get()
-<span id="L558" class="ln">   558  </span>	}
-<span id="L559" class="ln">   559  </span>	if o.Attributes != nil {
-<span id="L560" class="ln">   560  </span>		toSerialize[&#34;attributes&#34;] = o.Attributes
+<span id="L550" class="ln">   550  </span><span class="comment">// SetTitle gets a reference to the given string and assigns it to the Title field.</span>
+<span id="L551" class="ln">   551  </span>func (o *CaseAttributes) SetTitle(v string) {
+<span id="L552" class="ln">   552  </span>	o.Title = &amp;v
+<span id="L553" class="ln">   553  </span>}
+<span id="L554" class="ln">   554  </span>
+<span id="L555" class="ln">   555  </span><span class="comment">// GetType returns the Type field value if set, zero value otherwise.</span>
+<span id="L556" class="ln">   556  </span><span class="comment">// Deprecated</span>
+<span id="L557" class="ln">   557  </span>func (o *CaseAttributes) GetType() CaseType {
+<span id="L558" class="ln">   558  </span>	if o == nil || o.Type == nil {
+<span id="L559" class="ln">   559  </span>		var ret CaseType
+<span id="L560" class="ln">   560  </span>		return ret
 <span id="L561" class="ln">   561  </span>	}
-<span id="L562" class="ln">   562  </span>	if o.ClosedAt.IsSet() {
-<span id="L563" class="ln">   563  </span>		toSerialize[&#34;closed_at&#34;] = o.ClosedAt.Get()
-<span id="L564" class="ln">   564  </span>	}
-<span id="L565" class="ln">   565  </span>	if o.CreatedAt != nil {
-<span id="L566" class="ln">   566  </span>		if o.CreatedAt.Nanosecond() == 0 {
-<span id="L567" class="ln">   567  </span>			toSerialize[&#34;created_at&#34;] = o.CreatedAt.Format(&#34;2006-01-02T15:04:05Z07:00&#34;)
-<span id="L568" class="ln">   568  </span>		} else {
-<span id="L569" class="ln">   569  </span>			toSerialize[&#34;created_at&#34;] = o.CreatedAt.Format(&#34;2006-01-02T15:04:05.000Z07:00&#34;)
-<span id="L570" class="ln">   570  </span>		}
+<span id="L562" class="ln">   562  </span>	return *o.Type
+<span id="L563" class="ln">   563  </span>}
+<span id="L564" class="ln">   564  </span>
+<span id="L565" class="ln">   565  </span><span class="comment">// GetTypeOk returns a tuple with the Type field value if set, nil otherwise</span>
+<span id="L566" class="ln">   566  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L567" class="ln">   567  </span><span class="comment">// Deprecated</span>
+<span id="L568" class="ln">   568  </span>func (o *CaseAttributes) GetTypeOk() (*CaseType, bool) {
+<span id="L569" class="ln">   569  </span>	if o == nil || o.Type == nil {
+<span id="L570" class="ln">   570  </span>		return nil, false
 <span id="L571" class="ln">   571  </span>	}
-<span id="L572" class="ln">   572  </span>	if o.CustomAttributes != nil {
-<span id="L573" class="ln">   573  </span>		toSerialize[&#34;custom_attributes&#34;] = o.CustomAttributes
-<span id="L574" class="ln">   574  </span>	}
-<span id="L575" class="ln">   575  </span>	if o.Description != nil {
-<span id="L576" class="ln">   576  </span>		toSerialize[&#34;description&#34;] = o.Description
-<span id="L577" class="ln">   577  </span>	}
-<span id="L578" class="ln">   578  </span>	if o.JiraIssue.IsSet() {
-<span id="L579" class="ln">   579  </span>		toSerialize[&#34;jira_issue&#34;] = o.JiraIssue.Get()
-<span id="L580" class="ln">   580  </span>	}
-<span id="L581" class="ln">   581  </span>	if o.Key != nil {
-<span id="L582" class="ln">   582  </span>		toSerialize[&#34;key&#34;] = o.Key
-<span id="L583" class="ln">   583  </span>	}
-<span id="L584" class="ln">   584  </span>	if o.ModifiedAt.IsSet() {
-<span id="L585" class="ln">   585  </span>		toSerialize[&#34;modified_at&#34;] = o.ModifiedAt.Get()
-<span id="L586" class="ln">   586  </span>	}
-<span id="L587" class="ln">   587  </span>	if o.Priority != nil {
-<span id="L588" class="ln">   588  </span>		toSerialize[&#34;priority&#34;] = o.Priority
-<span id="L589" class="ln">   589  </span>	}
-<span id="L590" class="ln">   590  </span>	if o.ServiceNowTicket.IsSet() {
-<span id="L591" class="ln">   591  </span>		toSerialize[&#34;service_now_ticket&#34;] = o.ServiceNowTicket.Get()
-<span id="L592" class="ln">   592  </span>	}
-<span id="L593" class="ln">   593  </span>	if o.Status != nil {
-<span id="L594" class="ln">   594  </span>		toSerialize[&#34;status&#34;] = o.Status
-<span id="L595" class="ln">   595  </span>	}
-<span id="L596" class="ln">   596  </span>	if o.Title != nil {
-<span id="L597" class="ln">   597  </span>		toSerialize[&#34;title&#34;] = o.Title
-<span id="L598" class="ln">   598  </span>	}
-<span id="L599" class="ln">   599  </span>	if o.Type != nil {
-<span id="L600" class="ln">   600  </span>		toSerialize[&#34;type&#34;] = o.Type
-<span id="L601" class="ln">   601  </span>	}
-<span id="L602" class="ln">   602  </span>	if o.TypeId != nil {
-<span id="L603" class="ln">   603  </span>		toSerialize[&#34;type_id&#34;] = o.TypeId
-<span id="L604" class="ln">   604  </span>	}
-<span id="L605" class="ln">   605  </span>
-<span id="L606" class="ln">   606  </span>	for key, value := range o.AdditionalProperties {
-<span id="L607" class="ln">   607  </span>		toSerialize[key] = value
-<span id="L608" class="ln">   608  </span>	}
-<span id="L609" class="ln">   609  </span>	return datadog.Marshal(toSerialize)
-<span id="L610" class="ln">   610  </span>}
-<span id="L611" class="ln">   611  </span>
-<span id="L612" class="ln">   612  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L613" class="ln">   613  </span>func (o *CaseAttributes) UnmarshalJSON(bytes []byte) (err error) {
-<span id="L614" class="ln">   614  </span>	all := struct {
-<span id="L615" class="ln">   615  </span>		ArchivedAt       datadog.NullableTime            `json:&#34;archived_at,omitempty&#34;`
-<span id="L616" class="ln">   616  </span>		Attributes       map[string][]string             `json:&#34;attributes,omitempty&#34;`
-<span id="L617" class="ln">   617  </span>		ClosedAt         datadog.NullableTime            `json:&#34;closed_at,omitempty&#34;`
-<span id="L618" class="ln">   618  </span>		CreatedAt        *time.Time                      `json:&#34;created_at,omitempty&#34;`
-<span id="L619" class="ln">   619  </span>		CustomAttributes map[string]CustomAttributeValue `json:&#34;custom_attributes,omitempty&#34;`
-<span id="L620" class="ln">   620  </span>		Description      *string                         `json:&#34;description,omitempty&#34;`
-<span id="L621" class="ln">   621  </span>		JiraIssue        NullableJiraIssue               `json:&#34;jira_issue,omitempty&#34;`
-<span id="L622" class="ln">   622  </span>		Key              *string                         `json:&#34;key,omitempty&#34;`
-<span id="L623" class="ln">   623  </span>		ModifiedAt       datadog.NullableTime            `json:&#34;modified_at,omitempty&#34;`
-<span id="L624" class="ln">   624  </span>		Priority         *CasePriority                   `json:&#34;priority,omitempty&#34;`
-<span id="L625" class="ln">   625  </span>		ServiceNowTicket NullableServiceNowTicket        `json:&#34;service_now_ticket,omitempty&#34;`
-<span id="L626" class="ln">   626  </span>		Status           *CaseStatus                     `json:&#34;status,omitempty&#34;`
-<span id="L627" class="ln">   627  </span>		Title            *string                         `json:&#34;title,omitempty&#34;`
-<span id="L628" class="ln">   628  </span>		Type             *CaseType                       `json:&#34;type,omitempty&#34;`
-<span id="L629" class="ln">   629  </span>		TypeId           *string                         `json:&#34;type_id,omitempty&#34;`
-<span id="L630" class="ln">   630  </span>	}{}
-<span id="L631" class="ln">   631  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
-<span id="L632" class="ln">   632  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L633" class="ln">   633  </span>	}
-<span id="L634" class="ln">   634  </span>	additionalProperties := make(map[string]interface{})
-<span id="L635" class="ln">   635  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L636" class="ln">   636  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;archived_at&#34;, &#34;attributes&#34;, &#34;closed_at&#34;, &#34;created_at&#34;, &#34;custom_attributes&#34;, &#34;description&#34;, &#34;jira_issue&#34;, &#34;key&#34;, &#34;modified_at&#34;, &#34;priority&#34;, &#34;service_now_ticket&#34;, &#34;status&#34;, &#34;title&#34;, &#34;type&#34;, &#34;type_id&#34;})
-<span id="L637" class="ln">   637  </span>	} else {
-<span id="L638" class="ln">   638  </span>		return err
-<span id="L639" class="ln">   639  </span>	}
-<span id="L640" class="ln">   640  </span>
-<span id="L641" class="ln">   641  </span>	hasInvalidField := false
-<span id="L642" class="ln">   642  </span>	o.ArchivedAt = all.ArchivedAt
-<span id="L643" class="ln">   643  </span>	o.Attributes = all.Attributes
-<span id="L644" class="ln">   644  </span>	o.ClosedAt = all.ClosedAt
-<span id="L645" class="ln">   645  </span>	o.CreatedAt = all.CreatedAt
-<span id="L646" class="ln">   646  </span>	o.CustomAttributes = all.CustomAttributes
-<span id="L647" class="ln">   647  </span>	o.Description = all.Description
-<span id="L648" class="ln">   648  </span>	o.JiraIssue = all.JiraIssue
-<span id="L649" class="ln">   649  </span>	o.Key = all.Key
-<span id="L650" class="ln">   650  </span>	o.ModifiedAt = all.ModifiedAt
-<span id="L651" class="ln">   651  </span>	if all.Priority != nil &amp;&amp; !all.Priority.IsValid() {
-<span id="L652" class="ln">   652  </span>		hasInvalidField = true
-<span id="L653" class="ln">   653  </span>	} else {
-<span id="L654" class="ln">   654  </span>		o.Priority = all.Priority
-<span id="L655" class="ln">   655  </span>	}
-<span id="L656" class="ln">   656  </span>	o.ServiceNowTicket = all.ServiceNowTicket
-<span id="L657" class="ln">   657  </span>	if all.Status != nil &amp;&amp; !all.Status.IsValid() {
-<span id="L658" class="ln">   658  </span>		hasInvalidField = true
-<span id="L659" class="ln">   659  </span>	} else {
-<span id="L660" class="ln">   660  </span>		o.Status = all.Status
-<span id="L661" class="ln">   661  </span>	}
-<span id="L662" class="ln">   662  </span>	o.Title = all.Title
-<span id="L663" class="ln">   663  </span>	if all.Type != nil &amp;&amp; !all.Type.IsValid() {
-<span id="L664" class="ln">   664  </span>		hasInvalidField = true
-<span id="L665" class="ln">   665  </span>	} else {
-<span id="L666" class="ln">   666  </span>		o.Type = all.Type
-<span id="L667" class="ln">   667  </span>	}
-<span id="L668" class="ln">   668  </span>	o.TypeId = all.TypeId
-<span id="L669" class="ln">   669  </span>
-<span id="L670" class="ln">   670  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L671" class="ln">   671  </span>		o.AdditionalProperties = additionalProperties
-<span id="L672" class="ln">   672  </span>	}
-<span id="L673" class="ln">   673  </span>
-<span id="L674" class="ln">   674  </span>	if hasInvalidField {
-<span id="L675" class="ln">   675  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L676" class="ln">   676  </span>	}
-<span id="L677" class="ln">   677  </span>
-<span id="L678" class="ln">   678  </span>	return nil
-<span id="L679" class="ln">   679  </span>}
-<span id="L680" class="ln">   680  </span>
+<span id="L572" class="ln">   572  </span>	return o.Type, true
+<span id="L573" class="ln">   573  </span>}
+<span id="L574" class="ln">   574  </span>
+<span id="L575" class="ln">   575  </span><span class="comment">// HasType returns a boolean if a field has been set.</span>
+<span id="L576" class="ln">   576  </span>func (o *CaseAttributes) HasType() bool {
+<span id="L577" class="ln">   577  </span>	return o != nil &amp;&amp; o.Type != nil
+<span id="L578" class="ln">   578  </span>}
+<span id="L579" class="ln">   579  </span>
+<span id="L580" class="ln">   580  </span><span class="comment">// SetType gets a reference to the given CaseType and assigns it to the Type field.</span>
+<span id="L581" class="ln">   581  </span><span class="comment">// Deprecated</span>
+<span id="L582" class="ln">   582  </span>func (o *CaseAttributes) SetType(v CaseType) {
+<span id="L583" class="ln">   583  </span>	o.Type = &amp;v
+<span id="L584" class="ln">   584  </span>}
+<span id="L585" class="ln">   585  </span>
+<span id="L586" class="ln">   586  </span><span class="comment">// GetTypeId returns the TypeId field value if set, zero value otherwise.</span>
+<span id="L587" class="ln">   587  </span>func (o *CaseAttributes) GetTypeId() string {
+<span id="L588" class="ln">   588  </span>	if o == nil || o.TypeId == nil {
+<span id="L589" class="ln">   589  </span>		var ret string
+<span id="L590" class="ln">   590  </span>		return ret
+<span id="L591" class="ln">   591  </span>	}
+<span id="L592" class="ln">   592  </span>	return *o.TypeId
+<span id="L593" class="ln">   593  </span>}
+<span id="L594" class="ln">   594  </span>
+<span id="L595" class="ln">   595  </span><span class="comment">// GetTypeIdOk returns a tuple with the TypeId field value if set, nil otherwise</span>
+<span id="L596" class="ln">   596  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L597" class="ln">   597  </span>func (o *CaseAttributes) GetTypeIdOk() (*string, bool) {
+<span id="L598" class="ln">   598  </span>	if o == nil || o.TypeId == nil {
+<span id="L599" class="ln">   599  </span>		return nil, false
+<span id="L600" class="ln">   600  </span>	}
+<span id="L601" class="ln">   601  </span>	return o.TypeId, true
+<span id="L602" class="ln">   602  </span>}
+<span id="L603" class="ln">   603  </span>
+<span id="L604" class="ln">   604  </span><span class="comment">// HasTypeId returns a boolean if a field has been set.</span>
+<span id="L605" class="ln">   605  </span>func (o *CaseAttributes) HasTypeId() bool {
+<span id="L606" class="ln">   606  </span>	return o != nil &amp;&amp; o.TypeId != nil
+<span id="L607" class="ln">   607  </span>}
+<span id="L608" class="ln">   608  </span>
+<span id="L609" class="ln">   609  </span><span class="comment">// SetTypeId gets a reference to the given string and assigns it to the TypeId field.</span>
+<span id="L610" class="ln">   610  </span>func (o *CaseAttributes) SetTypeId(v string) {
+<span id="L611" class="ln">   611  </span>	o.TypeId = &amp;v
+<span id="L612" class="ln">   612  </span>}
+<span id="L613" class="ln">   613  </span>
+<span id="L614" class="ln">   614  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L615" class="ln">   615  </span>func (o CaseAttributes) MarshalJSON() ([]byte, error) {
+<span id="L616" class="ln">   616  </span>	toSerialize := map[string]interface{}{}
+<span id="L617" class="ln">   617  </span>	if o.UnparsedObject != nil {
+<span id="L618" class="ln">   618  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L619" class="ln">   619  </span>	}
+<span id="L620" class="ln">   620  </span>	if o.ArchivedAt.IsSet() {
+<span id="L621" class="ln">   621  </span>		toSerialize[&#34;archived_at&#34;] = o.ArchivedAt.Get()
+<span id="L622" class="ln">   622  </span>	}
+<span id="L623" class="ln">   623  </span>	if o.Attributes != nil {
+<span id="L624" class="ln">   624  </span>		toSerialize[&#34;attributes&#34;] = o.Attributes
+<span id="L625" class="ln">   625  </span>	}
+<span id="L626" class="ln">   626  </span>	if o.ClosedAt.IsSet() {
+<span id="L627" class="ln">   627  </span>		toSerialize[&#34;closed_at&#34;] = o.ClosedAt.Get()
+<span id="L628" class="ln">   628  </span>	}
+<span id="L629" class="ln">   629  </span>	if o.CreatedAt != nil {
+<span id="L630" class="ln">   630  </span>		if o.CreatedAt.Nanosecond() == 0 {
+<span id="L631" class="ln">   631  </span>			toSerialize[&#34;created_at&#34;] = o.CreatedAt.Format(&#34;2006-01-02T15:04:05Z07:00&#34;)
+<span id="L632" class="ln">   632  </span>		} else {
+<span id="L633" class="ln">   633  </span>			toSerialize[&#34;created_at&#34;] = o.CreatedAt.Format(&#34;2006-01-02T15:04:05.000Z07:00&#34;)
+<span id="L634" class="ln">   634  </span>		}
+<span id="L635" class="ln">   635  </span>	}
+<span id="L636" class="ln">   636  </span>	if o.CustomAttributes != nil {
+<span id="L637" class="ln">   637  </span>		toSerialize[&#34;custom_attributes&#34;] = o.CustomAttributes
+<span id="L638" class="ln">   638  </span>	}
+<span id="L639" class="ln">   639  </span>	if o.Description != nil {
+<span id="L640" class="ln">   640  </span>		toSerialize[&#34;description&#34;] = o.Description
+<span id="L641" class="ln">   641  </span>	}
+<span id="L642" class="ln">   642  </span>	if o.JiraIssue.IsSet() {
+<span id="L643" class="ln">   643  </span>		toSerialize[&#34;jira_issue&#34;] = o.JiraIssue.Get()
+<span id="L644" class="ln">   644  </span>	}
+<span id="L645" class="ln">   645  </span>	if o.Key != nil {
+<span id="L646" class="ln">   646  </span>		toSerialize[&#34;key&#34;] = o.Key
+<span id="L647" class="ln">   647  </span>	}
+<span id="L648" class="ln">   648  </span>	if o.ModifiedAt.IsSet() {
+<span id="L649" class="ln">   649  </span>		toSerialize[&#34;modified_at&#34;] = o.ModifiedAt.Get()
+<span id="L650" class="ln">   650  </span>	}
+<span id="L651" class="ln">   651  </span>	if o.Priority != nil {
+<span id="L652" class="ln">   652  </span>		toSerialize[&#34;priority&#34;] = o.Priority
+<span id="L653" class="ln">   653  </span>	}
+<span id="L654" class="ln">   654  </span>	if o.ServiceNowTicket.IsSet() {
+<span id="L655" class="ln">   655  </span>		toSerialize[&#34;service_now_ticket&#34;] = o.ServiceNowTicket.Get()
+<span id="L656" class="ln">   656  </span>	}
+<span id="L657" class="ln">   657  </span>	if o.Status != nil {
+<span id="L658" class="ln">   658  </span>		toSerialize[&#34;status&#34;] = o.Status
+<span id="L659" class="ln">   659  </span>	}
+<span id="L660" class="ln">   660  </span>	if o.StatusGroup != nil {
+<span id="L661" class="ln">   661  </span>		toSerialize[&#34;status_group&#34;] = o.StatusGroup
+<span id="L662" class="ln">   662  </span>	}
+<span id="L663" class="ln">   663  </span>	if o.StatusName != nil {
+<span id="L664" class="ln">   664  </span>		toSerialize[&#34;status_name&#34;] = o.StatusName
+<span id="L665" class="ln">   665  </span>	}
+<span id="L666" class="ln">   666  </span>	if o.Title != nil {
+<span id="L667" class="ln">   667  </span>		toSerialize[&#34;title&#34;] = o.Title
+<span id="L668" class="ln">   668  </span>	}
+<span id="L669" class="ln">   669  </span>	if o.Type != nil {
+<span id="L670" class="ln">   670  </span>		toSerialize[&#34;type&#34;] = o.Type
+<span id="L671" class="ln">   671  </span>	}
+<span id="L672" class="ln">   672  </span>	if o.TypeId != nil {
+<span id="L673" class="ln">   673  </span>		toSerialize[&#34;type_id&#34;] = o.TypeId
+<span id="L674" class="ln">   674  </span>	}
+<span id="L675" class="ln">   675  </span>
+<span id="L676" class="ln">   676  </span>	for key, value := range o.AdditionalProperties {
+<span id="L677" class="ln">   677  </span>		toSerialize[key] = value
+<span id="L678" class="ln">   678  </span>	}
+<span id="L679" class="ln">   679  </span>	return datadog.Marshal(toSerialize)
+<span id="L680" class="ln">   680  </span>}
+<span id="L681" class="ln">   681  </span>
+<span id="L682" class="ln">   682  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L683" class="ln">   683  </span>func (o *CaseAttributes) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L684" class="ln">   684  </span>	all := struct {
+<span id="L685" class="ln">   685  </span>		ArchivedAt       datadog.NullableTime            `json:&#34;archived_at,omitempty&#34;`
+<span id="L686" class="ln">   686  </span>		Attributes       map[string][]string             `json:&#34;attributes,omitempty&#34;`
+<span id="L687" class="ln">   687  </span>		ClosedAt         datadog.NullableTime            `json:&#34;closed_at,omitempty&#34;`
+<span id="L688" class="ln">   688  </span>		CreatedAt        *time.Time                      `json:&#34;created_at,omitempty&#34;`
+<span id="L689" class="ln">   689  </span>		CustomAttributes map[string]CustomAttributeValue `json:&#34;custom_attributes,omitempty&#34;`
+<span id="L690" class="ln">   690  </span>		Description      *string                         `json:&#34;description,omitempty&#34;`
+<span id="L691" class="ln">   691  </span>		JiraIssue        NullableJiraIssue               `json:&#34;jira_issue,omitempty&#34;`
+<span id="L692" class="ln">   692  </span>		Key              *string                         `json:&#34;key,omitempty&#34;`
+<span id="L693" class="ln">   693  </span>		ModifiedAt       datadog.NullableTime            `json:&#34;modified_at,omitempty&#34;`
+<span id="L694" class="ln">   694  </span>		Priority         *CasePriority                   `json:&#34;priority,omitempty&#34;`
+<span id="L695" class="ln">   695  </span>		ServiceNowTicket NullableServiceNowTicket        `json:&#34;service_now_ticket,omitempty&#34;`
+<span id="L696" class="ln">   696  </span>		Status           *CaseStatus                     `json:&#34;status,omitempty&#34;`
+<span id="L697" class="ln">   697  </span>		StatusGroup      *CaseStatusGroup                `json:&#34;status_group,omitempty&#34;`
+<span id="L698" class="ln">   698  </span>		StatusName       *string                         `json:&#34;status_name,omitempty&#34;`
+<span id="L699" class="ln">   699  </span>		Title            *string                         `json:&#34;title,omitempty&#34;`
+<span id="L700" class="ln">   700  </span>		Type             *CaseType                       `json:&#34;type,omitempty&#34;`
+<span id="L701" class="ln">   701  </span>		TypeId           *string                         `json:&#34;type_id,omitempty&#34;`
+<span id="L702" class="ln">   702  </span>	}{}
+<span id="L703" class="ln">   703  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L704" class="ln">   704  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L705" class="ln">   705  </span>	}
+<span id="L706" class="ln">   706  </span>	additionalProperties := make(map[string]interface{})
+<span id="L707" class="ln">   707  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L708" class="ln">   708  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;archived_at&#34;, &#34;attributes&#34;, &#34;closed_at&#34;, &#34;created_at&#34;, &#34;custom_attributes&#34;, &#34;description&#34;, &#34;jira_issue&#34;, &#34;key&#34;, &#34;modified_at&#34;, &#34;priority&#34;, &#34;service_now_ticket&#34;, &#34;status&#34;, &#34;status_group&#34;, &#34;status_name&#34;, &#34;title&#34;, &#34;type&#34;, &#34;type_id&#34;})
+<span id="L709" class="ln">   709  </span>	} else {
+<span id="L710" class="ln">   710  </span>		return err
+<span id="L711" class="ln">   711  </span>	}
+<span id="L712" class="ln">   712  </span>
+<span id="L713" class="ln">   713  </span>	hasInvalidField := false
+<span id="L714" class="ln">   714  </span>	o.ArchivedAt = all.ArchivedAt
+<span id="L715" class="ln">   715  </span>	o.Attributes = all.Attributes
+<span id="L716" class="ln">   716  </span>	o.ClosedAt = all.ClosedAt
+<span id="L717" class="ln">   717  </span>	o.CreatedAt = all.CreatedAt
+<span id="L718" class="ln">   718  </span>	o.CustomAttributes = all.CustomAttributes
+<span id="L719" class="ln">   719  </span>	o.Description = all.Description
+<span id="L720" class="ln">   720  </span>	o.JiraIssue = all.JiraIssue
+<span id="L721" class="ln">   721  </span>	o.Key = all.Key
+<span id="L722" class="ln">   722  </span>	o.ModifiedAt = all.ModifiedAt
+<span id="L723" class="ln">   723  </span>	if all.Priority != nil &amp;&amp; !all.Priority.IsValid() {
+<span id="L724" class="ln">   724  </span>		hasInvalidField = true
+<span id="L725" class="ln">   725  </span>	} else {
+<span id="L726" class="ln">   726  </span>		o.Priority = all.Priority
+<span id="L727" class="ln">   727  </span>	}
+<span id="L728" class="ln">   728  </span>	o.ServiceNowTicket = all.ServiceNowTicket
+<span id="L729" class="ln">   729  </span>	if all.Status != nil &amp;&amp; !all.Status.IsValid() {
+<span id="L730" class="ln">   730  </span>		hasInvalidField = true
+<span id="L731" class="ln">   731  </span>	} else {
+<span id="L732" class="ln">   732  </span>		o.Status = all.Status
+<span id="L733" class="ln">   733  </span>	}
+<span id="L734" class="ln">   734  </span>	if all.StatusGroup != nil &amp;&amp; !all.StatusGroup.IsValid() {
+<span id="L735" class="ln">   735  </span>		hasInvalidField = true
+<span id="L736" class="ln">   736  </span>	} else {
+<span id="L737" class="ln">   737  </span>		o.StatusGroup = all.StatusGroup
+<span id="L738" class="ln">   738  </span>	}
+<span id="L739" class="ln">   739  </span>	o.StatusName = all.StatusName
+<span id="L740" class="ln">   740  </span>	o.Title = all.Title
+<span id="L741" class="ln">   741  </span>	if all.Type != nil &amp;&amp; !all.Type.IsValid() {
+<span id="L742" class="ln">   742  </span>		hasInvalidField = true
+<span id="L743" class="ln">   743  </span>	} else {
+<span id="L744" class="ln">   744  </span>		o.Type = all.Type
+<span id="L745" class="ln">   745  </span>	}
+<span id="L746" class="ln">   746  </span>	o.TypeId = all.TypeId
+<span id="L747" class="ln">   747  </span>
+<span id="L748" class="ln">   748  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L749" class="ln">   749  </span>		o.AdditionalProperties = additionalProperties
+<span id="L750" class="ln">   750  </span>	}
+<span id="L751" class="ln">   751  </span>
+<span id="L752" class="ln">   752  </span>	if hasInvalidField {
+<span id="L753" class="ln">   753  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L754" class="ln">   754  </span>	}
+<span id="L755" class="ln">   755  </span>
+<span id="L756" class="ln">   756  </span>	return nil
+<span id="L757" class="ln">   757  </span>}
+<span id="L758" class="ln">   758  </span>
 </pre><p></p>
 
 <div id="footer">
