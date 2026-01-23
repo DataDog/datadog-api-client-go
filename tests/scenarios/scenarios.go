@@ -83,6 +83,7 @@ type jsonResponseKey struct{}
 type dataKey struct{}
 type cleanupKey struct{}
 type pathParamCountKey struct{}
+type pathParametersKey struct{}
 
 // GetIgnoredTags returns list of ignored tags.
 func GetIgnoredTags() []string {
@@ -324,6 +325,29 @@ func GetData(ctx gobdd.Context) map[string]interface{} {
 // SetData sets feature context.
 func SetData(ctx gobdd.Context, value map[string]interface{}) {
 	ctx.Set(dataKey{}, value)
+}
+
+// GetPathParameters returns stored path parameters by name.
+func GetPathParameters(ctx gobdd.Context) map[string]interface{} {
+	c, err := ctx.Get(pathParametersKey{})
+	if err != nil {
+		params := make(map[string]interface{})
+		ctx.Set(pathParametersKey{}, params)
+		return params
+	}
+	return c.(map[string]interface{})
+}
+
+// SetPathParameter stores a path parameter.
+func SetPathParameter(ctx gobdd.Context, name string, value interface{}) {
+	params := GetPathParameters(ctx)
+	params[name] = value
+	ctx.Set(pathParametersKey{}, params)
+}
+
+// ClearPathParameters clears stored path parameters.
+func ClearPathParameters(ctx gobdd.Context) {
+	ctx.Set(pathParametersKey{}, make(map[string]interface{}))
 }
 
 // GetRequestParameters helps to build a request.

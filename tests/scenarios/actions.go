@@ -343,6 +343,34 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 						}
 					}
 					sourceJSONData = requestJSON
+				} else if *undo.Undo.Parameters[i-1].Origin == "path" {
+					// Extract from stored path parameters
+					pathParams := GetPathParameters(ctx)
+					if undo.Undo.Parameters[i-1].Source != nil {
+						paramName := *undo.Undo.Parameters[i-1].Source
+						if val, ok := pathParams[paramName]; ok {
+							// Convert the stored value to the expected type
+							object := reflect.New(undoOperation.Type().In(i))
+							sourceJSON, err := datadog.Marshal(val)
+							if err != nil {
+								t.Fatalf("Error marshalling path parameter '%s': %v", paramName, err)
+								return
+							}
+							err = datadog.Unmarshal(sourceJSON, object.Interface())
+							if err != nil {
+								t.Fatalf("Error unmarshalling path parameter '%s': %v", paramName, err)
+								return
+							}
+							in[i] = object.Elem()
+							continue // Skip template/source processing for path parameters
+						} else {
+							t.Fatalf("Path parameter '%s' not found", paramName)
+							return
+						}
+					} else {
+						t.Fatalf("Path origin requires 'source' field")
+						return
+					}
 				} else if *undo.Undo.Parameters[i-1].Origin == "response" {
 					sourceJSONData = responseJSON
 				}
