@@ -653,6 +653,7 @@
 //   - [ServiceLevelObjectivesApi.CreateSLOReportJob]
 //   - [ServiceLevelObjectivesApi.GetSLOReport]
 //   - [ServiceLevelObjectivesApi.GetSLOReportJobStatus]
+//   - [ServiceLevelObjectivesApi.GetSloStatus]
 //   - [ServiceScorecardsApi.CreateScorecardOutcomesBatch]
 //   - [ServiceScorecardsApi.CreateScorecardRule]
 //   - [ServiceScorecardsApi.DeleteScorecardRule]
