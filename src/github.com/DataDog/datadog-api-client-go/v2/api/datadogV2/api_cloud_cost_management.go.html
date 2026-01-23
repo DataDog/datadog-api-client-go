@@ -962,11 +962,11 @@
 <span id="L905" class="ln">   905  </span>
 <span id="L906" class="ln">   906  </span><span class="comment">// GetBudget Get budget.</span>
 <span id="L907" class="ln">   907  </span><span class="comment">// Get a budget</span>
-<span id="L908" class="ln">   908  </span>func (a *CloudCostManagementApi) GetBudget(ctx _context.Context, budgetId string) (BudgetValidationRequest, *_nethttp.Response, error) {
+<span id="L908" class="ln">   908  </span>func (a *CloudCostManagementApi) GetBudget(ctx _context.Context, budgetId string) (BudgetWithEntries, *_nethttp.Response, error) {
 <span id="L909" class="ln">   909  </span>	var (
 <span id="L910" class="ln">   910  </span>		localVarHTTPMethod  = _nethttp.MethodGet
 <span id="L911" class="ln">   911  </span>		localVarPostBody    interface{}
-<span id="L912" class="ln">   912  </span>		localVarReturnValue BudgetValidationRequest
+<span id="L912" class="ln">   912  </span>		localVarReturnValue BudgetWithEntries
 <span id="L913" class="ln">   913  </span>	)
 <span id="L914" class="ln">   914  </span>
 <span id="L915" class="ln">   915  </span>	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, &#34;v2.CloudCostManagementApi.GetBudget&#34;)
