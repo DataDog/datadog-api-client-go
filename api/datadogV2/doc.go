@@ -212,6 +212,7 @@
 //   - [DORAMetricsApi.GetDORAFailure]
 //   - [DORAMetricsApi.ListDORADeployments]
 //   - [DORAMetricsApi.ListDORAFailures]
+//   - [DORAMetricsApi.PatchDORADeployment]
 //   - [DashboardListsApi.CreateDashboardListItems]
 //   - [DashboardListsApi.DeleteDashboardListItems]
 //   - [DashboardListsApi.GetDashboardListItems]
