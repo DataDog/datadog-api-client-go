@@ -21,6 +21,7 @@ type Trigger struct {
 	IncidentTriggerWrapper           *IncidentTriggerWrapper
 	MonitorTriggerWrapper            *MonitorTriggerWrapper
 	NotebookTriggerWrapper           *NotebookTriggerWrapper
+	OnCallTriggerWrapper             *OnCallTriggerWrapper
 	ScheduleTriggerWrapper           *ScheduleTriggerWrapper
 	SecurityTriggerWrapper           *SecurityTriggerWrapper
 	SelfServiceTriggerWrapper        *SelfServiceTriggerWrapper
@@ -85,6 +86,11 @@ func MonitorTriggerWrapperAsTrigger(v *MonitorTriggerWrapper) Trigger {
 // NotebookTriggerWrapperAsTrigger is a convenience function that returns NotebookTriggerWrapper wrapped in Trigger.
 func NotebookTriggerWrapperAsTrigger(v *NotebookTriggerWrapper) Trigger {
 	return Trigger{NotebookTriggerWrapper: v}
+}
+
+// OnCallTriggerWrapperAsTrigger is a convenience function that returns OnCallTriggerWrapper wrapped in Trigger.
+func OnCallTriggerWrapperAsTrigger(v *OnCallTriggerWrapper) Trigger {
+	return Trigger{OnCallTriggerWrapper: v}
 }
 
 // ScheduleTriggerWrapperAsTrigger is a convenience function that returns ScheduleTriggerWrapper wrapped in Trigger.
@@ -308,6 +314,23 @@ func (obj *Trigger) UnmarshalJSON(data []byte) error {
 		obj.NotebookTriggerWrapper = nil
 	}
 
+	// try to unmarshal data into OnCallTriggerWrapper
+	err = datadog.Unmarshal(data, &obj.OnCallTriggerWrapper)
+	if err == nil {
+		if obj.OnCallTriggerWrapper != nil && obj.OnCallTriggerWrapper.UnparsedObject == nil {
+			jsonOnCallTriggerWrapper, _ := datadog.Marshal(obj.OnCallTriggerWrapper)
+			if string(jsonOnCallTriggerWrapper) == "{}" { // empty struct
+				obj.OnCallTriggerWrapper = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.OnCallTriggerWrapper = nil
+		}
+	} else {
+		obj.OnCallTriggerWrapper = nil
+	}
+
 	// try to unmarshal data into ScheduleTriggerWrapper
 	err = datadog.Unmarshal(data, &obj.ScheduleTriggerWrapper)
 	if err == nil {
@@ -423,6 +446,7 @@ func (obj *Trigger) UnmarshalJSON(data []byte) error {
 		obj.IncidentTriggerWrapper = nil
 		obj.MonitorTriggerWrapper = nil
 		obj.NotebookTriggerWrapper = nil
+		obj.OnCallTriggerWrapper = nil
 		obj.ScheduleTriggerWrapper = nil
 		obj.SecurityTriggerWrapper = nil
 		obj.SelfServiceTriggerWrapper = nil
@@ -478,6 +502,10 @@ func (obj Trigger) MarshalJSON() ([]byte, error) {
 
 	if obj.NotebookTriggerWrapper != nil {
 		return datadog.Marshal(&obj.NotebookTriggerWrapper)
+	}
+
+	if obj.OnCallTriggerWrapper != nil {
+		return datadog.Marshal(&obj.OnCallTriggerWrapper)
 	}
 
 	if obj.ScheduleTriggerWrapper != nil {
@@ -554,6 +582,10 @@ func (obj *Trigger) GetActualInstance() interface{} {
 
 	if obj.NotebookTriggerWrapper != nil {
 		return obj.NotebookTriggerWrapper
+	}
+
+	if obj.OnCallTriggerWrapper != nil {
+		return obj.OnCallTriggerWrapper
 	}
 
 	if obj.ScheduleTriggerWrapper != nil {
