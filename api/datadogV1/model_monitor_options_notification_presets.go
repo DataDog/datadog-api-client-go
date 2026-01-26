@@ -15,13 +15,10 @@ type MonitorOptionsNotificationPresets string
 
 // List of MonitorOptionsNotificationPresets.
 const (
-	MONITOROPTIONSNOTIFICATIONPRESETS_SHOW_ALL                MonitorOptionsNotificationPresets = "show_all"
-	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_QUERY              MonitorOptionsNotificationPresets = "hide_query"
-	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_HANDLES            MonitorOptionsNotificationPresets = "hide_handles"
-	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_ALL                MonitorOptionsNotificationPresets = "hide_all"
-	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_QUERY_AND_HANDLES  MonitorOptionsNotificationPresets = "hide_query_and_handles"
-	MONITOROPTIONSNOTIFICATIONPRESETS_SHOW_ONLY_SNAPSHOT      MonitorOptionsNotificationPresets = "show_only_snapshot"
-	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_HANDLES_AND_FOOTER MonitorOptionsNotificationPresets = "hide_handles_and_footer"
+	MONITOROPTIONSNOTIFICATIONPRESETS_SHOW_ALL     MonitorOptionsNotificationPresets = "show_all"
+	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_QUERY   MonitorOptionsNotificationPresets = "hide_query"
+	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_HANDLES MonitorOptionsNotificationPresets = "hide_handles"
+	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_ALL     MonitorOptionsNotificationPresets = "hide_all"
 )
 
 var allowedMonitorOptionsNotificationPresetsEnumValues = []MonitorOptionsNotificationPresets{
@@ -29,9 +26,6 @@ var allowedMonitorOptionsNotificationPresetsEnumValues = []MonitorOptionsNotific
 	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_QUERY,
 	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_HANDLES,
 	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_ALL,
-	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_QUERY_AND_HANDLES,
-	MONITOROPTIONSNOTIFICATIONPRESETS_SHOW_ONLY_SNAPSHOT,
-	MONITOROPTIONSNOTIFICATIONPRESETS_HIDE_HANDLES_AND_FOOTER,
 }
 
 // GetAllowedValues reeturns the list of possible values.
