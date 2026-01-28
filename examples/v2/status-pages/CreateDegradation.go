@@ -20,7 +20,7 @@ func main() {
 
 	body := datadogV2.CreateDegradationRequest{
 		Data: &datadogV2.CreateDegradationRequestData{
-			Attributes: &datadogV2.CreateDegradationRequestDataAttributes{
+			Attributes: datadogV2.CreateDegradationRequestDataAttributes{
 				ComponentsAffected: []datadogV2.CreateDegradationRequestDataAttributesComponentsAffectedItems{
 					{
 						Id:     StatusPageDataAttributesComponents0Components0ID,

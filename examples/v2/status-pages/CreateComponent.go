@@ -19,7 +19,7 @@ func main() {
 
 	body := datadogV2.CreateComponentRequest{
 		Data: &datadogV2.CreateComponentRequestData{
-			Attributes: &datadogV2.CreateComponentRequestDataAttributes{
+			Attributes: datadogV2.CreateComponentRequestDataAttributes{
 				Name:     "Logs",
 				Position: 0,
 				Type:     datadogV2.CREATECOMPONENTREQUESTDATAATTRIBUTESTYPE_COMPONENT,

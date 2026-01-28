@@ -13,7 +13,7 @@ import (
 // CreateComponentRequestData
 type CreateComponentRequestData struct {
 	// The supported attributes for creating a component.
-	Attributes *CreateComponentRequestDataAttributes `json:"attributes,omitempty"`
+	Attributes CreateComponentRequestDataAttributes `json:"attributes"`
 	// The supported relationships for creating a component.
 	Relationships *CreateComponentRequestDataRelationships `json:"relationships,omitempty"`
 	// Components resource type.
@@ -27,8 +27,9 @@ type CreateComponentRequestData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCreateComponentRequestData(typeVar StatusPagesComponentGroupType) *CreateComponentRequestData {
+func NewCreateComponentRequestData(attributes CreateComponentRequestDataAttributes, typeVar StatusPagesComponentGroupType) *CreateComponentRequestData {
 	this := CreateComponentRequestData{}
+	this.Attributes = attributes
 	this.Type = typeVar
 	return &this
 }
@@ -43,32 +44,27 @@ func NewCreateComponentRequestDataWithDefaults() *CreateComponentRequestData {
 	return &this
 }
 
-// GetAttributes returns the Attributes field value if set, zero value otherwise.
+// GetAttributes returns the Attributes field value.
 func (o *CreateComponentRequestData) GetAttributes() CreateComponentRequestDataAttributes {
-	if o == nil || o.Attributes == nil {
+	if o == nil {
 		var ret CreateComponentRequestDataAttributes
 		return ret
 	}
-	return *o.Attributes
+	return o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *CreateComponentRequestData) GetAttributesOk() (*CreateComponentRequestDataAttributes, bool) {
-	if o == nil || o.Attributes == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Attributes, true
+	return &o.Attributes, true
 }
 
-// HasAttributes returns a boolean if a field has been set.
-func (o *CreateComponentRequestData) HasAttributes() bool {
-	return o != nil && o.Attributes != nil
-}
-
-// SetAttributes gets a reference to the given CreateComponentRequestDataAttributes and assigns it to the Attributes field.
+// SetAttributes sets field value.
 func (o *CreateComponentRequestData) SetAttributes(v CreateComponentRequestDataAttributes) {
-	o.Attributes = &v
+	o.Attributes = v
 }
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
@@ -128,9 +124,7 @@ func (o CreateComponentRequestData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Attributes != nil {
-		toSerialize["attributes"] = o.Attributes
-	}
+	toSerialize["attributes"] = o.Attributes
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
@@ -145,12 +139,15 @@ func (o CreateComponentRequestData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateComponentRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *CreateComponentRequestDataAttributes    `json:"attributes,omitempty"`
+		Attributes    *CreateComponentRequestDataAttributes    `json:"attributes"`
 		Relationships *CreateComponentRequestDataRelationships `json:"relationships,omitempty"`
 		Type          *StatusPagesComponentGroupType           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
 	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
@@ -163,10 +160,10 @@ func (o *CreateComponentRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Attributes = all.Attributes
+	o.Attributes = *all.Attributes
 	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

@@ -22,10 +22,10 @@ func main() {
 
 	body := datadogV2.PatchDegradationRequest{
 		Data: &datadogV2.PatchDegradationRequestData{
-			Attributes: &datadogV2.PatchDegradationRequestDataAttributes{
+			Attributes: datadogV2.PatchDegradationRequestDataAttributes{
 				Title: datadog.PtrString("Elevated API Latency in US1"),
 			},
-			Id:   datadog.PtrUUID(DegradationDataID),
+			Id:   DegradationDataID,
 			Type: datadogV2.PATCHDEGRADATIONREQUESTDATATYPE_DEGRADATIONS,
 		},
 	}

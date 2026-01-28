@@ -15,9 +15,9 @@ import (
 // PatchStatusPageRequestData
 type PatchStatusPageRequestData struct {
 	// The supported attributes for updating a status page.
-	Attributes *PatchStatusPageRequestDataAttributes `json:"attributes,omitempty"`
+	Attributes PatchStatusPageRequestDataAttributes `json:"attributes"`
 	// The ID of the status page.
-	Id *uuid.UUID `json:"id,omitempty"`
+	Id uuid.UUID `json:"id"`
 	// Status pages resource type.
 	Type StatusPageDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -29,8 +29,10 @@ type PatchStatusPageRequestData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewPatchStatusPageRequestData(typeVar StatusPageDataType) *PatchStatusPageRequestData {
+func NewPatchStatusPageRequestData(attributes PatchStatusPageRequestDataAttributes, id uuid.UUID, typeVar StatusPageDataType) *PatchStatusPageRequestData {
 	this := PatchStatusPageRequestData{}
+	this.Attributes = attributes
+	this.Id = id
 	this.Type = typeVar
 	return &this
 }
@@ -45,60 +47,50 @@ func NewPatchStatusPageRequestDataWithDefaults() *PatchStatusPageRequestData {
 	return &this
 }
 
-// GetAttributes returns the Attributes field value if set, zero value otherwise.
+// GetAttributes returns the Attributes field value.
 func (o *PatchStatusPageRequestData) GetAttributes() PatchStatusPageRequestDataAttributes {
-	if o == nil || o.Attributes == nil {
+	if o == nil {
 		var ret PatchStatusPageRequestDataAttributes
 		return ret
 	}
-	return *o.Attributes
+	return o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *PatchStatusPageRequestData) GetAttributesOk() (*PatchStatusPageRequestDataAttributes, bool) {
-	if o == nil || o.Attributes == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Attributes, true
+	return &o.Attributes, true
 }
 
-// HasAttributes returns a boolean if a field has been set.
-func (o *PatchStatusPageRequestData) HasAttributes() bool {
-	return o != nil && o.Attributes != nil
-}
-
-// SetAttributes gets a reference to the given PatchStatusPageRequestDataAttributes and assigns it to the Attributes field.
+// SetAttributes sets field value.
 func (o *PatchStatusPageRequestData) SetAttributes(v PatchStatusPageRequestDataAttributes) {
-	o.Attributes = &v
+	o.Attributes = v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value.
 func (o *PatchStatusPageRequestData) GetId() uuid.UUID {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret uuid.UUID
 		return ret
 	}
-	return *o.Id
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *PatchStatusPageRequestData) GetIdOk() (*uuid.UUID, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *PatchStatusPageRequestData) HasId() bool {
-	return o != nil && o.Id != nil
-}
-
-// SetId gets a reference to the given uuid.UUID and assigns it to the Id field.
+// SetId sets field value.
 func (o *PatchStatusPageRequestData) SetId(v uuid.UUID) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetType returns the Type field value.
@@ -130,12 +122,8 @@ func (o PatchStatusPageRequestData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Attributes != nil {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -147,12 +135,18 @@ func (o PatchStatusPageRequestData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PatchStatusPageRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *PatchStatusPageRequestDataAttributes `json:"attributes,omitempty"`
-		Id         *uuid.UUID                            `json:"id,omitempty"`
+		Attributes *PatchStatusPageRequestDataAttributes `json:"attributes"`
+		Id         *uuid.UUID                            `json:"id"`
 		Type       *StatusPageDataType                   `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
 	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
@@ -165,11 +159,11 @@ func (o *PatchStatusPageRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Attributes = all.Attributes
-	o.Id = all.Id
+	o.Attributes = *all.Attributes
+	o.Id = *all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
