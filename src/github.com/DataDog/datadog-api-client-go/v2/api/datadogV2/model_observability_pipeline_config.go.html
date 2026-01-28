@@ -82,238 +82,276 @@
 <span id="L25" class="ln">    25  </span>	Processors []ObservabilityPipelineConfigProcessorGroup `json:&#34;processors,omitempty&#34;`
 <span id="L26" class="ln">    26  </span>	<span class="comment">// A list of configured data sources for the pipeline.</span>
 <span id="L27" class="ln">    27  </span>	Sources []ObservabilityPipelineConfigSourceItem `json:&#34;sources&#34;`
-<span id="L28" class="ln">    28  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
-<span id="L29" class="ln">    29  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
-<span id="L30" class="ln">    30  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
-<span id="L31" class="ln">    31  </span>}
-<span id="L32" class="ln">    32  </span>
-<span id="L33" class="ln">    33  </span><span class="comment">// NewObservabilityPipelineConfig instantiates a new ObservabilityPipelineConfig object.</span>
-<span id="L34" class="ln">    34  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
-<span id="L35" class="ln">    35  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
-<span id="L36" class="ln">    36  </span><span class="comment">// will change when the set of required properties is changed.</span>
-<span id="L37" class="ln">    37  </span>func NewObservabilityPipelineConfig(destinations []ObservabilityPipelineConfigDestinationItem, sources []ObservabilityPipelineConfigSourceItem) *ObservabilityPipelineConfig {
-<span id="L38" class="ln">    38  </span>	this := ObservabilityPipelineConfig{}
-<span id="L39" class="ln">    39  </span>	this.Destinations = destinations
-<span id="L40" class="ln">    40  </span>	var pipelineType ObservabilityPipelineConfigPipelineType = OBSERVABILITYPIPELINECONFIGPIPELINETYPE_LOGS
-<span id="L41" class="ln">    41  </span>	this.PipelineType = &amp;pipelineType
-<span id="L42" class="ln">    42  </span>	this.Sources = sources
-<span id="L43" class="ln">    43  </span>	return &amp;this
-<span id="L44" class="ln">    44  </span>}
-<span id="L45" class="ln">    45  </span>
-<span id="L46" class="ln">    46  </span><span class="comment">// NewObservabilityPipelineConfigWithDefaults instantiates a new ObservabilityPipelineConfig object.</span>
-<span id="L47" class="ln">    47  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
-<span id="L48" class="ln">    48  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
-<span id="L49" class="ln">    49  </span>func NewObservabilityPipelineConfigWithDefaults() *ObservabilityPipelineConfig {
-<span id="L50" class="ln">    50  </span>	this := ObservabilityPipelineConfig{}
-<span id="L51" class="ln">    51  </span>	var pipelineType ObservabilityPipelineConfigPipelineType = OBSERVABILITYPIPELINECONFIGPIPELINETYPE_LOGS
-<span id="L52" class="ln">    52  </span>	this.PipelineType = &amp;pipelineType
-<span id="L53" class="ln">    53  </span>	return &amp;this
-<span id="L54" class="ln">    54  </span>}
-<span id="L55" class="ln">    55  </span>
-<span id="L56" class="ln">    56  </span><span class="comment">// GetDestinations returns the Destinations field value.</span>
-<span id="L57" class="ln">    57  </span>func (o *ObservabilityPipelineConfig) GetDestinations() []ObservabilityPipelineConfigDestinationItem {
-<span id="L58" class="ln">    58  </span>	if o == nil {
-<span id="L59" class="ln">    59  </span>		var ret []ObservabilityPipelineConfigDestinationItem
-<span id="L60" class="ln">    60  </span>		return ret
-<span id="L61" class="ln">    61  </span>	}
-<span id="L62" class="ln">    62  </span>	return o.Destinations
-<span id="L63" class="ln">    63  </span>}
-<span id="L64" class="ln">    64  </span>
-<span id="L65" class="ln">    65  </span><span class="comment">// GetDestinationsOk returns a tuple with the Destinations field value</span>
-<span id="L66" class="ln">    66  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L67" class="ln">    67  </span>func (o *ObservabilityPipelineConfig) GetDestinationsOk() (*[]ObservabilityPipelineConfigDestinationItem, bool) {
-<span id="L68" class="ln">    68  </span>	if o == nil {
-<span id="L69" class="ln">    69  </span>		return nil, false
-<span id="L70" class="ln">    70  </span>	}
-<span id="L71" class="ln">    71  </span>	return &amp;o.Destinations, true
-<span id="L72" class="ln">    72  </span>}
-<span id="L73" class="ln">    73  </span>
-<span id="L74" class="ln">    74  </span><span class="comment">// SetDestinations sets field value.</span>
-<span id="L75" class="ln">    75  </span>func (o *ObservabilityPipelineConfig) SetDestinations(v []ObservabilityPipelineConfigDestinationItem) {
-<span id="L76" class="ln">    76  </span>	o.Destinations = v
+<span id="L28" class="ln">    28  </span>	<span class="comment">// Set to `true` to continue using the legacy search syntax while migrating filter queries. After migrating all queries to the new syntax, set to `false`.</span>
+<span id="L29" class="ln">    29  </span>	<span class="comment">// The legacy syntax is deprecated and will eventually be removed.</span>
+<span id="L30" class="ln">    30  </span>	<span class="comment">// Requires Observability Pipelines Worker 2.11 or later.</span>
+<span id="L31" class="ln">    31  </span>	<span class="comment">// See [Upgrade Your Filter Queries to the New Search Syntax](https://docs.datadoghq.com/observability_pipelines/guide/upgrade_your_filter_queries_to_the_new_search_syntax/) for more information.</span>
+<span id="L32" class="ln">    32  </span>	UseLegacySearchSyntax *bool `json:&#34;use_legacy_search_syntax,omitempty&#34;`
+<span id="L33" class="ln">    33  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L34" class="ln">    34  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L35" class="ln">    35  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L36" class="ln">    36  </span>}
+<span id="L37" class="ln">    37  </span>
+<span id="L38" class="ln">    38  </span><span class="comment">// NewObservabilityPipelineConfig instantiates a new ObservabilityPipelineConfig object.</span>
+<span id="L39" class="ln">    39  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L40" class="ln">    40  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L41" class="ln">    41  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L42" class="ln">    42  </span>func NewObservabilityPipelineConfig(destinations []ObservabilityPipelineConfigDestinationItem, sources []ObservabilityPipelineConfigSourceItem) *ObservabilityPipelineConfig {
+<span id="L43" class="ln">    43  </span>	this := ObservabilityPipelineConfig{}
+<span id="L44" class="ln">    44  </span>	this.Destinations = destinations
+<span id="L45" class="ln">    45  </span>	var pipelineType ObservabilityPipelineConfigPipelineType = OBSERVABILITYPIPELINECONFIGPIPELINETYPE_LOGS
+<span id="L46" class="ln">    46  </span>	this.PipelineType = &amp;pipelineType
+<span id="L47" class="ln">    47  </span>	this.Sources = sources
+<span id="L48" class="ln">    48  </span>	return &amp;this
+<span id="L49" class="ln">    49  </span>}
+<span id="L50" class="ln">    50  </span>
+<span id="L51" class="ln">    51  </span><span class="comment">// NewObservabilityPipelineConfigWithDefaults instantiates a new ObservabilityPipelineConfig object.</span>
+<span id="L52" class="ln">    52  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L53" class="ln">    53  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L54" class="ln">    54  </span>func NewObservabilityPipelineConfigWithDefaults() *ObservabilityPipelineConfig {
+<span id="L55" class="ln">    55  </span>	this := ObservabilityPipelineConfig{}
+<span id="L56" class="ln">    56  </span>	var pipelineType ObservabilityPipelineConfigPipelineType = OBSERVABILITYPIPELINECONFIGPIPELINETYPE_LOGS
+<span id="L57" class="ln">    57  </span>	this.PipelineType = &amp;pipelineType
+<span id="L58" class="ln">    58  </span>	return &amp;this
+<span id="L59" class="ln">    59  </span>}
+<span id="L60" class="ln">    60  </span>
+<span id="L61" class="ln">    61  </span><span class="comment">// GetDestinations returns the Destinations field value.</span>
+<span id="L62" class="ln">    62  </span>func (o *ObservabilityPipelineConfig) GetDestinations() []ObservabilityPipelineConfigDestinationItem {
+<span id="L63" class="ln">    63  </span>	if o == nil {
+<span id="L64" class="ln">    64  </span>		var ret []ObservabilityPipelineConfigDestinationItem
+<span id="L65" class="ln">    65  </span>		return ret
+<span id="L66" class="ln">    66  </span>	}
+<span id="L67" class="ln">    67  </span>	return o.Destinations
+<span id="L68" class="ln">    68  </span>}
+<span id="L69" class="ln">    69  </span>
+<span id="L70" class="ln">    70  </span><span class="comment">// GetDestinationsOk returns a tuple with the Destinations field value</span>
+<span id="L71" class="ln">    71  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L72" class="ln">    72  </span>func (o *ObservabilityPipelineConfig) GetDestinationsOk() (*[]ObservabilityPipelineConfigDestinationItem, bool) {
+<span id="L73" class="ln">    73  </span>	if o == nil {
+<span id="L74" class="ln">    74  </span>		return nil, false
+<span id="L75" class="ln">    75  </span>	}
+<span id="L76" class="ln">    76  </span>	return &amp;o.Destinations, true
 <span id="L77" class="ln">    77  </span>}
 <span id="L78" class="ln">    78  </span>
-<span id="L79" class="ln">    79  </span><span class="comment">// GetPipelineType returns the PipelineType field value if set, zero value otherwise.</span>
-<span id="L80" class="ln">    80  </span>func (o *ObservabilityPipelineConfig) GetPipelineType() ObservabilityPipelineConfigPipelineType {
-<span id="L81" class="ln">    81  </span>	if o == nil || o.PipelineType == nil {
-<span id="L82" class="ln">    82  </span>		var ret ObservabilityPipelineConfigPipelineType
-<span id="L83" class="ln">    83  </span>		return ret
-<span id="L84" class="ln">    84  </span>	}
-<span id="L85" class="ln">    85  </span>	return *o.PipelineType
-<span id="L86" class="ln">    86  </span>}
-<span id="L87" class="ln">    87  </span>
-<span id="L88" class="ln">    88  </span><span class="comment">// GetPipelineTypeOk returns a tuple with the PipelineType field value if set, nil otherwise</span>
-<span id="L89" class="ln">    89  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L90" class="ln">    90  </span>func (o *ObservabilityPipelineConfig) GetPipelineTypeOk() (*ObservabilityPipelineConfigPipelineType, bool) {
-<span id="L91" class="ln">    91  </span>	if o == nil || o.PipelineType == nil {
-<span id="L92" class="ln">    92  </span>		return nil, false
-<span id="L93" class="ln">    93  </span>	}
-<span id="L94" class="ln">    94  </span>	return o.PipelineType, true
-<span id="L95" class="ln">    95  </span>}
-<span id="L96" class="ln">    96  </span>
-<span id="L97" class="ln">    97  </span><span class="comment">// HasPipelineType returns a boolean if a field has been set.</span>
-<span id="L98" class="ln">    98  </span>func (o *ObservabilityPipelineConfig) HasPipelineType() bool {
-<span id="L99" class="ln">    99  </span>	return o != nil &amp;&amp; o.PipelineType != nil
+<span id="L79" class="ln">    79  </span><span class="comment">// SetDestinations sets field value.</span>
+<span id="L80" class="ln">    80  </span>func (o *ObservabilityPipelineConfig) SetDestinations(v []ObservabilityPipelineConfigDestinationItem) {
+<span id="L81" class="ln">    81  </span>	o.Destinations = v
+<span id="L82" class="ln">    82  </span>}
+<span id="L83" class="ln">    83  </span>
+<span id="L84" class="ln">    84  </span><span class="comment">// GetPipelineType returns the PipelineType field value if set, zero value otherwise.</span>
+<span id="L85" class="ln">    85  </span>func (o *ObservabilityPipelineConfig) GetPipelineType() ObservabilityPipelineConfigPipelineType {
+<span id="L86" class="ln">    86  </span>	if o == nil || o.PipelineType == nil {
+<span id="L87" class="ln">    87  </span>		var ret ObservabilityPipelineConfigPipelineType
+<span id="L88" class="ln">    88  </span>		return ret
+<span id="L89" class="ln">    89  </span>	}
+<span id="L90" class="ln">    90  </span>	return *o.PipelineType
+<span id="L91" class="ln">    91  </span>}
+<span id="L92" class="ln">    92  </span>
+<span id="L93" class="ln">    93  </span><span class="comment">// GetPipelineTypeOk returns a tuple with the PipelineType field value if set, nil otherwise</span>
+<span id="L94" class="ln">    94  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L95" class="ln">    95  </span>func (o *ObservabilityPipelineConfig) GetPipelineTypeOk() (*ObservabilityPipelineConfigPipelineType, bool) {
+<span id="L96" class="ln">    96  </span>	if o == nil || o.PipelineType == nil {
+<span id="L97" class="ln">    97  </span>		return nil, false
+<span id="L98" class="ln">    98  </span>	}
+<span id="L99" class="ln">    99  </span>	return o.PipelineType, true
 <span id="L100" class="ln">   100  </span>}
 <span id="L101" class="ln">   101  </span>
-<span id="L102" class="ln">   102  </span><span class="comment">// SetPipelineType gets a reference to the given ObservabilityPipelineConfigPipelineType and assigns it to the PipelineType field.</span>
-<span id="L103" class="ln">   103  </span>func (o *ObservabilityPipelineConfig) SetPipelineType(v ObservabilityPipelineConfigPipelineType) {
-<span id="L104" class="ln">   104  </span>	o.PipelineType = &amp;v
+<span id="L102" class="ln">   102  </span><span class="comment">// HasPipelineType returns a boolean if a field has been set.</span>
+<span id="L103" class="ln">   103  </span>func (o *ObservabilityPipelineConfig) HasPipelineType() bool {
+<span id="L104" class="ln">   104  </span>	return o != nil &amp;&amp; o.PipelineType != nil
 <span id="L105" class="ln">   105  </span>}
 <span id="L106" class="ln">   106  </span>
-<span id="L107" class="ln">   107  </span><span class="comment">// GetProcessorGroups returns the ProcessorGroups field value if set, zero value otherwise.</span>
-<span id="L108" class="ln">   108  </span>func (o *ObservabilityPipelineConfig) GetProcessorGroups() []ObservabilityPipelineConfigProcessorGroup {
-<span id="L109" class="ln">   109  </span>	if o == nil || o.ProcessorGroups == nil {
-<span id="L110" class="ln">   110  </span>		var ret []ObservabilityPipelineConfigProcessorGroup
-<span id="L111" class="ln">   111  </span>		return ret
-<span id="L112" class="ln">   112  </span>	}
-<span id="L113" class="ln">   113  </span>	return o.ProcessorGroups
-<span id="L114" class="ln">   114  </span>}
-<span id="L115" class="ln">   115  </span>
-<span id="L116" class="ln">   116  </span><span class="comment">// GetProcessorGroupsOk returns a tuple with the ProcessorGroups field value if set, nil otherwise</span>
-<span id="L117" class="ln">   117  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L118" class="ln">   118  </span>func (o *ObservabilityPipelineConfig) GetProcessorGroupsOk() (*[]ObservabilityPipelineConfigProcessorGroup, bool) {
-<span id="L119" class="ln">   119  </span>	if o == nil || o.ProcessorGroups == nil {
-<span id="L120" class="ln">   120  </span>		return nil, false
-<span id="L121" class="ln">   121  </span>	}
-<span id="L122" class="ln">   122  </span>	return &amp;o.ProcessorGroups, true
-<span id="L123" class="ln">   123  </span>}
-<span id="L124" class="ln">   124  </span>
-<span id="L125" class="ln">   125  </span><span class="comment">// HasProcessorGroups returns a boolean if a field has been set.</span>
-<span id="L126" class="ln">   126  </span>func (o *ObservabilityPipelineConfig) HasProcessorGroups() bool {
-<span id="L127" class="ln">   127  </span>	return o != nil &amp;&amp; o.ProcessorGroups != nil
+<span id="L107" class="ln">   107  </span><span class="comment">// SetPipelineType gets a reference to the given ObservabilityPipelineConfigPipelineType and assigns it to the PipelineType field.</span>
+<span id="L108" class="ln">   108  </span>func (o *ObservabilityPipelineConfig) SetPipelineType(v ObservabilityPipelineConfigPipelineType) {
+<span id="L109" class="ln">   109  </span>	o.PipelineType = &amp;v
+<span id="L110" class="ln">   110  </span>}
+<span id="L111" class="ln">   111  </span>
+<span id="L112" class="ln">   112  </span><span class="comment">// GetProcessorGroups returns the ProcessorGroups field value if set, zero value otherwise.</span>
+<span id="L113" class="ln">   113  </span>func (o *ObservabilityPipelineConfig) GetProcessorGroups() []ObservabilityPipelineConfigProcessorGroup {
+<span id="L114" class="ln">   114  </span>	if o == nil || o.ProcessorGroups == nil {
+<span id="L115" class="ln">   115  </span>		var ret []ObservabilityPipelineConfigProcessorGroup
+<span id="L116" class="ln">   116  </span>		return ret
+<span id="L117" class="ln">   117  </span>	}
+<span id="L118" class="ln">   118  </span>	return o.ProcessorGroups
+<span id="L119" class="ln">   119  </span>}
+<span id="L120" class="ln">   120  </span>
+<span id="L121" class="ln">   121  </span><span class="comment">// GetProcessorGroupsOk returns a tuple with the ProcessorGroups field value if set, nil otherwise</span>
+<span id="L122" class="ln">   122  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L123" class="ln">   123  </span>func (o *ObservabilityPipelineConfig) GetProcessorGroupsOk() (*[]ObservabilityPipelineConfigProcessorGroup, bool) {
+<span id="L124" class="ln">   124  </span>	if o == nil || o.ProcessorGroups == nil {
+<span id="L125" class="ln">   125  </span>		return nil, false
+<span id="L126" class="ln">   126  </span>	}
+<span id="L127" class="ln">   127  </span>	return &amp;o.ProcessorGroups, true
 <span id="L128" class="ln">   128  </span>}
 <span id="L129" class="ln">   129  </span>
-<span id="L130" class="ln">   130  </span><span class="comment">// SetProcessorGroups gets a reference to the given []ObservabilityPipelineConfigProcessorGroup and assigns it to the ProcessorGroups field.</span>
-<span id="L131" class="ln">   131  </span>func (o *ObservabilityPipelineConfig) SetProcessorGroups(v []ObservabilityPipelineConfigProcessorGroup) {
-<span id="L132" class="ln">   132  </span>	o.ProcessorGroups = v
+<span id="L130" class="ln">   130  </span><span class="comment">// HasProcessorGroups returns a boolean if a field has been set.</span>
+<span id="L131" class="ln">   131  </span>func (o *ObservabilityPipelineConfig) HasProcessorGroups() bool {
+<span id="L132" class="ln">   132  </span>	return o != nil &amp;&amp; o.ProcessorGroups != nil
 <span id="L133" class="ln">   133  </span>}
 <span id="L134" class="ln">   134  </span>
-<span id="L135" class="ln">   135  </span><span class="comment">// GetProcessors returns the Processors field value if set, zero value otherwise.</span>
-<span id="L136" class="ln">   136  </span><span class="comment">// Deprecated</span>
-<span id="L137" class="ln">   137  </span>func (o *ObservabilityPipelineConfig) GetProcessors() []ObservabilityPipelineConfigProcessorGroup {
-<span id="L138" class="ln">   138  </span>	if o == nil || o.Processors == nil {
-<span id="L139" class="ln">   139  </span>		var ret []ObservabilityPipelineConfigProcessorGroup
-<span id="L140" class="ln">   140  </span>		return ret
-<span id="L141" class="ln">   141  </span>	}
-<span id="L142" class="ln">   142  </span>	return o.Processors
-<span id="L143" class="ln">   143  </span>}
-<span id="L144" class="ln">   144  </span>
-<span id="L145" class="ln">   145  </span><span class="comment">// GetProcessorsOk returns a tuple with the Processors field value if set, nil otherwise</span>
-<span id="L146" class="ln">   146  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L147" class="ln">   147  </span><span class="comment">// Deprecated</span>
-<span id="L148" class="ln">   148  </span>func (o *ObservabilityPipelineConfig) GetProcessorsOk() (*[]ObservabilityPipelineConfigProcessorGroup, bool) {
-<span id="L149" class="ln">   149  </span>	if o == nil || o.Processors == nil {
-<span id="L150" class="ln">   150  </span>		return nil, false
-<span id="L151" class="ln">   151  </span>	}
-<span id="L152" class="ln">   152  </span>	return &amp;o.Processors, true
-<span id="L153" class="ln">   153  </span>}
-<span id="L154" class="ln">   154  </span>
-<span id="L155" class="ln">   155  </span><span class="comment">// HasProcessors returns a boolean if a field has been set.</span>
-<span id="L156" class="ln">   156  </span>func (o *ObservabilityPipelineConfig) HasProcessors() bool {
-<span id="L157" class="ln">   157  </span>	return o != nil &amp;&amp; o.Processors != nil
+<span id="L135" class="ln">   135  </span><span class="comment">// SetProcessorGroups gets a reference to the given []ObservabilityPipelineConfigProcessorGroup and assigns it to the ProcessorGroups field.</span>
+<span id="L136" class="ln">   136  </span>func (o *ObservabilityPipelineConfig) SetProcessorGroups(v []ObservabilityPipelineConfigProcessorGroup) {
+<span id="L137" class="ln">   137  </span>	o.ProcessorGroups = v
+<span id="L138" class="ln">   138  </span>}
+<span id="L139" class="ln">   139  </span>
+<span id="L140" class="ln">   140  </span><span class="comment">// GetProcessors returns the Processors field value if set, zero value otherwise.</span>
+<span id="L141" class="ln">   141  </span><span class="comment">// Deprecated</span>
+<span id="L142" class="ln">   142  </span>func (o *ObservabilityPipelineConfig) GetProcessors() []ObservabilityPipelineConfigProcessorGroup {
+<span id="L143" class="ln">   143  </span>	if o == nil || o.Processors == nil {
+<span id="L144" class="ln">   144  </span>		var ret []ObservabilityPipelineConfigProcessorGroup
+<span id="L145" class="ln">   145  </span>		return ret
+<span id="L146" class="ln">   146  </span>	}
+<span id="L147" class="ln">   147  </span>	return o.Processors
+<span id="L148" class="ln">   148  </span>}
+<span id="L149" class="ln">   149  </span>
+<span id="L150" class="ln">   150  </span><span class="comment">// GetProcessorsOk returns a tuple with the Processors field value if set, nil otherwise</span>
+<span id="L151" class="ln">   151  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L152" class="ln">   152  </span><span class="comment">// Deprecated</span>
+<span id="L153" class="ln">   153  </span>func (o *ObservabilityPipelineConfig) GetProcessorsOk() (*[]ObservabilityPipelineConfigProcessorGroup, bool) {
+<span id="L154" class="ln">   154  </span>	if o == nil || o.Processors == nil {
+<span id="L155" class="ln">   155  </span>		return nil, false
+<span id="L156" class="ln">   156  </span>	}
+<span id="L157" class="ln">   157  </span>	return &amp;o.Processors, true
 <span id="L158" class="ln">   158  </span>}
 <span id="L159" class="ln">   159  </span>
-<span id="L160" class="ln">   160  </span><span class="comment">// SetProcessors gets a reference to the given []ObservabilityPipelineConfigProcessorGroup and assigns it to the Processors field.</span>
-<span id="L161" class="ln">   161  </span><span class="comment">// Deprecated</span>
-<span id="L162" class="ln">   162  </span>func (o *ObservabilityPipelineConfig) SetProcessors(v []ObservabilityPipelineConfigProcessorGroup) {
-<span id="L163" class="ln">   163  </span>	o.Processors = v
-<span id="L164" class="ln">   164  </span>}
-<span id="L165" class="ln">   165  </span>
-<span id="L166" class="ln">   166  </span><span class="comment">// GetSources returns the Sources field value.</span>
-<span id="L167" class="ln">   167  </span>func (o *ObservabilityPipelineConfig) GetSources() []ObservabilityPipelineConfigSourceItem {
-<span id="L168" class="ln">   168  </span>	if o == nil {
-<span id="L169" class="ln">   169  </span>		var ret []ObservabilityPipelineConfigSourceItem
-<span id="L170" class="ln">   170  </span>		return ret
-<span id="L171" class="ln">   171  </span>	}
-<span id="L172" class="ln">   172  </span>	return o.Sources
-<span id="L173" class="ln">   173  </span>}
-<span id="L174" class="ln">   174  </span>
-<span id="L175" class="ln">   175  </span><span class="comment">// GetSourcesOk returns a tuple with the Sources field value</span>
-<span id="L176" class="ln">   176  </span><span class="comment">// and a boolean to check if the value has been set.</span>
-<span id="L177" class="ln">   177  </span>func (o *ObservabilityPipelineConfig) GetSourcesOk() (*[]ObservabilityPipelineConfigSourceItem, bool) {
-<span id="L178" class="ln">   178  </span>	if o == nil {
-<span id="L179" class="ln">   179  </span>		return nil, false
-<span id="L180" class="ln">   180  </span>	}
-<span id="L181" class="ln">   181  </span>	return &amp;o.Sources, true
-<span id="L182" class="ln">   182  </span>}
-<span id="L183" class="ln">   183  </span>
-<span id="L184" class="ln">   184  </span><span class="comment">// SetSources sets field value.</span>
-<span id="L185" class="ln">   185  </span>func (o *ObservabilityPipelineConfig) SetSources(v []ObservabilityPipelineConfigSourceItem) {
-<span id="L186" class="ln">   186  </span>	o.Sources = v
+<span id="L160" class="ln">   160  </span><span class="comment">// HasProcessors returns a boolean if a field has been set.</span>
+<span id="L161" class="ln">   161  </span>func (o *ObservabilityPipelineConfig) HasProcessors() bool {
+<span id="L162" class="ln">   162  </span>	return o != nil &amp;&amp; o.Processors != nil
+<span id="L163" class="ln">   163  </span>}
+<span id="L164" class="ln">   164  </span>
+<span id="L165" class="ln">   165  </span><span class="comment">// SetProcessors gets a reference to the given []ObservabilityPipelineConfigProcessorGroup and assigns it to the Processors field.</span>
+<span id="L166" class="ln">   166  </span><span class="comment">// Deprecated</span>
+<span id="L167" class="ln">   167  </span>func (o *ObservabilityPipelineConfig) SetProcessors(v []ObservabilityPipelineConfigProcessorGroup) {
+<span id="L168" class="ln">   168  </span>	o.Processors = v
+<span id="L169" class="ln">   169  </span>}
+<span id="L170" class="ln">   170  </span>
+<span id="L171" class="ln">   171  </span><span class="comment">// GetSources returns the Sources field value.</span>
+<span id="L172" class="ln">   172  </span>func (o *ObservabilityPipelineConfig) GetSources() []ObservabilityPipelineConfigSourceItem {
+<span id="L173" class="ln">   173  </span>	if o == nil {
+<span id="L174" class="ln">   174  </span>		var ret []ObservabilityPipelineConfigSourceItem
+<span id="L175" class="ln">   175  </span>		return ret
+<span id="L176" class="ln">   176  </span>	}
+<span id="L177" class="ln">   177  </span>	return o.Sources
+<span id="L178" class="ln">   178  </span>}
+<span id="L179" class="ln">   179  </span>
+<span id="L180" class="ln">   180  </span><span class="comment">// GetSourcesOk returns a tuple with the Sources field value</span>
+<span id="L181" class="ln">   181  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L182" class="ln">   182  </span>func (o *ObservabilityPipelineConfig) GetSourcesOk() (*[]ObservabilityPipelineConfigSourceItem, bool) {
+<span id="L183" class="ln">   183  </span>	if o == nil {
+<span id="L184" class="ln">   184  </span>		return nil, false
+<span id="L185" class="ln">   185  </span>	}
+<span id="L186" class="ln">   186  </span>	return &amp;o.Sources, true
 <span id="L187" class="ln">   187  </span>}
 <span id="L188" class="ln">   188  </span>
-<span id="L189" class="ln">   189  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
-<span id="L190" class="ln">   190  </span>func (o ObservabilityPipelineConfig) MarshalJSON() ([]byte, error) {
-<span id="L191" class="ln">   191  </span>	toSerialize := map[string]interface{}{}
-<span id="L192" class="ln">   192  </span>	if o.UnparsedObject != nil {
-<span id="L193" class="ln">   193  </span>		return datadog.Marshal(o.UnparsedObject)
-<span id="L194" class="ln">   194  </span>	}
-<span id="L195" class="ln">   195  </span>	toSerialize[&#34;destinations&#34;] = o.Destinations
-<span id="L196" class="ln">   196  </span>	if o.PipelineType != nil {
-<span id="L197" class="ln">   197  </span>		toSerialize[&#34;pipeline_type&#34;] = o.PipelineType
-<span id="L198" class="ln">   198  </span>	}
-<span id="L199" class="ln">   199  </span>	if o.ProcessorGroups != nil {
-<span id="L200" class="ln">   200  </span>		toSerialize[&#34;processor_groups&#34;] = o.ProcessorGroups
-<span id="L201" class="ln">   201  </span>	}
-<span id="L202" class="ln">   202  </span>	if o.Processors != nil {
-<span id="L203" class="ln">   203  </span>		toSerialize[&#34;processors&#34;] = o.Processors
-<span id="L204" class="ln">   204  </span>	}
-<span id="L205" class="ln">   205  </span>	toSerialize[&#34;sources&#34;] = o.Sources
-<span id="L206" class="ln">   206  </span>
-<span id="L207" class="ln">   207  </span>	for key, value := range o.AdditionalProperties {
-<span id="L208" class="ln">   208  </span>		toSerialize[key] = value
-<span id="L209" class="ln">   209  </span>	}
-<span id="L210" class="ln">   210  </span>	return datadog.Marshal(toSerialize)
-<span id="L211" class="ln">   211  </span>}
-<span id="L212" class="ln">   212  </span>
-<span id="L213" class="ln">   213  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
-<span id="L214" class="ln">   214  </span>func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
-<span id="L215" class="ln">   215  </span>	all := struct {
-<span id="L216" class="ln">   216  </span>		Destinations    *[]ObservabilityPipelineConfigDestinationItem `json:&#34;destinations&#34;`
-<span id="L217" class="ln">   217  </span>		PipelineType    *ObservabilityPipelineConfigPipelineType      `json:&#34;pipeline_type,omitempty&#34;`
-<span id="L218" class="ln">   218  </span>		ProcessorGroups []ObservabilityPipelineConfigProcessorGroup   `json:&#34;processor_groups,omitempty&#34;`
-<span id="L219" class="ln">   219  </span>		Processors      []ObservabilityPipelineConfigProcessorGroup   `json:&#34;processors,omitempty&#34;`
-<span id="L220" class="ln">   220  </span>		Sources         *[]ObservabilityPipelineConfigSourceItem      `json:&#34;sources&#34;`
-<span id="L221" class="ln">   221  </span>	}{}
-<span id="L222" class="ln">   222  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
-<span id="L223" class="ln">   223  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L224" class="ln">   224  </span>	}
-<span id="L225" class="ln">   225  </span>	if all.Destinations == nil {
-<span id="L226" class="ln">   226  </span>		return fmt.Errorf(&#34;required field destinations missing&#34;)
+<span id="L189" class="ln">   189  </span><span class="comment">// SetSources sets field value.</span>
+<span id="L190" class="ln">   190  </span>func (o *ObservabilityPipelineConfig) SetSources(v []ObservabilityPipelineConfigSourceItem) {
+<span id="L191" class="ln">   191  </span>	o.Sources = v
+<span id="L192" class="ln">   192  </span>}
+<span id="L193" class="ln">   193  </span>
+<span id="L194" class="ln">   194  </span><span class="comment">// GetUseLegacySearchSyntax returns the UseLegacySearchSyntax field value if set, zero value otherwise.</span>
+<span id="L195" class="ln">   195  </span>func (o *ObservabilityPipelineConfig) GetUseLegacySearchSyntax() bool {
+<span id="L196" class="ln">   196  </span>	if o == nil || o.UseLegacySearchSyntax == nil {
+<span id="L197" class="ln">   197  </span>		var ret bool
+<span id="L198" class="ln">   198  </span>		return ret
+<span id="L199" class="ln">   199  </span>	}
+<span id="L200" class="ln">   200  </span>	return *o.UseLegacySearchSyntax
+<span id="L201" class="ln">   201  </span>}
+<span id="L202" class="ln">   202  </span>
+<span id="L203" class="ln">   203  </span><span class="comment">// GetUseLegacySearchSyntaxOk returns a tuple with the UseLegacySearchSyntax field value if set, nil otherwise</span>
+<span id="L204" class="ln">   204  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L205" class="ln">   205  </span>func (o *ObservabilityPipelineConfig) GetUseLegacySearchSyntaxOk() (*bool, bool) {
+<span id="L206" class="ln">   206  </span>	if o == nil || o.UseLegacySearchSyntax == nil {
+<span id="L207" class="ln">   207  </span>		return nil, false
+<span id="L208" class="ln">   208  </span>	}
+<span id="L209" class="ln">   209  </span>	return o.UseLegacySearchSyntax, true
+<span id="L210" class="ln">   210  </span>}
+<span id="L211" class="ln">   211  </span>
+<span id="L212" class="ln">   212  </span><span class="comment">// HasUseLegacySearchSyntax returns a boolean if a field has been set.</span>
+<span id="L213" class="ln">   213  </span>func (o *ObservabilityPipelineConfig) HasUseLegacySearchSyntax() bool {
+<span id="L214" class="ln">   214  </span>	return o != nil &amp;&amp; o.UseLegacySearchSyntax != nil
+<span id="L215" class="ln">   215  </span>}
+<span id="L216" class="ln">   216  </span>
+<span id="L217" class="ln">   217  </span><span class="comment">// SetUseLegacySearchSyntax gets a reference to the given bool and assigns it to the UseLegacySearchSyntax field.</span>
+<span id="L218" class="ln">   218  </span>func (o *ObservabilityPipelineConfig) SetUseLegacySearchSyntax(v bool) {
+<span id="L219" class="ln">   219  </span>	o.UseLegacySearchSyntax = &amp;v
+<span id="L220" class="ln">   220  </span>}
+<span id="L221" class="ln">   221  </span>
+<span id="L222" class="ln">   222  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L223" class="ln">   223  </span>func (o ObservabilityPipelineConfig) MarshalJSON() ([]byte, error) {
+<span id="L224" class="ln">   224  </span>	toSerialize := map[string]interface{}{}
+<span id="L225" class="ln">   225  </span>	if o.UnparsedObject != nil {
+<span id="L226" class="ln">   226  </span>		return datadog.Marshal(o.UnparsedObject)
 <span id="L227" class="ln">   227  </span>	}
-<span id="L228" class="ln">   228  </span>	if all.Sources == nil {
-<span id="L229" class="ln">   229  </span>		return fmt.Errorf(&#34;required field sources missing&#34;)
-<span id="L230" class="ln">   230  </span>	}
-<span id="L231" class="ln">   231  </span>	additionalProperties := make(map[string]interface{})
-<span id="L232" class="ln">   232  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
-<span id="L233" class="ln">   233  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;destinations&#34;, &#34;pipeline_type&#34;, &#34;processor_groups&#34;, &#34;processors&#34;, &#34;sources&#34;})
-<span id="L234" class="ln">   234  </span>	} else {
-<span id="L235" class="ln">   235  </span>		return err
-<span id="L236" class="ln">   236  </span>	}
-<span id="L237" class="ln">   237  </span>
-<span id="L238" class="ln">   238  </span>	hasInvalidField := false
-<span id="L239" class="ln">   239  </span>	o.Destinations = *all.Destinations
-<span id="L240" class="ln">   240  </span>	if all.PipelineType != nil &amp;&amp; !all.PipelineType.IsValid() {
-<span id="L241" class="ln">   241  </span>		hasInvalidField = true
-<span id="L242" class="ln">   242  </span>	} else {
-<span id="L243" class="ln">   243  </span>		o.PipelineType = all.PipelineType
-<span id="L244" class="ln">   244  </span>	}
-<span id="L245" class="ln">   245  </span>	o.ProcessorGroups = all.ProcessorGroups
-<span id="L246" class="ln">   246  </span>	o.Processors = all.Processors
-<span id="L247" class="ln">   247  </span>	o.Sources = *all.Sources
+<span id="L228" class="ln">   228  </span>	toSerialize[&#34;destinations&#34;] = o.Destinations
+<span id="L229" class="ln">   229  </span>	if o.PipelineType != nil {
+<span id="L230" class="ln">   230  </span>		toSerialize[&#34;pipeline_type&#34;] = o.PipelineType
+<span id="L231" class="ln">   231  </span>	}
+<span id="L232" class="ln">   232  </span>	if o.ProcessorGroups != nil {
+<span id="L233" class="ln">   233  </span>		toSerialize[&#34;processor_groups&#34;] = o.ProcessorGroups
+<span id="L234" class="ln">   234  </span>	}
+<span id="L235" class="ln">   235  </span>	if o.Processors != nil {
+<span id="L236" class="ln">   236  </span>		toSerialize[&#34;processors&#34;] = o.Processors
+<span id="L237" class="ln">   237  </span>	}
+<span id="L238" class="ln">   238  </span>	toSerialize[&#34;sources&#34;] = o.Sources
+<span id="L239" class="ln">   239  </span>	if o.UseLegacySearchSyntax != nil {
+<span id="L240" class="ln">   240  </span>		toSerialize[&#34;use_legacy_search_syntax&#34;] = o.UseLegacySearchSyntax
+<span id="L241" class="ln">   241  </span>	}
+<span id="L242" class="ln">   242  </span>
+<span id="L243" class="ln">   243  </span>	for key, value := range o.AdditionalProperties {
+<span id="L244" class="ln">   244  </span>		toSerialize[key] = value
+<span id="L245" class="ln">   245  </span>	}
+<span id="L246" class="ln">   246  </span>	return datadog.Marshal(toSerialize)
+<span id="L247" class="ln">   247  </span>}
 <span id="L248" class="ln">   248  </span>
-<span id="L249" class="ln">   249  </span>	if len(additionalProperties) &gt; 0 {
-<span id="L250" class="ln">   250  </span>		o.AdditionalProperties = additionalProperties
-<span id="L251" class="ln">   251  </span>	}
-<span id="L252" class="ln">   252  </span>
-<span id="L253" class="ln">   253  </span>	if hasInvalidField {
-<span id="L254" class="ln">   254  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
-<span id="L255" class="ln">   255  </span>	}
-<span id="L256" class="ln">   256  </span>
-<span id="L257" class="ln">   257  </span>	return nil
-<span id="L258" class="ln">   258  </span>}
-<span id="L259" class="ln">   259  </span>
+<span id="L249" class="ln">   249  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L250" class="ln">   250  </span>func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L251" class="ln">   251  </span>	all := struct {
+<span id="L252" class="ln">   252  </span>		Destinations          *[]ObservabilityPipelineConfigDestinationItem `json:&#34;destinations&#34;`
+<span id="L253" class="ln">   253  </span>		PipelineType          *ObservabilityPipelineConfigPipelineType      `json:&#34;pipeline_type,omitempty&#34;`
+<span id="L254" class="ln">   254  </span>		ProcessorGroups       []ObservabilityPipelineConfigProcessorGroup   `json:&#34;processor_groups,omitempty&#34;`
+<span id="L255" class="ln">   255  </span>		Processors            []ObservabilityPipelineConfigProcessorGroup   `json:&#34;processors,omitempty&#34;`
+<span id="L256" class="ln">   256  </span>		Sources               *[]ObservabilityPipelineConfigSourceItem      `json:&#34;sources&#34;`
+<span id="L257" class="ln">   257  </span>		UseLegacySearchSyntax *bool                                         `json:&#34;use_legacy_search_syntax,omitempty&#34;`
+<span id="L258" class="ln">   258  </span>	}{}
+<span id="L259" class="ln">   259  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L260" class="ln">   260  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L261" class="ln">   261  </span>	}
+<span id="L262" class="ln">   262  </span>	if all.Destinations == nil {
+<span id="L263" class="ln">   263  </span>		return fmt.Errorf(&#34;required field destinations missing&#34;)
+<span id="L264" class="ln">   264  </span>	}
+<span id="L265" class="ln">   265  </span>	if all.Sources == nil {
+<span id="L266" class="ln">   266  </span>		return fmt.Errorf(&#34;required field sources missing&#34;)
+<span id="L267" class="ln">   267  </span>	}
+<span id="L268" class="ln">   268  </span>	additionalProperties := make(map[string]interface{})
+<span id="L269" class="ln">   269  </span>	if err = datadog.Unmarshal(bytes, &amp;additionalProperties); err == nil {
+<span id="L270" class="ln">   270  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;destinations&#34;, &#34;pipeline_type&#34;, &#34;processor_groups&#34;, &#34;processors&#34;, &#34;sources&#34;, &#34;use_legacy_search_syntax&#34;})
+<span id="L271" class="ln">   271  </span>	} else {
+<span id="L272" class="ln">   272  </span>		return err
+<span id="L273" class="ln">   273  </span>	}
+<span id="L274" class="ln">   274  </span>
+<span id="L275" class="ln">   275  </span>	hasInvalidField := false
+<span id="L276" class="ln">   276  </span>	o.Destinations = *all.Destinations
+<span id="L277" class="ln">   277  </span>	if all.PipelineType != nil &amp;&amp; !all.PipelineType.IsValid() {
+<span id="L278" class="ln">   278  </span>		hasInvalidField = true
+<span id="L279" class="ln">   279  </span>	} else {
+<span id="L280" class="ln">   280  </span>		o.PipelineType = all.PipelineType
+<span id="L281" class="ln">   281  </span>	}
+<span id="L282" class="ln">   282  </span>	o.ProcessorGroups = all.ProcessorGroups
+<span id="L283" class="ln">   283  </span>	o.Processors = all.Processors
+<span id="L284" class="ln">   284  </span>	o.Sources = *all.Sources
+<span id="L285" class="ln">   285  </span>	o.UseLegacySearchSyntax = all.UseLegacySearchSyntax
+<span id="L286" class="ln">   286  </span>
+<span id="L287" class="ln">   287  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L288" class="ln">   288  </span>		o.AdditionalProperties = additionalProperties
+<span id="L289" class="ln">   289  </span>	}
+<span id="L290" class="ln">   290  </span>
+<span id="L291" class="ln">   291  </span>	if hasInvalidField {
+<span id="L292" class="ln">   292  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L293" class="ln">   293  </span>	}
+<span id="L294" class="ln">   294  </span>
+<span id="L295" class="ln">   295  </span>	return nil
+<span id="L296" class="ln">   296  </span>}
+<span id="L297" class="ln">   297  </span>
 </pre><p></p>
 
 <div id="footer">
