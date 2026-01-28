@@ -25,6 +25,11 @@ type ObservabilityPipelineConfig struct {
 	Processors []ObservabilityPipelineConfigProcessorGroup `json:"processors,omitempty"`
 	// A list of configured data sources for the pipeline.
 	Sources []ObservabilityPipelineConfigSourceItem `json:"sources"`
+	// Set to `true` to continue using the legacy search syntax while migrating filter queries. After migrating all queries to the new syntax, set to `false`.
+	// The legacy syntax is deprecated and will eventually be removed.
+	// Requires Observability Pipelines Worker 2.11 or later.
+	// See [Upgrade Your Filter Queries to the New Search Syntax](https://docs.datadoghq.com/observability_pipelines/guide/upgrade_your_filter_queries_to_the_new_search_syntax/) for more information.
+	UseLegacySearchSyntax *bool `json:"use_legacy_search_syntax,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -186,6 +191,34 @@ func (o *ObservabilityPipelineConfig) SetSources(v []ObservabilityPipelineConfig
 	o.Sources = v
 }
 
+// GetUseLegacySearchSyntax returns the UseLegacySearchSyntax field value if set, zero value otherwise.
+func (o *ObservabilityPipelineConfig) GetUseLegacySearchSyntax() bool {
+	if o == nil || o.UseLegacySearchSyntax == nil {
+		var ret bool
+		return ret
+	}
+	return *o.UseLegacySearchSyntax
+}
+
+// GetUseLegacySearchSyntaxOk returns a tuple with the UseLegacySearchSyntax field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineConfig) GetUseLegacySearchSyntaxOk() (*bool, bool) {
+	if o == nil || o.UseLegacySearchSyntax == nil {
+		return nil, false
+	}
+	return o.UseLegacySearchSyntax, true
+}
+
+// HasUseLegacySearchSyntax returns a boolean if a field has been set.
+func (o *ObservabilityPipelineConfig) HasUseLegacySearchSyntax() bool {
+	return o != nil && o.UseLegacySearchSyntax != nil
+}
+
+// SetUseLegacySearchSyntax gets a reference to the given bool and assigns it to the UseLegacySearchSyntax field.
+func (o *ObservabilityPipelineConfig) SetUseLegacySearchSyntax(v bool) {
+	o.UseLegacySearchSyntax = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -203,6 +236,9 @@ func (o ObservabilityPipelineConfig) MarshalJSON() ([]byte, error) {
 		toSerialize["processors"] = o.Processors
 	}
 	toSerialize["sources"] = o.Sources
+	if o.UseLegacySearchSyntax != nil {
+		toSerialize["use_legacy_search_syntax"] = o.UseLegacySearchSyntax
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -213,11 +249,12 @@ func (o ObservabilityPipelineConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Destinations    *[]ObservabilityPipelineConfigDestinationItem `json:"destinations"`
-		PipelineType    *ObservabilityPipelineConfigPipelineType      `json:"pipeline_type,omitempty"`
-		ProcessorGroups []ObservabilityPipelineConfigProcessorGroup   `json:"processor_groups,omitempty"`
-		Processors      []ObservabilityPipelineConfigProcessorGroup   `json:"processors,omitempty"`
-		Sources         *[]ObservabilityPipelineConfigSourceItem      `json:"sources"`
+		Destinations          *[]ObservabilityPipelineConfigDestinationItem `json:"destinations"`
+		PipelineType          *ObservabilityPipelineConfigPipelineType      `json:"pipeline_type,omitempty"`
+		ProcessorGroups       []ObservabilityPipelineConfigProcessorGroup   `json:"processor_groups,omitempty"`
+		Processors            []ObservabilityPipelineConfigProcessorGroup   `json:"processors,omitempty"`
+		Sources               *[]ObservabilityPipelineConfigSourceItem      `json:"sources"`
+		UseLegacySearchSyntax *bool                                         `json:"use_legacy_search_syntax,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -230,7 +267,7 @@ func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"destinations", "pipeline_type", "processor_groups", "processors", "sources"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"destinations", "pipeline_type", "processor_groups", "processors", "sources", "use_legacy_search_syntax"})
 	} else {
 		return err
 	}
@@ -245,6 +282,7 @@ func (o *ObservabilityPipelineConfig) UnmarshalJSON(bytes []byte) (err error) {
 	o.ProcessorGroups = all.ProcessorGroups
 	o.Processors = all.Processors
 	o.Sources = *all.Sources
+	o.UseLegacySearchSyntax = all.UseLegacySearchSyntax
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
