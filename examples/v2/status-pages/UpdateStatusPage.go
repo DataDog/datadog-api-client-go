@@ -19,10 +19,10 @@ func main() {
 
 	body := datadogV2.PatchStatusPageRequest{
 		Data: &datadogV2.PatchStatusPageRequestData{
-			Attributes: &datadogV2.PatchStatusPageRequestDataAttributes{
+			Attributes: datadogV2.PatchStatusPageRequestDataAttributes{
 				Name: datadog.PtrString("A Status Page in US1"),
 			},
-			Id:   datadog.PtrUUID(StatusPageDataID),
+			Id:   StatusPageDataID,
 			Type: datadogV2.STATUSPAGEDATATYPE_STATUS_PAGES,
 		},
 	}

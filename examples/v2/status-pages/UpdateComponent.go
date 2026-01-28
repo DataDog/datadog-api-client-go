@@ -20,10 +20,10 @@ func main() {
 
 	body := datadogV2.PatchComponentRequest{
 		Data: &datadogV2.PatchComponentRequestData{
-			Attributes: &datadogV2.PatchComponentRequestDataAttributes{
+			Attributes: datadogV2.PatchComponentRequestDataAttributes{
 				Name: datadog.PtrString("Logs Indexing"),
 			},
-			Id:   datadog.PtrUUID(StatusPageDataAttributesComponents0ID),
+			Id:   StatusPageDataAttributesComponents0ID,
 			Type: datadogV2.STATUSPAGESCOMPONENTGROUPTYPE_COMPONENTS,
 		},
 	}

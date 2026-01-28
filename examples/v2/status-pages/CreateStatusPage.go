@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadogV2.CreateStatusPageRequest{
 		Data: &datadogV2.CreateStatusPageRequestData{
-			Attributes: &datadogV2.CreateStatusPageRequestDataAttributes{
+			Attributes: datadogV2.CreateStatusPageRequestDataAttributes{
 				Name:         "A Status Page",
 				DomainPrefix: "5e2fd69be33e79aa",
 				Components: []datadogV2.CreateStatusPageRequestDataAttributesComponentsItems{
