@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"handle":"test-handle-17f710cc6491a98e","name":"test-name-17f710cc6491a98e"},"type":"team"}}
+      {"data":{"attributes":{"handle":"test-handle-94cf752f98fda23c","name":"test-name-94cf752f98fda23c"},"type":"team"}}
     form: {}
     headers:
       Accept:
@@ -12,18 +12,16 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/team
   response:
-    body: '{"data":{"type":"team","id":"2e757196-405b-11ee-bc70-da7ad0900002","attributes":{"name":"test-name-17f710cc6491a98e","handle":"test-handle-17f710cc6491a98e","summary":null,"description":null,"avatar":null,"banner":null,"visible_modules":[],"hidden_modules":[],"created_at":"2023-08-21T19:44:46.071074+00:00","modified_at":"2023-08-21T19:44:46.071080+00:00","user_count":0,"link_count":0},"relationships":{"team_links":{"links":{"related":"/api/v2/team/2e757196-405b-11ee-bc70-da7ad0900002/links"}},"user_team_permissions":{"links":{"related":"/api/v2/team/2e757196-405b-11ee-bc70-da7ad0900002/permission-settings"}}}}}
-
-      '
+    body: '{"data":{"id":"35d819d9-918b-4d29-838d-ed8507398b21","type":"team","attributes":{"avatar":null,"banner":10,"created_at":"2026-01-23T11:00:13.808835+00:00","description":null,"handle":"test-handle-94cf752f98fda23c","hidden_modules":null,"is_managed":false,"link_count":0,"modified_at":"2026-01-23T11:00:13.808835+00:00","name":"test-name-94cf752f98fda23c","summary":null,"user_count":0,"visible_modules":null},"relationships":{"team_links":{"data":[],"links":{"related":"/api/v2/team/35d819d9-918b-4d29-838d-ed8507398b21/links"}},"user_team_permissions":{"data":null,"links":{"related":"/api/v2/team/35d819d9-918b-4d29-838d-ed8507398b21/permission-settings"}}}}}'
     code: 201
     duration: 0ms
     headers:
       Content-Type:
-      - application/json
+      - application/vnd.api+json
     status: 201 Created
 - request:
     body: |
-      {"data":{"attributes":{"label":"Test-Get_a_team_link_returns_OK_response-1692647085","position":0,"url":"https://example.com"},"type":"team_links"}}
+      {"data":{"attributes":{"label":"Test-Get_a_team_link_returns_OK_response-1769166013","position":0,"url":"https://example.com"},"type":"team_links"}}
     form: {}
     headers:
       Accept:
@@ -32,9 +30,9 @@ interactions:
       - application/json
     id: 1
     method: POST
-    url: https://api.datadoghq.com/api/v2/team/2e757196-405b-11ee-bc70-da7ad0900002/links
+    url: https://api.datadoghq.com/api/v2/team/35d819d9-918b-4d29-838d-ed8507398b21/links
   response:
-    body: '{"data":{"type":"team_links","id":"2e91164e-405b-11ee-9f5b-da7ad0900002","attributes":{"team_id":"2e757196-405b-11ee-bc70-da7ad0900002","label":"Test-Get_a_team_link_returns_OK_response-1692647085","url":"https://example.com","position":0}}}
+    body: '{"data":{"type":"team_links","id":"b1c355f0-f84a-11f0-8d16-da7ad0900002","attributes":{"team_id":"35d819d9-918b-4d29-838d-ed8507398b21","label":"Test-Get_a_team_link_returns_OK_response-1769166013","url":"https://example.com","position":0}}}
 
       '
     code: 200
@@ -51,16 +49,14 @@ interactions:
       - application/json
     id: 2
     method: GET
-    url: https://api.datadoghq.com/api/v2/team/2e757196-405b-11ee-bc70-da7ad0900002/links/2e91164e-405b-11ee-9f5b-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/team/35d819d9-918b-4d29-838d-ed8507398b21/links/b1c355f0-f84a-11f0-8d16-da7ad0900002
   response:
-    body: '{"data":{"type":"team_links","id":"2e91164e-405b-11ee-9f5b-da7ad0900002","attributes":{"team_id":"2e757196-405b-11ee-bc70-da7ad0900002","label":"Test-Get_a_team_link_returns_OK_response-1692647085","url":"https://example.com","position":0}}}
-
-      '
+    body: '{"data":{"id":"b1c355f0-f84a-11f0-8d16-da7ad0900002","type":"team_links","attributes":{"label":"Test-Get_a_team_link_returns_OK_response-1769166013","position":0,"team_id":"35d819d9-918b-4d29-838d-ed8507398b21","url":"https://example.com"}}}'
     code: 200
     duration: 0ms
     headers:
       Content-Type:
-      - application/json
+      - application/vnd.api+json
     status: 200 OK
 - request:
     body: ''
@@ -70,7 +66,7 @@ interactions:
       - '*/*'
     id: 3
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/team/2e757196-405b-11ee-bc70-da7ad0900002/links/2e91164e-405b-11ee-9f5b-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/team/35d819d9-918b-4d29-838d-ed8507398b21/links/b1c355f0-f84a-11f0-8d16-da7ad0900002
   response:
     body: ''
     code: 204
@@ -85,7 +81,7 @@ interactions:
       - '*/*'
     id: 4
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/team/2e757196-405b-11ee-bc70-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/team/35d819d9-918b-4d29-838d-ed8507398b21
   response:
     body: ''
     code: 204
