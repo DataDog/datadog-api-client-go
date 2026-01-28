@@ -146,6 +146,7 @@
 //   - [CaseManagementTypeApi.CreateCaseType]
 //   - [CaseManagementTypeApi.DeleteCaseType]
 //   - [CaseManagementTypeApi.GetAllCaseTypes]
+//   - [CloudAuthenticationApi.ListAWSCloudAuthPersonaMappings]
 //   - [CloudCostManagementApi.CreateCostAWSCURConfig]
 //   - [CloudCostManagementApi.CreateCostAzureUCConfigs]
 //   - [CloudCostManagementApi.CreateCostGCPUsageCostConfig]
