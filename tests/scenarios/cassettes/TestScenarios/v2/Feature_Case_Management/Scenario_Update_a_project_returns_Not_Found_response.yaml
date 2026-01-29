@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Updated Project Name"},"type":"project"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/cases/projects/67d80aa3-36ff-44b9-a694-c501a7591737
+  response:
+    body: '{"errors":[{"code":"resource_not_found","title":"failed to get project:
+      project not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2
