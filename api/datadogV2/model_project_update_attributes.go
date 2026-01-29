@@ -8,44 +8,42 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProjectAttributes Project attributes
-type ProjectAttributes struct {
+// ProjectUpdateAttributes Project update attributes
+type ProjectUpdateAttributes struct {
 	// Project columns configuration
 	ColumnsConfig *ProjectColumnsConfig `json:"columns_config,omitempty"`
 	// List of enabled custom case type IDs
 	EnabledCustomCaseTypes []string `json:"enabled_custom_case_types,omitempty"`
-	// The project's key
-	Key *string `json:"key,omitempty"`
-	// Project's name
+	// Project name
 	Name *string `json:"name,omitempty"`
-	// Whether the project is restricted
-	Restricted *bool `json:"restricted,omitempty"`
 	// Project settings
 	Settings *ProjectSettings `json:"settings,omitempty"`
+	// Team UUID to associate with the project
+	TeamUuid *string `json:"team_uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewProjectAttributes instantiates a new ProjectAttributes object.
+// NewProjectUpdateAttributes instantiates a new ProjectUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewProjectAttributes() *ProjectAttributes {
-	this := ProjectAttributes{}
+func NewProjectUpdateAttributes() *ProjectUpdateAttributes {
+	this := ProjectUpdateAttributes{}
 	return &this
 }
 
-// NewProjectAttributesWithDefaults instantiates a new ProjectAttributes object.
+// NewProjectUpdateAttributesWithDefaults instantiates a new ProjectUpdateAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewProjectAttributesWithDefaults() *ProjectAttributes {
-	this := ProjectAttributes{}
+func NewProjectUpdateAttributesWithDefaults() *ProjectUpdateAttributes {
+	this := ProjectUpdateAttributes{}
 	return &this
 }
 
 // GetColumnsConfig returns the ColumnsConfig field value if set, zero value otherwise.
-func (o *ProjectAttributes) GetColumnsConfig() ProjectColumnsConfig {
+func (o *ProjectUpdateAttributes) GetColumnsConfig() ProjectColumnsConfig {
 	if o == nil || o.ColumnsConfig == nil {
 		var ret ProjectColumnsConfig
 		return ret
@@ -55,7 +53,7 @@ func (o *ProjectAttributes) GetColumnsConfig() ProjectColumnsConfig {
 
 // GetColumnsConfigOk returns a tuple with the ColumnsConfig field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectAttributes) GetColumnsConfigOk() (*ProjectColumnsConfig, bool) {
+func (o *ProjectUpdateAttributes) GetColumnsConfigOk() (*ProjectColumnsConfig, bool) {
 	if o == nil || o.ColumnsConfig == nil {
 		return nil, false
 	}
@@ -63,17 +61,17 @@ func (o *ProjectAttributes) GetColumnsConfigOk() (*ProjectColumnsConfig, bool) {
 }
 
 // HasColumnsConfig returns a boolean if a field has been set.
-func (o *ProjectAttributes) HasColumnsConfig() bool {
+func (o *ProjectUpdateAttributes) HasColumnsConfig() bool {
 	return o != nil && o.ColumnsConfig != nil
 }
 
 // SetColumnsConfig gets a reference to the given ProjectColumnsConfig and assigns it to the ColumnsConfig field.
-func (o *ProjectAttributes) SetColumnsConfig(v ProjectColumnsConfig) {
+func (o *ProjectUpdateAttributes) SetColumnsConfig(v ProjectColumnsConfig) {
 	o.ColumnsConfig = &v
 }
 
 // GetEnabledCustomCaseTypes returns the EnabledCustomCaseTypes field value if set, zero value otherwise.
-func (o *ProjectAttributes) GetEnabledCustomCaseTypes() []string {
+func (o *ProjectUpdateAttributes) GetEnabledCustomCaseTypes() []string {
 	if o == nil || o.EnabledCustomCaseTypes == nil {
 		var ret []string
 		return ret
@@ -83,7 +81,7 @@ func (o *ProjectAttributes) GetEnabledCustomCaseTypes() []string {
 
 // GetEnabledCustomCaseTypesOk returns a tuple with the EnabledCustomCaseTypes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectAttributes) GetEnabledCustomCaseTypesOk() (*[]string, bool) {
+func (o *ProjectUpdateAttributes) GetEnabledCustomCaseTypesOk() (*[]string, bool) {
 	if o == nil || o.EnabledCustomCaseTypes == nil {
 		return nil, false
 	}
@@ -91,45 +89,17 @@ func (o *ProjectAttributes) GetEnabledCustomCaseTypesOk() (*[]string, bool) {
 }
 
 // HasEnabledCustomCaseTypes returns a boolean if a field has been set.
-func (o *ProjectAttributes) HasEnabledCustomCaseTypes() bool {
+func (o *ProjectUpdateAttributes) HasEnabledCustomCaseTypes() bool {
 	return o != nil && o.EnabledCustomCaseTypes != nil
 }
 
 // SetEnabledCustomCaseTypes gets a reference to the given []string and assigns it to the EnabledCustomCaseTypes field.
-func (o *ProjectAttributes) SetEnabledCustomCaseTypes(v []string) {
+func (o *ProjectUpdateAttributes) SetEnabledCustomCaseTypes(v []string) {
 	o.EnabledCustomCaseTypes = v
 }
 
-// GetKey returns the Key field value if set, zero value otherwise.
-func (o *ProjectAttributes) GetKey() string {
-	if o == nil || o.Key == nil {
-		var ret string
-		return ret
-	}
-	return *o.Key
-}
-
-// GetKeyOk returns a tuple with the Key field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ProjectAttributes) GetKeyOk() (*string, bool) {
-	if o == nil || o.Key == nil {
-		return nil, false
-	}
-	return o.Key, true
-}
-
-// HasKey returns a boolean if a field has been set.
-func (o *ProjectAttributes) HasKey() bool {
-	return o != nil && o.Key != nil
-}
-
-// SetKey gets a reference to the given string and assigns it to the Key field.
-func (o *ProjectAttributes) SetKey(v string) {
-	o.Key = &v
-}
-
 // GetName returns the Name field value if set, zero value otherwise.
-func (o *ProjectAttributes) GetName() string {
+func (o *ProjectUpdateAttributes) GetName() string {
 	if o == nil || o.Name == nil {
 		var ret string
 		return ret
@@ -139,7 +109,7 @@ func (o *ProjectAttributes) GetName() string {
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectAttributes) GetNameOk() (*string, bool) {
+func (o *ProjectUpdateAttributes) GetNameOk() (*string, bool) {
 	if o == nil || o.Name == nil {
 		return nil, false
 	}
@@ -147,45 +117,17 @@ func (o *ProjectAttributes) GetNameOk() (*string, bool) {
 }
 
 // HasName returns a boolean if a field has been set.
-func (o *ProjectAttributes) HasName() bool {
+func (o *ProjectUpdateAttributes) HasName() bool {
 	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
-func (o *ProjectAttributes) SetName(v string) {
+func (o *ProjectUpdateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
-// GetRestricted returns the Restricted field value if set, zero value otherwise.
-func (o *ProjectAttributes) GetRestricted() bool {
-	if o == nil || o.Restricted == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Restricted
-}
-
-// GetRestrictedOk returns a tuple with the Restricted field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ProjectAttributes) GetRestrictedOk() (*bool, bool) {
-	if o == nil || o.Restricted == nil {
-		return nil, false
-	}
-	return o.Restricted, true
-}
-
-// HasRestricted returns a boolean if a field has been set.
-func (o *ProjectAttributes) HasRestricted() bool {
-	return o != nil && o.Restricted != nil
-}
-
-// SetRestricted gets a reference to the given bool and assigns it to the Restricted field.
-func (o *ProjectAttributes) SetRestricted(v bool) {
-	o.Restricted = &v
-}
-
 // GetSettings returns the Settings field value if set, zero value otherwise.
-func (o *ProjectAttributes) GetSettings() ProjectSettings {
+func (o *ProjectUpdateAttributes) GetSettings() ProjectSettings {
 	if o == nil || o.Settings == nil {
 		var ret ProjectSettings
 		return ret
@@ -195,7 +137,7 @@ func (o *ProjectAttributes) GetSettings() ProjectSettings {
 
 // GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ProjectAttributes) GetSettingsOk() (*ProjectSettings, bool) {
+func (o *ProjectUpdateAttributes) GetSettingsOk() (*ProjectSettings, bool) {
 	if o == nil || o.Settings == nil {
 		return nil, false
 	}
@@ -203,17 +145,45 @@ func (o *ProjectAttributes) GetSettingsOk() (*ProjectSettings, bool) {
 }
 
 // HasSettings returns a boolean if a field has been set.
-func (o *ProjectAttributes) HasSettings() bool {
+func (o *ProjectUpdateAttributes) HasSettings() bool {
 	return o != nil && o.Settings != nil
 }
 
 // SetSettings gets a reference to the given ProjectSettings and assigns it to the Settings field.
-func (o *ProjectAttributes) SetSettings(v ProjectSettings) {
+func (o *ProjectUpdateAttributes) SetSettings(v ProjectSettings) {
 	o.Settings = &v
 }
 
+// GetTeamUuid returns the TeamUuid field value if set, zero value otherwise.
+func (o *ProjectUpdateAttributes) GetTeamUuid() string {
+	if o == nil || o.TeamUuid == nil {
+		var ret string
+		return ret
+	}
+	return *o.TeamUuid
+}
+
+// GetTeamUuidOk returns a tuple with the TeamUuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ProjectUpdateAttributes) GetTeamUuidOk() (*string, bool) {
+	if o == nil || o.TeamUuid == nil {
+		return nil, false
+	}
+	return o.TeamUuid, true
+}
+
+// HasTeamUuid returns a boolean if a field has been set.
+func (o *ProjectUpdateAttributes) HasTeamUuid() bool {
+	return o != nil && o.TeamUuid != nil
+}
+
+// SetTeamUuid gets a reference to the given string and assigns it to the TeamUuid field.
+func (o *ProjectUpdateAttributes) SetTeamUuid(v string) {
+	o.TeamUuid = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
-func (o ProjectAttributes) MarshalJSON() ([]byte, error) {
+func (o ProjectUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -224,17 +194,14 @@ func (o ProjectAttributes) MarshalJSON() ([]byte, error) {
 	if o.EnabledCustomCaseTypes != nil {
 		toSerialize["enabled_custom_case_types"] = o.EnabledCustomCaseTypes
 	}
-	if o.Key != nil {
-		toSerialize["key"] = o.Key
-	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if o.Restricted != nil {
-		toSerialize["restricted"] = o.Restricted
-	}
 	if o.Settings != nil {
 		toSerialize["settings"] = o.Settings
+	}
+	if o.TeamUuid != nil {
+		toSerialize["team_uuid"] = o.TeamUuid
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -244,21 +211,20 @@ func (o ProjectAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ProjectAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ProjectUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ColumnsConfig          *ProjectColumnsConfig `json:"columns_config,omitempty"`
 		EnabledCustomCaseTypes []string              `json:"enabled_custom_case_types,omitempty"`
-		Key                    *string               `json:"key,omitempty"`
 		Name                   *string               `json:"name,omitempty"`
-		Restricted             *bool                 `json:"restricted,omitempty"`
 		Settings               *ProjectSettings      `json:"settings,omitempty"`
+		TeamUuid               *string               `json:"team_uuid,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"columns_config", "enabled_custom_case_types", "key", "name", "restricted", "settings"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"columns_config", "enabled_custom_case_types", "name", "settings", "team_uuid"})
 	} else {
 		return err
 	}
@@ -269,13 +235,12 @@ func (o *ProjectAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.ColumnsConfig = all.ColumnsConfig
 	o.EnabledCustomCaseTypes = all.EnabledCustomCaseTypes
-	o.Key = all.Key
 	o.Name = all.Name
-	o.Restricted = all.Restricted
 	if all.Settings != nil && all.Settings.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.Settings = all.Settings
+	o.TeamUuid = all.TeamUuid
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
