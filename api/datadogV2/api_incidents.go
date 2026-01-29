@@ -730,6 +730,10 @@ func (a *IncidentsApi) CreateIncidentNotificationTemplate(ctx _context.Context, 
 
 // CreateIncidentPostmortemAttachment Create postmortem attachment.
 // Create a postmortem attachment for an incident.
+//
+// The endpoint accepts markdown for notebooks created in Confluence or Google Docs.
+// Postmortems created from notebooks need to be formatted using frontend notebook cells,
+// in addition to markdown format.
 func (a *IncidentsApi) CreateIncidentPostmortemAttachment(ctx _context.Context, incidentId string, body PostmortemAttachmentRequest) (Attachment, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
