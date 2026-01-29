@@ -1,4 +1,4 @@
-// Create a project returns "CREATED" response
+// Update a project returns "OK" response
 
 package main
 
@@ -13,27 +13,25 @@ import (
 )
 
 func main() {
-	body := datadogV2.ProjectCreateRequest{
-		Data: datadogV2.ProjectCreate{
-			Attributes: datadogV2.ProjectCreateAttributes{
-				EnabledCustomCaseTypes: []string{},
-				Key:                    "SEC",
-				Name:                   "Security Investigation",
-			},
+	body := datadogV2.ProjectUpdateRequest{
+		Data: datadogV2.ProjectUpdate{
 			Type: datadogV2.PROJECTRESOURCETYPE_PROJECT,
+			Attributes: &datadogV2.ProjectUpdateAttributes{
+				Name: datadog.PtrString("Updated Project Name Example-Case-Management"),
+			},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCaseManagementApi(apiClient)
-	resp, r, err := api.CreateProject(ctx, body)
+	resp, r, err := api.UpdateProject(ctx, "d4bbe1af-f36e-42f1-87c1-493ca35c320e", body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CaseManagementApi.CreateProject`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CaseManagementApi.UpdateProject`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `CaseManagementApi.CreateProject`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `CaseManagementApi.UpdateProject`:\n%s\n", responseContent)
 }
