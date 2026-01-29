@@ -71,7 +71,7 @@
 <span id="L14" class="ln">    14  </span>type MonitorNotificationRuleAttributes struct {
 <span id="L15" class="ln">    15  </span>	<span class="comment">// Use conditional recipients to define different recipients for different situations. Cannot be used with `recipients`.</span>
 <span id="L16" class="ln">    16  </span>	ConditionalRecipients *MonitorNotificationRuleConditionalRecipients `json:&#34;conditional_recipients,omitempty&#34;`
-<span id="L17" class="ln">    17  </span>	<span class="comment">// Filter used to associate the notification rule with monitors.</span>
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Specifies the matching criteria for monitor notifications.</span>
 <span id="L18" class="ln">    18  </span>	Filter *MonitorNotificationRuleFilter `json:&#34;filter,omitempty&#34;`
 <span id="L19" class="ln">    19  </span>	<span class="comment">// The name of the monitor notification rule.</span>
 <span id="L20" class="ln">    20  </span>	Name string `json:&#34;name&#34;`

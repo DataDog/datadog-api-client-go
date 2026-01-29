@@ -67,9 +67,9 @@
 <span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
 <span id="L11" class="ln">    11  </span>)
 <span id="L12" class="ln">    12  </span>
-<span id="L13" class="ln">    13  </span><span class="comment">// MonitorNotificationRuleFilterScope Filter monitor notifications. A monitor notification must match the scope.</span>
+<span id="L13" class="ln">    13  </span><span class="comment">// MonitorNotificationRuleFilterScope Filters monitor notifications using a scope expression over key:value pairs with boolean logic (AND, OR, NOT).</span>
 <span id="L14" class="ln">    14  </span>type MonitorNotificationRuleFilterScope struct {
-<span id="L15" class="ln">    15  </span>	<span class="comment">// A scope composed of one or several key:value pairs, which can be used to filter monitor notifications on monitor and group tags.</span>
+<span id="L15" class="ln">    15  </span>	<span class="comment">// A scope expression composed by key:value pairs (e.g. `service:foo`) with boolean operators (AND, OR, NOT) and parentheses for grouping.</span>
 <span id="L16" class="ln">    16  </span>	Scope string `json:&#34;scope&#34;`
 <span id="L17" class="ln">    17  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
 <span id="L18" class="ln">    18  </span>	UnparsedObject map[string]interface{} `json:&#34;-&#34;`
