@@ -843,6 +843,9 @@ func NewConfiguration() *Configuration {
 			"v2.UpdateIncidentTeam":                      false,
 			"v2.SearchFlakyTests":                        false,
 			"v2.UpdateFlakyTests":                        false,
+			"v2.ExecuteWorkflowFromTemplate":             false,
+			"v2.ExecuteWorkflowFromWebhook":              false,
+			"v2.UpdateWorkflowFavorite":                  false,
 		},
 		RetryConfiguration: RetryConfiguration{
 			EnableRetry:       false,
