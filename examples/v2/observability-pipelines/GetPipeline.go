@@ -18,7 +18,6 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetPipeline", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewObservabilityPipelinesApi(apiClient)
 	resp, r, err := api.GetPipeline(ctx, PipelineDataID)
