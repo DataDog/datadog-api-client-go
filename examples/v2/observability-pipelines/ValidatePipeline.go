@@ -61,7 +61,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ValidatePipeline", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewObservabilityPipelinesApi(apiClient)
 	resp, r, err := api.ValidatePipeline(ctx, body)

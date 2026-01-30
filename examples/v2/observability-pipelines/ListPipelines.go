@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListPipelines", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewObservabilityPipelinesApi(apiClient)
 	resp, r, err := api.ListPipelines(ctx, *datadogV2.NewListPipelinesOptionalParameters())

@@ -17,7 +17,6 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.DeletePipeline", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewObservabilityPipelinesApi(apiClient)
 	r, err := api.DeletePipeline(ctx, PipelineDataID)
