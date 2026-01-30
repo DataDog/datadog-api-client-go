@@ -1,0 +1,42 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"finished_at":1769678752000000000,"git":{"commit_sha":"66adc9350f2cc9b250b69abddab733dd55e1a588","repository_url":"https://github.com/organization/example-repository"},"id":"08a3dbc57bb781a5","service":"shopist","started_at":1769675152000000000,"version":"v1.12.07"}}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/dora/deployment
+  response:
+    body: '{"data":{"id":"08a3dbc57bb781a5","type":"dora_deployment"}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"change_failure":true,"remediation":{"id":"eG42zNIkVjM","type":"rollback"}},"id":"08a3dbc57bb781a5","type":"dora_deployment_patch_request"}}
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+      Content-Type:
+      - application/json
+    id: 1
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/dora/deployments/08a3dbc57bb781a5
+  response:
+    body: '{"data":null}'
+    code: 202
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 202 Accepted
+version: 2
