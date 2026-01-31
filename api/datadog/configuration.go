@@ -813,6 +813,7 @@ func NewConfiguration() *Configuration {
 			"v2.CreateSLOReportJob":                      false,
 			"v2.GetSLOReport":                            false,
 			"v2.GetSLOReportJobStatus":                   false,
+			"v2.GetSloStatus":                            false,
 			"v2.GetSPARecommendations":                   false,
 			"v2.GetSPARecommendationsWithShard":          false,
 			"v2.CreateCustomRule":                        false,
