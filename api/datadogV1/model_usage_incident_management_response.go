@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UsageIncidentManagementResponse Response containing the incident management usage for each hour for a given organization.
+// UsageIncidentManagementResponse Response containing the Incident Management usage for each hour for a given organization.
 type UsageIncidentManagementResponse struct {
-	// Get hourly usage for incident management.
+	// Get hourly usage for Incident Management.
 	Usage []UsageIncidentManagementHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
