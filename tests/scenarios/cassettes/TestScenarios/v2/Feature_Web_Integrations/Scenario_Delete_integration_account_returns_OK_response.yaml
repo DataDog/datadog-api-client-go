@@ -1,0 +1,39 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Test-Delete_integration_account_returns_OK_response-1768522913","secrets":{"api_key_token":"test_secret_token_value"},"settings":{"account_sid":"ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","alerts":true,"api_key":"SKxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","call_summaries":true,"ccm_enabled":true,"censor_logs":true,"events":true,"messages":true}},"type":"Account"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/web-integrations/twilio/accounts
+  response:
+    body: '{"data":{"id":"2ef78fa1-8ebd-4dc8-8db7-1516563d9a35","type":"Account","attributes":{"name":"Test-Delete_integration_account_returns_OK_response-1768522913","settings":{"account_sid":"ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","alerts":true,"api_key":"SKxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","call_summaries":true,"ccm_enabled":true,"censor_logs":true,"events":true,"messages":true}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/web-integrations/twilio/accounts/2ef78fa1-8ebd-4dc8-8db7-1516563d9a35
+  response:
+    body: ''
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2
