@@ -672,6 +672,7 @@ func NewConfiguration() *Configuration {
 			"v2.GetOpenAPI":                              false,
 			"v2.ListAPIs":                                false,
 			"v2.UpdateOpenAPI":                           false,
+			"v2.ListAWSCloudAuthPersonaMappings":         false,
 			"v2.CancelThreatHuntingJob":                  false,
 			"v2.ConvertJobResultToSignal":                false,
 			"v2.DeleteThreatHuntingJob":                  false,
