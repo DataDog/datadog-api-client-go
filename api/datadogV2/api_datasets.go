@@ -6,8 +6,6 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -25,15 +23,6 @@ func (a *DatasetsApi) CreateDataset(ctx _context.Context, body DatasetCreateRequ
 		localVarPostBody    interface{}
 		localVarReturnValue DatasetResponseSingle
 	)
-
-	operationId := "v2.CreateDataset"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DatasetsApi.CreateDataset")
 	if err != nil {
@@ -114,15 +103,6 @@ func (a *DatasetsApi) DeleteDataset(ctx _context.Context, datasetId string) (*_n
 		localVarPostBody   interface{}
 	)
 
-	operationId := "v2.DeleteDataset"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DatasetsApi.DeleteDataset")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -191,15 +171,6 @@ func (a *DatasetsApi) GetAllDatasets(ctx _context.Context) (DatasetResponseMulti
 		localVarPostBody    interface{}
 		localVarReturnValue DatasetResponseMulti
 	)
-
-	operationId := "v2.GetAllDatasets"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DatasetsApi.GetAllDatasets")
 	if err != nil {
@@ -278,15 +249,6 @@ func (a *DatasetsApi) GetDataset(ctx _context.Context, datasetId string) (Datase
 		localVarReturnValue DatasetResponseSingle
 	)
 
-	operationId := "v2.GetDataset"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DatasetsApi.GetDataset")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -364,15 +326,6 @@ func (a *DatasetsApi) UpdateDataset(ctx _context.Context, datasetId string, body
 		localVarPostBody    interface{}
 		localVarReturnValue DatasetResponseSingle
 	)
-
-	operationId := "v2.UpdateDataset"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DatasetsApi.UpdateDataset")
 	if err != nil {
