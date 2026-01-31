@@ -694,7 +694,6 @@ func NewConfiguration() *Configuration {
 			"v2.CreateDataset":                           false,
 			"v2.DeleteDataset":                           false,
 			"v2.GetAllDatasets":                          false,
-			"v2.GetDataset":                              false,
 			"v2.UpdateDataset":                           false,
 			"v2.CancelDataDeletionRequest":               false,
 			"v2.CreateDataDeletionRequest":               false,
