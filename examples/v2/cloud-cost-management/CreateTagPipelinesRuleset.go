@@ -20,7 +20,7 @@ func main() {
 				Rules: []datadogV2.CreateRulesetRequestDataAttributesRulesItems{
 					{
 						Enabled: true,
-						Mapping: *datadogV2.NewNullableCreateRulesetRequestDataAttributesRulesItemsMapping(nil),
+						Mapping: *datadogV2.NewNullableDataAttributesRulesItemsMapping(nil),
 						Name:    "Add Cost Center Tag",
 						Query: *datadogV2.NewNullableCreateRulesetRequestDataAttributesRulesItemsQuery(&datadogV2.CreateRulesetRequestDataAttributesRulesItemsQuery{
 							Addition: *datadogV2.NewNullableCreateRulesetRequestDataAttributesRulesItemsQueryAddition(&datadogV2.CreateRulesetRequestDataAttributesRulesItemsQueryAddition{
@@ -28,7 +28,7 @@ func main() {
 								Value: "engineering",
 							}),
 							CaseInsensitivity: datadog.PtrBool(false),
-							IfNotExists:       true,
+							IfNotExists:       datadog.PtrBool(true),
 							Query:             `account_id:"123456789" AND service:"web-api"`,
 						}),
 						ReferenceTable: *datadogV2.NewNullableCreateRulesetRequestDataAttributesRulesItemsReferenceTable(nil),

@@ -21,9 +21,9 @@ func main() {
 				Rules: []datadogV2.UpdateRulesetRequestDataAttributesRulesItems{
 					{
 						Enabled: true,
-						Mapping: *datadogV2.NewNullableUpdateRulesetRequestDataAttributesRulesItemsMapping(&datadogV2.UpdateRulesetRequestDataAttributesRulesItemsMapping{
+						Mapping: *datadogV2.NewNullableDataAttributesRulesItemsMapping(&datadogV2.DataAttributesRulesItemsMapping{
 							DestinationKey: "team_owner",
-							IfNotExists:    true,
+							IfNotExists:    datadog.PtrBool(true),
 							SourceKeys: []string{
 								"account_name",
 								"account_id",
