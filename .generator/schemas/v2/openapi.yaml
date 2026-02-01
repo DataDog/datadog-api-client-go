@@ -43888,7 +43888,7 @@ components:
             operation.
           format: int64
           type: integer
-        total_updated:
+        total_staged:
           description: Total number of scorecard results modified during the bulk
             operation.
           format: int64
