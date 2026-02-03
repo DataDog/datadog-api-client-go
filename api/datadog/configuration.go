@@ -759,6 +759,8 @@ func NewConfiguration() *Configuration {
 			"v2.ListJiraAccounts":                        false,
 			"v2.ListJiraIssueTemplates":                  false,
 			"v2.UpdateJiraIssueTemplate":                 false,
+			"v2.CreateTenancyConfig":                     false,
+			"v2.GetTenancyConfigs":                       false,
 			"v2.CreateServiceNowTemplate":                false,
 			"v2.DeleteServiceNowTemplate":                false,
 			"v2.GetServiceNowTemplate":                   false,
