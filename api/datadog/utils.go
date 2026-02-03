@@ -6,6 +6,15 @@ package datadog
 
 import (
 	"bytes"
+	"crypto"
+	"crypto/ecdsa"
+	"crypto/rand"
+	"crypto/rsa"
+	"crypto/sha256"
+	"crypto/x509"
+	"encoding/base64"
+	"encoding/pem"
+	"fmt"
 	"io"
 	"net/http"
 	"reflect"
@@ -515,4 +524,128 @@ func copyRequest(r *http.Request, rawBody *[]byte) *http.Request {
 	}
 	newRequest.Body = io.NopCloser(bytes.NewBuffer(*rawBody))
 	return &newRequest
+}
+
+// SigningAlgorithm represents the cryptographic algorithm used for signing.
+type SigningAlgorithm string
+
+const (
+	// SigningAlgorithmRS256 represents RSA with SHA-256 (PKCS#1 v1.5)
+	SigningAlgorithmRS256 SigningAlgorithm = "RS256"
+	// SigningAlgorithmES256 represents ECDSA with SHA-256 (P-256 curve)
+	SigningAlgorithmES256 SigningAlgorithm = "ES256"
+)
+
+// signStringRS256 signs data using RSA with SHA-256.
+// The privateKeyPEM should be a PEM-encoded RSA private key (PKCS#1 or PKCS#8 format).
+// Returns the raw signature bytes or an error if signing fails.
+func signStringRS256(data string, privateKeyPEM []byte) ([]byte, error) {
+	// Parse the PEM-encoded private key
+	decodedPrivateKey, _ := pem.Decode(privateKeyPEM)
+	if decodedPrivateKey == nil {
+		return nil, fmt.Errorf("failed to decode PEM block containing private key")
+	}
+
+	// Parse RSA private key
+	var privateKey *rsa.PrivateKey
+	var err error
+
+	// Try parsing as PKCS#1
+	privateKey, err = x509.ParsePKCS1PrivateKey(decodedPrivateKey.Bytes)
+	if err != nil {
+		// Try parsing as PKCS#8
+		key, err8 := x509.ParsePKCS8PrivateKey(decodedPrivateKey.Bytes)
+		if err8 != nil {
+			return nil, fmt.Errorf("failed to parse RSA private key: PKCS#1 error: %v, PKCS#8 error: %v", err, err8)
+		}
+		var ok bool
+		privateKey, ok = key.(*rsa.PrivateKey)
+		if !ok {
+			return nil, fmt.Errorf("parsed key is not an RSA private key")
+		}
+	}
+
+	// Hash the data with SHA-256
+	hash := sha256.Sum256([]byte(data))
+
+	// Sign with RSA PKCS#1 v1.5
+	signature, err := rsa.SignPKCS1v15(rand.Reader, privateKey, crypto.SHA256, hash[:])
+	if err != nil {
+		return nil, fmt.Errorf("failed to sign with RS256: %w", err)
+	}
+
+	return signature, nil
+}
+
+// signStringES256 signs data using ECDSA with SHA-256 and the P-256 curve.
+// The privateKeyPEM should be a PEM-encoded ECDSA private key (EC or PKCS#8 format).
+// Returns the raw signature bytes (64 bytes: 32-byte r + 32-byte s) or an error if signing fails.
+func signStringES256(data string, privateKeyPEM []byte) ([]byte, error) {
+	// Parse the PEM-encoded private key
+	decodedPrivateKey, _ := pem.Decode(privateKeyPEM)
+	if decodedPrivateKey == nil {
+		return nil, fmt.Errorf("failed to decode PEM block containing private key")
+	}
+
+	// Parse ECDSA private key
+	var privateKey *ecdsa.PrivateKey
+	var err error
+
+	// Try parsing as EC private key
+	privateKey, err = x509.ParseECPrivateKey(decodedPrivateKey.Bytes)
+	if err != nil {
+		// Try parsing as PKCS#8
+		key8, err8 := x509.ParsePKCS8PrivateKey(decodedPrivateKey.Bytes)
+		if err8 != nil {
+			return nil, fmt.Errorf("failed to parse ECDSA private key: EC error: %v, PKCS#8 error: %v", err, err8)
+		}
+		var ok bool
+		privateKey, ok = key8.(*ecdsa.PrivateKey)
+		if !ok {
+			return nil, fmt.Errorf("parsed key is not an ECDSA private key")
+		}
+	}
+
+	// Hash the data with SHA-256
+	hash := sha256.Sum256([]byte(data))
+
+	// Sign with ECDSA
+	r, s, err := ecdsa.Sign(rand.Reader, privateKey, hash[:])
+	if err != nil {
+		return nil, fmt.Errorf("failed to sign with ES256: %w", err)
+	}
+
+	// Combine r and s into signature (fixed 64 bytes for P-256)
+	// ES256 uses P-256 curve which produces 32-byte r and s values
+	rBytes := r.Bytes()
+	sBytes := s.Bytes()
+	signature := make([]byte, 64)
+	copy(signature[32-len(rBytes):32], rBytes)
+	copy(signature[64-len(sBytes):64], sBytes)
+
+	return signature, nil
+}
+
+// SignString signs a string with a private key using the specified algorithm.
+// The privateKeyPEM should be a PEM-encoded private key as a byte slice.
+// Returns the base64URL-encoded signature or an error if signing fails.
+func SignString(data string, privateKeyPEM []byte, algorithm SigningAlgorithm) (string, error) {
+	var signature []byte
+	var err error
+
+	switch algorithm {
+	case SigningAlgorithmRS256:
+		signature, err = signStringRS256(data, privateKeyPEM)
+	case SigningAlgorithmES256:
+		signature, err = signStringES256(data, privateKeyPEM)
+	default:
+		return "", fmt.Errorf("unsupported algorithm: %s. Supported algorithms are %s and %s", algorithm, SigningAlgorithmRS256, SigningAlgorithmES256)
+	}
+
+	if err != nil {
+		return "", err
+	}
+
+	// Encode the signature in base64URL
+	return base64.RawURLEncoding.EncodeToString(signature), nil
 }
