@@ -24,7 +24,7 @@ func main() {
 						Requests: []datadogV1.TimeseriesWidgetRequest{
 							{
 								Q: datadog.PtrString("avg:system.cpu.user{*} by {host}"),
-								Style: &datadogV1.WidgetRequestStyle{
+								Style: &datadogV1.TimeseriesRequestStyle{
 									Palette: datadog.PtrString("warm"),
 									OrderBy: datadogV1.WIDGETSTYLEORDERBY_VALUES.Ptr(),
 								},
