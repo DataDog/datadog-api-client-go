@@ -12,6 +12,10 @@ import (
 type FlakyTestsSearchRequestAttributes struct {
 	// Search filter settings.
 	Filter *FlakyTestsSearchFilter `json:"filter,omitempty"`
+	// Whether to include the status change history for each flaky test in the response.
+	// When set to true, each test will include a `history` array with chronological status changes.
+	// Defaults to false.
+	IncludeHistory *bool `json:"include_history,omitempty"`
 	// Pagination attributes for listing flaky tests.
 	Page *FlakyTestsSearchPageOptions `json:"page,omitempty"`
 	// Parameter for sorting flaky test results. The default sort is by ascending Fully Qualified Name (FQN). The FQN is the concatenation of the test module, suite, and name.
@@ -27,6 +31,8 @@ type FlakyTestsSearchRequestAttributes struct {
 // will change when the set of required properties is changed.
 func NewFlakyTestsSearchRequestAttributes() *FlakyTestsSearchRequestAttributes {
 	this := FlakyTestsSearchRequestAttributes{}
+	var includeHistory bool = false
+	this.IncludeHistory = &includeHistory
 	return &this
 }
 
@@ -35,6 +41,8 @@ func NewFlakyTestsSearchRequestAttributes() *FlakyTestsSearchRequestAttributes {
 // but it doesn't guarantee that properties required by API are set.
 func NewFlakyTestsSearchRequestAttributesWithDefaults() *FlakyTestsSearchRequestAttributes {
 	this := FlakyTestsSearchRequestAttributes{}
+	var includeHistory bool = false
+	this.IncludeHistory = &includeHistory
 	return &this
 }
 
@@ -64,6 +72,34 @@ func (o *FlakyTestsSearchRequestAttributes) HasFilter() bool {
 // SetFilter gets a reference to the given FlakyTestsSearchFilter and assigns it to the Filter field.
 func (o *FlakyTestsSearchRequestAttributes) SetFilter(v FlakyTestsSearchFilter) {
 	o.Filter = &v
+}
+
+// GetIncludeHistory returns the IncludeHistory field value if set, zero value otherwise.
+func (o *FlakyTestsSearchRequestAttributes) GetIncludeHistory() bool {
+	if o == nil || o.IncludeHistory == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IncludeHistory
+}
+
+// GetIncludeHistoryOk returns a tuple with the IncludeHistory field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FlakyTestsSearchRequestAttributes) GetIncludeHistoryOk() (*bool, bool) {
+	if o == nil || o.IncludeHistory == nil {
+		return nil, false
+	}
+	return o.IncludeHistory, true
+}
+
+// HasIncludeHistory returns a boolean if a field has been set.
+func (o *FlakyTestsSearchRequestAttributes) HasIncludeHistory() bool {
+	return o != nil && o.IncludeHistory != nil
+}
+
+// SetIncludeHistory gets a reference to the given bool and assigns it to the IncludeHistory field.
+func (o *FlakyTestsSearchRequestAttributes) SetIncludeHistory(v bool) {
+	o.IncludeHistory = &v
 }
 
 // GetPage returns the Page field value if set, zero value otherwise.
@@ -131,6 +167,9 @@ func (o FlakyTestsSearchRequestAttributes) MarshalJSON() ([]byte, error) {
 	if o.Filter != nil {
 		toSerialize["filter"] = o.Filter
 	}
+	if o.IncludeHistory != nil {
+		toSerialize["include_history"] = o.IncludeHistory
+	}
 	if o.Page != nil {
 		toSerialize["page"] = o.Page
 	}
@@ -147,16 +186,17 @@ func (o FlakyTestsSearchRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FlakyTestsSearchRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Filter *FlakyTestsSearchFilter      `json:"filter,omitempty"`
-		Page   *FlakyTestsSearchPageOptions `json:"page,omitempty"`
-		Sort   *FlakyTestsSearchSort        `json:"sort,omitempty"`
+		Filter         *FlakyTestsSearchFilter      `json:"filter,omitempty"`
+		IncludeHistory *bool                        `json:"include_history,omitempty"`
+		Page           *FlakyTestsSearchPageOptions `json:"page,omitempty"`
+		Sort           *FlakyTestsSearchSort        `json:"sort,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "page", "sort"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "include_history", "page", "sort"})
 	} else {
 		return err
 	}
@@ -166,6 +206,7 @@ func (o *FlakyTestsSearchRequestAttributes) UnmarshalJSON(bytes []byte) (err err
 		hasInvalidField = true
 	}
 	o.Filter = all.Filter
+	o.IncludeHistory = all.IncludeHistory
 	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

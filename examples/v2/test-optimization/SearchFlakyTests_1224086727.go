@@ -19,6 +19,7 @@ func main() {
 				Filter: &datadogV2.FlakyTestsSearchFilter{
 					Query: datadog.PtrString(`flaky_test_state:active @git.repository.id_v2:"github.com/datadog/shopist"`),
 				},
+				IncludeHistory: datadog.PtrBool(true),
 				Page: &datadogV2.FlakyTestsSearchPageOptions{
 					Cursor: datadog.PtrString("eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ=="),
 					Limit:  datadog.PtrInt64(25),

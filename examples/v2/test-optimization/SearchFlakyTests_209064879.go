@@ -1,4 +1,4 @@
-// Search flaky tests returns "OK" response
+// Search flaky tests returns "OK" response with history
 
 package main
 
@@ -19,12 +19,11 @@ func main() {
 				Filter: &datadogV2.FlakyTestsSearchFilter{
 					Query: datadog.PtrString(`flaky_test_state:active @git.repository.id_v2:"github.com/datadog/shopist"`),
 				},
-				IncludeHistory: datadog.PtrBool(true),
 				Page: &datadogV2.FlakyTestsSearchPageOptions{
-					Cursor: datadog.PtrString("eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ=="),
-					Limit:  datadog.PtrInt64(25),
+					Limit: datadog.PtrInt64(10),
 				},
-				Sort: datadogV2.FLAKYTESTSSEARCHSORT_FAILURE_RATE_ASCENDING.Ptr(),
+				Sort:           datadogV2.FLAKYTESTSSEARCHSORT_FQN_ASCENDING.Ptr(),
+				IncludeHistory: datadog.PtrBool(true),
 			},
 			Type: datadogV2.FLAKYTESTSSEARCHREQUESTDATATYPE_SEARCH_FLAKY_TESTS_REQUEST.Ptr(),
 		},
