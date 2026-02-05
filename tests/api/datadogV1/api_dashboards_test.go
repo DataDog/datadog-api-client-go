@@ -632,7 +632,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinition := datadogV1.NewTimeseriesWidgetDefinitionWithDefaults()
 	timeseriesWidgetDefinition.SetRequests([]datadogV1.TimeseriesWidgetRequest{{
 		Q: datadog.PtrString("avg:system.load.1{*}"),
-		Style: &datadogV1.WidgetRequestStyle{
+		Style: &datadogV1.TimeseriesRequestStyle{
 			Palette:   datadog.PtrString("dog_classic"),
 			LineType:  datadogV1.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadogV1.WIDGETLINEWIDTH_THICK.Ptr(),
@@ -688,7 +688,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			Limit:    datadog.PtrInt64(10),
 			SearchBy: datadog.PtrString("editor"),
 		},
-		Style: &datadogV1.WidgetRequestStyle{
+		Style: &datadogV1.TimeseriesRequestStyle{
 			Palette:   datadog.PtrString("dog_classic"),
 			LineType:  datadogV1.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadogV1.WIDGETLINEWIDTH_THICK.Ptr(),
@@ -751,7 +751,7 @@ func TestDashboardLifecycle(t *testing.T) {
 				},
 			}},
 		},
-		Style: &datadogV1.WidgetRequestStyle{
+		Style: &datadogV1.TimeseriesRequestStyle{
 			Palette:   datadog.PtrString("dog_classic"),
 			LineType:  datadogV1.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadogV1.WIDGETLINEWIDTH_THICK.Ptr(),
@@ -806,7 +806,7 @@ func TestDashboardLifecycle(t *testing.T) {
 				},
 			}},
 		},
-		Style: &datadogV1.WidgetRequestStyle{
+		Style: &datadogV1.TimeseriesRequestStyle{
 			Palette:   datadog.PtrString("dog_classic"),
 			LineType:  datadogV1.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadogV1.WIDGETLINEWIDTH_THICK.Ptr()},
