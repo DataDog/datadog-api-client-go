@@ -16,6 +16,8 @@ import (
 type ObservabilityPipelineElasticsearchDestination struct {
 	// The Elasticsearch API version to use. Set to `auto` to auto-detect.
 	ApiVersion *ObservabilityPipelineElasticsearchDestinationApiVersion `json:"api_version,omitempty"`
+	// Configuration for buffer settings on destination components.
+	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
 	// The index to write logs to in Elasticsearch.
 	BulkIndex *string `json:"bulk_index,omitempty"`
 	// Configuration options for writing to Elasticsearch Data Streams instead of a fixed index.
@@ -79,6 +81,34 @@ func (o *ObservabilityPipelineElasticsearchDestination) HasApiVersion() bool {
 // SetApiVersion gets a reference to the given ObservabilityPipelineElasticsearchDestinationApiVersion and assigns it to the ApiVersion field.
 func (o *ObservabilityPipelineElasticsearchDestination) SetApiVersion(v ObservabilityPipelineElasticsearchDestinationApiVersion) {
 	o.ApiVersion = &v
+}
+
+// GetBuffer returns the Buffer field value if set, zero value otherwise.
+func (o *ObservabilityPipelineElasticsearchDestination) GetBuffer() ObservabilityPipelineBufferOptions {
+	if o == nil || o.Buffer == nil {
+		var ret ObservabilityPipelineBufferOptions
+		return ret
+	}
+	return *o.Buffer
+}
+
+// GetBufferOk returns a tuple with the Buffer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineElasticsearchDestination) GetBufferOk() (*ObservabilityPipelineBufferOptions, bool) {
+	if o == nil || o.Buffer == nil {
+		return nil, false
+	}
+	return o.Buffer, true
+}
+
+// HasBuffer returns a boolean if a field has been set.
+func (o *ObservabilityPipelineElasticsearchDestination) HasBuffer() bool {
+	return o != nil && o.Buffer != nil
+}
+
+// SetBuffer gets a reference to the given ObservabilityPipelineBufferOptions and assigns it to the Buffer field.
+func (o *ObservabilityPipelineElasticsearchDestination) SetBuffer(v ObservabilityPipelineBufferOptions) {
+	o.Buffer = &v
 }
 
 // GetBulkIndex returns the BulkIndex field value if set, zero value otherwise.
@@ -215,6 +245,9 @@ func (o ObservabilityPipelineElasticsearchDestination) MarshalJSON() ([]byte, er
 	if o.ApiVersion != nil {
 		toSerialize["api_version"] = o.ApiVersion
 	}
+	if o.Buffer != nil {
+		toSerialize["buffer"] = o.Buffer
+	}
 	if o.BulkIndex != nil {
 		toSerialize["bulk_index"] = o.BulkIndex
 	}
@@ -235,6 +268,7 @@ func (o ObservabilityPipelineElasticsearchDestination) MarshalJSON() ([]byte, er
 func (o *ObservabilityPipelineElasticsearchDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ApiVersion *ObservabilityPipelineElasticsearchDestinationApiVersion `json:"api_version,omitempty"`
+		Buffer     *ObservabilityPipelineBufferOptions                      `json:"buffer,omitempty"`
 		BulkIndex  *string                                                  `json:"bulk_index,omitempty"`
 		DataStream *ObservabilityPipelineElasticsearchDestinationDataStream `json:"data_stream,omitempty"`
 		Id         *string                                                  `json:"id"`
@@ -255,7 +289,7 @@ func (o *ObservabilityPipelineElasticsearchDestination) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_version", "bulk_index", "data_stream", "id", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_version", "buffer", "bulk_index", "data_stream", "id", "inputs", "type"})
 	} else {
 		return err
 	}
@@ -266,6 +300,7 @@ func (o *ObservabilityPipelineElasticsearchDestination) UnmarshalJSON(bytes []by
 	} else {
 		o.ApiVersion = all.ApiVersion
 	}
+	o.Buffer = all.Buffer
 	o.BulkIndex = all.BulkIndex
 	if all.DataStream != nil && all.DataStream.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true

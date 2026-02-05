@@ -14,6 +14,8 @@ import (
 //
 // **Supported pipeline types:** logs
 type ObservabilityPipelineSumoLogicDestination struct {
+	// Configuration for buffer settings on destination components.
+	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
 	// The output encoding format.
 	Encoding *ObservabilityPipelineSumoLogicDestinationEncoding `json:"encoding,omitempty"`
 	// A list of custom headers to include in the request to Sumo Logic.
@@ -55,6 +57,34 @@ func NewObservabilityPipelineSumoLogicDestinationWithDefaults() *ObservabilityPi
 	var typeVar ObservabilityPipelineSumoLogicDestinationType = OBSERVABILITYPIPELINESUMOLOGICDESTINATIONTYPE_SUMO_LOGIC
 	this.Type = typeVar
 	return &this
+}
+
+// GetBuffer returns the Buffer field value if set, zero value otherwise.
+func (o *ObservabilityPipelineSumoLogicDestination) GetBuffer() ObservabilityPipelineBufferOptions {
+	if o == nil || o.Buffer == nil {
+		var ret ObservabilityPipelineBufferOptions
+		return ret
+	}
+	return *o.Buffer
+}
+
+// GetBufferOk returns a tuple with the Buffer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineSumoLogicDestination) GetBufferOk() (*ObservabilityPipelineBufferOptions, bool) {
+	if o == nil || o.Buffer == nil {
+		return nil, false
+	}
+	return o.Buffer, true
+}
+
+// HasBuffer returns a boolean if a field has been set.
+func (o *ObservabilityPipelineSumoLogicDestination) HasBuffer() bool {
+	return o != nil && o.Buffer != nil
+}
+
+// SetBuffer gets a reference to the given ObservabilityPipelineBufferOptions and assigns it to the Buffer field.
+func (o *ObservabilityPipelineSumoLogicDestination) SetBuffer(v ObservabilityPipelineBufferOptions) {
+	o.Buffer = &v
 }
 
 // GetEncoding returns the Encoding field value if set, zero value otherwise.
@@ -272,6 +302,9 @@ func (o ObservabilityPipelineSumoLogicDestination) MarshalJSON() ([]byte, error)
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Buffer != nil {
+		toSerialize["buffer"] = o.Buffer
+	}
 	if o.Encoding != nil {
 		toSerialize["encoding"] = o.Encoding
 	}
@@ -300,6 +333,7 @@ func (o ObservabilityPipelineSumoLogicDestination) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSumoLogicDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Buffer               *ObservabilityPipelineBufferOptions                               `json:"buffer,omitempty"`
 		Encoding             *ObservabilityPipelineSumoLogicDestinationEncoding                `json:"encoding,omitempty"`
 		HeaderCustomFields   []ObservabilityPipelineSumoLogicDestinationHeaderCustomFieldsItem `json:"header_custom_fields,omitempty"`
 		HeaderHostName       *string                                                           `json:"header_host_name,omitempty"`
@@ -323,12 +357,13 @@ func (o *ObservabilityPipelineSumoLogicDestination) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"encoding", "header_custom_fields", "header_host_name", "header_source_category", "header_source_name", "id", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"buffer", "encoding", "header_custom_fields", "header_host_name", "header_source_category", "header_source_name", "id", "inputs", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Buffer = all.Buffer
 	if all.Encoding != nil && !all.Encoding.IsValid() {
 		hasInvalidField = true
 	} else {

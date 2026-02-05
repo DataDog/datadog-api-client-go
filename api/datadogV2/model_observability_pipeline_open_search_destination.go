@@ -14,6 +14,8 @@ import (
 //
 // **Supported pipeline types:** logs
 type ObservabilityPipelineOpenSearchDestination struct {
+	// Configuration for buffer settings on destination components.
+	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
 	// The index to write logs to.
 	BulkIndex *string `json:"bulk_index,omitempty"`
 	// Configuration options for writing to OpenSearch Data Streams instead of a fixed index.
@@ -49,6 +51,34 @@ func NewObservabilityPipelineOpenSearchDestinationWithDefaults() *ObservabilityP
 	var typeVar ObservabilityPipelineOpenSearchDestinationType = OBSERVABILITYPIPELINEOPENSEARCHDESTINATIONTYPE_OPENSEARCH
 	this.Type = typeVar
 	return &this
+}
+
+// GetBuffer returns the Buffer field value if set, zero value otherwise.
+func (o *ObservabilityPipelineOpenSearchDestination) GetBuffer() ObservabilityPipelineBufferOptions {
+	if o == nil || o.Buffer == nil {
+		var ret ObservabilityPipelineBufferOptions
+		return ret
+	}
+	return *o.Buffer
+}
+
+// GetBufferOk returns a tuple with the Buffer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineOpenSearchDestination) GetBufferOk() (*ObservabilityPipelineBufferOptions, bool) {
+	if o == nil || o.Buffer == nil {
+		return nil, false
+	}
+	return o.Buffer, true
+}
+
+// HasBuffer returns a boolean if a field has been set.
+func (o *ObservabilityPipelineOpenSearchDestination) HasBuffer() bool {
+	return o != nil && o.Buffer != nil
+}
+
+// SetBuffer gets a reference to the given ObservabilityPipelineBufferOptions and assigns it to the Buffer field.
+func (o *ObservabilityPipelineOpenSearchDestination) SetBuffer(v ObservabilityPipelineBufferOptions) {
+	o.Buffer = &v
 }
 
 // GetBulkIndex returns the BulkIndex field value if set, zero value otherwise.
@@ -182,6 +212,9 @@ func (o ObservabilityPipelineOpenSearchDestination) MarshalJSON() ([]byte, error
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Buffer != nil {
+		toSerialize["buffer"] = o.Buffer
+	}
 	if o.BulkIndex != nil {
 		toSerialize["bulk_index"] = o.BulkIndex
 	}
@@ -201,6 +234,7 @@ func (o ObservabilityPipelineOpenSearchDestination) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineOpenSearchDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Buffer     *ObservabilityPipelineBufferOptions                   `json:"buffer,omitempty"`
 		BulkIndex  *string                                               `json:"bulk_index,omitempty"`
 		DataStream *ObservabilityPipelineOpenSearchDestinationDataStream `json:"data_stream,omitempty"`
 		Id         *string                                               `json:"id"`
@@ -221,12 +255,13 @@ func (o *ObservabilityPipelineOpenSearchDestination) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"bulk_index", "data_stream", "id", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"buffer", "bulk_index", "data_stream", "id", "inputs", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Buffer = all.Buffer
 	o.BulkIndex = all.BulkIndex
 	if all.DataStream != nil && all.DataStream.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true

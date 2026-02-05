@@ -14,6 +14,8 @@ import (
 //
 // **Supported pipeline types:** logs
 type ObservabilityPipelineCrowdStrikeNextGenSiemDestination struct {
+	// Configuration for buffer settings on destination components.
+	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
 	// Compression configuration for log events.
 	Compression *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression `json:"compression,omitempty"`
 	// Encoding format for log events.
@@ -52,6 +54,34 @@ func NewObservabilityPipelineCrowdStrikeNextGenSiemDestinationWithDefaults() *Ob
 	var typeVar ObservabilityPipelineCrowdStrikeNextGenSiemDestinationType = OBSERVABILITYPIPELINECROWDSTRIKENEXTGENSIEMDESTINATIONTYPE_CROWDSTRIKE_NEXT_GEN_SIEM
 	this.Type = typeVar
 	return &this
+}
+
+// GetBuffer returns the Buffer field value if set, zero value otherwise.
+func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) GetBuffer() ObservabilityPipelineBufferOptions {
+	if o == nil || o.Buffer == nil {
+		var ret ObservabilityPipelineBufferOptions
+		return ret
+	}
+	return *o.Buffer
+}
+
+// GetBufferOk returns a tuple with the Buffer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) GetBufferOk() (*ObservabilityPipelineBufferOptions, bool) {
+	if o == nil || o.Buffer == nil {
+		return nil, false
+	}
+	return o.Buffer, true
+}
+
+// HasBuffer returns a boolean if a field has been set.
+func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) HasBuffer() bool {
+	return o != nil && o.Buffer != nil
+}
+
+// SetBuffer gets a reference to the given ObservabilityPipelineBufferOptions and assigns it to the Buffer field.
+func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) SetBuffer(v ObservabilityPipelineBufferOptions) {
+	o.Buffer = &v
 }
 
 // GetCompression returns the Compression field value if set, zero value otherwise.
@@ -208,6 +238,9 @@ func (o ObservabilityPipelineCrowdStrikeNextGenSiemDestination) MarshalJSON() ([
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Buffer != nil {
+		toSerialize["buffer"] = o.Buffer
+	}
 	if o.Compression != nil {
 		toSerialize["compression"] = o.Compression
 	}
@@ -228,6 +261,7 @@ func (o ObservabilityPipelineCrowdStrikeNextGenSiemDestination) MarshalJSON() ([
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Buffer      *ObservabilityPipelineBufferOptions                                `json:"buffer,omitempty"`
 		Compression *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationCompression `json:"compression,omitempty"`
 		Encoding    *ObservabilityPipelineCrowdStrikeNextGenSiemDestinationEncoding    `json:"encoding"`
 		Id          *string                                                            `json:"id"`
@@ -252,12 +286,13 @@ func (o *ObservabilityPipelineCrowdStrikeNextGenSiemDestination) UnmarshalJSON(b
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compression", "encoding", "id", "inputs", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"buffer", "compression", "encoding", "id", "inputs", "tls", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Buffer = all.Buffer
 	if all.Compression != nil && all.Compression.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

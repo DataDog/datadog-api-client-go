@@ -16,6 +16,8 @@ import (
 type ObservabilityPipelineGooglePubSubDestination struct {
 	// GCP credentials used to authenticate with Google Cloud Storage.
 	Auth *ObservabilityPipelineGcpAuth `json:"auth,omitempty"`
+	// Configuration for buffer settings on destination components.
+	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
 	// Encoding format for log events.
 	Encoding ObservabilityPipelineGooglePubSubDestinationEncoding `json:"encoding"`
 	// The unique identifier for this component.
@@ -86,6 +88,34 @@ func (o *ObservabilityPipelineGooglePubSubDestination) HasAuth() bool {
 // SetAuth gets a reference to the given ObservabilityPipelineGcpAuth and assigns it to the Auth field.
 func (o *ObservabilityPipelineGooglePubSubDestination) SetAuth(v ObservabilityPipelineGcpAuth) {
 	o.Auth = &v
+}
+
+// GetBuffer returns the Buffer field value if set, zero value otherwise.
+func (o *ObservabilityPipelineGooglePubSubDestination) GetBuffer() ObservabilityPipelineBufferOptions {
+	if o == nil || o.Buffer == nil {
+		var ret ObservabilityPipelineBufferOptions
+		return ret
+	}
+	return *o.Buffer
+}
+
+// GetBufferOk returns a tuple with the Buffer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineGooglePubSubDestination) GetBufferOk() (*ObservabilityPipelineBufferOptions, bool) {
+	if o == nil || o.Buffer == nil {
+		return nil, false
+	}
+	return o.Buffer, true
+}
+
+// HasBuffer returns a boolean if a field has been set.
+func (o *ObservabilityPipelineGooglePubSubDestination) HasBuffer() bool {
+	return o != nil && o.Buffer != nil
+}
+
+// SetBuffer gets a reference to the given ObservabilityPipelineBufferOptions and assigns it to the Buffer field.
+func (o *ObservabilityPipelineGooglePubSubDestination) SetBuffer(v ObservabilityPipelineBufferOptions) {
+	o.Buffer = &v
 }
 
 // GetEncoding returns the Encoding field value.
@@ -263,6 +293,9 @@ func (o ObservabilityPipelineGooglePubSubDestination) MarshalJSON() ([]byte, err
 	if o.Auth != nil {
 		toSerialize["auth"] = o.Auth
 	}
+	if o.Buffer != nil {
+		toSerialize["buffer"] = o.Buffer
+	}
 	toSerialize["encoding"] = o.Encoding
 	toSerialize["id"] = o.Id
 	toSerialize["inputs"] = o.Inputs
@@ -283,6 +316,7 @@ func (o ObservabilityPipelineGooglePubSubDestination) MarshalJSON() ([]byte, err
 func (o *ObservabilityPipelineGooglePubSubDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Auth     *ObservabilityPipelineGcpAuth                         `json:"auth,omitempty"`
+		Buffer   *ObservabilityPipelineBufferOptions                   `json:"buffer,omitempty"`
 		Encoding *ObservabilityPipelineGooglePubSubDestinationEncoding `json:"encoding"`
 		Id       *string                                               `json:"id"`
 		Inputs   *[]string                                             `json:"inputs"`
@@ -314,7 +348,7 @@ func (o *ObservabilityPipelineGooglePubSubDestination) UnmarshalJSON(bytes []byt
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "encoding", "id", "inputs", "project", "tls", "topic", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "buffer", "encoding", "id", "inputs", "project", "tls", "topic", "type"})
 	} else {
 		return err
 	}
@@ -324,6 +358,7 @@ func (o *ObservabilityPipelineGooglePubSubDestination) UnmarshalJSON(bytes []byt
 		hasInvalidField = true
 	}
 	o.Auth = all.Auth
+	o.Buffer = all.Buffer
 	if !all.Encoding.IsValid() {
 		hasInvalidField = true
 	} else {

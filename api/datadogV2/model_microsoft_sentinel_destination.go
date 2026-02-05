@@ -14,6 +14,8 @@ import (
 //
 // **Supported pipeline types:** logs
 type MicrosoftSentinelDestination struct {
+	// Configuration for buffer settings on destination components.
+	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
 	// Azure AD client ID used for authentication.
 	ClientId string `json:"client_id"`
 	// The immutable ID of the Data Collection Rule (DCR).
@@ -57,6 +59,34 @@ func NewMicrosoftSentinelDestinationWithDefaults() *MicrosoftSentinelDestination
 	var typeVar MicrosoftSentinelDestinationType = MICROSOFTSENTINELDESTINATIONTYPE_MICROSOFT_SENTINEL
 	this.Type = typeVar
 	return &this
+}
+
+// GetBuffer returns the Buffer field value if set, zero value otherwise.
+func (o *MicrosoftSentinelDestination) GetBuffer() ObservabilityPipelineBufferOptions {
+	if o == nil || o.Buffer == nil {
+		var ret ObservabilityPipelineBufferOptions
+		return ret
+	}
+	return *o.Buffer
+}
+
+// GetBufferOk returns a tuple with the Buffer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MicrosoftSentinelDestination) GetBufferOk() (*ObservabilityPipelineBufferOptions, bool) {
+	if o == nil || o.Buffer == nil {
+		return nil, false
+	}
+	return o.Buffer, true
+}
+
+// HasBuffer returns a boolean if a field has been set.
+func (o *MicrosoftSentinelDestination) HasBuffer() bool {
+	return o != nil && o.Buffer != nil
+}
+
+// SetBuffer gets a reference to the given ObservabilityPipelineBufferOptions and assigns it to the Buffer field.
+func (o *MicrosoftSentinelDestination) SetBuffer(v ObservabilityPipelineBufferOptions) {
+	o.Buffer = &v
 }
 
 // GetClientId returns the ClientId field value.
@@ -226,6 +256,9 @@ func (o MicrosoftSentinelDestination) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Buffer != nil {
+		toSerialize["buffer"] = o.Buffer
+	}
 	toSerialize["client_id"] = o.ClientId
 	toSerialize["dcr_immutable_id"] = o.DcrImmutableId
 	toSerialize["id"] = o.Id
@@ -243,13 +276,14 @@ func (o MicrosoftSentinelDestination) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MicrosoftSentinelDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ClientId       *string                           `json:"client_id"`
-		DcrImmutableId *string                           `json:"dcr_immutable_id"`
-		Id             *string                           `json:"id"`
-		Inputs         *[]string                         `json:"inputs"`
-		Table          *string                           `json:"table"`
-		TenantId       *string                           `json:"tenant_id"`
-		Type           *MicrosoftSentinelDestinationType `json:"type"`
+		Buffer         *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
+		ClientId       *string                             `json:"client_id"`
+		DcrImmutableId *string                             `json:"dcr_immutable_id"`
+		Id             *string                             `json:"id"`
+		Inputs         *[]string                           `json:"inputs"`
+		Table          *string                             `json:"table"`
+		TenantId       *string                             `json:"tenant_id"`
+		Type           *MicrosoftSentinelDestinationType   `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -277,12 +311,13 @@ func (o *MicrosoftSentinelDestination) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"client_id", "dcr_immutable_id", "id", "inputs", "table", "tenant_id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"buffer", "client_id", "dcr_immutable_id", "id", "inputs", "table", "tenant_id", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Buffer = all.Buffer
 	o.ClientId = *all.ClientId
 	o.DcrImmutableId = *all.DcrImmutableId
 	o.Id = *all.Id

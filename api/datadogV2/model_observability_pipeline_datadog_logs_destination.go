@@ -14,6 +14,8 @@ import (
 //
 // **Supported pipeline types:** logs
 type ObservabilityPipelineDatadogLogsDestination struct {
+	// Configuration for buffer settings on destination components.
+	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
 	// The unique identifier for this component.
 	Id string `json:"id"`
 	// A list of component IDs whose output is used as the `input` for this component.
@@ -47,6 +49,34 @@ func NewObservabilityPipelineDatadogLogsDestinationWithDefaults() *Observability
 	var typeVar ObservabilityPipelineDatadogLogsDestinationType = OBSERVABILITYPIPELINEDATADOGLOGSDESTINATIONTYPE_DATADOG_LOGS
 	this.Type = typeVar
 	return &this
+}
+
+// GetBuffer returns the Buffer field value if set, zero value otherwise.
+func (o *ObservabilityPipelineDatadogLogsDestination) GetBuffer() ObservabilityPipelineBufferOptions {
+	if o == nil || o.Buffer == nil {
+		var ret ObservabilityPipelineBufferOptions
+		return ret
+	}
+	return *o.Buffer
+}
+
+// GetBufferOk returns a tuple with the Buffer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineDatadogLogsDestination) GetBufferOk() (*ObservabilityPipelineBufferOptions, bool) {
+	if o == nil || o.Buffer == nil {
+		return nil, false
+	}
+	return o.Buffer, true
+}
+
+// HasBuffer returns a boolean if a field has been set.
+func (o *ObservabilityPipelineDatadogLogsDestination) HasBuffer() bool {
+	return o != nil && o.Buffer != nil
+}
+
+// SetBuffer gets a reference to the given ObservabilityPipelineBufferOptions and assigns it to the Buffer field.
+func (o *ObservabilityPipelineDatadogLogsDestination) SetBuffer(v ObservabilityPipelineBufferOptions) {
+	o.Buffer = &v
 }
 
 // GetId returns the Id field value.
@@ -152,6 +182,9 @@ func (o ObservabilityPipelineDatadogLogsDestination) MarshalJSON() ([]byte, erro
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Buffer != nil {
+		toSerialize["buffer"] = o.Buffer
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["inputs"] = o.Inputs
 	if o.Routes != nil {
@@ -168,6 +201,7 @@ func (o ObservabilityPipelineDatadogLogsDestination) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineDatadogLogsDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Buffer *ObservabilityPipelineBufferOptions                `json:"buffer,omitempty"`
 		Id     *string                                            `json:"id"`
 		Inputs *[]string                                          `json:"inputs"`
 		Routes []ObservabilityPipelineDatadogLogsDestinationRoute `json:"routes,omitempty"`
@@ -187,12 +221,13 @@ func (o *ObservabilityPipelineDatadogLogsDestination) UnmarshalJSON(bytes []byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "inputs", "routes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"buffer", "id", "inputs", "routes", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Buffer = all.Buffer
 	o.Id = *all.Id
 	o.Inputs = *all.Inputs
 	o.Routes = all.Routes
