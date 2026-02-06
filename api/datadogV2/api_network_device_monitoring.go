@@ -415,7 +415,7 @@ func (a *NetworkDeviceMonitoringApi) ListDevices(ctx _context.Context, o ...List
 // ListDevicesWithPagination provides a paginated version of ListDevices returning a channel with all items.
 func (a *NetworkDeviceMonitoringApi) ListDevicesWithPagination(ctx _context.Context, o ...ListDevicesOptionalParameters) (<-chan datadog.PaginationResult[DevicesListData], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
-	pageSize_ := int64(10)
+	pageSize_ := int64(50)
 	if len(o) == 0 {
 		o = append(o, ListDevicesOptionalParameters{})
 	}
