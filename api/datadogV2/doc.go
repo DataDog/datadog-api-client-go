@@ -827,8 +827,11 @@
 //   - [WorkflowAutomationApi.CreateWorkflow]
 //   - [WorkflowAutomationApi.CreateWorkflowInstance]
 //   - [WorkflowAutomationApi.DeleteWorkflow]
+//   - [WorkflowAutomationApi.ExecuteWorkflowFromTemplate]
+//   - [WorkflowAutomationApi.ExecuteWorkflowFromWebhook]
 //   - [WorkflowAutomationApi.GetWorkflow]
 //   - [WorkflowAutomationApi.GetWorkflowInstance]
 //   - [WorkflowAutomationApi.ListWorkflowInstances]
 //   - [WorkflowAutomationApi.UpdateWorkflow]
+//   - [WorkflowAutomationApi.UpdateWorkflowFavorite]
 package datadogV2
