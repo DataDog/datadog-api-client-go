@@ -14,6 +14,8 @@ import (
 //
 // **Supported pipeline types:** logs
 type ObservabilityPipelineDedupeProcessor struct {
+	// Configuration for the cache used to detect duplicates.
+	Cache *ObservabilityPipelineDedupeProcessorCache `json:"cache,omitempty"`
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
 	// Indicates whether the processor is enabled.
@@ -56,6 +58,34 @@ func NewObservabilityPipelineDedupeProcessorWithDefaults() *ObservabilityPipelin
 	var typeVar ObservabilityPipelineDedupeProcessorType = OBSERVABILITYPIPELINEDEDUPEPROCESSORTYPE_DEDUPE
 	this.Type = typeVar
 	return &this
+}
+
+// GetCache returns the Cache field value if set, zero value otherwise.
+func (o *ObservabilityPipelineDedupeProcessor) GetCache() ObservabilityPipelineDedupeProcessorCache {
+	if o == nil || o.Cache == nil {
+		var ret ObservabilityPipelineDedupeProcessorCache
+		return ret
+	}
+	return *o.Cache
+}
+
+// GetCacheOk returns a tuple with the Cache field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineDedupeProcessor) GetCacheOk() (*ObservabilityPipelineDedupeProcessorCache, bool) {
+	if o == nil || o.Cache == nil {
+		return nil, false
+	}
+	return o.Cache, true
+}
+
+// HasCache returns a boolean if a field has been set.
+func (o *ObservabilityPipelineDedupeProcessor) HasCache() bool {
+	return o != nil && o.Cache != nil
+}
+
+// SetCache gets a reference to the given ObservabilityPipelineDedupeProcessorCache and assigns it to the Cache field.
+func (o *ObservabilityPipelineDedupeProcessor) SetCache(v ObservabilityPipelineDedupeProcessorCache) {
+	o.Cache = &v
 }
 
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
@@ -230,6 +260,9 @@ func (o ObservabilityPipelineDedupeProcessor) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Cache != nil {
+		toSerialize["cache"] = o.Cache
+	}
 	if o.DisplayName != nil {
 		toSerialize["display_name"] = o.DisplayName
 	}
@@ -249,13 +282,14 @@ func (o ObservabilityPipelineDedupeProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineDedupeProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DisplayName *string                                   `json:"display_name,omitempty"`
-		Enabled     *bool                                     `json:"enabled"`
-		Fields      *[]string                                 `json:"fields"`
-		Id          *string                                   `json:"id"`
-		Include     *string                                   `json:"include"`
-		Mode        *ObservabilityPipelineDedupeProcessorMode `json:"mode"`
-		Type        *ObservabilityPipelineDedupeProcessorType `json:"type"`
+		Cache       *ObservabilityPipelineDedupeProcessorCache `json:"cache,omitempty"`
+		DisplayName *string                                    `json:"display_name,omitempty"`
+		Enabled     *bool                                      `json:"enabled"`
+		Fields      *[]string                                  `json:"fields"`
+		Id          *string                                    `json:"id"`
+		Include     *string                                    `json:"include"`
+		Mode        *ObservabilityPipelineDedupeProcessorMode  `json:"mode"`
+		Type        *ObservabilityPipelineDedupeProcessorType  `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -280,12 +314,16 @@ func (o *ObservabilityPipelineDedupeProcessor) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"display_name", "enabled", "fields", "id", "include", "mode", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cache", "display_name", "enabled", "fields", "id", "include", "mode", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	if all.Cache != nil && all.Cache.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Cache = all.Cache
 	o.DisplayName = all.DisplayName
 	o.Enabled = *all.Enabled
 	o.Fields = *all.Fields
