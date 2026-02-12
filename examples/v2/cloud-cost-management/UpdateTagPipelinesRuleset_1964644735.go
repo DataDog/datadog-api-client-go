@@ -1,4 +1,4 @@
-// Update tag pipeline ruleset returns "OK" response
+// Update tag pipeline ruleset with if_tag_exists returns "OK" response
 
 package main
 
@@ -23,7 +23,7 @@ func main() {
 						Enabled: true,
 						Mapping: *datadogV2.NewNullableDataAttributesRulesItemsMapping(&datadogV2.DataAttributesRulesItemsMapping{
 							DestinationKey: "team_owner",
-							IfNotExists:    datadog.PtrBool(true),
+							IfTagExists:    datadogV2.DATAATTRIBUTESRULESITEMSIFTAGEXISTS_REPLACE.Ptr(),
 							SourceKeys: []string{
 								"account_name",
 								"account_id",

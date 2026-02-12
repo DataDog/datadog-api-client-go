@@ -1,4 +1,4 @@
-// Create tag pipeline ruleset returns "OK" response
+// Create tag pipeline ruleset with if_tag_exists returns "OK" response
 
 package main
 
@@ -28,7 +28,7 @@ func main() {
 								Value: "engineering",
 							}),
 							CaseInsensitivity: datadog.PtrBool(false),
-							IfNotExists:       datadog.PtrBool(true),
+							IfTagExists:       datadogV2.DATAATTRIBUTESRULESITEMSIFTAGEXISTS_REPLACE.Ptr(),
 							Query:             `account_id:"123456789" AND service:"web-api"`,
 						}),
 						ReferenceTable: *datadogV2.NewNullableCreateRulesetRequestDataAttributesRulesItemsReferenceTable(nil),
