@@ -14,6 +14,8 @@ type ObservabilityPipelineMemoryBufferSizeOptions struct {
 	MaxEvents *int64 `json:"max_events,omitempty"`
 	// The type of the buffer that will be configured, a memory buffer.
 	Type *ObservabilityPipelineBufferOptionsMemoryType `json:"type,omitempty"`
+	// Behavior when the buffer is full (block and stop accepting new events, or drop new events)
+	WhenFull *ObservabilityPipelineBufferOptionsWhenFull `json:"when_full,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -27,6 +29,8 @@ func NewObservabilityPipelineMemoryBufferSizeOptions() *ObservabilityPipelineMem
 	this := ObservabilityPipelineMemoryBufferSizeOptions{}
 	var typeVar ObservabilityPipelineBufferOptionsMemoryType = OBSERVABILITYPIPELINEBUFFEROPTIONSMEMORYTYPE_MEMORY
 	this.Type = &typeVar
+	var whenFull ObservabilityPipelineBufferOptionsWhenFull = OBSERVABILITYPIPELINEBUFFEROPTIONSWHENFULL_BLOCK
+	this.WhenFull = &whenFull
 	return &this
 }
 
@@ -37,6 +41,8 @@ func NewObservabilityPipelineMemoryBufferSizeOptionsWithDefaults() *Observabilit
 	this := ObservabilityPipelineMemoryBufferSizeOptions{}
 	var typeVar ObservabilityPipelineBufferOptionsMemoryType = OBSERVABILITYPIPELINEBUFFEROPTIONSMEMORYTYPE_MEMORY
 	this.Type = &typeVar
+	var whenFull ObservabilityPipelineBufferOptionsWhenFull = OBSERVABILITYPIPELINEBUFFEROPTIONSWHENFULL_BLOCK
+	this.WhenFull = &whenFull
 	return &this
 }
 
@@ -96,6 +102,34 @@ func (o *ObservabilityPipelineMemoryBufferSizeOptions) SetType(v ObservabilityPi
 	o.Type = &v
 }
 
+// GetWhenFull returns the WhenFull field value if set, zero value otherwise.
+func (o *ObservabilityPipelineMemoryBufferSizeOptions) GetWhenFull() ObservabilityPipelineBufferOptionsWhenFull {
+	if o == nil || o.WhenFull == nil {
+		var ret ObservabilityPipelineBufferOptionsWhenFull
+		return ret
+	}
+	return *o.WhenFull
+}
+
+// GetWhenFullOk returns a tuple with the WhenFull field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineMemoryBufferSizeOptions) GetWhenFullOk() (*ObservabilityPipelineBufferOptionsWhenFull, bool) {
+	if o == nil || o.WhenFull == nil {
+		return nil, false
+	}
+	return o.WhenFull, true
+}
+
+// HasWhenFull returns a boolean if a field has been set.
+func (o *ObservabilityPipelineMemoryBufferSizeOptions) HasWhenFull() bool {
+	return o != nil && o.WhenFull != nil
+}
+
+// SetWhenFull gets a reference to the given ObservabilityPipelineBufferOptionsWhenFull and assigns it to the WhenFull field.
+func (o *ObservabilityPipelineMemoryBufferSizeOptions) SetWhenFull(v ObservabilityPipelineBufferOptionsWhenFull) {
+	o.WhenFull = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineMemoryBufferSizeOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -107,6 +141,9 @@ func (o ObservabilityPipelineMemoryBufferSizeOptions) MarshalJSON() ([]byte, err
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+	if o.WhenFull != nil {
+		toSerialize["when_full"] = o.WhenFull
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -120,13 +157,14 @@ func (o *ObservabilityPipelineMemoryBufferSizeOptions) UnmarshalJSON(bytes []byt
 	all := struct {
 		MaxEvents *int64                                        `json:"max_events,omitempty"`
 		Type      *ObservabilityPipelineBufferOptionsMemoryType `json:"type,omitempty"`
+		WhenFull  *ObservabilityPipelineBufferOptionsWhenFull   `json:"when_full,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"max_events", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"max_events", "type", "when_full"})
 	} else {
 		return err
 	}
@@ -137,6 +175,11 @@ func (o *ObservabilityPipelineMemoryBufferSizeOptions) UnmarshalJSON(bytes []byt
 		hasInvalidField = true
 	} else {
 		o.Type = all.Type
+	}
+	if all.WhenFull != nil && !all.WhenFull.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.WhenFull = all.WhenFull
 	}
 
 	if len(additionalProperties) > 0 {

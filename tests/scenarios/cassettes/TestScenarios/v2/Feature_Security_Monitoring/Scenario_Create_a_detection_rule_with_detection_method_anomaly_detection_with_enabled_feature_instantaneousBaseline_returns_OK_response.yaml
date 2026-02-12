@@ -1,0 +1,39 @@
+interactions:
+- request:
+    body: |
+      {"cases":[{"condition":"a \u003e 0.995","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"An anomaly detection rule","name":"Test-Create_a_detection_rule_with_detection_method_anomaly_detection_with_enabled_feature_instantaneousBa-1770734913","options":{"anomalyDetectionOptions":{"bucketDuration":300,"detectionTolerance":3,"instantaneousBaseline":true,"learningDuration":24},"detectionMethod":"anomaly_detection","evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","dataSource":"logs","distinctFields":[],"groupByFields":["@usr.email","@network.client.ip"],"hasOptionalGroupByFields":false,"name":"","query":"service:app status:error"}],"tags":[],"type":"log_detection"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules
+  response:
+    body: '{"name":"Test-Create_a_detection_rule_with_detection_method_anomaly_detection_with_enabled_feature_instantaneousBa-1770734913","createdAt":1770734914087,"isDefault":false,"isPartner":false,"isEnabled":true,"isBeta":false,"isDeleted":false,"isDeprecated":false,"queries":[{"query":"service:app
+      status:error","groupByFields":["@usr.email","@network.client.ip"],"hasOptionalGroupByFields":false,"distinctFields":[],"aggregation":"count","name":"","dataSource":"logs"}],"options":{"evaluationWindow":1800,"detectionMethod":"anomaly_detection","maxSignalDuration":86400,"keepAlive":3600,"anomalyDetectionOptions":{"bucketDuration":300,"learningDuration":24,"detectionTolerance":3,"instantaneousBaseline":true,"instantaneousBaselineTimeoutMinutes":30}},"cases":[{"name":"","status":"info","notifications":[],"condition":"a
+      \u003e 0.995"}],"message":"An anomaly detection rule","tags":[],"hasExtendedTitle":false,"type":"log_detection","filters":[],"version":1,"id":"mtt-vs9-dyl","blocking":false,"metadata":{"entities":null,"sources":null},"creationAuthorId":1445416,"creator":{"handle":"frog@datadoghq.com","name":"frog"},"updater":{"handle":"","name":""}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/mtt-vs9-dyl
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2

@@ -16,6 +16,8 @@ type SecurityMonitoringRuleAnomalyDetectionOptions struct {
 	// An optional parameter that sets how permissive anomaly detection is.
 	// Higher values require higher deviations before triggering a signal.
 	DetectionTolerance *SecurityMonitoringRuleAnomalyDetectionOptionsDetectionTolerance `json:"detectionTolerance,omitempty"`
+	// When set to true, Datadog uses previous values that fall within the defined learning window to construct the baseline, enabling the system to establish an accurate baseline more rapidly rather than relying solely on gradual learning over time.
+	InstantaneousBaseline *bool `json:"instantaneousBaseline,omitempty"`
 	// Learning duration in hours. Anomaly detection waits for at least this amount of historical data before it starts evaluating.
 	LearningDuration *SecurityMonitoringRuleAnomalyDetectionOptionsLearningDuration `json:"learningDuration,omitempty"`
 	// An optional override baseline to apply while the rule is in the learning period. Must be greater than or equal to 0.
@@ -98,6 +100,34 @@ func (o *SecurityMonitoringRuleAnomalyDetectionOptions) SetDetectionTolerance(v 
 	o.DetectionTolerance = &v
 }
 
+// GetInstantaneousBaseline returns the InstantaneousBaseline field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleAnomalyDetectionOptions) GetInstantaneousBaseline() bool {
+	if o == nil || o.InstantaneousBaseline == nil {
+		var ret bool
+		return ret
+	}
+	return *o.InstantaneousBaseline
+}
+
+// GetInstantaneousBaselineOk returns a tuple with the InstantaneousBaseline field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleAnomalyDetectionOptions) GetInstantaneousBaselineOk() (*bool, bool) {
+	if o == nil || o.InstantaneousBaseline == nil {
+		return nil, false
+	}
+	return o.InstantaneousBaseline, true
+}
+
+// HasInstantaneousBaseline returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleAnomalyDetectionOptions) HasInstantaneousBaseline() bool {
+	return o != nil && o.InstantaneousBaseline != nil
+}
+
+// SetInstantaneousBaseline gets a reference to the given bool and assigns it to the InstantaneousBaseline field.
+func (o *SecurityMonitoringRuleAnomalyDetectionOptions) SetInstantaneousBaseline(v bool) {
+	o.InstantaneousBaseline = &v
+}
+
 // GetLearningDuration returns the LearningDuration field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleAnomalyDetectionOptions) GetLearningDuration() SecurityMonitoringRuleAnomalyDetectionOptionsLearningDuration {
 	if o == nil || o.LearningDuration == nil {
@@ -166,6 +196,9 @@ func (o SecurityMonitoringRuleAnomalyDetectionOptions) MarshalJSON() ([]byte, er
 	if o.DetectionTolerance != nil {
 		toSerialize["detectionTolerance"] = o.DetectionTolerance
 	}
+	if o.InstantaneousBaseline != nil {
+		toSerialize["instantaneousBaseline"] = o.InstantaneousBaseline
+	}
 	if o.LearningDuration != nil {
 		toSerialize["learningDuration"] = o.LearningDuration
 	}
@@ -184,6 +217,7 @@ func (o *SecurityMonitoringRuleAnomalyDetectionOptions) UnmarshalJSON(bytes []by
 	all := struct {
 		BucketDuration         *SecurityMonitoringRuleAnomalyDetectionOptionsBucketDuration     `json:"bucketDuration,omitempty"`
 		DetectionTolerance     *SecurityMonitoringRuleAnomalyDetectionOptionsDetectionTolerance `json:"detectionTolerance,omitempty"`
+		InstantaneousBaseline  *bool                                                            `json:"instantaneousBaseline,omitempty"`
 		LearningDuration       *SecurityMonitoringRuleAnomalyDetectionOptionsLearningDuration   `json:"learningDuration,omitempty"`
 		LearningPeriodBaseline *int64                                                           `json:"learningPeriodBaseline,omitempty"`
 	}{}
@@ -192,7 +226,7 @@ func (o *SecurityMonitoringRuleAnomalyDetectionOptions) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"bucketDuration", "detectionTolerance", "learningDuration", "learningPeriodBaseline"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"bucketDuration", "detectionTolerance", "instantaneousBaseline", "learningDuration", "learningPeriodBaseline"})
 	} else {
 		return err
 	}
@@ -208,6 +242,7 @@ func (o *SecurityMonitoringRuleAnomalyDetectionOptions) UnmarshalJSON(bytes []by
 	} else {
 		o.DetectionTolerance = all.DetectionTolerance
 	}
+	o.InstantaneousBaseline = all.InstantaneousBaseline
 	if all.LearningDuration != nil && !all.LearningDuration.IsValid() {
 		hasInvalidField = true
 	} else {
