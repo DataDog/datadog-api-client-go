@@ -5,13 +5,15 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ObservabilityPipelineMemoryBufferOptions Options for configuring a memory buffer by byte size.
 type ObservabilityPipelineMemoryBufferOptions struct {
 	// Maximum size of the memory buffer.
-	MaxSize *int64 `json:"max_size,omitempty"`
+	MaxSize int64 `json:"max_size"`
 	// The type of the buffer that will be configured, a memory buffer.
 	Type *ObservabilityPipelineBufferOptionsMemoryType `json:"type,omitempty"`
 	// Behavior when the buffer is full (block and stop accepting new events, or drop new events)
@@ -25,8 +27,9 @@ type ObservabilityPipelineMemoryBufferOptions struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineMemoryBufferOptions() *ObservabilityPipelineMemoryBufferOptions {
+func NewObservabilityPipelineMemoryBufferOptions(maxSize int64) *ObservabilityPipelineMemoryBufferOptions {
 	this := ObservabilityPipelineMemoryBufferOptions{}
+	this.MaxSize = maxSize
 	var typeVar ObservabilityPipelineBufferOptionsMemoryType = OBSERVABILITYPIPELINEBUFFEROPTIONSMEMORYTYPE_MEMORY
 	this.Type = &typeVar
 	var whenFull ObservabilityPipelineBufferOptionsWhenFull = OBSERVABILITYPIPELINEBUFFEROPTIONSWHENFULL_BLOCK
@@ -46,32 +49,27 @@ func NewObservabilityPipelineMemoryBufferOptionsWithDefaults() *ObservabilityPip
 	return &this
 }
 
-// GetMaxSize returns the MaxSize field value if set, zero value otherwise.
+// GetMaxSize returns the MaxSize field value.
 func (o *ObservabilityPipelineMemoryBufferOptions) GetMaxSize() int64 {
-	if o == nil || o.MaxSize == nil {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.MaxSize
+	return o.MaxSize
 }
 
-// GetMaxSizeOk returns a tuple with the MaxSize field value if set, nil otherwise
+// GetMaxSizeOk returns a tuple with the MaxSize field value
 // and a boolean to check if the value has been set.
 func (o *ObservabilityPipelineMemoryBufferOptions) GetMaxSizeOk() (*int64, bool) {
-	if o == nil || o.MaxSize == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.MaxSize, true
+	return &o.MaxSize, true
 }
 
-// HasMaxSize returns a boolean if a field has been set.
-func (o *ObservabilityPipelineMemoryBufferOptions) HasMaxSize() bool {
-	return o != nil && o.MaxSize != nil
-}
-
-// SetMaxSize gets a reference to the given int64 and assigns it to the MaxSize field.
+// SetMaxSize sets field value.
 func (o *ObservabilityPipelineMemoryBufferOptions) SetMaxSize(v int64) {
-	o.MaxSize = &v
+	o.MaxSize = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -136,9 +134,7 @@ func (o ObservabilityPipelineMemoryBufferOptions) MarshalJSON() ([]byte, error) 
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.MaxSize != nil {
-		toSerialize["max_size"] = o.MaxSize
-	}
+	toSerialize["max_size"] = o.MaxSize
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
@@ -155,12 +151,15 @@ func (o ObservabilityPipelineMemoryBufferOptions) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineMemoryBufferOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		MaxSize  *int64                                        `json:"max_size,omitempty"`
+		MaxSize  *int64                                        `json:"max_size"`
 		Type     *ObservabilityPipelineBufferOptionsMemoryType `json:"type,omitempty"`
 		WhenFull *ObservabilityPipelineBufferOptionsWhenFull   `json:"when_full,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.MaxSize == nil {
+		return fmt.Errorf("required field max_size missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -170,7 +169,7 @@ func (o *ObservabilityPipelineMemoryBufferOptions) UnmarshalJSON(bytes []byte) (
 	}
 
 	hasInvalidField := false
-	o.MaxSize = all.MaxSize
+	o.MaxSize = *all.MaxSize
 	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {

@@ -5,13 +5,15 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // ObservabilityPipelineMemoryBufferSizeOptions Options for configuring a memory buffer by queue length.
 type ObservabilityPipelineMemoryBufferSizeOptions struct {
 	// Maximum events for the memory buffer.
-	MaxEvents *int64 `json:"max_events,omitempty"`
+	MaxEvents int64 `json:"max_events"`
 	// The type of the buffer that will be configured, a memory buffer.
 	Type *ObservabilityPipelineBufferOptionsMemoryType `json:"type,omitempty"`
 	// Behavior when the buffer is full (block and stop accepting new events, or drop new events)
@@ -25,8 +27,9 @@ type ObservabilityPipelineMemoryBufferSizeOptions struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineMemoryBufferSizeOptions() *ObservabilityPipelineMemoryBufferSizeOptions {
+func NewObservabilityPipelineMemoryBufferSizeOptions(maxEvents int64) *ObservabilityPipelineMemoryBufferSizeOptions {
 	this := ObservabilityPipelineMemoryBufferSizeOptions{}
+	this.MaxEvents = maxEvents
 	var typeVar ObservabilityPipelineBufferOptionsMemoryType = OBSERVABILITYPIPELINEBUFFEROPTIONSMEMORYTYPE_MEMORY
 	this.Type = &typeVar
 	var whenFull ObservabilityPipelineBufferOptionsWhenFull = OBSERVABILITYPIPELINEBUFFEROPTIONSWHENFULL_BLOCK
@@ -46,32 +49,27 @@ func NewObservabilityPipelineMemoryBufferSizeOptionsWithDefaults() *Observabilit
 	return &this
 }
 
-// GetMaxEvents returns the MaxEvents field value if set, zero value otherwise.
+// GetMaxEvents returns the MaxEvents field value.
 func (o *ObservabilityPipelineMemoryBufferSizeOptions) GetMaxEvents() int64 {
-	if o == nil || o.MaxEvents == nil {
+	if o == nil {
 		var ret int64
 		return ret
 	}
-	return *o.MaxEvents
+	return o.MaxEvents
 }
 
-// GetMaxEventsOk returns a tuple with the MaxEvents field value if set, nil otherwise
+// GetMaxEventsOk returns a tuple with the MaxEvents field value
 // and a boolean to check if the value has been set.
 func (o *ObservabilityPipelineMemoryBufferSizeOptions) GetMaxEventsOk() (*int64, bool) {
-	if o == nil || o.MaxEvents == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.MaxEvents, true
+	return &o.MaxEvents, true
 }
 
-// HasMaxEvents returns a boolean if a field has been set.
-func (o *ObservabilityPipelineMemoryBufferSizeOptions) HasMaxEvents() bool {
-	return o != nil && o.MaxEvents != nil
-}
-
-// SetMaxEvents gets a reference to the given int64 and assigns it to the MaxEvents field.
+// SetMaxEvents sets field value.
 func (o *ObservabilityPipelineMemoryBufferSizeOptions) SetMaxEvents(v int64) {
-	o.MaxEvents = &v
+	o.MaxEvents = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -136,9 +134,7 @@ func (o ObservabilityPipelineMemoryBufferSizeOptions) MarshalJSON() ([]byte, err
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.MaxEvents != nil {
-		toSerialize["max_events"] = o.MaxEvents
-	}
+	toSerialize["max_events"] = o.MaxEvents
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
 	}
@@ -155,12 +151,15 @@ func (o ObservabilityPipelineMemoryBufferSizeOptions) MarshalJSON() ([]byte, err
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineMemoryBufferSizeOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		MaxEvents *int64                                        `json:"max_events,omitempty"`
+		MaxEvents *int64                                        `json:"max_events"`
 		Type      *ObservabilityPipelineBufferOptionsMemoryType `json:"type,omitempty"`
 		WhenFull  *ObservabilityPipelineBufferOptionsWhenFull   `json:"when_full,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.MaxEvents == nil {
+		return fmt.Errorf("required field max_events missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -170,7 +169,7 @@ func (o *ObservabilityPipelineMemoryBufferSizeOptions) UnmarshalJSON(bytes []byt
 	}
 
 	hasInvalidField := false
-	o.MaxEvents = all.MaxEvents
+	o.MaxEvents = *all.MaxEvents
 	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {

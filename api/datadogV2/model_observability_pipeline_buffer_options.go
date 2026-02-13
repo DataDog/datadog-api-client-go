@@ -42,7 +42,7 @@ func (obj *ObservabilityPipelineBufferOptions) UnmarshalJSON(data []byte) error 
 	if err == nil {
 		if obj.ObservabilityPipelineDiskBufferOptions != nil && obj.ObservabilityPipelineDiskBufferOptions.UnparsedObject == nil {
 			jsonObservabilityPipelineDiskBufferOptions, _ := datadog.Marshal(obj.ObservabilityPipelineDiskBufferOptions)
-			if string(jsonObservabilityPipelineDiskBufferOptions) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonObservabilityPipelineDiskBufferOptions) == "{}" { // empty struct
 				obj.ObservabilityPipelineDiskBufferOptions = nil
 			} else {
 				match++
@@ -59,7 +59,7 @@ func (obj *ObservabilityPipelineBufferOptions) UnmarshalJSON(data []byte) error 
 	if err == nil {
 		if obj.ObservabilityPipelineMemoryBufferOptions != nil && obj.ObservabilityPipelineMemoryBufferOptions.UnparsedObject == nil {
 			jsonObservabilityPipelineMemoryBufferOptions, _ := datadog.Marshal(obj.ObservabilityPipelineMemoryBufferOptions)
-			if string(jsonObservabilityPipelineMemoryBufferOptions) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonObservabilityPipelineMemoryBufferOptions) == "{}" { // empty struct
 				obj.ObservabilityPipelineMemoryBufferOptions = nil
 			} else {
 				match++
@@ -76,7 +76,7 @@ func (obj *ObservabilityPipelineBufferOptions) UnmarshalJSON(data []byte) error 
 	if err == nil {
 		if obj.ObservabilityPipelineMemoryBufferSizeOptions != nil && obj.ObservabilityPipelineMemoryBufferSizeOptions.UnparsedObject == nil {
 			jsonObservabilityPipelineMemoryBufferSizeOptions, _ := datadog.Marshal(obj.ObservabilityPipelineMemoryBufferSizeOptions)
-			if string(jsonObservabilityPipelineMemoryBufferSizeOptions) == "{}" && string(data) != "{}" { // empty struct
+			if string(jsonObservabilityPipelineMemoryBufferSizeOptions) == "{}" { // empty struct
 				obj.ObservabilityPipelineMemoryBufferSizeOptions = nil
 			} else {
 				match++
