@@ -5,68 +5,72 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RelationshipToIncidentRequest Relationship to incident request
-type RelationshipToIncidentRequest struct {
-	// Incident relationship data
-	Data IncidentRelationshipData `json:"data"`
+// AssignSeatsUserResponse
+type AssignSeatsUserResponse struct {
+	//
+	Data *AssignSeatsUserResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewRelationshipToIncidentRequest instantiates a new RelationshipToIncidentRequest object.
+// NewAssignSeatsUserResponse instantiates a new AssignSeatsUserResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRelationshipToIncidentRequest(data IncidentRelationshipData) *RelationshipToIncidentRequest {
-	this := RelationshipToIncidentRequest{}
-	this.Data = data
+func NewAssignSeatsUserResponse() *AssignSeatsUserResponse {
+	this := AssignSeatsUserResponse{}
 	return &this
 }
 
-// NewRelationshipToIncidentRequestWithDefaults instantiates a new RelationshipToIncidentRequest object.
+// NewAssignSeatsUserResponseWithDefaults instantiates a new AssignSeatsUserResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewRelationshipToIncidentRequestWithDefaults() *RelationshipToIncidentRequest {
-	this := RelationshipToIncidentRequest{}
+func NewAssignSeatsUserResponseWithDefaults() *AssignSeatsUserResponse {
+	this := AssignSeatsUserResponse{}
 	return &this
 }
 
-// GetData returns the Data field value.
-func (o *RelationshipToIncidentRequest) GetData() IncidentRelationshipData {
-	if o == nil {
-		var ret IncidentRelationshipData
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *AssignSeatsUserResponse) GetData() AssignSeatsUserResponseData {
+	if o == nil || o.Data == nil {
+		var ret AssignSeatsUserResponseData
 		return ret
 	}
-	return o.Data
+	return *o.Data
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *RelationshipToIncidentRequest) GetDataOk() (*IncidentRelationshipData, bool) {
-	if o == nil {
+func (o *AssignSeatsUserResponse) GetDataOk() (*AssignSeatsUserResponseData, bool) {
+	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return &o.Data, true
+	return o.Data, true
 }
 
-// SetData sets field value.
-func (o *RelationshipToIncidentRequest) SetData(v IncidentRelationshipData) {
-	o.Data = v
+// HasData returns a boolean if a field has been set.
+func (o *AssignSeatsUserResponse) HasData() bool {
+	return o != nil && o.Data != nil
+}
+
+// SetData gets a reference to the given AssignSeatsUserResponseData and assigns it to the Data field.
+func (o *AssignSeatsUserResponse) SetData(v AssignSeatsUserResponseData) {
+	o.Data = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o RelationshipToIncidentRequest) MarshalJSON() ([]byte, error) {
+func (o AssignSeatsUserResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["data"] = o.Data
+	if o.Data != nil {
+		toSerialize["data"] = o.Data
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,15 +79,12 @@ func (o RelationshipToIncidentRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *RelationshipToIncidentRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *AssignSeatsUserResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *IncidentRelationshipData `json:"data"`
+		Data *AssignSeatsUserResponseData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.Data == nil {
-		return fmt.Errorf("required field data missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -93,10 +94,10 @@ func (o *RelationshipToIncidentRequest) UnmarshalJSON(bytes []byte) (err error) 
 	}
 
 	hasInvalidField := false
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Data = *all.Data
+	o.Data = all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

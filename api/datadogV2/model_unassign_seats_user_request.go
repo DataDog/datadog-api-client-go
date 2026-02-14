@@ -5,68 +5,72 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// NotebookCreateData Notebook creation data
-type NotebookCreateData struct {
-	// Notebook resource type
-	Type NotebookResourceType `json:"type"`
+// UnassignSeatsUserRequest
+type UnassignSeatsUserRequest struct {
+	//
+	Data *UnassignSeatsUserRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewNotebookCreateData instantiates a new NotebookCreateData object.
+// NewUnassignSeatsUserRequest instantiates a new UnassignSeatsUserRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewNotebookCreateData(typeVar NotebookResourceType) *NotebookCreateData {
-	this := NotebookCreateData{}
-	this.Type = typeVar
+func NewUnassignSeatsUserRequest() *UnassignSeatsUserRequest {
+	this := UnassignSeatsUserRequest{}
 	return &this
 }
 
-// NewNotebookCreateDataWithDefaults instantiates a new NotebookCreateData object.
+// NewUnassignSeatsUserRequestWithDefaults instantiates a new UnassignSeatsUserRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewNotebookCreateDataWithDefaults() *NotebookCreateData {
-	this := NotebookCreateData{}
+func NewUnassignSeatsUserRequestWithDefaults() *UnassignSeatsUserRequest {
+	this := UnassignSeatsUserRequest{}
 	return &this
 }
 
-// GetType returns the Type field value.
-func (o *NotebookCreateData) GetType() NotebookResourceType {
-	if o == nil {
-		var ret NotebookResourceType
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *UnassignSeatsUserRequest) GetData() UnassignSeatsUserRequestData {
+	if o == nil || o.Data == nil {
+		var ret UnassignSeatsUserRequestData
 		return ret
 	}
-	return o.Type
+	return *o.Data
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *NotebookCreateData) GetTypeOk() (*NotebookResourceType, bool) {
-	if o == nil {
+func (o *UnassignSeatsUserRequest) GetDataOk() (*UnassignSeatsUserRequestData, bool) {
+	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Data, true
 }
 
-// SetType sets field value.
-func (o *NotebookCreateData) SetType(v NotebookResourceType) {
-	o.Type = v
+// HasData returns a boolean if a field has been set.
+func (o *UnassignSeatsUserRequest) HasData() bool {
+	return o != nil && o.Data != nil
+}
+
+// SetData gets a reference to the given UnassignSeatsUserRequestData and assigns it to the Data field.
+func (o *UnassignSeatsUserRequest) SetData(v UnassignSeatsUserRequestData) {
+	o.Data = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o NotebookCreateData) MarshalJSON() ([]byte, error) {
+func (o UnassignSeatsUserRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["type"] = o.Type
+	if o.Data != nil {
+		toSerialize["data"] = o.Data
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,29 +79,25 @@ func (o NotebookCreateData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *NotebookCreateData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *UnassignSeatsUserRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Type *NotebookResourceType `json:"type"`
+		Data *UnassignSeatsUserRequestData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Type == nil {
-		return fmt.Errorf("required field type missing")
-	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if !all.Type.IsValid() {
+	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
-	} else {
-		o.Type = *all.Type
 	}
+	o.Data = all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

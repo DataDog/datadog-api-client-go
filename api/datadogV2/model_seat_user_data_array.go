@@ -10,37 +10,39 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// NotebookCreateRequest Notebook creation request
-type NotebookCreateRequest struct {
-	// Notebook creation data
-	Data NotebookCreateData `json:"data"`
+// SeatUserDataArray
+type SeatUserDataArray struct {
+	// The list of seat users.
+	Data []SeatUserData `json:"data"`
+	//
+	Meta *SeatUserMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewNotebookCreateRequest instantiates a new NotebookCreateRequest object.
+// NewSeatUserDataArray instantiates a new SeatUserDataArray object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewNotebookCreateRequest(data NotebookCreateData) *NotebookCreateRequest {
-	this := NotebookCreateRequest{}
+func NewSeatUserDataArray(data []SeatUserData) *SeatUserDataArray {
+	this := SeatUserDataArray{}
 	this.Data = data
 	return &this
 }
 
-// NewNotebookCreateRequestWithDefaults instantiates a new NotebookCreateRequest object.
+// NewSeatUserDataArrayWithDefaults instantiates a new SeatUserDataArray object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewNotebookCreateRequestWithDefaults() *NotebookCreateRequest {
-	this := NotebookCreateRequest{}
+func NewSeatUserDataArrayWithDefaults() *SeatUserDataArray {
+	this := SeatUserDataArray{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *NotebookCreateRequest) GetData() NotebookCreateData {
+func (o *SeatUserDataArray) GetData() []SeatUserData {
 	if o == nil {
-		var ret NotebookCreateData
+		var ret []SeatUserData
 		return ret
 	}
 	return o.Data
@@ -48,7 +50,7 @@ func (o *NotebookCreateRequest) GetData() NotebookCreateData {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *NotebookCreateRequest) GetDataOk() (*NotebookCreateData, bool) {
+func (o *SeatUserDataArray) GetDataOk() (*[]SeatUserData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,17 +58,48 @@ func (o *NotebookCreateRequest) GetDataOk() (*NotebookCreateData, bool) {
 }
 
 // SetData sets field value.
-func (o *NotebookCreateRequest) SetData(v NotebookCreateData) {
+func (o *SeatUserDataArray) SetData(v []SeatUserData) {
 	o.Data = v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *SeatUserDataArray) GetMeta() SeatUserMeta {
+	if o == nil || o.Meta == nil {
+		var ret SeatUserMeta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SeatUserDataArray) GetMetaOk() (*SeatUserMeta, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *SeatUserDataArray) HasMeta() bool {
+	return o != nil && o.Meta != nil
+}
+
+// SetMeta gets a reference to the given SeatUserMeta and assigns it to the Meta field.
+func (o *SeatUserDataArray) SetMeta(v SeatUserMeta) {
+	o.Meta = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
-func (o NotebookCreateRequest) MarshalJSON() ([]byte, error) {
+func (o SeatUserDataArray) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["data"] = o.Data
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,9 +108,10 @@ func (o NotebookCreateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *NotebookCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SeatUserDataArray) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *NotebookCreateData `json:"data"`
+		Data *[]SeatUserData `json:"data"`
+		Meta *SeatUserMeta   `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -87,16 +121,17 @@ func (o *NotebookCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	o.Data = *all.Data
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Data = *all.Data
+	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
