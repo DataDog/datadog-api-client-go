@@ -203,6 +203,8 @@
 //   - [CloudflareIntegrationApi.GetCloudflareAccount]
 //   - [CloudflareIntegrationApi.ListCloudflareAccounts]
 //   - [CloudflareIntegrationApi.UpdateCloudflareAccount]
+//   - [CodeCoverageApi.GetCodeCoverageBranchSummary]
+//   - [CodeCoverageApi.GetCodeCoverageCommitSummary]
 //   - [ConfluentCloudApi.CreateConfluentAccount]
 //   - [ConfluentCloudApi.CreateConfluentResource]
 //   - [ConfluentCloudApi.DeleteConfluentAccount]

@@ -701,6 +701,8 @@ func NewConfiguration() *Configuration {
 			"v2.MuteFindings":                            false,
 			"v2.RunThreatHuntingJob":                     false,
 			"v2.SearchSecurityMonitoringHistsignals":     false,
+			"v2.GetCodeCoverageBranchSummary":            false,
+			"v2.GetCodeCoverageCommitSummary":            false,
 			"v2.CreateDataset":                           false,
 			"v2.DeleteDataset":                           false,
 			"v2.GetAllDatasets":                          false,
