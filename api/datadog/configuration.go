@@ -785,6 +785,8 @@ func NewConfiguration() *Configuration {
 			"v2.ListServiceNowTemplates":                 false,
 			"v2.ListServiceNowUsers":                     false,
 			"v2.UpdateServiceNowTemplate":                false,
+			"v2.UpdateLoginOrgConfigMaxSessionDuration":  false,
+			"v2.UpdateOrgSamlConfigurations":             false,
 			"v2.AddRoleToRestrictionQuery":               false,
 			"v2.CreateRestrictionQuery":                  false,
 			"v2.DeleteRestrictionQuery":                  false,
