@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAPMApi(apiClient)
-	resp, r, err := api.GetServiceList(ctx)
+	resp, r, err := api.GetServiceList(ctx, "filter[env]")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `APMApi.GetServiceList`: %v\n", err)
