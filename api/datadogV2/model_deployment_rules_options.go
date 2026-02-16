@@ -8,98 +8,60 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DeploymentRulesOptions - Options for deployment rule response representing either faulty deployment detection or monitor options.
+// DeploymentRulesOptions Options for deployment rule response representing either faulty deployment detection or monitor options. The actual type is determined by the parent's 'type' field.
 type DeploymentRulesOptions struct {
-	DeploymentRuleOptionsFaultyDeploymentDetection *DeploymentRuleOptionsFaultyDeploymentDetection
-	DeploymentRuleOptionsMonitor                   *DeploymentRuleOptionsMonitor
-
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject       map[string]interface{} `json:"-"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// DeploymentRuleOptionsFaultyDeploymentDetectionAsDeploymentRulesOptions is a convenience function that returns DeploymentRuleOptionsFaultyDeploymentDetection wrapped in DeploymentRulesOptions.
-func DeploymentRuleOptionsFaultyDeploymentDetectionAsDeploymentRulesOptions(v *DeploymentRuleOptionsFaultyDeploymentDetection) DeploymentRulesOptions {
-	return DeploymentRulesOptions{DeploymentRuleOptionsFaultyDeploymentDetection: v}
+// NewDeploymentRulesOptions instantiates a new DeploymentRulesOptions object.
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed.
+func NewDeploymentRulesOptions() *DeploymentRulesOptions {
+	this := DeploymentRulesOptions{}
+	return &this
 }
 
-// DeploymentRuleOptionsMonitorAsDeploymentRulesOptions is a convenience function that returns DeploymentRuleOptionsMonitor wrapped in DeploymentRulesOptions.
-func DeploymentRuleOptionsMonitorAsDeploymentRulesOptions(v *DeploymentRuleOptionsMonitor) DeploymentRulesOptions {
-	return DeploymentRulesOptions{DeploymentRuleOptionsMonitor: v}
+// NewDeploymentRulesOptionsWithDefaults instantiates a new DeploymentRulesOptions object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set.
+func NewDeploymentRulesOptionsWithDefaults() *DeploymentRulesOptions {
+	this := DeploymentRulesOptions{}
+	return &this
 }
 
-// UnmarshalJSON turns data into one of the pointers in the struct.
-func (obj *DeploymentRulesOptions) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into DeploymentRuleOptionsFaultyDeploymentDetection
-	err = datadog.Unmarshal(data, &obj.DeploymentRuleOptionsFaultyDeploymentDetection)
-	if err == nil {
-		if obj.DeploymentRuleOptionsFaultyDeploymentDetection != nil && obj.DeploymentRuleOptionsFaultyDeploymentDetection.UnparsedObject == nil {
-			jsonDeploymentRuleOptionsFaultyDeploymentDetection, _ := datadog.Marshal(obj.DeploymentRuleOptionsFaultyDeploymentDetection)
-			if string(jsonDeploymentRuleOptionsFaultyDeploymentDetection) == "{}" && string(data) != "{}" { // empty struct
-				obj.DeploymentRuleOptionsFaultyDeploymentDetection = nil
-			} else {
-				match++
-			}
-		} else {
-			obj.DeploymentRuleOptionsFaultyDeploymentDetection = nil
-		}
+// MarshalJSON serializes the struct using spec logic.
+func (o DeploymentRulesOptions) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return datadog.Marshal(o.UnparsedObject)
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+	return datadog.Marshal(toSerialize)
+}
+
+// UnmarshalJSON deserializes the given payload.
+func (o *DeploymentRulesOptions) UnmarshalJSON(bytes []byte) (err error) {
+	all := struct {
+	}{}
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	additionalProperties := make(map[string]interface{})
+	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{})
 	} else {
-		obj.DeploymentRuleOptionsFaultyDeploymentDetection = nil
+		return err
 	}
 
-	// try to unmarshal data into DeploymentRuleOptionsMonitor
-	err = datadog.Unmarshal(data, &obj.DeploymentRuleOptionsMonitor)
-	if err == nil {
-		if obj.DeploymentRuleOptionsMonitor != nil && obj.DeploymentRuleOptionsMonitor.UnparsedObject == nil {
-			jsonDeploymentRuleOptionsMonitor, _ := datadog.Marshal(obj.DeploymentRuleOptionsMonitor)
-			if string(jsonDeploymentRuleOptionsMonitor) == "{}" { // empty struct
-				obj.DeploymentRuleOptionsMonitor = nil
-			} else {
-				match++
-			}
-		} else {
-			obj.DeploymentRuleOptionsMonitor = nil
-		}
-	} else {
-		obj.DeploymentRuleOptionsMonitor = nil
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
 	}
 
-	if match != 1 { // more than 1 match
-		// reset to nil
-		obj.DeploymentRuleOptionsFaultyDeploymentDetection = nil
-		obj.DeploymentRuleOptionsMonitor = nil
-		return datadog.Unmarshal(data, &obj.UnparsedObject)
-	}
-	return nil // exactly one match
-}
-
-// MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
-func (obj DeploymentRulesOptions) MarshalJSON() ([]byte, error) {
-	if obj.DeploymentRuleOptionsFaultyDeploymentDetection != nil {
-		return datadog.Marshal(&obj.DeploymentRuleOptionsFaultyDeploymentDetection)
-	}
-
-	if obj.DeploymentRuleOptionsMonitor != nil {
-		return datadog.Marshal(&obj.DeploymentRuleOptionsMonitor)
-	}
-
-	if obj.UnparsedObject != nil {
-		return datadog.Marshal(obj.UnparsedObject)
-	}
-	return nil, nil // no data in oneOf schemas
-}
-
-// GetActualInstance returns the actual instance.
-func (obj *DeploymentRulesOptions) GetActualInstance() interface{} {
-	if obj.DeploymentRuleOptionsFaultyDeploymentDetection != nil {
-		return obj.DeploymentRuleOptionsFaultyDeploymentDetection
-	}
-
-	if obj.DeploymentRuleOptionsMonitor != nil {
-		return obj.DeploymentRuleOptionsMonitor
-	}
-
-	// all schemas are nil
 	return nil
 }

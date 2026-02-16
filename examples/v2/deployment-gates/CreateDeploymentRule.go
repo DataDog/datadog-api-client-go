@@ -19,13 +19,10 @@ func main() {
 	body := datadogV2.CreateDeploymentRuleParams{
 		Data: &datadogV2.CreateDeploymentRuleParamsData{
 			Attributes: datadogV2.CreateDeploymentRuleParamsDataAttributes{
-				DryRun: datadog.PtrBool(false),
-				Name:   "My deployment rule",
-				Options: datadogV2.DeploymentRulesOptions{
-					DeploymentRuleOptionsFaultyDeploymentDetection: &datadogV2.DeploymentRuleOptionsFaultyDeploymentDetection{
-						ExcludedResources: []string{},
-					}},
-				Type: "faulty_deployment_detection",
+				DryRun:  datadog.PtrBool(false),
+				Name:    "My deployment rule",
+				Options: datadogV2.DeploymentRulesOptions{},
+				Type:    "faulty_deployment_detection",
 			},
 			Type: datadogV2.DEPLOYMENTRULEDATATYPE_DEPLOYMENT_RULE,
 		},

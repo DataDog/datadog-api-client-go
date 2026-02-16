@@ -22,12 +22,9 @@ func main() {
 	body := datadogV2.UpdateDeploymentRuleParams{
 		Data: datadogV2.UpdateDeploymentRuleParamsData{
 			Attributes: datadogV2.UpdateDeploymentRuleParamsDataAttributes{
-				DryRun: false,
-				Name:   "Updated deployment rule",
-				Options: datadogV2.DeploymentRulesOptions{
-					DeploymentRuleOptionsFaultyDeploymentDetection: &datadogV2.DeploymentRuleOptionsFaultyDeploymentDetection{
-						ExcludedResources: []string{},
-					}},
+				DryRun:  false,
+				Name:    "Updated deployment rule",
+				Options: datadogV2.DeploymentRulesOptions{},
 			},
 			Type: datadogV2.DEPLOYMENTRULEDATATYPE_DEPLOYMENT_RULE,
 		},

@@ -23,7 +23,7 @@ type DeploymentRuleResponseDataAttributes struct {
 	GateId string `json:"gate_id"`
 	// The name of the deployment rule.
 	Name string `json:"name"`
-	// Options for deployment rule response representing either faulty deployment detection or monitor options.
+	// Options for deployment rule response representing either faulty deployment detection or monitor options. The actual type is determined by the parent's 'type' field.
 	Options DeploymentRulesOptions `json:"options"`
 	// The type of the deployment rule.
 	Type DeploymentRuleResponseDataAttributesType `json:"type"`
@@ -364,6 +364,9 @@ func (o *DeploymentRuleResponseDataAttributes) UnmarshalJSON(bytes []byte) (err 
 	o.DryRun = *all.DryRun
 	o.GateId = *all.GateId
 	o.Name = *all.Name
+	if all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
 	o.Options = *all.Options
 	if !all.Type.IsValid() {
 		hasInvalidField = true

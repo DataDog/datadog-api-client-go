@@ -16,7 +16,7 @@ type UpdateDeploymentRuleParamsDataAttributes struct {
 	DryRun bool `json:"dry_run"`
 	// The name of the deployment rule.
 	Name string `json:"name"`
-	// Options for deployment rule response representing either faulty deployment detection or monitor options.
+	// Options for deployment rule response representing either faulty deployment detection or monitor options. The actual type is determined by the parent's 'type' field.
 	Options DeploymentRulesOptions `json:"options"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -153,12 +153,21 @@ func (o *UpdateDeploymentRuleParamsDataAttributes) UnmarshalJSON(bytes []byte) (
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.DryRun = *all.DryRun
 	o.Name = *all.Name
+	if all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
 	o.Options = *all.Options
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
