@@ -1,0 +1,57 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"handle":"test-handle-d1ea4282abe3f68d","name":"test-name-d1ea4282abe3f68d"},"type":"team"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team
+  response:
+    body: '{"data":{"id":"587b5f1a-b8ef-42b7-a99a-746cb80422a4","type":"team","attributes":{"avatar":null,"banner":6,"created_at":"2026-02-12T14:57:57.783497+00:00","description":null,"handle":"test-handle-d1ea4282abe3f68d","hidden_modules":null,"is_managed":false,"link_count":0,"modified_at":"2026-02-12T14:57:57.783497+00:00","name":"test-name-d1ea4282abe3f68d","summary":null,"user_count":0,"visible_modules":null},"relationships":{"team_links":{"data":[],"links":{"related":"/api/v2/team/587b5f1a-b8ef-42b7-a99a-746cb80422a4/links"}},"user_team_permissions":{"data":null,"links":{"related":"/api/v2/team/587b5f1a-b8ef-42b7-a99a-746cb80422a4/permission-settings"}}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"role":"admin"},"type":"team_memberships"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/team/587b5f1a-b8ef-42b7-a99a-746cb80422a4/memberships/00000000-0000-dead-beef-000000000000
+  response:
+    body: '{"errors":["User for ID 00000000-0000-dead-beef-000000000000 not found"]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/team/587b5f1a-b8ef-42b7-a99a-746cb80422a4
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
