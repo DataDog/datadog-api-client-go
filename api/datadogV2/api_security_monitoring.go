@@ -5922,6 +5922,7 @@ type ListSecurityMonitoringRulesOptionalParameters struct {
 	PageSize   *int64
 	PageNumber *int64
 	Query      *string
+	Sort       *SecurityMonitoringRuleSort
 }
 
 // NewListSecurityMonitoringRulesOptionalParameters creates an empty struct for parameters.
@@ -5945,6 +5946,12 @@ func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageNumber(pageNumbe
 // WithQuery sets the corresponding parameter name and returns the struct.
 func (r *ListSecurityMonitoringRulesOptionalParameters) WithQuery(query string) *ListSecurityMonitoringRulesOptionalParameters {
 	r.Query = &query
+	return r
+}
+
+// WithSort sets the corresponding parameter name and returns the struct.
+func (r *ListSecurityMonitoringRulesOptionalParameters) WithSort(sort SecurityMonitoringRuleSort) *ListSecurityMonitoringRulesOptionalParameters {
+	r.Sort = &sort
 	return r
 }
 
@@ -5983,6 +5990,9 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringRules(ctx _context.Context
 	}
 	if optionalParams.Query != nil {
 		localVarQueryParams.Add("query", datadog.ParameterToString(*optionalParams.Query, ""))
+	}
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
