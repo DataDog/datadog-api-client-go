@@ -16,7 +16,8 @@ func main() {
 	body := datadogV2.RoleCreateRequest{
 		Data: datadogV2.RoleCreateData{
 			Attributes: datadogV2.RoleCreateAttributes{
-				Name: "developers",
+				Name:                    "developers",
+				ReceivesPermissionsFrom: []string{},
 			},
 			Relationships: &datadogV2.RoleRelationships{
 				Permissions: &datadogV2.RelationshipToPermissions{
