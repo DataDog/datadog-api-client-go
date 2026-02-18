@@ -12,6 +12,8 @@ import (
 type IncidentTrigger struct {
 	// Defines a rate limit for a trigger.
 	RateLimit *TriggerRateLimit `json:"rateLimit,omitempty"`
+	// Version of the incident trigger.
+	Version *string `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -62,6 +64,34 @@ func (o *IncidentTrigger) SetRateLimit(v TriggerRateLimit) {
 	o.RateLimit = &v
 }
 
+// GetVersion returns the Version field value if set, zero value otherwise.
+func (o *IncidentTrigger) GetVersion() string {
+	if o == nil || o.Version == nil {
+		var ret string
+		return ret
+	}
+	return *o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IncidentTrigger) GetVersionOk() (*string, bool) {
+	if o == nil || o.Version == nil {
+		return nil, false
+	}
+	return o.Version, true
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *IncidentTrigger) HasVersion() bool {
+	return o != nil && o.Version != nil
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
+func (o *IncidentTrigger) SetVersion(v string) {
+	o.Version = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o IncidentTrigger) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -70,6 +100,9 @@ func (o IncidentTrigger) MarshalJSON() ([]byte, error) {
 	}
 	if o.RateLimit != nil {
 		toSerialize["rateLimit"] = o.RateLimit
+	}
+	if o.Version != nil {
+		toSerialize["version"] = o.Version
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -82,13 +115,14 @@ func (o IncidentTrigger) MarshalJSON() ([]byte, error) {
 func (o *IncidentTrigger) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		RateLimit *TriggerRateLimit `json:"rateLimit,omitempty"`
+		Version   *string           `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"rateLimit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"rateLimit", "version"})
 	} else {
 		return err
 	}
@@ -98,6 +132,7 @@ func (o *IncidentTrigger) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.RateLimit = all.RateLimit
+	o.Version = all.Version
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
