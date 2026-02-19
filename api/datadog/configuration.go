@@ -679,6 +679,7 @@ func NewConfiguration() *Configuration {
 			"v2.LinkJiraIssueToCase":                     false,
 			"v2.MoveCaseToProject":                       false,
 			"v2.UnlinkJiraIssue":                         false,
+			"v2.ListAWSCloudAuthPersonaMappings":         false,
 			"v2.ActivateContentPack":                     false,
 			"v2.CancelThreatHuntingJob":                  false,
 			"v2.ConvertJobResultToSignal":                false,

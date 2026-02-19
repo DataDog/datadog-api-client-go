@@ -62,6 +62,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "SoftwareCatalogApi": reflect.ValueOf(datadogV2.NewSoftwareCatalogApi),
 	    "CIVisibilityPipelinesApi": reflect.ValueOf(datadogV2.NewCIVisibilityPipelinesApi),
 	    "CIVisibilityTestsApi": reflect.ValueOf(datadogV2.NewCIVisibilityTestsApi),
+	    "CloudAuthenticationApi": reflect.ValueOf(datadogV2.NewCloudAuthenticationApi),
 	    "SecurityMonitoringApi": reflect.ValueOf(datadogV2.NewSecurityMonitoringApi),
 	    "CodeCoverageApi": reflect.ValueOf(datadogV2.NewCodeCoverageApi),
 	    "ContainerImagesApi": reflect.ValueOf(datadogV2.NewContainerImagesApi),
