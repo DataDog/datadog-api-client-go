@@ -367,6 +367,7 @@
 //   - [IncidentsApi.UpdateIncidentPostmortemTemplate]
 //   - [IncidentsApi.UpdateIncidentTodo]
 //   - [IncidentsApi.UpdateIncidentType]
+//   - [IntegrationsApi.ListIntegrations]
 //   - [JiraIntegrationApi.CreateJiraIssueTemplate]
 //   - [JiraIntegrationApi.DeleteJiraAccount]
 //   - [JiraIntegrationApi.DeleteJiraIssueTemplate]
