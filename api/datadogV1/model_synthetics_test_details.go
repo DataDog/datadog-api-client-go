@@ -36,7 +36,7 @@ type SyntheticsTestDetails struct {
 	Subtype *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
 	// Array of tags attached to the test.
 	Tags []string `json:"tags,omitempty"`
-	// Type of the Synthetic test, either `api` or `browser`.
+	// Type of the Synthetic test.
 	Type *SyntheticsTestDetailsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
