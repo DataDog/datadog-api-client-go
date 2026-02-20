@@ -1,4 +1,4 @@
-// Synthetics: Edit a Network Path test returns "OK" response
+// Edit a Network Path test returns "OK" response
 
 package main
 

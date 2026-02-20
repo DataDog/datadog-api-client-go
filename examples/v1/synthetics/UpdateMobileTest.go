@@ -1,4 +1,4 @@
-// Edit a Mobile test returns "OK" response
+// Edit a mobile test returns "OK" response
 
 package main
 
@@ -13,35 +13,103 @@ import (
 )
 
 func main() {
-	// there is a valid "synthetics_mobile_test" in the system
-	SyntheticsMobileTestPublicID := os.Getenv("SYNTHETICS_MOBILE_TEST_PUBLIC_ID")
-
 	body := datadogV1.SyntheticsMobileTest{
-		Name:   "Example-Synthetic-updated",
-		Status: datadogV1.SYNTHETICSTESTPAUSESTATUS_PAUSED.Ptr(),
-		Type:   datadogV1.SYNTHETICSMOBILETESTTYPE_MOBILE,
 		Config: datadogV1.SyntheticsMobileTestConfig{
-			Variables: []datadogV1.SyntheticsConfigVariable{},
+			Variables: []datadogV1.SyntheticsConfigVariable{
+				{
+					Name:   "VARIABLE_NAME",
+					Secure: datadog.PtrBool(false),
+					Type:   datadogV1.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
+				},
+			},
 		},
-		Message: "",
+		DeviceIds: []string{
+			"chrome.laptop_large",
+		},
+		Message: "Notification message",
+		Name:    "Example test name",
 		Options: datadogV1.SyntheticsMobileTestOptions{
+			Bindings: []datadogV1.SyntheticsTestRestrictionPolicyBinding{
+				{
+					Principals: []string{},
+					Relation:   datadogV1.SYNTHETICSTESTRESTRICTIONPOLICYBINDINGRELATION_EDITOR.Ptr(),
+				},
+			},
+			Ci: &datadogV1.SyntheticsTestCiOptions{
+				ExecutionRule: datadogV1.SYNTHETICSTESTEXECUTIONRULE_BLOCKING,
+			},
 			DeviceIds: []string{
-				"synthetics:mobile:device:iphone_15_ios_17",
+				"synthetics:mobile:device:apple_ipad_10th_gen_2022_ios_16",
 			},
 			MobileApplication: datadogV1.SyntheticsMobileTestsMobileApplication{
-				ApplicationId: "ab0e0aed-536d-411a-9a99-5428c27d8f8e",
-				ReferenceId:   "6115922a-5f5d-455e-bc7e-7955a57f3815",
-				ReferenceType: datadogV1.SYNTHETICSMOBILETESTSMOBILEAPPLICATIONREFERENCETYPE_VERSION,
+				ApplicationId: "00000000-0000-0000-0000-aaaaaaaaaaaa",
+				ReferenceId:   "00000000-0000-0000-0000-aaaaaaaaaaab",
+				ReferenceType: datadogV1.SYNTHETICSMOBILETESTSMOBILEAPPLICATIONREFERENCETYPE_LATEST,
 			},
-			TickEvery: 3600,
+			MonitorOptions: &datadogV1.SyntheticsTestOptionsMonitorOptions{
+				NotificationPresetName: datadogV1.SYNTHETICSTESTOPTIONSMONITOROPTIONSNOTIFICATIONPRESETNAME_SHOW_ALL.Ptr(),
+			},
+			RestrictedRoles: []string{
+				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+			},
+			Retry: &datadogV1.SyntheticsTestOptionsRetry{},
+			Scheduling: &datadogV1.SyntheticsTestOptionsScheduling{
+				Timeframes: []datadogV1.SyntheticsTestOptionsSchedulingTimeframe{
+					{
+						Day:  1,
+						From: "07:00",
+						To:   "16:00",
+					},
+					{
+						Day:  3,
+						From: "07:00",
+						To:   "16:00",
+					},
+				},
+				Timezone: "America/New_York",
+			},
+			TickEvery: 300,
 		},
-		Steps: []datadogV1.SyntheticsMobileStep{},
+		Status: datadogV1.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
+		Steps: []datadogV1.SyntheticsMobileStep{
+			{
+				Name: "",
+				Params: datadogV1.SyntheticsMobileStepParams{
+					Check:     datadogV1.SYNTHETICSCHECKTYPE_EQUALS.Ptr(),
+					Direction: datadogV1.SYNTHETICSMOBILESTEPPARAMSDIRECTION_UP.Ptr(),
+					Element: &datadogV1.SyntheticsMobileStepParamsElement{
+						ContextType:      datadogV1.SYNTHETICSMOBILESTEPPARAMSELEMENTCONTEXTTYPE_NATIVE.Ptr(),
+						RelativePosition: &datadogV1.SyntheticsMobileStepParamsElementRelativePosition{},
+						UserLocator: &datadogV1.SyntheticsMobileStepParamsElementUserLocator{
+							Values: []datadogV1.SyntheticsMobileStepParamsElementUserLocatorValuesItems{
+								{
+									Type: datadogV1.SYNTHETICSMOBILESTEPPARAMSELEMENTUSERLOCATORVALUESITEMSTYPE_ACCESSIBILITY_ID.Ptr(),
+								},
+							},
+						},
+					},
+					Positions: []datadogV1.SyntheticsMobileStepParamsPositionsItems{
+						{},
+					},
+					Variable: &datadogV1.SyntheticsMobileStepParamsVariable{
+						Example: "",
+						Name:    "VAR_NAME",
+					},
+				},
+				PublicId: datadog.PtrString("pub-lic-id0"),
+				Type:     datadogV1.SYNTHETICSMOBILESTEPTYPE_ASSERTELEMENTCONTENT,
+			},
+		},
+		Tags: []string{
+			"env:production",
+		},
+		Type: datadogV1.SYNTHETICSMOBILETESTTYPE_MOBILE,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewSyntheticsApi(apiClient)
-	resp, r, err := api.UpdateMobileTest(ctx, SyntheticsMobileTestPublicID, body)
+	resp, r, err := api.UpdateMobileTest(ctx, "public_id", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateMobileTest`: %v\n", err)

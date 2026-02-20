@@ -1,4 +1,4 @@
-// Search Synthetics suites returns "OK" response
+// Search test suites returns "OK" response
 
 package main
 

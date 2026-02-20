@@ -2527,12 +2527,6 @@
       "type": "safe"
     }
   },
-  "ListIntegrations": {
-    "tag": "Integrations",
-    "undo": {
-      "type": "safe"
-    }
-  },
   "ListCloudflareAccounts": {
     "tag": "Cloudflare Integration",
     "undo": {

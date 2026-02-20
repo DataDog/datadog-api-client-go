@@ -32179,53 +32179,6 @@ components:
             type: string
           type: array
       type: object
-    Integration:
-      description: Integration resource object.
-      properties:
-        attributes:
-          $ref: '#/components/schemas/IntegrationAttributes'
-        id:
-          description: The unique identifier of the integration.
-          example: calico
-          type: string
-        links:
-          $ref: '#/components/schemas/IntegrationLinks'
-        type:
-          $ref: '#/components/schemas/IntegrationType'
-      required:
-      - type
-      - id
-      - attributes
-      type: object
-    IntegrationAttributes:
-      description: Attributes for an integration.
-      properties:
-        categories:
-          description: List of categories associated with the integration.
-          example:
-          - Category::Kubernetes
-          - Category::Log Collection
-          items:
-            type: string
-          type: array
-        description:
-          description: A description of the integration.
-          example: Calico is a networking and network security solution for containers.
-          type: string
-        installed:
-          description: Whether the integration is installed.
-          example: true
-          type: boolean
-        title:
-          description: The name of the integration.
-          example: calico
-          type: string
-      required:
-      - title
-      - description
-      - categories
-      - installed
-      type: object
     IntegrationIncident:
       description: Incident integration settings
       properties:
@@ -32331,14 +32284,6 @@ components:
         value:
           $ref: '#/components/schemas/AnyValue'
       type: object
-    IntegrationLinks:
-      description: Links for the integration resource.
-      properties:
-        self:
-          description: Link to the integration resource.
-          example: /integrations?integrationId=calico
-          type: string
-      type: object
     IntegrationMonitor:
       description: Monitor integration settings
       properties:
@@ -32440,15 +32385,6 @@ components:
             type: string
           type: object
       type: object
-    IntegrationType:
-      default: integration
-      description: Integration resource type.
-      enum:
-      - integration
-      example: integration
-      type: string
-      x-enum-varnames:
-      - INTEGRATION
     InterfaceAttributes:
       description: The interface attributes
       properties:
@@ -34839,17 +34775,6 @@ components:
       required:
       - data
       - meta
-      type: object
-    ListIntegrationsResponse:
-      description: Response containing information about multiple integrations.
-      properties:
-        data:
-          description: Array of integration objects.
-          items:
-            $ref: '#/components/schemas/Integration'
-          type: array
-      required:
-      - data
       type: object
     ListInterfaceTagsResponse:
       description: Response for listing interface tags.
@@ -84280,24 +84205,6 @@ paths:
       x-unstable: '**Note**: This endpoint is in public beta and is subject to change.
 
         If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).'
-  /api/v2/integrations:
-    get:
-      operationId: ListIntegrations
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ListIntegrationsResponse'
-          description: Successful Response.
-        '429':
-          $ref: '#/components/responses/TooManyRequestsResponse'
-      security:
-      - apiKeyAuth: []
-        appKeyAuth: []
-      summary: List Integrations
-      tags:
-      - Integrations
   /api/v2/integrations/cloudflare/accounts:
     get:
       description: List Cloudflare accounts.
@@ -102000,7 +101907,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - synthetics_write
-      summary: 'Synthetics: Create a test suite'
+      summary: Create a test suite
       tags:
       - Synthetics
       x-permission:
@@ -102037,7 +101944,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - synthetics_write
-      summary: 'Synthetics: Bulk delete suites'
+      summary: Bulk delete suites
       tags:
       - Synthetics
       x-permission:
@@ -102046,7 +101953,7 @@ paths:
         - synthetics_write
   /api/v2/synthetics/suites/search:
     get:
-      description: Search for Synthetics suites.
+      description: Search for test suites.
       operationId: SearchSuites
       parameters:
       - description: The search query.
@@ -102105,7 +102012,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - synthetics_read
-      summary: Search Synthetics suites
+      summary: Search test suites
       tags:
       - Synthetics
       x-permission:
@@ -102142,7 +102049,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - synthetics_read
-      summary: 'Synthetics: Get a suite'
+      summary: Get a suite
       tags:
       - Synthetics
       x-permission:
@@ -102185,7 +102092,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - synthetics_write
-      summary: 'Synthetics: Edit a test suite'
+      summary: Edit a test suite
       tags:
       - Synthetics
       x-permission:
@@ -102227,7 +102134,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - synthetics_write
-      summary: 'Synthetics: Bulk delete tests'
+      summary: Bulk delete tests
       tags:
       - Synthetics
       x-permission:
@@ -102263,7 +102170,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - synthetics_write
-      summary: 'Synthetics: Create a Network Path test'
+      summary: Create a Network Path test
       tags:
       - Synthetics
       x-permission:
@@ -102307,7 +102214,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - synthetics_read
-      summary: 'Synthetics: Get a Network Path test'
+      summary: Get a Network Path test
       tags:
       - Synthetics
       x-permission:
@@ -102356,7 +102263,7 @@ paths:
         appKeyAuth: []
       - AuthZ:
         - synthetics_write
-      summary: 'Synthetics: Edit a Network Path test'
+      summary: Edit a Network Path test
       tags:
       - Synthetics
       x-permission:
@@ -106381,10 +106288,6 @@ tags:
     and todos. See the [Incident Management page](https://docs.datadoghq.com/service_management/incident_management/)
     for more information.
   name: Incidents
-- description: 'The Integrations API is used to list available integrations
-
-    and retrieve information about their installation status.'
-  name: Integrations
 - description: Manage your Jira Integration. Atlassian Jira is a project management
     and issue tracking tool for teams to coordinate work and handle tasks efficiently.
   name: Jira Integration

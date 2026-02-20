@@ -1,4 +1,4 @@
-// Synthetics: Get a suite returns "OK" response
+// Get a suite returns "OK" response
 
 package main
 

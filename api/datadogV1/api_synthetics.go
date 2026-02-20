@@ -1455,9 +1455,9 @@ func (a *SyntheticsApi) GetGlobalVariable(ctx _context.Context, variableId strin
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetMobileTest Get a Mobile test.
+// GetMobileTest Get a mobile test.
 // Get the detailed configuration associated with
-// a Synthetic Mobile test.
+// a Synthetic mobile test.
 func (a *SyntheticsApi) GetMobileTest(ctx _context.Context, publicId string) (SyntheticsMobileTest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2721,8 +2721,8 @@ func (a *SyntheticsApi) UpdateBrowserTest(ctx _context.Context, publicId string,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateMobileTest Edit a Mobile test.
-// Edit the configuration of a Synthetic Mobile test.
+// UpdateMobileTest Edit a mobile test.
+// Edit the configuration of a Synthetic mobile test.
 func (a *SyntheticsApi) UpdateMobileTest(ctx _context.Context, publicId string, body SyntheticsMobileTest) (SyntheticsMobileTest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut

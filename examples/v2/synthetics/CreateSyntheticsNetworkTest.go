@@ -1,4 +1,4 @@
-// Synthetics: Create a Network Path test returns "OK" response
+// Create a Network Path test returns "OK" response
 
 package main
 

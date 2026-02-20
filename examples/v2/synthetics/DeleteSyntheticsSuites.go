@@ -1,4 +1,4 @@
-// Synthetics: Bulk delete suites returns "OK" response
+// Bulk delete suites returns "OK" response
 
 package main
 

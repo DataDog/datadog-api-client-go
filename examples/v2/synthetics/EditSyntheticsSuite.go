@@ -1,4 +1,4 @@
-// Synthetics: Edit a test suite returns "OK" response
+// Edit a test suite returns "OK" response
 
 package main
 

@@ -1,4 +1,4 @@
-// Synthetics: Create a test suite returns "OK" response
+// Create a test suite returns "OK" response
 
 package main
 

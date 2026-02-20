@@ -1,4 +1,4 @@
-// Synthetics: Bulk delete tests returns "OK" response
+// Bulk delete tests returns "OK" response
 
 package main
 

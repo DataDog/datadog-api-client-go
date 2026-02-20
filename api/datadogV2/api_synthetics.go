@@ -15,7 +15,7 @@ import (
 // SyntheticsApi service type
 type SyntheticsApi datadog.Service
 
-// CreateSyntheticsNetworkTest Synthetics: Create a Network Path test.
+// CreateSyntheticsNetworkTest Create a Network Path test.
 
 func (a *SyntheticsApi) CreateSyntheticsNetworkTest(ctx _context.Context, body SyntheticsNetworkTestEditRequest) (SyntheticsNetworkTestResponse, *_nethttp.Response, error) {
 	var (
@@ -95,7 +95,7 @@ func (a *SyntheticsApi) CreateSyntheticsNetworkTest(ctx _context.Context, body S
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateSyntheticsSuite Synthetics: Create a test suite.
+// CreateSyntheticsSuite Create a test suite.
 
 func (a *SyntheticsApi) CreateSyntheticsSuite(ctx _context.Context, body SuiteCreateEditRequest) (SyntheticsSuiteResponse, *_nethttp.Response, error) {
 	var (
@@ -175,7 +175,7 @@ func (a *SyntheticsApi) CreateSyntheticsSuite(ctx _context.Context, body SuiteCr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// DeleteSyntheticsSuites Synthetics: Bulk delete suites.
+// DeleteSyntheticsSuites Bulk delete suites.
 
 func (a *SyntheticsApi) DeleteSyntheticsSuites(ctx _context.Context, body DeletedSuitesRequestDeleteRequest) (DeletedSuitesResponse, *_nethttp.Response, error) {
 	var (
@@ -255,7 +255,7 @@ func (a *SyntheticsApi) DeleteSyntheticsSuites(ctx _context.Context, body Delete
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// DeleteSyntheticsTests Synthetics: Bulk delete tests.
+// DeleteSyntheticsTests Bulk delete tests.
 
 func (a *SyntheticsApi) DeleteSyntheticsTests(ctx _context.Context, body DeletedTestsRequestDeleteRequest) (DeletedTestsResponse, *_nethttp.Response, error) {
 	var (
@@ -335,7 +335,7 @@ func (a *SyntheticsApi) DeleteSyntheticsTests(ctx _context.Context, body Deleted
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// EditSyntheticsSuite Synthetics: Edit a test suite.
+// EditSyntheticsSuite Edit a test suite.
 
 func (a *SyntheticsApi) EditSyntheticsSuite(ctx _context.Context, publicId string, body SuiteCreateEditRequest) (SyntheticsSuiteResponse, *_nethttp.Response, error) {
 	var (
@@ -493,7 +493,7 @@ func (a *SyntheticsApi) GetOnDemandConcurrencyCap(ctx _context.Context) (OnDeman
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetSyntheticsNetworkTest Synthetics: Get a Network Path test.
+// GetSyntheticsNetworkTest Get a Network Path test.
 
 func (a *SyntheticsApi) GetSyntheticsNetworkTest(ctx _context.Context, publicId string) (SyntheticsNetworkTestResponse, *_nethttp.Response, error) {
 	var (
@@ -571,7 +571,7 @@ func (a *SyntheticsApi) GetSyntheticsNetworkTest(ctx _context.Context, publicId 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetSyntheticsSuite Synthetics: Get a suite.
+// GetSyntheticsSuite Get a suite.
 
 func (a *SyntheticsApi) GetSyntheticsSuite(ctx _context.Context, publicId string) (SyntheticsSuiteResponse, *_nethttp.Response, error) {
 	var (
@@ -782,8 +782,8 @@ func (r *SearchSuitesOptionalParameters) WithCount(count int64) *SearchSuitesOpt
 	return r
 }
 
-// SearchSuites Search Synthetics suites.
-// Search for Synthetics suites.
+// SearchSuites Search test suites.
+// Search for test suites.
 func (a *SyntheticsApi) SearchSuites(ctx _context.Context, o ...SearchSuitesOptionalParameters) (SyntheticsSuiteSearchResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -962,7 +962,7 @@ func (a *SyntheticsApi) SetOnDemandConcurrencyCap(ctx _context.Context, body OnD
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateSyntheticsNetworkTest Synthetics: Edit a Network Path test.
+// UpdateSyntheticsNetworkTest Edit a Network Path test.
 
 func (a *SyntheticsApi) UpdateSyntheticsNetworkTest(ctx _context.Context, publicId string, body SyntheticsNetworkTestEditRequest) (SyntheticsNetworkTestResponse, *_nethttp.Response, error) {
 	var (

@@ -1,4 +1,4 @@
-// List Integrations returns "Successful Response." response
+// Search Synthetics suites returns "OK" response
 
 package main
 
@@ -16,14 +16,14 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewIntegrationsApi(apiClient)
-	resp, r, err := api.ListIntegrations(ctx)
+	api := datadogV2.NewSyntheticsApi(apiClient)
+	resp, r, err := api.SearchSuites(ctx, *datadogV2.NewSearchSuitesOptionalParameters())
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `IntegrationsApi.ListIntegrations`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.SearchSuites`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `IntegrationsApi.ListIntegrations`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `SyntheticsApi.SearchSuites`:\n%s\n", responseContent)
 }

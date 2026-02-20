@@ -1,4 +1,4 @@
-// Get a mobile test returns "OK" response
+// Get a Mobile test returns "OK" response
 
 package main
 
@@ -13,11 +13,14 @@ import (
 )
 
 func main() {
+	// there is a valid "synthetics_mobile_test" in the system
+	SyntheticsMobileTestPublicID := os.Getenv("SYNTHETICS_MOBILE_TEST_PUBLIC_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewSyntheticsApi(apiClient)
-	resp, r, err := api.GetMobileTest(ctx, "public_id")
+	resp, r, err := api.GetMobileTest(ctx, SyntheticsMobileTestPublicID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetMobileTest`: %v\n", err)

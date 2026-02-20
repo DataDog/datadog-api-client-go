@@ -1,4 +1,4 @@
-// Synthetics: Get a Network Path test returns "OK" response
+// Get a Network Path test returns "OK" response
 
 package main
 
@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSyntheticsApi(apiClient)
-	resp, r, err := api.GetSyntheticsNetworkTest(ctx, "amg-96x-tps")
+	resp, r, err := api.GetSyntheticsNetworkTest(ctx, "c7a-uwa-wn2")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetSyntheticsNetworkTest`: %v\n", err)
