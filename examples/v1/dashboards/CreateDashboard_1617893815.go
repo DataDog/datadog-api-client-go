@@ -49,16 +49,17 @@ func main() {
 												Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_AVG,
 												Metric:      datadog.PtrString("@duration"),
 											},
-											GroupBy: []datadogV1.FormulaAndFunctionEventQueryGroupBy{
-												{
-													Facet: "service",
-													Limit: datadog.PtrInt64(1000),
-													Sort: &datadogV1.FormulaAndFunctionEventQueryGroupBySort{
-														Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
-														Order:       datadogV1.QUERYSORTORDER_DESC.Ptr(),
+											GroupBy: &datadogV1.FormulaAndFunctionEventQueryGroupByConfig{
+												FormulaAndFunctionEventQueryGroupByList: &[]datadogV1.FormulaAndFunctionEventQueryGroupBy{
+													{
+														Facet: "service",
+														Limit: datadog.PtrInt64(1000),
+														Sort: &datadogV1.FormulaAndFunctionEventQueryGroupBySort{
+															Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+															Order:       datadogV1.QUERYSORTORDER_DESC.Ptr(),
+														},
 													},
-												},
-											},
+												}},
 											Storage: datadog.PtrString("hot"),
 										}},
 								},
