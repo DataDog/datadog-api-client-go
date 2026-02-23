@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DORAFailuresListResponse Response for the list failures endpoint.
+// DORAFailuresListResponse Response for the list incidents endpoint.
 type DORAFailuresListResponse struct {
 	// The list of DORA incident events.
 	Data []DORAIncidentObject `json:"data,omitempty"`

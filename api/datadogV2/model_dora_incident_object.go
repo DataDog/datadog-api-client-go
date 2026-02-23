@@ -14,7 +14,7 @@ type DORAIncidentObject struct {
 	Attributes *DORAIncidentObjectAttributes `json:"attributes,omitempty"`
 	// The ID of the incident event.
 	Id *string `json:"id,omitempty"`
-	// JSON:API type for DORA failure events.
+	// JSON:API type for DORA incident events.
 	Type *DORAFailureType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

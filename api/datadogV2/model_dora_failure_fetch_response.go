@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DORAFailureFetchResponse Response for fetching a single failure event.
+// DORAFailureFetchResponse Response for fetching a single incident event.
 type DORAFailureFetchResponse struct {
 	// A DORA incident event.
 	Data *DORAIncidentObject `json:"data,omitempty"`

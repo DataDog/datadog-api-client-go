@@ -1,4 +1,4 @@
-// Send a failure event returns "OK - but delayed due to incident" response
+// Send an incident event returns "OK" response
 
 package main
 

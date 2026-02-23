@@ -1,4 +1,4 @@
-// Get a list of incident events returns "OK" response
+// Get a list of failure events returns "OK" response
 
 package main
 
@@ -17,11 +17,9 @@ func main() {
 	body := datadogV2.DORAListFailuresRequest{
 		Data: datadogV2.DORAListFailuresRequestData{
 			Attributes: datadogV2.DORAListFailuresRequestAttributes{
-				From:  datadog.PtrTime(time.Date(2025, 1, 1, 0, 0, 0, 0, time.UTC)),
-				Limit: datadog.PtrInt32(100),
-				Query: datadog.PtrString("severity:(SEV-1 OR SEV-2) env:production team:backend"),
-				Sort:  datadog.PtrString("-started_at"),
-				To:    datadog.PtrTime(time.Date(2025, 1, 31, 23, 59, 59, 0, time.UTC)),
+				From:  datadog.PtrTime(time.Date(2025, 3, 23, 0, 0, 0, 0, time.UTC)),
+				Limit: datadog.PtrInt32(1),
+				To:    datadog.PtrTime(time.Date(2025, 3, 24, 0, 0, 0, 0, time.UTC)),
 			},
 			Type: datadogV2.DORALISTFAILURESREQUESTDATATYPE_DORA_FAILURES_LIST_REQUEST.Ptr(),
 		},

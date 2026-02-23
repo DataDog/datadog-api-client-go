@@ -12,7 +12,7 @@ import (
 
 // DORAListFailuresRequestData The JSON:API data.
 type DORAListFailuresRequestData struct {
-	// Attributes to get a list of failures.
+	// Attributes to get a list of incidents.
 	Attributes DORAListFailuresRequestAttributes `json:"attributes"`
 	// The definition of `DORAListFailuresRequestDataType` object.
 	Type *DORAListFailuresRequestDataType `json:"type,omitempty"`

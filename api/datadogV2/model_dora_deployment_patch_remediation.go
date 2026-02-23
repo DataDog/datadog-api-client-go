@@ -5,17 +5,15 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DORADeploymentPatchRemediation Remediation details for the deployment.
+// DORADeploymentPatchRemediation Remediation details for the deployment. Optional, but required to calculate failed deployment recovery time.
 type DORADeploymentPatchRemediation struct {
-	// The ID of the remediation action.
-	Id string `json:"id"`
-	// The type of remediation action taken.
-	Type DORADeploymentPatchRemediationType `json:"type"`
+	// The ID of the remediation deployment. Required when the failed deployment must be linked to a remediation deployment.
+	Id *string `json:"id,omitempty"`
+	// The type of remediation action taken. Required when the failed deployment must be linked to a remediation deployment.
+	Type *DORADeploymentPatchRemediationType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -25,10 +23,8 @@ type DORADeploymentPatchRemediation struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDORADeploymentPatchRemediation(id string, typeVar DORADeploymentPatchRemediationType) *DORADeploymentPatchRemediation {
+func NewDORADeploymentPatchRemediation() *DORADeploymentPatchRemediation {
 	this := DORADeploymentPatchRemediation{}
-	this.Id = id
-	this.Type = typeVar
 	return &this
 }
 
@@ -40,50 +36,60 @@ func NewDORADeploymentPatchRemediationWithDefaults() *DORADeploymentPatchRemedia
 	return &this
 }
 
-// GetId returns the Id field value.
+// GetId returns the Id field value if set, zero value otherwise.
 func (o *DORADeploymentPatchRemediation) GetId() string {
-	if o == nil {
+	if o == nil || o.Id == nil {
 		var ret string
 		return ret
 	}
-	return o.Id
+	return *o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DORADeploymentPatchRemediation) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Id == nil {
 		return nil, false
 	}
-	return &o.Id, true
+	return o.Id, true
 }
 
-// SetId sets field value.
+// HasId returns a boolean if a field has been set.
+func (o *DORADeploymentPatchRemediation) HasId() bool {
+	return o != nil && o.Id != nil
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
 func (o *DORADeploymentPatchRemediation) SetId(v string) {
-	o.Id = v
+	o.Id = &v
 }
 
-// GetType returns the Type field value.
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *DORADeploymentPatchRemediation) GetType() DORADeploymentPatchRemediationType {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		var ret DORADeploymentPatchRemediationType
 		return ret
 	}
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *DORADeploymentPatchRemediation) GetTypeOk() (*DORADeploymentPatchRemediationType, bool) {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value.
+// HasType returns a boolean if a field has been set.
+func (o *DORADeploymentPatchRemediation) HasType() bool {
+	return o != nil && o.Type != nil
+}
+
+// SetType gets a reference to the given DORADeploymentPatchRemediationType and assigns it to the Type field.
 func (o *DORADeploymentPatchRemediation) SetType(v DORADeploymentPatchRemediationType) {
-	o.Type = v
+	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -92,8 +98,12 @@ func (o DORADeploymentPatchRemediation) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["id"] = o.Id
-	toSerialize["type"] = o.Type
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -104,17 +114,11 @@ func (o DORADeploymentPatchRemediation) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DORADeploymentPatchRemediation) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *string                             `json:"id"`
-		Type *DORADeploymentPatchRemediationType `json:"type"`
+		Id   *string                             `json:"id,omitempty"`
+		Type *DORADeploymentPatchRemediationType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.Id == nil {
-		return fmt.Errorf("required field id missing")
-	}
-	if all.Type == nil {
-		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -124,11 +128,11 @@ func (o *DORADeploymentPatchRemediation) UnmarshalJSON(bytes []byte) (err error)
 	}
 
 	hasInvalidField := false
-	o.Id = *all.Id
-	if !all.Type.IsValid() {
+	o.Id = all.Id
+	if all.Type != nil && !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Type = *all.Type
+		o.Type = all.Type
 	}
 
 	if len(additionalProperties) > 0 {

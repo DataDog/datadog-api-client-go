@@ -1,4 +1,4 @@
-// Delete an incident event returns "Accepted" response
+// Delete a failure event returns "Accepted" response
 
 package main
 
@@ -16,7 +16,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewDORAMetricsApi(apiClient)
-	r, err := api.DeleteDORAFailure(ctx, "failure_id")
+	r, err := api.DeleteDORAFailure(ctx, "NO_VALUE")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DORAMetricsApi.DeleteDORAFailure`: %v\n", err)

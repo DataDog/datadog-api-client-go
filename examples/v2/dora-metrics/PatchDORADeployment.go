@@ -17,8 +17,8 @@ func main() {
 			Attributes: datadogV2.DORADeploymentPatchRequestAttributes{
 				ChangeFailure: datadog.PtrBool(true),
 				Remediation: &datadogV2.DORADeploymentPatchRemediation{
-					Id:   "eG42zNIkVjM",
-					Type: datadogV2.DORADEPLOYMENTPATCHREMEDIATIONTYPE_ROLLBACK,
+					Id:   datadog.PtrString("eG42zNIkVjM"),
+					Type: datadogV2.DORADEPLOYMENTPATCHREMEDIATIONTYPE_ROLLBACK.Ptr(),
 				},
 			},
 			Id:   "z_RwVLi7v4Y",

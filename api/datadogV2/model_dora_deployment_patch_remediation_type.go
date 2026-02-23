@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DORADeploymentPatchRemediationType The type of remediation action taken.
+// DORADeploymentPatchRemediationType The type of remediation action taken. Required when the failed deployment must be linked to a remediation deployment.
 type DORADeploymentPatchRemediationType string
 
 // List of DORADeploymentPatchRemediationType.

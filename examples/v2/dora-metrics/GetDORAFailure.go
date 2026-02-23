@@ -1,4 +1,4 @@
-// Get a failure event returns "OK" response
+// Get an incident event returns "OK" response
 
 package main
 

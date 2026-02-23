@@ -12,7 +12,7 @@ import (
 type DORADeploymentPatchRequestAttributes struct {
 	// Indicates whether the deployment resulted in a change failure.
 	ChangeFailure *bool `json:"change_failure,omitempty"`
-	// Remediation details for the deployment.
+	// Remediation details for the deployment. Optional, but required to calculate failed deployment recovery time.
 	Remediation *DORADeploymentPatchRemediation `json:"remediation,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
