@@ -14,6 +14,8 @@ import (
 //
 // **Supported pipeline types:** logs
 type ObservabilityPipelineCloudPremDestination struct {
+	// Name of the environment variable or secret that holds the CloudPrem endpoint URL.
+	EndpointUrlKey *string `json:"endpoint_url_key,omitempty"`
 	// The unique identifier for this component.
 	Id string `json:"id"`
 	// A list of component IDs whose output is used as the `input` for this component.
@@ -45,6 +47,34 @@ func NewObservabilityPipelineCloudPremDestinationWithDefaults() *ObservabilityPi
 	var typeVar ObservabilityPipelineCloudPremDestinationType = OBSERVABILITYPIPELINECLOUDPREMDESTINATIONTYPE_CLOUD_PREM
 	this.Type = typeVar
 	return &this
+}
+
+// GetEndpointUrlKey returns the EndpointUrlKey field value if set, zero value otherwise.
+func (o *ObservabilityPipelineCloudPremDestination) GetEndpointUrlKey() string {
+	if o == nil || o.EndpointUrlKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.EndpointUrlKey
+}
+
+// GetEndpointUrlKeyOk returns a tuple with the EndpointUrlKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineCloudPremDestination) GetEndpointUrlKeyOk() (*string, bool) {
+	if o == nil || o.EndpointUrlKey == nil {
+		return nil, false
+	}
+	return o.EndpointUrlKey, true
+}
+
+// HasEndpointUrlKey returns a boolean if a field has been set.
+func (o *ObservabilityPipelineCloudPremDestination) HasEndpointUrlKey() bool {
+	return o != nil && o.EndpointUrlKey != nil
+}
+
+// SetEndpointUrlKey gets a reference to the given string and assigns it to the EndpointUrlKey field.
+func (o *ObservabilityPipelineCloudPremDestination) SetEndpointUrlKey(v string) {
+	o.EndpointUrlKey = &v
 }
 
 // GetId returns the Id field value.
@@ -122,6 +152,9 @@ func (o ObservabilityPipelineCloudPremDestination) MarshalJSON() ([]byte, error)
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.EndpointUrlKey != nil {
+		toSerialize["endpoint_url_key"] = o.EndpointUrlKey
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["inputs"] = o.Inputs
 	toSerialize["type"] = o.Type
@@ -135,9 +168,10 @@ func (o ObservabilityPipelineCloudPremDestination) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineCloudPremDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id     *string                                        `json:"id"`
-		Inputs *[]string                                      `json:"inputs"`
-		Type   *ObservabilityPipelineCloudPremDestinationType `json:"type"`
+		EndpointUrlKey *string                                        `json:"endpoint_url_key,omitempty"`
+		Id             *string                                        `json:"id"`
+		Inputs         *[]string                                      `json:"inputs"`
+		Type           *ObservabilityPipelineCloudPremDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -153,12 +187,13 @@ func (o *ObservabilityPipelineCloudPremDestination) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"endpoint_url_key", "id", "inputs", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.EndpointUrlKey = all.EndpointUrlKey
 	o.Id = *all.Id
 	o.Inputs = *all.Inputs
 	if !all.Type.IsValid() {

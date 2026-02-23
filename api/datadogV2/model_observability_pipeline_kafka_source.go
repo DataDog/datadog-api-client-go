@@ -14,6 +14,8 @@ import (
 //
 // **Supported pipeline types:** logs
 type ObservabilityPipelineKafkaSource struct {
+	// Name of the environment variable or secret that holds the Kafka bootstrap servers list.
+	BootstrapServersKey *string `json:"bootstrap_servers_key,omitempty"`
 	// Consumer group ID used by the Kafka client.
 	GroupId string `json:"group_id"`
 	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
@@ -54,6 +56,34 @@ func NewObservabilityPipelineKafkaSourceWithDefaults() *ObservabilityPipelineKaf
 	var typeVar ObservabilityPipelineKafkaSourceType = OBSERVABILITYPIPELINEKAFKASOURCETYPE_KAFKA
 	this.Type = typeVar
 	return &this
+}
+
+// GetBootstrapServersKey returns the BootstrapServersKey field value if set, zero value otherwise.
+func (o *ObservabilityPipelineKafkaSource) GetBootstrapServersKey() string {
+	if o == nil || o.BootstrapServersKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.BootstrapServersKey
+}
+
+// GetBootstrapServersKeyOk returns a tuple with the BootstrapServersKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineKafkaSource) GetBootstrapServersKeyOk() (*string, bool) {
+	if o == nil || o.BootstrapServersKey == nil {
+		return nil, false
+	}
+	return o.BootstrapServersKey, true
+}
+
+// HasBootstrapServersKey returns a boolean if a field has been set.
+func (o *ObservabilityPipelineKafkaSource) HasBootstrapServersKey() bool {
+	return o != nil && o.BootstrapServersKey != nil
+}
+
+// SetBootstrapServersKey gets a reference to the given string and assigns it to the BootstrapServersKey field.
+func (o *ObservabilityPipelineKafkaSource) SetBootstrapServersKey(v string) {
+	o.BootstrapServersKey = &v
 }
 
 // GetGroupId returns the GroupId field value.
@@ -238,6 +268,9 @@ func (o ObservabilityPipelineKafkaSource) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.BootstrapServersKey != nil {
+		toSerialize["bootstrap_servers_key"] = o.BootstrapServersKey
+	}
 	toSerialize["group_id"] = o.GroupId
 	toSerialize["id"] = o.Id
 	if o.LibrdkafkaOptions != nil {
@@ -261,13 +294,14 @@ func (o ObservabilityPipelineKafkaSource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineKafkaSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		GroupId           *string                                      `json:"group_id"`
-		Id                *string                                      `json:"id"`
-		LibrdkafkaOptions []ObservabilityPipelineKafkaLibrdkafkaOption `json:"librdkafka_options,omitempty"`
-		Sasl              *ObservabilityPipelineKafkaSasl              `json:"sasl,omitempty"`
-		Tls               *ObservabilityPipelineTls                    `json:"tls,omitempty"`
-		Topics            *[]string                                    `json:"topics"`
-		Type              *ObservabilityPipelineKafkaSourceType        `json:"type"`
+		BootstrapServersKey *string                                      `json:"bootstrap_servers_key,omitempty"`
+		GroupId             *string                                      `json:"group_id"`
+		Id                  *string                                      `json:"id"`
+		LibrdkafkaOptions   []ObservabilityPipelineKafkaLibrdkafkaOption `json:"librdkafka_options,omitempty"`
+		Sasl                *ObservabilityPipelineKafkaSasl              `json:"sasl,omitempty"`
+		Tls                 *ObservabilityPipelineTls                    `json:"tls,omitempty"`
+		Topics              *[]string                                    `json:"topics"`
+		Type                *ObservabilityPipelineKafkaSourceType        `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -286,12 +320,13 @@ func (o *ObservabilityPipelineKafkaSource) UnmarshalJSON(bytes []byte) (err erro
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"group_id", "id", "librdkafka_options", "sasl", "tls", "topics", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"bootstrap_servers_key", "group_id", "id", "librdkafka_options", "sasl", "tls", "topics", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.BootstrapServersKey = all.BootstrapServersKey
 	o.GroupId = *all.GroupId
 	o.Id = *all.Id
 	o.LibrdkafkaOptions = all.LibrdkafkaOptions

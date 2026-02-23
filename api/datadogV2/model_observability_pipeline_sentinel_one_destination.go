@@ -22,6 +22,8 @@ type ObservabilityPipelineSentinelOneDestination struct {
 	Inputs []string `json:"inputs"`
 	// The SentinelOne region to send logs to.
 	Region ObservabilityPipelineSentinelOneDestinationRegion `json:"region"`
+	// Name of the environment variable or secret that holds the SentinelOne API token.
+	TokenKey *string `json:"token_key,omitempty"`
 	// The destination type. The value should always be `sentinel_one`.
 	Type ObservabilityPipelineSentinelOneDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -149,6 +151,34 @@ func (o *ObservabilityPipelineSentinelOneDestination) SetRegion(v ObservabilityP
 	o.Region = v
 }
 
+// GetTokenKey returns the TokenKey field value if set, zero value otherwise.
+func (o *ObservabilityPipelineSentinelOneDestination) GetTokenKey() string {
+	if o == nil || o.TokenKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.TokenKey
+}
+
+// GetTokenKeyOk returns a tuple with the TokenKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineSentinelOneDestination) GetTokenKeyOk() (*string, bool) {
+	if o == nil || o.TokenKey == nil {
+		return nil, false
+	}
+	return o.TokenKey, true
+}
+
+// HasTokenKey returns a boolean if a field has been set.
+func (o *ObservabilityPipelineSentinelOneDestination) HasTokenKey() bool {
+	return o != nil && o.TokenKey != nil
+}
+
+// SetTokenKey gets a reference to the given string and assigns it to the TokenKey field.
+func (o *ObservabilityPipelineSentinelOneDestination) SetTokenKey(v string) {
+	o.TokenKey = &v
+}
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineSentinelOneDestination) GetType() ObservabilityPipelineSentinelOneDestinationType {
 	if o == nil {
@@ -184,6 +214,9 @@ func (o ObservabilityPipelineSentinelOneDestination) MarshalJSON() ([]byte, erro
 	toSerialize["id"] = o.Id
 	toSerialize["inputs"] = o.Inputs
 	toSerialize["region"] = o.Region
+	if o.TokenKey != nil {
+		toSerialize["token_key"] = o.TokenKey
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -195,11 +228,12 @@ func (o ObservabilityPipelineSentinelOneDestination) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSentinelOneDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Buffer *ObservabilityPipelineBufferOptions                `json:"buffer,omitempty"`
-		Id     *string                                            `json:"id"`
-		Inputs *[]string                                          `json:"inputs"`
-		Region *ObservabilityPipelineSentinelOneDestinationRegion `json:"region"`
-		Type   *ObservabilityPipelineSentinelOneDestinationType   `json:"type"`
+		Buffer   *ObservabilityPipelineBufferOptions                `json:"buffer,omitempty"`
+		Id       *string                                            `json:"id"`
+		Inputs   *[]string                                          `json:"inputs"`
+		Region   *ObservabilityPipelineSentinelOneDestinationRegion `json:"region"`
+		TokenKey *string                                            `json:"token_key,omitempty"`
+		Type     *ObservabilityPipelineSentinelOneDestinationType   `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -218,7 +252,7 @@ func (o *ObservabilityPipelineSentinelOneDestination) UnmarshalJSON(bytes []byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"buffer", "id", "inputs", "region", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"buffer", "id", "inputs", "region", "token_key", "type"})
 	} else {
 		return err
 	}
@@ -232,6 +266,7 @@ func (o *ObservabilityPipelineSentinelOneDestination) UnmarshalJSON(bytes []byte
 	} else {
 		o.Region = *all.Region
 	}
+	o.TokenKey = all.TokenKey
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {

@@ -14,13 +14,13 @@ import (
 //
 // **Supported pipeline types:** logs
 type ObservabilityPipelineGooglePubSubSource struct {
-	// GCP credentials used to authenticate with Google Cloud Storage.
+	// Google Cloud credentials used to authenticate with Google Cloud Storage.
 	Auth *ObservabilityPipelineGcpAuth `json:"auth,omitempty"`
 	// The decoding format used to interpret incoming logs.
 	Decoding ObservabilityPipelineDecoding `json:"decoding"`
 	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
-	// The GCP project ID that owns the Pub/Sub subscription.
+	// The Google Cloud project ID that owns the Pub/Sub subscription.
 	Project string `json:"project"`
 	// The Pub/Sub subscription name from which messages are consumed.
 	Subscription string `json:"subscription"`

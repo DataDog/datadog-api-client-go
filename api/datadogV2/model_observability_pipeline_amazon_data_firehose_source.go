@@ -14,6 +14,8 @@ import (
 //
 // **Supported pipeline types:** logs
 type ObservabilityPipelineAmazonDataFirehoseSource struct {
+	// Name of the environment variable or secret that holds the Firehose delivery stream address.
+	AddressKey *string `json:"address_key,omitempty"`
 	// AWS authentication credentials used for accessing AWS services such as S3.
 	// If omitted, the system’s default credentials are used (for example, the IAM role and environment variables).
 	Auth *ObservabilityPipelineAwsAuth `json:"auth,omitempty"`
@@ -47,6 +49,34 @@ func NewObservabilityPipelineAmazonDataFirehoseSourceWithDefaults() *Observabili
 	var typeVar ObservabilityPipelineAmazonDataFirehoseSourceType = OBSERVABILITYPIPELINEAMAZONDATAFIREHOSESOURCETYPE_AMAZON_DATA_FIREHOSE
 	this.Type = typeVar
 	return &this
+}
+
+// GetAddressKey returns the AddressKey field value if set, zero value otherwise.
+func (o *ObservabilityPipelineAmazonDataFirehoseSource) GetAddressKey() string {
+	if o == nil || o.AddressKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.AddressKey
+}
+
+// GetAddressKeyOk returns a tuple with the AddressKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineAmazonDataFirehoseSource) GetAddressKeyOk() (*string, bool) {
+	if o == nil || o.AddressKey == nil {
+		return nil, false
+	}
+	return o.AddressKey, true
+}
+
+// HasAddressKey returns a boolean if a field has been set.
+func (o *ObservabilityPipelineAmazonDataFirehoseSource) HasAddressKey() bool {
+	return o != nil && o.AddressKey != nil
+}
+
+// SetAddressKey gets a reference to the given string and assigns it to the AddressKey field.
+func (o *ObservabilityPipelineAmazonDataFirehoseSource) SetAddressKey(v string) {
+	o.AddressKey = &v
 }
 
 // GetAuth returns the Auth field value if set, zero value otherwise.
@@ -157,6 +187,9 @@ func (o ObservabilityPipelineAmazonDataFirehoseSource) MarshalJSON() ([]byte, er
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.AddressKey != nil {
+		toSerialize["address_key"] = o.AddressKey
+	}
 	if o.Auth != nil {
 		toSerialize["auth"] = o.Auth
 	}
@@ -175,10 +208,11 @@ func (o ObservabilityPipelineAmazonDataFirehoseSource) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineAmazonDataFirehoseSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Auth *ObservabilityPipelineAwsAuth                      `json:"auth,omitempty"`
-		Id   *string                                            `json:"id"`
-		Tls  *ObservabilityPipelineTls                          `json:"tls,omitempty"`
-		Type *ObservabilityPipelineAmazonDataFirehoseSourceType `json:"type"`
+		AddressKey *string                                            `json:"address_key,omitempty"`
+		Auth       *ObservabilityPipelineAwsAuth                      `json:"auth,omitempty"`
+		Id         *string                                            `json:"id"`
+		Tls        *ObservabilityPipelineTls                          `json:"tls,omitempty"`
+		Type       *ObservabilityPipelineAmazonDataFirehoseSourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -191,12 +225,13 @@ func (o *ObservabilityPipelineAmazonDataFirehoseSource) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "id", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"address_key", "auth", "id", "tls", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.AddressKey = all.AddressKey
 	if all.Auth != nil && all.Auth.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

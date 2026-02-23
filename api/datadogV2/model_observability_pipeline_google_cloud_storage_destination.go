@@ -11,13 +11,13 @@ import (
 )
 
 // ObservabilityPipelineGoogleCloudStorageDestination The `google_cloud_storage` destination stores logs in a Google Cloud Storage (GCS) bucket.
-// It requires a bucket name, GCP authentication, and metadata fields.
+// It requires a bucket name, Google Cloud authentication, and metadata fields.
 //
 // **Supported pipeline types:** logs
 type ObservabilityPipelineGoogleCloudStorageDestination struct {
 	// Access control list setting for objects written to the bucket.
 	Acl *ObservabilityPipelineGoogleCloudStorageDestinationAcl `json:"acl,omitempty"`
-	// GCP credentials used to authenticate with Google Cloud Storage.
+	// Google Cloud credentials used to authenticate with Google Cloud Storage.
 	Auth *ObservabilityPipelineGcpAuth `json:"auth,omitempty"`
 	// Name of the GCS bucket.
 	Bucket string `json:"bucket"`

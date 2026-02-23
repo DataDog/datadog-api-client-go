@@ -26,6 +26,8 @@ type ObservabilityPipelineAmazonS3Source struct {
 	Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
 	// The source type. Always `amazon_s3`.
 	Type ObservabilityPipelineAmazonS3SourceType `json:"type"`
+	// Name of the environment variable or secret that holds the S3 bucket URL.
+	UrlKey *string `json:"url_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -178,6 +180,34 @@ func (o *ObservabilityPipelineAmazonS3Source) SetType(v ObservabilityPipelineAma
 	o.Type = v
 }
 
+// GetUrlKey returns the UrlKey field value if set, zero value otherwise.
+func (o *ObservabilityPipelineAmazonS3Source) GetUrlKey() string {
+	if o == nil || o.UrlKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.UrlKey
+}
+
+// GetUrlKeyOk returns a tuple with the UrlKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineAmazonS3Source) GetUrlKeyOk() (*string, bool) {
+	if o == nil || o.UrlKey == nil {
+		return nil, false
+	}
+	return o.UrlKey, true
+}
+
+// HasUrlKey returns a boolean if a field has been set.
+func (o *ObservabilityPipelineAmazonS3Source) HasUrlKey() bool {
+	return o != nil && o.UrlKey != nil
+}
+
+// SetUrlKey gets a reference to the given string and assigns it to the UrlKey field.
+func (o *ObservabilityPipelineAmazonS3Source) SetUrlKey(v string) {
+	o.UrlKey = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineAmazonS3Source) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -193,6 +223,9 @@ func (o ObservabilityPipelineAmazonS3Source) MarshalJSON() ([]byte, error) {
 		toSerialize["tls"] = o.Tls
 	}
 	toSerialize["type"] = o.Type
+	if o.UrlKey != nil {
+		toSerialize["url_key"] = o.UrlKey
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -208,6 +241,7 @@ func (o *ObservabilityPipelineAmazonS3Source) UnmarshalJSON(bytes []byte) (err e
 		Region *string                                  `json:"region"`
 		Tls    *ObservabilityPipelineTls                `json:"tls,omitempty"`
 		Type   *ObservabilityPipelineAmazonS3SourceType `json:"type"`
+		UrlKey *string                                  `json:"url_key,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -223,7 +257,7 @@ func (o *ObservabilityPipelineAmazonS3Source) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "id", "region", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "id", "region", "tls", "type", "url_key"})
 	} else {
 		return err
 	}
@@ -244,6 +278,7 @@ func (o *ObservabilityPipelineAmazonS3Source) UnmarshalJSON(bytes []byte) (err e
 	} else {
 		o.Type = *all.Type
 	}
+	o.UrlKey = all.UrlKey
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

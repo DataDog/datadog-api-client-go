@@ -14,6 +14,8 @@ import (
 //
 // **Supported pipeline types:** logs
 type ObservabilityPipelineKafkaDestination struct {
+	// Name of the environment variable or secret that holds the Kafka bootstrap servers list.
+	BootstrapServersKey *string `json:"bootstrap_servers_key,omitempty"`
 	// Compression codec for Kafka messages.
 	Compression *ObservabilityPipelineKafkaDestinationCompression `json:"compression,omitempty"`
 	// Encoding format for log events.
@@ -71,6 +73,34 @@ func NewObservabilityPipelineKafkaDestinationWithDefaults() *ObservabilityPipeli
 	var typeVar ObservabilityPipelineKafkaDestinationType = OBSERVABILITYPIPELINEKAFKADESTINATIONTYPE_KAFKA
 	this.Type = typeVar
 	return &this
+}
+
+// GetBootstrapServersKey returns the BootstrapServersKey field value if set, zero value otherwise.
+func (o *ObservabilityPipelineKafkaDestination) GetBootstrapServersKey() string {
+	if o == nil || o.BootstrapServersKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.BootstrapServersKey
+}
+
+// GetBootstrapServersKeyOk returns a tuple with the BootstrapServersKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineKafkaDestination) GetBootstrapServersKeyOk() (*string, bool) {
+	if o == nil || o.BootstrapServersKey == nil {
+		return nil, false
+	}
+	return o.BootstrapServersKey, true
+}
+
+// HasBootstrapServersKey returns a boolean if a field has been set.
+func (o *ObservabilityPipelineKafkaDestination) HasBootstrapServersKey() bool {
+	return o != nil && o.BootstrapServersKey != nil
+}
+
+// SetBootstrapServersKey gets a reference to the given string and assigns it to the BootstrapServersKey field.
+func (o *ObservabilityPipelineKafkaDestination) SetBootstrapServersKey(v string) {
+	o.BootstrapServersKey = &v
 }
 
 // GetCompression returns the Compression field value if set, zero value otherwise.
@@ -474,6 +504,9 @@ func (o ObservabilityPipelineKafkaDestination) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.BootstrapServersKey != nil {
+		toSerialize["bootstrap_servers_key"] = o.BootstrapServersKey
+	}
 	if o.Compression != nil {
 		toSerialize["compression"] = o.Compression
 	}
@@ -519,6 +552,7 @@ func (o ObservabilityPipelineKafkaDestination) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineKafkaDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		BootstrapServersKey   *string                                           `json:"bootstrap_servers_key,omitempty"`
 		Compression           *ObservabilityPipelineKafkaDestinationCompression `json:"compression,omitempty"`
 		Encoding              *ObservabilityPipelineKafkaDestinationEncoding    `json:"encoding"`
 		HeadersKey            *string                                           `json:"headers_key,omitempty"`
@@ -555,12 +589,13 @@ func (o *ObservabilityPipelineKafkaDestination) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compression", "encoding", "headers_key", "id", "inputs", "key_field", "librdkafka_options", "message_timeout_ms", "rate_limit_duration_secs", "rate_limit_num", "sasl", "socket_timeout_ms", "tls", "topic", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"bootstrap_servers_key", "compression", "encoding", "headers_key", "id", "inputs", "key_field", "librdkafka_options", "message_timeout_ms", "rate_limit_duration_secs", "rate_limit_num", "sasl", "socket_timeout_ms", "tls", "topic", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.BootstrapServersKey = all.BootstrapServersKey
 	if all.Compression != nil && !all.Compression.IsValid() {
 		hasInvalidField = true
 	} else {

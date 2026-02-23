@@ -12,6 +12,10 @@ import (
 type ObservabilityPipelineKafkaSasl struct {
 	// SASL mechanism used for Kafka authentication.
 	Mechanism *ObservabilityPipelineKafkaSaslMechanism `json:"mechanism,omitempty"`
+	// Name of the environment variable or secret that holds the SASL password.
+	PasswordKey *string `json:"password_key,omitempty"`
+	// Name of the environment variable or secret that holds the SASL username.
+	UsernameKey *string `json:"username_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -62,6 +66,62 @@ func (o *ObservabilityPipelineKafkaSasl) SetMechanism(v ObservabilityPipelineKaf
 	o.Mechanism = &v
 }
 
+// GetPasswordKey returns the PasswordKey field value if set, zero value otherwise.
+func (o *ObservabilityPipelineKafkaSasl) GetPasswordKey() string {
+	if o == nil || o.PasswordKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.PasswordKey
+}
+
+// GetPasswordKeyOk returns a tuple with the PasswordKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineKafkaSasl) GetPasswordKeyOk() (*string, bool) {
+	if o == nil || o.PasswordKey == nil {
+		return nil, false
+	}
+	return o.PasswordKey, true
+}
+
+// HasPasswordKey returns a boolean if a field has been set.
+func (o *ObservabilityPipelineKafkaSasl) HasPasswordKey() bool {
+	return o != nil && o.PasswordKey != nil
+}
+
+// SetPasswordKey gets a reference to the given string and assigns it to the PasswordKey field.
+func (o *ObservabilityPipelineKafkaSasl) SetPasswordKey(v string) {
+	o.PasswordKey = &v
+}
+
+// GetUsernameKey returns the UsernameKey field value if set, zero value otherwise.
+func (o *ObservabilityPipelineKafkaSasl) GetUsernameKey() string {
+	if o == nil || o.UsernameKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.UsernameKey
+}
+
+// GetUsernameKeyOk returns a tuple with the UsernameKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineKafkaSasl) GetUsernameKeyOk() (*string, bool) {
+	if o == nil || o.UsernameKey == nil {
+		return nil, false
+	}
+	return o.UsernameKey, true
+}
+
+// HasUsernameKey returns a boolean if a field has been set.
+func (o *ObservabilityPipelineKafkaSasl) HasUsernameKey() bool {
+	return o != nil && o.UsernameKey != nil
+}
+
+// SetUsernameKey gets a reference to the given string and assigns it to the UsernameKey field.
+func (o *ObservabilityPipelineKafkaSasl) SetUsernameKey(v string) {
+	o.UsernameKey = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineKafkaSasl) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -70,6 +130,12 @@ func (o ObservabilityPipelineKafkaSasl) MarshalJSON() ([]byte, error) {
 	}
 	if o.Mechanism != nil {
 		toSerialize["mechanism"] = o.Mechanism
+	}
+	if o.PasswordKey != nil {
+		toSerialize["password_key"] = o.PasswordKey
+	}
+	if o.UsernameKey != nil {
+		toSerialize["username_key"] = o.UsernameKey
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -81,14 +147,16 @@ func (o ObservabilityPipelineKafkaSasl) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineKafkaSasl) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Mechanism *ObservabilityPipelineKafkaSaslMechanism `json:"mechanism,omitempty"`
+		Mechanism   *ObservabilityPipelineKafkaSaslMechanism `json:"mechanism,omitempty"`
+		PasswordKey *string                                  `json:"password_key,omitempty"`
+		UsernameKey *string                                  `json:"username_key,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"mechanism"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"mechanism", "password_key", "username_key"})
 	} else {
 		return err
 	}
@@ -99,6 +167,8 @@ func (o *ObservabilityPipelineKafkaSasl) UnmarshalJSON(bytes []byte) (err error)
 	} else {
 		o.Mechanism = all.Mechanism
 	}
+	o.PasswordKey = all.PasswordKey
+	o.UsernameKey = all.UsernameKey
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

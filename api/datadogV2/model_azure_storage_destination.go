@@ -18,6 +18,8 @@ type AzureStorageDestination struct {
 	BlobPrefix *string `json:"blob_prefix,omitempty"`
 	// Configuration for buffer settings on destination components.
 	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
+	// Name of the environment variable or secret that holds the Azure Storage connection string.
+	ConnectionStringKey *string `json:"connection_string_key,omitempty"`
 	// The name of the Azure Blob Storage container to store logs in.
 	ContainerName string `json:"container_name"`
 	// The unique identifier for this component.
@@ -108,6 +110,34 @@ func (o *AzureStorageDestination) HasBuffer() bool {
 // SetBuffer gets a reference to the given ObservabilityPipelineBufferOptions and assigns it to the Buffer field.
 func (o *AzureStorageDestination) SetBuffer(v ObservabilityPipelineBufferOptions) {
 	o.Buffer = &v
+}
+
+// GetConnectionStringKey returns the ConnectionStringKey field value if set, zero value otherwise.
+func (o *AzureStorageDestination) GetConnectionStringKey() string {
+	if o == nil || o.ConnectionStringKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.ConnectionStringKey
+}
+
+// GetConnectionStringKeyOk returns a tuple with the ConnectionStringKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AzureStorageDestination) GetConnectionStringKeyOk() (*string, bool) {
+	if o == nil || o.ConnectionStringKey == nil {
+		return nil, false
+	}
+	return o.ConnectionStringKey, true
+}
+
+// HasConnectionStringKey returns a boolean if a field has been set.
+func (o *AzureStorageDestination) HasConnectionStringKey() bool {
+	return o != nil && o.ConnectionStringKey != nil
+}
+
+// SetConnectionStringKey gets a reference to the given string and assigns it to the ConnectionStringKey field.
+func (o *AzureStorageDestination) SetConnectionStringKey(v string) {
+	o.ConnectionStringKey = &v
 }
 
 // GetContainerName returns the ContainerName field value.
@@ -214,6 +244,9 @@ func (o AzureStorageDestination) MarshalJSON() ([]byte, error) {
 	if o.Buffer != nil {
 		toSerialize["buffer"] = o.Buffer
 	}
+	if o.ConnectionStringKey != nil {
+		toSerialize["connection_string_key"] = o.ConnectionStringKey
+	}
 	toSerialize["container_name"] = o.ContainerName
 	toSerialize["id"] = o.Id
 	toSerialize["inputs"] = o.Inputs
@@ -228,12 +261,13 @@ func (o AzureStorageDestination) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AzureStorageDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BlobPrefix    *string                             `json:"blob_prefix,omitempty"`
-		Buffer        *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
-		ContainerName *string                             `json:"container_name"`
-		Id            *string                             `json:"id"`
-		Inputs        *[]string                           `json:"inputs"`
-		Type          *AzureStorageDestinationType        `json:"type"`
+		BlobPrefix          *string                             `json:"blob_prefix,omitempty"`
+		Buffer              *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
+		ConnectionStringKey *string                             `json:"connection_string_key,omitempty"`
+		ContainerName       *string                             `json:"container_name"`
+		Id                  *string                             `json:"id"`
+		Inputs              *[]string                           `json:"inputs"`
+		Type                *AzureStorageDestinationType        `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -252,7 +286,7 @@ func (o *AzureStorageDestination) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"blob_prefix", "buffer", "container_name", "id", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"blob_prefix", "buffer", "connection_string_key", "container_name", "id", "inputs", "type"})
 	} else {
 		return err
 	}
@@ -260,6 +294,7 @@ func (o *AzureStorageDestination) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.BlobPrefix = all.BlobPrefix
 	o.Buffer = all.Buffer
+	o.ConnectionStringKey = all.ConnectionStringKey
 	o.ContainerName = *all.ContainerName
 	o.Id = *all.Id
 	o.Inputs = *all.Inputs
