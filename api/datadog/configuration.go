@@ -756,6 +756,7 @@ func NewConfiguration() *Configuration {
 			"v2.GetIncidentPostmortemTemplate":           false,
 			"v2.GetIncidentTodo":                         false,
 			"v2.GetIncidentType":                         false,
+			"v2.ImportIncident":                          false,
 			"v2.ListGlobalIncidentHandles":               false,
 			"v2.ListIncidentAttachments":                 false,
 			"v2.ListIncidentIntegrations":                false,

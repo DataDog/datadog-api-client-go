@@ -12,9 +12,9 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/incidents/config/types
   response:
-    body: '{"data":{"id":"be5bae51-9d0d-440a-a179-067ca56e51b2","type":"incident_types","attributes":{"createdAt":"2026-01-19T20:16:33.554076991Z","createdBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"Any
+    body: '{"data":{"id":"2f679d16-756e-4d56-b80f-b7b0dd449572","type":"incident_types","attributes":{"createdAt":"2026-02-23T14:07:16.468385502Z","createdBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"Any
       incidents that harm (or have the potential to) the confidentiality, integrity,
-      or availability of our data.","is_default":false,"lastModifiedBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","modifiedAt":"2026-01-19T20:16:33.554077065Z","name":"Security
+      or availability of our data.","is_default":false,"lastModifiedBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","modifiedAt":"2026-02-23T14:07:16.468385592Z","name":"Security
       Incident","prefix":"IR"},"relationships":{"created_by_user":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"users"}},"google_chat_configuration":{"data":null},"google_meet_configuration":{"data":null},"last_modified_by_user":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"users"}},"microsoft_teams_configuration":{"data":null},"zoom_configuration":{"data":null}}}}'
     code: 201
     duration: 0ms
@@ -24,7 +24,7 @@ interactions:
     status: 201 Created
 - request:
     body: |
-      {"data":{"attributes":{"name":"Security Incident-updated"},"id":"be5bae51-9d0d-440a-a179-067ca56e51b2","type":"incident_types"}}
+      {"data":{"attributes":{"name":"Security Incident-updated"},"id":"2f679d16-756e-4d56-b80f-b7b0dd449572","type":"incident_types"}}
     form: {}
     headers:
       Accept:
@@ -33,11 +33,11 @@ interactions:
       - application/json
     id: 1
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/incidents/config/types/be5bae51-9d0d-440a-a179-067ca56e51b2
+    url: https://api.datadoghq.com/api/v2/incidents/config/types/2f679d16-756e-4d56-b80f-b7b0dd449572
   response:
-    body: '{"data":{"id":"be5bae51-9d0d-440a-a179-067ca56e51b2","type":"incident_types","attributes":{"createdAt":"2026-01-19T20:16:33.554076Z","createdBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"Any
+    body: '{"data":{"id":"2f679d16-756e-4d56-b80f-b7b0dd449572","type":"incident_types","attributes":{"createdAt":"2026-02-23T14:07:16.468385Z","createdBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"Any
       incidents that harm (or have the potential to) the confidentiality, integrity,
-      or availability of our data.","is_default":false,"lastModifiedBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","modifiedAt":"2026-01-19T20:16:33.83531Z","name":"Security
+      or availability of our data.","is_default":false,"lastModifiedBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","modifiedAt":"2026-02-23T14:07:16.816272Z","name":"Security
       Incident-updated","prefix":"IR"},"relationships":{"created_by_user":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"users"}},"google_chat_configuration":{"data":null},"google_meet_configuration":{"data":null},"last_modified_by_user":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"users"}},"microsoft_teams_configuration":{"data":null},"zoom_configuration":{"data":null}}}}'
     code: 200
     duration: 0ms
@@ -53,7 +53,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/incidents/config/types/be5bae51-9d0d-440a-a179-067ca56e51b2
+    url: https://api.datadoghq.com/api/v2/incidents/config/types/2f679d16-756e-4d56-b80f-b7b0dd449572
   response:
     body: ''
     code: 204

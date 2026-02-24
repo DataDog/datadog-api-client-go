@@ -12,9 +12,9 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/incidents/config/types
   response:
-    body: '{"data":{"id":"b2e185e1-d2c0-4e8f-a04b-7772b916b76e","type":"incident_types","attributes":{"createdAt":"2026-01-19T20:15:49.999626031Z","createdBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"Any
+    body: '{"data":{"id":"02a6c50e-60f7-4deb-b828-15f6de4a421b","type":"incident_types","attributes":{"createdAt":"2026-02-23T14:06:35.091613563Z","createdBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","description":"Any
       incidents that harm (or have the potential to) the confidentiality, integrity,
-      or availability of our data.","is_default":false,"lastModifiedBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","modifiedAt":"2026-01-19T20:15:49.999626146Z","name":"Security
+      or availability of our data.","is_default":false,"lastModifiedBy":"3ad549bf-eba0-11e9-a77a-0705486660d0","modifiedAt":"2026-02-23T14:06:35.091613645Z","name":"Security
       Incident","prefix":"IR"},"relationships":{"created_by_user":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"users"}},"google_chat_configuration":{"data":null},"google_meet_configuration":{"data":null},"last_modified_by_user":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"users"}},"microsoft_teams_configuration":{"data":null},"zoom_configuration":{"data":null}}}}'
     code: 201
     duration: 0ms
@@ -24,7 +24,7 @@ interactions:
     status: 201 Created
 - request:
     body: |
-      {"data":{"attributes":{"conditions":[{"field":"severity","values":["SEV-1","SEV-2"]}],"enabled":true,"handles":["@test-email@company.com"],"trigger":"incident_created_trigger","visibility":"organization"},"relationships":{"incident_type":{"data":{"id":"b2e185e1-d2c0-4e8f-a04b-7772b916b76e","type":"incident_types"}}},"type":"incident_notification_rules"}}
+      {"data":{"attributes":{"conditions":[{"field":"severity","values":["SEV-1","SEV-2"]}],"enabled":true,"handles":["@test-email@company.com"],"trigger":"incident_created_trigger","visibility":"organization"},"relationships":{"incident_type":{"data":{"id":"02a6c50e-60f7-4deb-b828-15f6de4a421b","type":"incident_types"}}},"type":"incident_notification_rules"}}
     form: {}
     headers:
       Accept:
@@ -35,7 +35,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/incidents/config/notification-rules
   response:
-    body: '{"data":{"id":"9aabcfd1-25fc-4453-9e43-fe046bc5db74","type":"incident_notification_rules","attributes":{"conditions":[{"field":"severity","values":["SEV-1","SEV-2"]}],"created":"2026-01-19T20:15:50.34977794Z","enabled":true,"handles":["@test-email@company.com"],"modified":"2026-01-19T20:15:50.34977794Z","renotify_on":[],"trigger":"incident_created_trigger","visibility":"organization"},"relationships":{"created_by_user":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"users"}},"incident_type":{"data":{"id":"b2e185e1-d2c0-4e8f-a04b-7772b916b76e","type":"incident_types"}},"last_modified_by_user":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"users"}}}}}'
+    body: '{"data":{"id":"160a9a8f-0db7-494a-87b2-1f02859e38f5","type":"incident_notification_rules","attributes":{"conditions":[{"field":"severity","values":["SEV-1","SEV-2"]}],"created":"2026-02-23T14:06:35.419838663Z","enabled":true,"handles":["@test-email@company.com"],"modified":"2026-02-23T14:06:35.419838663Z","renotify_on":[],"trigger":"incident_created_trigger","visibility":"organization"},"relationships":{"created_by_user":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"users"}},"incident_type":{"data":{"id":"02a6c50e-60f7-4deb-b828-15f6de4a421b","type":"incident_types"}},"last_modified_by_user":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"users"}}}}}'
     code: 201
     duration: 0ms
     headers:
@@ -50,7 +50,7 @@ interactions:
       - '*/*'
     id: 2
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/incidents/config/notification-rules/9aabcfd1-25fc-4453-9e43-fe046bc5db74
+    url: https://api.datadoghq.com/api/v2/incidents/config/notification-rules/160a9a8f-0db7-494a-87b2-1f02859e38f5
   response:
     body: ''
     code: 204
@@ -65,7 +65,7 @@ interactions:
       - '*/*'
     id: 3
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/incidents/config/types/b2e185e1-d2c0-4e8f-a04b-7772b916b76e
+    url: https://api.datadoghq.com/api/v2/incidents/config/types/02a6c50e-60f7-4deb-b828-15f6de4a421b
   response:
     body: ''
     code: 204

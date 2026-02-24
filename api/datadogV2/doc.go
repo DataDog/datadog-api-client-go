@@ -352,6 +352,7 @@
 //   - [IncidentsApi.GetIncidentPostmortemTemplate]
 //   - [IncidentsApi.GetIncidentTodo]
 //   - [IncidentsApi.GetIncidentType]
+//   - [IncidentsApi.ImportIncident]
 //   - [IncidentsApi.ListGlobalIncidentHandles]
 //   - [IncidentsApi.ListIncidentAttachments]
 //   - [IncidentsApi.ListIncidentImpacts]
