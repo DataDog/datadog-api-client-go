@@ -15,6 +15,88 @@ import (
 // ProductAnalyticsApi service type
 type ProductAnalyticsApi datadog.Service
 
+// QueryProductAnalyticsSankey Compute Sankey flow analysis.
+// Compute a Sankey flow analysis showing how users navigate between pages.
+// Specify either a `source` page (forward flow) or `target` page (backward flow), but not both.
+// Maximum 10 steps and 10 entries per step.
+func (a *ProductAnalyticsApi) QueryProductAnalyticsSankey(ctx _context.Context, body ProductAnalyticsSankeyRequest) (ProductAnalyticsSankeyResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue ProductAnalyticsSankeyResponse
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ProductAnalyticsApi.QueryProductAnalyticsSankey")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/product-analytics/sankey"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // QueryProductAnalyticsScalar Compute scalar analytics.
 // Compute scalar analytics results for Product Analytics data.
 // Returns aggregated values (counts, averages, percentiles) optionally grouped by facets.

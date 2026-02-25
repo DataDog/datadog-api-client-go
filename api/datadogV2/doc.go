@@ -546,6 +546,7 @@
 //   - [PowerpackApi.ListPowerpacks]
 //   - [PowerpackApi.UpdatePowerpack]
 //   - [ProcessesApi.ListProcesses]
+//   - [ProductAnalyticsApi.QueryProductAnalyticsSankey]
 //   - [ProductAnalyticsApi.QueryProductAnalyticsScalar]
 //   - [ProductAnalyticsApi.QueryProductAnalyticsTimeseries]
 //   - [ProductAnalyticsApi.SubmitProductAnalyticsEvent]
