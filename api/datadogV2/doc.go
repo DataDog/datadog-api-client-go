@@ -546,6 +546,8 @@
 //   - [PowerpackApi.ListPowerpacks]
 //   - [PowerpackApi.UpdatePowerpack]
 //   - [ProcessesApi.ListProcesses]
+//   - [ProductAnalyticsApi.QueryProductAnalyticsScalar]
+//   - [ProductAnalyticsApi.QueryProductAnalyticsTimeseries]
 //   - [ProductAnalyticsApi.SubmitProductAnalyticsEvent]
 //   - [RUMApi.AggregateRUMEvents]
 //   - [RUMApi.CreateRUMApplication]
