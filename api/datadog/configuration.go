@@ -601,7 +601,7 @@ func NewConfiguration() *Configuration {
 			},
 			"v2.ProductAnalyticsApi.SubmitProductAnalyticsEvent": {
 				{
-					URL:         "https://{subdomain}.{site}",
+					URL:         "https://{subdomain}-{site}",
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"site": {
