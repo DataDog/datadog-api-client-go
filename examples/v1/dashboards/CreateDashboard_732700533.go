@@ -1,4 +1,4 @@
-// Create a new dashboard with an audit logs query
+// Create a new dashboard with formulas and functions events query using facet group by
 
 package main
 
@@ -14,8 +14,7 @@ import (
 
 func main() {
 	body := datadogV1.Dashboard{
-		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
-		Title:      "Example-Dashboard with Audit Logs Query",
+		Title: "Example-Dashboard with events facet group_by",
 		Widgets: []datadogV1.Widget{
 			{
 				Definition: datadogV1.WidgetDefinition{
@@ -27,30 +26,35 @@ func main() {
 								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
 									datadogV1.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionEventQueryDefinition: &datadogV1.FormulaAndFunctionEventQueryDefinition{
+											DataSource: datadogV1.FORMULAANDFUNCTIONEVENTSDATASOURCE_EVENTS,
+											Name:       "query1",
 											Search: &datadogV1.FormulaAndFunctionEventQueryDefinitionSearch{
 												Query: "",
 											},
-											DataSource: datadogV1.FORMULAANDFUNCTIONEVENTSDATASOURCE_AUDIT,
 											Compute: datadogV1.FormulaAndFunctionEventQueryDefinitionCompute{
 												Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 											},
-											Name: "query1",
-											Indexes: []string{
-												"*",
-											},
+											GroupBy: &datadogV1.FormulaAndFunctionEventQueryGroupByConfig{
+												FormulaAndFunctionEventQueryGroupByList: &[]datadogV1.FormulaAndFunctionEventQueryGroupBy{
+													{
+														Facet: "service",
+														Limit: datadog.PtrInt64(10),
+													},
+												}},
 										}},
 								},
 							},
 						},
 					}},
 				Layout: &datadogV1.WidgetLayout{
-					X:      2,
+					X:      0,
 					Y:      0,
 					Width:  4,
 					Height: 2,
 				},
 			},
 		},
+		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
