@@ -423,9 +423,15 @@ func (a *{{ classname }}) {{ operation.operationId }}WithPagination(ctx _context
 				return
 				}
 			}
+			{%- if pagination.cursorParam %}
+			if len(results) == 0 {
+				break
+			}
+			{%- else %}
 			if len(results) < int(pageSize_) {
 				break
 			}
+			{%- endif %}
 			{%- if pagination.pageOffsetParam %}
 			if {{ get_container(operation, pagination.pageOffsetParam) }} == nil {
 				{{ get_container(operation, pagination.pageOffsetParam) }} = &pageSize_
