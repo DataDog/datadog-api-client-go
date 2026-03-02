@@ -18,7 +18,7 @@ type FormulaAndFunctionEventQueryDefinition struct {
 	CrossOrgUuids []string `json:"cross_org_uuids,omitempty"`
 	// Data source for event platform-based queries.
 	DataSource FormulaAndFunctionEventsDataSource `json:"data_source"`
-	// Group by configuration for a formula and functions events query. Can be a list of facet objects or a flat object with a list of fields.
+	// Group by configuration for a formula and functions events query. Accepts either a list of facet objects or a flat object that specifies a list of facet fields.
 	GroupBy *FormulaAndFunctionEventQueryGroupByConfig `json:"group_by,omitempty"`
 	// An array of index names to query in the stream. Omit or use `[]` to query all indexes at once.
 	Indexes []string `json:"indexes,omitempty"`

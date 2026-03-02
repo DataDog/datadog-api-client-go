@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// FormulaAndFunctionEventQueryGroupByFields Flat group by using multiple event facets.
+// FormulaAndFunctionEventQueryGroupByFields Flat group by configuration using multiple event facet fields.
 type FormulaAndFunctionEventQueryGroupByFields struct {
 	// List of event facets to group by.
 	Fields []string `json:"fields"`

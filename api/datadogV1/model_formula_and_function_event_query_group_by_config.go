@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// FormulaAndFunctionEventQueryGroupByConfig - Group by configuration for a formula and functions events query. Can be a list of facet objects or a flat object with a list of fields.
+// FormulaAndFunctionEventQueryGroupByConfig - Group by configuration for a formula and functions events query. Accepts either a list of facet objects or a flat object that specifies a list of facet fields.
 type FormulaAndFunctionEventQueryGroupByConfig struct {
 	FormulaAndFunctionEventQueryGroupByList   *[]FormulaAndFunctionEventQueryGroupBy
 	FormulaAndFunctionEventQueryGroupByFields *FormulaAndFunctionEventQueryGroupByFields
