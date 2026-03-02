@@ -2093,7 +2093,7 @@ func (a *CaseManagementApi) UnlinkJiraIssue(ctx _context.Context, caseId string)
 }
 
 // UpdateAttributes Update case attributes.
-// Update case attributes
+// Update case attributes. This replaces all attributes with the provided payload. To update a single attribute (e.g., team), include all existing attributes in the request to avoid overwriting them.
 func (a *CaseManagementApi) UpdateAttributes(ctx _context.Context, caseId string, body CaseUpdateAttributesRequest) (CaseResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
