@@ -5044,7 +5044,7 @@ func (a *SecurityMonitoringApi) ListFindingsWithPagination(ctx _context.Context,
 					return
 				}
 			}
-			if len(results) < int(pageSize_) {
+			if len(results) == 0 {
 				break
 			}
 			cursorMeta, ok := resp.GetMetaOk()
@@ -5625,7 +5625,7 @@ func (a *SecurityMonitoringApi) ListSecurityFindingsWithPagination(ctx _context.
 					return
 				}
 			}
-			if len(results) < int(pageSize_) {
+			if len(results) == 0 {
 				break
 			}
 			cursorMeta, ok := resp.GetMetaOk()
@@ -6244,7 +6244,7 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringSignalsWithPagination(ctx 
 					return
 				}
 			}
-			if len(results) < int(pageSize_) {
+			if len(results) == 0 {
 				break
 			}
 			cursorMeta, ok := resp.GetMetaOk()
@@ -7962,7 +7962,7 @@ func (a *SecurityMonitoringApi) SearchSecurityFindingsWithPagination(ctx _contex
 					return
 				}
 			}
-			if len(results) < int(pageSize_) {
+			if len(results) == 0 {
 				break
 			}
 			cursorMeta, ok := resp.GetMetaOk()
@@ -8251,7 +8251,7 @@ func (a *SecurityMonitoringApi) SearchSecurityMonitoringSignalsWithPagination(ct
 					return
 				}
 			}
-			if len(results) < int(pageSize_) {
+			if len(results) == 0 {
 				break
 			}
 			cursorMeta, ok := resp.GetMetaOk()
