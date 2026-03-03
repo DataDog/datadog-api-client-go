@@ -93,6 +93,7 @@ func main() {
 						OriginalFileName: datadog.PtrString("image.png"),
 						Content:          datadog.PtrString("file content"),
 						Type:             datadog.PtrString("file type"),
+						Encoding:         datadog.PtrString("base64"),
 					},
 				},
 				BasicAuth: &datadogV1.SyntheticsBasicAuth{
