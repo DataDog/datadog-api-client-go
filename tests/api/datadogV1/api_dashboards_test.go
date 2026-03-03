@@ -199,12 +199,12 @@ func TestDashboardLifecycle(t *testing.T) {
 					Compute: datadogV1.FormulaAndFunctionEventQueryDefinitionCompute{
 						Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 					},
-					GroupBy: []datadogV1.FormulaAndFunctionEventQueryGroupBy{{
+					GroupBy: &datadogV1.FormulaAndFunctionEventQueryGroupByConfig{FormulaAndFunctionEventQueryGroupByList: &[]datadogV1.FormulaAndFunctionEventQueryGroupBy{{
 						Facet: "@geo.country_iso_code",
 						Limit: datadog.PtrInt64(250),
 						Sort: &datadogV1.FormulaAndFunctionEventQueryGroupBySort{
 							Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
-						}}},
+						}}}},
 					Indexes: []string{"*"},
 					Name:    "query1",
 				},
@@ -445,9 +445,9 @@ func TestDashboardLifecycle(t *testing.T) {
 					Search: &datadogV1.FormulaAndFunctionEventQueryDefinitionSearch{
 						Query: "service:query Errors",
 					},
-					GroupBy: []datadogV1.FormulaAndFunctionEventQueryGroupBy{{
+					GroupBy: &datadogV1.FormulaAndFunctionEventQueryGroupByConfig{FormulaAndFunctionEventQueryGroupByList: &[]datadogV1.FormulaAndFunctionEventQueryGroupBy{{
 						Facet: "host",
-					}},
+					}}},
 					Indexes: []string{"*"},
 					Name:    "errors",
 				},
@@ -865,9 +865,9 @@ func TestDashboardLifecycle(t *testing.T) {
 					Search: &datadogV1.FormulaAndFunctionEventQueryDefinitionSearch{
 						Query: "service:query Errors",
 					},
-					GroupBy: []datadogV1.FormulaAndFunctionEventQueryGroupBy{{
+					GroupBy: &datadogV1.FormulaAndFunctionEventQueryGroupByConfig{FormulaAndFunctionEventQueryGroupByList: &[]datadogV1.FormulaAndFunctionEventQueryGroupBy{{
 						Facet: "host",
-					}},
+					}}},
 					Indexes: []string{"*"},
 					Name:    "errors",
 				},
@@ -937,9 +937,9 @@ func TestDashboardLifecycle(t *testing.T) {
 					Search: &datadogV1.FormulaAndFunctionEventQueryDefinitionSearch{
 						Query: "service:query Errors",
 					},
-					GroupBy: []datadogV1.FormulaAndFunctionEventQueryGroupBy{{
+					GroupBy: &datadogV1.FormulaAndFunctionEventQueryGroupByConfig{FormulaAndFunctionEventQueryGroupByList: &[]datadogV1.FormulaAndFunctionEventQueryGroupBy{{
 						Facet: "host",
-					}},
+					}}},
 					Indexes: []string{"*"},
 					Name:    "errors",
 				},

@@ -59,7 +59,6 @@ func main() {
 												Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 												Metric:      datadog.PtrString("@ci.queue_time"),
 											},
-											GroupBy: []datadogV1.FormulaAndFunctionEventQueryGroupBy{},
 										}},
 								},
 								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
