@@ -53,16 +53,17 @@ func main() {
 											Compute: datadogV1.FormulaAndFunctionEventQueryDefinitionCompute{
 												Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 											},
-											GroupBy: []datadogV1.FormulaAndFunctionEventQueryGroupBy{
-												{
-													Facet: "@geo.country_iso_code",
-													Limit: datadog.PtrInt64(250),
-													Sort: &datadogV1.FormulaAndFunctionEventQueryGroupBySort{
-														Order:       datadogV1.QUERYSORTORDER_DESC.Ptr(),
-														Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+											GroupBy: &datadogV1.FormulaAndFunctionEventQueryGroupByConfig{
+												FormulaAndFunctionEventQueryGroupByList: &[]datadogV1.FormulaAndFunctionEventQueryGroupBy{
+													{
+														Facet: "@geo.country_iso_code",
+														Limit: datadog.PtrInt64(250),
+														Sort: &datadogV1.FormulaAndFunctionEventQueryGroupBySort{
+															Order:       datadogV1.QUERYSORTORDER_DESC.Ptr(),
+															Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
+														},
 													},
-												},
-											},
+												}},
 										}},
 								},
 								Sort: &datadogV1.WidgetSortBy{

@@ -39,7 +39,6 @@ func main() {
 											Compute: datadogV1.FormulaAndFunctionEventQueryDefinitionCompute{
 												Aggregation: datadogV1.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 											},
-											GroupBy: []datadogV1.FormulaAndFunctionEventQueryGroupBy{},
 										}},
 								},
 								ConditionalFormats: []datadogV1.WidgetConditionalFormat{

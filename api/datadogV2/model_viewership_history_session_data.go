@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ViewershipHistorySessionData
+// ViewershipHistorySessionData Viewership history session data.
 type ViewershipHistorySessionData struct {
 	//
 	Attributes *ViewershipHistorySessionDataAttributes `json:"attributes,omitempty"`
