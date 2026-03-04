@@ -826,16 +826,17 @@ func (a *MetricsApi) ListTagConfigurationByName(ctx _context.Context, metricName
 
 // ListTagConfigurationsOptionalParameters holds optional parameters for ListTagConfigurations.
 type ListTagConfigurationsOptionalParameters struct {
-	FilterConfigured         *bool
-	FilterTagsConfigured     *string
-	FilterMetricType         *MetricTagConfigurationMetricTypeCategory
-	FilterIncludePercentiles *bool
-	FilterQueried            *bool
-	FilterTags               *string
-	FilterRelatedAssets      *bool
-	WindowSeconds            *int64
-	PageSize                 *int32
-	PageCursor               *string
+	FilterConfigured           *bool
+	FilterTagsConfigured       *string
+	FilterMetricType           *MetricTagConfigurationMetricTypeCategory
+	FilterIncludePercentiles   *bool
+	FilterQueried              *bool
+	FilterQueriedWindowSeconds *int64
+	FilterTags                 *string
+	FilterRelatedAssets        *bool
+	WindowSeconds              *int64
+	PageSize                   *int32
+	PageCursor                 *string
 }
 
 // NewListTagConfigurationsOptionalParameters creates an empty struct for parameters.
@@ -871,6 +872,12 @@ func (r *ListTagConfigurationsOptionalParameters) WithFilterIncludePercentiles(f
 // WithFilterQueried sets the corresponding parameter name and returns the struct.
 func (r *ListTagConfigurationsOptionalParameters) WithFilterQueried(filterQueried bool) *ListTagConfigurationsOptionalParameters {
 	r.FilterQueried = &filterQueried
+	return r
+}
+
+// WithFilterQueriedWindowSeconds sets the corresponding parameter name and returns the struct.
+func (r *ListTagConfigurationsOptionalParameters) WithFilterQueriedWindowSeconds(filterQueriedWindowSeconds int64) *ListTagConfigurationsOptionalParameters {
+	r.FilterQueriedWindowSeconds = &filterQueriedWindowSeconds
 	return r
 }
 
@@ -948,6 +955,9 @@ func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagCon
 	}
 	if optionalParams.FilterQueried != nil {
 		localVarQueryParams.Add("filter[queried]", datadog.ParameterToString(*optionalParams.FilterQueried, ""))
+	}
+	if optionalParams.FilterQueriedWindowSeconds != nil {
+		localVarQueryParams.Add("filter[queried][window][seconds]", datadog.ParameterToString(*optionalParams.FilterQueriedWindowSeconds, ""))
 	}
 	if optionalParams.FilterTags != nil {
 		localVarQueryParams.Add("filter[tags]", datadog.ParameterToString(*optionalParams.FilterTags, ""))
