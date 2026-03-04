@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// WidgetHistogramRequestType Request type for the histogram request.
+// WidgetHistogramRequestType Request type for distribution of point values for distribution metrics. Query space aggregator must be `histogram:<metric name>` for points distributions.
 type WidgetHistogramRequestType string
 
 // List of WidgetHistogramRequestType.

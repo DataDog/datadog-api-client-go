@@ -24,13 +24,14 @@ type HeatMapWidgetRequest struct {
 	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
 	// The log query.
 	ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
-	// Widget query.
+	// Widget query. Deprecated - Use `queries` and `formulas` instead.
+	// Deprecated
 	Q *string `json:"q,omitempty"`
 	// List of queries that can be returned directly or used in formulas.
 	Queries []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
 	// A formula and functions metrics query.
 	Query *FormulaAndFunctionMetricQueryDefinition `json:"query,omitempty"`
-	// Request type for the histogram request.
+	// Request type for distribution of point values for distribution metrics. Query space aggregator must be `histogram:<metric name>` for points distributions.
 	RequestType *WidgetHistogramRequestType `json:"request_type,omitempty"`
 	// Timeseries, scalar, or event list response. Event list response formats are supported by Geomap widgets.
 	ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
@@ -259,6 +260,7 @@ func (o *HeatMapWidgetRequest) SetProfileMetricsQuery(v LogQueryDefinition) {
 }
 
 // GetQ returns the Q field value if set, zero value otherwise.
+// Deprecated
 func (o *HeatMapWidgetRequest) GetQ() string {
 	if o == nil || o.Q == nil {
 		var ret string
@@ -269,6 +271,7 @@ func (o *HeatMapWidgetRequest) GetQ() string {
 
 // GetQOk returns a tuple with the Q field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *HeatMapWidgetRequest) GetQOk() (*string, bool) {
 	if o == nil || o.Q == nil {
 		return nil, false
@@ -282,6 +285,7 @@ func (o *HeatMapWidgetRequest) HasQ() bool {
 }
 
 // SetQ gets a reference to the given string and assigns it to the Q field.
+// Deprecated
 func (o *HeatMapWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }

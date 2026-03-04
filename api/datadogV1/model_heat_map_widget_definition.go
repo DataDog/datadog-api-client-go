@@ -14,7 +14,8 @@ import (
 type HeatMapWidgetDefinition struct {
 	// List of custom links.
 	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
-	// List of widget events.
+	// List of widget events. Deprecated - Use `overlay` request type instead.
+	// Deprecated
 	Events []WidgetEvent `json:"events,omitempty"`
 	// Available legend sizes for a widget. Should be one of "0", "2", "4", "8", "16", or "auto".
 	LegendSize *string `json:"legend_size,omitempty"`
@@ -93,6 +94,7 @@ func (o *HeatMapWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 }
 
 // GetEvents returns the Events field value if set, zero value otherwise.
+// Deprecated
 func (o *HeatMapWidgetDefinition) GetEvents() []WidgetEvent {
 	if o == nil || o.Events == nil {
 		var ret []WidgetEvent
@@ -103,6 +105,7 @@ func (o *HeatMapWidgetDefinition) GetEvents() []WidgetEvent {
 
 // GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *HeatMapWidgetDefinition) GetEventsOk() (*[]WidgetEvent, bool) {
 	if o == nil || o.Events == nil {
 		return nil, false
@@ -116,6 +119,7 @@ func (o *HeatMapWidgetDefinition) HasEvents() bool {
 }
 
 // SetEvents gets a reference to the given []WidgetEvent and assigns it to the Events field.
+// Deprecated
 func (o *HeatMapWidgetDefinition) SetEvents(v []WidgetEvent) {
 	o.Events = v
 }
