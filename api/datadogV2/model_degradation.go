@@ -13,7 +13,7 @@ type Degradation struct {
 	//
 	Data *DegradationData `json:"data,omitempty"`
 	// The included related resources of a degradation. Client must explicitly request these resources by name in the `include` query parameter.
-	Included []DegradationArrayIncluded `json:"included,omitempty"`
+	Included []DegradationIncluded `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -65,9 +65,9 @@ func (o *Degradation) SetData(v DegradationData) {
 }
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
-func (o *Degradation) GetIncluded() []DegradationArrayIncluded {
+func (o *Degradation) GetIncluded() []DegradationIncluded {
 	if o == nil || o.Included == nil {
-		var ret []DegradationArrayIncluded
+		var ret []DegradationIncluded
 		return ret
 	}
 	return o.Included
@@ -75,7 +75,7 @@ func (o *Degradation) GetIncluded() []DegradationArrayIncluded {
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Degradation) GetIncludedOk() (*[]DegradationArrayIncluded, bool) {
+func (o *Degradation) GetIncludedOk() (*[]DegradationIncluded, bool) {
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
@@ -87,8 +87,8 @@ func (o *Degradation) HasIncluded() bool {
 	return o != nil && o.Included != nil
 }
 
-// SetIncluded gets a reference to the given []DegradationArrayIncluded and assigns it to the Included field.
-func (o *Degradation) SetIncluded(v []DegradationArrayIncluded) {
+// SetIncluded gets a reference to the given []DegradationIncluded and assigns it to the Included field.
+func (o *Degradation) SetIncluded(v []DegradationIncluded) {
 	o.Included = v
 }
 
@@ -114,8 +114,8 @@ func (o Degradation) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Degradation) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     *DegradationData           `json:"data,omitempty"`
-		Included []DegradationArrayIncluded `json:"included,omitempty"`
+		Data     *DegradationData      `json:"data,omitempty"`
+		Included []DegradationIncluded `json:"included,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

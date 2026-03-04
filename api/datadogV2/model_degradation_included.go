@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DegradationArrayIncluded -
-type DegradationArrayIncluded struct {
+// DegradationIncluded -
+type DegradationIncluded struct {
 	StatusPagesUser      *StatusPagesUser
 	StatusPageAsIncluded *StatusPageAsIncluded
 
@@ -17,18 +17,18 @@ type DegradationArrayIncluded struct {
 	UnparsedObject interface{}
 }
 
-// StatusPagesUserAsDegradationArrayIncluded is a convenience function that returns StatusPagesUser wrapped in DegradationArrayIncluded.
-func StatusPagesUserAsDegradationArrayIncluded(v *StatusPagesUser) DegradationArrayIncluded {
-	return DegradationArrayIncluded{StatusPagesUser: v}
+// StatusPagesUserAsDegradationIncluded is a convenience function that returns StatusPagesUser wrapped in DegradationIncluded.
+func StatusPagesUserAsDegradationIncluded(v *StatusPagesUser) DegradationIncluded {
+	return DegradationIncluded{StatusPagesUser: v}
 }
 
-// StatusPageAsIncludedAsDegradationArrayIncluded is a convenience function that returns StatusPageAsIncluded wrapped in DegradationArrayIncluded.
-func StatusPageAsIncludedAsDegradationArrayIncluded(v *StatusPageAsIncluded) DegradationArrayIncluded {
-	return DegradationArrayIncluded{StatusPageAsIncluded: v}
+// StatusPageAsIncludedAsDegradationIncluded is a convenience function that returns StatusPageAsIncluded wrapped in DegradationIncluded.
+func StatusPageAsIncludedAsDegradationIncluded(v *StatusPageAsIncluded) DegradationIncluded {
+	return DegradationIncluded{StatusPageAsIncluded: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
-func (obj *DegradationArrayIncluded) UnmarshalJSON(data []byte) error {
+func (obj *DegradationIncluded) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into StatusPagesUser
@@ -75,7 +75,7 @@ func (obj *DegradationArrayIncluded) UnmarshalJSON(data []byte) error {
 }
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
-func (obj DegradationArrayIncluded) MarshalJSON() ([]byte, error) {
+func (obj DegradationIncluded) MarshalJSON() ([]byte, error) {
 	if obj.StatusPagesUser != nil {
 		return datadog.Marshal(&obj.StatusPagesUser)
 	}
@@ -91,7 +91,7 @@ func (obj DegradationArrayIncluded) MarshalJSON() ([]byte, error) {
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *DegradationArrayIncluded) GetActualInstance() interface{} {
+func (obj *DegradationIncluded) GetActualInstance() interface{} {
 	if obj.StatusPagesUser != nil {
 		return obj.StatusPagesUser
 	}

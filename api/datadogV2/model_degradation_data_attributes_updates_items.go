@@ -24,6 +24,8 @@ type DegradationDataAttributesUpdatesItems struct {
 	Id *uuid.UUID `json:"id,omitempty"`
 	// Timestamp of when the update was last modified.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
+	// Timestamp of when the update started.
+	StartedAt *time.Time `json:"started_at,omitempty"`
 	// The status of the degradation.
 	Status *CreateDegradationRequestDataAttributesStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -188,6 +190,34 @@ func (o *DegradationDataAttributesUpdatesItems) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
+// GetStartedAt returns the StartedAt field value if set, zero value otherwise.
+func (o *DegradationDataAttributesUpdatesItems) GetStartedAt() time.Time {
+	if o == nil || o.StartedAt == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.StartedAt
+}
+
+// GetStartedAtOk returns a tuple with the StartedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DegradationDataAttributesUpdatesItems) GetStartedAtOk() (*time.Time, bool) {
+	if o == nil || o.StartedAt == nil {
+		return nil, false
+	}
+	return o.StartedAt, true
+}
+
+// HasStartedAt returns a boolean if a field has been set.
+func (o *DegradationDataAttributesUpdatesItems) HasStartedAt() bool {
+	return o != nil && o.StartedAt != nil
+}
+
+// SetStartedAt gets a reference to the given time.Time and assigns it to the StartedAt field.
+func (o *DegradationDataAttributesUpdatesItems) SetStartedAt(v time.Time) {
+	o.StartedAt = &v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *DegradationDataAttributesUpdatesItems) GetStatus() CreateDegradationRequestDataAttributesStatus {
 	if o == nil || o.Status == nil {
@@ -245,6 +275,13 @@ func (o DegradationDataAttributesUpdatesItems) MarshalJSON() ([]byte, error) {
 			toSerialize["modified_at"] = o.ModifiedAt.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
+	if o.StartedAt != nil {
+		if o.StartedAt.Nanosecond() == 0 {
+			toSerialize["started_at"] = o.StartedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["started_at"] = o.StartedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
+	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
@@ -263,6 +300,7 @@ func (o *DegradationDataAttributesUpdatesItems) UnmarshalJSON(bytes []byte) (err
 		Description        *string                                                        `json:"description,omitempty"`
 		Id                 *uuid.UUID                                                     `json:"id,omitempty"`
 		ModifiedAt         *time.Time                                                     `json:"modified_at,omitempty"`
+		StartedAt          *time.Time                                                     `json:"started_at,omitempty"`
 		Status             *CreateDegradationRequestDataAttributesStatus                  `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -270,7 +308,7 @@ func (o *DegradationDataAttributesUpdatesItems) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"components_affected", "created_at", "description", "id", "modified_at", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"components_affected", "created_at", "description", "id", "modified_at", "started_at", "status"})
 	} else {
 		return err
 	}
@@ -281,6 +319,7 @@ func (o *DegradationDataAttributesUpdatesItems) UnmarshalJSON(bytes []byte) (err
 	o.Description = all.Description
 	o.Id = all.Id
 	o.ModifiedAt = all.ModifiedAt
+	o.StartedAt = all.StartedAt
 	if all.Status != nil && !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {
