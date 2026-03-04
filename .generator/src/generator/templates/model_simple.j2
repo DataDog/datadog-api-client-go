@@ -357,7 +357,8 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	{%- for attr, spec in model.get("properties", {}).items() if attr in model.get("required", []) %}
 	{%- set propertyName = attr|attribute_name %}
-	{%- if not spec.nullable %}
+	{%- set isAdditionalPropertiesContainer = spec.type == "object" and spec.additionalProperties is defined and spec.additionalProperties is not false and not spec.get("properties") %}
+	{%- if not spec.nullable or isAdditionalPropertiesContainer %}
 	if all.{{ propertyName }} == nil {
 	{%- else %}
 	if !all.{{ propertyName }}.IsSet() {
