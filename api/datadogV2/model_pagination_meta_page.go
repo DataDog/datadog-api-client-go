@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StatusPagesPagination Offset-based pagination schema.
-type StatusPagesPagination struct {
+// PaginationMetaPage Offset-based pagination schema.
+type PaginationMetaPage struct {
 	// Integer representing the offset to fetch the first page of results.
 	FirstOffset *int64 `json:"first_offset,omitempty"`
 	// Integer representing the offset to fetch the last page of results.
 	LastOffset datadog.NullableInt64 `json:"last_offset,omitempty"`
-	// Integer representing the number of elements to returned in the results.
+	// Integer representing the number of elements to be returned in the results.
 	Limit *int64 `json:"limit,omitempty"`
 	// Integer representing the index of the first element in the next page of results. Equal to page size added to the current offset.
 	NextOffset datadog.NullableInt64 `json:"next_offset,omitempty"`
@@ -25,35 +25,35 @@ type StatusPagesPagination struct {
 	// Integer representing the total number of elements available.
 	Total datadog.NullableInt64 `json:"total,omitempty"`
 	//
-	Type *StatusPagesPaginationType `json:"type,omitempty"`
+	Type *PaginationMetaPageType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewStatusPagesPagination instantiates a new StatusPagesPagination object.
+// NewPaginationMetaPage instantiates a new PaginationMetaPage object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewStatusPagesPagination() *StatusPagesPagination {
-	this := StatusPagesPagination{}
-	var typeVar StatusPagesPaginationType = STATUSPAGESPAGINATIONTYPE_OFFSET_LIMIT
+func NewPaginationMetaPage() *PaginationMetaPage {
+	this := PaginationMetaPage{}
+	var typeVar PaginationMetaPageType = PAGINATIONMETAPAGETYPE_OFFSET_LIMIT
 	this.Type = &typeVar
 	return &this
 }
 
-// NewStatusPagesPaginationWithDefaults instantiates a new StatusPagesPagination object.
+// NewPaginationMetaPageWithDefaults instantiates a new PaginationMetaPage object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewStatusPagesPaginationWithDefaults() *StatusPagesPagination {
-	this := StatusPagesPagination{}
-	var typeVar StatusPagesPaginationType = STATUSPAGESPAGINATIONTYPE_OFFSET_LIMIT
+func NewPaginationMetaPageWithDefaults() *PaginationMetaPage {
+	this := PaginationMetaPage{}
+	var typeVar PaginationMetaPageType = PAGINATIONMETAPAGETYPE_OFFSET_LIMIT
 	this.Type = &typeVar
 	return &this
 }
 
 // GetFirstOffset returns the FirstOffset field value if set, zero value otherwise.
-func (o *StatusPagesPagination) GetFirstOffset() int64 {
+func (o *PaginationMetaPage) GetFirstOffset() int64 {
 	if o == nil || o.FirstOffset == nil {
 		var ret int64
 		return ret
@@ -63,7 +63,7 @@ func (o *StatusPagesPagination) GetFirstOffset() int64 {
 
 // GetFirstOffsetOk returns a tuple with the FirstOffset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StatusPagesPagination) GetFirstOffsetOk() (*int64, bool) {
+func (o *PaginationMetaPage) GetFirstOffsetOk() (*int64, bool) {
 	if o == nil || o.FirstOffset == nil {
 		return nil, false
 	}
@@ -71,17 +71,17 @@ func (o *StatusPagesPagination) GetFirstOffsetOk() (*int64, bool) {
 }
 
 // HasFirstOffset returns a boolean if a field has been set.
-func (o *StatusPagesPagination) HasFirstOffset() bool {
+func (o *PaginationMetaPage) HasFirstOffset() bool {
 	return o != nil && o.FirstOffset != nil
 }
 
 // SetFirstOffset gets a reference to the given int64 and assigns it to the FirstOffset field.
-func (o *StatusPagesPagination) SetFirstOffset(v int64) {
+func (o *PaginationMetaPage) SetFirstOffset(v int64) {
 	o.FirstOffset = &v
 }
 
 // GetLastOffset returns the LastOffset field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *StatusPagesPagination) GetLastOffset() int64 {
+func (o *PaginationMetaPage) GetLastOffset() int64 {
 	if o == nil || o.LastOffset.Get() == nil {
 		var ret int64
 		return ret
@@ -92,7 +92,7 @@ func (o *StatusPagesPagination) GetLastOffset() int64 {
 // GetLastOffsetOk returns a tuple with the LastOffset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *StatusPagesPagination) GetLastOffsetOk() (*int64, bool) {
+func (o *PaginationMetaPage) GetLastOffsetOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -100,27 +100,27 @@ func (o *StatusPagesPagination) GetLastOffsetOk() (*int64, bool) {
 }
 
 // HasLastOffset returns a boolean if a field has been set.
-func (o *StatusPagesPagination) HasLastOffset() bool {
+func (o *PaginationMetaPage) HasLastOffset() bool {
 	return o != nil && o.LastOffset.IsSet()
 }
 
 // SetLastOffset gets a reference to the given datadog.NullableInt64 and assigns it to the LastOffset field.
-func (o *StatusPagesPagination) SetLastOffset(v int64) {
+func (o *PaginationMetaPage) SetLastOffset(v int64) {
 	o.LastOffset.Set(&v)
 }
 
 // SetLastOffsetNil sets the value for LastOffset to be an explicit nil.
-func (o *StatusPagesPagination) SetLastOffsetNil() {
+func (o *PaginationMetaPage) SetLastOffsetNil() {
 	o.LastOffset.Set(nil)
 }
 
 // UnsetLastOffset ensures that no value is present for LastOffset, not even an explicit nil.
-func (o *StatusPagesPagination) UnsetLastOffset() {
+func (o *PaginationMetaPage) UnsetLastOffset() {
 	o.LastOffset.Unset()
 }
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
-func (o *StatusPagesPagination) GetLimit() int64 {
+func (o *PaginationMetaPage) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
 		var ret int64
 		return ret
@@ -130,7 +130,7 @@ func (o *StatusPagesPagination) GetLimit() int64 {
 
 // GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StatusPagesPagination) GetLimitOk() (*int64, bool) {
+func (o *PaginationMetaPage) GetLimitOk() (*int64, bool) {
 	if o == nil || o.Limit == nil {
 		return nil, false
 	}
@@ -138,17 +138,17 @@ func (o *StatusPagesPagination) GetLimitOk() (*int64, bool) {
 }
 
 // HasLimit returns a boolean if a field has been set.
-func (o *StatusPagesPagination) HasLimit() bool {
+func (o *PaginationMetaPage) HasLimit() bool {
 	return o != nil && o.Limit != nil
 }
 
 // SetLimit gets a reference to the given int64 and assigns it to the Limit field.
-func (o *StatusPagesPagination) SetLimit(v int64) {
+func (o *PaginationMetaPage) SetLimit(v int64) {
 	o.Limit = &v
 }
 
 // GetNextOffset returns the NextOffset field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *StatusPagesPagination) GetNextOffset() int64 {
+func (o *PaginationMetaPage) GetNextOffset() int64 {
 	if o == nil || o.NextOffset.Get() == nil {
 		var ret int64
 		return ret
@@ -159,7 +159,7 @@ func (o *StatusPagesPagination) GetNextOffset() int64 {
 // GetNextOffsetOk returns a tuple with the NextOffset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *StatusPagesPagination) GetNextOffsetOk() (*int64, bool) {
+func (o *PaginationMetaPage) GetNextOffsetOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -167,27 +167,27 @@ func (o *StatusPagesPagination) GetNextOffsetOk() (*int64, bool) {
 }
 
 // HasNextOffset returns a boolean if a field has been set.
-func (o *StatusPagesPagination) HasNextOffset() bool {
+func (o *PaginationMetaPage) HasNextOffset() bool {
 	return o != nil && o.NextOffset.IsSet()
 }
 
 // SetNextOffset gets a reference to the given datadog.NullableInt64 and assigns it to the NextOffset field.
-func (o *StatusPagesPagination) SetNextOffset(v int64) {
+func (o *PaginationMetaPage) SetNextOffset(v int64) {
 	o.NextOffset.Set(&v)
 }
 
 // SetNextOffsetNil sets the value for NextOffset to be an explicit nil.
-func (o *StatusPagesPagination) SetNextOffsetNil() {
+func (o *PaginationMetaPage) SetNextOffsetNil() {
 	o.NextOffset.Set(nil)
 }
 
 // UnsetNextOffset ensures that no value is present for NextOffset, not even an explicit nil.
-func (o *StatusPagesPagination) UnsetNextOffset() {
+func (o *PaginationMetaPage) UnsetNextOffset() {
 	o.NextOffset.Unset()
 }
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
-func (o *StatusPagesPagination) GetOffset() int64 {
+func (o *PaginationMetaPage) GetOffset() int64 {
 	if o == nil || o.Offset == nil {
 		var ret int64
 		return ret
@@ -197,7 +197,7 @@ func (o *StatusPagesPagination) GetOffset() int64 {
 
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StatusPagesPagination) GetOffsetOk() (*int64, bool) {
+func (o *PaginationMetaPage) GetOffsetOk() (*int64, bool) {
 	if o == nil || o.Offset == nil {
 		return nil, false
 	}
@@ -205,17 +205,17 @@ func (o *StatusPagesPagination) GetOffsetOk() (*int64, bool) {
 }
 
 // HasOffset returns a boolean if a field has been set.
-func (o *StatusPagesPagination) HasOffset() bool {
+func (o *PaginationMetaPage) HasOffset() bool {
 	return o != nil && o.Offset != nil
 }
 
 // SetOffset gets a reference to the given int64 and assigns it to the Offset field.
-func (o *StatusPagesPagination) SetOffset(v int64) {
+func (o *PaginationMetaPage) SetOffset(v int64) {
 	o.Offset = &v
 }
 
 // GetPrevOffset returns the PrevOffset field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *StatusPagesPagination) GetPrevOffset() int64 {
+func (o *PaginationMetaPage) GetPrevOffset() int64 {
 	if o == nil || o.PrevOffset.Get() == nil {
 		var ret int64
 		return ret
@@ -226,7 +226,7 @@ func (o *StatusPagesPagination) GetPrevOffset() int64 {
 // GetPrevOffsetOk returns a tuple with the PrevOffset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *StatusPagesPagination) GetPrevOffsetOk() (*int64, bool) {
+func (o *PaginationMetaPage) GetPrevOffsetOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -234,27 +234,27 @@ func (o *StatusPagesPagination) GetPrevOffsetOk() (*int64, bool) {
 }
 
 // HasPrevOffset returns a boolean if a field has been set.
-func (o *StatusPagesPagination) HasPrevOffset() bool {
+func (o *PaginationMetaPage) HasPrevOffset() bool {
 	return o != nil && o.PrevOffset.IsSet()
 }
 
 // SetPrevOffset gets a reference to the given datadog.NullableInt64 and assigns it to the PrevOffset field.
-func (o *StatusPagesPagination) SetPrevOffset(v int64) {
+func (o *PaginationMetaPage) SetPrevOffset(v int64) {
 	o.PrevOffset.Set(&v)
 }
 
 // SetPrevOffsetNil sets the value for PrevOffset to be an explicit nil.
-func (o *StatusPagesPagination) SetPrevOffsetNil() {
+func (o *PaginationMetaPage) SetPrevOffsetNil() {
 	o.PrevOffset.Set(nil)
 }
 
 // UnsetPrevOffset ensures that no value is present for PrevOffset, not even an explicit nil.
-func (o *StatusPagesPagination) UnsetPrevOffset() {
+func (o *PaginationMetaPage) UnsetPrevOffset() {
 	o.PrevOffset.Unset()
 }
 
 // GetTotal returns the Total field value if set, zero value otherwise (both if not set or set to explicit null).
-func (o *StatusPagesPagination) GetTotal() int64 {
+func (o *PaginationMetaPage) GetTotal() int64 {
 	if o == nil || o.Total.Get() == nil {
 		var ret int64
 		return ret
@@ -265,7 +265,7 @@ func (o *StatusPagesPagination) GetTotal() int64 {
 // GetTotalOk returns a tuple with the Total field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *StatusPagesPagination) GetTotalOk() (*int64, bool) {
+func (o *PaginationMetaPage) GetTotalOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -273,29 +273,29 @@ func (o *StatusPagesPagination) GetTotalOk() (*int64, bool) {
 }
 
 // HasTotal returns a boolean if a field has been set.
-func (o *StatusPagesPagination) HasTotal() bool {
+func (o *PaginationMetaPage) HasTotal() bool {
 	return o != nil && o.Total.IsSet()
 }
 
 // SetTotal gets a reference to the given datadog.NullableInt64 and assigns it to the Total field.
-func (o *StatusPagesPagination) SetTotal(v int64) {
+func (o *PaginationMetaPage) SetTotal(v int64) {
 	o.Total.Set(&v)
 }
 
 // SetTotalNil sets the value for Total to be an explicit nil.
-func (o *StatusPagesPagination) SetTotalNil() {
+func (o *PaginationMetaPage) SetTotalNil() {
 	o.Total.Set(nil)
 }
 
 // UnsetTotal ensures that no value is present for Total, not even an explicit nil.
-func (o *StatusPagesPagination) UnsetTotal() {
+func (o *PaginationMetaPage) UnsetTotal() {
 	o.Total.Unset()
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *StatusPagesPagination) GetType() StatusPagesPaginationType {
+func (o *PaginationMetaPage) GetType() PaginationMetaPageType {
 	if o == nil || o.Type == nil {
-		var ret StatusPagesPaginationType
+		var ret PaginationMetaPageType
 		return ret
 	}
 	return *o.Type
@@ -303,7 +303,7 @@ func (o *StatusPagesPagination) GetType() StatusPagesPaginationType {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StatusPagesPagination) GetTypeOk() (*StatusPagesPaginationType, bool) {
+func (o *PaginationMetaPage) GetTypeOk() (*PaginationMetaPageType, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -311,17 +311,17 @@ func (o *StatusPagesPagination) GetTypeOk() (*StatusPagesPaginationType, bool) {
 }
 
 // HasType returns a boolean if a field has been set.
-func (o *StatusPagesPagination) HasType() bool {
+func (o *PaginationMetaPage) HasType() bool {
 	return o != nil && o.Type != nil
 }
 
-// SetType gets a reference to the given StatusPagesPaginationType and assigns it to the Type field.
-func (o *StatusPagesPagination) SetType(v StatusPagesPaginationType) {
+// SetType gets a reference to the given PaginationMetaPageType and assigns it to the Type field.
+func (o *PaginationMetaPage) SetType(v PaginationMetaPageType) {
 	o.Type = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o StatusPagesPagination) MarshalJSON() ([]byte, error) {
+func (o PaginationMetaPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -358,16 +358,16 @@ func (o StatusPagesPagination) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *StatusPagesPagination) UnmarshalJSON(bytes []byte) (err error) {
+func (o *PaginationMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		FirstOffset *int64                     `json:"first_offset,omitempty"`
-		LastOffset  datadog.NullableInt64      `json:"last_offset,omitempty"`
-		Limit       *int64                     `json:"limit,omitempty"`
-		NextOffset  datadog.NullableInt64      `json:"next_offset,omitempty"`
-		Offset      *int64                     `json:"offset,omitempty"`
-		PrevOffset  datadog.NullableInt64      `json:"prev_offset,omitempty"`
-		Total       datadog.NullableInt64      `json:"total,omitempty"`
-		Type        *StatusPagesPaginationType `json:"type,omitempty"`
+		FirstOffset *int64                  `json:"first_offset,omitempty"`
+		LastOffset  datadog.NullableInt64   `json:"last_offset,omitempty"`
+		Limit       *int64                  `json:"limit,omitempty"`
+		NextOffset  datadog.NullableInt64   `json:"next_offset,omitempty"`
+		Offset      *int64                  `json:"offset,omitempty"`
+		PrevOffset  datadog.NullableInt64   `json:"prev_offset,omitempty"`
+		Total       datadog.NullableInt64   `json:"total,omitempty"`
+		Type        *PaginationMetaPageType `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

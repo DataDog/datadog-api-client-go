@@ -15,9 +15,9 @@ type DegradationArray struct {
 	//
 	Data []DegradationData `json:"data"`
 	// The included related resources of a degradation. Client must explicitly request these resources by name in the `include` query parameter.
-	Included []DegradationArrayIncluded `json:"included,omitempty"`
+	Included []DegradationIncluded `json:"included,omitempty"`
 	// Response metadata.
-	Meta *StatusPagesResponseMeta `json:"meta,omitempty"`
+	Meta *PaginationMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -65,9 +65,9 @@ func (o *DegradationArray) SetData(v []DegradationData) {
 }
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
-func (o *DegradationArray) GetIncluded() []DegradationArrayIncluded {
+func (o *DegradationArray) GetIncluded() []DegradationIncluded {
 	if o == nil || o.Included == nil {
-		var ret []DegradationArrayIncluded
+		var ret []DegradationIncluded
 		return ret
 	}
 	return o.Included
@@ -75,7 +75,7 @@ func (o *DegradationArray) GetIncluded() []DegradationArrayIncluded {
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DegradationArray) GetIncludedOk() (*[]DegradationArrayIncluded, bool) {
+func (o *DegradationArray) GetIncludedOk() (*[]DegradationIncluded, bool) {
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
@@ -87,15 +87,15 @@ func (o *DegradationArray) HasIncluded() bool {
 	return o != nil && o.Included != nil
 }
 
-// SetIncluded gets a reference to the given []DegradationArrayIncluded and assigns it to the Included field.
-func (o *DegradationArray) SetIncluded(v []DegradationArrayIncluded) {
+// SetIncluded gets a reference to the given []DegradationIncluded and assigns it to the Included field.
+func (o *DegradationArray) SetIncluded(v []DegradationIncluded) {
 	o.Included = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *DegradationArray) GetMeta() StatusPagesResponseMeta {
+func (o *DegradationArray) GetMeta() PaginationMeta {
 	if o == nil || o.Meta == nil {
-		var ret StatusPagesResponseMeta
+		var ret PaginationMeta
 		return ret
 	}
 	return *o.Meta
@@ -103,7 +103,7 @@ func (o *DegradationArray) GetMeta() StatusPagesResponseMeta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DegradationArray) GetMetaOk() (*StatusPagesResponseMeta, bool) {
+func (o *DegradationArray) GetMetaOk() (*PaginationMeta, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -115,8 +115,8 @@ func (o *DegradationArray) HasMeta() bool {
 	return o != nil && o.Meta != nil
 }
 
-// SetMeta gets a reference to the given StatusPagesResponseMeta and assigns it to the Meta field.
-func (o *DegradationArray) SetMeta(v StatusPagesResponseMeta) {
+// SetMeta gets a reference to the given PaginationMeta and assigns it to the Meta field.
+func (o *DegradationArray) SetMeta(v PaginationMeta) {
 	o.Meta = &v
 }
 
@@ -143,9 +143,9 @@ func (o DegradationArray) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DegradationArray) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     *[]DegradationData         `json:"data"`
-		Included []DegradationArrayIncluded `json:"included,omitempty"`
-		Meta     *StatusPagesResponseMeta   `json:"meta,omitempty"`
+		Data     *[]DegradationData    `json:"data"`
+		Included []DegradationIncluded `json:"included,omitempty"`
+		Meta     *PaginationMeta       `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

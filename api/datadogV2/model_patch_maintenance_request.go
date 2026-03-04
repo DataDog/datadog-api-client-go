@@ -8,68 +8,68 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StatusPagesResponseMeta Response metadata.
-type StatusPagesResponseMeta struct {
-	// Offset-based pagination schema.
-	Page *StatusPagesPagination `json:"page,omitempty"`
+// PatchMaintenanceRequest
+type PatchMaintenanceRequest struct {
+	//
+	Data *PatchMaintenanceRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewStatusPagesResponseMeta instantiates a new StatusPagesResponseMeta object.
+// NewPatchMaintenanceRequest instantiates a new PatchMaintenanceRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewStatusPagesResponseMeta() *StatusPagesResponseMeta {
-	this := StatusPagesResponseMeta{}
+func NewPatchMaintenanceRequest() *PatchMaintenanceRequest {
+	this := PatchMaintenanceRequest{}
 	return &this
 }
 
-// NewStatusPagesResponseMetaWithDefaults instantiates a new StatusPagesResponseMeta object.
+// NewPatchMaintenanceRequestWithDefaults instantiates a new PatchMaintenanceRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewStatusPagesResponseMetaWithDefaults() *StatusPagesResponseMeta {
-	this := StatusPagesResponseMeta{}
+func NewPatchMaintenanceRequestWithDefaults() *PatchMaintenanceRequest {
+	this := PatchMaintenanceRequest{}
 	return &this
 }
 
-// GetPage returns the Page field value if set, zero value otherwise.
-func (o *StatusPagesResponseMeta) GetPage() StatusPagesPagination {
-	if o == nil || o.Page == nil {
-		var ret StatusPagesPagination
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *PatchMaintenanceRequest) GetData() PatchMaintenanceRequestData {
+	if o == nil || o.Data == nil {
+		var ret PatchMaintenanceRequestData
 		return ret
 	}
-	return *o.Page
+	return *o.Data
 }
 
-// GetPageOk returns a tuple with the Page field value if set, nil otherwise
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StatusPagesResponseMeta) GetPageOk() (*StatusPagesPagination, bool) {
-	if o == nil || o.Page == nil {
+func (o *PatchMaintenanceRequest) GetDataOk() (*PatchMaintenanceRequestData, bool) {
+	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Page, true
+	return o.Data, true
 }
 
-// HasPage returns a boolean if a field has been set.
-func (o *StatusPagesResponseMeta) HasPage() bool {
-	return o != nil && o.Page != nil
+// HasData returns a boolean if a field has been set.
+func (o *PatchMaintenanceRequest) HasData() bool {
+	return o != nil && o.Data != nil
 }
 
-// SetPage gets a reference to the given StatusPagesPagination and assigns it to the Page field.
-func (o *StatusPagesResponseMeta) SetPage(v StatusPagesPagination) {
-	o.Page = &v
+// SetData gets a reference to the given PatchMaintenanceRequestData and assigns it to the Data field.
+func (o *PatchMaintenanceRequest) SetData(v PatchMaintenanceRequestData) {
+	o.Data = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o StatusPagesResponseMeta) MarshalJSON() ([]byte, error) {
+func (o PatchMaintenanceRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Page != nil {
-		toSerialize["page"] = o.Page
+	if o.Data != nil {
+		toSerialize["data"] = o.Data
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -79,25 +79,25 @@ func (o StatusPagesResponseMeta) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *StatusPagesResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
+func (o *PatchMaintenanceRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Page *StatusPagesPagination `json:"page,omitempty"`
+		Data *PatchMaintenanceRequestData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"page"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Page = all.Page
+	o.Data = all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

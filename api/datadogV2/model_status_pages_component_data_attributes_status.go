@@ -19,6 +19,7 @@ const (
 	STATUSPAGESCOMPONENTDATAATTRIBUTESSTATUS_DEGRADED       StatusPagesComponentDataAttributesStatus = "degraded"
 	STATUSPAGESCOMPONENTDATAATTRIBUTESSTATUS_PARTIAL_OUTAGE StatusPagesComponentDataAttributesStatus = "partial_outage"
 	STATUSPAGESCOMPONENTDATAATTRIBUTESSTATUS_MAJOR_OUTAGE   StatusPagesComponentDataAttributesStatus = "major_outage"
+	STATUSPAGESCOMPONENTDATAATTRIBUTESSTATUS_MAINTENANCE    StatusPagesComponentDataAttributesStatus = "maintenance"
 )
 
 var allowedStatusPagesComponentDataAttributesStatusEnumValues = []StatusPagesComponentDataAttributesStatus{
@@ -26,6 +27,7 @@ var allowedStatusPagesComponentDataAttributesStatusEnumValues = []StatusPagesCom
 	STATUSPAGESCOMPONENTDATAATTRIBUTESSTATUS_DEGRADED,
 	STATUSPAGESCOMPONENTDATAATTRIBUTESSTATUS_PARTIAL_OUTAGE,
 	STATUSPAGESCOMPONENTDATAATTRIBUTESSTATUS_MAJOR_OUTAGE,
+	STATUSPAGESCOMPONENTDATAATTRIBUTESSTATUS_MAINTENANCE,
 }
 
 // GetAllowedValues reeturns the list of possible values.

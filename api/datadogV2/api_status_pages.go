@@ -244,6 +244,125 @@ func (a *StatusPagesApi) CreateDegradation(ctx _context.Context, pageId uuid.UUI
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// CreateMaintenanceOptionalParameters holds optional parameters for CreateMaintenance.
+type CreateMaintenanceOptionalParameters struct {
+	NotifySubscribers *bool
+	Include           *string
+}
+
+// NewCreateMaintenanceOptionalParameters creates an empty struct for parameters.
+func NewCreateMaintenanceOptionalParameters() *CreateMaintenanceOptionalParameters {
+	this := CreateMaintenanceOptionalParameters{}
+	return &this
+}
+
+// WithNotifySubscribers sets the corresponding parameter name and returns the struct.
+func (r *CreateMaintenanceOptionalParameters) WithNotifySubscribers(notifySubscribers bool) *CreateMaintenanceOptionalParameters {
+	r.NotifySubscribers = &notifySubscribers
+	return r
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *CreateMaintenanceOptionalParameters) WithInclude(include string) *CreateMaintenanceOptionalParameters {
+	r.Include = &include
+	return r
+}
+
+// CreateMaintenance Schedule maintenance.
+// Schedules a new maintenance.
+func (a *StatusPagesApi) CreateMaintenance(ctx _context.Context, pageId uuid.UUID, body CreateMaintenanceRequest, o ...CreateMaintenanceOptionalParameters) (Maintenance, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue Maintenance
+		optionalParams      CreateMaintenanceOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type CreateMaintenanceOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.StatusPagesApi.CreateMaintenance")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/statuspages/{page_id}/maintenances"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{page_id}", _neturl.PathEscape(datadog.ParameterToString(pageId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.NotifySubscribers != nil {
+		localVarQueryParams.Add("notify_subscribers", datadog.ParameterToString(*optionalParams.NotifySubscribers, ""))
+	}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // CreateStatusPageOptionalParameters holds optional parameters for CreateStatusPage.
 type CreateStatusPageOptionalParameters struct {
 	Include *string
@@ -772,6 +891,113 @@ func (a *StatusPagesApi) GetDegradation(ctx _context.Context, pageId uuid.UUID, 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetMaintenanceOptionalParameters holds optional parameters for GetMaintenance.
+type GetMaintenanceOptionalParameters struct {
+	Include *string
+}
+
+// NewGetMaintenanceOptionalParameters creates an empty struct for parameters.
+func NewGetMaintenanceOptionalParameters() *GetMaintenanceOptionalParameters {
+	this := GetMaintenanceOptionalParameters{}
+	return &this
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *GetMaintenanceOptionalParameters) WithInclude(include string) *GetMaintenanceOptionalParameters {
+	r.Include = &include
+	return r
+}
+
+// GetMaintenance Get maintenance.
+// Retrieves a specific maintenance by its ID.
+func (a *StatusPagesApi) GetMaintenance(ctx _context.Context, pageId uuid.UUID, maintenanceId uuid.UUID, o ...GetMaintenanceOptionalParameters) (Maintenance, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue Maintenance
+		optionalParams      GetMaintenanceOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetMaintenanceOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.StatusPagesApi.GetMaintenance")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/statuspages/{page_id}/maintenances/{maintenance_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{page_id}", _neturl.PathEscape(datadog.ParameterToString(pageId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{maintenance_id}", _neturl.PathEscape(datadog.ParameterToString(maintenanceId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetStatusPageOptionalParameters holds optional parameters for GetStatusPage.
 type GetStatusPageOptionalParameters struct {
 	Include *string
@@ -991,6 +1217,7 @@ type ListDegradationsOptionalParameters struct {
 	PageLimit    *int32
 	Include      *string
 	FilterStatus *string
+	Sort         *string
 }
 
 // NewListDegradationsOptionalParameters creates an empty struct for parameters.
@@ -1026,6 +1253,12 @@ func (r *ListDegradationsOptionalParameters) WithInclude(include string) *ListDe
 // WithFilterStatus sets the corresponding parameter name and returns the struct.
 func (r *ListDegradationsOptionalParameters) WithFilterStatus(filterStatus string) *ListDegradationsOptionalParameters {
 	r.FilterStatus = &filterStatus
+	return r
+}
+
+// WithSort sets the corresponding parameter name and returns the struct.
+func (r *ListDegradationsOptionalParameters) WithSort(sort string) *ListDegradationsOptionalParameters {
+	r.Sort = &sort
 	return r
 }
 
@@ -1070,6 +1303,164 @@ func (a *StatusPagesApi) ListDegradations(ctx _context.Context, o ...ListDegrada
 	}
 	if optionalParams.FilterStatus != nil {
 		localVarQueryParams.Add("filter[status]", datadog.ParameterToString(*optionalParams.FilterStatus, ""))
+	}
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListMaintenancesOptionalParameters holds optional parameters for ListMaintenances.
+type ListMaintenancesOptionalParameters struct {
+	FilterPageId *string
+	PageOffset   *int32
+	PageLimit    *int32
+	Include      *string
+	FilterStatus *string
+	Sort         *string
+}
+
+// NewListMaintenancesOptionalParameters creates an empty struct for parameters.
+func NewListMaintenancesOptionalParameters() *ListMaintenancesOptionalParameters {
+	this := ListMaintenancesOptionalParameters{}
+	return &this
+}
+
+// WithFilterPageId sets the corresponding parameter name and returns the struct.
+func (r *ListMaintenancesOptionalParameters) WithFilterPageId(filterPageId string) *ListMaintenancesOptionalParameters {
+	r.FilterPageId = &filterPageId
+	return r
+}
+
+// WithPageOffset sets the corresponding parameter name and returns the struct.
+func (r *ListMaintenancesOptionalParameters) WithPageOffset(pageOffset int32) *ListMaintenancesOptionalParameters {
+	r.PageOffset = &pageOffset
+	return r
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListMaintenancesOptionalParameters) WithPageLimit(pageLimit int32) *ListMaintenancesOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *ListMaintenancesOptionalParameters) WithInclude(include string) *ListMaintenancesOptionalParameters {
+	r.Include = &include
+	return r
+}
+
+// WithFilterStatus sets the corresponding parameter name and returns the struct.
+func (r *ListMaintenancesOptionalParameters) WithFilterStatus(filterStatus string) *ListMaintenancesOptionalParameters {
+	r.FilterStatus = &filterStatus
+	return r
+}
+
+// WithSort sets the corresponding parameter name and returns the struct.
+func (r *ListMaintenancesOptionalParameters) WithSort(sort string) *ListMaintenancesOptionalParameters {
+	r.Sort = &sort
+	return r
+}
+
+// ListMaintenances List maintenances.
+// Lists all maintenances for the organization. Optionally filter by status and page.
+func (a *StatusPagesApi) ListMaintenances(ctx _context.Context, o ...ListMaintenancesOptionalParameters) (MaintenanceArray, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue MaintenanceArray
+		optionalParams      ListMaintenancesOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListMaintenancesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.StatusPagesApi.ListMaintenances")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/statuspages/maintenances"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.FilterPageId != nil {
+		localVarQueryParams.Add("filter[page_id]", datadog.ParameterToString(*optionalParams.FilterPageId, ""))
+	}
+	if optionalParams.PageOffset != nil {
+		localVarQueryParams.Add("page[offset]", datadog.ParameterToString(*optionalParams.PageOffset, ""))
+	}
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	if optionalParams.FilterStatus != nil {
+		localVarQueryParams.Add("filter[status]", datadog.ParameterToString(*optionalParams.FilterStatus, ""))
+	}
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
@@ -1413,6 +1804,126 @@ func (a *StatusPagesApi) UpdateDegradation(ctx _context.Context, pageId uuid.UUI
 	localVarPath := localBasePath + "/api/v2/statuspages/{page_id}/degradations/{degradation_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{page_id}", _neturl.PathEscape(datadog.ParameterToString(pageId, "")))
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{degradation_id}", _neturl.PathEscape(datadog.ParameterToString(degradationId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.NotifySubscribers != nil {
+		localVarQueryParams.Add("notify_subscribers", datadog.ParameterToString(*optionalParams.NotifySubscribers, ""))
+	}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// UpdateMaintenanceOptionalParameters holds optional parameters for UpdateMaintenance.
+type UpdateMaintenanceOptionalParameters struct {
+	NotifySubscribers *bool
+	Include           *string
+}
+
+// NewUpdateMaintenanceOptionalParameters creates an empty struct for parameters.
+func NewUpdateMaintenanceOptionalParameters() *UpdateMaintenanceOptionalParameters {
+	this := UpdateMaintenanceOptionalParameters{}
+	return &this
+}
+
+// WithNotifySubscribers sets the corresponding parameter name and returns the struct.
+func (r *UpdateMaintenanceOptionalParameters) WithNotifySubscribers(notifySubscribers bool) *UpdateMaintenanceOptionalParameters {
+	r.NotifySubscribers = &notifySubscribers
+	return r
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *UpdateMaintenanceOptionalParameters) WithInclude(include string) *UpdateMaintenanceOptionalParameters {
+	r.Include = &include
+	return r
+}
+
+// UpdateMaintenance Update maintenance.
+// Updates an existing maintenance's attributes.
+func (a *StatusPagesApi) UpdateMaintenance(ctx _context.Context, pageId uuid.UUID, maintenanceId uuid.UUID, body PatchMaintenanceRequest, o ...UpdateMaintenanceOptionalParameters) (Maintenance, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue Maintenance
+		optionalParams      UpdateMaintenanceOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type UpdateMaintenanceOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.StatusPagesApi.UpdateMaintenance")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/statuspages/{page_id}/maintenances/{maintenance_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{page_id}", _neturl.PathEscape(datadog.ParameterToString(pageId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{maintenance_id}", _neturl.PathEscape(datadog.ParameterToString(maintenanceId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

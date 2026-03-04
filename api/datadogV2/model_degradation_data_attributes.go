@@ -20,6 +20,8 @@ type DegradationDataAttributes struct {
 	Description *string `json:"description,omitempty"`
 	// Timestamp of when the degradation was last modified.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
+	// The source of the degradation.
+	Source *DegradationDataAttributesSource `json:"source,omitempty"`
 	// The status of the degradation.
 	Status *CreateDegradationRequestDataAttributesStatus `json:"status,omitempty"`
 	// Title of the degradation.
@@ -160,6 +162,34 @@ func (o *DegradationDataAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
+// GetSource returns the Source field value if set, zero value otherwise.
+func (o *DegradationDataAttributes) GetSource() DegradationDataAttributesSource {
+	if o == nil || o.Source == nil {
+		var ret DegradationDataAttributesSource
+		return ret
+	}
+	return *o.Source
+}
+
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DegradationDataAttributes) GetSourceOk() (*DegradationDataAttributesSource, bool) {
+	if o == nil || o.Source == nil {
+		return nil, false
+	}
+	return o.Source, true
+}
+
+// HasSource returns a boolean if a field has been set.
+func (o *DegradationDataAttributes) HasSource() bool {
+	return o != nil && o.Source != nil
+}
+
+// SetSource gets a reference to the given DegradationDataAttributesSource and assigns it to the Source field.
+func (o *DegradationDataAttributes) SetSource(v DegradationDataAttributesSource) {
+	o.Source = &v
+}
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *DegradationDataAttributes) GetStatus() CreateDegradationRequestDataAttributesStatus {
 	if o == nil || o.Status == nil {
@@ -270,6 +300,9 @@ func (o DegradationDataAttributes) MarshalJSON() ([]byte, error) {
 			toSerialize["modified_at"] = o.ModifiedAt.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
+	if o.Source != nil {
+		toSerialize["source"] = o.Source
+	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
@@ -293,6 +326,7 @@ func (o *DegradationDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		CreatedAt          *time.Time                                         `json:"created_at,omitempty"`
 		Description        *string                                            `json:"description,omitempty"`
 		ModifiedAt         *time.Time                                         `json:"modified_at,omitempty"`
+		Source             *DegradationDataAttributesSource                   `json:"source,omitempty"`
 		Status             *CreateDegradationRequestDataAttributesStatus      `json:"status,omitempty"`
 		Title              *string                                            `json:"title,omitempty"`
 		Updates            []DegradationDataAttributesUpdatesItems            `json:"updates,omitempty"`
@@ -302,7 +336,7 @@ func (o *DegradationDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"components_affected", "created_at", "description", "modified_at", "status", "title", "updates"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"components_affected", "created_at", "description", "modified_at", "source", "status", "title", "updates"})
 	} else {
 		return err
 	}
@@ -312,6 +346,10 @@ func (o *DegradationDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.CreatedAt = all.CreatedAt
 	o.Description = all.Description
 	o.ModifiedAt = all.ModifiedAt
+	if all.Source != nil && all.Source.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Source = all.Source
 	if all.Status != nil && !all.Status.IsValid() {
 		hasInvalidField = true
 	} else {

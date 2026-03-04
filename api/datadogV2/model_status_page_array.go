@@ -17,7 +17,7 @@ type StatusPageArray struct {
 	// The included related resources of a status page. Client must explicitly request these resources by name in the `include` query parameter.
 	Included []StatusPageArrayIncluded `json:"included,omitempty"`
 	// Response metadata.
-	Meta *StatusPagesResponseMeta `json:"meta,omitempty"`
+	Meta *PaginationMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -93,9 +93,9 @@ func (o *StatusPageArray) SetIncluded(v []StatusPageArrayIncluded) {
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *StatusPageArray) GetMeta() StatusPagesResponseMeta {
+func (o *StatusPageArray) GetMeta() PaginationMeta {
 	if o == nil || o.Meta == nil {
-		var ret StatusPagesResponseMeta
+		var ret PaginationMeta
 		return ret
 	}
 	return *o.Meta
@@ -103,7 +103,7 @@ func (o *StatusPageArray) GetMeta() StatusPagesResponseMeta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *StatusPageArray) GetMetaOk() (*StatusPagesResponseMeta, bool) {
+func (o *StatusPageArray) GetMetaOk() (*PaginationMeta, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -115,8 +115,8 @@ func (o *StatusPageArray) HasMeta() bool {
 	return o != nil && o.Meta != nil
 }
 
-// SetMeta gets a reference to the given StatusPagesResponseMeta and assigns it to the Meta field.
-func (o *StatusPageArray) SetMeta(v StatusPagesResponseMeta) {
+// SetMeta gets a reference to the given PaginationMeta and assigns it to the Meta field.
+func (o *StatusPageArray) SetMeta(v PaginationMeta) {
 	o.Meta = &v
 }
 
@@ -145,7 +145,7 @@ func (o *StatusPageArray) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data     *[]StatusPageData         `json:"data"`
 		Included []StatusPageArrayIncluded `json:"included,omitempty"`
-		Meta     *StatusPagesResponseMeta  `json:"meta,omitempty"`
+		Meta     *PaginationMeta           `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
