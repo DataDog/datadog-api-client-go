@@ -14,7 +14,8 @@ import (
 type TimeseriesWidgetDefinition struct {
 	// List of custom links.
 	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
-	// List of widget events.
+	// List of widget events. Deprecated - Use `overlay` request type instead.
+	// Deprecated
 	Events []WidgetEvent `json:"events,omitempty"`
 	// Columns displayed in the legend.
 	LegendColumns []TimeseriesWidgetLegendColumn `json:"legend_columns,omitempty"`
@@ -97,6 +98,7 @@ func (o *TimeseriesWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 }
 
 // GetEvents returns the Events field value if set, zero value otherwise.
+// Deprecated
 func (o *TimeseriesWidgetDefinition) GetEvents() []WidgetEvent {
 	if o == nil || o.Events == nil {
 		var ret []WidgetEvent
@@ -107,6 +109,7 @@ func (o *TimeseriesWidgetDefinition) GetEvents() []WidgetEvent {
 
 // GetEventsOk returns a tuple with the Events field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *TimeseriesWidgetDefinition) GetEventsOk() (*[]WidgetEvent, bool) {
 	if o == nil || o.Events == nil {
 		return nil, false
@@ -120,6 +123,7 @@ func (o *TimeseriesWidgetDefinition) HasEvents() bool {
 }
 
 // SetEvents gets a reference to the given []WidgetEvent and assigns it to the Events field.
+// Deprecated
 func (o *TimeseriesWidgetDefinition) SetEvents(v []WidgetEvent) {
 	o.Events = v
 }
