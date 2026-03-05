@@ -5,8 +5,7 @@
 package datadogV2
 
 import (
-	"fmt"
-	"github.com/google/uuid"
+	_io "io"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )

@@ -5,15 +5,12 @@
 package datadogV2
 
 import (
-	"bytes"
 	_context "context"
-	_fmt "fmt"
-	_io "io"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/google/uuid"
 )
 
 // OrgConnectionsApi service type

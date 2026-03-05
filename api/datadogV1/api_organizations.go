@@ -5,11 +5,8 @@
 package datadogV1
 
 import (
-	"bytes"
 	_context "context"
-	_fmt "fmt"
 	_io "io"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 

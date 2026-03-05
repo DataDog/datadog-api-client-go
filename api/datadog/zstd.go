@@ -8,6 +8,7 @@ package datadog
 
 import (
 	"bytes"
+
 	"github.com/DataDog/zstd"
 )
 
