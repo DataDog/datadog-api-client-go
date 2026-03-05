@@ -62,6 +62,9 @@ var (
 
 	// ContextOperationServerVariables overrides a server configuration variables using operation specific values.
 	ContextOperationServerVariables = contextKey("serverOperationVariables")
+
+	// ContextBearerToken takes a bearer token (e.g. PAT) as authentication for the request.
+	ContextBearerToken = contextKey("bearerToken")
 )
 
 // BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth.
@@ -1080,6 +1083,9 @@ func NewDefaultContext(ctx context.Context) context.Context {
 	}
 	if apiKey, ok := os.LookupEnv("DD_APP_KEY"); ok {
 		keys["appKeyAuth"] = APIKey{Key: apiKey}
+	}
+	if bearerToken, ok := os.LookupEnv("DD_BEARER_TOKEN"); ok {
+		ctx = context.WithValue(ctx, ContextBearerToken, bearerToken)
 	}
 	ctx = context.WithValue(
 		ctx,
