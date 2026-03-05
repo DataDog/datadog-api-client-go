@@ -871,6 +871,7 @@
 //   - [UsageMeteringApi.GetMonthlyCostAttribution]
 //   - [UsageMeteringApi.GetProjectedCost]
 //   - [UsageMeteringApi.GetUsageApplicationSecurityMonitoring]
+//   - [UsageMeteringApi.GetUsageAttributionTypes]
 //   - [UsageMeteringApi.GetUsageLambdaTracedInvocations]
 //   - [UsageMeteringApi.GetUsageObservabilityPipelines]
 //   - [UsersApi.CreateUser]
