@@ -10,7 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MonthlyUsageAttributionSupportedMetrics Supported metrics for monthly usage attribution requests.
+// MonthlyUsageAttributionSupportedMetrics Supported metrics for monthly usage attribution requests. Usage types are in the format `<usage_type>_usage`.
+// To obtain the complete list of valid usage types, make a request to the [Get usage attribution types API](https://docs.datadoghq.com/api/latest/usage-metering/#get-usage-attribution-types).
 type MonthlyUsageAttributionSupportedMetrics string
 
 // List of MonthlyUsageAttributionSupportedMetrics.
