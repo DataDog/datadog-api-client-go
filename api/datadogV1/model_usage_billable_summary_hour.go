@@ -16,7 +16,7 @@ type UsageBillableSummaryHour struct {
 	AccountName *string `json:"account_name,omitempty"`
 	// The account public ID.
 	AccountPublicId *string `json:"account_public_id,omitempty"`
-	// The billing plan (metadata). (Deprecated from May 2026)
+	// The billing plan (metadata). (Deprecated from June 2026)
 	// Deprecated
 	BillingPlan *string `json:"billing_plan,omitempty"`
 	// Shows the last date of usage.
