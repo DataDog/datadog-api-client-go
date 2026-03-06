@@ -1,5 +1,41 @@
 # CHANGELOG
 
+## 2.56.0/2026-03-06
+
+### Added
+* Billing_plan field deprecation - correction start date [#3765](https://github.com/DataDog/datadog-api-client-go/pull/3765)
+* Add ci_code_coverage_committers to usage API [#3761](https://github.com/DataDog/datadog-api-client-go/pull/3761)
+* Expose usage-attribution-types publicly and update attribution descriptions [#3760](https://github.com/DataDog/datadog-api-client-go/pull/3760)
+* Add new param to api/v2/metrics [#3754](https://github.com/DataDog/datadog-api-client-go/pull/3754)
+* Add FormulaAndFunctionEventQueryGroupByFields schema to support flat group_by form [#3750](https://github.com/DataDog/datadog-api-client-go/pull/3750)
+* billing_plan field deprecation in billable-summary endpoint [#3744](https://github.com/DataDog/datadog-api-client-go/pull/3744)
+* Add OpenAPI spec for LLM Observability Experiments API [#3742](https://github.com/DataDog/datadog-api-client-go/pull/3742)
+* Add missing persona_mapping endpoints [#3731](https://github.com/DataDog/datadog-api-client-go/pull/3731)
+* Adding Observability Pipelines Secret Management feature support [#3729](https://github.com/DataDog/datadog-api-client-go/pull/3729)
+* Workflow Automation - Add Form Trigger [#3728](https://github.com/DataDog/datadog-api-client-go/pull/3728)
+* Add Maintenances and minor updates to Status Pages API [#3726](https://github.com/DataDog/datadog-api-client-go/pull/3726)
+* Introduce api/v2/integration API endpoint [#3719](https://github.com/DataDog/datadog-api-client-go/pull/3719)
+* Add OpenAPI spec for Change Management endpoints [#3717](https://github.com/DataDog/datadog-api-client-go/pull/3717)
+* Add sort parameter to detection rules list endpoint [#3714](https://github.com/DataDog/datadog-api-client-go/pull/3714)
+* Add public documentation on NDM interface tags endpoint [#3711](https://github.com/DataDog/datadog-api-client-go/pull/3711)
+* Add documentation for POST api/v2/incidents/import [#3707](https://github.com/DataDog/datadog-api-client-go/pull/3707)
+* Post an event v2 API - add a new enum value to links.category field and add pattern validation on changed_resource.name field [#3706](https://github.com/DataDog/datadog-api-client-go/pull/3706)
+* Add receives_permissions_from field to Roles API [#3696](https://github.com/DataDog/datadog-api-client-go/pull/3696)
+* Adding custom mapper support to Observability Pipelines OCSF Mapper [#3692](https://github.com/DataDog/datadog-api-client-go/pull/3692)
+* Add seats API v2 endpoints with error responses and required fields [#3689](https://github.com/DataDog/datadog-api-client-go/pull/3689)
+* Added support for Google Chat Organization Handles Public API [#3667](https://github.com/DataDog/datadog-api-client-go/pull/3667)
+* Add Network Path test endpoints to v2 spec [#3663](https://github.com/DataDog/datadog-api-client-go/pull/3663)
+* Add OpenAPI documentation for cloud-auth-config service [#3633](https://github.com/DataDog/datadog-api-client-go/pull/3633)
+* Add suppression sort by create date [#3618](https://github.com/DataDog/datadog-api-client-go/pull/3618)
+
+### Fixed
+* Fix UnmarshalJSON required check for nullable additionalProperties containers [#3762](https://github.com/DataDog/datadog-api-client-go/pull/3762)
+* Fix WidgetNewFixedSpan - timestamps are milliseconds not seconds [#3722](https://github.com/DataDog/datadog-api-client-go/pull/3722)
+* Increase validation limit on integration type [#3715](https://github.com/DataDog/datadog-api-client-go/pull/3715)
+
+### Deprecated
+* Mark legacy non-FnF query fields and WidgetEvent as deprecated in dashboard spec + update Distribuition docs [#3746](https://github.com/DataDog/datadog-api-client-go/pull/3746)
+
 ## 2.55.0/2026-02-17
 
 ### Fixed
