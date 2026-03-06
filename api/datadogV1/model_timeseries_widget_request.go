@@ -43,8 +43,8 @@ type TimeseriesWidgetRequest struct {
 	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
 	// The log query.
 	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
-	// Define request widget style.
-	Style *WidgetRequestStyle `json:"style,omitempty"`
+	// Define request widget style for timeseries widgets.
+	Style *TimeseriesRequestStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -519,9 +519,9 @@ func (o *TimeseriesWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
 }
 
 // GetStyle returns the Style field value if set, zero value otherwise.
-func (o *TimeseriesWidgetRequest) GetStyle() WidgetRequestStyle {
+func (o *TimeseriesWidgetRequest) GetStyle() TimeseriesRequestStyle {
 	if o == nil || o.Style == nil {
-		var ret WidgetRequestStyle
+		var ret TimeseriesRequestStyle
 		return ret
 	}
 	return *o.Style
@@ -529,7 +529,7 @@ func (o *TimeseriesWidgetRequest) GetStyle() WidgetRequestStyle {
 
 // GetStyleOk returns a tuple with the Style field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TimeseriesWidgetRequest) GetStyleOk() (*WidgetRequestStyle, bool) {
+func (o *TimeseriesWidgetRequest) GetStyleOk() (*TimeseriesRequestStyle, bool) {
 	if o == nil || o.Style == nil {
 		return nil, false
 	}
@@ -541,8 +541,8 @@ func (o *TimeseriesWidgetRequest) HasStyle() bool {
 	return o != nil && o.Style != nil
 }
 
-// SetStyle gets a reference to the given WidgetRequestStyle and assigns it to the Style field.
-func (o *TimeseriesWidgetRequest) SetStyle(v WidgetRequestStyle) {
+// SetStyle gets a reference to the given TimeseriesRequestStyle and assigns it to the Style field.
+func (o *TimeseriesWidgetRequest) SetStyle(v TimeseriesRequestStyle) {
 	o.Style = &v
 }
 
@@ -629,7 +629,7 @@ func (o *TimeseriesWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		ResponseFormat      *FormulaAndFunctionResponseFormat   `json:"response_format,omitempty"`
 		RumQuery            *LogQueryDefinition                 `json:"rum_query,omitempty"`
 		SecurityQuery       *LogQueryDefinition                 `json:"security_query,omitempty"`
-		Style               *WidgetRequestStyle                 `json:"style,omitempty"`
+		Style               *TimeseriesRequestStyle             `json:"style,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

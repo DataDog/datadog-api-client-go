@@ -25,7 +25,7 @@ func main() {
 							{
 								Q:            datadog.PtrString("sum:trace.test.errors{env:prod,service:datadog-api-spec} by {resource_name}.as_count()"),
 								OnRightYaxis: datadog.PtrBool(false),
-								Style: &datadogV1.WidgetRequestStyle{
+								Style: &datadogV1.TimeseriesRequestStyle{
 									Palette:   datadog.PtrString("warm"),
 									LineType:  datadogV1.WIDGETLINETYPE_SOLID.Ptr(),
 									LineWidth: datadogV1.WIDGETLINEWIDTH_NORMAL.Ptr(),
