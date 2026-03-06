@@ -1,4 +1,4 @@
-// Create a new dashboard with timeseries widget using order_by values
+// Create a new dashboard with timeseries widget using has_value_labels
 
 package main
 
@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadogV1.Dashboard{
 		LayoutType: datadogV1.DASHBOARDLAYOUTTYPE_ORDERED,
-		Title:      "Example-Dashboard with order_by values",
+		Title:      "Example-Dashboard with has_value_labels",
 		Widgets: []datadogV1.Widget{
 			{
 				Definition: datadogV1.WidgetDefinition{
@@ -25,8 +25,10 @@ func main() {
 							{
 								Q: datadog.PtrString("avg:system.cpu.user{*} by {host}"),
 								Style: &datadogV1.TimeseriesRequestStyle{
-									Palette: datadog.PtrString("warm"),
-									OrderBy: datadogV1.WIDGETSTYLEORDERBY_VALUES.Ptr(),
+									Palette:        datadog.PtrString("dog_classic"),
+									LineType:       datadogV1.WIDGETLINETYPE_SOLID.Ptr(),
+									LineWidth:      datadogV1.WIDGETLINEWIDTH_NORMAL.Ptr(),
+									HasValueLabels: datadog.PtrBool(true),
 								},
 								DisplayType: datadogV1.WIDGETDISPLAYTYPE_LINE.Ptr(),
 							},

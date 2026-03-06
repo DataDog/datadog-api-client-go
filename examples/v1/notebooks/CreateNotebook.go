@@ -41,7 +41,7 @@ y = 6;
 										{
 											DisplayType: datadogV1.WIDGETDISPLAYTYPE_LINE.Ptr(),
 											Q:           datadog.PtrString("avg:system.load.1{*}"),
-											Style: &datadogV1.WidgetRequestStyle{
+											Style: &datadogV1.TimeseriesRequestStyle{
 												LineType:  datadogV1.WIDGETLINETYPE_SOLID.Ptr(),
 												LineWidth: datadogV1.WIDGETLINEWIDTH_NORMAL.Ptr(),
 												Palette:   datadog.PtrString("dog_classic"),
