@@ -225,7 +225,7 @@ type UsageSummaryResponse struct {
 	GcpHostTop99pSum *int64 `json:"gcp_host_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all Heroku dynos over all hours in the current month for all organizations.
 	HerokuHostTop99pSum *int64 `json:"heroku_host_top99p_sum,omitempty"`
-	// Shows sum of the high-water marks of incident management monthly active users in the current month for all organizations.
+	// Shows sum of the high-water marks of Incident Management monthly active users in the current month for all organizations.
 	IncidentManagementMonthlyActiveUsersHwmSum *int64 `json:"incident_management_monthly_active_users_hwm_sum,omitempty"`
 	// Shows the sum of the high-water marks of Incident Management seats over all hours in the current month for all organizations.
 	IncidentManagementSeatsHwmSum *int64 `json:"incident_management_seats_hwm_sum,omitempty"`
