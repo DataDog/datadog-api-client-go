@@ -1,0 +1,55 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 0
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/integration/aws/accounts/b2087a32-4d4f-45b1-9321-1a0a48e9d7cf/ccm_config
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+- request:
+    body: |
+      {"data":{"attributes":{"ccm_config":{"data_export_configs":[{"bucket_name":"billing","bucket_region":"us-east-1","report_name":"cost-and-usage-report","report_prefix":"reports","report_type":"CUR2.0"}]}},"type":"ccm_config"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
+    url: https://api.datadoghq.com/api/v2/integration/aws/accounts/b2087a32-4d4f-45b1-9321-1a0a48e9d7cf/ccm_config
+  response:
+    body: '{"data":{"id":"b2087a32-4d4f-45b1-9321-1a0a48e9d7cf","type":"ccm_config","attributes":{"data_export_configs":[{"report_name":"cost-and-usage-report","report_prefix":"reports","report_type":"CUR2.0","bucket_name":"billing","bucket_region":"us-east-1"}]}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/integration/aws/accounts/%7Baws_account_config_id%7D/ccm_config
+  response:
+    body: '{"errors":[{"status":"400","title":"Invalid Parameter","detail":"invalid
+      parameter \"aws_account_config_id\" in \"path\"; expected type \"uuid\""}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2
