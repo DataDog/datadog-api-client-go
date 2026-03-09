@@ -34,4 +34,21 @@ interactions:
       Content-Type:
       - application/json
     status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 2
+    method: GET
+    url: https://api.datadoghq.com/api/v2/processes?page%5Blimit%5D=2&page%5Bcursor%5D=78ece26c7701000015e90400ecda56b600e21f012357ad716ee71ca9
+  response:
+    body: '{"data":[]}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
 version: 2

@@ -42,4 +42,24 @@ interactions:
       Content-Type:
       - application/json
     status: 200 OK
+- request:
+    body: |
+      {"filter":{"from":"now-15m","indexes":["main"],"to":"now"},"options":{"timezone":"GMT"},"page":{"cursor":"eyJhZnRlciI6IkFRQUFBWUFaZGJvSzdkR3dPUUFBQUFCQldVRmFaR0p5TVVGQlEwczRPRU4zWW1aMVVESlJRVVEifQ","limit":2},"sort":"timestamp"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 2
+    method: POST
+    url: https://api.datadoghq.com/api/v2/logs/events/search
+  response:
+    body: '{"data":[]}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
 version: 2

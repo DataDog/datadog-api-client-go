@@ -42,4 +42,24 @@ interactions:
       Content-Type:
       - application/vnd.api+json
     status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"filter":{"from":"now-15m","query":"service:python*","to":"now"},"options":{"timezone":"GMT"},"page":{"cursor":"eyJhZnRlciI6IkFnQUFBWWtHdXF2UUQ0YzdlUUFBQUFBQUFBQVlBQUFBQUVGWmEwZDFjbVpSUVVGRWMzZDVaVUZYYVZOblFWRmxOUUFBQUNRQUFBQUFNREU0T1RBMll6QXROVEZrT0MwME5EYzVMV0ZsT0RndE56WXdZbVl4TldRM016QXkiLCJ2YWx1ZXMiOlsiMjAyMy0wNi0yOVQxMDozNzoyNC4zMDRaIiwyNjA1MjA4MjVdfQ==","limit":2},"sort":"timestamp"},"type":"search_request"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 2
+    method: POST
+    url: https://api.datadoghq.com/api/v2/spans/events/search
+  response:
+    body: '{"data":[]}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
 version: 2
