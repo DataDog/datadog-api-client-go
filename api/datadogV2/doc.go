@@ -792,6 +792,7 @@
 //   - [StaticAnalysisApi.GetCustomRule]
 //   - [StaticAnalysisApi.GetCustomRuleRevision]
 //   - [StaticAnalysisApi.GetCustomRuleset]
+//   - [StaticAnalysisApi.GetLicenses]
 //   - [StaticAnalysisApi.ListCustomRuleRevisions]
 //   - [StaticAnalysisApi.RevertCustomRuleRevision]
 //   - [StaticAnalysisApi.UpdateCustomRuleset]
