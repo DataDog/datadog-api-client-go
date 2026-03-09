@@ -601,24 +601,20 @@ func NewConfiguration() *Configuration {
 			},
 			"v2.ProductAnalyticsApi.SubmitProductAnalyticsEvent": {
 				{
-					URL:         "https://{subdomain}.{site}",
+					URL:         "https://{site}",
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"site": {
-							Description:  "The regional site for customers.",
-							DefaultValue: "datadoghq.com",
+							Description:  "The intake domain for the regional site.",
+							DefaultValue: "browser-intake-datadoghq.com",
 							EnumValues: []string{
-								"datadoghq.com",
-								"us3.datadoghq.com",
-								"us5.datadoghq.com",
-								"ap1.datadoghq.com",
-								"ap2.datadoghq.com",
-								"datadoghq.eu",
+								"browser-intake-datadoghq.com",
+								"browser-intake-us3-datadoghq.com",
+								"browser-intake-us5-datadoghq.com",
+								"browser-intake-ap1-datadoghq.com",
+								"browser-intake-ap2-datadoghq.com",
+								"browser-intake-datadoghq.eu",
 							},
-						},
-						"subdomain": {
-							Description:  "The subdomain where the API is deployed.",
-							DefaultValue: "browser-intake",
 						},
 					},
 				},
@@ -646,7 +642,7 @@ func NewConfiguration() *Configuration {
 						},
 						"subdomain": {
 							Description:  "The subdomain where the API is deployed.",
-							DefaultValue: "browser-intake",
+							DefaultValue: "api",
 						},
 					},
 				},
