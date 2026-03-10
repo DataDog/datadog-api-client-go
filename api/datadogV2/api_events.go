@@ -383,7 +383,7 @@ func (a *EventsApi) ListEventsWithPagination(ctx _context.Context, o ...ListEven
 					return
 				}
 			}
-			if len(results) < int(pageSize_) {
+			if len(results) == 0 {
 				break
 			}
 			cursorMeta, ok := resp.GetMetaOk()
@@ -557,7 +557,7 @@ func (a *EventsApi) SearchEventsWithPagination(ctx _context.Context, o ...Search
 					return
 				}
 			}
-			if len(results) < int(pageSize_) {
+			if len(results) == 0 {
 				break
 			}
 			cursorMeta, ok := resp.GetMetaOk()

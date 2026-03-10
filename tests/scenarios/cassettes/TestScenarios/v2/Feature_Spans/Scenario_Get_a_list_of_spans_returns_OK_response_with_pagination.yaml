@@ -33,4 +33,21 @@ interactions:
       Content-Type:
       - application/vnd.api+json
     status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 2
+    method: GET
+    url: https://api.datadoghq.com/api/v2/spans/events?page%5Blimit%5D=2&page%5Bcursor%5D=eyJhZnRlciI6IkFnQUFBWWtHdzRwa083amdBZ0FBQUFBQUFBQVlBQUFBQUVGWmEwZDNOVmRSUVVGQ01sbFRNV3N3WTNGdGVsQndad0FBQUNRQUFBQUFNREU0T1RBMll6TXRPR0UyTkMwMFpETmlMV0ZqWm1NdFlUaGxaR1kxTW1ZeE1Ua3kiLCJ2YWx1ZXMiOlsiMjAyMy0wNi0yOVQxMDo0NzowNS41NzJaIiwxMDAxOTcxNzE0XX0%3D
+  response:
+    body: '{"data":[]}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
 version: 2

@@ -116,4 +116,24 @@ interactions:
       Content-Type:
       - application/json
     status: 200 OK
+- request:
+    body: |
+      {"filter":{"from":"2022-04-13T11:17:57.080Z","query":"security:attack status:high","to":"2022-04-13T11:32:57.080Z"},"page":{"cursor":"eyJhZnRlciI6IkFRQUFBWUFlRGFHZENMd21QZ0FBQUFCQldVRmxSR0ZIWkVGQlJFa3lkakpuYjFCSmF6Um5RVUUifQ","limit":2},"sort":"timestamp"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 2
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security_monitoring/signals/search
+  response:
+    body: '{"data":[]}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
 version: 2

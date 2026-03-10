@@ -193,7 +193,7 @@ func (a *TestOptimizationApi) SearchFlakyTestsWithPagination(ctx _context.Contex
 					return
 				}
 			}
-			if len(results) < int(pageSize_) {
+			if len(results) == 0 {
 				break
 			}
 			cursorMeta, ok := resp.GetMetaOk()
