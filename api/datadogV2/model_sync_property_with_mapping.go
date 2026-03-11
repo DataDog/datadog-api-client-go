@@ -10,11 +10,11 @@ import (
 
 // SyncPropertyWithMapping Sync property with mapping configuration
 type SyncPropertyWithMapping struct {
-	//
+	// Map of source values to destination values for synchronization
 	Mapping map[string]string `json:"mapping,omitempty"`
-	//
+	// Map of source names to display names used during synchronization
 	NameMapping map[string]string `json:"name_mapping,omitempty"`
-	//
+	// The direction and type of synchronization for this property
 	SyncType *string `json:"sync_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

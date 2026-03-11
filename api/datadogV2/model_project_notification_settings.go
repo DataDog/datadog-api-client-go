@@ -14,19 +14,19 @@ type ProjectNotificationSettings struct {
 	Destinations []int32 `json:"destinations,omitempty"`
 	// Whether notifications are enabled
 	Enabled *bool `json:"enabled,omitempty"`
-	//
+	// Whether to send a notification when a case is assigned
 	NotifyOnCaseAssignment *bool `json:"notify_on_case_assignment,omitempty"`
-	//
+	// Whether to send a notification when a case is closed
 	NotifyOnCaseClosed *bool `json:"notify_on_case_closed,omitempty"`
-	//
+	// Whether to send a notification when a comment is added to a case
 	NotifyOnCaseComment *bool `json:"notify_on_case_comment,omitempty"`
-	//
+	// Whether to send a notification when a user is mentioned in a case comment
 	NotifyOnCaseCommentMention *bool `json:"notify_on_case_comment_mention,omitempty"`
-	//
+	// Whether to send a notification when a case's priority changes
 	NotifyOnCasePriorityChange *bool `json:"notify_on_case_priority_change,omitempty"`
-	//
+	// Whether to send a notification when a case's status changes
 	NotifyOnCaseStatusChange *bool `json:"notify_on_case_status_change,omitempty"`
-	//
+	// Whether to send a notification when a case is unassigned
 	NotifyOnCaseUnassignment *bool `json:"notify_on_case_unassignment,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

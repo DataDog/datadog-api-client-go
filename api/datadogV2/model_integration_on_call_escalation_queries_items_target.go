@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationOnCallEscalationQueriesItemsTarget
+// IntegrationOnCallEscalationQueriesItemsTarget The target recipient for an On-Call escalation query
 type IntegrationOnCallEscalationQueriesItemsTarget struct {
-	//
+	// Whether to use dynamic team paging for escalation
 	DynamicTeamPaging *bool `json:"dynamic_team_paging,omitempty"`
-	//
+	// The identifier of the team to escalate to
 	TeamId *string `json:"team_id,omitempty"`
-	//
+	// The identifier of the user to escalate to
 	UserId *string `json:"user_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

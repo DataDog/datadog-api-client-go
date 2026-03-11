@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProjectColumnsConfigColumnsItemsSort
+// ProjectColumnsConfigColumnsItemsSort Sort configuration for a project board column
 type ProjectColumnsConfigColumnsItemsSort struct {
-	//
+	// Whether to sort in ascending order
 	Ascending *bool `json:"ascending,omitempty"`
-	//
+	// The sort priority order for this column
 	Priority *int64 `json:"priority,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

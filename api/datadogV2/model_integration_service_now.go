@@ -12,13 +12,13 @@ import (
 type IntegrationServiceNow struct {
 	// Assignment group
 	AssignmentGroup *string `json:"assignment_group,omitempty"`
-	//
+	// Auto-creation settings for ServiceNow incidents from cases
 	AutoCreation *IntegrationServiceNowAutoCreation `json:"auto_creation,omitempty"`
 	// Whether ServiceNow integration is enabled
 	Enabled *bool `json:"enabled,omitempty"`
 	// ServiceNow instance name
 	InstanceName *string `json:"instance_name,omitempty"`
-	//
+	// Synchronization configuration for ServiceNow integration
 	SyncConfig *IntegrationServiceNowSyncConfig `json:"sync_config,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
