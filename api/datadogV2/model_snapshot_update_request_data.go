@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SnapshotUpdateRequestData
+// SnapshotUpdateRequestData Data object for a heatmap snapshot update request, containing the resource identifier, type, and attributes.
 type SnapshotUpdateRequestData struct {
-	//
+	// Attributes for updating a heatmap snapshot, including event, session, and view context.
 	Attributes *SnapshotUpdateRequestDataAttributes `json:"attributes,omitempty"`
-	//
+	// Unique identifier of the heatmap snapshot to update.
 	Id *string `json:"id,omitempty"`
 	// Snapshots resource type.
 	Type SnapshotUpdateRequestDataType `json:"type"`

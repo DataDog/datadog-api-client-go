@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ViewershipHistorySessionData
+// ViewershipHistorySessionData Data object representing a session in the viewership history, including its identifier, type, and attributes.
 type ViewershipHistorySessionData struct {
-	//
+	// Attributes of a viewership history session entry, capturing when it was last watched and the associated event data.
 	Attributes *ViewershipHistorySessionDataAttributes `json:"attributes,omitempty"`
-	//
+	// Unique identifier of the RUM replay session.
 	Id *string `json:"id,omitempty"`
 	// Rum replay session resource type.
 	Type ViewershipHistorySessionDataType `json:"type"`

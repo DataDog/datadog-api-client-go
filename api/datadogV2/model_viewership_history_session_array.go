@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ViewershipHistorySessionArray
+// ViewershipHistorySessionArray A list of RUM replay sessions from a user's viewership history.
 type ViewershipHistorySessionArray struct {
-	//
+	// Array of viewership history session data objects.
 	Data []ViewershipHistorySessionData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

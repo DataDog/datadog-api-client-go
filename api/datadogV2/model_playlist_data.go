@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PlaylistData
+// PlaylistData Data object representing a RUM replay playlist, including its identifier, type, and attributes.
 type PlaylistData struct {
-	//
+	// Attributes of a RUM replay playlist, including its name, description, session count, and audit timestamps.
 	Attributes *PlaylistDataAttributes `json:"attributes,omitempty"`
-	//
+	// Unique identifier of the playlist.
 	Id *string `json:"id,omitempty"`
 	// Rum replay playlist resource type.
 	Type PlaylistDataType `json:"type"`

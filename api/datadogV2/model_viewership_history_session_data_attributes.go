@@ -11,15 +11,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ViewershipHistorySessionDataAttributes
+// ViewershipHistorySessionDataAttributes Attributes of a viewership history session entry, capturing when it was last watched and the associated event data.
 type ViewershipHistorySessionDataAttributes struct {
-	//
+	// Unique identifier of the RUM event associated with the watched session.
 	EventId *string `json:"event_id,omitempty"`
-	//
+	// Timestamp when the session was last watched by the user.
 	LastWatchedAt time.Time `json:"last_watched_at"`
-	//
+	// Raw event data associated with the replay session.
 	SessionEvent map[string]interface{} `json:"session_event,omitempty"`
-	//
+	// Replay track identifier indicating which recording track the session belongs to.
 	Track *string `json:"track,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

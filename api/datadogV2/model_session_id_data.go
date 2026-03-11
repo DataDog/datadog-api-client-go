@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SessionIdData
+// SessionIdData A session identifier data object used for bulk playlist operations.
 type SessionIdData struct {
-	//
+	// Unique identifier of the RUM replay session.
 	Id *string `json:"id,omitempty"`
 	// Rum replay session resource type.
 	Type ViewershipHistorySessionDataType `json:"type"`

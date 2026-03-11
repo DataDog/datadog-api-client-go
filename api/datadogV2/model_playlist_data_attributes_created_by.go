@@ -10,17 +10,17 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PlaylistDataAttributesCreatedBy
+// PlaylistDataAttributesCreatedBy Information about the user who created the playlist.
 type PlaylistDataAttributesCreatedBy struct {
-	//
+	// Email handle of the user who created the playlist.
 	Handle string `json:"handle"`
-	//
+	// URL or identifier of the user's avatar icon.
 	Icon *string `json:"icon,omitempty"`
-	//
+	// Unique identifier of the user who created the playlist.
 	Id string `json:"id"`
-	//
+	// Display name of the user who created the playlist.
 	Name *string `json:"name,omitempty"`
-	//
+	// UUID of the user who created the playlist.
 	Uuid string `json:"uuid"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
