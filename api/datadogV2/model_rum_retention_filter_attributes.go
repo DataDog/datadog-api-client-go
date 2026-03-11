@@ -10,6 +10,10 @@ import (
 
 // RumRetentionFilterAttributes The object describing attributes of a RUM retention filter.
 type RumRetentionFilterAttributes struct {
+	// Configuration for additional APM trace data retention for sessions that match this retention filter.
+	// When a session matches the filter and is retained (based on `sample_rate`), you can configure
+	// the percentage of retained sessions with ingested traces whose traces are indexed.
+	CrossProductSampling *RumCrossProductSampling `json:"cross_product_sampling,omitempty"`
 	// Whether the retention filter is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
 	// The type of RUM events to filter on.
@@ -40,6 +44,34 @@ func NewRumRetentionFilterAttributes() *RumRetentionFilterAttributes {
 func NewRumRetentionFilterAttributesWithDefaults() *RumRetentionFilterAttributes {
 	this := RumRetentionFilterAttributes{}
 	return &this
+}
+
+// GetCrossProductSampling returns the CrossProductSampling field value if set, zero value otherwise.
+func (o *RumRetentionFilterAttributes) GetCrossProductSampling() RumCrossProductSampling {
+	if o == nil || o.CrossProductSampling == nil {
+		var ret RumCrossProductSampling
+		return ret
+	}
+	return *o.CrossProductSampling
+}
+
+// GetCrossProductSamplingOk returns a tuple with the CrossProductSampling field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RumRetentionFilterAttributes) GetCrossProductSamplingOk() (*RumCrossProductSampling, bool) {
+	if o == nil || o.CrossProductSampling == nil {
+		return nil, false
+	}
+	return o.CrossProductSampling, true
+}
+
+// HasCrossProductSampling returns a boolean if a field has been set.
+func (o *RumRetentionFilterAttributes) HasCrossProductSampling() bool {
+	return o != nil && o.CrossProductSampling != nil
+}
+
+// SetCrossProductSampling gets a reference to the given RumCrossProductSampling and assigns it to the CrossProductSampling field.
+func (o *RumRetentionFilterAttributes) SetCrossProductSampling(v RumCrossProductSampling) {
+	o.CrossProductSampling = &v
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
@@ -188,6 +220,9 @@ func (o RumRetentionFilterAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.CrossProductSampling != nil {
+		toSerialize["cross_product_sampling"] = o.CrossProductSampling
+	}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
@@ -213,23 +248,28 @@ func (o RumRetentionFilterAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RumRetentionFilterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enabled    *bool                        `json:"enabled,omitempty"`
-		EventType  *RumRetentionFilterEventType `json:"event_type,omitempty"`
-		Name       *string                      `json:"name,omitempty"`
-		Query      *string                      `json:"query,omitempty"`
-		SampleRate *float64                     `json:"sample_rate,omitempty"`
+		CrossProductSampling *RumCrossProductSampling     `json:"cross_product_sampling,omitempty"`
+		Enabled              *bool                        `json:"enabled,omitempty"`
+		EventType            *RumRetentionFilterEventType `json:"event_type,omitempty"`
+		Name                 *string                      `json:"name,omitempty"`
+		Query                *string                      `json:"query,omitempty"`
+		SampleRate           *float64                     `json:"sample_rate,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "event_type", "name", "query", "sample_rate"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cross_product_sampling", "enabled", "event_type", "name", "query", "sample_rate"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	if all.CrossProductSampling != nil && all.CrossProductSampling.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.CrossProductSampling = all.CrossProductSampling
 	o.Enabled = all.Enabled
 	if all.EventType != nil && !all.EventType.IsValid() {
 		hasInvalidField = true
