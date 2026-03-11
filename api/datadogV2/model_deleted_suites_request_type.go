@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DeletedSuitesRequestType
+// DeletedSuitesRequestType Type for the bulk delete Synthetic suites request, `delete_suites_request`.
 type DeletedSuitesRequestType string
 
 // List of DeletedSuitesRequestType.

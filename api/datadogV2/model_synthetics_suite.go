@@ -24,7 +24,7 @@ type SyntheticsSuite struct {
 	PublicId *string `json:"public_id,omitempty"`
 	// Array of tags attached to the suite.
 	Tags []string `json:"tags,omitempty"`
-	//
+	// Array of Synthetic tests included in the suite.
 	Tests []SyntheticsSuiteTest `json:"tests"`
 	// Type of the Synthetic suite, `suite`.
 	Type SyntheticsSuiteType `json:"type"`

@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DeletedTestResponseData
+// DeletedTestResponseData Data object for a deleted Synthetic test.
 type DeletedTestResponseData struct {
-	//
+	// Attributes of a deleted Synthetic test, including deletion timestamp and public ID.
 	Attributes *DeletedTestResponseDataAttributes `json:"attributes,omitempty"`
-	//
+	// The public ID of the deleted Synthetic test.
 	Id *string `json:"id,omitempty"`
-	//
+	// Type for the bulk delete Synthetic tests response, `delete_tests`.
 	Type *DeletedTestsResponseType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SuiteSearchResponseType
+// SuiteSearchResponseType Type for the Synthetics suites search response, `suites_search`.
 type SuiteSearchResponseType string
 
 // List of SuiteSearchResponseType.

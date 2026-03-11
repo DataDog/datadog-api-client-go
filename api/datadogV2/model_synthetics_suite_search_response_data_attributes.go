@@ -10,9 +10,9 @@ import (
 
 // SyntheticsSuiteSearchResponseDataAttributes Synthetics suite search response data attributes
 type SyntheticsSuiteSearchResponseDataAttributes struct {
-	//
+	// List of Synthetic suites matching the search query.
 	Suites []SyntheticsSuite `json:"suites,omitempty"`
-	//
+	// Total number of Synthetic suites matching the search query.
 	Total *int32 `json:"total,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
