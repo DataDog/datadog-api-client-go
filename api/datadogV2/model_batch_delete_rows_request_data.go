@@ -12,7 +12,7 @@ import (
 
 // BatchDeleteRowsRequestData Row resource containing a single row identifier for deletion.
 type BatchDeleteRowsRequestData struct {
-	//
+	// The primary key value that uniquely identifies the row to delete.
 	Id string `json:"id"`
 	// Row resource type.
 	Type TableRowResourceDataType `json:"type"`

@@ -12,7 +12,7 @@ import (
 
 // BatchDeleteRowsRequestArray The request body for deleting multiple rows from a reference table.
 type BatchDeleteRowsRequestArray struct {
-	//
+	// List of row resources to delete from the reference table.
 	Data []BatchDeleteRowsRequestData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
