@@ -12,11 +12,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateDegradationRequestDataAttributesComponentsAffectedItems
+// CreateDegradationRequestDataAttributesComponentsAffectedItems A component affected by a degradation.
 type CreateDegradationRequestDataAttributesComponentsAffectedItems struct {
 	// The ID of the component. Must be a component of type `component`.
 	Id uuid.UUID `json:"id"`
-	//
+	// The name of the component.
 	Name *string `json:"name,omitempty"`
 	// The status of the component.
 	Status StatusPagesComponentDataAttributesStatus `json:"status"`

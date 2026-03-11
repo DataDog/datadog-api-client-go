@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchStatusPageRequest
+// PatchStatusPageRequest Request object for updating a status page.
 type PatchStatusPageRequest struct {
-	//
+	// The data object for updating a status page.
 	Data *PatchStatusPageRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

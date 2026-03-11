@@ -12,7 +12,7 @@ import (
 
 // StatusPagesComponentGroupRelationshipsCreatedByUser The Datadog user who created the component group.
 type StatusPagesComponentGroupRelationshipsCreatedByUser struct {
-	//
+	// The data object identifying the Datadog user who created the component group.
 	Data StatusPagesComponentGroupRelationshipsCreatedByUserData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

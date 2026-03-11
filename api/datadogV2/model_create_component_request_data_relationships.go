@@ -10,7 +10,7 @@ import (
 
 // CreateComponentRequestDataRelationships The supported relationships for creating a component.
 type CreateComponentRequestDataRelationships struct {
-	//
+	// The group to create the component within.
 	Group *CreateComponentRequestDataRelationshipsGroup `json:"group,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

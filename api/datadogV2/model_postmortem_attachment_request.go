@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PostmortemAttachmentRequest
+// PostmortemAttachmentRequest Request body for creating a postmortem attachment.
 type PostmortemAttachmentRequest struct {
 	// Postmortem attachment data
 	Data PostmortemAttachmentRequestData `json:"data"`

@@ -10,13 +10,13 @@ import (
 
 // StatusPagesComponentDataRelationships The relationships of a component.
 type StatusPagesComponentDataRelationships struct {
-	//
+	// The Datadog user who created the component.
 	CreatedByUser *StatusPagesComponentDataRelationshipsCreatedByUser `json:"created_by_user,omitempty"`
-	//
+	// The group the component belongs to.
 	Group *StatusPagesComponentDataRelationshipsGroup `json:"group,omitempty"`
-	//
+	// The Datadog user who last modified the component.
 	LastModifiedByUser *StatusPagesComponentDataRelationshipsLastModifiedByUser `json:"last_modified_by_user,omitempty"`
-	//
+	// The status page the component belongs to.
 	StatusPage *StatusPagesComponentDataRelationshipsStatusPage `json:"status_page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

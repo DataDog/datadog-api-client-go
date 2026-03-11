@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchMaintenanceRequestData
+// PatchMaintenanceRequestData The data object for updating a maintenance.
 type PatchMaintenanceRequestData struct {
 	// The supported attributes for updating a maintenance.
 	Attributes PatchMaintenanceRequestDataAttributes `json:"attributes"`

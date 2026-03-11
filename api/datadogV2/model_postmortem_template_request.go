@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PostmortemTemplateRequest
+// PostmortemTemplateRequest Request body for creating or updating a postmortem template.
 type PostmortemTemplateRequest struct {
-	//
+	// Data object for creating or updating a postmortem template.
 	Data PostmortemTemplateDataRequest `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

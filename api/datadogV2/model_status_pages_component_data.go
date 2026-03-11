@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StatusPagesComponentData
+// StatusPagesComponentData The data object for a component.
 type StatusPagesComponentData struct {
 	// The attributes of a component.
 	Attributes *StatusPagesComponentDataAttributes `json:"attributes,omitempty"`

@@ -12,7 +12,7 @@ import (
 type Attachment struct {
 	// Attachment data from a response.
 	Data *AttachmentData `json:"data,omitempty"`
-	//
+	// A list of related objects included in the response.
 	Included []AttachmentIncluded `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

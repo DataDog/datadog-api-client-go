@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DegradationDataRelationshipsCreatedByUserData
+// DegradationDataRelationshipsCreatedByUserData The data object identifying the Datadog user who created the degradation.
 type DegradationDataRelationshipsCreatedByUserData struct {
 	// The ID of the Datadog user who created the degradation.
 	Id string `json:"id"`

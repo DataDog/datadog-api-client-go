@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StatusPageAsIncludedRelationshipsCreatedByUser
+// StatusPageAsIncludedRelationshipsCreatedByUser The Datadog user who created the status page.
 type StatusPageAsIncludedRelationshipsCreatedByUser struct {
-	//
+	// The data object identifying the Datadog user who created the status page.
 	Data StatusPageAsIncludedRelationshipsCreatedByUserData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

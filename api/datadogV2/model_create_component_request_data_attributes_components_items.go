@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateComponentRequestDataAttributesComponentsItems
+// CreateComponentRequestDataAttributesComponentsItems A component to be created within a group.
 type CreateComponentRequestDataAttributesComponentsItems struct {
 	// The name of the grouped component.
 	Name string `json:"name"`

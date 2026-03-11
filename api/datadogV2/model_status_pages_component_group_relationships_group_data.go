@@ -12,9 +12,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StatusPagesComponentGroupRelationshipsGroupData
+// StatusPagesComponentGroupRelationshipsGroupData The data object identifying the parent group of a component group.
 type StatusPagesComponentGroupRelationshipsGroupData struct {
-	//
+	// The ID of the parent group.
 	Id uuid.UUID `json:"id"`
 	// Components resource type.
 	Type StatusPagesComponentGroupType `json:"type"`

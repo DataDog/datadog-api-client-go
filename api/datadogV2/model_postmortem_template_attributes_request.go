@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PostmortemTemplateAttributesRequest
+// PostmortemTemplateAttributesRequest Attributes for creating or updating a postmortem template.
 type PostmortemTemplateAttributesRequest struct {
 	// The name of the template
 	Name string `json:"name"`

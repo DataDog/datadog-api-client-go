@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MaintenanceDataRelationshipsStatusPageData
+// MaintenanceDataRelationshipsStatusPageData The data object identifying the status page associated with a maintenance.
 type MaintenanceDataRelationshipsStatusPageData struct {
 	// The ID of the status page.
 	Id uuid.UUID `json:"id"`

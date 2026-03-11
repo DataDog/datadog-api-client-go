@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DegradationDataAttributesComponentsAffectedItems
+// DegradationDataAttributesComponentsAffectedItems A component affected by a degradation.
 type DegradationDataAttributesComponentsAffectedItems struct {
 	// The ID of the component.
 	Id uuid.UUID `json:"id"`

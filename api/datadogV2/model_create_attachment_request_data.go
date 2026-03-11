@@ -14,7 +14,7 @@ import (
 type CreateAttachmentRequestData struct {
 	// The attributes for creating an attachment.
 	Attributes *CreateAttachmentRequestDataAttributes `json:"attributes,omitempty"`
-	//
+	// The unique identifier of the attachment.
 	Id *string `json:"id,omitempty"`
 	// The incident attachment resource type.
 	Type IncidentAttachmentType `json:"type"`

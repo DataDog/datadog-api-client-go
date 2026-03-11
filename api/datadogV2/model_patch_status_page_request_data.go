@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchStatusPageRequestData
+// PatchStatusPageRequestData The data object for updating a status page.
 type PatchStatusPageRequestData struct {
 	// The supported attributes for updating a status page.
 	Attributes PatchStatusPageRequestDataAttributes `json:"attributes"`
