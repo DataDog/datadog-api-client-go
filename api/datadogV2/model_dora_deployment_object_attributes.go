@@ -18,8 +18,8 @@ type DORADeploymentObjectAttributes struct {
 	Env *string `json:"env,omitempty"`
 	// Unix timestamp when the deployment finished.
 	FinishedAt int64 `json:"finished_at"`
-	// Git info for DORA Metrics events.
-	Git *DORAGitInfo `json:"git,omitempty"`
+	// Git info returned by DORA Metrics events.
+	Git *DORAGitInfoResponse `json:"git,omitempty"`
 	// Service name.
 	Service string `json:"service"`
 	// Unix timestamp when the deployment started.
@@ -144,9 +144,9 @@ func (o *DORADeploymentObjectAttributes) SetFinishedAt(v int64) {
 }
 
 // GetGit returns the Git field value if set, zero value otherwise.
-func (o *DORADeploymentObjectAttributes) GetGit() DORAGitInfo {
+func (o *DORADeploymentObjectAttributes) GetGit() DORAGitInfoResponse {
 	if o == nil || o.Git == nil {
-		var ret DORAGitInfo
+		var ret DORAGitInfoResponse
 		return ret
 	}
 	return *o.Git
@@ -154,7 +154,7 @@ func (o *DORADeploymentObjectAttributes) GetGit() DORAGitInfo {
 
 // GetGitOk returns a tuple with the Git field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORADeploymentObjectAttributes) GetGitOk() (*DORAGitInfo, bool) {
+func (o *DORADeploymentObjectAttributes) GetGitOk() (*DORAGitInfoResponse, bool) {
 	if o == nil || o.Git == nil {
 		return nil, false
 	}
@@ -166,8 +166,8 @@ func (o *DORADeploymentObjectAttributes) HasGit() bool {
 	return o != nil && o.Git != nil
 }
 
-// SetGit gets a reference to the given DORAGitInfo and assigns it to the Git field.
-func (o *DORADeploymentObjectAttributes) SetGit(v DORAGitInfo) {
+// SetGit gets a reference to the given DORAGitInfoResponse and assigns it to the Git field.
+func (o *DORADeploymentObjectAttributes) SetGit(v DORAGitInfoResponse) {
 	o.Git = &v
 }
 
@@ -310,7 +310,7 @@ func (o *DORADeploymentObjectAttributes) UnmarshalJSON(bytes []byte) (err error)
 		CustomTags datadog.NullableList[string] `json:"custom_tags,omitempty"`
 		Env        *string                      `json:"env,omitempty"`
 		FinishedAt *int64                       `json:"finished_at"`
-		Git        *DORAGitInfo                 `json:"git,omitempty"`
+		Git        *DORAGitInfoResponse         `json:"git,omitempty"`
 		Service    *string                      `json:"service"`
 		StartedAt  *int64                       `json:"started_at"`
 		Team       *string                      `json:"team,omitempty"`
