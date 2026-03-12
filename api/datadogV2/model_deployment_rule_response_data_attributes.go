@@ -23,8 +23,8 @@ type DeploymentRuleResponseDataAttributes struct {
 	GateId string `json:"gate_id"`
 	// The name of the deployment rule.
 	Name string `json:"name"`
-	// Options for deployment rule response representing either faulty deployment detection or monitor options.
-	Options DeploymentRulesOptions `json:"options"`
+	// Options returned in deployment rule responses representing either faulty deployment detection or monitor options. Faulty deployment detection responses always include `excluded_resources`, making the two variants unambiguous.
+	Options DeploymentRulesOptionsResponse `json:"options"`
 	// The type of the deployment rule.
 	Type DeploymentRuleResponseDataAttributesType `json:"type"`
 	// The timestamp when the deployment rule was last updated.
@@ -40,7 +40,7 @@ type DeploymentRuleResponseDataAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDeploymentRuleResponseDataAttributes(createdAt time.Time, createdBy DeploymentRuleResponseDataAttributesCreatedBy, dryRun bool, gateId string, name string, options DeploymentRulesOptions, typeVar DeploymentRuleResponseDataAttributesType) *DeploymentRuleResponseDataAttributes {
+func NewDeploymentRuleResponseDataAttributes(createdAt time.Time, createdBy DeploymentRuleResponseDataAttributesCreatedBy, dryRun bool, gateId string, name string, options DeploymentRulesOptionsResponse, typeVar DeploymentRuleResponseDataAttributesType) *DeploymentRuleResponseDataAttributes {
 	this := DeploymentRuleResponseDataAttributes{}
 	this.CreatedAt = createdAt
 	this.CreatedBy = createdBy
@@ -176,9 +176,9 @@ func (o *DeploymentRuleResponseDataAttributes) SetName(v string) {
 }
 
 // GetOptions returns the Options field value.
-func (o *DeploymentRuleResponseDataAttributes) GetOptions() DeploymentRulesOptions {
+func (o *DeploymentRuleResponseDataAttributes) GetOptions() DeploymentRulesOptionsResponse {
 	if o == nil {
-		var ret DeploymentRulesOptions
+		var ret DeploymentRulesOptionsResponse
 		return ret
 	}
 	return o.Options
@@ -186,7 +186,7 @@ func (o *DeploymentRuleResponseDataAttributes) GetOptions() DeploymentRulesOptio
 
 // GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
-func (o *DeploymentRuleResponseDataAttributes) GetOptionsOk() (*DeploymentRulesOptions, bool) {
+func (o *DeploymentRuleResponseDataAttributes) GetOptionsOk() (*DeploymentRulesOptionsResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -194,7 +194,7 @@ func (o *DeploymentRuleResponseDataAttributes) GetOptionsOk() (*DeploymentRulesO
 }
 
 // SetOptions sets field value.
-func (o *DeploymentRuleResponseDataAttributes) SetOptions(v DeploymentRulesOptions) {
+func (o *DeploymentRuleResponseDataAttributes) SetOptions(v DeploymentRulesOptionsResponse) {
 	o.Options = v
 }
 
@@ -319,7 +319,7 @@ func (o *DeploymentRuleResponseDataAttributes) UnmarshalJSON(bytes []byte) (err 
 		DryRun    *bool                                          `json:"dry_run"`
 		GateId    *string                                        `json:"gate_id"`
 		Name      *string                                        `json:"name"`
-		Options   *DeploymentRulesOptions                        `json:"options"`
+		Options   *DeploymentRulesOptionsResponse                `json:"options"`
 		Type      *DeploymentRuleResponseDataAttributesType      `json:"type"`
 		UpdatedAt *time.Time                                     `json:"updated_at,omitempty"`
 		UpdatedBy *DeploymentRuleResponseDataAttributesUpdatedBy `json:"updated_by,omitempty"`
