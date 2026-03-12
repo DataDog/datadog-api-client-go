@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumCrossProductSamplingUpdate Configuration for cross-product sampling when updating a retention filter. All fields are optional for partial updates.
+// RumCrossProductSamplingUpdate The configuration for cross-product retention filters. All fields are optional for partial updates.
 type RumCrossProductSamplingUpdate struct {
-	// Indicates whether trace cross-product sampling is enabled.
+	// Whether the cross-product retention filter for APM traces is enabled.
 	TraceEnabled *bool `json:"trace_enabled,omitempty"`
-	// The percentage (0-100) of retained sessions with ingested traces whose traces are indexed.
+	// The sample rate for the APM cross-product retention filter, between 0 and 100.
 	TraceSampleRate *float64 `json:"trace_sample_rate,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

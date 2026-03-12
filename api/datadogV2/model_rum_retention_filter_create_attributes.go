@@ -12,7 +12,7 @@ import (
 
 // RumRetentionFilterCreateAttributes The object describing attributes of a RUM retention filter to create.
 type RumRetentionFilterCreateAttributes struct {
-	// Configuration for cross-product sampling when creating a retention filter.
+	// The configuration for cross-product retention filters.
 	CrossProductSampling *RumCrossProductSamplingCreate `json:"cross_product_sampling,omitempty"`
 	// Whether the retention filter is enabled.
 	Enabled *bool `json:"enabled,omitempty"`

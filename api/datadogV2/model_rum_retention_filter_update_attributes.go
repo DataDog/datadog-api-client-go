@@ -10,7 +10,7 @@ import (
 
 // RumRetentionFilterUpdateAttributes The object describing attributes of a RUM retention filter to update.
 type RumRetentionFilterUpdateAttributes struct {
-	// Configuration for cross-product sampling when updating a retention filter. All fields are optional for partial updates.
+	// The configuration for cross-product retention filters. All fields are optional for partial updates.
 	CrossProductSampling *RumCrossProductSamplingUpdate `json:"cross_product_sampling,omitempty"`
 	// Whether the retention filter is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
