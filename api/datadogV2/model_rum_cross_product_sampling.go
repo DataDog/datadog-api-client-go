@@ -8,14 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumCrossProductSampling Configuration for additional APM trace data retention for sessions that match this retention filter.
-// When a session matches the filter and is retained (based on `sample_rate`), you can configure
-// the percentage of retained sessions with ingested traces whose traces are indexed.
+// RumCrossProductSampling The configuration for cross-product retention filters.
 type RumCrossProductSampling struct {
-	// Indicates whether trace cross-product sampling is enabled. If `false`, no traces are indexed regardless of `trace_sample_rate`.
+	// Whether the cross-product retention filter for APM traces is enabled.
 	TraceEnabled *bool `json:"trace_enabled,omitempty"`
-	// The percentage (0-100) of retained sessions with ingested traces whose traces are indexed.
-	// For example, 25.0 means 25% of retained sessions with ingested traces have their traces indexed.
+	// The sample rate for the APM cross-product retention filter, between 0 and 100.
 	TraceSampleRate *float64 `json:"trace_sample_rate,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
