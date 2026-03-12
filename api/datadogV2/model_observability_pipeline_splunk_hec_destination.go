@@ -27,8 +27,6 @@ type ObservabilityPipelineSplunkHecDestination struct {
 	Id string `json:"id"`
 	// Optional name of the Splunk index where logs are written.
 	Index *string `json:"index,omitempty"`
-	// List of log field names to send as indexed fields to Splunk HEC. Available only when `encoding` is `json`.
-	IndexedFields []string `json:"indexed_fields,omitempty"`
 	// A list of component IDs whose output is used as the `input` for this component.
 	Inputs []string `json:"inputs"`
 	// The Splunk sourcetype to assign to log events.
@@ -227,34 +225,6 @@ func (o *ObservabilityPipelineSplunkHecDestination) SetIndex(v string) {
 	o.Index = &v
 }
 
-// GetIndexedFields returns the IndexedFields field value if set, zero value otherwise.
-func (o *ObservabilityPipelineSplunkHecDestination) GetIndexedFields() []string {
-	if o == nil || o.IndexedFields == nil {
-		var ret []string
-		return ret
-	}
-	return o.IndexedFields
-}
-
-// GetIndexedFieldsOk returns a tuple with the IndexedFields field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineSplunkHecDestination) GetIndexedFieldsOk() (*[]string, bool) {
-	if o == nil || o.IndexedFields == nil {
-		return nil, false
-	}
-	return &o.IndexedFields, true
-}
-
-// HasIndexedFields returns a boolean if a field has been set.
-func (o *ObservabilityPipelineSplunkHecDestination) HasIndexedFields() bool {
-	return o != nil && o.IndexedFields != nil
-}
-
-// SetIndexedFields gets a reference to the given []string and assigns it to the IndexedFields field.
-func (o *ObservabilityPipelineSplunkHecDestination) SetIndexedFields(v []string) {
-	o.IndexedFields = v
-}
-
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineSplunkHecDestination) GetInputs() []string {
 	if o == nil {
@@ -379,9 +349,6 @@ func (o ObservabilityPipelineSplunkHecDestination) MarshalJSON() ([]byte, error)
 	if o.Index != nil {
 		toSerialize["index"] = o.Index
 	}
-	if o.IndexedFields != nil {
-		toSerialize["indexed_fields"] = o.IndexedFields
-	}
 	toSerialize["inputs"] = o.Inputs
 	if o.Sourcetype != nil {
 		toSerialize["sourcetype"] = o.Sourcetype
@@ -406,7 +373,6 @@ func (o *ObservabilityPipelineSplunkHecDestination) UnmarshalJSON(bytes []byte) 
 		EndpointUrlKey       *string                                            `json:"endpoint_url_key,omitempty"`
 		Id                   *string                                            `json:"id"`
 		Index                *string                                            `json:"index,omitempty"`
-		IndexedFields        []string                                           `json:"indexed_fields,omitempty"`
 		Inputs               *[]string                                          `json:"inputs"`
 		Sourcetype           *string                                            `json:"sourcetype,omitempty"`
 		TokenKey             *string                                            `json:"token_key,omitempty"`
@@ -426,7 +392,7 @@ func (o *ObservabilityPipelineSplunkHecDestination) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auto_extract_timestamp", "buffer", "encoding", "endpoint_url_key", "id", "index", "indexed_fields", "inputs", "sourcetype", "token_key", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"auto_extract_timestamp", "buffer", "encoding", "endpoint_url_key", "id", "index", "inputs", "sourcetype", "token_key", "type"})
 	} else {
 		return err
 	}
@@ -442,7 +408,6 @@ func (o *ObservabilityPipelineSplunkHecDestination) UnmarshalJSON(bytes []byte) 
 	o.EndpointUrlKey = all.EndpointUrlKey
 	o.Id = *all.Id
 	o.Index = all.Index
-	o.IndexedFields = all.IndexedFields
 	o.Inputs = *all.Inputs
 	o.Sourcetype = all.Sourcetype
 	o.TokenKey = all.TokenKey
