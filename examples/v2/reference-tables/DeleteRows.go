@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadogV2.BatchDeleteRowsRequestArray{
-		Data: []datadogV2.BatchDeleteRowsRequestData{
+		Data: []datadogV2.TableRowResourceIdentifier{
 			{
 				Id:   "primary_key_value",
 				Type: datadogV2.TABLEROWRESOURCEDATATYPE_ROW,
