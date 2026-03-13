@@ -21,8 +21,8 @@ func main() {
 				Definition: datadogV1.WidgetDefinition{
 					TableWidgetDefinition: &datadogV1.TableWidgetDefinition{
 						Type: datadogV1.TABLEWIDGETDEFINITIONTYPE_QUERY_TABLE,
-						Requests: []datadogV1.TableWidgetRequest{
-							{
+						Requests: []datadogV1.TableWidgetDefinitionRequestsItem{
+							{TableWidgetRequest: &datadogV1.TableWidgetRequest{
 								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
 									datadogV1.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionEventQueryDefinition: &datadogV1.FormulaAndFunctionEventQueryDefinition{
@@ -59,7 +59,7 @@ func main() {
 									},
 								},
 								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
-							},
+							}},
 						},
 					}},
 			},
