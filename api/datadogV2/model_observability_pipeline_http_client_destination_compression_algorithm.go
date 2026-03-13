@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineHttpClientDestinationCompressionAlgorithm Compression algorithm.
+// ObservabilityPipelineHttpClientDestinationCompressionAlgorithm The compression algorithm used for HTTP client destinations.
 type ObservabilityPipelineHttpClientDestinationCompressionAlgorithm string
 
 // List of ObservabilityPipelineHttpClientDestinationCompressionAlgorithm.
