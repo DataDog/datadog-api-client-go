@@ -1,4 +1,4 @@
-// Create a new metric SLO object using sli_specification returns "OK" response
+// Create a new metric SLO object using bad events formula returns "OK" response
 
 package main
 
@@ -20,12 +20,12 @@ func main() {
 		SliSpecification: &datadogV1.SLOSliSpec{
 			SLOCountSpec: &datadogV1.SLOCountSpec{
 				Count: datadogV1.SLOCountDefinition{
-					SLOCountDefinitionWithTotalEventsFormula: &datadogV1.SLOCountDefinitionWithTotalEventsFormula{
+					SLOCountDefinitionWithBadEventsFormula: &datadogV1.SLOCountDefinitionWithBadEventsFormula{
 						GoodEventsFormula: datadogV1.SLOFormula{
 							Formula: "query1 - query2",
 						},
-						TotalEventsFormula: datadogV1.SLOFormula{
-							Formula: "query1",
+						BadEventsFormula: datadogV1.SLOFormula{
+							Formula: "query2",
 						},
 						Queries: []datadogV1.SLODataSourceQueryDefinition{
 							datadogV1.SLODataSourceQueryDefinition{
