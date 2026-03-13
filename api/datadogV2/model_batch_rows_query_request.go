@@ -5,68 +5,72 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BatchDeleteRowsRequestArray The request body for deleting multiple rows from a reference table.
-type BatchDeleteRowsRequestArray struct {
+// BatchRowsQueryRequest
+type BatchRowsQueryRequest struct {
 	//
-	Data []TableRowResourceIdentifier `json:"data"`
+	Data *BatchRowsQueryRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewBatchDeleteRowsRequestArray instantiates a new BatchDeleteRowsRequestArray object.
+// NewBatchRowsQueryRequest instantiates a new BatchRowsQueryRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewBatchDeleteRowsRequestArray(data []TableRowResourceIdentifier) *BatchDeleteRowsRequestArray {
-	this := BatchDeleteRowsRequestArray{}
-	this.Data = data
+func NewBatchRowsQueryRequest() *BatchRowsQueryRequest {
+	this := BatchRowsQueryRequest{}
 	return &this
 }
 
-// NewBatchDeleteRowsRequestArrayWithDefaults instantiates a new BatchDeleteRowsRequestArray object.
+// NewBatchRowsQueryRequestWithDefaults instantiates a new BatchRowsQueryRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewBatchDeleteRowsRequestArrayWithDefaults() *BatchDeleteRowsRequestArray {
-	this := BatchDeleteRowsRequestArray{}
+func NewBatchRowsQueryRequestWithDefaults() *BatchRowsQueryRequest {
+	this := BatchRowsQueryRequest{}
 	return &this
 }
 
-// GetData returns the Data field value.
-func (o *BatchDeleteRowsRequestArray) GetData() []TableRowResourceIdentifier {
-	if o == nil {
-		var ret []TableRowResourceIdentifier
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *BatchRowsQueryRequest) GetData() BatchRowsQueryRequestData {
+	if o == nil || o.Data == nil {
+		var ret BatchRowsQueryRequestData
 		return ret
 	}
-	return o.Data
+	return *o.Data
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *BatchDeleteRowsRequestArray) GetDataOk() (*[]TableRowResourceIdentifier, bool) {
-	if o == nil {
+func (o *BatchRowsQueryRequest) GetDataOk() (*BatchRowsQueryRequestData, bool) {
+	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return &o.Data, true
+	return o.Data, true
 }
 
-// SetData sets field value.
-func (o *BatchDeleteRowsRequestArray) SetData(v []TableRowResourceIdentifier) {
-	o.Data = v
+// HasData returns a boolean if a field has been set.
+func (o *BatchRowsQueryRequest) HasData() bool {
+	return o != nil && o.Data != nil
+}
+
+// SetData gets a reference to the given BatchRowsQueryRequestData and assigns it to the Data field.
+func (o *BatchRowsQueryRequest) SetData(v BatchRowsQueryRequestData) {
+	o.Data = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o BatchDeleteRowsRequestArray) MarshalJSON() ([]byte, error) {
+func (o BatchRowsQueryRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["data"] = o.Data
+	if o.Data != nil {
+		toSerialize["data"] = o.Data
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,15 +79,12 @@ func (o BatchDeleteRowsRequestArray) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *BatchDeleteRowsRequestArray) UnmarshalJSON(bytes []byte) (err error) {
+func (o *BatchRowsQueryRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *[]TableRowResourceIdentifier `json:"data"`
+		Data *BatchRowsQueryRequestData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.Data == nil {
-		return fmt.Errorf("required field data missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
@@ -91,10 +92,19 @@ func (o *BatchDeleteRowsRequestArray) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
-	o.Data = *all.Data
+
+	hasInvalidField := false
+	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Data = all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
