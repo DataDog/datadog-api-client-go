@@ -87,12 +87,16 @@ func UseDelegatedTokenAuth(ctx context.Context, headerParams *map[string]string,
 
 // SetAuthKeys sets the appropriate values in the headers parameter.
 func SetAuthKeys(ctx context.Context, headerParams *map[string]string, keys ...[2]string) {
-	if ctx != nil {
-		for _, key := range keys {
-			if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
-				if apiKey, ok := auth[key[0]]; ok {
-					(*headerParams)[key[1]] = apiKey.Key
-				}
+	if ctx == nil {
+		return
+	}
+	if bearerToken, ok := ctx.Value(ContextBearerToken).(string); ok {
+		(*headerParams)[authorizationHeader] = fmt.Sprintf(bearerTokenFormat, bearerToken)
+	}
+	for _, key := range keys {
+		if auth, ok := ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth[key[0]]; ok {
+				(*headerParams)[key[1]] = apiKey.Key
 			}
 		}
 	}
@@ -180,6 +184,10 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 					valueRegex := regexp.MustCompile(fmt.Sprintf("(?m)%s", apiKey.Key))
 					dump = valueRegex.ReplaceAll(dump, []byte("REDACTED"))
 				}
+			}
+			if bearerToken, ok := newRequest.Context().Value(ContextBearerToken).(string); ok {
+				valueRegex := regexp.MustCompile(fmt.Sprintf("(?m)%s", bearerToken))
+				dump = valueRegex.ReplaceAll(dump, []byte("REDACTED"))
 			}
 			log.Printf("\n%s\n", string(dump))
 		}

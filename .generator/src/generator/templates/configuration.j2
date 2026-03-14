@@ -59,6 +59,9 @@ var (
 
 	// ContextOperationServerVariables overrides a server configuration variables using operation specific values.
 	ContextOperationServerVariables = contextKey("serverOperationVariables")
+
+	// ContextBearerToken takes a bearer token (e.g. PAT) as authentication for the request.
+	ContextBearerToken = contextKey("bearerToken")
 )
 
 // BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth.
@@ -399,6 +402,11 @@ func NewDefaultContext(ctx context.Context) context.Context {
 		keys["{{ name }}"] = APIKey{Key: apiKey}
 	}
 
+	{%- endfor %}
+	{%- for name, schema in openapi.components.securitySchemes.items() if "x-env-name" in schema and schema.type == "http" and schema.scheme == "bearer" %}
+	if bearerToken, ok := os.LookupEnv("{{ schema["x-env-name"] }}"); ok {
+		ctx = context.WithValue(ctx, ContextBearerToken, bearerToken)
+	}
 	{%- endfor %}
 	ctx = context.WithValue(
 		ctx,
