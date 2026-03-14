@@ -12,7 +12,7 @@ import (
 
 // SecurityEntityRiskScoresResponse Response containing a list of entity risk scores
 type SecurityEntityRiskScoresResponse struct {
-	//
+	// Array of entity risk score objects.
 	Data []SecurityEntityRiskScore `json:"data"`
 	// Metadata for pagination
 	Meta SecurityEntityRiskScoresMeta `json:"meta"`
