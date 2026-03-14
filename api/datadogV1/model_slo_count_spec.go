@@ -12,8 +12,9 @@ import (
 
 // SLOCountSpec A metric SLI specification.
 type SLOCountSpec struct {
-	// A count-based (metric) SLI specification, composed of three parts: the good events formula, the total events formula,
-	// and the underlying queries.
+	// A count-based (metric) SLI specification, composed of three parts: the good events formula,
+	// the bad or total events formula, and the underlying queries.
+	// Exactly one of `total_events_formula` or `bad_events_formula` must be provided.
 	Count SLOCountDefinition `json:"count"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
@@ -81,16 +82,7 @@ func (o *SLOCountSpec) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Count == nil {
 		return fmt.Errorf("required field count missing")
 	}
-
-	hasInvalidField := false
-	if all.Count.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Count = *all.Count
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
 
 	return nil
 }
