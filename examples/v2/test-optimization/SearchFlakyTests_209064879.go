@@ -17,13 +17,13 @@ func main() {
 		Data: &datadogV2.FlakyTestsSearchRequestData{
 			Attributes: &datadogV2.FlakyTestsSearchRequestAttributes{
 				Filter: &datadogV2.FlakyTestsSearchFilter{
-					Query: datadog.PtrString(`flaky_test_state:active @git.repository.id_v2:"github.com/datadog/shopist"`),
+					Query:          datadog.PtrString(`flaky_test_state:active @git.repository.id_v2:"github.com/datadog/shopist"`),
+					IncludeHistory: datadog.PtrBool(true),
 				},
 				Page: &datadogV2.FlakyTestsSearchPageOptions{
 					Limit: datadog.PtrInt64(10),
 				},
-				Sort:           datadogV2.FLAKYTESTSSEARCHSORT_FQN_ASCENDING.Ptr(),
-				IncludeHistory: datadog.PtrBool(true),
+				Sort: datadogV2.FLAKYTESTSSEARCHSORT_FQN_ASCENDING.Ptr(),
 			},
 			Type: datadogV2.FLAKYTESTSSEARCHREQUESTDATATYPE_SEARCH_FLAKY_TESTS_REQUEST.Ptr(),
 		},
