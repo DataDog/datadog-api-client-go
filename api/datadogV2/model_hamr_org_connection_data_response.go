@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HamrOrgConnectionDataResponse
+// HamrOrgConnectionDataResponse Data object for a HAMR organization connection response.
 type HamrOrgConnectionDataResponse struct {
-	//
+	// Attributes of a HAMR organization connection response.
 	Attributes HamrOrgConnectionAttributesResponse `json:"attributes"`
 	// The organization UUID for this HAMR connection.
 	Id string `json:"id"`
