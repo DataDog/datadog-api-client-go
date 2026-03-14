@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// GlobalVariableJsonPatchRequestDataAttributes
+// GlobalVariableJsonPatchRequestDataAttributes Attributes for a JSON Patch request on a Synthetic global variable.
 type GlobalVariableJsonPatchRequestDataAttributes struct {
 	// JSON Patch operations following RFC 6902.
 	JsonPatch []JsonPatchOperation `json:"json_patch,omitempty"`

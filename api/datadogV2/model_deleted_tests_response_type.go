@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DeletedTestsResponseType
+// DeletedTestsResponseType Type for the bulk delete Synthetic tests response, `delete_tests`.
 type DeletedTestsResponseType string
 
 // List of DeletedTestsResponseType.

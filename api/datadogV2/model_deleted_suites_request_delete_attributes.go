@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DeletedSuitesRequestDeleteAttributes
+// DeletedSuitesRequestDeleteAttributes Attributes for a bulk delete Synthetic test suites request.
 type DeletedSuitesRequestDeleteAttributes struct {
-	//
+	// Whether to force deletion of suites that have dependent resources.
 	ForceDeleteDependencies *bool `json:"force_delete_dependencies,omitempty"`
-	//
+	// List of public IDs of the Synthetic test suites to delete.
 	PublicIds []string `json:"public_ids"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

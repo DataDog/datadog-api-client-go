@@ -14,9 +14,9 @@ import (
 type SyntheticsSuiteSearchResponseData struct {
 	// Synthetics suite search response data attributes
 	Attributes *SyntheticsSuiteSearchResponseDataAttributes `json:"attributes,omitempty"`
-	//
+	// The unique identifier of the suite search response data.
 	Id *uuid.UUID `json:"id,omitempty"`
-	//
+	// Type for the Synthetics suites search response, `suites_search`.
 	Type *SuiteSearchResponseType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

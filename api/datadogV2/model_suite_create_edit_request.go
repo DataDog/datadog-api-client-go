@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SuiteCreateEditRequest
+// SuiteCreateEditRequest Request body for creating or editing a Synthetic test suite.
 type SuiteCreateEditRequest struct {
-	//
+	// Data object for creating or editing a Synthetic test suite.
 	Data SuiteCreateEdit `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
