@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StatusPageArray
+// StatusPageArray Response object for a list of status pages.
 type StatusPageArray struct {
-	//
+	// A list of status page data objects.
 	Data []StatusPageData `json:"data"`
 	// The included related resources of a status page. Client must explicitly request these resources by name in the `include` query parameter.
 	Included []StatusPageArrayIncluded `json:"included,omitempty"`

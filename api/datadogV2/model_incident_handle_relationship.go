@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IncidentHandleRelationship
+// IncidentHandleRelationship A single relationship object for an incident handle, wrapping the related resource data.
 type IncidentHandleRelationship struct {
-	//
+	// Relationship data for an incident handle, containing the ID and type of the related resource.
 	Data IncidentHandleRelationshipData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

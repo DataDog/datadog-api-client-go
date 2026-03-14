@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateComponentRequestDataRelationshipsGroupData
+// CreateComponentRequestDataRelationshipsGroupData The data object identifying the group to create the component within.
 type CreateComponentRequestDataRelationshipsGroupData struct {
 	// The ID of the group.
 	Id uuid.UUID `json:"id"`

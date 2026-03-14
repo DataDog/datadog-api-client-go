@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IncidentHandleRequest
+// IncidentHandleRequest Request payload for creating or updating a global incident handle.
 type IncidentHandleRequest struct {
-	//
+	// Data object representing an incident handle in a create or update request.
 	Data IncidentHandleDataRequest `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

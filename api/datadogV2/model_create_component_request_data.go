@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateComponentRequestData
+// CreateComponentRequestData The data object for creating a component.
 type CreateComponentRequestData struct {
 	// The supported attributes for creating a component.
 	Attributes CreateComponentRequestDataAttributes `json:"attributes"`

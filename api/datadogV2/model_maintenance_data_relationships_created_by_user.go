@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MaintenanceDataRelationshipsCreatedByUser
+// MaintenanceDataRelationshipsCreatedByUser The Datadog user who created the maintenance.
 type MaintenanceDataRelationshipsCreatedByUser struct {
-	//
+	// The data object identifying the Datadog user who created the maintenance.
 	Data MaintenanceDataRelationshipsCreatedByUserData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

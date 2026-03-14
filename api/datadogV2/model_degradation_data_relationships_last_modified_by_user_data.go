@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DegradationDataRelationshipsLastModifiedByUserData
+// DegradationDataRelationshipsLastModifiedByUserData The data object identifying the Datadog user who last modified the degradation.
 type DegradationDataRelationshipsLastModifiedByUserData struct {
 	// The ID of the Datadog user who last modified the degradation.
 	Id string `json:"id"`

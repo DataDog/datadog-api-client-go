@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateDegradationRequestData
+// CreateDegradationRequestData The data object for creating a degradation.
 type CreateDegradationRequestData struct {
 	// The supported attributes for creating a degradation.
 	Attributes CreateDegradationRequestDataAttributes `json:"attributes"`

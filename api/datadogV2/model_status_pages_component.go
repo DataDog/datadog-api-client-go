@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StatusPagesComponent
+// StatusPagesComponent Response object for a single component.
 type StatusPagesComponent struct {
-	//
+	// The data object for a component.
 	Data *StatusPagesComponentData `json:"data,omitempty"`
 	// The included related resources of a component. Client must explicitly request these resources by name in the `include` query parameter.
 	Included []StatusPagesComponentArrayIncluded `json:"included,omitempty"`

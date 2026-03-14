@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StatusPageAsIncludedAttributesComponentsItemsComponentsItems
+// StatusPageAsIncludedAttributesComponentsItemsComponentsItems A grouped component within a status page component group.
 type StatusPageAsIncludedAttributesComponentsItemsComponentsItems struct {
 	// The ID of the grouped component.
 	Id *uuid.UUID `json:"id,omitempty"`

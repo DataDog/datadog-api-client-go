@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// GlobalIncidentSettingsResponse
+// GlobalIncidentSettingsResponse Response payload containing global incident settings.
 type GlobalIncidentSettingsResponse struct {
-	//
+	// Data object in the global incident settings response.
 	Data GlobalIncidentSettingsDataResponse `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StatusPagesComponentDataRelationshipsStatusPageData
+// StatusPagesComponentDataRelationshipsStatusPageData The data object identifying the status page the component belongs to.
 type StatusPagesComponentDataRelationshipsStatusPageData struct {
 	// The ID of the status page the component belongs to.
 	Id uuid.UUID `json:"id"`

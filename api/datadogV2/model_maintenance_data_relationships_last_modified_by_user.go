@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MaintenanceDataRelationshipsLastModifiedByUser
+// MaintenanceDataRelationshipsLastModifiedByUser The Datadog user who last modified the maintenance.
 type MaintenanceDataRelationshipsLastModifiedByUser struct {
-	//
+	// The data object identifying the Datadog user who last modified the maintenance.
 	Data MaintenanceDataRelationshipsLastModifiedByUserData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

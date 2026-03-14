@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IncidentHandleDataRequest
+// IncidentHandleDataRequest Data object representing an incident handle in a create or update request.
 type IncidentHandleDataRequest struct {
 	// Incident handle attributes for requests
 	Attributes IncidentHandleAttributesRequest `json:"attributes"`
 	// The ID of the incident handle (required for PUT requests)
 	Id *string `json:"id,omitempty"`
-	//
+	// Relationships to associate with an incident handle in a create or update request.
 	Relationships NullableIncidentHandleRelationshipsRequest `json:"relationships,omitempty"`
 	// Incident handle resource type
 	Type IncidentHandleType `json:"type"`

@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MaintenanceDataAttributesUpdatesItemsComponentsAffectedItems
+// MaintenanceDataAttributesUpdatesItemsComponentsAffectedItems A component affected at the time of a maintenance update.
 type MaintenanceDataAttributesUpdatesItemsComponentsAffectedItems struct {
 	// Identifier of the component affected at the time of the update.
 	Id uuid.UUID `json:"id"`

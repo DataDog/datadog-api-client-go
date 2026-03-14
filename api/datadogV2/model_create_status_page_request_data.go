@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateStatusPageRequestData
+// CreateStatusPageRequestData The data object for creating a status page.
 type CreateStatusPageRequestData struct {
 	// The supported attributes for creating a status page.
 	Attributes CreateStatusPageRequestDataAttributes `json:"attributes"`

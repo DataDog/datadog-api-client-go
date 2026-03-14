@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DegradationDataRelationshipsStatusPageData
+// DegradationDataRelationshipsStatusPageData The data object identifying the status page the degradation belongs to.
 type DegradationDataRelationshipsStatusPageData struct {
 	// The ID of the status page.
 	Id uuid.UUID `json:"id"`

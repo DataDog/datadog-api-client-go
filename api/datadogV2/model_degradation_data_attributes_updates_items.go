@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DegradationDataAttributesUpdatesItems
+// DegradationDataAttributesUpdatesItems A status update recorded during a degradation.
 type DegradationDataAttributesUpdatesItems struct {
 	// The components affected at the time of the update.
 	ComponentsAffected []DegradationDataAttributesUpdatesItemsComponentsAffectedItems `json:"components_affected,omitempty"`

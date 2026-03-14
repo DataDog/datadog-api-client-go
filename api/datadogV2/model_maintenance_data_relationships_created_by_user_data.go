@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MaintenanceDataRelationshipsCreatedByUserData
+// MaintenanceDataRelationshipsCreatedByUserData The data object identifying the Datadog user who created the maintenance.
 type MaintenanceDataRelationshipsCreatedByUserData struct {
 	// The ID of the Datadog user who created the maintenance.
 	Id uuid.UUID `json:"id"`

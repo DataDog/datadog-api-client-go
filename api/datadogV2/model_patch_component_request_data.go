@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchComponentRequestData
+// PatchComponentRequestData The data object for updating a component.
 type PatchComponentRequestData struct {
 	// The supported attributes for updating a component.
 	Attributes PatchComponentRequestDataAttributes `json:"attributes"`
