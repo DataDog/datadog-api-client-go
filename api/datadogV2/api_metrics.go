@@ -834,6 +834,7 @@ type ListTagConfigurationsOptionalParameters struct {
 	FilterQueriedWindowSeconds *int64
 	FilterTags                 *string
 	FilterRelatedAssets        *bool
+	Include                    *MetricVolumesInclude
 	WindowSeconds              *int64
 	PageSize                   *int32
 	PageCursor                 *string
@@ -893,6 +894,12 @@ func (r *ListTagConfigurationsOptionalParameters) WithFilterRelatedAssets(filter
 	return r
 }
 
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *ListTagConfigurationsOptionalParameters) WithInclude(include MetricVolumesInclude) *ListTagConfigurationsOptionalParameters {
+	r.Include = &include
+	return r
+}
+
 // WithWindowSeconds sets the corresponding parameter name and returns the struct.
 func (r *ListTagConfigurationsOptionalParameters) WithWindowSeconds(windowSeconds int64) *ListTagConfigurationsOptionalParameters {
 	r.WindowSeconds = &windowSeconds
@@ -916,6 +923,7 @@ func (r *ListTagConfigurationsOptionalParameters) WithPageCursor(pageCursor stri
 // Optionally, paginate by using the `page[cursor]` and/or `page[size]` query parameters.
 // To fetch the first page, pass in a query parameter with either a valid `page[size]` or an empty cursor like `page[cursor]=`. To fetch the next page, pass in the `next_cursor` value from the response as the new `page[cursor]` value.
 // Once the `meta.pagination.next_cursor` value is null, all pages have been retrieved.
+// Use the `include` query parameter to fetch additional data with the response. When `include=metric_volumes` is specified, the response includes volume data for each custom metric in the `included` array, with a corresponding `relationships` link on each metric in `data`. Volume data is only returned for custom metrics. All volume values represent a 1-hour timeframe.
 func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -964,6 +972,9 @@ func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagCon
 	}
 	if optionalParams.FilterRelatedAssets != nil {
 		localVarQueryParams.Add("filter[related_assets]", datadog.ParameterToString(*optionalParams.FilterRelatedAssets, ""))
+	}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
 	}
 	if optionalParams.WindowSeconds != nil {
 		localVarQueryParams.Add("window[seconds]", datadog.ParameterToString(*optionalParams.WindowSeconds, ""))
