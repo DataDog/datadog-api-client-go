@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationServiceNowSyncConfig
+// IntegrationServiceNowSyncConfig Synchronization configuration for ServiceNow integration
 type IntegrationServiceNowSyncConfig struct {
-	//
+	// Whether ServiceNow synchronization is enabled
 	Enabled *bool `json:"enabled,omitempty"`
-	//
+	// Field-level synchronization properties for ServiceNow integration
 	Properties *IntegrationServiceNowSyncConfig139772721534496 `json:"properties,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

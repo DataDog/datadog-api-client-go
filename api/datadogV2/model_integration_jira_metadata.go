@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationJiraMetadata
+// IntegrationJiraMetadata Metadata for connecting a case management project to a Jira project
 type IntegrationJiraMetadata struct {
-	//
+	// The Jira account identifier
 	AccountId *string `json:"account_id,omitempty"`
-	//
+	// The Jira issue type identifier to use when creating issues
 	IssueTypeId *string `json:"issue_type_id,omitempty"`
-	//
+	// The Jira project identifier to associate with this case project
 	ProjectId *string `json:"project_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

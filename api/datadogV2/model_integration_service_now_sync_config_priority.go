@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationServiceNowSyncConfigPriority
+// IntegrationServiceNowSyncConfigPriority Priority synchronization configuration for ServiceNow integration
 type IntegrationServiceNowSyncConfigPriority struct {
-	//
+	// Mapping of case priority values to ServiceNow impact values
 	ImpactMapping map[string]string `json:"impact_mapping,omitempty"`
-	//
+	// The type of synchronization to apply for priority
 	SyncType *string `json:"sync_type,omitempty"`
-	//
+	// Mapping of case priority values to ServiceNow urgency values
 	UrgencyMapping map[string]string `json:"urgency_mapping,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

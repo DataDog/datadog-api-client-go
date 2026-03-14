@@ -10,7 +10,7 @@ import (
 
 // ProjectColumnsConfig Project columns configuration
 type ProjectColumnsConfig struct {
-	//
+	// List of column configurations for the project board view
 	Columns []ProjectColumnsConfigColumnsItems `json:"columns,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
