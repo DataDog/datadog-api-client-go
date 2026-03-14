@@ -14,7 +14,7 @@ import (
 type OnCallNotificationRule struct {
 	// Data for an on-call notification rule
 	Data OnCallNotificationRuleData `json:"data"`
-	//
+	// Array of related resources included in the response.
 	Included []OnCallNotificationRulesIncluded `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
