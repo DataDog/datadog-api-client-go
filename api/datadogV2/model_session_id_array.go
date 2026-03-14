@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SessionIdArray
+// SessionIdArray A collection of session identifiers used for bulk add or remove operations on a playlist.
 type SessionIdArray struct {
-	//
+	// Array of session identifier data objects.
 	Data []SessionIdData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SnapshotUpdateRequest
+// SnapshotUpdateRequest Request body for updating a heatmap snapshot.
 type SnapshotUpdateRequest struct {
-	//
+	// Data object for a heatmap snapshot update request, containing the resource identifier, type, and attributes.
 	Data SnapshotUpdateRequestData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

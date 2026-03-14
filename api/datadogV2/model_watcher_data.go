@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// WatcherData
+// WatcherData Data object representing a session watcher, including their identifier, type, and attributes.
 type WatcherData struct {
-	//
+	// Attributes of a user who has watched a RUM replay session, including contact information and watch statistics.
 	Attributes *WatcherDataAttributes `json:"attributes,omitempty"`
-	//
+	// Unique identifier of the watcher user.
 	Id *string `json:"id,omitempty"`
 	// Rum replay watcher resource type.
 	Type WatcherDataType `json:"type"`

@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// WatcherArray
+// WatcherArray A list of users who have watched a RUM replay session.
 type WatcherArray struct {
-	//
+	// Array of watcher data objects.
 	Data []WatcherData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
