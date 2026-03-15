@@ -111,6 +111,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "ObservabilityPipelinesApi": reflect.ValueOf(datadogV2.NewObservabilityPipelinesApi),
 	    "OnCallApi": reflect.ValueOf(datadogV2.NewOnCallApi),
 	    "OnCallPagingApi": reflect.ValueOf(datadogV2.NewOnCallPagingApi),
+	    "OnPremManagementServiceApi": reflect.ValueOf(datadogV2.NewOnPremManagementServiceApi),
 	    "OrganizationsApi": reflect.ValueOf(datadogV2.NewOrganizationsApi),
 	    "OrgConnectionsApi": reflect.ValueOf(datadogV2.NewOrgConnectionsApi),
 	    "RolesApi": reflect.ValueOf(datadogV2.NewRolesApi),
