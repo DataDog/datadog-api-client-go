@@ -20,6 +20,8 @@ type NotebookCreateDataAttributes struct {
 	Name string `json:"name"`
 	// Publication status of the notebook. For now, always "published".
 	Status *NotebookStatus `json:"status,omitempty"`
+	// List of template variables for this notebook.
+	TemplateVariables []NotebookTemplateVariable `json:"template_variables,omitempty"`
 	// Notebook global timeframe.
 	Time NotebookGlobalTime `json:"time"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -153,6 +155,34 @@ func (o *NotebookCreateDataAttributes) SetStatus(v NotebookStatus) {
 	o.Status = &v
 }
 
+// GetTemplateVariables returns the TemplateVariables field value if set, zero value otherwise.
+func (o *NotebookCreateDataAttributes) GetTemplateVariables() []NotebookTemplateVariable {
+	if o == nil || o.TemplateVariables == nil {
+		var ret []NotebookTemplateVariable
+		return ret
+	}
+	return o.TemplateVariables
+}
+
+// GetTemplateVariablesOk returns a tuple with the TemplateVariables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *NotebookCreateDataAttributes) GetTemplateVariablesOk() (*[]NotebookTemplateVariable, bool) {
+	if o == nil || o.TemplateVariables == nil {
+		return nil, false
+	}
+	return &o.TemplateVariables, true
+}
+
+// HasTemplateVariables returns a boolean if a field has been set.
+func (o *NotebookCreateDataAttributes) HasTemplateVariables() bool {
+	return o != nil && o.TemplateVariables != nil
+}
+
+// SetTemplateVariables gets a reference to the given []NotebookTemplateVariable and assigns it to the TemplateVariables field.
+func (o *NotebookCreateDataAttributes) SetTemplateVariables(v []NotebookTemplateVariable) {
+	o.TemplateVariables = v
+}
+
 // GetTime returns the Time field value.
 func (o *NotebookCreateDataAttributes) GetTime() NotebookGlobalTime {
 	if o == nil {
@@ -190,6 +220,9 @@ func (o NotebookCreateDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
+	if o.TemplateVariables != nil {
+		toSerialize["template_variables"] = o.TemplateVariables
+	}
 	toSerialize["time"] = o.Time
 
 	for key, value := range o.AdditionalProperties {
@@ -201,11 +234,12 @@ func (o NotebookCreateDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Cells    *[]NotebookCellCreateRequest `json:"cells"`
-		Metadata *NotebookMetadata            `json:"metadata,omitempty"`
-		Name     *string                      `json:"name"`
-		Status   *NotebookStatus              `json:"status,omitempty"`
-		Time     *NotebookGlobalTime          `json:"time"`
+		Cells             *[]NotebookCellCreateRequest `json:"cells"`
+		Metadata          *NotebookMetadata            `json:"metadata,omitempty"`
+		Name              *string                      `json:"name"`
+		Status            *NotebookStatus              `json:"status,omitempty"`
+		TemplateVariables []NotebookTemplateVariable   `json:"template_variables,omitempty"`
+		Time              *NotebookGlobalTime          `json:"time"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -221,7 +255,7 @@ func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cells", "metadata", "name", "status", "time"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cells", "metadata", "name", "status", "template_variables", "time"})
 	} else {
 		return err
 	}
@@ -238,6 +272,7 @@ func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.Status = all.Status
 	}
+	o.TemplateVariables = all.TemplateVariables
 	o.Time = *all.Time
 
 	if len(additionalProperties) > 0 {
