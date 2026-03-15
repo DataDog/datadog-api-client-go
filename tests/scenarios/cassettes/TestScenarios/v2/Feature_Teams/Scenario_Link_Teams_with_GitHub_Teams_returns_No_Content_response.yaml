@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"source":"github","type":"link"},"type":"team_sync_bulk"}}
+      {"data":{"attributes":{"selection_state":[{"external_id":{"type":"organization","value":"1"}}],"source":"github","type":"link"},"type":"team_sync_bulk"}}
     form: {}
     headers:
       Accept:
@@ -13,10 +13,8 @@ interactions:
     url: https://api.datadoghq.com/api/v2/team/sync
   response:
     body: ''
-    code: 200
+    code: 204
     duration: 0ms
-    headers:
-      Content-Type:
-      - text/plain
-    status: 200 OK
+    headers: {}
+    status: 204 No Content
 version: 2

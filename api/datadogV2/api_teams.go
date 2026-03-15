@@ -1724,7 +1724,7 @@ func (a *TeamsApi) GetTeamSync(ctx _context.Context, filterSource TeamSyncAttrib
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2778,6 +2778,10 @@ func (a *TeamsApi) RemoveTeamHierarchyLink(ctx _context.Context, linkId string) 
 // (lowercased and kebab-cased).
 //
 // This operation is read-only on the GitHub side, no teams will be modified or created.
+//
+// Optionally, provide `selection_state` to limit synchronization
+// to specific teams or organizations and their subtrees, instead
+// of syncing all teams.
 //
 // [A GitHub organization must be connected to your Datadog account](https://docs.datadoghq.com/integrations/github/),
 // and the GitHub App integrated with Datadog must have the `Members Read` permission. Matching is performed by comparing the Datadog team handle to the GitHub team slug
