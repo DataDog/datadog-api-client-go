@@ -66,6 +66,17 @@ y = 6;
 				},
 				Name:   "Example-Notebook",
 				Status: datadogV1.NOTEBOOKSTATUS_PUBLISHED.Ptr(),
+				TemplateVariables: []datadogV1.NotebookTemplateVariable{
+					{
+						Name:   "example-notebook",
+						Prefix: *datadog.NewNullableString(datadog.PtrString("host")),
+						AvailableValues: *datadog.NewNullableList(&[]string{
+							"host1",
+							"host2",
+						}),
+						Default: *datadog.NewNullableString(datadog.PtrString("*")),
+					},
+				},
 				Time: datadogV1.NotebookGlobalTime{
 					NotebookRelativeTime: &datadogV1.NotebookRelativeTime{
 						LiveSpan: datadogV1.WIDGETLIVESPAN_PAST_ONE_HOUR,
