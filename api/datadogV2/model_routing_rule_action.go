@@ -12,6 +12,7 @@ import (
 type RoutingRuleAction struct {
 	SendSlackMessageAction *SendSlackMessageAction
 	SendTeamsMessageAction *SendTeamsMessageAction
+	EscalationPolicyAction *EscalationPolicyAction
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -25,6 +26,11 @@ func SendSlackMessageActionAsRoutingRuleAction(v *SendSlackMessageAction) Routin
 // SendTeamsMessageActionAsRoutingRuleAction is a convenience function that returns SendTeamsMessageAction wrapped in RoutingRuleAction.
 func SendTeamsMessageActionAsRoutingRuleAction(v *SendTeamsMessageAction) RoutingRuleAction {
 	return RoutingRuleAction{SendTeamsMessageAction: v}
+}
+
+// EscalationPolicyActionAsRoutingRuleAction is a convenience function that returns EscalationPolicyAction wrapped in RoutingRuleAction.
+func EscalationPolicyActionAsRoutingRuleAction(v *EscalationPolicyAction) RoutingRuleAction {
+	return RoutingRuleAction{EscalationPolicyAction: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -65,10 +71,28 @@ func (obj *RoutingRuleAction) UnmarshalJSON(data []byte) error {
 		obj.SendTeamsMessageAction = nil
 	}
 
+	// try to unmarshal data into EscalationPolicyAction
+	err = datadog.Unmarshal(data, &obj.EscalationPolicyAction)
+	if err == nil {
+		if obj.EscalationPolicyAction != nil && obj.EscalationPolicyAction.UnparsedObject == nil {
+			jsonEscalationPolicyAction, _ := datadog.Marshal(obj.EscalationPolicyAction)
+			if string(jsonEscalationPolicyAction) == "{}" { // empty struct
+				obj.EscalationPolicyAction = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.EscalationPolicyAction = nil
+		}
+	} else {
+		obj.EscalationPolicyAction = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.SendSlackMessageAction = nil
 		obj.SendTeamsMessageAction = nil
+		obj.EscalationPolicyAction = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -82,6 +106,10 @@ func (obj RoutingRuleAction) MarshalJSON() ([]byte, error) {
 
 	if obj.SendTeamsMessageAction != nil {
 		return datadog.Marshal(&obj.SendTeamsMessageAction)
+	}
+
+	if obj.EscalationPolicyAction != nil {
+		return datadog.Marshal(&obj.EscalationPolicyAction)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -98,6 +126,10 @@ func (obj *RoutingRuleAction) GetActualInstance() interface{} {
 
 	if obj.SendTeamsMessageAction != nil {
 		return obj.SendTeamsMessageAction
+	}
+
+	if obj.EscalationPolicyAction != nil {
+		return obj.EscalationPolicyAction
 	}
 
 	// all schemas are nil

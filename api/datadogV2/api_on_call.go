@@ -881,7 +881,8 @@ func (a *OnCallApi) GetOnCallSchedule(ctx _context.Context, scheduleId string, o
 
 // GetOnCallTeamRoutingRulesOptionalParameters holds optional parameters for GetOnCallTeamRoutingRules.
 type GetOnCallTeamRoutingRulesOptionalParameters struct {
-	Include *string
+	Include         *string
+	UsePolicyAction *bool
 }
 
 // NewGetOnCallTeamRoutingRulesOptionalParameters creates an empty struct for parameters.
@@ -893,6 +894,12 @@ func NewGetOnCallTeamRoutingRulesOptionalParameters() *GetOnCallTeamRoutingRules
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *GetOnCallTeamRoutingRulesOptionalParameters) WithInclude(include string) *GetOnCallTeamRoutingRulesOptionalParameters {
 	r.Include = &include
+	return r
+}
+
+// WithUsePolicyAction sets the corresponding parameter name and returns the struct.
+func (r *GetOnCallTeamRoutingRulesOptionalParameters) WithUsePolicyAction(usePolicyAction bool) *GetOnCallTeamRoutingRulesOptionalParameters {
+	r.UsePolicyAction = &usePolicyAction
 	return r
 }
 
@@ -926,6 +933,9 @@ func (a *OnCallApi) GetOnCallTeamRoutingRules(ctx _context.Context, teamId strin
 	localVarFormParams := _neturl.Values{}
 	if optionalParams.Include != nil {
 		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	if optionalParams.UsePolicyAction != nil {
+		localVarQueryParams.Add("use_policy_action", datadog.ParameterToString(*optionalParams.UsePolicyAction, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
@@ -1579,7 +1589,8 @@ func (a *OnCallApi) ListUserNotificationRules(ctx _context.Context, userId strin
 
 // SetOnCallTeamRoutingRulesOptionalParameters holds optional parameters for SetOnCallTeamRoutingRules.
 type SetOnCallTeamRoutingRulesOptionalParameters struct {
-	Include *string
+	Include         *string
+	UsePolicyAction *bool
 }
 
 // NewSetOnCallTeamRoutingRulesOptionalParameters creates an empty struct for parameters.
@@ -1591,6 +1602,12 @@ func NewSetOnCallTeamRoutingRulesOptionalParameters() *SetOnCallTeamRoutingRules
 // WithInclude sets the corresponding parameter name and returns the struct.
 func (r *SetOnCallTeamRoutingRulesOptionalParameters) WithInclude(include string) *SetOnCallTeamRoutingRulesOptionalParameters {
 	r.Include = &include
+	return r
+}
+
+// WithUsePolicyAction sets the corresponding parameter name and returns the struct.
+func (r *SetOnCallTeamRoutingRulesOptionalParameters) WithUsePolicyAction(usePolicyAction bool) *SetOnCallTeamRoutingRulesOptionalParameters {
+	r.UsePolicyAction = &usePolicyAction
 	return r
 }
 
@@ -1624,6 +1641,9 @@ func (a *OnCallApi) SetOnCallTeamRoutingRules(ctx _context.Context, teamId strin
 	localVarFormParams := _neturl.Values{}
 	if optionalParams.Include != nil {
 		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	if optionalParams.UsePolicyAction != nil {
+		localVarQueryParams.Add("use_policy_action", datadog.ParameterToString(*optionalParams.UsePolicyAction, ""))
 	}
 	localVarHeaderParams["Content-Type"] = "application/json"
 	localVarHeaderParams["Accept"] = "application/json"
