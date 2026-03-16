@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DeploymentRulesOptions - Options for deployment rule response representing either faulty deployment detection or monitor options.
+// DeploymentRulesOptions - Options for deployment rule requests representing either faulty deployment detection or monitor options.
 type DeploymentRulesOptions struct {
 	DeploymentRuleOptionsFaultyDeploymentDetection *DeploymentRuleOptionsFaultyDeploymentDetection
 	DeploymentRuleOptionsMonitor                   *DeploymentRuleOptionsMonitor

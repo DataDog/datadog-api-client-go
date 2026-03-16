@@ -16,7 +16,7 @@ type CreateDeploymentRuleParamsDataAttributes struct {
 	DryRun *bool `json:"dry_run,omitempty"`
 	// The name of the deployment rule.
 	Name string `json:"name"`
-	// Options for deployment rule response representing either faulty deployment detection or monitor options.
+	// Options for deployment rule requests representing either faulty deployment detection or monitor options.
 	Options DeploymentRulesOptions `json:"options"`
 	// The type of the deployment rule (faulty_deployment_detection or monitor).
 	Type string `json:"type"`

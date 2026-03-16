@@ -13,7 +13,7 @@ import (
 // BatchDeleteRowsRequestArray The request body for deleting multiple rows from a reference table.
 type BatchDeleteRowsRequestArray struct {
 	//
-	Data []TableRowResourceIdentifier `json:"data"`
+	Data []BatchDeleteRowsRequestData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,7 +23,7 @@ type BatchDeleteRowsRequestArray struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewBatchDeleteRowsRequestArray(data []TableRowResourceIdentifier) *BatchDeleteRowsRequestArray {
+func NewBatchDeleteRowsRequestArray(data []BatchDeleteRowsRequestData) *BatchDeleteRowsRequestArray {
 	this := BatchDeleteRowsRequestArray{}
 	this.Data = data
 	return &this
@@ -38,9 +38,9 @@ func NewBatchDeleteRowsRequestArrayWithDefaults() *BatchDeleteRowsRequestArray {
 }
 
 // GetData returns the Data field value.
-func (o *BatchDeleteRowsRequestArray) GetData() []TableRowResourceIdentifier {
+func (o *BatchDeleteRowsRequestArray) GetData() []BatchDeleteRowsRequestData {
 	if o == nil {
-		var ret []TableRowResourceIdentifier
+		var ret []BatchDeleteRowsRequestData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *BatchDeleteRowsRequestArray) GetData() []TableRowResourceIdentifier {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *BatchDeleteRowsRequestArray) GetDataOk() (*[]TableRowResourceIdentifier, bool) {
+func (o *BatchDeleteRowsRequestArray) GetDataOk() (*[]BatchDeleteRowsRequestData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,7 +56,7 @@ func (o *BatchDeleteRowsRequestArray) GetDataOk() (*[]TableRowResourceIdentifier
 }
 
 // SetData sets field value.
-func (o *BatchDeleteRowsRequestArray) SetData(v []TableRowResourceIdentifier) {
+func (o *BatchDeleteRowsRequestArray) SetData(v []BatchDeleteRowsRequestData) {
 	o.Data = v
 }
 
@@ -77,7 +77,7 @@ func (o BatchDeleteRowsRequestArray) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *BatchDeleteRowsRequestArray) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *[]TableRowResourceIdentifier `json:"data"`
+		Data *[]BatchDeleteRowsRequestData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

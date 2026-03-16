@@ -10,8 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TableRowResourceIdentifier Row resource containing a single row identifier.
-type TableRowResourceIdentifier struct {
+// BatchDeleteRowsRequestData Row resource containing a single row identifier for deletion.
+type BatchDeleteRowsRequestData struct {
 	//
 	Id string `json:"id"`
 	// Row resource type.
@@ -21,29 +21,29 @@ type TableRowResourceIdentifier struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTableRowResourceIdentifier instantiates a new TableRowResourceIdentifier object.
+// NewBatchDeleteRowsRequestData instantiates a new BatchDeleteRowsRequestData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTableRowResourceIdentifier(id string, typeVar TableRowResourceDataType) *TableRowResourceIdentifier {
-	this := TableRowResourceIdentifier{}
+func NewBatchDeleteRowsRequestData(id string, typeVar TableRowResourceDataType) *BatchDeleteRowsRequestData {
+	this := BatchDeleteRowsRequestData{}
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewTableRowResourceIdentifierWithDefaults instantiates a new TableRowResourceIdentifier object.
+// NewBatchDeleteRowsRequestDataWithDefaults instantiates a new BatchDeleteRowsRequestData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTableRowResourceIdentifierWithDefaults() *TableRowResourceIdentifier {
-	this := TableRowResourceIdentifier{}
+func NewBatchDeleteRowsRequestDataWithDefaults() *BatchDeleteRowsRequestData {
+	this := BatchDeleteRowsRequestData{}
 	var typeVar TableRowResourceDataType = TABLEROWRESOURCEDATATYPE_ROW
 	this.Type = typeVar
 	return &this
 }
 
 // GetId returns the Id field value.
-func (o *TableRowResourceIdentifier) GetId() string {
+func (o *BatchDeleteRowsRequestData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -53,7 +53,7 @@ func (o *TableRowResourceIdentifier) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *TableRowResourceIdentifier) GetIdOk() (*string, bool) {
+func (o *BatchDeleteRowsRequestData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,12 +61,12 @@ func (o *TableRowResourceIdentifier) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *TableRowResourceIdentifier) SetId(v string) {
+func (o *BatchDeleteRowsRequestData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *TableRowResourceIdentifier) GetType() TableRowResourceDataType {
+func (o *BatchDeleteRowsRequestData) GetType() TableRowResourceDataType {
 	if o == nil {
 		var ret TableRowResourceDataType
 		return ret
@@ -76,7 +76,7 @@ func (o *TableRowResourceIdentifier) GetType() TableRowResourceDataType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *TableRowResourceIdentifier) GetTypeOk() (*TableRowResourceDataType, bool) {
+func (o *BatchDeleteRowsRequestData) GetTypeOk() (*TableRowResourceDataType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,12 +84,12 @@ func (o *TableRowResourceIdentifier) GetTypeOk() (*TableRowResourceDataType, boo
 }
 
 // SetType sets field value.
-func (o *TableRowResourceIdentifier) SetType(v TableRowResourceDataType) {
+func (o *BatchDeleteRowsRequestData) SetType(v TableRowResourceDataType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TableRowResourceIdentifier) MarshalJSON() ([]byte, error) {
+func (o BatchDeleteRowsRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -104,7 +104,7 @@ func (o TableRowResourceIdentifier) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TableRowResourceIdentifier) UnmarshalJSON(bytes []byte) (err error) {
+func (o *BatchDeleteRowsRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Id   *string                   `json:"id"`
 		Type *TableRowResourceDataType `json:"type"`
