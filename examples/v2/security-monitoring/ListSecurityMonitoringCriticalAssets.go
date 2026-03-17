@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.ListSecurityMonitoringCriticalAssets(ctx, *datadogV2.NewListSecurityMonitoringCriticalAssetsOptionalParameters())
+	resp, r, err := api.ListSecurityMonitoringCriticalAssets(ctx)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityMonitoringCriticalAssets`: %v\n", err)

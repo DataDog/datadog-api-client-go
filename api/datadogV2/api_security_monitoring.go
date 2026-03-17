@@ -5648,39 +5648,14 @@ func (a *SecurityMonitoringApi) ListSecurityFindingsWithPagination(ctx _context.
 	return items, cancel
 }
 
-// ListSecurityMonitoringCriticalAssetsOptionalParameters holds optional parameters for ListSecurityMonitoringCriticalAssets.
-type ListSecurityMonitoringCriticalAssetsOptionalParameters struct {
-	Query *string
-}
-
-// NewListSecurityMonitoringCriticalAssetsOptionalParameters creates an empty struct for parameters.
-func NewListSecurityMonitoringCriticalAssetsOptionalParameters() *ListSecurityMonitoringCriticalAssetsOptionalParameters {
-	this := ListSecurityMonitoringCriticalAssetsOptionalParameters{}
-	return &this
-}
-
-// WithQuery sets the corresponding parameter name and returns the struct.
-func (r *ListSecurityMonitoringCriticalAssetsOptionalParameters) WithQuery(query string) *ListSecurityMonitoringCriticalAssetsOptionalParameters {
-	r.Query = &query
-	return r
-}
-
 // ListSecurityMonitoringCriticalAssets Get all critical assets.
 // Get the list of all critical assets.
-func (a *SecurityMonitoringApi) ListSecurityMonitoringCriticalAssets(ctx _context.Context, o ...ListSecurityMonitoringCriticalAssetsOptionalParameters) (SecurityMonitoringCriticalAssetsResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ListSecurityMonitoringCriticalAssets(ctx _context.Context) (SecurityMonitoringCriticalAssetsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringCriticalAssetsResponse
-		optionalParams      ListSecurityMonitoringCriticalAssetsOptionalParameters
 	)
-
-	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListSecurityMonitoringCriticalAssetsOptionalParameters is allowed")
-	}
-	if len(o) == 1 {
-		optionalParams = o[0]
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.ListSecurityMonitoringCriticalAssets")
 	if err != nil {
@@ -5692,9 +5667,6 @@ func (a *SecurityMonitoringApi) ListSecurityMonitoringCriticalAssets(ctx _contex
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-	if optionalParams.Query != nil {
-		localVarQueryParams.Add("query", datadog.ParameterToString(*optionalParams.Query, ""))
-	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {
