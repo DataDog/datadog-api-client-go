@@ -13,6 +13,7 @@ type ObservabilityPipelineConfigDestinationItem struct {
 	ObservabilityPipelineHttpClientDestination             *ObservabilityPipelineHttpClientDestination
 	ObservabilityPipelineAmazonOpenSearchDestination       *ObservabilityPipelineAmazonOpenSearchDestination
 	ObservabilityPipelineAmazonS3Destination               *ObservabilityPipelineAmazonS3Destination
+	ObservabilityPipelineAmazonS3GenericDestination        *ObservabilityPipelineAmazonS3GenericDestination
 	ObservabilityPipelineAmazonSecurityLakeDestination     *ObservabilityPipelineAmazonSecurityLakeDestination
 	AzureStorageDestination                                *AzureStorageDestination
 	ObservabilityPipelineCloudPremDestination              *ObservabilityPipelineCloudPremDestination
@@ -51,6 +52,11 @@ func ObservabilityPipelineAmazonOpenSearchDestinationAsObservabilityPipelineConf
 // ObservabilityPipelineAmazonS3DestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineAmazonS3Destination wrapped in ObservabilityPipelineConfigDestinationItem.
 func ObservabilityPipelineAmazonS3DestinationAsObservabilityPipelineConfigDestinationItem(v *ObservabilityPipelineAmazonS3Destination) ObservabilityPipelineConfigDestinationItem {
 	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelineAmazonS3Destination: v}
+}
+
+// ObservabilityPipelineAmazonS3GenericDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineAmazonS3GenericDestination wrapped in ObservabilityPipelineConfigDestinationItem.
+func ObservabilityPipelineAmazonS3GenericDestinationAsObservabilityPipelineConfigDestinationItem(v *ObservabilityPipelineAmazonS3GenericDestination) ObservabilityPipelineConfigDestinationItem {
+	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelineAmazonS3GenericDestination: v}
 }
 
 // ObservabilityPipelineAmazonSecurityLakeDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineAmazonSecurityLakeDestination wrapped in ObservabilityPipelineConfigDestinationItem.
@@ -206,6 +212,23 @@ func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte
 		}
 	} else {
 		obj.ObservabilityPipelineAmazonS3Destination = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineAmazonS3GenericDestination
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineAmazonS3GenericDestination)
+	if err == nil {
+		if obj.ObservabilityPipelineAmazonS3GenericDestination != nil && obj.ObservabilityPipelineAmazonS3GenericDestination.UnparsedObject == nil {
+			jsonObservabilityPipelineAmazonS3GenericDestination, _ := datadog.Marshal(obj.ObservabilityPipelineAmazonS3GenericDestination)
+			if string(jsonObservabilityPipelineAmazonS3GenericDestination) == "{}" { // empty struct
+				obj.ObservabilityPipelineAmazonS3GenericDestination = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineAmazonS3GenericDestination = nil
+		}
+	} else {
+		obj.ObservabilityPipelineAmazonS3GenericDestination = nil
 	}
 
 	// try to unmarshal data into ObservabilityPipelineAmazonSecurityLakeDestination
@@ -553,6 +576,7 @@ func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte
 		obj.ObservabilityPipelineHttpClientDestination = nil
 		obj.ObservabilityPipelineAmazonOpenSearchDestination = nil
 		obj.ObservabilityPipelineAmazonS3Destination = nil
+		obj.ObservabilityPipelineAmazonS3GenericDestination = nil
 		obj.ObservabilityPipelineAmazonSecurityLakeDestination = nil
 		obj.AzureStorageDestination = nil
 		obj.ObservabilityPipelineCloudPremDestination = nil
@@ -590,6 +614,10 @@ func (obj ObservabilityPipelineConfigDestinationItem) MarshalJSON() ([]byte, err
 
 	if obj.ObservabilityPipelineAmazonS3Destination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineAmazonS3Destination)
+	}
+
+	if obj.ObservabilityPipelineAmazonS3GenericDestination != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineAmazonS3GenericDestination)
 	}
 
 	if obj.ObservabilityPipelineAmazonSecurityLakeDestination != nil {
@@ -690,6 +718,10 @@ func (obj *ObservabilityPipelineConfigDestinationItem) GetActualInstance() inter
 
 	if obj.ObservabilityPipelineAmazonS3Destination != nil {
 		return obj.ObservabilityPipelineAmazonS3Destination
+	}
+
+	if obj.ObservabilityPipelineAmazonS3GenericDestination != nil {
+		return obj.ObservabilityPipelineAmazonS3GenericDestination
 	}
 
 	if obj.ObservabilityPipelineAmazonSecurityLakeDestination != nil {
