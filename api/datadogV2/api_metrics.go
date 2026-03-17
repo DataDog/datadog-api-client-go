@@ -912,10 +912,7 @@ func (r *ListTagConfigurationsOptionalParameters) WithPageCursor(pageCursor stri
 }
 
 // ListTagConfigurations Get a list of metrics.
-// Returns all metrics for your organization that match the given filter parameters.
-// Optionally, paginate by using the `page[cursor]` and/or `page[size]` query parameters.
-// To fetch the first page, pass in a query parameter with either a valid `page[size]` or an empty cursor like `page[cursor]=`. To fetch the next page, pass in the `next_cursor` value from the response as the new `page[cursor]` value.
-// Once the `meta.pagination.next_cursor` value is null, all pages have been retrieved.
+// Get a list of actively reporting metrics for your organization. Pagination is optional using the `page[cursor]` and `page[size]` query parameters.
 func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
