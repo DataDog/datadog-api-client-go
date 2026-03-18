@@ -16,7 +16,7 @@ type UpdateDeploymentRuleParamsDataAttributes struct {
 	DryRun bool `json:"dry_run"`
 	// The name of the deployment rule.
 	Name string `json:"name"`
-	// Options for deployment rule response representing either faulty deployment detection or monitor options.
+	// Options for deployment rule requests representing either faulty deployment detection or monitor options.
 	Options DeploymentRulesOptions `json:"options"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

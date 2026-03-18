@@ -578,7 +578,6 @@
 //   - [RUMApi.ListRUMEvents]
 //   - [RUMApi.SearchRUMEvents]
 //   - [RUMApi.UpdateRUMApplication]
-//   - [ReferenceTablesApi.BatchRowsQuery]
 //   - [ReferenceTablesApi.CreateReferenceTable]
 //   - [ReferenceTablesApi.CreateReferenceTableUpload]
 //   - [ReferenceTablesApi.DeleteRows]
