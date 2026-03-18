@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PostmortemTemplateDataResponse
+// PostmortemTemplateDataResponse Data object for a postmortem template returned in a response.
 type PostmortemTemplateDataResponse struct {
-	//
+	// Attributes of a postmortem template returned in a response.
 	Attributes PostmortemTemplateAttributesResponse `json:"attributes"`
 	// The ID of the template
 	Id string `json:"id"`

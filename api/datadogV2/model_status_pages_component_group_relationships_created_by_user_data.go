@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StatusPagesComponentGroupRelationshipsCreatedByUserData
+// StatusPagesComponentGroupRelationshipsCreatedByUserData The data object identifying the Datadog user who created the component group.
 type StatusPagesComponentGroupRelationshipsCreatedByUserData struct {
 	// The ID of the Datadog user who created the component group.
 	Id string `json:"id"`

@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MaintenanceDataRelationshipsStatusPage
+// MaintenanceDataRelationshipsStatusPage The status page the maintenance belongs to.
 type MaintenanceDataRelationshipsStatusPage struct {
-	//
+	// The data object identifying the status page associated with a maintenance.
 	Data MaintenanceDataRelationshipsStatusPageData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

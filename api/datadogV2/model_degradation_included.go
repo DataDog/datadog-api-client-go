@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DegradationIncluded -
+// DegradationIncluded - An included resource related to a degradation or maintenance.
 type DegradationIncluded struct {
 	StatusPagesUser      *StatusPagesUser
 	StatusPageAsIncluded *StatusPageAsIncluded

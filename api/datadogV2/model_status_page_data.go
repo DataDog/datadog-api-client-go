@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StatusPageData
+// StatusPageData The data object for a status page.
 type StatusPageData struct {
 	// The attributes of a status page.
 	Attributes *StatusPageDataAttributes `json:"attributes,omitempty"`

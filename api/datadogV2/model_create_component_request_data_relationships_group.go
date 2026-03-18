@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateComponentRequestDataRelationshipsGroup
+// CreateComponentRequestDataRelationshipsGroup The group to create the component within.
 type CreateComponentRequestDataRelationshipsGroup struct {
-	//
+	// The data object identifying the group to create the component within.
 	Data NullableCreateComponentRequestDataRelationshipsGroupData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

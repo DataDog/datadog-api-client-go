@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Maintenance
+// Maintenance Response object for a single maintenance.
 type Maintenance struct {
-	//
+	// The data object for a maintenance.
 	Data *MaintenanceData `json:"data,omitempty"`
 	// The included related resources of a maintenance. Client must explicitly request these resources by name in the `include` query parameter.
 	Included []DegradationIncluded `json:"included,omitempty"`

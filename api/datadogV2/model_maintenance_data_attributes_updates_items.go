@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MaintenanceDataAttributesUpdatesItems
+// MaintenanceDataAttributesUpdatesItems A status update recorded during a maintenance.
 type MaintenanceDataAttributesUpdatesItems struct {
 	// The components affected at the time of the update.
 	ComponentsAffected []MaintenanceDataAttributesUpdatesItemsComponentsAffectedItems `json:"components_affected,omitempty"`

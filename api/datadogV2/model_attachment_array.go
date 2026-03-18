@@ -12,9 +12,9 @@ import (
 
 // AttachmentArray A list of incident attachments.
 type AttachmentArray struct {
-	//
+	// An array of attachment data objects.
 	Data []AttachmentData `json:"data"`
-	//
+	// A list of related objects included in the response.
 	Included []AttachmentIncluded `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IncidentHandleRelationshipData
+// IncidentHandleRelationshipData Relationship data for an incident handle, containing the ID and type of the related resource.
 type IncidentHandleRelationshipData struct {
 	// The ID of the related resource
 	Id string `json:"id"`

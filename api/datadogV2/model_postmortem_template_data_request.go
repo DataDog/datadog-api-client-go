@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PostmortemTemplateDataRequest
+// PostmortemTemplateDataRequest Data object for creating or updating a postmortem template.
 type PostmortemTemplateDataRequest struct {
-	//
+	// Attributes for creating or updating a postmortem template.
 	Attributes PostmortemTemplateAttributesRequest `json:"attributes"`
 	// Postmortem template resource type
 	Type PostmortemTemplateType `json:"type"`

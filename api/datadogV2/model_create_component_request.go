@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateComponentRequest
+// CreateComponentRequest Request object for creating a component.
 type CreateComponentRequest struct {
-	//
+	// The data object for creating a component.
 	Data *CreateComponentRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

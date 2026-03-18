@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StatusPageArrayIncluded -
+// StatusPageArrayIncluded - An included resource related to a status page.
 type StatusPageArrayIncluded struct {
 	StatusPagesUser *StatusPagesUser
 

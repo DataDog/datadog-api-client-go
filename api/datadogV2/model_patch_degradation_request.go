@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchDegradationRequest
+// PatchDegradationRequest Request object for updating a degradation.
 type PatchDegradationRequest struct {
-	//
+	// The data object for updating a degradation.
 	Data *PatchDegradationRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

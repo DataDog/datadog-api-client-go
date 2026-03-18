@@ -12,7 +12,7 @@ import (
 
 // StatusPagesComponentGroupRelationshipsGroup The group the component group belongs to.
 type StatusPagesComponentGroupRelationshipsGroup struct {
-	//
+	// The data object identifying the parent group of a component group.
 	Data NullableStatusPagesComponentGroupRelationshipsGroupData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

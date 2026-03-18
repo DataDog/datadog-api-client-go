@@ -24,7 +24,7 @@ type PaginationMetaPage struct {
 	PrevOffset datadog.NullableInt64 `json:"prev_offset,omitempty"`
 	// Integer representing the total number of elements available.
 	Total datadog.NullableInt64 `json:"total,omitempty"`
-	//
+	// The pagination type used for offset-based pagination.
 	Type *PaginationMetaPageType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

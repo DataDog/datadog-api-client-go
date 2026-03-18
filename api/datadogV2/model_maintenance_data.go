@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MaintenanceData
+// MaintenanceData The data object for a maintenance.
 type MaintenanceData struct {
 	// The attributes of a maintenance.
 	Attributes *MaintenanceDataAttributes `json:"attributes,omitempty"`

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateMaintenanceRequestData
+// CreateMaintenanceRequestData The data object for creating a maintenance.
 type CreateMaintenanceRequestData struct {
 	// The supported attributes for creating a maintenance.
 	Attributes CreateMaintenanceRequestDataAttributes `json:"attributes"`

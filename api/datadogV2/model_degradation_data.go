@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DegradationData
+// DegradationData The data object for a degradation.
 type DegradationData struct {
 	// The attributes of a degradation.
 	Attributes *DegradationDataAttributes `json:"attributes,omitempty"`

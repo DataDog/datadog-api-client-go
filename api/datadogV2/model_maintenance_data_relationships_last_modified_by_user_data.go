@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MaintenanceDataRelationshipsLastModifiedByUserData
+// MaintenanceDataRelationshipsLastModifiedByUserData The data object identifying the Datadog user who last modified the maintenance.
 type MaintenanceDataRelationshipsLastModifiedByUserData struct {
 	// The ID of the Datadog user who last modified the maintenance.
 	Id uuid.UUID `json:"id"`

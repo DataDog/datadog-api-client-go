@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StatusPagesComponentDataRelationshipsGroup
+// StatusPagesComponentDataRelationshipsGroup The group the component belongs to.
 type StatusPagesComponentDataRelationshipsGroup struct {
-	//
+	// The data object identifying the group the component belongs to.
 	Data NullableStatusPagesComponentDataRelationshipsGroupData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
