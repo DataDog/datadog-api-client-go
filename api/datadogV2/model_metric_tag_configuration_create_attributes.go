@@ -21,7 +21,7 @@ type MetricTagConfigurationCreateAttributes struct {
 	// Toggle to include/exclude percentiles for a distribution metric.
 	// Defaults to false. Can only be applied to metrics that have a `metric_type` of `distribution`.
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
-	// The metric's type.
+	// The metric's type. Contact your Customer Success Manager (CSM) for instructions on how to use the histogram types.
 	MetricType MetricTagConfigurationMetricTypes `json:"metric_type"`
 	// A list of tag keys that will be queryable for your metric.
 	Tags []string `json:"tags"`

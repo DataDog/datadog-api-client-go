@@ -10,15 +10,17 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MetricTagConfigurationMetricTypes The metric's type.
+// MetricTagConfigurationMetricTypes The metric's type. Contact your Customer Success Manager (CSM) for instructions on how to use the histogram types.
 type MetricTagConfigurationMetricTypes string
 
 // List of MetricTagConfigurationMetricTypes.
 const (
-	METRICTAGCONFIGURATIONMETRICTYPES_GAUGE        MetricTagConfigurationMetricTypes = "gauge"
-	METRICTAGCONFIGURATIONMETRICTYPES_COUNT        MetricTagConfigurationMetricTypes = "count"
-	METRICTAGCONFIGURATIONMETRICTYPES_RATE         MetricTagConfigurationMetricTypes = "rate"
-	METRICTAGCONFIGURATIONMETRICTYPES_DISTRIBUTION MetricTagConfigurationMetricTypes = "distribution"
+	METRICTAGCONFIGURATIONMETRICTYPES_GAUGE                 MetricTagConfigurationMetricTypes = "gauge"
+	METRICTAGCONFIGURATIONMETRICTYPES_COUNT                 MetricTagConfigurationMetricTypes = "count"
+	METRICTAGCONFIGURATIONMETRICTYPES_RATE                  MetricTagConfigurationMetricTypes = "rate"
+	METRICTAGCONFIGURATIONMETRICTYPES_DISTRIBUTION          MetricTagConfigurationMetricTypes = "distribution"
+	METRICTAGCONFIGURATIONMETRICTYPES_EXPONENTIAL_HISTOGRAM MetricTagConfigurationMetricTypes = "exponential_histogram"
+	METRICTAGCONFIGURATIONMETRICTYPES_EXPLICIT_HISTOGRAM    MetricTagConfigurationMetricTypes = "explicit_histogram"
 )
 
 var allowedMetricTagConfigurationMetricTypesEnumValues = []MetricTagConfigurationMetricTypes{
@@ -26,6 +28,8 @@ var allowedMetricTagConfigurationMetricTypesEnumValues = []MetricTagConfiguratio
 	METRICTAGCONFIGURATIONMETRICTYPES_COUNT,
 	METRICTAGCONFIGURATIONMETRICTYPES_RATE,
 	METRICTAGCONFIGURATIONMETRICTYPES_DISTRIBUTION,
+	METRICTAGCONFIGURATIONMETRICTYPES_EXPONENTIAL_HISTOGRAM,
+	METRICTAGCONFIGURATIONMETRICTYPES_EXPLICIT_HISTOGRAM,
 }
 
 // GetAllowedValues reeturns the list of possible values.
