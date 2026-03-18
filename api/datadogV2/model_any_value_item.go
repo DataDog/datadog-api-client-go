@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AnyValueItem -
+// AnyValueItem - A single item in an array of arbitrary values, which can be a string, number, object, or boolean.
 type AnyValueItem struct {
 	AnyValueString  *string
 	AnyValueNumber  *float64
