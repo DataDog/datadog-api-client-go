@@ -12,7 +12,7 @@ import (
 
 // ObservabilityPipelineHttpClientDestinationCompression Compression configuration for HTTP requests.
 type ObservabilityPipelineHttpClientDestinationCompression struct {
-	// Compression algorithm.
+	// The compression algorithm used for HTTP client destinations.
 	Algorithm ObservabilityPipelineHttpClientDestinationCompressionAlgorithm `json:"algorithm"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
