@@ -14,7 +14,7 @@ type IntegrationOnCall struct {
 	AutoAssignOnCall *bool `json:"auto_assign_on_call,omitempty"`
 	// Whether On-Call integration is enabled
 	Enabled *bool `json:"enabled,omitempty"`
-	//
+	// List of escalation queries for routing cases to on-call responders
 	EscalationQueries []IntegrationOnCallEscalationQueriesItems `json:"escalation_queries,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

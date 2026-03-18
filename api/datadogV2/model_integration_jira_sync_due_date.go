@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationJiraSyncDueDate
+// IntegrationJiraSyncDueDate Due date synchronization configuration for Jira integration
 type IntegrationJiraSyncDueDate struct {
-	//
+	// The Jira field identifier used to store the due date
 	JiraFieldId *string `json:"jira_field_id,omitempty"`
-	//
+	// The type of synchronization to apply for the due date field
 	SyncType *string `json:"sync_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -8,15 +8,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationOnCallEscalationQueriesItems
+// IntegrationOnCallEscalationQueriesItems An On-Call escalation query entry used to route cases to on-call responders
 type IntegrationOnCallEscalationQueriesItems struct {
-	//
+	// Whether this escalation query is enabled
 	Enabled *bool `json:"enabled,omitempty"`
-	//
+	// Unique identifier of the escalation query
 	Id *string `json:"id,omitempty"`
-	//
+	// The query used to match cases for escalation
 	Query *string `json:"query,omitempty"`
-	//
+	// The target recipient for an On-Call escalation query
 	Target *IntegrationOnCallEscalationQueriesItemsTarget `json:"target,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

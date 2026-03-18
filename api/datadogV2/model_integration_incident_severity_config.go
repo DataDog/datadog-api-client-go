@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationIncidentSeverityConfig
+// IntegrationIncidentSeverityConfig Severity configuration for mapping incident priorities to case priorities
 type IntegrationIncidentSeverityConfig struct {
-	//
+	// Mapping of incident severity values to case priority values
 	PriorityMapping map[string]string `json:"priority_mapping,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

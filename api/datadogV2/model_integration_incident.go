@@ -16,11 +16,11 @@ type IntegrationIncident struct {
 	DefaultIncidentCommander *string `json:"default_incident_commander,omitempty"`
 	// Whether incident integration is enabled
 	Enabled *bool `json:"enabled,omitempty"`
-	//
+	// List of mappings between incident fields and case fields
 	FieldMappings []IntegrationIncidentFieldMappingsItems `json:"field_mappings,omitempty"`
 	// Incident type
 	IncidentType *string `json:"incident_type,omitempty"`
-	//
+	// Severity configuration for mapping incident priorities to case priorities
 	SeverityConfig *IntegrationIncidentSeverityConfig `json:"severity_config,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

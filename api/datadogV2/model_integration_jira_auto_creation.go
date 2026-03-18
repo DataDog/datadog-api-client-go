@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationJiraAutoCreation
+// IntegrationJiraAutoCreation Auto-creation settings for Jira issues from cases
 type IntegrationJiraAutoCreation struct {
-	//
+	// Whether automatic Jira issue creation is enabled
 	Enabled *bool `json:"enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

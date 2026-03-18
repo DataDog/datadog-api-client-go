@@ -8,17 +8,17 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationJiraSyncProperties
+// IntegrationJiraSyncProperties Field synchronization properties for Jira integration
 type IntegrationJiraSyncProperties struct {
 	// Sync property configuration
 	Assignee *SyncProperty `json:"assignee,omitempty"`
 	// Sync property configuration
 	Comments *SyncProperty `json:"comments,omitempty"`
-	//
+	// Map of custom field identifiers to their sync configurations
 	CustomFields map[string]IntegrationJiraSyncPropertiesCustomFieldsAdditionalProperties `json:"custom_fields,omitempty"`
 	// Sync property configuration
 	Description *SyncProperty `json:"description,omitempty"`
-	//
+	// Due date synchronization configuration for Jira integration
 	DueDate *IntegrationJiraSyncDueDate `json:"due_date,omitempty"`
 	// Sync property with mapping configuration
 	Priority *SyncPropertyWithMapping `json:"priority,omitempty"`
