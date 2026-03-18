@@ -23,8 +23,8 @@ func main() {
 						TitleSize:  datadog.PtrString("16"),
 						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadogV1.TABLEWIDGETDEFINITIONTYPE_QUERY_TABLE,
-						Requests: []datadogV1.TableWidgetRequest{
-							{
+						Requests: []datadogV1.TableWidgetDefinitionRequestsItem{
+							{TableWidgetRequest: &datadogV1.TableWidgetRequest{
 								ResponseFormat: datadogV1.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
 								Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
 									datadogV1.FormulaAndFunctionQueryDefinition{
@@ -42,7 +42,7 @@ func main() {
 											},
 										}},
 								},
-							},
+							}},
 						},
 					}},
 				Layout: &datadogV1.WidgetLayout{
