@@ -33,7 +33,7 @@ func main() {
 								Name:       datadog.PtrString("query1"),
 								Query:      "max:container.cpu.usage{*} by {kube_cluster_name}.rollup(max)",
 							}},
-						FilterQuery: datadogV1.MonitorFormulaAndFunctionAggregateFilterQuery{
+						FilterQuery: datadogV1.MonitorFormulaAndFunctionAggregateSubQuery{
 							MonitorFormulaAndFunctionReferenceTableQueryDefinition: &datadogV1.MonitorFormulaAndFunctionReferenceTableQueryDefinition{
 								Name:       datadog.PtrString("filter_query"),
 								DataSource: datadogV1.MONITORFORMULAANDFUNCTIONREFERENCETABLEDATASOURCE_REFERENCE_TABLE,

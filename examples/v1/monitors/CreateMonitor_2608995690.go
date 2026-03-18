@@ -41,7 +41,7 @@ func main() {
 								Aggregation: datadogV1.MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_MAX,
 							},
 						},
-						AugmentQuery: datadogV1.MonitorFormulaAndFunctionAggregateAugmentQuery{
+						AugmentQuery: datadogV1.MonitorFormulaAndFunctionAggregateSubQuery{
 							MonitorFormulaAndFunctionReferenceTableQueryDefinition: &datadogV1.MonitorFormulaAndFunctionReferenceTableQueryDefinition{
 								Name:       datadog.PtrString("filter_query"),
 								DataSource: datadogV1.MONITORFORMULAANDFUNCTIONREFERENCETABLEDATASOURCE_REFERENCE_TABLE,

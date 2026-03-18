@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MonitorFormulaAndFunctionAggregateAugmentQuery - Augment query for aggregate augmented queries. Can be an events query or a reference table query.
-type MonitorFormulaAndFunctionAggregateAugmentQuery struct {
+// MonitorFormulaAndFunctionAggregateSubQuery - Sub-query for aggregate composite queries (augmented or filtered). Can be an events query or a reference table query.
+type MonitorFormulaAndFunctionAggregateSubQuery struct {
 	MonitorFormulaAndFunctionEventQueryDefinition          *MonitorFormulaAndFunctionEventQueryDefinition
 	MonitorFormulaAndFunctionReferenceTableQueryDefinition *MonitorFormulaAndFunctionReferenceTableQueryDefinition
 
@@ -17,18 +17,18 @@ type MonitorFormulaAndFunctionAggregateAugmentQuery struct {
 	UnparsedObject interface{}
 }
 
-// MonitorFormulaAndFunctionEventQueryDefinitionAsMonitorFormulaAndFunctionAggregateAugmentQuery is a convenience function that returns MonitorFormulaAndFunctionEventQueryDefinition wrapped in MonitorFormulaAndFunctionAggregateAugmentQuery.
-func MonitorFormulaAndFunctionEventQueryDefinitionAsMonitorFormulaAndFunctionAggregateAugmentQuery(v *MonitorFormulaAndFunctionEventQueryDefinition) MonitorFormulaAndFunctionAggregateAugmentQuery {
-	return MonitorFormulaAndFunctionAggregateAugmentQuery{MonitorFormulaAndFunctionEventQueryDefinition: v}
+// MonitorFormulaAndFunctionEventQueryDefinitionAsMonitorFormulaAndFunctionAggregateSubQuery is a convenience function that returns MonitorFormulaAndFunctionEventQueryDefinition wrapped in MonitorFormulaAndFunctionAggregateSubQuery.
+func MonitorFormulaAndFunctionEventQueryDefinitionAsMonitorFormulaAndFunctionAggregateSubQuery(v *MonitorFormulaAndFunctionEventQueryDefinition) MonitorFormulaAndFunctionAggregateSubQuery {
+	return MonitorFormulaAndFunctionAggregateSubQuery{MonitorFormulaAndFunctionEventQueryDefinition: v}
 }
 
-// MonitorFormulaAndFunctionReferenceTableQueryDefinitionAsMonitorFormulaAndFunctionAggregateAugmentQuery is a convenience function that returns MonitorFormulaAndFunctionReferenceTableQueryDefinition wrapped in MonitorFormulaAndFunctionAggregateAugmentQuery.
-func MonitorFormulaAndFunctionReferenceTableQueryDefinitionAsMonitorFormulaAndFunctionAggregateAugmentQuery(v *MonitorFormulaAndFunctionReferenceTableQueryDefinition) MonitorFormulaAndFunctionAggregateAugmentQuery {
-	return MonitorFormulaAndFunctionAggregateAugmentQuery{MonitorFormulaAndFunctionReferenceTableQueryDefinition: v}
+// MonitorFormulaAndFunctionReferenceTableQueryDefinitionAsMonitorFormulaAndFunctionAggregateSubQuery is a convenience function that returns MonitorFormulaAndFunctionReferenceTableQueryDefinition wrapped in MonitorFormulaAndFunctionAggregateSubQuery.
+func MonitorFormulaAndFunctionReferenceTableQueryDefinitionAsMonitorFormulaAndFunctionAggregateSubQuery(v *MonitorFormulaAndFunctionReferenceTableQueryDefinition) MonitorFormulaAndFunctionAggregateSubQuery {
+	return MonitorFormulaAndFunctionAggregateSubQuery{MonitorFormulaAndFunctionReferenceTableQueryDefinition: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
-func (obj *MonitorFormulaAndFunctionAggregateAugmentQuery) UnmarshalJSON(data []byte) error {
+func (obj *MonitorFormulaAndFunctionAggregateSubQuery) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into MonitorFormulaAndFunctionEventQueryDefinition
@@ -75,7 +75,7 @@ func (obj *MonitorFormulaAndFunctionAggregateAugmentQuery) UnmarshalJSON(data []
 }
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
-func (obj MonitorFormulaAndFunctionAggregateAugmentQuery) MarshalJSON() ([]byte, error) {
+func (obj MonitorFormulaAndFunctionAggregateSubQuery) MarshalJSON() ([]byte, error) {
 	if obj.MonitorFormulaAndFunctionEventQueryDefinition != nil {
 		return datadog.Marshal(&obj.MonitorFormulaAndFunctionEventQueryDefinition)
 	}
@@ -91,7 +91,7 @@ func (obj MonitorFormulaAndFunctionAggregateAugmentQuery) MarshalJSON() ([]byte,
 }
 
 // GetActualInstance returns the actual instance.
-func (obj *MonitorFormulaAndFunctionAggregateAugmentQuery) GetActualInstance() interface{} {
+func (obj *MonitorFormulaAndFunctionAggregateSubQuery) GetActualInstance() interface{} {
 	if obj.MonitorFormulaAndFunctionEventQueryDefinition != nil {
 		return obj.MonitorFormulaAndFunctionEventQueryDefinition
 	}

@@ -18,8 +18,8 @@ type MonitorFormulaAndFunctionAggregateFilteredQueryDefinition struct {
 	Compute []MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute,omitempty"`
 	// Data source for aggregate filtered queries.
 	DataSource MonitorFormulaAndFunctionAggregateFilteredDataSource `json:"data_source"`
-	// Filter query for aggregate filtered queries. Can be an events query or a reference table query.
-	FilterQuery MonitorFormulaAndFunctionAggregateFilterQuery `json:"filter_query"`
+	// Sub-query for aggregate composite queries (augmented or filtered). Can be an events query or a reference table query.
+	FilterQuery MonitorFormulaAndFunctionAggregateSubQuery `json:"filter_query"`
 	// Filter conditions for the query.
 	Filters []MonitorFormulaAndFunctionAggregateQueryFilter `json:"filters"`
 	// Group by options for the query.
@@ -34,7 +34,7 @@ type MonitorFormulaAndFunctionAggregateFilteredQueryDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMonitorFormulaAndFunctionAggregateFilteredQueryDefinition(baseQuery MonitorFormulaAndFunctionAggregateBaseQuery, dataSource MonitorFormulaAndFunctionAggregateFilteredDataSource, filterQuery MonitorFormulaAndFunctionAggregateFilterQuery, filters []MonitorFormulaAndFunctionAggregateQueryFilter) *MonitorFormulaAndFunctionAggregateFilteredQueryDefinition {
+func NewMonitorFormulaAndFunctionAggregateFilteredQueryDefinition(baseQuery MonitorFormulaAndFunctionAggregateBaseQuery, dataSource MonitorFormulaAndFunctionAggregateFilteredDataSource, filterQuery MonitorFormulaAndFunctionAggregateSubQuery, filters []MonitorFormulaAndFunctionAggregateQueryFilter) *MonitorFormulaAndFunctionAggregateFilteredQueryDefinition {
 	this := MonitorFormulaAndFunctionAggregateFilteredQueryDefinition{}
 	this.BaseQuery = baseQuery
 	this.DataSource = dataSource
@@ -126,9 +126,9 @@ func (o *MonitorFormulaAndFunctionAggregateFilteredQueryDefinition) SetDataSourc
 }
 
 // GetFilterQuery returns the FilterQuery field value.
-func (o *MonitorFormulaAndFunctionAggregateFilteredQueryDefinition) GetFilterQuery() MonitorFormulaAndFunctionAggregateFilterQuery {
+func (o *MonitorFormulaAndFunctionAggregateFilteredQueryDefinition) GetFilterQuery() MonitorFormulaAndFunctionAggregateSubQuery {
 	if o == nil {
-		var ret MonitorFormulaAndFunctionAggregateFilterQuery
+		var ret MonitorFormulaAndFunctionAggregateSubQuery
 		return ret
 	}
 	return o.FilterQuery
@@ -136,7 +136,7 @@ func (o *MonitorFormulaAndFunctionAggregateFilteredQueryDefinition) GetFilterQue
 
 // GetFilterQueryOk returns a tuple with the FilterQuery field value
 // and a boolean to check if the value has been set.
-func (o *MonitorFormulaAndFunctionAggregateFilteredQueryDefinition) GetFilterQueryOk() (*MonitorFormulaAndFunctionAggregateFilterQuery, bool) {
+func (o *MonitorFormulaAndFunctionAggregateFilteredQueryDefinition) GetFilterQueryOk() (*MonitorFormulaAndFunctionAggregateSubQuery, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -144,7 +144,7 @@ func (o *MonitorFormulaAndFunctionAggregateFilteredQueryDefinition) GetFilterQue
 }
 
 // SetFilterQuery sets field value.
-func (o *MonitorFormulaAndFunctionAggregateFilteredQueryDefinition) SetFilterQuery(v MonitorFormulaAndFunctionAggregateFilterQuery) {
+func (o *MonitorFormulaAndFunctionAggregateFilteredQueryDefinition) SetFilterQuery(v MonitorFormulaAndFunctionAggregateSubQuery) {
 	o.FilterQuery = v
 }
 
@@ -255,7 +255,7 @@ func (o *MonitorFormulaAndFunctionAggregateFilteredQueryDefinition) UnmarshalJSO
 		BaseQuery   *MonitorFormulaAndFunctionAggregateBaseQuery           `json:"base_query"`
 		Compute     []MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute,omitempty"`
 		DataSource  *MonitorFormulaAndFunctionAggregateFilteredDataSource  `json:"data_source"`
-		FilterQuery *MonitorFormulaAndFunctionAggregateFilterQuery         `json:"filter_query"`
+		FilterQuery *MonitorFormulaAndFunctionAggregateSubQuery            `json:"filter_query"`
 		Filters     *[]MonitorFormulaAndFunctionAggregateQueryFilter       `json:"filters"`
 		GroupBy     []MonitorFormulaAndFunctionEventQueryGroupBy           `json:"group_by,omitempty"`
 		Name        *string                                                `json:"name,omitempty"`

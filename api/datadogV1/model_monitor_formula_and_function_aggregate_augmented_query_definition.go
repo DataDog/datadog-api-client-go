@@ -12,8 +12,8 @@ import (
 
 // MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition A formula and functions aggregate augmented query. Used to enrich base query results with data from a reference table.
 type MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition struct {
-	// Augment query for aggregate augmented queries. Can be an events query or a reference table query.
-	AugmentQuery MonitorFormulaAndFunctionAggregateAugmentQuery `json:"augment_query"`
+	// Sub-query for aggregate composite queries (augmented or filtered). Can be an events query or a reference table query.
+	AugmentQuery MonitorFormulaAndFunctionAggregateSubQuery `json:"augment_query"`
 	// Base query for aggregate queries. Can be an events query or a metrics query.
 	BaseQuery MonitorFormulaAndFunctionAggregateBaseQuery `json:"base_query"`
 	// Compute options for the query.
@@ -34,7 +34,7 @@ type MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMonitorFormulaAndFunctionAggregateAugmentedQueryDefinition(augmentQuery MonitorFormulaAndFunctionAggregateAugmentQuery, baseQuery MonitorFormulaAndFunctionAggregateBaseQuery, compute []MonitorFormulaAndFunctionEventQueryDefinitionCompute, dataSource MonitorFormulaAndFunctionAggregateAugmentedDataSource, groupBy []MonitorFormulaAndFunctionEventQueryGroupBy, joinCondition MonitorFormulaAndFunctionAggregateQueryJoinCondition) *MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition {
+func NewMonitorFormulaAndFunctionAggregateAugmentedQueryDefinition(augmentQuery MonitorFormulaAndFunctionAggregateSubQuery, baseQuery MonitorFormulaAndFunctionAggregateBaseQuery, compute []MonitorFormulaAndFunctionEventQueryDefinitionCompute, dataSource MonitorFormulaAndFunctionAggregateAugmentedDataSource, groupBy []MonitorFormulaAndFunctionEventQueryGroupBy, joinCondition MonitorFormulaAndFunctionAggregateQueryJoinCondition) *MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition {
 	this := MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition{}
 	this.AugmentQuery = augmentQuery
 	this.BaseQuery = baseQuery
@@ -54,9 +54,9 @@ func NewMonitorFormulaAndFunctionAggregateAugmentedQueryDefinitionWithDefaults()
 }
 
 // GetAugmentQuery returns the AugmentQuery field value.
-func (o *MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition) GetAugmentQuery() MonitorFormulaAndFunctionAggregateAugmentQuery {
+func (o *MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition) GetAugmentQuery() MonitorFormulaAndFunctionAggregateSubQuery {
 	if o == nil {
-		var ret MonitorFormulaAndFunctionAggregateAugmentQuery
+		var ret MonitorFormulaAndFunctionAggregateSubQuery
 		return ret
 	}
 	return o.AugmentQuery
@@ -64,7 +64,7 @@ func (o *MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition) GetAugmentQ
 
 // GetAugmentQueryOk returns a tuple with the AugmentQuery field value
 // and a boolean to check if the value has been set.
-func (o *MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition) GetAugmentQueryOk() (*MonitorFormulaAndFunctionAggregateAugmentQuery, bool) {
+func (o *MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition) GetAugmentQueryOk() (*MonitorFormulaAndFunctionAggregateSubQuery, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -72,7 +72,7 @@ func (o *MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition) GetAugmentQ
 }
 
 // SetAugmentQuery sets field value.
-func (o *MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition) SetAugmentQuery(v MonitorFormulaAndFunctionAggregateAugmentQuery) {
+func (o *MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition) SetAugmentQuery(v MonitorFormulaAndFunctionAggregateSubQuery) {
 	o.AugmentQuery = v
 }
 
@@ -240,7 +240,7 @@ func (o MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition) MarshalJSON(
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorFormulaAndFunctionAggregateAugmentedQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AugmentQuery  *MonitorFormulaAndFunctionAggregateAugmentQuery         `json:"augment_query"`
+		AugmentQuery  *MonitorFormulaAndFunctionAggregateSubQuery             `json:"augment_query"`
 		BaseQuery     *MonitorFormulaAndFunctionAggregateBaseQuery            `json:"base_query"`
 		Compute       *[]MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
 		DataSource    *MonitorFormulaAndFunctionAggregateAugmentedDataSource  `json:"data_source"`
