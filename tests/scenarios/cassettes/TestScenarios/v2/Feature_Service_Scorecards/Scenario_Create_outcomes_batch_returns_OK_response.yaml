@@ -35,7 +35,7 @@ interactions:
     url: https://api.datadoghq.com/api/v2/scorecard/outcomes/batch
   response:
     body: '{"data":[{"id":"b124b446-f246-41ab-b477-99293969cc5e\\my-service","type":"outcome","attributes":{"modified_at":"2023-11-01T22:17:31.68808Z","remarks":"See:
-      \u003ca href=\"https://app.datadoghq.com/services\"\u003eServices\u003c/a\u003e","service_name":"my-service","state":"pass"},"relationships":{"rule":{"data":{"id":"b124b446-f246-41ab-b477-99293969cc5e","type":"rule"}}}}],"meta":{"total_received":1,"total_updated":1}}'
+      \u003ca href=\"https://app.datadoghq.com/services\"\u003eServices\u003c/a\u003e","service_name":"my-service","state":"pass"},"relationships":{"rule":{"data":{"id":"b124b446-f246-41ab-b477-99293969cc5e","type":"rule"}}}}],"meta":{"total_received":1,"total_staged":1}}'
     code: 200
     duration: 0ms
     headers:
