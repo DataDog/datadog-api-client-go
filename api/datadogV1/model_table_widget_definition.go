@@ -16,8 +16,8 @@ type TableWidgetDefinition struct {
 	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// Controls the display of the search bar.
 	HasSearchBar *TableWidgetHasSearchBar `json:"has_search_bar,omitempty"`
-	// Widget definition.
-	Requests []TableWidgetRequest `json:"requests"`
+	// Widget definition. Each item is either a classic `TableWidgetRequest` or an experimental `GuidedTableRequest` (used when the `graphing_new_table_widget_editor` feature flag is enabled).
+	Requests []TableWidgetDefinitionRequestsItem `json:"requests"`
 	// Time setting for the widget.
 	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
@@ -37,7 +37,7 @@ type TableWidgetDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTableWidgetDefinition(requests []TableWidgetRequest, typeVar TableWidgetDefinitionType) *TableWidgetDefinition {
+func NewTableWidgetDefinition(requests []TableWidgetDefinitionRequestsItem, typeVar TableWidgetDefinitionType) *TableWidgetDefinition {
 	this := TableWidgetDefinition{}
 	this.Requests = requests
 	this.Type = typeVar
@@ -111,9 +111,9 @@ func (o *TableWidgetDefinition) SetHasSearchBar(v TableWidgetHasSearchBar) {
 }
 
 // GetRequests returns the Requests field value.
-func (o *TableWidgetDefinition) GetRequests() []TableWidgetRequest {
+func (o *TableWidgetDefinition) GetRequests() []TableWidgetDefinitionRequestsItem {
 	if o == nil {
-		var ret []TableWidgetRequest
+		var ret []TableWidgetDefinitionRequestsItem
 		return ret
 	}
 	return o.Requests
@@ -121,7 +121,7 @@ func (o *TableWidgetDefinition) GetRequests() []TableWidgetRequest {
 
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
-func (o *TableWidgetDefinition) GetRequestsOk() (*[]TableWidgetRequest, bool) {
+func (o *TableWidgetDefinition) GetRequestsOk() (*[]TableWidgetDefinitionRequestsItem, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -129,7 +129,7 @@ func (o *TableWidgetDefinition) GetRequestsOk() (*[]TableWidgetRequest, bool) {
 }
 
 // SetRequests sets field value.
-func (o *TableWidgetDefinition) SetRequests(v []TableWidgetRequest) {
+func (o *TableWidgetDefinition) SetRequests(v []TableWidgetDefinitionRequestsItem) {
 	o.Requests = v
 }
 
@@ -304,14 +304,14 @@ func (o TableWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TableWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomLinks  []WidgetCustomLink         `json:"custom_links,omitempty"`
-		HasSearchBar *TableWidgetHasSearchBar   `json:"has_search_bar,omitempty"`
-		Requests     *[]TableWidgetRequest      `json:"requests"`
-		Time         *WidgetTime                `json:"time,omitempty"`
-		Title        *string                    `json:"title,omitempty"`
-		TitleAlign   *WidgetTextAlign           `json:"title_align,omitempty"`
-		TitleSize    *string                    `json:"title_size,omitempty"`
-		Type         *TableWidgetDefinitionType `json:"type"`
+		CustomLinks  []WidgetCustomLink                   `json:"custom_links,omitempty"`
+		HasSearchBar *TableWidgetHasSearchBar             `json:"has_search_bar,omitempty"`
+		Requests     *[]TableWidgetDefinitionRequestsItem `json:"requests"`
+		Time         *WidgetTime                          `json:"time,omitempty"`
+		Title        *string                              `json:"title,omitempty"`
+		TitleAlign   *WidgetTextAlign                     `json:"title_align,omitempty"`
+		TitleSize    *string                              `json:"title_size,omitempty"`
+		Type         *TableWidgetDefinitionType           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
