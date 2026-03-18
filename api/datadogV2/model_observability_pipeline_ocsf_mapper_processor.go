@@ -22,6 +22,8 @@ type ObservabilityPipelineOcsfMapperProcessor struct {
 	Id string `json:"id"`
 	// A Datadog search query used to determine which logs this processor targets.
 	Include string `json:"include"`
+	// Whether to keep an event that does not match any of the mapping filters.
+	KeepUnmatched *bool `json:"keep_unmatched,omitempty"`
 	// A list of mapping rules to convert events to the OCSF format.
 	Mappings []ObservabilityPipelineOcsfMapperProcessorMapping `json:"mappings"`
 	// The processor type. The value should always be `ocsf_mapper`.
@@ -152,6 +154,34 @@ func (o *ObservabilityPipelineOcsfMapperProcessor) SetInclude(v string) {
 	o.Include = v
 }
 
+// GetKeepUnmatched returns the KeepUnmatched field value if set, zero value otherwise.
+func (o *ObservabilityPipelineOcsfMapperProcessor) GetKeepUnmatched() bool {
+	if o == nil || o.KeepUnmatched == nil {
+		var ret bool
+		return ret
+	}
+	return *o.KeepUnmatched
+}
+
+// GetKeepUnmatchedOk returns a tuple with the KeepUnmatched field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineOcsfMapperProcessor) GetKeepUnmatchedOk() (*bool, bool) {
+	if o == nil || o.KeepUnmatched == nil {
+		return nil, false
+	}
+	return o.KeepUnmatched, true
+}
+
+// HasKeepUnmatched returns a boolean if a field has been set.
+func (o *ObservabilityPipelineOcsfMapperProcessor) HasKeepUnmatched() bool {
+	return o != nil && o.KeepUnmatched != nil
+}
+
+// SetKeepUnmatched gets a reference to the given bool and assigns it to the KeepUnmatched field.
+func (o *ObservabilityPipelineOcsfMapperProcessor) SetKeepUnmatched(v bool) {
+	o.KeepUnmatched = &v
+}
+
 // GetMappings returns the Mappings field value.
 func (o *ObservabilityPipelineOcsfMapperProcessor) GetMappings() []ObservabilityPipelineOcsfMapperProcessorMapping {
 	if o == nil {
@@ -210,6 +240,9 @@ func (o ObservabilityPipelineOcsfMapperProcessor) MarshalJSON() ([]byte, error) 
 	toSerialize["enabled"] = o.Enabled
 	toSerialize["id"] = o.Id
 	toSerialize["include"] = o.Include
+	if o.KeepUnmatched != nil {
+		toSerialize["keep_unmatched"] = o.KeepUnmatched
+	}
 	toSerialize["mappings"] = o.Mappings
 	toSerialize["type"] = o.Type
 
@@ -222,12 +255,13 @@ func (o ObservabilityPipelineOcsfMapperProcessor) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineOcsfMapperProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DisplayName *string                                            `json:"display_name,omitempty"`
-		Enabled     *bool                                              `json:"enabled"`
-		Id          *string                                            `json:"id"`
-		Include     *string                                            `json:"include"`
-		Mappings    *[]ObservabilityPipelineOcsfMapperProcessorMapping `json:"mappings"`
-		Type        *ObservabilityPipelineOcsfMapperProcessorType      `json:"type"`
+		DisplayName   *string                                            `json:"display_name,omitempty"`
+		Enabled       *bool                                              `json:"enabled"`
+		Id            *string                                            `json:"id"`
+		Include       *string                                            `json:"include"`
+		KeepUnmatched *bool                                              `json:"keep_unmatched,omitempty"`
+		Mappings      *[]ObservabilityPipelineOcsfMapperProcessorMapping `json:"mappings"`
+		Type          *ObservabilityPipelineOcsfMapperProcessorType      `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -249,7 +283,7 @@ func (o *ObservabilityPipelineOcsfMapperProcessor) UnmarshalJSON(bytes []byte) (
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"display_name", "enabled", "id", "include", "mappings", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"display_name", "enabled", "id", "include", "keep_unmatched", "mappings", "type"})
 	} else {
 		return err
 	}
@@ -259,6 +293,7 @@ func (o *ObservabilityPipelineOcsfMapperProcessor) UnmarshalJSON(bytes []byte) (
 	o.Enabled = *all.Enabled
 	o.Id = *all.Id
 	o.Include = *all.Include
+	o.KeepUnmatched = all.KeepUnmatched
 	o.Mappings = *all.Mappings
 	if !all.Type.IsValid() {
 		hasInvalidField = true
