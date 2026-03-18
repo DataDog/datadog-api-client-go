@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DeletedSuitesResponse
+// DeletedSuitesResponse Response containing the list of deleted Synthetic test suites.
 type DeletedSuitesResponse struct {
-	//
+	// List of deleted Synthetic suite data objects.
 	Data []DeletedSuiteResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DeletedSuitesRequestDelete
+// DeletedSuitesRequestDelete Data object for a bulk delete Synthetic test suites request.
 type DeletedSuitesRequestDelete struct {
-	//
+	// Attributes for a bulk delete Synthetic test suites request.
 	Attributes DeletedSuitesRequestDeleteAttributes `json:"attributes"`
-	//
+	// An optional identifier for the delete request.
 	Id *string `json:"id,omitempty"`
-	//
+	// Type for the bulk delete Synthetic suites request, `delete_suites_request`.
 	Type *DeletedSuitesRequestType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

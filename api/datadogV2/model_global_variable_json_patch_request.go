@@ -12,7 +12,7 @@ import (
 
 // GlobalVariableJsonPatchRequest JSON Patch request for global variable.
 type GlobalVariableJsonPatchRequest struct {
-	//
+	// Data object for a JSON Patch request on a Synthetic global variable.
 	Data GlobalVariableJsonPatchRequestData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

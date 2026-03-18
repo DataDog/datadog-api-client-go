@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SuiteCreateEdit
+// SuiteCreateEdit Data object for creating or editing a Synthetic test suite.
 type SuiteCreateEdit struct {
 	// Object containing details about a Synthetic suite.
 	Attributes SyntheticsSuite `json:"attributes"`

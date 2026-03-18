@@ -12,7 +12,7 @@ import (
 
 // SyntheticsNetworkTestEditRequest Network Path test request.
 type SyntheticsNetworkTestEditRequest struct {
-	//
+	// Data object for creating or editing a Network Path test.
 	Data SyntheticsNetworkTestEdit `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

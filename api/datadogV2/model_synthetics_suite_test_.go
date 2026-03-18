@@ -14,7 +14,7 @@ import (
 type SyntheticsSuiteTest struct {
 	// Alerting criticality for each the test.
 	AlertingCriticality *SyntheticsSuiteTestAlertingCriticality `json:"alerting_criticality,omitempty"`
-	//
+	// The public ID of the Synthetic test included in the suite.
 	PublicId string `json:"public_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
