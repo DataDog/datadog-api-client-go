@@ -10,9 +10,9 @@ import (
 
 // ListOnCallNotificationRulesResponse Response type for listing notification rules for a user
 type ListOnCallNotificationRulesResponse struct {
-	//
+	// Array of notification rule data objects.
 	Data []OnCallNotificationRuleData `json:"data,omitempty"`
-	//
+	// Array of related resources included in the response.
 	Included []OnCallNotificationRulesIncluded `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
