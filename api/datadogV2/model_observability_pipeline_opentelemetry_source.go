@@ -12,7 +12,7 @@ import (
 
 // ObservabilityPipelineOpentelemetrySource The `opentelemetry` source receives telemetry data using the OpenTelemetry Protocol (OTLP) over gRPC and HTTP.
 //
-// **Supported pipeline types:** logs, metrics
+// **Supported pipeline types:** logs
 type ObservabilityPipelineOpentelemetrySource struct {
 	// Environment variable name containing the gRPC server address for receiving OTLP data. Must be a valid environment variable name (alphanumeric characters and underscores only).
 	GrpcAddressKey *string `json:"grpc_address_key,omitempty"`

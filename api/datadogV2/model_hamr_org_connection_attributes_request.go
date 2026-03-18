@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HamrOrgConnectionAttributesRequest
+// HamrOrgConnectionAttributesRequest Attributes for a HAMR organization connection request.
 type HamrOrgConnectionAttributesRequest struct {
 	// Status of the HAMR connection:
 	// - 0: UNSPECIFIED - Connection status not specified

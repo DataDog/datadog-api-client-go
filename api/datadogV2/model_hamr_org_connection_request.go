@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HamrOrgConnectionRequest
+// HamrOrgConnectionRequest Request payload for creating or updating a HAMR organization connection.
 type HamrOrgConnectionRequest struct {
-	//
+	// Data object for a HAMR organization connection request.
 	Data HamrOrgConnectionDataRequest `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
