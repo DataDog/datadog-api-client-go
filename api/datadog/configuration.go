@@ -872,6 +872,7 @@ func NewConfiguration() *Configuration {
 			"v2.GetCustomRule":                           false,
 			"v2.GetCustomRuleRevision":                   false,
 			"v2.GetCustomRuleset":                        false,
+			"v2.GetLicenses":                             false,
 			"v2.ListCustomRuleRevisions":                 false,
 			"v2.RevertCustomRuleRevision":                false,
 			"v2.UpdateCustomRuleset":                     false,
