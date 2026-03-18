@@ -23,7 +23,7 @@ type MetricTagConfigurationAttributes struct {
 	// Toggle to include or exclude percentile aggregations for distribution metrics.
 	// Only present when the `metric_type` is `distribution`.
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
-	// The metric's type.
+	// The metric's type. Contact your Customer Success Manager (CSM) for instructions on how to use the histogram types.
 	MetricType *MetricTagConfigurationMetricTypes `json:"metric_type,omitempty"`
 	// Timestamp when the tag configuration was last modified.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
