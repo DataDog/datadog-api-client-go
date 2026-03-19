@@ -1,0 +1,45 @@
+interactions:
+- request:
+    body: |
+      {"description":"Pipeline containing nested processor with tags and description","filter":{"query":"source:python"},"name":"testPipelineWithNested","processors":[{"description":"This is a nested pipeline for production logs","filter":{"query":"env:production"},"is_enabled":true,"name":"nested_pipeline_with_metadata","tags":["env:prod","type:nested"],"type":"pipeline"}],"tags":["team:test"]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines
+  response:
+    body: '{"id":"GyYNpCrVQtOB3KhqJSpOOA","type":"pipeline","name":"testPipelineWithNested","is_enabled":false,"is_read_only":false,"filter":{"query":"source:python"},"processors":[{"type":"pipeline","name":"nested_pipeline_with_metadata","is_enabled":true,"filter":{"query":"env:production"},"processors":[],"tags":["env:prod","type:nested"],"description":"This
+      is a nested pipeline for production logs"}],"tags":["team:test"],"description":"Pipeline
+      containing nested processor with tags and description"}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/logs/config/pipelines/GyYNpCrVQtOB3KhqJSpOOA
+  response:
+    body: '{}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 2
