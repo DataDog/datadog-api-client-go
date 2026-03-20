@@ -1,0 +1,38 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Test Environment Test-Create_an_environment_returns_Created_response-1773768383","queries":["test-Test-Create_an_environment_returns_Created_response-1773768383","env-Test-Create_an_environment_returns_Created_response-1773768383"]},"type":"environments"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/feature-flags/environments
+  response:
+    body: '{"data":{"id":"b7fd5cfe-3350-4db5-9731-1702b2fc9ab7","type":"environments","attributes":{"is_production":false,"name":"Test
+      Environment Test-Create_an_environment_returns_Created_response-1773768383","queries":["test-Test-Create_an_environment_returns_Created_response-1773768383","env-Test-Create_an_environment_returns_Created_response-1773768383"],"require_feature_flag_approval":false}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/feature-flags/environments/b7fd5cfe-3350-4db5-9731-1702b2fc9ab7
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
