@@ -31,7 +31,7 @@ func main() {
 			Variables: []datadogV1.MonitorFormulaAndFunctionQueryDefinition{
 				datadogV1.MonitorFormulaAndFunctionQueryDefinition{
 					MonitorFormulaAndFunctionCostQueryDefinition: &datadogV1.MonitorFormulaAndFunctionCostQueryDefinition{
-						DataSource: datadogV1.MONITORFORMULAANDFUNCTIONMETRICSDATASOURCE_CLOUD_COST,
+						DataSource: datadogV1.MONITORFORMULAANDFUNCTIONCOSTDATASOURCE_CLOUD_COST,
 						Query:      "sum:aws.cost.net.amortized.shared.resources.allocated{aws_product IN (amplify ,athena, backup, bedrock ) } by {aws_product}.rollup(sum, 86400)",
 						Name:       "query1",
 						Aggregator: datadogV1.MONITORFORMULAANDFUNCTIONCOSTAGGREGATOR_SUM.Ptr(),

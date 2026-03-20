@@ -14,8 +14,8 @@ import (
 type MonitorFormulaAndFunctionCostQueryDefinition struct {
 	// Aggregation methods for metric queries.
 	Aggregator *MonitorFormulaAndFunctionCostAggregator `json:"aggregator,omitempty"`
-	// Data source for metrics queries.
-	DataSource MonitorFormulaAndFunctionMetricsDataSource `json:"data_source"`
+	// Data source for cost queries.
+	DataSource MonitorFormulaAndFunctionCostDataSource `json:"data_source"`
 	// Name of the query for use in formulas.
 	Name string `json:"name"`
 	// The monitor query.
@@ -29,7 +29,7 @@ type MonitorFormulaAndFunctionCostQueryDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMonitorFormulaAndFunctionCostQueryDefinition(dataSource MonitorFormulaAndFunctionMetricsDataSource, name string, query string) *MonitorFormulaAndFunctionCostQueryDefinition {
+func NewMonitorFormulaAndFunctionCostQueryDefinition(dataSource MonitorFormulaAndFunctionCostDataSource, name string, query string) *MonitorFormulaAndFunctionCostQueryDefinition {
 	this := MonitorFormulaAndFunctionCostQueryDefinition{}
 	this.DataSource = dataSource
 	this.Name = name
@@ -74,9 +74,9 @@ func (o *MonitorFormulaAndFunctionCostQueryDefinition) SetAggregator(v MonitorFo
 }
 
 // GetDataSource returns the DataSource field value.
-func (o *MonitorFormulaAndFunctionCostQueryDefinition) GetDataSource() MonitorFormulaAndFunctionMetricsDataSource {
+func (o *MonitorFormulaAndFunctionCostQueryDefinition) GetDataSource() MonitorFormulaAndFunctionCostDataSource {
 	if o == nil {
-		var ret MonitorFormulaAndFunctionMetricsDataSource
+		var ret MonitorFormulaAndFunctionCostDataSource
 		return ret
 	}
 	return o.DataSource
@@ -84,7 +84,7 @@ func (o *MonitorFormulaAndFunctionCostQueryDefinition) GetDataSource() MonitorFo
 
 // GetDataSourceOk returns a tuple with the DataSource field value
 // and a boolean to check if the value has been set.
-func (o *MonitorFormulaAndFunctionCostQueryDefinition) GetDataSourceOk() (*MonitorFormulaAndFunctionMetricsDataSource, bool) {
+func (o *MonitorFormulaAndFunctionCostQueryDefinition) GetDataSourceOk() (*MonitorFormulaAndFunctionCostDataSource, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -92,7 +92,7 @@ func (o *MonitorFormulaAndFunctionCostQueryDefinition) GetDataSourceOk() (*Monit
 }
 
 // SetDataSource sets field value.
-func (o *MonitorFormulaAndFunctionCostQueryDefinition) SetDataSource(v MonitorFormulaAndFunctionMetricsDataSource) {
+func (o *MonitorFormulaAndFunctionCostQueryDefinition) SetDataSource(v MonitorFormulaAndFunctionCostDataSource) {
 	o.DataSource = v
 }
 
@@ -164,10 +164,10 @@ func (o MonitorFormulaAndFunctionCostQueryDefinition) MarshalJSON() ([]byte, err
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorFormulaAndFunctionCostQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Aggregator *MonitorFormulaAndFunctionCostAggregator    `json:"aggregator,omitempty"`
-		DataSource *MonitorFormulaAndFunctionMetricsDataSource `json:"data_source"`
-		Name       *string                                     `json:"name"`
-		Query      *string                                     `json:"query"`
+		Aggregator *MonitorFormulaAndFunctionCostAggregator `json:"aggregator,omitempty"`
+		DataSource *MonitorFormulaAndFunctionCostDataSource `json:"data_source"`
+		Name       *string                                  `json:"name"`
+		Query      *string                                  `json:"query"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
