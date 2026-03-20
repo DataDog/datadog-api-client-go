@@ -16,7 +16,7 @@ type SecurityMonitoringCriticalAssetUpdateAttributes struct {
 	Query *string `json:"query,omitempty"`
 	// The rule query of the critical asset, with the same syntax as the search bar for detection rules. This determines which rules this critical asset will apply to.
 	RuleQuery *string `json:"rule_query,omitempty"`
-	// Severity associated with this critical asset. Either an explicit severity can be set, or the severity can be increased or decreased.
+	// Severity associated with this critical asset. Either an explicit severity can be set, or the severity can be increased or decreased, or the severity can be left unchanged (no-op).
 	Severity *SecurityMonitoringCriticalAssetSeverity `json:"severity,omitempty"`
 	// List of tags associated with the critical asset.
 	Tags []string `json:"tags,omitempty"`

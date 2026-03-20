@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SecurityMonitoringCriticalAssetSeverity Severity associated with this critical asset. Either an explicit severity can be set, or the severity can be increased or decreased.
+// SecurityMonitoringCriticalAssetSeverity Severity associated with this critical asset. Either an explicit severity can be set, or the severity can be increased or decreased, or the severity can be left unchanged (no-op).
 type SecurityMonitoringCriticalAssetSeverity string
 
 // List of SecurityMonitoringCriticalAssetSeverity.
@@ -22,6 +22,7 @@ const (
 	SECURITYMONITORINGCRITICALASSETSEVERITY_CRITICAL SecurityMonitoringCriticalAssetSeverity = "critical"
 	SECURITYMONITORINGCRITICALASSETSEVERITY_INCREASE SecurityMonitoringCriticalAssetSeverity = "increase"
 	SECURITYMONITORINGCRITICALASSETSEVERITY_DECREASE SecurityMonitoringCriticalAssetSeverity = "decrease"
+	SECURITYMONITORINGCRITICALASSETSEVERITY_NO_OP    SecurityMonitoringCriticalAssetSeverity = "no-op"
 )
 
 var allowedSecurityMonitoringCriticalAssetSeverityEnumValues = []SecurityMonitoringCriticalAssetSeverity{
@@ -32,6 +33,7 @@ var allowedSecurityMonitoringCriticalAssetSeverityEnumValues = []SecurityMonitor
 	SECURITYMONITORINGCRITICALASSETSEVERITY_CRITICAL,
 	SECURITYMONITORINGCRITICALASSETSEVERITY_INCREASE,
 	SECURITYMONITORINGCRITICALASSETSEVERITY_DECREASE,
+	SECURITYMONITORINGCRITICALASSETSEVERITY_NO_OP,
 }
 
 // GetAllowedValues reeturns the list of possible values.
