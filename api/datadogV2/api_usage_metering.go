@@ -332,6 +332,7 @@ type GetEstimatedCostByOrgOptionalParameters struct {
 	EndMonth                 *time.Time
 	StartDate                *time.Time
 	EndDate                  *time.Time
+	CostAggregation          *CostAggregationType
 	IncludeConnectedAccounts *bool
 }
 
@@ -368,6 +369,12 @@ func (r *GetEstimatedCostByOrgOptionalParameters) WithStartDate(startDate time.T
 // WithEndDate sets the corresponding parameter name and returns the struct.
 func (r *GetEstimatedCostByOrgOptionalParameters) WithEndDate(endDate time.Time) *GetEstimatedCostByOrgOptionalParameters {
 	r.EndDate = &endDate
+	return r
+}
+
+// WithCostAggregation sets the corresponding parameter name and returns the struct.
+func (r *GetEstimatedCostByOrgOptionalParameters) WithCostAggregation(costAggregation CostAggregationType) *GetEstimatedCostByOrgOptionalParameters {
+	r.CostAggregation = &costAggregation
 	return r
 }
 
@@ -423,6 +430,9 @@ func (a *UsageMeteringApi) GetEstimatedCostByOrg(ctx _context.Context, o ...GetE
 	}
 	if optionalParams.EndDate != nil {
 		localVarQueryParams.Add("end_date", datadog.ParameterToString(*optionalParams.EndDate, ""))
+	}
+	if optionalParams.CostAggregation != nil {
+		localVarQueryParams.Add("cost_aggregation", datadog.ParameterToString(*optionalParams.CostAggregation, ""))
 	}
 	if optionalParams.IncludeConnectedAccounts != nil {
 		localVarQueryParams.Add("include_connected_accounts", datadog.ParameterToString(*optionalParams.IncludeConnectedAccounts, ""))
