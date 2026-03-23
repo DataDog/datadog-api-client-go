@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"dry_run":false,"name":"Updated deployment rule","options":{"duration":3600,"excluded_resources":["resource1","resource2"]}},"type":"deployment_rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PUT
+    url: https://api.datadoghq.com/api/v2/deployment_gates/00000000-0000-0000-0000-000000000000/rules/00000000-0000-0000-0000-000000000000
+  response:
+    body: '{"errors":[{"status":"404","title":"Not Found","detail":"Rule does not
+      exist"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

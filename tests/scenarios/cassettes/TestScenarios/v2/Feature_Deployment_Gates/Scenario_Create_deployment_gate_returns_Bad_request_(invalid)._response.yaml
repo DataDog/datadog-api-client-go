@@ -1,0 +1,60 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"dry_run":false,"env":"production","identifier":"my-gate-testcreatedeploymentgatereturnsbadrequestresponse1773742993","service":"my-service"},"type":"deployment_gate"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/deployment_gates
+  response:
+    body: '{"data":{"id":"2ddfb377-44de-47fe-b53c-58cf800cca1b","type":"deployment_gate","attributes":{"created_at":"2026-03-17T10:23:14.339908Z","created_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"},"dry_run":false,"env":"production","identifier":"my-gate-testcreatedeploymentgatereturnsbadrequestresponse1773742993","service":"my-service","updated_at":"2026-03-17T10:23:14.339908Z","updated_by":{"id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account","handle":"9919ec9b-ebc7-49ee-8dc8-03626e717cca"}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"dry_run":false,"env":"production","identifier":"my-gate-testcreatedeploymentgatereturnsbadrequestresponse1773742993","service":"my-service"},"type":"deployment_gate"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
+    url: https://api.datadoghq.com/api/v2/deployment_gates
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"Gate already
+      exists with the given env, service and identifier"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/deployment_gates/2ddfb377-44de-47fe-b53c-58cf800cca1b
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2

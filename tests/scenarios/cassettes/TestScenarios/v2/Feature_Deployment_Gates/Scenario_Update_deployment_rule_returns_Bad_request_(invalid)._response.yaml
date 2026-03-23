@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"dry_run":false,"name":"Updated deployment rule","options":{"duration":3600,"excluded_resources":["resource1","resource2"]}},"type":"deployment_rule"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PUT
+    url: https://api.datadoghq.com/api/v2/deployment_gates/not-a-valid-id/rules/not-a-valid-id
+  response:
+    body: '{"errors":[{"status":"400","title":"Bad Request","detail":"attribute \"gate_id\"
+      Invalid id"}]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2

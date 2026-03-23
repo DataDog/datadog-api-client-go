@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"env":"staging","service":"non-existent-service-xyz"},"type":"deployment_gates_evaluation_request"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/deployments/gates/evaluation
+  response:
+    body: '{"errors":[{"status":"404","title":"Not Found","detail":"no gate found
+      for service non-existent-service-xyz, env staging, and identifier default"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2
