@@ -12,7 +12,7 @@ import (
 
 // RecommendationAttributes Attributes of the SPA Recommendation resource. Contains recommendations for both driver and executor components.
 type RecommendationAttributes struct {
-	//
+	// The confidence level of the recommendation, expressed as a value between 0.0 (low confidence) and 1.0 (high confidence).
 	ConfidenceLevel *float64 `json:"confidence_level,omitempty"`
 	// Resource recommendation for a single Spark component (driver or executor). Contains estimation data used to patch Spark job specs.
 	Driver ComponentRecommendation `json:"driver"`

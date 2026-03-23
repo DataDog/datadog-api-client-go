@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AssignSeatsUserRequestDataAttributes
+// AssignSeatsUserRequestDataAttributes Attributes specifying the product and users to whom seats will be assigned.
 type AssignSeatsUserRequestDataAttributes struct {
 	// The product code for which to assign seats.
 	ProductCode string `json:"product_code"`

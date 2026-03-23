@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProductAnalyticsScalarResponseAttributes
+// ProductAnalyticsScalarResponseAttributes Attributes of a scalar analytics response, containing the result columns.
 type ProductAnalyticsScalarResponseAttributes struct {
-	//
+	// The list of result columns, each containing values and metadata.
 	Columns []ProductAnalyticsScalarColumn `json:"columns,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

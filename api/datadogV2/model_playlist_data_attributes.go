@@ -11,19 +11,19 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PlaylistDataAttributes
+// PlaylistDataAttributes Attributes of a RUM replay playlist, including its name, description, session count, and audit timestamps.
 type PlaylistDataAttributes struct {
-	//
+	// Timestamp when the playlist was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	//
+	// Information about the user who created the playlist.
 	CreatedBy *PlaylistDataAttributesCreatedBy `json:"created_by,omitempty"`
-	//
+	// Optional human-readable description of the playlist's purpose or contents.
 	Description *string `json:"description,omitempty"`
-	//
+	// Human-readable name of the playlist.
 	Name string `json:"name"`
-	//
+	// Number of replay sessions in the playlist.
 	SessionCount *int64 `json:"session_count,omitempty"`
-	//
+	// Timestamp when the playlist was last updated.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

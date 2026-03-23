@@ -8,17 +8,17 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProjectUpdateAttributes Project update attributes
+// ProjectUpdateAttributes Project update attributes.
 type ProjectUpdateAttributes struct {
-	// Project columns configuration
+	// Project columns configuration.
 	ColumnsConfig *ProjectColumnsConfig `json:"columns_config,omitempty"`
-	// List of enabled custom case type IDs
+	// List of enabled custom case type IDs.
 	EnabledCustomCaseTypes []string `json:"enabled_custom_case_types,omitempty"`
-	// Project name
+	// Project name.
 	Name *string `json:"name,omitempty"`
-	// Project settings
+	// Project settings.
 	Settings *ProjectSettings `json:"settings,omitempty"`
-	// Team UUID to associate with the project
+	// Team UUID to associate with the project.
 	TeamUuid *string `json:"team_uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

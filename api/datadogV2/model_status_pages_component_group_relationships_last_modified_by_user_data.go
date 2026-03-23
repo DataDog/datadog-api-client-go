@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StatusPagesComponentGroupRelationshipsLastModifiedByUserData
+// StatusPagesComponentGroupRelationshipsLastModifiedByUserData The data object identifying the Datadog user who last modified the component group.
 type StatusPagesComponentGroupRelationshipsLastModifiedByUserData struct {
 	// The ID of the Datadog user who last modified the component group.
 	Id string `json:"id"`

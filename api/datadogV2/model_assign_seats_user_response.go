@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AssignSeatsUserResponse
+// AssignSeatsUserResponse The response body returned after successfully assigning seats to users.
 type AssignSeatsUserResponse struct {
-	//
+	// The response data object containing attributes of the seat assignment result.
 	Data *AssignSeatsUserResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

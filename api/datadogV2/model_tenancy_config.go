@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TenancyConfig
+// TenancyConfig Response containing a single OCI tenancy integration configuration.
 type TenancyConfig struct {
-	//
+	// A single OCI tenancy integration configuration resource object containing the tenancy ID, type, and configuration attributes.
 	Data *TenancyConfigData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,11 +10,11 @@ import (
 
 // ProductAnalyticsSerie A series in a timeseries response.
 type ProductAnalyticsSerie struct {
-	//
+	// The group-by tag values that identify this series.
 	GroupTags []string `json:"group_tags,omitempty"`
-	//
+	// The index of the query that produced this series.
 	QueryIndex *int64 `json:"query_index,omitempty"`
-	//
+	// Unit definitions for the series values.
 	Unit []ProductAnalyticsUnit `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

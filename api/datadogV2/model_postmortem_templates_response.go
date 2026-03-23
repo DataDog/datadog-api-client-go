@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PostmortemTemplatesResponse
+// PostmortemTemplatesResponse Response containing a list of postmortem templates.
 type PostmortemTemplatesResponse struct {
-	//
+	// An array of postmortem template data objects.
 	Data []PostmortemTemplateDataResponse `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

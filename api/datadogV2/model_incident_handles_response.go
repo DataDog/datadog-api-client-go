@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IncidentHandlesResponse
+// IncidentHandlesResponse Response payload for a list of global incident handles, including handle data and related resources.
 type IncidentHandlesResponse struct {
-	//
+	// Array of incident handle data objects returned in a list response.
 	Data []IncidentHandleDataResponse `json:"data"`
 	// Included related resources
 	Included []IncidentHandleIncludedItemResponse `json:"included,omitempty"`

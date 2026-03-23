@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRuleset
+// CustomRuleset A custom static analysis ruleset containing a set of user-defined rules.
 type CustomRuleset struct {
-	//
+	// Attributes of a custom ruleset, including its name, description, and rules.
 	Attributes CustomRulesetAttributes `json:"attributes"`
 	// Ruleset identifier
 	Id string `json:"id"`

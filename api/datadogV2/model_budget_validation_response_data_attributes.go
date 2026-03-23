@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BudgetValidationResponseDataAttributes
+// BudgetValidationResponseDataAttributes The attributes of a budget validation response, including any validation errors and the validity status.
 type BudgetValidationResponseDataAttributes struct {
-	//
+	// A list of validation error messages for the budget.
 	Errors []string `json:"errors,omitempty"`
-	//
+	// Whether the budget configuration is valid.
 	Valid *bool `json:"valid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

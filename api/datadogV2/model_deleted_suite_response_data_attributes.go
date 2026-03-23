@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DeletedSuiteResponseDataAttributes
+// DeletedSuiteResponseDataAttributes Attributes of a deleted Synthetic test suite, including deletion timestamp and public ID.
 type DeletedSuiteResponseDataAttributes struct {
 	// Deletion timestamp of the Synthetic suite ID.
 	DeletedAt *string `json:"deleted_at,omitempty"`

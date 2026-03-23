@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BudgetValidationRequest
+// BudgetValidationRequest The request object for validating a budget configuration before creating or updating it.
 type BudgetValidationRequest struct {
-	//
+	// The data object for a budget validation request, containing the resource type, ID, and budget attributes to validate.
 	Data *BudgetValidationRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

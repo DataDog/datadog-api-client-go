@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationJiraSyncPropertiesCustomFieldsAdditionalProperties
+// IntegrationJiraSyncPropertiesCustomFieldsAdditionalProperties Synchronization configuration for a Jira custom field.
 type IntegrationJiraSyncPropertiesCustomFieldsAdditionalProperties struct {
-	//
+	// The type of synchronization to apply for this custom field.
 	SyncType *string `json:"sync_type,omitempty"`
 	// Represents any valid JSON value.
 	Value NullableAnyValue `json:"value,omitempty"`

@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AssignSeatsUserResponseDataAttributes
+// AssignSeatsUserResponseDataAttributes Attributes of the assign seats response, including the list of users assigned and the product code.
 type AssignSeatsUserResponseDataAttributes struct {
 	// The list of user IDs to which the seats were assigned.
 	AssignedIds []string `json:"assigned_ids,omitempty"`

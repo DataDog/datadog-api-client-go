@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRuleResponse
+// CustomRuleResponse Response containing a single custom rule.
 type CustomRuleResponse struct {
-	//
+	// Data object returned in a custom rule response, including its ID, type, and attributes.
 	Data CustomRuleResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

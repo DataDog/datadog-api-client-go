@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRuleRequestData
+// CustomRuleRequestData Data object for a custom rule create or update request.
 type CustomRuleRequestData struct {
-	//
+	// Attributes for creating or updating a custom rule.
 	Attributes *CustomRuleRequestDataAttributes `json:"attributes,omitempty"`
 	// Rule identifier
 	Id *string `json:"id,omitempty"`

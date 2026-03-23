@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProductAnalyticsTimeseriesResponseType
+// ProductAnalyticsTimeseriesResponseType The resource type identifier for a timeseries analytics response.
 type ProductAnalyticsTimeseriesResponseType string
 
 // List of ProductAnalyticsTimeseriesResponseType.

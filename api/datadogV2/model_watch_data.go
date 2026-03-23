@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// WatchData
+// WatchData Data object representing a session watch record, including its identifier, type, and attributes.
 type WatchData struct {
-	//
+	// Attributes for recording a session watch event, including the application, event reference, and timestamp.
 	Attributes *WatchDataAttributes `json:"attributes,omitempty"`
-	//
+	// Unique identifier of the watch record.
 	Id *string `json:"id,omitempty"`
 	// Rum replay watch resource type.
 	Type WatchDataType `json:"type"`

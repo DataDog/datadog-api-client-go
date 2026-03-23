@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProjectColumnsConfigColumnsItems
+// ProjectColumnsConfigColumnsItems Configuration for a single column in a project board view.
 type ProjectColumnsConfigColumnsItems struct {
-	//
+	// Sort configuration for a project board column.
 	Sort *ProjectColumnsConfigColumnsItemsSort `json:"sort,omitempty"`
-	//
+	// The field used to sort items in this column.
 	SortField *string `json:"sort_field,omitempty"`
-	//
+	// The type of column.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

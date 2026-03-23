@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TenancyProductsDataAttributesProductsItems
+// TenancyProductsDataAttributesProductsItems An individual Datadog product with its enablement status for a tenancy.
 type TenancyProductsDataAttributesProductsItems struct {
-	//
+	// Indicates whether the product is enabled for the tenancy.
 	Enabled *bool `json:"enabled,omitempty"`
-	//
+	// The unique key identifying the Datadog product (for example, CLOUD_SECURITY_POSTURE_MANAGEMENT).
 	ProductKey *string `json:"product_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

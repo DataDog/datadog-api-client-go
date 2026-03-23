@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRuleRevisionResponse
+// CustomRuleRevisionResponse Response containing a single custom rule revision.
 type CustomRuleRevisionResponse struct {
-	//
+	// A specific revision of a custom static analysis rule.
 	Data CustomRuleRevision `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

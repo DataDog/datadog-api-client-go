@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RevertCustomRuleRevisionRequestDataAttributes
+// RevertCustomRuleRevisionRequestDataAttributes Attributes specifying the current and target revision IDs for a revert operation.
 type RevertCustomRuleRevisionRequestDataAttributes struct {
 	// Current revision ID
 	CurrentRevision *string `json:"currentRevision,omitempty"`

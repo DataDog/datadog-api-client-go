@@ -11,17 +11,17 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// WatcherDataAttributes
+// WatcherDataAttributes Attributes of a user who has watched a RUM replay session, including contact information and watch statistics.
 type WatcherDataAttributes struct {
-	//
+	// Email handle of the user who watched the session.
 	Handle string `json:"handle"`
-	//
+	// URL or identifier of the watcher's avatar icon.
 	Icon *string `json:"icon,omitempty"`
-	//
+	// Timestamp when the watcher last viewed the session.
 	LastWatchedAt time.Time `json:"last_watched_at"`
-	//
+	// Display name of the user who watched the session.
 	Name *string `json:"name,omitempty"`
-	//
+	// Total number of times the user has watched the session.
 	WatchCount int32 `json:"watch_count"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

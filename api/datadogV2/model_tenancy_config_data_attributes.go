@@ -8,33 +8,33 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TenancyConfigDataAttributes
+// TenancyConfigDataAttributes Attributes of an OCI tenancy integration configuration, including authentication details, region settings, and collection options.
 type TenancyConfigDataAttributes struct {
-	//
+	// The identifier of the billing plan associated with the OCI tenancy.
 	BillingPlanId *int32 `json:"billing_plan_id,omitempty"`
-	//
+	// Version number of the integration the tenancy is integrated with
 	ConfigVersion *int64 `json:"config_version,omitempty"`
-	//
+	// Whether cost data collection from OCI is enabled for the tenancy.
 	CostCollectionEnabled *bool `json:"cost_collection_enabled,omitempty"`
-	//
+	// The OCID of the OCI compartment used by the Datadog integration stack.
 	DdCompartmentId *string `json:"dd_compartment_id,omitempty"`
-	//
+	// The OCID of the OCI Resource Manager stack used by the Datadog integration.
 	DdStackId *string `json:"dd_stack_id,omitempty"`
-	//
+	// The home region of the OCI tenancy (for example, us-ashburn-1).
 	HomeRegion *string `json:"home_region,omitempty"`
-	//
+	// Log collection configuration for an OCI tenancy, indicating which compartments and services have log collection enabled.
 	LogsConfig *TenancyConfigDataAttributesLogsConfig `json:"logs_config,omitempty"`
-	//
+	// Metrics collection configuration for an OCI tenancy, indicating which compartments and services are included or excluded.
 	MetricsConfig *TenancyConfigDataAttributesMetricsConfig `json:"metrics_config,omitempty"`
-	//
+	// The name of the parent OCI tenancy, if applicable.
 	ParentTenancyName *string `json:"parent_tenancy_name,omitempty"`
-	//
+	// Region configuration for an OCI tenancy, indicating which regions are available, enabled, or disabled for data collection.
 	RegionsConfig *TenancyConfigDataAttributesRegionsConfig `json:"regions_config,omitempty"`
-	//
+	// Whether resource collection from OCI is enabled for the tenancy.
 	ResourceCollectionEnabled *bool `json:"resource_collection_enabled,omitempty"`
-	//
+	// The human-readable name of the OCI tenancy.
 	TenancyName *string `json:"tenancy_name,omitempty"`
-	//
+	// The OCID of the OCI user used by the Datadog integration for authentication.
 	UserOcid *string `json:"user_ocid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

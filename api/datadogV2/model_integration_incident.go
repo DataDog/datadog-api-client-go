@@ -8,19 +8,19 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationIncident Incident integration settings
+// IntegrationIncident Incident integration settings.
 type IntegrationIncident struct {
-	// Query for auto-escalation
+	// Query for auto-escalation.
 	AutoEscalationQuery *string `json:"auto_escalation_query,omitempty"`
-	// Default incident commander
+	// Default incident commander.
 	DefaultIncidentCommander *string `json:"default_incident_commander,omitempty"`
-	// Whether incident integration is enabled
+	// Whether incident integration is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
-	//
+	// List of mappings between incident fields and case fields.
 	FieldMappings []IntegrationIncidentFieldMappingsItems `json:"field_mappings,omitempty"`
-	// Incident type
+	// Incident type.
 	IncidentType *string `json:"incident_type,omitempty"`
-	//
+	// Severity configuration for mapping incident priorities to case priorities.
 	SeverityConfig *IntegrationIncidentSeverityConfig `json:"severity_config,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Watch
+// Watch A single RUM replay session watch resource returned by create operations.
 type Watch struct {
-	//
+	// Data object representing a session watch record, including its identifier, type, and attributes.
 	Data WatchData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

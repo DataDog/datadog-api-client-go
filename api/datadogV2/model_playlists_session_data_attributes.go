@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PlaylistsSessionDataAttributes
+// PlaylistsSessionDataAttributes Attributes of a session within a playlist, including the session event data and its replay track.
 type PlaylistsSessionDataAttributes struct {
-	//
+	// Raw event data associated with the replay session.
 	SessionEvent map[string]interface{} `json:"session_event,omitempty"`
-	//
+	// Replay track identifier indicating which recording track the session belongs to.
 	Track *string `json:"track,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

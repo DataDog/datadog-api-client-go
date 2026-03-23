@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UnassignSeatsUserRequestData
+// UnassignSeatsUserRequestData The request data object containing attributes for unassigning seats from users.
 type UnassignSeatsUserRequestData struct {
-	//
+	// Attributes specifying the product and users from whom seats will be unassigned.
 	Attributes UnassignSeatsUserRequestDataAttributes `json:"attributes"`
 	// The ID of the unassign seats user request.
 	Id *string `json:"id,omitempty"`

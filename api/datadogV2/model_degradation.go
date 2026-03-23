@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Degradation
+// Degradation Response object for a single degradation.
 type Degradation struct {
-	//
+	// The data object for a degradation.
 	Data *DegradationData `json:"data,omitempty"`
 	// The included related resources of a degradation. Client must explicitly request these resources by name in the `include` query parameter.
 	Included []DegradationIncluded `json:"included,omitempty"`

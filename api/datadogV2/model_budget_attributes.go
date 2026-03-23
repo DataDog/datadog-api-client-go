@@ -16,7 +16,7 @@ type BudgetAttributes struct {
 	CreatedBy *string `json:"created_by,omitempty"`
 	// The month when the budget ends.
 	EndMonth *int64 `json:"end_month,omitempty"`
-	//
+	// The list of monthly budget entries.
 	Entries []BudgetWithEntriesDataAttributesEntriesItems `json:"entries,omitempty"`
 	// The cost query used to track against the budget.
 	MetricsQuery *string `json:"metrics_query,omitempty"`

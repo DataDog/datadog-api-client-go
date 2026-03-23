@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SnapshotCreateRequestData
+// SnapshotCreateRequestData Data object for a heatmap snapshot creation request, containing the resource type and attributes.
 type SnapshotCreateRequestData struct {
-	//
+	// Attributes for creating a heatmap snapshot, including the view, session, event, and device context.
 	Attributes *SnapshotCreateRequestDataAttributes `json:"attributes,omitempty"`
 	// Snapshots resource type.
 	Type SnapshotUpdateRequestDataType `json:"type"`

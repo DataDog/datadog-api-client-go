@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TenancyProductsData
+// TenancyProductsData A single OCI tenancy product resource object containing the tenancy ID, type, and product attributes.
 type TenancyProductsData struct {
-	//
+	// Attributes of an OCI tenancy product resource, containing the list of available products and their enablement status.
 	Attributes *TenancyProductsDataAttributes `json:"attributes,omitempty"`
-	//
+	// The OCID of the OCI tenancy.
 	Id *string `json:"id,omitempty"`
 	// OCI tenancy product resource type.
 	Type TenancyProductsDataType `json:"type"`

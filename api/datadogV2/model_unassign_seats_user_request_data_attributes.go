@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UnassignSeatsUserRequestDataAttributes
+// UnassignSeatsUserRequestDataAttributes Attributes specifying the product and users from whom seats will be unassigned.
 type UnassignSeatsUserRequestDataAttributes struct {
 	// The product code for which to unassign seats.
 	ProductCode string `json:"product_code"`

@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRulesetRequest
+// CustomRulesetRequest Request body for creating or updating a custom ruleset.
 type CustomRulesetRequest struct {
-	//
+	// Data object for a custom ruleset create or update request.
 	Data *CustomRulesetRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

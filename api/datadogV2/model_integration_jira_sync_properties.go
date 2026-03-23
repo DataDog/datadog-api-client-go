@@ -8,23 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationJiraSyncProperties
+// IntegrationJiraSyncProperties Field synchronization properties for Jira integration.
 type IntegrationJiraSyncProperties struct {
-	// Sync property configuration
+	// Sync property configuration.
 	Assignee *SyncProperty `json:"assignee,omitempty"`
-	// Sync property configuration
+	// Sync property configuration.
 	Comments *SyncProperty `json:"comments,omitempty"`
-	//
+	// Map of custom field identifiers to their sync configurations.
 	CustomFields map[string]IntegrationJiraSyncPropertiesCustomFieldsAdditionalProperties `json:"custom_fields,omitempty"`
-	// Sync property configuration
+	// Sync property configuration.
 	Description *SyncProperty `json:"description,omitempty"`
-	//
+	// Due date synchronization configuration for Jira integration.
 	DueDate *IntegrationJiraSyncDueDate `json:"due_date,omitempty"`
-	// Sync property with mapping configuration
+	// Sync property with mapping configuration.
 	Priority *SyncPropertyWithMapping `json:"priority,omitempty"`
-	// Sync property with mapping configuration
+	// Sync property with mapping configuration.
 	Status *SyncPropertyWithMapping `json:"status,omitempty"`
-	// Sync property configuration
+	// Sync property configuration.
 	Title *SyncProperty `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

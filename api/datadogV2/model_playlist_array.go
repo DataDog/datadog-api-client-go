@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PlaylistArray
+// PlaylistArray A list of RUM replay playlists returned by a list operation.
 type PlaylistArray struct {
-	//
+	// Array of playlist data objects.
 	Data []PlaylistData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

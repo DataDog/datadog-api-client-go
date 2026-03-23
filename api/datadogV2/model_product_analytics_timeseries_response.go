@@ -10,7 +10,7 @@ import (
 
 // ProductAnalyticsTimeseriesResponse Response for a timeseries analytics query.
 type ProductAnalyticsTimeseriesResponse struct {
-	//
+	// Data object for a timeseries analytics response.
 	Data *ProductAnalyticsTimeseriesResponseData `json:"data,omitempty"`
 	// Metadata for a Product Analytics query response.
 	Meta *ProductAnalyticsResponseMeta `json:"meta,omitempty"`

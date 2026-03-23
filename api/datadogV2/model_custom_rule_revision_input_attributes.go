@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRuleRevisionInputAttributes
+// CustomRuleRevisionInputAttributes Input attributes for creating or updating a custom rule revision.
 type CustomRuleRevisionInputAttributes struct {
 	// Rule arguments
 	Arguments []Argument `json:"arguments"`

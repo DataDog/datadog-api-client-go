@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRulesetAttributes
+// CustomRulesetAttributes Attributes of a custom ruleset, including its name, description, and rules.
 type CustomRulesetAttributes struct {
 	// Creation timestamp
 	CreatedAt time.Time `json:"created_at"`

@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AssignSeatsUserResponseData
+// AssignSeatsUserResponseData The response data object containing attributes of the seat assignment result.
 type AssignSeatsUserResponseData struct {
-	//
+	// Attributes of the assign seats response, including the list of users assigned and the product code.
 	Attributes *AssignSeatsUserResponseDataAttributes `json:"attributes,omitempty"`
 	// The ID of the assign seats user response.
 	Id *string `json:"id,omitempty"`

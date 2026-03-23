@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BudgetWithEntriesDataAttributesEntriesItems
+// BudgetWithEntriesDataAttributesEntriesItems A single monthly budget entry defining the allocated amount and optional tag filters for a specific month.
 type BudgetWithEntriesDataAttributesEntriesItems struct {
-	//
+	// The budgeted amount for this entry.
 	Amount *float64 `json:"amount,omitempty"`
-	//
+	// The month this budget entry applies to, in YYYYMM format.
 	Month *int64 `json:"month,omitempty"`
-	//
+	// The list of tag filters that scope this budget entry to specific resources.
 	TagFilters []BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems `json:"tag_filters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

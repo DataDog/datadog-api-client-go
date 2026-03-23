@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProductAnalyticsScalarResponseType
+// ProductAnalyticsScalarResponseType The resource type identifier for a scalar analytics response.
 type ProductAnalyticsScalarResponseType string
 
 // List of ProductAnalyticsScalarResponseType.

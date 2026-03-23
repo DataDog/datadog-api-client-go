@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRuleRevision
+// CustomRuleRevision A specific revision of a custom static analysis rule.
 type CustomRuleRevision struct {
-	//
+	// Attributes of a custom rule revision, including code, metadata, and test cases.
 	Attributes CustomRuleRevisionAttributes `json:"attributes"`
 	// Revision identifier
 	Id string `json:"id"`

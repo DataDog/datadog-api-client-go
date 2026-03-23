@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SnapshotArray
+// SnapshotArray A list of heatmap snapshots returned by a list operation.
 type SnapshotArray struct {
-	//
+	// Array of heatmap snapshot data objects.
 	Data []SnapshotData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RevertCustomRuleRevisionRequestData
+// RevertCustomRuleRevisionRequestData Data object for a request to revert a custom rule to a previous revision.
 type RevertCustomRuleRevisionRequestData struct {
-	//
+	// Attributes specifying the current and target revision IDs for a revert operation.
 	Attributes *RevertCustomRuleRevisionRequestDataAttributes `json:"attributes,omitempty"`
 	// Request identifier
 	Id *string `json:"id,omitempty"`

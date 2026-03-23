@@ -10,17 +10,17 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SnapshotUpdateRequestDataAttributes
+// SnapshotUpdateRequestDataAttributes Attributes for updating a heatmap snapshot, including event, session, and view context.
 type SnapshotUpdateRequestDataAttributes struct {
-	//
+	// Unique identifier of the RUM event associated with the snapshot.
 	EventId string `json:"event_id"`
-	//
+	// Indicates whether the device type was explicitly selected by the user rather than auto-detected.
 	IsDeviceTypeSelectedByUser bool `json:"is_device_type_selected_by_user"`
-	//
+	// Unique identifier of the RUM session associated with the snapshot.
 	SessionId *string `json:"session_id,omitempty"`
-	//
+	// Offset in milliseconds from the start of the session at which the snapshot was captured.
 	Start int64 `json:"start"`
-	//
+	// Unique identifier of the RUM view associated with the snapshot.
 	ViewId *string `json:"view_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

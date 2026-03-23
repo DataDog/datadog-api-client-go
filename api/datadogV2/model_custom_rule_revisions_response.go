@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRuleRevisionsResponse
+// CustomRuleRevisionsResponse Response containing a paginated list of custom rule revisions.
 type CustomRuleRevisionsResponse struct {
-	//
+	// List of custom rule revisions.
 	Data []CustomRuleRevision `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

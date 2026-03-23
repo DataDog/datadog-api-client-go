@@ -11,15 +11,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// WatchDataAttributes
+// WatchDataAttributes Attributes for recording a session watch event, including the application, event reference, and timestamp.
 type WatchDataAttributes struct {
-	//
+	// Unique identifier of the RUM application containing the session.
 	ApplicationId string `json:"application_id"`
-	//
+	// Data source type indicating the origin of the session data (e.g., rum or product_analytics).
 	DataSource *string `json:"data_source,omitempty"`
-	//
+	// Unique identifier of the RUM event that was watched.
 	EventId string `json:"event_id"`
-	//
+	// Timestamp when the session was watched.
 	Timestamp time.Time `json:"timestamp"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

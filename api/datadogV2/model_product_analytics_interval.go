@@ -10,13 +10,13 @@ import (
 
 // ProductAnalyticsInterval An interval definition in a timeseries response.
 type ProductAnalyticsInterval struct {
-	//
+	// The duration of each time bucket in milliseconds.
 	Milliseconds *int64 `json:"milliseconds,omitempty"`
-	//
+	// The start of this interval as an epoch timestamp in milliseconds.
 	StartTime *int64 `json:"start_time,omitempty"`
-	//
+	// Epoch timestamps (in milliseconds) for each bucket in this interval.
 	Times []int64 `json:"times,omitempty"`
-	//
+	// The interval type (e.g., fixed or auto-computed bucket size).
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

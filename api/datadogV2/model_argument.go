@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Argument
+// Argument A named argument for a custom static analysis rule.
 type Argument struct {
 	// Base64-encoded argument description
 	Description string `json:"description"`

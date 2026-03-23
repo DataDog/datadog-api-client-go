@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SnapshotData
+// SnapshotData Data object representing a heatmap snapshot, including its identifier, type, and attributes.
 type SnapshotData struct {
-	//
+	// Attributes of a heatmap snapshot, including view context, device information, and audit metadata.
 	Attributes *SnapshotDataAttributes `json:"attributes,omitempty"`
-	//
+	// Unique identifier of the heatmap snapshot.
 	Id *string `json:"id,omitempty"`
 	// Snapshots resource type.
 	Type SnapshotUpdateRequestDataType `json:"type"`

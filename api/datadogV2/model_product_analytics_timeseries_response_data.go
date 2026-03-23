@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProductAnalyticsTimeseriesResponseData
+// ProductAnalyticsTimeseriesResponseData Data object for a timeseries analytics response.
 type ProductAnalyticsTimeseriesResponseData struct {
-	//
+	// Attributes of a timeseries analytics response, containing series data, timestamps, and interval definitions.
 	Attributes *ProductAnalyticsTimeseriesResponseAttributes `json:"attributes,omitempty"`
-	//
+	// Unique identifier for this response data object.
 	Id *string `json:"id,omitempty"`
-	//
+	// The resource type identifier for a timeseries analytics response.
 	Type *ProductAnalyticsTimeseriesResponseType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

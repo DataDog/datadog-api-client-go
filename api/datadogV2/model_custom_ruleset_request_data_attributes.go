@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRulesetRequestDataAttributes
+// CustomRulesetRequestDataAttributes Attributes for creating or updating a custom ruleset.
 type CustomRulesetRequestDataAttributes struct {
 	// Base64-encoded full description
 	Description *string `json:"description,omitempty"`

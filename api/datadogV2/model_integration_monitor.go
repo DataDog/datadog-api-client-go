@@ -8,15 +8,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationMonitor Monitor integration settings
+// IntegrationMonitor Monitor integration settings.
 type IntegrationMonitor struct {
-	// Whether auto-resolve is enabled
+	// Whether auto-resolve is enabled.
 	AutoResolveEnabled *bool `json:"auto_resolve_enabled,omitempty"`
-	// Case type ID for monitor integration
+	// Case type ID for monitor integration.
 	CaseTypeId *string `json:"case_type_id,omitempty"`
-	// Whether monitor integration is enabled
+	// Whether monitor integration is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
-	// Monitor handle
+	// Monitor handle.
 	Handle *string `json:"handle,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

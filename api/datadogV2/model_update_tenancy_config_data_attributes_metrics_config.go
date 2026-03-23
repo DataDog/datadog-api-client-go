@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UpdateTenancyConfigDataAttributesMetricsConfig
+// UpdateTenancyConfigDataAttributesMetricsConfig Metrics collection configuration for updating an OCI tenancy, controlling which compartments and services are included or excluded.
 type UpdateTenancyConfigDataAttributesMetricsConfig struct {
-	//
+	// List of compartment tag filters to scope metrics collection to specific compartments.
 	CompartmentTagFilters []string `json:"compartment_tag_filters,omitempty"`
-	//
+	// Whether metrics collection is enabled for the tenancy.
 	Enabled *bool `json:"enabled,omitempty"`
-	//
+	// List of OCI service names to exclude from metrics collection.
 	ExcludedServices []string `json:"excluded_services,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

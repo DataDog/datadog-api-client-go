@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProductAnalyticsResponseMetaStatus
+// ProductAnalyticsResponseMetaStatus The execution status of a Product Analytics query.
 type ProductAnalyticsResponseMetaStatus string
 
 // List of ProductAnalyticsResponseMetaStatus.

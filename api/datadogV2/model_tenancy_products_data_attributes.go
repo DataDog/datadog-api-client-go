@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TenancyProductsDataAttributes
+// TenancyProductsDataAttributes Attributes of an OCI tenancy product resource, containing the list of available products and their enablement status.
 type TenancyProductsDataAttributes struct {
-	//
+	// List of Datadog products and their enablement status for the tenancy.
 	Products []TenancyProductsDataAttributesProductsItems `json:"products,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IncidentHandleIncludedItemResponse -
+// IncidentHandleIncludedItemResponse - A single included resource item in an incident handle response, which can be a user or an incident type.
 type IncidentHandleIncludedItemResponse struct {
 	IncidentUserData   *IncidentUserData
 	IncidentTypeObject *IncidentTypeObject

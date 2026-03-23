@@ -10,9 +10,9 @@ import (
 
 // StatusPageDataRelationships The relationships of a status page.
 type StatusPageDataRelationships struct {
-	//
+	// The Datadog user who created the status page.
 	CreatedByUser *StatusPageDataRelationshipsCreatedByUser `json:"created_by_user,omitempty"`
-	//
+	// The Datadog user who last modified the status page.
 	LastModifiedByUser *StatusPageDataRelationshipsLastModifiedByUser `json:"last_modified_by_user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

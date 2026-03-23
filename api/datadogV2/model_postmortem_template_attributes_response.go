@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PostmortemTemplateAttributesResponse
+// PostmortemTemplateAttributesResponse Attributes of a postmortem template returned in a response.
 type PostmortemTemplateAttributesResponse struct {
 	// When the template was created
 	CreatedAt time.Time `json:"createdAt"`

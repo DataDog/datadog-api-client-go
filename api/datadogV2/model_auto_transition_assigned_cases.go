@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AutoTransitionAssignedCases Auto-transition assigned cases settings
+// AutoTransitionAssignedCases Auto-transition assigned cases settings.
 type AutoTransitionAssignedCases struct {
-	// Whether to auto-transition cases when self-assigned
+	// Whether to auto-transition cases when self-assigned.
 	AutoTransitionAssignedCasesOnSelfAssigned *bool `json:"auto_transition_assigned_cases_on_self_assigned,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

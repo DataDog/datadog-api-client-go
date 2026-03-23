@@ -8,23 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProjectSettings Project settings
+// ProjectSettings Project settings.
 type ProjectSettings struct {
-	// Auto-close inactive cases settings
+	// Auto-close inactive cases settings.
 	AutoCloseInactiveCases *AutoCloseInactiveCases `json:"auto_close_inactive_cases,omitempty"`
-	// Auto-transition assigned cases settings
+	// Auto-transition assigned cases settings.
 	AutoTransitionAssignedCases *AutoTransitionAssignedCases `json:"auto_transition_assigned_cases,omitempty"`
-	// Incident integration settings
+	// Incident integration settings.
 	IntegrationIncident *IntegrationIncident `json:"integration_incident,omitempty"`
-	// Jira integration settings
+	// Jira integration settings.
 	IntegrationJira *IntegrationJira `json:"integration_jira,omitempty"`
-	// Monitor integration settings
+	// Monitor integration settings.
 	IntegrationMonitor *IntegrationMonitor `json:"integration_monitor,omitempty"`
-	// On-Call integration settings
+	// On-Call integration settings.
 	IntegrationOnCall *IntegrationOnCall `json:"integration_on_call,omitempty"`
-	// ServiceNow integration settings
+	// ServiceNow integration settings.
 	IntegrationServiceNow *IntegrationServiceNow `json:"integration_service_now,omitempty"`
-	// Project notification settings
+	// Project notification settings.
 	Notification *ProjectNotificationSettings `json:"notification,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

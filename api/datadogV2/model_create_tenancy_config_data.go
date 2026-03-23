@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateTenancyConfigData
+// CreateTenancyConfigData The data object for creating a new OCI tenancy integration configuration, including the tenancy ID, type, and configuration attributes.
 type CreateTenancyConfigData struct {
-	//
+	// Attributes for creating a new OCI tenancy integration configuration, including credentials, region settings, and collection options.
 	Attributes *CreateTenancyConfigDataAttributes `json:"attributes,omitempty"`
-	//
+	// The OCID of the OCI tenancy to configure.
 	Id string `json:"id"`
 	// OCI tenancy resource type.
 	Type UpdateTenancyConfigDataType `json:"type"`

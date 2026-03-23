@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PlaylistsSession
+// PlaylistsSession A single RUM replay session resource as it appears within a playlist context.
 type PlaylistsSession struct {
-	//
+	// Data object representing a session within a playlist, including its identifier, type, and attributes.
 	Data PlaylistsSessionData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

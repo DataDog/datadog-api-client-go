@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRuleRevisionTest
+// CustomRuleRevisionTest A test case associated with a custom rule revision, used to validate rule behavior.
 type CustomRuleRevisionTest struct {
 	// Expected violation count
 	AnnotationCount int64 `json:"annotation_count"`

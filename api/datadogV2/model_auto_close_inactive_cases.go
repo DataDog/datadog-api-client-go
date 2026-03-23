@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AutoCloseInactiveCases Auto-close inactive cases settings
+// AutoCloseInactiveCases Auto-close inactive cases settings.
 type AutoCloseInactiveCases struct {
-	// Whether auto-close is enabled
+	// Whether auto-close is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
-	// Maximum inactive time in seconds before auto-closing
+	// Maximum inactive time in seconds before auto-closing.
 	MaxInactiveTimeInSecs *int64 `json:"max_inactive_time_in_secs,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

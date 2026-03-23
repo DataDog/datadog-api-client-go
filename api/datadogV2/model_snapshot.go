@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Snapshot
+// Snapshot A single heatmap snapshot resource returned by create or update operations.
 type Snapshot struct {
-	//
+	// Data object representing a heatmap snapshot, including its identifier, type, and attributes.
 	Data *SnapshotData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -11,13 +11,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRule
+// CustomRule A custom static analysis rule within a ruleset.
 type CustomRule struct {
 	// Creation timestamp
 	CreatedAt time.Time `json:"created_at"`
 	// Creator identifier
 	CreatedBy string `json:"created_by"`
-	//
+	// A specific revision of a custom static analysis rule.
 	LastRevision CustomRuleRevision `json:"last_revision"`
 	// Rule name
 	Name string `json:"name"`

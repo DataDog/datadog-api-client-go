@@ -10,11 +10,11 @@ import (
 
 // MaintenanceDataRelationships The relationships of a maintenance.
 type MaintenanceDataRelationships struct {
-	//
+	// The Datadog user who created the maintenance.
 	CreatedByUser *MaintenanceDataRelationshipsCreatedByUser `json:"created_by_user,omitempty"`
-	//
+	// The Datadog user who last modified the maintenance.
 	LastModifiedByUser *MaintenanceDataRelationshipsLastModifiedByUser `json:"last_modified_by_user,omitempty"`
-	//
+	// The status page the maintenance belongs to.
 	StatusPage *MaintenanceDataRelationshipsStatusPage `json:"status_page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

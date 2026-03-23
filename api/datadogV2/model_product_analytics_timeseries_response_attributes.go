@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProductAnalyticsTimeseriesResponseAttributes
+// ProductAnalyticsTimeseriesResponseAttributes Attributes of a timeseries analytics response, containing series data, timestamps, and interval definitions.
 type ProductAnalyticsTimeseriesResponseAttributes struct {
-	//
+	// Interval definitions describing the time buckets used in the response.
 	Intervals []ProductAnalyticsInterval `json:"intervals,omitempty"`
-	//
+	// The list of series, each corresponding to a query or group-by combination.
 	Series []ProductAnalyticsSerie `json:"series,omitempty"`
 	// Timestamps for each data point (epoch milliseconds).
 	Times []int64 `json:"times,omitempty"`

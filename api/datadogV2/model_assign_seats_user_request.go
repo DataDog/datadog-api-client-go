@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AssignSeatsUserRequest
+// AssignSeatsUserRequest The request body for assigning seats to users for a product code.
 type AssignSeatsUserRequest struct {
-	//
+	// The request data object containing attributes for assigning seats to users.
 	Data *AssignSeatsUserRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

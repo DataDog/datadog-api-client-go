@@ -10,7 +10,7 @@ import (
 
 // ProductAnalyticsScalarColumn A column in a scalar response.
 type ProductAnalyticsScalarColumn struct {
-	//
+	// Metadata associated with a scalar response column, including optional unit information.
 	Meta *ProductAnalyticsScalarColumnMeta `json:"meta,omitempty"`
 	// Column name (facet name for group-by, or "query").
 	Name *string `json:"name,omitempty"`

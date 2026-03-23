@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SeatUserMeta
+// SeatUserMeta Pagination metadata for the seat users list response.
 type SeatUserMeta struct {
 	// The cursor for the seat users.
 	Cursor *string `json:"cursor,omitempty"`

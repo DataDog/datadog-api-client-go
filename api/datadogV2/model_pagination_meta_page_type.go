@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PaginationMetaPageType
+// PaginationMetaPageType The pagination type used for offset-based pagination.
 type PaginationMetaPageType string
 
 // List of PaginationMetaPageType.

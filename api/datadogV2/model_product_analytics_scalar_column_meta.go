@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProductAnalyticsScalarColumnMeta
+// ProductAnalyticsScalarColumnMeta Metadata associated with a scalar response column, including optional unit information.
 type ProductAnalyticsScalarColumnMeta struct {
-	//
+	// Unit definitions for the column values, if applicable.
 	Unit []ProductAnalyticsUnit `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

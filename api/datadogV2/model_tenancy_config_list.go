@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TenancyConfigList
+// TenancyConfigList Response containing a list of OCI tenancy integration configurations.
 type TenancyConfigList struct {
-	//
+	// List of OCI tenancy integration configuration objects.
 	Data []TenancyConfigData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

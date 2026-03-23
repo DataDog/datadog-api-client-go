@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BudgetValidationResponse
+// BudgetValidationResponse The response object for a budget validation request, containing the validation result data.
 type BudgetValidationResponse struct {
-	//
+	// The data object for a budget validation response, containing the resource type, ID, and validation attributes.
 	Data *BudgetValidationResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

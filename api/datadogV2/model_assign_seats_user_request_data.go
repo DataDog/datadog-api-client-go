@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AssignSeatsUserRequestData
+// AssignSeatsUserRequestData The request data object containing attributes for assigning seats to users.
 type AssignSeatsUserRequestData struct {
-	//
+	// Attributes specifying the product and users to whom seats will be assigned.
 	Attributes AssignSeatsUserRequestDataAttributes `json:"attributes"`
 	// The ID of the assign seats user request.
 	Id *string `json:"id,omitempty"`

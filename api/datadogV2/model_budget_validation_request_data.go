@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BudgetValidationRequestData
+// BudgetValidationRequestData The data object for a budget validation request, containing the resource type, ID, and budget attributes to validate.
 type BudgetValidationRequestData struct {
-	//
+	// The attributes of a budget including all its monthly entries.
 	Attributes *BudgetWithEntriesDataAttributes `json:"attributes,omitempty"`
-	//
+	// The unique identifier of the budget to validate.
 	Id *string `json:"id,omitempty"`
 	// Budget resource type.
 	Type BudgetWithEntriesDataType `json:"type"`

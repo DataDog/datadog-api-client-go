@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TenancyConfigDataAttributesLogsConfig
+// TenancyConfigDataAttributesLogsConfig Log collection configuration for an OCI tenancy, indicating which compartments and services have log collection enabled.
 type TenancyConfigDataAttributesLogsConfig struct {
-	//
+	// List of compartment tag filters scoping log collection to specific compartments.
 	CompartmentTagFilters []string `json:"compartment_tag_filters,omitempty"`
-	//
+	// Whether log collection is enabled for the tenancy.
 	Enabled *bool `json:"enabled,omitempty"`
-	//
+	// List of OCI service names for which log collection is enabled.
 	EnabledServices []string `json:"enabled_services,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

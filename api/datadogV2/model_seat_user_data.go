@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SeatUserData
+// SeatUserData A seat user resource object containing its ID, type, and associated attributes.
 type SeatUserData struct {
-	//
+	// Attributes of a user assigned to a seat, including their email, name, and assignment timestamp.
 	Attributes *SeatUserDataAttributes `json:"attributes,omitempty"`
 	// The ID of the seat user.
 	Id datadog.NullableString `json:"id,omitempty"`

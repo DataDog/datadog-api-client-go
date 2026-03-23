@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SyntheticsNetworkTestEdit
+// SyntheticsNetworkTestEdit Data object for creating or editing a Network Path test.
 type SyntheticsNetworkTestEdit struct {
 	// Object containing details about a Network Path test.
 	Attributes SyntheticsNetworkTest `json:"attributes"`

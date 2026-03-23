@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IncidentHandleRelationshipsRequest
+// IncidentHandleRelationshipsRequest Relationships to associate with an incident handle in a create or update request.
 type IncidentHandleRelationshipsRequest struct {
-	//
+	// A single relationship object for an incident handle, wrapping the related resource data.
 	CommanderUser *IncidentHandleRelationship `json:"commander_user,omitempty"`
-	//
+	// A single relationship object for an incident handle, wrapping the related resource data.
 	IncidentType IncidentHandleRelationship `json:"incident_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

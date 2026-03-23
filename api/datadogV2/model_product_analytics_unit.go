@@ -10,17 +10,17 @@ import (
 
 // ProductAnalyticsUnit A unit definition for metric values.
 type ProductAnalyticsUnit struct {
-	//
+	// The unit family (e.g., time, bytes).
 	Family *string `json:"family,omitempty"`
-	//
+	// Numeric identifier for the unit.
 	Id *int64 `json:"id,omitempty"`
-	//
+	// The full name of the unit (e.g., nanosecond).
 	Name *string `json:"name,omitempty"`
-	//
+	// Plural form of the unit name (e.g., nanoseconds).
 	Plural *string `json:"plural,omitempty"`
-	//
+	// Conversion factor relative to the base unit of the family.
 	ScaleFactor *float64 `json:"scale_factor,omitempty"`
-	//
+	// Abbreviated unit name (e.g., ns).
 	ShortName *string `json:"short_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

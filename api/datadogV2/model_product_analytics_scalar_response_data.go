@@ -10,11 +10,11 @@ import (
 
 // ProductAnalyticsScalarResponseData Data object for a scalar response.
 type ProductAnalyticsScalarResponseData struct {
-	//
+	// Attributes of a scalar analytics response, containing the result columns.
 	Attributes *ProductAnalyticsScalarResponseAttributes `json:"attributes,omitempty"`
-	//
+	// Unique identifier for this response data object.
 	Id *string `json:"id,omitempty"`
-	//
+	// The resource type identifier for a scalar analytics response.
 	Type *ProductAnalyticsScalarResponseType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

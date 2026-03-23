@@ -8,23 +8,23 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UpdateTenancyConfigDataAttributes
+// UpdateTenancyConfigDataAttributes Attributes for updating an existing OCI tenancy integration configuration, including optional credentials, region settings, and collection options.
 type UpdateTenancyConfigDataAttributes struct {
-	//
+	// OCI API signing key credentials used to update the Datadog integration's authentication with the OCI tenancy.
 	AuthCredentials *UpdateTenancyConfigDataAttributesAuthCredentials `json:"auth_credentials,omitempty"`
-	//
+	// Whether cost data collection from OCI is enabled for the tenancy.
 	CostCollectionEnabled *bool `json:"cost_collection_enabled,omitempty"`
-	//
+	// The home region of the OCI tenancy (for example, us-ashburn-1).
 	HomeRegion *string `json:"home_region,omitempty"`
-	//
+	// Log collection configuration for updating an OCI tenancy, controlling which compartments and services have log collection enabled.
 	LogsConfig *UpdateTenancyConfigDataAttributesLogsConfig `json:"logs_config,omitempty"`
-	//
+	// Metrics collection configuration for updating an OCI tenancy, controlling which compartments and services are included or excluded.
 	MetricsConfig *UpdateTenancyConfigDataAttributesMetricsConfig `json:"metrics_config,omitempty"`
-	//
+	// Region configuration for updating an OCI tenancy, specifying which regions are available, enabled, or disabled for data collection.
 	RegionsConfig *UpdateTenancyConfigDataAttributesRegionsConfig `json:"regions_config,omitempty"`
-	//
+	// Whether resource collection from OCI is enabled for the tenancy.
 	ResourceCollectionEnabled *bool `json:"resource_collection_enabled,omitempty"`
-	//
+	// The OCID of the OCI user used by the Datadog integration for authentication.
 	UserOcid *string `json:"user_ocid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

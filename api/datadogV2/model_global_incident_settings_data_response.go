@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// GlobalIncidentSettingsDataResponse
+// GlobalIncidentSettingsDataResponse Data object in the global incident settings response.
 type GlobalIncidentSettingsDataResponse struct {
 	// Global incident settings attributes
 	Attributes GlobalIncidentSettingsAttributesResponse `json:"attributes"`

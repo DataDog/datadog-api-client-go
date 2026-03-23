@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRuleRevisionAttributes
+// CustomRuleRevisionAttributes Attributes of a custom rule revision, including code, metadata, and test cases.
 type CustomRuleRevisionAttributes struct {
 	// Rule arguments
 	Arguments []Argument `json:"arguments"`

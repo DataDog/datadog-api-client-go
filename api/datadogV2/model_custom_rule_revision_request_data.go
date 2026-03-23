@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRuleRevisionRequestData
+// CustomRuleRevisionRequestData Data object for a custom rule revision create request.
 type CustomRuleRevisionRequestData struct {
-	//
+	// Input attributes for creating or updating a custom rule revision.
 	Attributes *CustomRuleRevisionInputAttributes `json:"attributes,omitempty"`
 	// Revision identifier
 	Id *string `json:"id,omitempty"`

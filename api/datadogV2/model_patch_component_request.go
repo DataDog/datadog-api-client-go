@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PatchComponentRequest
+// PatchComponentRequest Request object for updating a component.
 type PatchComponentRequest struct {
-	//
+	// The data object for updating a component.
 	Data *PatchComponentRequestData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

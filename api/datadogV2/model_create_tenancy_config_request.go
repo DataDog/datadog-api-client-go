@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateTenancyConfigRequest
+// CreateTenancyConfigRequest Request body for creating a new OCI tenancy integration configuration.
 type CreateTenancyConfigRequest struct {
-	//
+	// The data object for creating a new OCI tenancy integration configuration, including the tenancy ID, type, and configuration attributes.
 	Data CreateTenancyConfigData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

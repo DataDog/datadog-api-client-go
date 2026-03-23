@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// StatusPageDataAttributesComponentsItems
+// StatusPageDataAttributesComponentsItems A component displayed on a status page.
 type StatusPageDataAttributesComponentsItems struct {
 	// If the component is of type `group`, the components within the group.
 	Components []StatusPageDataAttributesComponentsItemsComponentsItems `json:"components,omitempty"`

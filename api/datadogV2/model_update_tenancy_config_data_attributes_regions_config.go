@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UpdateTenancyConfigDataAttributesRegionsConfig
+// UpdateTenancyConfigDataAttributesRegionsConfig Region configuration for updating an OCI tenancy, specifying which regions are available, enabled, or disabled for data collection.
 type UpdateTenancyConfigDataAttributesRegionsConfig struct {
-	//
+	// List of OCI regions available for data collection in the tenancy.
 	Available []string `json:"available,omitempty"`
-	//
+	// List of OCI regions explicitly disabled for data collection.
 	Disabled []string `json:"disabled,omitempty"`
-	//
+	// List of OCI regions enabled for data collection.
 	Enabled []string `json:"enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

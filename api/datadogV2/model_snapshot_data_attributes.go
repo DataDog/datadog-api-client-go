@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SnapshotDataAttributes
+// SnapshotDataAttributes Attributes of a heatmap snapshot, including view context, device information, and audit metadata.
 type SnapshotDataAttributes struct {
-	//
+	// Unique identifier of the RUM application.
 	ApplicationId *string `json:"application_id,omitempty"`
-	//
+	// Timestamp when the snapshot was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	//
+	// Display name of the user who created the snapshot.
 	CreatedBy *string `json:"created_by,omitempty"`
-	//
+	// Email handle of the user who created the snapshot.
 	CreatedByHandle *string `json:"created_by_handle,omitempty"`
-	//
+	// Numeric identifier of the user who created the snapshot.
 	CreatedByUserId *int64 `json:"created_by_user_id,omitempty"`
-	//
+	// Device type used when capturing the snapshot (e.g., desktop, mobile, tablet).
 	DeviceType *string `json:"device_type,omitempty"`
-	//
+	// Unique identifier of the RUM event associated with the snapshot.
 	EventId *string `json:"event_id,omitempty"`
-	//
+	// Indicates whether the device type was explicitly selected by the user rather than auto-detected.
 	IsDeviceTypeSelectedByUser *bool `json:"is_device_type_selected_by_user,omitempty"`
-	//
+	// Timestamp when the snapshot was last modified.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
-	//
+	// Numeric identifier of the organization that owns the snapshot.
 	OrgId *int64 `json:"org_id,omitempty"`
-	//
+	// Unique identifier of the RUM session associated with the snapshot.
 	SessionId *string `json:"session_id,omitempty"`
-	//
+	// Human-readable name for the snapshot.
 	SnapshotName *string `json:"snapshot_name,omitempty"`
-	//
+	// Offset in milliseconds from the start of the session at which the snapshot was captured.
 	Start *int64 `json:"start,omitempty"`
-	//
+	// Unique identifier of the RUM view associated with the snapshot.
 	ViewId *string `json:"view_id,omitempty"`
-	//
+	// URL path or name of the view where the snapshot was captured.
 	ViewName *string `json:"view_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

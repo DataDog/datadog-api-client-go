@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRuleResponseData
+// CustomRuleResponseData Data object returned in a custom rule response, including its ID, type, and attributes.
 type CustomRuleResponseData struct {
-	//
+	// A custom static analysis rule within a ruleset.
 	Attributes CustomRule `json:"attributes"`
 	// Rule identifier
 	Id string `json:"id"`

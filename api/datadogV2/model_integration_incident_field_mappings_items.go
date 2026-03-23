@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationIncidentFieldMappingsItems
+// IntegrationIncidentFieldMappingsItems Mapping between an incident user-defined field and a case field.
 type IntegrationIncidentFieldMappingsItems struct {
-	//
+	// The case field to map the incident field value to.
 	CaseField *string `json:"case_field,omitempty"`
-	//
+	// The identifier of the incident user-defined field to map from.
 	IncidentUserDefinedFieldId *string `json:"incident_user_defined_field_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

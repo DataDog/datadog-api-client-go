@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UpdateTenancyConfigRequest
+// UpdateTenancyConfigRequest Request body for updating an existing OCI tenancy integration configuration.
 type UpdateTenancyConfigRequest struct {
-	//
+	// The data object for updating an existing OCI tenancy integration configuration, including the tenancy ID, type, and updated attributes.
 	Data UpdateTenancyConfigData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

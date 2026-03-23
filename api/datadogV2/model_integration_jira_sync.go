@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationJiraSync
+// IntegrationJiraSync Synchronization configuration for Jira integration.
 type IntegrationJiraSync struct {
-	//
+	// Whether Jira field synchronization is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
-	//
+	// Field synchronization properties for Jira integration.
 	Properties *IntegrationJiraSyncProperties `json:"properties,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationServiceNowSyncConfig139772721534496
+// IntegrationServiceNowSyncConfig139772721534496 Field-level synchronization properties for ServiceNow integration.
 type IntegrationServiceNowSyncConfig139772721534496 struct {
-	// Sync property configuration
+	// Sync property configuration.
 	Comments *SyncProperty `json:"comments,omitempty"`
-	//
+	// Priority synchronization configuration for ServiceNow integration.
 	Priority *IntegrationServiceNowSyncConfigPriority `json:"priority,omitempty"`
-	// Sync property with mapping configuration
+	// Sync property with mapping configuration.
 	Status *SyncPropertyWithMapping `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

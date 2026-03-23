@@ -8,29 +8,29 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BudgetWithEntriesDataAttributes
+// BudgetWithEntriesDataAttributes The attributes of a budget including all its monthly entries.
 type BudgetWithEntriesDataAttributes struct {
-	//
+	// The timestamp when the budget was created.
 	CreatedAt *int64 `json:"created_at,omitempty"`
-	//
+	// The ID of the user that created the budget.
 	CreatedBy *string `json:"created_by,omitempty"`
-	//
+	// The month when the budget ends, in YYYYMM format.
 	EndMonth *int64 `json:"end_month,omitempty"`
-	//
+	// The list of monthly budget entries.
 	Entries []BudgetWithEntriesDataAttributesEntriesItems `json:"entries,omitempty"`
-	//
+	// The cost query used to track spending against the budget.
 	MetricsQuery *string `json:"metrics_query,omitempty"`
-	//
+	// The name of the budget.
 	Name *string `json:"name,omitempty"`
-	//
+	// The ID of the organization the budget belongs to.
 	OrgId *int64 `json:"org_id,omitempty"`
-	//
+	// The month when the budget starts, in YYYYMM format.
 	StartMonth *int64 `json:"start_month,omitempty"`
-	//
+	// The total budget amount across all entries.
 	TotalAmount *float64 `json:"total_amount,omitempty"`
-	//
+	// The timestamp when the budget was last updated.
 	UpdatedAt *int64 `json:"updated_at,omitempty"`
-	//
+	// The ID of the user that last updated the budget.
 	UpdatedBy *string `json:"updated_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

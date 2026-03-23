@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRulesetResponse
+// CustomRulesetResponse Response containing a single custom ruleset.
 type CustomRulesetResponse struct {
-	//
+	// A custom static analysis ruleset containing a set of user-defined rules.
 	Data CustomRuleset `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

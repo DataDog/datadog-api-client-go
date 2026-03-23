@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UpdateTenancyConfigDataAttributesAuthCredentials
+// UpdateTenancyConfigDataAttributesAuthCredentials OCI API signing key credentials used to update the Datadog integration's authentication with the OCI tenancy.
 type UpdateTenancyConfigDataAttributesAuthCredentials struct {
-	//
+	// The fingerprint of the OCI API signing key used for authentication.
 	Fingerprint *string `json:"fingerprint,omitempty"`
-	//
+	// The PEM-encoded private key corresponding to the OCI API signing key fingerprint.
 	PrivateKey string `json:"private_key"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems
+// BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems A tag filter used to scope a budget entry to specific resource tags.
 type BudgetWithEntriesDataAttributesEntriesItemsTagFiltersItems struct {
-	//
+	// The tag key to filter on.
 	TagKey *string `json:"tag_key,omitempty"`
-	//
+	// The tag value to filter on.
 	TagValue *string `json:"tag_value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

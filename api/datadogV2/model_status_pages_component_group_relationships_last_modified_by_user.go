@@ -12,7 +12,7 @@ import (
 
 // StatusPagesComponentGroupRelationshipsLastModifiedByUser The Datadog user who last modified the component group.
 type StatusPagesComponentGroupRelationshipsLastModifiedByUser struct {
-	//
+	// The data object identifying the Datadog user who last modified the component group.
 	Data StatusPagesComponentGroupRelationshipsLastModifiedByUserData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

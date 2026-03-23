@@ -10,15 +10,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProjectCreateAttributes Project creation attributes
+// ProjectCreateAttributes Project creation attributes.
 type ProjectCreateAttributes struct {
-	// List of enabled custom case type IDs
+	// List of enabled custom case type IDs.
 	EnabledCustomCaseTypes []string `json:"enabled_custom_case_types,omitempty"`
-	// Project's key. Cannot be "CASE"
+	// Project's key. Cannot be "CASE".
 	Key string `json:"key"`
-	// Project name
+	// Project name.
 	Name string `json:"name"`
-	// Team UUID to associate with the project
+	// Team UUID to associate with the project.
 	TeamUuid *string `json:"team_uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

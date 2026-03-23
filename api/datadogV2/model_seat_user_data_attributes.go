@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SeatUserDataAttributes
+// SeatUserDataAttributes Attributes of a user assigned to a seat, including their email, name, and assignment timestamp.
 type SeatUserDataAttributes struct {
 	// The date and time the seat was assigned.
 	AssignedAt datadog.NullableTime `json:"assigned_at,omitempty"`
