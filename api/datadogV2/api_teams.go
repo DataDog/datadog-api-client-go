@@ -1724,7 +1724,7 @@ func (a *TeamsApi) GetTeamSync(ctx _context.Context, filterSource TeamSyncAttrib
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2772,12 +2772,16 @@ func (a *TeamsApi) RemoveTeamHierarchyLink(ctx _context.Context, linkId string) 
 }
 
 // SyncTeams Link Teams with GitHub Teams.
-// This endpoint attempts to link your existing Datadog teams with GitHub teams by matching their names.
+// This endpoint configures synchronization between your existing Datadog teams and GitHub teams by matching their names.
 // It evaluates all current Datadog teams and compares them against teams in the GitHub organization
 // connected to your Datadog account, based on Datadog Team handle and GitHub Team slug
 // (lowercased and kebab-cased).
 //
 // This operation is read-only on the GitHub side, no teams will be modified or created.
+//
+// Optionally, provide `selection_state` to limit synchronization
+// to specific teams or organizations and their subtrees, instead
+// of syncing all teams.
 //
 // [A GitHub organization must be connected to your Datadog account](https://docs.datadoghq.com/integrations/github/),
 // and the GitHub App integrated with Datadog must have the `Members Read` permission. Matching is performed by comparing the Datadog team handle to the GitHub team slug

@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/team/sync?filter%5Bsource%5D=github
+  response:
+    body: '{"data":[{"id":"3d33cc55-aea4-4801-bb75-139d347298c9","type":"team_sync_bulk","attributes":{"frequency":"once","selection_state":[{"external_id":{"type":"organization","value":"1"},"operation":"include","scope":"subtree"}],"source":"github","sync_membership":false,"type":"link"}}]}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2
