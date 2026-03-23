@@ -1,4 +1,4 @@
-// Send shared dashboard invitation email returns "OK" response
+// Send shared dashboard invitation email returns OK
 
 package main
 
@@ -13,22 +13,23 @@ import (
 )
 
 func main() {
+	// there is a valid "shared_dashboard" in the system
+	SharedDashboardToken := os.Getenv("SHARED_DASHBOARD_TOKEN")
+
 	body := datadogV1.SharedDashboardInvites{
 		Data: datadogV1.SharedDashboardInvitesData{
-			SharedDashboardInvitesDataList: &[]datadogV1.SharedDashboardInvitesDataObject{
-				{
-					Attributes: datadogV1.SharedDashboardInvitesDataObjectAttributes{
-						Email: datadog.PtrString("test@datadoghq.com"),
-					},
-					Type: datadogV1.DASHBOARDINVITETYPE_PUBLIC_DASHBOARD_INVITATION,
+			SharedDashboardInvitesDataObject: &datadogV1.SharedDashboardInvitesDataObject{
+				Attributes: datadogV1.SharedDashboardInvitesDataObjectAttributes{
+					Email: datadog.PtrString("exampledashboard@datadoghq.com"),
 				},
+				Type: datadogV1.DASHBOARDINVITETYPE_PUBLIC_DASHBOARD_INVITATION,
 			}},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV1.NewDashboardsApi(apiClient)
-	resp, r, err := api.SendPublicDashboardInvitation(ctx, "token", body)
+	resp, r, err := api.SendPublicDashboardInvitation(ctx, SharedDashboardToken, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.SendPublicDashboardInvitation`: %v\n", err)
