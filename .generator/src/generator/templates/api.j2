@@ -370,7 +370,7 @@ func (a *{{ classname }}) {{ operation.operationId }}WithPagination(ctx _context
 	{{ get_container(operation, pagination.limitParam) }} = &pageSize_
 	{%- if pagination.pageParam %}
 	{%- set pageType = get_container_type(operation, pagination.pageParam) %}
-        page_ := {{ pageType }}(0)
+        page_ := {{ pageType }}({{ pagination.pageStart | default(0) }})
 	{{ get_container(operation, pagination.pageParam) }} = &page_
 	{%- endif %}
 	{%- endif %}
