@@ -12,6 +12,8 @@ import (
 
 // FunnelWidgetDefinition The funnel visualization displays a funnel of user sessions that maps a sequence of view navigation and user interaction in your application.
 type FunnelWidgetDefinition struct {
+	// The description of the widget.
+	Description *string `json:"description,omitempty"`
 	// Request payload used to query items.
 	Requests []FunnelWidgetRequest `json:"requests"`
 	// Time setting for the widget.
@@ -48,6 +50,34 @@ func NewFunnelWidgetDefinitionWithDefaults() *FunnelWidgetDefinition {
 	var typeVar FunnelWidgetDefinitionType = FUNNELWIDGETDEFINITIONTYPE_FUNNEL
 	this.Type = typeVar
 	return &this
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *FunnelWidgetDefinition) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FunnelWidgetDefinition) GetDescriptionOk() (*string, bool) {
+	if o == nil || o.Description == nil {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *FunnelWidgetDefinition) HasDescription() bool {
+	return o != nil && o.Description != nil
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *FunnelWidgetDefinition) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetRequests returns the Requests field value.
@@ -214,6 +244,9 @@ func (o FunnelWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
 	toSerialize["requests"] = o.Requests
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
@@ -238,12 +271,13 @@ func (o FunnelWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FunnelWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Requests   *[]FunnelWidgetRequest      `json:"requests"`
-		Time       *WidgetTime                 `json:"time,omitempty"`
-		Title      *string                     `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign            `json:"title_align,omitempty"`
-		TitleSize  *string                     `json:"title_size,omitempty"`
-		Type       *FunnelWidgetDefinitionType `json:"type"`
+		Description *string                     `json:"description,omitempty"`
+		Requests    *[]FunnelWidgetRequest      `json:"requests"`
+		Time        *WidgetTime                 `json:"time,omitempty"`
+		Title       *string                     `json:"title,omitempty"`
+		TitleAlign  *WidgetTextAlign            `json:"title_align,omitempty"`
+		TitleSize   *string                     `json:"title_size,omitempty"`
+		Type        *FunnelWidgetDefinitionType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -256,12 +290,13 @@ func (o *FunnelWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"requests", "time", "title", "title_align", "title_size", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "requests", "time", "title", "title_align", "title_size", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Description = all.Description
 	o.Requests = *all.Requests
 	o.Time = all.Time
 	o.Title = all.Title

@@ -23,6 +23,7 @@ func main() {
 						Title:        datadog.PtrString(""),
 						TitleSize:    datadog.PtrString("16"),
 						TitleAlign:   datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Description:  datadog.PtrString("Example widget description"),
 						ShowLegend:   datadog.PtrBool(true),
 						LegendLayout: datadogV1.TIMESERIESWIDGETLEGENDLAYOUT_AUTO.Ptr(),
 						Time: &datadogV1.WidgetTime{
