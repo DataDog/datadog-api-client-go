@@ -1,4 +1,4 @@
-// Get all datasets returns "OK" response
+// Get a Data Access Control dataset by ID returns "OK" response
 
 package main
 
@@ -15,16 +15,16 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetAllDatasets", true)
+	configuration.SetUnstableOperationEnabled("v2.GetDataset", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewDatasetsApi(apiClient)
-	resp, r, err := api.GetAllDatasets(ctx)
+	api := datadogV2.NewDataAccessControlsApi(apiClient)
+	resp, r, err := api.GetDataset(ctx, "dataset_id")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DatasetsApi.GetAllDatasets`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `DataAccessControlsApi.GetDataset`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `DatasetsApi.GetAllDatasets`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `DataAccessControlsApi.GetDataset`:\n%s\n", responseContent)
 }

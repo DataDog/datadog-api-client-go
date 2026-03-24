@@ -1,4 +1,4 @@
-// Create a dataset returns "OK" response
+// Create a Data Access Control dataset returns "OK" response
 
 package main
 
@@ -25,7 +25,7 @@ func main() {
 						Filters: []string{
 							"@application.id:ABCD",
 						},
-						Product: "metrics",
+						Product: "logs",
 					},
 				},
 			},
@@ -36,14 +36,14 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.CreateDataset", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewDatasetsApi(apiClient)
+	api := datadogV2.NewDataAccessControlsApi(apiClient)
 	resp, r, err := api.CreateDataset(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DatasetsApi.CreateDataset`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `DataAccessControlsApi.CreateDataset`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `DatasetsApi.CreateDataset`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `DataAccessControlsApi.CreateDataset`:\n%s\n", responseContent)
 }
