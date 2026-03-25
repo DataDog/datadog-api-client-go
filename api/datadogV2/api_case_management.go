@@ -1807,7 +1807,7 @@ func (a *CaseManagementApi) SearchCasesWithPagination(ctx _context.Context, o ..
 		pageSize_ = *o[0].PageSize
 	}
 	o[0].PageSize = &pageSize_
-	page_ := int64(0)
+	page_ := int64(1)
 	o[0].PageNumber = &page_
 
 	items := make(chan datadog.PaginationResult[Case], pageSize_)

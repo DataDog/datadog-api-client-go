@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCaseManagementApi(apiClient)
-	resp, _ := api.SearchCasesWithPagination(ctx, *datadogV2.NewSearchCasesOptionalParameters())
+	resp, _ := api.SearchCasesWithPagination(ctx, *datadogV2.NewSearchCasesOptionalParameters().WithPageSize(2).WithFilter("status:closed"))
 
 	for paginationResult := range resp {
 		if paginationResult.Error != nil {
