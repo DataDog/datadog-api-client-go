@@ -24,8 +24,9 @@ func main() {
 		ExclusionFilters: []datadogV1.LogsExclusion{
 			{
 				Filter: &datadogV1.LogsExclusionFilter{
-					Query:      datadog.PtrString("*"),
-					SampleRate: 1.0,
+					Query:           datadog.PtrString("*"),
+					SampleAttribute: datadog.PtrString("@ci.job_id"),
+					SampleRate:      1.0,
 				},
 				Name: "payment",
 			},
