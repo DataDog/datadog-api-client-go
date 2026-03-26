@@ -841,6 +841,7 @@
 //   - [SyntheticsApi.DeleteSyntheticsTests]
 //   - [SyntheticsApi.EditSyntheticsSuite]
 //   - [SyntheticsApi.GetOnDemandConcurrencyCap]
+//   - [SyntheticsApi.GetSyntheticsFastTestResult]
 //   - [SyntheticsApi.GetSyntheticsNetworkTest]
 //   - [SyntheticsApi.GetSyntheticsSuite]
 //   - [SyntheticsApi.PatchGlobalVariable]
