@@ -46,6 +46,7 @@ type WidgetDefinition struct {
 	ToplistWidgetDefinition        *ToplistWidgetDefinition
 	TopologyMapWidgetDefinition    *TopologyMapWidgetDefinition
 	TreeMapWidgetDefinition        *TreeMapWidgetDefinition
+	WildcardWidgetDefinition       *WildcardWidgetDefinition
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -229,6 +230,11 @@ func TopologyMapWidgetDefinitionAsWidgetDefinition(v *TopologyMapWidgetDefinitio
 // TreeMapWidgetDefinitionAsWidgetDefinition is a convenience function that returns TreeMapWidgetDefinition wrapped in WidgetDefinition.
 func TreeMapWidgetDefinitionAsWidgetDefinition(v *TreeMapWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{TreeMapWidgetDefinition: v}
+}
+
+// WildcardWidgetDefinitionAsWidgetDefinition is a convenience function that returns WildcardWidgetDefinition wrapped in WidgetDefinition.
+func WildcardWidgetDefinitionAsWidgetDefinition(v *WildcardWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{WildcardWidgetDefinition: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -847,6 +853,23 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.TreeMapWidgetDefinition = nil
 	}
 
+	// try to unmarshal data into WildcardWidgetDefinition
+	err = datadog.Unmarshal(data, &obj.WildcardWidgetDefinition)
+	if err == nil {
+		if obj.WildcardWidgetDefinition != nil && obj.WildcardWidgetDefinition.UnparsedObject == nil {
+			jsonWildcardWidgetDefinition, _ := datadog.Marshal(obj.WildcardWidgetDefinition)
+			if string(jsonWildcardWidgetDefinition) == "{}" { // empty struct
+				obj.WildcardWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.WildcardWidgetDefinition = nil
+		}
+	} else {
+		obj.WildcardWidgetDefinition = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.AlertGraphWidgetDefinition = nil
@@ -885,6 +908,7 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.ToplistWidgetDefinition = nil
 		obj.TopologyMapWidgetDefinition = nil
 		obj.TreeMapWidgetDefinition = nil
+		obj.WildcardWidgetDefinition = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -1034,6 +1058,10 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if obj.TreeMapWidgetDefinition != nil {
 		return datadog.Marshal(&obj.TreeMapWidgetDefinition)
+	}
+
+	if obj.WildcardWidgetDefinition != nil {
+		return datadog.Marshal(&obj.WildcardWidgetDefinition)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -1186,6 +1214,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.TreeMapWidgetDefinition != nil {
 		return obj.TreeMapWidgetDefinition
+	}
+
+	if obj.WildcardWidgetDefinition != nil {
+		return obj.WildcardWidgetDefinition
 	}
 
 	// all schemas are nil
