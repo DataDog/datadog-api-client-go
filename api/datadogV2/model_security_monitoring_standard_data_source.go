@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SecurityMonitoringStandardDataSource Source of events, either logs, audit trail, or Datadog events.
+// SecurityMonitoringStandardDataSource Source of events, either logs, audit trail, or Datadog events. `app_sec_spans` is deprecated in favor of `spans`.
 type SecurityMonitoringStandardDataSource string
 
 // List of SecurityMonitoringStandardDataSource.
