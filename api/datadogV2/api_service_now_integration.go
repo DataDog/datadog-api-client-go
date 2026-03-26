@@ -6,8 +6,6 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -26,15 +24,6 @@ func (a *ServiceNowIntegrationApi) CreateServiceNowTemplate(ctx _context.Context
 		localVarPostBody    interface{}
 		localVarReturnValue ServiceNowTemplateResponse
 	)
-
-	operationId := "v2.CreateServiceNowTemplate"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceNowIntegrationApi.CreateServiceNowTemplate")
 	if err != nil {
@@ -124,15 +113,6 @@ func (a *ServiceNowIntegrationApi) DeleteServiceNowTemplate(ctx _context.Context
 		localVarPostBody   interface{}
 	)
 
-	operationId := "v2.DeleteServiceNowTemplate"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceNowIntegrationApi.DeleteServiceNowTemplate")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -210,15 +190,6 @@ func (a *ServiceNowIntegrationApi) GetServiceNowTemplate(ctx _context.Context, t
 		localVarPostBody    interface{}
 		localVarReturnValue ServiceNowTemplateResponse
 	)
-
-	operationId := "v2.GetServiceNowTemplate"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceNowIntegrationApi.GetServiceNowTemplate")
 	if err != nil {
@@ -307,15 +278,6 @@ func (a *ServiceNowIntegrationApi) ListServiceNowAssignmentGroups(ctx _context.C
 		localVarReturnValue ServiceNowAssignmentGroupsResponse
 	)
 
-	operationId := "v2.ListServiceNowAssignmentGroups"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceNowIntegrationApi.ListServiceNowAssignmentGroups")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -402,15 +364,6 @@ func (a *ServiceNowIntegrationApi) ListServiceNowBusinessServices(ctx _context.C
 		localVarPostBody    interface{}
 		localVarReturnValue ServiceNowBusinessServicesResponse
 	)
-
-	operationId := "v2.ListServiceNowBusinessServices"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceNowIntegrationApi.ListServiceNowBusinessServices")
 	if err != nil {
@@ -499,15 +452,6 @@ func (a *ServiceNowIntegrationApi) ListServiceNowInstances(ctx _context.Context)
 		localVarReturnValue ServiceNowInstancesResponse
 	)
 
-	operationId := "v2.ListServiceNowInstances"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceNowIntegrationApi.ListServiceNowInstances")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -594,15 +538,6 @@ func (a *ServiceNowIntegrationApi) ListServiceNowTemplates(ctx _context.Context)
 		localVarReturnValue ServiceNowTemplatesResponse
 	)
 
-	operationId := "v2.ListServiceNowTemplates"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceNowIntegrationApi.ListServiceNowTemplates")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -679,15 +614,6 @@ func (a *ServiceNowIntegrationApi) ListServiceNowUsers(ctx _context.Context, ins
 		localVarPostBody    interface{}
 		localVarReturnValue ServiceNowUsersResponse
 	)
-
-	operationId := "v2.ListServiceNowUsers"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceNowIntegrationApi.ListServiceNowUsers")
 	if err != nil {
@@ -775,15 +701,6 @@ func (a *ServiceNowIntegrationApi) UpdateServiceNowTemplate(ctx _context.Context
 		localVarPostBody    interface{}
 		localVarReturnValue ServiceNowTemplateResponse
 	)
-
-	operationId := "v2.UpdateServiceNowTemplate"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ServiceNowIntegrationApi.UpdateServiceNowTemplate")
 	if err != nil {

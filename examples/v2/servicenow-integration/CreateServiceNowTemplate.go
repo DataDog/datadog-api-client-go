@@ -33,7 +33,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.CreateServiceNowTemplate", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewServiceNowIntegrationApi(apiClient)
 	resp, r, err := api.CreateServiceNowTemplate(ctx, body)

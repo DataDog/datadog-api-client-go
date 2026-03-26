@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListServiceNowTemplates", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewServiceNowIntegrationApi(apiClient)
 	resp, r, err := api.ListServiceNowTemplates(ctx)

@@ -16,7 +16,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListServiceNowAssignmentGroups", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewServiceNowIntegrationApi(apiClient)
 	resp, r, err := api.ListServiceNowAssignmentGroups(ctx, uuid.MustParse("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"))
