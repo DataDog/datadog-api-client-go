@@ -6922,6 +6922,8 @@ func (r *ListVulnerabilitiesOptionalParameters) WithFilterAssetOperatingSystemVe
 // Requests may include extensions to modify the behavior of the requested endpoint. The filter parameters follow the [JSON:API format](https://jsonapi.org/extensions/#extensions) format: `ext:$extension_name`, where `extension_name` is the name of the modifier that is being applied.
 //
 // Extensions can only include one value: `ext:modifier=value`.
+//
+// Deprecated: This API is deprecated.
 func (a *SecurityMonitoringApi) ListVulnerabilities(ctx _context.Context, o ...ListVulnerabilitiesOptionalParameters) (ListVulnerabilitiesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
