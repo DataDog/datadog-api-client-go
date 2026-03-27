@@ -38,7 +38,7 @@ type Dashboard struct {
 	// Reflow type for a **new dashboard layout** dashboard. Set this only when layout type is 'ordered'.
 	// If set to 'fixed', the dashboard expects all widgets to have a layout, and if it's set to 'auto',
 	// widgets should not have layouts.
-	ReflowType *DashboardReflowStyle `json:"reflow_type,omitempty"`
+	ReflowType *DashboardReflowType `json:"reflow_type,omitempty"`
 	// A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard.
 	RestrictedRoles []string `json:"restricted_roles,omitempty"`
 	// List of tabs for organizing dashboard widgets into groups.
@@ -364,9 +364,9 @@ func (o *Dashboard) UnsetNotifyList() {
 }
 
 // GetReflowType returns the ReflowType field value if set, zero value otherwise.
-func (o *Dashboard) GetReflowType() DashboardReflowStyle {
+func (o *Dashboard) GetReflowType() DashboardReflowType {
 	if o == nil || o.ReflowType == nil {
-		var ret DashboardReflowStyle
+		var ret DashboardReflowType
 		return ret
 	}
 	return *o.ReflowType
@@ -374,7 +374,7 @@ func (o *Dashboard) GetReflowType() DashboardReflowStyle {
 
 // GetReflowTypeOk returns a tuple with the ReflowType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *Dashboard) GetReflowTypeOk() (*DashboardReflowStyle, bool) {
+func (o *Dashboard) GetReflowTypeOk() (*DashboardReflowType, bool) {
 	if o == nil || o.ReflowType == nil {
 		return nil, false
 	}
@@ -386,8 +386,8 @@ func (o *Dashboard) HasReflowType() bool {
 	return o != nil && o.ReflowType != nil
 }
 
-// SetReflowType gets a reference to the given DashboardReflowStyle and assigns it to the ReflowType field.
-func (o *Dashboard) SetReflowType(v DashboardReflowStyle) {
+// SetReflowType gets a reference to the given DashboardReflowType and assigns it to the ReflowType field.
+func (o *Dashboard) SetReflowType(v DashboardReflowType) {
 	o.ReflowType = &v
 }
 
@@ -700,7 +700,7 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 		LayoutType              *DashboardLayoutType              `json:"layout_type"`
 		ModifiedAt              *time.Time                        `json:"modified_at,omitempty"`
 		NotifyList              datadog.NullableList[string]      `json:"notify_list,omitempty"`
-		ReflowType              *DashboardReflowStyle              `json:"reflow_type,omitempty"`
+		ReflowType              *DashboardReflowType              `json:"reflow_type,omitempty"`
 		RestrictedRoles         []string                          `json:"restricted_roles,omitempty"`
 		Tabs                    []DashboardTab                    `json:"tabs,omitempty"`
 		Tags                    datadog.NullableList[string]      `json:"tags,omitempty"`
