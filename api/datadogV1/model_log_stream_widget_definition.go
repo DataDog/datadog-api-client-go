@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LogStreamWidgetDefinition The Log Stream displays a log flow matching the defined query. Only available on FREE layout dashboards.
+// LogStreamWidgetDefinition The Log Stream displays a log flow matching the defined query.
 type LogStreamWidgetDefinition struct {
 	// Which columns to display on the widget.
 	Columns []string `json:"columns,omitempty"`

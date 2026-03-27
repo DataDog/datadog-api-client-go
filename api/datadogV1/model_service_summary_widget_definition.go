@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ServiceSummaryWidgetDefinition The service summary displays the graphs of a chosen service in your screenboard. Only available on FREE layout dashboards.
+// ServiceSummaryWidgetDefinition The service summary displays the graphs of a chosen service in your dashboard.
 type ServiceSummaryWidgetDefinition struct {
 	// The description of the widget.
 	Description *string `json:"description,omitempty"`

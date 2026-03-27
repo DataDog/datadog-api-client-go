@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SLOWidgetDefinition Use the SLO and uptime widget to track your SLOs (Service Level Objectives) and uptime on screenboards and timeboards.
+// SLOWidgetDefinition Use the SLO and uptime widget to track your SLOs (Service Level Objectives) and uptime on dashboards.
 type SLOWidgetDefinition struct {
 	// Additional filters applied to the SLO query.
 	AdditionalQueryFilters *string `json:"additional_query_filters,omitempty"`
