@@ -62,7 +62,7 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           repository: DataDog/datadog-api-client-go
-          ref: ${{ inputs.target-branch || github.ref }}
+          ref: ${{ github.ref }}
           token: ${{ steps.get_token.outputs.token }}
           path: client-repo
 
@@ -121,7 +121,7 @@ jobs:
           echo "commit_sha=${COMMIT_SHA}" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
-          GO_CLIENT_BRANCH: ${{ inputs.target-branch || github.sha }}
+          GO_CLIENT_BRANCH: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Update datadog-api-client-go to generated commit
         run: |
@@ -137,7 +137,7 @@ jobs:
           if ! go build ./...; then
             echo ""
             echo "🚨 BUILD FAILED"
-            echo "Your API spec change generates a Go client that breaks the terraform-provider-datadog build."
+            echo "This Go client change breaks the terraform-provider-datadog build."
             echo ""
             if [ "${TF_BRANCH}" = "master" ]; then
               echo "The build was tested against the terraform-provider-datadog 'master' branch."
