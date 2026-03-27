@@ -10,51 +10,51 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DashboardReflowType Reflow type for a **new dashboard layout** dashboard. Set this only when layout type is 'ordered'.
+// DashboardReflowStyle Reflow type for a **new dashboard layout** dashboard. Set this only when layout type is 'ordered'.
 // If set to 'fixed', the dashboard expects all widgets to have a layout, and if it's set to 'auto',
 // widgets should not have layouts.
-type DashboardReflowType string
+type DashboardReflowStyle string
 
-// List of DashboardReflowType.
+// List of DashboardReflowStyle.
 const (
-	DASHBOARDREFLOWTYPE_AUTO  DashboardReflowType = "auto"
-	DASHBOARDREFLOWTYPE_FIXED DashboardReflowType = "fixed"
+	DASHBOARDREFLOWTYPE_AUTO  DashboardReflowStyle = "auto"
+	DASHBOARDREFLOWTYPE_FIXED DashboardReflowStyle = "fixed"
 )
 
-var allowedDashboardReflowTypeEnumValues = []DashboardReflowType{
+var allowedDashboardReflowStyleEnumValues = []DashboardReflowStyle{
 	DASHBOARDREFLOWTYPE_AUTO,
 	DASHBOARDREFLOWTYPE_FIXED,
 }
 
 // GetAllowedValues reeturns the list of possible values.
-func (v *DashboardReflowType) GetAllowedValues() []DashboardReflowType {
-	return allowedDashboardReflowTypeEnumValues
+func (v *DashboardReflowStyle) GetAllowedValues() []DashboardReflowStyle {
+	return allowedDashboardReflowStyleEnumValues
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (v *DashboardReflowType) UnmarshalJSON(src []byte) error {
+func (v *DashboardReflowStyle) UnmarshalJSON(src []byte) error {
 	var value string
 	err := datadog.Unmarshal(src, &value)
 	if err != nil {
 		return err
 	}
-	*v = DashboardReflowType(value)
+	*v = DashboardReflowStyle(value)
 	return nil
 }
 
-// NewDashboardReflowTypeFromValue returns a pointer to a valid DashboardReflowType
+// NewDashboardReflowStyleFromValue returns a pointer to a valid DashboardReflowStyle
 // for the value passed as argument, or an error if the value passed is not allowed by the enum.
-func NewDashboardReflowTypeFromValue(v string) (*DashboardReflowType, error) {
-	ev := DashboardReflowType(v)
+func NewDashboardReflowStyleFromValue(v string) (*DashboardReflowStyle, error) {
+	ev := DashboardReflowStyle(v)
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for DashboardReflowType: valid values are %v", v, allowedDashboardReflowTypeEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for DashboardReflowStyle: valid values are %v", v, allowedDashboardReflowStyleEnumValues)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
-func (v DashboardReflowType) IsValid() bool {
-	for _, existing := range allowedDashboardReflowTypeEnumValues {
+func (v DashboardReflowStyle) IsValid() bool {
+	for _, existing := range allowedDashboardReflowStyleEnumValues {
 		if existing == v {
 			return true
 		}
@@ -62,7 +62,7 @@ func (v DashboardReflowType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to DashboardReflowType value.
-func (v DashboardReflowType) Ptr() *DashboardReflowType {
+// Ptr returns reference to DashboardReflowStyle value.
+func (v DashboardReflowStyle) Ptr() *DashboardReflowStyle {
 	return &v
 }
