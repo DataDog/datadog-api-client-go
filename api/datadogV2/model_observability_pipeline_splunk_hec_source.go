@@ -18,6 +18,9 @@ type ObservabilityPipelineSplunkHecSource struct {
 	AddressKey *string `json:"address_key,omitempty"`
 	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
+	// If `true`, the HEC token is stored in the event's metadata and made available to the Enrichment Table
+	// processor and the `splunk_hec` destination for routing or enrichment based on the token. Defaults to `false`.
+	StoreHecToken *bool `json:"store_hec_token,omitempty"`
 	// Configuration for enabling TLS encryption between the pipeline component and external services.
 	Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
 	// The source type. Always `splunk_hec`.
@@ -34,6 +37,8 @@ type ObservabilityPipelineSplunkHecSource struct {
 func NewObservabilityPipelineSplunkHecSource(id string, typeVar ObservabilityPipelineSplunkHecSourceType) *ObservabilityPipelineSplunkHecSource {
 	this := ObservabilityPipelineSplunkHecSource{}
 	this.Id = id
+	var storeHecToken bool = false
+	this.StoreHecToken = &storeHecToken
 	this.Type = typeVar
 	return &this
 }
@@ -43,6 +48,8 @@ func NewObservabilityPipelineSplunkHecSource(id string, typeVar ObservabilityPip
 // but it doesn't guarantee that properties required by API are set.
 func NewObservabilityPipelineSplunkHecSourceWithDefaults() *ObservabilityPipelineSplunkHecSource {
 	this := ObservabilityPipelineSplunkHecSource{}
+	var storeHecToken bool = false
+	this.StoreHecToken = &storeHecToken
 	var typeVar ObservabilityPipelineSplunkHecSourceType = OBSERVABILITYPIPELINESPLUNKHECSOURCETYPE_SPLUNK_HEC
 	this.Type = typeVar
 	return &this
@@ -97,6 +104,34 @@ func (o *ObservabilityPipelineSplunkHecSource) GetIdOk() (*string, bool) {
 // SetId sets field value.
 func (o *ObservabilityPipelineSplunkHecSource) SetId(v string) {
 	o.Id = v
+}
+
+// GetStoreHecToken returns the StoreHecToken field value if set, zero value otherwise.
+func (o *ObservabilityPipelineSplunkHecSource) GetStoreHecToken() bool {
+	if o == nil || o.StoreHecToken == nil {
+		var ret bool
+		return ret
+	}
+	return *o.StoreHecToken
+}
+
+// GetStoreHecTokenOk returns a tuple with the StoreHecToken field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineSplunkHecSource) GetStoreHecTokenOk() (*bool, bool) {
+	if o == nil || o.StoreHecToken == nil {
+		return nil, false
+	}
+	return o.StoreHecToken, true
+}
+
+// HasStoreHecToken returns a boolean if a field has been set.
+func (o *ObservabilityPipelineSplunkHecSource) HasStoreHecToken() bool {
+	return o != nil && o.StoreHecToken != nil
+}
+
+// SetStoreHecToken gets a reference to the given bool and assigns it to the StoreHecToken field.
+func (o *ObservabilityPipelineSplunkHecSource) SetStoreHecToken(v bool) {
+	o.StoreHecToken = &v
 }
 
 // GetTls returns the Tls field value if set, zero value otherwise.
@@ -160,6 +195,9 @@ func (o ObservabilityPipelineSplunkHecSource) MarshalJSON() ([]byte, error) {
 		toSerialize["address_key"] = o.AddressKey
 	}
 	toSerialize["id"] = o.Id
+	if o.StoreHecToken != nil {
+		toSerialize["store_hec_token"] = o.StoreHecToken
+	}
 	if o.Tls != nil {
 		toSerialize["tls"] = o.Tls
 	}
@@ -174,10 +212,11 @@ func (o ObservabilityPipelineSplunkHecSource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSplunkHecSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AddressKey *string                                   `json:"address_key,omitempty"`
-		Id         *string                                   `json:"id"`
-		Tls        *ObservabilityPipelineTls                 `json:"tls,omitempty"`
-		Type       *ObservabilityPipelineSplunkHecSourceType `json:"type"`
+		AddressKey    *string                                   `json:"address_key,omitempty"`
+		Id            *string                                   `json:"id"`
+		StoreHecToken *bool                                     `json:"store_hec_token,omitempty"`
+		Tls           *ObservabilityPipelineTls                 `json:"tls,omitempty"`
+		Type          *ObservabilityPipelineSplunkHecSourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -190,7 +229,7 @@ func (o *ObservabilityPipelineSplunkHecSource) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"address_key", "id", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"address_key", "id", "store_hec_token", "tls", "type"})
 	} else {
 		return err
 	}
@@ -198,6 +237,7 @@ func (o *ObservabilityPipelineSplunkHecSource) UnmarshalJSON(bytes []byte) (err 
 	hasInvalidField := false
 	o.AddressKey = all.AddressKey
 	o.Id = *all.Id
+	o.StoreHecToken = all.StoreHecToken
 	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
