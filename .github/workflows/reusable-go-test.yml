@@ -8,11 +8,6 @@ on:
         required: false
         type: string
         default: ''
-      api-spec-ref:
-        description: 'The api-spec branch/SHA to check out for reading .github/terraform-provider-pr. When empty, the terraform build job is skipped.'
-        required: false
-        type: string
-        default: ''
 
     secrets:
       PIPELINE_GITHUB_APP_ID:
@@ -46,7 +41,7 @@ jobs:
           TESTARGS: ${{ matrix.go-build-tags }}
 
   build-terraform-provider:
-    if: inputs.api-spec-ref != ''
+    if: inputs.target-branch != ''
     runs-on: ubuntu-latest
     steps:
       - name: Get GitHub App token
@@ -64,14 +59,13 @@ jobs:
           APP_ID: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
           APP_TOKEN: ${{ steps.get_token.outputs.token }}
 
-      - name: Checkout datadog-api-spec to read config
+      - name: Checkout datadog-api-client-go
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
-          repository: DataDog/datadog-api-spec
-          ref: ${{ inputs.api-spec-ref }}
+          repository: DataDog/datadog-api-client-go
+          ref: ${{ inputs.target-branch }}
           token: ${{ steps.get_token.outputs.token }}
-          sparse-checkout: .github/terraform-provider-pr
-          path: spec-repo
+          path: client-repo
 
       - name: Detect linked terraform-provider-datadog PR
         id: detect_tf_pr
@@ -81,10 +75,8 @@ jobs:
           # https://github.com/DataDog/terraform-provider-datadog/pull/1234
           # The file is safe to leave after merging — stale references to merged/closed
           # PRs are automatically ignored and the build falls back to master.
-          # However, do note that this should not pose a problem because
-          # the merged.yml workflow removes this file from master after merge.
-          if [ -f spec-repo/.github/terraform-provider-pr ]; then
-            tf_pr_link=$(cat spec-repo/.github/terraform-provider-pr | tr -d '[:space:]')
+          if [ -f client-repo/.github/terraform-provider-pr ]; then
+            tf_pr_link=$(cat client-repo/.github/terraform-provider-pr | tr -d '[:space:]')
             tf_pr_number=$(echo "$tf_pr_link" | grep -oE '[0-9]+$')
             if [ -z "$tf_pr_number" ]; then
               echo "❌ .github/terraform-provider-pr exists but could not extract a PR number from: ${tf_pr_link}"
@@ -153,10 +145,9 @@ jobs:
               echo ""
               echo "To fix this:"
               echo "  1. Create a PR on DataDog/terraform-provider-datadog with the necessary code changes"
-              echo "  2. Add a file '.github/terraform-provider-pr' to your branch containing the full PR link"
+              echo "  2. Add a file '.github/terraform-provider-pr' to your datadog-api-client-go branch containing the full PR link"
               echo "     e.g. https://github.com/DataDog/terraform-provider-datadog/pull/1234"
               echo "  3. Commit and push — the check will re-run automatically"
-              echo "  (The file is automatically removed from master after merge)"
             else
               echo "The build was tested against the terraform-provider-datadog branch '${TF_BRANCH}'."
               echo "The linked PR also fails to build with the generated Go client — please fix it."
