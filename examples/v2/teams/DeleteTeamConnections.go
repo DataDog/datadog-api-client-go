@@ -12,10 +12,13 @@ import (
 )
 
 func main() {
+	// there is a valid "team_connection" in the system
+	TeamConnectionID := os.Getenv("TEAM_CONNECTION_ID")
+
 	body := datadogV2.TeamConnectionDeleteRequest{
 		Data: []datadogV2.TeamConnectionDeleteRequestDataItem{
 			{
-				Id:   "12345678-1234-5678-9abc-123456789012",
+				Id:   TeamConnectionID,
 				Type: datadogV2.TEAMCONNECTIONTYPE_TEAM_CONNECTION,
 			},
 		},

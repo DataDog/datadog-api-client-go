@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewTeamsApi(apiClient)
-	resp, r, err := api.ListTeamConnections(ctx, *datadogV2.NewListTeamConnectionsOptionalParameters())
+	resp, r, err := api.ListTeamConnections(ctx, *datadogV2.NewListTeamConnectionsOptionalParameters().WithPageSize(10))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.ListTeamConnections`: %v\n", err)

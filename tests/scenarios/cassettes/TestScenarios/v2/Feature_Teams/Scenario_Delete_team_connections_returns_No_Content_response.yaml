@@ -1,0 +1,75 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"handle":"test-handle-5e060b20bd1650cf","name":"test-name-5e060b20bd1650cf"},"type":"team"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team
+  response:
+    body: '{"data":{"id":"250b46bc-90c5-4464-8a8f-bf261f788495","type":"team","attributes":{"avatar":null,"banner":1,"created_at":"2026-03-27T09:21:20.252382+00:00","description":null,"handle":"test-handle-5e060b20bd1650cf","hidden_modules":null,"is_managed":false,"link_count":0,"modified_at":"2026-03-27T09:21:20.252382+00:00","name":"test-name-5e060b20bd1650cf","summary":null,"user_count":0,"visible_modules":null},"relationships":{"team_links":{"data":[],"links":{"related":"/api/v2/team/250b46bc-90c5-4464-8a8f-bf261f788495/links"}},"user_team_permissions":{"data":null,"links":{"related":"/api/v2/team/250b46bc-90c5-4464-8a8f-bf261f788495/permission-settings"}}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: |
+      {"data":[{"attributes":{"managed_by":"datadog","source":"github"},"relationships":{"connected_team":{"data":{"id":"@MyGitHubAccount/my-team-name","type":"github_team"}},"team":{"data":{"id":"250b46bc-90c5-4464-8a8f-bf261f788495","type":"team"}}},"type":"team_connection"}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
+    url: https://api.datadoghq.com/api/v2/team/connections
+  response:
+    body: '{"data":[{"id":"51323b02-29be-11f1-ad4d-da7ad0900002","type":"team_connection","attributes":{"managed_by":"datadog","source":"github"},"relationships":{"connected_team":{"data":{"id":"@MyGitHubAccount/my-team-name","type":"github_team"}},"team":{"data":{"id":"250b46bc-90c5-4464-8a8f-bf261f788495","type":"team"}}}}]}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: |
+      {"data":[{"id":"51323b02-29be-11f1-ad4d-da7ad0900002","type":"team_connection"}]}
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+      Content-Type:
+      - application/json
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/team/connections
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 3
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/team/250b46bc-90c5-4464-8a8f-bf261f788495
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
