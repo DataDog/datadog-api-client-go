@@ -8,7 +8,12 @@ on:
         required: false
         type: string
         default: ''
-      
+      api-spec-ref:
+        description: 'The api-spec branch/SHA to check out for reading .github/terraform-provider-pr. When empty, the terraform build job is skipped.'
+        required: false
+        type: string
+        default: ''
+
     secrets:
       PIPELINE_GITHUB_APP_ID:
         required: false
@@ -38,6 +43,10 @@ jobs:
     uses: ./.github/workflows/reusable-go-test.yml
     with:
       target-branch: ${{ inputs.target-branch }}
+      api-spec-ref: ${{ inputs.api-spec-ref }}
+    secrets:
+      PIPELINE_GITHUB_APP_ID: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
+      PIPELINE_GITHUB_APP_PRIVATE_KEY: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
 
   examples:
     uses: ./.github/workflows/reusable-examples.yml

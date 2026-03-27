@@ -8,6 +8,17 @@ on:
         required: false
         type: string
         default: ''
+      api-spec-ref:
+        description: 'The api-spec branch/SHA to check out for reading .github/terraform-provider-pr. When empty, the terraform build job is skipped.'
+        required: false
+        type: string
+        default: ''
+
+    secrets:
+      PIPELINE_GITHUB_APP_ID:
+        required: false
+      PIPELINE_GITHUB_APP_PRIVATE_KEY:
+        required: false
 
 jobs:
   test:
@@ -34,3 +45,125 @@ jobs:
         env:
           TESTARGS: ${{ matrix.go-build-tags }}
 
+  build-terraform-provider:
+    if: inputs.api-spec-ref != ''
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get GitHub App token
+        id: get_token
+        uses: actions/create-github-app-token@c1a285145b9d317df6ced56c09f525b5c2b6f755 #v1.11.1
+        with:
+          app-id: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
+          private-key: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
+          owner: DataDog
+
+      - name: Setup to use the GitHub token
+        run: |-
+          git config --global --add url."https://${APP_ID}:${APP_TOKEN}@github.com/".insteadOf "https://github.com/"
+        env:
+          APP_ID: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
+          APP_TOKEN: ${{ steps.get_token.outputs.token }}
+
+      - name: Checkout datadog-api-spec to read config
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: DataDog/datadog-api-spec
+          ref: ${{ inputs.api-spec-ref }}
+          token: ${{ steps.get_token.outputs.token }}
+          sparse-checkout: .github/terraform-provider-pr
+          path: spec-repo
+
+      - name: Detect linked terraform-provider-datadog PR
+        id: detect_tf_pr
+        run: |
+          # If a breaking Go client change requires terraform code changes, the author
+          # adds a .github/terraform-provider-pr file containing the full PR URL, e.g.
+          # https://github.com/DataDog/terraform-provider-datadog/pull/1234
+          # The file is safe to leave after merging — stale references to merged/closed
+          # PRs are automatically ignored and the build falls back to master.
+          # However, do note that this should not pose a problem because
+          # the merged.yml workflow removes this file from master after merge.
+          if [ -f spec-repo/.github/terraform-provider-pr ]; then
+            tf_pr_link=$(cat spec-repo/.github/terraform-provider-pr | tr -d '[:space:]')
+            tf_pr_number=$(echo "$tf_pr_link" | grep -oE '[0-9]+$')
+            if [ -z "$tf_pr_number" ]; then
+              echo "❌ .github/terraform-provider-pr exists but could not extract a PR number from: ${tf_pr_link}"
+              echo "   Expected format: https://github.com/DataDog/terraform-provider-datadog/pull/<number>"
+              echo "branch=master" >> $GITHUB_OUTPUT
+            else
+              tf_state=$(gh pr view "$tf_pr_number" --repo DataDog/terraform-provider-datadog --json state --jq '.state')
+
+              if [ "$tf_state" = "OPEN" ]; then
+                tf_branch=$(gh pr view "$tf_pr_number" --repo DataDog/terraform-provider-datadog --json headRefName --jq '.headRefName')
+                echo "branch=${tf_branch}" >> $GITHUB_OUTPUT
+                echo "✅ Found .github/terraform-provider-pr → PR #${tf_pr_number} (branch: ${tf_branch})"
+              else
+                echo "branch=master" >> $GITHUB_OUTPUT
+                echo "ℹ️ .github/terraform-provider-pr references PR #${tf_pr_number} which is ${tf_state} — using master"
+              fi
+            fi
+          else
+            echo "branch=master" >> $GITHUB_OUTPUT
+            echo "ℹ️ No .github/terraform-provider-pr file found, using master"
+          fi
+        env:
+          GH_TOKEN: ${{ steps.get_token.outputs.token }}
+
+      - name: Checkout terraform-provider-datadog
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          repository: DataDog/terraform-provider-datadog
+          ref: ${{ steps.detect_tf_pr.outputs.branch }}
+          token: ${{ steps.get_token.outputs.token }}
+
+      - name: Set up Go
+        uses: actions/setup-go@f111f3307d8850f501ac008e886eec1fd1932a34 # v5.3.0
+        with:
+          go-version-file: go.mod
+
+      - name: Resolve generated branch to commit SHA
+        id: resolve_sha
+        run: |
+          # go get rejects branch names with slashes (e.g. datadog-api-spec/generated/1234),
+          # so we resolve the branch to its commit SHA first.
+          COMMIT_SHA=$(gh api "repos/DataDog/datadog-api-client-go/commits/${GO_CLIENT_BRANCH}" --jq '.sha')
+          echo "commit_sha=${COMMIT_SHA}" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ steps.get_token.outputs.token }}
+          GO_CLIENT_BRANCH: ${{ inputs.target-branch }}
+
+      - name: Update datadog-api-client-go to generated commit
+        run: |
+          # GOPROXY=direct bypasses the module proxy, which won't have unreleased
+          # commits from the private datadog-api-client-go repo.
+          GOPROXY=direct go get "github.com/DataDog/datadog-api-client-go/v2@${COMMIT_SHA}"
+          go mod tidy
+        env:
+          COMMIT_SHA: ${{ steps.resolve_sha.outputs.commit_sha }}
+
+      - name: Build terraform provider
+        run: |
+          if ! go build ./...; then
+            echo ""
+            echo "🚨 BUILD FAILED"
+            echo "Your API spec change generates a Go client that breaks the terraform-provider-datadog build."
+            echo ""
+            if [ "${TF_BRANCH}" = "master" ]; then
+              echo "The build was tested against the terraform-provider-datadog 'master' branch."
+              echo ""
+              echo "To fix this:"
+              echo "  1. Create a PR on DataDog/terraform-provider-datadog with the necessary code changes"
+              echo "  2. Add a file '.github/terraform-provider-pr' to your branch containing the full PR link"
+              echo "     e.g. https://github.com/DataDog/terraform-provider-datadog/pull/1234"
+              echo "  3. Commit and push — the check will re-run automatically"
+              echo "  (The file is automatically removed from master after merge)"
+            else
+              echo "The build was tested against the terraform-provider-datadog branch '${TF_BRANCH}'."
+              echo "The linked PR also fails to build with the generated Go client — please fix it."
+            fi
+            exit 1
+          fi
+          echo ""
+          echo "✅ Build succeeded — terraform-provider-datadog builds correctly with the generated Go client."
+        env:
+          TF_BRANCH: ${{ steps.detect_tf_pr.outputs.branch }}
