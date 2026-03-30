@@ -1,4 +1,4 @@
-// Create a dataset returns "OK" response
+// Create a Data Access Control dataset returns "OK" response
 
 package main
 
@@ -16,7 +16,7 @@ func main() {
 	body := datadogV2.DatasetCreateRequest{
 		Data: datadogV2.DatasetRequest{
 			Attributes: datadogV2.DatasetAttributesRequest{
-				Name: "Security Audit Dataset",
+				Name: "Security Audit DAC",
 				Principals: []string{
 					"role:94172442-be03-11e9-a77a-3b7612558ac1",
 				},
@@ -25,7 +25,7 @@ func main() {
 						Filters: []string{
 							"@application.id:ABCD",
 						},
-						Product: "metrics",
+						Product: "logs",
 					},
 				},
 			},
@@ -34,16 +34,15 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.CreateDataset", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewDatasetsApi(apiClient)
+	api := datadogV2.NewDataAccessControlsApi(apiClient)
 	resp, r, err := api.CreateDataset(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DatasetsApi.CreateDataset`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `DataAccessControlsApi.CreateDataset`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `DatasetsApi.CreateDataset`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `DataAccessControlsApi.CreateDataset`:\n%s\n", responseContent)
 }

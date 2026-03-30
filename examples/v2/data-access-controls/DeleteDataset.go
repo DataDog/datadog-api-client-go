@@ -1,4 +1,4 @@
-// Delete a dataset returns "No Content" response
+// Delete a Data Access Control dataset returns "No Content" response
 
 package main
 
@@ -17,13 +17,12 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.DeleteDataset", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewDatasetsApi(apiClient)
+	api := datadogV2.NewDataAccessControlsApi(apiClient)
 	r, err := api.DeleteDataset(ctx, DatasetDataID)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DatasetsApi.DeleteDataset`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `DataAccessControlsApi.DeleteDataset`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

@@ -1,4 +1,4 @@
-// Edit a dataset returns "OK" response
+// Edit a Data Access Control dataset returns "OK" response
 
 package main
 
@@ -19,7 +19,7 @@ func main() {
 	body := datadogV2.DatasetUpdateRequest{
 		Data: datadogV2.DatasetRequest{
 			Attributes: datadogV2.DatasetAttributesRequest{
-				Name: "Security Audit Dataset",
+				Name: "Security Audit DAC",
 				Principals: []string{
 					"role:94172442-be03-11e9-a77a-3b7612558ac1",
 				},
@@ -28,7 +28,7 @@ func main() {
 						Filters: []string{
 							"@application.id:1234",
 						},
-						Product: "metrics",
+						Product: "logs",
 					},
 				},
 			},
@@ -37,16 +37,15 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.UpdateDataset", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewDatasetsApi(apiClient)
+	api := datadogV2.NewDataAccessControlsApi(apiClient)
 	resp, r, err := api.UpdateDataset(ctx, DatasetDataID, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `DatasetsApi.UpdateDataset`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `DataAccessControlsApi.UpdateDataset`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `DatasetsApi.UpdateDataset`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `DataAccessControlsApi.UpdateDataset`:\n%s\n", responseContent)
 }
