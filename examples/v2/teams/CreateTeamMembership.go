@@ -13,21 +13,21 @@ import (
 )
 
 func main() {
+	// there is a valid "dd_team" in the system
+	DdTeamDataID := os.Getenv("DD_TEAM_DATA_ID")
+
+	// there is a valid "user" in the system
+	UserDataID := os.Getenv("USER_DATA_ID")
+
 	body := datadogV2.UserTeamRequest{
 		Data: datadogV2.UserTeamCreate{
 			Attributes: &datadogV2.UserTeamAttributes{
 				Role: *datadogV2.NewNullableUserTeamRole(datadogV2.USERTEAMROLE_ADMIN.Ptr()),
 			},
 			Relationships: &datadogV2.UserTeamRelationships{
-				Team: &datadogV2.RelationshipToUserTeamTeam{
-					Data: datadogV2.RelationshipToUserTeamTeamData{
-						Id:   "d7e15d9d-d346-43da-81d8-3d9e71d9a5e9",
-						Type: datadogV2.USERTEAMTEAMTYPE_TEAM,
-					},
-				},
 				User: &datadogV2.RelationshipToUserTeamUser{
 					Data: datadogV2.RelationshipToUserTeamUserData{
-						Id:   "b8626d7e-cedd-11eb-abf5-da7ad0900001",
+						Id:   UserDataID,
 						Type: datadogV2.USERTEAMUSERTYPE_USERS,
 					},
 				},
@@ -39,7 +39,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewTeamsApi(apiClient)
-	resp, r, err := api.CreateTeamMembership(ctx, "team_id", body)
+	resp, r, err := api.CreateTeamMembership(ctx, DdTeamDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TeamsApi.CreateTeamMembership`: %v\n", err)
