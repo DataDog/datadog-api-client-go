@@ -10,7 +10,7 @@ import (
 
 // EnvironmentsPaginationMeta Pagination metadata for environments.
 type EnvironmentsPaginationMeta struct {
-	//
+	// Pagination metadata for environments list responses.
 	Page *EnvironmentsPaginationMetaPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

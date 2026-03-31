@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// EnvironmentsPaginationMetaPage
+// EnvironmentsPaginationMetaPage Pagination metadata for environments list responses.
 type EnvironmentsPaginationMetaPage struct {
 	// Total number of items.
 	TotalCount *int64 `json:"total_count,omitempty"`

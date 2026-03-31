@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// FeatureFlagsPaginationMetaPage
+// FeatureFlagsPaginationMetaPage Pagination metadata for feature flags list responses.
 type FeatureFlagsPaginationMetaPage struct {
 	// Total number of items.
 	TotalCount *int64 `json:"total_count,omitempty"`

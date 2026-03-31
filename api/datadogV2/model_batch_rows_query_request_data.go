@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BatchRowsQueryRequestData
+// BatchRowsQueryRequestData Data object for a batch rows query request.
 type BatchRowsQueryRequestData struct {
-	//
+	// Attributes for a batch rows query request.
 	Attributes *BatchRowsQueryRequestDataAttributes `json:"attributes,omitempty"`
 	// Resource type identifier for batch queries of reference table rows.
 	Type BatchRowsQueryDataType `json:"type"`

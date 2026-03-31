@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BatchRowsQueryResponseData
+// BatchRowsQueryResponseData Data object for a batch rows query response.
 type BatchRowsQueryResponseData struct {
-	//
+	// Unique identifier of the batch query.
 	Id *string `json:"id,omitempty"`
-	//
+	// Relationships of the batch rows query response data.
 	Relationships *BatchRowsQueryResponseDataRelationships `json:"relationships,omitempty"`
 	// Resource type identifier for batch queries of reference table rows.
 	Type BatchRowsQueryDataType `json:"type"`

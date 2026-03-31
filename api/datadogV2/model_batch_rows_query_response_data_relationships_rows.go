@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BatchRowsQueryResponseDataRelationshipsRows
+// BatchRowsQueryResponseDataRelationshipsRows Relationship data containing the list of matching rows.
 type BatchRowsQueryResponseDataRelationshipsRows struct {
 	//
 	Data []TableRowResourceIdentifier `json:"data,omitempty"`

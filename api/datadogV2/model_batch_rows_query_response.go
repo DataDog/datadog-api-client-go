@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BatchRowsQueryResponse
+// BatchRowsQueryResponse Response object for a batch rows query against a reference table.
 type BatchRowsQueryResponse struct {
-	//
+	// Data object for a batch rows query response.
 	Data *BatchRowsQueryResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

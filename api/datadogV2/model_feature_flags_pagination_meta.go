@@ -10,7 +10,7 @@ import (
 
 // FeatureFlagsPaginationMeta Pagination metadata for feature flags.
 type FeatureFlagsPaginationMeta struct {
-	//
+	// Pagination metadata for feature flags list responses.
 	Page *FeatureFlagsPaginationMetaPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

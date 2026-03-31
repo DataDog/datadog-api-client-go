@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BatchRowsQueryResponseDataRelationships
+// BatchRowsQueryResponseDataRelationships Relationships of the batch rows query response data.
 type BatchRowsQueryResponseDataRelationships struct {
-	//
+	// Relationship data containing the list of matching rows.
 	Rows *BatchRowsQueryResponseDataRelationshipsRows `json:"rows,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

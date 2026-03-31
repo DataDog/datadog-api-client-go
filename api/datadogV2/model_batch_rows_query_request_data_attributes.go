@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BatchRowsQueryRequestDataAttributes
+// BatchRowsQueryRequestDataAttributes Attributes for a batch rows query request.
 type BatchRowsQueryRequestDataAttributes struct {
-	//
+	// List of row identifiers to query from the reference table.
 	RowIds []string `json:"row_ids"`
-	//
+	// Unique identifier of the reference table to query.
 	TableId string `json:"table_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
