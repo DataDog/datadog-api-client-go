@@ -271,6 +271,186 @@ func (a *SecurityMonitoringApi) AttachJiraIssue(ctx _context.Context, body Attac
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// BulkEditSecurityMonitoringSignalsAssignee Bulk update triage assignee of security signals.
+// Change the triage assignees of multiple security signals at once.
+// The maximum number of signals that can be updated in a single request is 199.
+func (a *SecurityMonitoringApi) BulkEditSecurityMonitoringSignalsAssignee(ctx _context.Context, body SecurityMonitoringSignalsBulkAssigneeUpdateRequest) (SecurityMonitoringSignalsBulkTriageUpdateResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue SecurityMonitoringSignalsBulkTriageUpdateResponse
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.BulkEditSecurityMonitoringSignalsAssignee")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/security_monitoring/signals/bulk/assignee"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// BulkEditSecurityMonitoringSignalsState Bulk update triage state of security signals.
+// Change the triage states of multiple security signals at once.
+// The maximum number of signals that can be updated in a single request is 199.
+func (a *SecurityMonitoringApi) BulkEditSecurityMonitoringSignalsState(ctx _context.Context, body SecurityMonitoringSignalsBulkStateUpdateRequest) (SecurityMonitoringSignalsBulkTriageUpdateResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue SecurityMonitoringSignalsBulkTriageUpdateResponse
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.BulkEditSecurityMonitoringSignalsState")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/security_monitoring/signals/bulk/state"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // BulkExportSecurityMonitoringRules Bulk export security monitoring rules.
 // Export a list of security monitoring rules as a ZIP file containing JSON rule definitions.
 // The endpoint accepts a list of rule IDs and returns a ZIP archive where each rule is

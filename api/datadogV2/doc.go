@@ -666,6 +666,8 @@
 //   - [SecurityMonitoringApi.ActivateContentPack]
 //   - [SecurityMonitoringApi.AttachCase]
 //   - [SecurityMonitoringApi.AttachJiraIssue]
+//   - [SecurityMonitoringApi.BulkEditSecurityMonitoringSignalsAssignee]
+//   - [SecurityMonitoringApi.BulkEditSecurityMonitoringSignalsState]
 //   - [SecurityMonitoringApi.BulkExportSecurityMonitoringRules]
 //   - [SecurityMonitoringApi.CancelThreatHuntingJob]
 //   - [SecurityMonitoringApi.ConvertExistingSecurityMonitoringRule]
