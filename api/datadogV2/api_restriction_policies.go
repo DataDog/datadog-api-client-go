@@ -207,6 +207,7 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 // - On-Call Team Routing Rules: `on-call-team-routing-rules`
 // - Logs Pipelines: `logs-pipeline`
 // - Case Management Projects: `case-management-project`
+// - Monitor Notification Rules: `monitor-notification-rule`
 //
 // #### Supported relations for resources
 // Resource Type               | Supported Relations
@@ -235,6 +236,7 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 // On-Call Team Routing Rules  | `viewer`, `editor`
 // Logs Pipelines              | `viewer`, `processors_editor`, `editor`
 // Case Management Projects    | `viewer`, `contributor`, `manager`
+// Monitor Notification Rules  | `viewer`, `editor`
 func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest, o ...UpdateRestrictionPolicyOptionalParameters) (RestrictionPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
