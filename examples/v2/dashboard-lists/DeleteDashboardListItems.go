@@ -13,7 +13,7 @@ import (
 )
 
 func main() {
-	body := datadogV2.DashboardListDeleteItemsRequest{
+	body := datadogV2.DashboardListRemoveItemsRequest{
 		Dashboards: []datadogV2.DashboardListItemRequest{
 			{
 				Id:   "q5j-nti-fv6",
