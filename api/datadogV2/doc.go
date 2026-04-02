@@ -838,6 +838,8 @@
 //   - [StatusPagesApi.ListDegradations]
 //   - [StatusPagesApi.ListMaintenances]
 //   - [StatusPagesApi.ListStatusPages]
+//   - [StatusPagesApi.PublishStatusPage]
+//   - [StatusPagesApi.UnpublishStatusPage]
 //   - [StatusPagesApi.UpdateComponent]
 //   - [StatusPagesApi.UpdateDegradation]
 //   - [StatusPagesApi.UpdateMaintenance]
