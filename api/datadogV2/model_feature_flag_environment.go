@@ -24,6 +24,8 @@ type FeatureFlagEnvironment struct {
 	EnvironmentId uuid.UUID `json:"environment_id"`
 	// The name of the environment.
 	EnvironmentName *string `json:"environment_name,omitempty"`
+	// Queries that target this environment.
+	EnvironmentQueries []string `json:"environment_queries,omitempty"`
 	// Indicates whether the environment is production.
 	IsProduction *bool `json:"is_production,omitempty"`
 	// The allocation key used for the override variant.
@@ -209,6 +211,34 @@ func (o *FeatureFlagEnvironment) HasEnvironmentName() bool {
 // SetEnvironmentName gets a reference to the given string and assigns it to the EnvironmentName field.
 func (o *FeatureFlagEnvironment) SetEnvironmentName(v string) {
 	o.EnvironmentName = &v
+}
+
+// GetEnvironmentQueries returns the EnvironmentQueries field value if set, zero value otherwise.
+func (o *FeatureFlagEnvironment) GetEnvironmentQueries() []string {
+	if o == nil || o.EnvironmentQueries == nil {
+		var ret []string
+		return ret
+	}
+	return o.EnvironmentQueries
+}
+
+// GetEnvironmentQueriesOk returns a tuple with the EnvironmentQueries field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FeatureFlagEnvironment) GetEnvironmentQueriesOk() (*[]string, bool) {
+	if o == nil || o.EnvironmentQueries == nil {
+		return nil, false
+	}
+	return &o.EnvironmentQueries, true
+}
+
+// HasEnvironmentQueries returns a boolean if a field has been set.
+func (o *FeatureFlagEnvironment) HasEnvironmentQueries() bool {
+	return o != nil && o.EnvironmentQueries != nil
+}
+
+// SetEnvironmentQueries gets a reference to the given []string and assigns it to the EnvironmentQueries field.
+func (o *FeatureFlagEnvironment) SetEnvironmentQueries(v []string) {
+	o.EnvironmentQueries = v
 }
 
 // GetIsProduction returns the IsProduction field value if set, zero value otherwise.
@@ -471,6 +501,9 @@ func (o FeatureFlagEnvironment) MarshalJSON() ([]byte, error) {
 	if o.EnvironmentName != nil {
 		toSerialize["environment_name"] = o.EnvironmentName
 	}
+	if o.EnvironmentQueries != nil {
+		toSerialize["environment_queries"] = o.EnvironmentQueries
+	}
 	if o.IsProduction != nil {
 		toSerialize["is_production"] = o.IsProduction
 	}
@@ -508,6 +541,7 @@ func (o *FeatureFlagEnvironment) UnmarshalJSON(bytes []byte) (err error) {
 		DefaultVariantId           datadog.NullableString   `json:"default_variant_id,omitempty"`
 		EnvironmentId              *uuid.UUID               `json:"environment_id"`
 		EnvironmentName            *string                  `json:"environment_name,omitempty"`
+		EnvironmentQueries         []string                 `json:"environment_queries,omitempty"`
 		IsProduction               *bool                    `json:"is_production,omitempty"`
 		OverrideAllocationKey      *string                  `json:"override_allocation_key,omitempty"`
 		OverrideVariantId          datadog.NullableString   `json:"override_variant_id,omitempty"`
@@ -528,7 +562,7 @@ func (o *FeatureFlagEnvironment) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allocations", "default_allocation_key", "default_variant_id", "environment_id", "environment_name", "is_production", "override_allocation_key", "override_variant_id", "pending_suggestion_id", "require_feature_flag_approval", "rollout_percentage", "rules", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"allocations", "default_allocation_key", "default_variant_id", "environment_id", "environment_name", "environment_queries", "is_production", "override_allocation_key", "override_variant_id", "pending_suggestion_id", "require_feature_flag_approval", "rollout_percentage", "rules", "status"})
 	} else {
 		return err
 	}
@@ -539,6 +573,7 @@ func (o *FeatureFlagEnvironment) UnmarshalJSON(bytes []byte) (err error) {
 	o.DefaultVariantId = all.DefaultVariantId
 	o.EnvironmentId = *all.EnvironmentId
 	o.EnvironmentName = all.EnvironmentName
+	o.EnvironmentQueries = all.EnvironmentQueries
 	o.IsProduction = all.IsProduction
 	o.OverrideAllocationKey = all.OverrideAllocationKey
 	o.OverrideVariantId = all.OverrideVariantId

@@ -37,6 +37,8 @@ type FeatureFlagAttributes struct {
 	Name string `json:"name"`
 	// Indicates whether this feature flag requires approval for changes.
 	RequireApproval *bool `json:"require_approval,omitempty"`
+	// Tags associated with the feature flag.
+	Tags []string `json:"tags,omitempty"`
 	// The timestamp when the feature flag was last updated.
 	UpdatedAt *time.Time `json:"updated_at,omitempty"`
 	// The type of values for the feature flag variants.
@@ -385,6 +387,34 @@ func (o *FeatureFlagAttributes) SetRequireApproval(v bool) {
 	o.RequireApproval = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *FeatureFlagAttributes) GetTags() []string {
+	if o == nil || o.Tags == nil {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FeatureFlagAttributes) GetTagsOk() (*[]string, bool) {
+	if o == nil || o.Tags == nil {
+		return nil, false
+	}
+	return &o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *FeatureFlagAttributes) HasTags() bool {
+	return o != nil && o.Tags != nil
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *FeatureFlagAttributes) SetTags(v []string) {
+	o.Tags = v
+}
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *FeatureFlagAttributes) GetUpdatedAt() time.Time {
 	if o == nil || o.UpdatedAt == nil {
@@ -496,6 +526,9 @@ func (o FeatureFlagAttributes) MarshalJSON() ([]byte, error) {
 	if o.RequireApproval != nil {
 		toSerialize["require_approval"] = o.RequireApproval
 	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
 	if o.UpdatedAt != nil {
 		if o.UpdatedAt.Nanosecond() == 0 {
 			toSerialize["updated_at"] = o.UpdatedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -526,6 +559,7 @@ func (o *FeatureFlagAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		LastUpdatedBy           *uuid.UUID               `json:"last_updated_by,omitempty"`
 		Name                    *string                  `json:"name"`
 		RequireApproval         *bool                    `json:"require_approval,omitempty"`
+		Tags                    []string                 `json:"tags,omitempty"`
 		UpdatedAt               *time.Time               `json:"updated_at,omitempty"`
 		ValueType               *ValueType               `json:"value_type"`
 		Variants                *[]Variant               `json:"variants"`
@@ -550,7 +584,7 @@ func (o *FeatureFlagAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "created_at", "created_by", "description", "distribution_channel", "feature_flag_environments", "json_schema", "key", "last_updated_by", "name", "require_approval", "updated_at", "value_type", "variants"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "created_at", "created_by", "description", "distribution_channel", "feature_flag_environments", "json_schema", "key", "last_updated_by", "name", "require_approval", "tags", "updated_at", "value_type", "variants"})
 	} else {
 		return err
 	}
@@ -567,6 +601,7 @@ func (o *FeatureFlagAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.LastUpdatedBy = all.LastUpdatedBy
 	o.Name = *all.Name
 	o.RequireApproval = all.RequireApproval
+	o.Tags = all.Tags
 	o.UpdatedAt = all.UpdatedAt
 	if !all.ValueType.IsValid() {
 		hasInvalidField = true
