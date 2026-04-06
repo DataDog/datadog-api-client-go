@@ -1,6 +1,7 @@
 module github.com/DataDog/datadog-api-client-go/v2/tests
 
-go 1.22
+go 1.23.0
+
 toolchain go1.23.7
 
 require (
@@ -21,16 +22,16 @@ require (
 require (
 	github.com/DataDog/datadog-go v4.8.2+incompatible // indirect
 	github.com/DataDog/sketches-go v1.0.0 // indirect
-	github.com/DataDog/zstd v1.5.2 // indirect
+	github.com/DataDog/zstd v1.5.7 // indirect
 	github.com/Microsoft/go-winio v0.5.1 // indirect
 	github.com/cucumber/gherkin-go/v13 v13.0.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
-	github.com/goccy/go-json v0.10.2 // indirect
+	github.com/goccy/go-json v0.10.6 // indirect
 	github.com/gofrs/uuid v4.4.0+incompatible // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/go-cmp v0.5.9 // indirect
-	github.com/google/uuid v1.5.0 // indirect
+	github.com/google/uuid v1.6.0 // indirect
 	github.com/h2non/parth v0.0.0-20190131123155-b4df798d6542 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/opentracing/opentracing-go v1.1.0 // indirect
