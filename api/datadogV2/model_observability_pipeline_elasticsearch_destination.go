@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineElasticsearchDestination The `elasticsearch` destination writes logs to an Elasticsearch cluster.
+// ObservabilityPipelineElasticsearchDestination The `elasticsearch` destination writes logs or metrics to an Elasticsearch cluster.
 //
-// **Supported pipeline types:** logs
+// **Supported pipeline types:** logs, metrics
 type ObservabilityPipelineElasticsearchDestination struct {
 	// The Elasticsearch API version to use. Set to `auto` to auto-detect.
 	ApiVersion *ObservabilityPipelineElasticsearchDestinationApiVersion `json:"api_version,omitempty"`
@@ -21,16 +21,26 @@ type ObservabilityPipelineElasticsearchDestination struct {
 	Auth *ObservabilityPipelineElasticsearchDestinationAuth `json:"auth,omitempty"`
 	// Configuration for buffer settings on destination components.
 	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
-	// The index to write logs to in Elasticsearch.
+	// The name of the index to write events to in Elasticsearch.
 	BulkIndex *string `json:"bulk_index,omitempty"`
+	// Compression configuration for the Elasticsearch destination.
+	Compression *ObservabilityPipelineElasticsearchDestinationCompression `json:"compression,omitempty"`
 	// Configuration options for writing to Elasticsearch Data Streams instead of a fixed index.
 	DataStream *ObservabilityPipelineElasticsearchDestinationDataStream `json:"data_stream,omitempty"`
 	// Name of the environment variable or secret that holds the Elasticsearch endpoint URL.
 	EndpointUrlKey *string `json:"endpoint_url_key,omitempty"`
 	// The unique identifier for this component.
 	Id string `json:"id"`
+	// The name of the field used as the document ID in Elasticsearch.
+	IdKey *string `json:"id_key,omitempty"`
 	// A list of component IDs whose output is used as the `input` for this component.
 	Inputs []string `json:"inputs"`
+	// The name of an Elasticsearch ingest pipeline to apply to events before indexing.
+	Pipeline *string `json:"pipeline,omitempty"`
+	// When `true`, retries failed partial bulk requests when some events in a batch fail while others succeed.
+	RequestRetryPartial *bool `json:"request_retry_partial,omitempty"`
+	// Configuration for enabling TLS encryption between the pipeline component and external services.
+	Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
 	// The destination type. The value should always be `elasticsearch`.
 	Type ObservabilityPipelineElasticsearchDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -172,6 +182,34 @@ func (o *ObservabilityPipelineElasticsearchDestination) SetBulkIndex(v string) {
 	o.BulkIndex = &v
 }
 
+// GetCompression returns the Compression field value if set, zero value otherwise.
+func (o *ObservabilityPipelineElasticsearchDestination) GetCompression() ObservabilityPipelineElasticsearchDestinationCompression {
+	if o == nil || o.Compression == nil {
+		var ret ObservabilityPipelineElasticsearchDestinationCompression
+		return ret
+	}
+	return *o.Compression
+}
+
+// GetCompressionOk returns a tuple with the Compression field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineElasticsearchDestination) GetCompressionOk() (*ObservabilityPipelineElasticsearchDestinationCompression, bool) {
+	if o == nil || o.Compression == nil {
+		return nil, false
+	}
+	return o.Compression, true
+}
+
+// HasCompression returns a boolean if a field has been set.
+func (o *ObservabilityPipelineElasticsearchDestination) HasCompression() bool {
+	return o != nil && o.Compression != nil
+}
+
+// SetCompression gets a reference to the given ObservabilityPipelineElasticsearchDestinationCompression and assigns it to the Compression field.
+func (o *ObservabilityPipelineElasticsearchDestination) SetCompression(v ObservabilityPipelineElasticsearchDestinationCompression) {
+	o.Compression = &v
+}
+
 // GetDataStream returns the DataStream field value if set, zero value otherwise.
 func (o *ObservabilityPipelineElasticsearchDestination) GetDataStream() ObservabilityPipelineElasticsearchDestinationDataStream {
 	if o == nil || o.DataStream == nil {
@@ -251,6 +289,34 @@ func (o *ObservabilityPipelineElasticsearchDestination) SetId(v string) {
 	o.Id = v
 }
 
+// GetIdKey returns the IdKey field value if set, zero value otherwise.
+func (o *ObservabilityPipelineElasticsearchDestination) GetIdKey() string {
+	if o == nil || o.IdKey == nil {
+		var ret string
+		return ret
+	}
+	return *o.IdKey
+}
+
+// GetIdKeyOk returns a tuple with the IdKey field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineElasticsearchDestination) GetIdKeyOk() (*string, bool) {
+	if o == nil || o.IdKey == nil {
+		return nil, false
+	}
+	return o.IdKey, true
+}
+
+// HasIdKey returns a boolean if a field has been set.
+func (o *ObservabilityPipelineElasticsearchDestination) HasIdKey() bool {
+	return o != nil && o.IdKey != nil
+}
+
+// SetIdKey gets a reference to the given string and assigns it to the IdKey field.
+func (o *ObservabilityPipelineElasticsearchDestination) SetIdKey(v string) {
+	o.IdKey = &v
+}
+
 // GetInputs returns the Inputs field value.
 func (o *ObservabilityPipelineElasticsearchDestination) GetInputs() []string {
 	if o == nil {
@@ -272,6 +338,90 @@ func (o *ObservabilityPipelineElasticsearchDestination) GetInputsOk() (*[]string
 // SetInputs sets field value.
 func (o *ObservabilityPipelineElasticsearchDestination) SetInputs(v []string) {
 	o.Inputs = v
+}
+
+// GetPipeline returns the Pipeline field value if set, zero value otherwise.
+func (o *ObservabilityPipelineElasticsearchDestination) GetPipeline() string {
+	if o == nil || o.Pipeline == nil {
+		var ret string
+		return ret
+	}
+	return *o.Pipeline
+}
+
+// GetPipelineOk returns a tuple with the Pipeline field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineElasticsearchDestination) GetPipelineOk() (*string, bool) {
+	if o == nil || o.Pipeline == nil {
+		return nil, false
+	}
+	return o.Pipeline, true
+}
+
+// HasPipeline returns a boolean if a field has been set.
+func (o *ObservabilityPipelineElasticsearchDestination) HasPipeline() bool {
+	return o != nil && o.Pipeline != nil
+}
+
+// SetPipeline gets a reference to the given string and assigns it to the Pipeline field.
+func (o *ObservabilityPipelineElasticsearchDestination) SetPipeline(v string) {
+	o.Pipeline = &v
+}
+
+// GetRequestRetryPartial returns the RequestRetryPartial field value if set, zero value otherwise.
+func (o *ObservabilityPipelineElasticsearchDestination) GetRequestRetryPartial() bool {
+	if o == nil || o.RequestRetryPartial == nil {
+		var ret bool
+		return ret
+	}
+	return *o.RequestRetryPartial
+}
+
+// GetRequestRetryPartialOk returns a tuple with the RequestRetryPartial field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineElasticsearchDestination) GetRequestRetryPartialOk() (*bool, bool) {
+	if o == nil || o.RequestRetryPartial == nil {
+		return nil, false
+	}
+	return o.RequestRetryPartial, true
+}
+
+// HasRequestRetryPartial returns a boolean if a field has been set.
+func (o *ObservabilityPipelineElasticsearchDestination) HasRequestRetryPartial() bool {
+	return o != nil && o.RequestRetryPartial != nil
+}
+
+// SetRequestRetryPartial gets a reference to the given bool and assigns it to the RequestRetryPartial field.
+func (o *ObservabilityPipelineElasticsearchDestination) SetRequestRetryPartial(v bool) {
+	o.RequestRetryPartial = &v
+}
+
+// GetTls returns the Tls field value if set, zero value otherwise.
+func (o *ObservabilityPipelineElasticsearchDestination) GetTls() ObservabilityPipelineTls {
+	if o == nil || o.Tls == nil {
+		var ret ObservabilityPipelineTls
+		return ret
+	}
+	return *o.Tls
+}
+
+// GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineElasticsearchDestination) GetTlsOk() (*ObservabilityPipelineTls, bool) {
+	if o == nil || o.Tls == nil {
+		return nil, false
+	}
+	return o.Tls, true
+}
+
+// HasTls returns a boolean if a field has been set.
+func (o *ObservabilityPipelineElasticsearchDestination) HasTls() bool {
+	return o != nil && o.Tls != nil
+}
+
+// SetTls gets a reference to the given ObservabilityPipelineTls and assigns it to the Tls field.
+func (o *ObservabilityPipelineElasticsearchDestination) SetTls(v ObservabilityPipelineTls) {
+	o.Tls = &v
 }
 
 // GetType returns the Type field value.
@@ -315,6 +465,9 @@ func (o ObservabilityPipelineElasticsearchDestination) MarshalJSON() ([]byte, er
 	if o.BulkIndex != nil {
 		toSerialize["bulk_index"] = o.BulkIndex
 	}
+	if o.Compression != nil {
+		toSerialize["compression"] = o.Compression
+	}
 	if o.DataStream != nil {
 		toSerialize["data_stream"] = o.DataStream
 	}
@@ -322,7 +475,19 @@ func (o ObservabilityPipelineElasticsearchDestination) MarshalJSON() ([]byte, er
 		toSerialize["endpoint_url_key"] = o.EndpointUrlKey
 	}
 	toSerialize["id"] = o.Id
+	if o.IdKey != nil {
+		toSerialize["id_key"] = o.IdKey
+	}
 	toSerialize["inputs"] = o.Inputs
+	if o.Pipeline != nil {
+		toSerialize["pipeline"] = o.Pipeline
+	}
+	if o.RequestRetryPartial != nil {
+		toSerialize["request_retry_partial"] = o.RequestRetryPartial
+	}
+	if o.Tls != nil {
+		toSerialize["tls"] = o.Tls
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -334,15 +499,20 @@ func (o ObservabilityPipelineElasticsearchDestination) MarshalJSON() ([]byte, er
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineElasticsearchDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApiVersion     *ObservabilityPipelineElasticsearchDestinationApiVersion `json:"api_version,omitempty"`
-		Auth           *ObservabilityPipelineElasticsearchDestinationAuth       `json:"auth,omitempty"`
-		Buffer         *ObservabilityPipelineBufferOptions                      `json:"buffer,omitempty"`
-		BulkIndex      *string                                                  `json:"bulk_index,omitempty"`
-		DataStream     *ObservabilityPipelineElasticsearchDestinationDataStream `json:"data_stream,omitempty"`
-		EndpointUrlKey *string                                                  `json:"endpoint_url_key,omitempty"`
-		Id             *string                                                  `json:"id"`
-		Inputs         *[]string                                                `json:"inputs"`
-		Type           *ObservabilityPipelineElasticsearchDestinationType       `json:"type"`
+		ApiVersion          *ObservabilityPipelineElasticsearchDestinationApiVersion  `json:"api_version,omitempty"`
+		Auth                *ObservabilityPipelineElasticsearchDestinationAuth        `json:"auth,omitempty"`
+		Buffer              *ObservabilityPipelineBufferOptions                       `json:"buffer,omitempty"`
+		BulkIndex           *string                                                   `json:"bulk_index,omitempty"`
+		Compression         *ObservabilityPipelineElasticsearchDestinationCompression `json:"compression,omitempty"`
+		DataStream          *ObservabilityPipelineElasticsearchDestinationDataStream  `json:"data_stream,omitempty"`
+		EndpointUrlKey      *string                                                   `json:"endpoint_url_key,omitempty"`
+		Id                  *string                                                   `json:"id"`
+		IdKey               *string                                                   `json:"id_key,omitempty"`
+		Inputs              *[]string                                                 `json:"inputs"`
+		Pipeline            *string                                                   `json:"pipeline,omitempty"`
+		RequestRetryPartial *bool                                                     `json:"request_retry_partial,omitempty"`
+		Tls                 *ObservabilityPipelineTls                                 `json:"tls,omitempty"`
+		Type                *ObservabilityPipelineElasticsearchDestinationType        `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -358,7 +528,7 @@ func (o *ObservabilityPipelineElasticsearchDestination) UnmarshalJSON(bytes []by
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"api_version", "auth", "buffer", "bulk_index", "data_stream", "endpoint_url_key", "id", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"api_version", "auth", "buffer", "bulk_index", "compression", "data_stream", "endpoint_url_key", "id", "id_key", "inputs", "pipeline", "request_retry_partial", "tls", "type"})
 	} else {
 		return err
 	}
@@ -375,13 +545,24 @@ func (o *ObservabilityPipelineElasticsearchDestination) UnmarshalJSON(bytes []by
 	o.Auth = all.Auth
 	o.Buffer = all.Buffer
 	o.BulkIndex = all.BulkIndex
+	if all.Compression != nil && all.Compression.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Compression = all.Compression
 	if all.DataStream != nil && all.DataStream.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.DataStream = all.DataStream
 	o.EndpointUrlKey = all.EndpointUrlKey
 	o.Id = *all.Id
+	o.IdKey = all.IdKey
 	o.Inputs = *all.Inputs
+	o.Pipeline = all.Pipeline
+	o.RequestRetryPartial = all.RequestRetryPartial
+	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Tls = all.Tls
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {

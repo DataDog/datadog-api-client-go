@@ -10,6 +10,7 @@ import (
 
 // ObservabilityPipelineConfigDestinationItem - A destination for the pipeline.
 type ObservabilityPipelineConfigDestinationItem struct {
+	ObservabilityPipelineElasticsearchDestination          *ObservabilityPipelineElasticsearchDestination
 	ObservabilityPipelineHttpClientDestination             *ObservabilityPipelineHttpClientDestination
 	ObservabilityPipelineAmazonOpenSearchDestination       *ObservabilityPipelineAmazonOpenSearchDestination
 	ObservabilityPipelineAmazonS3Destination               *ObservabilityPipelineAmazonS3Destination
@@ -19,7 +20,6 @@ type ObservabilityPipelineConfigDestinationItem struct {
 	ObservabilityPipelineCloudPremDestination              *ObservabilityPipelineCloudPremDestination
 	ObservabilityPipelineCrowdStrikeNextGenSiemDestination *ObservabilityPipelineCrowdStrikeNextGenSiemDestination
 	ObservabilityPipelineDatadogLogsDestination            *ObservabilityPipelineDatadogLogsDestination
-	ObservabilityPipelineElasticsearchDestination          *ObservabilityPipelineElasticsearchDestination
 	ObservabilityPipelineGoogleChronicleDestination        *ObservabilityPipelineGoogleChronicleDestination
 	ObservabilityPipelineGoogleCloudStorageDestination     *ObservabilityPipelineGoogleCloudStorageDestination
 	ObservabilityPipelineGooglePubSubDestination           *ObservabilityPipelineGooglePubSubDestination
@@ -37,6 +37,11 @@ type ObservabilityPipelineConfigDestinationItem struct {
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
+}
+
+// ObservabilityPipelineElasticsearchDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineElasticsearchDestination wrapped in ObservabilityPipelineConfigDestinationItem.
+func ObservabilityPipelineElasticsearchDestinationAsObservabilityPipelineConfigDestinationItem(v *ObservabilityPipelineElasticsearchDestination) ObservabilityPipelineConfigDestinationItem {
+	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelineElasticsearchDestination: v}
 }
 
 // ObservabilityPipelineHttpClientDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineHttpClientDestination wrapped in ObservabilityPipelineConfigDestinationItem.
@@ -82,11 +87,6 @@ func ObservabilityPipelineCrowdStrikeNextGenSiemDestinationAsObservabilityPipeli
 // ObservabilityPipelineDatadogLogsDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineDatadogLogsDestination wrapped in ObservabilityPipelineConfigDestinationItem.
 func ObservabilityPipelineDatadogLogsDestinationAsObservabilityPipelineConfigDestinationItem(v *ObservabilityPipelineDatadogLogsDestination) ObservabilityPipelineConfigDestinationItem {
 	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelineDatadogLogsDestination: v}
-}
-
-// ObservabilityPipelineElasticsearchDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineElasticsearchDestination wrapped in ObservabilityPipelineConfigDestinationItem.
-func ObservabilityPipelineElasticsearchDestinationAsObservabilityPipelineConfigDestinationItem(v *ObservabilityPipelineElasticsearchDestination) ObservabilityPipelineConfigDestinationItem {
-	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelineElasticsearchDestination: v}
 }
 
 // ObservabilityPipelineGoogleChronicleDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineGoogleChronicleDestination wrapped in ObservabilityPipelineConfigDestinationItem.
@@ -163,6 +163,23 @@ func ObservabilityPipelineDatadogMetricsDestinationAsObservabilityPipelineConfig
 func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// try to unmarshal data into ObservabilityPipelineElasticsearchDestination
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineElasticsearchDestination)
+	if err == nil {
+		if obj.ObservabilityPipelineElasticsearchDestination != nil && obj.ObservabilityPipelineElasticsearchDestination.UnparsedObject == nil {
+			jsonObservabilityPipelineElasticsearchDestination, _ := datadog.Marshal(obj.ObservabilityPipelineElasticsearchDestination)
+			if string(jsonObservabilityPipelineElasticsearchDestination) == "{}" { // empty struct
+				obj.ObservabilityPipelineElasticsearchDestination = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineElasticsearchDestination = nil
+		}
+	} else {
+		obj.ObservabilityPipelineElasticsearchDestination = nil
+	}
+
 	// try to unmarshal data into ObservabilityPipelineHttpClientDestination
 	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineHttpClientDestination)
 	if err == nil {
@@ -314,23 +331,6 @@ func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte
 		}
 	} else {
 		obj.ObservabilityPipelineDatadogLogsDestination = nil
-	}
-
-	// try to unmarshal data into ObservabilityPipelineElasticsearchDestination
-	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineElasticsearchDestination)
-	if err == nil {
-		if obj.ObservabilityPipelineElasticsearchDestination != nil && obj.ObservabilityPipelineElasticsearchDestination.UnparsedObject == nil {
-			jsonObservabilityPipelineElasticsearchDestination, _ := datadog.Marshal(obj.ObservabilityPipelineElasticsearchDestination)
-			if string(jsonObservabilityPipelineElasticsearchDestination) == "{}" { // empty struct
-				obj.ObservabilityPipelineElasticsearchDestination = nil
-			} else {
-				match++
-			}
-		} else {
-			obj.ObservabilityPipelineElasticsearchDestination = nil
-		}
-	} else {
-		obj.ObservabilityPipelineElasticsearchDestination = nil
 	}
 
 	// try to unmarshal data into ObservabilityPipelineGoogleChronicleDestination
@@ -573,6 +573,7 @@ func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte
 
 	if match != 1 { // more than 1 match
 		// reset to nil
+		obj.ObservabilityPipelineElasticsearchDestination = nil
 		obj.ObservabilityPipelineHttpClientDestination = nil
 		obj.ObservabilityPipelineAmazonOpenSearchDestination = nil
 		obj.ObservabilityPipelineAmazonS3Destination = nil
@@ -582,7 +583,6 @@ func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte
 		obj.ObservabilityPipelineCloudPremDestination = nil
 		obj.ObservabilityPipelineCrowdStrikeNextGenSiemDestination = nil
 		obj.ObservabilityPipelineDatadogLogsDestination = nil
-		obj.ObservabilityPipelineElasticsearchDestination = nil
 		obj.ObservabilityPipelineGoogleChronicleDestination = nil
 		obj.ObservabilityPipelineGoogleCloudStorageDestination = nil
 		obj.ObservabilityPipelineGooglePubSubDestination = nil
@@ -604,6 +604,10 @@ func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj ObservabilityPipelineConfigDestinationItem) MarshalJSON() ([]byte, error) {
+	if obj.ObservabilityPipelineElasticsearchDestination != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineElasticsearchDestination)
+	}
+
 	if obj.ObservabilityPipelineHttpClientDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineHttpClientDestination)
 	}
@@ -638,10 +642,6 @@ func (obj ObservabilityPipelineConfigDestinationItem) MarshalJSON() ([]byte, err
 
 	if obj.ObservabilityPipelineDatadogLogsDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineDatadogLogsDestination)
-	}
-
-	if obj.ObservabilityPipelineElasticsearchDestination != nil {
-		return datadog.Marshal(&obj.ObservabilityPipelineElasticsearchDestination)
 	}
 
 	if obj.ObservabilityPipelineGoogleChronicleDestination != nil {
@@ -708,6 +708,10 @@ func (obj ObservabilityPipelineConfigDestinationItem) MarshalJSON() ([]byte, err
 
 // GetActualInstance returns the actual instance.
 func (obj *ObservabilityPipelineConfigDestinationItem) GetActualInstance() interface{} {
+	if obj.ObservabilityPipelineElasticsearchDestination != nil {
+		return obj.ObservabilityPipelineElasticsearchDestination
+	}
+
 	if obj.ObservabilityPipelineHttpClientDestination != nil {
 		return obj.ObservabilityPipelineHttpClientDestination
 	}
@@ -742,10 +746,6 @@ func (obj *ObservabilityPipelineConfigDestinationItem) GetActualInstance() inter
 
 	if obj.ObservabilityPipelineDatadogLogsDestination != nil {
 		return obj.ObservabilityPipelineDatadogLogsDestination
-	}
-
-	if obj.ObservabilityPipelineElasticsearchDestination != nil {
-		return obj.ObservabilityPipelineElasticsearchDestination
 	}
 
 	if obj.ObservabilityPipelineGoogleChronicleDestination != nil {
