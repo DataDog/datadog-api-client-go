@@ -24,7 +24,7 @@ type SankeyRumQuery struct {
 	Mode SankeyRumQueryMode `json:"mode"`
 	// Number of steps.
 	NumberOfSteps *int64 `json:"number_of_steps,omitempty"`
-	//
+	// Filter applied to occurrence counts when building a Product Analytics audience.
 	Occurrences *ProductAnalyticsAudienceOccurrenceFilter `json:"occurrences,omitempty"`
 	// Query string.
 	QueryString string `json:"query_string"`

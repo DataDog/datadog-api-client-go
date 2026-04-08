@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SLOCountDefinitionWithTotalEventsFormula
+// SLOCountDefinitionWithTotalEventsFormula SLO count definition using a total events formula alongside a good events formula.
 type SLOCountDefinitionWithTotalEventsFormula struct {
 	// A formula that specifies how to combine the results of multiple queries.
 	GoodEventsFormula SLOFormula `json:"good_events_formula"`

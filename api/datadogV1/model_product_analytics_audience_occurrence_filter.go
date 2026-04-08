@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ProductAnalyticsAudienceOccurrenceFilter
+// ProductAnalyticsAudienceOccurrenceFilter Filter applied to occurrence counts when building a Product Analytics audience.
 type ProductAnalyticsAudienceOccurrenceFilter struct {
-	//
+	// The comparison operator used for the occurrence filter (for example: `gt`, `lt`, `eq`).
 	Operator *string `json:"operator,omitempty"`
-	//
+	// The threshold value to compare occurrence counts against.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

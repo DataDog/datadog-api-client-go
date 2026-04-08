@@ -10,9 +10,9 @@ import (
 
 // ProductAnalyticsAudienceUserSubquery Product Analytics audience user subquery.
 type ProductAnalyticsAudienceUserSubquery struct {
-	//
+	// The name of the user subquery.
 	Name *string `json:"name,omitempty"`
-	//
+	// The query string for the user subquery.
 	Query *string `json:"query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

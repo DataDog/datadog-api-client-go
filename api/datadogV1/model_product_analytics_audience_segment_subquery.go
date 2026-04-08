@@ -10,9 +10,9 @@ import (
 
 // ProductAnalyticsAudienceSegmentSubquery Product Analytics audience segment subquery.
 type ProductAnalyticsAudienceSegmentSubquery struct {
-	//
+	// The name of the segment subquery.
 	Name *string `json:"name,omitempty"`
-	//
+	// The unique identifier of the segment.
 	SegmentId *string `json:"segment_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
