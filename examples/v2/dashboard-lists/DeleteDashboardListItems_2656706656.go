@@ -20,7 +20,7 @@ func main() {
 	// there is a valid "dashboard" in the system
 	DashboardID := os.Getenv("DASHBOARD_ID")
 
-	body := datadogV2.DashboardListDeleteItemsRequest{
+	body := datadogV2.DashboardListRemoveItemsRequest{
 		Dashboards: []datadogV2.DashboardListItemRequest{
 			{
 				Id:   DashboardID,

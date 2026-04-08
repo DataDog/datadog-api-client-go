@@ -98,7 +98,7 @@ func (a *DashboardListsApi) CreateDashboardListItems(ctx _context.Context, dashb
 
 // DeleteDashboardListItems Delete items from a dashboard list.
 // Delete dashboards from an existing dashboard list.
-func (a *DashboardListsApi) DeleteDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListDeleteItemsRequest) (DashboardListDeleteItemsResponse, *_nethttp.Response, error) {
+func (a *DashboardListsApi) DeleteDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListRemoveItemsRequest) (DashboardListDeleteItemsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
 		localVarPostBody    interface{}
