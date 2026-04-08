@@ -12,7 +12,7 @@ import (
 type ProductAnalyticsAudienceFilters struct {
 	//
 	Accounts []ProductAnalyticsAudienceAccountSubquery `json:"accounts,omitempty"`
-	//
+	// An optional filter condition applied to the audience subquery.
 	FilterCondition *string `json:"filter_condition,omitempty"`
 	//
 	Segments []ProductAnalyticsAudienceSegmentSubquery `json:"segments,omitempty"`
