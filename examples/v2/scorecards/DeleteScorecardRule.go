@@ -17,13 +17,12 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.DeleteScorecardRule", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewServiceScorecardsApi(apiClient)
+	api := datadogV2.NewScorecardsApi(apiClient)
 	r, err := api.DeleteScorecardRule(ctx, CreateScorecardRuleDataID)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ServiceScorecardsApi.DeleteScorecardRule`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ScorecardsApi.DeleteScorecardRule`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

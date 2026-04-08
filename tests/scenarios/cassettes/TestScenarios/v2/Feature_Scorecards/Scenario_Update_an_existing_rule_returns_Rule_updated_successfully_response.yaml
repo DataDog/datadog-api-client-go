@@ -23,7 +23,7 @@ interactions:
     status: 201 Created
 - request:
     body: |
-      {"data":{"attributes":{"description":"Updated description via test","enabled":true,"name":"Test-Update_an_existing_rule_returns_Rule_updated_successfully_response-1722307632","scorecard_name":"OpenAPI Spec Test Best Practices"}}}
+      {"data":{"attributes":{"description":"Updated description via test","enabled":true,"name":"Test-Update_an_existing_rule_returns_Rule_updated_successfully_response-1722307632","scorecard_name":"OpenAPI Spec Test Best Practices"},"type":"rule"}}
     form: {}
     headers:
       Accept:

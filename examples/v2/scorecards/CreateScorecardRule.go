@@ -15,9 +15,9 @@ import (
 func main() {
 	body := datadogV2.CreateRuleRequest{
 		Data: &datadogV2.CreateRuleRequestData{
-			Attributes: &datadogV2.RuleAttributes{
+			Attributes: &datadogV2.RuleAttributesRequest{
 				Enabled:       datadog.PtrBool(true),
-				Name:          datadog.PtrString("Example-Service-Scorecard"),
+				Name:          datadog.PtrString("Example-Scorecard"),
 				ScorecardName: datadog.PtrString("Observability Best Practices"),
 			},
 			Type: datadogV2.RULETYPE_RULE.Ptr(),
@@ -25,16 +25,15 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.CreateScorecardRule", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewServiceScorecardsApi(apiClient)
+	api := datadogV2.NewScorecardsApi(apiClient)
 	resp, r, err := api.CreateScorecardRule(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ServiceScorecardsApi.CreateScorecardRule`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ScorecardsApi.CreateScorecardRule`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `ServiceScorecardsApi.CreateScorecardRule`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `ScorecardsApi.CreateScorecardRule`:\n%s\n", responseContent)
 }

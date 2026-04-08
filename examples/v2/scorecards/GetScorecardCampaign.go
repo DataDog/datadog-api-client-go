@@ -1,4 +1,4 @@
-// List all rules returns "OK" response
+// Get a campaign returns "OK" response
 
 package main
 
@@ -15,16 +15,15 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListScorecardRules", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewServiceScorecardsApi(apiClient)
-	resp, r, err := api.ListScorecardRules(ctx, *datadogV2.NewListScorecardRulesOptionalParameters())
+	api := datadogV2.NewScorecardsApi(apiClient)
+	resp, r, err := api.GetScorecardCampaign(ctx, "c10ODp0VCrrIpXmz", *datadogV2.NewGetScorecardCampaignOptionalParameters())
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ServiceScorecardsApi.ListScorecardRules`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ScorecardsApi.GetScorecardCampaign`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `ServiceScorecardsApi.ListScorecardRules`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `ScorecardsApi.GetScorecardCampaign`:\n%s\n", responseContent)
 }

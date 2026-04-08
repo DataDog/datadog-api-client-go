@@ -15,16 +15,15 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListScorecardOutcomes", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewServiceScorecardsApi(apiClient)
+	api := datadogV2.NewScorecardsApi(apiClient)
 	resp, r, err := api.ListScorecardOutcomes(ctx, *datadogV2.NewListScorecardOutcomesOptionalParameters())
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ServiceScorecardsApi.ListScorecardOutcomes`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ScorecardsApi.ListScorecardOutcomes`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `ServiceScorecardsApi.ListScorecardOutcomes`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `ScorecardsApi.ListScorecardOutcomes`:\n%s\n", responseContent)
 }

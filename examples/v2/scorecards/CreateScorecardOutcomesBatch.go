@@ -35,14 +35,14 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.CreateScorecardOutcomesBatch", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewServiceScorecardsApi(apiClient)
+	api := datadogV2.NewScorecardsApi(apiClient)
 	resp, r, err := api.CreateScorecardOutcomesBatch(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ServiceScorecardsApi.CreateScorecardOutcomesBatch`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ScorecardsApi.CreateScorecardOutcomesBatch`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `ServiceScorecardsApi.CreateScorecardOutcomesBatch`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `ScorecardsApi.CreateScorecardOutcomesBatch`:\n%s\n", responseContent)
 }
