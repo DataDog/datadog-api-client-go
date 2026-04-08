@@ -1,0 +1,24 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"config":{"destinations":[{"id":"datadog-logs-destination","inputs":["my-processor-group"],"type":"datadog_logs"}],"processor_groups":[{"enabled":true,"id":"my-processor-group","include":"service:my-service","inputs":["amazon-s3-source"],"processors":[{"enabled":true,"id":"filter-processor","include":"service:my-service","type":"filter"}]}],"sources":[{"compression":"gzip","id":"amazon-s3-source","region":"us-east-1","type":"amazon_s3"}]},"name":"Pipeline with S3 Source Compression"},"type":"pipelines"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/obs-pipelines/pipelines/validate
+  response:
+    body: '{"errors":[]}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2

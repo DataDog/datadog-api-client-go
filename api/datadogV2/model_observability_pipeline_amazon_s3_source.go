@@ -11,13 +11,15 @@ import (
 )
 
 // ObservabilityPipelineAmazonS3Source The `amazon_s3` source ingests logs from an Amazon S3 bucket.
-// It supports AWS authentication and TLS encryption.
+// It supports AWS authentication, TLS encryption, and configurable compression.
 //
 // **Supported pipeline types:** logs
 type ObservabilityPipelineAmazonS3Source struct {
 	// AWS authentication credentials used for accessing AWS services such as S3.
 	// If omitted, the system’s default credentials are used (for example, the IAM role and environment variables).
 	Auth *ObservabilityPipelineAwsAuth `json:"auth,omitempty"`
+	// Compression format for objects retrieved from the S3 bucket. Use `auto` to detect compression from the object's Content-Encoding header or file extension.
+	Compression *ObservabilityPipelineAmazonS3SourceCompression `json:"compression,omitempty"`
 	// The unique identifier for this component. Used in other parts of the pipeline to reference this component (for example, as the `input` to downstream components).
 	Id string `json:"id"`
 	// AWS region where the S3 bucket resides.
@@ -81,6 +83,34 @@ func (o *ObservabilityPipelineAmazonS3Source) HasAuth() bool {
 // SetAuth gets a reference to the given ObservabilityPipelineAwsAuth and assigns it to the Auth field.
 func (o *ObservabilityPipelineAmazonS3Source) SetAuth(v ObservabilityPipelineAwsAuth) {
 	o.Auth = &v
+}
+
+// GetCompression returns the Compression field value if set, zero value otherwise.
+func (o *ObservabilityPipelineAmazonS3Source) GetCompression() ObservabilityPipelineAmazonS3SourceCompression {
+	if o == nil || o.Compression == nil {
+		var ret ObservabilityPipelineAmazonS3SourceCompression
+		return ret
+	}
+	return *o.Compression
+}
+
+// GetCompressionOk returns a tuple with the Compression field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineAmazonS3Source) GetCompressionOk() (*ObservabilityPipelineAmazonS3SourceCompression, bool) {
+	if o == nil || o.Compression == nil {
+		return nil, false
+	}
+	return o.Compression, true
+}
+
+// HasCompression returns a boolean if a field has been set.
+func (o *ObservabilityPipelineAmazonS3Source) HasCompression() bool {
+	return o != nil && o.Compression != nil
+}
+
+// SetCompression gets a reference to the given ObservabilityPipelineAmazonS3SourceCompression and assigns it to the Compression field.
+func (o *ObservabilityPipelineAmazonS3Source) SetCompression(v ObservabilityPipelineAmazonS3SourceCompression) {
+	o.Compression = &v
 }
 
 // GetId returns the Id field value.
@@ -217,6 +247,9 @@ func (o ObservabilityPipelineAmazonS3Source) MarshalJSON() ([]byte, error) {
 	if o.Auth != nil {
 		toSerialize["auth"] = o.Auth
 	}
+	if o.Compression != nil {
+		toSerialize["compression"] = o.Compression
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["region"] = o.Region
 	if o.Tls != nil {
@@ -236,12 +269,13 @@ func (o ObservabilityPipelineAmazonS3Source) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineAmazonS3Source) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Auth   *ObservabilityPipelineAwsAuth            `json:"auth,omitempty"`
-		Id     *string                                  `json:"id"`
-		Region *string                                  `json:"region"`
-		Tls    *ObservabilityPipelineTls                `json:"tls,omitempty"`
-		Type   *ObservabilityPipelineAmazonS3SourceType `json:"type"`
-		UrlKey *string                                  `json:"url_key,omitempty"`
+		Auth        *ObservabilityPipelineAwsAuth                   `json:"auth,omitempty"`
+		Compression *ObservabilityPipelineAmazonS3SourceCompression `json:"compression,omitempty"`
+		Id          *string                                         `json:"id"`
+		Region      *string                                         `json:"region"`
+		Tls         *ObservabilityPipelineTls                       `json:"tls,omitempty"`
+		Type        *ObservabilityPipelineAmazonS3SourceType        `json:"type"`
+		UrlKey      *string                                         `json:"url_key,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -257,7 +291,7 @@ func (o *ObservabilityPipelineAmazonS3Source) UnmarshalJSON(bytes []byte) (err e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "id", "region", "tls", "type", "url_key"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "compression", "id", "region", "tls", "type", "url_key"})
 	} else {
 		return err
 	}
@@ -267,6 +301,11 @@ func (o *ObservabilityPipelineAmazonS3Source) UnmarshalJSON(bytes []byte) (err e
 		hasInvalidField = true
 	}
 	o.Auth = all.Auth
+	if all.Compression != nil && !all.Compression.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Compression = all.Compression
+	}
 	o.Id = *all.Id
 	o.Region = *all.Region
 	if all.Tls != nil && all.Tls.UnparsedObject != nil && o.UnparsedObject == nil {
