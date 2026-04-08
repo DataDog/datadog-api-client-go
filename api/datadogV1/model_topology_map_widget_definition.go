@@ -16,7 +16,7 @@ type TopologyMapWidgetDefinition struct {
 	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// The description of the widget.
 	Description *string `json:"description,omitempty"`
-	// One or more Topology requests.
+	// One Topology request.
 	Requests []TopologyRequest `json:"requests"`
 	// Title of your widget.
 	Title *string `json:"title,omitempty"`

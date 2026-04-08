@@ -1,4 +1,4 @@
-// Create a new dashboard with topology_map widget
+// Create a new dashboard with topology_map data_streams widget
 
 package main
 
@@ -35,12 +35,12 @@ func main() {
 								RequestType: datadogV1.TOPOLOGYREQUESTTYPE_TOPOLOGY.Ptr(),
 								Query: &datadogV1.TopologyQuery{
 									TopologyQueryDataStreamsOrServiceMap: &datadogV1.TopologyQueryDataStreamsOrServiceMap{
-										DataSource: datadogV1.TOPOLOGYQUERYDATASTREAMSORSERVICEMAPDATASOURCE_SERVICE_MAP,
+										DataSource: datadogV1.TOPOLOGYQUERYDATASTREAMSORSERVICEMAPDATASOURCE_DATA_STREAMS,
 										Service:    datadog.PtrString(""),
 										Filters: []string{
-											"env:none",
-											"environment:*",
+											"env:prod",
 										},
+										QueryString: datadog.PtrString("service:myservice"),
 									}},
 							},
 						},
