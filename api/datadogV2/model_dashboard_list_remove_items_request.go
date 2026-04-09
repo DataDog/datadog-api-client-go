@@ -8,8 +8,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DashboardListDeleteItemsRequest Request containing a list of dashboards to delete.
-type DashboardListDeleteItemsRequest struct {
+// DashboardListRemoveItemsRequest Request containing a list of dashboards to remove.
+type DashboardListRemoveItemsRequest struct {
 	// List of dashboards to delete from the dashboard list.
 	Dashboards []DashboardListItemRequest `json:"dashboards,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -17,25 +17,25 @@ type DashboardListDeleteItemsRequest struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewDashboardListDeleteItemsRequest instantiates a new DashboardListDeleteItemsRequest object.
+// NewDashboardListRemoveItemsRequest instantiates a new DashboardListRemoveItemsRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDashboardListDeleteItemsRequest() *DashboardListDeleteItemsRequest {
-	this := DashboardListDeleteItemsRequest{}
+func NewDashboardListRemoveItemsRequest() *DashboardListRemoveItemsRequest {
+	this := DashboardListRemoveItemsRequest{}
 	return &this
 }
 
-// NewDashboardListDeleteItemsRequestWithDefaults instantiates a new DashboardListDeleteItemsRequest object.
+// NewDashboardListRemoveItemsRequestWithDefaults instantiates a new DashboardListRemoveItemsRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDashboardListDeleteItemsRequestWithDefaults() *DashboardListDeleteItemsRequest {
-	this := DashboardListDeleteItemsRequest{}
+func NewDashboardListRemoveItemsRequestWithDefaults() *DashboardListRemoveItemsRequest {
+	this := DashboardListRemoveItemsRequest{}
 	return &this
 }
 
 // GetDashboards returns the Dashboards field value if set, zero value otherwise.
-func (o *DashboardListDeleteItemsRequest) GetDashboards() []DashboardListItemRequest {
+func (o *DashboardListRemoveItemsRequest) GetDashboards() []DashboardListItemRequest {
 	if o == nil || o.Dashboards == nil {
 		var ret []DashboardListItemRequest
 		return ret
@@ -45,7 +45,7 @@ func (o *DashboardListDeleteItemsRequest) GetDashboards() []DashboardListItemReq
 
 // GetDashboardsOk returns a tuple with the Dashboards field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DashboardListDeleteItemsRequest) GetDashboardsOk() (*[]DashboardListItemRequest, bool) {
+func (o *DashboardListRemoveItemsRequest) GetDashboardsOk() (*[]DashboardListItemRequest, bool) {
 	if o == nil || o.Dashboards == nil {
 		return nil, false
 	}
@@ -53,17 +53,17 @@ func (o *DashboardListDeleteItemsRequest) GetDashboardsOk() (*[]DashboardListIte
 }
 
 // HasDashboards returns a boolean if a field has been set.
-func (o *DashboardListDeleteItemsRequest) HasDashboards() bool {
+func (o *DashboardListRemoveItemsRequest) HasDashboards() bool {
 	return o != nil && o.Dashboards != nil
 }
 
 // SetDashboards gets a reference to the given []DashboardListItemRequest and assigns it to the Dashboards field.
-func (o *DashboardListDeleteItemsRequest) SetDashboards(v []DashboardListItemRequest) {
+func (o *DashboardListRemoveItemsRequest) SetDashboards(v []DashboardListItemRequest) {
 	o.Dashboards = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DashboardListDeleteItemsRequest) MarshalJSON() ([]byte, error) {
+func (o DashboardListRemoveItemsRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -79,7 +79,7 @@ func (o DashboardListDeleteItemsRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DashboardListDeleteItemsRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DashboardListRemoveItemsRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Dashboards []DashboardListItemRequest `json:"dashboards,omitempty"`
 	}{}

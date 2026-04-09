@@ -20,7 +20,7 @@ func main() {
 	// there is a valid "screenboard_dashboard" in the system
 	ScreenboardDashboardID := os.Getenv("SCREENBOARD_DASHBOARD_ID")
 
-	body := datadogV2.DashboardListDeleteItemsRequest{
+	body := datadogV2.DashboardListRemoveItemsRequest{
 		Dashboards: []datadogV2.DashboardListItemRequest{
 			{
 				Id:   ScreenboardDashboardID,
