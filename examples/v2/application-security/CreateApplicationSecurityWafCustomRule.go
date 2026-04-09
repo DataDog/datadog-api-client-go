@@ -41,6 +41,7 @@ func main() {
 								MinLength:     datadog.PtrInt64(0),
 							},
 							Regex: datadog.PtrString("path.*"),
+							Type:  datadogV2.APPLICATIONSECURITYWAFCUSTOMRULECONDITIONPARAMETERSTYPE_STRING.Ptr(),
 							Value: datadog.PtrString("custom_tag"),
 						},
 					},
