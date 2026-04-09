@@ -8,6 +8,11 @@ on:
         required: false
         type: string
         default: ''
+      tf-provider-pr:
+        description: 'terraform-provider-datadog PR URL to test against (if already known, skips PR description parsing)'
+        required: false
+        type: string
+        default: ''
 
     secrets:
       PIPELINE_GITHUB_APP_ID:
@@ -64,6 +69,7 @@ jobs:
         id: detect_tf_pr
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
+          TF_PROVIDER_PR_INPUT: ${{ inputs.tf-provider-pr }}
           PR_BODY: ${{ github.event.pull_request.body }}
         run: |
           # If a breaking Go client change requires terraform code changes, the author
@@ -71,7 +77,15 @@ jobs:
           # Fix Terraform Provider PR: https://github.com/DataDog/terraform-provider-datadog/pull/1234
           # Stale references to merged/closed PRs are automatically ignored and
           # the build falls back to master.
-          tf_pr_link=$(echo "$PR_BODY" | grep -oP '(?<=Fix Terraform Provider PR: )https://github\.com/DataDog/terraform-provider-datadog/pull/[0-9]+' | head -1)
+          #
+          # When called from datadog-api-spec, the URL is passed directly via the
+          # tf-provider-pr input (already extracted by detect-tf-pr-change), avoiding
+          # re-parsing the PR description.
+          if [ -n "$TF_PROVIDER_PR_INPUT" ]; then
+            tf_pr_link="$TF_PROVIDER_PR_INPUT"
+          else
+            tf_pr_link=$(echo "$PR_BODY" | grep -oP '(?<=Fix Terraform Provider PR: )https://github\.com/DataDog/terraform-provider-datadog/pull/[0-9]+' | head -1)
+          fi
 
           if [ -z "$tf_pr_link" ]; then
             echo "branch=master" >> $GITHUB_OUTPUT

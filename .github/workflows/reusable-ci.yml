@@ -8,6 +8,11 @@ on:
         required: false
         type: string
         default: ''
+      tf-provider-pr:
+        description: 'terraform-provider-datadog PR URL to test against (if already known, e.g. passed from ci-cd.yml)'
+        required: false
+        type: string
+        default: ''
     secrets:
       PIPELINE_GITHUB_APP_ID:
         required: false
@@ -37,6 +42,7 @@ jobs:
     uses: ./.github/workflows/reusable-go-test.yml
     with:
       target-branch: ${{ inputs.target-branch }}
+      tf-provider-pr: ${{ inputs.tf-provider-pr }}
     secrets:
       PIPELINE_GITHUB_APP_ID: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
       PIPELINE_GITHUB_APP_PRIVATE_KEY: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
