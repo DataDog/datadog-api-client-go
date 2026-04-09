@@ -22,8 +22,6 @@ on:
 
 jobs:
   test:
-    # Skip on 'edited' — description changes only affect the terraform provider check below
-    if: github.event.action != 'edited'
     strategy:
       matrix:
         go-version: ["1.22.x", "1.23.x"]
@@ -70,38 +68,25 @@ jobs:
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
           TF_PROVIDER_PR_INPUT: ${{ inputs.tf-provider-pr }}
-          PR_BODY: ${{ github.event.pull_request.body }}
         run: |
-          # If a breaking Go client change requires terraform code changes, the author
-          # adds a line to their PR description in the format:
-          # Fix Terraform Provider PR: https://github.com/DataDog/terraform-provider-datadog/pull/1234
-          # Stale references to merged/closed PRs are automatically ignored and
-          # the build falls back to master.
-          #
-          # When called from datadog-api-spec, the URL is passed directly via the
-          # tf-provider-pr input (already extracted by detect-tf-pr-change), avoiding
-          # re-parsing the PR description.
+          # The terraform fix PR URL is optionally passed in via the tf-provider-pr input
+          # (set by datadog-api-spec's detect-tf-pr-change job). If not provided, fall back
+          # to master — direct go-client PRs don't carry a terraform fix link.
           if [ -n "$TF_PROVIDER_PR_INPUT" ]; then
-            tf_pr_link="$TF_PROVIDER_PR_INPUT"
-          else
-            tf_pr_link=$(echo "$PR_BODY" | grep -oP '(?<=Fix Terraform Provider PR: )https://github\.com/DataDog/terraform-provider-datadog/pull/[0-9]+' | head -1)
-          fi
-
-          if [ -z "$tf_pr_link" ]; then
-            echo "branch=master" >> $GITHUB_OUTPUT
-            echo "ℹ️ No 'Fix Terraform Provider PR:' line found in PR description, using master"
-          else
-            tf_pr_number=$(echo "$tf_pr_link" | grep -oE '[0-9]+$')
+            tf_pr_number=$(echo "$TF_PROVIDER_PR_INPUT" | grep -oE '[0-9]+$')
             tf_state=$(gh pr view "$tf_pr_number" --repo DataDog/terraform-provider-datadog --json state --jq '.state')
 
             if [ "$tf_state" = "OPEN" ]; then
               tf_branch=$(gh pr view "$tf_pr_number" --repo DataDog/terraform-provider-datadog --json headRefName --jq '.headRefName')
               echo "branch=${tf_branch}" >> $GITHUB_OUTPUT
-              echo "✅ Found terraform-provider-datadog PR #${tf_pr_number} in PR description (branch: ${tf_branch})"
+              echo "✅ Using terraform-provider-datadog PR #${tf_pr_number} (branch: ${tf_branch})"
             else
               echo "branch=master" >> $GITHUB_OUTPUT
-              echo "ℹ️ PR description references terraform-provider-datadog PR #${tf_pr_number} which is ${tf_state} — using master"
+              echo "ℹ️ terraform-provider-datadog PR #${tf_pr_number} is ${tf_state} — using master"
             fi
+          else
+            echo "branch=master" >> $GITHUB_OUTPUT
+            echo "ℹ️ No tf-provider-pr input provided, using master"
           fi
 
       - name: Checkout terraform-provider-datadog
