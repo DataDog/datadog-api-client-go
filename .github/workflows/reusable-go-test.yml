@@ -110,10 +110,7 @@ jobs:
           echo "commit_sha=${COMMIT_SHA}" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
-          # When called from datadog-api-spec, github.event.pull_request.head.sha is the
-          # api-spec PR SHA which does not exist as a go-client commit. Use inputs.target-branch
-          # (the generated go-client branch) instead so the SHA resolution doesn't 404.
-          GO_CLIENT_BRANCH: ${{ inputs.target-branch || github.event.pull_request.head.sha || github.sha }}
+          GO_CLIENT_BRANCH: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Update datadog-api-client-go to generated commit
         run: |
