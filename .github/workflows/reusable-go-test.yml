@@ -135,8 +135,9 @@ jobs:
               echo "  1. Create a PR on DataDog/terraform-provider-datadog with the necessary code changes"
               echo "  2. Add the following line to your PR description:"
               echo "     Fix Terraform Provider PR: https://github.com/DataDog/terraform-provider-datadog/pull/1234"
-              echo "  3. Save the PR description — the check will re-run automatically"
-              echo "  4. Force a rebuild if needed: git commit --allow-empty -m \"force rebuild\""
+              echo "  3. Save the PR description"
+              echo "  4. Push a new commit to trigger the check:"
+              echo "     git commit --allow-empty -m \"force rebuild\""
               echo "     or use the opportunity to update the branch with any other pending changes"
             else
               echo "The build was tested against the terraform-provider-datadog branch '${TF_BRANCH}'."
