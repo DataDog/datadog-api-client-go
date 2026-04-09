@@ -9,7 +9,6 @@ env:
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
     branches:
       - master
   schedule:
