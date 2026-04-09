@@ -110,7 +110,10 @@ jobs:
           echo "commit_sha=${COMMIT_SHA}" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
-          GO_CLIENT_BRANCH: ${{ github.event.pull_request.head.sha || github.sha }}
+          # When called from api-spec via reusable-ci, inputs.target-branch is the go-client branch
+          # name (e.g. datadog-api-spec/generated/1234). Without it, github.event.pull_request.head.sha
+          # is the api-spec commit SHA, which doesn't exist in the go-client repo.
+          GO_CLIENT_BRANCH: ${{ inputs.target-branch || github.event.pull_request.head.sha || github.sha }}
 
       - name: Update datadog-api-client-go to generated commit
         run: |
