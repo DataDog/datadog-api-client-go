@@ -17,6 +17,8 @@ on:
 
 jobs:
   test:
+    # Skip on 'edited' — description changes only affect the terraform provider check below
+    if: github.event.action != 'edited'
     strategy:
       matrix:
         go-version: ["1.22.x", "1.23.x"]
@@ -58,47 +60,35 @@ jobs:
           APP_ID: ${{ secrets.PIPELINE_GITHUB_APP_ID }}
           APP_TOKEN: ${{ steps.get_token.outputs.token }}
 
-      - name: Checkout datadog-api-client-go
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-        with:
-          repository: DataDog/datadog-api-client-go
-          ref: ${{ github.ref }}
-          token: ${{ steps.get_token.outputs.token }}
-          path: client-repo
-
       - name: Detect linked terraform-provider-datadog PR
         id: detect_tf_pr
-        run: |
-          # If a breaking Go client change requires terraform code changes, the author
-          # adds a .github/terraform-provider-pr file containing the full PR URL, e.g.
-          # https://github.com/DataDog/terraform-provider-datadog/pull/1234
-          # The file is safe to leave after merging — stale references to merged/closed
-          # PRs are automatically ignored and the build falls back to master.
-          if [ -f client-repo/.github/terraform-provider-pr ]; then
-            tf_pr_link=$(cat client-repo/.github/terraform-provider-pr | tr -d '[:space:]')
-            tf_pr_number=$(echo "$tf_pr_link" | grep -oE '[0-9]+$')
-            if [ -z "$tf_pr_number" ]; then
-              echo "❌ .github/terraform-provider-pr exists but could not extract a PR number from: ${tf_pr_link}"
-              echo "   Expected format: https://github.com/DataDog/terraform-provider-datadog/pull/<number>"
-              echo "branch=master" >> $GITHUB_OUTPUT
-            else
-              tf_state=$(gh pr view "$tf_pr_number" --repo DataDog/terraform-provider-datadog --json state --jq '.state')
-
-              if [ "$tf_state" = "OPEN" ]; then
-                tf_branch=$(gh pr view "$tf_pr_number" --repo DataDog/terraform-provider-datadog --json headRefName --jq '.headRefName')
-                echo "branch=${tf_branch}" >> $GITHUB_OUTPUT
-                echo "✅ Found .github/terraform-provider-pr → PR #${tf_pr_number} (branch: ${tf_branch})"
-              else
-                echo "branch=master" >> $GITHUB_OUTPUT
-                echo "ℹ️ .github/terraform-provider-pr references PR #${tf_pr_number} which is ${tf_state} — using master"
-              fi
-            fi
-          else
-            echo "branch=master" >> $GITHUB_OUTPUT
-            echo "ℹ️ No .github/terraform-provider-pr file found, using master"
-          fi
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          # If a breaking Go client change requires terraform code changes, the author
+          # adds a line to their PR description in the format:
+          # Fix Terraform Provider PR: https://github.com/DataDog/terraform-provider-datadog/pull/1234
+          # Stale references to merged/closed PRs are automatically ignored and
+          # the build falls back to master.
+          tf_pr_link=$(echo "$PR_BODY" | grep -oP '(?<=Fix Terraform Provider PR: )https://github\.com/DataDog/terraform-provider-datadog/pull/[0-9]+' | head -1)
+
+          if [ -z "$tf_pr_link" ]; then
+            echo "branch=master" >> $GITHUB_OUTPUT
+            echo "ℹ️ No 'Fix Terraform Provider PR:' line found in PR description, using master"
+          else
+            tf_pr_number=$(echo "$tf_pr_link" | grep -oE '[0-9]+$')
+            tf_state=$(gh pr view "$tf_pr_number" --repo DataDog/terraform-provider-datadog --json state --jq '.state')
+
+            if [ "$tf_state" = "OPEN" ]; then
+              tf_branch=$(gh pr view "$tf_pr_number" --repo DataDog/terraform-provider-datadog --json headRefName --jq '.headRefName')
+              echo "branch=${tf_branch}" >> $GITHUB_OUTPUT
+              echo "✅ Found terraform-provider-datadog PR #${tf_pr_number} in PR description (branch: ${tf_branch})"
+            else
+              echo "branch=master" >> $GITHUB_OUTPUT
+              echo "ℹ️ PR description references terraform-provider-datadog PR #${tf_pr_number} which is ${tf_state} — using master"
+            fi
+          fi
 
       - name: Checkout terraform-provider-datadog
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -121,7 +111,10 @@ jobs:
           echo "commit_sha=${COMMIT_SHA}" >> $GITHUB_OUTPUT
         env:
           GH_TOKEN: ${{ steps.get_token.outputs.token }}
-          GO_CLIENT_BRANCH: ${{ github.event.pull_request.head.sha || github.sha }}
+          # When called from datadog-api-spec, github.event.pull_request.head.sha is the
+          # api-spec PR SHA which does not exist as a go-client commit. Use inputs.target-branch
+          # (the generated go-client branch) instead so the SHA resolution doesn't 404.
+          GO_CLIENT_BRANCH: ${{ inputs.target-branch || github.event.pull_request.head.sha || github.sha }}
 
       - name: Update datadog-api-client-go to generated commit
         run: |
@@ -144,9 +137,9 @@ jobs:
               echo ""
               echo "To fix this:"
               echo "  1. Create a PR on DataDog/terraform-provider-datadog with the necessary code changes"
-              echo "  2. Add a file '.github/terraform-provider-pr' to your datadog-api-client-go branch containing the full PR link"
-              echo "     e.g. https://github.com/DataDog/terraform-provider-datadog/pull/1234"
-              echo "  3. Commit and push — the check will re-run automatically"
+              echo "  2. Add the following line to your PR description:"
+              echo "     Fix Terraform Provider PR: https://github.com/DataDog/terraform-provider-datadog/pull/1234"
+              echo "  3. Save the PR description — the check will re-run automatically"
             else
               echo "The build was tested against the terraform-provider-datadog branch '${TF_BRANCH}'."
               echo "The linked PR also fails to build with the generated Go client — please fix it."

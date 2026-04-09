@@ -9,6 +9,7 @@ env:
 
 on:
   pull_request:
+    types: [opened, synchronize, reopened, edited]
     branches:
       - master
   schedule:
@@ -20,11 +21,13 @@ concurrency:
 
 jobs:
   pre-commit:
+    # Skip on 'edited' — description changes only affect the terraform provider check
     if: >
-      (github.event.pull_request.draft == false &&
+      github.event.action != 'edited' &&
+      ((github.event.pull_request.draft == false &&
        !contains(github.event.pull_request.labels.*.name, 'ci/skip') &&
        !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/')) ||
-      github.event_name == 'schedule'
+      github.event_name == 'schedule')
     uses: ./.github/workflows/reusable-pre-commit.yml
     with:
       enable-commit-changes: true
@@ -44,11 +47,13 @@ jobs:
       PIPELINE_GITHUB_APP_PRIVATE_KEY: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
 
   examples:
+    # Skip on 'edited' — description changes only affect the terraform provider check
     if: >
-      (github.event.pull_request.draft == false &&
+      github.event.action != 'edited' &&
+      ((github.event.pull_request.draft == false &&
        !contains(github.event.pull_request.labels.*.name, 'ci/skip') &&
        !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/')) ||
-      github.event_name == 'schedule'
+      github.event_name == 'schedule')
     uses: ./.github/workflows/reusable-examples.yml
 
   report:
