@@ -642,8 +642,8 @@ def format_data_with_schema_dict(
             )
             parameters += f"{camel_case(k)}: {value},\n"
 
-    additional = schema.get("additionalProperties")
-    if additional is not None and additional is not False:
+    additional = schema.get("additionalProperties", False)
+    if additional != False:
         saved_parameters = ""
         if schema.get("properties"):
             saved_parameters = parameters
@@ -677,7 +677,31 @@ def format_data_with_schema_dict(
                     **kwargs,
                 )
             else:
-                value = f'"{v}"'
+                # Infer schema from the Python value type so primitives are formatted
+                # correctly (e.g. strings with newlines use backtick literals, booleans
+                # emit "true"/"false"). bool must come before int because bool is a
+                # subclass of int in Python — format_interface would otherwise return
+                # "True"/"False" instead of valid Go literals.
+                # For complex types (dict, list) inferred stays {}: format_data_with_schema
+                # short-circuits on an empty schema and returns "", so the fallback
+                # f'"{v}"' emits a Python repr string. Not ideal but these values were
+                # previously silently dropped, so this is strictly an improvement.
+                if isinstance(v, bool):
+                    inferred = {"type": "boolean"}
+                elif isinstance(v, (int, float)):
+                    inferred = {"type": "number"}
+                elif isinstance(v, str):
+                    inferred = {"type": "string"}
+                else:
+                    inferred = {}
+                value = format_data_with_schema(
+                    v,
+                    inferred,
+                    name_prefix=name_prefix,
+                    replace_values=replace_values,
+                    required=True,
+                    **kwargs,
+                ) or f'"{v}"'
             parameters += f'"{k}": {value},\n'
 
             # IMPROVE: find a better way to get nested schema name

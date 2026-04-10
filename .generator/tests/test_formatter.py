@@ -1,7 +1,6 @@
 # coding=utf-8
 """Unit tests for the formatter module."""
 
-import pytest
 from generator.formatter import format_data_with_schema
 
 
