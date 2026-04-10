@@ -20,11 +20,11 @@ func main() {
 		Data: &datadogV2.BulkPutAppsDatastoreItemsRequestData{
 			Attributes: &datadogV2.BulkPutAppsDatastoreItemsRequestDataAttributes{
 				Values: []map[string]interface{}{
-					{
+					map[string]interface{}{
 						"id":   "cust_3141",
 						"name": "Johnathan",
 					},
-					{
+					map[string]interface{}{
 						"id":   "cust_3142",
 						"name": "Mary",
 					},

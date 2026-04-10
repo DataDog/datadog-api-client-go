@@ -62,6 +62,9 @@ func main() {
 					Hostname: datadog.PtrString("i-012345678"),
 					Message:  datadog.PtrString("2019-11-19T14:37:58,995 INFO [process.name][20081] Hello World"),
 					Service:  datadog.PtrString("payment"),
+					AdditionalProperties: map[string]interface{}{
+						"userIdentity": "{'assumed_role': 'fake assumed_role'}",
+					},
 				},
 			},
 		},
