@@ -23,7 +23,7 @@ func main() {
 						Patch: map[string]interface{}{
 							"apm_config":   "{'enabled': True}",
 							"log_level":    "debug",
-							"logs_enabled": "True",
+							"logs_enabled": true,
 						},
 					},
 				},

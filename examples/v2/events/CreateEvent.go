@@ -38,12 +38,12 @@ func main() {
 							},
 						},
 						NewValue: map[string]interface{}{
-							"enabled":    "True",
+							"enabled":    true,
 							"percentage": "50%",
 							"rule":       "{'datacenter': 'devcycle.us1.prod'}",
 						},
 						PrevValue: map[string]interface{}{
-							"enabled":    "True",
+							"enabled":    true,
 							"percentage": "10%",
 							"rule":       "{'datacenter': 'devcycle.us1.prod'}",
 						},
