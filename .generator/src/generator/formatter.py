@@ -559,9 +559,18 @@ def format_data_with_schema_list(
             nested_schema_name = "interface{}"
     else:
         if nested_schema_name:
-            nested_schema_name = f"{name_prefix}{nested_schema_name}"
-        elif list_schema.get("type") == "object" and list_schema.get("additionalProperties") == {}:
-            nested_schema_name = "map[string]interface{}"
+            additional = list_schema.get("additionalProperties", False)
+            if additional != False and not list_schema.get("properties"):
+                # Named schema is a map type (no struct generated for it) — use the
+                # map type directly to avoid referencing a non-existent struct.
+                value_type = (simple_type(additional) if isinstance(additional, dict) and additional else None) or "interface{}"
+                nested_schema_name = f"map[string]{value_type}"
+            else:
+                nested_schema_name = f"{name_prefix}{nested_schema_name}"
+        elif list_schema.get("additionalProperties", False) != False:
+            additional = list_schema.get("additionalProperties")
+            value_type = (simple_type(additional) if isinstance(additional, dict) and additional else None) or "interface{}"
+            nested_schema_name = f"map[string]{value_type}"
         else:
             nested_schema_name = "interface{}"
 

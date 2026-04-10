@@ -50,3 +50,36 @@ class TestFormatDataWithSchemaAdditionalProperties:
         )
         result = format_data_with_schema({"k": "v"}, schema)
         assert result == 'map[string]string{\n"k": "v",\n}'
+
+
+class TestFormatDataWithSchemaArrayItems:
+    """Tests for format_data_with_schema with array items that are named map schemas."""
+
+    def test_named_empty_additional_properties_as_array_item_generates_map_slice(self):
+        """Array items that are named map schemas must generate []map[string]interface{}.
+
+        Before the fix, schema_name() returned "IDPConfigValueItem" for the item schema,
+        causing the formatter to emit []datadogV2.IDPConfigValueItem — a type that is never
+        generated for map schemas, causing a Go compile error.
+        """
+        item_schema = SchemaWithRef(
+            {"type": "object", "additionalProperties": {}},
+            ref="#/components/schemas/IDPConfigValueItem",
+        )
+        array_schema = {"type": "array", "items": item_schema}
+        result = format_data_with_schema(
+            [{"id": "dashboard-1", "displayName": "My Dashboard"}], array_schema
+        )
+        assert "IDPConfigValueItem" not in result
+        assert "map[string]interface{}" in result
+
+    def test_named_typed_additional_properties_as_array_item_generates_typed_map_slice(self):
+        """Array items that are named typed-map schemas must generate []map[string]string."""
+        item_schema = SchemaWithRef(
+            {"type": "object", "additionalProperties": {"type": "string"}},
+            ref="#/components/schemas/StringMapItem",
+        )
+        array_schema = {"type": "array", "items": item_schema}
+        result = format_data_with_schema([{"k": "v"}], array_schema)
+        assert "StringMapItem" not in result
+        assert "map[string]string" in result
