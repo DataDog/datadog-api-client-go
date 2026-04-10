@@ -642,33 +642,42 @@ def format_data_with_schema_dict(
             )
             parameters += f"{camel_case(k)}: {value},\n"
 
-    if schema.get("additionalProperties"):
+    additional = schema.get("additionalProperties")
+    if additional is not None and additional is not False:
         saved_parameters = ""
         if schema.get("properties"):
             saved_parameters = parameters
             parameters = ""
-        nested_schema = schema["additionalProperties"]
-        nested_schema_name = simple_type(nested_schema)
-        if not nested_schema_name:
-            nested_schema_name = schema_name(nested_schema)
-            if nested_schema_name:
-                nested_schema_name = name_prefix + nested_schema_name
-            elif nested_schema.get("type") is None:
-                nested_schema_name = "interface{}"
+        # Typed additionalProperties (non-empty dict): use it as the nested schema.
+        # Untyped (empty dict or True): any value is allowed, treat as interface{}.
+        nested_schema = additional if isinstance(additional, dict) and additional else None
+        if nested_schema:
+            nested_schema_name = simple_type(nested_schema)
+            if not nested_schema_name:
+                nested_schema_name = schema_name(nested_schema)
+                if nested_schema_name:
+                    nested_schema_name = name_prefix + nested_schema_name
+                elif nested_schema.get("type") is None:
+                    nested_schema_name = "interface{}"
+        else:
+            nested_schema_name = "interface{}"
 
         has_properties = schema.get("properties")
 
         for k, v in data.items():
             if has_properties and k in schema["properties"]:
                 continue
-            value = format_data_with_schema(
-                v,
-                schema["additionalProperties"],
-                name_prefix=name_prefix,
-                replace_values=replace_values,
-                required=True,
-                **kwargs,
-            )
+            if nested_schema:
+                value = format_data_with_schema(
+                    v,
+                    nested_schema,
+                    name_prefix=name_prefix,
+                    replace_values=replace_values,
+                    required=True,
+                    **kwargs,
+                )
+            else:
+                value = f'"{v}"'
             parameters += f'"{k}": {value},\n'
 
             # IMPROVE: find a better way to get nested schema name
@@ -687,14 +696,7 @@ def format_data_with_schema_dict(
         return _format_oneof(schema, data, name, name_prefix, replace_values, required, nullable, **kwargs)
 
     if schema.get("type") == "object" and "properties" not in schema:
-        if schema.get("additionalProperties") == {}:
-            name_prefix = ""
-            name = "map[string]interface{}"
-            reference = ""
-            for k, v in data.items():
-                parameters += f'"{k}": "{v}",\n'
-        else:
-            return "new(interface{})"
+        return "new(interface{})"
 
     if not name:
         raise ValueError(f"Unnamed schema {schema} for {data}")
