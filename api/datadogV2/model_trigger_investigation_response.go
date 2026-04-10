@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TestOptimizationFlakyTestsManagementPoliciesUpdateRequest Request object for updating Flaky Tests Management policies.
-type TestOptimizationFlakyTestsManagementPoliciesUpdateRequest struct {
-	// Data object for update Flaky Tests Management policies request.
-	Data TestOptimizationFlakyTestsManagementPoliciesUpdateRequestData `json:"data"`
+// TriggerInvestigationResponse Response after triggering an investigation.
+type TriggerInvestigationResponse struct {
+	// Data for the trigger investigation response.
+	Data TriggerInvestigationResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTestOptimizationFlakyTestsManagementPoliciesUpdateRequest instantiates a new TestOptimizationFlakyTestsManagementPoliciesUpdateRequest object.
+// NewTriggerInvestigationResponse instantiates a new TriggerInvestigationResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTestOptimizationFlakyTestsManagementPoliciesUpdateRequest(data TestOptimizationFlakyTestsManagementPoliciesUpdateRequestData) *TestOptimizationFlakyTestsManagementPoliciesUpdateRequest {
-	this := TestOptimizationFlakyTestsManagementPoliciesUpdateRequest{}
+func NewTriggerInvestigationResponse(data TriggerInvestigationResponseData) *TriggerInvestigationResponse {
+	this := TriggerInvestigationResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewTestOptimizationFlakyTestsManagementPoliciesUpdateRequestWithDefaults instantiates a new TestOptimizationFlakyTestsManagementPoliciesUpdateRequest object.
+// NewTriggerInvestigationResponseWithDefaults instantiates a new TriggerInvestigationResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTestOptimizationFlakyTestsManagementPoliciesUpdateRequestWithDefaults() *TestOptimizationFlakyTestsManagementPoliciesUpdateRequest {
-	this := TestOptimizationFlakyTestsManagementPoliciesUpdateRequest{}
+func NewTriggerInvestigationResponseWithDefaults() *TriggerInvestigationResponse {
+	this := TriggerInvestigationResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *TestOptimizationFlakyTestsManagementPoliciesUpdateRequest) GetData() TestOptimizationFlakyTestsManagementPoliciesUpdateRequestData {
+func (o *TriggerInvestigationResponse) GetData() TriggerInvestigationResponseData {
 	if o == nil {
-		var ret TestOptimizationFlakyTestsManagementPoliciesUpdateRequestData
+		var ret TriggerInvestigationResponseData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *TestOptimizationFlakyTestsManagementPoliciesUpdateRequest) GetData() Te
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *TestOptimizationFlakyTestsManagementPoliciesUpdateRequest) GetDataOk() (*TestOptimizationFlakyTestsManagementPoliciesUpdateRequestData, bool) {
+func (o *TriggerInvestigationResponse) GetDataOk() (*TriggerInvestigationResponseData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *TestOptimizationFlakyTestsManagementPoliciesUpdateRequest) GetDataOk() 
 }
 
 // SetData sets field value.
-func (o *TestOptimizationFlakyTestsManagementPoliciesUpdateRequest) SetData(v TestOptimizationFlakyTestsManagementPoliciesUpdateRequestData) {
+func (o *TriggerInvestigationResponse) SetData(v TriggerInvestigationResponseData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TestOptimizationFlakyTestsManagementPoliciesUpdateRequest) MarshalJSON() ([]byte, error) {
+func (o TriggerInvestigationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o TestOptimizationFlakyTestsManagementPoliciesUpdateRequest) MarshalJSON()
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TestOptimizationFlakyTestsManagementPoliciesUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TriggerInvestigationResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *TestOptimizationFlakyTestsManagementPoliciesUpdateRequestData `json:"data"`
+		Data *TriggerInvestigationResponseData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

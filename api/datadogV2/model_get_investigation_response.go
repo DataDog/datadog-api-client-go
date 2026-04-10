@@ -10,37 +10,40 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TestOptimizationFlakyTestsManagementPoliciesGetRequest Request object for getting Flaky Tests Management policies.
-type TestOptimizationFlakyTestsManagementPoliciesGetRequest struct {
-	// Data object for get Flaky Tests Management policies request.
-	Data TestOptimizationFlakyTestsManagementPoliciesGetRequestData `json:"data"`
+// GetInvestigationResponse Response for a single Bits AI investigation.
+type GetInvestigationResponse struct {
+	// Data for the get investigation response.
+	Data GetInvestigationResponseData `json:"data"`
+	// Links related to the investigation.
+	Links GetInvestigationResponseLinks `json:"links"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTestOptimizationFlakyTestsManagementPoliciesGetRequest instantiates a new TestOptimizationFlakyTestsManagementPoliciesGetRequest object.
+// NewGetInvestigationResponse instantiates a new GetInvestigationResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTestOptimizationFlakyTestsManagementPoliciesGetRequest(data TestOptimizationFlakyTestsManagementPoliciesGetRequestData) *TestOptimizationFlakyTestsManagementPoliciesGetRequest {
-	this := TestOptimizationFlakyTestsManagementPoliciesGetRequest{}
+func NewGetInvestigationResponse(data GetInvestigationResponseData, links GetInvestigationResponseLinks) *GetInvestigationResponse {
+	this := GetInvestigationResponse{}
 	this.Data = data
+	this.Links = links
 	return &this
 }
 
-// NewTestOptimizationFlakyTestsManagementPoliciesGetRequestWithDefaults instantiates a new TestOptimizationFlakyTestsManagementPoliciesGetRequest object.
+// NewGetInvestigationResponseWithDefaults instantiates a new GetInvestigationResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTestOptimizationFlakyTestsManagementPoliciesGetRequestWithDefaults() *TestOptimizationFlakyTestsManagementPoliciesGetRequest {
-	this := TestOptimizationFlakyTestsManagementPoliciesGetRequest{}
+func NewGetInvestigationResponseWithDefaults() *GetInvestigationResponse {
+	this := GetInvestigationResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequest) GetData() TestOptimizationFlakyTestsManagementPoliciesGetRequestData {
+func (o *GetInvestigationResponse) GetData() GetInvestigationResponseData {
 	if o == nil {
-		var ret TestOptimizationFlakyTestsManagementPoliciesGetRequestData
+		var ret GetInvestigationResponseData
 		return ret
 	}
 	return o.Data
@@ -48,7 +51,7 @@ func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequest) GetData() TestO
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequest) GetDataOk() (*TestOptimizationFlakyTestsManagementPoliciesGetRequestData, bool) {
+func (o *GetInvestigationResponse) GetDataOk() (*GetInvestigationResponseData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,17 +59,41 @@ func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequest) GetDataOk() (*T
 }
 
 // SetData sets field value.
-func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequest) SetData(v TestOptimizationFlakyTestsManagementPoliciesGetRequestData) {
+func (o *GetInvestigationResponse) SetData(v GetInvestigationResponseData) {
 	o.Data = v
 }
 
+// GetLinks returns the Links field value.
+func (o *GetInvestigationResponse) GetLinks() GetInvestigationResponseLinks {
+	if o == nil {
+		var ret GetInvestigationResponseLinks
+		return ret
+	}
+	return o.Links
+}
+
+// GetLinksOk returns a tuple with the Links field value
+// and a boolean to check if the value has been set.
+func (o *GetInvestigationResponse) GetLinksOk() (*GetInvestigationResponseLinks, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Links, true
+}
+
+// SetLinks sets field value.
+func (o *GetInvestigationResponse) SetLinks(v GetInvestigationResponseLinks) {
+	o.Links = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
-func (o TestOptimizationFlakyTestsManagementPoliciesGetRequest) MarshalJSON() ([]byte, error) {
+func (o GetInvestigationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["data"] = o.Data
+	toSerialize["links"] = o.Links
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,9 +102,10 @@ func (o TestOptimizationFlakyTestsManagementPoliciesGetRequest) MarshalJSON() ([
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *GetInvestigationResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *TestOptimizationFlakyTestsManagementPoliciesGetRequestData `json:"data"`
+		Data  *GetInvestigationResponseData  `json:"data"`
+		Links *GetInvestigationResponseLinks `json:"links"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -85,9 +113,12 @@ func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequest) UnmarshalJSON(b
 	if all.Data == nil {
 		return fmt.Errorf("required field data missing")
 	}
+	if all.Links == nil {
+		return fmt.Errorf("required field links missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "links"})
 	} else {
 		return err
 	}
@@ -97,6 +128,10 @@ func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequest) UnmarshalJSON(b
 		hasInvalidField = true
 	}
 	o.Data = *all.Data
+	if all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Links = *all.Links
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

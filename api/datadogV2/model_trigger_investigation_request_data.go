@@ -10,41 +10,40 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TestOptimizationFlakyTestsManagementPoliciesGetRequestData Data object for get Flaky Tests Management policies request.
-type TestOptimizationFlakyTestsManagementPoliciesGetRequestData struct {
-	// Attributes for requesting Flaky Tests Management policies.
-	Attributes TestOptimizationFlakyTestsManagementPoliciesGetRequestAttributes `json:"attributes"`
-	// JSON:API type for get Flaky Tests Management policies request.
-	// The value must always be `test_optimization_get_flaky_tests_management_policies_request`.
-	Type TestOptimizationGetFlakyTestsManagementPoliciesRequestDataType `json:"type"`
+// TriggerInvestigationRequestData Data for the trigger investigation request.
+type TriggerInvestigationRequestData struct {
+	// Attributes for the trigger investigation request.
+	Attributes TriggerInvestigationRequestDataAttributes `json:"attributes"`
+	// The resource type for trigger investigation requests.
+	Type TriggerInvestigationRequestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTestOptimizationFlakyTestsManagementPoliciesGetRequestData instantiates a new TestOptimizationFlakyTestsManagementPoliciesGetRequestData object.
+// NewTriggerInvestigationRequestData instantiates a new TriggerInvestigationRequestData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTestOptimizationFlakyTestsManagementPoliciesGetRequestData(attributes TestOptimizationFlakyTestsManagementPoliciesGetRequestAttributes, typeVar TestOptimizationGetFlakyTestsManagementPoliciesRequestDataType) *TestOptimizationFlakyTestsManagementPoliciesGetRequestData {
-	this := TestOptimizationFlakyTestsManagementPoliciesGetRequestData{}
+func NewTriggerInvestigationRequestData(attributes TriggerInvestigationRequestDataAttributes, typeVar TriggerInvestigationRequestType) *TriggerInvestigationRequestData {
+	this := TriggerInvestigationRequestData{}
 	this.Attributes = attributes
 	this.Type = typeVar
 	return &this
 }
 
-// NewTestOptimizationFlakyTestsManagementPoliciesGetRequestDataWithDefaults instantiates a new TestOptimizationFlakyTestsManagementPoliciesGetRequestData object.
+// NewTriggerInvestigationRequestDataWithDefaults instantiates a new TriggerInvestigationRequestData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTestOptimizationFlakyTestsManagementPoliciesGetRequestDataWithDefaults() *TestOptimizationFlakyTestsManagementPoliciesGetRequestData {
-	this := TestOptimizationFlakyTestsManagementPoliciesGetRequestData{}
+func NewTriggerInvestigationRequestDataWithDefaults() *TriggerInvestigationRequestData {
+	this := TriggerInvestigationRequestData{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequestData) GetAttributes() TestOptimizationFlakyTestsManagementPoliciesGetRequestAttributes {
+func (o *TriggerInvestigationRequestData) GetAttributes() TriggerInvestigationRequestDataAttributes {
 	if o == nil {
-		var ret TestOptimizationFlakyTestsManagementPoliciesGetRequestAttributes
+		var ret TriggerInvestigationRequestDataAttributes
 		return ret
 	}
 	return o.Attributes
@@ -52,7 +51,7 @@ func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequestData) GetAttribut
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequestData) GetAttributesOk() (*TestOptimizationFlakyTestsManagementPoliciesGetRequestAttributes, bool) {
+func (o *TriggerInvestigationRequestData) GetAttributesOk() (*TriggerInvestigationRequestDataAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -60,14 +59,14 @@ func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequestData) GetAttribut
 }
 
 // SetAttributes sets field value.
-func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequestData) SetAttributes(v TestOptimizationFlakyTestsManagementPoliciesGetRequestAttributes) {
+func (o *TriggerInvestigationRequestData) SetAttributes(v TriggerInvestigationRequestDataAttributes) {
 	o.Attributes = v
 }
 
 // GetType returns the Type field value.
-func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequestData) GetType() TestOptimizationGetFlakyTestsManagementPoliciesRequestDataType {
+func (o *TriggerInvestigationRequestData) GetType() TriggerInvestigationRequestType {
 	if o == nil {
-		var ret TestOptimizationGetFlakyTestsManagementPoliciesRequestDataType
+		var ret TriggerInvestigationRequestType
 		return ret
 	}
 	return o.Type
@@ -75,7 +74,7 @@ func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequestData) GetType() T
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequestData) GetTypeOk() (*TestOptimizationGetFlakyTestsManagementPoliciesRequestDataType, bool) {
+func (o *TriggerInvestigationRequestData) GetTypeOk() (*TriggerInvestigationRequestType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -83,12 +82,12 @@ func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequestData) GetTypeOk()
 }
 
 // SetType sets field value.
-func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequestData) SetType(v TestOptimizationGetFlakyTestsManagementPoliciesRequestDataType) {
+func (o *TriggerInvestigationRequestData) SetType(v TriggerInvestigationRequestType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TestOptimizationFlakyTestsManagementPoliciesGetRequestData) MarshalJSON() ([]byte, error) {
+func (o TriggerInvestigationRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -103,10 +102,10 @@ func (o TestOptimizationFlakyTestsManagementPoliciesGetRequestData) MarshalJSON(
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TestOptimizationFlakyTestsManagementPoliciesGetRequestData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TriggerInvestigationRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *TestOptimizationFlakyTestsManagementPoliciesGetRequestAttributes `json:"attributes"`
-		Type       *TestOptimizationGetFlakyTestsManagementPoliciesRequestDataType   `json:"type"`
+		Attributes *TriggerInvestigationRequestDataAttributes `json:"attributes"`
+		Type       *TriggerInvestigationRequestType           `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
