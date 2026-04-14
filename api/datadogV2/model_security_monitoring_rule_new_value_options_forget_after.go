@@ -23,18 +23,13 @@ const (
 	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_FOUR_WEEKS  SecurityMonitoringRuleNewValueOptionsForgetAfter = 28
 )
 
-var allowedSecurityMonitoringRuleNewValueOptionsForgetAfterEnumValues = []SecurityMonitoringRuleNewValueOptionsForgetAfter{
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_ONE_DAY,
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_TWO_DAYS,
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_ONE_WEEK,
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_TWO_WEEKS,
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_THREE_WEEKS,
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_FOUR_WEEKS,
-}
-
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values (1 through 30).
 func (v *SecurityMonitoringRuleNewValueOptionsForgetAfter) GetAllowedValues() []SecurityMonitoringRuleNewValueOptionsForgetAfter {
-	return allowedSecurityMonitoringRuleNewValueOptionsForgetAfterEnumValues
+	values := make([]SecurityMonitoringRuleNewValueOptionsForgetAfter, 30)
+	for i := range values {
+		values[i] = SecurityMonitoringRuleNewValueOptionsForgetAfter(i + 1)
+	}
+	return values
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -55,17 +50,12 @@ func NewSecurityMonitoringRuleNewValueOptionsForgetAfterFromValue(v int32) (*Sec
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for SecurityMonitoringRuleNewValueOptionsForgetAfter: valid values are %v", v, allowedSecurityMonitoringRuleNewValueOptionsForgetAfterEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for SecurityMonitoringRuleNewValueOptionsForgetAfter: valid values are 1 through 30", v)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
 func (v SecurityMonitoringRuleNewValueOptionsForgetAfter) IsValid() bool {
-	for _, existing := range allowedSecurityMonitoringRuleNewValueOptionsForgetAfterEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
+	return v >= 1 && v <= 30
 }
 
 // Ptr returns reference to SecurityMonitoringRuleNewValueOptionsForgetAfter value.
