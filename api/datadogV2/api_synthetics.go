@@ -160,7 +160,9 @@ func (a *SyntheticsApi) CompleteTestFileMultipartUpload(ctx _context.Context, pu
 }
 
 // CreateSyntheticsNetworkTest Create a Network Path test.
-
+// Create a Network Path test.
+//
+// **Note**: This endpoint is not available for the Government (US1-FED) site.
 func (a *SyntheticsApi) CreateSyntheticsNetworkTest(ctx _context.Context, body SyntheticsNetworkTestEditRequest) (SyntheticsNetworkTestResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -874,7 +876,9 @@ func (a *SyntheticsApi) GetSyntheticsFastTestResult(ctx _context.Context, id str
 }
 
 // GetSyntheticsNetworkTest Get a Network Path test.
-
+// Get a Network Path test.
+//
+// **Note**: This endpoint is not available for the Government (US1-FED) site.
 func (a *SyntheticsApi) GetSyntheticsNetworkTest(ctx _context.Context, publicId string) (SyntheticsNetworkTestResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1905,7 +1909,9 @@ func (a *SyntheticsApi) SetOnDemandConcurrencyCap(ctx _context.Context, body OnD
 }
 
 // UpdateSyntheticsNetworkTest Edit a Network Path test.
-
+// Edit a Network Path test.
+//
+// **Note**: This endpoint is not available for the Government (US1-FED) site.
 func (a *SyntheticsApi) UpdateSyntheticsNetworkTest(ctx _context.Context, publicId string, body SyntheticsNetworkTestEditRequest) (SyntheticsNetworkTestResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
