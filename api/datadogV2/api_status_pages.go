@@ -1522,9 +1522,10 @@ func (a *StatusPagesApi) ListMaintenances(ctx _context.Context, o ...ListMainten
 
 // ListStatusPagesOptionalParameters holds optional parameters for ListStatusPages.
 type ListStatusPagesOptionalParameters struct {
-	PageOffset *int32
-	PageLimit  *int32
-	Include    *string
+	PageOffset         *int32
+	PageLimit          *int32
+	FilterDomainPrefix *string
+	Include            *string
 }
 
 // NewListStatusPagesOptionalParameters creates an empty struct for parameters.
@@ -1542,6 +1543,12 @@ func (r *ListStatusPagesOptionalParameters) WithPageOffset(pageOffset int32) *Li
 // WithPageLimit sets the corresponding parameter name and returns the struct.
 func (r *ListStatusPagesOptionalParameters) WithPageLimit(pageLimit int32) *ListStatusPagesOptionalParameters {
 	r.PageLimit = &pageLimit
+	return r
+}
+
+// WithFilterDomainPrefix sets the corresponding parameter name and returns the struct.
+func (r *ListStatusPagesOptionalParameters) WithFilterDomainPrefix(filterDomainPrefix string) *ListStatusPagesOptionalParameters {
+	r.FilterDomainPrefix = &filterDomainPrefix
 	return r
 }
 
@@ -1583,6 +1590,9 @@ func (a *StatusPagesApi) ListStatusPages(ctx _context.Context, o ...ListStatusPa
 	}
 	if optionalParams.PageLimit != nil {
 		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
+	if optionalParams.FilterDomainPrefix != nil {
+		localVarQueryParams.Add("filter[domain_prefix]", datadog.ParameterToString(*optionalParams.FilterDomainPrefix, ""))
 	}
 	if optionalParams.Include != nil {
 		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
