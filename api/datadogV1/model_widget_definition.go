@@ -10,43 +10,46 @@ import (
 
 // WidgetDefinition - [Definition of the widget](https://docs.datadoghq.com/dashboards/widgets/).
 type WidgetDefinition struct {
-	AlertGraphWidgetDefinition     *AlertGraphWidgetDefinition
-	AlertValueWidgetDefinition     *AlertValueWidgetDefinition
-	BarChartWidgetDefinition       *BarChartWidgetDefinition
-	ChangeWidgetDefinition         *ChangeWidgetDefinition
-	CheckStatusWidgetDefinition    *CheckStatusWidgetDefinition
-	DistributionWidgetDefinition   *DistributionWidgetDefinition
-	EventStreamWidgetDefinition    *EventStreamWidgetDefinition
-	EventTimelineWidgetDefinition  *EventTimelineWidgetDefinition
-	FreeTextWidgetDefinition       *FreeTextWidgetDefinition
-	FunnelWidgetDefinition         *FunnelWidgetDefinition
-	GeomapWidgetDefinition         *GeomapWidgetDefinition
-	GroupWidgetDefinition          *GroupWidgetDefinition
-	HeatMapWidgetDefinition        *HeatMapWidgetDefinition
-	HostMapWidgetDefinition        *HostMapWidgetDefinition
-	IFrameWidgetDefinition         *IFrameWidgetDefinition
-	ImageWidgetDefinition          *ImageWidgetDefinition
-	ListStreamWidgetDefinition     *ListStreamWidgetDefinition
-	LogStreamWidgetDefinition      *LogStreamWidgetDefinition
-	MonitorSummaryWidgetDefinition *MonitorSummaryWidgetDefinition
-	NoteWidgetDefinition           *NoteWidgetDefinition
-	PowerpackWidgetDefinition      *PowerpackWidgetDefinition
-	QueryValueWidgetDefinition     *QueryValueWidgetDefinition
-	RunWorkflowWidgetDefinition    *RunWorkflowWidgetDefinition
-	SLOListWidgetDefinition        *SLOListWidgetDefinition
-	SLOWidgetDefinition            *SLOWidgetDefinition
-	ScatterPlotWidgetDefinition    *ScatterPlotWidgetDefinition
-	SankeyWidgetDefinition         *SankeyWidgetDefinition
-	ServiceMapWidgetDefinition     *ServiceMapWidgetDefinition
-	ServiceSummaryWidgetDefinition *ServiceSummaryWidgetDefinition
-	SplitGraphWidgetDefinition     *SplitGraphWidgetDefinition
-	SunburstWidgetDefinition       *SunburstWidgetDefinition
-	TableWidgetDefinition          *TableWidgetDefinition
-	TimeseriesWidgetDefinition     *TimeseriesWidgetDefinition
-	ToplistWidgetDefinition        *ToplistWidgetDefinition
-	TopologyMapWidgetDefinition    *TopologyMapWidgetDefinition
-	TreeMapWidgetDefinition        *TreeMapWidgetDefinition
-	WildcardWidgetDefinition       *WildcardWidgetDefinition
+	AlertGraphWidgetDefinition             *AlertGraphWidgetDefinition
+	AlertValueWidgetDefinition             *AlertValueWidgetDefinition
+	BarChartWidgetDefinition               *BarChartWidgetDefinition
+	ChangeWidgetDefinition                 *ChangeWidgetDefinition
+	CheckStatusWidgetDefinition            *CheckStatusWidgetDefinition
+	CohortWidgetDefinition                 *CohortWidgetDefinition
+	DistributionWidgetDefinition           *DistributionWidgetDefinition
+	EventStreamWidgetDefinition            *EventStreamWidgetDefinition
+	EventTimelineWidgetDefinition          *EventTimelineWidgetDefinition
+	FreeTextWidgetDefinition               *FreeTextWidgetDefinition
+	FunnelWidgetDefinition                 *FunnelWidgetDefinition
+	ProductAnalyticsFunnelWidgetDefinition *ProductAnalyticsFunnelWidgetDefinition
+	GeomapWidgetDefinition                 *GeomapWidgetDefinition
+	GroupWidgetDefinition                  *GroupWidgetDefinition
+	HeatMapWidgetDefinition                *HeatMapWidgetDefinition
+	HostMapWidgetDefinition                *HostMapWidgetDefinition
+	IFrameWidgetDefinition                 *IFrameWidgetDefinition
+	ImageWidgetDefinition                  *ImageWidgetDefinition
+	ListStreamWidgetDefinition             *ListStreamWidgetDefinition
+	LogStreamWidgetDefinition              *LogStreamWidgetDefinition
+	MonitorSummaryWidgetDefinition         *MonitorSummaryWidgetDefinition
+	NoteWidgetDefinition                   *NoteWidgetDefinition
+	PowerpackWidgetDefinition              *PowerpackWidgetDefinition
+	QueryValueWidgetDefinition             *QueryValueWidgetDefinition
+	RetentionCurveWidgetDefinition         *RetentionCurveWidgetDefinition
+	RunWorkflowWidgetDefinition            *RunWorkflowWidgetDefinition
+	SLOListWidgetDefinition                *SLOListWidgetDefinition
+	SLOWidgetDefinition                    *SLOWidgetDefinition
+	ScatterPlotWidgetDefinition            *ScatterPlotWidgetDefinition
+	SankeyWidgetDefinition                 *SankeyWidgetDefinition
+	ServiceMapWidgetDefinition             *ServiceMapWidgetDefinition
+	ServiceSummaryWidgetDefinition         *ServiceSummaryWidgetDefinition
+	SplitGraphWidgetDefinition             *SplitGraphWidgetDefinition
+	SunburstWidgetDefinition               *SunburstWidgetDefinition
+	TableWidgetDefinition                  *TableWidgetDefinition
+	TimeseriesWidgetDefinition             *TimeseriesWidgetDefinition
+	ToplistWidgetDefinition                *ToplistWidgetDefinition
+	TopologyMapWidgetDefinition            *TopologyMapWidgetDefinition
+	TreeMapWidgetDefinition                *TreeMapWidgetDefinition
+	WildcardWidgetDefinition               *WildcardWidgetDefinition
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -77,6 +80,11 @@ func CheckStatusWidgetDefinitionAsWidgetDefinition(v *CheckStatusWidgetDefinitio
 	return WidgetDefinition{CheckStatusWidgetDefinition: v}
 }
 
+// CohortWidgetDefinitionAsWidgetDefinition is a convenience function that returns CohortWidgetDefinition wrapped in WidgetDefinition.
+func CohortWidgetDefinitionAsWidgetDefinition(v *CohortWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{CohortWidgetDefinition: v}
+}
+
 // DistributionWidgetDefinitionAsWidgetDefinition is a convenience function that returns DistributionWidgetDefinition wrapped in WidgetDefinition.
 func DistributionWidgetDefinitionAsWidgetDefinition(v *DistributionWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{DistributionWidgetDefinition: v}
@@ -100,6 +108,11 @@ func FreeTextWidgetDefinitionAsWidgetDefinition(v *FreeTextWidgetDefinition) Wid
 // FunnelWidgetDefinitionAsWidgetDefinition is a convenience function that returns FunnelWidgetDefinition wrapped in WidgetDefinition.
 func FunnelWidgetDefinitionAsWidgetDefinition(v *FunnelWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{FunnelWidgetDefinition: v}
+}
+
+// ProductAnalyticsFunnelWidgetDefinitionAsWidgetDefinition is a convenience function that returns ProductAnalyticsFunnelWidgetDefinition wrapped in WidgetDefinition.
+func ProductAnalyticsFunnelWidgetDefinitionAsWidgetDefinition(v *ProductAnalyticsFunnelWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{ProductAnalyticsFunnelWidgetDefinition: v}
 }
 
 // GeomapWidgetDefinitionAsWidgetDefinition is a convenience function that returns GeomapWidgetDefinition wrapped in WidgetDefinition.
@@ -160,6 +173,11 @@ func PowerpackWidgetDefinitionAsWidgetDefinition(v *PowerpackWidgetDefinition) W
 // QueryValueWidgetDefinitionAsWidgetDefinition is a convenience function that returns QueryValueWidgetDefinition wrapped in WidgetDefinition.
 func QueryValueWidgetDefinitionAsWidgetDefinition(v *QueryValueWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{QueryValueWidgetDefinition: v}
+}
+
+// RetentionCurveWidgetDefinitionAsWidgetDefinition is a convenience function that returns RetentionCurveWidgetDefinition wrapped in WidgetDefinition.
+func RetentionCurveWidgetDefinitionAsWidgetDefinition(v *RetentionCurveWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{RetentionCurveWidgetDefinition: v}
 }
 
 // RunWorkflowWidgetDefinitionAsWidgetDefinition is a convenience function that returns RunWorkflowWidgetDefinition wrapped in WidgetDefinition.
@@ -326,6 +344,23 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.CheckStatusWidgetDefinition = nil
 	}
 
+	// try to unmarshal data into CohortWidgetDefinition
+	err = datadog.Unmarshal(data, &obj.CohortWidgetDefinition)
+	if err == nil {
+		if obj.CohortWidgetDefinition != nil && obj.CohortWidgetDefinition.UnparsedObject == nil {
+			jsonCohortWidgetDefinition, _ := datadog.Marshal(obj.CohortWidgetDefinition)
+			if string(jsonCohortWidgetDefinition) == "{}" { // empty struct
+				obj.CohortWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.CohortWidgetDefinition = nil
+		}
+	} else {
+		obj.CohortWidgetDefinition = nil
+	}
+
 	// try to unmarshal data into DistributionWidgetDefinition
 	err = datadog.Unmarshal(data, &obj.DistributionWidgetDefinition)
 	if err == nil {
@@ -409,6 +444,23 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		}
 	} else {
 		obj.FunnelWidgetDefinition = nil
+	}
+
+	// try to unmarshal data into ProductAnalyticsFunnelWidgetDefinition
+	err = datadog.Unmarshal(data, &obj.ProductAnalyticsFunnelWidgetDefinition)
+	if err == nil {
+		if obj.ProductAnalyticsFunnelWidgetDefinition != nil && obj.ProductAnalyticsFunnelWidgetDefinition.UnparsedObject == nil {
+			jsonProductAnalyticsFunnelWidgetDefinition, _ := datadog.Marshal(obj.ProductAnalyticsFunnelWidgetDefinition)
+			if string(jsonProductAnalyticsFunnelWidgetDefinition) == "{}" { // empty struct
+				obj.ProductAnalyticsFunnelWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ProductAnalyticsFunnelWidgetDefinition = nil
+		}
+	} else {
+		obj.ProductAnalyticsFunnelWidgetDefinition = nil
 	}
 
 	// try to unmarshal data into GeomapWidgetDefinition
@@ -613,6 +665,23 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		}
 	} else {
 		obj.QueryValueWidgetDefinition = nil
+	}
+
+	// try to unmarshal data into RetentionCurveWidgetDefinition
+	err = datadog.Unmarshal(data, &obj.RetentionCurveWidgetDefinition)
+	if err == nil {
+		if obj.RetentionCurveWidgetDefinition != nil && obj.RetentionCurveWidgetDefinition.UnparsedObject == nil {
+			jsonRetentionCurveWidgetDefinition, _ := datadog.Marshal(obj.RetentionCurveWidgetDefinition)
+			if string(jsonRetentionCurveWidgetDefinition) == "{}" { // empty struct
+				obj.RetentionCurveWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.RetentionCurveWidgetDefinition = nil
+		}
+	} else {
+		obj.RetentionCurveWidgetDefinition = nil
 	}
 
 	// try to unmarshal data into RunWorkflowWidgetDefinition
@@ -877,11 +946,13 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.BarChartWidgetDefinition = nil
 		obj.ChangeWidgetDefinition = nil
 		obj.CheckStatusWidgetDefinition = nil
+		obj.CohortWidgetDefinition = nil
 		obj.DistributionWidgetDefinition = nil
 		obj.EventStreamWidgetDefinition = nil
 		obj.EventTimelineWidgetDefinition = nil
 		obj.FreeTextWidgetDefinition = nil
 		obj.FunnelWidgetDefinition = nil
+		obj.ProductAnalyticsFunnelWidgetDefinition = nil
 		obj.GeomapWidgetDefinition = nil
 		obj.GroupWidgetDefinition = nil
 		obj.HeatMapWidgetDefinition = nil
@@ -894,6 +965,7 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.NoteWidgetDefinition = nil
 		obj.PowerpackWidgetDefinition = nil
 		obj.QueryValueWidgetDefinition = nil
+		obj.RetentionCurveWidgetDefinition = nil
 		obj.RunWorkflowWidgetDefinition = nil
 		obj.SLOListWidgetDefinition = nil
 		obj.SLOWidgetDefinition = nil
@@ -936,6 +1008,10 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.CheckStatusWidgetDefinition)
 	}
 
+	if obj.CohortWidgetDefinition != nil {
+		return datadog.Marshal(&obj.CohortWidgetDefinition)
+	}
+
 	if obj.DistributionWidgetDefinition != nil {
 		return datadog.Marshal(&obj.DistributionWidgetDefinition)
 	}
@@ -954,6 +1030,10 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if obj.FunnelWidgetDefinition != nil {
 		return datadog.Marshal(&obj.FunnelWidgetDefinition)
+	}
+
+	if obj.ProductAnalyticsFunnelWidgetDefinition != nil {
+		return datadog.Marshal(&obj.ProductAnalyticsFunnelWidgetDefinition)
 	}
 
 	if obj.GeomapWidgetDefinition != nil {
@@ -1002,6 +1082,10 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if obj.QueryValueWidgetDefinition != nil {
 		return datadog.Marshal(&obj.QueryValueWidgetDefinition)
+	}
+
+	if obj.RetentionCurveWidgetDefinition != nil {
+		return datadog.Marshal(&obj.RetentionCurveWidgetDefinition)
 	}
 
 	if obj.RunWorkflowWidgetDefinition != nil {
@@ -1092,6 +1176,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 		return obj.CheckStatusWidgetDefinition
 	}
 
+	if obj.CohortWidgetDefinition != nil {
+		return obj.CohortWidgetDefinition
+	}
+
 	if obj.DistributionWidgetDefinition != nil {
 		return obj.DistributionWidgetDefinition
 	}
@@ -1110,6 +1198,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.FunnelWidgetDefinition != nil {
 		return obj.FunnelWidgetDefinition
+	}
+
+	if obj.ProductAnalyticsFunnelWidgetDefinition != nil {
+		return obj.ProductAnalyticsFunnelWidgetDefinition
 	}
 
 	if obj.GeomapWidgetDefinition != nil {
@@ -1158,6 +1250,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.QueryValueWidgetDefinition != nil {
 		return obj.QueryValueWidgetDefinition
+	}
+
+	if obj.RetentionCurveWidgetDefinition != nil {
+		return obj.RetentionCurveWidgetDefinition
 	}
 
 	if obj.RunWorkflowWidgetDefinition != nil {

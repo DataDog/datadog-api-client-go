@@ -26,7 +26,7 @@ type SankeyRumQuery struct {
 	NumberOfSteps *int64 `json:"number_of_steps,omitempty"`
 	// Filter applied to occurrence counts when building a Product Analytics audience.
 	Occurrences *ProductAnalyticsAudienceOccurrenceFilter `json:"occurrences,omitempty"`
-	// Query string.
+	// RUM event search query used to filter views or actions.
 	QueryString string `json:"query_string"`
 	// Source.
 	Source *string `json:"source,omitempty"`
