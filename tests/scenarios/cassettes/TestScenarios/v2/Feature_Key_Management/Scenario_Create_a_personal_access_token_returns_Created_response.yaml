@@ -1,0 +1,37 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"expires_at":"2027-04-08T16:45:23.208Z","name":"Test-Create_a_personal_access_token_returns_Created_response-1775666723","scopes":["dashboards_read"]},"type":"personal_access_tokens"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/personal_access_tokens
+  response:
+    body: '{"data":{"id":"da1bd5f8-847b-4aec-a33d-11b04ebde244","type":"personal_access_tokens","attributes":{"created_at":"2026-04-08T16:45:23.302611856Z","expires_at":"2027-04-08T16:45:23.208Z","key":"xxxxx_xxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxxXxxxxxxxxxx","name":"Test-Create_a_personal_access_token_returns_Created_response-1775666723","public_portion":"6dZ2zcpumTdlnHIgx2SlHA","scopes":["dashboards_read"]},"relationships":{"owned_by":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"users"}}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/personal_access_tokens/da1bd5f8-847b-4aec-a33d-11b04ebde244
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2

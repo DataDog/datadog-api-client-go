@@ -1,0 +1,54 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"expires_at":"2027-04-08T16:45:35.914Z","name":"Test-Get_a_personal_access_token_returns_OK_response-1775666735","scopes":["dashboards_read"]},"type":"personal_access_tokens"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/personal_access_tokens
+  response:
+    body: '{"data":{"id":"6ada9c44-0b7f-4e35-826b-ccecd6d358d5","type":"personal_access_tokens","attributes":{"created_at":"2026-04-08T16:45:36.006189144Z","expires_at":"2027-04-08T16:45:35.914Z","key":"xxxxx_xxxxxxxxxxxxxxxxxxxxxx_xxxxxxxxxxxxxxxxxxxxxxxxxxXxxxxxxxxx","name":"Test-Get_a_personal_access_token_returns_OK_response-1775666735","public_portion":"3Fd5hG1s1rf27qn2E4nNdF","scopes":["dashboards_read"]},"relationships":{"owned_by":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"users"}}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 1
+    method: GET
+    url: https://api.datadoghq.com/api/v2/personal_access_tokens/6ada9c44-0b7f-4e35-826b-ccecd6d358d5
+  response:
+    body: '{"data":{"id":"6ada9c44-0b7f-4e35-826b-ccecd6d358d5","type":"personal_access_tokens","attributes":{"created_at":"2026-04-08T16:45:36.006189Z","expires_at":"2027-04-08T16:45:35.914Z","last_used_at":null,"name":"Test-Get_a_personal_access_token_returns_OK_response-1775666735","public_portion":"3Fd5hG1s1rf27qn2E4nNdF","scopes":["dashboards_read"]},"relationships":{"owned_by":{"data":{"id":"3ad549bf-eba0-11e9-a77a-0705486660d0","type":"users"}}}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/personal_access_tokens/6ada9c44-0b7f-4e35-826b-ccecd6d358d5
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
