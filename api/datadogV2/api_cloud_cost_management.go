@@ -8,6 +8,7 @@ import (
 	_context "context"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"reflect"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -1836,10 +1837,12 @@ func (a *CloudCostManagementApi) ListCustomAllocationRules(ctx _context.Context)
 
 // ListCustomCostsFilesOptionalParameters holds optional parameters for ListCustomCostsFiles.
 type ListCustomCostsFilesOptionalParameters struct {
-	PageNumber   *int64
-	PageSize     *int64
-	FilterStatus *string
-	Sort         *string
+	PageNumber     *int64
+	PageSize       *int64
+	FilterStatus   *string
+	FilterName     *string
+	FilterProvider *[]string
+	Sort           *string
 }
 
 // NewListCustomCostsFilesOptionalParameters creates an empty struct for parameters.
@@ -1863,6 +1866,18 @@ func (r *ListCustomCostsFilesOptionalParameters) WithPageSize(pageSize int64) *L
 // WithFilterStatus sets the corresponding parameter name and returns the struct.
 func (r *ListCustomCostsFilesOptionalParameters) WithFilterStatus(filterStatus string) *ListCustomCostsFilesOptionalParameters {
 	r.FilterStatus = &filterStatus
+	return r
+}
+
+// WithFilterName sets the corresponding parameter name and returns the struct.
+func (r *ListCustomCostsFilesOptionalParameters) WithFilterName(filterName string) *ListCustomCostsFilesOptionalParameters {
+	r.FilterName = &filterName
+	return r
+}
+
+// WithFilterProvider sets the corresponding parameter name and returns the struct.
+func (r *ListCustomCostsFilesOptionalParameters) WithFilterProvider(filterProvider []string) *ListCustomCostsFilesOptionalParameters {
+	r.FilterProvider = &filterProvider
 	return r
 }
 
@@ -1907,6 +1922,20 @@ func (a *CloudCostManagementApi) ListCustomCostsFiles(ctx _context.Context, o ..
 	}
 	if optionalParams.FilterStatus != nil {
 		localVarQueryParams.Add("filter[status]", datadog.ParameterToString(*optionalParams.FilterStatus, ""))
+	}
+	if optionalParams.FilterName != nil {
+		localVarQueryParams.Add("filter[name]", datadog.ParameterToString(*optionalParams.FilterName, ""))
+	}
+	if optionalParams.FilterProvider != nil {
+		t := *optionalParams.FilterProvider
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("filter[provider]", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("filter[provider]", datadog.ParameterToString(t, "multi"))
+		}
 	}
 	if optionalParams.Sort != nil {
 		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
