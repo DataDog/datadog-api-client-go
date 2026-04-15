@@ -14,6 +14,10 @@ import (
 type FlakyTestHistory struct {
 	// The commit SHA associated with this status change. Will be an empty string if the commit SHA is not available.
 	CommitSha string `json:"commit_sha"`
+	// The policy that triggered this status change.
+	PolicyId *FlakyTestHistoryPolicyId `json:"policy_id,omitempty"`
+	// Metadata about the policy that triggered this status change.
+	PolicyMeta *FlakyTestHistoryPolicyMeta `json:"policy_meta,omitempty"`
 	// The test status at this point in history.
 	Status string `json:"status"`
 	// Unix timestamp in milliseconds when this status change occurred.
@@ -64,6 +68,62 @@ func (o *FlakyTestHistory) GetCommitShaOk() (*string, bool) {
 // SetCommitSha sets field value.
 func (o *FlakyTestHistory) SetCommitSha(v string) {
 	o.CommitSha = v
+}
+
+// GetPolicyId returns the PolicyId field value if set, zero value otherwise.
+func (o *FlakyTestHistory) GetPolicyId() FlakyTestHistoryPolicyId {
+	if o == nil || o.PolicyId == nil {
+		var ret FlakyTestHistoryPolicyId
+		return ret
+	}
+	return *o.PolicyId
+}
+
+// GetPolicyIdOk returns a tuple with the PolicyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FlakyTestHistory) GetPolicyIdOk() (*FlakyTestHistoryPolicyId, bool) {
+	if o == nil || o.PolicyId == nil {
+		return nil, false
+	}
+	return o.PolicyId, true
+}
+
+// HasPolicyId returns a boolean if a field has been set.
+func (o *FlakyTestHistory) HasPolicyId() bool {
+	return o != nil && o.PolicyId != nil
+}
+
+// SetPolicyId gets a reference to the given FlakyTestHistoryPolicyId and assigns it to the PolicyId field.
+func (o *FlakyTestHistory) SetPolicyId(v FlakyTestHistoryPolicyId) {
+	o.PolicyId = &v
+}
+
+// GetPolicyMeta returns the PolicyMeta field value if set, zero value otherwise.
+func (o *FlakyTestHistory) GetPolicyMeta() FlakyTestHistoryPolicyMeta {
+	if o == nil || o.PolicyMeta == nil {
+		var ret FlakyTestHistoryPolicyMeta
+		return ret
+	}
+	return *o.PolicyMeta
+}
+
+// GetPolicyMetaOk returns a tuple with the PolicyMeta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FlakyTestHistory) GetPolicyMetaOk() (*FlakyTestHistoryPolicyMeta, bool) {
+	if o == nil || o.PolicyMeta == nil {
+		return nil, false
+	}
+	return o.PolicyMeta, true
+}
+
+// HasPolicyMeta returns a boolean if a field has been set.
+func (o *FlakyTestHistory) HasPolicyMeta() bool {
+	return o != nil && o.PolicyMeta != nil
+}
+
+// SetPolicyMeta gets a reference to the given FlakyTestHistoryPolicyMeta and assigns it to the PolicyMeta field.
+func (o *FlakyTestHistory) SetPolicyMeta(v FlakyTestHistoryPolicyMeta) {
+	o.PolicyMeta = &v
 }
 
 // GetStatus returns the Status field value.
@@ -119,6 +179,12 @@ func (o FlakyTestHistory) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["commit_sha"] = o.CommitSha
+	if o.PolicyId != nil {
+		toSerialize["policy_id"] = o.PolicyId
+	}
+	if o.PolicyMeta != nil {
+		toSerialize["policy_meta"] = o.PolicyMeta
+	}
 	toSerialize["status"] = o.Status
 	toSerialize["timestamp"] = o.Timestamp
 
@@ -131,9 +197,11 @@ func (o FlakyTestHistory) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FlakyTestHistory) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CommitSha *string `json:"commit_sha"`
-		Status    *string `json:"status"`
-		Timestamp *int64  `json:"timestamp"`
+		CommitSha  *string                     `json:"commit_sha"`
+		PolicyId   *FlakyTestHistoryPolicyId   `json:"policy_id,omitempty"`
+		PolicyMeta *FlakyTestHistoryPolicyMeta `json:"policy_meta,omitempty"`
+		Status     *string                     `json:"status"`
+		Timestamp  *int64                      `json:"timestamp"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,16 +217,31 @@ func (o *FlakyTestHistory) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"commit_sha", "status", "timestamp"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"commit_sha", "policy_id", "policy_meta", "status", "timestamp"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.CommitSha = *all.CommitSha
+	if all.PolicyId != nil && !all.PolicyId.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.PolicyId = all.PolicyId
+	}
+	if all.PolicyMeta != nil && all.PolicyMeta.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.PolicyMeta = all.PolicyMeta
 	o.Status = *all.Status
 	o.Timestamp = *all.Timestamp
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
