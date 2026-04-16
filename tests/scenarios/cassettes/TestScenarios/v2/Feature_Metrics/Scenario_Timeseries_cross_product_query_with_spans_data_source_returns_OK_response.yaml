@@ -1,0 +1,24 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"formulas":[{"formula":"a","limit":{"count":10,"order":"desc"}}],"from":1776290804000,"interval":5000,"queries":[{"compute":{"aggregation":"count"},"data_source":"spans","indexes":["*"],"name":"a","search":{"query":"*"}}],"to":1776294404000},"type":"timeseries_request"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/query/timeseries
+  response:
+    body: '{"data":{"id":"0","type":"timeseries_response","attributes":{"series":[],"times":[],"values":[]}}}
+
+      '
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2
