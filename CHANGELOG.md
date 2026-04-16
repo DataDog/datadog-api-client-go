@@ -1,5 +1,37 @@
 # CHANGELOG
 
+## 2.58.0/2026-04-16
+
+### Added
+* Add domain prefix filter query parameter to list status pages API [#3960](https://github.com/DataDog/datadog-api-client-go/pull/3960)
+* Add OpenAPI spec for Bits AI SRE investigations [#3955](https://github.com/DataDog/datadog-api-client-go/pull/3955)
+* Add Product Analytics widget definitions [#3949](https://github.com/DataDog/datadog-api-client-go/pull/3949)
+* Add OpenAPI spec for Dashboard Secure Embed endpoints [#3948](https://github.com/DataDog/datadog-api-client-go/pull/3948)
+* Add fleet tracers, clusters, and instrumented pods endpoints [#3947](https://github.com/DataDog/datadog-api-client-go/pull/3947)
+* Add public POST/PATCH endpoints for Flaky Tests Management policies [#3946](https://github.com/DataDog/datadog-api-client-go/pull/3946)
+* Add CCM spend usage type breakdown fields [#3945](https://github.com/DataDog/datadog-api-client-go/pull/3945)
+* Adding all Observability Pipeline new hec_token related features into the api [#3943](https://github.com/DataDog/datadog-api-client-go/pull/3943)
+* Adding compression optional field to Amazon S3 source [#3939](https://github.com/DataDog/datadog-api-client-go/pull/3939)
+* Add Annotations endpoints [#3936](https://github.com/DataDog/datadog-api-client-go/pull/3936)
+* Add Org Groups API specification [#3935](https://github.com/DataDog/datadog-api-client-go/pull/3935)
+* Add Obs Pipelines Elasticsearch metrics destination and new fields [#3922](https://github.com/DataDog/datadog-api-client-go/pull/3922)
+* Add OpenAPI spec for Bits AI SRE investigations [#3921](https://github.com/DataDog/datadog-api-client-go/pull/3921)
+* Add PAT/SAT management API endpoints [#3918](https://github.com/DataDog/datadog-api-client-go/pull/3918)
+* Add OpenAPI documentation for signal investigation queries and suggested actions endpoints [#3916](https://github.com/DataDog/datadog-api-client-go/pull/3916)
+* add api spec for feature flags allocations and exposure schedules endpoints [#3905](https://github.com/DataDog/datadog-api-client-go/pull/3905)
+* Add Publish and Unpublish API documentation for Status Pages [#3902](https://github.com/DataDog/datadog-api-client-go/pull/3902)
+* feat: add drag and drop as new synthetics browser step type  [#3899](https://github.com/DataDog/datadog-api-client-go/pull/3899)
+* Allow monitor notification rule on restriction policy [#3892](https://github.com/DataDog/datadog-api-client-go/pull/3892)
+* Add support for configuring Splunk sourcetype in Custom Destinations [#3883](https://github.com/DataDog/datadog-api-client-go/pull/3883)
+* Add OpenAPI documentation for scorecards endpoints [#3679](https://github.com/DataDog/datadog-api-client-go/pull/3679)
+
+### Fixed
+* fix(generator): empty additionalProperties treated as falsy, breaking nullable map example generation (AAWF-1198) [#3952](https://github.com/DataDog/datadog-api-client-go/pull/3952)
+* Add security_signals to SecurityMonitoringStandardDataSource [#3937](https://github.com/DataDog/datadog-api-client-go/pull/3937)
+
+### Changed
+* Update SearchFlakyTests endpoint documentation [#3929](https://github.com/DataDog/datadog-api-client-go/pull/3929)
+
 ## 2.57.0/2026-04-01
 
 ### Added
