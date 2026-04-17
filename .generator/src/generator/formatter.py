@@ -268,6 +268,8 @@ def reference_to_value(schema, value, print_nullable=True, **kwargs):
     if nullable:
         function_name = schema_name(schema)
         if function_name is None:
+            if value == "nil":
+                return "nil"
             raise NotImplementedError(f"nullable {schema} is not supported")
         return formatter.format(prefix=prefix, function_name=function_name, value=value)
     return f"&{value}"

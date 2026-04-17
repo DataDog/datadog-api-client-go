@@ -83,3 +83,15 @@ class TestFormatDataWithSchemaArrayItems:
         result = format_data_with_schema([{"k": "v"}], array_schema)
         assert "StringMapItem" not in result
         assert "map[string]string" in result
+
+
+class TestNullableInlineObjectWithNullValue:
+    """Nullable inline (anonymous) object schemas must return 'nil' when data is None."""
+
+    def test_nullable_inline_object_returns_nil(self):
+        schema = {"type": "object", "nullable": True}
+        assert format_data_with_schema(None, schema) == "nil"
+
+    def test_nullable_inline_object_with_additional_properties_returns_nil(self):
+        schema = {"type": "object", "nullable": True, "additionalProperties": {}}
+        assert format_data_with_schema(None, schema) == "nil"
