@@ -14,7 +14,7 @@ import (
 type IPAllowlistData struct {
 	// Attributes of the IP allowlist.
 	Attributes *IPAllowlistAttributes `json:"attributes,omitempty"`
-	// The unique identifier of the org.
+	// The unique identifier of the organization.
 	Id *string `json:"id,omitempty"`
 	// IP allowlist type.
 	Type IPAllowlistType `json:"type"`
