@@ -19,9 +19,10 @@ type CustomDestinationForwardDestinationSplunk struct {
 	Endpoint string `json:"endpoint"`
 	// The Splunk sourcetype for the events sent to this Splunk destination.
 	//
-	// If absent, the default sourcetype `_json` is used. If set to null, the `sourcetype`
-	// field is omitted from the Splunk HEC payload entirely. Otherwise, the provided string
-	// value is used as the sourcetype.
+	// If the field is absent from the request and no sourcetype has been previously set on this destination, the default sourcetype `_json` is used.
+	// On update, if the field is absent from the request but a sourcetype was previously set, the previous value is kept.
+	// If set to `null`, the sourcetype field is omitted from the forwarded event entirely.
+	// Otherwise, the provided string value is used as the sourcetype.
 	Sourcetype datadog.NullableString `json:"sourcetype,omitempty"`
 	// Type of the Splunk HTTP Event Collector (HEC) destination.
 	Type CustomDestinationForwardDestinationSplunkType `json:"type"`
