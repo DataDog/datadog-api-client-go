@@ -10,7 +10,7 @@ interactions:
       - application/json
     id: 0
     method: POST
-    url: https://api.datadoghq.com/api/v2/siem-threat-hunting/jobs
+    url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs
   response:
     body: '{"data":{"id":"c3564eed-ff70-43e1-ab6f-593de95bd21f","type":"historicalDetectionsJob"}}'
     code: 201
@@ -27,7 +27,7 @@ interactions:
       - application/json
     id: 1
     method: GET
-    url: https://api.datadoghq.com/api/v2/siem-threat-hunting/jobs?filter%5Bquery%5D=id%3Ac3564eed-ff70-43e1-ab6f-593de95bd21f
+    url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs?filter%5Bquery%5D=id%3Ac3564eed-ff70-43e1-ab6f-593de95bd21f
   response:
     body: '{"data":[{"id":"c3564eed-ff70-43e1-ab6f-593de95bd21f","type":"historicalDetectionsJob","attributes":{"createdAt":"2025-11-11
       21:36:57.303304+00","createdByHandle":"frog@datadoghq.com","createdByName":"frog","jobDefinition":{"from":1730387522611,"to":1730387532611,"index":"main","name":"Excessive
