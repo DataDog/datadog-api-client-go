@@ -45,6 +45,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	},
 	"v2": {
 	    "FleetAutomationApi": reflect.ValueOf(datadogV2.NewFleetAutomationApi),
+	    "LLMObservabilityApi": reflect.ValueOf(datadogV2.NewLLMObservabilityApi),
 	    "ActionsDatastoresApi": reflect.ValueOf(datadogV2.NewActionsDatastoresApi),
 	    "ActionConnectionApi": reflect.ValueOf(datadogV2.NewActionConnectionApi),
 	    "AgentlessScanningApi": reflect.ValueOf(datadogV2.NewAgentlessScanningApi),
@@ -102,7 +103,6 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "FastlyIntegrationApi": reflect.ValueOf(datadogV2.NewFastlyIntegrationApi),
 	    "OktaIntegrationApi": reflect.ValueOf(datadogV2.NewOktaIntegrationApi),
 	    "IPAllowlistApi": reflect.ValueOf(datadogV2.NewIPAllowlistApi),
-	    "LLMObservabilityApi": reflect.ValueOf(datadogV2.NewLLMObservabilityApi),
 	    "LogsApi": reflect.ValueOf(datadogV2.NewLogsApi),
 	    "LogsArchivesApi": reflect.ValueOf(datadogV2.NewLogsArchivesApi),
 	    "LogsCustomDestinationsApi": reflect.ValueOf(datadogV2.NewLogsCustomDestinationsApi),
