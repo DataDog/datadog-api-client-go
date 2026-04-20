@@ -51,7 +51,7 @@ mcwMY5r/WZ2qjFlPjeAqbL62aPDLidGjoaVo2iIoBPK/gjxQ/5f0MS4N/YQ0zWoYBueSQ0DGs
 					Enabled: datadog.PtrBool(true),
 					EnabledServices: []string{
 						"service_1",
-						"service_1",
+						"service_2",
 					},
 				},
 				MetricsConfig: &datadogV2.CreateTenancyConfigDataAttributesMetricsConfig{
@@ -62,7 +62,7 @@ mcwMY5r/WZ2qjFlPjeAqbL62aPDLidGjoaVo2iIoBPK/gjxQ/5f0MS4N/YQ0zWoYBueSQ0DGs
 					Enabled: datadog.PtrBool(true),
 					ExcludedServices: []string{
 						"service_1",
-						"service_1",
+						"service_2",
 					},
 				},
 				RegionsConfig: &datadogV2.CreateTenancyConfigDataAttributesRegionsConfig{

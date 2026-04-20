@@ -17,7 +17,7 @@ func main() {
 		Data: datadogV2.DeletedTestsRequestDelete{
 			Attributes: datadogV2.DeletedTestsRequestDeleteAttributes{
 				PublicIds: []string{
-					"",
+					"abc-def-123",
 				},
 			},
 			Type: datadogV2.DELETEDTESTSREQUESTTYPE_DELETE_TESTS_REQUEST.Ptr(),
