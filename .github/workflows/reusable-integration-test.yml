@@ -111,7 +111,7 @@ jobs:
           cache-dependency-path: tests/go.sum
       - name: Run integration tests
         shell: bash
-        run: ./run-tests.sh
+        run: ./scripts/run-tests.sh
         env:
           CI: "true"
           DD_AGENT_HOST: localhost

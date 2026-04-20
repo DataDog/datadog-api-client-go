@@ -21,6 +21,37 @@ on:
         required: false
 
 jobs:
+  staticcheck:
+    strategy:
+      matrix:
+        go-version: ["1.22.x", "1.23.x"]
+        go-build-tags: ["--tags=goccy_gojson", ""]
+        platform: ["ubuntu-latest"]
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          repository: DataDog/datadog-api-client-go
+          ref: ${{ inputs.target-branch || github.ref }}
+      - name: Install Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: ${{ matrix.go-version }}
+          cache: true
+          cache-dependency-path: tests/go.sum
+      - name: Staticcheck (api module)
+        uses: dominikh/staticcheck-action@v1
+        with:
+          checks: "-SA1009"
+          working-directory: api
+          cache-key: ${{ matrix.go }}
+      - name: Staticcheck (tests module)
+        uses: dominikh/staticcheck-action@v1
+        with:
+          checks: "inherit,-SA1019"
+          cache-key: ${{ matrix.go }}
+          working-directory: tests
   test:
     strategy:
       matrix:
@@ -41,7 +72,7 @@ jobs:
           cache: true
           cache-dependency-path: tests/go.sum
       - name: Test
-        run: ./run-tests.sh
+        run: ./scripts/run-tests.sh
         env:
           TESTARGS: ${{ matrix.go-build-tags }}
 
