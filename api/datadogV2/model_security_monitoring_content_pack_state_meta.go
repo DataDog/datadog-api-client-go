@@ -14,7 +14,7 @@ import (
 type SecurityMonitoringContentPackStateMeta struct {
 	// Whether the cloud SIEM index configuration is incorrect at the organization level
 	CloudSiemIndexIncorrect bool `json:"cloud_siem_index_incorrect"`
-	// The Cloud SIEM pricing model (SKU) for the organization.
+	// The SIEM pricing model (SKU) for the organization
 	Sku SecurityMonitoringSKU `json:"sku"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

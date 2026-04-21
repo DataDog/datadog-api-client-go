@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SecurityMonitoringSKU The Cloud SIEM pricing model (SKU) for the organization.
+// SecurityMonitoringSKU The SIEM pricing model (SKU) for the organization
 type SecurityMonitoringSKU string
 
 // List of SecurityMonitoringSKU.

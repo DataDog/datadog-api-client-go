@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SecurityMonitoringContentPackActivation The activation status of a content pack.
+// SecurityMonitoringContentPackActivation The activation status of a content pack
 type SecurityMonitoringContentPackActivation string
 
 // List of SecurityMonitoringContentPackActivation.

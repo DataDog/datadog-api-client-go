@@ -17,11 +17,13 @@ type LLMObsInteractionType string
 const (
 	LLMOBSINTERACTIONTYPE_TRACE            LLMObsInteractionType = "trace"
 	LLMOBSINTERACTIONTYPE_EXPERIMENT_TRACE LLMObsInteractionType = "experiment_trace"
+	LLMOBSINTERACTIONTYPE_SESSION          LLMObsInteractionType = "session"
 )
 
 var allowedLLMObsInteractionTypeEnumValues = []LLMObsInteractionType{
 	LLMOBSINTERACTIONTYPE_TRACE,
 	LLMOBSINTERACTIONTYPE_EXPERIMENT_TRACE,
+	LLMOBSINTERACTIONTYPE_SESSION,
 }
 
 // GetAllowedValues reeturns the list of possible values.
