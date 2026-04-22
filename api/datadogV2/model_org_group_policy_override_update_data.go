@@ -14,7 +14,7 @@ import (
 
 // OrgGroupPolicyOverrideUpdateData Data for updating a policy override.
 type OrgGroupPolicyOverrideUpdateData struct {
-	// Attributes for updating a policy override. The `org_uuid` and `org_site` fields must match the existing override and cannot be changed.
+	// Attributes for updating a policy override.
 	Attributes OrgGroupPolicyOverrideUpdateAttributes `json:"attributes"`
 	// The ID of the policy override.
 	Id uuid.UUID `json:"id"`

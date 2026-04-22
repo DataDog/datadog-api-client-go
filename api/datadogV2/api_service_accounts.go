@@ -328,7 +328,7 @@ func (a *ServiceAccountsApi) DeleteServiceAccountApplicationKey(ctx _context.Con
 
 // GetServiceAccountAccessToken Get an access token for a service account.
 // Get a specific access token for a service account by its UUID.
-func (a *ServiceAccountsApi) GetServiceAccountAccessToken(ctx _context.Context, serviceAccountId string, patId string) (PersonalAccessTokenResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApi) GetServiceAccountAccessToken(ctx _context.Context, serviceAccountId string, patUuid string) (PersonalAccessTokenResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -340,9 +340,9 @@ func (a *ServiceAccountsApi) GetServiceAccountAccessToken(ctx _context.Context, 
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/service_accounts/{service_account_id}/access_tokens/{pat_id}"
+	localVarPath := localBasePath + "/api/v2/service_accounts/{service_account_id}/access_tokens/{pat_uuid}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{service_account_id}", _neturl.PathEscape(datadog.ParameterToString(serviceAccountId, "")))
-	localVarPath = datadog.ReplacePathParameter(localVarPath, "{pat_id}", _neturl.PathEscape(datadog.ParameterToString(patId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{pat_uuid}", _neturl.PathEscape(datadog.ParameterToString(patUuid, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -778,7 +778,7 @@ func (a *ServiceAccountsApi) ListServiceAccountApplicationKeys(ctx _context.Cont
 
 // RevokeServiceAccountAccessToken Revoke an access token for a service account.
 // Revoke a specific access token for a service account.
-func (a *ServiceAccountsApi) RevokeServiceAccountAccessToken(ctx _context.Context, serviceAccountId string, patId string) (*_nethttp.Response, error) {
+func (a *ServiceAccountsApi) RevokeServiceAccountAccessToken(ctx _context.Context, serviceAccountId string, patUuid string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -789,9 +789,9 @@ func (a *ServiceAccountsApi) RevokeServiceAccountAccessToken(ctx _context.Contex
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/service_accounts/{service_account_id}/access_tokens/{pat_id}"
+	localVarPath := localBasePath + "/api/v2/service_accounts/{service_account_id}/access_tokens/{pat_uuid}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{service_account_id}", _neturl.PathEscape(datadog.ParameterToString(serviceAccountId, "")))
-	localVarPath = datadog.ReplacePathParameter(localVarPath, "{pat_id}", _neturl.PathEscape(datadog.ParameterToString(patId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{pat_uuid}", _neturl.PathEscape(datadog.ParameterToString(patUuid, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -847,7 +847,7 @@ func (a *ServiceAccountsApi) RevokeServiceAccountAccessToken(ctx _context.Contex
 
 // UpdateServiceAccountAccessToken Update an access token for a service account.
 // Update a specific access token for a service account.
-func (a *ServiceAccountsApi) UpdateServiceAccountAccessToken(ctx _context.Context, serviceAccountId string, patId string, body PersonalAccessTokenUpdateRequest) (PersonalAccessTokenResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApi) UpdateServiceAccountAccessToken(ctx _context.Context, serviceAccountId string, patUuid string, body PersonalAccessTokenUpdateRequest) (PersonalAccessTokenResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
@@ -859,9 +859,9 @@ func (a *ServiceAccountsApi) UpdateServiceAccountAccessToken(ctx _context.Contex
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/service_accounts/{service_account_id}/access_tokens/{pat_id}"
+	localVarPath := localBasePath + "/api/v2/service_accounts/{service_account_id}/access_tokens/{pat_uuid}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{service_account_id}", _neturl.PathEscape(datadog.ParameterToString(serviceAccountId, "")))
-	localVarPath = datadog.ReplacePathParameter(localVarPath, "{pat_id}", _neturl.PathEscape(datadog.ParameterToString(patId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{pat_uuid}", _neturl.PathEscape(datadog.ParameterToString(patUuid, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}

@@ -619,8 +619,6 @@
 //   - [OrgGroupsApi.DeleteOrgGroupPolicyOverride]
 //   - [OrgGroupsApi.GetOrgGroup]
 //   - [OrgGroupsApi.GetOrgGroupMembership]
-//   - [OrgGroupsApi.GetOrgGroupPolicy]
-//   - [OrgGroupsApi.GetOrgGroupPolicyOverride]
 //   - [OrgGroupsApi.ListOrgGroupMemberships]
 //   - [OrgGroupsApi.ListOrgGroupPolicies]
 //   - [OrgGroupsApi.ListOrgGroupPolicyConfigs]

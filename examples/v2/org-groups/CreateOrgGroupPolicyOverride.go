@@ -17,7 +17,7 @@ func main() {
 	body := datadogV2.OrgGroupPolicyOverrideCreateRequest{
 		Data: datadogV2.OrgGroupPolicyOverrideCreateData{
 			Attributes: datadogV2.OrgGroupPolicyOverrideCreateAttributes{
-				OrgSite: "us1",
+				OrgSite: "datadoghq.com",
 				OrgUuid: uuid.MustParse("c3d4e5f6-a7b8-9012-cdef-012345678901"),
 			},
 			Relationships: datadogV2.OrgGroupPolicyOverrideCreateRelationships{

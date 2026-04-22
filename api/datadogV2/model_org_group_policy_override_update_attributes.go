@@ -12,7 +12,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// OrgGroupPolicyOverrideUpdateAttributes Attributes for updating a policy override. The `org_uuid` and `org_site` fields must match the existing override and cannot be changed.
+// OrgGroupPolicyOverrideUpdateAttributes Attributes for updating a policy override.
 type OrgGroupPolicyOverrideUpdateAttributes struct {
 	// The site of the organization.
 	OrgSite string `json:"org_site"`

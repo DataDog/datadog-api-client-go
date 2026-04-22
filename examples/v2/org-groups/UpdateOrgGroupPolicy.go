@@ -20,7 +20,6 @@ func main() {
 				Content: map[string]interface{}{
 					"value": "UTC",
 				},
-				EnforcementTier: datadogV2.ORGGROUPPOLICYENFORCEMENTTIER_DEFAULT.Ptr(),
 			},
 			Id:   uuid.MustParse("1a2b3c4d-5e6f-7890-abcd-ef0123456789"),
 			Type: datadogV2.ORGGROUPPOLICYTYPE_ORG_GROUP_POLICIES,

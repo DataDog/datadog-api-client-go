@@ -753,7 +753,7 @@ func (a *KeyManagementApi) GetCurrentUserApplicationKey(ctx _context.Context, ap
 
 // GetPersonalAccessToken Get a personal access token.
 // Get a specific personal access token by its UUID.
-func (a *KeyManagementApi) GetPersonalAccessToken(ctx _context.Context, patId string) (PersonalAccessTokenResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApi) GetPersonalAccessToken(ctx _context.Context, patUuid string) (PersonalAccessTokenResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -765,8 +765,8 @@ func (a *KeyManagementApi) GetPersonalAccessToken(ctx _context.Context, patId st
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/personal_access_tokens/{pat_id}"
-	localVarPath = datadog.ReplacePathParameter(localVarPath, "{pat_id}", _neturl.PathEscape(datadog.ParameterToString(patId, "")))
+	localVarPath := localBasePath + "/api/v2/personal_access_tokens/{pat_uuid}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{pat_uuid}", _neturl.PathEscape(datadog.ParameterToString(patUuid, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1519,7 +1519,7 @@ func (a *KeyManagementApi) ListPersonalAccessTokens(ctx _context.Context, o ...L
 
 // RevokePersonalAccessToken Revoke a personal access token.
 // Revoke a specific personal access token.
-func (a *KeyManagementApi) RevokePersonalAccessToken(ctx _context.Context, patId string) (*_nethttp.Response, error) {
+func (a *KeyManagementApi) RevokePersonalAccessToken(ctx _context.Context, patUuid string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -1530,8 +1530,8 @@ func (a *KeyManagementApi) RevokePersonalAccessToken(ctx _context.Context, patId
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/personal_access_tokens/{pat_id}"
-	localVarPath = datadog.ReplacePathParameter(localVarPath, "{pat_id}", _neturl.PathEscape(datadog.ParameterToString(patId, "")))
+	localVarPath := localBasePath + "/api/v2/personal_access_tokens/{pat_uuid}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{pat_uuid}", _neturl.PathEscape(datadog.ParameterToString(patUuid, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -1831,7 +1831,7 @@ func (a *KeyManagementApi) UpdateCurrentUserApplicationKey(ctx _context.Context,
 
 // UpdatePersonalAccessToken Update a personal access token.
 // Update a specific personal access token.
-func (a *KeyManagementApi) UpdatePersonalAccessToken(ctx _context.Context, patId string, body PersonalAccessTokenUpdateRequest) (PersonalAccessTokenResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApi) UpdatePersonalAccessToken(ctx _context.Context, patUuid string, body PersonalAccessTokenUpdateRequest) (PersonalAccessTokenResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
@@ -1843,8 +1843,8 @@ func (a *KeyManagementApi) UpdatePersonalAccessToken(ctx _context.Context, patId
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/personal_access_tokens/{pat_id}"
-	localVarPath = datadog.ReplacePathParameter(localVarPath, "{pat_id}", _neturl.PathEscape(datadog.ParameterToString(patId, "")))
+	localVarPath := localBasePath + "/api/v2/personal_access_tokens/{pat_uuid}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{pat_uuid}", _neturl.PathEscape(datadog.ParameterToString(patUuid, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
