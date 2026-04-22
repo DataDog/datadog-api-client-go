@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SecurityMonitoringContentPackStatus The current status of a content pack
+// SecurityMonitoringContentPackStatus The current operational status of a content pack.
 type SecurityMonitoringContentPackStatus string
 
 // List of SecurityMonitoringContentPackStatus.
