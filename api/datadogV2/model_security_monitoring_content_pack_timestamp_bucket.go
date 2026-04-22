@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SecurityMonitoringContentPackTimestampBucket Timestamp bucket indicating when logs were last collected.
+// SecurityMonitoringContentPackTimestampBucket Timestamp bucket indicating when logs were last collected
 type SecurityMonitoringContentPackTimestampBucket string
 
 // List of SecurityMonitoringContentPackTimestampBucket.

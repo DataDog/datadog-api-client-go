@@ -14,18 +14,17 @@ import (
 type SecurityMonitoringContentPackStateAttributes struct {
 	// Whether the cloud SIEM index configuration is incorrect (only applies to certain pricing models)
 	CloudSiemIndexIncorrect bool `json:"cloud_siem_index_incorrect"`
-	// The activation status of a content pack.
+	// The activation status of a content pack
 	CpActivation SecurityMonitoringContentPackActivation `json:"cp_activation"`
-	// Whether filters (Security Filters or Index Query depending on the pricing model) are
-	// present and correctly configured to route logs into Cloud SIEM.
+	// Whether filters (Security Filters or Index Query depending on the pricing model) are configured for logs
 	FiltersConfiguredForLogs bool `json:"filters_configured_for_logs"`
-	// The installation status of the related integration.
+	// The installation status of the related integration
 	IntegrationInstalledStatus *SecurityMonitoringContentPackIntegrationStatus `json:"integration_installed_status,omitempty"`
-	// Timestamp bucket indicating when logs were last collected.
+	// Timestamp bucket indicating when logs were last collected
 	LogsLastCollected SecurityMonitoringContentPackTimestampBucket `json:"logs_last_collected"`
-	// Whether logs for this content pack have been seen in any Datadog index within the last 72 hours.
+	// Whether logs have been seen from any index
 	LogsSeenFromAnyIndex bool `json:"logs_seen_from_any_index"`
-	// The current operational status of a content pack.
+	// The current status of a content pack
 	State SecurityMonitoringContentPackStatus `json:"state"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

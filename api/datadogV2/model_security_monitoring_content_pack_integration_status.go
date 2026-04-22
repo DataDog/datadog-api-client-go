@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SecurityMonitoringContentPackIntegrationStatus The installation status of the related integration.
+// SecurityMonitoringContentPackIntegrationStatus The installation status of the related integration
 type SecurityMonitoringContentPackIntegrationStatus string
 
 // List of SecurityMonitoringContentPackIntegrationStatus.
