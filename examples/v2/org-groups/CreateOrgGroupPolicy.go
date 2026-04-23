@@ -20,7 +20,9 @@ func main() {
 				Content: map[string]interface{}{
 					"value": "UTC",
 				},
-				PolicyName: "monitor_timezone",
+				EnforcementTier: datadogV2.ORGGROUPPOLICYENFORCEMENTTIER_DEFAULT.Ptr(),
+				PolicyName:      "monitor_timezone",
+				PolicyType:      datadogV2.ORGGROUPPOLICYPOLICYTYPE_ORG_CONFIG.Ptr(),
 			},
 			Relationships: datadogV2.OrgGroupPolicyCreateRelationships{
 				OrgGroup: datadogV2.OrgGroupRelationshipToOne{
