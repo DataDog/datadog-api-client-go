@@ -8,6 +8,7 @@ import (
 	_context "context"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"reflect"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -795,6 +796,123 @@ func (a *SyntheticsApi) GetOnDemandConcurrencyCap(ctx _context.Context) (OnDeman
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetSyntheticsBrowserTestResultOptionalParameters holds optional parameters for GetSyntheticsBrowserTestResult.
+type GetSyntheticsBrowserTestResultOptionalParameters struct {
+	EventId   *string
+	Timestamp *int64
+}
+
+// NewGetSyntheticsBrowserTestResultOptionalParameters creates an empty struct for parameters.
+func NewGetSyntheticsBrowserTestResultOptionalParameters() *GetSyntheticsBrowserTestResultOptionalParameters {
+	this := GetSyntheticsBrowserTestResultOptionalParameters{}
+	return &this
+}
+
+// WithEventId sets the corresponding parameter name and returns the struct.
+func (r *GetSyntheticsBrowserTestResultOptionalParameters) WithEventId(eventId string) *GetSyntheticsBrowserTestResultOptionalParameters {
+	r.EventId = &eventId
+	return r
+}
+
+// WithTimestamp sets the corresponding parameter name and returns the struct.
+func (r *GetSyntheticsBrowserTestResultOptionalParameters) WithTimestamp(timestamp int64) *GetSyntheticsBrowserTestResultOptionalParameters {
+	r.Timestamp = &timestamp
+	return r
+}
+
+// GetSyntheticsBrowserTestResult Get a browser test result.
+// Get a specific full result from a given Synthetic browser test.
+func (a *SyntheticsApi) GetSyntheticsBrowserTestResult(ctx _context.Context, publicId string, resultId string, o ...GetSyntheticsBrowserTestResultOptionalParameters) (SyntheticsTestResultResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsTestResultResponse
+		optionalParams      GetSyntheticsBrowserTestResultOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetSyntheticsBrowserTestResultOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SyntheticsApi.GetSyntheticsBrowserTestResult")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/synthetics/tests/browser/{public_id}/results/{result_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{result_id}", _neturl.PathEscape(datadog.ParameterToString(resultId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.EventId != nil {
+		localVarQueryParams.Add("event_id", datadog.ParameterToString(*optionalParams.EventId, ""))
+	}
+	if optionalParams.Timestamp != nil {
+		localVarQueryParams.Add("timestamp", datadog.ParameterToString(*optionalParams.Timestamp, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetSyntheticsFastTestResult Get a fast test result.
 
 func (a *SyntheticsApi) GetSyntheticsFastTestResult(ctx _context.Context, id string) (SyntheticsFastTestResult, *_nethttp.Response, error) {
@@ -1007,6 +1125,123 @@ func (a *SyntheticsApi) GetSyntheticsSuite(ctx _context.Context, publicId string
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetSyntheticsTestResultOptionalParameters holds optional parameters for GetSyntheticsTestResult.
+type GetSyntheticsTestResultOptionalParameters struct {
+	EventId   *string
+	Timestamp *int64
+}
+
+// NewGetSyntheticsTestResultOptionalParameters creates an empty struct for parameters.
+func NewGetSyntheticsTestResultOptionalParameters() *GetSyntheticsTestResultOptionalParameters {
+	this := GetSyntheticsTestResultOptionalParameters{}
+	return &this
+}
+
+// WithEventId sets the corresponding parameter name and returns the struct.
+func (r *GetSyntheticsTestResultOptionalParameters) WithEventId(eventId string) *GetSyntheticsTestResultOptionalParameters {
+	r.EventId = &eventId
+	return r
+}
+
+// WithTimestamp sets the corresponding parameter name and returns the struct.
+func (r *GetSyntheticsTestResultOptionalParameters) WithTimestamp(timestamp int64) *GetSyntheticsTestResultOptionalParameters {
+	r.Timestamp = &timestamp
+	return r
+}
+
+// GetSyntheticsTestResult Get a test result.
+// Get a specific full result from a given Synthetic test.
+func (a *SyntheticsApi) GetSyntheticsTestResult(ctx _context.Context, publicId string, resultId string, o ...GetSyntheticsTestResultOptionalParameters) (SyntheticsTestResultResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsTestResultResponse
+		optionalParams      GetSyntheticsTestResultOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetSyntheticsTestResultOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SyntheticsApi.GetSyntheticsTestResult")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/synthetics/tests/{public_id}/results/{result_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{result_id}", _neturl.PathEscape(datadog.ParameterToString(resultId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.EventId != nil {
+		localVarQueryParams.Add("event_id", datadog.ParameterToString(*optionalParams.EventId, ""))
+	}
+	if optionalParams.Timestamp != nil {
+		localVarQueryParams.Add("timestamp", datadog.ParameterToString(*optionalParams.Timestamp, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1388,6 +1623,350 @@ func (a *SyntheticsApi) GetTestParentSuites(ctx _context.Context, publicId strin
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListSyntheticsBrowserTestLatestResultsOptionalParameters holds optional parameters for ListSyntheticsBrowserTestLatestResults.
+type ListSyntheticsBrowserTestLatestResultsOptionalParameters struct {
+	FromTs   *int64
+	ToTs     *int64
+	Status   *SyntheticsTestResultStatus
+	RunType  *SyntheticsTestResultRunType
+	ProbeDc  *[]string
+	DeviceId *[]string
+}
+
+// NewListSyntheticsBrowserTestLatestResultsOptionalParameters creates an empty struct for parameters.
+func NewListSyntheticsBrowserTestLatestResultsOptionalParameters() *ListSyntheticsBrowserTestLatestResultsOptionalParameters {
+	this := ListSyntheticsBrowserTestLatestResultsOptionalParameters{}
+	return &this
+}
+
+// WithFromTs sets the corresponding parameter name and returns the struct.
+func (r *ListSyntheticsBrowserTestLatestResultsOptionalParameters) WithFromTs(fromTs int64) *ListSyntheticsBrowserTestLatestResultsOptionalParameters {
+	r.FromTs = &fromTs
+	return r
+}
+
+// WithToTs sets the corresponding parameter name and returns the struct.
+func (r *ListSyntheticsBrowserTestLatestResultsOptionalParameters) WithToTs(toTs int64) *ListSyntheticsBrowserTestLatestResultsOptionalParameters {
+	r.ToTs = &toTs
+	return r
+}
+
+// WithStatus sets the corresponding parameter name and returns the struct.
+func (r *ListSyntheticsBrowserTestLatestResultsOptionalParameters) WithStatus(status SyntheticsTestResultStatus) *ListSyntheticsBrowserTestLatestResultsOptionalParameters {
+	r.Status = &status
+	return r
+}
+
+// WithRunType sets the corresponding parameter name and returns the struct.
+func (r *ListSyntheticsBrowserTestLatestResultsOptionalParameters) WithRunType(runType SyntheticsTestResultRunType) *ListSyntheticsBrowserTestLatestResultsOptionalParameters {
+	r.RunType = &runType
+	return r
+}
+
+// WithProbeDc sets the corresponding parameter name and returns the struct.
+func (r *ListSyntheticsBrowserTestLatestResultsOptionalParameters) WithProbeDc(probeDc []string) *ListSyntheticsBrowserTestLatestResultsOptionalParameters {
+	r.ProbeDc = &probeDc
+	return r
+}
+
+// WithDeviceId sets the corresponding parameter name and returns the struct.
+func (r *ListSyntheticsBrowserTestLatestResultsOptionalParameters) WithDeviceId(deviceId []string) *ListSyntheticsBrowserTestLatestResultsOptionalParameters {
+	r.DeviceId = &deviceId
+	return r
+}
+
+// ListSyntheticsBrowserTestLatestResults Get a browser test's latest results.
+// Get the latest result summaries for a given Synthetic browser test.
+func (a *SyntheticsApi) ListSyntheticsBrowserTestLatestResults(ctx _context.Context, publicId string, o ...ListSyntheticsBrowserTestLatestResultsOptionalParameters) (SyntheticsTestLatestResultsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsTestLatestResultsResponse
+		optionalParams      ListSyntheticsBrowserTestLatestResultsOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListSyntheticsBrowserTestLatestResultsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SyntheticsApi.ListSyntheticsBrowserTestLatestResults")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/synthetics/tests/browser/{public_id}/results"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.FromTs != nil {
+		localVarQueryParams.Add("from_ts", datadog.ParameterToString(*optionalParams.FromTs, ""))
+	}
+	if optionalParams.ToTs != nil {
+		localVarQueryParams.Add("to_ts", datadog.ParameterToString(*optionalParams.ToTs, ""))
+	}
+	if optionalParams.Status != nil {
+		localVarQueryParams.Add("status", datadog.ParameterToString(*optionalParams.Status, ""))
+	}
+	if optionalParams.RunType != nil {
+		localVarQueryParams.Add("runType", datadog.ParameterToString(*optionalParams.RunType, ""))
+	}
+	if optionalParams.ProbeDc != nil {
+		t := *optionalParams.ProbeDc
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("probe_dc", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("probe_dc", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.DeviceId != nil {
+		t := *optionalParams.DeviceId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("device_id", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("device_id", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListSyntheticsTestLatestResultsOptionalParameters holds optional parameters for ListSyntheticsTestLatestResults.
+type ListSyntheticsTestLatestResultsOptionalParameters struct {
+	FromTs   *int64
+	ToTs     *int64
+	Status   *SyntheticsTestResultStatus
+	RunType  *SyntheticsTestResultRunType
+	ProbeDc  *[]string
+	DeviceId *[]string
+}
+
+// NewListSyntheticsTestLatestResultsOptionalParameters creates an empty struct for parameters.
+func NewListSyntheticsTestLatestResultsOptionalParameters() *ListSyntheticsTestLatestResultsOptionalParameters {
+	this := ListSyntheticsTestLatestResultsOptionalParameters{}
+	return &this
+}
+
+// WithFromTs sets the corresponding parameter name and returns the struct.
+func (r *ListSyntheticsTestLatestResultsOptionalParameters) WithFromTs(fromTs int64) *ListSyntheticsTestLatestResultsOptionalParameters {
+	r.FromTs = &fromTs
+	return r
+}
+
+// WithToTs sets the corresponding parameter name and returns the struct.
+func (r *ListSyntheticsTestLatestResultsOptionalParameters) WithToTs(toTs int64) *ListSyntheticsTestLatestResultsOptionalParameters {
+	r.ToTs = &toTs
+	return r
+}
+
+// WithStatus sets the corresponding parameter name and returns the struct.
+func (r *ListSyntheticsTestLatestResultsOptionalParameters) WithStatus(status SyntheticsTestResultStatus) *ListSyntheticsTestLatestResultsOptionalParameters {
+	r.Status = &status
+	return r
+}
+
+// WithRunType sets the corresponding parameter name and returns the struct.
+func (r *ListSyntheticsTestLatestResultsOptionalParameters) WithRunType(runType SyntheticsTestResultRunType) *ListSyntheticsTestLatestResultsOptionalParameters {
+	r.RunType = &runType
+	return r
+}
+
+// WithProbeDc sets the corresponding parameter name and returns the struct.
+func (r *ListSyntheticsTestLatestResultsOptionalParameters) WithProbeDc(probeDc []string) *ListSyntheticsTestLatestResultsOptionalParameters {
+	r.ProbeDc = &probeDc
+	return r
+}
+
+// WithDeviceId sets the corresponding parameter name and returns the struct.
+func (r *ListSyntheticsTestLatestResultsOptionalParameters) WithDeviceId(deviceId []string) *ListSyntheticsTestLatestResultsOptionalParameters {
+	r.DeviceId = &deviceId
+	return r
+}
+
+// ListSyntheticsTestLatestResults Get a test's latest results.
+// Get the latest result summaries for a given Synthetic test.
+func (a *SyntheticsApi) ListSyntheticsTestLatestResults(ctx _context.Context, publicId string, o ...ListSyntheticsTestLatestResultsOptionalParameters) (SyntheticsTestLatestResultsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsTestLatestResultsResponse
+		optionalParams      ListSyntheticsTestLatestResultsOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListSyntheticsTestLatestResultsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SyntheticsApi.ListSyntheticsTestLatestResults")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/synthetics/tests/{public_id}/results"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{public_id}", _neturl.PathEscape(datadog.ParameterToString(publicId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.FromTs != nil {
+		localVarQueryParams.Add("from_ts", datadog.ParameterToString(*optionalParams.FromTs, ""))
+	}
+	if optionalParams.ToTs != nil {
+		localVarQueryParams.Add("to_ts", datadog.ParameterToString(*optionalParams.ToTs, ""))
+	}
+	if optionalParams.Status != nil {
+		localVarQueryParams.Add("status", datadog.ParameterToString(*optionalParams.Status, ""))
+	}
+	if optionalParams.RunType != nil {
+		localVarQueryParams.Add("runType", datadog.ParameterToString(*optionalParams.RunType, ""))
+	}
+	if optionalParams.ProbeDc != nil {
+		t := *optionalParams.ProbeDc
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("probe_dc", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("probe_dc", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.DeviceId != nil {
+		t := *optionalParams.DeviceId
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("device_id", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("device_id", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // ListSyntheticsTestVersionsOptionalParameters holds optional parameters for ListSyntheticsTestVersions.
 type ListSyntheticsTestVersionsOptionalParameters struct {
 	LastVersionNumber *int64
@@ -1657,6 +2236,85 @@ func (a *SyntheticsApi) PatchTestSuite(ctx _context.Context, publicId string, bo
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// PollSyntheticsTestResults Poll for test results.
+// Poll for test results given a list of result IDs. This is typically used after
+// triggering tests with CI/CD to retrieve results once they are available.
+func (a *SyntheticsApi) PollSyntheticsTestResults(ctx _context.Context, resultIds string) (SyntheticsPollTestResultsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsPollTestResultsResponse
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SyntheticsApi.PollSyntheticsTestResults")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/synthetics/tests/poll_results"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("result_ids", datadog.ParameterToString(resultIds, ""))
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
