@@ -23,11 +23,11 @@ func main() {
 		Data: &datadogV2.CreateMaintenanceRequestData{
 			Attributes: datadogV2.CreateMaintenanceRequestDataAttributes{
 				Title:                 "API Maintenance",
-				ScheduledDescription:  datadog.PtrString("We will be performing maintenance on the API to improve performance."),
-				InProgressDescription: datadog.PtrString("We are currently performing maintenance on the API to improve performance."),
-				CompletedDescription:  datadog.PtrString("We have completed maintenance on the API to improve performance."),
-				StartDate:             datadog.PtrTime(time.Now().Add(time.Hour * 1)),
-				CompletedDate:         datadog.PtrTime(time.Now().Add(time.Hour * 2)),
+				ScheduledDescription:  "We will be performing maintenance on the API to improve performance.",
+				InProgressDescription: "We are currently performing maintenance on the API to improve performance.",
+				CompletedDescription:  "We have completed maintenance on the API to improve performance.",
+				StartDate:             time.Now().Add(time.Hour * 1),
+				CompletedDate:         time.Now().Add(time.Hour * 2),
 				ComponentsAffected: []datadogV2.CreateMaintenanceRequestDataAttributesComponentsAffectedItems{
 					{
 						Id:     StatusPageDataAttributesComponents0Components0ID,

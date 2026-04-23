@@ -18,17 +18,17 @@ func main() {
 	body := datadogV2.CreateMaintenanceRequest{
 		Data: &datadogV2.CreateMaintenanceRequestData{
 			Attributes: datadogV2.CreateMaintenanceRequestDataAttributes{
-				CompletedDate:        datadog.PtrTime(time.Date(2026, 2, 18, 19, 51, 13, 332360, time.UTC)),
-				CompletedDescription: datadog.PtrString("We have completed maintenance on the API to improve performance."),
+				CompletedDate:        time.Date(2026, 2, 18, 19, 51, 13, 332360, time.UTC),
+				CompletedDescription: "We have completed maintenance on the API to improve performance.",
 				ComponentsAffected: []datadogV2.CreateMaintenanceRequestDataAttributesComponentsAffectedItems{
 					{
 						Id:     uuid.MustParse("1234abcd-12ab-34cd-56ef-123456abcdef"),
 						Status: datadogV2.PATCHMAINTENANCEREQUESTDATAATTRIBUTESCOMPONENTSAFFECTEDITEMSSTATUS_OPERATIONAL,
 					},
 				},
-				InProgressDescription: datadog.PtrString("We are currently performing maintenance on the API to improve performance."),
-				ScheduledDescription:  datadog.PtrString("We will be performing maintenance on the API to improve performance."),
-				StartDate:             datadog.PtrTime(time.Date(2026, 2, 18, 19, 21, 13, 332360, time.UTC)),
+				InProgressDescription: "We are currently performing maintenance on the API to improve performance.",
+				ScheduledDescription:  "We will be performing maintenance on the API to improve performance.",
+				StartDate:             time.Date(2026, 2, 18, 19, 21, 13, 332360, time.UTC),
 				Title:                 "API Maintenance",
 			},
 			Type: datadogV2.PATCHMAINTENANCEREQUESTDATATYPE_MAINTENANCES,
