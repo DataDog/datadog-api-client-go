@@ -12,8 +12,6 @@ import (
 
 // PersonalAccessTokenAttributes Attributes of a personal access token.
 type PersonalAccessTokenAttributes struct {
-	// The alias (short identifier) of the personal access token.
-	Alias *string `json:"alias,omitempty"`
 	// Creation date of the personal access token.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Expiration date of the personal access token.
@@ -48,34 +46,6 @@ func NewPersonalAccessTokenAttributes() *PersonalAccessTokenAttributes {
 func NewPersonalAccessTokenAttributesWithDefaults() *PersonalAccessTokenAttributes {
 	this := PersonalAccessTokenAttributes{}
 	return &this
-}
-
-// GetAlias returns the Alias field value if set, zero value otherwise.
-func (o *PersonalAccessTokenAttributes) GetAlias() string {
-	if o == nil || o.Alias == nil {
-		var ret string
-		return ret
-	}
-	return *o.Alias
-}
-
-// GetAliasOk returns a tuple with the Alias field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PersonalAccessTokenAttributes) GetAliasOk() (*string, bool) {
-	if o == nil || o.Alias == nil {
-		return nil, false
-	}
-	return o.Alias, true
-}
-
-// HasAlias returns a boolean if a field has been set.
-func (o *PersonalAccessTokenAttributes) HasAlias() bool {
-	return o != nil && o.Alias != nil
-}
-
-// SetAlias gets a reference to the given string and assigns it to the Alias field.
-func (o *PersonalAccessTokenAttributes) SetAlias(v string) {
-	o.Alias = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -313,9 +283,6 @@ func (o PersonalAccessTokenAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Alias != nil {
-		toSerialize["alias"] = o.Alias
-	}
 	if o.CreatedAt != nil {
 		if o.CreatedAt.Nanosecond() == 0 {
 			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -351,7 +318,6 @@ func (o PersonalAccessTokenAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PersonalAccessTokenAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Alias         *string              `json:"alias,omitempty"`
 		CreatedAt     *time.Time           `json:"created_at,omitempty"`
 		ExpiresAt     datadog.NullableTime `json:"expires_at,omitempty"`
 		LastUsedAt    datadog.NullableTime `json:"last_used_at,omitempty"`
@@ -365,11 +331,10 @@ func (o *PersonalAccessTokenAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"alias", "created_at", "expires_at", "last_used_at", "modified_at", "name", "public_portion", "scopes"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "expires_at", "last_used_at", "modified_at", "name", "public_portion", "scopes"})
 	} else {
 		return err
 	}
-	o.Alias = all.Alias
 	o.CreatedAt = all.CreatedAt
 	o.ExpiresAt = all.ExpiresAt
 	o.LastUsedAt = all.LastUsedAt
