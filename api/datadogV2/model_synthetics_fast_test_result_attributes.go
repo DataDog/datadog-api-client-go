@@ -10,17 +10,17 @@ import (
 
 // SyntheticsFastTestResultAttributes Attributes of the fast test result.
 type SyntheticsFastTestResultAttributes struct {
-	// Device information for browser-based fast tests.
-	Device *SyntheticsFastTestResultDevice `json:"device,omitempty"`
-	// Location from which the fast test was executed.
-	Location *SyntheticsFastTestResultLocation `json:"location,omitempty"`
+	// Device information for the test result (browser and mobile tests).
+	Device *SyntheticsTestResultDevice `json:"device,omitempty"`
+	// Location information for a Synthetic test result.
+	Location *SyntheticsTestResultLocation `json:"location,omitempty"`
 	// Detailed result data for the fast test run. The exact shape of nested fields
 	// (`request`, `response`, `assertions`, etc.) depends on the test subtype.
 	Result *SyntheticsFastTestResultDetail `json:"result,omitempty"`
 	// Subtype of the Synthetic test that produced this result.
 	TestSubType *SyntheticsFastTestSubType `json:"test_sub_type,omitempty"`
-	// The type of the Synthetic test that produced this result (for example, `api` or `browser`).
-	TestType *string `json:"test_type,omitempty"`
+	// Type of the Synthetic fast test that produced this result.
+	TestType *SyntheticsFastTestType `json:"test_type,omitempty"`
 	// Version of the test at the time the fast test was triggered.
 	TestVersion *int64 `json:"test_version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -46,9 +46,9 @@ func NewSyntheticsFastTestResultAttributesWithDefaults() *SyntheticsFastTestResu
 }
 
 // GetDevice returns the Device field value if set, zero value otherwise.
-func (o *SyntheticsFastTestResultAttributes) GetDevice() SyntheticsFastTestResultDevice {
+func (o *SyntheticsFastTestResultAttributes) GetDevice() SyntheticsTestResultDevice {
 	if o == nil || o.Device == nil {
-		var ret SyntheticsFastTestResultDevice
+		var ret SyntheticsTestResultDevice
 		return ret
 	}
 	return *o.Device
@@ -56,7 +56,7 @@ func (o *SyntheticsFastTestResultAttributes) GetDevice() SyntheticsFastTestResul
 
 // GetDeviceOk returns a tuple with the Device field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsFastTestResultAttributes) GetDeviceOk() (*SyntheticsFastTestResultDevice, bool) {
+func (o *SyntheticsFastTestResultAttributes) GetDeviceOk() (*SyntheticsTestResultDevice, bool) {
 	if o == nil || o.Device == nil {
 		return nil, false
 	}
@@ -68,15 +68,15 @@ func (o *SyntheticsFastTestResultAttributes) HasDevice() bool {
 	return o != nil && o.Device != nil
 }
 
-// SetDevice gets a reference to the given SyntheticsFastTestResultDevice and assigns it to the Device field.
-func (o *SyntheticsFastTestResultAttributes) SetDevice(v SyntheticsFastTestResultDevice) {
+// SetDevice gets a reference to the given SyntheticsTestResultDevice and assigns it to the Device field.
+func (o *SyntheticsFastTestResultAttributes) SetDevice(v SyntheticsTestResultDevice) {
 	o.Device = &v
 }
 
 // GetLocation returns the Location field value if set, zero value otherwise.
-func (o *SyntheticsFastTestResultAttributes) GetLocation() SyntheticsFastTestResultLocation {
+func (o *SyntheticsFastTestResultAttributes) GetLocation() SyntheticsTestResultLocation {
 	if o == nil || o.Location == nil {
-		var ret SyntheticsFastTestResultLocation
+		var ret SyntheticsTestResultLocation
 		return ret
 	}
 	return *o.Location
@@ -84,7 +84,7 @@ func (o *SyntheticsFastTestResultAttributes) GetLocation() SyntheticsFastTestRes
 
 // GetLocationOk returns a tuple with the Location field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsFastTestResultAttributes) GetLocationOk() (*SyntheticsFastTestResultLocation, bool) {
+func (o *SyntheticsFastTestResultAttributes) GetLocationOk() (*SyntheticsTestResultLocation, bool) {
 	if o == nil || o.Location == nil {
 		return nil, false
 	}
@@ -96,8 +96,8 @@ func (o *SyntheticsFastTestResultAttributes) HasLocation() bool {
 	return o != nil && o.Location != nil
 }
 
-// SetLocation gets a reference to the given SyntheticsFastTestResultLocation and assigns it to the Location field.
-func (o *SyntheticsFastTestResultAttributes) SetLocation(v SyntheticsFastTestResultLocation) {
+// SetLocation gets a reference to the given SyntheticsTestResultLocation and assigns it to the Location field.
+func (o *SyntheticsFastTestResultAttributes) SetLocation(v SyntheticsTestResultLocation) {
 	o.Location = &v
 }
 
@@ -158,9 +158,9 @@ func (o *SyntheticsFastTestResultAttributes) SetTestSubType(v SyntheticsFastTest
 }
 
 // GetTestType returns the TestType field value if set, zero value otherwise.
-func (o *SyntheticsFastTestResultAttributes) GetTestType() string {
+func (o *SyntheticsFastTestResultAttributes) GetTestType() SyntheticsFastTestType {
 	if o == nil || o.TestType == nil {
-		var ret string
+		var ret SyntheticsFastTestType
 		return ret
 	}
 	return *o.TestType
@@ -168,7 +168,7 @@ func (o *SyntheticsFastTestResultAttributes) GetTestType() string {
 
 // GetTestTypeOk returns a tuple with the TestType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsFastTestResultAttributes) GetTestTypeOk() (*string, bool) {
+func (o *SyntheticsFastTestResultAttributes) GetTestTypeOk() (*SyntheticsFastTestType, bool) {
 	if o == nil || o.TestType == nil {
 		return nil, false
 	}
@@ -180,8 +180,8 @@ func (o *SyntheticsFastTestResultAttributes) HasTestType() bool {
 	return o != nil && o.TestType != nil
 }
 
-// SetTestType gets a reference to the given string and assigns it to the TestType field.
-func (o *SyntheticsFastTestResultAttributes) SetTestType(v string) {
+// SetTestType gets a reference to the given SyntheticsFastTestType and assigns it to the TestType field.
+func (o *SyntheticsFastTestResultAttributes) SetTestType(v SyntheticsFastTestType) {
 	o.TestType = &v
 }
 
@@ -247,12 +247,12 @@ func (o SyntheticsFastTestResultAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsFastTestResultAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Device      *SyntheticsFastTestResultDevice   `json:"device,omitempty"`
-		Location    *SyntheticsFastTestResultLocation `json:"location,omitempty"`
-		Result      *SyntheticsFastTestResultDetail   `json:"result,omitempty"`
-		TestSubType *SyntheticsFastTestSubType        `json:"test_sub_type,omitempty"`
-		TestType    *string                           `json:"test_type,omitempty"`
-		TestVersion *int64                            `json:"test_version,omitempty"`
+		Device      *SyntheticsTestResultDevice     `json:"device,omitempty"`
+		Location    *SyntheticsTestResultLocation   `json:"location,omitempty"`
+		Result      *SyntheticsFastTestResultDetail `json:"result,omitempty"`
+		TestSubType *SyntheticsFastTestSubType      `json:"test_sub_type,omitempty"`
+		TestType    *SyntheticsFastTestType         `json:"test_type,omitempty"`
+		TestVersion *int64                          `json:"test_version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -282,7 +282,11 @@ func (o *SyntheticsFastTestResultAttributes) UnmarshalJSON(bytes []byte) (err er
 	} else {
 		o.TestSubType = all.TestSubType
 	}
-	o.TestType = all.TestType
+	if all.TestType != nil && !all.TestType.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.TestType = all.TestType
+	}
 	o.TestVersion = all.TestVersion
 
 	if len(additionalProperties) > 0 {

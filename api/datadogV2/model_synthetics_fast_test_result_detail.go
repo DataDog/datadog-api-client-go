@@ -12,39 +12,39 @@ import (
 // (`request`, `response`, `assertions`, etc.) depends on the test subtype.
 type SyntheticsFastTestResultDetail struct {
 	// Results of each assertion evaluated during the test.
-	Assertions []map[string]interface{} `json:"assertions,omitempty"`
+	Assertions []SyntheticsTestResultAssertionResult `json:"assertions,omitempty"`
 	// gRPC call type (for example, `unary`, `healthCheck`, or `reflection`).
 	CallType *string `json:"call_type,omitempty"`
-	// TLS certificate details, present for SSL tests.
-	Cert map[string]interface{} `json:"cert,omitempty"`
+	// SSL/TLS certificate information returned from an SSL test.
+	Cert *SyntheticsTestResultCertificate `json:"cert,omitempty"`
 	// Total duration of the test in milliseconds.
 	Duration *float64 `json:"duration,omitempty"`
-	// Failure details if the fast test did not pass.
-	Failure *SyntheticsFastTestResultFailure `json:"failure,omitempty"`
+	// Details about the failure of a Synthetic test.
+	Failure *SyntheticsTestResultFailure `json:"failure,omitempty"`
 	// Unix timestamp (ms) of when the test finished.
 	FinishedAt *int64 `json:"finished_at,omitempty"`
 	// The result ID. Set to the fast test UUID because no persistent result ID exists for fast tests.
 	Id *string `json:"id,omitempty"`
 	// Whether this result is from an automatic fast retry.
 	IsFastRetry *bool `json:"is_fast_retry,omitempty"`
-	// Details of the outgoing request made during the test.
-	Request map[string]interface{} `json:"request,omitempty"`
+	// Details of the outgoing request made during the test execution.
+	Request *SyntheticsTestResultRequestInfo `json:"request,omitempty"`
 	// IP address resolved for the target host.
 	ResolvedIp *string `json:"resolved_ip,omitempty"`
-	// Details of the response received during the test.
-	Response map[string]interface{} `json:"response,omitempty"`
-	// Run type indicating how this test was triggered (for example, `fast`).
-	RunType *string `json:"run_type,omitempty"`
+	// Details of the response received during the test execution.
+	Response *SyntheticsTestResultResponseInfo `json:"response,omitempty"`
+	// The type of run for a Synthetic test result.
+	RunType *SyntheticsTestResultRunType `json:"run_type,omitempty"`
 	// Unix timestamp (ms) of when the test started.
 	StartedAt *int64 `json:"started_at,omitempty"`
 	// Status of the test result (`passed` or `failed`).
 	Status *string `json:"status,omitempty"`
 	// Step results for multistep API tests.
-	Steps []map[string]interface{} `json:"steps,omitempty"`
+	Steps []SyntheticsTestResultStep `json:"steps,omitempty"`
 	// Timing breakdown of the test request phases (for example, DNS, TCP, TLS, first byte).
 	Timings map[string]interface{} `json:"timings,omitempty"`
 	// Traceroute hop results, present for ICMP and TCP tests.
-	Traceroute []map[string]interface{} `json:"traceroute,omitempty"`
+	Traceroute []SyntheticsTestResultTracerouteHop `json:"traceroute,omitempty"`
 	// Unix timestamp (ms) of when the test was triggered.
 	TriggeredAt *int64 `json:"triggered_at,omitempty"`
 	// Whether the test was run through a Synthetics tunnel.
@@ -72,9 +72,9 @@ func NewSyntheticsFastTestResultDetailWithDefaults() *SyntheticsFastTestResultDe
 }
 
 // GetAssertions returns the Assertions field value if set, zero value otherwise.
-func (o *SyntheticsFastTestResultDetail) GetAssertions() []map[string]interface{} {
+func (o *SyntheticsFastTestResultDetail) GetAssertions() []SyntheticsTestResultAssertionResult {
 	if o == nil || o.Assertions == nil {
-		var ret []map[string]interface{}
+		var ret []SyntheticsTestResultAssertionResult
 		return ret
 	}
 	return o.Assertions
@@ -82,7 +82,7 @@ func (o *SyntheticsFastTestResultDetail) GetAssertions() []map[string]interface{
 
 // GetAssertionsOk returns a tuple with the Assertions field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsFastTestResultDetail) GetAssertionsOk() (*[]map[string]interface{}, bool) {
+func (o *SyntheticsFastTestResultDetail) GetAssertionsOk() (*[]SyntheticsTestResultAssertionResult, bool) {
 	if o == nil || o.Assertions == nil {
 		return nil, false
 	}
@@ -94,8 +94,8 @@ func (o *SyntheticsFastTestResultDetail) HasAssertions() bool {
 	return o != nil && o.Assertions != nil
 }
 
-// SetAssertions gets a reference to the given []map[string]interface{} and assigns it to the Assertions field.
-func (o *SyntheticsFastTestResultDetail) SetAssertions(v []map[string]interface{}) {
+// SetAssertions gets a reference to the given []SyntheticsTestResultAssertionResult and assigns it to the Assertions field.
+func (o *SyntheticsFastTestResultDetail) SetAssertions(v []SyntheticsTestResultAssertionResult) {
 	o.Assertions = v
 }
 
@@ -128,21 +128,21 @@ func (o *SyntheticsFastTestResultDetail) SetCallType(v string) {
 }
 
 // GetCert returns the Cert field value if set, zero value otherwise.
-func (o *SyntheticsFastTestResultDetail) GetCert() map[string]interface{} {
+func (o *SyntheticsFastTestResultDetail) GetCert() SyntheticsTestResultCertificate {
 	if o == nil || o.Cert == nil {
-		var ret map[string]interface{}
+		var ret SyntheticsTestResultCertificate
 		return ret
 	}
-	return o.Cert
+	return *o.Cert
 }
 
 // GetCertOk returns a tuple with the Cert field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsFastTestResultDetail) GetCertOk() (*map[string]interface{}, bool) {
+func (o *SyntheticsFastTestResultDetail) GetCertOk() (*SyntheticsTestResultCertificate, bool) {
 	if o == nil || o.Cert == nil {
 		return nil, false
 	}
-	return &o.Cert, true
+	return o.Cert, true
 }
 
 // HasCert returns a boolean if a field has been set.
@@ -150,9 +150,9 @@ func (o *SyntheticsFastTestResultDetail) HasCert() bool {
 	return o != nil && o.Cert != nil
 }
 
-// SetCert gets a reference to the given map[string]interface{} and assigns it to the Cert field.
-func (o *SyntheticsFastTestResultDetail) SetCert(v map[string]interface{}) {
-	o.Cert = v
+// SetCert gets a reference to the given SyntheticsTestResultCertificate and assigns it to the Cert field.
+func (o *SyntheticsFastTestResultDetail) SetCert(v SyntheticsTestResultCertificate) {
+	o.Cert = &v
 }
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
@@ -184,9 +184,9 @@ func (o *SyntheticsFastTestResultDetail) SetDuration(v float64) {
 }
 
 // GetFailure returns the Failure field value if set, zero value otherwise.
-func (o *SyntheticsFastTestResultDetail) GetFailure() SyntheticsFastTestResultFailure {
+func (o *SyntheticsFastTestResultDetail) GetFailure() SyntheticsTestResultFailure {
 	if o == nil || o.Failure == nil {
-		var ret SyntheticsFastTestResultFailure
+		var ret SyntheticsTestResultFailure
 		return ret
 	}
 	return *o.Failure
@@ -194,7 +194,7 @@ func (o *SyntheticsFastTestResultDetail) GetFailure() SyntheticsFastTestResultFa
 
 // GetFailureOk returns a tuple with the Failure field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsFastTestResultDetail) GetFailureOk() (*SyntheticsFastTestResultFailure, bool) {
+func (o *SyntheticsFastTestResultDetail) GetFailureOk() (*SyntheticsTestResultFailure, bool) {
 	if o == nil || o.Failure == nil {
 		return nil, false
 	}
@@ -206,8 +206,8 @@ func (o *SyntheticsFastTestResultDetail) HasFailure() bool {
 	return o != nil && o.Failure != nil
 }
 
-// SetFailure gets a reference to the given SyntheticsFastTestResultFailure and assigns it to the Failure field.
-func (o *SyntheticsFastTestResultDetail) SetFailure(v SyntheticsFastTestResultFailure) {
+// SetFailure gets a reference to the given SyntheticsTestResultFailure and assigns it to the Failure field.
+func (o *SyntheticsFastTestResultDetail) SetFailure(v SyntheticsTestResultFailure) {
 	o.Failure = &v
 }
 
@@ -296,21 +296,21 @@ func (o *SyntheticsFastTestResultDetail) SetIsFastRetry(v bool) {
 }
 
 // GetRequest returns the Request field value if set, zero value otherwise.
-func (o *SyntheticsFastTestResultDetail) GetRequest() map[string]interface{} {
+func (o *SyntheticsFastTestResultDetail) GetRequest() SyntheticsTestResultRequestInfo {
 	if o == nil || o.Request == nil {
-		var ret map[string]interface{}
+		var ret SyntheticsTestResultRequestInfo
 		return ret
 	}
-	return o.Request
+	return *o.Request
 }
 
 // GetRequestOk returns a tuple with the Request field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsFastTestResultDetail) GetRequestOk() (*map[string]interface{}, bool) {
+func (o *SyntheticsFastTestResultDetail) GetRequestOk() (*SyntheticsTestResultRequestInfo, bool) {
 	if o == nil || o.Request == nil {
 		return nil, false
 	}
-	return &o.Request, true
+	return o.Request, true
 }
 
 // HasRequest returns a boolean if a field has been set.
@@ -318,9 +318,9 @@ func (o *SyntheticsFastTestResultDetail) HasRequest() bool {
 	return o != nil && o.Request != nil
 }
 
-// SetRequest gets a reference to the given map[string]interface{} and assigns it to the Request field.
-func (o *SyntheticsFastTestResultDetail) SetRequest(v map[string]interface{}) {
-	o.Request = v
+// SetRequest gets a reference to the given SyntheticsTestResultRequestInfo and assigns it to the Request field.
+func (o *SyntheticsFastTestResultDetail) SetRequest(v SyntheticsTestResultRequestInfo) {
+	o.Request = &v
 }
 
 // GetResolvedIp returns the ResolvedIp field value if set, zero value otherwise.
@@ -352,21 +352,21 @@ func (o *SyntheticsFastTestResultDetail) SetResolvedIp(v string) {
 }
 
 // GetResponse returns the Response field value if set, zero value otherwise.
-func (o *SyntheticsFastTestResultDetail) GetResponse() map[string]interface{} {
+func (o *SyntheticsFastTestResultDetail) GetResponse() SyntheticsTestResultResponseInfo {
 	if o == nil || o.Response == nil {
-		var ret map[string]interface{}
+		var ret SyntheticsTestResultResponseInfo
 		return ret
 	}
-	return o.Response
+	return *o.Response
 }
 
 // GetResponseOk returns a tuple with the Response field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsFastTestResultDetail) GetResponseOk() (*map[string]interface{}, bool) {
+func (o *SyntheticsFastTestResultDetail) GetResponseOk() (*SyntheticsTestResultResponseInfo, bool) {
 	if o == nil || o.Response == nil {
 		return nil, false
 	}
-	return &o.Response, true
+	return o.Response, true
 }
 
 // HasResponse returns a boolean if a field has been set.
@@ -374,15 +374,15 @@ func (o *SyntheticsFastTestResultDetail) HasResponse() bool {
 	return o != nil && o.Response != nil
 }
 
-// SetResponse gets a reference to the given map[string]interface{} and assigns it to the Response field.
-func (o *SyntheticsFastTestResultDetail) SetResponse(v map[string]interface{}) {
-	o.Response = v
+// SetResponse gets a reference to the given SyntheticsTestResultResponseInfo and assigns it to the Response field.
+func (o *SyntheticsFastTestResultDetail) SetResponse(v SyntheticsTestResultResponseInfo) {
+	o.Response = &v
 }
 
 // GetRunType returns the RunType field value if set, zero value otherwise.
-func (o *SyntheticsFastTestResultDetail) GetRunType() string {
+func (o *SyntheticsFastTestResultDetail) GetRunType() SyntheticsTestResultRunType {
 	if o == nil || o.RunType == nil {
-		var ret string
+		var ret SyntheticsTestResultRunType
 		return ret
 	}
 	return *o.RunType
@@ -390,7 +390,7 @@ func (o *SyntheticsFastTestResultDetail) GetRunType() string {
 
 // GetRunTypeOk returns a tuple with the RunType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsFastTestResultDetail) GetRunTypeOk() (*string, bool) {
+func (o *SyntheticsFastTestResultDetail) GetRunTypeOk() (*SyntheticsTestResultRunType, bool) {
 	if o == nil || o.RunType == nil {
 		return nil, false
 	}
@@ -402,8 +402,8 @@ func (o *SyntheticsFastTestResultDetail) HasRunType() bool {
 	return o != nil && o.RunType != nil
 }
 
-// SetRunType gets a reference to the given string and assigns it to the RunType field.
-func (o *SyntheticsFastTestResultDetail) SetRunType(v string) {
+// SetRunType gets a reference to the given SyntheticsTestResultRunType and assigns it to the RunType field.
+func (o *SyntheticsFastTestResultDetail) SetRunType(v SyntheticsTestResultRunType) {
 	o.RunType = &v
 }
 
@@ -464,9 +464,9 @@ func (o *SyntheticsFastTestResultDetail) SetStatus(v string) {
 }
 
 // GetSteps returns the Steps field value if set, zero value otherwise.
-func (o *SyntheticsFastTestResultDetail) GetSteps() []map[string]interface{} {
+func (o *SyntheticsFastTestResultDetail) GetSteps() []SyntheticsTestResultStep {
 	if o == nil || o.Steps == nil {
-		var ret []map[string]interface{}
+		var ret []SyntheticsTestResultStep
 		return ret
 	}
 	return o.Steps
@@ -474,7 +474,7 @@ func (o *SyntheticsFastTestResultDetail) GetSteps() []map[string]interface{} {
 
 // GetStepsOk returns a tuple with the Steps field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsFastTestResultDetail) GetStepsOk() (*[]map[string]interface{}, bool) {
+func (o *SyntheticsFastTestResultDetail) GetStepsOk() (*[]SyntheticsTestResultStep, bool) {
 	if o == nil || o.Steps == nil {
 		return nil, false
 	}
@@ -486,8 +486,8 @@ func (o *SyntheticsFastTestResultDetail) HasSteps() bool {
 	return o != nil && o.Steps != nil
 }
 
-// SetSteps gets a reference to the given []map[string]interface{} and assigns it to the Steps field.
-func (o *SyntheticsFastTestResultDetail) SetSteps(v []map[string]interface{}) {
+// SetSteps gets a reference to the given []SyntheticsTestResultStep and assigns it to the Steps field.
+func (o *SyntheticsFastTestResultDetail) SetSteps(v []SyntheticsTestResultStep) {
 	o.Steps = v
 }
 
@@ -520,9 +520,9 @@ func (o *SyntheticsFastTestResultDetail) SetTimings(v map[string]interface{}) {
 }
 
 // GetTraceroute returns the Traceroute field value if set, zero value otherwise.
-func (o *SyntheticsFastTestResultDetail) GetTraceroute() []map[string]interface{} {
+func (o *SyntheticsFastTestResultDetail) GetTraceroute() []SyntheticsTestResultTracerouteHop {
 	if o == nil || o.Traceroute == nil {
-		var ret []map[string]interface{}
+		var ret []SyntheticsTestResultTracerouteHop
 		return ret
 	}
 	return o.Traceroute
@@ -530,7 +530,7 @@ func (o *SyntheticsFastTestResultDetail) GetTraceroute() []map[string]interface{
 
 // GetTracerouteOk returns a tuple with the Traceroute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsFastTestResultDetail) GetTracerouteOk() (*[]map[string]interface{}, bool) {
+func (o *SyntheticsFastTestResultDetail) GetTracerouteOk() (*[]SyntheticsTestResultTracerouteHop, bool) {
 	if o == nil || o.Traceroute == nil {
 		return nil, false
 	}
@@ -542,8 +542,8 @@ func (o *SyntheticsFastTestResultDetail) HasTraceroute() bool {
 	return o != nil && o.Traceroute != nil
 }
 
-// SetTraceroute gets a reference to the given []map[string]interface{} and assigns it to the Traceroute field.
-func (o *SyntheticsFastTestResultDetail) SetTraceroute(v []map[string]interface{}) {
+// SetTraceroute gets a reference to the given []SyntheticsTestResultTracerouteHop and assigns it to the Traceroute field.
+func (o *SyntheticsFastTestResultDetail) SetTraceroute(v []SyntheticsTestResultTracerouteHop) {
 	o.Traceroute = v
 }
 
@@ -676,25 +676,25 @@ func (o SyntheticsFastTestResultDetail) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsFastTestResultDetail) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Assertions  []map[string]interface{}         `json:"assertions,omitempty"`
-		CallType    *string                          `json:"call_type,omitempty"`
-		Cert        map[string]interface{}           `json:"cert,omitempty"`
-		Duration    *float64                         `json:"duration,omitempty"`
-		Failure     *SyntheticsFastTestResultFailure `json:"failure,omitempty"`
-		FinishedAt  *int64                           `json:"finished_at,omitempty"`
-		Id          *string                          `json:"id,omitempty"`
-		IsFastRetry *bool                            `json:"is_fast_retry,omitempty"`
-		Request     map[string]interface{}           `json:"request,omitempty"`
-		ResolvedIp  *string                          `json:"resolved_ip,omitempty"`
-		Response    map[string]interface{}           `json:"response,omitempty"`
-		RunType     *string                          `json:"run_type,omitempty"`
-		StartedAt   *int64                           `json:"started_at,omitempty"`
-		Status      *string                          `json:"status,omitempty"`
-		Steps       []map[string]interface{}         `json:"steps,omitempty"`
-		Timings     map[string]interface{}           `json:"timings,omitempty"`
-		Traceroute  []map[string]interface{}         `json:"traceroute,omitempty"`
-		TriggeredAt *int64                           `json:"triggered_at,omitempty"`
-		Tunnel      *bool                            `json:"tunnel,omitempty"`
+		Assertions  []SyntheticsTestResultAssertionResult `json:"assertions,omitempty"`
+		CallType    *string                               `json:"call_type,omitempty"`
+		Cert        *SyntheticsTestResultCertificate      `json:"cert,omitempty"`
+		Duration    *float64                              `json:"duration,omitempty"`
+		Failure     *SyntheticsTestResultFailure          `json:"failure,omitempty"`
+		FinishedAt  *int64                                `json:"finished_at,omitempty"`
+		Id          *string                               `json:"id,omitempty"`
+		IsFastRetry *bool                                 `json:"is_fast_retry,omitempty"`
+		Request     *SyntheticsTestResultRequestInfo      `json:"request,omitempty"`
+		ResolvedIp  *string                               `json:"resolved_ip,omitempty"`
+		Response    *SyntheticsTestResultResponseInfo     `json:"response,omitempty"`
+		RunType     *SyntheticsTestResultRunType          `json:"run_type,omitempty"`
+		StartedAt   *int64                                `json:"started_at,omitempty"`
+		Status      *string                               `json:"status,omitempty"`
+		Steps       []SyntheticsTestResultStep            `json:"steps,omitempty"`
+		Timings     map[string]interface{}                `json:"timings,omitempty"`
+		Traceroute  []SyntheticsTestResultTracerouteHop   `json:"traceroute,omitempty"`
+		TriggeredAt *int64                                `json:"triggered_at,omitempty"`
+		Tunnel      *bool                                 `json:"tunnel,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -709,6 +709,9 @@ func (o *SyntheticsFastTestResultDetail) UnmarshalJSON(bytes []byte) (err error)
 	hasInvalidField := false
 	o.Assertions = all.Assertions
 	o.CallType = all.CallType
+	if all.Cert != nil && all.Cert.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
 	o.Cert = all.Cert
 	o.Duration = all.Duration
 	if all.Failure != nil && all.Failure.UnparsedObject != nil && o.UnparsedObject == nil {
@@ -718,10 +721,20 @@ func (o *SyntheticsFastTestResultDetail) UnmarshalJSON(bytes []byte) (err error)
 	o.FinishedAt = all.FinishedAt
 	o.Id = all.Id
 	o.IsFastRetry = all.IsFastRetry
+	if all.Request != nil && all.Request.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
 	o.Request = all.Request
 	o.ResolvedIp = all.ResolvedIp
+	if all.Response != nil && all.Response.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
 	o.Response = all.Response
-	o.RunType = all.RunType
+	if all.RunType != nil && !all.RunType.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.RunType = all.RunType
+	}
 	o.StartedAt = all.StartedAt
 	o.Status = all.Status
 	o.Steps = all.Steps
