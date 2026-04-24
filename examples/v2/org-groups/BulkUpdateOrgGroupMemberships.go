@@ -19,7 +19,7 @@ func main() {
 			Attributes: datadogV2.OrgGroupMembershipBulkUpdateAttributes{
 				Orgs: []datadogV2.GlobalOrgIdentifier{
 					{
-						OrgSite: "datadoghq.com",
+						OrgSite: "us1",
 						OrgUuid: uuid.MustParse("c3d4e5f6-a7b8-9012-cdef-012345678901"),
 					},
 				},

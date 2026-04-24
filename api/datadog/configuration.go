@@ -880,6 +880,8 @@ func NewConfiguration() *Configuration {
 			"v2.DeleteOrgGroupPolicyOverride":                   false,
 			"v2.GetOrgGroup":                                    false,
 			"v2.GetOrgGroupMembership":                          false,
+			"v2.GetOrgGroupPolicy":                              false,
+			"v2.GetOrgGroupPolicyOverride":                      false,
 			"v2.ListOrgGroupMemberships":                        false,
 			"v2.ListOrgGroupPolicies":                           false,
 			"v2.ListOrgGroupPolicyConfigs":                      false,
