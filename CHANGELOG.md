@@ -1,5 +1,31 @@
 # CHANGELOG
 
+## 2.59.0/2026-04-24
+
+### Changed
+* Add GET OrgGroupPolicy and OrgGroupPolicyOverride, Add policy_type/enforcement_tier fields, Remove enforced_at field [#3999](https://github.com/DataDog/datadog-api-client-go/pull/3999)
+* Rename pat_uuid to pat_id and remove alias field from PAT spec [#3989](https://github.com/DataDog/datadog-api-client-go/pull/3989)
+* Add GET OrgGroupPolicy and OrgGroupPolicyOverride, Add policy_type/enforcement_tier fields, Remove enforced_at field [#3973](https://github.com/DataDog/datadog-api-client-go/pull/3973)
+* Rename pat_uuid to pat_id and remove alias field from PAT spec [#3969](https://github.com/DataDog/datadog-api-client-go/pull/3969)
+* Security Monitoring - Revert rename of historical job API endpoints to threat hunting [#3956](https://github.com/DataDog/datadog-api-client-go/pull/3956)
+
+### Removed
+* Remove unsupported operators from CCM Custom Allocation Rules feature [#3987](https://github.com/DataDog/datadog-api-client-go/pull/3987)
+
+### Added
+* Add us2.ddog-gov.com. [#3984](https://github.com/DataDog/datadog-api-client-go/pull/3984)
+* Add OpenAPI documentation for LLM Observability eval config CRUD endpoints [#3980](https://github.com/DataDog/datadog-api-client-go/pull/3980)
+* Add OpenAPI spec for v2 Synthetics test result endpoints [#3978](https://github.com/DataDog/datadog-api-client-go/pull/3978)
+* Document signals triage update endpoints [#3977](https://github.com/DataDog/datadog-api-client-go/pull/3977)
+* Security notifications - Add SAST and secret rule types [#3971](https://github.com/DataDog/datadog-api-client-go/pull/3971)
+* Add OpenAPI documentation for list and get indicators of compromise endpoints [#3967](https://github.com/DataDog/datadog-api-client-go/pull/3967)
+* Cloud SIEM - Document content packs SIEM endpoints [#3965](https://github.com/DataDog/datadog-api-client-go/pull/3965)
+* Add API spec for security monitoring terraform export endpoints [#3954](https://github.com/DataDog/datadog-api-client-go/pull/3954)
+* Add team and assignee filters for Search Error Tracking Issues API [#3953](https://github.com/DataDog/datadog-api-client-go/pull/3953)
+* Add missing params to ListCustomCostsFiles [#3950](https://github.com/DataDog/datadog-api-client-go/pull/3950)
+* Add unstable PUT /api/v2/anonymize_users endpoint [#3934](https://github.com/DataDog/datadog-api-client-go/pull/3934)
+* Add query type schemas for timeseries-query data sources [#3917](https://github.com/DataDog/datadog-api-client-go/pull/3917)
+
 ## 2.58.0/2026-04-16
 
 ### Added
