@@ -265,11 +265,11 @@ func (a *CloudCostManagementApi) CreateCostGCPUsageCostConfig(ctx _context.Conte
 // - **PERCENT**: Allocates fixed percentages to specific tags. Requires: allocated_by (array of percentage allocations).
 //
 // **Filter Conditions:**
-// - Use **value** for single-value conditions: "is", "is not", "contains", "does not contain", "=", "!=", "like", "not like", "is all values", "is untagged"
+// - Use **value** for single-value conditions: "is", "is not", "contains", "=", "!=", "like", "not like"
 // - Use **values** for multi-value conditions: "in", "not in"
 // - Cannot use both value and values simultaneously.
 //
-// **Supported operators**: is, is not, is all values, is untagged, contains, does not contain, in, not in, =, !=, like, not like
+// **Supported operators**: is, is not, contains, in, not in, =, !=, like, not like
 func (a *CloudCostManagementApi) CreateCustomAllocationRule(ctx _context.Context, body ArbitraryCostUpsertRequest) (ArbitraryRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -2474,11 +2474,11 @@ func (a *CloudCostManagementApi) UpdateCostGCPUsageCostConfig(ctx _context.Conte
 // - **USAGE_METRIC**: Allocates based on usage metrics (implementation varies).
 //
 // **Filter Conditions:**
-// - Use **value** for single-value conditions: "is", "is not", "contains", "does not contain", "=", "!=", "like", "not like", "is all values", "is untagged"
+// - Use **value** for single-value conditions: "is", "is not", "contains", "=", "!=", "like", "not like"
 // - Use **values** for multi-value conditions: "in", "not in"
 // - Cannot use both value and values simultaneously.
 //
-// **Supported operators**: is, is not, is all values, is untagged, contains, does not contain, in, not in, =, !=, like, not like
+// **Supported operators**: is, is not, contains, in, not in, =, !=, like, not like
 func (a *CloudCostManagementApi) UpdateCustomAllocationRule(ctx _context.Context, ruleId int64, body ArbitraryCostUpsertRequest) (ArbitraryRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
