@@ -1,4 +1,4 @@
-// Trigger a Bits AI investigation returns "OK" response
+// Trigger a Bits AI SRE investigation returns "OK" response
 
 package main
 
@@ -32,14 +32,14 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.TriggerInvestigation", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewBitsAIApi(apiClient)
+	api := datadogV2.NewBitsAISREApi(apiClient)
 	resp, r, err := api.TriggerInvestigation(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `BitsAIApi.TriggerInvestigation`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `BitsAISREApi.TriggerInvestigation`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `BitsAIApi.TriggerInvestigation`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `BitsAISREApi.TriggerInvestigation`:\n%s\n", responseContent)
 }
