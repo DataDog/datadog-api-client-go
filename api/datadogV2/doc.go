@@ -813,6 +813,7 @@
 //   - [SecurityMonitoringApi.ListVulnerabilities]
 //   - [SecurityMonitoringApi.ListVulnerableAssets]
 //   - [SecurityMonitoringApi.MuteFindings]
+//   - [SecurityMonitoringApi.MuteSecurityFindings]
 //   - [SecurityMonitoringApi.PatchSignalNotificationRule]
 //   - [SecurityMonitoringApi.PatchVulnerabilityNotificationRule]
 //   - [SecurityMonitoringApi.RunHistoricalJob]

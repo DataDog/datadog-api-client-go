@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"mute":{"description":"Resolved.","is_muted":false,"reason":"NO_PENDING_FIX"}},"relationships":{"findings":{"data":[{"id":"ZGVmLTAwMC0wYmd-MDE4NjcyMDJkMzE4MDE5ODY5MGE4ZmQ2MmFlMjg0Y2M=","type":"findings"}]}},"type":"mute"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/security/findings/mute
+  response:
+    body: '{"data":{"id":"4ae87c1e-099b-4f63-af21-3568cf226263","type":"mute"}}'
+    code: 202
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 202 Accepted
+version: 2

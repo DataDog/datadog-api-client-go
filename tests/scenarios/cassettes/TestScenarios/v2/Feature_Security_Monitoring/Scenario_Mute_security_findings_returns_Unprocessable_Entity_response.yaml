@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"mute":{"description":"To be resolved later.","expire_at":1,"is_muted":true,"reason":"RISK_ACCEPTED"}},"relationships":{"findings":{"data":[{"id":"ZGVmLTAwcC1pZXJ-aS0wZjhjNjMyZDNmMzRlZTgzNw==","type":"findings"}]}},"type":"mute"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/security/findings/mute
+  response:
+    body: '{"errors":[{"status":"422","title":"Invalid Request","detail":"Invalid
+      expiration date. Please provide an expiration date in the future"}]}'
+    code: 422
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 422 Unprocessable Entity
+version: 2
