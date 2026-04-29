@@ -31,7 +31,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.SearchFlakyTests", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewTestOptimizationApi(apiClient)
 	resp, r, err := api.SearchFlakyTests(ctx, *datadogV2.NewSearchFlakyTestsOptionalParameters().WithBody(body))

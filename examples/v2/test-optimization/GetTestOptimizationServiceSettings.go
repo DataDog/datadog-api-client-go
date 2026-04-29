@@ -25,7 +25,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetTestOptimizationServiceSettings", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewTestOptimizationApi(apiClient)
 	resp, r, err := api.GetTestOptimizationServiceSettings(ctx, body)

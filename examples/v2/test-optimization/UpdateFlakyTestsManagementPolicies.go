@@ -72,7 +72,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.UpdateFlakyTestsManagementPolicies", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewTestOptimizationApi(apiClient)
 	resp, r, err := api.UpdateFlakyTestsManagementPolicies(ctx, body)
