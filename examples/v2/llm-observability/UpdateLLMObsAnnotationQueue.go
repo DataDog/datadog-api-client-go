@@ -16,6 +16,28 @@ func main() {
 	body := datadogV2.LLMObsAnnotationQueueUpdateRequest{
 		Data: datadogV2.LLMObsAnnotationQueueUpdateDataRequest{
 			Attributes: datadogV2.LLMObsAnnotationQueueUpdateDataAttributesRequest{
+				AnnotationSchema: &datadogV2.LLMObsAnnotationSchema{
+					LabelSchemas: []datadogV2.LLMObsLabelSchema{
+						{
+							Description:   datadog.PtrString("Rating of the response quality."),
+							HasAssessment: datadog.PtrBool(false),
+							HasReasoning:  datadog.PtrBool(false),
+							Id:            datadog.PtrString("ab12cd34"),
+							IsAssessment:  datadog.PtrBool(false),
+							IsInteger:     datadog.PtrBool(false),
+							IsRequired:    datadog.PtrBool(true),
+							Max:           datadog.PtrFloat64(5.0),
+							Min:           datadog.PtrFloat64(0.0),
+							Name:          "quality",
+							Type:          datadogV2.LLMOBSLABELSCHEMATYPE_SCORE,
+							Values: []string{
+								"good",
+								"bad",
+								"neutral",
+							},
+						},
+					},
+				},
 				Description: datadog.PtrString("Updated description"),
 				Name:        datadog.PtrString("Updated queue name"),
 			},
