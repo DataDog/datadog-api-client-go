@@ -12,6 +12,8 @@ import (
 
 // LogsArchiveCreateRequestAttributes The attributes associated with the archive.
 type LogsArchiveCreateRequestAttributes struct {
+	// The type of compression for the archive.
+	CompressionMethod *LogsArchiveAttributesCompressionMethod `json:"compression_method,omitempty"`
 	// An archive's destination.
 	Destination LogsArchiveCreateRequestDestination `json:"destination"`
 	// To store the tags in the archive, set the value "true".
@@ -36,6 +38,8 @@ type LogsArchiveCreateRequestAttributes struct {
 // will change when the set of required properties is changed.
 func NewLogsArchiveCreateRequestAttributes(destination LogsArchiveCreateRequestDestination, name string, query string) *LogsArchiveCreateRequestAttributes {
 	this := LogsArchiveCreateRequestAttributes{}
+	var compressionMethod LogsArchiveAttributesCompressionMethod = LOGSARCHIVEATTRIBUTESCOMPRESSIONMETHOD_GZIP
+	this.CompressionMethod = &compressionMethod
 	this.Destination = destination
 	var includeTags bool = false
 	this.IncludeTags = &includeTags
@@ -49,9 +53,39 @@ func NewLogsArchiveCreateRequestAttributes(destination LogsArchiveCreateRequestD
 // but it doesn't guarantee that properties required by API are set.
 func NewLogsArchiveCreateRequestAttributesWithDefaults() *LogsArchiveCreateRequestAttributes {
 	this := LogsArchiveCreateRequestAttributes{}
+	var compressionMethod LogsArchiveAttributesCompressionMethod = LOGSARCHIVEATTRIBUTESCOMPRESSIONMETHOD_GZIP
+	this.CompressionMethod = &compressionMethod
 	var includeTags bool = false
 	this.IncludeTags = &includeTags
 	return &this
+}
+
+// GetCompressionMethod returns the CompressionMethod field value if set, zero value otherwise.
+func (o *LogsArchiveCreateRequestAttributes) GetCompressionMethod() LogsArchiveAttributesCompressionMethod {
+	if o == nil || o.CompressionMethod == nil {
+		var ret LogsArchiveAttributesCompressionMethod
+		return ret
+	}
+	return *o.CompressionMethod
+}
+
+// GetCompressionMethodOk returns a tuple with the CompressionMethod field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogsArchiveCreateRequestAttributes) GetCompressionMethodOk() (*LogsArchiveAttributesCompressionMethod, bool) {
+	if o == nil || o.CompressionMethod == nil {
+		return nil, false
+	}
+	return o.CompressionMethod, true
+}
+
+// HasCompressionMethod returns a boolean if a field has been set.
+func (o *LogsArchiveCreateRequestAttributes) HasCompressionMethod() bool {
+	return o != nil && o.CompressionMethod != nil
+}
+
+// SetCompressionMethod gets a reference to the given LogsArchiveAttributesCompressionMethod and assigns it to the CompressionMethod field.
+func (o *LogsArchiveCreateRequestAttributes) SetCompressionMethod(v LogsArchiveAttributesCompressionMethod) {
+	o.CompressionMethod = &v
 }
 
 // GetDestination returns the Destination field value.
@@ -224,6 +258,9 @@ func (o LogsArchiveCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.CompressionMethod != nil {
+		toSerialize["compression_method"] = o.CompressionMethod
+	}
 	toSerialize["destination"] = o.Destination
 	if o.IncludeTags != nil {
 		toSerialize["include_tags"] = o.IncludeTags
@@ -246,12 +283,13 @@ func (o LogsArchiveCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Destination                *LogsArchiveCreateRequestDestination `json:"destination"`
-		IncludeTags                *bool                                `json:"include_tags,omitempty"`
-		Name                       *string                              `json:"name"`
-		Query                      *string                              `json:"query"`
-		RehydrationMaxScanSizeInGb datadog.NullableInt64                `json:"rehydration_max_scan_size_in_gb,omitempty"`
-		RehydrationTags            []string                             `json:"rehydration_tags,omitempty"`
+		CompressionMethod          *LogsArchiveAttributesCompressionMethod `json:"compression_method,omitempty"`
+		Destination                *LogsArchiveCreateRequestDestination    `json:"destination"`
+		IncludeTags                *bool                                   `json:"include_tags,omitempty"`
+		Name                       *string                                 `json:"name"`
+		Query                      *string                                 `json:"query"`
+		RehydrationMaxScanSizeInGb datadog.NullableInt64                   `json:"rehydration_max_scan_size_in_gb,omitempty"`
+		RehydrationTags            []string                                `json:"rehydration_tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -267,9 +305,16 @@ func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"destination", "include_tags", "name", "query", "rehydration_max_scan_size_in_gb", "rehydration_tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"compression_method", "destination", "include_tags", "name", "query", "rehydration_max_scan_size_in_gb", "rehydration_tags"})
 	} else {
 		return err
+	}
+
+	hasInvalidField := false
+	if all.CompressionMethod != nil && !all.CompressionMethod.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.CompressionMethod = all.CompressionMethod
 	}
 	o.Destination = *all.Destination
 	o.IncludeTags = all.IncludeTags
@@ -280,6 +325,10 @@ func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
