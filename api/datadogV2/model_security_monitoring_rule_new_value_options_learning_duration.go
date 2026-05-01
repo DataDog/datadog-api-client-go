@@ -21,15 +21,13 @@ const (
 	SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGDURATION_SEVEN_DAYS SecurityMonitoringRuleNewValueOptionsLearningDuration = 7
 )
 
-var allowedSecurityMonitoringRuleNewValueOptionsLearningDurationEnumValues = []SecurityMonitoringRuleNewValueOptionsLearningDuration{
-	SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGDURATION_ZERO_DAYS,
-	SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGDURATION_ONE_DAY,
-	SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGDURATION_SEVEN_DAYS,
-}
-
-// GetAllowedValues reeturns the list of possible values.
+// GetAllowedValues returns the list of possible values (0 through 30).
 func (v *SecurityMonitoringRuleNewValueOptionsLearningDuration) GetAllowedValues() []SecurityMonitoringRuleNewValueOptionsLearningDuration {
-	return allowedSecurityMonitoringRuleNewValueOptionsLearningDurationEnumValues
+	values := make([]SecurityMonitoringRuleNewValueOptionsLearningDuration, 31)
+	for i := range values {
+		values[i] = SecurityMonitoringRuleNewValueOptionsLearningDuration(i)
+	}
+	return values
 }
 
 // UnmarshalJSON deserializes the given payload.
@@ -50,17 +48,12 @@ func NewSecurityMonitoringRuleNewValueOptionsLearningDurationFromValue(v int32) 
 	if ev.IsValid() {
 		return &ev, nil
 	}
-	return nil, fmt.Errorf("invalid value '%v' for SecurityMonitoringRuleNewValueOptionsLearningDuration: valid values are %v", v, allowedSecurityMonitoringRuleNewValueOptionsLearningDurationEnumValues)
+	return nil, fmt.Errorf("invalid value '%v' for SecurityMonitoringRuleNewValueOptionsLearningDuration: valid values are 0 through 30", v)
 }
 
 // IsValid return true if the value is valid for the enum, false otherwise.
 func (v SecurityMonitoringRuleNewValueOptionsLearningDuration) IsValid() bool {
-	for _, existing := range allowedSecurityMonitoringRuleNewValueOptionsLearningDurationEnumValues {
-		if existing == v {
-			return true
-		}
-	}
-	return false
+	return v >= 0 && v <= 30
 }
 
 // Ptr returns reference to SecurityMonitoringRuleNewValueOptionsLearningDuration value.
