@@ -213,6 +213,7 @@
 //   - [CloudCostManagementApi.ValidateBudget]
 //   - [CloudCostManagementApi.ValidateCsvBudget]
 //   - [CloudCostManagementApi.ValidateQuery]
+//   - [CloudInventorySyncConfigsApi.UpsertSyncConfig]
 //   - [CloudNetworkMonitoringApi.GetAggregatedConnections]
 //   - [CloudNetworkMonitoringApi.GetAggregatedDns]
 //   - [CloudflareIntegrationApi.CreateCloudflareAccount]

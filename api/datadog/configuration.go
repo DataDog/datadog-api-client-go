@@ -755,6 +755,7 @@ func NewConfiguration() *Configuration {
 			"v2.MuteSecurityFindings":                           false,
 			"v2.RunHistoricalJob":                               false,
 			"v2.SearchSecurityMonitoringHistsignals":            false,
+			"v2.UpsertSyncConfig":                               false,
 			"v2.GetCodeCoverageBranchSummary":                   false,
 			"v2.GetCodeCoverageCommitSummary":                   false,
 			"v2.CreateDashboardSecureEmbed":                     false,
