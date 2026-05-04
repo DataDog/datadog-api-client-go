@@ -381,7 +381,7 @@ func (r *CreateStatusPageOptionalParameters) WithInclude(include string) *Create
 }
 
 // CreateStatusPage Create status page.
-// Creates a new status page. **Note**: Publishing a status page on creation via the `enabled` property will be deprecated. Use the dedicated [publish](#publish-status-page) status page endpoint after creation instead.
+// Creates a new status page in an unpublished state. Use the dedicated [publish](#publish-status-page) status page endpoint to publish the page after creation.
 func (a *StatusPagesApi) CreateStatusPage(ctx _context.Context, body CreateStatusPageRequest, o ...CreateStatusPageOptionalParameters) (StatusPage, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost

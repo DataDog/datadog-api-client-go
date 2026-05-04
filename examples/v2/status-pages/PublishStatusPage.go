@@ -13,14 +13,14 @@ import (
 )
 
 func main() {
-	// there is a valid "unpublished_status_page" in the system
-	UnpublishedStatusPageDataID := uuid.MustParse(os.Getenv("UNPUBLISHED_STATUS_PAGE_DATA_ID"))
+	// there is a valid "status_page" in the system
+	StatusPageDataID := uuid.MustParse(os.Getenv("STATUS_PAGE_DATA_ID"))
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewStatusPagesApi(apiClient)
-	r, err := api.PublishStatusPage(ctx, UnpublishedStatusPageDataID)
+	r, err := api.PublishStatusPage(ctx, StatusPageDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `StatusPagesApi.PublishStatusPage`: %v\n", err)

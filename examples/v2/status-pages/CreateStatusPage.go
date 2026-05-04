@@ -30,7 +30,6 @@ func main() {
 						Position: datadog.PtrInt64(1),
 					},
 				},
-				Enabled:           true,
 				Type:              datadogV2.CREATESTATUSPAGEREQUESTDATAATTRIBUTESTYPE_INTERNAL,
 				VisualizationType: datadogV2.CREATESTATUSPAGEREQUESTDATAATTRIBUTESVISUALIZATIONTYPE_BARS_AND_UPTIME_PERCENTAGE,
 			},
