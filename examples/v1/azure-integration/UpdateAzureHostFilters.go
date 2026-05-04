@@ -36,8 +36,9 @@ func main() {
 				Namespace:      datadog.PtrString("Microsoft.Compute"),
 			},
 		},
-		TenantName:          datadog.PtrString("testc44-1234-5678-9101-cc00736ftest"),
-		UsageMetricsEnabled: datadog.PtrBool(true),
+		SecretlessAuthEnabled: datadog.PtrBool(true),
+		TenantName:            datadog.PtrString("testc44-1234-5678-9101-cc00736ftest"),
+		UsageMetricsEnabled:   datadog.PtrBool(true),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
