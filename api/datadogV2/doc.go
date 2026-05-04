@@ -198,6 +198,7 @@
 //   - [CloudCostManagementApi.ListCostAWSCURConfigs]
 //   - [CloudCostManagementApi.ListCostAzureUCConfigs]
 //   - [CloudCostManagementApi.ListCostGCPUsageCostConfigs]
+//   - [CloudCostManagementApi.ListCostOCIConfigs]
 //   - [CloudCostManagementApi.ListCustomAllocationRules]
 //   - [CloudCostManagementApi.ListCustomCostsFiles]
 //   - [CloudCostManagementApi.ListTagPipelinesRulesets]
