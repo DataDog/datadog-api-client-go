@@ -10,8 +10,9 @@ import (
 
 // RoutingRuleAction - Defines an action that is executed when a routing rule matches certain criteria.
 type RoutingRuleAction struct {
-	SendSlackMessageAction *SendSlackMessageAction
-	SendTeamsMessageAction *SendTeamsMessageAction
+	SendSlackMessageAction          *SendSlackMessageAction
+	SendTeamsMessageAction          *SendTeamsMessageAction
+	TriggerWorkflowAutomationAction *TriggerWorkflowAutomationAction
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -25,6 +26,11 @@ func SendSlackMessageActionAsRoutingRuleAction(v *SendSlackMessageAction) Routin
 // SendTeamsMessageActionAsRoutingRuleAction is a convenience function that returns SendTeamsMessageAction wrapped in RoutingRuleAction.
 func SendTeamsMessageActionAsRoutingRuleAction(v *SendTeamsMessageAction) RoutingRuleAction {
 	return RoutingRuleAction{SendTeamsMessageAction: v}
+}
+
+// TriggerWorkflowAutomationActionAsRoutingRuleAction is a convenience function that returns TriggerWorkflowAutomationAction wrapped in RoutingRuleAction.
+func TriggerWorkflowAutomationActionAsRoutingRuleAction(v *TriggerWorkflowAutomationAction) RoutingRuleAction {
+	return RoutingRuleAction{TriggerWorkflowAutomationAction: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -65,10 +71,28 @@ func (obj *RoutingRuleAction) UnmarshalJSON(data []byte) error {
 		obj.SendTeamsMessageAction = nil
 	}
 
+	// try to unmarshal data into TriggerWorkflowAutomationAction
+	err = datadog.Unmarshal(data, &obj.TriggerWorkflowAutomationAction)
+	if err == nil {
+		if obj.TriggerWorkflowAutomationAction != nil && obj.TriggerWorkflowAutomationAction.UnparsedObject == nil {
+			jsonTriggerWorkflowAutomationAction, _ := datadog.Marshal(obj.TriggerWorkflowAutomationAction)
+			if string(jsonTriggerWorkflowAutomationAction) == "{}" { // empty struct
+				obj.TriggerWorkflowAutomationAction = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.TriggerWorkflowAutomationAction = nil
+		}
+	} else {
+		obj.TriggerWorkflowAutomationAction = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.SendSlackMessageAction = nil
 		obj.SendTeamsMessageAction = nil
+		obj.TriggerWorkflowAutomationAction = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -82,6 +106,10 @@ func (obj RoutingRuleAction) MarshalJSON() ([]byte, error) {
 
 	if obj.SendTeamsMessageAction != nil {
 		return datadog.Marshal(&obj.SendTeamsMessageAction)
+	}
+
+	if obj.TriggerWorkflowAutomationAction != nil {
+		return datadog.Marshal(&obj.TriggerWorkflowAutomationAction)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -98,6 +126,10 @@ func (obj *RoutingRuleAction) GetActualInstance() interface{} {
 
 	if obj.SendTeamsMessageAction != nil {
 		return obj.SendTeamsMessageAction
+	}
+
+	if obj.TriggerWorkflowAutomationAction != nil {
+		return obj.TriggerWorkflowAutomationAction
 	}
 
 	// all schemas are nil
