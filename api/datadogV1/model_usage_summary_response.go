@@ -453,6 +453,8 @@ type UsageSummaryResponse struct {
 	ServerlessAppsApmApmGcpCloudfunctionInstancesAvgSum *int64 `json:"serverless_apps_apm_apm_gcp_cloudfunction_instances_avg_sum,omitempty"`
 	// Sum of the average number of Serverless Apps with Application Performance Monitoring for Google Cloud Platform Cloud Run instances in the current month for all organizations.
 	ServerlessAppsApmApmGcpCloudrunInstancesAvgSum *int64 `json:"serverless_apps_apm_apm_gcp_cloudrun_instances_avg_sum,omitempty"`
+	// Sum of the average number of Serverless Apps with Application Performance Monitoring for Google Kubernetes Engine Autopilot pods in the current month for all organizations.
+	ServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum *int64 `json:"serverless_apps_apm_apm_gcp_gke_autopilot_pods_avg_sum,omitempty"`
 	// Sum of the average number of Serverless Apps with Application Performance Monitoring in the current month for all organizations.
 	ServerlessAppsApmAvgSum *int64 `json:"serverless_apps_apm_avg_sum,omitempty"`
 	// Sum of the average number of Serverless Apps with Application Performance Monitoring excluding Fargate for Azure App Service instances in the current month for all organizations.
@@ -465,6 +467,8 @@ type UsageSummaryResponse struct {
 	ServerlessAppsApmExclFargateApmGcpCloudfunctionInstancesAvgSum *int64 `json:"serverless_apps_apm_excl_fargate_apm_gcp_cloudfunction_instances_avg_sum,omitempty"`
 	// Sum of the average number of Serverless Apps with Application Performance Monitoring excluding Fargate for Google Cloud Platform Cloud Run instances in the current month for all organizations.
 	ServerlessAppsApmExclFargateApmGcpCloudrunInstancesAvgSum *int64 `json:"serverless_apps_apm_excl_fargate_apm_gcp_cloudrun_instances_avg_sum,omitempty"`
+	// Sum of the average number of Serverless Apps with Application Performance Monitoring excluding Fargate for Google Kubernetes Engine Autopilot pods in the current month for all organizations.
+	ServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum *int64 `json:"serverless_apps_apm_excl_fargate_apm_gcp_gke_autopilot_pods_avg_sum,omitempty"`
 	// Sum of the average number of Serverless Apps with Application Performance Monitoring excluding Fargate in the current month for all organizations.
 	ServerlessAppsApmExclFargateAvgSum *int64 `json:"serverless_apps_apm_excl_fargate_avg_sum,omitempty"`
 	// Sum of the average number of Serverless Apps for Azure Container App instances in the current month for all organizations.
@@ -491,12 +495,16 @@ type UsageSummaryResponse struct {
 	ServerlessAppsExclFargateGoogleCloudFunctionsInstancesAvgSum *int64 `json:"serverless_apps_excl_fargate_google_cloud_functions_instances_avg_sum,omitempty"`
 	// Sum of the average number of Serverless Apps excluding Fargate for Google Cloud Platform Cloud Run instances in the current month for all organizations.
 	ServerlessAppsExclFargateGoogleCloudRunInstancesAvgSum *int64 `json:"serverless_apps_excl_fargate_google_cloud_run_instances_avg_sum,omitempty"`
+	// Sum of the average number of Serverless Apps excluding Fargate for Google Kubernetes Engine Autopilot pods in the current month for all organizations.
+	ServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum *int64 `json:"serverless_apps_excl_fargate_infra_gcp_gke_autopilot_pods_avg_sum,omitempty"`
 	// Sum of the average number of Serverless Apps for Google Cloud Platform Cloud Functions instances in the current month for all organizations.
 	ServerlessAppsGoogleCloudFunctionsInstancesAvgSum *int64 `json:"serverless_apps_google_cloud_functions_instances_avg_sum,omitempty"`
 	// Sum of the average number of Serverless Apps for Google Cloud Platform Cloud Run instances in the current month for all organizations.
 	ServerlessAppsGoogleCloudRunInstancesAvgSum *int64 `json:"serverless_apps_google_cloud_run_instances_avg_sum,omitempty"`
 	// Sum of the average number of Serverless Apps for Google Cloud in the current month for all organizations.
 	ServerlessAppsGoogleCountAvgSum *int64 `json:"serverless_apps_google_count_avg_sum,omitempty"`
+	// Sum of the average number of Serverless Apps for Google Kubernetes Engine Autopilot pods in the current month for all organizations.
+	ServerlessAppsInfraGcpGkeAutopilotPodsAvgSum *int64 `json:"serverless_apps_infra_gcp_gke_autopilot_pods_avg_sum,omitempty"`
 	// Sum of the average number of Serverless Apps for Azure and Google Cloud in the current month for all organizations.
 	ServerlessAppsTotalCountAvgSum *int64 `json:"serverless_apps_total_count_avg_sum,omitempty"`
 	// Shows the sum of all log events analyzed by Cloud SIEM over all hours in the current month for all organizations.
@@ -6534,6 +6542,34 @@ func (o *UsageSummaryResponse) SetServerlessAppsApmApmGcpCloudrunInstancesAvgSum
 	o.ServerlessAppsApmApmGcpCloudrunInstancesAvgSum = &v
 }
 
+// GetServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum returns the ServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum() int64 {
+	if o == nil || o.ServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum
+}
+
+// GetServerlessAppsApmApmGcpGkeAutopilotPodsAvgSumOk returns a tuple with the ServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetServerlessAppsApmApmGcpGkeAutopilotPodsAvgSumOk() (*int64, bool) {
+	if o == nil || o.ServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum == nil {
+		return nil, false
+	}
+	return o.ServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum, true
+}
+
+// HasServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum() bool {
+	return o != nil && o.ServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum != nil
+}
+
+// SetServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum gets a reference to the given int64 and assigns it to the ServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum field.
+func (o *UsageSummaryResponse) SetServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum(v int64) {
+	o.ServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum = &v
+}
+
 // GetServerlessAppsApmAvgSum returns the ServerlessAppsApmAvgSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetServerlessAppsApmAvgSum() int64 {
 	if o == nil || o.ServerlessAppsApmAvgSum == nil {
@@ -6700,6 +6736,34 @@ func (o *UsageSummaryResponse) HasServerlessAppsApmExclFargateApmGcpCloudrunInst
 // SetServerlessAppsApmExclFargateApmGcpCloudrunInstancesAvgSum gets a reference to the given int64 and assigns it to the ServerlessAppsApmExclFargateApmGcpCloudrunInstancesAvgSum field.
 func (o *UsageSummaryResponse) SetServerlessAppsApmExclFargateApmGcpCloudrunInstancesAvgSum(v int64) {
 	o.ServerlessAppsApmExclFargateApmGcpCloudrunInstancesAvgSum = &v
+}
+
+// GetServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum returns the ServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum() int64 {
+	if o == nil || o.ServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum
+}
+
+// GetServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSumOk returns a tuple with the ServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSumOk() (*int64, bool) {
+	if o == nil || o.ServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum == nil {
+		return nil, false
+	}
+	return o.ServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum, true
+}
+
+// HasServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum() bool {
+	return o != nil && o.ServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum != nil
+}
+
+// SetServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum gets a reference to the given int64 and assigns it to the ServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum field.
+func (o *UsageSummaryResponse) SetServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum(v int64) {
+	o.ServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum = &v
 }
 
 // GetServerlessAppsApmExclFargateAvgSum returns the ServerlessAppsApmExclFargateAvgSum field value if set, zero value otherwise.
@@ -7066,6 +7130,34 @@ func (o *UsageSummaryResponse) SetServerlessAppsExclFargateGoogleCloudRunInstanc
 	o.ServerlessAppsExclFargateGoogleCloudRunInstancesAvgSum = &v
 }
 
+// GetServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum returns the ServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum() int64 {
+	if o == nil || o.ServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum
+}
+
+// GetServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSumOk returns a tuple with the ServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSumOk() (*int64, bool) {
+	if o == nil || o.ServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum == nil {
+		return nil, false
+	}
+	return o.ServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum, true
+}
+
+// HasServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum() bool {
+	return o != nil && o.ServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum != nil
+}
+
+// SetServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum gets a reference to the given int64 and assigns it to the ServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum field.
+func (o *UsageSummaryResponse) SetServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum(v int64) {
+	o.ServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum = &v
+}
+
 // GetServerlessAppsGoogleCloudFunctionsInstancesAvgSum returns the ServerlessAppsGoogleCloudFunctionsInstancesAvgSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetServerlessAppsGoogleCloudFunctionsInstancesAvgSum() int64 {
 	if o == nil || o.ServerlessAppsGoogleCloudFunctionsInstancesAvgSum == nil {
@@ -7148,6 +7240,34 @@ func (o *UsageSummaryResponse) HasServerlessAppsGoogleCountAvgSum() bool {
 // SetServerlessAppsGoogleCountAvgSum gets a reference to the given int64 and assigns it to the ServerlessAppsGoogleCountAvgSum field.
 func (o *UsageSummaryResponse) SetServerlessAppsGoogleCountAvgSum(v int64) {
 	o.ServerlessAppsGoogleCountAvgSum = &v
+}
+
+// GetServerlessAppsInfraGcpGkeAutopilotPodsAvgSum returns the ServerlessAppsInfraGcpGkeAutopilotPodsAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetServerlessAppsInfraGcpGkeAutopilotPodsAvgSum() int64 {
+	if o == nil || o.ServerlessAppsInfraGcpGkeAutopilotPodsAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ServerlessAppsInfraGcpGkeAutopilotPodsAvgSum
+}
+
+// GetServerlessAppsInfraGcpGkeAutopilotPodsAvgSumOk returns a tuple with the ServerlessAppsInfraGcpGkeAutopilotPodsAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetServerlessAppsInfraGcpGkeAutopilotPodsAvgSumOk() (*int64, bool) {
+	if o == nil || o.ServerlessAppsInfraGcpGkeAutopilotPodsAvgSum == nil {
+		return nil, false
+	}
+	return o.ServerlessAppsInfraGcpGkeAutopilotPodsAvgSum, true
+}
+
+// HasServerlessAppsInfraGcpGkeAutopilotPodsAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasServerlessAppsInfraGcpGkeAutopilotPodsAvgSum() bool {
+	return o != nil && o.ServerlessAppsInfraGcpGkeAutopilotPodsAvgSum != nil
+}
+
+// SetServerlessAppsInfraGcpGkeAutopilotPodsAvgSum gets a reference to the given int64 and assigns it to the ServerlessAppsInfraGcpGkeAutopilotPodsAvgSum field.
+func (o *UsageSummaryResponse) SetServerlessAppsInfraGcpGkeAutopilotPodsAvgSum(v int64) {
+	o.ServerlessAppsInfraGcpGkeAutopilotPodsAvgSum = &v
 }
 
 // GetServerlessAppsTotalCountAvgSum returns the ServerlessAppsTotalCountAvgSum field value if set, zero value otherwise.
@@ -8192,6 +8312,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.ServerlessAppsApmApmGcpCloudrunInstancesAvgSum != nil {
 		toSerialize["serverless_apps_apm_apm_gcp_cloudrun_instances_avg_sum"] = o.ServerlessAppsApmApmGcpCloudrunInstancesAvgSum
 	}
+	if o.ServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum != nil {
+		toSerialize["serverless_apps_apm_apm_gcp_gke_autopilot_pods_avg_sum"] = o.ServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum
+	}
 	if o.ServerlessAppsApmAvgSum != nil {
 		toSerialize["serverless_apps_apm_avg_sum"] = o.ServerlessAppsApmAvgSum
 	}
@@ -8209,6 +8332,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.ServerlessAppsApmExclFargateApmGcpCloudrunInstancesAvgSum != nil {
 		toSerialize["serverless_apps_apm_excl_fargate_apm_gcp_cloudrun_instances_avg_sum"] = o.ServerlessAppsApmExclFargateApmGcpCloudrunInstancesAvgSum
+	}
+	if o.ServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum != nil {
+		toSerialize["serverless_apps_apm_excl_fargate_apm_gcp_gke_autopilot_pods_avg_sum"] = o.ServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum
 	}
 	if o.ServerlessAppsApmExclFargateAvgSum != nil {
 		toSerialize["serverless_apps_apm_excl_fargate_avg_sum"] = o.ServerlessAppsApmExclFargateAvgSum
@@ -8249,6 +8375,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.ServerlessAppsExclFargateGoogleCloudRunInstancesAvgSum != nil {
 		toSerialize["serverless_apps_excl_fargate_google_cloud_run_instances_avg_sum"] = o.ServerlessAppsExclFargateGoogleCloudRunInstancesAvgSum
 	}
+	if o.ServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum != nil {
+		toSerialize["serverless_apps_excl_fargate_infra_gcp_gke_autopilot_pods_avg_sum"] = o.ServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum
+	}
 	if o.ServerlessAppsGoogleCloudFunctionsInstancesAvgSum != nil {
 		toSerialize["serverless_apps_google_cloud_functions_instances_avg_sum"] = o.ServerlessAppsGoogleCloudFunctionsInstancesAvgSum
 	}
@@ -8257,6 +8386,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.ServerlessAppsGoogleCountAvgSum != nil {
 		toSerialize["serverless_apps_google_count_avg_sum"] = o.ServerlessAppsGoogleCountAvgSum
+	}
+	if o.ServerlessAppsInfraGcpGkeAutopilotPodsAvgSum != nil {
+		toSerialize["serverless_apps_infra_gcp_gke_autopilot_pods_avg_sum"] = o.ServerlessAppsInfraGcpGkeAutopilotPodsAvgSum
 	}
 	if o.ServerlessAppsTotalCountAvgSum != nil {
 		toSerialize["serverless_apps_total_count_avg_sum"] = o.ServerlessAppsTotalCountAvgSum
@@ -8526,12 +8658,14 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		ServerlessAppsApmApmFargateEcsTasksAvgSum                        *int64             `json:"serverless_apps_apm_apm_fargate_ecs_tasks_avg_sum,omitempty"`
 		ServerlessAppsApmApmGcpCloudfunctionInstancesAvgSum              *int64             `json:"serverless_apps_apm_apm_gcp_cloudfunction_instances_avg_sum,omitempty"`
 		ServerlessAppsApmApmGcpCloudrunInstancesAvgSum                   *int64             `json:"serverless_apps_apm_apm_gcp_cloudrun_instances_avg_sum,omitempty"`
+		ServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum                    *int64             `json:"serverless_apps_apm_apm_gcp_gke_autopilot_pods_avg_sum,omitempty"`
 		ServerlessAppsApmAvgSum                                          *int64             `json:"serverless_apps_apm_avg_sum,omitempty"`
 		ServerlessAppsApmExclFargateApmAzureAppserviceInstancesAvgSum    *int64             `json:"serverless_apps_apm_excl_fargate_apm_azure_appservice_instances_avg_sum,omitempty"`
 		ServerlessAppsApmExclFargateApmAzureAzurefunctionInstancesAvgSum *int64             `json:"serverless_apps_apm_excl_fargate_apm_azure_azurefunction_instances_avg_sum,omitempty"`
 		ServerlessAppsApmExclFargateApmAzureContainerappInstancesAvgSum  *int64             `json:"serverless_apps_apm_excl_fargate_apm_azure_containerapp_instances_avg_sum,omitempty"`
 		ServerlessAppsApmExclFargateApmGcpCloudfunctionInstancesAvgSum   *int64             `json:"serverless_apps_apm_excl_fargate_apm_gcp_cloudfunction_instances_avg_sum,omitempty"`
 		ServerlessAppsApmExclFargateApmGcpCloudrunInstancesAvgSum        *int64             `json:"serverless_apps_apm_excl_fargate_apm_gcp_cloudrun_instances_avg_sum,omitempty"`
+		ServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum         *int64             `json:"serverless_apps_apm_excl_fargate_apm_gcp_gke_autopilot_pods_avg_sum,omitempty"`
 		ServerlessAppsApmExclFargateAvgSum                               *int64             `json:"serverless_apps_apm_excl_fargate_avg_sum,omitempty"`
 		ServerlessAppsAzureContainerAppInstancesAvgSum                   *int64             `json:"serverless_apps_azure_container_app_instances_avg_sum,omitempty"`
 		ServerlessAppsAzureCountAvgSum                                   *int64             `json:"serverless_apps_azure_count_avg_sum,omitempty"`
@@ -8545,9 +8679,11 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		ServerlessAppsExclFargateAzureWebAppInstancesAvgSum              *int64             `json:"serverless_apps_excl_fargate_azure_web_app_instances_avg_sum,omitempty"`
 		ServerlessAppsExclFargateGoogleCloudFunctionsInstancesAvgSum     *int64             `json:"serverless_apps_excl_fargate_google_cloud_functions_instances_avg_sum,omitempty"`
 		ServerlessAppsExclFargateGoogleCloudRunInstancesAvgSum           *int64             `json:"serverless_apps_excl_fargate_google_cloud_run_instances_avg_sum,omitempty"`
+		ServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum          *int64             `json:"serverless_apps_excl_fargate_infra_gcp_gke_autopilot_pods_avg_sum,omitempty"`
 		ServerlessAppsGoogleCloudFunctionsInstancesAvgSum                *int64             `json:"serverless_apps_google_cloud_functions_instances_avg_sum,omitempty"`
 		ServerlessAppsGoogleCloudRunInstancesAvgSum                      *int64             `json:"serverless_apps_google_cloud_run_instances_avg_sum,omitempty"`
 		ServerlessAppsGoogleCountAvgSum                                  *int64             `json:"serverless_apps_google_count_avg_sum,omitempty"`
+		ServerlessAppsInfraGcpGkeAutopilotPodsAvgSum                     *int64             `json:"serverless_apps_infra_gcp_gke_autopilot_pods_avg_sum,omitempty"`
 		ServerlessAppsTotalCountAvgSum                                   *int64             `json:"serverless_apps_total_count_avg_sum,omitempty"`
 		SiemAnalyzedLogsAddOnCountAggSum                                 *int64             `json:"siem_analyzed_logs_add_on_count_agg_sum,omitempty"`
 		StartDate                                                        *time.Time         `json:"start_date,omitempty"`
@@ -8568,7 +8704,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p_sum", "apm_azure_app_service_host_top99p_sum", "apm_devsecops_host_top99p_sum", "apm_enterprise_standalone_hosts_top99p_sum", "apm_fargate_count_avg_sum", "apm_host_top99p_sum", "apm_pro_standalone_hosts_top99p_sum", "appsec_fargate_count_avg_sum", "asm_serverless_agg_sum", "audit_logs_lines_indexed_agg_sum", "audit_trail_enabled_hwm_sum", "avg_profiled_fargate_tasks_sum", "aws_host_top99p_sum", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p_sum", "azure_host_top99p_sum", "billable_ingested_bytes_agg_sum", "bits_ai_investigations_agg_sum", "browser_rum_lite_session_count_agg_sum", "browser_rum_replay_session_count_agg_sum", "browser_rum_units_agg_sum", "ccm_anthropic_spend_last_sum", "ccm_aws_spend_last_sum", "ccm_azure_spend_last_sum", "ccm_confluent_spend_last_sum", "ccm_databricks_spend_last_sum", "ccm_elastic_spend_last_sum", "ccm_fastly_spend_last_sum", "ccm_gcp_spend_last_sum", "ccm_github_spend_last_sum", "ccm_mongodb_spend_last_sum", "ccm_oci_spend_last_sum", "ccm_openai_spend_last_sum", "ccm_snowflake_spend_last_sum", "ccm_spend_monitored_ent_last_sum", "ccm_spend_monitored_pro_last_sum", "ccm_twilio_spend_last_sum", "ci_pipeline_indexed_spans_agg_sum", "ci_test_indexed_spans_agg_sum", "ci_visibility_itr_committers_hwm_sum", "ci_visibility_pipeline_committers_hwm_sum", "ci_visibility_test_committers_hwm_sum", "cloud_cost_management_aws_host_count_avg_sum", "cloud_cost_management_azure_host_count_avg_sum", "cloud_cost_management_gcp_host_count_avg_sum", "cloud_cost_management_host_count_avg_sum", "cloud_cost_management_oci_host_count_avg_sum", "cloud_siem_events_agg_sum", "code_analysis_sa_committers_hwm_sum", "code_analysis_sca_committers_hwm_sum", "code_security_host_top99p_sum", "container_avg_sum", "container_excl_agent_avg_sum", "container_hwm_sum", "csm_container_enterprise_compliance_count_agg_sum", "csm_container_enterprise_cws_count_agg_sum", "csm_container_enterprise_total_count_agg_sum", "csm_host_enterprise_aas_host_count_top99p_sum", "csm_host_enterprise_aws_host_count_top99p_sum", "csm_host_enterprise_azure_host_count_top99p_sum", "csm_host_enterprise_compliance_host_count_top99p_sum", "csm_host_enterprise_cws_host_count_top99p_sum", "csm_host_enterprise_gcp_host_count_top99p_sum", "csm_host_enterprise_oci_host_count_top99p_sum", "csm_host_enterprise_total_host_count_top99p_sum", "csm_host_pro_oci_host_count_top99p_sum", "cspm_aas_host_top99p_sum", "cspm_aws_host_top99p_sum", "cspm_azure_host_top99p_sum", "cspm_container_avg_sum", "cspm_container_hwm_sum", "cspm_gcp_host_top99p_sum", "cspm_host_top99p_sum", "custom_historical_ts_sum", "custom_live_ts_sum", "custom_ts_sum", "cws_container_avg_sum", "cws_fargate_task_avg_sum", "cws_host_top99p_sum", "data_jobs_monitoring_host_hr_agg_sum", "dbm_host_top99p_sum", "dbm_queries_avg_sum", "end_date", "eph_infra_host_agent_agg_sum", "eph_infra_host_alibaba_agg_sum", "eph_infra_host_aws_agg_sum", "eph_infra_host_azure_agg_sum", "eph_infra_host_basic_agg_sum", "eph_infra_host_basic_infra_basic_agent_agg_sum", "eph_infra_host_basic_infra_basic_vsphere_agg_sum", "eph_infra_host_ent_agg_sum", "eph_infra_host_gcp_agg_sum", "eph_infra_host_heroku_agg_sum", "eph_infra_host_only_aas_agg_sum", "eph_infra_host_only_vsphere_agg_sum", "eph_infra_host_opentelemetry_agg_sum", "eph_infra_host_opentelemetry_apm_agg_sum", "eph_infra_host_pro_agg_sum", "eph_infra_host_proplus_agg_sum", "eph_infra_host_proxmox_agg_sum", "error_tracking_apm_error_events_agg_sum", "error_tracking_error_events_agg_sum", "error_tracking_events_agg_sum", "error_tracking_rum_error_events_agg_sum", "event_management_correlation_agg_sum", "event_management_correlation_correlated_events_agg_sum", "event_management_correlation_correlated_related_events_agg_sum", "fargate_container_profiler_profiling_fargate_avg_sum", "fargate_container_profiler_profiling_fargate_eks_avg_sum", "fargate_tasks_count_avg_sum", "fargate_tasks_count_hwm_sum", "feature_flags_config_requests_agg_sum", "flex_logs_compute_large_avg_sum", "flex_logs_compute_medium_avg_sum", "flex_logs_compute_small_avg_sum", "flex_logs_compute_xlarge_avg_sum", "flex_logs_compute_xsmall_avg_sum", "flex_logs_starter_avg_sum", "flex_logs_starter_storage_index_avg_sum", "flex_logs_starter_storage_retention_adjustment_avg_sum", "flex_stored_logs_avg_sum", "forwarding_events_bytes_agg_sum", "gcp_host_top99p_sum", "heroku_host_top99p_sum", "incident_management_monthly_active_users_hwm_sum", "incident_management_seats_hwm_sum", "indexed_events_count_agg_sum", "infra_edge_monitoring_devices_top99p_sum", "infra_host_basic_infra_basic_agent_top99p_sum", "infra_host_basic_infra_basic_vsphere_top99p_sum", "infra_host_basic_top99p_sum", "infra_host_top99p_sum", "ingested_events_bytes_agg_sum", "iot_device_agg_sum", "iot_device_top99p_sum", "last_updated", "live_indexed_events_agg_sum", "live_ingested_bytes_agg_sum", "llm_observability_agg_sum", "llm_observability_min_spend_agg_sum", "logs_by_retention", "mobile_rum_lite_session_count_agg_sum", "mobile_rum_session_count_agg_sum", "mobile_rum_session_count_android_agg_sum", "mobile_rum_session_count_flutter_agg_sum", "mobile_rum_session_count_ios_agg_sum", "mobile_rum_session_count_reactnative_agg_sum", "mobile_rum_session_count_roku_agg_sum", "mobile_rum_units_agg_sum", "ndm_netflow_events_agg_sum", "netflow_indexed_events_count_agg_sum", "network_device_wireless_top99p_sum", "network_path_agg_sum", "npm_host_top99p_sum", "observability_pipelines_bytes_processed_agg_sum", "oci_host_agg_sum", "oci_host_top99p_sum", "on_call_seat_hwm_sum", "online_archive_events_count_agg_sum", "opentelemetry_apm_host_top99p_sum", "opentelemetry_host_top99p_sum", "product_analytics_agg_sum", "profiling_aas_count_top99p_sum", "profiling_container_agent_count_avg", "profiling_host_count_top99p_sum", "proxmox_host_agg_sum", "proxmox_host_top99p_sum", "published_app_hwm_sum", "rehydrated_indexed_events_agg_sum", "rehydrated_ingested_bytes_agg_sum", "rum_browser_and_mobile_session_count", "rum_browser_legacy_session_count_agg_sum", "rum_browser_lite_session_count_agg_sum", "rum_browser_replay_session_count_agg_sum", "rum_indexed_sessions_agg_sum", "rum_ingested_sessions_agg_sum", "rum_lite_session_count_agg_sum", "rum_mobile_legacy_session_count_android_agg_sum", "rum_mobile_legacy_session_count_flutter_agg_sum", "rum_mobile_legacy_session_count_ios_agg_sum", "rum_mobile_legacy_session_count_reactnative_agg_sum", "rum_mobile_legacy_session_count_roku_agg_sum", "rum_mobile_lite_session_count_android_agg_sum", "rum_mobile_lite_session_count_flutter_agg_sum", "rum_mobile_lite_session_count_ios_agg_sum", "rum_mobile_lite_session_count_kotlinmultiplatform_agg_sum", "rum_mobile_lite_session_count_reactnative_agg_sum", "rum_mobile_lite_session_count_roku_agg_sum", "rum_mobile_lite_session_count_unity_agg_sum", "rum_mobile_replay_session_count_android_agg_sum", "rum_mobile_replay_session_count_ios_agg_sum", "rum_mobile_replay_session_count_kotlinmultiplatform_agg_sum", "rum_mobile_replay_session_count_reactnative_agg_sum", "rum_replay_session_count_agg_sum", "rum_session_count_agg_sum", "rum_session_replay_add_on_agg_sum", "rum_total_session_count_agg_sum", "rum_units_agg_sum", "sca_fargate_count_avg_sum", "sca_fargate_count_hwm_sum", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_apm_apm_azure_appservice_instances_avg_sum", "serverless_apps_apm_apm_azure_azurefunction_instances_avg_sum", "serverless_apps_apm_apm_azure_containerapp_instances_avg_sum", "serverless_apps_apm_apm_fargate_ecs_tasks_avg_sum", "serverless_apps_apm_apm_gcp_cloudfunction_instances_avg_sum", "serverless_apps_apm_apm_gcp_cloudrun_instances_avg_sum", "serverless_apps_apm_avg_sum", "serverless_apps_apm_excl_fargate_apm_azure_appservice_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_azure_azurefunction_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_azure_containerapp_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_gcp_cloudfunction_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_gcp_cloudrun_instances_avg_sum", "serverless_apps_apm_excl_fargate_avg_sum", "serverless_apps_azure_container_app_instances_avg_sum", "serverless_apps_azure_count_avg_sum", "serverless_apps_azure_function_app_instances_avg_sum", "serverless_apps_azure_web_app_instances_avg_sum", "serverless_apps_ecs_avg_sum", "serverless_apps_eks_avg_sum", "serverless_apps_excl_fargate_avg_sum", "serverless_apps_excl_fargate_azure_container_app_instances_avg_sum", "serverless_apps_excl_fargate_azure_function_app_instances_avg_sum", "serverless_apps_excl_fargate_azure_web_app_instances_avg_sum", "serverless_apps_excl_fargate_google_cloud_functions_instances_avg_sum", "serverless_apps_excl_fargate_google_cloud_run_instances_avg_sum", "serverless_apps_google_cloud_functions_instances_avg_sum", "serverless_apps_google_cloud_run_instances_avg_sum", "serverless_apps_google_count_avg_sum", "serverless_apps_total_count_avg_sum", "siem_analyzed_logs_add_on_count_agg_sum", "start_date", "synthetics_browser_check_calls_count_agg_sum", "synthetics_check_calls_count_agg_sum", "synthetics_mobile_test_runs_agg_sum", "synthetics_parallel_testing_max_slots_hwm_sum", "trace_search_indexed_events_count_agg_sum", "twol_ingested_events_bytes_agg_sum", "universal_service_monitoring_host_top99p_sum", "usage", "vsphere_host_top99p_sum", "vuln_management_host_count_top99p_sum", "workflow_executions_usage_agg_sum"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p_sum", "apm_azure_app_service_host_top99p_sum", "apm_devsecops_host_top99p_sum", "apm_enterprise_standalone_hosts_top99p_sum", "apm_fargate_count_avg_sum", "apm_host_top99p_sum", "apm_pro_standalone_hosts_top99p_sum", "appsec_fargate_count_avg_sum", "asm_serverless_agg_sum", "audit_logs_lines_indexed_agg_sum", "audit_trail_enabled_hwm_sum", "avg_profiled_fargate_tasks_sum", "aws_host_top99p_sum", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p_sum", "azure_host_top99p_sum", "billable_ingested_bytes_agg_sum", "bits_ai_investigations_agg_sum", "browser_rum_lite_session_count_agg_sum", "browser_rum_replay_session_count_agg_sum", "browser_rum_units_agg_sum", "ccm_anthropic_spend_last_sum", "ccm_aws_spend_last_sum", "ccm_azure_spend_last_sum", "ccm_confluent_spend_last_sum", "ccm_databricks_spend_last_sum", "ccm_elastic_spend_last_sum", "ccm_fastly_spend_last_sum", "ccm_gcp_spend_last_sum", "ccm_github_spend_last_sum", "ccm_mongodb_spend_last_sum", "ccm_oci_spend_last_sum", "ccm_openai_spend_last_sum", "ccm_snowflake_spend_last_sum", "ccm_spend_monitored_ent_last_sum", "ccm_spend_monitored_pro_last_sum", "ccm_twilio_spend_last_sum", "ci_pipeline_indexed_spans_agg_sum", "ci_test_indexed_spans_agg_sum", "ci_visibility_itr_committers_hwm_sum", "ci_visibility_pipeline_committers_hwm_sum", "ci_visibility_test_committers_hwm_sum", "cloud_cost_management_aws_host_count_avg_sum", "cloud_cost_management_azure_host_count_avg_sum", "cloud_cost_management_gcp_host_count_avg_sum", "cloud_cost_management_host_count_avg_sum", "cloud_cost_management_oci_host_count_avg_sum", "cloud_siem_events_agg_sum", "code_analysis_sa_committers_hwm_sum", "code_analysis_sca_committers_hwm_sum", "code_security_host_top99p_sum", "container_avg_sum", "container_excl_agent_avg_sum", "container_hwm_sum", "csm_container_enterprise_compliance_count_agg_sum", "csm_container_enterprise_cws_count_agg_sum", "csm_container_enterprise_total_count_agg_sum", "csm_host_enterprise_aas_host_count_top99p_sum", "csm_host_enterprise_aws_host_count_top99p_sum", "csm_host_enterprise_azure_host_count_top99p_sum", "csm_host_enterprise_compliance_host_count_top99p_sum", "csm_host_enterprise_cws_host_count_top99p_sum", "csm_host_enterprise_gcp_host_count_top99p_sum", "csm_host_enterprise_oci_host_count_top99p_sum", "csm_host_enterprise_total_host_count_top99p_sum", "csm_host_pro_oci_host_count_top99p_sum", "cspm_aas_host_top99p_sum", "cspm_aws_host_top99p_sum", "cspm_azure_host_top99p_sum", "cspm_container_avg_sum", "cspm_container_hwm_sum", "cspm_gcp_host_top99p_sum", "cspm_host_top99p_sum", "custom_historical_ts_sum", "custom_live_ts_sum", "custom_ts_sum", "cws_container_avg_sum", "cws_fargate_task_avg_sum", "cws_host_top99p_sum", "data_jobs_monitoring_host_hr_agg_sum", "dbm_host_top99p_sum", "dbm_queries_avg_sum", "end_date", "eph_infra_host_agent_agg_sum", "eph_infra_host_alibaba_agg_sum", "eph_infra_host_aws_agg_sum", "eph_infra_host_azure_agg_sum", "eph_infra_host_basic_agg_sum", "eph_infra_host_basic_infra_basic_agent_agg_sum", "eph_infra_host_basic_infra_basic_vsphere_agg_sum", "eph_infra_host_ent_agg_sum", "eph_infra_host_gcp_agg_sum", "eph_infra_host_heroku_agg_sum", "eph_infra_host_only_aas_agg_sum", "eph_infra_host_only_vsphere_agg_sum", "eph_infra_host_opentelemetry_agg_sum", "eph_infra_host_opentelemetry_apm_agg_sum", "eph_infra_host_pro_agg_sum", "eph_infra_host_proplus_agg_sum", "eph_infra_host_proxmox_agg_sum", "error_tracking_apm_error_events_agg_sum", "error_tracking_error_events_agg_sum", "error_tracking_events_agg_sum", "error_tracking_rum_error_events_agg_sum", "event_management_correlation_agg_sum", "event_management_correlation_correlated_events_agg_sum", "event_management_correlation_correlated_related_events_agg_sum", "fargate_container_profiler_profiling_fargate_avg_sum", "fargate_container_profiler_profiling_fargate_eks_avg_sum", "fargate_tasks_count_avg_sum", "fargate_tasks_count_hwm_sum", "feature_flags_config_requests_agg_sum", "flex_logs_compute_large_avg_sum", "flex_logs_compute_medium_avg_sum", "flex_logs_compute_small_avg_sum", "flex_logs_compute_xlarge_avg_sum", "flex_logs_compute_xsmall_avg_sum", "flex_logs_starter_avg_sum", "flex_logs_starter_storage_index_avg_sum", "flex_logs_starter_storage_retention_adjustment_avg_sum", "flex_stored_logs_avg_sum", "forwarding_events_bytes_agg_sum", "gcp_host_top99p_sum", "heroku_host_top99p_sum", "incident_management_monthly_active_users_hwm_sum", "incident_management_seats_hwm_sum", "indexed_events_count_agg_sum", "infra_edge_monitoring_devices_top99p_sum", "infra_host_basic_infra_basic_agent_top99p_sum", "infra_host_basic_infra_basic_vsphere_top99p_sum", "infra_host_basic_top99p_sum", "infra_host_top99p_sum", "ingested_events_bytes_agg_sum", "iot_device_agg_sum", "iot_device_top99p_sum", "last_updated", "live_indexed_events_agg_sum", "live_ingested_bytes_agg_sum", "llm_observability_agg_sum", "llm_observability_min_spend_agg_sum", "logs_by_retention", "mobile_rum_lite_session_count_agg_sum", "mobile_rum_session_count_agg_sum", "mobile_rum_session_count_android_agg_sum", "mobile_rum_session_count_flutter_agg_sum", "mobile_rum_session_count_ios_agg_sum", "mobile_rum_session_count_reactnative_agg_sum", "mobile_rum_session_count_roku_agg_sum", "mobile_rum_units_agg_sum", "ndm_netflow_events_agg_sum", "netflow_indexed_events_count_agg_sum", "network_device_wireless_top99p_sum", "network_path_agg_sum", "npm_host_top99p_sum", "observability_pipelines_bytes_processed_agg_sum", "oci_host_agg_sum", "oci_host_top99p_sum", "on_call_seat_hwm_sum", "online_archive_events_count_agg_sum", "opentelemetry_apm_host_top99p_sum", "opentelemetry_host_top99p_sum", "product_analytics_agg_sum", "profiling_aas_count_top99p_sum", "profiling_container_agent_count_avg", "profiling_host_count_top99p_sum", "proxmox_host_agg_sum", "proxmox_host_top99p_sum", "published_app_hwm_sum", "rehydrated_indexed_events_agg_sum", "rehydrated_ingested_bytes_agg_sum", "rum_browser_and_mobile_session_count", "rum_browser_legacy_session_count_agg_sum", "rum_browser_lite_session_count_agg_sum", "rum_browser_replay_session_count_agg_sum", "rum_indexed_sessions_agg_sum", "rum_ingested_sessions_agg_sum", "rum_lite_session_count_agg_sum", "rum_mobile_legacy_session_count_android_agg_sum", "rum_mobile_legacy_session_count_flutter_agg_sum", "rum_mobile_legacy_session_count_ios_agg_sum", "rum_mobile_legacy_session_count_reactnative_agg_sum", "rum_mobile_legacy_session_count_roku_agg_sum", "rum_mobile_lite_session_count_android_agg_sum", "rum_mobile_lite_session_count_flutter_agg_sum", "rum_mobile_lite_session_count_ios_agg_sum", "rum_mobile_lite_session_count_kotlinmultiplatform_agg_sum", "rum_mobile_lite_session_count_reactnative_agg_sum", "rum_mobile_lite_session_count_roku_agg_sum", "rum_mobile_lite_session_count_unity_agg_sum", "rum_mobile_replay_session_count_android_agg_sum", "rum_mobile_replay_session_count_ios_agg_sum", "rum_mobile_replay_session_count_kotlinmultiplatform_agg_sum", "rum_mobile_replay_session_count_reactnative_agg_sum", "rum_replay_session_count_agg_sum", "rum_session_count_agg_sum", "rum_session_replay_add_on_agg_sum", "rum_total_session_count_agg_sum", "rum_units_agg_sum", "sca_fargate_count_avg_sum", "sca_fargate_count_hwm_sum", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_apm_apm_azure_appservice_instances_avg_sum", "serverless_apps_apm_apm_azure_azurefunction_instances_avg_sum", "serverless_apps_apm_apm_azure_containerapp_instances_avg_sum", "serverless_apps_apm_apm_fargate_ecs_tasks_avg_sum", "serverless_apps_apm_apm_gcp_cloudfunction_instances_avg_sum", "serverless_apps_apm_apm_gcp_cloudrun_instances_avg_sum", "serverless_apps_apm_apm_gcp_gke_autopilot_pods_avg_sum", "serverless_apps_apm_avg_sum", "serverless_apps_apm_excl_fargate_apm_azure_appservice_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_azure_azurefunction_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_azure_containerapp_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_gcp_cloudfunction_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_gcp_cloudrun_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_gcp_gke_autopilot_pods_avg_sum", "serverless_apps_apm_excl_fargate_avg_sum", "serverless_apps_azure_container_app_instances_avg_sum", "serverless_apps_azure_count_avg_sum", "serverless_apps_azure_function_app_instances_avg_sum", "serverless_apps_azure_web_app_instances_avg_sum", "serverless_apps_ecs_avg_sum", "serverless_apps_eks_avg_sum", "serverless_apps_excl_fargate_avg_sum", "serverless_apps_excl_fargate_azure_container_app_instances_avg_sum", "serverless_apps_excl_fargate_azure_function_app_instances_avg_sum", "serverless_apps_excl_fargate_azure_web_app_instances_avg_sum", "serverless_apps_excl_fargate_google_cloud_functions_instances_avg_sum", "serverless_apps_excl_fargate_google_cloud_run_instances_avg_sum", "serverless_apps_excl_fargate_infra_gcp_gke_autopilot_pods_avg_sum", "serverless_apps_google_cloud_functions_instances_avg_sum", "serverless_apps_google_cloud_run_instances_avg_sum", "serverless_apps_google_count_avg_sum", "serverless_apps_infra_gcp_gke_autopilot_pods_avg_sum", "serverless_apps_total_count_avg_sum", "siem_analyzed_logs_add_on_count_agg_sum", "start_date", "synthetics_browser_check_calls_count_agg_sum", "synthetics_check_calls_count_agg_sum", "synthetics_mobile_test_runs_agg_sum", "synthetics_parallel_testing_max_slots_hwm_sum", "trace_search_indexed_events_count_agg_sum", "twol_ingested_events_bytes_agg_sum", "universal_service_monitoring_host_top99p_sum", "usage", "vsphere_host_top99p_sum", "vuln_management_host_count_top99p_sum", "workflow_executions_usage_agg_sum"})
 	} else {
 		return err
 	}
@@ -8789,12 +8925,14 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.ServerlessAppsApmApmFargateEcsTasksAvgSum = all.ServerlessAppsApmApmFargateEcsTasksAvgSum
 	o.ServerlessAppsApmApmGcpCloudfunctionInstancesAvgSum = all.ServerlessAppsApmApmGcpCloudfunctionInstancesAvgSum
 	o.ServerlessAppsApmApmGcpCloudrunInstancesAvgSum = all.ServerlessAppsApmApmGcpCloudrunInstancesAvgSum
+	o.ServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum = all.ServerlessAppsApmApmGcpGkeAutopilotPodsAvgSum
 	o.ServerlessAppsApmAvgSum = all.ServerlessAppsApmAvgSum
 	o.ServerlessAppsApmExclFargateApmAzureAppserviceInstancesAvgSum = all.ServerlessAppsApmExclFargateApmAzureAppserviceInstancesAvgSum
 	o.ServerlessAppsApmExclFargateApmAzureAzurefunctionInstancesAvgSum = all.ServerlessAppsApmExclFargateApmAzureAzurefunctionInstancesAvgSum
 	o.ServerlessAppsApmExclFargateApmAzureContainerappInstancesAvgSum = all.ServerlessAppsApmExclFargateApmAzureContainerappInstancesAvgSum
 	o.ServerlessAppsApmExclFargateApmGcpCloudfunctionInstancesAvgSum = all.ServerlessAppsApmExclFargateApmGcpCloudfunctionInstancesAvgSum
 	o.ServerlessAppsApmExclFargateApmGcpCloudrunInstancesAvgSum = all.ServerlessAppsApmExclFargateApmGcpCloudrunInstancesAvgSum
+	o.ServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum = all.ServerlessAppsApmExclFargateApmGcpGkeAutopilotPodsAvgSum
 	o.ServerlessAppsApmExclFargateAvgSum = all.ServerlessAppsApmExclFargateAvgSum
 	o.ServerlessAppsAzureContainerAppInstancesAvgSum = all.ServerlessAppsAzureContainerAppInstancesAvgSum
 	o.ServerlessAppsAzureCountAvgSum = all.ServerlessAppsAzureCountAvgSum
@@ -8808,9 +8946,11 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.ServerlessAppsExclFargateAzureWebAppInstancesAvgSum = all.ServerlessAppsExclFargateAzureWebAppInstancesAvgSum
 	o.ServerlessAppsExclFargateGoogleCloudFunctionsInstancesAvgSum = all.ServerlessAppsExclFargateGoogleCloudFunctionsInstancesAvgSum
 	o.ServerlessAppsExclFargateGoogleCloudRunInstancesAvgSum = all.ServerlessAppsExclFargateGoogleCloudRunInstancesAvgSum
+	o.ServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum = all.ServerlessAppsExclFargateInfraGcpGkeAutopilotPodsAvgSum
 	o.ServerlessAppsGoogleCloudFunctionsInstancesAvgSum = all.ServerlessAppsGoogleCloudFunctionsInstancesAvgSum
 	o.ServerlessAppsGoogleCloudRunInstancesAvgSum = all.ServerlessAppsGoogleCloudRunInstancesAvgSum
 	o.ServerlessAppsGoogleCountAvgSum = all.ServerlessAppsGoogleCountAvgSum
+	o.ServerlessAppsInfraGcpGkeAutopilotPodsAvgSum = all.ServerlessAppsInfraGcpGkeAutopilotPodsAvgSum
 	o.ServerlessAppsTotalCountAvgSum = all.ServerlessAppsTotalCountAvgSum
 	o.SiemAnalyzedLogsAddOnCountAggSum = all.SiemAnalyzedLogsAddOnCountAggSum
 	o.StartDate = all.StartDate
