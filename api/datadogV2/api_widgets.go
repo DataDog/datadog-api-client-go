@@ -312,7 +312,16 @@ func (r *SearchWidgetsOptionalParameters) WithPageSize(pageSize int32) *SearchWi
 }
 
 // SearchWidgets Search widgets.
-// Search and list widgets for a given experience type. Supports filtering by widget type, creator, title, and tags, as well as sorting and pagination.
+// Search and list widgets for a given experience type, with filtering, sorting, and pagination.
+//
+// **Response meta** carries totals scoped to the current filter:
+// - `filtered_total` — widgets matching the filter.
+// - `created_by_you_total` — among the matches, how many the current user created.
+// - `favorited_by_you_total` — among the matches, how many the current user has favorited.
+// - `created_by_anyone_total` — total widgets in the experience type, ignoring filters.
+//
+// Each returned widget includes `is_favorited` reflecting the current user's favorite status.
+// Favoriting itself is performed through the shared favorites API, not this endpoint.
 func (a *WidgetsApi) SearchWidgets(ctx _context.Context, experienceType WidgetExperienceType, o ...SearchWidgetsOptionalParameters) (WidgetListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
