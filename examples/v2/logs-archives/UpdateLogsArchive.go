@@ -16,6 +16,7 @@ func main() {
 	body := datadogV2.LogsArchiveCreateRequest{
 		Data: &datadogV2.LogsArchiveCreateRequestDefinition{
 			Attributes: &datadogV2.LogsArchiveCreateRequestAttributes{
+				CompressionMethod: datadogV2.LOGSARCHIVEATTRIBUTESCOMPRESSIONMETHOD_GZIP.Ptr(),
 				Destination: datadogV2.LogsArchiveCreateRequestDestination{
 					LogsArchiveDestinationAzure: &datadogV2.LogsArchiveDestinationAzure{
 						Container: "container-name",
