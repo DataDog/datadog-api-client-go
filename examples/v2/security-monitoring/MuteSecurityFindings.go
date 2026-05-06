@@ -23,7 +23,7 @@ func main() {
 					Reason:      datadogV2.MUTEFINDINGSREASON_PENDING_FIX,
 				},
 			},
-			Id: datadog.PtrString("93bfeb70-af47-424d-908a-948d3f08e37f"),
+			Id: datadog.PtrString("00000000-0000-0000-0000-000000000001"),
 			Relationships: datadogV2.MuteFindingsRequestDataRelationships{
 				Findings: datadogV2.Findings{
 					Data: []datadogV2.FindingData{
