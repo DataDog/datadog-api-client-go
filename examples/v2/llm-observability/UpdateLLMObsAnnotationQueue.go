@@ -22,7 +22,7 @@ func main() {
 							Description:   datadog.PtrString("Rating of the response quality."),
 							HasAssessment: datadog.PtrBool(false),
 							HasReasoning:  datadog.PtrBool(false),
-							Id:            datadog.PtrString("ab12cd34"),
+							Id:            datadog.PtrString("abc-123"),
 							IsAssessment:  datadog.PtrBool(false),
 							IsInteger:     datadog.PtrBool(false),
 							IsRequired:    datadog.PtrBool(true),

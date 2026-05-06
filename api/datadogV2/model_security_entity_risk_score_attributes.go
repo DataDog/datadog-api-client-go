@@ -33,9 +33,9 @@ type SecurityEntityRiskScoreAttributes struct {
 	// Timestamp when the entity was last detected (Unix milliseconds)
 	LastDetected int64 `json:"lastDetected"`
 	// Current risk score for the entity
-	RiskScore float64 `json:"riskScore"`
+	RiskScore int64 `json:"riskScore"`
 	// Change in risk score compared to previous period
-	RiskScoreEvolution float64 `json:"riskScoreEvolution"`
+	RiskScoreEvolution int64 `json:"riskScoreEvolution"`
 	// Severity level based on risk score
 	Severity SecurityEntityRiskScoreAttributesSeverity `json:"severity"`
 	// Number of security signals detected for this entity
@@ -49,7 +49,7 @@ type SecurityEntityRiskScoreAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSecurityEntityRiskScoreAttributes(configRisks SecurityEntityConfigRisks, entityId string, entityMetadata SecurityEntityMetadata, entityProviders []string, entityType string, firstDetected int64, lastActivityTitle string, lastDetected int64, riskScore float64, riskScoreEvolution float64, severity SecurityEntityRiskScoreAttributesSeverity, signalsDetected int64) *SecurityEntityRiskScoreAttributes {
+func NewSecurityEntityRiskScoreAttributes(configRisks SecurityEntityConfigRisks, entityId string, entityMetadata SecurityEntityMetadata, entityProviders []string, entityType string, firstDetected int64, lastActivityTitle string, lastDetected int64, riskScore int64, riskScoreEvolution int64, severity SecurityEntityRiskScoreAttributesSeverity, signalsDetected int64) *SecurityEntityRiskScoreAttributes {
 	this := SecurityEntityRiskScoreAttributes{}
 	this.ConfigRisks = configRisks
 	this.EntityId = entityId
@@ -315,9 +315,9 @@ func (o *SecurityEntityRiskScoreAttributes) SetLastDetected(v int64) {
 }
 
 // GetRiskScore returns the RiskScore field value.
-func (o *SecurityEntityRiskScoreAttributes) GetRiskScore() float64 {
+func (o *SecurityEntityRiskScoreAttributes) GetRiskScore() int64 {
 	if o == nil {
-		var ret float64
+		var ret int64
 		return ret
 	}
 	return o.RiskScore
@@ -325,7 +325,7 @@ func (o *SecurityEntityRiskScoreAttributes) GetRiskScore() float64 {
 
 // GetRiskScoreOk returns a tuple with the RiskScore field value
 // and a boolean to check if the value has been set.
-func (o *SecurityEntityRiskScoreAttributes) GetRiskScoreOk() (*float64, bool) {
+func (o *SecurityEntityRiskScoreAttributes) GetRiskScoreOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -333,14 +333,14 @@ func (o *SecurityEntityRiskScoreAttributes) GetRiskScoreOk() (*float64, bool) {
 }
 
 // SetRiskScore sets field value.
-func (o *SecurityEntityRiskScoreAttributes) SetRiskScore(v float64) {
+func (o *SecurityEntityRiskScoreAttributes) SetRiskScore(v int64) {
 	o.RiskScore = v
 }
 
 // GetRiskScoreEvolution returns the RiskScoreEvolution field value.
-func (o *SecurityEntityRiskScoreAttributes) GetRiskScoreEvolution() float64 {
+func (o *SecurityEntityRiskScoreAttributes) GetRiskScoreEvolution() int64 {
 	if o == nil {
-		var ret float64
+		var ret int64
 		return ret
 	}
 	return o.RiskScoreEvolution
@@ -348,7 +348,7 @@ func (o *SecurityEntityRiskScoreAttributes) GetRiskScoreEvolution() float64 {
 
 // GetRiskScoreEvolutionOk returns a tuple with the RiskScoreEvolution field value
 // and a boolean to check if the value has been set.
-func (o *SecurityEntityRiskScoreAttributes) GetRiskScoreEvolutionOk() (*float64, bool) {
+func (o *SecurityEntityRiskScoreAttributes) GetRiskScoreEvolutionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -356,7 +356,7 @@ func (o *SecurityEntityRiskScoreAttributes) GetRiskScoreEvolutionOk() (*float64,
 }
 
 // SetRiskScoreEvolution sets field value.
-func (o *SecurityEntityRiskScoreAttributes) SetRiskScoreEvolution(v float64) {
+func (o *SecurityEntityRiskScoreAttributes) SetRiskScoreEvolution(v int64) {
 	o.RiskScoreEvolution = v
 }
 
@@ -450,8 +450,8 @@ func (o *SecurityEntityRiskScoreAttributes) UnmarshalJSON(bytes []byte) (err err
 		FirstDetected      *int64                                     `json:"firstDetected"`
 		LastActivityTitle  *string                                    `json:"lastActivityTitle"`
 		LastDetected       *int64                                     `json:"lastDetected"`
-		RiskScore          *float64                                   `json:"riskScore"`
-		RiskScoreEvolution *float64                                   `json:"riskScoreEvolution"`
+		RiskScore          *int64                                     `json:"riskScore"`
+		RiskScoreEvolution *int64                                     `json:"riskScoreEvolution"`
 		Severity           *SecurityEntityRiskScoreAttributesSeverity `json:"severity"`
 		SignalsDetected    *int64                                     `json:"signalsDetected"`
 	}{}
