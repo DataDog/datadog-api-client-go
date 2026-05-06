@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CloudInventorySyncConfigResourceType JSON:API type for sync configuration resources.
+// CloudInventorySyncConfigResourceType Always `sync_configs`.
 type CloudInventorySyncConfigResourceType string
 
 // List of CloudInventorySyncConfigResourceType.

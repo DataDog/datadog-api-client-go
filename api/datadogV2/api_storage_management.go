@@ -6,37 +6,25 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CloudInventorySyncConfigsApi service type
-type CloudInventorySyncConfigsApi datadog.Service
+// StorageManagementApi service type
+type StorageManagementApi datadog.Service
 
-// UpsertSyncConfig Create or update a sync configuration.
-// Create or update a cloud inventory sync configuration. Specify the cloud provider in `data.id`
-// and provider-specific settings under `data.attributes`. This endpoint uses an upsert model.
-func (a *CloudInventorySyncConfigsApi) UpsertSyncConfig(ctx _context.Context, body UpsertCloudInventorySyncConfigRequest) (CloudInventorySyncConfigResponse, *_nethttp.Response, error) {
+// UpsertSyncConfig Enable Storage Management for a bucket.
+// Enable Storage Management for an S3 bucket, GCS bucket, or Azure container by registering the destination that holds its inventory reports. Set `data.id` to the cloud provider (`aws`, `gcp`, or `azure`) and provide the matching settings under data.attributes. Calling this endpoint with the same provider replaces the existing configuration.
+func (a *StorageManagementApi) UpsertSyncConfig(ctx _context.Context, body UpsertCloudInventorySyncConfigRequest) (CloudInventorySyncConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
 		localVarReturnValue CloudInventorySyncConfigResponse
 	)
 
-	operationId := "v2.UpsertSyncConfig"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudInventorySyncConfigsApi.UpsertSyncConfig")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.StorageManagementApi.UpsertSyncConfig")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -116,9 +104,9 @@ func (a *CloudInventorySyncConfigsApi) UpsertSyncConfig(ctx _context.Context, bo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// NewCloudInventorySyncConfigsApi Returns NewCloudInventorySyncConfigsApi.
-func NewCloudInventorySyncConfigsApi(client *datadog.APIClient) *CloudInventorySyncConfigsApi {
-	return &CloudInventorySyncConfigsApi{
+// NewStorageManagementApi Returns NewStorageManagementApi.
+func NewStorageManagementApi(client *datadog.APIClient) *StorageManagementApi {
+	return &StorageManagementApi{
 		Client: client,
 	}
 }

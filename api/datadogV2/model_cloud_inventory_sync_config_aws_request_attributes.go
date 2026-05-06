@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CloudInventorySyncConfigAWSRequestAttributes AWS settings for the customer bucket that stores inventory reports.
+// CloudInventorySyncConfigAWSRequestAttributes AWS settings for the S3 bucket Storage Management reads inventory reports from.
 type CloudInventorySyncConfigAWSRequestAttributes struct {
 	// AWS account ID that owns the inventory bucket.
 	AwsAccountId string `json:"aws_account_id"`
@@ -18,7 +18,7 @@ type CloudInventorySyncConfigAWSRequestAttributes struct {
 	DestinationBucketName string `json:"destination_bucket_name"`
 	// AWS Region of the inventory bucket.
 	DestinationBucketRegion string `json:"destination_bucket_region"`
-	// Optional object key prefix for inventory files. Use `/` or omit for the entire bucket.
+	// Object key prefix where inventory reports are written. Omit or set to `/` when reports are written at the bucket root.
 	DestinationPrefix *string `json:"destination_prefix,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

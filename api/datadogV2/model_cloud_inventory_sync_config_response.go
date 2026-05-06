@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CloudInventorySyncConfigResponse Response containing the upserted sync configuration. Additional read-only fields appear on list and get.
+// CloudInventorySyncConfigResponse Storage Management configuration returned after a create or update. Additional read-only fields appear on list and get responses.
 type CloudInventorySyncConfigResponse struct {
-	// JSON:API data object for a sync configuration.
+	// Storage Management configuration data.
 	Data CloudInventorySyncConfigResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

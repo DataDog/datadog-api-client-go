@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CloudInventoryCloudProviderRequestType JSON:API type for upsert sync configuration requests.
+// CloudInventoryCloudProviderRequestType Always `cloud_provider`.
 type CloudInventoryCloudProviderRequestType string
 
 // List of CloudInventoryCloudProviderRequestType.

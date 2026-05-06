@@ -1,4 +1,4 @@
-// Create or update a sync configuration returns "OK" response
+// Enable Storage Management for a bucket returns "OK" response
 
 package main
 
@@ -43,16 +43,15 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.UpsertSyncConfig", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewCloudInventorySyncConfigsApi(apiClient)
+	api := datadogV2.NewStorageManagementApi(apiClient)
 	resp, r, err := api.UpsertSyncConfig(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `CloudInventorySyncConfigsApi.UpsertSyncConfig`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `StorageManagementApi.UpsertSyncConfig`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `CloudInventorySyncConfigsApi.UpsertSyncConfig`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `StorageManagementApi.UpsertSyncConfig`:\n%s\n", responseContent)
 }

@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UpsertCloudInventorySyncConfigRequestData JSON:API data envelope for an upsert sync configuration request.
+// UpsertCloudInventorySyncConfigRequestData Storage Management configuration data for the create or update request.
 type UpsertCloudInventorySyncConfigRequestData struct {
-	// Provider-specific configuration. Include the object that matches `data.id` (`aws`, `gcp`, or `azure`).
+	// Settings for the cloud provider specified in `data.id`. Include only the matching provider object (`aws`, `gcp`, or `azure`).
 	Attributes UpsertCloudInventorySyncConfigRequestAttributes `json:"attributes"`
 	// Cloud provider for this sync configuration (`aws`, `gcp`, or `azure`). For requests, must match the provider block supplied under `attributes`.
 	Id CloudInventoryCloudProviderId `json:"id"`
-	// JSON:API type for upsert sync configuration requests.
+	// Always `cloud_provider`.
 	Type CloudInventoryCloudProviderRequestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
