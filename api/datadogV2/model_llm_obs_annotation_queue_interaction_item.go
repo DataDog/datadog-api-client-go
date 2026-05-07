@@ -12,7 +12,7 @@ import (
 
 // LLMObsAnnotationQueueInteractionItem A single interaction to add to an annotation queue.
 type LLMObsAnnotationQueueInteractionItem struct {
-	// Identifier of the content (such as trace ID) for this interaction.
+	// Identifier of the content (trace ID or session ID) for this interaction.
 	ContentId string `json:"content_id"`
 	// Type of interaction in an annotation queue.
 	Type LLMObsInteractionType `json:"type"`

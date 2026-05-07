@@ -120,7 +120,7 @@ func (a *LLMObservabilityApi) CreateLLMObsAnnotationQueue(ctx _context.Context, 
 }
 
 // CreateLLMObsAnnotationQueueInteractions Add annotation queue interactions.
-// Add one or more interactions (traces) to an annotation queue.
+// Add one or more interactions (traces or sessions) to an annotation queue.
 // At least one interaction must be provided.
 func (a *LLMObservabilityApi) CreateLLMObsAnnotationQueueInteractions(ctx _context.Context, queueId string, body LLMObsAnnotationQueueInteractionsRequest) (LLMObsAnnotationQueueInteractionsResponse, *_nethttp.Response, error) {
 	var (
@@ -1320,7 +1320,7 @@ func (a *LLMObservabilityApi) DeleteLLMObsProjects(ctx _context.Context, body LL
 }
 
 // GetLLMObsAnnotatedInteractions Get annotated queue interactions.
-// Retrieve all interactions and their annotations for a given annotation queue.
+// Retrieve all interactions (traces and sessions) and their annotations for a given annotation queue.
 func (a *LLMObservabilityApi) GetLLMObsAnnotatedInteractions(ctx _context.Context, queueId string) (LLMObsAnnotatedInteractionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
