@@ -32,9 +32,9 @@ func main() {
 				MaxSignalDuration: datadogV2.SECURITYMONITORINGRULEMAXSIGNALDURATION_TEN_MINUTES.Ptr(),
 				DetectionMethod:   datadogV2.SECURITYMONITORINGRULEDETECTIONMETHOD_NEW_VALUE.Ptr(),
 				NewValueOptions: &datadogV2.SecurityMonitoringRuleNewValueOptions{
-					ForgetAfter:           datadogV2.SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_ONE_WEEK.Ptr(),
+					ForgetAfter:           datadog.PtrInt32(7),
 					InstantaneousBaseline: datadog.PtrBool(true),
-					LearningDuration:      datadogV2.SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGDURATION_ONE_DAY.Ptr(),
+					LearningDuration:      datadog.PtrInt32(1),
 					LearningThreshold:     datadogV2.SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGTHRESHOLD_ZERO_OCCURRENCES.Ptr(),
 					LearningMethod:        datadogV2.SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGMETHOD_DURATION.Ptr(),
 				},
