@@ -14,7 +14,7 @@ import (
 type LLMObsAnnotatedInteractionItem struct {
 	// List of annotations for this interaction.
 	Annotations []LLMObsAnnotationItem `json:"annotations"`
-	// Identifier of the content for this interaction.
+	// Identifier of the content (trace ID or session ID) for this interaction.
 	ContentId string `json:"content_id"`
 	// Unique identifier of the interaction.
 	Id string `json:"id"`
