@@ -256,6 +256,8 @@
 //   - [DataDeletionApi.CancelDataDeletionRequest]
 //   - [DataDeletionApi.CreateDataDeletionRequest]
 //   - [DataDeletionApi.GetDataDeletionRequests]
+//   - [DatasetRestrictionsApi.ListDatasetRestrictions]
+//   - [DatasetRestrictionsApi.UpdateDatasetRestriction]
 //   - [DatasetsApi.CreateDataset]
 //   - [DatasetsApi.DeleteDataset]
 //   - [DatasetsApi.GetAllDatasets]

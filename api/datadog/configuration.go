@@ -761,6 +761,8 @@ func NewConfiguration() *Configuration {
 			"v2.DeleteDashboardSecureEmbed":                     false,
 			"v2.GetDashboardSecureEmbed":                        false,
 			"v2.UpdateDashboardSecureEmbed":                     false,
+			"v2.ListDatasetRestrictions":                        false,
+			"v2.UpdateDatasetRestriction":                       false,
 			"v2.CreateDataset":                                  false,
 			"v2.DeleteDataset":                                  false,
 			"v2.GetAllDatasets":                                 false,
