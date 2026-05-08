@@ -282,6 +282,7 @@
 //   - [DowntimesApi.ListDowntimes]
 //   - [DowntimesApi.ListMonitorDowntimes]
 //   - [DowntimesApi.UpdateDowntime]
+//   - [EmailTransportApi.CreateEmailTransportWebhookIntake]
 //   - [EntityRiskScoresApi.ListEntityRiskScores]
 //   - [ErrorTrackingApi.DeleteIssueAssignee]
 //   - [ErrorTrackingApi.GetIssue]
