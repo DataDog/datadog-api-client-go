@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CloudInventorySyncConfigResponseData JSON:API data object for a sync configuration.
+// CloudInventorySyncConfigResponseData Storage Management configuration data.
 type CloudInventorySyncConfigResponseData struct {
-	// Attributes for a cloud inventory sync configuration. Values beyond `id` may be omitted immediately after upsert.
+	// Attributes for a Storage Management configuration. Fields other than `id` may be empty in the response immediately after a create or update; subsequent reads return the full configuration.
 	Attributes CloudInventorySyncConfigAttributes `json:"attributes"`
-	// Unique identifier for the recurring sync configuration.
+	// Unique identifier for this Storage Management configuration.
 	Id string `json:"id"`
-	// JSON:API type for sync configuration resources.
+	// Always `sync_configs`.
 	Type CloudInventorySyncConfigResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UpsertCloudInventorySyncConfigRequestAttributes Provider-specific configuration. Include the object that matches `data.id` (`aws`, `gcp`, or `azure`).
+// UpsertCloudInventorySyncConfigRequestAttributes Settings for the cloud provider specified in `data.id`. Include only the matching provider object (`aws`, `gcp`, or `azure`).
 type UpsertCloudInventorySyncConfigRequestAttributes struct {
-	// AWS settings for the customer bucket that stores inventory reports.
+	// AWS settings for the S3 bucket Storage Management reads inventory reports from.
 	Aws *CloudInventorySyncConfigAWSRequestAttributes `json:"aws,omitempty"`
 	// Azure settings for the storage account and container with inventory data.
 	Azure *CloudInventorySyncConfigAzureRequestAttributes `json:"azure,omitempty"`

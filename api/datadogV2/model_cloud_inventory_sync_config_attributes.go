@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CloudInventorySyncConfigAttributes Attributes for a cloud inventory sync configuration. Values beyond `id` may be omitted immediately after upsert.
+// CloudInventorySyncConfigAttributes Attributes for a Storage Management configuration. Fields other than `id` may be empty in the response immediately after a create or update; subsequent reads return the full configuration.
 type CloudInventorySyncConfigAttributes struct {
 	// AWS account ID for the inventory bucket.
 	AwsAccountId string `json:"aws_account_id"`
@@ -38,7 +38,7 @@ type CloudInventorySyncConfigAttributes struct {
 	GcpProjectId string `json:"gcp_project_id"`
 	// Service account email for bucket access.
 	GcpServiceAccountEmail string `json:"gcp_service_account_email"`
-	// Object key prefix or `/` when the entire bucket is synced.
+	// Object key prefix where inventory reports are written. Returns `/` when reports are written at the bucket root.
 	Prefix string `json:"prefix"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

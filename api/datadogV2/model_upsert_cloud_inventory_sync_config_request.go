@@ -12,7 +12,7 @@ import (
 
 // UpsertCloudInventorySyncConfigRequest Request body for creating or updating a cloud inventory sync configuration.
 type UpsertCloudInventorySyncConfigRequest struct {
-	// JSON:API data envelope for an upsert sync configuration request.
+	// Storage Management configuration data for the create or update request.
 	Data UpsertCloudInventorySyncConfigRequestData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
