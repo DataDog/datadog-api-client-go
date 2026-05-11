@@ -927,6 +927,11 @@ func NewConfiguration() *Configuration {
 			"v2.AddMemberTeam":                                  false,
 			"v2.ListMemberTeams":                                false,
 			"v2.RemoveMemberTeam":                               false,
+			"v2.CreateWebIntegrationAccount":                    false,
+			"v2.DeleteWebIntegrationAccount":                    false,
+			"v2.GetWebIntegrationAccount":                       false,
+			"v2.ListWebIntegrationAccounts":                     false,
+			"v2.UpdateWebIntegrationAccount":                    false,
 		},
 		RetryConfiguration: RetryConfiguration{
 			EnableRetry:       false,
