@@ -199,6 +199,7 @@
 //   - [CloudCostManagementApi.ListCostAzureUCConfigs]
 //   - [CloudCostManagementApi.ListCostGCPUsageCostConfigs]
 //   - [CloudCostManagementApi.ListCostOCIConfigs]
+//   - [CloudCostManagementApi.ListCostTagDescriptions]
 //   - [CloudCostManagementApi.ListCustomAllocationRules]
 //   - [CloudCostManagementApi.ListCustomAllocationRulesStatus]
 //   - [CloudCostManagementApi.ListCustomCostsFiles]
