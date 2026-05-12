@@ -702,6 +702,7 @@ func NewConfiguration() *Configuration {
 			"v2.UpdateLLMObsExperiment":                         false,
 			"v2.UpdateLLMObsProject":                            false,
 			"v2.AnonymizeUsers":                                 false,
+			"v2.Validate":                                       false,
 			"v2.CreateOpenAPI":                                  false,
 			"v2.DeleteOpenAPI":                                  false,
 			"v2.GetOpenAPI":                                     false,
