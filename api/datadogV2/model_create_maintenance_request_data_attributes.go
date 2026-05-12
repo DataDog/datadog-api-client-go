@@ -27,6 +27,8 @@ type CreateMaintenanceRequestDataAttributes struct {
 	StartDate time.Time `json:"start_date"`
 	// The title of the maintenance.
 	Title string `json:"title"`
+	//
+	Updates []CreateMaintenanceRequestDataAttributesUpdatesItems `json:"updates,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -217,6 +219,34 @@ func (o *CreateMaintenanceRequestDataAttributes) SetTitle(v string) {
 	o.Title = v
 }
 
+// GetUpdates returns the Updates field value if set, zero value otherwise.
+func (o *CreateMaintenanceRequestDataAttributes) GetUpdates() []CreateMaintenanceRequestDataAttributesUpdatesItems {
+	if o == nil || o.Updates == nil {
+		var ret []CreateMaintenanceRequestDataAttributesUpdatesItems
+		return ret
+	}
+	return o.Updates
+}
+
+// GetUpdatesOk returns a tuple with the Updates field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateMaintenanceRequestDataAttributes) GetUpdatesOk() (*[]CreateMaintenanceRequestDataAttributesUpdatesItems, bool) {
+	if o == nil || o.Updates == nil {
+		return nil, false
+	}
+	return &o.Updates, true
+}
+
+// HasUpdates returns a boolean if a field has been set.
+func (o *CreateMaintenanceRequestDataAttributes) HasUpdates() bool {
+	return o != nil && o.Updates != nil
+}
+
+// SetUpdates gets a reference to the given []CreateMaintenanceRequestDataAttributesUpdatesItems and assigns it to the Updates field.
+func (o *CreateMaintenanceRequestDataAttributes) SetUpdates(v []CreateMaintenanceRequestDataAttributesUpdatesItems) {
+	o.Updates = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateMaintenanceRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -238,6 +268,9 @@ func (o CreateMaintenanceRequestDataAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["start_date"] = o.StartDate.Format("2006-01-02T15:04:05.000Z07:00")
 	}
 	toSerialize["title"] = o.Title
+	if o.Updates != nil {
+		toSerialize["updates"] = o.Updates
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -255,6 +288,7 @@ func (o *CreateMaintenanceRequestDataAttributes) UnmarshalJSON(bytes []byte) (er
 		ScheduledDescription  *string                                                          `json:"scheduled_description"`
 		StartDate             *time.Time                                                       `json:"start_date"`
 		Title                 *string                                                          `json:"title"`
+		Updates               []CreateMaintenanceRequestDataAttributesUpdatesItems             `json:"updates,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -282,7 +316,7 @@ func (o *CreateMaintenanceRequestDataAttributes) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"completed_date", "completed_description", "components_affected", "in_progress_description", "scheduled_description", "start_date", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"completed_date", "completed_description", "components_affected", "in_progress_description", "scheduled_description", "start_date", "title", "updates"})
 	} else {
 		return err
 	}
@@ -293,6 +327,7 @@ func (o *CreateMaintenanceRequestDataAttributes) UnmarshalJSON(bytes []byte) (er
 	o.ScheduledDescription = *all.ScheduledDescription
 	o.StartDate = *all.StartDate
 	o.Title = *all.Title
+	o.Updates = all.Updates
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
