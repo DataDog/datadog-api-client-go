@@ -1835,6 +1835,111 @@ func (a *CloudCostManagementApi) ListCostOCIConfigs(ctx _context.Context) (OCICo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListCostTagDescriptionsOptionalParameters holds optional parameters for ListCostTagDescriptions.
+type ListCostTagDescriptionsOptionalParameters struct {
+	FilterCloud *string
+}
+
+// NewListCostTagDescriptionsOptionalParameters creates an empty struct for parameters.
+func NewListCostTagDescriptionsOptionalParameters() *ListCostTagDescriptionsOptionalParameters {
+	this := ListCostTagDescriptionsOptionalParameters{}
+	return &this
+}
+
+// WithFilterCloud sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagDescriptionsOptionalParameters) WithFilterCloud(filterCloud string) *ListCostTagDescriptionsOptionalParameters {
+	r.FilterCloud = &filterCloud
+	return r
+}
+
+// ListCostTagDescriptions List Cloud Cost Management tag descriptions.
+// List Cloud Cost Management tag key descriptions for the organization. Use `filter[cloud]` to scope the result to a single cloud provider; when omitted, both cross-cloud defaults and cloud-specific descriptions are returned.
+func (a *CloudCostManagementApi) ListCostTagDescriptions(ctx _context.Context, o ...ListCostTagDescriptionsOptionalParameters) (CostTagDescriptionsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CostTagDescriptionsResponse
+		optionalParams      ListCostTagDescriptionsOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListCostTagDescriptionsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.ListCostTagDescriptions")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/tag_descriptions"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.FilterCloud != nil {
+		localVarQueryParams.Add("filter[cloud]", datadog.ParameterToString(*optionalParams.FilterCloud, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // ListCustomAllocationRules List custom allocation rules.
 // List all custom allocation rules - Retrieve a list of all custom allocation rules for the organization
 func (a *CloudCostManagementApi) ListCustomAllocationRules(ctx _context.Context) (ArbitraryRuleResponseArray, *_nethttp.Response, error) {
