@@ -446,6 +446,8 @@
 //   - [KeyManagementApi.UpdateApplicationKey]
 //   - [KeyManagementApi.UpdateCurrentUserApplicationKey]
 //   - [KeyManagementApi.UpdatePersonalAccessToken]
+//   - [KeyManagementApi.Validate]
+//   - [KeyManagementApi.ValidateAPIKey]
 //   - [LLMObservabilityApi.CreateLLMObsAnnotationQueue]
 //   - [LLMObservabilityApi.CreateLLMObsAnnotationQueueInteractions]
 //   - [LLMObservabilityApi.CreateLLMObsDataset]
