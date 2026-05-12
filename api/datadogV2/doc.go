@@ -900,6 +900,8 @@
 //   - [StaticAnalysisApi.ListCustomRuleRevisions]
 //   - [StaticAnalysisApi.RevertCustomRuleRevision]
 //   - [StaticAnalysisApi.UpdateCustomRuleset]
+//   - [StatusPagesApi.CreateBackfilledDegradation]
+//   - [StatusPagesApi.CreateBackfilledMaintenance]
 //   - [StatusPagesApi.CreateComponent]
 //   - [StatusPagesApi.CreateDegradation]
 //   - [StatusPagesApi.CreateMaintenance]
