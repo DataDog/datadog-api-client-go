@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMetricsApi(apiClient)
-	resp, r, err := api.ListVolumesByMetricName(ctx, "static_test_metric_donotdelete")
+	resp, r, err := api.ListVolumesByMetricName(ctx, "static_test_metric_donotdelete", *datadogV2.NewListVolumesByMetricNameOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListVolumesByMetricName`: %v\n", err)
