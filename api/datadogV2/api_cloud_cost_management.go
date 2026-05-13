@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	_context "context"
+	_fmt "fmt"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"reflect"
@@ -1060,6 +1062,93 @@ func (a *CloudCostManagementApi) GetCostAWSCURConfig(ctx _context.Context, cloud
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetCostAnomaly Get cost anomaly.
+// Get a detected Cloud Cost Management anomaly by UUID.
+func (a *CloudCostManagementApi) GetCostAnomaly(ctx _context.Context, anomalyId string) (CostAnomalyResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CostAnomalyResponse
+	)
+
+	operationId := "v2.GetCostAnomaly"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.GetCostAnomaly")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/anomalies/{anomaly_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{anomaly_id}", _neturl.PathEscape(datadog.ParameterToString(anomalyId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetCostAzureUCConfig Get cost Azure UC config.
 // Get a specific Azure config.
 func (a *CloudCostManagementApi) GetCostAzureUCConfig(ctx _context.Context, cloudAccountId int64) (UCConfigPair, *_nethttp.Response, error) {
@@ -1582,6 +1671,228 @@ func (a *CloudCostManagementApi) ListCostAWSCURConfigs(ctx _context.Context) (Aw
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListCostAnomaliesOptionalParameters holds optional parameters for ListCostAnomalies.
+type ListCostAnomaliesOptionalParameters struct {
+	Start                 *int64
+	End                   *int64
+	Filter                *string
+	MinAnomalousThreshold *string
+	MinCostThreshold      *string
+	DismissalCause        *string
+	OrderBy               *string
+	Order                 *string
+	Limit                 *int32
+	Offset                *int32
+	ProviderIds           *[]string
+}
+
+// NewListCostAnomaliesOptionalParameters creates an empty struct for parameters.
+func NewListCostAnomaliesOptionalParameters() *ListCostAnomaliesOptionalParameters {
+	this := ListCostAnomaliesOptionalParameters{}
+	return &this
+}
+
+// WithStart sets the corresponding parameter name and returns the struct.
+func (r *ListCostAnomaliesOptionalParameters) WithStart(start int64) *ListCostAnomaliesOptionalParameters {
+	r.Start = &start
+	return r
+}
+
+// WithEnd sets the corresponding parameter name and returns the struct.
+func (r *ListCostAnomaliesOptionalParameters) WithEnd(end int64) *ListCostAnomaliesOptionalParameters {
+	r.End = &end
+	return r
+}
+
+// WithFilter sets the corresponding parameter name and returns the struct.
+func (r *ListCostAnomaliesOptionalParameters) WithFilter(filter string) *ListCostAnomaliesOptionalParameters {
+	r.Filter = &filter
+	return r
+}
+
+// WithMinAnomalousThreshold sets the corresponding parameter name and returns the struct.
+func (r *ListCostAnomaliesOptionalParameters) WithMinAnomalousThreshold(minAnomalousThreshold string) *ListCostAnomaliesOptionalParameters {
+	r.MinAnomalousThreshold = &minAnomalousThreshold
+	return r
+}
+
+// WithMinCostThreshold sets the corresponding parameter name and returns the struct.
+func (r *ListCostAnomaliesOptionalParameters) WithMinCostThreshold(minCostThreshold string) *ListCostAnomaliesOptionalParameters {
+	r.MinCostThreshold = &minCostThreshold
+	return r
+}
+
+// WithDismissalCause sets the corresponding parameter name and returns the struct.
+func (r *ListCostAnomaliesOptionalParameters) WithDismissalCause(dismissalCause string) *ListCostAnomaliesOptionalParameters {
+	r.DismissalCause = &dismissalCause
+	return r
+}
+
+// WithOrderBy sets the corresponding parameter name and returns the struct.
+func (r *ListCostAnomaliesOptionalParameters) WithOrderBy(orderBy string) *ListCostAnomaliesOptionalParameters {
+	r.OrderBy = &orderBy
+	return r
+}
+
+// WithOrder sets the corresponding parameter name and returns the struct.
+func (r *ListCostAnomaliesOptionalParameters) WithOrder(order string) *ListCostAnomaliesOptionalParameters {
+	r.Order = &order
+	return r
+}
+
+// WithLimit sets the corresponding parameter name and returns the struct.
+func (r *ListCostAnomaliesOptionalParameters) WithLimit(limit int32) *ListCostAnomaliesOptionalParameters {
+	r.Limit = &limit
+	return r
+}
+
+// WithOffset sets the corresponding parameter name and returns the struct.
+func (r *ListCostAnomaliesOptionalParameters) WithOffset(offset int32) *ListCostAnomaliesOptionalParameters {
+	r.Offset = &offset
+	return r
+}
+
+// WithProviderIds sets the corresponding parameter name and returns the struct.
+func (r *ListCostAnomaliesOptionalParameters) WithProviderIds(providerIds []string) *ListCostAnomaliesOptionalParameters {
+	r.ProviderIds = &providerIds
+	return r
+}
+
+// ListCostAnomalies List cost anomalies.
+// List detected Cloud Cost Management anomalies for the organization.
+func (a *CloudCostManagementApi) ListCostAnomalies(ctx _context.Context, o ...ListCostAnomaliesOptionalParameters) (CostAnomaliesResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CostAnomaliesResponse
+		optionalParams      ListCostAnomaliesOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListCostAnomaliesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.ListCostAnomalies"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.ListCostAnomalies")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/anomalies"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.Start != nil {
+		localVarQueryParams.Add("start", datadog.ParameterToString(*optionalParams.Start, ""))
+	}
+	if optionalParams.End != nil {
+		localVarQueryParams.Add("end", datadog.ParameterToString(*optionalParams.End, ""))
+	}
+	if optionalParams.Filter != nil {
+		localVarQueryParams.Add("filter", datadog.ParameterToString(*optionalParams.Filter, ""))
+	}
+	if optionalParams.MinAnomalousThreshold != nil {
+		localVarQueryParams.Add("min_anomalous_threshold", datadog.ParameterToString(*optionalParams.MinAnomalousThreshold, ""))
+	}
+	if optionalParams.MinCostThreshold != nil {
+		localVarQueryParams.Add("min_cost_threshold", datadog.ParameterToString(*optionalParams.MinCostThreshold, ""))
+	}
+	if optionalParams.DismissalCause != nil {
+		localVarQueryParams.Add("dismissal_cause", datadog.ParameterToString(*optionalParams.DismissalCause, ""))
+	}
+	if optionalParams.OrderBy != nil {
+		localVarQueryParams.Add("order_by", datadog.ParameterToString(*optionalParams.OrderBy, ""))
+	}
+	if optionalParams.Order != nil {
+		localVarQueryParams.Add("order", datadog.ParameterToString(*optionalParams.Order, ""))
+	}
+	if optionalParams.Limit != nil {
+		localVarQueryParams.Add("limit", datadog.ParameterToString(*optionalParams.Limit, ""))
+	}
+	if optionalParams.Offset != nil {
+		localVarQueryParams.Add("offset", datadog.ParameterToString(*optionalParams.Offset, ""))
+	}
+	if optionalParams.ProviderIds != nil {
+		t := *optionalParams.ProviderIds
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("provider_ids", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("provider_ids", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

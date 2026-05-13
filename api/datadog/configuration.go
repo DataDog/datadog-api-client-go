@@ -758,6 +758,8 @@ func NewConfiguration() *Configuration {
 			"v2.SearchSecurityMonitoringHistsignals":            false,
 			"v2.GetCodeCoverageBranchSummary":                   false,
 			"v2.GetCodeCoverageCommitSummary":                   false,
+			"v2.GetCostAnomaly":                                 false,
+			"v2.ListCostAnomalies":                              false,
 			"v2.CreateDashboardSecureEmbed":                     false,
 			"v2.DeleteDashboardSecureEmbed":                     false,
 			"v2.GetDashboardSecureEmbed":                        false,
