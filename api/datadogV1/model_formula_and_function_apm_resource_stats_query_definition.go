@@ -10,7 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// FormulaAndFunctionApmResourceStatsQueryDefinition APM resource stats query using formulas and functions.
+// FormulaAndFunctionApmResourceStatsQueryDefinition APM resource stats query using formulas and functions. Deprecated - Use `apm_metrics` query type instead.
+//
+// Deprecated: This model is deprecated.
 type FormulaAndFunctionApmResourceStatsQueryDefinition struct {
 	// The source organization UUID for cross organization queries. Feature in Private Beta.
 	CrossOrgUuids []string `json:"cross_org_uuids,omitempty"`
