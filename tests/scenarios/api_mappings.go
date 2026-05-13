@@ -81,6 +81,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "DashboardSecureEmbedApi": reflect.ValueOf(datadogV2.NewDashboardSecureEmbedApi),
 	    "DatasetsApi": reflect.ValueOf(datadogV2.NewDatasetsApi),
 	    "DataDeletionApi": reflect.ValueOf(datadogV2.NewDataDeletionApi),
+	    "DependencyManagementApi": reflect.ValueOf(datadogV2.NewDependencyManagementApi),
 	    "DeploymentGatesApi": reflect.ValueOf(datadogV2.NewDeploymentGatesApi),
 	    "DomainAllowlistApi": reflect.ValueOf(datadogV2.NewDomainAllowlistApi),
 	    "DORAMetricsApi": reflect.ValueOf(datadogV2.NewDORAMetricsApi),
