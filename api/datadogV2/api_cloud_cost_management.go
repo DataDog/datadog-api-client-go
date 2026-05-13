@@ -1305,6 +1305,122 @@ func (a *CloudCostManagementApi) GetCostGCPUsageCostConfig(ctx _context.Context,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetCostTagKeyOptionalParameters holds optional parameters for GetCostTagKey.
+type GetCostTagKeyOptionalParameters struct {
+	FilterMetric *string
+	PageSize     *int32
+}
+
+// NewGetCostTagKeyOptionalParameters creates an empty struct for parameters.
+func NewGetCostTagKeyOptionalParameters() *GetCostTagKeyOptionalParameters {
+	this := GetCostTagKeyOptionalParameters{}
+	return &this
+}
+
+// WithFilterMetric sets the corresponding parameter name and returns the struct.
+func (r *GetCostTagKeyOptionalParameters) WithFilterMetric(filterMetric string) *GetCostTagKeyOptionalParameters {
+	r.FilterMetric = &filterMetric
+	return r
+}
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
+func (r *GetCostTagKeyOptionalParameters) WithPageSize(pageSize int32) *GetCostTagKeyOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+
+// GetCostTagKey Get a Cloud Cost Management tag key.
+// Get details for a specific Cloud Cost Management tag key, including example tag values and description.
+func (a *CloudCostManagementApi) GetCostTagKey(ctx _context.Context, tagKey string, o ...GetCostTagKeyOptionalParameters) (CostTagKeyResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CostTagKeyResponse
+		optionalParams      GetCostTagKeyOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetCostTagKeyOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.GetCostTagKey")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/tag_keys/{tag_key}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{tag_key}", _neturl.PathEscape(datadog.ParameterToString(tagKey, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.FilterMetric != nil {
+		localVarQueryParams.Add("filter[metric]", datadog.ParameterToString(*optionalParams.FilterMetric, ""))
+	}
+	if optionalParams.PageSize != nil {
+		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetCustomAllocationRule Get custom allocation rule.
 // Get a specific custom allocation rule - Retrieve a specific custom allocation rule by its ID
 func (a *CloudCostManagementApi) GetCustomAllocationRule(ctx _context.Context, ruleId int64) (ArbitraryRuleResponse, *_nethttp.Response, error) {
@@ -2229,6 +2345,290 @@ func (a *CloudCostManagementApi) ListCostTagDescriptions(ctx _context.Context, o
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListCostTagKeysOptionalParameters holds optional parameters for ListCostTagKeys.
+type ListCostTagKeysOptionalParameters struct {
+	FilterMetric *string
+	FilterTags   *[]string
+}
+
+// NewListCostTagKeysOptionalParameters creates an empty struct for parameters.
+func NewListCostTagKeysOptionalParameters() *ListCostTagKeysOptionalParameters {
+	this := ListCostTagKeysOptionalParameters{}
+	return &this
+}
+
+// WithFilterMetric sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagKeysOptionalParameters) WithFilterMetric(filterMetric string) *ListCostTagKeysOptionalParameters {
+	r.FilterMetric = &filterMetric
+	return r
+}
+
+// WithFilterTags sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagKeysOptionalParameters) WithFilterTags(filterTags []string) *ListCostTagKeysOptionalParameters {
+	r.FilterTags = &filterTags
+	return r
+}
+
+// ListCostTagKeys List Cloud Cost Management tag keys.
+// List Cloud Cost Management tag keys.
+func (a *CloudCostManagementApi) ListCostTagKeys(ctx _context.Context, o ...ListCostTagKeysOptionalParameters) (CostTagKeysResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CostTagKeysResponse
+		optionalParams      ListCostTagKeysOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListCostTagKeysOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.ListCostTagKeys")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/tag_keys"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.FilterMetric != nil {
+		localVarQueryParams.Add("filter[metric]", datadog.ParameterToString(*optionalParams.FilterMetric, ""))
+	}
+	if optionalParams.FilterTags != nil {
+		t := *optionalParams.FilterTags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("filter[tags]", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("filter[tags]", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListCostTagsOptionalParameters holds optional parameters for ListCostTags.
+type ListCostTagsOptionalParameters struct {
+	FilterMetric  *string
+	FilterMatch   *string
+	FilterTags    *[]string
+	FilterTagKeys *[]string
+	PageSize      *int32
+}
+
+// NewListCostTagsOptionalParameters creates an empty struct for parameters.
+func NewListCostTagsOptionalParameters() *ListCostTagsOptionalParameters {
+	this := ListCostTagsOptionalParameters{}
+	return &this
+}
+
+// WithFilterMetric sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagsOptionalParameters) WithFilterMetric(filterMetric string) *ListCostTagsOptionalParameters {
+	r.FilterMetric = &filterMetric
+	return r
+}
+
+// WithFilterMatch sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagsOptionalParameters) WithFilterMatch(filterMatch string) *ListCostTagsOptionalParameters {
+	r.FilterMatch = &filterMatch
+	return r
+}
+
+// WithFilterTags sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagsOptionalParameters) WithFilterTags(filterTags []string) *ListCostTagsOptionalParameters {
+	r.FilterTags = &filterTags
+	return r
+}
+
+// WithFilterTagKeys sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagsOptionalParameters) WithFilterTagKeys(filterTagKeys []string) *ListCostTagsOptionalParameters {
+	r.FilterTagKeys = &filterTagKeys
+	return r
+}
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagsOptionalParameters) WithPageSize(pageSize int32) *ListCostTagsOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+
+// ListCostTags List Cloud Cost Management tags.
+// List Cloud Cost Management tags for a given metric.
+func (a *CloudCostManagementApi) ListCostTags(ctx _context.Context, o ...ListCostTagsOptionalParameters) (CostTagsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CostTagsResponse
+		optionalParams      ListCostTagsOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListCostTagsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.ListCostTags")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/tags"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.FilterMetric != nil {
+		localVarQueryParams.Add("filter[metric]", datadog.ParameterToString(*optionalParams.FilterMetric, ""))
+	}
+	if optionalParams.FilterMatch != nil {
+		localVarQueryParams.Add("filter[match]", datadog.ParameterToString(*optionalParams.FilterMatch, ""))
+	}
+	if optionalParams.FilterTags != nil {
+		t := *optionalParams.FilterTags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("filter[tags]", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("filter[tags]", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.FilterTagKeys != nil {
+		t := *optionalParams.FilterTagKeys
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("filter[tag_keys]", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("filter[tag_keys]", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.PageSize != nil {
+		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
