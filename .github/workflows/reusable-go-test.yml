@@ -83,6 +83,14 @@ jobs:
           cache-dependency-path: |
             go.sum
             tests/go.sum
+      - name: Cache Go build cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/go-build
+          key: go-build-${{ matrix.go-version }}-${{ matrix.go-build-tags }}-${{ hashFiles('**/go.sum') }}
+          restore-keys: |
+            go-build-${{ matrix.go-version }}-${{ matrix.go-build-tags }}-
+            go-build-${{ matrix.go-version }}-
       - name: Test
         run: ./scripts/run-tests.sh
         env:
