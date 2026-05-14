@@ -29,15 +29,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: DataDog/datadog-api-client-go
           ref: ${{ inputs.target-branch || github.ref }}
       - name: Install Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go-version }}
-          cache: true
           cache-dependency-path: |
             go.sum
             tests/go.sum
@@ -61,16 +60,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: DataDog/datadog-api-client-go
           ref: ${{ inputs.target-branch || github.ref }}
       - name: Install Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go-version }}
-          cache: true
-          cache-dependency-path: tests/go.sum
+          cache-dependency-path: |
+            go.sum
+            tests/go.sum
       - name: Test
         run: ./scripts/run-tests.sh
         env:
