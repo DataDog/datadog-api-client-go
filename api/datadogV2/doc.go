@@ -231,6 +231,7 @@
 //   - [CloudflareIntegrationApi.UpdateCloudflareAccount]
 //   - [CodeCoverageApi.GetCodeCoverageBranchSummary]
 //   - [CodeCoverageApi.GetCodeCoverageCommitSummary]
+//   - [ComplianceApi.GetRuleBasedView]
 //   - [ConfluentCloudApi.CreateConfluentAccount]
 //   - [ConfluentCloudApi.CreateConfluentResource]
 //   - [ConfluentCloudApi.DeleteConfluentAccount]
