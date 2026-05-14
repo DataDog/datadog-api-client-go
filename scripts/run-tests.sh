@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 set -e
 
-# make sure the below installed dependencies don't get added to go.mod/go.sum
-# unfortunately there's no better way to fix this than change directory
-# this might get solved in Go 1.14: https://github.com/golang/go/issues/30515
-echo "Installing gotestsum"
-cd "$(mktemp -d)"
-GO111MODULE=on go install gotest.tools/gotestsum@latest
-cd -
+GOTESTSUM_VERSION="1.13.0"
+
+if ! command -v gotestsum &> /dev/null; then
+    echo "Installing gotestsum v${GOTESTSUM_VERSION} (pre-built binary)"
+    curl -sSfL "https://github.com/gotestyourself/gotestsum/releases/download/v${GOTESTSUM_VERSION}/gotestsum_${GOTESTSUM_VERSION}_linux_amd64.tar.gz" \
+        | tar -xz -C "$(go env GOPATH)/bin" gotestsum
+else
+    echo "gotestsum already installed"
+fi
 
 echo "Running mod tidy and cleanup test cache"
 go mod tidy
