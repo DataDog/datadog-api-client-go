@@ -22,10 +22,6 @@ on:
 
 jobs:
   staticcheck:
-    strategy:
-      matrix:
-        go-version: ["1.22.x", "1.23.x"]
-        go-build-tags: ["--tags=goccy_gojson", ""]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -36,7 +32,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v5
         with:
-          go-version: ${{ matrix.go-version }}
+          go-version: "1.23.x"
           cache-dependency-path: |
             go.sum
             tests/go.sum
@@ -45,12 +41,10 @@ jobs:
         with:
           checks: "-SA1009"
           working-directory: api
-          cache-key: ${{ matrix.go-version }}
       - name: Staticcheck (tests module)
         uses: dominikh/staticcheck-action@v1
         with:
           checks: "inherit,-SA1019"
-          cache-key: ${{ matrix.go-version }}
           working-directory: tests
   test:
     strategy:
