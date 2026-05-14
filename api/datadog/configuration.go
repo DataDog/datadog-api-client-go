@@ -784,7 +784,6 @@ func NewConfiguration() *Configuration {
 			"v2.TriggerDeploymentGatesEvaluation":               false,
 			"v2.UpdateDeploymentGate":                           false,
 			"v2.UpdateDeploymentRule":                           false,
-			"v2.CreateEmailTransportWebhookIntake":              false,
 			"v2.CreateHamrOrgConnection":                        false,
 			"v2.GetHamrOrgConnection":                           false,
 			"v2.CreateGlobalIncidentHandle":                     false,
