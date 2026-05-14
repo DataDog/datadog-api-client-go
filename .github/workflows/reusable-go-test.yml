@@ -21,6 +21,24 @@ on:
         required: false
 
 jobs:
+  license-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          repository: DataDog/datadog-api-client-go
+          ref: ${{ inputs.target-branch || github.ref }}
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.23.x"
+          cache-dependency-path: |
+            go.sum
+            tests/go.sum
+      - name: Check LICENSE-3rdparty.csv
+        run: ./scripts/check-licenses.sh
+
   staticcheck:
     runs-on: ubuntu-latest
     steps:
