@@ -120,8 +120,16 @@ func (a *LLMObservabilityApi) CreateLLMObsAnnotationQueue(ctx _context.Context, 
 }
 
 // CreateLLMObsAnnotationQueueInteractions Add annotation queue interactions.
-// Add one or more interactions (traces or sessions) to an annotation queue.
-// At least one interaction must be provided.
+// Add one or more interactions to an annotation queue. At least one
+// interaction must be provided. Each interaction has a `type`:
+//
+//   - `trace`, `experiment_trace`, `session`: `content_id` references the
+//     upstream entity; the server fetches the actual content.
+//   - `display_block`: omit `content_id` and provide the rendered content
+//     in `display_block`. The server generates `content_id` as a
+//     deterministic hash of the block list.
+//
+// Items of different types can be mixed in a single request.
 func (a *LLMObservabilityApi) CreateLLMObsAnnotationQueueInteractions(ctx _context.Context, queueId string, body LLMObsAnnotationQueueInteractionsRequest) (LLMObsAnnotationQueueInteractionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
