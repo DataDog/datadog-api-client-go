@@ -895,6 +895,7 @@
 //   - [SpansMetricsApi.GetSpansMetric]
 //   - [SpansMetricsApi.ListSpansMetrics]
 //   - [SpansMetricsApi.UpdateSpansMetric]
+//   - [SpecsApi.ListSpecs]
 //   - [StaticAnalysisApi.CreateCustomRule]
 //   - [StaticAnalysisApi.CreateCustomRuleRevision]
 //   - [StaticAnalysisApi.CreateSCAResolveVulnerableSymbols]
