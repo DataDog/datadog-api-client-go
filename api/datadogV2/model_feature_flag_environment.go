@@ -493,7 +493,7 @@ func (o *FeatureFlagEnvironment) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field status missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"allocations", "default_allocation_key", "default_variant_id", "environment_id", "environment_name", "environment_queries", "is_production", "override_allocation_key", "override_variant_id", "pending_suggestion_id", "require_feature_flag_approval", "status"})
 	} else {
 		return err

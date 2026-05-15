@@ -281,7 +281,7 @@ func (o *LLMObsAnnotationItem) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field modified_by missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "id", "interaction_id", "label_values", "modified_at", "modified_by"})
 	} else {
 		return err

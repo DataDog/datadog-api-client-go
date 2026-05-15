@@ -318,7 +318,7 @@ func (o *CommitmentsAwsSPCommitment) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field savings_plan_type missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"commitment_id", "committed_spend_per_hour", "expiration_date", "purchase_option", "savings_plan_type", "start_date", "term_length", "utilization"})
 	} else {
 		return err

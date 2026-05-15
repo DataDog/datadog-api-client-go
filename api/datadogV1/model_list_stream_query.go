@@ -357,7 +357,7 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field query_string missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"clustering_pattern_field_path", "compute", "data_source", "event_size", "group_by", "indexes", "query_string", "sort", "storage"})
 	} else {
 		return err

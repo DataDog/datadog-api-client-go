@@ -179,7 +179,7 @@ func (o *CloudInventorySyncConfigGCPRequestAttributes) UnmarshalJSON(bytes []byt
 		return fmt.Errorf("required field source_bucket_name missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"destination_bucket_name", "project_id", "service_account_email", "source_bucket_name"})
 	} else {
 		return err

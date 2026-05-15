@@ -393,7 +393,7 @@ func (o *FleetInstrumentedPodGroupAttributes) UnmarshalJSON(bytes []byte) (err e
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"applied_target", "applied_target_name", "injected_tags", "kube_ownerref_kind", "kube_ownerref_name", "lib_injection_annotations", "namespace", "pod_count", "pod_names", "tags"})
 	} else {
 		return err

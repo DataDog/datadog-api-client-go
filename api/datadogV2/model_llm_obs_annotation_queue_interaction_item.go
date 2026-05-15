@@ -117,7 +117,7 @@ func (o *LLMObsAnnotationQueueInteractionItem) UnmarshalJSON(bytes []byte) (err 
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"content_id", "type"})
 	} else {
 		return err

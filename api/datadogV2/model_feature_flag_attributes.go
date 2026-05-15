@@ -617,7 +617,7 @@ func (o *FeatureFlagAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field variants missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "created_at", "created_by", "description", "distribution_channel", "feature_flag_environments", "json_schema", "key", "last_updated_by", "name", "require_approval", "staleness_status", "tags", "updated_at", "value_type", "variants"})
 	} else {
 		return err

@@ -318,7 +318,7 @@ func (o *LLMObsExperimentDataAttributesRequest) UnmarshalJSON(bytes []byte) (err
 		return fmt.Errorf("required field project_id missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"config", "dataset_id", "dataset_version", "description", "ensure_unique", "metadata", "name", "project_id"})
 	} else {
 		return err

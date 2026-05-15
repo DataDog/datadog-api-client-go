@@ -529,7 +529,7 @@ func (o *IssueAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"error_message", "error_type", "file_path", "first_seen", "first_seen_version", "function_name", "is_crash", "languages", "last_seen", "last_seen_version", "platform", "regression", "service", "state"})
 	} else {
 		return err

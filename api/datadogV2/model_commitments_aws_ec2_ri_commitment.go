@@ -479,7 +479,7 @@ func (o *CommitmentsAwsEC2RICommitment) UnmarshalJSON(bytes []byte) (err error) 
 		return fmt.Errorf("required field region missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"availability_zone", "commitment_id", "expiration_date", "instance_type", "number_of_nfus", "number_of_reservations", "offering_class", "operating_system", "purchase_option", "region", "start_date", "term_length", "utilization"})
 	} else {
 		return err

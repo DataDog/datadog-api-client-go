@@ -151,7 +151,7 @@ func (o *CommitmentsUtilizationTimeseriesResponse) UnmarshalJSON(bytes []byte) (
 		return fmt.Errorf("required field times missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"series", "times", "unit"})
 	} else {
 		return err

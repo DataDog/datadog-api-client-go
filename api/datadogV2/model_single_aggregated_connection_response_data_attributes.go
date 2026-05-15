@@ -461,7 +461,7 @@ func (o *SingleAggregatedConnectionResponseDataAttributes) UnmarshalJSON(bytes [
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"bytes_sent_by_client", "bytes_sent_by_server", "group_bys", "packets_sent_by_client", "packets_sent_by_server", "rtt_micro_seconds", "tcp_closed_connections", "tcp_established_connections", "tcp_refusals", "tcp_resets", "tcp_retransmits", "tcp_timeouts"})
 	} else {
 		return err

@@ -86,7 +86,7 @@ func (o *ArbitraryRuleStatusResponseDataAttributes) UnmarshalJSON(bytes []byte) 
 		return fmt.Errorf("required field processing_status missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"processing_status"})
 	} else {
 		return err

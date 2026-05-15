@@ -153,7 +153,7 @@ func (o *PersonalAccessTokenCreateAttributes) UnmarshalJSON(bytes []byte) (err e
 		return fmt.Errorf("required field scopes missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"expires_at", "name", "scopes"})
 	} else {
 		return err

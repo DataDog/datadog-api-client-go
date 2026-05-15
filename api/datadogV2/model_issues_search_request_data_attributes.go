@@ -354,7 +354,7 @@ func (o *IssuesSearchRequestDataAttributes) UnmarshalJSON(bytes []byte) (err err
 		return fmt.Errorf("required field to missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"assignee_ids", "from", "order_by", "persona", "query", "states", "team_ids", "to", "track"})
 	} else {
 		return err

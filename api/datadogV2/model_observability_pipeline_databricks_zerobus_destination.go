@@ -310,7 +310,7 @@ func (o *ObservabilityPipelineDatabricksZerobusDestination) UnmarshalJSON(bytes 
 		return fmt.Errorf("required field unity_catalog_endpoint missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "buffer", "id", "ingestion_endpoint", "inputs", "table_name", "type", "unity_catalog_endpoint"})
 	} else {
 		return err

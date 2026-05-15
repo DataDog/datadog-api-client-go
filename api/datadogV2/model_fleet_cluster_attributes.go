@@ -631,7 +631,7 @@ func (o *FleetClusterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"agent_versions", "api_key_names", "api_key_uuids", "cloud_providers", "cluster_name", "enabled_products", "envs", "first_seen_at", "install_method_tool", "node_count", "node_count_by_status", "operating_systems", "otel_collector_distributions", "otel_collector_versions", "pod_count_by_state", "services", "teams"})
 	} else {
 		return err
