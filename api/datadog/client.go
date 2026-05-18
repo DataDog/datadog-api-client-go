@@ -173,18 +173,23 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 			if err != nil {
 				return nil, err
 			}
-			// Strip any api keys from the request being logged
-			keys, ok := newRequest.Context().Value(ContextAPIKeys).(map[string]APIKey)
-			if keys != nil && ok {
+			// Strip any credential values from the request being logged.
+			// ContextAPIKeys carries the DD-API-KEY / DD-APPLICATION-KEY values;
+			// ContextAccessToken carries bearer tokens (PATs, delegated tokens).
+			var secretsToRedact []string
+			if keys, ok := newRequest.Context().Value(ContextAPIKeys).(map[string]APIKey); ok && keys != nil {
 				for _, apiKey := range keys {
-					valueRegex := regexp.MustCompile(fmt.Sprintf("(?m)%s", apiKey.Key))
-					dump = valueRegex.ReplaceAll(dump, []byte("REDACTED"))
+					if apiKey.Key != "" {
+						secretsToRedact = append(secretsToRedact, apiKey.Key)
+					}
 				}
 			}
-			// Strip any bearer token (PAT, delegated token) from the request being logged
 			if token, ok := newRequest.Context().Value(ContextAccessToken).(string); ok && token != "" {
-				tokenRegex := regexp.MustCompile(fmt.Sprintf("(?m)%s", regexp.QuoteMeta(token)))
-				dump = tokenRegex.ReplaceAll(dump, []byte("REDACTED"))
+				secretsToRedact = append(secretsToRedact, token)
+			}
+			for _, secret := range secretsToRedact {
+				valueRegex := regexp.MustCompile(fmt.Sprintf("(?m)%s", regexp.QuoteMeta(secret)))
+				dump = valueRegex.ReplaceAll(dump, []byte("REDACTED"))
 			}
 			log.Printf("\n%s\n", string(dump))
 		}
