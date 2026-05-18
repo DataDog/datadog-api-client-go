@@ -52,9 +52,38 @@ func main() {
 						},
 					},
 					{
-						PolicyId: datadog.PtrString(EscalationPolicyDataID),
-						Query:    datadog.PtrString(""),
-						Urgency:  datadogV2.URGENCY_LOW.Ptr(),
+						Actions: []datadogV2.RoutingRuleAction{
+							datadogV2.RoutingRuleAction{
+								RoutingRuleEscalationPolicyAction: &datadogV2.RoutingRuleEscalationPolicyAction{
+									AckTimeoutMinutes: datadog.PtrInt64(10),
+									PolicyId:          EscalationPolicyDataID,
+									SupportHours: &datadogV2.TimeRestrictions{
+										TimeZone: "Europe/Paris",
+										Restrictions: []datadogV2.TimeRestriction{
+											{
+												EndDay:    datadogV2.WEEKDAY_FRIDAY.Ptr(),
+												EndTime:   datadog.PtrString("17:00:00"),
+												StartDay:  datadogV2.WEEKDAY_MONDAY.Ptr(),
+												StartTime: datadog.PtrString("09:00:00"),
+											},
+										},
+									},
+									Type:    datadogV2.ROUTINGRULEESCALATIONPOLICYACTIONTYPE_ESCALATION_POLICY,
+									Urgency: datadogV2.URGENCY_LOW.Ptr(),
+								}},
+						},
+						Query: datadog.PtrString("tags.service:test"),
+					},
+					{
+						Actions: []datadogV2.RoutingRuleAction{
+							datadogV2.RoutingRuleAction{
+								RoutingRuleEscalationPolicyAction: &datadogV2.RoutingRuleEscalationPolicyAction{
+									PolicyId: EscalationPolicyDataID,
+									Type:     datadogV2.ROUTINGRULEESCALATIONPOLICYACTIONTYPE_ESCALATION_POLICY,
+									Urgency:  datadogV2.URGENCY_LOW.Ptr(),
+								}},
+						},
+						Query: datadog.PtrString(""),
 					},
 				},
 			},
