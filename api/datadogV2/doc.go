@@ -757,6 +757,7 @@
 //   - [ScorecardsApi.ListScorecardCampaigns]
 //   - [ScorecardsApi.ListScorecardOutcomes]
 //   - [ScorecardsApi.ListScorecardRules]
+//   - [ScorecardsApi.ListScorecardScores]
 //   - [ScorecardsApi.ListScorecards]
 //   - [ScorecardsApi.UpdateScorecardCampaign]
 //   - [ScorecardsApi.UpdateScorecardOutcomes]
