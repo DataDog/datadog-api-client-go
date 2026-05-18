@@ -10,7 +10,9 @@ import (
 
 // ScatterPlotWidgetDefinitionRequests Widget definition.
 type ScatterPlotWidgetDefinitionRequests struct {
-	// Scatterplot request containing formulas and functions.
+	// Scatterplot table request. Supports two modes:
+	// - **Formulas and functions** (default): `request_type` is absent or `"table"`. Uses `queries` and `formulas`.
+	// - **Data projection**: `request_type` is `"data_projection"`. Uses `query`, `projection`, and optionally `limit`.
 	Table *ScatterplotTableRequest `json:"table,omitempty"`
 	// Updated scatter plot.
 	X *ScatterPlotRequest `json:"x,omitempty"`
