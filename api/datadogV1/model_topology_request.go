@@ -10,7 +10,7 @@ import (
 
 // TopologyRequest Request that will return nodes and edges to be used by topology map.
 type TopologyRequest struct {
-	// Query to service-based topology data sources like the service map or data streams.
+	// A topology data source query.
 	Query *TopologyQuery `json:"query,omitempty"`
 	// Widget request type.
 	RequestType *TopologyRequestType `json:"request_type,omitempty"`
@@ -128,9 +128,6 @@ func (o *TopologyRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Query = all.Query
 	if all.RequestType != nil && !all.RequestType.IsValid() {
 		hasInvalidField = true
