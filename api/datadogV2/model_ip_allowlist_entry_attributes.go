@@ -16,6 +16,8 @@ type IPAllowlistEntryAttributes struct {
 	CidrBlock *string `json:"cidr_block,omitempty"`
 	// Creation time of the entry.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// A label for the IP allowlist entry.
+	Label *string `json:"label,omitempty"`
 	// Time of last entry modification.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// A note describing the IP allowlist entry.
@@ -98,6 +100,34 @@ func (o *IPAllowlistEntryAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+// GetLabel returns the Label field value if set, zero value otherwise.
+func (o *IPAllowlistEntryAttributes) GetLabel() string {
+	if o == nil || o.Label == nil {
+		var ret string
+		return ret
+	}
+	return *o.Label
+}
+
+// GetLabelOk returns a tuple with the Label field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IPAllowlistEntryAttributes) GetLabelOk() (*string, bool) {
+	if o == nil || o.Label == nil {
+		return nil, false
+	}
+	return o.Label, true
+}
+
+// HasLabel returns a boolean if a field has been set.
+func (o *IPAllowlistEntryAttributes) HasLabel() bool {
+	return o != nil && o.Label != nil
+}
+
+// SetLabel gets a reference to the given string and assigns it to the Label field.
+func (o *IPAllowlistEntryAttributes) SetLabel(v string) {
+	o.Label = &v
+}
+
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *IPAllowlistEntryAttributes) GetModifiedAt() time.Time {
 	if o == nil || o.ModifiedAt == nil {
@@ -170,6 +200,9 @@ func (o IPAllowlistEntryAttributes) MarshalJSON() ([]byte, error) {
 			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
+	if o.Label != nil {
+		toSerialize["label"] = o.Label
+	}
 	if o.ModifiedAt != nil {
 		if o.ModifiedAt.Nanosecond() == 0 {
 			toSerialize["modified_at"] = o.ModifiedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -192,6 +225,7 @@ func (o *IPAllowlistEntryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CidrBlock  *string    `json:"cidr_block,omitempty"`
 		CreatedAt  *time.Time `json:"created_at,omitempty"`
+		Label      *string    `json:"label,omitempty"`
 		ModifiedAt *time.Time `json:"modified_at,omitempty"`
 		Note       *string    `json:"note,omitempty"`
 	}{}
@@ -200,12 +234,13 @@ func (o *IPAllowlistEntryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cidr_block", "created_at", "modified_at", "note"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cidr_block", "created_at", "label", "modified_at", "note"})
 	} else {
 		return err
 	}
 	o.CidrBlock = all.CidrBlock
 	o.CreatedAt = all.CreatedAt
+	o.Label = all.Label
 	o.ModifiedAt = all.ModifiedAt
 	o.Note = all.Note
 
