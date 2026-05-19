@@ -10,6 +10,8 @@ import (
 
 // OnCallTrigger Trigger a workflow from an On-Call Page or On-Call Handover. For automatic triggering a handle must be configured and the workflow must be published.
 type OnCallTrigger struct {
+	// The handle used to reference this trigger from On-Call. Required for automatic triggering.
+	Handle *string `json:"handle,omitempty"`
 	// Defines a rate limit for a trigger.
 	RateLimit *TriggerRateLimit `json:"rateLimit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -32,6 +34,34 @@ func NewOnCallTrigger() *OnCallTrigger {
 func NewOnCallTriggerWithDefaults() *OnCallTrigger {
 	this := OnCallTrigger{}
 	return &this
+}
+
+// GetHandle returns the Handle field value if set, zero value otherwise.
+func (o *OnCallTrigger) GetHandle() string {
+	if o == nil || o.Handle == nil {
+		var ret string
+		return ret
+	}
+	return *o.Handle
+}
+
+// GetHandleOk returns a tuple with the Handle field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *OnCallTrigger) GetHandleOk() (*string, bool) {
+	if o == nil || o.Handle == nil {
+		return nil, false
+	}
+	return o.Handle, true
+}
+
+// HasHandle returns a boolean if a field has been set.
+func (o *OnCallTrigger) HasHandle() bool {
+	return o != nil && o.Handle != nil
+}
+
+// SetHandle gets a reference to the given string and assigns it to the Handle field.
+func (o *OnCallTrigger) SetHandle(v string) {
+	o.Handle = &v
 }
 
 // GetRateLimit returns the RateLimit field value if set, zero value otherwise.
@@ -68,6 +98,9 @@ func (o OnCallTrigger) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Handle != nil {
+		toSerialize["handle"] = o.Handle
+	}
 	if o.RateLimit != nil {
 		toSerialize["rateLimit"] = o.RateLimit
 	}
@@ -81,6 +114,7 @@ func (o OnCallTrigger) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OnCallTrigger) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Handle    *string           `json:"handle,omitempty"`
 		RateLimit *TriggerRateLimit `json:"rateLimit,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -88,12 +122,13 @@ func (o *OnCallTrigger) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"rateLimit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"handle", "rateLimit"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Handle = all.Handle
 	if all.RateLimit != nil && all.RateLimit.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
