@@ -283,6 +283,8 @@
 //   - [DashboardSecureEmbedApi.DeleteDashboardSecureEmbed]
 //   - [DashboardSecureEmbedApi.GetDashboardSecureEmbed]
 //   - [DashboardSecureEmbedApi.UpdateDashboardSecureEmbed]
+//   - [DashboardsApi.GetDashboardUsage]
+//   - [DashboardsApi.ListDashboardsUsage]
 //   - [DataDeletionApi.CancelDataDeletionRequest]
 //   - [DataDeletionApi.CreateDataDeletionRequest]
 //   - [DataDeletionApi.GetDataDeletionRequests]
