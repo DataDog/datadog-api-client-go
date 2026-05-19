@@ -12,7 +12,7 @@ import (
 
 // CaseUpdateAttributesAttributes Case update attributes attributes
 type CaseUpdateAttributesAttributes struct {
-	// Key-value pairs of case attributes. Each key maps to an array of string values, used for flexible metadata such as labels or tags.
+	// The definition of `CaseObjectAttributes` object.
 	Attributes map[string][]string `json:"attributes"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

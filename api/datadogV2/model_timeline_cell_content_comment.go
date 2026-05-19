@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TimelineCellContentComment The content of a comment timeline cell.
+// TimelineCellContentComment comment content
 type TimelineCellContentComment struct {
-	// The text content of the comment. Supports Markdown formatting.
+	// comment message
 	Message *string `json:"message,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

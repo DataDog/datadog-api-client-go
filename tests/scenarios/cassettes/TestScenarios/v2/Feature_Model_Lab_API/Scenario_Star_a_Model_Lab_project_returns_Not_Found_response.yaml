@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/model-lab-api/projects/999999/star
+  response:
+    body: '{"errors":[{"title":"Generic Error","detail":"project not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 2

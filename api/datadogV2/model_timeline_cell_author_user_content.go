@@ -8,15 +8,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TimelineCellAuthorUserContent Profile information for the user who authored the timeline cell.
+// TimelineCellAuthorUserContent user author content.
 type TimelineCellAuthorUserContent struct {
-	// The email address of the user.
+	// user email
 	Email *string `json:"email,omitempty"`
-	// The Datadog handle of the user.
+	// user handle
 	Handle *string `json:"handle,omitempty"`
-	// The UUID of the user.
+	// user UUID
 	Id *string `json:"id,omitempty"`
-	// The display name of the user.
+	// user name
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

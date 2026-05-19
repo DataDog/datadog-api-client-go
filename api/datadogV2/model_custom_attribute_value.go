@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomAttributeValue A typed value for a custom attribute on a specific case.
+// CustomAttributeValue Custom attribute values
 type CustomAttributeValue struct {
 	// If true, value must be an array
 	IsMulti bool `json:"is_multi"`
-	// The data type of the custom attribute, which determines the allowed values and UI input control.
+	// Custom attributes type
 	Type CustomAttributeType `json:"type"`
-	// The value of a custom attribute. The accepted format depends on the attribute's type and whether it accepts multiple values.
+	// Union of supported value for a custom attribute
 	Value CustomAttributeValuesUnion `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

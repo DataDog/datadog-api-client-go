@@ -14,7 +14,7 @@ import (
 type CaseComment struct {
 	// Case comment attributes
 	Attributes CaseCommentAttributes `json:"attributes"`
-	// JSON:API resource type for cases.
+	// Case resource type
 	Type CaseResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

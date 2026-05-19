@@ -16,7 +16,7 @@ type CaseCreate struct {
 	Attributes CaseCreateAttributes `json:"attributes"`
 	// Relationships formed with the case on creation
 	Relationships *CaseCreateRelationships `json:"relationships,omitempty"`
-	// JSON:API resource type for cases.
+	// Case resource type
 	Type CaseResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

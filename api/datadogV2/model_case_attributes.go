@@ -14,7 +14,7 @@ import (
 type CaseAttributes struct {
 	// Timestamp of when the case was archived
 	ArchivedAt datadog.NullableTime `json:"archived_at,omitempty"`
-	// Key-value pairs of case attributes. Each key maps to an array of string values, used for flexible metadata such as labels or tags.
+	// The definition of `CaseObjectAttributes` object.
 	Attributes map[string][]string `json:"attributes,omitempty"`
 	// Timestamp of when the case was closed
 	ClosedAt datadog.NullableTime `json:"closed_at,omitempty"`

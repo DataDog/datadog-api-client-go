@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseTypeResource A case type that defines a classification category for cases. Each case type can have its own custom attributes, statuses, and automation rules.
+// CaseTypeResource The definition of `CaseType` object.
 type CaseTypeResource struct {
-	// Attributes of a case type, which define a classification category for cases. Organizations use case types to model different workflows (for example, Security Incident, Bug Report, Change Request).
+	// Case Type resource attributes
 	Attributes *CaseTypeResourceAttributes `json:"attributes,omitempty"`
 	// Case type's identifier
 	Id *string `json:"id,omitempty"`
-	// JSON:API resource type for case types.
+	// Case type resource type
 	Type *CaseTypeResourceType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

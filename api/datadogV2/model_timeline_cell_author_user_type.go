@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TimelineCellAuthorUserType The type of timeline cell author. Currently only `USER` is supported.
+// TimelineCellAuthorUserType user author type.
 type TimelineCellAuthorUserType string
 
 // List of TimelineCellAuthorUserType.

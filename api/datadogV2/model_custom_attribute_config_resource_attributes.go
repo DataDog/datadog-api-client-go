@@ -10,19 +10,19 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomAttributeConfigResourceAttributes Attributes of a custom attribute configuration, defining an organization-specific metadata field that can be added to cases of a given type.
+// CustomAttributeConfigResourceAttributes Custom attribute resource attributes
 type CustomAttributeConfigResourceAttributes struct {
-	// The UUID of the case type this custom attribute belongs to.
+	// Custom attribute config identifier.
 	CaseTypeId string `json:"case_type_id"`
-	// A description explaining the purpose and expected values for this custom attribute.
+	// Custom attribute description.
 	Description *string `json:"description,omitempty"`
-	// The human-readable label shown in the Case Management UI for this custom attribute.
+	// Custom attribute name.
 	DisplayName string `json:"display_name"`
-	// If `true`, this attribute accepts an array of values. If `false`, only a single value is allowed.
+	// Whether multiple values can be set
 	IsMulti bool `json:"is_multi"`
-	// The programmatic key used to reference this custom attribute in search queries and API calls.
+	// Custom attribute key. This will be the value use to search on this custom attribute
 	Key string `json:"key"`
-	// The data type of the custom attribute, which determines the allowed values and UI input control.
+	// Custom attributes type
 	Type CustomAttributeType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

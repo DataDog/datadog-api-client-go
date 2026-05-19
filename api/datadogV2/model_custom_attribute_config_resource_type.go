@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomAttributeConfigResourceType JSON:API resource type for custom attribute configurations.
+// CustomAttributeConfigResourceType Custom attributes config JSON:API resource type
 type CustomAttributeConfigResourceType string
 
 // List of CustomAttributeConfigResourceType.
