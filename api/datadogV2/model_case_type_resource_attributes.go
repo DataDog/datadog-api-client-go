@@ -11,15 +11,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseTypeResourceAttributes Attributes of a case type, which define a classification category for cases. Organizations use case types to model different workflows (for example, Security Incident, Bug Report, Change Request).
+// CaseTypeResourceAttributes Case Type resource attributes
 type CaseTypeResourceAttributes struct {
-	// Timestamp when the case type was marked as deleted. A null value indicates the case type is active.
+	// Timestamp of when the case type was deleted
 	DeletedAt datadog.NullableTime `json:"deleted_at,omitempty"`
-	// A detailed description explaining when this case type should be used.
+	// Case type description.
 	Description *string `json:"description,omitempty"`
-	// An emoji icon representing the case type in the UI.
+	// Case type emoji.
 	Emoji *string `json:"emoji,omitempty"`
-	// The display name of the case type, shown in the Case Management UI when creating or viewing cases.
+	// Case type name.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

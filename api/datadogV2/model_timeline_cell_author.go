@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TimelineCellAuthor - The author of the timeline cell. Currently only user authors are supported.
+// TimelineCellAuthor - author of the timeline cell
 type TimelineCellAuthor struct {
 	TimelineCellAuthorUser *TimelineCellAuthorUser
 

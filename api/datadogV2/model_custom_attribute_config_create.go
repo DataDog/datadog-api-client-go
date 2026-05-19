@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomAttributeConfigCreate Data object for creating a custom attribute configuration.
+// CustomAttributeConfigCreate Custom attribute config
 type CustomAttributeConfigCreate struct {
-	// Attributes required to create a custom attribute configuration.
+	// Custom attribute config resource attributes
 	Attributes CustomAttributeConfigAttributesCreate `json:"attributes"`
-	// JSON:API resource type for custom attribute configurations.
+	// Custom attributes config JSON:API resource type
 	Type CustomAttributeConfigResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

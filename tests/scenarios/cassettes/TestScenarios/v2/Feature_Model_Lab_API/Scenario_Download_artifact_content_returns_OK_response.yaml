@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/octet-stream, application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/model-lab-api/artifacts/content?project_id=2387&artifact_path=f635c73b70594ab6bb6e212cdf87d0d5%2Fartifacts%2Flora_model%2Fadapter_config.json
+  response:
+    body: data
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/octet-stream
+    status: 200 OK
+version: 2

@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/model-lab-api/project-facet-values?facet_type=tag&facet_name=model
+  response:
+    body: '{"data":{"id":"tag:model","type":"facet_values","attributes":{"facet_name":"model","facet_type":"tag","values":[]}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 2

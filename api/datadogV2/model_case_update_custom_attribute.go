@@ -12,9 +12,9 @@ import (
 
 // CaseUpdateCustomAttribute Case update custom attribute
 type CaseUpdateCustomAttribute struct {
-	// A typed value for a custom attribute on a specific case.
+	// Custom attribute values
 	Attributes CustomAttributeValue `json:"attributes"`
-	// JSON:API resource type for cases.
+	// Case resource type
 	Type CaseResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

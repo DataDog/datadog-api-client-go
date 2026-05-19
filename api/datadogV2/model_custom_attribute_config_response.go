@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomAttributeConfigResponse Response containing a single custom attribute configuration.
+// CustomAttributeConfigResponse Custom attribute config response.
 type CustomAttributeConfigResponse struct {
-	// A custom attribute configuration that defines an organization-specific metadata field on cases. Custom attributes are scoped to a case type and can hold text, URLs, numbers, or predefined select options.
+	// The definition of `CustomAttributeConfig` object.
 	Data *CustomAttributeConfig `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

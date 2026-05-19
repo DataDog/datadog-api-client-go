@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TimelineCell Attributes of a timeline cell, representing a single event in a case's chronological activity log (for example, a comment, status change, or assignment update).
+// TimelineCell timeline cell
 type TimelineCell struct {
-	// The author of the timeline cell. Currently only user authors are supported.
+	// author of the timeline cell
 	Author *TimelineCellAuthor `json:"author,omitempty"`
-	// The content payload of a timeline cell, varying by cell type.
+	// timeline cell content
 	CellContent *TimelineCellContent `json:"cell_content,omitempty"`
 	// Timestamp of when the cell was created
 	CreatedAt *time.Time `json:"created_at,omitempty"`
@@ -22,7 +22,7 @@ type TimelineCell struct {
 	DeletedAt *time.Time `json:"deleted_at,omitempty"`
 	// Timestamp of when the cell was last modified
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
-	// The type of content in the timeline cell. Currently only `COMMENT` is supported in this endpoint.
+	// Timeline cell content type
 	Type *TimelineCellType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

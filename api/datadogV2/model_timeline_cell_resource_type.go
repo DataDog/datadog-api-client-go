@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TimelineCellResourceType JSON:API resource type for timeline cells.
+// TimelineCellResourceType Timeline cell JSON:API resource type
 type TimelineCellResourceType string
 
 // List of TimelineCellResourceType.
