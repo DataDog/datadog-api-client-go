@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/dashboards/usage?page%5Blimit%5D=10000
+  response:
+    body: '{"errors":["Input should be less than or equal to 500"]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 2
