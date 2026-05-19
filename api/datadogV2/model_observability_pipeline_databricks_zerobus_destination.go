@@ -20,16 +20,16 @@ type ObservabilityPipelineDatabricksZerobusDestination struct {
 	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
 	// The unique identifier for this component.
 	Id string `json:"id"`
-	// Your Databricks Zerobus ingestion endpoint. This is the endpoint used to stream data directly into your Databricks Lakehouse.
-	IngestionEndpoint string `json:"ingestion_endpoint"`
+	// Name of the environment variable or the secret identifier that references the Databricks Zerobus ingestion endpoint, which is used to stream data directly into your Databricks Lakehouse.
+	IngestionEndpointKey *string `json:"ingestion_endpoint_key,omitempty"`
 	// A list of component IDs whose output is used as the `input` for this component.
 	Inputs []string `json:"inputs"`
 	// The fully qualified name of your target Databricks table. Make sure this table already exists in your Databricks workspace before deploying.
 	TableName string `json:"table_name"`
 	// The destination type. The value must be `databricks_zerobus`.
 	Type ObservabilityPipelineDatabricksZerobusDestinationType `json:"type"`
-	// Your Databricks workspace URL. This is used to communicate with the Unity Catalog API.
-	UnityCatalogEndpoint string `json:"unity_catalog_endpoint"`
+	// Name of the environment variable or the secret identifier that references your Databricks workspace URL, which is used to communicate with the Unity Catalog API.
+	UnityCatalogEndpointKey *string `json:"unity_catalog_endpoint_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -39,15 +39,13 @@ type ObservabilityPipelineDatabricksZerobusDestination struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineDatabricksZerobusDestination(auth ObservabilityPipelineDatabricksZerobusDestinationAuth, id string, ingestionEndpoint string, inputs []string, tableName string, typeVar ObservabilityPipelineDatabricksZerobusDestinationType, unityCatalogEndpoint string) *ObservabilityPipelineDatabricksZerobusDestination {
+func NewObservabilityPipelineDatabricksZerobusDestination(auth ObservabilityPipelineDatabricksZerobusDestinationAuth, id string, inputs []string, tableName string, typeVar ObservabilityPipelineDatabricksZerobusDestinationType) *ObservabilityPipelineDatabricksZerobusDestination {
 	this := ObservabilityPipelineDatabricksZerobusDestination{}
 	this.Auth = auth
 	this.Id = id
-	this.IngestionEndpoint = ingestionEndpoint
 	this.Inputs = inputs
 	this.TableName = tableName
 	this.Type = typeVar
-	this.UnityCatalogEndpoint = unityCatalogEndpoint
 	return &this
 }
 
@@ -135,27 +133,32 @@ func (o *ObservabilityPipelineDatabricksZerobusDestination) SetId(v string) {
 	o.Id = v
 }
 
-// GetIngestionEndpoint returns the IngestionEndpoint field value.
-func (o *ObservabilityPipelineDatabricksZerobusDestination) GetIngestionEndpoint() string {
-	if o == nil {
+// GetIngestionEndpointKey returns the IngestionEndpointKey field value if set, zero value otherwise.
+func (o *ObservabilityPipelineDatabricksZerobusDestination) GetIngestionEndpointKey() string {
+	if o == nil || o.IngestionEndpointKey == nil {
 		var ret string
 		return ret
 	}
-	return o.IngestionEndpoint
+	return *o.IngestionEndpointKey
 }
 
-// GetIngestionEndpointOk returns a tuple with the IngestionEndpoint field value
+// GetIngestionEndpointKeyOk returns a tuple with the IngestionEndpointKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineDatabricksZerobusDestination) GetIngestionEndpointOk() (*string, bool) {
-	if o == nil {
+func (o *ObservabilityPipelineDatabricksZerobusDestination) GetIngestionEndpointKeyOk() (*string, bool) {
+	if o == nil || o.IngestionEndpointKey == nil {
 		return nil, false
 	}
-	return &o.IngestionEndpoint, true
+	return o.IngestionEndpointKey, true
 }
 
-// SetIngestionEndpoint sets field value.
-func (o *ObservabilityPipelineDatabricksZerobusDestination) SetIngestionEndpoint(v string) {
-	o.IngestionEndpoint = v
+// HasIngestionEndpointKey returns a boolean if a field has been set.
+func (o *ObservabilityPipelineDatabricksZerobusDestination) HasIngestionEndpointKey() bool {
+	return o != nil && o.IngestionEndpointKey != nil
+}
+
+// SetIngestionEndpointKey gets a reference to the given string and assigns it to the IngestionEndpointKey field.
+func (o *ObservabilityPipelineDatabricksZerobusDestination) SetIngestionEndpointKey(v string) {
+	o.IngestionEndpointKey = &v
 }
 
 // GetInputs returns the Inputs field value.
@@ -227,27 +230,32 @@ func (o *ObservabilityPipelineDatabricksZerobusDestination) SetType(v Observabil
 	o.Type = v
 }
 
-// GetUnityCatalogEndpoint returns the UnityCatalogEndpoint field value.
-func (o *ObservabilityPipelineDatabricksZerobusDestination) GetUnityCatalogEndpoint() string {
-	if o == nil {
+// GetUnityCatalogEndpointKey returns the UnityCatalogEndpointKey field value if set, zero value otherwise.
+func (o *ObservabilityPipelineDatabricksZerobusDestination) GetUnityCatalogEndpointKey() string {
+	if o == nil || o.UnityCatalogEndpointKey == nil {
 		var ret string
 		return ret
 	}
-	return o.UnityCatalogEndpoint
+	return *o.UnityCatalogEndpointKey
 }
 
-// GetUnityCatalogEndpointOk returns a tuple with the UnityCatalogEndpoint field value
+// GetUnityCatalogEndpointKeyOk returns a tuple with the UnityCatalogEndpointKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineDatabricksZerobusDestination) GetUnityCatalogEndpointOk() (*string, bool) {
-	if o == nil {
+func (o *ObservabilityPipelineDatabricksZerobusDestination) GetUnityCatalogEndpointKeyOk() (*string, bool) {
+	if o == nil || o.UnityCatalogEndpointKey == nil {
 		return nil, false
 	}
-	return &o.UnityCatalogEndpoint, true
+	return o.UnityCatalogEndpointKey, true
 }
 
-// SetUnityCatalogEndpoint sets field value.
-func (o *ObservabilityPipelineDatabricksZerobusDestination) SetUnityCatalogEndpoint(v string) {
-	o.UnityCatalogEndpoint = v
+// HasUnityCatalogEndpointKey returns a boolean if a field has been set.
+func (o *ObservabilityPipelineDatabricksZerobusDestination) HasUnityCatalogEndpointKey() bool {
+	return o != nil && o.UnityCatalogEndpointKey != nil
+}
+
+// SetUnityCatalogEndpointKey gets a reference to the given string and assigns it to the UnityCatalogEndpointKey field.
+func (o *ObservabilityPipelineDatabricksZerobusDestination) SetUnityCatalogEndpointKey(v string) {
+	o.UnityCatalogEndpointKey = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -261,11 +269,15 @@ func (o ObservabilityPipelineDatabricksZerobusDestination) MarshalJSON() ([]byte
 		toSerialize["buffer"] = o.Buffer
 	}
 	toSerialize["id"] = o.Id
-	toSerialize["ingestion_endpoint"] = o.IngestionEndpoint
+	if o.IngestionEndpointKey != nil {
+		toSerialize["ingestion_endpoint_key"] = o.IngestionEndpointKey
+	}
 	toSerialize["inputs"] = o.Inputs
 	toSerialize["table_name"] = o.TableName
 	toSerialize["type"] = o.Type
-	toSerialize["unity_catalog_endpoint"] = o.UnityCatalogEndpoint
+	if o.UnityCatalogEndpointKey != nil {
+		toSerialize["unity_catalog_endpoint_key"] = o.UnityCatalogEndpointKey
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -276,14 +288,14 @@ func (o ObservabilityPipelineDatabricksZerobusDestination) MarshalJSON() ([]byte
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineDatabricksZerobusDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Auth                 *ObservabilityPipelineDatabricksZerobusDestinationAuth `json:"auth"`
-		Buffer               *ObservabilityPipelineBufferOptions                    `json:"buffer,omitempty"`
-		Id                   *string                                                `json:"id"`
-		IngestionEndpoint    *string                                                `json:"ingestion_endpoint"`
-		Inputs               *[]string                                              `json:"inputs"`
-		TableName            *string                                                `json:"table_name"`
-		Type                 *ObservabilityPipelineDatabricksZerobusDestinationType `json:"type"`
-		UnityCatalogEndpoint *string                                                `json:"unity_catalog_endpoint"`
+		Auth                    *ObservabilityPipelineDatabricksZerobusDestinationAuth `json:"auth"`
+		Buffer                  *ObservabilityPipelineBufferOptions                    `json:"buffer,omitempty"`
+		Id                      *string                                                `json:"id"`
+		IngestionEndpointKey    *string                                                `json:"ingestion_endpoint_key,omitempty"`
+		Inputs                  *[]string                                              `json:"inputs"`
+		TableName               *string                                                `json:"table_name"`
+		Type                    *ObservabilityPipelineDatabricksZerobusDestinationType `json:"type"`
+		UnityCatalogEndpointKey *string                                                `json:"unity_catalog_endpoint_key,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -294,9 +306,6 @@ func (o *ObservabilityPipelineDatabricksZerobusDestination) UnmarshalJSON(bytes 
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
 	}
-	if all.IngestionEndpoint == nil {
-		return fmt.Errorf("required field ingestion_endpoint missing")
-	}
 	if all.Inputs == nil {
 		return fmt.Errorf("required field inputs missing")
 	}
@@ -306,12 +315,9 @@ func (o *ObservabilityPipelineDatabricksZerobusDestination) UnmarshalJSON(bytes 
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
-	if all.UnityCatalogEndpoint == nil {
-		return fmt.Errorf("required field unity_catalog_endpoint missing")
-	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "buffer", "id", "ingestion_endpoint", "inputs", "table_name", "type", "unity_catalog_endpoint"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "buffer", "id", "ingestion_endpoint_key", "inputs", "table_name", "type", "unity_catalog_endpoint_key"})
 	} else {
 		return err
 	}
@@ -323,7 +329,7 @@ func (o *ObservabilityPipelineDatabricksZerobusDestination) UnmarshalJSON(bytes 
 	o.Auth = *all.Auth
 	o.Buffer = all.Buffer
 	o.Id = *all.Id
-	o.IngestionEndpoint = *all.IngestionEndpoint
+	o.IngestionEndpointKey = all.IngestionEndpointKey
 	o.Inputs = *all.Inputs
 	o.TableName = *all.TableName
 	if !all.Type.IsValid() {
@@ -331,7 +337,7 @@ func (o *ObservabilityPipelineDatabricksZerobusDestination) UnmarshalJSON(bytes 
 	} else {
 		o.Type = *all.Type
 	}
-	o.UnityCatalogEndpoint = *all.UnityCatalogEndpoint
+	o.UnityCatalogEndpointKey = all.UnityCatalogEndpointKey
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
