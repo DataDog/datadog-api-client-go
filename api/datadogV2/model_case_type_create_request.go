@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseTypeCreateRequest Case type create request
+// CaseTypeCreateRequest Request payload for creating a case type.
 type CaseTypeCreateRequest struct {
-	// Case type
+	// Data object for creating a case type.
 	Data CaseTypeCreate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
