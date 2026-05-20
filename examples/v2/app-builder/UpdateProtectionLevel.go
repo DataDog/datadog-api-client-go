@@ -14,6 +14,9 @@ import (
 )
 
 func main() {
+	// there is a valid "app" in the system
+	AppDataID := uuid.MustParse(os.Getenv("APP_DATA_ID"))
+
 	body := datadogV2.UpdateAppProtectionLevelRequest{
 		Data: &datadogV2.UpdateAppProtectionLevelRequestData{
 			Attributes: &datadogV2.UpdateAppProtectionLevelRequestDataAttributes{
@@ -26,7 +29,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAppBuilderApi(apiClient)
-	resp, r, err := api.UpdateProtectionLevel(ctx, uuid.MustParse("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"), body)
+	resp, r, err := api.UpdateProtectionLevel(ctx, AppDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AppBuilderApi.UpdateProtectionLevel`: %v\n", err)

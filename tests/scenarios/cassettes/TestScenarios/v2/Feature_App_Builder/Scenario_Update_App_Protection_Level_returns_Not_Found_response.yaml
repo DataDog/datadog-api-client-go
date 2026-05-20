@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"protectionLevel":"approval_required"},"type":"protectionLevel"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/app-builder/apps/7addb29b-f935-472c-ae79-d1963979a23e/protection-level
+  response:
+    body: '{"errors":[{"status":"404","id":"ac8e4f99-d059-43c6-b48a-2feb634c46b9","title":"app
+      not found","detail":"app with id 7addb29b-f935-472c-ae79-d1963979a23e not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2

@@ -13,6 +13,9 @@ import (
 )
 
 func main() {
+	// there is a valid "app" in the system
+	AppDataID := uuid.MustParse(os.Getenv("APP_DATA_ID"))
+
 	body := datadogV2.UpdateAppVersionNameRequest{
 		Data: &datadogV2.UpdateAppVersionNameRequestData{
 			Attributes: &datadogV2.UpdateAppVersionNameRequestDataAttributes{
@@ -25,7 +28,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAppBuilderApi(apiClient)
-	r, err := api.UpdateAppVersionName(ctx, uuid.MustParse("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"), "version", body)
+	r, err := api.UpdateAppVersionName(ctx, AppDataID, "latest", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AppBuilderApi.UpdateAppVersionName`: %v\n", err)
