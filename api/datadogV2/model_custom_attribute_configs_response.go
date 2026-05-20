@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomAttributeConfigsResponse Custom attribute configs response.
+// CustomAttributeConfigsResponse Response containing a list of custom attribute configurations.
 type CustomAttributeConfigsResponse struct {
 	// List of custom attribute configs of case type
 	Data []CustomAttributeConfig `json:"data,omitempty"`
