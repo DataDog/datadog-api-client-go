@@ -1073,6 +1073,104 @@ func (a *LLMObservabilityApi) DeleteLLMObsCustomEvalConfig(ctx _context.Context,
 	return localVarHTTPResponse, nil
 }
 
+// DeleteLLMObsData Delete LLM Observability data.
+// Submit a request to delete LLM Observability span data matching a trace ID filter within a specified time range.
+func (a *LLMObservabilityApi) DeleteLLMObsData(ctx _context.Context, body LLMObsDataDeletionRequest) (LLMObsDataDeletionResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue LLMObsDataDeletionResponse
+	)
+
+	operationId := "v2.DeleteLLMObsData"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.LLMObservabilityApi.DeleteLLMObsData")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/llm-obs/deletion/data/llmobs"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // DeleteLLMObsDatasetRecords Delete LLM Observability dataset records.
 // Delete one or more records from an LLM Observability dataset.
 func (a *LLMObservabilityApi) DeleteLLMObsDatasetRecords(ctx _context.Context, projectId string, datasetId string, body LLMObsDeleteDatasetRecordsRequest) (*_nethttp.Response, error) {
@@ -2607,6 +2705,239 @@ func (a *LLMObservabilityApi) ListLLMObsProjects(ctx _context.Context, o ...List
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListLLMObsSpansOptionalParameters holds optional parameters for ListLLMObsSpans.
+type ListLLMObsSpansOptionalParameters struct {
+	FilterFrom         *string
+	FilterTo           *string
+	FilterQuery        *string
+	FilterSpanId       *string
+	FilterTraceId      *string
+	FilterSpanKind     *string
+	FilterSpanName     *string
+	FilterMlApp        *string
+	PageLimit          *int64
+	PageCursor         *string
+	Sort               *string
+	IncludeAttachments *bool
+}
+
+// NewListLLMObsSpansOptionalParameters creates an empty struct for parameters.
+func NewListLLMObsSpansOptionalParameters() *ListLLMObsSpansOptionalParameters {
+	this := ListLLMObsSpansOptionalParameters{}
+	return &this
+}
+
+// WithFilterFrom sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsSpansOptionalParameters) WithFilterFrom(filterFrom string) *ListLLMObsSpansOptionalParameters {
+	r.FilterFrom = &filterFrom
+	return r
+}
+
+// WithFilterTo sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsSpansOptionalParameters) WithFilterTo(filterTo string) *ListLLMObsSpansOptionalParameters {
+	r.FilterTo = &filterTo
+	return r
+}
+
+// WithFilterQuery sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsSpansOptionalParameters) WithFilterQuery(filterQuery string) *ListLLMObsSpansOptionalParameters {
+	r.FilterQuery = &filterQuery
+	return r
+}
+
+// WithFilterSpanId sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsSpansOptionalParameters) WithFilterSpanId(filterSpanId string) *ListLLMObsSpansOptionalParameters {
+	r.FilterSpanId = &filterSpanId
+	return r
+}
+
+// WithFilterTraceId sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsSpansOptionalParameters) WithFilterTraceId(filterTraceId string) *ListLLMObsSpansOptionalParameters {
+	r.FilterTraceId = &filterTraceId
+	return r
+}
+
+// WithFilterSpanKind sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsSpansOptionalParameters) WithFilterSpanKind(filterSpanKind string) *ListLLMObsSpansOptionalParameters {
+	r.FilterSpanKind = &filterSpanKind
+	return r
+}
+
+// WithFilterSpanName sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsSpansOptionalParameters) WithFilterSpanName(filterSpanName string) *ListLLMObsSpansOptionalParameters {
+	r.FilterSpanName = &filterSpanName
+	return r
+}
+
+// WithFilterMlApp sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsSpansOptionalParameters) WithFilterMlApp(filterMlApp string) *ListLLMObsSpansOptionalParameters {
+	r.FilterMlApp = &filterMlApp
+	return r
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsSpansOptionalParameters) WithPageLimit(pageLimit int64) *ListLLMObsSpansOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
+// WithPageCursor sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsSpansOptionalParameters) WithPageCursor(pageCursor string) *ListLLMObsSpansOptionalParameters {
+	r.PageCursor = &pageCursor
+	return r
+}
+
+// WithSort sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsSpansOptionalParameters) WithSort(sort string) *ListLLMObsSpansOptionalParameters {
+	r.Sort = &sort
+	return r
+}
+
+// WithIncludeAttachments sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsSpansOptionalParameters) WithIncludeAttachments(includeAttachments bool) *ListLLMObsSpansOptionalParameters {
+	r.IncludeAttachments = &includeAttachments
+	return r
+}
+
+// ListLLMObsSpans List LLM Observability spans.
+// List LLM Observability spans matching the specified filters.
+func (a *LLMObservabilityApi) ListLLMObsSpans(ctx _context.Context, o ...ListLLMObsSpansOptionalParameters) (LLMObsSpansResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue LLMObsSpansResponse
+		optionalParams      ListLLMObsSpansOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListLLMObsSpansOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.ListLLMObsSpans"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.LLMObservabilityApi.ListLLMObsSpans")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/llm-obs/v1/spans/events"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.FilterFrom != nil {
+		localVarQueryParams.Add("filter[from]", datadog.ParameterToString(*optionalParams.FilterFrom, ""))
+	}
+	if optionalParams.FilterTo != nil {
+		localVarQueryParams.Add("filter[to]", datadog.ParameterToString(*optionalParams.FilterTo, ""))
+	}
+	if optionalParams.FilterQuery != nil {
+		localVarQueryParams.Add("filter[query]", datadog.ParameterToString(*optionalParams.FilterQuery, ""))
+	}
+	if optionalParams.FilterSpanId != nil {
+		localVarQueryParams.Add("filter[span_id]", datadog.ParameterToString(*optionalParams.FilterSpanId, ""))
+	}
+	if optionalParams.FilterTraceId != nil {
+		localVarQueryParams.Add("filter[trace_id]", datadog.ParameterToString(*optionalParams.FilterTraceId, ""))
+	}
+	if optionalParams.FilterSpanKind != nil {
+		localVarQueryParams.Add("filter[span_kind]", datadog.ParameterToString(*optionalParams.FilterSpanKind, ""))
+	}
+	if optionalParams.FilterSpanName != nil {
+		localVarQueryParams.Add("filter[span_name]", datadog.ParameterToString(*optionalParams.FilterSpanName, ""))
+	}
+	if optionalParams.FilterMlApp != nil {
+		localVarQueryParams.Add("filter[ml_app]", datadog.ParameterToString(*optionalParams.FilterMlApp, ""))
+	}
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
+	if optionalParams.PageCursor != nil {
+		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*optionalParams.PageCursor, ""))
+	}
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
+	}
+	if optionalParams.IncludeAttachments != nil {
+		localVarQueryParams.Add("include_attachments", datadog.ParameterToString(*optionalParams.IncludeAttachments, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // SearchLLMObsExperimentation Search LLM Observability experimentation entities.
 // Search across LLM Observability experimentation entities — projects, datasets, dataset records, experiments, and experiment runs — using cursor-based pagination.
 //
@@ -2678,6 +3009,104 @@ func (a *LLMObservabilityApi) SearchLLMObsExperimentation(ctx _context.Context, 
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 500 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// SearchLLMObsSpans Search LLM Observability spans.
+// Search LLM Observability spans using structured filters in the request body.
+func (a *LLMObservabilityApi) SearchLLMObsSpans(ctx _context.Context, body LLMObsSearchSpansRequest) (LLMObsSpansResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue LLMObsSpansResponse
+	)
+
+	operationId := "v2.SearchLLMObsSpans"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.LLMObservabilityApi.SearchLLMObsSpans")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/llm-obs/v1/spans/events/search"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
