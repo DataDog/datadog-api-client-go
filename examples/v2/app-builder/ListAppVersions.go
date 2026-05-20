@@ -14,11 +14,14 @@ import (
 )
 
 func main() {
+	// there is a valid "app" in the system
+	AppDataID := uuid.MustParse(os.Getenv("APP_DATA_ID"))
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAppBuilderApi(apiClient)
-	resp, r, err := api.ListAppVersions(ctx, uuid.MustParse("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"), *datadogV2.NewListAppVersionsOptionalParameters())
+	resp, r, err := api.ListAppVersions(ctx, AppDataID, *datadogV2.NewListAppVersionsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AppBuilderApi.ListAppVersions`: %v\n", err)

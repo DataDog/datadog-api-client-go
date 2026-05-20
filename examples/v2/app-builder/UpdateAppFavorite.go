@@ -13,6 +13,9 @@ import (
 )
 
 func main() {
+	// there is a valid "app" in the system
+	AppDataID := uuid.MustParse(os.Getenv("APP_DATA_ID"))
+
 	body := datadogV2.UpdateAppFavoriteRequest{
 		Data: &datadogV2.UpdateAppFavoriteRequestData{
 			Attributes: &datadogV2.UpdateAppFavoriteRequestDataAttributes{
@@ -25,7 +28,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewAppBuilderApi(apiClient)
-	r, err := api.UpdateAppFavorite(ctx, uuid.MustParse("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"), body)
+	r, err := api.UpdateAppFavorite(ctx, AppDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AppBuilderApi.UpdateAppFavorite`: %v\n", err)

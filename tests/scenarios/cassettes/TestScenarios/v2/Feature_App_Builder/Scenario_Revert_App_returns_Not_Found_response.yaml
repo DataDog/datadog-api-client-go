@@ -1,0 +1,20 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/app-builder/apps/7addb29b-f935-472c-ae79-d1963979a23e/revert?version=1
+  response:
+    body: '{"errors":[{"status":"404","id":"09483925-ee8b-44c8-882a-35b53e209584","title":"app
+      not found","detail":"app with id 7addb29b-f935-472c-ae79-d1963979a23e not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2
