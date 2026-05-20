@@ -16,7 +16,7 @@ type TeamRoutingRulesRequestRule struct {
 	PolicyId *string `json:"policy_id,omitempty"`
 	// Defines the query or condition that triggers this routing rule.
 	Query *string `json:"query,omitempty"`
-	// Holds time zone information and a list of time restrictions for a routing rule.
+	// Time restrictions during which the routing rule is active. Outside of these hours, the rule does not match and routing continues to subsequent rules. This is mutually exclusive with the action-level `support_hours` field.
 	TimeRestriction *TimeRestrictions `json:"time_restriction,omitempty"`
 	// Specifies the level of urgency for a routing rule (low, high, or dynamic).
 	Urgency *Urgency `json:"urgency,omitempty"`
