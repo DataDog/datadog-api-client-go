@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/app-builder/blueprint/00000000-0000-0000-0000-000000000001
+  response:
+    body: '{"errors":[{"status":"404","id":"75010b80-a44e-47bd-b903-e38f79efce20","title":"blueprint
+      not found","detail":"blueprint with id 00000000-0000-0000-0000-000000000001
+      not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2
