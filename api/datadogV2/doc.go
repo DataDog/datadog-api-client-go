@@ -269,6 +269,7 @@
 //   - [CloudCostManagementApi.ListTagPipelinesRulesetsStatus]
 //   - [CloudCostManagementApi.ReorderCustomAllocationRules]
 //   - [CloudCostManagementApi.ReorderTagPipelinesRulesets]
+//   - [CloudCostManagementApi.SearchCostRecommendations]
 //   - [CloudCostManagementApi.UpdateCostAWSCURConfig]
 //   - [CloudCostManagementApi.UpdateCostAzureUCConfigs]
 //   - [CloudCostManagementApi.UpdateCostGCPUsageCostConfig]

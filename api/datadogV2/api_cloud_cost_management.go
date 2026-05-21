@@ -4919,6 +4919,133 @@ func (a *CloudCostManagementApi) ReorderTagPipelinesRulesets(ctx _context.Contex
 	return localVarHTTPResponse, nil
 }
 
+// SearchCostRecommendationsOptionalParameters holds optional parameters for SearchCostRecommendations.
+type SearchCostRecommendationsOptionalParameters struct {
+	PageSize  *string
+	PageToken *string
+}
+
+// NewSearchCostRecommendationsOptionalParameters creates an empty struct for parameters.
+func NewSearchCostRecommendationsOptionalParameters() *SearchCostRecommendationsOptionalParameters {
+	this := SearchCostRecommendationsOptionalParameters{}
+	return &this
+}
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
+func (r *SearchCostRecommendationsOptionalParameters) WithPageSize(pageSize string) *SearchCostRecommendationsOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+
+// WithPageToken sets the corresponding parameter name and returns the struct.
+func (r *SearchCostRecommendationsOptionalParameters) WithPageToken(pageToken string) *SearchCostRecommendationsOptionalParameters {
+	r.PageToken = &pageToken
+	return r
+}
+
+// SearchCostRecommendations Search cost recommendations.
+// List cost recommendations matching a filter, with pagination and sorting.
+func (a *CloudCostManagementApi) SearchCostRecommendations(ctx _context.Context, body RecommendationsFilterRequest, o ...SearchCostRecommendationsOptionalParameters) (CostRecommendationArray, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue CostRecommendationArray
+		optionalParams      SearchCostRecommendationsOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type SearchCostRecommendationsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.SearchCostRecommendations"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.SearchCostRecommendations")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/recommendations"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.PageSize != nil {
+		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))
+	}
+	if optionalParams.PageToken != nil {
+		localVarQueryParams.Add("page[token]", datadog.ParameterToString(*optionalParams.PageToken, ""))
+	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // UpdateCostAWSCURConfig Update Cloud Cost Management AWS CUR config.
 // Update the status (active/archived) and/or account filtering configuration of an AWS CUR config.
 func (a *CloudCostManagementApi) UpdateCostAWSCURConfig(ctx _context.Context, cloudAccountId int64, body AwsCURConfigPatchRequest) (AwsCURConfigsResponse, *_nethttp.Response, error) {
