@@ -25,6 +25,9 @@ type ObservabilityPipelineSplunkHecSource struct {
 	Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
 	// The source type. Always `splunk_hec`.
 	Type ObservabilityPipelineSplunkHecSourceType `json:"type"`
+	// A list of tokens that are accepted for authenticating incoming HEC requests. When set, the source
+	// rejects any request whose HEC token does not match an enabled entry in this list.
+	ValidTokens []ObservabilityPipelineSplunkHecSourceValidToken `json:"valid_tokens,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -181,6 +184,34 @@ func (o *ObservabilityPipelineSplunkHecSource) SetType(v ObservabilityPipelineSp
 	o.Type = v
 }
 
+// GetValidTokens returns the ValidTokens field value if set, zero value otherwise.
+func (o *ObservabilityPipelineSplunkHecSource) GetValidTokens() []ObservabilityPipelineSplunkHecSourceValidToken {
+	if o == nil || o.ValidTokens == nil {
+		var ret []ObservabilityPipelineSplunkHecSourceValidToken
+		return ret
+	}
+	return o.ValidTokens
+}
+
+// GetValidTokensOk returns a tuple with the ValidTokens field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineSplunkHecSource) GetValidTokensOk() (*[]ObservabilityPipelineSplunkHecSourceValidToken, bool) {
+	if o == nil || o.ValidTokens == nil {
+		return nil, false
+	}
+	return &o.ValidTokens, true
+}
+
+// HasValidTokens returns a boolean if a field has been set.
+func (o *ObservabilityPipelineSplunkHecSource) HasValidTokens() bool {
+	return o != nil && o.ValidTokens != nil
+}
+
+// SetValidTokens gets a reference to the given []ObservabilityPipelineSplunkHecSourceValidToken and assigns it to the ValidTokens field.
+func (o *ObservabilityPipelineSplunkHecSource) SetValidTokens(v []ObservabilityPipelineSplunkHecSourceValidToken) {
+	o.ValidTokens = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineSplunkHecSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -198,6 +229,9 @@ func (o ObservabilityPipelineSplunkHecSource) MarshalJSON() ([]byte, error) {
 		toSerialize["tls"] = o.Tls
 	}
 	toSerialize["type"] = o.Type
+	if o.ValidTokens != nil {
+		toSerialize["valid_tokens"] = o.ValidTokens
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -208,11 +242,12 @@ func (o ObservabilityPipelineSplunkHecSource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineSplunkHecSource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AddressKey    *string                                   `json:"address_key,omitempty"`
-		Id            *string                                   `json:"id"`
-		StoreHecToken *bool                                     `json:"store_hec_token,omitempty"`
-		Tls           *ObservabilityPipelineTls                 `json:"tls,omitempty"`
-		Type          *ObservabilityPipelineSplunkHecSourceType `json:"type"`
+		AddressKey    *string                                          `json:"address_key,omitempty"`
+		Id            *string                                          `json:"id"`
+		StoreHecToken *bool                                            `json:"store_hec_token,omitempty"`
+		Tls           *ObservabilityPipelineTls                        `json:"tls,omitempty"`
+		Type          *ObservabilityPipelineSplunkHecSourceType        `json:"type"`
+		ValidTokens   []ObservabilityPipelineSplunkHecSourceValidToken `json:"valid_tokens,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -225,7 +260,7 @@ func (o *ObservabilityPipelineSplunkHecSource) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"address_key", "id", "store_hec_token", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"address_key", "id", "store_hec_token", "tls", "type", "valid_tokens"})
 	} else {
 		return err
 	}
@@ -243,6 +278,7 @@ func (o *ObservabilityPipelineSplunkHecSource) UnmarshalJSON(bytes []byte) (err 
 	} else {
 		o.Type = *all.Type
 	}
+	o.ValidTokens = all.ValidTokens
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

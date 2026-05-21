@@ -32,6 +32,10 @@ type ObservabilityPipelineHttpServerSource struct {
 	Type ObservabilityPipelineHttpServerSourceType `json:"type"`
 	// Name of the environment variable or secret that holds the username (used when `auth_strategy` is `plain`).
 	UsernameKey *string `json:"username_key,omitempty"`
+	// A list of tokens that are accepted for authenticating incoming HTTP requests. When set,
+	// the source rejects any request whose token does not match an enabled entry in this list.
+	// Cannot be combined with the `plain` auth strategy.
+	ValidTokens []ObservabilityPipelineHttpServerSourceValidToken `json:"valid_tokens,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -292,6 +296,34 @@ func (o *ObservabilityPipelineHttpServerSource) SetUsernameKey(v string) {
 	o.UsernameKey = &v
 }
 
+// GetValidTokens returns the ValidTokens field value if set, zero value otherwise.
+func (o *ObservabilityPipelineHttpServerSource) GetValidTokens() []ObservabilityPipelineHttpServerSourceValidToken {
+	if o == nil || o.ValidTokens == nil {
+		var ret []ObservabilityPipelineHttpServerSourceValidToken
+		return ret
+	}
+	return o.ValidTokens
+}
+
+// GetValidTokensOk returns a tuple with the ValidTokens field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineHttpServerSource) GetValidTokensOk() (*[]ObservabilityPipelineHttpServerSourceValidToken, bool) {
+	if o == nil || o.ValidTokens == nil {
+		return nil, false
+	}
+	return &o.ValidTokens, true
+}
+
+// HasValidTokens returns a boolean if a field has been set.
+func (o *ObservabilityPipelineHttpServerSource) HasValidTokens() bool {
+	return o != nil && o.ValidTokens != nil
+}
+
+// SetValidTokens gets a reference to the given []ObservabilityPipelineHttpServerSourceValidToken and assigns it to the ValidTokens field.
+func (o *ObservabilityPipelineHttpServerSource) SetValidTokens(v []ObservabilityPipelineHttpServerSourceValidToken) {
+	o.ValidTokens = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ObservabilityPipelineHttpServerSource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -317,6 +349,9 @@ func (o ObservabilityPipelineHttpServerSource) MarshalJSON() ([]byte, error) {
 	if o.UsernameKey != nil {
 		toSerialize["username_key"] = o.UsernameKey
 	}
+	if o.ValidTokens != nil {
+		toSerialize["valid_tokens"] = o.ValidTokens
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -336,6 +371,7 @@ func (o *ObservabilityPipelineHttpServerSource) UnmarshalJSON(bytes []byte) (err
 		Tls          *ObservabilityPipelineTls                          `json:"tls,omitempty"`
 		Type         *ObservabilityPipelineHttpServerSourceType         `json:"type"`
 		UsernameKey  *string                                            `json:"username_key,omitempty"`
+		ValidTokens  []ObservabilityPipelineHttpServerSourceValidToken  `json:"valid_tokens,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -354,7 +390,7 @@ func (o *ObservabilityPipelineHttpServerSource) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"address_key", "auth_strategy", "custom_key", "decoding", "id", "password_key", "tls", "type", "username_key"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"address_key", "auth_strategy", "custom_key", "decoding", "id", "password_key", "tls", "type", "username_key", "valid_tokens"})
 	} else {
 		return err
 	}
@@ -384,6 +420,7 @@ func (o *ObservabilityPipelineHttpServerSource) UnmarshalJSON(bytes []byte) (err
 		o.Type = *all.Type
 	}
 	o.UsernameKey = all.UsernameKey
+	o.ValidTokens = all.ValidTokens
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
