@@ -536,6 +536,7 @@
 //   - [LLMObservabilityApi.DeleteLLMObsExperiments]
 //   - [LLMObservabilityApi.DeleteLLMObsProjects]
 //   - [LLMObservabilityApi.GetLLMObsAnnotatedInteractions]
+//   - [LLMObservabilityApi.GetLLMObsAnnotatedInteractionsByTraceIDs]
 //   - [LLMObservabilityApi.GetLLMObsAnnotationQueueLabelSchema]
 //   - [LLMObservabilityApi.GetLLMObsCustomEvalConfig]
 //   - [LLMObservabilityApi.ListLLMObsAnnotationQueues]
