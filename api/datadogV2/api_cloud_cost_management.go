@@ -984,6 +984,1052 @@ func (a *CloudCostManagementApi) GetBudget(ctx _context.Context, budgetId string
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetCommitmentsCommitmentListOptionalParameters holds optional parameters for GetCommitmentsCommitmentList.
+type GetCommitmentsCommitmentListOptionalParameters struct {
+	FilterBy       *string
+	CommitmentType *CommitmentsCommitmentType
+}
+
+// NewGetCommitmentsCommitmentListOptionalParameters creates an empty struct for parameters.
+func NewGetCommitmentsCommitmentListOptionalParameters() *GetCommitmentsCommitmentListOptionalParameters {
+	this := GetCommitmentsCommitmentListOptionalParameters{}
+	return &this
+}
+
+// WithFilterBy sets the corresponding parameter name and returns the struct.
+func (r *GetCommitmentsCommitmentListOptionalParameters) WithFilterBy(filterBy string) *GetCommitmentsCommitmentListOptionalParameters {
+	r.FilterBy = &filterBy
+	return r
+}
+
+// WithCommitmentType sets the corresponding parameter name and returns the struct.
+func (r *GetCommitmentsCommitmentListOptionalParameters) WithCommitmentType(commitmentType CommitmentsCommitmentType) *GetCommitmentsCommitmentListOptionalParameters {
+	r.CommitmentType = &commitmentType
+	return r
+}
+
+// GetCommitmentsCommitmentList Get commitments list.
+// Get a list of individual cloud commitments (Reserved Instances or Savings Plans) with their utilization details. The response schema varies based on the provider, product, and commitment type.
+func (a *CloudCostManagementApi) GetCommitmentsCommitmentList(ctx _context.Context, provider CommitmentsProvider, product string, start int64, end int64, o ...GetCommitmentsCommitmentListOptionalParameters) (CommitmentsListResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CommitmentsListResponse
+		optionalParams      GetCommitmentsCommitmentListOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetCommitmentsCommitmentListOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.GetCommitmentsCommitmentList"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.GetCommitmentsCommitmentList")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/commitments/commitment-list"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("provider", datadog.ParameterToString(provider, ""))
+	localVarQueryParams.Add("product", datadog.ParameterToString(product, ""))
+	localVarQueryParams.Add("start", datadog.ParameterToString(start, ""))
+	localVarQueryParams.Add("end", datadog.ParameterToString(end, ""))
+	if optionalParams.FilterBy != nil {
+		localVarQueryParams.Add("filterBy", datadog.ParameterToString(*optionalParams.FilterBy, ""))
+	}
+	if optionalParams.CommitmentType != nil {
+		localVarQueryParams.Add("commitmentType", datadog.ParameterToString(*optionalParams.CommitmentType, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetCommitmentsCoverageScalarOptionalParameters holds optional parameters for GetCommitmentsCoverageScalar.
+type GetCommitmentsCoverageScalarOptionalParameters struct {
+	FilterBy *string
+}
+
+// NewGetCommitmentsCoverageScalarOptionalParameters creates an empty struct for parameters.
+func NewGetCommitmentsCoverageScalarOptionalParameters() *GetCommitmentsCoverageScalarOptionalParameters {
+	this := GetCommitmentsCoverageScalarOptionalParameters{}
+	return &this
+}
+
+// WithFilterBy sets the corresponding parameter name and returns the struct.
+func (r *GetCommitmentsCoverageScalarOptionalParameters) WithFilterBy(filterBy string) *GetCommitmentsCoverageScalarOptionalParameters {
+	r.FilterBy = &filterBy
+	return r
+}
+
+// GetCommitmentsCoverageScalar Get commitments coverage (scalar).
+// Get scalar coverage metrics for cloud commitment programs, including hours and cost coverage percentages.
+func (a *CloudCostManagementApi) GetCommitmentsCoverageScalar(ctx _context.Context, provider CommitmentsProvider, product string, start int64, end int64, o ...GetCommitmentsCoverageScalarOptionalParameters) (CommitmentsCoverageScalarResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CommitmentsCoverageScalarResponse
+		optionalParams      GetCommitmentsCoverageScalarOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetCommitmentsCoverageScalarOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.GetCommitmentsCoverageScalar"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.GetCommitmentsCoverageScalar")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/commitments/coverage/scalar"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("provider", datadog.ParameterToString(provider, ""))
+	localVarQueryParams.Add("product", datadog.ParameterToString(product, ""))
+	localVarQueryParams.Add("start", datadog.ParameterToString(start, ""))
+	localVarQueryParams.Add("end", datadog.ParameterToString(end, ""))
+	if optionalParams.FilterBy != nil {
+		localVarQueryParams.Add("filterBy", datadog.ParameterToString(*optionalParams.FilterBy, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetCommitmentsCoverageTimeseriesOptionalParameters holds optional parameters for GetCommitmentsCoverageTimeseries.
+type GetCommitmentsCoverageTimeseriesOptionalParameters struct {
+	FilterBy *string
+}
+
+// NewGetCommitmentsCoverageTimeseriesOptionalParameters creates an empty struct for parameters.
+func NewGetCommitmentsCoverageTimeseriesOptionalParameters() *GetCommitmentsCoverageTimeseriesOptionalParameters {
+	this := GetCommitmentsCoverageTimeseriesOptionalParameters{}
+	return &this
+}
+
+// WithFilterBy sets the corresponding parameter name and returns the struct.
+func (r *GetCommitmentsCoverageTimeseriesOptionalParameters) WithFilterBy(filterBy string) *GetCommitmentsCoverageTimeseriesOptionalParameters {
+	r.FilterBy = &filterBy
+	return r
+}
+
+// GetCommitmentsCoverageTimeseries Get commitments coverage (timeseries).
+// Get timeseries coverage metrics for cloud commitment programs, broken down by coverage type (Reserved Instances, Savings Plans, On-Demand, and Spot) for both hours and cost.
+func (a *CloudCostManagementApi) GetCommitmentsCoverageTimeseries(ctx _context.Context, provider CommitmentsProvider, product string, start int64, end int64, o ...GetCommitmentsCoverageTimeseriesOptionalParameters) (CommitmentsCoverageTimeseriesResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CommitmentsCoverageTimeseriesResponse
+		optionalParams      GetCommitmentsCoverageTimeseriesOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetCommitmentsCoverageTimeseriesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.GetCommitmentsCoverageTimeseries"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.GetCommitmentsCoverageTimeseries")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/commitments/coverage/timeseries"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("provider", datadog.ParameterToString(provider, ""))
+	localVarQueryParams.Add("product", datadog.ParameterToString(product, ""))
+	localVarQueryParams.Add("start", datadog.ParameterToString(start, ""))
+	localVarQueryParams.Add("end", datadog.ParameterToString(end, ""))
+	if optionalParams.FilterBy != nil {
+		localVarQueryParams.Add("filterBy", datadog.ParameterToString(*optionalParams.FilterBy, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetCommitmentsOnDemandHotspotsScalarOptionalParameters holds optional parameters for GetCommitmentsOnDemandHotspotsScalar.
+type GetCommitmentsOnDemandHotspotsScalarOptionalParameters struct {
+	FilterBy *string
+}
+
+// NewGetCommitmentsOnDemandHotspotsScalarOptionalParameters creates an empty struct for parameters.
+func NewGetCommitmentsOnDemandHotspotsScalarOptionalParameters() *GetCommitmentsOnDemandHotspotsScalarOptionalParameters {
+	this := GetCommitmentsOnDemandHotspotsScalarOptionalParameters{}
+	return &this
+}
+
+// WithFilterBy sets the corresponding parameter name and returns the struct.
+func (r *GetCommitmentsOnDemandHotspotsScalarOptionalParameters) WithFilterBy(filterBy string) *GetCommitmentsOnDemandHotspotsScalarOptionalParameters {
+	r.FilterBy = &filterBy
+	return r
+}
+
+// GetCommitmentsOnDemandHotspotsScalar Get commitments on-demand hot spots (scalar).
+// Get scalar on-demand hot-spots data for cloud commitment programs, showing per-dimension breakdowns of on-demand spending with coverage metrics and potential savings.
+func (a *CloudCostManagementApi) GetCommitmentsOnDemandHotspotsScalar(ctx _context.Context, provider CommitmentsProvider, product string, start int64, end int64, o ...GetCommitmentsOnDemandHotspotsScalarOptionalParameters) (CommitmentsOnDemandHotspotsScalarResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CommitmentsOnDemandHotspotsScalarResponse
+		optionalParams      GetCommitmentsOnDemandHotspotsScalarOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetCommitmentsOnDemandHotspotsScalarOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.GetCommitmentsOnDemandHotspotsScalar"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.GetCommitmentsOnDemandHotspotsScalar")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/commitments/on-demand-hot-spots/scalar"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("provider", datadog.ParameterToString(provider, ""))
+	localVarQueryParams.Add("product", datadog.ParameterToString(product, ""))
+	localVarQueryParams.Add("start", datadog.ParameterToString(start, ""))
+	localVarQueryParams.Add("end", datadog.ParameterToString(end, ""))
+	if optionalParams.FilterBy != nil {
+		localVarQueryParams.Add("filterBy", datadog.ParameterToString(*optionalParams.FilterBy, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetCommitmentsSavingsScalarOptionalParameters holds optional parameters for GetCommitmentsSavingsScalar.
+type GetCommitmentsSavingsScalarOptionalParameters struct {
+	FilterBy *string
+}
+
+// NewGetCommitmentsSavingsScalarOptionalParameters creates an empty struct for parameters.
+func NewGetCommitmentsSavingsScalarOptionalParameters() *GetCommitmentsSavingsScalarOptionalParameters {
+	this := GetCommitmentsSavingsScalarOptionalParameters{}
+	return &this
+}
+
+// WithFilterBy sets the corresponding parameter name and returns the struct.
+func (r *GetCommitmentsSavingsScalarOptionalParameters) WithFilterBy(filterBy string) *GetCommitmentsSavingsScalarOptionalParameters {
+	r.FilterBy = &filterBy
+	return r
+}
+
+// GetCommitmentsSavingsScalar Get commitments savings (scalar).
+// Get scalar savings metrics for cloud commitment programs, including realized savings and effective savings rate.
+func (a *CloudCostManagementApi) GetCommitmentsSavingsScalar(ctx _context.Context, provider CommitmentsProvider, product string, start int64, end int64, o ...GetCommitmentsSavingsScalarOptionalParameters) (CommitmentsSavingsScalarResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CommitmentsSavingsScalarResponse
+		optionalParams      GetCommitmentsSavingsScalarOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetCommitmentsSavingsScalarOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.GetCommitmentsSavingsScalar"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.GetCommitmentsSavingsScalar")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/commitments/savings/scalar"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("provider", datadog.ParameterToString(provider, ""))
+	localVarQueryParams.Add("product", datadog.ParameterToString(product, ""))
+	localVarQueryParams.Add("start", datadog.ParameterToString(start, ""))
+	localVarQueryParams.Add("end", datadog.ParameterToString(end, ""))
+	if optionalParams.FilterBy != nil {
+		localVarQueryParams.Add("filterBy", datadog.ParameterToString(*optionalParams.FilterBy, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetCommitmentsSavingsTimeseriesOptionalParameters holds optional parameters for GetCommitmentsSavingsTimeseries.
+type GetCommitmentsSavingsTimeseriesOptionalParameters struct {
+	FilterBy *string
+}
+
+// NewGetCommitmentsSavingsTimeseriesOptionalParameters creates an empty struct for parameters.
+func NewGetCommitmentsSavingsTimeseriesOptionalParameters() *GetCommitmentsSavingsTimeseriesOptionalParameters {
+	this := GetCommitmentsSavingsTimeseriesOptionalParameters{}
+	return &this
+}
+
+// WithFilterBy sets the corresponding parameter name and returns the struct.
+func (r *GetCommitmentsSavingsTimeseriesOptionalParameters) WithFilterBy(filterBy string) *GetCommitmentsSavingsTimeseriesOptionalParameters {
+	r.FilterBy = &filterBy
+	return r
+}
+
+// GetCommitmentsSavingsTimeseries Get commitments savings (timeseries).
+// Get timeseries savings metrics for cloud commitment programs, including actual cost, on-demand equivalent cost, realized savings, and effective savings rate over time.
+func (a *CloudCostManagementApi) GetCommitmentsSavingsTimeseries(ctx _context.Context, provider CommitmentsProvider, product string, start int64, end int64, o ...GetCommitmentsSavingsTimeseriesOptionalParameters) (CommitmentsSavingsTimeseriesResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CommitmentsSavingsTimeseriesResponse
+		optionalParams      GetCommitmentsSavingsTimeseriesOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetCommitmentsSavingsTimeseriesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.GetCommitmentsSavingsTimeseries"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.GetCommitmentsSavingsTimeseries")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/commitments/savings/timeseries"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("provider", datadog.ParameterToString(provider, ""))
+	localVarQueryParams.Add("product", datadog.ParameterToString(product, ""))
+	localVarQueryParams.Add("start", datadog.ParameterToString(start, ""))
+	localVarQueryParams.Add("end", datadog.ParameterToString(end, ""))
+	if optionalParams.FilterBy != nil {
+		localVarQueryParams.Add("filterBy", datadog.ParameterToString(*optionalParams.FilterBy, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetCommitmentsUtilizationScalarOptionalParameters holds optional parameters for GetCommitmentsUtilizationScalar.
+type GetCommitmentsUtilizationScalarOptionalParameters struct {
+	FilterBy       *string
+	CommitmentType *CommitmentsCommitmentType
+}
+
+// NewGetCommitmentsUtilizationScalarOptionalParameters creates an empty struct for parameters.
+func NewGetCommitmentsUtilizationScalarOptionalParameters() *GetCommitmentsUtilizationScalarOptionalParameters {
+	this := GetCommitmentsUtilizationScalarOptionalParameters{}
+	return &this
+}
+
+// WithFilterBy sets the corresponding parameter name and returns the struct.
+func (r *GetCommitmentsUtilizationScalarOptionalParameters) WithFilterBy(filterBy string) *GetCommitmentsUtilizationScalarOptionalParameters {
+	r.FilterBy = &filterBy
+	return r
+}
+
+// WithCommitmentType sets the corresponding parameter name and returns the struct.
+func (r *GetCommitmentsUtilizationScalarOptionalParameters) WithCommitmentType(commitmentType CommitmentsCommitmentType) *GetCommitmentsUtilizationScalarOptionalParameters {
+	r.CommitmentType = &commitmentType
+	return r
+}
+
+// GetCommitmentsUtilizationScalar Get commitments utilization (scalar).
+// Get scalar utilization metrics for cloud commitment programs, including utilization percentage and unused cost.
+func (a *CloudCostManagementApi) GetCommitmentsUtilizationScalar(ctx _context.Context, provider CommitmentsProvider, product string, start int64, end int64, o ...GetCommitmentsUtilizationScalarOptionalParameters) (CommitmentsUtilizationScalarResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CommitmentsUtilizationScalarResponse
+		optionalParams      GetCommitmentsUtilizationScalarOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetCommitmentsUtilizationScalarOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.GetCommitmentsUtilizationScalar"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.GetCommitmentsUtilizationScalar")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/commitments/utilization/scalar"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("provider", datadog.ParameterToString(provider, ""))
+	localVarQueryParams.Add("product", datadog.ParameterToString(product, ""))
+	localVarQueryParams.Add("start", datadog.ParameterToString(start, ""))
+	localVarQueryParams.Add("end", datadog.ParameterToString(end, ""))
+	if optionalParams.FilterBy != nil {
+		localVarQueryParams.Add("filterBy", datadog.ParameterToString(*optionalParams.FilterBy, ""))
+	}
+	if optionalParams.CommitmentType != nil {
+		localVarQueryParams.Add("commitmentType", datadog.ParameterToString(*optionalParams.CommitmentType, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetCommitmentsUtilizationTimeseriesOptionalParameters holds optional parameters for GetCommitmentsUtilizationTimeseries.
+type GetCommitmentsUtilizationTimeseriesOptionalParameters struct {
+	FilterBy       *string
+	CommitmentType *CommitmentsCommitmentType
+}
+
+// NewGetCommitmentsUtilizationTimeseriesOptionalParameters creates an empty struct for parameters.
+func NewGetCommitmentsUtilizationTimeseriesOptionalParameters() *GetCommitmentsUtilizationTimeseriesOptionalParameters {
+	this := GetCommitmentsUtilizationTimeseriesOptionalParameters{}
+	return &this
+}
+
+// WithFilterBy sets the corresponding parameter name and returns the struct.
+func (r *GetCommitmentsUtilizationTimeseriesOptionalParameters) WithFilterBy(filterBy string) *GetCommitmentsUtilizationTimeseriesOptionalParameters {
+	r.FilterBy = &filterBy
+	return r
+}
+
+// WithCommitmentType sets the corresponding parameter name and returns the struct.
+func (r *GetCommitmentsUtilizationTimeseriesOptionalParameters) WithCommitmentType(commitmentType CommitmentsCommitmentType) *GetCommitmentsUtilizationTimeseriesOptionalParameters {
+	r.CommitmentType = &commitmentType
+	return r
+}
+
+// GetCommitmentsUtilizationTimeseries Get commitments utilization (timeseries).
+// Get timeseries utilization metrics for cloud commitment programs, including used and unused cost series over time.
+func (a *CloudCostManagementApi) GetCommitmentsUtilizationTimeseries(ctx _context.Context, provider CommitmentsProvider, product string, start int64, end int64, o ...GetCommitmentsUtilizationTimeseriesOptionalParameters) (CommitmentsUtilizationTimeseriesResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CommitmentsUtilizationTimeseriesResponse
+		optionalParams      GetCommitmentsUtilizationTimeseriesOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetCommitmentsUtilizationTimeseriesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.GetCommitmentsUtilizationTimeseries"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.GetCommitmentsUtilizationTimeseries")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/commitments/utilization/timeseries"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("provider", datadog.ParameterToString(provider, ""))
+	localVarQueryParams.Add("product", datadog.ParameterToString(product, ""))
+	localVarQueryParams.Add("start", datadog.ParameterToString(start, ""))
+	localVarQueryParams.Add("end", datadog.ParameterToString(end, ""))
+	if optionalParams.FilterBy != nil {
+		localVarQueryParams.Add("filterBy", datadog.ParameterToString(*optionalParams.FilterBy, ""))
+	}
+	if optionalParams.CommitmentType != nil {
+		localVarQueryParams.Add("commitmentType", datadog.ParameterToString(*optionalParams.CommitmentType, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // GetCostAWSCURConfig Get cost AWS CUR config.
 // Get a specific AWS CUR config.
 func (a *CloudCostManagementApi) GetCostAWSCURConfig(ctx _context.Context, cloudAccountId int64) (AwsCurConfigResponse, *_nethttp.Response, error) {
@@ -1399,6 +2445,121 @@ func (a *CloudCostManagementApi) GetCostTagKey(ctx _context.Context, tagKey stri
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetCostTagMetadataCurrencyOptionalParameters holds optional parameters for GetCostTagMetadataCurrency.
+type GetCostTagMetadataCurrencyOptionalParameters struct {
+	FilterProvider *string
+}
+
+// NewGetCostTagMetadataCurrencyOptionalParameters creates an empty struct for parameters.
+func NewGetCostTagMetadataCurrencyOptionalParameters() *GetCostTagMetadataCurrencyOptionalParameters {
+	this := GetCostTagMetadataCurrencyOptionalParameters{}
+	return &this
+}
+
+// WithFilterProvider sets the corresponding parameter name and returns the struct.
+func (r *GetCostTagMetadataCurrencyOptionalParameters) WithFilterProvider(filterProvider string) *GetCostTagMetadataCurrencyOptionalParameters {
+	r.FilterProvider = &filterProvider
+	return r
+}
+
+// GetCostTagMetadataCurrency Get the Cloud Cost Management billing currency.
+// Get the dominant billing currency observed in Cloud Cost Management data for the requested period. The response wraps the currency in a JSON:API `data` array containing at most one entry; the array is empty when no currency data is available.
+func (a *CloudCostManagementApi) GetCostTagMetadataCurrency(ctx _context.Context, filterMonth string, o ...GetCostTagMetadataCurrencyOptionalParameters) (CostCurrencyResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CostCurrencyResponse
+		optionalParams      GetCostTagMetadataCurrencyOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetCostTagMetadataCurrencyOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.GetCostTagMetadataCurrency"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.GetCostTagMetadataCurrency")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/tag_metadata/currency"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("filter[month]", datadog.ParameterToString(filterMonth, ""))
+	if optionalParams.FilterProvider != nil {
+		localVarQueryParams.Add("filter[provider]", datadog.ParameterToString(*optionalParams.FilterProvider, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -2367,6 +3528,121 @@ func (a *CloudCostManagementApi) ListCostTagDescriptions(ctx _context.Context, o
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListCostTagKeySourcesOptionalParameters holds optional parameters for ListCostTagKeySources.
+type ListCostTagKeySourcesOptionalParameters struct {
+	FilterProvider *string
+}
+
+// NewListCostTagKeySourcesOptionalParameters creates an empty struct for parameters.
+func NewListCostTagKeySourcesOptionalParameters() *ListCostTagKeySourcesOptionalParameters {
+	this := ListCostTagKeySourcesOptionalParameters{}
+	return &this
+}
+
+// WithFilterProvider sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagKeySourcesOptionalParameters) WithFilterProvider(filterProvider string) *ListCostTagKeySourcesOptionalParameters {
+	r.FilterProvider = &filterProvider
+	return r
+}
+
+// ListCostTagKeySources List Cloud Cost Management tag sources.
+// List Cloud Cost Management tag keys observed for the requested period, along with the origin sources that produced them (for example, `aws-user-defined`, `custom`).
+func (a *CloudCostManagementApi) ListCostTagKeySources(ctx _context.Context, filterMonth string, o ...ListCostTagKeySourcesOptionalParameters) (CostTagKeySourcesResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CostTagKeySourcesResponse
+		optionalParams      ListCostTagKeySourcesOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListCostTagKeySourcesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.ListCostTagKeySources"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.ListCostTagKeySources")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/tag_metadata/tag_sources"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("filter[month]", datadog.ParameterToString(filterMonth, ""))
+	if optionalParams.FilterProvider != nil {
+		localVarQueryParams.Add("filter[provider]", datadog.ParameterToString(*optionalParams.FilterProvider, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // ListCostTagKeysOptionalParameters holds optional parameters for ListCostTagKeys.
 type ListCostTagKeysOptionalParameters struct {
 	FilterMetric *string
@@ -2431,6 +3707,381 @@ func (a *CloudCostManagementApi) ListCostTagKeys(ctx _context.Context, o ...List
 		} else {
 			localVarQueryParams.Add("filter[tags]", datadog.ParameterToString(t, "multi"))
 		}
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListCostTagMetadataOptionalParameters holds optional parameters for ListCostTagMetadata.
+type ListCostTagMetadataOptionalParameters struct {
+	FilterProvider *string
+	FilterMetric   *string
+	FilterTagKey   *string
+	FilterDaily    *CostTagMetadataDailyFilter
+}
+
+// NewListCostTagMetadataOptionalParameters creates an empty struct for parameters.
+func NewListCostTagMetadataOptionalParameters() *ListCostTagMetadataOptionalParameters {
+	this := ListCostTagMetadataOptionalParameters{}
+	return &this
+}
+
+// WithFilterProvider sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagMetadataOptionalParameters) WithFilterProvider(filterProvider string) *ListCostTagMetadataOptionalParameters {
+	r.FilterProvider = &filterProvider
+	return r
+}
+
+// WithFilterMetric sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagMetadataOptionalParameters) WithFilterMetric(filterMetric string) *ListCostTagMetadataOptionalParameters {
+	r.FilterMetric = &filterMetric
+	return r
+}
+
+// WithFilterTagKey sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagMetadataOptionalParameters) WithFilterTagKey(filterTagKey string) *ListCostTagMetadataOptionalParameters {
+	r.FilterTagKey = &filterTagKey
+	return r
+}
+
+// WithFilterDaily sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagMetadataOptionalParameters) WithFilterDaily(filterDaily CostTagMetadataDailyFilter) *ListCostTagMetadataOptionalParameters {
+	r.FilterDaily = &filterDaily
+	return r
+}
+
+// ListCostTagMetadata List Cloud Cost Management tag key metadata.
+// List Cloud Cost Management tag key metadata, including row counts, cost covered, cardinality, and a sample of top tag values per cloud account. Use `filter[daily]=true` to return daily rows instead of the default monthly roll-up.
+func (a *CloudCostManagementApi) ListCostTagMetadata(ctx _context.Context, filterMonth string, o ...ListCostTagMetadataOptionalParameters) (CostTagKeyMetadataResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CostTagKeyMetadataResponse
+		optionalParams      ListCostTagMetadataOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListCostTagMetadataOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.ListCostTagMetadata"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.ListCostTagMetadata")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/tag_metadata"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("filter[month]", datadog.ParameterToString(filterMonth, ""))
+	if optionalParams.FilterProvider != nil {
+		localVarQueryParams.Add("filter[provider]", datadog.ParameterToString(*optionalParams.FilterProvider, ""))
+	}
+	if optionalParams.FilterMetric != nil {
+		localVarQueryParams.Add("filter[metric]", datadog.ParameterToString(*optionalParams.FilterMetric, ""))
+	}
+	if optionalParams.FilterTagKey != nil {
+		localVarQueryParams.Add("filter[tag_key]", datadog.ParameterToString(*optionalParams.FilterTagKey, ""))
+	}
+	if optionalParams.FilterDaily != nil {
+		localVarQueryParams.Add("filter[daily]", datadog.ParameterToString(*optionalParams.FilterDaily, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListCostTagMetadataMetricsOptionalParameters holds optional parameters for ListCostTagMetadataMetrics.
+type ListCostTagMetadataMetricsOptionalParameters struct {
+	FilterProvider *string
+}
+
+// NewListCostTagMetadataMetricsOptionalParameters creates an empty struct for parameters.
+func NewListCostTagMetadataMetricsOptionalParameters() *ListCostTagMetadataMetricsOptionalParameters {
+	this := ListCostTagMetadataMetricsOptionalParameters{}
+	return &this
+}
+
+// WithFilterProvider sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagMetadataMetricsOptionalParameters) WithFilterProvider(filterProvider string) *ListCostTagMetadataMetricsOptionalParameters {
+	r.FilterProvider = &filterProvider
+	return r
+}
+
+// ListCostTagMetadataMetrics List available Cloud Cost Management metrics.
+// List Cloud Cost Management metrics that have data for the requested period.
+func (a *CloudCostManagementApi) ListCostTagMetadataMetrics(ctx _context.Context, filterMonth string, o ...ListCostTagMetadataMetricsOptionalParameters) (CostMetricsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CostMetricsResponse
+		optionalParams      ListCostTagMetadataMetricsOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListCostTagMetadataMetricsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.ListCostTagMetadataMetrics"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.ListCostTagMetadataMetrics")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/tag_metadata/metrics"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("filter[month]", datadog.ParameterToString(filterMonth, ""))
+	if optionalParams.FilterProvider != nil {
+		localVarQueryParams.Add("filter[provider]", datadog.ParameterToString(*optionalParams.FilterProvider, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListCostTagMetadataOrchestratorsOptionalParameters holds optional parameters for ListCostTagMetadataOrchestrators.
+type ListCostTagMetadataOrchestratorsOptionalParameters struct {
+	FilterProvider *string
+}
+
+// NewListCostTagMetadataOrchestratorsOptionalParameters creates an empty struct for parameters.
+func NewListCostTagMetadataOrchestratorsOptionalParameters() *ListCostTagMetadataOrchestratorsOptionalParameters {
+	this := ListCostTagMetadataOrchestratorsOptionalParameters{}
+	return &this
+}
+
+// WithFilterProvider sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagMetadataOrchestratorsOptionalParameters) WithFilterProvider(filterProvider string) *ListCostTagMetadataOrchestratorsOptionalParameters {
+	r.FilterProvider = &filterProvider
+	return r
+}
+
+// ListCostTagMetadataOrchestrators List Cloud Cost Management orchestrators.
+// List container orchestrators (for example, `kubernetes`, `ecs`) detected in Cloud Cost Management data for the requested period.
+func (a *CloudCostManagementApi) ListCostTagMetadataOrchestrators(ctx _context.Context, filterMonth string, o ...ListCostTagMetadataOrchestratorsOptionalParameters) (CostOrchestratorsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CostOrchestratorsResponse
+		optionalParams      ListCostTagMetadataOrchestratorsOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListCostTagMetadataOrchestratorsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.ListCostTagMetadataOrchestrators"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.ListCostTagMetadataOrchestrators")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/tag_metadata/orchestrators"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("filter[month]", datadog.ParameterToString(filterMonth, ""))
+	if optionalParams.FilterProvider != nil {
+		localVarQueryParams.Add("filter[provider]", datadog.ParameterToString(*optionalParams.FilterProvider, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
@@ -3266,6 +4917,133 @@ func (a *CloudCostManagementApi) ReorderTagPipelinesRulesets(ctx _context.Contex
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+// SearchCostRecommendationsOptionalParameters holds optional parameters for SearchCostRecommendations.
+type SearchCostRecommendationsOptionalParameters struct {
+	PageSize  *string
+	PageToken *string
+}
+
+// NewSearchCostRecommendationsOptionalParameters creates an empty struct for parameters.
+func NewSearchCostRecommendationsOptionalParameters() *SearchCostRecommendationsOptionalParameters {
+	this := SearchCostRecommendationsOptionalParameters{}
+	return &this
+}
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
+func (r *SearchCostRecommendationsOptionalParameters) WithPageSize(pageSize string) *SearchCostRecommendationsOptionalParameters {
+	r.PageSize = &pageSize
+	return r
+}
+
+// WithPageToken sets the corresponding parameter name and returns the struct.
+func (r *SearchCostRecommendationsOptionalParameters) WithPageToken(pageToken string) *SearchCostRecommendationsOptionalParameters {
+	r.PageToken = &pageToken
+	return r
+}
+
+// SearchCostRecommendations Search cost recommendations.
+// List cost recommendations matching a filter, with pagination and sorting.
+func (a *CloudCostManagementApi) SearchCostRecommendations(ctx _context.Context, body RecommendationsFilterRequest, o ...SearchCostRecommendationsOptionalParameters) (CostRecommendationArray, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue CostRecommendationArray
+		optionalParams      SearchCostRecommendationsOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type SearchCostRecommendationsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.SearchCostRecommendations"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.SearchCostRecommendations")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/cost/recommendations"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.PageSize != nil {
+		localVarQueryParams.Add("page[size]", datadog.ParameterToString(*optionalParams.PageSize, ""))
+	}
+	if optionalParams.PageToken != nil {
+		localVarQueryParams.Add("page[token]", datadog.ParameterToString(*optionalParams.PageToken, ""))
+	}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // UpdateCostAWSCURConfig Update Cloud Cost Management AWS CUR config.

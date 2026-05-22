@@ -10,9 +10,10 @@ import (
 
 // RoutingRuleAction - Defines an action that is executed when a routing rule matches certain criteria.
 type RoutingRuleAction struct {
-	SendSlackMessageAction          *SendSlackMessageAction
-	SendTeamsMessageAction          *SendTeamsMessageAction
-	TriggerWorkflowAutomationAction *TriggerWorkflowAutomationAction
+	SendSlackMessageAction            *SendSlackMessageAction
+	SendTeamsMessageAction            *SendTeamsMessageAction
+	TriggerWorkflowAutomationAction   *TriggerWorkflowAutomationAction
+	RoutingRuleEscalationPolicyAction *RoutingRuleEscalationPolicyAction
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -31,6 +32,11 @@ func SendTeamsMessageActionAsRoutingRuleAction(v *SendTeamsMessageAction) Routin
 // TriggerWorkflowAutomationActionAsRoutingRuleAction is a convenience function that returns TriggerWorkflowAutomationAction wrapped in RoutingRuleAction.
 func TriggerWorkflowAutomationActionAsRoutingRuleAction(v *TriggerWorkflowAutomationAction) RoutingRuleAction {
 	return RoutingRuleAction{TriggerWorkflowAutomationAction: v}
+}
+
+// RoutingRuleEscalationPolicyActionAsRoutingRuleAction is a convenience function that returns RoutingRuleEscalationPolicyAction wrapped in RoutingRuleAction.
+func RoutingRuleEscalationPolicyActionAsRoutingRuleAction(v *RoutingRuleEscalationPolicyAction) RoutingRuleAction {
+	return RoutingRuleAction{RoutingRuleEscalationPolicyAction: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -88,11 +94,29 @@ func (obj *RoutingRuleAction) UnmarshalJSON(data []byte) error {
 		obj.TriggerWorkflowAutomationAction = nil
 	}
 
+	// try to unmarshal data into RoutingRuleEscalationPolicyAction
+	err = datadog.Unmarshal(data, &obj.RoutingRuleEscalationPolicyAction)
+	if err == nil {
+		if obj.RoutingRuleEscalationPolicyAction != nil && obj.RoutingRuleEscalationPolicyAction.UnparsedObject == nil {
+			jsonRoutingRuleEscalationPolicyAction, _ := datadog.Marshal(obj.RoutingRuleEscalationPolicyAction)
+			if string(jsonRoutingRuleEscalationPolicyAction) == "{}" { // empty struct
+				obj.RoutingRuleEscalationPolicyAction = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.RoutingRuleEscalationPolicyAction = nil
+		}
+	} else {
+		obj.RoutingRuleEscalationPolicyAction = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.SendSlackMessageAction = nil
 		obj.SendTeamsMessageAction = nil
 		obj.TriggerWorkflowAutomationAction = nil
+		obj.RoutingRuleEscalationPolicyAction = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -110,6 +134,10 @@ func (obj RoutingRuleAction) MarshalJSON() ([]byte, error) {
 
 	if obj.TriggerWorkflowAutomationAction != nil {
 		return datadog.Marshal(&obj.TriggerWorkflowAutomationAction)
+	}
+
+	if obj.RoutingRuleEscalationPolicyAction != nil {
+		return datadog.Marshal(&obj.RoutingRuleEscalationPolicyAction)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -130,6 +158,10 @@ func (obj *RoutingRuleAction) GetActualInstance() interface{} {
 
 	if obj.TriggerWorkflowAutomationAction != nil {
 		return obj.TriggerWorkflowAutomationAction
+	}
+
+	if obj.RoutingRuleEscalationPolicyAction != nil {
+		return obj.RoutingRuleEscalationPolicyAction
 	}
 
 	// all schemas are nil

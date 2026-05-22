@@ -142,6 +142,22 @@ Feature: Security Monitoring
     When the request is sent
     Then the response status is 200 OK
 
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Bulk subscribe to sample log generation returns "Bad Request" response
+    Given operation "BulkCreateSampleLogGenerationSubscriptions" enabled
+    And new "BulkCreateSampleLogGenerationSubscriptions" request
+    And body with value {"data": {"attributes": {"content_pack_ids": ["aws-cloudtrail"], "duration": "3d"}, "type": "bulk_subscription_requests"}}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Bulk subscribe to sample log generation returns "OK" response
+    Given operation "BulkCreateSampleLogGenerationSubscriptions" enabled
+    And new "BulkCreateSampleLogGenerationSubscriptions" request
+    And body with value {"data": {"attributes": {"content_pack_ids": ["aws-cloudtrail"], "duration": "3d"}, "type": "bulk_subscription_requests"}}
+    When the request is sent
+    Then the response status is 200 OK
+
   @skip @team:DataDog/k9-cloud-siem
   Scenario: Bulk update security signals returns "Bad Request" response
     Given new "BulkEditSecurityMonitoringSignals" request
@@ -560,6 +576,19 @@ Feature: Security Monitoring
     And the response "message" is equal to "Test rule"
 
   @skip-validation @team:DataDog/k9-cloud-siem
+  Scenario: Create a detection rule with type 'impossible_travel' and baselineUserLocationsDuration returns "OK" response
+    Given new "CreateSecurityMonitoringRule" request
+    And body with value {"queries":[{"aggregation":"geo_data","groupByFields":["@usr.id"],"distinctFields":[],"metric":"@network.client.geoip","query":"*"}],"cases":[{"name":"","status":"info","notifications":[]}],"hasExtendedTitle":true,"message":"test","isEnabled":true,"options":{"maxSignalDuration":86400,"evaluationWindow":900,"keepAlive":3600,"detectionMethod":"impossible_travel","impossibleTravelOptions":{"baselineUserLocations":true,"baselineUserLocationsDuration":7}},"name":"{{ unique }}","type":"log_detection","tags":[],"filters":[]}
+    When the request is sent
+    Then the response status is 200 OK
+    And the response "name" is equal to "{{ unique }}"
+    And the response "type" is equal to "log_detection"
+    And the response "message" is equal to "test"
+    And the response "options.detectionMethod" is equal to "impossible_travel"
+    And the response "options.impossibleTravelOptions.baselineUserLocations" is equal to true
+    And the response "options.impossibleTravelOptions.baselineUserLocationsDuration" is equal to 7
+
+  @skip-validation @team:DataDog/k9-cloud-siem
   Scenario: Create a detection rule with type 'impossible_travel' returns "OK" response
     Given new "CreateSecurityMonitoringRule" request
     And body with value {"queries":[{"aggregation":"geo_data","groupByFields":["@usr.id"],"distinctFields":[],"metric":"@network.client.geoip","query":"*"}],"cases":[{"name":"","status":"info","notifications":[]}],"hasExtendedTitle":true,"message":"test","isEnabled":true,"options":{"maxSignalDuration":86400,"evaluationWindow":900,"keepAlive":3600,"detectionMethod":"impossible_travel","impossibleTravelOptions":{"baselineUserLocations":false}},"name":"{{ unique }}","type":"log_detection","tags":[],"filters":[]}
@@ -707,6 +736,22 @@ Feature: Security Monitoring
     And the response "data.attributes.enabled" is equal to true
     And the response "data.attributes.rule_query" is equal to "type:log_detection source:cloudtrail"
     And the response "data.attributes.data_exclusion_query" is equal to "account_id:12345"
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Create an entity context sync configuration returns "Bad Request" response
+    Given operation "CreateSecurityMonitoringIntegrationConfig" enabled
+    And new "CreateSecurityMonitoringIntegrationConfig" request
+    And body with value {"data": {"attributes": {"domain": "siem-test.com", "integration_type": "GOOGLE_WORKSPACE", "name": "My GWS Integration", "secrets": {"admin_email": "test@example.com"}, "settings": {"setting1": "value1"}}, "type": "integration_config"}}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Create an entity context sync configuration returns "OK" response
+    Given operation "CreateSecurityMonitoringIntegrationConfig" enabled
+    And new "CreateSecurityMonitoringIntegrationConfig" request
+    And body with value {"data": {"attributes": {"domain": "siem-test.com", "integration_type": "GOOGLE_WORKSPACE", "name": "My GWS Integration", "secrets": {"admin_email": "test@example.com"}, "settings": {"setting1": "value1"}}, "type": "integration_config"}}
+    When the request is sent
+    Then the response status is 200 OK
 
   @team:DataDog/k9-investigation
   Scenario: Create case for security finding returns "Created" response
@@ -897,6 +942,22 @@ Feature: Security Monitoring
     And request contains "id" parameter from "valid_vulnerability_notification_rule.data.id"
     When the request is sent
     Then the response status is 204 Rule successfully deleted.
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Delete an entity context sync configuration returns "Not Found" response
+    Given operation "DeleteSecurityMonitoringIntegrationConfig" enabled
+    And new "DeleteSecurityMonitoringIntegrationConfig" request
+    And request contains "integration_config_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Delete an entity context sync configuration returns "OK" response
+    Given operation "DeleteSecurityMonitoringIntegrationConfig" enabled
+    And new "DeleteSecurityMonitoringIntegrationConfig" request
+    And request contains "integration_config_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 204 OK
 
   @team:DataDog/k9-cloud-siem
   Scenario: Delete an existing job returns "Bad Request" response
@@ -1386,6 +1447,22 @@ Feature: Security Monitoring
     And the response "data[0].attributes.name" is equal to "suppression2 {{ unique_hash }}"
 
   @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Get an entity context sync configuration returns "Not Found" response
+    Given operation "GetSecurityMonitoringIntegrationConfig" enabled
+    And new "GetSecurityMonitoringIntegrationConfig" request
+    And request contains "integration_config_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Get an entity context sync configuration returns "OK" response
+    Given operation "GetSecurityMonitoringIntegrationConfig" enabled
+    And new "GetSecurityMonitoringIntegrationConfig" request
+    And request contains "integration_config_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/k9-cloud-siem
   Scenario: Get an indicator of compromise returns "Bad Request" response
     Given operation "GetIndicatorOfCompromise" enabled
     And new "GetIndicatorOfCompromise" request
@@ -1483,6 +1560,44 @@ Feature: Security Monitoring
     Then the response status is 200 Notification rule details.
 
   @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Get entities related to a signal returns "Bad Request" response
+    Given operation "GetSignalEntities" enabled
+    And new "GetSignalEntities" request
+    And request contains "signal_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Get entities related to a signal returns "Not Found" response
+    Given operation "GetSignalEntities" enabled
+    And new "GetSignalEntities" request
+    And request contains "signal_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Get entities related to a signal returns "OK" response
+    Given operation "GetSignalEntities" enabled
+    And new "GetSignalEntities" request
+    And request contains "signal_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Get entity context returns "Bad Request" response
+    Given operation "GetEntityContext" enabled
+    And new "GetEntityContext" request
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Get entity context returns "OK" response
+    Given operation "GetEntityContext" enabled
+    And new "GetEntityContext" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/k9-cloud-siem
   Scenario: Get investigation queries for a signal returns "Not Found" response
     Given new "GetInvestigationLogQueriesMatchingSignal" request
     And request contains "signal_id" parameter from "REPLACE.ME"
@@ -1513,6 +1628,20 @@ Feature: Security Monitoring
     And the response "data.type" is equal to "GetRuleVersionHistoryResponse"
     And the response "data.attributes.count" is equal to 1
     And the response "data.attributes.data[1].rule.name" has the same value as "security_rule.name"
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Get sample log generation subscriptions returns "Bad Request" response
+    Given operation "ListSampleLogGenerationSubscriptions" enabled
+    And new "ListSampleLogGenerationSubscriptions" request
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Get sample log generation subscriptions returns "OK" response
+    Given operation "ListSampleLogGenerationSubscriptions" enabled
+    And new "ListSampleLogGenerationSubscriptions" request
+    When the request is sent
+    Then the response status is 200 OK
 
   @generated @skip @team:DataDog/k9-cloud-siem
   Scenario: Get suggested actions for a signal returns "Not Found" response
@@ -1580,6 +1709,12 @@ Feature: Security Monitoring
     When the request is sent
     Then the response status is 200 The list of notification rules.
 
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Get the version history of security filters returns "OK" response
+    Given new "ListSecurityFilterVersions" request
+    When the request is sent
+    Then the response status is 200 OK
+
   @generated @skip @team:DataDog/k9-cloud-vm
   Scenario: List assets SBOMs returns "Bad request: The server cannot process the request due to invalid syntax in the request." response
     Given new "ListAssetsSBOMs" request
@@ -1605,6 +1740,13 @@ Feature: Security Monitoring
     Given new "ListAssetsSBOMs" request
     And request contains "filter[package_name]" parameter with value "pandas"
     And request contains "filter[asset_type]" parameter with value "Service"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: List entity context sync configurations returns "OK" response
+    Given operation "ListSecurityMonitoringIntegrationConfigs" enabled
+    And new "ListSecurityMonitoringIntegrationConfigs" request
     When the request is sent
     Then the response status is 200 OK
 
@@ -2096,6 +2238,22 @@ Feature: Security Monitoring
     And the response "meta.page" has field "after"
     And the response "links" has field "next"
 
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Subscribe to sample log generation returns "Bad Request" response
+    Given operation "CreateSampleLogGenerationSubscription" enabled
+    And new "CreateSampleLogGenerationSubscription" request
+    And body with value {"data": {"attributes": {"content_pack_id": "aws-cloudtrail", "duration": "3d"}, "type": "subscription_requests"}}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Subscribe to sample log generation returns "OK" response
+    Given operation "CreateSampleLogGenerationSubscription" enabled
+    And new "CreateSampleLogGenerationSubscription" request
+    And body with value {"data": {"attributes": {"content_pack_id": "aws-cloudtrail", "duration": "3d"}, "type": "subscription_requests"}}
+    When the request is sent
+    Then the response status is 200 OK
+
   @skip @team:DataDog/k9-cloud-siem
   Scenario: Test a rule returns "Bad Request" response
     Given new "TestSecurityMonitoringRule" request
@@ -2165,6 +2323,22 @@ Feature: Security Monitoring
     And body with value {"data": {"attributes": {"mute": {"description": "Resolved.", "is_muted": false, "reason": "RISK_ACCEPTED"}}, "relationships": {"findings": {"data": [{"id": "ZGVmLTAwcC1pZXJ-aS0wZjhjNjMyZDNmMzRlZTgzNw==", "type": "findings"}]}}, "type": "mute"}}
     When the request is sent
     Then the response status is 422 Unprocessable Entity
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Unsubscribe from sample log generation returns "Bad Request" response
+    Given operation "DeleteSampleLogGenerationSubscription" enabled
+    And new "DeleteSampleLogGenerationSubscription" request
+    And request contains "content_pack_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Unsubscribe from sample log generation returns "OK" response
+    Given operation "DeleteSampleLogGenerationSubscription" enabled
+    And new "DeleteSampleLogGenerationSubscription" request
+    And request contains "content_pack_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
 
   @skip-validation @team:DataDog/k9-cloud-siem
   Scenario: Update a cloud configuration rule's details returns "OK" response
@@ -2305,6 +2479,33 @@ Feature: Security Monitoring
     And the response "data.attributes.suppression_query" is equal to "env:staging status:low"
     And the response "data.attributes.version" is equal to 2
 
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Update an entity context sync configuration returns "Bad Request" response
+    Given operation "UpdateSecurityMonitoringIntegrationConfig" enabled
+    And new "UpdateSecurityMonitoringIntegrationConfig" request
+    And request contains "integration_config_id" parameter from "REPLACE.ME"
+    And body with value {"data": {"attributes": {"domain": "siem-test.com", "enabled": true, "integration_type": "GOOGLE_WORKSPACE", "name": "My GWS Integration (renamed)", "secrets": {"admin_email": "test@example.com"}, "settings": {"setting1": "value1"}}, "type": "integration_config"}}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Update an entity context sync configuration returns "Not Found" response
+    Given operation "UpdateSecurityMonitoringIntegrationConfig" enabled
+    And new "UpdateSecurityMonitoringIntegrationConfig" request
+    And request contains "integration_config_id" parameter from "REPLACE.ME"
+    And body with value {"data": {"attributes": {"domain": "siem-test.com", "enabled": true, "integration_type": "GOOGLE_WORKSPACE", "name": "My GWS Integration (renamed)", "secrets": {"admin_email": "test@example.com"}, "settings": {"setting1": "value1"}}, "type": "integration_config"}}
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Update an entity context sync configuration returns "OK" response
+    Given operation "UpdateSecurityMonitoringIntegrationConfig" enabled
+    And new "UpdateSecurityMonitoringIntegrationConfig" request
+    And request contains "integration_config_id" parameter from "REPLACE.ME"
+    And body with value {"data": {"attributes": {"domain": "siem-test.com", "enabled": true, "integration_type": "GOOGLE_WORKSPACE", "name": "My GWS Integration (renamed)", "secrets": {"admin_email": "test@example.com"}, "settings": {"setting1": "value1"}}, "type": "integration_config"}}
+    When the request is sent
+    Then the response status is 200 OK
+
   @skip-validation @team:DataDog/k9-cloud-siem
   Scenario: Update an existing rule returns "Bad Request" response
     Given new "UpdateSecurityMonitoringRule" request
@@ -2412,3 +2613,43 @@ Feature: Security Monitoring
     And body with value {"data": {"attributes": {"data_exclusion_query": "source:cloudtrail account_id:12345", "description": "This rule suppresses low-severity signals in staging environments.", "enabled": true, "name": "Custom suppression", "rule_query": "type:log_detection source:cloudtrail"}, "type": "suppressions"}}
     When the request is sent
     Then the response status is 204 OK
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Validate an entity context sync configuration returns "Bad Request" response
+    Given operation "ValidateSecurityMonitoringIntegrationConfig" enabled
+    And new "ValidateSecurityMonitoringIntegrationConfig" request
+    And request contains "integration_config_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Validate an entity context sync configuration returns "Not Found" response
+    Given operation "ValidateSecurityMonitoringIntegrationConfig" enabled
+    And new "ValidateSecurityMonitoringIntegrationConfig" request
+    And request contains "integration_config_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 404 Not Found
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Validate an entity context sync configuration returns "OK" response
+    Given operation "ValidateSecurityMonitoringIntegrationConfig" enabled
+    And new "ValidateSecurityMonitoringIntegrationConfig" request
+    And request contains "integration_config_id" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Validate entity context sync credentials returns "Bad Request" response
+    Given operation "ValidateSecurityMonitoringIntegrationCredentials" enabled
+    And new "ValidateSecurityMonitoringIntegrationCredentials" request
+    And body with value {"data": {"attributes": {"domain": "siem-test.com", "integration_type": "GOOGLE_WORKSPACE", "secrets": {"admin_email": "test@example.com"}}, "type": "integration_config"}}
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/k9-cloud-siem
+  Scenario: Validate entity context sync credentials returns "OK" response
+    Given operation "ValidateSecurityMonitoringIntegrationCredentials" enabled
+    And new "ValidateSecurityMonitoringIntegrationCredentials" request
+    And body with value {"data": {"attributes": {"domain": "siem-test.com", "integration_type": "GOOGLE_WORKSPACE", "secrets": {"admin_email": "test@example.com"}}, "type": "integration_config"}}
+    When the request is sent
+    Then the response status is 200 OK

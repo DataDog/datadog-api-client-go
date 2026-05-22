@@ -294,6 +294,182 @@ Feature: Cloud Cost Management
     When the request is sent
     Then the response status is 200 OK
 
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments coverage (scalar) returns "Bad Request" response
+    Given operation "GetCommitmentsCoverageScalar" enabled
+    And new "GetCommitmentsCoverageScalar" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments coverage (scalar) returns "OK" response
+    Given operation "GetCommitmentsCoverageScalar" enabled
+    And new "GetCommitmentsCoverageScalar" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments coverage (timeseries) returns "Bad Request" response
+    Given operation "GetCommitmentsCoverageTimeseries" enabled
+    And new "GetCommitmentsCoverageTimeseries" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments coverage (timeseries) returns "OK" response
+    Given operation "GetCommitmentsCoverageTimeseries" enabled
+    And new "GetCommitmentsCoverageTimeseries" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments list returns "Bad Request" response
+    Given operation "GetCommitmentsCommitmentList" enabled
+    And new "GetCommitmentsCommitmentList" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments list returns "OK" response
+    Given operation "GetCommitmentsCommitmentList" enabled
+    And new "GetCommitmentsCommitmentList" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments on-demand hot spots (scalar) returns "Bad Request" response
+    Given operation "GetCommitmentsOnDemandHotspotsScalar" enabled
+    And new "GetCommitmentsOnDemandHotspotsScalar" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments on-demand hot spots (scalar) returns "OK" response
+    Given operation "GetCommitmentsOnDemandHotspotsScalar" enabled
+    And new "GetCommitmentsOnDemandHotspotsScalar" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments savings (scalar) returns "Bad Request" response
+    Given operation "GetCommitmentsSavingsScalar" enabled
+    And new "GetCommitmentsSavingsScalar" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments savings (scalar) returns "OK" response
+    Given operation "GetCommitmentsSavingsScalar" enabled
+    And new "GetCommitmentsSavingsScalar" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments savings (timeseries) returns "Bad Request" response
+    Given operation "GetCommitmentsSavingsTimeseries" enabled
+    And new "GetCommitmentsSavingsTimeseries" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments savings (timeseries) returns "OK" response
+    Given operation "GetCommitmentsSavingsTimeseries" enabled
+    And new "GetCommitmentsSavingsTimeseries" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments utilization (scalar) returns "Bad Request" response
+    Given operation "GetCommitmentsUtilizationScalar" enabled
+    And new "GetCommitmentsUtilizationScalar" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments utilization (scalar) returns "OK" response
+    Given operation "GetCommitmentsUtilizationScalar" enabled
+    And new "GetCommitmentsUtilizationScalar" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments utilization (timeseries) returns "Bad Request" response
+    Given operation "GetCommitmentsUtilizationTimeseries" enabled
+    And new "GetCommitmentsUtilizationTimeseries" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get commitments utilization (timeseries) returns "OK" response
+    Given operation "GetCommitmentsUtilizationTimeseries" enabled
+    And new "GetCommitmentsUtilizationTimeseries" request
+    And request contains "provider" parameter from "REPLACE.ME"
+    And request contains "product" parameter from "REPLACE.ME"
+    And request contains "start" parameter from "REPLACE.ME"
+    And request contains "end" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
   @replay-only @team:DataDog/cloud-cost-management
   Scenario: Get cost AWS CUR config returns "OK" response
     Given new "GetCostAWSCURConfig" request
@@ -344,6 +520,22 @@ Feature: Cloud Cost Management
     When the request is sent
     Then the response status is 200 OK
 
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get the Cloud Cost Management billing currency returns "Bad Request" response
+    Given operation "GetCostTagMetadataCurrency" enabled
+    And new "GetCostTagMetadataCurrency" request
+    And request contains "filter[month]" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: Get the Cloud Cost Management billing currency returns "OK" response
+    Given operation "GetCostTagMetadataCurrency" enabled
+    And new "GetCostTagMetadataCurrency" request
+    And request contains "filter[month]" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
   @replay-only @team:DataDog/cloud-cost-management
   Scenario: List Cloud Cost Management AWS CUR configs returns "OK" response
     Given new "ListCostAWSCURConfigs" request
@@ -365,8 +557,40 @@ Feature: Cloud Cost Management
     Then the response status is 200 OK
 
   @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: List Cloud Cost Management orchestrators returns "Bad Request" response
+    Given operation "ListCostTagMetadataOrchestrators" enabled
+    And new "ListCostTagMetadataOrchestrators" request
+    And request contains "filter[month]" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: List Cloud Cost Management orchestrators returns "OK" response
+    Given operation "ListCostTagMetadataOrchestrators" enabled
+    And new "ListCostTagMetadataOrchestrators" request
+    And request contains "filter[month]" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/cloud-cost-management
   Scenario: List Cloud Cost Management tag descriptions returns "OK" response
     Given new "ListCostTagDescriptions" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: List Cloud Cost Management tag key metadata returns "Bad Request" response
+    Given operation "ListCostTagMetadata" enabled
+    And new "ListCostTagMetadata" request
+    And request contains "filter[month]" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: List Cloud Cost Management tag key metadata returns "OK" response
+    Given operation "ListCostTagMetadata" enabled
+    And new "ListCostTagMetadata" request
+    And request contains "filter[month]" parameter from "REPLACE.ME"
     When the request is sent
     Then the response status is 200 OK
 
@@ -379,6 +603,22 @@ Feature: Cloud Cost Management
   @generated @skip @team:DataDog/cloud-cost-management
   Scenario: List Cloud Cost Management tag keys returns "OK" response
     Given new "ListCostTagKeys" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: List Cloud Cost Management tag sources returns "Bad Request" response
+    Given operation "ListCostTagKeySources" enabled
+    And new "ListCostTagKeySources" request
+    And request contains "filter[month]" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: List Cloud Cost Management tag sources returns "OK" response
+    Given operation "ListCostTagKeySources" enabled
+    And new "ListCostTagKeySources" request
+    And request contains "filter[month]" parameter from "REPLACE.ME"
     When the request is sent
     Then the response status is 200 OK
 
@@ -417,6 +657,22 @@ Feature: Cloud Cost Management
   @team:DataDog/cloud-cost-management
   Scenario: List Google Cloud Usage Cost configs returns "OK" response
     Given new "ListCostGCPUsageCostConfigs" request
+    When the request is sent
+    Then the response status is 200 OK
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: List available Cloud Cost Management metrics returns "Bad Request" response
+    Given operation "ListCostTagMetadataMetrics" enabled
+    And new "ListCostTagMetadataMetrics" request
+    And request contains "filter[month]" parameter from "REPLACE.ME"
+    When the request is sent
+    Then the response status is 400 Bad Request
+
+  @generated @skip @team:DataDog/cloud-cost-management
+  Scenario: List available Cloud Cost Management metrics returns "OK" response
+    Given operation "ListCostTagMetadataMetrics" enabled
+    And new "ListCostTagMetadataMetrics" request
+    And request contains "filter[month]" parameter from "REPLACE.ME"
     When the request is sent
     Then the response status is 200 OK
 
@@ -479,6 +735,14 @@ Feature: Cloud Cost Management
     And body with value {"data": [{"id": "55ef2385-9ae1-4410-90c4-5ac1b60fec10", "type": "ruleset"}, {"id": "a7b8c9d0-1234-5678-9abc-def012345678", "type": "ruleset"}, {"id": "f1e2d3c4-b5a6-9780-1234-567890abcdef", "type": "ruleset"}]}
     When the request is sent
     Then the response status is 204 Successfully reordered rulesets
+
+  @generated @skip @team:DataDog/ccm-optimize
+  Scenario: Search cost recommendations returns "OK" response
+    Given operation "SearchCostRecommendations" enabled
+    And new "SearchCostRecommendations" request
+    And body with value {"filter": "@resource_table:aws_ec2_instance", "sort": [{"expression": "potential_daily_savings.amount", "order": "DESC"}]}
+    When the request is sent
+    Then the response status is 200 OK
 
   @team:DataDog/cloud-cost-management
   Scenario: Update Cloud Cost Management AWS CUR config returns "Not Found" response
