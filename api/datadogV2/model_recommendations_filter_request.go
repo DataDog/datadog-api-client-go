@@ -12,6 +12,8 @@ import (
 type RecommendationsFilterRequest struct {
 	// Filter expression applied to the recommendations.
 	Filter *string `json:"filter,omitempty"`
+	// Recommendations scope. Defaults to `ccm`; use `experiment` for experimental recommendations or `*` for both.
+	Scope *string `json:"scope,omitempty"`
 	// Ordered list of sort clauses applied to the result set.
 	Sort []RecommendationsFilterRequestSortItems `json:"sort,omitempty"`
 	// Active view name (for example, `active`, `dismissed`, `open`, `in-progress`, or `completed`).
@@ -64,6 +66,34 @@ func (o *RecommendationsFilterRequest) HasFilter() bool {
 // SetFilter gets a reference to the given string and assigns it to the Filter field.
 func (o *RecommendationsFilterRequest) SetFilter(v string) {
 	o.Filter = &v
+}
+
+// GetScope returns the Scope field value if set, zero value otherwise.
+func (o *RecommendationsFilterRequest) GetScope() string {
+	if o == nil || o.Scope == nil {
+		var ret string
+		return ret
+	}
+	return *o.Scope
+}
+
+// GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RecommendationsFilterRequest) GetScopeOk() (*string, bool) {
+	if o == nil || o.Scope == nil {
+		return nil, false
+	}
+	return o.Scope, true
+}
+
+// HasScope returns a boolean if a field has been set.
+func (o *RecommendationsFilterRequest) HasScope() bool {
+	return o != nil && o.Scope != nil
+}
+
+// SetScope gets a reference to the given string and assigns it to the Scope field.
+func (o *RecommendationsFilterRequest) SetScope(v string) {
+	o.Scope = &v
 }
 
 // GetSort returns the Sort field value if set, zero value otherwise.
@@ -131,6 +161,9 @@ func (o RecommendationsFilterRequest) MarshalJSON() ([]byte, error) {
 	if o.Filter != nil {
 		toSerialize["filter"] = o.Filter
 	}
+	if o.Scope != nil {
+		toSerialize["scope"] = o.Scope
+	}
 	if o.Sort != nil {
 		toSerialize["sort"] = o.Sort
 	}
@@ -148,6 +181,7 @@ func (o RecommendationsFilterRequest) MarshalJSON() ([]byte, error) {
 func (o *RecommendationsFilterRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Filter *string                                 `json:"filter,omitempty"`
+		Scope  *string                                 `json:"scope,omitempty"`
 		Sort   []RecommendationsFilterRequestSortItems `json:"sort,omitempty"`
 		View   *string                                 `json:"view,omitempty"`
 	}{}
@@ -156,11 +190,12 @@ func (o *RecommendationsFilterRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "sort", "view"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "scope", "sort", "view"})
 	} else {
 		return err
 	}
 	o.Filter = all.Filter
+	o.Scope = all.Scope
 	o.Sort = all.Sort
 	o.View = all.View
 
