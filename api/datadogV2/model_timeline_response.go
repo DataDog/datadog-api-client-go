@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TimelineResponse Timeline response
+// TimelineResponse Response containing the chronological list of timeline cells for a case.
 type TimelineResponse struct {
 	// The `TimelineResponse` `data`.
 	Data []TimelineCellResource `json:"data,omitempty"`

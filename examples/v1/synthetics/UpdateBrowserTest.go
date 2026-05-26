@@ -40,12 +40,14 @@ func main() {
 				Files: []datadogV1.SyntheticsTestRequestBodyFile{
 					{},
 				},
-				HttpVersion: datadogV1.SYNTHETICSTESTOPTIONSHTTPVERSION_HTTP1.Ptr(),
+				HttpVersion:        datadogV1.SYNTHETICSTESTOPTIONSHTTPVERSION_HTTP1.Ptr(),
+				McpProtocolVersion: datadogV1.SYNTHETICSMCPPROTOCOLVERSION_VERSION_2025_06_18.Ptr(),
 				Proxy: &datadogV1.SyntheticsTestRequestProxy{
 					Url: "https://example.com",
 				},
-				Service: datadog.PtrString("Greeter"),
-				Url:     datadog.PtrString("https://example.com"),
+				Service:  datadog.PtrString("Greeter"),
+				ToolName: datadog.PtrString("search"),
+				Url:      datadog.PtrString("https://example.com"),
 			},
 			Variables: []datadogV1.SyntheticsBrowserVariable{
 				{

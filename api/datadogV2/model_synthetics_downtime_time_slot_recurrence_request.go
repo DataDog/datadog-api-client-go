@@ -18,6 +18,8 @@ type SyntheticsDowntimeTimeSlotRecurrenceRequest struct {
 	Frequency SyntheticsDowntimeFrequency `json:"frequency"`
 	// The interval between recurrences, relative to the frequency.
 	Interval *int64 `json:"interval,omitempty"`
+	// Positions of the weekdays within a month for a monthly Synthetics downtime recurrence. Used in combination with `weekdays` to schedule occurrences such as "the first Monday of the month".
+	WeekdayPositions []SyntheticsDowntimeWeekdayPosition `json:"weekdayPositions,omitempty"`
 	// Days of the week for a Synthetics downtime recurrence schedule.
 	Weekdays []SyntheticsDowntimeWeekday `json:"weekdays,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -122,6 +124,34 @@ func (o *SyntheticsDowntimeTimeSlotRecurrenceRequest) SetInterval(v int64) {
 	o.Interval = &v
 }
 
+// GetWeekdayPositions returns the WeekdayPositions field value if set, zero value otherwise.
+func (o *SyntheticsDowntimeTimeSlotRecurrenceRequest) GetWeekdayPositions() []SyntheticsDowntimeWeekdayPosition {
+	if o == nil || o.WeekdayPositions == nil {
+		var ret []SyntheticsDowntimeWeekdayPosition
+		return ret
+	}
+	return o.WeekdayPositions
+}
+
+// GetWeekdayPositionsOk returns a tuple with the WeekdayPositions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsDowntimeTimeSlotRecurrenceRequest) GetWeekdayPositionsOk() (*[]SyntheticsDowntimeWeekdayPosition, bool) {
+	if o == nil || o.WeekdayPositions == nil {
+		return nil, false
+	}
+	return &o.WeekdayPositions, true
+}
+
+// HasWeekdayPositions returns a boolean if a field has been set.
+func (o *SyntheticsDowntimeTimeSlotRecurrenceRequest) HasWeekdayPositions() bool {
+	return o != nil && o.WeekdayPositions != nil
+}
+
+// SetWeekdayPositions gets a reference to the given []SyntheticsDowntimeWeekdayPosition and assigns it to the WeekdayPositions field.
+func (o *SyntheticsDowntimeTimeSlotRecurrenceRequest) SetWeekdayPositions(v []SyntheticsDowntimeWeekdayPosition) {
+	o.WeekdayPositions = v
+}
+
 // GetWeekdays returns the Weekdays field value if set, zero value otherwise.
 func (o *SyntheticsDowntimeTimeSlotRecurrenceRequest) GetWeekdays() []SyntheticsDowntimeWeekday {
 	if o == nil || o.Weekdays == nil {
@@ -163,6 +193,9 @@ func (o SyntheticsDowntimeTimeSlotRecurrenceRequest) MarshalJSON() ([]byte, erro
 	if o.Interval != nil {
 		toSerialize["interval"] = o.Interval
 	}
+	if o.WeekdayPositions != nil {
+		toSerialize["weekdayPositions"] = o.WeekdayPositions
+	}
 	if o.Weekdays != nil {
 		toSerialize["weekdays"] = o.Weekdays
 	}
@@ -176,10 +209,11 @@ func (o SyntheticsDowntimeTimeSlotRecurrenceRequest) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsDowntimeTimeSlotRecurrenceRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		End       *SyntheticsDowntimeTimeSlotDate `json:"end,omitempty"`
-		Frequency *SyntheticsDowntimeFrequency    `json:"frequency"`
-		Interval  *int64                          `json:"interval,omitempty"`
-		Weekdays  []SyntheticsDowntimeWeekday     `json:"weekdays,omitempty"`
+		End              *SyntheticsDowntimeTimeSlotDate     `json:"end,omitempty"`
+		Frequency        *SyntheticsDowntimeFrequency        `json:"frequency"`
+		Interval         *int64                              `json:"interval,omitempty"`
+		WeekdayPositions []SyntheticsDowntimeWeekdayPosition `json:"weekdayPositions,omitempty"`
+		Weekdays         []SyntheticsDowntimeWeekday         `json:"weekdays,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -189,7 +223,7 @@ func (o *SyntheticsDowntimeTimeSlotRecurrenceRequest) UnmarshalJSON(bytes []byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"end", "frequency", "interval", "weekdays"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"end", "frequency", "interval", "weekdayPositions", "weekdays"})
 	} else {
 		return err
 	}
@@ -205,6 +239,7 @@ func (o *SyntheticsDowntimeTimeSlotRecurrenceRequest) UnmarshalJSON(bytes []byte
 		o.Frequency = *all.Frequency
 	}
 	o.Interval = all.Interval
+	o.WeekdayPositions = all.WeekdayPositions
 	o.Weekdays = all.Weekdays
 
 	if len(additionalProperties) > 0 {

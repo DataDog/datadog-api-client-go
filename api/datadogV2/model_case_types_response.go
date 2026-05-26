@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CaseTypesResponse Case types response.
+// CaseTypesResponse Response containing a list of case types.
 type CaseTypesResponse struct {
 	// List of case types
 	Data []CaseTypeResource `json:"data,omitempty"`

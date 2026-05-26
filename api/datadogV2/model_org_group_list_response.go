@@ -14,8 +14,6 @@ import (
 type OrgGroupListResponse struct {
 	// An array of org groups.
 	Data []OrgGroupData `json:"data"`
-	// Related resources included in the response when requested with the `include` parameter.
-	Included []OrgGroupMembershipData `json:"included,omitempty"`
 	// Pagination links for navigating between pages of an org group list response.
 	Links *OrgGroupPaginationLinks `json:"links,omitempty"`
 	// Pagination metadata for org group list responses.
@@ -64,34 +62,6 @@ func (o *OrgGroupListResponse) GetDataOk() (*[]OrgGroupData, bool) {
 // SetData sets field value.
 func (o *OrgGroupListResponse) SetData(v []OrgGroupData) {
 	o.Data = v
-}
-
-// GetIncluded returns the Included field value if set, zero value otherwise.
-func (o *OrgGroupListResponse) GetIncluded() []OrgGroupMembershipData {
-	if o == nil || o.Included == nil {
-		var ret []OrgGroupMembershipData
-		return ret
-	}
-	return o.Included
-}
-
-// GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *OrgGroupListResponse) GetIncludedOk() (*[]OrgGroupMembershipData, bool) {
-	if o == nil || o.Included == nil {
-		return nil, false
-	}
-	return &o.Included, true
-}
-
-// HasIncluded returns a boolean if a field has been set.
-func (o *OrgGroupListResponse) HasIncluded() bool {
-	return o != nil && o.Included != nil
-}
-
-// SetIncluded gets a reference to the given []OrgGroupMembershipData and assigns it to the Included field.
-func (o *OrgGroupListResponse) SetIncluded(v []OrgGroupMembershipData) {
-	o.Included = v
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
@@ -157,9 +127,6 @@ func (o OrgGroupListResponse) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["data"] = o.Data
-	if o.Included != nil {
-		toSerialize["included"] = o.Included
-	}
 	if o.Links != nil {
 		toSerialize["links"] = o.Links
 	}
@@ -176,10 +143,9 @@ func (o OrgGroupListResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *OrgGroupListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data     *[]OrgGroupData          `json:"data"`
-		Included []OrgGroupMembershipData `json:"included,omitempty"`
-		Links    *OrgGroupPaginationLinks `json:"links,omitempty"`
-		Meta     *OrgGroupPaginationMeta  `json:"meta,omitempty"`
+		Data  *[]OrgGroupData          `json:"data"`
+		Links *OrgGroupPaginationLinks `json:"links,omitempty"`
+		Meta  *OrgGroupPaginationMeta  `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -189,14 +155,13 @@ func (o *OrgGroupListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "links", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "links", "meta"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Data = *all.Data
-	o.Included = all.Included
 	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

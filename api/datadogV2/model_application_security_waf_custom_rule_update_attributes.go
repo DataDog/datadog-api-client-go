@@ -21,7 +21,7 @@ type ApplicationSecurityWafCustomRuleUpdateAttributes struct {
 	Conditions []ApplicationSecurityWafCustomRuleCondition `json:"conditions"`
 	// Indicates whether the WAF custom rule is enabled.
 	Enabled bool `json:"enabled"`
-	// The Name of the WAF custom rule.
+	// The name of the WAF custom rule.
 	Name string `json:"name"`
 	// The path glob for the WAF custom rule.
 	PathGlob *string `json:"path_glob,omitempty"`

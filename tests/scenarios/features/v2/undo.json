@@ -632,6 +632,91 @@
       "type": "idempotent"
     }
   },
+  "UpdateAppFavorite": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "UpdateProtectionLevel": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "CreatePublishRequest": {
+    "tag": "App Builder",
+    "undo": {
+      "operationId": "DeleteApp",
+      "parameters": [
+        {
+          "name": "app_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "RevertApp": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "UpdateAppSelfService": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "UpdateAppTags": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "UpdateAppVersionName": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListAppVersions": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetBlueprint": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListBlueprints": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetBlueprintsByIntegrationId": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetBlueprintsBySlugs": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListTags": {
+    "tag": "App Builder",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "ListApplicationKeys": {
     "tag": "Key Management",
     "undo": {
@@ -735,6 +820,49 @@
       "type": "safe"
     }
   },
+  "AggregateCases": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "BulkUpdateCases": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CountCases": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListCaseLinks": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateCaseLink": {
+    "tag": "Case Management",
+    "undo": {
+      "operationId": "DeleteCaseLink",
+      "parameters": [
+        {
+          "name": "link_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteCaseLink": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "GetProjects": {
     "tag": "Case Management",
     "undo": {
@@ -754,6 +882,12 @@
       "type": "unsafe"
     }
   },
+  "ListUserCaseProjectFavorites": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "DeleteProject": {
     "tag": "Case Management",
     "undo": {
@@ -770,6 +904,25 @@
     "tag": "Case Management",
     "undo": {
       "type": "idempotent"
+    }
+  },
+  "UnfavoriteCaseProject": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "FavoriteCaseProject": {
+    "tag": "Case Management",
+    "undo": {
+      "operationId": "UnfavoriteCaseProject",
+      "parameters": [
+        {
+          "name": "project_id",
+          "source": "path.project_id"
+        }
+      ],
+      "type": "unsafe"
     }
   },
   "GetProjectNotificationRules": {
@@ -807,6 +960,59 @@
       "type": "idempotent"
     }
   },
+  "ListCaseAutomationRules": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateCaseAutomationRule": {
+    "tag": "Case Management",
+    "undo": {
+      "operationId": "DeleteCaseAutomationRule",
+      "parameters": [
+        {
+          "name": "project_id",
+          "source": "path.project_id"
+        },
+        {
+          "name": "rule_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteCaseAutomationRule": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetCaseAutomationRule": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateCaseAutomationRule": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "DisableCaseAutomationRule": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "EnableCaseAutomationRule": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "GetAllCaseTypes": {
     "tag": "Case Management Type",
     "undo": {
@@ -831,6 +1037,12 @@
       "type": "idempotent"
     }
   },
+  "UpdateCaseType": {
+    "tag": "Case Management Type",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "GetAllCustomAttributeConfigsByCaseType": {
     "tag": "Case Management Attribute",
     "undo": {
@@ -845,6 +1057,49 @@
   },
   "DeleteCustomAttributeConfig": {
     "tag": "Case Management Attribute",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "UpdateCustomAttributeConfig": {
+    "tag": "Case Management Attribute",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListCaseViews": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateCaseView": {
+    "tag": "Case Management",
+    "undo": {
+      "operationId": "DeleteCaseView",
+      "parameters": [
+        {
+          "name": "view_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteCaseView": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetCaseView": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateCaseView": {
+    "tag": "Case Management",
     "undo": {
       "type": "idempotent"
     }
@@ -885,6 +1140,12 @@
       "type": "idempotent"
     }
   },
+  "UpdateCaseComment": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "DeleteCaseCustomAttribute": {
     "tag": "Case Management",
     "undo": {
@@ -901,6 +1162,24 @@
     "tag": "Case Management",
     "undo": {
       "type": "idempotent"
+    }
+  },
+  "UpdateCaseDueDate": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "RemoveCaseInsights": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "AddCaseInsights": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "safe"
     }
   },
   "UpdatePriority": {
@@ -959,10 +1238,22 @@
       "type": "unsafe"
     }
   },
+  "UpdateCaseResolvedReason": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "UpdateStatus": {
     "tag": "Case Management",
     "undo": {
       "type": "idempotent"
+    }
+  },
+  "ListCaseTimeline": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "safe"
     }
   },
   "UpdateCaseTitle": {
@@ -981,6 +1272,35 @@
     "tag": "Case Management",
     "undo": {
       "type": "idempotent"
+    }
+  },
+  "ListCaseWatchers": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UnwatchCase": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "WatchCase": {
+    "tag": "Case Management",
+    "undo": {
+      "operationId": "UnwatchCase",
+      "parameters": [
+        {
+          "name": "case_id",
+          "source": "path.case_id"
+        },
+        {
+          "name": "user_uuid",
+          "source": "path.user_uuid"
+        }
+      ],
+      "type": "unsafe"
     }
   },
   "ListCatalogEntity": {
@@ -1536,6 +1856,12 @@
       "type": "safe"
     }
   },
+  "SearchCostRecommendations": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "ListCostTagDescriptions": {
     "tag": "Cloud Cost Management",
     "undo": {
@@ -1549,6 +1875,36 @@
     }
   },
   "GetCostTagKey": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListCostTagMetadata": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetCostTagMetadataCurrency": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListCostTagMetadataMetrics": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListCostTagMetadataOrchestrators": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListCostTagKeySources": {
     "tag": "Cloud Cost Management",
     "undo": {
       "type": "safe"
@@ -1709,6 +2065,18 @@
     "tag": "Dashboard Secure Embed",
     "undo": {
       "type": "idempotent"
+    }
+  },
+  "ListDashboardsUsage": {
+    "tag": "Dashboards",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetDashboardUsage": {
+    "tag": "Dashboards",
+    "undo": {
+      "type": "safe"
     }
   },
   "GetAllDatasets": {
@@ -2180,6 +2548,24 @@
       "operationId": "TODO",
       "parameters": [],
       "type": "unsafe"
+    }
+  },
+  "DeleteEntityIntegrationConfig": {
+    "tag": "Entity Integration Configs",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetEntityIntegrationConfig": {
+    "tag": "Entity Integration Configs",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateEntityIntegrationConfig": {
+    "tag": "Entity Integration Configs",
+    "undo": {
+      "type": "idempotent"
     }
   },
   "ListIncidents": {
@@ -3328,6 +3714,20 @@
       "type": "idempotent"
     }
   },
+  "DeleteLLMObsData": {
+    "tag": "LLM Observability",
+    "undo": {
+      "operationId": "TODO",
+      "parameters": [],
+      "type": "unsafe"
+    }
+  },
+  "GetLLMObsAnnotatedInteractionsByTraceIDs": {
+    "tag": "LLM Observability",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "ListLLMObsAnnotationQueues": {
     "tag": "LLM Observability",
     "undo": {
@@ -3400,6 +3800,24 @@
       "type": "idempotent"
     }
   },
+  "AggregateLLMObsExperimentation": {
+    "tag": "LLM Observability",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "SearchLLMObsExperimentation": {
+    "tag": "LLM Observability",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "SimpleSearchLLMObsExperimentation": {
+    "tag": "LLM Observability",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "ListLLMObsExperiments": {
     "tag": "LLM Observability",
     "undo": {
@@ -3409,15 +3827,19 @@
   "CreateLLMObsExperiment": {
     "tag": "LLM Observability",
     "undo": {
-      "operationId": "TODO",
-      "parameters": [],
+      "operationId": "DeleteLLMObsExperiments",
+      "parameters": [
+        {
+          "name": "body",
+          "template": "{\"data\": {\"attributes\": {\"experiment_ids\": [\"{{ data.id }}\"]}, \"type\": \"experiments\"}}"
+        }
+      ],
       "type": "unsafe"
     }
   },
   "DeleteLLMObsExperiments": {
     "tag": "LLM Observability",
     "undo": {
-      "operationId": "TODO",
       "parameters": [],
       "type": "unsafe"
     }
@@ -3431,9 +3853,26 @@
   "CreateLLMObsExperimentEvents": {
     "tag": "LLM Observability",
     "undo": {
-      "operationId": "TODO",
       "parameters": [],
       "type": "unsafe"
+    }
+  },
+  "ListLLMObsIntegrationAccounts": {
+    "tag": "LLM Observability",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateLLMObsIntegrationInference": {
+    "tag": "LLM Observability",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListLLMObsIntegrationModels": {
+    "tag": "LLM Observability",
+    "undo": {
+      "type": "safe"
     }
   },
   "ListLLMObsProjects": {
@@ -3464,6 +3903,18 @@
       "type": "idempotent"
     }
   },
+  "ListLLMObsSpans": {
+    "tag": "LLM Observability",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "SearchLLMObsSpans": {
+    "tag": "LLM Observability",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "ListLLMObsDatasets": {
     "tag": "LLM Observability",
     "undo": {
@@ -3487,6 +3938,24 @@
     }
   },
   "UpdateLLMObsDataset": {
+    "tag": "LLM Observability",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetLLMObsDatasetDraftState": {
+    "tag": "LLM Observability",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "LockLLMObsDatasetDraftState": {
+    "tag": "LLM Observability",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "UnlockLLMObsDatasetDraftState": {
     "tag": "LLM Observability",
     "undo": {
       "type": "idempotent"
@@ -3527,6 +3996,18 @@
       "operationId": "TODO",
       "parameters": [],
       "type": "unsafe"
+    }
+  },
+  "ListLLMObsDatasetVersions": {
+    "tag": "LLM Observability",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListLLMObsExperimentEvents": {
+    "tag": "LLM Observability",
+    "undo": {
+      "type": "safe"
     }
   },
   "SubmitLog": {
@@ -3767,6 +4248,37 @@
       "type": "safe"
     }
   },
+  "ListMaintenanceWindows": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateMaintenanceWindow": {
+    "tag": "Case Management",
+    "undo": {
+      "operationId": "DeleteMaintenanceWindow",
+      "parameters": [
+        {
+          "name": "maintenance_window_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteMaintenanceWindow": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "UpdateMaintenanceWindow": {
+    "tag": "Case Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "ListTagConfigurations": {
     "tag": "Metrics",
     "undo": {
@@ -3857,6 +4369,118 @@
     "tag": "Metrics",
     "undo": {
       "type": "safe"
+    }
+  },
+  "GetModelLabArtifactContent": {
+    "tag": "Model Lab API",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListModelLabRunFacetKeys": {
+    "tag": "Model Lab API",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListModelLabRunFacetValues": {
+    "tag": "Model Lab API",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListModelLabProjectFacetKeys": {
+    "tag": "Model Lab API",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListModelLabProjectFacetValues": {
+    "tag": "Model Lab API",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListModelLabProjects": {
+    "tag": "Model Lab API",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetModelLabProject": {
+    "tag": "Model Lab API",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListModelLabProjectArtifacts": {
+    "tag": "Model Lab API",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UnstarModelLabProject": {
+    "tag": "Model Lab API",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "StarModelLabProject": {
+    "tag": "Model Lab API",
+    "undo": {
+      "operationId": "UnstarModelLabProject",
+      "parameters": [
+        {
+          "name": "project_id",
+          "origin": "path",
+          "source": "project_id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "ListModelLabRuns": {
+    "tag": "Model Lab API",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "DeleteModelLabRun": {
+    "tag": "Model Lab API",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetModelLabRun": {
+    "tag": "Model Lab API",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListModelLabRunArtifacts": {
+    "tag": "Model Lab API",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UnpinModelLabRun": {
+    "tag": "Model Lab API",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "PinModelLabRun": {
+    "tag": "Model Lab API",
+    "undo": {
+      "operationId": "UnpinModelLabRun",
+      "parameters": [
+        {
+          "name": "run_id",
+          "origin": "path",
+          "source": "run_id"
+        }
+      ],
+      "type": "unsafe"
     }
   },
   "GetMonitorNotificationRules": {
@@ -4815,6 +5439,43 @@
       "type": "idempotent"
     }
   },
+  "ListApplicationSecurityWAFPolicies": {
+    "tag": "Application Security",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateApplicationSecurityWafPolicy": {
+    "tag": "Application Security",
+    "undo": {
+      "operationId": "DeleteApplicationSecurityWafPolicy",
+      "parameters": [
+        {
+          "name": "policy_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteApplicationSecurityWafPolicy": {
+    "tag": "Application Security",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetApplicationSecurityWafPolicy": {
+    "tag": "Application Security",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateApplicationSecurityWafPolicy": {
+    "tag": "Application Security",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "ListCSMThreatsAgentRules": {
     "tag": "CSM Threats",
     "undo": {
@@ -5354,6 +6015,12 @@
       "type": "safe"
     }
   },
+  "ListScorecardScores": {
+    "tag": "Scorecards",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "UnassignSeatsUser": {
     "tag": "Seats",
     "undo": {
@@ -5649,6 +6316,55 @@
       "type": "idempotent"
     }
   },
+  "ListSecurityMonitoringIntegrationConfigs": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateSecurityMonitoringIntegrationConfig": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "operationId": "DeleteSecurityMonitoringIntegrationConfig",
+      "parameters": [
+        {
+          "name": "integration_config_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "ValidateSecurityMonitoringIntegrationCredentials": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "DeleteSecurityMonitoringIntegrationConfig": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetSecurityMonitoringIntegrationConfig": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateSecurityMonitoringIntegrationConfig": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ValidateSecurityMonitoringIntegrationConfig": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "ListSecurityFilters": {
     "tag": "Security Monitoring",
     "undo": {
@@ -5666,6 +6382,12 @@
         }
       ],
       "type": "unsafe"
+    }
+  },
+  "ListSecurityFilterVersions": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
     }
   },
   "DeleteSecurityFilter": {
@@ -5765,6 +6487,12 @@
       "type": "idempotent"
     }
   },
+  "GetEntityContext": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "ListSecurityMonitoringRules": {
     "tag": "Security Monitoring",
     "undo": {
@@ -5850,6 +6578,37 @@
       "type": "safe"
     }
   },
+  "ListSampleLogGenerationSubscriptions": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateSampleLogGenerationSubscription": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "operationId": "DeleteSampleLogGenerationSubscription",
+      "parameters": [
+        {
+          "name": "content_pack_id",
+          "source": "data.attributes.content_pack_id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "BulkCreateSampleLogGenerationSubscriptions": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "DeleteSampleLogGenerationSubscription": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "ListSecurityMonitoringSignals": {
     "tag": "Security Monitoring",
     "undo": {
@@ -5890,6 +6649,12 @@
     "tag": "Security Monitoring",
     "undo": {
       "type": "idempotent"
+    }
+  },
+  "GetSignalEntities": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
     }
   },
   "EditSecurityMonitoringSignalIncidents": {
@@ -6312,6 +7077,121 @@
       "type": "safe"
     }
   },
+  "ListAiMemoryViolationResults": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateAiMemoryViolationResult": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "DeleteAiMemoryViolationResult": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListAiPrompts": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListAiCustomRulesets": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateAiCustomRuleset": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "DeleteAiCustomRuleset": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetAiCustomRuleset": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateAiCustomRuleset": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "CreateAiCustomRule": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "DeleteAiCustomRule": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetAiCustomRule": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListAiCustomRuleRevisions": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateAiCustomRuleRevision": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetAiCustomRuleRevision": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListStaticAnalysisCodegenRulesets": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListCustomRulesets": {
+    "tag": "Static Analysis",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateCustomRuleset": {
+    "tag": "Static Analysis",
+    "undo": {
+      "operationId": "DeleteCustomRuleset",
+      "parameters": [
+        {
+          "name": "ruleset_name",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
   "DeleteCustomRuleset": {
     "tag": "Static Analysis",
     "undo": {
@@ -6374,6 +7254,12 @@
       "type": "safe"
     }
   },
+  "GetStaticAnalysisDefaultRulesets": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "ListMultipleRulesets": {
     "tag": "Security Monitoring",
     "undo": {
@@ -6382,7 +7268,37 @@
       "type": "unsafe"
     }
   },
+  "GetStaticAnalysisRuleset": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "GetSecretsRules": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateStaticAnalysisServerAnalysis": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateStaticAnalysisAst": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetStaticAnalysisNodeTypes": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetStaticAnalysisTreeSitterWasm": {
     "tag": "Security Monitoring",
     "undo": {
       "type": "safe"

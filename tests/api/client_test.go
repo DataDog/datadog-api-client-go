@@ -1,14 +1,19 @@
 package api
 
 import (
+	"bytes"
 	"context"
 	"fmt"
+	"log"
+	"net/http"
+	"net/http/httptest"
+	"testing"
+	"time"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/tests/api/mocks"
 	"github.com/golang/mock/gomock"
 	"github.com/stretchr/testify/assert"
-	"testing"
-	"time"
 )
 
 const FAKE_TOKEN = "fake-token"
@@ -129,6 +134,44 @@ func TestDelegatedReAuthenticate(t *testing.T) {
 	datadog.UseDelegatedTokenAuth(testAuthCtx, &headers, config.DelegatedTokenConfig)
 	assert.NotEmpty(t, headers)
 	assert.Equal(t, headers["Authorization"], fmt.Sprintf("Bearer %s", FAKE_TOKEN))
+}
+
+// TestDebugDumpRedactsAccessToken verifies that when Cfg.Debug is true and a
+// bearer token is set via ContextAccessToken, the SDK's debug dump replaces
+// the token with REDACTED before writing to the global logger. Without this,
+// callers that enable debug logging would write the token to stderr, CI
+// artifacts, and log shippers. See CRED-2625.
+func TestDebugDumpRedactsAccessToken(t *testing.T) {
+	var buf bytes.Buffer
+	prev := log.Writer()
+	log.SetOutput(&buf)
+	defer log.SetOutput(prev)
+
+	srv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		w.WriteHeader(http.StatusOK)
+	}))
+	defer srv.Close()
+
+	const token = "ddpat_supersecret_should_not_leak_a1b2c3d4e5"
+
+	cfg := datadog.NewConfiguration()
+	cfg.Debug = true
+	cfg.RetryConfiguration.EnableRetry = false
+	client := datadog.NewAPIClient(cfg)
+
+	ctx := context.WithValue(context.Background(), datadog.ContextAccessToken, token)
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, srv.URL, nil)
+	assert.NoError(t, err)
+	// In production code, PrepareRequest sets this header from ContextAccessToken
+	// before CallAPI sees the request. Simulate that here so the dump path has
+	// something to redact.
+	req.Header.Set("Authorization", "Bearer "+token)
+	_, err = client.CallAPI(req)
+	assert.NoError(t, err)
+
+	dumped := buf.String()
+	assert.NotContains(t, dumped, token, "bearer token leaked into debug dump")
+	assert.Contains(t, dumped, "REDACTED", "expected REDACTED marker in debug dump")
 }
 
 func TestApiAppKeyAuthenticate(t *testing.T) {

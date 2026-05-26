@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomAttributeConfig The definition of `CustomAttributeConfig` object.
+// CustomAttributeConfig A custom attribute configuration that defines an organization-specific metadata field on cases. Custom attributes are scoped to a case type and can hold text, URLs, numbers, or predefined select options.
 type CustomAttributeConfig struct {
-	// Custom attribute resource attributes
+	// Attributes of a custom attribute configuration, defining an organization-specific metadata field that can be added to cases of a given type.
 	Attributes *CustomAttributeConfigResourceAttributes `json:"attributes,omitempty"`
 	// Custom attribute configs identifier
 	Id *string `json:"id,omitempty"`
-	// Custom attributes config JSON:API resource type
+	// JSON:API resource type for custom attribute configurations.
 	Type *CustomAttributeConfigResourceType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

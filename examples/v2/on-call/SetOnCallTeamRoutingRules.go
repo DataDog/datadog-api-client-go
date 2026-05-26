@@ -26,13 +26,13 @@ func main() {
 					{
 						Actions: []datadogV2.RoutingRuleAction{
 							datadogV2.RoutingRuleAction{
-								SendSlackMessageAction: &datadogV2.SendSlackMessageAction{
-									Channel:   "channel",
-									Type:      datadogV2.SENDSLACKMESSAGEACTIONTYPE_SEND_SLACK_MESSAGE,
-									Workspace: "workspace",
+								RoutingRuleEscalationPolicyAction: &datadogV2.RoutingRuleEscalationPolicyAction{
+									Type:     datadogV2.ROUTINGRULEESCALATIONPOLICYACTIONTYPE_ESCALATION_POLICY,
+									PolicyId: EscalationPolicyDataID,
+									Urgency:  datadogV2.URGENCY_LOW.Ptr(),
 								}},
 						},
-						Query: datadog.PtrString("tags.service:test"),
+						Query: datadog.PtrString("tags.service:time_restrictions"),
 						TimeRestriction: &datadogV2.TimeRestrictions{
 							TimeZone: "Europe/Paris",
 							Restrictions: []datadogV2.TimeRestriction{
@@ -52,9 +52,49 @@ func main() {
 						},
 					},
 					{
+						Actions: []datadogV2.RoutingRuleAction{
+							datadogV2.RoutingRuleAction{
+								RoutingRuleEscalationPolicyAction: &datadogV2.RoutingRuleEscalationPolicyAction{
+									Type:              datadogV2.ROUTINGRULEESCALATIONPOLICYACTIONTYPE_ESCALATION_POLICY,
+									PolicyId:          EscalationPolicyDataID,
+									Urgency:           datadogV2.URGENCY_LOW.Ptr(),
+									AckTimeoutMinutes: datadog.PtrInt64(30),
+									SupportHours: &datadogV2.RoutingRuleEscalationPolicyActionSupportHours{
+										TimeZone: "Europe/Paris",
+										Restrictions: []datadogV2.TimeRestriction{
+											{
+												EndDay:    datadogV2.WEEKDAY_WEDNESDAY.Ptr(),
+												EndTime:   datadog.PtrString("17:00:00"),
+												StartDay:  datadogV2.WEEKDAY_WEDNESDAY.Ptr(),
+												StartTime: datadog.PtrString("09:00:00"),
+											},
+											{
+												EndDay:    datadogV2.WEEKDAY_THURSDAY.Ptr(),
+												EndTime:   datadog.PtrString("17:00:00"),
+												StartDay:  datadogV2.WEEKDAY_THURSDAY.Ptr(),
+												StartTime: datadog.PtrString("09:00:00"),
+											},
+										},
+									},
+								}},
+						},
+						Query: datadog.PtrString("tags.service:support_hours_and_acknowledgment_timeout"),
+					},
+					{
 						PolicyId: datadog.PtrString(EscalationPolicyDataID),
-						Query:    datadog.PtrString(""),
+						Query:    datadog.PtrString("tags.service:legacy_policy_definition"),
 						Urgency:  datadogV2.URGENCY_LOW.Ptr(),
+					},
+					{
+						Actions: []datadogV2.RoutingRuleAction{
+							datadogV2.RoutingRuleAction{
+								RoutingRuleEscalationPolicyAction: &datadogV2.RoutingRuleEscalationPolicyAction{
+									Type:     datadogV2.ROUTINGRULEESCALATIONPOLICYACTIONTYPE_ESCALATION_POLICY,
+									PolicyId: EscalationPolicyDataID,
+									Urgency:  datadogV2.URGENCY_LOW.Ptr(),
+								}},
+						},
+						Query: datadog.PtrString(""),
 					},
 				},
 			},

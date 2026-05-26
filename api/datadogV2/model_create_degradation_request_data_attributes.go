@@ -20,8 +20,6 @@ type CreateDegradationRequestDataAttributes struct {
 	Status CreateDegradationRequestDataAttributesStatus `json:"status"`
 	// The title of the degradation.
 	Title string `json:"title"`
-	//
-	Updates []CreateDegradationRequestDataAttributesUpdatesItems `json:"updates,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -144,34 +142,6 @@ func (o *CreateDegradationRequestDataAttributes) SetTitle(v string) {
 	o.Title = v
 }
 
-// GetUpdates returns the Updates field value if set, zero value otherwise.
-func (o *CreateDegradationRequestDataAttributes) GetUpdates() []CreateDegradationRequestDataAttributesUpdatesItems {
-	if o == nil || o.Updates == nil {
-		var ret []CreateDegradationRequestDataAttributesUpdatesItems
-		return ret
-	}
-	return o.Updates
-}
-
-// GetUpdatesOk returns a tuple with the Updates field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *CreateDegradationRequestDataAttributes) GetUpdatesOk() (*[]CreateDegradationRequestDataAttributesUpdatesItems, bool) {
-	if o == nil || o.Updates == nil {
-		return nil, false
-	}
-	return &o.Updates, true
-}
-
-// HasUpdates returns a boolean if a field has been set.
-func (o *CreateDegradationRequestDataAttributes) HasUpdates() bool {
-	return o != nil && o.Updates != nil
-}
-
-// SetUpdates gets a reference to the given []CreateDegradationRequestDataAttributesUpdatesItems and assigns it to the Updates field.
-func (o *CreateDegradationRequestDataAttributes) SetUpdates(v []CreateDegradationRequestDataAttributesUpdatesItems) {
-	o.Updates = v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateDegradationRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -184,9 +154,6 @@ func (o CreateDegradationRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["status"] = o.Status
 	toSerialize["title"] = o.Title
-	if o.Updates != nil {
-		toSerialize["updates"] = o.Updates
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -201,7 +168,6 @@ func (o *CreateDegradationRequestDataAttributes) UnmarshalJSON(bytes []byte) (er
 		Description        *string                                                          `json:"description,omitempty"`
 		Status             *CreateDegradationRequestDataAttributesStatus                    `json:"status"`
 		Title              *string                                                          `json:"title"`
-		Updates            []CreateDegradationRequestDataAttributesUpdatesItems             `json:"updates,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -217,7 +183,7 @@ func (o *CreateDegradationRequestDataAttributes) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"components_affected", "description", "status", "title", "updates"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"components_affected", "description", "status", "title"})
 	} else {
 		return err
 	}
@@ -231,7 +197,6 @@ func (o *CreateDegradationRequestDataAttributes) UnmarshalJSON(bytes []byte) (er
 		o.Status = *all.Status
 	}
 	o.Title = *all.Title
-	o.Updates = all.Updates
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

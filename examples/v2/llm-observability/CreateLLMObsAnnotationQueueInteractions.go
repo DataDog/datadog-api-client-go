@@ -17,10 +17,11 @@ func main() {
 		Data: datadogV2.LLMObsAnnotationQueueInteractionsDataRequest{
 			Attributes: datadogV2.LLMObsAnnotationQueueInteractionsDataAttributesRequest{
 				Interactions: []datadogV2.LLMObsAnnotationQueueInteractionItem{
-					{
-						ContentId: "trace-abc-123",
-						Type:      datadogV2.LLMOBSINTERACTIONTYPE_TRACE,
-					},
+					datadogV2.LLMObsAnnotationQueueInteractionItem{
+						LLMObsTraceInteractionItem: &datadogV2.LLMObsTraceInteractionItem{
+							ContentId: "trace-abc-123",
+							Type:      datadogV2.LLMOBSTRACEINTERACTIONTYPE_TRACE,
+						}},
 				},
 			},
 			Type: datadogV2.LLMOBSANNOTATIONQUEUEINTERACTIONSTYPE_INTERACTIONS,

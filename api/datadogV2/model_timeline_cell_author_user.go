@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TimelineCellAuthorUser timeline cell user author
+// TimelineCellAuthorUser A user who authored a timeline cell.
 type TimelineCellAuthorUser struct {
-	// user author content.
+	// Profile information for the user who authored the timeline cell.
 	Content *TimelineCellAuthorUserContent `json:"content,omitempty"`
-	// user author type.
+	// The type of timeline cell author. Currently only `USER` is supported.
 	Type *TimelineCellAuthorUserType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

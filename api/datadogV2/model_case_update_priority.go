@@ -14,7 +14,7 @@ import (
 type CaseUpdatePriority struct {
 	// Case update priority attributes
 	Attributes CaseUpdatePriorityAttributes `json:"attributes"`
-	// Case resource type
+	// JSON:API resource type for cases.
 	Type CaseResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

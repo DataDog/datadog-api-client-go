@@ -177,6 +177,14 @@ Feature: Observability Pipelines
     And the response "errors" has length 0
 
   @team:DataDog/observability-pipelines
+  Scenario: Validate an observability pipeline with HTTP server source valid_tokens returns "OK" response
+    Given new "ValidatePipeline" request
+    And body with value {"data": {"attributes": {"config": {"destinations": [{"id": "datadog-logs-destination", "inputs": ["my-processor-group"], "type": "datadog_logs"}], "processor_groups": [{"enabled": true, "id": "my-processor-group", "include": "service:my-service", "inputs": ["http-server-source"], "processors": [{"enabled": true, "id": "filter-processor", "include": "status:error", "type": "filter"}]}], "sources": [{"id": "http-server-source", "type": "http_server", "auth_strategy": "none", "decoding": "json", "valid_tokens": [{"token_key": "HTTP_SERVER_TOKEN", "enabled": true, "path_to_token": {"header": "X-Token"}, "field_to_add": {"key": "token_name", "value": "primary_token"}}, {"token_key": "HTTP_SERVER_TOKEN_BACKUP", "enabled": true, "path_to_token": "path"}]}]}, "name": "Pipeline with HTTP server valid_tokens"}, "type": "pipelines"}}
+    When the request is sent
+    Then the response status is 200 OK
+    And the response "errors" has length 0
+
+  @team:DataDog/observability-pipelines
   Scenario: Validate an observability pipeline with OCSF mapper custom mapping returns "OK" response
     Given new "ValidatePipeline" request
     And body with value {"data": {"attributes": {"config": {"destinations": [{"id": "datadog-logs-destination", "inputs": ["my-processor-group"], "type": "datadog_logs"}], "processor_groups": [{"enabled": true, "id": "my-processor-group", "include": "service:my-service", "inputs": ["datadog-agent-source"], "processors": [{"enabled": true, "id": "ocsf-mapper-processor", "include": "service:my-service", "mappings": [{"include": "source:custom", "mapping": {"mapping": [{"default": "", "dest": "time", "source": "timestamp"}, {"default": "", "dest": "severity", "source": "level"}, {"default": "", "dest": "device.type", "lookup": {"table": [{"contains": "Desktop", "value": "desktop"}]}, "source": "host.type"}], "metadata": {"class": "Device Inventory Info", "profiles": ["container"], "version": "1.3.0"}, "version": 1}}], "type": "ocsf_mapper"}]}], "sources": [{"id": "datadog-agent-source", "type": "datadog_agent"}]}, "name": "OCSF Custom Mapper Pipeline"}, "type": "pipelines"}}
@@ -224,9 +232,25 @@ Feature: Observability Pipelines
     And the response "errors" has length 0
 
   @team:DataDog/observability-pipelines
+  Scenario: Validate an observability pipeline with Splunk HEC source valid_tokens returns "OK" response
+    Given new "ValidatePipeline" request
+    And body with value {"data": {"attributes": {"config": {"destinations": [{"id": "datadog-logs-destination", "inputs": ["my-processor-group"], "type": "datadog_logs"}], "processor_groups": [{"enabled": true, "id": "my-processor-group", "include": "service:my-service", "inputs": ["splunk-hec-source"], "processors": [{"enabled": true, "id": "filter-processor", "include": "status:error", "type": "filter"}]}], "sources": [{"id": "splunk-hec-source", "type": "splunk_hec", "valid_tokens": [{"token_key": "SPLUNK_HEC_TOKEN", "enabled": true, "field_to_add": {"key": "token_name", "value": "primary_token"}}, {"token_key": "SPLUNK_HEC_TOKEN_BACKUP", "enabled": false}]}]}, "name": "Pipeline with Splunk HEC valid_tokens"}, "type": "pipelines"}}
+    When the request is sent
+    Then the response status is 200 OK
+    And the response "errors" has length 0
+
+  @team:DataDog/observability-pipelines
   Scenario: Validate an observability pipeline with amazon S3 source compression returns "OK" response
     Given new "ValidatePipeline" request
     And body with value {"data": {"attributes": {"config": {"destinations": [{"id": "datadog-logs-destination", "inputs": ["my-processor-group"], "type": "datadog_logs"}], "processor_groups": [{"enabled": true, "id": "my-processor-group", "include": "service:my-service", "inputs": ["amazon-s3-source"], "processors": [{"enabled": true, "id": "filter-processor", "include": "service:my-service", "type": "filter"}]}], "sources": [{"id": "amazon-s3-source", "type": "amazon_s3", "region": "us-east-1", "compression": "gzip"}]}, "name": "Pipeline with S3 Source Compression"}, "type": "pipelines"}}
+    When the request is sent
+    Then the response status is 200 OK
+    And the response "errors" has length 0
+
+  @skip @team:DataDog/observability-pipelines
+  Scenario: Validate an observability pipeline with cloud_prem destination buffer returns "OK" response
+    Given new "ValidatePipeline" request
+    And body with value {"data": {"attributes": {"config": {"destinations": [{"id": "cloud-prem-destination", "inputs": ["my-processor-group"], "type": "cloud_prem", "endpoint_url_key": "CLOUDPREM_ENDPOINT_URL", "buffer": {"type": "disk", "max_size": 1073741824, "when_full": "block"}}], "processor_groups": [{"enabled": true, "id": "my-processor-group", "include": "service:my-service", "inputs": ["datadog-agent-source"], "processors": [{"enabled": true, "id": "filter-processor", "include": "status:error", "type": "filter"}]}], "sources": [{"id": "datadog-agent-source", "type": "datadog_agent"}]}, "name": "Pipeline with CloudPrem Buffer"}, "type": "pipelines"}}
     When the request is sent
     Then the response status is 200 OK
     And the response "errors" has length 0
