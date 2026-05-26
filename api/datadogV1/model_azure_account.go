@@ -669,7 +669,7 @@ func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"app_service_plan_filters", "automute", "client_id", "client_secret", "container_app_filters", "cspm_enabled", "custom_metrics_enabled", "errors", "host_filters", "metrics_enabled", "metrics_enabled_default", "new_client_id", "new_tenant_name", "resource_collection_enabled", "resource_provider_configs", "secretless_auth_enabled", "tenant_name", "usage_metrics_enabled"})
 	} else {
 		return err

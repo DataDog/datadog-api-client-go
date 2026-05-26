@@ -210,7 +210,7 @@ func (o *AwsScanOptionsCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 		return fmt.Errorf("required field vuln_host_os missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"compliance_host", "lambda", "sensitive_data", "vuln_containers_os", "vuln_host_os"})
 	} else {
 		return err

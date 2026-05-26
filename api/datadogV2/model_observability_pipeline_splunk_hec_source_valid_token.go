@@ -160,7 +160,7 @@ func (o *ObservabilityPipelineSplunkHecSourceValidToken) UnmarshalJSON(bytes []b
 		return fmt.Errorf("required field token_key missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "field_to_add", "token_key"})
 	} else {
 		return err

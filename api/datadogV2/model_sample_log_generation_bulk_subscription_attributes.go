@@ -124,7 +124,7 @@ func (o *SampleLogGenerationBulkSubscriptionAttributes) UnmarshalJSON(bytes []by
 		return fmt.Errorf("required field content_pack_ids missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"content_pack_ids", "duration"})
 	} else {
 		return err

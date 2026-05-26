@@ -221,7 +221,7 @@ func (o *RoutingRuleEscalationPolicyAction) UnmarshalJSON(bytes []byte) (err err
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"ack_timeout_minutes", "policy_id", "support_hours", "type", "urgency"})
 	} else {
 		return err

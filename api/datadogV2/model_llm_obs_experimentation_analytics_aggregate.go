@@ -306,7 +306,7 @@ func (o *LLMObsExperimentationAnalyticsAggregate) UnmarshalJSON(bytes []byte) (e
 		return fmt.Errorf("required field search missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"compute", "dataset_version", "group_by", "indexes", "limit", "search", "time"})
 	} else {
 		return err

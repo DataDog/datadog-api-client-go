@@ -210,7 +210,7 @@ func (o *CostAnomaliesResponseDataAttributes) UnmarshalJSON(bytes []byte) (err e
 		return fmt.Errorf("required field total_count missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"anomalies", "avg_daily_anomalous_cost", "total_actual_cost", "total_anomalous_cost", "total_count"})
 	} else {
 		return err

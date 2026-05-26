@@ -410,7 +410,7 @@ func (o *ApmDependencyStatsQuery) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field stat missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"cross_org_uuids", "data_source", "env", "is_upstream", "name", "operation_name", "primary_tag_name", "primary_tag_value", "resource_name", "service", "stat"})
 	} else {
 		return err

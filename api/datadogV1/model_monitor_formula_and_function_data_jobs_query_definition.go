@@ -182,7 +182,7 @@ func (o *MonitorFormulaAndFunctionDataJobsQueryDefinition) UnmarshalJSON(bytes [
 		return fmt.Errorf("required field query_dialect missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"job_type", "jobs_query", "name", "query_dialect"})
 	} else {
 		return err

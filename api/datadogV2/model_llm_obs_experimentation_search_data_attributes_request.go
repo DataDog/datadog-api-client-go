@@ -188,7 +188,7 @@ func (o *LLMObsExperimentationSearchDataAttributesRequest) UnmarshalJSON(bytes [
 		return fmt.Errorf("required field filter missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"content_preview", "filter", "include", "page"})
 	} else {
 		return err

@@ -148,7 +148,7 @@ func (o *EntityIntegrationConfigAttributes) UnmarshalJSON(bytes []byte) (err err
 		return fmt.Errorf("required field org_id missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"config", "integration_id", "org_id"})
 	} else {
 		return err

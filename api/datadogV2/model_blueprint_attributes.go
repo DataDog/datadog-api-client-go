@@ -524,7 +524,7 @@ func (o *BlueprintAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field updated_at missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "definition", "description", "embedded_datastore_blueprints", "embedded_native_actions", "embedded_workflow_blueprints", "integration_id", "mocked_outputs", "name", "slug", "tags", "tile_background", "tile_icon_action_fqn", "updated_at"})
 	} else {
 		return err

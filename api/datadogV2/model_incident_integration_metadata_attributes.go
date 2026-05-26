@@ -266,7 +266,7 @@ func (o *IncidentIntegrationMetadataAttributes) UnmarshalJSON(bytes []byte) (err
 		return fmt.Errorf("required field metadata missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"created", "incident_id", "integration_type", "metadata", "modified", "status"})
 	} else {
 		return err

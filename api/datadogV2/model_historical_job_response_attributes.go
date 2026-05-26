@@ -359,7 +359,7 @@ func (o *HistoricalJobResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "createdByHandle", "createdByName", "createdFromRuleId", "jobDefinition", "jobName", "jobStatus", "modifiedAt", "signalOutput"})
 	} else {
 		return err

@@ -403,7 +403,7 @@ func (o *CostAnomaly) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field uuid missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"actual_cost", "anomalous_cost_change", "anomaly_end", "anomaly_start", "correlated_tags", "dimensions", "dismissal", "max_cost", "provider", "query", "uuid"})
 	} else {
 		return err

@@ -86,7 +86,7 @@ func (o *SampleLogGenerationSubscriptionsResponseMeta) UnmarshalJSON(bytes []byt
 		return fmt.Errorf("required field total_subscriptions missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"total_subscriptions"})
 	} else {
 		return err

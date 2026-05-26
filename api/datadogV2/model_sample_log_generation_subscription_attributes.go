@@ -219,7 +219,7 @@ func (o *SampleLogGenerationSubscriptionAttributes) UnmarshalJSON(bytes []byte) 
 		return fmt.Errorf("required field status missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"content_pack_id", "created_at", "expires_at", "is_active", "status"})
 	} else {
 		return err

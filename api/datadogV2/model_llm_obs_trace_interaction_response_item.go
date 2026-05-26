@@ -250,7 +250,7 @@ func (o *LLMObsTraceInteractionResponseItem) UnmarshalJSON(bytes []byte) (err er
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"already_existed", "content_id", "created_at", "id", "modified_at", "type"})
 	} else {
 		return err

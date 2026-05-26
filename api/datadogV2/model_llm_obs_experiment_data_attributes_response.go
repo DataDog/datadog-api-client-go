@@ -322,7 +322,7 @@ func (o *LLMObsExperimentDataAttributesResponse) UnmarshalJSON(bytes []byte) (er
 		return fmt.Errorf("required field updated_at missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"config", "created_at", "dataset_id", "description", "metadata", "name", "project_id", "updated_at"})
 	} else {
 		return err

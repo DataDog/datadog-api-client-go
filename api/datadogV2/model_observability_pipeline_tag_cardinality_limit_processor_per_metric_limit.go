@@ -219,7 +219,7 @@ func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit) Unmars
 		return fmt.Errorf("required field mode missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"limit_exceeded_action", "metric_name", "mode", "per_tag_limits", "value_limit"})
 	} else {
 		return err

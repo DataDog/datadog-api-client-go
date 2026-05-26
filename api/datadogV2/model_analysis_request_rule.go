@@ -393,7 +393,7 @@ func (o *AnalysisRequestRule) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"category", "checksum", "code", "entity_checked", "id", "language", "regex", "severity", "tree_sitter_query", "type"})
 	} else {
 		return err

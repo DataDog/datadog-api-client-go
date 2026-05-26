@@ -210,7 +210,7 @@ func (o *CaseLinkAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field relationship missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"child_entity_id", "child_entity_type", "parent_entity_id", "parent_entity_type", "relationship"})
 	} else {
 		return err

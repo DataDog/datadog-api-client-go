@@ -377,7 +377,7 @@ func (o *CommitmentsAzureVMRICommitment) UnmarshalJSON(bytes []byte) (err error)
 		return fmt.Errorf("required field status missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"benefit_name", "commitment_id", "expiration_date", "instance_type", "meter_sub_category", "region", "start_date", "status", "term_length", "utilization"})
 	} else {
 		return err

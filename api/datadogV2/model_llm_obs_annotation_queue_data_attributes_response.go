@@ -346,7 +346,7 @@ func (o *LLMObsAnnotationQueueDataAttributesResponse) UnmarshalJSON(bytes []byte
 		return fmt.Errorf("required field project_id missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"annotation_schema", "created_at", "created_by", "description", "modified_at", "modified_by", "name", "owned_by", "project_id"})
 	} else {
 		return err

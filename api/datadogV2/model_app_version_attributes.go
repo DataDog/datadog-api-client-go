@@ -371,7 +371,7 @@ func (o *AppVersionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"app_id", "created_at", "has_ever_been_published", "name", "updated_at", "user_id", "user_name", "user_uuid", "version"})
 	} else {
 		return err

@@ -131,7 +131,7 @@ func (o *LLMObsInternalReasoning) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field text missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"reasoning_tokens", "text"})
 	} else {
 		return err

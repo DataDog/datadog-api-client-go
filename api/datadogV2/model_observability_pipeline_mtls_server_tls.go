@@ -222,7 +222,7 @@ func (o *ObservabilityPipelineMtlsServerTls) UnmarshalJSON(bytes []byte) (err er
 		return fmt.Errorf("required field crt_file missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"ca_file", "crt_file", "key_file", "key_pass_key", "verify_certificate"})
 	} else {
 		return err

@@ -86,7 +86,7 @@ func (o *LLMObsExperimentationAnalyticsDataAttributesRequest) UnmarshalJSON(byte
 		return fmt.Errorf("required field aggregate missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"aggregate"})
 	} else {
 		return err

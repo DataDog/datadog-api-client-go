@@ -253,7 +253,7 @@ func (o *AutomationRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field trigger missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"action", "created_at", "modified_at", "name", "state", "trigger"})
 	} else {
 		return err

@@ -585,7 +585,7 @@ func (o *DashboardUsageAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field org_id missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"author", "created_at", "dashboard_quality_score", "edited_at", "org_id", "teams", "title", "total_views", "total_views_by_type", "viewed_at", "viewer", "widget_count", "widget_count_by_type"})
 	} else {
 		return err

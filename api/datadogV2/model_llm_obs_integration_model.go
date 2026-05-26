@@ -368,7 +368,7 @@ func (o *LLMObsIntegrationModel) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field provider_display_name missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"has_access", "id", "integration", "integration_display_name", "json_schema", "model_display_name", "model_id", "provider", "provider_display_name", "region_prefix_overrides"})
 	} else {
 		return err

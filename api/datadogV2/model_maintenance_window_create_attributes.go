@@ -188,7 +188,7 @@ func (o *MaintenanceWindowCreateAttributes) UnmarshalJSON(bytes []byte) (err err
 		return fmt.Errorf("required field start_at missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"end_at", "name", "query", "start_at"})
 	} else {
 		return err

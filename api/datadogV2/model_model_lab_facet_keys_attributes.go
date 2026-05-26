@@ -150,7 +150,7 @@ func (o *ModelLabFacetKeysAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field tags missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"metrics", "parameters", "tags"})
 	} else {
 		return err

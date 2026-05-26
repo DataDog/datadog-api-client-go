@@ -1120,7 +1120,7 @@ func (o *IoCIndicatorDetailed) UnmarshalJSON(bytes []byte) (err error) {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"additional_data", "as_cidr_block", "as_geo", "as_number", "as_organization", "as_type", "benign_sources", "categories", "critical_assets", "first_seen", "hosts", "id", "indicator", "indicator_type", "last_seen", "log_matches", "log_sources", "m_as_type", "m_persistence", "m_signal", "m_sources", "malicious_sources", "max_trust_score", "score", "services", "signal_matches", "signal_severity", "signal_tier", "suspicious_sources", "tags", "users"})
 	} else {
 		return err

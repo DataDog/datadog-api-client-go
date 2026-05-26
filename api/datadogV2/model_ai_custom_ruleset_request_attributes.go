@@ -148,7 +148,7 @@ func (o *AiCustomRulesetRequestAttributes) UnmarshalJSON(bytes []byte) (err erro
 		return fmt.Errorf("required field short_description missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"description", "name", "short_description"})
 	} else {
 		return err

@@ -277,7 +277,7 @@ func (o *LLMObsDataDeletionResponseAttributes) UnmarshalJSON(bytes []byte) (err 
 		return fmt.Errorf("required field to_time missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "created_by", "from_time", "org_id", "product", "query", "to_time"})
 	} else {
 		return err

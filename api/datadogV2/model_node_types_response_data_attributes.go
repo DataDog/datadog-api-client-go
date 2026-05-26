@@ -86,7 +86,7 @@ func (o *NodeTypesResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 		return fmt.Errorf("required field node_types missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"node_types"})
 	} else {
 		return err

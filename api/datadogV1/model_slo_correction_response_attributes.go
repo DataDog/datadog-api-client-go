@@ -528,7 +528,7 @@ func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"category", "created_at", "creator", "description", "duration", "end", "modified_at", "modifier", "rrule", "slo_id", "start", "timezone"})
 	} else {
 		return err

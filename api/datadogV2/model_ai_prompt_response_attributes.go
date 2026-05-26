@@ -557,7 +557,7 @@ func (o *AiPromptResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field short_description missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"category", "checksum", "content", "cwe", "description", "directories", "execution_mode", "file_search_keywords", "globs", "is_default", "is_testing", "language", "result_keywords_exclude", "rule_version", "severity", "short_description"})
 	} else {
 		return err

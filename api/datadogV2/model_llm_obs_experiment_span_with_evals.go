@@ -506,7 +506,7 @@ func (o *LLMObsExperimentSpanWithEvals) UnmarshalJSON(bytes []byte) (err error) 
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"dataset_record_id", "duration", "eval_metrics", "id", "meta", "metrics", "name", "parent_id", "span_id", "start_ns", "status", "tags", "trace_id"})
 	} else {
 		return err

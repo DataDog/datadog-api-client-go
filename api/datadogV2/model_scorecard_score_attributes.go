@@ -393,7 +393,7 @@ func (o *ScorecardScoreAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"aggregation", "denominator", "level", "numerator", "score", "total_entities", "total_fail", "total_no_data", "total_pass", "total_skip"})
 	} else {
 		return err

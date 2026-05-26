@@ -117,7 +117,7 @@ func (o *EntityContextResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field total_count missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"page", "total_count"})
 	} else {
 		return err

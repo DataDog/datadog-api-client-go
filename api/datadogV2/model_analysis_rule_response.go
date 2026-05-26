@@ -243,7 +243,7 @@ func (o *AnalysisRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field violations missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"errors", "execution_error", "execution_time_ms", "identifier", "output", "violations"})
 	} else {
 		return err

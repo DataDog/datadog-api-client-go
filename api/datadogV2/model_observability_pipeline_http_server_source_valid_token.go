@@ -195,7 +195,7 @@ func (o *ObservabilityPipelineHttpServerSourceValidToken) UnmarshalJSON(bytes []
 		return fmt.Errorf("required field token_key missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "field_to_add", "path_to_token", "token_key"})
 	} else {
 		return err

@@ -489,7 +489,7 @@ func (o *CloudInventorySyncConfigAttributes) UnmarshalJSON(bytes []byte) (err er
 		return fmt.Errorf("required field prefix missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"aws_account_id", "aws_bucket_name", "aws_region", "azure_client_id", "azure_container_name", "azure_storage_account_name", "azure_tenant_id", "cloud_provider", "error", "error_code", "gcp_bucket_name", "gcp_project_id", "gcp_service_account_email", "prefix"})
 	} else {
 		return err

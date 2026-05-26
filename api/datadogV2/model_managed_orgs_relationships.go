@@ -117,7 +117,7 @@ func (o *ManagedOrgsRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field managed_orgs missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"current_org", "managed_orgs"})
 	} else {
 		return err

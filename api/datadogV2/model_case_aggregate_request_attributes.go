@@ -117,7 +117,7 @@ func (o *CaseAggregateRequestAttributes) UnmarshalJSON(bytes []byte) (err error)
 		return fmt.Errorf("required field query_filter missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"group_by", "query_filter"})
 	} else {
 		return err

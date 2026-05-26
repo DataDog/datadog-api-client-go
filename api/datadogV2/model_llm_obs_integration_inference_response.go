@@ -746,7 +746,7 @@ func (o *LLMObsIntegrationInferenceResponse) UnmarshalJSON(bytes []byte) (err er
 		return fmt.Errorf("required field response missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"anthropic_metadata", "azure_openai_metadata", "bedrock_metadata", "error_response", "frequency_penalty", "json_schema", "max_completion_tokens", "max_tokens", "messages", "model_id", "openai_metadata", "presence_penalty", "response", "temperature", "tools", "top_k", "top_p", "vertex_ai_metadata"})
 	} else {
 		return err

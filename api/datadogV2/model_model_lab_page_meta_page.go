@@ -340,7 +340,7 @@ func (o *ModelLabPageMetaPage) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field total missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"first_number", "last_number", "next_number", "number", "prev_number", "size", "total", "type"})
 	} else {
 		return err

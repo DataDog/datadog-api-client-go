@@ -622,7 +622,7 @@ func (o *ObservabilityPipelineKafkaDestination) UnmarshalJSON(bytes []byte) (err
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"bootstrap_servers_key", "buffer", "compression", "encoding", "headers_key", "id", "inputs", "key_field", "librdkafka_options", "message_timeout_ms", "rate_limit_duration_secs", "rate_limit_num", "sasl", "socket_timeout_ms", "tls", "topic", "type"})
 	} else {
 		return err

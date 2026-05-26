@@ -182,7 +182,7 @@ func (o *CloudInventorySyncConfigAWSRequestAttributes) UnmarshalJSON(bytes []byt
 		return fmt.Errorf("required field destination_bucket_region missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"aws_account_id", "destination_bucket_name", "destination_bucket_region", "destination_prefix"})
 	} else {
 		return err

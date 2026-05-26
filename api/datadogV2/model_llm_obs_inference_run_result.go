@@ -370,7 +370,7 @@ func (o *LLMObsInferenceRunResult) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field total_tokens missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"assessment", "content", "finish_reason", "inference_codes", "input_tokens", "internal_reasoning", "latency", "output_tokens", "tools", "total_tokens"})
 	} else {
 		return err

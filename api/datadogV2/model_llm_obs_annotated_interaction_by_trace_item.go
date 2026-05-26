@@ -347,7 +347,7 @@ func (o *LLMObsAnnotatedInteractionByTraceItem) UnmarshalJSON(bytes []byte) (err
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"annotations", "content_id", "created_at", "display_block", "id", "modified_at", "queue_id", "queue_name", "type"})
 	} else {
 		return err

@@ -185,7 +185,7 @@ func (o *DataProjectionQuery) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field query_string missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"data_source", "indexes", "query_string", "storage"})
 	} else {
 		return err

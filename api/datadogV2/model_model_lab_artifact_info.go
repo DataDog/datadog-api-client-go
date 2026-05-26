@@ -198,7 +198,7 @@ func (o *ModelLabArtifactInfo) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field filename missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"artifact_path", "created_at", "file_size", "filename"})
 	} else {
 		return err

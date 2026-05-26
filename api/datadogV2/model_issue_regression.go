@@ -160,7 +160,7 @@ func (o *IssueRegression) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field resolved_at missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"regressed_at", "regressed_at_version", "resolved_at"})
 	} else {
 		return err

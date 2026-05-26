@@ -643,7 +643,7 @@ func (o *LLMObsExperimentEvalMetricEvent) UnmarshalJSON(bytes []byte) (err error
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"assessment", "boolean_value", "categorical_value", "eval_source_type", "id", "json_value", "label", "metadata", "metric_source", "metric_type", "reasoning", "score_value", "span_id", "tags", "timestamp_ms", "trace_id"})
 	} else {
 		return err

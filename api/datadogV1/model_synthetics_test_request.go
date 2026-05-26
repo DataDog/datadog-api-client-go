@@ -1315,7 +1315,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"allow_insecure", "basicAuth", "body", "bodyType", "callType", "certificate", "certificateDomains", "checkCertificateRevocation", "compressedJsonDescriptor", "compressedProtoFile", "disableAiaIntermediateFetching", "dnsServer", "dnsServerPort", "files", "follow_redirects", "form", "headers", "host", "httpVersion", "isMessageBase64Encoded", "mcpProtocolVersion", "message", "metadata", "method", "noSavingResponseBody", "numberOfPackets", "persistCookies", "port", "proxy", "query", "servername", "service", "shouldTrackHops", "timeout", "toolArgs", "toolName", "url"})
 	} else {
 		return err

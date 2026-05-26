@@ -558,7 +558,7 @@ func (o *AiCustomRuleRevisionResponseAttributes) UnmarshalJSON(bytes []byte) (er
 		return fmt.Errorf("required field version_id missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"category", "checksum", "content", "created_at", "created_by", "cwe", "description", "directories", "execution_mode", "globs", "is_default", "is_published", "is_testing", "severity", "short_description", "version_id"})
 	} else {
 		return err

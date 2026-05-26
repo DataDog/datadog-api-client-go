@@ -416,7 +416,7 @@ func (o *ModelLabProjectAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field updated_at missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"artifact_storage_location", "created_at", "deleted_at", "description", "external_url", "is_starred", "name", "owner_id", "tags", "updated_at"})
 	} else {
 		return err

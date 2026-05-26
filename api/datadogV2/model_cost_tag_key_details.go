@@ -117,7 +117,7 @@ func (o *CostTagKeyDetails) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field tag_values missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"description", "tag_values"})
 	} else {
 		return err

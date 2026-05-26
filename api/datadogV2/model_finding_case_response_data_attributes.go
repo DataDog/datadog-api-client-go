@@ -683,7 +683,7 @@ func (o *FindingCaseResponseDataAttributes) UnmarshalJSON(bytes []byte) (err err
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "assigned_to", "attributes", "closed_at", "created_at", "creation_source", "description", "due_date", "insights", "jira_issue", "key", "modified_at", "priority", "status", "status_group", "status_name", "title", "type"})
 	} else {
 		return err

@@ -313,7 +313,7 @@ func (o *ObservabilityPipelineTagCardinalityLimitProcessor) UnmarshalJSON(bytes 
 		return fmt.Errorf("required field value_limit missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"display_name", "enabled", "id", "include", "limit_exceeded_action", "per_metric_limits", "type", "value_limit"})
 	} else {
 		return err

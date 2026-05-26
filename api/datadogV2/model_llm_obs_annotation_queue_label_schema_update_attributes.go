@@ -86,7 +86,7 @@ func (o *LLMObsAnnotationQueueLabelSchemaUpdateAttributes) UnmarshalJSON(bytes [
 		return fmt.Errorf("required field annotation_schema missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"annotation_schema"})
 	} else {
 		return err

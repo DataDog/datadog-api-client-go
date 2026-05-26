@@ -281,7 +281,7 @@ func (o *LLMObsIntegrationAccount) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field integration missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "account_name", "account_region", "azure_openai_metadata", "id", "integration", "vertex_ai_metadata"})
 	} else {
 		return err

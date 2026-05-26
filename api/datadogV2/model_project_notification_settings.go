@@ -359,7 +359,7 @@ func (o *ProjectNotificationSettings) UnmarshalJSON(bytes []byte) (err error) {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"destinations", "enabled", "notify_on_case_assignment", "notify_on_case_closed", "notify_on_case_comment", "notify_on_case_comment_mention", "notify_on_case_priority_change", "notify_on_case_status_change", "notify_on_case_unassignment"})
 	} else {
 		return err

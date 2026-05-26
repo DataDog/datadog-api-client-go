@@ -275,7 +275,7 @@ func (o *CostTagKeyMetadataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field top_values_by_account missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"cardinality_by_account", "cost_covered", "date", "metric", "row_count", "tag_sources", "top_values_by_account"})
 	} else {
 		return err

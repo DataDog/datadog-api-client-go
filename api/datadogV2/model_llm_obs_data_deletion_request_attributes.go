@@ -182,7 +182,7 @@ func (o *LLMObsDataDeletionRequestAttributes) UnmarshalJSON(bytes []byte) (err e
 		return fmt.Errorf("required field to missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"delay", "from", "query", "to"})
 	} else {
 		return err

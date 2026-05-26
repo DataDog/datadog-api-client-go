@@ -255,7 +255,7 @@ func (o *OCIConfigAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return fmt.Errorf("required field updated_at missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "created_at", "error_messages", "status", "status_updated_at", "updated_at"})
 	} else {
 		return err
