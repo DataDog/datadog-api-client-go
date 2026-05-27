@@ -465,7 +465,7 @@ func (o *SecurityMonitoringDatasetAttributesResponse) UnmarshalJSON(bytes []byte
 		return fmt.Errorf("required field version missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "createdByHandle", "createdByName", "definition", "description", "id", "isDefault", "isDeprecated", "modifiedAt", "name", "updatedByHandle", "updatedByName", "version"})
 	} else {
 		return err
