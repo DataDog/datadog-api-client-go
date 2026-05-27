@@ -270,6 +270,7 @@
 //   - [CloudCostManagementApi.ListCostTagKeys]
 //   - [CloudCostManagementApi.ListCostTagMetadata]
 //   - [CloudCostManagementApi.ListCostTagMetadataMetrics]
+//   - [CloudCostManagementApi.ListCostTagMetadataMonths]
 //   - [CloudCostManagementApi.ListCostTagMetadataOrchestrators]
 //   - [CloudCostManagementApi.ListCostTags]
 //   - [CloudCostManagementApi.ListCustomAllocationRules]

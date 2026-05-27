@@ -852,6 +852,7 @@ func NewConfiguration() *Configuration {
 			"v2.ListCostTagKeySources":                            false,
 			"v2.ListCostTagMetadata":                              false,
 			"v2.ListCostTagMetadataMetrics":                       false,
+			"v2.ListCostTagMetadataMonths":                        false,
 			"v2.ListCostTagMetadataOrchestrators":                 false,
 			"v2.SearchCostRecommendations":                        false,
 			"v2.CreateDashboardSecureEmbed":                       false,
