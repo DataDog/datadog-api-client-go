@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DEFAULT_ERROR_CODES="0"
+# test
 
 # First arg is the command
 # Second arg is the string of acceptable error codes seperated by space. E.g. "0 1"
