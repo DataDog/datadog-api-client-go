@@ -25,7 +25,7 @@ fi
 # this might get solved in Go 1.14: https://github.com/golang/go/issues/30515
 echo "Installing gotestsum"
 cd "$(mktemp -d)"
-GO111MODULE=on go install gotest.tools/gotestsum@latest
+GO111MODULE=on go install gotest.tools/gotestsum@v1.12.3
 cd -
 
 echo "Running mod tidy and cleanup test cache"
