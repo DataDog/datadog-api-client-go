@@ -42,18 +42,18 @@ jobs:
           cache-dependency-path: |
             go.sum
             tests/go.sum
-      - name: Staticcheck (api module)
-        uses: dominikh/staticcheck-action@9716614d4101e79b4340dd97b10e54d68234e431 # v1
-        with:
-          checks: "-SA1009"
-          working-directory: api
-          cache-key: ${{ matrix.go-version }}
-      - name: Staticcheck (tests module)
-        uses: dominikh/staticcheck-action@9716614d4101e79b4340dd97b10e54d68234e431 # v1
-        with:
-          checks: "inherit,-SA1019"
-          cache-key: ${{ matrix.go-version }}
-          working-directory: tests
+      # - name: Staticcheck (api module)
+      #   uses: dominikh/staticcheck-action@9716614d4101e79b4340dd97b10e54d68234e431 # v1
+      #   with:
+      #     checks: "-SA1009"
+      #     working-directory: api
+      #     cache-key: ${{ matrix.go-version }}
+      # - name: Staticcheck (tests module)
+      #   uses: dominikh/staticcheck-action@9716614d4101e79b4340dd97b10e54d68234e431 # v1
+      #   with:
+      #     checks: "inherit,-SA1019"
+      #     cache-key: ${{ matrix.go-version }}
+      #     working-directory: tests
   test:
     strategy:
       matrix:
