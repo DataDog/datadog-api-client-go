@@ -24,7 +24,7 @@ jobs:
   staticcheck:
     strategy:
       matrix:
-        go-version: ["1.23.x"]
+        go-version: ["1.22.x", "1.23.x"]
         go-build-tags: ["--tags=goccy_gojson", ""]
         platform: ["ubuntu-latest"]
     runs-on: ${{ matrix.platform }}
@@ -46,7 +46,7 @@ jobs:
   test:
     strategy:
       matrix:
-        go-version: ["1.23.x"]
+        go-version: ["1.22.x", "1.23.x"]
         go-build-tags: ["--tags=goccy_gojson", ""]
         platform: ["ubuntu-latest"]
     runs-on: ${{ matrix.platform }}
