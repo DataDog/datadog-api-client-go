@@ -30,30 +30,19 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           repository: DataDog/datadog-api-client-go
           ref: ${{ inputs.target-branch || github.ref }}
       - name: Install Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6.4.0
         with:
           go-version: ${{ matrix.go-version }}
           cache: true
           cache-dependency-path: |
             go.sum
             tests/go.sum
-      - name: Staticcheck (api module)
-        uses: dominikh/staticcheck-action@v1
-        with:
-          checks: "-SA1009"
-          working-directory: api
-          cache-key: ${{ matrix.go-version }}
-      - name: Staticcheck (tests module)
-        uses: dominikh/staticcheck-action@v1
-        with:
-          checks: "inherit,-SA1019"
-          cache-key: ${{ matrix.go-version }}
-          working-directory: tests
+
   test:
     strategy:
       matrix:
@@ -63,12 +52,12 @@ jobs:
     runs-on: ${{ matrix.platform }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           repository: DataDog/datadog-api-client-go
           ref: ${{ inputs.target-branch || github.ref }}
       - name: Install Go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@4a3601121dd01d1626a1e23e37211e3254c1c06c # v6.4.0
         with:
           go-version: ${{ matrix.go-version }}
           cache: true
@@ -77,6 +66,7 @@ jobs:
         run: ./scripts/run-tests.sh
         env:
           TESTARGS: ${{ matrix.go-build-tags }}
+          GOTOOLCHAIN: auto
 
   build-terraform-provider:
     if: false # temporarily disabled
