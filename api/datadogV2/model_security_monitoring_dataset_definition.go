@@ -358,7 +358,7 @@ func (o *SecurityMonitoringDatasetDefinition) UnmarshalJSON(bytes []byte) (err e
 		return fmt.Errorf("required field name missing")
 	}
 	additionalProperties := make(map[string]interface{})
-	if err = datadog.Unmarshal(bytes, &additionalProperties); err == nil {
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
 		datadog.DeleteKeys(additionalProperties, &[]string{"columns", "data_source", "indexes", "name", "query_filter", "search", "storage", "table_name", "time_window"})
 	} else {
 		return err
