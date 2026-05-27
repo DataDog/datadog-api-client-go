@@ -66,6 +66,7 @@ jobs:
         run: ./scripts/run-tests.sh
         env:
           TESTARGS: ${{ matrix.go-build-tags }}
+          GOTOOLCHAIN: auto
 
   build-terraform-provider:
     if: false # temporarily disabled
