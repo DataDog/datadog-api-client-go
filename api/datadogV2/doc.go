@@ -15,6 +15,8 @@
 //   - [APMRetentionFiltersApi.ListApmRetentionFilters]
 //   - [APMRetentionFiltersApi.ReorderApmRetentionFilters]
 //   - [APMRetentionFiltersApi.UpdateApmRetentionFilter]
+//   - [APMTraceApi.GetPrunedTraceByID]
+//   - [APMTraceApi.GetTraceByID]
 //   - [AWSIntegrationApi.CreateAWSAccount]
 //   - [AWSIntegrationApi.CreateAWSAccountCCMConfig]
 //   - [AWSIntegrationApi.CreateAWSEventBridgeSource]
