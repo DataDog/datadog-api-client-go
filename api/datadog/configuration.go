@@ -828,7 +828,6 @@ func NewConfiguration() *Configuration {
 			"v2.ListVulnerabilities":                              false,
 			"v2.ListVulnerableAssets":                             false,
 			"v2.MuteFindings":                                     false,
-			"v2.MuteSecurityFindings":                             false,
 			"v2.RunHistoricalJob":                                 false,
 			"v2.SearchSecurityMonitoringHistsignals":              false,
 			"v2.UpdateSecurityMonitoringDataset":                  false,
