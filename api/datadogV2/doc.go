@@ -1082,6 +1082,7 @@
 //   - [StatusPagesApi.UpdateDegradation]
 //   - [StatusPagesApi.UpdateMaintenance]
 //   - [StatusPagesApi.UpdateStatusPage]
+//   - [StorageManagementApi.DeleteSyncConfig]
 //   - [StorageManagementApi.UpsertSyncConfig]
 //   - [SyntheticsApi.AbortTestFileMultipartUpload]
 //   - [SyntheticsApi.AddTestToSyntheticsDowntime]
