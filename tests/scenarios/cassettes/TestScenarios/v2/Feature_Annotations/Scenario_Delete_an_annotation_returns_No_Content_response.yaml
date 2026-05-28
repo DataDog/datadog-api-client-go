@@ -1,0 +1,53 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"color":"blue","description":"Deployed v2.3.1 to production.","page_id":"dashboard:abc-def-xyz","start_time":1704067200000,"type":"pointInTime"},"type":"annotation"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/annotation
+  response:
+    body: '{"data":{"id":"152a2920-7598-4487-b185-b15931f92bc0","type":"annotation","attributes":{"author_id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","color":"blue","created_at":1779913697691,"description":"Deployed
+      v2.3.1 to production.","end_time":null,"modified_at":1779913697691,"page_id":"dashboard:abc-def-xyz","start_time":1704067200000,"type":"pointInTime"}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/annotation/152a2920-7598-4487-b185-b15931f92bc0
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/annotation/152a2920-7598-4487-b185-b15931f92bc0
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
