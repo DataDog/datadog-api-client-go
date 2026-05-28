@@ -1020,6 +1020,8 @@ func NewConfiguration() *Configuration {
 			"v2.QueryEventFilteredUsers":                          false,
 			"v2.QueryUsers":                                       false,
 			"v2.UpdateConnection":                                 false,
+			"v2.GetPrunedTraceByID":                               false,
+			"v2.GetTraceByID":                                     false,
 			"v2.CreateScorecardOutcomesBatch":                     false,
 			"v2.ListEntityRiskScores":                             false,
 			"v2.CreateIncidentService":                            false,
