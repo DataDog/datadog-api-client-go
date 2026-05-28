@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs
   response:
-    body: '{"data":{"id":"67278df4-84b8-4413-884b-88d9facdb68a","type":"historicalDetectionsJob"}}'
+    body: '{"data":{"id":"21011d0e-e7e3-49e1-91d4-74d6791382c8","type":"historicalDetectionsJob"}}'
     code: 201
     duration: 0ms
     headers:
@@ -27,7 +27,7 @@ interactions:
       - '*/*'
     id: 1
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs/67278df4-84b8-4413-884b-88d9facdb68a/cancel
+    url: https://api.datadoghq.com/api/v2/siem-historical-detections/jobs/21011d0e-e7e3-49e1-91d4-74d6791382c8/cancel
   response:
     body: ''
     code: 204
