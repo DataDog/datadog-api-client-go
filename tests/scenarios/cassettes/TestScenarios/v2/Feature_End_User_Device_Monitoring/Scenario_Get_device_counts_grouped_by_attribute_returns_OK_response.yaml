@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/eudm/graph?by=os
+  response:
+    body: '{"data":[{"id":"macOS","type":"graph_items","attributes":{"type":"macOS","counts":[{"columnName":"total","count":18},{"columnName":"healthy","count":9},{"columnName":"degraded","count":4},{"columnName":"critical","count":1},{"columnName":"inactive","count":4}]}},{"id":"Windows","type":"graph_items","attributes":{"type":"Windows","counts":[{"columnName":"total","count":112},{"columnName":"healthy","count":48},{"columnName":"degraded","count":17},{"columnName":"critical","count":5},{"columnName":"inactive","count":42}]}},{"id":"linux","type":"graph_items","attributes":{"type":"linux","counts":[{"columnName":"total","count":7},{"columnName":"healthy","count":6},{"columnName":"degraded","count":0},{"columnName":"critical","count":0},{"columnName":"inactive","count":1}]}}]}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2
