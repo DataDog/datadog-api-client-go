@@ -11810,7 +11810,7 @@ func (r *SearchSecurityMonitoringHistsignalsOptionalParameters) WithBody(body Se
 // Search hist signals.
 func (a *SecurityMonitoringApi) SearchSecurityMonitoringHistsignals(ctx _context.Context, o ...SearchSecurityMonitoringHistsignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSignalsListResponse
 		optionalParams      SearchSecurityMonitoringHistsignalsOptionalParameters

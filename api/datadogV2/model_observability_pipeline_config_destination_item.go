@@ -35,7 +35,6 @@ type ObservabilityPipelineConfigDestinationItem struct {
 	ObservabilityPipelineSyslogNgDestination               *ObservabilityPipelineSyslogNgDestination
 	ObservabilityPipelineDatabricksZerobusDestination      *ObservabilityPipelineDatabricksZerobusDestination
 	ObservabilityPipelineDatadogMetricsDestination         *ObservabilityPipelineDatadogMetricsDestination
-	ObservabilityPipelineSplunkHecMetricsDestination       *ObservabilityPipelineSplunkHecMetricsDestination
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -164,11 +163,6 @@ func ObservabilityPipelineDatabricksZerobusDestinationAsObservabilityPipelineCon
 // ObservabilityPipelineDatadogMetricsDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineDatadogMetricsDestination wrapped in ObservabilityPipelineConfigDestinationItem.
 func ObservabilityPipelineDatadogMetricsDestinationAsObservabilityPipelineConfigDestinationItem(v *ObservabilityPipelineDatadogMetricsDestination) ObservabilityPipelineConfigDestinationItem {
 	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelineDatadogMetricsDestination: v}
-}
-
-// ObservabilityPipelineSplunkHecMetricsDestinationAsObservabilityPipelineConfigDestinationItem is a convenience function that returns ObservabilityPipelineSplunkHecMetricsDestination wrapped in ObservabilityPipelineConfigDestinationItem.
-func ObservabilityPipelineSplunkHecMetricsDestinationAsObservabilityPipelineConfigDestinationItem(v *ObservabilityPipelineSplunkHecMetricsDestination) ObservabilityPipelineConfigDestinationItem {
-	return ObservabilityPipelineConfigDestinationItem{ObservabilityPipelineSplunkHecMetricsDestination: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -600,23 +594,6 @@ func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte
 		obj.ObservabilityPipelineDatadogMetricsDestination = nil
 	}
 
-	// try to unmarshal data into ObservabilityPipelineSplunkHecMetricsDestination
-	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineSplunkHecMetricsDestination)
-	if err == nil {
-		if obj.ObservabilityPipelineSplunkHecMetricsDestination != nil && obj.ObservabilityPipelineSplunkHecMetricsDestination.UnparsedObject == nil {
-			jsonObservabilityPipelineSplunkHecMetricsDestination, _ := datadog.Marshal(obj.ObservabilityPipelineSplunkHecMetricsDestination)
-			if string(jsonObservabilityPipelineSplunkHecMetricsDestination) == "{}" { // empty struct
-				obj.ObservabilityPipelineSplunkHecMetricsDestination = nil
-			} else {
-				match++
-			}
-		} else {
-			obj.ObservabilityPipelineSplunkHecMetricsDestination = nil
-		}
-	} else {
-		obj.ObservabilityPipelineSplunkHecMetricsDestination = nil
-	}
-
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.ObservabilityPipelineElasticsearchDestination = nil
@@ -644,7 +621,6 @@ func (obj *ObservabilityPipelineConfigDestinationItem) UnmarshalJSON(data []byte
 		obj.ObservabilityPipelineSyslogNgDestination = nil
 		obj.ObservabilityPipelineDatabricksZerobusDestination = nil
 		obj.ObservabilityPipelineDatadogMetricsDestination = nil
-		obj.ObservabilityPipelineSplunkHecMetricsDestination = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -750,10 +726,6 @@ func (obj ObservabilityPipelineConfigDestinationItem) MarshalJSON() ([]byte, err
 
 	if obj.ObservabilityPipelineDatadogMetricsDestination != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineDatadogMetricsDestination)
-	}
-
-	if obj.ObservabilityPipelineSplunkHecMetricsDestination != nil {
-		return datadog.Marshal(&obj.ObservabilityPipelineSplunkHecMetricsDestination)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -862,10 +834,6 @@ func (obj *ObservabilityPipelineConfigDestinationItem) GetActualInstance() inter
 
 	if obj.ObservabilityPipelineDatadogMetricsDestination != nil {
 		return obj.ObservabilityPipelineDatadogMetricsDestination
-	}
-
-	if obj.ObservabilityPipelineSplunkHecMetricsDestination != nil {
-		return obj.ObservabilityPipelineSplunkHecMetricsDestination
 	}
 
 	// all schemas are nil
