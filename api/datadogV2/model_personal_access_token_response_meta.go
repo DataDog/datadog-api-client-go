@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PersonalAccessTokenResponseMeta Additional information related to the personal access token response.
+// PersonalAccessTokenResponseMeta Additional information related to the access token response.
 type PersonalAccessTokenResponseMeta struct {
 	// Pagination information.
 	Page *PersonalAccessTokenResponseMetaPage `json:"page,omitempty"`

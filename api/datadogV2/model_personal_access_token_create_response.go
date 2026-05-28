@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PersonalAccessTokenCreateResponse Response for creating a personal access token. Includes the token key.
+// PersonalAccessTokenCreateResponse Response for creating an access token. Includes the token key.
 type PersonalAccessTokenCreateResponse struct {
-	// Datadog personal access token, including the token key.
+	// Datadog access token, including the token key.
 	Data *FullPersonalAccessToken `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

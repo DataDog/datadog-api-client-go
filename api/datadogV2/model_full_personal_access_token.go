@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// FullPersonalAccessToken Datadog personal access token, including the token key.
+// FullPersonalAccessToken Datadog access token, including the token key.
 type FullPersonalAccessToken struct {
-	// Attributes of a full personal access token, including the token key.
+	// Attributes of a full access token, including the token key.
 	Attributes *FullPersonalAccessTokenAttributes `json:"attributes,omitempty"`
-	// ID of the personal access token.
+	// ID of the access token.
 	Id *string `json:"id,omitempty"`
-	// Resources related to the personal access token.
+	// Resources related to the access token.
 	Relationships *PersonalAccessTokenRelationships `json:"relationships,omitempty"`
 	// Personal access tokens resource type.
 	Type *PersonalAccessTokensType `json:"type,omitempty"`

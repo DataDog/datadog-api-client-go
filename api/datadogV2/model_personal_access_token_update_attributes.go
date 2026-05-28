@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PersonalAccessTokenUpdateAttributes Attributes used to update a personal access token.
+// PersonalAccessTokenUpdateAttributes Attributes used to update an access token.
 type PersonalAccessTokenUpdateAttributes struct {
-	// Name of the personal access token.
+	// Name of the access token.
 	Name *string `json:"name,omitempty"`
-	// Array of scopes to grant the personal access token.
+	// Array of scopes to grant the access token.
 	Scopes []string `json:"scopes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -1,4 +1,4 @@
-// Get all personal access tokens returns "OK" response
+// Get all access tokens returns "OK" response
 
 package main
 

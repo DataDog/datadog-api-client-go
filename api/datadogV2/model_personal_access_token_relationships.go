@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PersonalAccessTokenRelationships Resources related to the personal access token.
+// PersonalAccessTokenRelationships Resources related to the access token.
 type PersonalAccessTokenRelationships struct {
 	// Relationship to user.
 	OwnedBy *RelationshipToUser `json:"owned_by,omitempty"`
