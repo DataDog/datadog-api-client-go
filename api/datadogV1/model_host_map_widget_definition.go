@@ -26,7 +26,7 @@ type HostMapWidgetDefinition struct {
 	NodeType *WidgetNodeType `json:"node_type,omitempty"`
 	// Notes on the title.
 	Notes *string `json:"notes,omitempty"`
-	// List of definitions.
+	// Query definition for the host map widget. Supports two mutually exclusive formats distinguished by the presence of `request_type`: the legacy metric-based format (`fill`/`size`) and the infrastructure-backed format (`request_type`, `node_type`, `enrichments`).
 	Requests HostMapWidgetDefinitionRequests `json:"requests"`
 	// List of tags used to filter the map.
 	Scope []string `json:"scope,omitempty"`
