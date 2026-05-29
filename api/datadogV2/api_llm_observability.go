@@ -7,6 +7,7 @@ package datadogV2
 import (
 	_context "context"
 	_fmt "fmt"
+	_io "io"
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
@@ -88,6 +89,206 @@ func (a *LLMObservabilityApi) AggregateLLMObsExperimentation(ctx _context.Contex
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 500 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// BatchUpdateLLMObsDataset Batch update LLM Observability dataset records.
+// Insert, update, and delete records in a single dataset operation. By default, a new dataset version is created when the batch is applied.
+func (a *LLMObservabilityApi) BatchUpdateLLMObsDataset(ctx _context.Context, projectId string, datasetId string, body LLMObsDatasetBatchUpdateRequest) (LLMObsDatasetRecordsMutationResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue LLMObsDatasetRecordsMutationResponse
+	)
+
+	operationId := "v2.BatchUpdateLLMObsDataset"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.LLMObservabilityApi.BatchUpdateLLMObsDataset")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/llm-obs/v1/{project_id}/datasets/{dataset_id}/batch_update"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{project_id}", _neturl.PathEscape(datadog.ParameterToString(projectId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{dataset_id}", _neturl.PathEscape(datadog.ParameterToString(datasetId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 413 || localVarHTTPResponse.StatusCode == 500 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// CloneLLMObsDataset Clone an LLM Observability dataset.
+// Clone a dataset, copying its current records into a new dataset within the same project.
+func (a *LLMObservabilityApi) CloneLLMObsDataset(ctx _context.Context, projectId string, datasetId string, body LLMObsDatasetCloneRequest) (LLMObsDatasetResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue LLMObsDatasetResponse
+	)
+
+	operationId := "v2.CloneLLMObsDataset"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.LLMObservabilityApi.CloneLLMObsDataset")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/llm-obs/v1/{project_id}/datasets/{dataset_id}/clone"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{project_id}", _neturl.PathEscape(datadog.ParameterToString(projectId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{dataset_id}", _neturl.PathEscape(datadog.ParameterToString(datasetId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 500 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
@@ -1624,6 +1825,141 @@ func (a *LLMObservabilityApi) DeleteLLMObsProjects(ctx _context.Context, body LL
 	}
 
 	return localVarHTTPResponse, nil
+}
+
+// ExportLLMObsDatasetOptionalParameters holds optional parameters for ExportLLMObsDataset.
+type ExportLLMObsDatasetOptionalParameters struct {
+	Format  *LLMObsDatasetExportFormat
+	Version *int64
+}
+
+// NewExportLLMObsDatasetOptionalParameters creates an empty struct for parameters.
+func NewExportLLMObsDatasetOptionalParameters() *ExportLLMObsDatasetOptionalParameters {
+	this := ExportLLMObsDatasetOptionalParameters{}
+	return &this
+}
+
+// WithFormat sets the corresponding parameter name and returns the struct.
+func (r *ExportLLMObsDatasetOptionalParameters) WithFormat(format LLMObsDatasetExportFormat) *ExportLLMObsDatasetOptionalParameters {
+	r.Format = &format
+	return r
+}
+
+// WithVersion sets the corresponding parameter name and returns the struct.
+func (r *ExportLLMObsDatasetOptionalParameters) WithVersion(version int64) *ExportLLMObsDatasetOptionalParameters {
+	r.Version = &version
+	return r
+}
+
+// ExportLLMObsDataset Export an LLM Observability dataset.
+// Download the contents of a dataset as a CSV file. The download is streamed and includes one row per dataset record.
+func (a *LLMObservabilityApi) ExportLLMObsDataset(ctx _context.Context, projectId string, datasetId string, o ...ExportLLMObsDatasetOptionalParameters) (string, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue string
+		optionalParams      ExportLLMObsDatasetOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ExportLLMObsDatasetOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.ExportLLMObsDataset"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.LLMObservabilityApi.ExportLLMObsDataset")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/llm-obs/v1/{project_id}/datasets/{dataset_id}/export"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{project_id}", _neturl.PathEscape(datadog.ParameterToString(projectId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{dataset_id}", _neturl.PathEscape(datadog.ParameterToString(datasetId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.Format != nil {
+		localVarQueryParams.Add("format", datadog.ParameterToString(*optionalParams.Format, ""))
+	}
+	if optionalParams.Version != nil {
+		localVarQueryParams.Add("version", datadog.ParameterToString(*optionalParams.Version, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 500 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
 // GetLLMObsAnnotatedInteractions Get annotated queue interactions.
@@ -3664,6 +4000,96 @@ func (a *LLMObservabilityApi) LockLLMObsDatasetDraftState(ctx _context.Context, 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// RestoreLLMObsDatasetVersion Restore an LLM Observability dataset version.
+// Restore a dataset to a previous version. The dataset's current version is bumped, and its records are replaced with the records from the specified prior version.
+func (a *LLMObservabilityApi) RestoreLLMObsDatasetVersion(ctx _context.Context, projectId string, datasetId string, body LLMObsDatasetRestoreVersionRequest) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod = _nethttp.MethodPost
+		localVarPostBody   interface{}
+	)
+
+	operationId := "v2.RestoreLLMObsDatasetVersion"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.LLMObservabilityApi.RestoreLLMObsDatasetVersion")
+	if err != nil {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/llm-obs/v1/{project_id}/datasets/{dataset_id}/restore"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{project_id}", _neturl.PathEscape(datadog.ParameterToString(projectId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{dataset_id}", _neturl.PathEscape(datadog.ParameterToString(datasetId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "*/*"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 500 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 // SearchLLMObsExperimentation Search LLM Observability experimentation entities.
 // Search across LLM Observability experimentation entities — projects, datasets, dataset records, experiments, and experiment runs — using cursor-based pagination.
 //
@@ -4738,6 +5164,183 @@ func (a *LLMObservabilityApi) UpdateLLMObsProject(ctx _context.Context, projectI
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// UploadLLMObsDatasetRecordsFileOptionalParameters holds optional parameters for UploadLLMObsDatasetRecordsFile.
+type UploadLLMObsDatasetRecordsFileOptionalParameters struct {
+	File            *_io.Reader
+	Deduplicate     *bool
+	Overwrite       *bool
+	Tags            *[]string
+	IncludeUserData *bool
+}
+
+// NewUploadLLMObsDatasetRecordsFileOptionalParameters creates an empty struct for parameters.
+func NewUploadLLMObsDatasetRecordsFileOptionalParameters() *UploadLLMObsDatasetRecordsFileOptionalParameters {
+	this := UploadLLMObsDatasetRecordsFileOptionalParameters{}
+	return &this
+}
+
+// WithFile sets the corresponding parameter name and returns the struct.
+func (r *UploadLLMObsDatasetRecordsFileOptionalParameters) WithFile(file _io.Reader) *UploadLLMObsDatasetRecordsFileOptionalParameters {
+	r.File = &file
+	return r
+}
+
+// WithDeduplicate sets the corresponding parameter name and returns the struct.
+func (r *UploadLLMObsDatasetRecordsFileOptionalParameters) WithDeduplicate(deduplicate bool) *UploadLLMObsDatasetRecordsFileOptionalParameters {
+	r.Deduplicate = &deduplicate
+	return r
+}
+
+// WithOverwrite sets the corresponding parameter name and returns the struct.
+func (r *UploadLLMObsDatasetRecordsFileOptionalParameters) WithOverwrite(overwrite bool) *UploadLLMObsDatasetRecordsFileOptionalParameters {
+	r.Overwrite = &overwrite
+	return r
+}
+
+// WithTags sets the corresponding parameter name and returns the struct.
+func (r *UploadLLMObsDatasetRecordsFileOptionalParameters) WithTags(tags []string) *UploadLLMObsDatasetRecordsFileOptionalParameters {
+	r.Tags = &tags
+	return r
+}
+
+// WithIncludeUserData sets the corresponding parameter name and returns the struct.
+func (r *UploadLLMObsDatasetRecordsFileOptionalParameters) WithIncludeUserData(includeUserData bool) *UploadLLMObsDatasetRecordsFileOptionalParameters {
+	r.IncludeUserData = &includeUserData
+	return r
+}
+
+// UploadLLMObsDatasetRecordsFile Upload records to an LLM Observability dataset.
+// Upload records to a dataset from a file. The request is a `multipart/form-data` upload containing a single `file` part.
+// Currently only CSV is supported. The CSV must include an `input` column. Optional columns are `id`, `expected_output`, `metadata`, and `tags`.
+//
+// The response is a Server-Sent Events stream (`text/event-stream`) emitting progress updates while records are processed. The stream emits the following named events:
+//   - `progress`: incremental record counts written so far.
+//   - `completed`: terminal event with a JSON body containing `records_created`.
+//   - `error`: terminal event with a JSON body containing an error `message`.
+func (a *LLMObservabilityApi) UploadLLMObsDatasetRecordsFile(ctx _context.Context, projectId string, datasetId string, o ...UploadLLMObsDatasetRecordsFileOptionalParameters) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod = _nethttp.MethodPost
+		localVarPostBody   interface{}
+		optionalParams     UploadLLMObsDatasetRecordsFileOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return nil, datadog.ReportError("only one argument of type UploadLLMObsDatasetRecordsFileOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.UploadLLMObsDatasetRecordsFile"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.LLMObservabilityApi.UploadLLMObsDatasetRecordsFile")
+	if err != nil {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/llm-obs/v2/{project_id}/datasets/{dataset_id}/records/upload"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{project_id}", _neturl.PathEscape(datadog.ParameterToString(projectId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{dataset_id}", _neturl.PathEscape(datadog.ParameterToString(datasetId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.Deduplicate != nil {
+		localVarQueryParams.Add("deduplicate", datadog.ParameterToString(*optionalParams.Deduplicate, ""))
+	}
+	if optionalParams.Overwrite != nil {
+		localVarQueryParams.Add("overwrite", datadog.ParameterToString(*optionalParams.Overwrite, ""))
+	}
+	if optionalParams.Tags != nil {
+		t := *optionalParams.Tags
+		if reflect.TypeOf(t).Kind() == reflect.Slice {
+			s := reflect.ValueOf(t)
+			for i := 0; i < s.Len(); i++ {
+				localVarQueryParams.Add("tags", datadog.ParameterToString(s.Index(i), "multi"))
+			}
+		} else {
+			localVarQueryParams.Add("tags", datadog.ParameterToString(t, "multi"))
+		}
+	}
+	if optionalParams.IncludeUserData != nil {
+		localVarQueryParams.Add("include[user_data]", datadog.ParameterToString(*optionalParams.IncludeUserData, ""))
+	}
+	localVarHeaderParams["Content-Type"] = "multipart/form-data"
+	localVarHeaderParams["Accept"] = "*/*"
+
+	formFile := datadog.FormFile{}
+	formFile.FormFileName = "file"
+	var localVarFile _io.Reader
+	if optionalParams.File != nil {
+		localVarFile = *optionalParams.File
+	}
+	if localVarFile != nil {
+		fbs, _ := _io.ReadAll(localVarFile)
+		formFile.FileBytes = fbs
+	}
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, &formFile)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 500 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
 }
 
 // NewLLMObservabilityApi Returns NewLLMObservabilityApi.
