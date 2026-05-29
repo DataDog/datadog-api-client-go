@@ -868,6 +868,7 @@
 //   - [SecurityMonitoringApi.AttachCase]
 //   - [SecurityMonitoringApi.AttachJiraIssue]
 //   - [SecurityMonitoringApi.BatchGetSecurityMonitoringDatasetDependencies]
+//   - [SecurityMonitoringApi.BulkConvertExistingSecurityMonitoringRules]
 //   - [SecurityMonitoringApi.BulkCreateSampleLogGenerationSubscriptions]
 //   - [SecurityMonitoringApi.BulkDeleteSecurityMonitoringRules]
 //   - [SecurityMonitoringApi.BulkEditSecurityMonitoringSignals]

@@ -370,6 +370,83 @@ func (a *SecurityMonitoringApi) BatchGetSecurityMonitoringDatasetDependencies(ct
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// BulkConvertExistingSecurityMonitoringRules Bulk convert rules to Terraform.
+// Convert a list of existing security monitoring rules to Terraform for the Datadog provider
+// resource `datadog_security_monitoring_rule`. Returns a ZIP archive containing one Terraform
+// file per rule. You can convert rules for the following types:
+// - App and API Protection
+// - Cloud SIEM (log detection and signal correlation)
+// - Workload Protection
+func (a *SecurityMonitoringApi) BulkConvertExistingSecurityMonitoringRules(ctx _context.Context, body SecurityMonitoringRuleConvertBulkPayload) (_io.Reader, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue _io.Reader
+	)
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.BulkConvertExistingSecurityMonitoringRules")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/security_monitoring/rules/convert/bulk"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+
+		localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+		if err != nil {
+			return localVarReturnValue, localVarHTTPResponse, err
+		}
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+	localVarReturnValue = localVarHTTPResponse.Body
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // BulkCreateSampleLogGenerationSubscriptions Bulk subscribe to sample log generation.
 // Subscribe to sample log generation for multiple Cloud SIEM content packs in a single call.
 // Each requested content pack is processed independently; the response includes a per-item
