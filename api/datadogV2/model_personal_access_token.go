@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PersonalAccessToken Datadog personal access token.
+// PersonalAccessToken Datadog access token.
 type PersonalAccessToken struct {
-	// Attributes of a personal access token.
+	// Attributes of an access token.
 	Attributes *PersonalAccessTokenAttributes `json:"attributes,omitempty"`
-	// ID of the personal access token.
+	// ID of the access token.
 	Id *string `json:"id,omitempty"`
-	// Resources related to the personal access token.
+	// Resources related to the access token.
 	Relationships *PersonalAccessTokenRelationships `json:"relationships,omitempty"`
 	// Personal access tokens resource type.
 	Type *PersonalAccessTokensType `json:"type,omitempty"`

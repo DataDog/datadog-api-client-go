@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PersonalAccessTokenCreateData Object used to create a personal access token.
+// PersonalAccessTokenCreateData Object used to create an access token.
 type PersonalAccessTokenCreateData struct {
-	// Attributes used to create a personal access token.
+	// Attributes used to create an access token.
 	Attributes PersonalAccessTokenCreateAttributes `json:"attributes"`
 	// Personal access tokens resource type.
 	Type PersonalAccessTokensType `json:"type"`

@@ -10,19 +10,19 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// FullPersonalAccessTokenAttributes Attributes of a full personal access token, including the token key.
+// FullPersonalAccessTokenAttributes Attributes of a full access token, including the token key.
 type FullPersonalAccessTokenAttributes struct {
-	// Creation date of the personal access token.
+	// Creation date of the access token.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	// Expiration date of the personal access token.
+	// Expiration date of the access token.
 	ExpiresAt datadog.NullableTime `json:"expires_at,omitempty"`
-	// The personal access token key. Only returned upon creation.
+	// The access token key. Only returned upon creation.
 	Key *string `json:"key,omitempty"`
-	// Name of the personal access token.
+	// Name of the access token.
 	Name *string `json:"name,omitempty"`
-	// The public portion of the personal access token.
+	// The public portion of the access token.
 	PublicPortion *string `json:"public_portion,omitempty"`
-	// Array of scopes granted to the personal access token.
+	// Array of scopes granted to the access token.
 	Scopes []string `json:"scopes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

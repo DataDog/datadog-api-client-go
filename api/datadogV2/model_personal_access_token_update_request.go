@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PersonalAccessTokenUpdateRequest Request used to update a personal access token.
+// PersonalAccessTokenUpdateRequest Request used to update an access token.
 type PersonalAccessTokenUpdateRequest struct {
-	// Object used to update a personal access token.
+	// Object used to update an access token.
 	Data PersonalAccessTokenUpdateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -18,7 +18,7 @@ func main() {
 
 	body := datadogV2.ServiceAccountAccessTokenCreateRequest{
 		Data: datadogV2.ServiceAccountAccessTokenCreateData{
-			Type: datadogV2.PERSONALACCESSTOKENSTYPE_PERSONAL_ACCESS_TOKENS,
+			Type: datadogV2.SERVICEACCESSTOKENSTYPE_SERVICE_ACCESS_TOKENS,
 			Attributes: datadogV2.ServiceAccountAccessTokenCreateAttributes{
 				Name: "Example-Service-Account",
 				Scopes: []string{

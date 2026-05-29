@@ -10,7 +10,7 @@ import (
 
 // PersonalAccessTokenResponseMetaPage Pagination information.
 type PersonalAccessTokenResponseMetaPage struct {
-	// Total filtered personal access token count.
+	// Total filtered access token count.
 	TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

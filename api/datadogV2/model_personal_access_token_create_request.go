@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PersonalAccessTokenCreateRequest Request used to create a personal access token.
+// PersonalAccessTokenCreateRequest Request used to create an access token.
 type PersonalAccessTokenCreateRequest struct {
-	// Object used to create a personal access token.
+	// Object used to create an access token.
 	Data PersonalAccessTokenCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

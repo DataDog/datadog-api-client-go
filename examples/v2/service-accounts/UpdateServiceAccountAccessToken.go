@@ -19,12 +19,12 @@ func main() {
 	// there is a valid "service_account_access_token" for "service_account_user"
 	ServiceAccountAccessTokenDataID := os.Getenv("SERVICE_ACCOUNT_ACCESS_TOKEN_DATA_ID")
 
-	body := datadogV2.PersonalAccessTokenUpdateRequest{
-		Data: datadogV2.PersonalAccessTokenUpdateData{
+	body := datadogV2.ServiceAccountAccessTokenUpdateRequest{
+		Data: datadogV2.ServiceAccountAccessTokenUpdateData{
 			Id:   ServiceAccountAccessTokenDataID,
-			Type: datadogV2.PERSONALACCESSTOKENSTYPE_PERSONAL_ACCESS_TOKENS,
-			Attributes: datadogV2.PersonalAccessTokenUpdateAttributes{
-				Name: datadog.PtrString("My Personal Access Token-updated"),
+			Type: datadogV2.SERVICEACCESSTOKENSTYPE_SERVICE_ACCESS_TOKENS,
+			Attributes: datadogV2.ServiceAccountAccessTokenUpdateAttributes{
+				Name: datadog.PtrString("My Access Token-updated"),
 			},
 		},
 	}
