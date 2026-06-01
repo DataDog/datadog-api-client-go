@@ -155,7 +155,7 @@ def simple_type(schema, render_nullable=False, render_new=False):
             "date": "time.Time" if not nullable else f"{nullable_prefix}Time",
             "date-time": "time.Time" if not nullable else f"{nullable_prefix}Time",
             "binary": "_io.Reader",
-            "uuid": "uuid.UUID" if not nullable else f"{nullable_prefix}String",
+            "uuid": "uuid.UUID" if not nullable else f"{nullable_prefix}UUID",
         }.get(type_format, "string" if not nullable else f"{nullable_prefix}String")
     if type_name == "boolean":
         return "bool" if not nullable else f"{nullable_prefix}Bool"
