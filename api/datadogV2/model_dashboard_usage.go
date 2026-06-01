@@ -12,7 +12,7 @@ import (
 
 // DashboardUsage A single dashboard usage record.
 type DashboardUsage struct {
-	// Usage statistics for a dashboard.
+	// Usage statistics for a dashboard. The `viewer` field and all view-count fields (`total_views`, `viewed_at`, `total_views_by_type`) are populated only when Real User Monitoring (RUM) is active for the org.
 	Attributes DashboardUsageAttributes `json:"attributes"`
 	// The dashboard ID.
 	Id string `json:"id"`
