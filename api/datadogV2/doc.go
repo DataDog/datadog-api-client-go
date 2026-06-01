@@ -793,6 +793,7 @@
 //   - [ReferenceTablesApi.DeleteTable]
 //   - [ReferenceTablesApi.GetRowsByID]
 //   - [ReferenceTablesApi.GetTable]
+//   - [ReferenceTablesApi.ListReferenceTableRows]
 //   - [ReferenceTablesApi.ListTables]
 //   - [ReferenceTablesApi.UpdateReferenceTable]
 //   - [ReferenceTablesApi.UpsertRows]
