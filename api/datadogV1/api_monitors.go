@@ -1223,6 +1223,8 @@ func (a *MonitorsApi) UpdateMonitor(ctx _context.Context, monitorId int64, body 
 
 // ValidateExistingMonitor Validate an existing monitor.
 // Validate the monitor provided in the request.
+//
+// **Note**: Log monitors require an unscoped App Key and `logs_read_data` permission.
 func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId int64, body Monitor) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1305,7 +1307,7 @@ func (a *MonitorsApi) ValidateExistingMonitor(ctx _context.Context, monitorId in
 // ValidateMonitor Validate a monitor.
 // Validate the monitor provided in the request.
 //
-// **Note**: Log monitors require an unscoped App Key.
+// **Note**: Log monitors require an unscoped App Key and `logs_read_data` permission.
 func (a *MonitorsApi) ValidateMonitor(ctx _context.Context, body Monitor) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
