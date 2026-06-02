@@ -375,6 +375,7 @@
 //   - [EntityIntegrationConfigsApi.DeleteEntityIntegrationConfig]
 //   - [EntityIntegrationConfigsApi.GetEntityIntegrationConfig]
 //   - [EntityIntegrationConfigsApi.UpdateEntityIntegrationConfig]
+//   - [EntityRiskScoresApi.GetEntityRiskScore]
 //   - [EntityRiskScoresApi.ListEntityRiskScores]
 //   - [ErrorTrackingApi.DeleteIssueAssignee]
 //   - [ErrorTrackingApi.GetIssue]
