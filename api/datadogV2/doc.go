@@ -1132,6 +1132,7 @@
 //   - [StatuspageIntegrationApi.ListStatuspageUrlSettings]
 //   - [StatuspageIntegrationApi.UpdateStatuspageAccount]
 //   - [StatuspageIntegrationApi.UpdateStatuspageUrlSetting]
+//   - [StegadographyApi.GetWidgetsFromImage]
 //   - [StorageManagementApi.DeleteSyncConfig]
 //   - [StorageManagementApi.UpsertSyncConfig]
 //   - [SyntheticsApi.AbortTestFileMultipartUpload]

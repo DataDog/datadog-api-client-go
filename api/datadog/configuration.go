@@ -1081,6 +1081,7 @@ func NewConfiguration() *Configuration {
 			"v2.RevertCustomRuleRevision":                         false,
 			"v2.UpdateAiCustomRuleset":                            false,
 			"v2.UpdateCustomRuleset":                              false,
+			"v2.GetWidgetsFromImage":                              false,
 			"v2.AddMemberTeam":                                    false,
 			"v2.ListMemberTeams":                                  false,
 			"v2.RemoveMemberTeam":                                 false,
