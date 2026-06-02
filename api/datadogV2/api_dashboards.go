@@ -18,7 +18,7 @@ import (
 type DashboardsApi datadog.Service
 
 // GetDashboardUsage Get usage stats for a dashboard.
-// Get usage statistics for a single dashboard. The response includes view counts, the most recent view and edit times, widget counts, and the dashboard quality score.
+// Get usage statistics for a single dashboard. The response includes view counts, the most recent view and edit times, widget counts, and the dashboard quality score. View-count fields depend on Real User Monitoring (RUM) and are `null` or `0` in orgs without RUM.
 func (a *DashboardsApi) GetDashboardUsage(ctx _context.Context, dashboardId string) (DashboardUsageResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -106,8 +106,10 @@ func (a *DashboardsApi) GetDashboardUsage(ctx _context.Context, dashboardId stri
 
 // ListDashboardsUsageOptionalParameters holds optional parameters for ListDashboardsUsage.
 type ListDashboardsUsageOptionalParameters struct {
-	PageLimit  *int64
-	PageOffset *int64
+	PageLimit          *int64
+	PageOffset         *int64
+	FilterEditedBefore *string
+	FilterViewedBefore *string
 }
 
 // NewListDashboardsUsageOptionalParameters creates an empty struct for parameters.
@@ -128,8 +130,20 @@ func (r *ListDashboardsUsageOptionalParameters) WithPageOffset(pageOffset int64)
 	return r
 }
 
+// WithFilterEditedBefore sets the corresponding parameter name and returns the struct.
+func (r *ListDashboardsUsageOptionalParameters) WithFilterEditedBefore(filterEditedBefore string) *ListDashboardsUsageOptionalParameters {
+	r.FilterEditedBefore = &filterEditedBefore
+	return r
+}
+
+// WithFilterViewedBefore sets the corresponding parameter name and returns the struct.
+func (r *ListDashboardsUsageOptionalParameters) WithFilterViewedBefore(filterViewedBefore string) *ListDashboardsUsageOptionalParameters {
+	r.FilterViewedBefore = &filterViewedBefore
+	return r
+}
+
 // ListDashboardsUsage Get usage stats for all dashboards.
-// Get paginated usage statistics for every dashboard in the caller's organization. Use `page[limit]` and `page[offset]` to walk the result set.
+// Get paginated usage statistics for every dashboard in the caller's organization. Use `page[limit]` and `page[offset]` to walk the result set. Use `filter[edited_before]` or `filter[viewed_before]` to narrow results by recency. View-count fields depend on Real User Monitoring (RUM) and are `null` or `0` in orgs without RUM.
 func (a *DashboardsApi) ListDashboardsUsage(ctx _context.Context, o ...ListDashboardsUsageOptionalParameters) (ListDashboardsUsageResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -169,6 +183,12 @@ func (a *DashboardsApi) ListDashboardsUsage(ctx _context.Context, o ...ListDashb
 	}
 	if optionalParams.PageOffset != nil {
 		localVarQueryParams.Add("page[offset]", datadog.ParameterToString(*optionalParams.PageOffset, ""))
+	}
+	if optionalParams.FilterEditedBefore != nil {
+		localVarQueryParams.Add("filter[edited_before]", datadog.ParameterToString(*optionalParams.FilterEditedBefore, ""))
+	}
+	if optionalParams.FilterViewedBefore != nil {
+		localVarQueryParams.Add("filter[viewed_before]", datadog.ParameterToString(*optionalParams.FilterViewedBefore, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
