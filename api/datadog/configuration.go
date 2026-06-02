@@ -1036,6 +1036,7 @@ func NewConfiguration() *Configuration {
 			"v2.QueryAggregatedSignalsProblems":                   false,
 			"v2.QueryAggregatedWaterfall":                         false,
 			"v2.CreateScorecardOutcomesBatch":                     false,
+			"v2.GetEntityRiskScore":                               false,
 			"v2.ListEntityRiskScores":                             false,
 			"v2.CreateIncidentService":                            false,
 			"v2.DeleteIncidentService":                            false,
