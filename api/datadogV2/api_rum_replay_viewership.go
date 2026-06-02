@@ -15,7 +15,7 @@ import (
 // RumReplayViewershipApi service type
 type RumReplayViewershipApi datadog.Service
 
-// CreateRumReplaySessionWatch Create rum replay session watch.
+// CreateRumReplaySessionWatch Create RUM replay session watch.
 // Record a session watch.
 func (a *RumReplayViewershipApi) CreateRumReplaySessionWatch(ctx _context.Context, sessionId string, body Watch) (Watch, *_nethttp.Response, error) {
 	var (
@@ -96,7 +96,7 @@ func (a *RumReplayViewershipApi) CreateRumReplaySessionWatch(ctx _context.Contex
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// DeleteRumReplaySessionWatch Delete rum replay session watch.
+// DeleteRumReplaySessionWatch Delete RUM replay session watch.
 // Delete session watch history.
 func (a *RumReplayViewershipApi) DeleteRumReplaySessionWatch(ctx _context.Context, sessionId string) (*_nethttp.Response, error) {
 	var (
@@ -188,7 +188,7 @@ func (r *ListRumReplaySessionWatchersOptionalParameters) WithPageNumber(pageNumb
 	return r
 }
 
-// ListRumReplaySessionWatchers List rum replay session watchers.
+// ListRumReplaySessionWatchers List RUM replay session watchers.
 // List session watchers.
 func (a *RumReplayViewershipApi) ListRumReplaySessionWatchers(ctx _context.Context, sessionId string, o ...ListRumReplaySessionWatchersOptionalParameters) (WatcherArray, *_nethttp.Response, error) {
 	var (
@@ -339,7 +339,7 @@ func (r *ListRumReplayViewershipHistorySessionsOptionalParameters) WithFilterApp
 	return r
 }
 
-// ListRumReplayViewershipHistorySessions List rum replay viewership history sessions.
+// ListRumReplayViewershipHistorySessions List RUM replay viewership history sessions.
 // List watched sessions.
 func (a *RumReplayViewershipApi) ListRumReplayViewershipHistorySessions(ctx _context.Context, o ...ListRumReplayViewershipHistorySessionsOptionalParameters) (ViewershipHistorySessionArray, *_nethttp.Response, error) {
 	var (

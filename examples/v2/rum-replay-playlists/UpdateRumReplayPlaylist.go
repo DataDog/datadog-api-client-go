@@ -1,4 +1,4 @@
-// Update rum replay playlist returns "OK" response
+// Update RUM replay playlist returns "OK" response
 
 package main
 

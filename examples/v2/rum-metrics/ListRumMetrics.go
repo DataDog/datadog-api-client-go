@@ -1,4 +1,4 @@
-// Get all rum-based metrics returns "OK" response
+// Get all RUM-based metrics returns "OK" response
 
 package main
 

@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricCreateAttributes The object describing the Datadog rum-based metric to create.
+// RumMetricCreateAttributes The object describing the Datadog RUM-based metric to create.
 type RumMetricCreateAttributes struct {
-	// The compute rule to compute the rum-based metric.
+	// The compute rule to compute the RUM-based metric.
 	Compute RumMetricCompute `json:"compute"`
 	// The type of RUM events to filter on.
 	EventType RumMetricEventType `json:"event_type"`
-	// The rum-based metric filter. Events matching this filter will be aggregated in this metric.
+	// The RUM-based metric filter. Events matching this filter will be aggregated in this metric.
 	Filter *RumMetricFilter `json:"filter,omitempty"`
 	// The rules for the group by.
 	GroupBy []RumMetricGroupBy `json:"group_by,omitempty"`

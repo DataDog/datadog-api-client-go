@@ -32,7 +32,7 @@ func (r *AddRumReplaySessionToPlaylistOptionalParameters) WithDataSource(dataSou
 	return r
 }
 
-// AddRumReplaySessionToPlaylist Add rum replay session to playlist.
+// AddRumReplaySessionToPlaylist Add RUM replay session to playlist.
 // Add a session to a playlist.
 func (a *RumReplayPlaylistsApi) AddRumReplaySessionToPlaylist(ctx _context.Context, ts int64, playlistId int32, sessionId string, o ...AddRumReplaySessionToPlaylistOptionalParameters) (PlaylistsSession, *_nethttp.Response, error) {
 	var (
@@ -123,7 +123,7 @@ func (a *RumReplayPlaylistsApi) AddRumReplaySessionToPlaylist(ctx _context.Conte
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// BulkRemoveRumReplayPlaylistSessions Bulk remove rum replay playlist sessions.
+// BulkRemoveRumReplayPlaylistSessions Bulk remove RUM replay playlist sessions.
 // Remove sessions from a playlist.
 func (a *RumReplayPlaylistsApi) BulkRemoveRumReplayPlaylistSessions(ctx _context.Context, playlistId int32, body SessionIdArray) (*_nethttp.Response, error) {
 	var (
@@ -194,7 +194,7 @@ func (a *RumReplayPlaylistsApi) BulkRemoveRumReplayPlaylistSessions(ctx _context
 	return localVarHTTPResponse, nil
 }
 
-// CreateRumReplayPlaylist Create rum replay playlist.
+// CreateRumReplayPlaylist Create RUM replay playlist.
 // Create a playlist.
 func (a *RumReplayPlaylistsApi) CreateRumReplayPlaylist(ctx _context.Context, body Playlist) (Playlist, *_nethttp.Response, error) {
 	var (
@@ -274,7 +274,7 @@ func (a *RumReplayPlaylistsApi) CreateRumReplayPlaylist(ctx _context.Context, bo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// DeleteRumReplayPlaylist Delete rum replay playlist.
+// DeleteRumReplayPlaylist Delete RUM replay playlist.
 // Delete a playlist.
 func (a *RumReplayPlaylistsApi) DeleteRumReplayPlaylist(ctx _context.Context, playlistId int32) (*_nethttp.Response, error) {
 	var (
@@ -342,7 +342,7 @@ func (a *RumReplayPlaylistsApi) DeleteRumReplayPlaylist(ctx _context.Context, pl
 	return localVarHTTPResponse, nil
 }
 
-// GetRumReplayPlaylist Get rum replay playlist.
+// GetRumReplayPlaylist Get RUM replay playlist.
 // Get a playlist.
 func (a *RumReplayPlaylistsApi) GetRumReplayPlaylist(ctx _context.Context, playlistId int32) (Playlist, *_nethttp.Response, error) {
 	var (
@@ -444,7 +444,7 @@ func (r *ListRumReplayPlaylistSessionsOptionalParameters) WithPageSize(pageSize 
 	return r
 }
 
-// ListRumReplayPlaylistSessions List rum replay playlist sessions.
+// ListRumReplayPlaylistSessions List RUM replay playlist sessions.
 // List sessions in a playlist.
 func (a *RumReplayPlaylistsApi) ListRumReplayPlaylistSessions(ctx _context.Context, playlistId int32, o ...ListRumReplayPlaylistSessionsOptionalParameters) (PlaylistsSessionArray, *_nethttp.Response, error) {
 	var (
@@ -574,7 +574,7 @@ func (r *ListRumReplayPlaylistsOptionalParameters) WithPageSize(pageSize int32) 
 	return r
 }
 
-// ListRumReplayPlaylists List rum replay playlists.
+// ListRumReplayPlaylists List RUM replay playlists.
 // List playlists.
 func (a *RumReplayPlaylistsApi) ListRumReplayPlaylists(ctx _context.Context, o ...ListRumReplayPlaylistsOptionalParameters) (PlaylistArray, *_nethttp.Response, error) {
 	var (
@@ -671,7 +671,7 @@ func (a *RumReplayPlaylistsApi) ListRumReplayPlaylists(ctx _context.Context, o .
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// RemoveRumReplaySessionFromPlaylist Remove rum replay session from playlist.
+// RemoveRumReplaySessionFromPlaylist Remove RUM replay session from playlist.
 // Remove a session from a playlist.
 func (a *RumReplayPlaylistsApi) RemoveRumReplaySessionFromPlaylist(ctx _context.Context, playlistId int32, sessionId string) (*_nethttp.Response, error) {
 	var (
@@ -740,7 +740,7 @@ func (a *RumReplayPlaylistsApi) RemoveRumReplaySessionFromPlaylist(ctx _context.
 	return localVarHTTPResponse, nil
 }
 
-// UpdateRumReplayPlaylist Update rum replay playlist.
+// UpdateRumReplayPlaylist Update RUM replay playlist.
 // Update a playlist.
 func (a *RumReplayPlaylistsApi) UpdateRumReplayPlaylist(ctx _context.Context, playlistId int32, body Playlist) (Playlist, *_nethttp.Response, error) {
 	var (
