@@ -10,7 +10,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// UsageSummaryDate Response with hourly report of all data billed by Datadog all organizations.
+// UsageSummaryDate Response with hourly report of all data billed by Datadog for all organizations.
+//
+// Newly added billing dimensions and usage types appear as untyped keys on the
+// `additionalProperties` map instead of as typed fields. Call
+// `GET /api/v2/usage/summary/available_fields` to enumerate every key returned
+// at this response level—both typed fields and `additionalProperties` keys.
 type UsageSummaryDate struct {
 	// Shows the 99th percentile of all agent hosts over all hours in the current date for all organizations.
 	AgentHostTop99p *int64 `json:"agent_host_top99p,omitempty"`

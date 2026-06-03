@@ -1229,6 +1229,7 @@
 //   - [UsageMeteringApi.GetUsageAttributionTypes]
 //   - [UsageMeteringApi.GetUsageLambdaTracedInvocations]
 //   - [UsageMeteringApi.GetUsageObservabilityPipelines]
+//   - [UsageMeteringApi.GetUsageSummaryAvailableFields]
 //   - [UsersApi.AnonymizeUsers]
 //   - [UsersApi.CreateUser]
 //   - [UsersApi.DeleteUserInvitations]
