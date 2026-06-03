@@ -19,8 +19,12 @@ type LogsArchiveCreateRequestAttributes struct {
 	// To store the tags in the archive, set the value "true".
 	// If it is set to "false", the tags will be deleted when the logs are sent to the archive.
 	IncludeTags *bool `json:"include_tags,omitempty"`
+	// An array of attributes to use as lookup keys for the archive.
+	LookupAttributes []string `json:"lookup_attributes,omitempty"`
 	// The archive name.
 	Name string `json:"name"`
+	// An array of attributes to use as partition keys for the archive. The attribute used most frequently for querying should be first.
+	PartitioningAttributes []string `json:"partitioning_attributes,omitempty"`
 	// The archive query/filter. Logs matching this query are included in the archive.
 	Query string `json:"query"`
 	// Maximum scan size for rehydration from this archive.
@@ -139,6 +143,34 @@ func (o *LogsArchiveCreateRequestAttributes) SetIncludeTags(v bool) {
 	o.IncludeTags = &v
 }
 
+// GetLookupAttributes returns the LookupAttributes field value if set, zero value otherwise.
+func (o *LogsArchiveCreateRequestAttributes) GetLookupAttributes() []string {
+	if o == nil || o.LookupAttributes == nil {
+		var ret []string
+		return ret
+	}
+	return o.LookupAttributes
+}
+
+// GetLookupAttributesOk returns a tuple with the LookupAttributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogsArchiveCreateRequestAttributes) GetLookupAttributesOk() (*[]string, bool) {
+	if o == nil || o.LookupAttributes == nil {
+		return nil, false
+	}
+	return &o.LookupAttributes, true
+}
+
+// HasLookupAttributes returns a boolean if a field has been set.
+func (o *LogsArchiveCreateRequestAttributes) HasLookupAttributes() bool {
+	return o != nil && o.LookupAttributes != nil
+}
+
+// SetLookupAttributes gets a reference to the given []string and assigns it to the LookupAttributes field.
+func (o *LogsArchiveCreateRequestAttributes) SetLookupAttributes(v []string) {
+	o.LookupAttributes = v
+}
+
 // GetName returns the Name field value.
 func (o *LogsArchiveCreateRequestAttributes) GetName() string {
 	if o == nil {
@@ -160,6 +192,34 @@ func (o *LogsArchiveCreateRequestAttributes) GetNameOk() (*string, bool) {
 // SetName sets field value.
 func (o *LogsArchiveCreateRequestAttributes) SetName(v string) {
 	o.Name = v
+}
+
+// GetPartitioningAttributes returns the PartitioningAttributes field value if set, zero value otherwise.
+func (o *LogsArchiveCreateRequestAttributes) GetPartitioningAttributes() []string {
+	if o == nil || o.PartitioningAttributes == nil {
+		var ret []string
+		return ret
+	}
+	return o.PartitioningAttributes
+}
+
+// GetPartitioningAttributesOk returns a tuple with the PartitioningAttributes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LogsArchiveCreateRequestAttributes) GetPartitioningAttributesOk() (*[]string, bool) {
+	if o == nil || o.PartitioningAttributes == nil {
+		return nil, false
+	}
+	return &o.PartitioningAttributes, true
+}
+
+// HasPartitioningAttributes returns a boolean if a field has been set.
+func (o *LogsArchiveCreateRequestAttributes) HasPartitioningAttributes() bool {
+	return o != nil && o.PartitioningAttributes != nil
+}
+
+// SetPartitioningAttributes gets a reference to the given []string and assigns it to the PartitioningAttributes field.
+func (o *LogsArchiveCreateRequestAttributes) SetPartitioningAttributes(v []string) {
+	o.PartitioningAttributes = v
 }
 
 // GetQuery returns the Query field value.
@@ -265,7 +325,13 @@ func (o LogsArchiveCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 	if o.IncludeTags != nil {
 		toSerialize["include_tags"] = o.IncludeTags
 	}
+	if o.LookupAttributes != nil {
+		toSerialize["lookup_attributes"] = o.LookupAttributes
+	}
 	toSerialize["name"] = o.Name
+	if o.PartitioningAttributes != nil {
+		toSerialize["partitioning_attributes"] = o.PartitioningAttributes
+	}
 	toSerialize["query"] = o.Query
 	if o.RehydrationMaxScanSizeInGb.IsSet() {
 		toSerialize["rehydration_max_scan_size_in_gb"] = o.RehydrationMaxScanSizeInGb.Get()
@@ -286,7 +352,9 @@ func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 		CompressionMethod          *LogsArchiveAttributesCompressionMethod `json:"compression_method,omitempty"`
 		Destination                *LogsArchiveCreateRequestDestination    `json:"destination"`
 		IncludeTags                *bool                                   `json:"include_tags,omitempty"`
+		LookupAttributes           []string                                `json:"lookup_attributes,omitempty"`
 		Name                       *string                                 `json:"name"`
+		PartitioningAttributes     []string                                `json:"partitioning_attributes,omitempty"`
 		Query                      *string                                 `json:"query"`
 		RehydrationMaxScanSizeInGb datadog.NullableInt64                   `json:"rehydration_max_scan_size_in_gb,omitempty"`
 		RehydrationTags            []string                                `json:"rehydration_tags,omitempty"`
@@ -305,7 +373,7 @@ func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compression_method", "destination", "include_tags", "name", "query", "rehydration_max_scan_size_in_gb", "rehydration_tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"compression_method", "destination", "include_tags", "lookup_attributes", "name", "partitioning_attributes", "query", "rehydration_max_scan_size_in_gb", "rehydration_tags"})
 	} else {
 		return err
 	}
@@ -318,7 +386,9 @@ func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	}
 	o.Destination = *all.Destination
 	o.IncludeTags = all.IncludeTags
+	o.LookupAttributes = all.LookupAttributes
 	o.Name = *all.Name
+	o.PartitioningAttributes = all.PartitioningAttributes
 	o.Query = *all.Query
 	o.RehydrationMaxScanSizeInGb = all.RehydrationMaxScanSizeInGb
 	o.RehydrationTags = all.RehydrationTags
