@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricCreateData The new RUM-based metric properties.
+// RumMetricCreateData The new rum-based metric properties.
 type RumMetricCreateData struct {
-	// The object describing the Datadog RUM-based metric to create.
+	// The object describing the Datadog rum-based metric to create.
 	Attributes RumMetricCreateAttributes `json:"attributes"`
-	// The name of the RUM-based metric.
+	// The name of the rum-based metric.
 	Id string `json:"id"`
 	// The type of the resource. The value should always be rum_metrics.
 	Type RumMetricType `json:"type"`

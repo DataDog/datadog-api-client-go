@@ -1,4 +1,4 @@
-// Delete a RUM-based metric returns "No Content" response
+// Delete a rum-based metric returns "No Content" response
 
 package main
 

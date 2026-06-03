@@ -1,4 +1,4 @@
-// List RUM replay viewership history sessions returns "OK" response
+// List rum replay viewership history sessions returns "OK" response
 
 package main
 

@@ -1,4 +1,4 @@
-// Add RUM replay session to playlist returns "OK" response
+// Add rum replay session to playlist returns "OK" response
 
 package main
 

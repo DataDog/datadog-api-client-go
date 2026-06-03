@@ -1,4 +1,4 @@
-// Remove RUM replay session from playlist returns "No Content" response
+// Remove rum replay session from playlist returns "No Content" response
 
 package main
 

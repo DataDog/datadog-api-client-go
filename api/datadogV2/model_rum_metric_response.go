@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricResponse The RUM-based metric object.
+// RumMetricResponse The rum-based metric object.
 type RumMetricResponse struct {
-	// The RUM-based metric properties.
+	// The rum-based metric properties.
 	Data *RumMetricResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

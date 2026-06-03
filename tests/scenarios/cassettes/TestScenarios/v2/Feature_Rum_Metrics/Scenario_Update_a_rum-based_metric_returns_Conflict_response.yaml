@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"compute":{"aggregation_type":"distribution","include_percentiles":true,"path":"@duration"},"event_type":"session","filter":{"query":"source:Test-Update_a_rum_based_metric_returns_Conflict_response-1732807885"},"group_by":[{"path":"@browser.name","tag_name":"browser_name"}],"uniqueness":{"when":"match"}},"id":"testupdatearumbasedmetricreturnsconflictresponse1732807885","type":"rum_metrics"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/rum/config/metrics
+  response:
+    body: '{"data":{"id":"testupdatearumbasedmetricreturnsconflictresponse1732807885","type":"rum_metrics","attributes":{"compute":{"aggregation_type":"distribution","include_percentiles":true,"path":"@duration"},"event_type":"session","filter":{"query":"source:Test-Update_a_rum_based_metric_returns_Conflict_response-1732807885"},"group_by":[{"path":"@browser.name","tag_name":"browser_name"}],"uniqueness":{"when":"match"}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: |
+      {"data":{"attributes":{"compute":{"include_percentiles":true}},"id":"conflicting.id","type":"rum_metrics"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/rum/config/metrics/testupdatearumbasedmetricreturnsconflictresponse1732807885
+  response:
+    body: '{"errors":[{"status":"409","title":"Conflict","detail":"ID provided in
+      the payload does not match the url parameter"}]}'
+    code: 409
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 409 Conflict
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/rum/config/metrics/testupdatearumbasedmetricreturnsconflictresponse1732807885
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2

@@ -1,4 +1,4 @@
-// Delete RUM replay playlist returns "No Content" response
+// Delete rum replay playlist returns "No Content" response
 
 package main
 

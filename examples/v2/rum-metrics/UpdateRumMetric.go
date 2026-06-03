@@ -1,4 +1,4 @@
-// Update a RUM-based metric returns "OK" response
+// Update a rum-based metric returns "OK" response
 
 package main
 

@@ -1,4 +1,4 @@
-// Bulk remove RUM replay playlist sessions returns "No Content" response
+// Bulk remove rum replay playlist sessions returns "No Content" response
 
 package main
 
