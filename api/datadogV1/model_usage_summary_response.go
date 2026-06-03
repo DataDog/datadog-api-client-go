@@ -20,6 +20,16 @@ import (
 type UsageSummaryResponse struct {
 	// Shows the 99th percentile of all agent hosts over all hours in the current month for all organizations.
 	AgentHostTop99pSum *int64 `json:"agent_host_top99p_sum,omitempty"`
+	// Shows the sum of all AI credits used by Agent Builder over all hours in the current month for all organizations.
+	AiCreditsAgentBuilderAiCreditsAggSum *int64 `json:"ai_credits_agent_builder_ai_credits_agg_sum,omitempty"`
+	// Shows the sum of all AI credits over all hours in the current month for all organizations.
+	AiCreditsAggSum *int64 `json:"ai_credits_agg_sum,omitempty"`
+	// Shows the sum of all AI credits used by Bits AI Assistant over all hours in the current month for all organizations.
+	AiCreditsBitsAssistantAiCreditsAggSum *int64 `json:"ai_credits_bits_assistant_ai_credits_agg_sum,omitempty"`
+	// Shows the sum of all AI credits used by Bits AI Dev over all hours in the current month for all organizations.
+	AiCreditsBitsDevAiCreditsAggSum *int64 `json:"ai_credits_bits_dev_ai_credits_agg_sum,omitempty"`
+	// Shows the sum of all AI credits used by Bits AI SRE over all hours in the current month for all organizations.
+	AiCreditsBitsSreAiCreditsAggSum *int64 `json:"ai_credits_bits_sre_ai_credits_agg_sum,omitempty"`
 	// Shows the 99th percentile of all Azure app services using APM over all hours in the current month all organizations.
 	ApmAzureAppServiceHostTop99pSum *int64 `json:"apm_azure_app_service_host_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all APM DevSecOps hosts over all hours in the current month for all organizations.
@@ -41,6 +51,8 @@ type UsageSummaryResponse struct {
 	AuditLogsLinesIndexedAggSum *int64 `json:"audit_logs_lines_indexed_agg_sum,omitempty"`
 	// Shows the total number of organizations that had Audit Trail enabled over a specific number of months.
 	AuditTrailEnabledHwmSum *int64 `json:"audit_trail_enabled_hwm_sum,omitempty"`
+	// Shows the sum of all Audit Trail event forwarding events over all hours in the current month for all organizations.
+	AuditTrailEventForwardingEventsAggSum *int64 `json:"audit_trail_event_forwarding_events_agg_sum,omitempty"`
 	// The average total count for Fargate Container Profiler over all hours in the current month for all organizations.
 	AvgProfiledFargateTasksSum *int64 `json:"avg_profiled_fargate_tasks_sum,omitempty"`
 	// Shows the 99th percentile of all AWS hosts over all hours in the current month for all organizations.
@@ -193,6 +205,10 @@ type UsageSummaryResponse struct {
 	CwsHostTop99pSum *int64 `json:"cws_host_top99p_sum,omitempty"`
 	// Shows the sum of Data Jobs Monitoring hosts over all hours in the current months for all organizations
 	DataJobsMonitoringHostHrAggSum *int64 `json:"data_jobs_monitoring_host_hr_agg_sum,omitempty"`
+	// Shows the sum of all Data Streams Monitoring hosts over all hours in the current month for all organizations.
+	DataStreamMonitoringHostCountAggSum *int64 `json:"data_stream_monitoring_host_count_agg_sum,omitempty"`
+	// Shows the 99th percentile of all Data Streams Monitoring hosts over all hours in the current month for all organizations.
+	DataStreamMonitoringHostCountTop99pSum *int64 `json:"data_stream_monitoring_host_count_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all Database Monitoring hosts over all hours in the current month for all organizations.
 	DbmHostTop99pSum *int64 `json:"dbm_host_top99p_sum,omitempty"`
 	// Shows the average of all distinct Database Monitoring Normalized Queries over all hours in the current month for all organizations.
@@ -290,6 +306,68 @@ type UsageSummaryResponse struct {
 	// Shows the sum of all log events indexed over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
 	// Deprecated
 	IndexedEventsCountAggSum *int64 `json:"indexed_events_count_agg_sum,omitempty"`
+	// Shows the sum of all indexed custom metrics points over all hours in the current month for all organizations.
+	IndexedPointsAggSum *int64 `json:"indexed_points_agg_sum,omitempty"`
+	// Shows the sum of all Infrastructure vCPU cores over all hours in the current month for all organizations.
+	InfraCpuAggSum *int64 `json:"infra_cpu_agg_sum,omitempty"`
+	// Shows the average of all Infrastructure vCPU cores over all hours in the current month for all organizations.
+	InfraCpuAvgSum *int64 `json:"infra_cpu_avg_sum,omitempty"`
+	// Shows the sum of all default Infrastructure host vCPU cores reported by the Datadog Agent over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuAgentAggSum *int64 `json:"infra_cpu_default_infra_host_vcpu_agent_agg_sum,omitempty"`
+	// Shows the average of all default Infrastructure host vCPU cores reported by the Datadog Agent over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuAgentAvgSum *int64 `json:"infra_cpu_default_infra_host_vcpu_agent_avg_sum,omitempty"`
+	// Shows the sum of all default basic Infrastructure host vCPU cores reported by the Datadog Agent over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuAgentBasicAggSum *int64 `json:"infra_cpu_default_infra_host_vcpu_agent_basic_agg_sum,omitempty"`
+	// Shows the average of all default basic Infrastructure host vCPU cores reported by the Datadog Agent over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuAgentBasicAvgSum *int64 `json:"infra_cpu_default_infra_host_vcpu_agent_basic_avg_sum,omitempty"`
+	// Shows the sum of all default Infrastructure host vCPU cores on AWS over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuAwsAggSum *int64 `json:"infra_cpu_default_infra_host_vcpu_aws_agg_sum,omitempty"`
+	// Shows the average of all default Infrastructure host vCPU cores on AWS over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuAwsAvgSum *int64 `json:"infra_cpu_default_infra_host_vcpu_aws_avg_sum,omitempty"`
+	// Shows the sum of all default Infrastructure host vCPU cores on Azure over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuAzureAggSum *int64 `json:"infra_cpu_default_infra_host_vcpu_azure_agg_sum,omitempty"`
+	// Shows the average of all default Infrastructure host vCPU cores on Azure over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuAzureAvgSum *int64 `json:"infra_cpu_default_infra_host_vcpu_azure_avg_sum,omitempty"`
+	// Shows the sum of all default Infrastructure host vCPU cores on GCP over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuGcpAggSum *int64 `json:"infra_cpu_default_infra_host_vcpu_gcp_agg_sum,omitempty"`
+	// Shows the average of all default Infrastructure host vCPU cores on GCP over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuGcpAvgSum *int64 `json:"infra_cpu_default_infra_host_vcpu_gcp_avg_sum,omitempty"`
+	// Shows the sum of all default Infrastructure host vCPU cores on Nutanix over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuNutanixAggSum *int64 `json:"infra_cpu_default_infra_host_vcpu_nutanix_agg_sum,omitempty"`
+	// Shows the average of all default Infrastructure host vCPU cores on Nutanix over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuNutanixAvgSum *int64 `json:"infra_cpu_default_infra_host_vcpu_nutanix_avg_sum,omitempty"`
+	// Shows the sum of all default basic Infrastructure host vCPU cores on Nutanix over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuNutanixBasicAggSum *int64 `json:"infra_cpu_default_infra_host_vcpu_nutanix_basic_agg_sum,omitempty"`
+	// Shows the average of all default basic Infrastructure host vCPU cores on Nutanix over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum *int64 `json:"infra_cpu_default_infra_host_vcpu_nutanix_basic_avg_sum,omitempty"`
+	// Shows the sum of all default Infrastructure host vCPU cores reported by OpenTelemetry over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuOpentelemetryAggSum *int64 `json:"infra_cpu_default_infra_host_vcpu_opentelemetry_agg_sum,omitempty"`
+	// Shows the average of all default Infrastructure host vCPU cores reported by OpenTelemetry over all hours in the current month for all organizations.
+	InfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum *int64 `json:"infra_cpu_default_infra_host_vcpu_opentelemetry_avg_sum,omitempty"`
+	// Shows the sum of all observed Infrastructure host vCPU cores reported by the Datadog Agent over all hours in the current month for all organizations.
+	InfraCpuObservedInfraHostVcpuAgentAggSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_agent_agg_sum,omitempty"`
+	// Shows the average of all observed Infrastructure host vCPU cores reported by the Datadog Agent over all hours in the current month for all organizations.
+	InfraCpuObservedInfraHostVcpuAgentAvgSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_agent_avg_sum,omitempty"`
+	// Shows the sum of all observed Infrastructure host vCPU cores on AWS over all hours in the current month for all organizations.
+	InfraCpuObservedInfraHostVcpuAwsAggSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_aws_agg_sum,omitempty"`
+	// Shows the average of all observed Infrastructure host vCPU cores on AWS over all hours in the current month for all organizations.
+	InfraCpuObservedInfraHostVcpuAwsAvgSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_aws_avg_sum,omitempty"`
+	// Shows the sum of all observed Infrastructure host vCPU cores on Azure over all hours in the current month for all organizations.
+	InfraCpuObservedInfraHostVcpuAzureAggSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_azure_agg_sum,omitempty"`
+	// Shows the average of all observed Infrastructure host vCPU cores on Azure over all hours in the current month for all organizations.
+	InfraCpuObservedInfraHostVcpuAzureAvgSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_azure_avg_sum,omitempty"`
+	// Shows the sum of all observed Infrastructure host vCPU cores on GCP over all hours in the current month for all organizations.
+	InfraCpuObservedInfraHostVcpuGcpAggSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_gcp_agg_sum,omitempty"`
+	// Shows the average of all observed Infrastructure host vCPU cores on GCP over all hours in the current month for all organizations.
+	InfraCpuObservedInfraHostVcpuGcpAvgSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_gcp_avg_sum,omitempty"`
+	// Shows the sum of all observed Infrastructure host vCPU cores on Nutanix over all hours in the current month for all organizations.
+	InfraCpuObservedInfraHostVcpuNutanixAggSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_nutanix_agg_sum,omitempty"`
+	// Shows the average of all observed Infrastructure host vCPU cores on Nutanix over all hours in the current month for all organizations.
+	InfraCpuObservedInfraHostVcpuNutanixAvgSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_nutanix_avg_sum,omitempty"`
+	// Shows the sum of all observed Infrastructure host vCPU cores reported by OpenTelemetry over all hours in the current month for all organizations.
+	InfraCpuObservedInfraHostVcpuOpentelemetryAggSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_opentelemetry_agg_sum,omitempty"`
+	// Shows the average of all observed Infrastructure host vCPU cores reported by OpenTelemetry over all hours in the current month for all organizations.
+	InfraCpuObservedInfraHostVcpuOpentelemetryAvgSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_opentelemetry_avg_sum,omitempty"`
 	// Shows the 99th percentile of all Edge Devices Monitoring devices over all hours in the current month for all organizations.
 	InfraEdgeMonitoringDevicesTop99pSum *int64 `json:"infra_edge_monitoring_devices_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all distinct infrastructure hosts for Basic tier with the Datadog Agent over all hours in the current month for all organizations.
@@ -302,8 +380,14 @@ type UsageSummaryResponse struct {
 	InfraHostTop99pSum *int64 `json:"infra_host_top99p_sum,omitempty"`
 	// Shows the average number of storage management objects over all hours in the current month for all organizations.
 	InfraStorageMgmtObjectsCountAvgSum *int64 `json:"infra_storage_mgmt_objects_count_avg_sum,omitempty"`
+	// Shows the sum of all ingested custom metrics points over all hours in the current month for all organizations.
+	IngestPointsAggSum *int64 `json:"ingest_points_agg_sum,omitempty"`
 	// Shows the sum of all log bytes ingested over all hours in the current month for all organizations.
 	IngestedEventsBytesAggSum *int64 `json:"ingested_events_bytes_agg_sum,omitempty"`
+	// Shows the sum of all Application Performance Monitoring IoT hosts over all hours in the current month for all organizations.
+	IotApmHostAggSum *int64 `json:"iot_apm_host_agg_sum,omitempty"`
+	// Shows the 99th percentile of all Application Performance Monitoring IoT hosts over all hours in the current month for all organizations.
+	IotApmHostTop99pSum *int64 `json:"iot_apm_host_top99p_sum,omitempty"`
 	// Shows the sum of all IoT devices over all hours in the current month for all organizations.
 	IotDeviceAggSum *int64 `json:"iot_device_agg_sum,omitempty"`
 	// Shows the 99th percentile of all IoT devices over all hours in the current month of all organizations.
@@ -315,12 +399,24 @@ type UsageSummaryResponse struct {
 	LiveIndexedEventsAggSum *int64 `json:"live_indexed_events_agg_sum,omitempty"`
 	// Shows the sum of all live logs bytes ingested over all hours in the current month for all organizations (data available as of December 1, 2020).
 	LiveIngestedBytesAggSum *int64 `json:"live_ingested_bytes_agg_sum,omitempty"`
+	// Shows the sum of all LLM Observability 15-day retention spans over all hours in the current month for all organizations.
+	LlmObservability15dayRetentionSpansAggSum *int64 `json:"llm_observability_15day_retention_spans_agg_sum,omitempty"`
+	// Shows the sum of all LLM Observability 30-day retention spans over all hours in the current month for all organizations.
+	LlmObservability30dayRetentionSpansAggSum *int64 `json:"llm_observability_30day_retention_spans_agg_sum,omitempty"`
+	// Shows the sum of all LLM Observability 60-day retention spans over all hours in the current month for all organizations.
+	LlmObservability60dayRetentionSpansAggSum *int64 `json:"llm_observability_60day_retention_spans_agg_sum,omitempty"`
+	// Shows the sum of all LLM Observability 90-day retention spans over all hours in the current month for all organizations.
+	LlmObservability90dayRetentionSpansAggSum *int64 `json:"llm_observability_90day_retention_spans_agg_sum,omitempty"`
 	// Sum of all LLM observability sessions for all hours in the current month for all organizations.
 	LlmObservabilityAggSum *int64 `json:"llm_observability_agg_sum,omitempty"`
 	// Minimum spend for LLM observability sessions for all hours in the current month for all organizations.
 	LlmObservabilityMinSpendAggSum *int64 `json:"llm_observability_min_spend_agg_sum,omitempty"`
+	// Shows the sum of all Logs Archive Search scanned data over all hours in the current month for all organizations.
+	LogsArchiveSearchGbScannedAggSum *int64 `json:"logs_archive_search_gb_scanned_agg_sum,omitempty"`
 	// Object containing logs usage data broken down by retention period.
 	LogsByRetention *LogsByRetention `json:"logs_by_retention,omitempty"`
+	// Shows the sum of all custom metric names over all hours in the current month for all organizations.
+	MetricNamesAggSum *int64 `json:"metric_names_agg_sum,omitempty"`
 	// Shows the sum of all mobile lite sessions over all hours in the current month for all organizations (To be deprecated on October 1st, 2024).
 	// Deprecated
 	MobileRumLiteSessionCountAggSum *int64 `json:"mobile_rum_lite_session_count_agg_sum,omitempty"`
@@ -535,6 +631,10 @@ type UsageSummaryResponse struct {
 	Siem6moRetentionAggSum *int64 `json:"siem_6mo_retention_agg_sum,omitempty"`
 	// Shows the sum of all log events analyzed by Cloud SIEM over all hours in the current month for all organizations.
 	SiemAnalyzedLogsAddOnCountAggSum *int64 `json:"siem_analyzed_logs_add_on_count_agg_sum,omitempty"`
+	// Shows the sum of all Network Device Monitoring devices over all hours in the current month for all organizations.
+	SnmpDeviceCountAggSum *int64 `json:"snmp_device_count_agg_sum,omitempty"`
+	// Shows the 99th percentile of all Network Device Monitoring devices over all hours in the current month for all organizations.
+	SnmpDeviceCountTop99pSum *int64 `json:"snmp_device_count_top99p_sum,omitempty"`
 	// Shows the first date of usage in the current month for all organizations.
 	StartDate *time.Time `json:"start_date,omitempty"`
 	// Shows the sum of all Synthetic browser tests over all hours in the current month for all organizations.
@@ -607,6 +707,146 @@ func (o *UsageSummaryResponse) HasAgentHostTop99pSum() bool {
 // SetAgentHostTop99pSum gets a reference to the given int64 and assigns it to the AgentHostTop99pSum field.
 func (o *UsageSummaryResponse) SetAgentHostTop99pSum(v int64) {
 	o.AgentHostTop99pSum = &v
+}
+
+// GetAiCreditsAgentBuilderAiCreditsAggSum returns the AiCreditsAgentBuilderAiCreditsAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetAiCreditsAgentBuilderAiCreditsAggSum() int64 {
+	if o == nil || o.AiCreditsAgentBuilderAiCreditsAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AiCreditsAgentBuilderAiCreditsAggSum
+}
+
+// GetAiCreditsAgentBuilderAiCreditsAggSumOk returns a tuple with the AiCreditsAgentBuilderAiCreditsAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetAiCreditsAgentBuilderAiCreditsAggSumOk() (*int64, bool) {
+	if o == nil || o.AiCreditsAgentBuilderAiCreditsAggSum == nil {
+		return nil, false
+	}
+	return o.AiCreditsAgentBuilderAiCreditsAggSum, true
+}
+
+// HasAiCreditsAgentBuilderAiCreditsAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasAiCreditsAgentBuilderAiCreditsAggSum() bool {
+	return o != nil && o.AiCreditsAgentBuilderAiCreditsAggSum != nil
+}
+
+// SetAiCreditsAgentBuilderAiCreditsAggSum gets a reference to the given int64 and assigns it to the AiCreditsAgentBuilderAiCreditsAggSum field.
+func (o *UsageSummaryResponse) SetAiCreditsAgentBuilderAiCreditsAggSum(v int64) {
+	o.AiCreditsAgentBuilderAiCreditsAggSum = &v
+}
+
+// GetAiCreditsAggSum returns the AiCreditsAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetAiCreditsAggSum() int64 {
+	if o == nil || o.AiCreditsAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AiCreditsAggSum
+}
+
+// GetAiCreditsAggSumOk returns a tuple with the AiCreditsAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetAiCreditsAggSumOk() (*int64, bool) {
+	if o == nil || o.AiCreditsAggSum == nil {
+		return nil, false
+	}
+	return o.AiCreditsAggSum, true
+}
+
+// HasAiCreditsAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasAiCreditsAggSum() bool {
+	return o != nil && o.AiCreditsAggSum != nil
+}
+
+// SetAiCreditsAggSum gets a reference to the given int64 and assigns it to the AiCreditsAggSum field.
+func (o *UsageSummaryResponse) SetAiCreditsAggSum(v int64) {
+	o.AiCreditsAggSum = &v
+}
+
+// GetAiCreditsBitsAssistantAiCreditsAggSum returns the AiCreditsBitsAssistantAiCreditsAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetAiCreditsBitsAssistantAiCreditsAggSum() int64 {
+	if o == nil || o.AiCreditsBitsAssistantAiCreditsAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AiCreditsBitsAssistantAiCreditsAggSum
+}
+
+// GetAiCreditsBitsAssistantAiCreditsAggSumOk returns a tuple with the AiCreditsBitsAssistantAiCreditsAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetAiCreditsBitsAssistantAiCreditsAggSumOk() (*int64, bool) {
+	if o == nil || o.AiCreditsBitsAssistantAiCreditsAggSum == nil {
+		return nil, false
+	}
+	return o.AiCreditsBitsAssistantAiCreditsAggSum, true
+}
+
+// HasAiCreditsBitsAssistantAiCreditsAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasAiCreditsBitsAssistantAiCreditsAggSum() bool {
+	return o != nil && o.AiCreditsBitsAssistantAiCreditsAggSum != nil
+}
+
+// SetAiCreditsBitsAssistantAiCreditsAggSum gets a reference to the given int64 and assigns it to the AiCreditsBitsAssistantAiCreditsAggSum field.
+func (o *UsageSummaryResponse) SetAiCreditsBitsAssistantAiCreditsAggSum(v int64) {
+	o.AiCreditsBitsAssistantAiCreditsAggSum = &v
+}
+
+// GetAiCreditsBitsDevAiCreditsAggSum returns the AiCreditsBitsDevAiCreditsAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetAiCreditsBitsDevAiCreditsAggSum() int64 {
+	if o == nil || o.AiCreditsBitsDevAiCreditsAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AiCreditsBitsDevAiCreditsAggSum
+}
+
+// GetAiCreditsBitsDevAiCreditsAggSumOk returns a tuple with the AiCreditsBitsDevAiCreditsAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetAiCreditsBitsDevAiCreditsAggSumOk() (*int64, bool) {
+	if o == nil || o.AiCreditsBitsDevAiCreditsAggSum == nil {
+		return nil, false
+	}
+	return o.AiCreditsBitsDevAiCreditsAggSum, true
+}
+
+// HasAiCreditsBitsDevAiCreditsAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasAiCreditsBitsDevAiCreditsAggSum() bool {
+	return o != nil && o.AiCreditsBitsDevAiCreditsAggSum != nil
+}
+
+// SetAiCreditsBitsDevAiCreditsAggSum gets a reference to the given int64 and assigns it to the AiCreditsBitsDevAiCreditsAggSum field.
+func (o *UsageSummaryResponse) SetAiCreditsBitsDevAiCreditsAggSum(v int64) {
+	o.AiCreditsBitsDevAiCreditsAggSum = &v
+}
+
+// GetAiCreditsBitsSreAiCreditsAggSum returns the AiCreditsBitsSreAiCreditsAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetAiCreditsBitsSreAiCreditsAggSum() int64 {
+	if o == nil || o.AiCreditsBitsSreAiCreditsAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AiCreditsBitsSreAiCreditsAggSum
+}
+
+// GetAiCreditsBitsSreAiCreditsAggSumOk returns a tuple with the AiCreditsBitsSreAiCreditsAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetAiCreditsBitsSreAiCreditsAggSumOk() (*int64, bool) {
+	if o == nil || o.AiCreditsBitsSreAiCreditsAggSum == nil {
+		return nil, false
+	}
+	return o.AiCreditsBitsSreAiCreditsAggSum, true
+}
+
+// HasAiCreditsBitsSreAiCreditsAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasAiCreditsBitsSreAiCreditsAggSum() bool {
+	return o != nil && o.AiCreditsBitsSreAiCreditsAggSum != nil
+}
+
+// SetAiCreditsBitsSreAiCreditsAggSum gets a reference to the given int64 and assigns it to the AiCreditsBitsSreAiCreditsAggSum field.
+func (o *UsageSummaryResponse) SetAiCreditsBitsSreAiCreditsAggSum(v int64) {
+	o.AiCreditsBitsSreAiCreditsAggSum = &v
 }
 
 // GetApmAzureAppServiceHostTop99pSum returns the ApmAzureAppServiceHostTop99pSum field value if set, zero value otherwise.
@@ -890,6 +1130,34 @@ func (o *UsageSummaryResponse) HasAuditTrailEnabledHwmSum() bool {
 // SetAuditTrailEnabledHwmSum gets a reference to the given int64 and assigns it to the AuditTrailEnabledHwmSum field.
 func (o *UsageSummaryResponse) SetAuditTrailEnabledHwmSum(v int64) {
 	o.AuditTrailEnabledHwmSum = &v
+}
+
+// GetAuditTrailEventForwardingEventsAggSum returns the AuditTrailEventForwardingEventsAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetAuditTrailEventForwardingEventsAggSum() int64 {
+	if o == nil || o.AuditTrailEventForwardingEventsAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.AuditTrailEventForwardingEventsAggSum
+}
+
+// GetAuditTrailEventForwardingEventsAggSumOk returns a tuple with the AuditTrailEventForwardingEventsAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetAuditTrailEventForwardingEventsAggSumOk() (*int64, bool) {
+	if o == nil || o.AuditTrailEventForwardingEventsAggSum == nil {
+		return nil, false
+	}
+	return o.AuditTrailEventForwardingEventsAggSum, true
+}
+
+// HasAuditTrailEventForwardingEventsAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasAuditTrailEventForwardingEventsAggSum() bool {
+	return o != nil && o.AuditTrailEventForwardingEventsAggSum != nil
+}
+
+// SetAuditTrailEventForwardingEventsAggSum gets a reference to the given int64 and assigns it to the AuditTrailEventForwardingEventsAggSum field.
+func (o *UsageSummaryResponse) SetAuditTrailEventForwardingEventsAggSum(v int64) {
+	o.AuditTrailEventForwardingEventsAggSum = &v
 }
 
 // GetAvgProfiledFargateTasksSum returns the AvgProfiledFargateTasksSum field value if set, zero value otherwise.
@@ -2998,6 +3266,62 @@ func (o *UsageSummaryResponse) SetDataJobsMonitoringHostHrAggSum(v int64) {
 	o.DataJobsMonitoringHostHrAggSum = &v
 }
 
+// GetDataStreamMonitoringHostCountAggSum returns the DataStreamMonitoringHostCountAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetDataStreamMonitoringHostCountAggSum() int64 {
+	if o == nil || o.DataStreamMonitoringHostCountAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.DataStreamMonitoringHostCountAggSum
+}
+
+// GetDataStreamMonitoringHostCountAggSumOk returns a tuple with the DataStreamMonitoringHostCountAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetDataStreamMonitoringHostCountAggSumOk() (*int64, bool) {
+	if o == nil || o.DataStreamMonitoringHostCountAggSum == nil {
+		return nil, false
+	}
+	return o.DataStreamMonitoringHostCountAggSum, true
+}
+
+// HasDataStreamMonitoringHostCountAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasDataStreamMonitoringHostCountAggSum() bool {
+	return o != nil && o.DataStreamMonitoringHostCountAggSum != nil
+}
+
+// SetDataStreamMonitoringHostCountAggSum gets a reference to the given int64 and assigns it to the DataStreamMonitoringHostCountAggSum field.
+func (o *UsageSummaryResponse) SetDataStreamMonitoringHostCountAggSum(v int64) {
+	o.DataStreamMonitoringHostCountAggSum = &v
+}
+
+// GetDataStreamMonitoringHostCountTop99pSum returns the DataStreamMonitoringHostCountTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetDataStreamMonitoringHostCountTop99pSum() int64 {
+	if o == nil || o.DataStreamMonitoringHostCountTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.DataStreamMonitoringHostCountTop99pSum
+}
+
+// GetDataStreamMonitoringHostCountTop99pSumOk returns a tuple with the DataStreamMonitoringHostCountTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetDataStreamMonitoringHostCountTop99pSumOk() (*int64, bool) {
+	if o == nil || o.DataStreamMonitoringHostCountTop99pSum == nil {
+		return nil, false
+	}
+	return o.DataStreamMonitoringHostCountTop99pSum, true
+}
+
+// HasDataStreamMonitoringHostCountTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasDataStreamMonitoringHostCountTop99pSum() bool {
+	return o != nil && o.DataStreamMonitoringHostCountTop99pSum != nil
+}
+
+// SetDataStreamMonitoringHostCountTop99pSum gets a reference to the given int64 and assigns it to the DataStreamMonitoringHostCountTop99pSum field.
+func (o *UsageSummaryResponse) SetDataStreamMonitoringHostCountTop99pSum(v int64) {
+	o.DataStreamMonitoringHostCountTop99pSum = &v
+}
+
 // GetDbmHostTop99pSum returns the DbmHostTop99pSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetDbmHostTop99pSum() int64 {
 	if o == nil || o.DbmHostTop99pSum == nil {
@@ -4345,6 +4669,874 @@ func (o *UsageSummaryResponse) SetIndexedEventsCountAggSum(v int64) {
 	o.IndexedEventsCountAggSum = &v
 }
 
+// GetIndexedPointsAggSum returns the IndexedPointsAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetIndexedPointsAggSum() int64 {
+	if o == nil || o.IndexedPointsAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.IndexedPointsAggSum
+}
+
+// GetIndexedPointsAggSumOk returns a tuple with the IndexedPointsAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetIndexedPointsAggSumOk() (*int64, bool) {
+	if o == nil || o.IndexedPointsAggSum == nil {
+		return nil, false
+	}
+	return o.IndexedPointsAggSum, true
+}
+
+// HasIndexedPointsAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasIndexedPointsAggSum() bool {
+	return o != nil && o.IndexedPointsAggSum != nil
+}
+
+// SetIndexedPointsAggSum gets a reference to the given int64 and assigns it to the IndexedPointsAggSum field.
+func (o *UsageSummaryResponse) SetIndexedPointsAggSum(v int64) {
+	o.IndexedPointsAggSum = &v
+}
+
+// GetInfraCpuAggSum returns the InfraCpuAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuAggSum() int64 {
+	if o == nil || o.InfraCpuAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuAggSum
+}
+
+// GetInfraCpuAggSumOk returns a tuple with the InfraCpuAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuAggSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuAggSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuAggSum, true
+}
+
+// HasInfraCpuAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuAggSum() bool {
+	return o != nil && o.InfraCpuAggSum != nil
+}
+
+// SetInfraCpuAggSum gets a reference to the given int64 and assigns it to the InfraCpuAggSum field.
+func (o *UsageSummaryResponse) SetInfraCpuAggSum(v int64) {
+	o.InfraCpuAggSum = &v
+}
+
+// GetInfraCpuAvgSum returns the InfraCpuAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuAvgSum() int64 {
+	if o == nil || o.InfraCpuAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuAvgSum
+}
+
+// GetInfraCpuAvgSumOk returns a tuple with the InfraCpuAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuAvgSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuAvgSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuAvgSum, true
+}
+
+// HasInfraCpuAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuAvgSum() bool {
+	return o != nil && o.InfraCpuAvgSum != nil
+}
+
+// SetInfraCpuAvgSum gets a reference to the given int64 and assigns it to the InfraCpuAvgSum field.
+func (o *UsageSummaryResponse) SetInfraCpuAvgSum(v int64) {
+	o.InfraCpuAvgSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAgentAggSum returns the InfraCpuDefaultInfraHostVcpuAgentAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAgentAggSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAgentAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuAgentAggSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAgentAggSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuAgentAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAgentAggSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAgentAggSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuAgentAggSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuAgentAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuAgentAggSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuAgentAggSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuAgentAggSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuAgentAggSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuAgentAggSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuAgentAggSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAgentAvgSum returns the InfraCpuDefaultInfraHostVcpuAgentAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAgentAvgSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAgentAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuAgentAvgSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAgentAvgSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuAgentAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAgentAvgSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAgentAvgSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuAgentAvgSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuAgentAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuAgentAvgSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuAgentAvgSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuAgentAvgSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuAgentAvgSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuAgentAvgSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuAgentAvgSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAgentBasicAggSum returns the InfraCpuDefaultInfraHostVcpuAgentBasicAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAgentBasicAggSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAgentBasicAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuAgentBasicAggSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAgentBasicAggSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuAgentBasicAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAgentBasicAggSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAgentBasicAggSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuAgentBasicAggSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuAgentBasicAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuAgentBasicAggSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuAgentBasicAggSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuAgentBasicAggSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuAgentBasicAggSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuAgentBasicAggSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuAgentBasicAggSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAgentBasicAvgSum returns the InfraCpuDefaultInfraHostVcpuAgentBasicAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAgentBasicAvgSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAgentBasicAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuAgentBasicAvgSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAgentBasicAvgSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuAgentBasicAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAgentBasicAvgSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAgentBasicAvgSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuAgentBasicAvgSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuAgentBasicAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuAgentBasicAvgSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuAgentBasicAvgSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuAgentBasicAvgSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuAgentBasicAvgSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuAgentBasicAvgSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuAgentBasicAvgSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAwsAggSum returns the InfraCpuDefaultInfraHostVcpuAwsAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAwsAggSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAwsAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuAwsAggSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAwsAggSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuAwsAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAwsAggSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAwsAggSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuAwsAggSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuAwsAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuAwsAggSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuAwsAggSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuAwsAggSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuAwsAggSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuAwsAggSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuAwsAggSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAwsAvgSum returns the InfraCpuDefaultInfraHostVcpuAwsAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAwsAvgSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAwsAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuAwsAvgSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAwsAvgSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuAwsAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAwsAvgSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAwsAvgSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuAwsAvgSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuAwsAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuAwsAvgSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuAwsAvgSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuAwsAvgSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuAwsAvgSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuAwsAvgSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuAwsAvgSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAzureAggSum returns the InfraCpuDefaultInfraHostVcpuAzureAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAzureAggSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAzureAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuAzureAggSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAzureAggSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuAzureAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAzureAggSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAzureAggSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuAzureAggSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuAzureAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuAzureAggSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuAzureAggSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuAzureAggSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuAzureAggSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuAzureAggSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuAzureAggSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAzureAvgSum returns the InfraCpuDefaultInfraHostVcpuAzureAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAzureAvgSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAzureAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuAzureAvgSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuAzureAvgSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuAzureAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuAzureAvgSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuAzureAvgSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuAzureAvgSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuAzureAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuAzureAvgSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuAzureAvgSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuAzureAvgSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuAzureAvgSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuAzureAvgSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuAzureAvgSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuGcpAggSum returns the InfraCpuDefaultInfraHostVcpuGcpAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuGcpAggSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuGcpAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuGcpAggSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuGcpAggSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuGcpAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuGcpAggSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuGcpAggSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuGcpAggSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuGcpAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuGcpAggSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuGcpAggSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuGcpAggSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuGcpAggSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuGcpAggSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuGcpAggSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuGcpAvgSum returns the InfraCpuDefaultInfraHostVcpuGcpAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuGcpAvgSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuGcpAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuGcpAvgSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuGcpAvgSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuGcpAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuGcpAvgSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuGcpAvgSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuGcpAvgSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuGcpAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuGcpAvgSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuGcpAvgSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuGcpAvgSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuGcpAvgSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuGcpAvgSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuGcpAvgSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuNutanixAggSum returns the InfraCpuDefaultInfraHostVcpuNutanixAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuNutanixAggSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuNutanixAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuNutanixAggSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuNutanixAggSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuNutanixAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuNutanixAggSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuNutanixAggSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuNutanixAggSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuNutanixAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuNutanixAggSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuNutanixAggSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuNutanixAggSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuNutanixAggSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuNutanixAggSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuNutanixAggSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuNutanixAvgSum returns the InfraCpuDefaultInfraHostVcpuNutanixAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuNutanixAvgSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuNutanixAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuNutanixAvgSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuNutanixAvgSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuNutanixAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuNutanixAvgSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuNutanixAvgSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuNutanixAvgSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuNutanixAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuNutanixAvgSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuNutanixAvgSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuNutanixAvgSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuNutanixAvgSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuNutanixAvgSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuNutanixAvgSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuNutanixBasicAggSum returns the InfraCpuDefaultInfraHostVcpuNutanixBasicAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuNutanixBasicAggSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuNutanixBasicAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuNutanixBasicAggSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuNutanixBasicAggSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuNutanixBasicAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuNutanixBasicAggSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuNutanixBasicAggSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuNutanixBasicAggSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuNutanixBasicAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuNutanixBasicAggSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuNutanixBasicAggSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuNutanixBasicAggSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuNutanixBasicAggSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuNutanixBasicAggSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuNutanixBasicAggSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum returns the InfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuNutanixBasicAvgSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuNutanixBasicAvgSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuOpentelemetryAggSum returns the InfraCpuDefaultInfraHostVcpuOpentelemetryAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuOpentelemetryAggSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuOpentelemetryAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuOpentelemetryAggSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuOpentelemetryAggSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuOpentelemetryAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuOpentelemetryAggSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuOpentelemetryAggSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuOpentelemetryAggSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuOpentelemetryAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuOpentelemetryAggSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuOpentelemetryAggSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuOpentelemetryAggSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuOpentelemetryAggSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuOpentelemetryAggSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuOpentelemetryAggSum = &v
+}
+
+// GetInfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum returns the InfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum() int64 {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum
+}
+
+// GetInfraCpuDefaultInfraHostVcpuOpentelemetryAvgSumOk returns a tuple with the InfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuDefaultInfraHostVcpuOpentelemetryAvgSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum, true
+}
+
+// HasInfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum() bool {
+	return o != nil && o.InfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum != nil
+}
+
+// SetInfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum gets a reference to the given int64 and assigns it to the InfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum field.
+func (o *UsageSummaryResponse) SetInfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum(v int64) {
+	o.InfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum = &v
+}
+
+// GetInfraCpuObservedInfraHostVcpuAgentAggSum returns the InfraCpuObservedInfraHostVcpuAgentAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuAgentAggSum() int64 {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuAgentAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuObservedInfraHostVcpuAgentAggSum
+}
+
+// GetInfraCpuObservedInfraHostVcpuAgentAggSumOk returns a tuple with the InfraCpuObservedInfraHostVcpuAgentAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuAgentAggSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuAgentAggSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuObservedInfraHostVcpuAgentAggSum, true
+}
+
+// HasInfraCpuObservedInfraHostVcpuAgentAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuObservedInfraHostVcpuAgentAggSum() bool {
+	return o != nil && o.InfraCpuObservedInfraHostVcpuAgentAggSum != nil
+}
+
+// SetInfraCpuObservedInfraHostVcpuAgentAggSum gets a reference to the given int64 and assigns it to the InfraCpuObservedInfraHostVcpuAgentAggSum field.
+func (o *UsageSummaryResponse) SetInfraCpuObservedInfraHostVcpuAgentAggSum(v int64) {
+	o.InfraCpuObservedInfraHostVcpuAgentAggSum = &v
+}
+
+// GetInfraCpuObservedInfraHostVcpuAgentAvgSum returns the InfraCpuObservedInfraHostVcpuAgentAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuAgentAvgSum() int64 {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuAgentAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuObservedInfraHostVcpuAgentAvgSum
+}
+
+// GetInfraCpuObservedInfraHostVcpuAgentAvgSumOk returns a tuple with the InfraCpuObservedInfraHostVcpuAgentAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuAgentAvgSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuAgentAvgSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuObservedInfraHostVcpuAgentAvgSum, true
+}
+
+// HasInfraCpuObservedInfraHostVcpuAgentAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuObservedInfraHostVcpuAgentAvgSum() bool {
+	return o != nil && o.InfraCpuObservedInfraHostVcpuAgentAvgSum != nil
+}
+
+// SetInfraCpuObservedInfraHostVcpuAgentAvgSum gets a reference to the given int64 and assigns it to the InfraCpuObservedInfraHostVcpuAgentAvgSum field.
+func (o *UsageSummaryResponse) SetInfraCpuObservedInfraHostVcpuAgentAvgSum(v int64) {
+	o.InfraCpuObservedInfraHostVcpuAgentAvgSum = &v
+}
+
+// GetInfraCpuObservedInfraHostVcpuAwsAggSum returns the InfraCpuObservedInfraHostVcpuAwsAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuAwsAggSum() int64 {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuAwsAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuObservedInfraHostVcpuAwsAggSum
+}
+
+// GetInfraCpuObservedInfraHostVcpuAwsAggSumOk returns a tuple with the InfraCpuObservedInfraHostVcpuAwsAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuAwsAggSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuAwsAggSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuObservedInfraHostVcpuAwsAggSum, true
+}
+
+// HasInfraCpuObservedInfraHostVcpuAwsAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuObservedInfraHostVcpuAwsAggSum() bool {
+	return o != nil && o.InfraCpuObservedInfraHostVcpuAwsAggSum != nil
+}
+
+// SetInfraCpuObservedInfraHostVcpuAwsAggSum gets a reference to the given int64 and assigns it to the InfraCpuObservedInfraHostVcpuAwsAggSum field.
+func (o *UsageSummaryResponse) SetInfraCpuObservedInfraHostVcpuAwsAggSum(v int64) {
+	o.InfraCpuObservedInfraHostVcpuAwsAggSum = &v
+}
+
+// GetInfraCpuObservedInfraHostVcpuAwsAvgSum returns the InfraCpuObservedInfraHostVcpuAwsAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuAwsAvgSum() int64 {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuAwsAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuObservedInfraHostVcpuAwsAvgSum
+}
+
+// GetInfraCpuObservedInfraHostVcpuAwsAvgSumOk returns a tuple with the InfraCpuObservedInfraHostVcpuAwsAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuAwsAvgSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuAwsAvgSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuObservedInfraHostVcpuAwsAvgSum, true
+}
+
+// HasInfraCpuObservedInfraHostVcpuAwsAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuObservedInfraHostVcpuAwsAvgSum() bool {
+	return o != nil && o.InfraCpuObservedInfraHostVcpuAwsAvgSum != nil
+}
+
+// SetInfraCpuObservedInfraHostVcpuAwsAvgSum gets a reference to the given int64 and assigns it to the InfraCpuObservedInfraHostVcpuAwsAvgSum field.
+func (o *UsageSummaryResponse) SetInfraCpuObservedInfraHostVcpuAwsAvgSum(v int64) {
+	o.InfraCpuObservedInfraHostVcpuAwsAvgSum = &v
+}
+
+// GetInfraCpuObservedInfraHostVcpuAzureAggSum returns the InfraCpuObservedInfraHostVcpuAzureAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuAzureAggSum() int64 {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuAzureAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuObservedInfraHostVcpuAzureAggSum
+}
+
+// GetInfraCpuObservedInfraHostVcpuAzureAggSumOk returns a tuple with the InfraCpuObservedInfraHostVcpuAzureAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuAzureAggSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuAzureAggSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuObservedInfraHostVcpuAzureAggSum, true
+}
+
+// HasInfraCpuObservedInfraHostVcpuAzureAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuObservedInfraHostVcpuAzureAggSum() bool {
+	return o != nil && o.InfraCpuObservedInfraHostVcpuAzureAggSum != nil
+}
+
+// SetInfraCpuObservedInfraHostVcpuAzureAggSum gets a reference to the given int64 and assigns it to the InfraCpuObservedInfraHostVcpuAzureAggSum field.
+func (o *UsageSummaryResponse) SetInfraCpuObservedInfraHostVcpuAzureAggSum(v int64) {
+	o.InfraCpuObservedInfraHostVcpuAzureAggSum = &v
+}
+
+// GetInfraCpuObservedInfraHostVcpuAzureAvgSum returns the InfraCpuObservedInfraHostVcpuAzureAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuAzureAvgSum() int64 {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuAzureAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuObservedInfraHostVcpuAzureAvgSum
+}
+
+// GetInfraCpuObservedInfraHostVcpuAzureAvgSumOk returns a tuple with the InfraCpuObservedInfraHostVcpuAzureAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuAzureAvgSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuAzureAvgSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuObservedInfraHostVcpuAzureAvgSum, true
+}
+
+// HasInfraCpuObservedInfraHostVcpuAzureAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuObservedInfraHostVcpuAzureAvgSum() bool {
+	return o != nil && o.InfraCpuObservedInfraHostVcpuAzureAvgSum != nil
+}
+
+// SetInfraCpuObservedInfraHostVcpuAzureAvgSum gets a reference to the given int64 and assigns it to the InfraCpuObservedInfraHostVcpuAzureAvgSum field.
+func (o *UsageSummaryResponse) SetInfraCpuObservedInfraHostVcpuAzureAvgSum(v int64) {
+	o.InfraCpuObservedInfraHostVcpuAzureAvgSum = &v
+}
+
+// GetInfraCpuObservedInfraHostVcpuGcpAggSum returns the InfraCpuObservedInfraHostVcpuGcpAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuGcpAggSum() int64 {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuGcpAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuObservedInfraHostVcpuGcpAggSum
+}
+
+// GetInfraCpuObservedInfraHostVcpuGcpAggSumOk returns a tuple with the InfraCpuObservedInfraHostVcpuGcpAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuGcpAggSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuGcpAggSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuObservedInfraHostVcpuGcpAggSum, true
+}
+
+// HasInfraCpuObservedInfraHostVcpuGcpAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuObservedInfraHostVcpuGcpAggSum() bool {
+	return o != nil && o.InfraCpuObservedInfraHostVcpuGcpAggSum != nil
+}
+
+// SetInfraCpuObservedInfraHostVcpuGcpAggSum gets a reference to the given int64 and assigns it to the InfraCpuObservedInfraHostVcpuGcpAggSum field.
+func (o *UsageSummaryResponse) SetInfraCpuObservedInfraHostVcpuGcpAggSum(v int64) {
+	o.InfraCpuObservedInfraHostVcpuGcpAggSum = &v
+}
+
+// GetInfraCpuObservedInfraHostVcpuGcpAvgSum returns the InfraCpuObservedInfraHostVcpuGcpAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuGcpAvgSum() int64 {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuGcpAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuObservedInfraHostVcpuGcpAvgSum
+}
+
+// GetInfraCpuObservedInfraHostVcpuGcpAvgSumOk returns a tuple with the InfraCpuObservedInfraHostVcpuGcpAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuGcpAvgSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuGcpAvgSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuObservedInfraHostVcpuGcpAvgSum, true
+}
+
+// HasInfraCpuObservedInfraHostVcpuGcpAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuObservedInfraHostVcpuGcpAvgSum() bool {
+	return o != nil && o.InfraCpuObservedInfraHostVcpuGcpAvgSum != nil
+}
+
+// SetInfraCpuObservedInfraHostVcpuGcpAvgSum gets a reference to the given int64 and assigns it to the InfraCpuObservedInfraHostVcpuGcpAvgSum field.
+func (o *UsageSummaryResponse) SetInfraCpuObservedInfraHostVcpuGcpAvgSum(v int64) {
+	o.InfraCpuObservedInfraHostVcpuGcpAvgSum = &v
+}
+
+// GetInfraCpuObservedInfraHostVcpuNutanixAggSum returns the InfraCpuObservedInfraHostVcpuNutanixAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuNutanixAggSum() int64 {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuNutanixAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuObservedInfraHostVcpuNutanixAggSum
+}
+
+// GetInfraCpuObservedInfraHostVcpuNutanixAggSumOk returns a tuple with the InfraCpuObservedInfraHostVcpuNutanixAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuNutanixAggSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuNutanixAggSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuObservedInfraHostVcpuNutanixAggSum, true
+}
+
+// HasInfraCpuObservedInfraHostVcpuNutanixAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuObservedInfraHostVcpuNutanixAggSum() bool {
+	return o != nil && o.InfraCpuObservedInfraHostVcpuNutanixAggSum != nil
+}
+
+// SetInfraCpuObservedInfraHostVcpuNutanixAggSum gets a reference to the given int64 and assigns it to the InfraCpuObservedInfraHostVcpuNutanixAggSum field.
+func (o *UsageSummaryResponse) SetInfraCpuObservedInfraHostVcpuNutanixAggSum(v int64) {
+	o.InfraCpuObservedInfraHostVcpuNutanixAggSum = &v
+}
+
+// GetInfraCpuObservedInfraHostVcpuNutanixAvgSum returns the InfraCpuObservedInfraHostVcpuNutanixAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuNutanixAvgSum() int64 {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuNutanixAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuObservedInfraHostVcpuNutanixAvgSum
+}
+
+// GetInfraCpuObservedInfraHostVcpuNutanixAvgSumOk returns a tuple with the InfraCpuObservedInfraHostVcpuNutanixAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuNutanixAvgSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuNutanixAvgSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuObservedInfraHostVcpuNutanixAvgSum, true
+}
+
+// HasInfraCpuObservedInfraHostVcpuNutanixAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuObservedInfraHostVcpuNutanixAvgSum() bool {
+	return o != nil && o.InfraCpuObservedInfraHostVcpuNutanixAvgSum != nil
+}
+
+// SetInfraCpuObservedInfraHostVcpuNutanixAvgSum gets a reference to the given int64 and assigns it to the InfraCpuObservedInfraHostVcpuNutanixAvgSum field.
+func (o *UsageSummaryResponse) SetInfraCpuObservedInfraHostVcpuNutanixAvgSum(v int64) {
+	o.InfraCpuObservedInfraHostVcpuNutanixAvgSum = &v
+}
+
+// GetInfraCpuObservedInfraHostVcpuOpentelemetryAggSum returns the InfraCpuObservedInfraHostVcpuOpentelemetryAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuOpentelemetryAggSum() int64 {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuOpentelemetryAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuObservedInfraHostVcpuOpentelemetryAggSum
+}
+
+// GetInfraCpuObservedInfraHostVcpuOpentelemetryAggSumOk returns a tuple with the InfraCpuObservedInfraHostVcpuOpentelemetryAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuOpentelemetryAggSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuOpentelemetryAggSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuObservedInfraHostVcpuOpentelemetryAggSum, true
+}
+
+// HasInfraCpuObservedInfraHostVcpuOpentelemetryAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuObservedInfraHostVcpuOpentelemetryAggSum() bool {
+	return o != nil && o.InfraCpuObservedInfraHostVcpuOpentelemetryAggSum != nil
+}
+
+// SetInfraCpuObservedInfraHostVcpuOpentelemetryAggSum gets a reference to the given int64 and assigns it to the InfraCpuObservedInfraHostVcpuOpentelemetryAggSum field.
+func (o *UsageSummaryResponse) SetInfraCpuObservedInfraHostVcpuOpentelemetryAggSum(v int64) {
+	o.InfraCpuObservedInfraHostVcpuOpentelemetryAggSum = &v
+}
+
+// GetInfraCpuObservedInfraHostVcpuOpentelemetryAvgSum returns the InfraCpuObservedInfraHostVcpuOpentelemetryAvgSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuOpentelemetryAvgSum() int64 {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuOpentelemetryAvgSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.InfraCpuObservedInfraHostVcpuOpentelemetryAvgSum
+}
+
+// GetInfraCpuObservedInfraHostVcpuOpentelemetryAvgSumOk returns a tuple with the InfraCpuObservedInfraHostVcpuOpentelemetryAvgSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetInfraCpuObservedInfraHostVcpuOpentelemetryAvgSumOk() (*int64, bool) {
+	if o == nil || o.InfraCpuObservedInfraHostVcpuOpentelemetryAvgSum == nil {
+		return nil, false
+	}
+	return o.InfraCpuObservedInfraHostVcpuOpentelemetryAvgSum, true
+}
+
+// HasInfraCpuObservedInfraHostVcpuOpentelemetryAvgSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasInfraCpuObservedInfraHostVcpuOpentelemetryAvgSum() bool {
+	return o != nil && o.InfraCpuObservedInfraHostVcpuOpentelemetryAvgSum != nil
+}
+
+// SetInfraCpuObservedInfraHostVcpuOpentelemetryAvgSum gets a reference to the given int64 and assigns it to the InfraCpuObservedInfraHostVcpuOpentelemetryAvgSum field.
+func (o *UsageSummaryResponse) SetInfraCpuObservedInfraHostVcpuOpentelemetryAvgSum(v int64) {
+	o.InfraCpuObservedInfraHostVcpuOpentelemetryAvgSum = &v
+}
+
 // GetInfraEdgeMonitoringDevicesTop99pSum returns the InfraEdgeMonitoringDevicesTop99pSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetInfraEdgeMonitoringDevicesTop99pSum() int64 {
 	if o == nil || o.InfraEdgeMonitoringDevicesTop99pSum == nil {
@@ -4513,6 +5705,34 @@ func (o *UsageSummaryResponse) SetInfraStorageMgmtObjectsCountAvgSum(v int64) {
 	o.InfraStorageMgmtObjectsCountAvgSum = &v
 }
 
+// GetIngestPointsAggSum returns the IngestPointsAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetIngestPointsAggSum() int64 {
+	if o == nil || o.IngestPointsAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.IngestPointsAggSum
+}
+
+// GetIngestPointsAggSumOk returns a tuple with the IngestPointsAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetIngestPointsAggSumOk() (*int64, bool) {
+	if o == nil || o.IngestPointsAggSum == nil {
+		return nil, false
+	}
+	return o.IngestPointsAggSum, true
+}
+
+// HasIngestPointsAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasIngestPointsAggSum() bool {
+	return o != nil && o.IngestPointsAggSum != nil
+}
+
+// SetIngestPointsAggSum gets a reference to the given int64 and assigns it to the IngestPointsAggSum field.
+func (o *UsageSummaryResponse) SetIngestPointsAggSum(v int64) {
+	o.IngestPointsAggSum = &v
+}
+
 // GetIngestedEventsBytesAggSum returns the IngestedEventsBytesAggSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetIngestedEventsBytesAggSum() int64 {
 	if o == nil || o.IngestedEventsBytesAggSum == nil {
@@ -4539,6 +5759,62 @@ func (o *UsageSummaryResponse) HasIngestedEventsBytesAggSum() bool {
 // SetIngestedEventsBytesAggSum gets a reference to the given int64 and assigns it to the IngestedEventsBytesAggSum field.
 func (o *UsageSummaryResponse) SetIngestedEventsBytesAggSum(v int64) {
 	o.IngestedEventsBytesAggSum = &v
+}
+
+// GetIotApmHostAggSum returns the IotApmHostAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetIotApmHostAggSum() int64 {
+	if o == nil || o.IotApmHostAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.IotApmHostAggSum
+}
+
+// GetIotApmHostAggSumOk returns a tuple with the IotApmHostAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetIotApmHostAggSumOk() (*int64, bool) {
+	if o == nil || o.IotApmHostAggSum == nil {
+		return nil, false
+	}
+	return o.IotApmHostAggSum, true
+}
+
+// HasIotApmHostAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasIotApmHostAggSum() bool {
+	return o != nil && o.IotApmHostAggSum != nil
+}
+
+// SetIotApmHostAggSum gets a reference to the given int64 and assigns it to the IotApmHostAggSum field.
+func (o *UsageSummaryResponse) SetIotApmHostAggSum(v int64) {
+	o.IotApmHostAggSum = &v
+}
+
+// GetIotApmHostTop99pSum returns the IotApmHostTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetIotApmHostTop99pSum() int64 {
+	if o == nil || o.IotApmHostTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.IotApmHostTop99pSum
+}
+
+// GetIotApmHostTop99pSumOk returns a tuple with the IotApmHostTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetIotApmHostTop99pSumOk() (*int64, bool) {
+	if o == nil || o.IotApmHostTop99pSum == nil {
+		return nil, false
+	}
+	return o.IotApmHostTop99pSum, true
+}
+
+// HasIotApmHostTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasIotApmHostTop99pSum() bool {
+	return o != nil && o.IotApmHostTop99pSum != nil
+}
+
+// SetIotApmHostTop99pSum gets a reference to the given int64 and assigns it to the IotApmHostTop99pSum field.
+func (o *UsageSummaryResponse) SetIotApmHostTop99pSum(v int64) {
+	o.IotApmHostTop99pSum = &v
 }
 
 // GetIotDeviceAggSum returns the IotDeviceAggSum field value if set, zero value otherwise.
@@ -4684,6 +5960,118 @@ func (o *UsageSummaryResponse) SetLiveIngestedBytesAggSum(v int64) {
 	o.LiveIngestedBytesAggSum = &v
 }
 
+// GetLlmObservability15dayRetentionSpansAggSum returns the LlmObservability15dayRetentionSpansAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetLlmObservability15dayRetentionSpansAggSum() int64 {
+	if o == nil || o.LlmObservability15dayRetentionSpansAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.LlmObservability15dayRetentionSpansAggSum
+}
+
+// GetLlmObservability15dayRetentionSpansAggSumOk returns a tuple with the LlmObservability15dayRetentionSpansAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetLlmObservability15dayRetentionSpansAggSumOk() (*int64, bool) {
+	if o == nil || o.LlmObservability15dayRetentionSpansAggSum == nil {
+		return nil, false
+	}
+	return o.LlmObservability15dayRetentionSpansAggSum, true
+}
+
+// HasLlmObservability15dayRetentionSpansAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasLlmObservability15dayRetentionSpansAggSum() bool {
+	return o != nil && o.LlmObservability15dayRetentionSpansAggSum != nil
+}
+
+// SetLlmObservability15dayRetentionSpansAggSum gets a reference to the given int64 and assigns it to the LlmObservability15dayRetentionSpansAggSum field.
+func (o *UsageSummaryResponse) SetLlmObservability15dayRetentionSpansAggSum(v int64) {
+	o.LlmObservability15dayRetentionSpansAggSum = &v
+}
+
+// GetLlmObservability30dayRetentionSpansAggSum returns the LlmObservability30dayRetentionSpansAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetLlmObservability30dayRetentionSpansAggSum() int64 {
+	if o == nil || o.LlmObservability30dayRetentionSpansAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.LlmObservability30dayRetentionSpansAggSum
+}
+
+// GetLlmObservability30dayRetentionSpansAggSumOk returns a tuple with the LlmObservability30dayRetentionSpansAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetLlmObservability30dayRetentionSpansAggSumOk() (*int64, bool) {
+	if o == nil || o.LlmObservability30dayRetentionSpansAggSum == nil {
+		return nil, false
+	}
+	return o.LlmObservability30dayRetentionSpansAggSum, true
+}
+
+// HasLlmObservability30dayRetentionSpansAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasLlmObservability30dayRetentionSpansAggSum() bool {
+	return o != nil && o.LlmObservability30dayRetentionSpansAggSum != nil
+}
+
+// SetLlmObservability30dayRetentionSpansAggSum gets a reference to the given int64 and assigns it to the LlmObservability30dayRetentionSpansAggSum field.
+func (o *UsageSummaryResponse) SetLlmObservability30dayRetentionSpansAggSum(v int64) {
+	o.LlmObservability30dayRetentionSpansAggSum = &v
+}
+
+// GetLlmObservability60dayRetentionSpansAggSum returns the LlmObservability60dayRetentionSpansAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetLlmObservability60dayRetentionSpansAggSum() int64 {
+	if o == nil || o.LlmObservability60dayRetentionSpansAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.LlmObservability60dayRetentionSpansAggSum
+}
+
+// GetLlmObservability60dayRetentionSpansAggSumOk returns a tuple with the LlmObservability60dayRetentionSpansAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetLlmObservability60dayRetentionSpansAggSumOk() (*int64, bool) {
+	if o == nil || o.LlmObservability60dayRetentionSpansAggSum == nil {
+		return nil, false
+	}
+	return o.LlmObservability60dayRetentionSpansAggSum, true
+}
+
+// HasLlmObservability60dayRetentionSpansAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasLlmObservability60dayRetentionSpansAggSum() bool {
+	return o != nil && o.LlmObservability60dayRetentionSpansAggSum != nil
+}
+
+// SetLlmObservability60dayRetentionSpansAggSum gets a reference to the given int64 and assigns it to the LlmObservability60dayRetentionSpansAggSum field.
+func (o *UsageSummaryResponse) SetLlmObservability60dayRetentionSpansAggSum(v int64) {
+	o.LlmObservability60dayRetentionSpansAggSum = &v
+}
+
+// GetLlmObservability90dayRetentionSpansAggSum returns the LlmObservability90dayRetentionSpansAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetLlmObservability90dayRetentionSpansAggSum() int64 {
+	if o == nil || o.LlmObservability90dayRetentionSpansAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.LlmObservability90dayRetentionSpansAggSum
+}
+
+// GetLlmObservability90dayRetentionSpansAggSumOk returns a tuple with the LlmObservability90dayRetentionSpansAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetLlmObservability90dayRetentionSpansAggSumOk() (*int64, bool) {
+	if o == nil || o.LlmObservability90dayRetentionSpansAggSum == nil {
+		return nil, false
+	}
+	return o.LlmObservability90dayRetentionSpansAggSum, true
+}
+
+// HasLlmObservability90dayRetentionSpansAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasLlmObservability90dayRetentionSpansAggSum() bool {
+	return o != nil && o.LlmObservability90dayRetentionSpansAggSum != nil
+}
+
+// SetLlmObservability90dayRetentionSpansAggSum gets a reference to the given int64 and assigns it to the LlmObservability90dayRetentionSpansAggSum field.
+func (o *UsageSummaryResponse) SetLlmObservability90dayRetentionSpansAggSum(v int64) {
+	o.LlmObservability90dayRetentionSpansAggSum = &v
+}
+
 // GetLlmObservabilityAggSum returns the LlmObservabilityAggSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetLlmObservabilityAggSum() int64 {
 	if o == nil || o.LlmObservabilityAggSum == nil {
@@ -4740,6 +6128,34 @@ func (o *UsageSummaryResponse) SetLlmObservabilityMinSpendAggSum(v int64) {
 	o.LlmObservabilityMinSpendAggSum = &v
 }
 
+// GetLogsArchiveSearchGbScannedAggSum returns the LogsArchiveSearchGbScannedAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetLogsArchiveSearchGbScannedAggSum() int64 {
+	if o == nil || o.LogsArchiveSearchGbScannedAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.LogsArchiveSearchGbScannedAggSum
+}
+
+// GetLogsArchiveSearchGbScannedAggSumOk returns a tuple with the LogsArchiveSearchGbScannedAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetLogsArchiveSearchGbScannedAggSumOk() (*int64, bool) {
+	if o == nil || o.LogsArchiveSearchGbScannedAggSum == nil {
+		return nil, false
+	}
+	return o.LogsArchiveSearchGbScannedAggSum, true
+}
+
+// HasLogsArchiveSearchGbScannedAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasLogsArchiveSearchGbScannedAggSum() bool {
+	return o != nil && o.LogsArchiveSearchGbScannedAggSum != nil
+}
+
+// SetLogsArchiveSearchGbScannedAggSum gets a reference to the given int64 and assigns it to the LogsArchiveSearchGbScannedAggSum field.
+func (o *UsageSummaryResponse) SetLogsArchiveSearchGbScannedAggSum(v int64) {
+	o.LogsArchiveSearchGbScannedAggSum = &v
+}
+
 // GetLogsByRetention returns the LogsByRetention field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetLogsByRetention() LogsByRetention {
 	if o == nil || o.LogsByRetention == nil {
@@ -4766,6 +6182,34 @@ func (o *UsageSummaryResponse) HasLogsByRetention() bool {
 // SetLogsByRetention gets a reference to the given LogsByRetention and assigns it to the LogsByRetention field.
 func (o *UsageSummaryResponse) SetLogsByRetention(v LogsByRetention) {
 	o.LogsByRetention = &v
+}
+
+// GetMetricNamesAggSum returns the MetricNamesAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetMetricNamesAggSum() int64 {
+	if o == nil || o.MetricNamesAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MetricNamesAggSum
+}
+
+// GetMetricNamesAggSumOk returns a tuple with the MetricNamesAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetMetricNamesAggSumOk() (*int64, bool) {
+	if o == nil || o.MetricNamesAggSum == nil {
+		return nil, false
+	}
+	return o.MetricNamesAggSum, true
+}
+
+// HasMetricNamesAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasMetricNamesAggSum() bool {
+	return o != nil && o.MetricNamesAggSum != nil
+}
+
+// SetMetricNamesAggSum gets a reference to the given int64 and assigns it to the MetricNamesAggSum field.
+func (o *UsageSummaryResponse) SetMetricNamesAggSum(v int64) {
+	o.MetricNamesAggSum = &v
 }
 
 // GetMobileRumLiteSessionCountAggSum returns the MobileRumLiteSessionCountAggSum field value if set, zero value otherwise.
@@ -7632,6 +9076,62 @@ func (o *UsageSummaryResponse) SetSiemAnalyzedLogsAddOnCountAggSum(v int64) {
 	o.SiemAnalyzedLogsAddOnCountAggSum = &v
 }
 
+// GetSnmpDeviceCountAggSum returns the SnmpDeviceCountAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetSnmpDeviceCountAggSum() int64 {
+	if o == nil || o.SnmpDeviceCountAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.SnmpDeviceCountAggSum
+}
+
+// GetSnmpDeviceCountAggSumOk returns a tuple with the SnmpDeviceCountAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetSnmpDeviceCountAggSumOk() (*int64, bool) {
+	if o == nil || o.SnmpDeviceCountAggSum == nil {
+		return nil, false
+	}
+	return o.SnmpDeviceCountAggSum, true
+}
+
+// HasSnmpDeviceCountAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasSnmpDeviceCountAggSum() bool {
+	return o != nil && o.SnmpDeviceCountAggSum != nil
+}
+
+// SetSnmpDeviceCountAggSum gets a reference to the given int64 and assigns it to the SnmpDeviceCountAggSum field.
+func (o *UsageSummaryResponse) SetSnmpDeviceCountAggSum(v int64) {
+	o.SnmpDeviceCountAggSum = &v
+}
+
+// GetSnmpDeviceCountTop99pSum returns the SnmpDeviceCountTop99pSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetSnmpDeviceCountTop99pSum() int64 {
+	if o == nil || o.SnmpDeviceCountTop99pSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.SnmpDeviceCountTop99pSum
+}
+
+// GetSnmpDeviceCountTop99pSumOk returns a tuple with the SnmpDeviceCountTop99pSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetSnmpDeviceCountTop99pSumOk() (*int64, bool) {
+	if o == nil || o.SnmpDeviceCountTop99pSum == nil {
+		return nil, false
+	}
+	return o.SnmpDeviceCountTop99pSum, true
+}
+
+// HasSnmpDeviceCountTop99pSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasSnmpDeviceCountTop99pSum() bool {
+	return o != nil && o.SnmpDeviceCountTop99pSum != nil
+}
+
+// SetSnmpDeviceCountTop99pSum gets a reference to the given int64 and assigns it to the SnmpDeviceCountTop99pSum field.
+func (o *UsageSummaryResponse) SetSnmpDeviceCountTop99pSum(v int64) {
+	o.SnmpDeviceCountTop99pSum = &v
+}
+
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetStartDate() time.Time {
 	if o == nil || o.StartDate == nil {
@@ -7977,6 +9477,21 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.AgentHostTop99pSum != nil {
 		toSerialize["agent_host_top99p_sum"] = o.AgentHostTop99pSum
 	}
+	if o.AiCreditsAgentBuilderAiCreditsAggSum != nil {
+		toSerialize["ai_credits_agent_builder_ai_credits_agg_sum"] = o.AiCreditsAgentBuilderAiCreditsAggSum
+	}
+	if o.AiCreditsAggSum != nil {
+		toSerialize["ai_credits_agg_sum"] = o.AiCreditsAggSum
+	}
+	if o.AiCreditsBitsAssistantAiCreditsAggSum != nil {
+		toSerialize["ai_credits_bits_assistant_ai_credits_agg_sum"] = o.AiCreditsBitsAssistantAiCreditsAggSum
+	}
+	if o.AiCreditsBitsDevAiCreditsAggSum != nil {
+		toSerialize["ai_credits_bits_dev_ai_credits_agg_sum"] = o.AiCreditsBitsDevAiCreditsAggSum
+	}
+	if o.AiCreditsBitsSreAiCreditsAggSum != nil {
+		toSerialize["ai_credits_bits_sre_ai_credits_agg_sum"] = o.AiCreditsBitsSreAiCreditsAggSum
+	}
 	if o.ApmAzureAppServiceHostTop99pSum != nil {
 		toSerialize["apm_azure_app_service_host_top99p_sum"] = o.ApmAzureAppServiceHostTop99pSum
 	}
@@ -8006,6 +9521,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.AuditTrailEnabledHwmSum != nil {
 		toSerialize["audit_trail_enabled_hwm_sum"] = o.AuditTrailEnabledHwmSum
+	}
+	if o.AuditTrailEventForwardingEventsAggSum != nil {
+		toSerialize["audit_trail_event_forwarding_events_agg_sum"] = o.AuditTrailEventForwardingEventsAggSum
 	}
 	if o.AvgProfiledFargateTasksSum != nil {
 		toSerialize["avg_profiled_fargate_tasks_sum"] = o.AvgProfiledFargateTasksSum
@@ -8232,6 +9750,12 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.DataJobsMonitoringHostHrAggSum != nil {
 		toSerialize["data_jobs_monitoring_host_hr_agg_sum"] = o.DataJobsMonitoringHostHrAggSum
 	}
+	if o.DataStreamMonitoringHostCountAggSum != nil {
+		toSerialize["data_stream_monitoring_host_count_agg_sum"] = o.DataStreamMonitoringHostCountAggSum
+	}
+	if o.DataStreamMonitoringHostCountTop99pSum != nil {
+		toSerialize["data_stream_monitoring_host_count_top99p_sum"] = o.DataStreamMonitoringHostCountTop99pSum
+	}
 	if o.DbmHostTop99pSum != nil {
 		toSerialize["dbm_host_top99p_sum"] = o.DbmHostTop99pSum
 	}
@@ -8380,6 +9904,99 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.IndexedEventsCountAggSum != nil {
 		toSerialize["indexed_events_count_agg_sum"] = o.IndexedEventsCountAggSum
 	}
+	if o.IndexedPointsAggSum != nil {
+		toSerialize["indexed_points_agg_sum"] = o.IndexedPointsAggSum
+	}
+	if o.InfraCpuAggSum != nil {
+		toSerialize["infra_cpu_agg_sum"] = o.InfraCpuAggSum
+	}
+	if o.InfraCpuAvgSum != nil {
+		toSerialize["infra_cpu_avg_sum"] = o.InfraCpuAvgSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuAgentAggSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_agent_agg_sum"] = o.InfraCpuDefaultInfraHostVcpuAgentAggSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuAgentAvgSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_agent_avg_sum"] = o.InfraCpuDefaultInfraHostVcpuAgentAvgSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuAgentBasicAggSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_agent_basic_agg_sum"] = o.InfraCpuDefaultInfraHostVcpuAgentBasicAggSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuAgentBasicAvgSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_agent_basic_avg_sum"] = o.InfraCpuDefaultInfraHostVcpuAgentBasicAvgSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuAwsAggSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_aws_agg_sum"] = o.InfraCpuDefaultInfraHostVcpuAwsAggSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuAwsAvgSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_aws_avg_sum"] = o.InfraCpuDefaultInfraHostVcpuAwsAvgSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuAzureAggSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_azure_agg_sum"] = o.InfraCpuDefaultInfraHostVcpuAzureAggSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuAzureAvgSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_azure_avg_sum"] = o.InfraCpuDefaultInfraHostVcpuAzureAvgSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuGcpAggSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_gcp_agg_sum"] = o.InfraCpuDefaultInfraHostVcpuGcpAggSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuGcpAvgSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_gcp_avg_sum"] = o.InfraCpuDefaultInfraHostVcpuGcpAvgSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuNutanixAggSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_nutanix_agg_sum"] = o.InfraCpuDefaultInfraHostVcpuNutanixAggSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuNutanixAvgSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_nutanix_avg_sum"] = o.InfraCpuDefaultInfraHostVcpuNutanixAvgSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuNutanixBasicAggSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_nutanix_basic_agg_sum"] = o.InfraCpuDefaultInfraHostVcpuNutanixBasicAggSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_nutanix_basic_avg_sum"] = o.InfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuOpentelemetryAggSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_opentelemetry_agg_sum"] = o.InfraCpuDefaultInfraHostVcpuOpentelemetryAggSum
+	}
+	if o.InfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum != nil {
+		toSerialize["infra_cpu_default_infra_host_vcpu_opentelemetry_avg_sum"] = o.InfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum
+	}
+	if o.InfraCpuObservedInfraHostVcpuAgentAggSum != nil {
+		toSerialize["infra_cpu_observed_infra_host_vcpu_agent_agg_sum"] = o.InfraCpuObservedInfraHostVcpuAgentAggSum
+	}
+	if o.InfraCpuObservedInfraHostVcpuAgentAvgSum != nil {
+		toSerialize["infra_cpu_observed_infra_host_vcpu_agent_avg_sum"] = o.InfraCpuObservedInfraHostVcpuAgentAvgSum
+	}
+	if o.InfraCpuObservedInfraHostVcpuAwsAggSum != nil {
+		toSerialize["infra_cpu_observed_infra_host_vcpu_aws_agg_sum"] = o.InfraCpuObservedInfraHostVcpuAwsAggSum
+	}
+	if o.InfraCpuObservedInfraHostVcpuAwsAvgSum != nil {
+		toSerialize["infra_cpu_observed_infra_host_vcpu_aws_avg_sum"] = o.InfraCpuObservedInfraHostVcpuAwsAvgSum
+	}
+	if o.InfraCpuObservedInfraHostVcpuAzureAggSum != nil {
+		toSerialize["infra_cpu_observed_infra_host_vcpu_azure_agg_sum"] = o.InfraCpuObservedInfraHostVcpuAzureAggSum
+	}
+	if o.InfraCpuObservedInfraHostVcpuAzureAvgSum != nil {
+		toSerialize["infra_cpu_observed_infra_host_vcpu_azure_avg_sum"] = o.InfraCpuObservedInfraHostVcpuAzureAvgSum
+	}
+	if o.InfraCpuObservedInfraHostVcpuGcpAggSum != nil {
+		toSerialize["infra_cpu_observed_infra_host_vcpu_gcp_agg_sum"] = o.InfraCpuObservedInfraHostVcpuGcpAggSum
+	}
+	if o.InfraCpuObservedInfraHostVcpuGcpAvgSum != nil {
+		toSerialize["infra_cpu_observed_infra_host_vcpu_gcp_avg_sum"] = o.InfraCpuObservedInfraHostVcpuGcpAvgSum
+	}
+	if o.InfraCpuObservedInfraHostVcpuNutanixAggSum != nil {
+		toSerialize["infra_cpu_observed_infra_host_vcpu_nutanix_agg_sum"] = o.InfraCpuObservedInfraHostVcpuNutanixAggSum
+	}
+	if o.InfraCpuObservedInfraHostVcpuNutanixAvgSum != nil {
+		toSerialize["infra_cpu_observed_infra_host_vcpu_nutanix_avg_sum"] = o.InfraCpuObservedInfraHostVcpuNutanixAvgSum
+	}
+	if o.InfraCpuObservedInfraHostVcpuOpentelemetryAggSum != nil {
+		toSerialize["infra_cpu_observed_infra_host_vcpu_opentelemetry_agg_sum"] = o.InfraCpuObservedInfraHostVcpuOpentelemetryAggSum
+	}
+	if o.InfraCpuObservedInfraHostVcpuOpentelemetryAvgSum != nil {
+		toSerialize["infra_cpu_observed_infra_host_vcpu_opentelemetry_avg_sum"] = o.InfraCpuObservedInfraHostVcpuOpentelemetryAvgSum
+	}
 	if o.InfraEdgeMonitoringDevicesTop99pSum != nil {
 		toSerialize["infra_edge_monitoring_devices_top99p_sum"] = o.InfraEdgeMonitoringDevicesTop99pSum
 	}
@@ -8398,8 +10015,17 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.InfraStorageMgmtObjectsCountAvgSum != nil {
 		toSerialize["infra_storage_mgmt_objects_count_avg_sum"] = o.InfraStorageMgmtObjectsCountAvgSum
 	}
+	if o.IngestPointsAggSum != nil {
+		toSerialize["ingest_points_agg_sum"] = o.IngestPointsAggSum
+	}
 	if o.IngestedEventsBytesAggSum != nil {
 		toSerialize["ingested_events_bytes_agg_sum"] = o.IngestedEventsBytesAggSum
+	}
+	if o.IotApmHostAggSum != nil {
+		toSerialize["iot_apm_host_agg_sum"] = o.IotApmHostAggSum
+	}
+	if o.IotApmHostTop99pSum != nil {
+		toSerialize["iot_apm_host_top99p_sum"] = o.IotApmHostTop99pSum
 	}
 	if o.IotDeviceAggSum != nil {
 		toSerialize["iot_device_agg_sum"] = o.IotDeviceAggSum
@@ -8420,14 +10046,32 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.LiveIngestedBytesAggSum != nil {
 		toSerialize["live_ingested_bytes_agg_sum"] = o.LiveIngestedBytesAggSum
 	}
+	if o.LlmObservability15dayRetentionSpansAggSum != nil {
+		toSerialize["llm_observability_15day_retention_spans_agg_sum"] = o.LlmObservability15dayRetentionSpansAggSum
+	}
+	if o.LlmObservability30dayRetentionSpansAggSum != nil {
+		toSerialize["llm_observability_30day_retention_spans_agg_sum"] = o.LlmObservability30dayRetentionSpansAggSum
+	}
+	if o.LlmObservability60dayRetentionSpansAggSum != nil {
+		toSerialize["llm_observability_60day_retention_spans_agg_sum"] = o.LlmObservability60dayRetentionSpansAggSum
+	}
+	if o.LlmObservability90dayRetentionSpansAggSum != nil {
+		toSerialize["llm_observability_90day_retention_spans_agg_sum"] = o.LlmObservability90dayRetentionSpansAggSum
+	}
 	if o.LlmObservabilityAggSum != nil {
 		toSerialize["llm_observability_agg_sum"] = o.LlmObservabilityAggSum
 	}
 	if o.LlmObservabilityMinSpendAggSum != nil {
 		toSerialize["llm_observability_min_spend_agg_sum"] = o.LlmObservabilityMinSpendAggSum
 	}
+	if o.LogsArchiveSearchGbScannedAggSum != nil {
+		toSerialize["logs_archive_search_gb_scanned_agg_sum"] = o.LogsArchiveSearchGbScannedAggSum
+	}
 	if o.LogsByRetention != nil {
 		toSerialize["logs_by_retention"] = o.LogsByRetention
+	}
+	if o.MetricNamesAggSum != nil {
+		toSerialize["metric_names_agg_sum"] = o.MetricNamesAggSum
 	}
 	if o.MobileRumLiteSessionCountAggSum != nil {
 		toSerialize["mobile_rum_lite_session_count_agg_sum"] = o.MobileRumLiteSessionCountAggSum
@@ -8732,6 +10376,12 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.SiemAnalyzedLogsAddOnCountAggSum != nil {
 		toSerialize["siem_analyzed_logs_add_on_count_agg_sum"] = o.SiemAnalyzedLogsAddOnCountAggSum
 	}
+	if o.SnmpDeviceCountAggSum != nil {
+		toSerialize["snmp_device_count_agg_sum"] = o.SnmpDeviceCountAggSum
+	}
+	if o.SnmpDeviceCountTop99pSum != nil {
+		toSerialize["snmp_device_count_top99p_sum"] = o.SnmpDeviceCountTop99pSum
+	}
 	if o.StartDate != nil {
 		if o.StartDate.Nanosecond() == 0 {
 			toSerialize["start_date"] = o.StartDate.Format("2006-01-02T15:04:05Z07:00")
@@ -8783,6 +10433,11 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AgentHostTop99pSum                                               *int64             `json:"agent_host_top99p_sum,omitempty"`
+		AiCreditsAgentBuilderAiCreditsAggSum                             *int64             `json:"ai_credits_agent_builder_ai_credits_agg_sum,omitempty"`
+		AiCreditsAggSum                                                  *int64             `json:"ai_credits_agg_sum,omitempty"`
+		AiCreditsBitsAssistantAiCreditsAggSum                            *int64             `json:"ai_credits_bits_assistant_ai_credits_agg_sum,omitempty"`
+		AiCreditsBitsDevAiCreditsAggSum                                  *int64             `json:"ai_credits_bits_dev_ai_credits_agg_sum,omitempty"`
+		AiCreditsBitsSreAiCreditsAggSum                                  *int64             `json:"ai_credits_bits_sre_ai_credits_agg_sum,omitempty"`
 		ApmAzureAppServiceHostTop99pSum                                  *int64             `json:"apm_azure_app_service_host_top99p_sum,omitempty"`
 		ApmDevsecopsHostTop99pSum                                        *int64             `json:"apm_devsecops_host_top99p_sum,omitempty"`
 		ApmEnterpriseStandaloneHostsTop99pSum                            *int64             `json:"apm_enterprise_standalone_hosts_top99p_sum,omitempty"`
@@ -8793,6 +10448,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		AsmServerlessAggSum                                              *int64             `json:"asm_serverless_agg_sum,omitempty"`
 		AuditLogsLinesIndexedAggSum                                      *int64             `json:"audit_logs_lines_indexed_agg_sum,omitempty"`
 		AuditTrailEnabledHwmSum                                          *int64             `json:"audit_trail_enabled_hwm_sum,omitempty"`
+		AuditTrailEventForwardingEventsAggSum                            *int64             `json:"audit_trail_event_forwarding_events_agg_sum,omitempty"`
 		AvgProfiledFargateTasksSum                                       *int64             `json:"avg_profiled_fargate_tasks_sum,omitempty"`
 		AwsHostTop99pSum                                                 *int64             `json:"aws_host_top99p_sum,omitempty"`
 		AwsLambdaFuncCount                                               *int64             `json:"aws_lambda_func_count,omitempty"`
@@ -8868,6 +10524,8 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		CwsFargateTaskAvgSum                                             *int64             `json:"cws_fargate_task_avg_sum,omitempty"`
 		CwsHostTop99pSum                                                 *int64             `json:"cws_host_top99p_sum,omitempty"`
 		DataJobsMonitoringHostHrAggSum                                   *int64             `json:"data_jobs_monitoring_host_hr_agg_sum,omitempty"`
+		DataStreamMonitoringHostCountAggSum                              *int64             `json:"data_stream_monitoring_host_count_agg_sum,omitempty"`
+		DataStreamMonitoringHostCountTop99pSum                           *int64             `json:"data_stream_monitoring_host_count_top99p_sum,omitempty"`
 		DbmHostTop99pSum                                                 *int64             `json:"dbm_host_top99p_sum,omitempty"`
 		DbmQueriesAvgSum                                                 *int64             `json:"dbm_queries_avg_sum,omitempty"`
 		DoJobsMonitoringOrchestratorsJobHoursAggSum                      *int64             `json:"do_jobs_monitoring_orchestrators_job_hours_agg_sum,omitempty"`
@@ -8916,21 +10574,61 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		IncidentManagementMonthlyActiveUsersHwmSum                       *int64             `json:"incident_management_monthly_active_users_hwm_sum,omitempty"`
 		IncidentManagementSeatsHwmSum                                    *int64             `json:"incident_management_seats_hwm_sum,omitempty"`
 		IndexedEventsCountAggSum                                         *int64             `json:"indexed_events_count_agg_sum,omitempty"`
+		IndexedPointsAggSum                                              *int64             `json:"indexed_points_agg_sum,omitempty"`
+		InfraCpuAggSum                                                   *int64             `json:"infra_cpu_agg_sum,omitempty"`
+		InfraCpuAvgSum                                                   *int64             `json:"infra_cpu_avg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuAgentAggSum                          *int64             `json:"infra_cpu_default_infra_host_vcpu_agent_agg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuAgentAvgSum                          *int64             `json:"infra_cpu_default_infra_host_vcpu_agent_avg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuAgentBasicAggSum                     *int64             `json:"infra_cpu_default_infra_host_vcpu_agent_basic_agg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuAgentBasicAvgSum                     *int64             `json:"infra_cpu_default_infra_host_vcpu_agent_basic_avg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuAwsAggSum                            *int64             `json:"infra_cpu_default_infra_host_vcpu_aws_agg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuAwsAvgSum                            *int64             `json:"infra_cpu_default_infra_host_vcpu_aws_avg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuAzureAggSum                          *int64             `json:"infra_cpu_default_infra_host_vcpu_azure_agg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuAzureAvgSum                          *int64             `json:"infra_cpu_default_infra_host_vcpu_azure_avg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuGcpAggSum                            *int64             `json:"infra_cpu_default_infra_host_vcpu_gcp_agg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuGcpAvgSum                            *int64             `json:"infra_cpu_default_infra_host_vcpu_gcp_avg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuNutanixAggSum                        *int64             `json:"infra_cpu_default_infra_host_vcpu_nutanix_agg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuNutanixAvgSum                        *int64             `json:"infra_cpu_default_infra_host_vcpu_nutanix_avg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuNutanixBasicAggSum                   *int64             `json:"infra_cpu_default_infra_host_vcpu_nutanix_basic_agg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum                   *int64             `json:"infra_cpu_default_infra_host_vcpu_nutanix_basic_avg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuOpentelemetryAggSum                  *int64             `json:"infra_cpu_default_infra_host_vcpu_opentelemetry_agg_sum,omitempty"`
+		InfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum                  *int64             `json:"infra_cpu_default_infra_host_vcpu_opentelemetry_avg_sum,omitempty"`
+		InfraCpuObservedInfraHostVcpuAgentAggSum                         *int64             `json:"infra_cpu_observed_infra_host_vcpu_agent_agg_sum,omitempty"`
+		InfraCpuObservedInfraHostVcpuAgentAvgSum                         *int64             `json:"infra_cpu_observed_infra_host_vcpu_agent_avg_sum,omitempty"`
+		InfraCpuObservedInfraHostVcpuAwsAggSum                           *int64             `json:"infra_cpu_observed_infra_host_vcpu_aws_agg_sum,omitempty"`
+		InfraCpuObservedInfraHostVcpuAwsAvgSum                           *int64             `json:"infra_cpu_observed_infra_host_vcpu_aws_avg_sum,omitempty"`
+		InfraCpuObservedInfraHostVcpuAzureAggSum                         *int64             `json:"infra_cpu_observed_infra_host_vcpu_azure_agg_sum,omitempty"`
+		InfraCpuObservedInfraHostVcpuAzureAvgSum                         *int64             `json:"infra_cpu_observed_infra_host_vcpu_azure_avg_sum,omitempty"`
+		InfraCpuObservedInfraHostVcpuGcpAggSum                           *int64             `json:"infra_cpu_observed_infra_host_vcpu_gcp_agg_sum,omitempty"`
+		InfraCpuObservedInfraHostVcpuGcpAvgSum                           *int64             `json:"infra_cpu_observed_infra_host_vcpu_gcp_avg_sum,omitempty"`
+		InfraCpuObservedInfraHostVcpuNutanixAggSum                       *int64             `json:"infra_cpu_observed_infra_host_vcpu_nutanix_agg_sum,omitempty"`
+		InfraCpuObservedInfraHostVcpuNutanixAvgSum                       *int64             `json:"infra_cpu_observed_infra_host_vcpu_nutanix_avg_sum,omitempty"`
+		InfraCpuObservedInfraHostVcpuOpentelemetryAggSum                 *int64             `json:"infra_cpu_observed_infra_host_vcpu_opentelemetry_agg_sum,omitempty"`
+		InfraCpuObservedInfraHostVcpuOpentelemetryAvgSum                 *int64             `json:"infra_cpu_observed_infra_host_vcpu_opentelemetry_avg_sum,omitempty"`
 		InfraEdgeMonitoringDevicesTop99pSum                              *int64             `json:"infra_edge_monitoring_devices_top99p_sum,omitempty"`
 		InfraHostBasicInfraBasicAgentTop99pSum                           *int64             `json:"infra_host_basic_infra_basic_agent_top99p_sum,omitempty"`
 		InfraHostBasicInfraBasicVsphereTop99pSum                         *int64             `json:"infra_host_basic_infra_basic_vsphere_top99p_sum,omitempty"`
 		InfraHostBasicTop99pSum                                          *int64             `json:"infra_host_basic_top99p_sum,omitempty"`
 		InfraHostTop99pSum                                               *int64             `json:"infra_host_top99p_sum,omitempty"`
 		InfraStorageMgmtObjectsCountAvgSum                               *int64             `json:"infra_storage_mgmt_objects_count_avg_sum,omitempty"`
+		IngestPointsAggSum                                               *int64             `json:"ingest_points_agg_sum,omitempty"`
 		IngestedEventsBytesAggSum                                        *int64             `json:"ingested_events_bytes_agg_sum,omitempty"`
+		IotApmHostAggSum                                                 *int64             `json:"iot_apm_host_agg_sum,omitempty"`
+		IotApmHostTop99pSum                                              *int64             `json:"iot_apm_host_top99p_sum,omitempty"`
 		IotDeviceAggSum                                                  *int64             `json:"iot_device_agg_sum,omitempty"`
 		IotDeviceTop99pSum                                               *int64             `json:"iot_device_top99p_sum,omitempty"`
 		LastUpdated                                                      *time.Time         `json:"last_updated,omitempty"`
 		LiveIndexedEventsAggSum                                          *int64             `json:"live_indexed_events_agg_sum,omitempty"`
 		LiveIngestedBytesAggSum                                          *int64             `json:"live_ingested_bytes_agg_sum,omitempty"`
+		LlmObservability15dayRetentionSpansAggSum                        *int64             `json:"llm_observability_15day_retention_spans_agg_sum,omitempty"`
+		LlmObservability30dayRetentionSpansAggSum                        *int64             `json:"llm_observability_30day_retention_spans_agg_sum,omitempty"`
+		LlmObservability60dayRetentionSpansAggSum                        *int64             `json:"llm_observability_60day_retention_spans_agg_sum,omitempty"`
+		LlmObservability90dayRetentionSpansAggSum                        *int64             `json:"llm_observability_90day_retention_spans_agg_sum,omitempty"`
 		LlmObservabilityAggSum                                           *int64             `json:"llm_observability_agg_sum,omitempty"`
 		LlmObservabilityMinSpendAggSum                                   *int64             `json:"llm_observability_min_spend_agg_sum,omitempty"`
+		LogsArchiveSearchGbScannedAggSum                                 *int64             `json:"logs_archive_search_gb_scanned_agg_sum,omitempty"`
 		LogsByRetention                                                  *LogsByRetention   `json:"logs_by_retention,omitempty"`
+		MetricNamesAggSum                                                *int64             `json:"metric_names_agg_sum,omitempty"`
 		MobileRumLiteSessionCountAggSum                                  *int64             `json:"mobile_rum_lite_session_count_agg_sum,omitempty"`
 		MobileRumSessionCountAggSum                                      *int64             `json:"mobile_rum_session_count_agg_sum,omitempty"`
 		MobileRumSessionCountAndroidAggSum                               *int64             `json:"mobile_rum_session_count_android_agg_sum,omitempty"`
@@ -9032,6 +10730,8 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Siem12moRetentionAggSum                                          *int64             `json:"siem_12mo_retention_agg_sum,omitempty"`
 		Siem6moRetentionAggSum                                           *int64             `json:"siem_6mo_retention_agg_sum,omitempty"`
 		SiemAnalyzedLogsAddOnCountAggSum                                 *int64             `json:"siem_analyzed_logs_add_on_count_agg_sum,omitempty"`
+		SnmpDeviceCountAggSum                                            *int64             `json:"snmp_device_count_agg_sum,omitempty"`
+		SnmpDeviceCountTop99pSum                                         *int64             `json:"snmp_device_count_top99p_sum,omitempty"`
 		StartDate                                                        *time.Time         `json:"start_date,omitempty"`
 		SyntheticsBrowserCheckCallsCountAggSum                           *int64             `json:"synthetics_browser_check_calls_count_agg_sum,omitempty"`
 		SyntheticsCheckCallsCountAggSum                                  *int64             `json:"synthetics_check_calls_count_agg_sum,omitempty"`
@@ -9050,13 +10750,18 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p_sum", "apm_azure_app_service_host_top99p_sum", "apm_devsecops_host_top99p_sum", "apm_enterprise_standalone_hosts_top99p_sum", "apm_fargate_count_avg_sum", "apm_host_top99p_sum", "apm_pro_standalone_hosts_top99p_sum", "appsec_fargate_count_avg_sum", "asm_serverless_agg_sum", "audit_logs_lines_indexed_agg_sum", "audit_trail_enabled_hwm_sum", "avg_profiled_fargate_tasks_sum", "aws_host_top99p_sum", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p_sum", "azure_host_top99p_sum", "billable_ingested_bytes_agg_sum", "bits_ai_investigations_agg_sum", "browser_rum_lite_session_count_agg_sum", "browser_rum_replay_session_count_agg_sum", "browser_rum_units_agg_sum", "ccm_anthropic_spend_last_sum", "ccm_aws_spend_last_sum", "ccm_azure_spend_last_sum", "ccm_confluent_spend_last_sum", "ccm_databricks_spend_last_sum", "ccm_elastic_spend_last_sum", "ccm_fastly_spend_last_sum", "ccm_gcp_spend_last_sum", "ccm_github_spend_last_sum", "ccm_mongodb_spend_last_sum", "ccm_oci_spend_last_sum", "ccm_openai_spend_last_sum", "ccm_snowflake_spend_last_sum", "ccm_spend_monitored_ent_last_sum", "ccm_spend_monitored_pro_last_sum", "ccm_twilio_spend_last_sum", "ci_pipeline_indexed_spans_agg_sum", "ci_test_indexed_spans_agg_sum", "ci_visibility_itr_committers_hwm_sum", "ci_visibility_pipeline_committers_hwm_sum", "ci_visibility_test_committers_hwm_sum", "cloud_cost_management_aws_host_count_avg_sum", "cloud_cost_management_azure_host_count_avg_sum", "cloud_cost_management_gcp_host_count_avg_sum", "cloud_cost_management_host_count_avg_sum", "cloud_cost_management_oci_host_count_avg_sum", "cloud_siem_events_agg_sum", "cloud_siem_indexed_logs_agg_sum", "code_analysis_sa_committers_hwm_sum", "code_analysis_sca_committers_hwm_sum", "code_security_host_top99p_sum", "container_avg_sum", "container_excl_agent_avg_sum", "container_hwm_sum", "csm_container_enterprise_compliance_count_agg_sum", "csm_container_enterprise_cws_count_agg_sum", "csm_container_enterprise_total_count_agg_sum", "csm_host_enterprise_aas_host_count_top99p_sum", "csm_host_enterprise_aws_host_count_top99p_sum", "csm_host_enterprise_azure_host_count_top99p_sum", "csm_host_enterprise_compliance_host_count_top99p_sum", "csm_host_enterprise_cws_host_count_top99p_sum", "csm_host_enterprise_gcp_host_count_top99p_sum", "csm_host_enterprise_oci_host_count_top99p_sum", "csm_host_enterprise_total_host_count_top99p_sum", "csm_host_pro_hosts_agentless_scanners_agg_sum", "csm_host_pro_hosts_agentless_scanners_top99p_sum", "csm_host_pro_oci_host_count_top99p_sum", "cspm_aas_host_top99p_sum", "cspm_aws_host_top99p_sum", "cspm_azure_host_top99p_sum", "cspm_container_avg_sum", "cspm_container_hwm_sum", "cspm_gcp_host_top99p_sum", "cspm_host_top99p_sum", "cspm_hosts_agentless_scanners_agg_sum", "cspm_hosts_agentless_scanners_top99p_sum", "custom_historical_ts_sum", "custom_live_ts_sum", "custom_ts_sum", "cws_container_avg_sum", "cws_fargate_task_avg_sum", "cws_host_top99p_sum", "data_jobs_monitoring_host_hr_agg_sum", "dbm_host_top99p_sum", "dbm_queries_avg_sum", "do_jobs_monitoring_orchestrators_job_hours_agg_sum", "end_date", "eph_infra_host_agent_agg_sum", "eph_infra_host_alibaba_agg_sum", "eph_infra_host_aws_agg_sum", "eph_infra_host_azure_agg_sum", "eph_infra_host_basic_agg_sum", "eph_infra_host_basic_infra_basic_agent_agg_sum", "eph_infra_host_basic_infra_basic_vsphere_agg_sum", "eph_infra_host_ent_agg_sum", "eph_infra_host_gcp_agg_sum", "eph_infra_host_heroku_agg_sum", "eph_infra_host_only_aas_agg_sum", "eph_infra_host_only_vsphere_agg_sum", "eph_infra_host_opentelemetry_agg_sum", "eph_infra_host_opentelemetry_apm_agg_sum", "eph_infra_host_pro_agg_sum", "eph_infra_host_proplus_agg_sum", "eph_infra_host_proxmox_agg_sum", "error_tracking_apm_error_events_agg_sum", "error_tracking_error_events_agg_sum", "error_tracking_events_agg_sum", "error_tracking_rum_error_events_agg_sum", "event_management_correlation_agg_sum", "event_management_correlation_correlated_events_agg_sum", "event_management_correlation_correlated_related_events_agg_sum", "fargate_container_profiler_profiling_fargate_avg_sum", "fargate_container_profiler_profiling_fargate_eks_avg_sum", "fargate_tasks_count_avg_sum", "fargate_tasks_count_hwm_sum", "feature_flags_config_requests_agg_sum", "flex_logs_compute_large_avg_sum", "flex_logs_compute_medium_avg_sum", "flex_logs_compute_small_avg_sum", "flex_logs_compute_xlarge_avg_sum", "flex_logs_compute_xsmall_avg_sum", "flex_logs_starter_avg_sum", "flex_logs_starter_storage_index_avg_sum", "flex_logs_starter_storage_retention_adjustment_avg_sum", "flex_stored_logs_avg_sum", "forwarding_events_bytes_agg_sum", "gcp_host_top99p_sum", "heroku_host_top99p_sum", "incident_management_monthly_active_users_hwm_sum", "incident_management_seats_hwm_sum", "indexed_events_count_agg_sum", "infra_edge_monitoring_devices_top99p_sum", "infra_host_basic_infra_basic_agent_top99p_sum", "infra_host_basic_infra_basic_vsphere_top99p_sum", "infra_host_basic_top99p_sum", "infra_host_top99p_sum", "infra_storage_mgmt_objects_count_avg_sum", "ingested_events_bytes_agg_sum", "iot_device_agg_sum", "iot_device_top99p_sum", "last_updated", "live_indexed_events_agg_sum", "live_ingested_bytes_agg_sum", "llm_observability_agg_sum", "llm_observability_min_spend_agg_sum", "logs_by_retention", "mobile_rum_lite_session_count_agg_sum", "mobile_rum_session_count_agg_sum", "mobile_rum_session_count_android_agg_sum", "mobile_rum_session_count_flutter_agg_sum", "mobile_rum_session_count_ios_agg_sum", "mobile_rum_session_count_reactnative_agg_sum", "mobile_rum_session_count_roku_agg_sum", "mobile_rum_units_agg_sum", "ndm_netflow_events_agg_sum", "netflow_indexed_events_count_agg_sum", "network_device_wireless_top99p_sum", "network_path_agg_sum", "npm_host_top99p_sum", "observability_pipelines_bytes_processed_agg_sum", "oci_host_agg_sum", "oci_host_top99p_sum", "on_call_seat_hwm_sum", "online_archive_events_count_agg_sum", "opentelemetry_apm_host_top99p_sum", "opentelemetry_host_top99p_sum", "product_analytics_agg_sum", "profiling_aas_count_top99p_sum", "profiling_container_agent_count_avg", "profiling_host_count_top99p_sum", "proxmox_host_agg_sum", "proxmox_host_top99p_sum", "published_app_hwm_sum", "rehydrated_indexed_events_agg_sum", "rehydrated_ingested_bytes_agg_sum", "rum_browser_and_mobile_session_count", "rum_browser_legacy_session_count_agg_sum", "rum_browser_lite_session_count_agg_sum", "rum_browser_replay_session_count_agg_sum", "rum_indexed_sessions_agg_sum", "rum_ingested_sessions_agg_sum", "rum_lite_session_count_agg_sum", "rum_mobile_legacy_session_count_android_agg_sum", "rum_mobile_legacy_session_count_flutter_agg_sum", "rum_mobile_legacy_session_count_ios_agg_sum", "rum_mobile_legacy_session_count_reactnative_agg_sum", "rum_mobile_legacy_session_count_roku_agg_sum", "rum_mobile_lite_session_count_android_agg_sum", "rum_mobile_lite_session_count_flutter_agg_sum", "rum_mobile_lite_session_count_ios_agg_sum", "rum_mobile_lite_session_count_kotlinmultiplatform_agg_sum", "rum_mobile_lite_session_count_reactnative_agg_sum", "rum_mobile_lite_session_count_roku_agg_sum", "rum_mobile_lite_session_count_unity_agg_sum", "rum_mobile_replay_session_count_android_agg_sum", "rum_mobile_replay_session_count_ios_agg_sum", "rum_mobile_replay_session_count_kotlinmultiplatform_agg_sum", "rum_mobile_replay_session_count_reactnative_agg_sum", "rum_replay_session_count_agg_sum", "rum_session_count_agg_sum", "rum_session_replay_add_on_agg_sum", "rum_total_session_count_agg_sum", "rum_units_agg_sum", "sca_fargate_count_avg_sum", "sca_fargate_count_hwm_sum", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_apm_apm_azure_appservice_instances_avg_sum", "serverless_apps_apm_apm_azure_azurefunction_instances_avg_sum", "serverless_apps_apm_apm_azure_containerapp_instances_avg_sum", "serverless_apps_apm_apm_fargate_ecs_tasks_avg_sum", "serverless_apps_apm_apm_gcp_cloudfunction_instances_avg_sum", "serverless_apps_apm_apm_gcp_cloudrun_instances_avg_sum", "serverless_apps_apm_apm_gcp_gke_autopilot_pods_avg_sum", "serverless_apps_apm_avg_sum", "serverless_apps_apm_excl_fargate_apm_azure_appservice_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_azure_azurefunction_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_azure_containerapp_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_gcp_cloudfunction_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_gcp_cloudrun_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_gcp_gke_autopilot_pods_avg_sum", "serverless_apps_apm_excl_fargate_avg_sum", "serverless_apps_azure_container_app_instances_avg_sum", "serverless_apps_azure_count_avg_sum", "serverless_apps_azure_function_app_instances_avg_sum", "serverless_apps_azure_web_app_instances_avg_sum", "serverless_apps_dsm_fargate_tasks_avg_sum", "serverless_apps_ecs_avg_sum", "serverless_apps_eks_avg_sum", "serverless_apps_excl_fargate_avg_sum", "serverless_apps_excl_fargate_azure_container_app_instances_avg_sum", "serverless_apps_excl_fargate_azure_function_app_instances_avg_sum", "serverless_apps_excl_fargate_azure_web_app_instances_avg_sum", "serverless_apps_excl_fargate_google_cloud_functions_instances_avg_sum", "serverless_apps_excl_fargate_google_cloud_run_instances_avg_sum", "serverless_apps_excl_fargate_infra_gcp_gke_autopilot_pods_avg_sum", "serverless_apps_google_cloud_functions_instances_avg_sum", "serverless_apps_google_cloud_run_instances_avg_sum", "serverless_apps_google_count_avg_sum", "serverless_apps_infra_gcp_gke_autopilot_pods_avg_sum", "serverless_apps_total_count_avg_sum", "siem_12mo_retention_agg_sum", "siem_6mo_retention_agg_sum", "siem_analyzed_logs_add_on_count_agg_sum", "start_date", "synthetics_browser_check_calls_count_agg_sum", "synthetics_check_calls_count_agg_sum", "synthetics_mobile_test_runs_agg_sum", "synthetics_parallel_testing_max_slots_hwm_sum", "trace_search_indexed_events_count_agg_sum", "twol_ingested_events_bytes_agg_sum", "universal_service_monitoring_host_top99p_sum", "usage", "vsphere_host_top99p_sum", "vuln_management_host_count_top99p_sum", "workflow_executions_usage_agg_sum"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"agent_host_top99p_sum", "ai_credits_agent_builder_ai_credits_agg_sum", "ai_credits_agg_sum", "ai_credits_bits_assistant_ai_credits_agg_sum", "ai_credits_bits_dev_ai_credits_agg_sum", "ai_credits_bits_sre_ai_credits_agg_sum", "apm_azure_app_service_host_top99p_sum", "apm_devsecops_host_top99p_sum", "apm_enterprise_standalone_hosts_top99p_sum", "apm_fargate_count_avg_sum", "apm_host_top99p_sum", "apm_pro_standalone_hosts_top99p_sum", "appsec_fargate_count_avg_sum", "asm_serverless_agg_sum", "audit_logs_lines_indexed_agg_sum", "audit_trail_enabled_hwm_sum", "audit_trail_event_forwarding_events_agg_sum", "avg_profiled_fargate_tasks_sum", "aws_host_top99p_sum", "aws_lambda_func_count", "aws_lambda_invocations_sum", "azure_app_service_top99p_sum", "azure_host_top99p_sum", "billable_ingested_bytes_agg_sum", "bits_ai_investigations_agg_sum", "browser_rum_lite_session_count_agg_sum", "browser_rum_replay_session_count_agg_sum", "browser_rum_units_agg_sum", "ccm_anthropic_spend_last_sum", "ccm_aws_spend_last_sum", "ccm_azure_spend_last_sum", "ccm_confluent_spend_last_sum", "ccm_databricks_spend_last_sum", "ccm_elastic_spend_last_sum", "ccm_fastly_spend_last_sum", "ccm_gcp_spend_last_sum", "ccm_github_spend_last_sum", "ccm_mongodb_spend_last_sum", "ccm_oci_spend_last_sum", "ccm_openai_spend_last_sum", "ccm_snowflake_spend_last_sum", "ccm_spend_monitored_ent_last_sum", "ccm_spend_monitored_pro_last_sum", "ccm_twilio_spend_last_sum", "ci_pipeline_indexed_spans_agg_sum", "ci_test_indexed_spans_agg_sum", "ci_visibility_itr_committers_hwm_sum", "ci_visibility_pipeline_committers_hwm_sum", "ci_visibility_test_committers_hwm_sum", "cloud_cost_management_aws_host_count_avg_sum", "cloud_cost_management_azure_host_count_avg_sum", "cloud_cost_management_gcp_host_count_avg_sum", "cloud_cost_management_host_count_avg_sum", "cloud_cost_management_oci_host_count_avg_sum", "cloud_siem_events_agg_sum", "cloud_siem_indexed_logs_agg_sum", "code_analysis_sa_committers_hwm_sum", "code_analysis_sca_committers_hwm_sum", "code_security_host_top99p_sum", "container_avg_sum", "container_excl_agent_avg_sum", "container_hwm_sum", "csm_container_enterprise_compliance_count_agg_sum", "csm_container_enterprise_cws_count_agg_sum", "csm_container_enterprise_total_count_agg_sum", "csm_host_enterprise_aas_host_count_top99p_sum", "csm_host_enterprise_aws_host_count_top99p_sum", "csm_host_enterprise_azure_host_count_top99p_sum", "csm_host_enterprise_compliance_host_count_top99p_sum", "csm_host_enterprise_cws_host_count_top99p_sum", "csm_host_enterprise_gcp_host_count_top99p_sum", "csm_host_enterprise_oci_host_count_top99p_sum", "csm_host_enterprise_total_host_count_top99p_sum", "csm_host_pro_hosts_agentless_scanners_agg_sum", "csm_host_pro_hosts_agentless_scanners_top99p_sum", "csm_host_pro_oci_host_count_top99p_sum", "cspm_aas_host_top99p_sum", "cspm_aws_host_top99p_sum", "cspm_azure_host_top99p_sum", "cspm_container_avg_sum", "cspm_container_hwm_sum", "cspm_gcp_host_top99p_sum", "cspm_host_top99p_sum", "cspm_hosts_agentless_scanners_agg_sum", "cspm_hosts_agentless_scanners_top99p_sum", "custom_historical_ts_sum", "custom_live_ts_sum", "custom_ts_sum", "cws_container_avg_sum", "cws_fargate_task_avg_sum", "cws_host_top99p_sum", "data_jobs_monitoring_host_hr_agg_sum", "data_stream_monitoring_host_count_agg_sum", "data_stream_monitoring_host_count_top99p_sum", "dbm_host_top99p_sum", "dbm_queries_avg_sum", "do_jobs_monitoring_orchestrators_job_hours_agg_sum", "end_date", "eph_infra_host_agent_agg_sum", "eph_infra_host_alibaba_agg_sum", "eph_infra_host_aws_agg_sum", "eph_infra_host_azure_agg_sum", "eph_infra_host_basic_agg_sum", "eph_infra_host_basic_infra_basic_agent_agg_sum", "eph_infra_host_basic_infra_basic_vsphere_agg_sum", "eph_infra_host_ent_agg_sum", "eph_infra_host_gcp_agg_sum", "eph_infra_host_heroku_agg_sum", "eph_infra_host_only_aas_agg_sum", "eph_infra_host_only_vsphere_agg_sum", "eph_infra_host_opentelemetry_agg_sum", "eph_infra_host_opentelemetry_apm_agg_sum", "eph_infra_host_pro_agg_sum", "eph_infra_host_proplus_agg_sum", "eph_infra_host_proxmox_agg_sum", "error_tracking_apm_error_events_agg_sum", "error_tracking_error_events_agg_sum", "error_tracking_events_agg_sum", "error_tracking_rum_error_events_agg_sum", "event_management_correlation_agg_sum", "event_management_correlation_correlated_events_agg_sum", "event_management_correlation_correlated_related_events_agg_sum", "fargate_container_profiler_profiling_fargate_avg_sum", "fargate_container_profiler_profiling_fargate_eks_avg_sum", "fargate_tasks_count_avg_sum", "fargate_tasks_count_hwm_sum", "feature_flags_config_requests_agg_sum", "flex_logs_compute_large_avg_sum", "flex_logs_compute_medium_avg_sum", "flex_logs_compute_small_avg_sum", "flex_logs_compute_xlarge_avg_sum", "flex_logs_compute_xsmall_avg_sum", "flex_logs_starter_avg_sum", "flex_logs_starter_storage_index_avg_sum", "flex_logs_starter_storage_retention_adjustment_avg_sum", "flex_stored_logs_avg_sum", "forwarding_events_bytes_agg_sum", "gcp_host_top99p_sum", "heroku_host_top99p_sum", "incident_management_monthly_active_users_hwm_sum", "incident_management_seats_hwm_sum", "indexed_events_count_agg_sum", "indexed_points_agg_sum", "infra_cpu_agg_sum", "infra_cpu_avg_sum", "infra_cpu_default_infra_host_vcpu_agent_agg_sum", "infra_cpu_default_infra_host_vcpu_agent_avg_sum", "infra_cpu_default_infra_host_vcpu_agent_basic_agg_sum", "infra_cpu_default_infra_host_vcpu_agent_basic_avg_sum", "infra_cpu_default_infra_host_vcpu_aws_agg_sum", "infra_cpu_default_infra_host_vcpu_aws_avg_sum", "infra_cpu_default_infra_host_vcpu_azure_agg_sum", "infra_cpu_default_infra_host_vcpu_azure_avg_sum", "infra_cpu_default_infra_host_vcpu_gcp_agg_sum", "infra_cpu_default_infra_host_vcpu_gcp_avg_sum", "infra_cpu_default_infra_host_vcpu_nutanix_agg_sum", "infra_cpu_default_infra_host_vcpu_nutanix_avg_sum", "infra_cpu_default_infra_host_vcpu_nutanix_basic_agg_sum", "infra_cpu_default_infra_host_vcpu_nutanix_basic_avg_sum", "infra_cpu_default_infra_host_vcpu_opentelemetry_agg_sum", "infra_cpu_default_infra_host_vcpu_opentelemetry_avg_sum", "infra_cpu_observed_infra_host_vcpu_agent_agg_sum", "infra_cpu_observed_infra_host_vcpu_agent_avg_sum", "infra_cpu_observed_infra_host_vcpu_aws_agg_sum", "infra_cpu_observed_infra_host_vcpu_aws_avg_sum", "infra_cpu_observed_infra_host_vcpu_azure_agg_sum", "infra_cpu_observed_infra_host_vcpu_azure_avg_sum", "infra_cpu_observed_infra_host_vcpu_gcp_agg_sum", "infra_cpu_observed_infra_host_vcpu_gcp_avg_sum", "infra_cpu_observed_infra_host_vcpu_nutanix_agg_sum", "infra_cpu_observed_infra_host_vcpu_nutanix_avg_sum", "infra_cpu_observed_infra_host_vcpu_opentelemetry_agg_sum", "infra_cpu_observed_infra_host_vcpu_opentelemetry_avg_sum", "infra_edge_monitoring_devices_top99p_sum", "infra_host_basic_infra_basic_agent_top99p_sum", "infra_host_basic_infra_basic_vsphere_top99p_sum", "infra_host_basic_top99p_sum", "infra_host_top99p_sum", "infra_storage_mgmt_objects_count_avg_sum", "ingest_points_agg_sum", "ingested_events_bytes_agg_sum", "iot_apm_host_agg_sum", "iot_apm_host_top99p_sum", "iot_device_agg_sum", "iot_device_top99p_sum", "last_updated", "live_indexed_events_agg_sum", "live_ingested_bytes_agg_sum", "llm_observability_15day_retention_spans_agg_sum", "llm_observability_30day_retention_spans_agg_sum", "llm_observability_60day_retention_spans_agg_sum", "llm_observability_90day_retention_spans_agg_sum", "llm_observability_agg_sum", "llm_observability_min_spend_agg_sum", "logs_archive_search_gb_scanned_agg_sum", "logs_by_retention", "metric_names_agg_sum", "mobile_rum_lite_session_count_agg_sum", "mobile_rum_session_count_agg_sum", "mobile_rum_session_count_android_agg_sum", "mobile_rum_session_count_flutter_agg_sum", "mobile_rum_session_count_ios_agg_sum", "mobile_rum_session_count_reactnative_agg_sum", "mobile_rum_session_count_roku_agg_sum", "mobile_rum_units_agg_sum", "ndm_netflow_events_agg_sum", "netflow_indexed_events_count_agg_sum", "network_device_wireless_top99p_sum", "network_path_agg_sum", "npm_host_top99p_sum", "observability_pipelines_bytes_processed_agg_sum", "oci_host_agg_sum", "oci_host_top99p_sum", "on_call_seat_hwm_sum", "online_archive_events_count_agg_sum", "opentelemetry_apm_host_top99p_sum", "opentelemetry_host_top99p_sum", "product_analytics_agg_sum", "profiling_aas_count_top99p_sum", "profiling_container_agent_count_avg", "profiling_host_count_top99p_sum", "proxmox_host_agg_sum", "proxmox_host_top99p_sum", "published_app_hwm_sum", "rehydrated_indexed_events_agg_sum", "rehydrated_ingested_bytes_agg_sum", "rum_browser_and_mobile_session_count", "rum_browser_legacy_session_count_agg_sum", "rum_browser_lite_session_count_agg_sum", "rum_browser_replay_session_count_agg_sum", "rum_indexed_sessions_agg_sum", "rum_ingested_sessions_agg_sum", "rum_lite_session_count_agg_sum", "rum_mobile_legacy_session_count_android_agg_sum", "rum_mobile_legacy_session_count_flutter_agg_sum", "rum_mobile_legacy_session_count_ios_agg_sum", "rum_mobile_legacy_session_count_reactnative_agg_sum", "rum_mobile_legacy_session_count_roku_agg_sum", "rum_mobile_lite_session_count_android_agg_sum", "rum_mobile_lite_session_count_flutter_agg_sum", "rum_mobile_lite_session_count_ios_agg_sum", "rum_mobile_lite_session_count_kotlinmultiplatform_agg_sum", "rum_mobile_lite_session_count_reactnative_agg_sum", "rum_mobile_lite_session_count_roku_agg_sum", "rum_mobile_lite_session_count_unity_agg_sum", "rum_mobile_replay_session_count_android_agg_sum", "rum_mobile_replay_session_count_ios_agg_sum", "rum_mobile_replay_session_count_kotlinmultiplatform_agg_sum", "rum_mobile_replay_session_count_reactnative_agg_sum", "rum_replay_session_count_agg_sum", "rum_session_count_agg_sum", "rum_session_replay_add_on_agg_sum", "rum_total_session_count_agg_sum", "rum_units_agg_sum", "sca_fargate_count_avg_sum", "sca_fargate_count_hwm_sum", "sds_apm_scanned_bytes_sum", "sds_events_scanned_bytes_sum", "sds_logs_scanned_bytes_sum", "sds_rum_scanned_bytes_sum", "sds_total_scanned_bytes_sum", "serverless_apps_apm_apm_azure_appservice_instances_avg_sum", "serverless_apps_apm_apm_azure_azurefunction_instances_avg_sum", "serverless_apps_apm_apm_azure_containerapp_instances_avg_sum", "serverless_apps_apm_apm_fargate_ecs_tasks_avg_sum", "serverless_apps_apm_apm_gcp_cloudfunction_instances_avg_sum", "serverless_apps_apm_apm_gcp_cloudrun_instances_avg_sum", "serverless_apps_apm_apm_gcp_gke_autopilot_pods_avg_sum", "serverless_apps_apm_avg_sum", "serverless_apps_apm_excl_fargate_apm_azure_appservice_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_azure_azurefunction_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_azure_containerapp_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_gcp_cloudfunction_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_gcp_cloudrun_instances_avg_sum", "serverless_apps_apm_excl_fargate_apm_gcp_gke_autopilot_pods_avg_sum", "serverless_apps_apm_excl_fargate_avg_sum", "serverless_apps_azure_container_app_instances_avg_sum", "serverless_apps_azure_count_avg_sum", "serverless_apps_azure_function_app_instances_avg_sum", "serverless_apps_azure_web_app_instances_avg_sum", "serverless_apps_dsm_fargate_tasks_avg_sum", "serverless_apps_ecs_avg_sum", "serverless_apps_eks_avg_sum", "serverless_apps_excl_fargate_avg_sum", "serverless_apps_excl_fargate_azure_container_app_instances_avg_sum", "serverless_apps_excl_fargate_azure_function_app_instances_avg_sum", "serverless_apps_excl_fargate_azure_web_app_instances_avg_sum", "serverless_apps_excl_fargate_google_cloud_functions_instances_avg_sum", "serverless_apps_excl_fargate_google_cloud_run_instances_avg_sum", "serverless_apps_excl_fargate_infra_gcp_gke_autopilot_pods_avg_sum", "serverless_apps_google_cloud_functions_instances_avg_sum", "serverless_apps_google_cloud_run_instances_avg_sum", "serverless_apps_google_count_avg_sum", "serverless_apps_infra_gcp_gke_autopilot_pods_avg_sum", "serverless_apps_total_count_avg_sum", "siem_12mo_retention_agg_sum", "siem_6mo_retention_agg_sum", "siem_analyzed_logs_add_on_count_agg_sum", "snmp_device_count_agg_sum", "snmp_device_count_top99p_sum", "start_date", "synthetics_browser_check_calls_count_agg_sum", "synthetics_check_calls_count_agg_sum", "synthetics_mobile_test_runs_agg_sum", "synthetics_parallel_testing_max_slots_hwm_sum", "trace_search_indexed_events_count_agg_sum", "twol_ingested_events_bytes_agg_sum", "universal_service_monitoring_host_top99p_sum", "usage", "vsphere_host_top99p_sum", "vuln_management_host_count_top99p_sum", "workflow_executions_usage_agg_sum"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.AgentHostTop99pSum = all.AgentHostTop99pSum
+	o.AiCreditsAgentBuilderAiCreditsAggSum = all.AiCreditsAgentBuilderAiCreditsAggSum
+	o.AiCreditsAggSum = all.AiCreditsAggSum
+	o.AiCreditsBitsAssistantAiCreditsAggSum = all.AiCreditsBitsAssistantAiCreditsAggSum
+	o.AiCreditsBitsDevAiCreditsAggSum = all.AiCreditsBitsDevAiCreditsAggSum
+	o.AiCreditsBitsSreAiCreditsAggSum = all.AiCreditsBitsSreAiCreditsAggSum
 	o.ApmAzureAppServiceHostTop99pSum = all.ApmAzureAppServiceHostTop99pSum
 	o.ApmDevsecopsHostTop99pSum = all.ApmDevsecopsHostTop99pSum
 	o.ApmEnterpriseStandaloneHostsTop99pSum = all.ApmEnterpriseStandaloneHostsTop99pSum
@@ -9067,6 +10772,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.AsmServerlessAggSum = all.AsmServerlessAggSum
 	o.AuditLogsLinesIndexedAggSum = all.AuditLogsLinesIndexedAggSum
 	o.AuditTrailEnabledHwmSum = all.AuditTrailEnabledHwmSum
+	o.AuditTrailEventForwardingEventsAggSum = all.AuditTrailEventForwardingEventsAggSum
 	o.AvgProfiledFargateTasksSum = all.AvgProfiledFargateTasksSum
 	o.AwsHostTop99pSum = all.AwsHostTop99pSum
 	o.AwsLambdaFuncCount = all.AwsLambdaFuncCount
@@ -9142,6 +10848,8 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.CwsFargateTaskAvgSum = all.CwsFargateTaskAvgSum
 	o.CwsHostTop99pSum = all.CwsHostTop99pSum
 	o.DataJobsMonitoringHostHrAggSum = all.DataJobsMonitoringHostHrAggSum
+	o.DataStreamMonitoringHostCountAggSum = all.DataStreamMonitoringHostCountAggSum
+	o.DataStreamMonitoringHostCountTop99pSum = all.DataStreamMonitoringHostCountTop99pSum
 	o.DbmHostTop99pSum = all.DbmHostTop99pSum
 	o.DbmQueriesAvgSum = all.DbmQueriesAvgSum
 	o.DoJobsMonitoringOrchestratorsJobHoursAggSum = all.DoJobsMonitoringOrchestratorsJobHoursAggSum
@@ -9190,24 +10898,64 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.IncidentManagementMonthlyActiveUsersHwmSum = all.IncidentManagementMonthlyActiveUsersHwmSum
 	o.IncidentManagementSeatsHwmSum = all.IncidentManagementSeatsHwmSum
 	o.IndexedEventsCountAggSum = all.IndexedEventsCountAggSum
+	o.IndexedPointsAggSum = all.IndexedPointsAggSum
+	o.InfraCpuAggSum = all.InfraCpuAggSum
+	o.InfraCpuAvgSum = all.InfraCpuAvgSum
+	o.InfraCpuDefaultInfraHostVcpuAgentAggSum = all.InfraCpuDefaultInfraHostVcpuAgentAggSum
+	o.InfraCpuDefaultInfraHostVcpuAgentAvgSum = all.InfraCpuDefaultInfraHostVcpuAgentAvgSum
+	o.InfraCpuDefaultInfraHostVcpuAgentBasicAggSum = all.InfraCpuDefaultInfraHostVcpuAgentBasicAggSum
+	o.InfraCpuDefaultInfraHostVcpuAgentBasicAvgSum = all.InfraCpuDefaultInfraHostVcpuAgentBasicAvgSum
+	o.InfraCpuDefaultInfraHostVcpuAwsAggSum = all.InfraCpuDefaultInfraHostVcpuAwsAggSum
+	o.InfraCpuDefaultInfraHostVcpuAwsAvgSum = all.InfraCpuDefaultInfraHostVcpuAwsAvgSum
+	o.InfraCpuDefaultInfraHostVcpuAzureAggSum = all.InfraCpuDefaultInfraHostVcpuAzureAggSum
+	o.InfraCpuDefaultInfraHostVcpuAzureAvgSum = all.InfraCpuDefaultInfraHostVcpuAzureAvgSum
+	o.InfraCpuDefaultInfraHostVcpuGcpAggSum = all.InfraCpuDefaultInfraHostVcpuGcpAggSum
+	o.InfraCpuDefaultInfraHostVcpuGcpAvgSum = all.InfraCpuDefaultInfraHostVcpuGcpAvgSum
+	o.InfraCpuDefaultInfraHostVcpuNutanixAggSum = all.InfraCpuDefaultInfraHostVcpuNutanixAggSum
+	o.InfraCpuDefaultInfraHostVcpuNutanixAvgSum = all.InfraCpuDefaultInfraHostVcpuNutanixAvgSum
+	o.InfraCpuDefaultInfraHostVcpuNutanixBasicAggSum = all.InfraCpuDefaultInfraHostVcpuNutanixBasicAggSum
+	o.InfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum = all.InfraCpuDefaultInfraHostVcpuNutanixBasicAvgSum
+	o.InfraCpuDefaultInfraHostVcpuOpentelemetryAggSum = all.InfraCpuDefaultInfraHostVcpuOpentelemetryAggSum
+	o.InfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum = all.InfraCpuDefaultInfraHostVcpuOpentelemetryAvgSum
+	o.InfraCpuObservedInfraHostVcpuAgentAggSum = all.InfraCpuObservedInfraHostVcpuAgentAggSum
+	o.InfraCpuObservedInfraHostVcpuAgentAvgSum = all.InfraCpuObservedInfraHostVcpuAgentAvgSum
+	o.InfraCpuObservedInfraHostVcpuAwsAggSum = all.InfraCpuObservedInfraHostVcpuAwsAggSum
+	o.InfraCpuObservedInfraHostVcpuAwsAvgSum = all.InfraCpuObservedInfraHostVcpuAwsAvgSum
+	o.InfraCpuObservedInfraHostVcpuAzureAggSum = all.InfraCpuObservedInfraHostVcpuAzureAggSum
+	o.InfraCpuObservedInfraHostVcpuAzureAvgSum = all.InfraCpuObservedInfraHostVcpuAzureAvgSum
+	o.InfraCpuObservedInfraHostVcpuGcpAggSum = all.InfraCpuObservedInfraHostVcpuGcpAggSum
+	o.InfraCpuObservedInfraHostVcpuGcpAvgSum = all.InfraCpuObservedInfraHostVcpuGcpAvgSum
+	o.InfraCpuObservedInfraHostVcpuNutanixAggSum = all.InfraCpuObservedInfraHostVcpuNutanixAggSum
+	o.InfraCpuObservedInfraHostVcpuNutanixAvgSum = all.InfraCpuObservedInfraHostVcpuNutanixAvgSum
+	o.InfraCpuObservedInfraHostVcpuOpentelemetryAggSum = all.InfraCpuObservedInfraHostVcpuOpentelemetryAggSum
+	o.InfraCpuObservedInfraHostVcpuOpentelemetryAvgSum = all.InfraCpuObservedInfraHostVcpuOpentelemetryAvgSum
 	o.InfraEdgeMonitoringDevicesTop99pSum = all.InfraEdgeMonitoringDevicesTop99pSum
 	o.InfraHostBasicInfraBasicAgentTop99pSum = all.InfraHostBasicInfraBasicAgentTop99pSum
 	o.InfraHostBasicInfraBasicVsphereTop99pSum = all.InfraHostBasicInfraBasicVsphereTop99pSum
 	o.InfraHostBasicTop99pSum = all.InfraHostBasicTop99pSum
 	o.InfraHostTop99pSum = all.InfraHostTop99pSum
 	o.InfraStorageMgmtObjectsCountAvgSum = all.InfraStorageMgmtObjectsCountAvgSum
+	o.IngestPointsAggSum = all.IngestPointsAggSum
 	o.IngestedEventsBytesAggSum = all.IngestedEventsBytesAggSum
+	o.IotApmHostAggSum = all.IotApmHostAggSum
+	o.IotApmHostTop99pSum = all.IotApmHostTop99pSum
 	o.IotDeviceAggSum = all.IotDeviceAggSum
 	o.IotDeviceTop99pSum = all.IotDeviceTop99pSum
 	o.LastUpdated = all.LastUpdated
 	o.LiveIndexedEventsAggSum = all.LiveIndexedEventsAggSum
 	o.LiveIngestedBytesAggSum = all.LiveIngestedBytesAggSum
+	o.LlmObservability15dayRetentionSpansAggSum = all.LlmObservability15dayRetentionSpansAggSum
+	o.LlmObservability30dayRetentionSpansAggSum = all.LlmObservability30dayRetentionSpansAggSum
+	o.LlmObservability60dayRetentionSpansAggSum = all.LlmObservability60dayRetentionSpansAggSum
+	o.LlmObservability90dayRetentionSpansAggSum = all.LlmObservability90dayRetentionSpansAggSum
 	o.LlmObservabilityAggSum = all.LlmObservabilityAggSum
 	o.LlmObservabilityMinSpendAggSum = all.LlmObservabilityMinSpendAggSum
+	o.LogsArchiveSearchGbScannedAggSum = all.LogsArchiveSearchGbScannedAggSum
 	if all.LogsByRetention != nil && all.LogsByRetention.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.LogsByRetention = all.LogsByRetention
+	o.MetricNamesAggSum = all.MetricNamesAggSum
 	o.MobileRumLiteSessionCountAggSum = all.MobileRumLiteSessionCountAggSum
 	o.MobileRumSessionCountAggSum = all.MobileRumSessionCountAggSum
 	o.MobileRumSessionCountAndroidAggSum = all.MobileRumSessionCountAndroidAggSum
@@ -9309,6 +11057,8 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Siem12moRetentionAggSum = all.Siem12moRetentionAggSum
 	o.Siem6moRetentionAggSum = all.Siem6moRetentionAggSum
 	o.SiemAnalyzedLogsAddOnCountAggSum = all.SiemAnalyzedLogsAddOnCountAggSum
+	o.SnmpDeviceCountAggSum = all.SnmpDeviceCountAggSum
+	o.SnmpDeviceCountTop99pSum = all.SnmpDeviceCountTop99pSum
 	o.StartDate = all.StartDate
 	o.SyntheticsBrowserCheckCallsCountAggSum = all.SyntheticsBrowserCheckCallsCountAggSum
 	o.SyntheticsCheckCallsCountAggSum = all.SyntheticsCheckCallsCountAggSum
