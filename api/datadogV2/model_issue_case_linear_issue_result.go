@@ -8,44 +8,42 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IssueCaseJiraIssueResult Contains the identifiers and URL for a successfully created Jira issue.
-type IssueCaseJiraIssueResult struct {
-	// Jira account identifier.
+// IssueCaseLinearIssueResult Contains the identifiers and URL for a successfully created Linear issue.
+type IssueCaseLinearIssueResult struct {
+	// Linear account identifier.
 	AccountId *string `json:"account_id,omitempty"`
-	// Jira issue identifier.
+	// Linear issue identifier.
 	IssueId *string `json:"issue_id,omitempty"`
-	// Jira issue key.
+	// Linear issue key.
 	IssueKey *string `json:"issue_key,omitempty"`
-	// Jira issue URL.
+	// Linear issue URL.
 	IssueUrl *string `json:"issue_url,omitempty"`
-	// Jira project identifier.
-	ProjectId *string `json:"project_id,omitempty"`
-	// Jira project key.
-	ProjectKey *string `json:"project_key,omitempty"`
+	// Linear team identifier.
+	TeamId *string `json:"team_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewIssueCaseJiraIssueResult instantiates a new IssueCaseJiraIssueResult object.
+// NewIssueCaseLinearIssueResult instantiates a new IssueCaseLinearIssueResult object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewIssueCaseJiraIssueResult() *IssueCaseJiraIssueResult {
-	this := IssueCaseJiraIssueResult{}
+func NewIssueCaseLinearIssueResult() *IssueCaseLinearIssueResult {
+	this := IssueCaseLinearIssueResult{}
 	return &this
 }
 
-// NewIssueCaseJiraIssueResultWithDefaults instantiates a new IssueCaseJiraIssueResult object.
+// NewIssueCaseLinearIssueResultWithDefaults instantiates a new IssueCaseLinearIssueResult object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewIssueCaseJiraIssueResultWithDefaults() *IssueCaseJiraIssueResult {
-	this := IssueCaseJiraIssueResult{}
+func NewIssueCaseLinearIssueResultWithDefaults() *IssueCaseLinearIssueResult {
+	this := IssueCaseLinearIssueResult{}
 	return &this
 }
 
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
-func (o *IssueCaseJiraIssueResult) GetAccountId() string {
+func (o *IssueCaseLinearIssueResult) GetAccountId() string {
 	if o == nil || o.AccountId == nil {
 		var ret string
 		return ret
@@ -55,7 +53,7 @@ func (o *IssueCaseJiraIssueResult) GetAccountId() string {
 
 // GetAccountIdOk returns a tuple with the AccountId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueCaseJiraIssueResult) GetAccountIdOk() (*string, bool) {
+func (o *IssueCaseLinearIssueResult) GetAccountIdOk() (*string, bool) {
 	if o == nil || o.AccountId == nil {
 		return nil, false
 	}
@@ -63,17 +61,17 @@ func (o *IssueCaseJiraIssueResult) GetAccountIdOk() (*string, bool) {
 }
 
 // HasAccountId returns a boolean if a field has been set.
-func (o *IssueCaseJiraIssueResult) HasAccountId() bool {
+func (o *IssueCaseLinearIssueResult) HasAccountId() bool {
 	return o != nil && o.AccountId != nil
 }
 
 // SetAccountId gets a reference to the given string and assigns it to the AccountId field.
-func (o *IssueCaseJiraIssueResult) SetAccountId(v string) {
+func (o *IssueCaseLinearIssueResult) SetAccountId(v string) {
 	o.AccountId = &v
 }
 
 // GetIssueId returns the IssueId field value if set, zero value otherwise.
-func (o *IssueCaseJiraIssueResult) GetIssueId() string {
+func (o *IssueCaseLinearIssueResult) GetIssueId() string {
 	if o == nil || o.IssueId == nil {
 		var ret string
 		return ret
@@ -83,7 +81,7 @@ func (o *IssueCaseJiraIssueResult) GetIssueId() string {
 
 // GetIssueIdOk returns a tuple with the IssueId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueCaseJiraIssueResult) GetIssueIdOk() (*string, bool) {
+func (o *IssueCaseLinearIssueResult) GetIssueIdOk() (*string, bool) {
 	if o == nil || o.IssueId == nil {
 		return nil, false
 	}
@@ -91,17 +89,17 @@ func (o *IssueCaseJiraIssueResult) GetIssueIdOk() (*string, bool) {
 }
 
 // HasIssueId returns a boolean if a field has been set.
-func (o *IssueCaseJiraIssueResult) HasIssueId() bool {
+func (o *IssueCaseLinearIssueResult) HasIssueId() bool {
 	return o != nil && o.IssueId != nil
 }
 
 // SetIssueId gets a reference to the given string and assigns it to the IssueId field.
-func (o *IssueCaseJiraIssueResult) SetIssueId(v string) {
+func (o *IssueCaseLinearIssueResult) SetIssueId(v string) {
 	o.IssueId = &v
 }
 
 // GetIssueKey returns the IssueKey field value if set, zero value otherwise.
-func (o *IssueCaseJiraIssueResult) GetIssueKey() string {
+func (o *IssueCaseLinearIssueResult) GetIssueKey() string {
 	if o == nil || o.IssueKey == nil {
 		var ret string
 		return ret
@@ -111,7 +109,7 @@ func (o *IssueCaseJiraIssueResult) GetIssueKey() string {
 
 // GetIssueKeyOk returns a tuple with the IssueKey field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueCaseJiraIssueResult) GetIssueKeyOk() (*string, bool) {
+func (o *IssueCaseLinearIssueResult) GetIssueKeyOk() (*string, bool) {
 	if o == nil || o.IssueKey == nil {
 		return nil, false
 	}
@@ -119,17 +117,17 @@ func (o *IssueCaseJiraIssueResult) GetIssueKeyOk() (*string, bool) {
 }
 
 // HasIssueKey returns a boolean if a field has been set.
-func (o *IssueCaseJiraIssueResult) HasIssueKey() bool {
+func (o *IssueCaseLinearIssueResult) HasIssueKey() bool {
 	return o != nil && o.IssueKey != nil
 }
 
 // SetIssueKey gets a reference to the given string and assigns it to the IssueKey field.
-func (o *IssueCaseJiraIssueResult) SetIssueKey(v string) {
+func (o *IssueCaseLinearIssueResult) SetIssueKey(v string) {
 	o.IssueKey = &v
 }
 
 // GetIssueUrl returns the IssueUrl field value if set, zero value otherwise.
-func (o *IssueCaseJiraIssueResult) GetIssueUrl() string {
+func (o *IssueCaseLinearIssueResult) GetIssueUrl() string {
 	if o == nil || o.IssueUrl == nil {
 		var ret string
 		return ret
@@ -139,7 +137,7 @@ func (o *IssueCaseJiraIssueResult) GetIssueUrl() string {
 
 // GetIssueUrlOk returns a tuple with the IssueUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueCaseJiraIssueResult) GetIssueUrlOk() (*string, bool) {
+func (o *IssueCaseLinearIssueResult) GetIssueUrlOk() (*string, bool) {
 	if o == nil || o.IssueUrl == nil {
 		return nil, false
 	}
@@ -147,73 +145,45 @@ func (o *IssueCaseJiraIssueResult) GetIssueUrlOk() (*string, bool) {
 }
 
 // HasIssueUrl returns a boolean if a field has been set.
-func (o *IssueCaseJiraIssueResult) HasIssueUrl() bool {
+func (o *IssueCaseLinearIssueResult) HasIssueUrl() bool {
 	return o != nil && o.IssueUrl != nil
 }
 
 // SetIssueUrl gets a reference to the given string and assigns it to the IssueUrl field.
-func (o *IssueCaseJiraIssueResult) SetIssueUrl(v string) {
+func (o *IssueCaseLinearIssueResult) SetIssueUrl(v string) {
 	o.IssueUrl = &v
 }
 
-// GetProjectId returns the ProjectId field value if set, zero value otherwise.
-func (o *IssueCaseJiraIssueResult) GetProjectId() string {
-	if o == nil || o.ProjectId == nil {
+// GetTeamId returns the TeamId field value if set, zero value otherwise.
+func (o *IssueCaseLinearIssueResult) GetTeamId() string {
+	if o == nil || o.TeamId == nil {
 		var ret string
 		return ret
 	}
-	return *o.ProjectId
+	return *o.TeamId
 }
 
-// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
+// GetTeamIdOk returns a tuple with the TeamId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueCaseJiraIssueResult) GetProjectIdOk() (*string, bool) {
-	if o == nil || o.ProjectId == nil {
+func (o *IssueCaseLinearIssueResult) GetTeamIdOk() (*string, bool) {
+	if o == nil || o.TeamId == nil {
 		return nil, false
 	}
-	return o.ProjectId, true
+	return o.TeamId, true
 }
 
-// HasProjectId returns a boolean if a field has been set.
-func (o *IssueCaseJiraIssueResult) HasProjectId() bool {
-	return o != nil && o.ProjectId != nil
+// HasTeamId returns a boolean if a field has been set.
+func (o *IssueCaseLinearIssueResult) HasTeamId() bool {
+	return o != nil && o.TeamId != nil
 }
 
-// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
-func (o *IssueCaseJiraIssueResult) SetProjectId(v string) {
-	o.ProjectId = &v
-}
-
-// GetProjectKey returns the ProjectKey field value if set, zero value otherwise.
-func (o *IssueCaseJiraIssueResult) GetProjectKey() string {
-	if o == nil || o.ProjectKey == nil {
-		var ret string
-		return ret
-	}
-	return *o.ProjectKey
-}
-
-// GetProjectKeyOk returns a tuple with the ProjectKey field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IssueCaseJiraIssueResult) GetProjectKeyOk() (*string, bool) {
-	if o == nil || o.ProjectKey == nil {
-		return nil, false
-	}
-	return o.ProjectKey, true
-}
-
-// HasProjectKey returns a boolean if a field has been set.
-func (o *IssueCaseJiraIssueResult) HasProjectKey() bool {
-	return o != nil && o.ProjectKey != nil
-}
-
-// SetProjectKey gets a reference to the given string and assigns it to the ProjectKey field.
-func (o *IssueCaseJiraIssueResult) SetProjectKey(v string) {
-	o.ProjectKey = &v
+// SetTeamId gets a reference to the given string and assigns it to the TeamId field.
+func (o *IssueCaseLinearIssueResult) SetTeamId(v string) {
+	o.TeamId = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o IssueCaseJiraIssueResult) MarshalJSON() ([]byte, error) {
+func (o IssueCaseLinearIssueResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -230,11 +200,8 @@ func (o IssueCaseJiraIssueResult) MarshalJSON() ([]byte, error) {
 	if o.IssueUrl != nil {
 		toSerialize["issue_url"] = o.IssueUrl
 	}
-	if o.ProjectId != nil {
-		toSerialize["project_id"] = o.ProjectId
-	}
-	if o.ProjectKey != nil {
-		toSerialize["project_key"] = o.ProjectKey
+	if o.TeamId != nil {
+		toSerialize["team_id"] = o.TeamId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -244,21 +211,20 @@ func (o IssueCaseJiraIssueResult) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *IssueCaseJiraIssueResult) UnmarshalJSON(bytes []byte) (err error) {
+func (o *IssueCaseLinearIssueResult) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AccountId  *string `json:"account_id,omitempty"`
-		IssueId    *string `json:"issue_id,omitempty"`
-		IssueKey   *string `json:"issue_key,omitempty"`
-		IssueUrl   *string `json:"issue_url,omitempty"`
-		ProjectId  *string `json:"project_id,omitempty"`
-		ProjectKey *string `json:"project_key,omitempty"`
+		AccountId *string `json:"account_id,omitempty"`
+		IssueId   *string `json:"issue_id,omitempty"`
+		IssueKey  *string `json:"issue_key,omitempty"`
+		IssueUrl  *string `json:"issue_url,omitempty"`
+		TeamId    *string `json:"team_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "issue_id", "issue_key", "issue_url", "project_id", "project_key"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "issue_id", "issue_key", "issue_url", "team_id"})
 	} else {
 		return err
 	}
@@ -266,8 +232,7 @@ func (o *IssueCaseJiraIssueResult) UnmarshalJSON(bytes []byte) (err error) {
 	o.IssueId = all.IssueId
 	o.IssueKey = all.IssueKey
 	o.IssueUrl = all.IssueUrl
-	o.ProjectId = all.ProjectId
-	o.ProjectKey = all.ProjectKey
+	o.TeamId = all.TeamId
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

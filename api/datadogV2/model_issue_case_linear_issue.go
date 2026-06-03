@@ -8,38 +8,38 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IssueCaseJiraIssue Jira issue of the case.
-type IssueCaseJiraIssue struct {
-	// Error message set when the Jira issue creation fails.
+// IssueCaseLinearIssue Linear issue of the case.
+type IssueCaseLinearIssue struct {
+	// Error message set when the Linear issue creation fails.
 	ErrorMessage *string `json:"error_message,omitempty"`
-	// Contains the identifiers and URL for a successfully created Jira issue.
-	Result *IssueCaseJiraIssueResult `json:"result,omitempty"`
-	// Creation status of the Jira issue.
+	// Contains the identifiers and URL for a successfully created Linear issue.
+	Result *IssueCaseLinearIssueResult `json:"result,omitempty"`
+	// Creation status of the Linear issue.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewIssueCaseJiraIssue instantiates a new IssueCaseJiraIssue object.
+// NewIssueCaseLinearIssue instantiates a new IssueCaseLinearIssue object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewIssueCaseJiraIssue() *IssueCaseJiraIssue {
-	this := IssueCaseJiraIssue{}
+func NewIssueCaseLinearIssue() *IssueCaseLinearIssue {
+	this := IssueCaseLinearIssue{}
 	return &this
 }
 
-// NewIssueCaseJiraIssueWithDefaults instantiates a new IssueCaseJiraIssue object.
+// NewIssueCaseLinearIssueWithDefaults instantiates a new IssueCaseLinearIssue object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewIssueCaseJiraIssueWithDefaults() *IssueCaseJiraIssue {
-	this := IssueCaseJiraIssue{}
+func NewIssueCaseLinearIssueWithDefaults() *IssueCaseLinearIssue {
+	this := IssueCaseLinearIssue{}
 	return &this
 }
 
 // GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
-func (o *IssueCaseJiraIssue) GetErrorMessage() string {
+func (o *IssueCaseLinearIssue) GetErrorMessage() string {
 	if o == nil || o.ErrorMessage == nil {
 		var ret string
 		return ret
@@ -49,7 +49,7 @@ func (o *IssueCaseJiraIssue) GetErrorMessage() string {
 
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueCaseJiraIssue) GetErrorMessageOk() (*string, bool) {
+func (o *IssueCaseLinearIssue) GetErrorMessageOk() (*string, bool) {
 	if o == nil || o.ErrorMessage == nil {
 		return nil, false
 	}
@@ -57,19 +57,19 @@ func (o *IssueCaseJiraIssue) GetErrorMessageOk() (*string, bool) {
 }
 
 // HasErrorMessage returns a boolean if a field has been set.
-func (o *IssueCaseJiraIssue) HasErrorMessage() bool {
+func (o *IssueCaseLinearIssue) HasErrorMessage() bool {
 	return o != nil && o.ErrorMessage != nil
 }
 
 // SetErrorMessage gets a reference to the given string and assigns it to the ErrorMessage field.
-func (o *IssueCaseJiraIssue) SetErrorMessage(v string) {
+func (o *IssueCaseLinearIssue) SetErrorMessage(v string) {
 	o.ErrorMessage = &v
 }
 
 // GetResult returns the Result field value if set, zero value otherwise.
-func (o *IssueCaseJiraIssue) GetResult() IssueCaseJiraIssueResult {
+func (o *IssueCaseLinearIssue) GetResult() IssueCaseLinearIssueResult {
 	if o == nil || o.Result == nil {
-		var ret IssueCaseJiraIssueResult
+		var ret IssueCaseLinearIssueResult
 		return ret
 	}
 	return *o.Result
@@ -77,7 +77,7 @@ func (o *IssueCaseJiraIssue) GetResult() IssueCaseJiraIssueResult {
 
 // GetResultOk returns a tuple with the Result field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueCaseJiraIssue) GetResultOk() (*IssueCaseJiraIssueResult, bool) {
+func (o *IssueCaseLinearIssue) GetResultOk() (*IssueCaseLinearIssueResult, bool) {
 	if o == nil || o.Result == nil {
 		return nil, false
 	}
@@ -85,17 +85,17 @@ func (o *IssueCaseJiraIssue) GetResultOk() (*IssueCaseJiraIssueResult, bool) {
 }
 
 // HasResult returns a boolean if a field has been set.
-func (o *IssueCaseJiraIssue) HasResult() bool {
+func (o *IssueCaseLinearIssue) HasResult() bool {
 	return o != nil && o.Result != nil
 }
 
-// SetResult gets a reference to the given IssueCaseJiraIssueResult and assigns it to the Result field.
-func (o *IssueCaseJiraIssue) SetResult(v IssueCaseJiraIssueResult) {
+// SetResult gets a reference to the given IssueCaseLinearIssueResult and assigns it to the Result field.
+func (o *IssueCaseLinearIssue) SetResult(v IssueCaseLinearIssueResult) {
 	o.Result = &v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *IssueCaseJiraIssue) GetStatus() string {
+func (o *IssueCaseLinearIssue) GetStatus() string {
 	if o == nil || o.Status == nil {
 		var ret string
 		return ret
@@ -105,7 +105,7 @@ func (o *IssueCaseJiraIssue) GetStatus() string {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IssueCaseJiraIssue) GetStatusOk() (*string, bool) {
+func (o *IssueCaseLinearIssue) GetStatusOk() (*string, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -113,17 +113,17 @@ func (o *IssueCaseJiraIssue) GetStatusOk() (*string, bool) {
 }
 
 // HasStatus returns a boolean if a field has been set.
-func (o *IssueCaseJiraIssue) HasStatus() bool {
+func (o *IssueCaseLinearIssue) HasStatus() bool {
 	return o != nil && o.Status != nil
 }
 
 // SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *IssueCaseJiraIssue) SetStatus(v string) {
+func (o *IssueCaseLinearIssue) SetStatus(v string) {
 	o.Status = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o IssueCaseJiraIssue) MarshalJSON() ([]byte, error) {
+func (o IssueCaseLinearIssue) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -145,11 +145,11 @@ func (o IssueCaseJiraIssue) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *IssueCaseJiraIssue) UnmarshalJSON(bytes []byte) (err error) {
+func (o *IssueCaseLinearIssue) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ErrorMessage *string                   `json:"error_message,omitempty"`
-		Result       *IssueCaseJiraIssueResult `json:"result,omitempty"`
-		Status       *string                   `json:"status,omitempty"`
+		ErrorMessage *string                     `json:"error_message,omitempty"`
+		Result       *IssueCaseLinearIssueResult `json:"result,omitempty"`
+		Status       *string                     `json:"status,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
