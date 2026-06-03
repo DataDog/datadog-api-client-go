@@ -569,6 +569,8 @@
 //   - [LLMObservabilityApi.ListLLMObsDatasetVersions]
 //   - [LLMObservabilityApi.ListLLMObsDatasets]
 //   - [LLMObservabilityApi.ListLLMObsExperimentEvents]
+//   - [LLMObservabilityApi.ListLLMObsExperimentEventsV1]
+//   - [LLMObservabilityApi.ListLLMObsExperimentEventsV2]
 //   - [LLMObservabilityApi.ListLLMObsExperiments]
 //   - [LLMObservabilityApi.ListLLMObsIntegrationAccounts]
 //   - [LLMObservabilityApi.ListLLMObsIntegrationModels]

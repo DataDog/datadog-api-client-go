@@ -702,6 +702,8 @@ func NewConfiguration() *Configuration {
 			"v2.ListLLMObsDatasets":                               false,
 			"v2.ListLLMObsDatasetVersions":                        false,
 			"v2.ListLLMObsExperimentEvents":                       false,
+			"v2.ListLLMObsExperimentEventsV1":                     false,
+			"v2.ListLLMObsExperimentEventsV2":                     false,
 			"v2.ListLLMObsExperiments":                            false,
 			"v2.ListLLMObsIntegrationAccounts":                    false,
 			"v2.ListLLMObsIntegrationModels":                      false,
