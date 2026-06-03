@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricResponseFilter The rum-based metric filter. RUM events matching this filter will be aggregated in this metric.
+// RumMetricResponseFilter The RUM-based metric filter. RUM events matching this filter will be aggregated in this metric.
 type RumMetricResponseFilter struct {
 	// The search query - following the RUM search syntax.
 	Query *string `json:"query,omitempty"`

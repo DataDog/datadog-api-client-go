@@ -1,4 +1,4 @@
-// Create rum replay playlist returns "Created" response
+// Create RUM replay playlist returns "Created" response
 
 package main
 

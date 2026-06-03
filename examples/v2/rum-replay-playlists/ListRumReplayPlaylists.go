@@ -1,4 +1,4 @@
-// List rum replay playlists returns "OK" response
+// List RUM replay playlists returns "OK" response
 
 package main
 
