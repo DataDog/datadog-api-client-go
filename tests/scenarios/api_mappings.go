@@ -159,6 +159,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "SpansApi": reflect.ValueOf(datadogV2.NewSpansApi),
 	    "StaticAnalysisApi": reflect.ValueOf(datadogV2.NewStaticAnalysisApi),
 	    "StatusPagesApi": reflect.ValueOf(datadogV2.NewStatusPagesApi),
+	    "StegadographyApi": reflect.ValueOf(datadogV2.NewStegadographyApi),
 	    "SyntheticsApi": reflect.ValueOf(datadogV2.NewSyntheticsApi),
 	    "TeamsApi": reflect.ValueOf(datadogV2.NewTeamsApi),
 	    "WebIntegrationsApi": reflect.ValueOf(datadogV2.NewWebIntegrationsApi),
