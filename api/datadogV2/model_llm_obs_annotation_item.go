@@ -21,7 +21,7 @@ type LLMObsAnnotationItem struct {
 	Id string `json:"id"`
 	// Identifier of the interaction this annotation belongs to.
 	InteractionId string `json:"interaction_id"`
-	// The label values for this annotation.
+	// Label values for this annotation.
 	LabelValues map[string]interface{} `json:"label_values"`
 	// Timestamp when the annotation was last modified.
 	ModifiedAt time.Time `json:"modified_at"`
