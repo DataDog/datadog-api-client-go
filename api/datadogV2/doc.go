@@ -34,6 +34,7 @@
 //   - [AWSIntegrationApi.ListAWSNamespaces]
 //   - [AWSIntegrationApi.UpdateAWSAccount]
 //   - [AWSIntegrationApi.UpdateAWSAccountCCMConfig]
+//   - [AWSIntegrationApi.ValidateAWSCCMConfig]
 //   - [AWSLogsIntegrationApi.ListAWSLogsServices]
 //   - [ActionConnectionApi.CreateActionConnection]
 //   - [ActionConnectionApi.DeleteActionConnection]
