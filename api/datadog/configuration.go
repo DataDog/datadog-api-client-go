@@ -1005,6 +1005,7 @@ func NewConfiguration() *Configuration {
 			"v2.GetScopesRestriction":                             false,
 			"v2.RegisterOAuthClient":                              false,
 			"v2.UpsertScopesRestriction":                          false,
+			"v2.UpdateOrgSamlConfigurations":                      false,
 			"v2.DisableCustomerOrg":                               false,
 			"v2.BulkUpdateOrgGroupMemberships":                    false,
 			"v2.CreateOrgGroup":                                   false,
