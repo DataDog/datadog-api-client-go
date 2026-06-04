@@ -324,6 +324,7 @@
 //   - [ConfluentCloudApi.UpdateConfluentResource]
 //   - [ContainerImagesApi.ListContainerImages]
 //   - [ContainersApi.ListContainers]
+//   - [CustomerOrgApi.DisableCustomerOrg]
 //   - [DORAMetricsApi.CreateDORADeployment]
 //   - [DORAMetricsApi.CreateDORAFailure]
 //   - [DORAMetricsApi.CreateDORAIncident]
