@@ -680,7 +680,7 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 	testCategory := datadogV1.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE
 	testSLOCorrectionCreateAttributes := datadogV1.SLOCorrectionCreateRequestAttributes{
 		Timezone: &testTimezone,
-		SloId:    slo.GetId(),
+		SloId:    datadog.PtrString(slo.GetId()),
 		Category: testCategory,
 		Start:    testStart,
 		End:      &testEnd,
