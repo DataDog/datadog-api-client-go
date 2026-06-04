@@ -693,6 +693,7 @@
 //   - [NetworkDeviceMonitoringApi.UpdateDeviceUserTags]
 //   - [NetworkDeviceMonitoringApi.UpdateInterfaceUserTags]
 //   - [OAuth2ClientPublicApi.DeleteScopesRestriction]
+//   - [OAuth2ClientPublicApi.GetOAuth2WellKnownSites]
 //   - [OAuth2ClientPublicApi.GetScopesRestriction]
 //   - [OAuth2ClientPublicApi.RegisterOAuthClient]
 //   - [OAuth2ClientPublicApi.UpsertScopesRestriction]
