@@ -1,4 +1,4 @@
-// Create an SLO correction with rrule returns "OK" response
+// Create an SLO correction with slo_query returns "OK" response
 
 package main
 
@@ -14,18 +14,14 @@ import (
 )
 
 func main() {
-	// there is a valid "slo" in the system
-	SloData0ID := os.Getenv("SLO_DATA_0_ID")
-
 	body := datadogV1.SLOCorrectionCreateRequest{
 		Data: &datadogV1.SLOCorrectionCreateData{
 			Attributes: &datadogV1.SLOCorrectionCreateRequestAttributes{
 				Category:    datadogV1.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE,
 				Description: datadog.PtrString("Example-Service-Level-Objective-Correction"),
-				SloId:       datadog.PtrString(SloData0ID),
+				End:         datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix()),
+				SloQuery:    datadog.PtrString("env:prod service:checkout"),
 				Start:       time.Now().Unix(),
-				Duration:    datadog.PtrInt64(3600),
-				Rrule:       datadog.PtrString("FREQ=DAILY;INTERVAL=10;COUNT=5"),
 				Timezone:    datadog.PtrString("UTC"),
 			},
 			Type: datadogV1.SLOCORRECTIONTYPE_CORRECTION,
