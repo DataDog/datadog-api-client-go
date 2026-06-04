@@ -16,9 +16,10 @@ func main() {
 	body := datadogV2.LLMObsExperimentRequest{
 		Data: datadogV2.LLMObsExperimentDataRequest{
 			Attributes: datadogV2.LLMObsExperimentDataAttributesRequest{
-				DatasetId: "9f64e5c7-dc5a-45c8-a17c-1b85f0bec97d",
-				Name:      "My Experiment v1",
-				ProjectId: "a33671aa-24fd-4dcd-9b33-a8ec7dde7751",
+				DatasetId:          datadog.PtrString("9f64e5c7-dc5a-45c8-a17c-1b85f0bec97d"),
+				Name:               "My Experiment v1",
+				ParentExperimentId: datadog.PtrString("3fd6b5e0-8910-4b1c-a7d0-5b84de329012"),
+				ProjectId:          "a33671aa-24fd-4dcd-9b33-a8ec7dde7751",
 			},
 			Type: datadogV2.LLMOBSEXPERIMENTTYPE_EXPERIMENTS,
 		},

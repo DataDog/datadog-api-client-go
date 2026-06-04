@@ -15,8 +15,11 @@ import (
 func main() {
 	body := datadogV2.LLMObsExperimentUpdateRequest{
 		Data: datadogV2.LLMObsExperimentUpdateDataRequest{
-			Attributes: datadogV2.LLMObsExperimentUpdateDataAttributesRequest{},
-			Type:       datadogV2.LLMOBSEXPERIMENTTYPE_EXPERIMENTS,
+			Attributes: datadogV2.LLMObsExperimentUpdateDataAttributesRequest{
+				DatasetId: datadog.PtrString("9f64e5c7-dc5a-45c8-a17c-1b85f0bec97d"),
+				Status:    datadogV2.LLMOBSEXPERIMENTSTATUS_COMPLETED.Ptr(),
+			},
+			Type: datadogV2.LLMOBSEXPERIMENTTYPE_EXPERIMENTS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

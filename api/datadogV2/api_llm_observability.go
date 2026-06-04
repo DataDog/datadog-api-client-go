@@ -3161,13 +3161,216 @@ func (a *LLMObservabilityApi) ListLLMObsExperimentEvents(ctx _context.Context, e
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListLLMObsExperimentEventsV1 List LLM Observability experiment spans (v1).
+// Retrieve spans with their evaluation metrics for a given experiment. Returns spans only, with no summary metrics and no pagination. Deprecated in favor of `ListLLMObsExperimentEventsV3`.
+//
+// Deprecated: This API is deprecated.
+func (a *LLMObservabilityApi) ListLLMObsExperimentEventsV1(ctx _context.Context, experimentId string) (LLMObsExperimentSpansResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue LLMObsExperimentSpansResponse
+	)
+
+	operationId := "v2.ListLLMObsExperimentEventsV1"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.LLMObservabilityApi.ListLLMObsExperimentEventsV1")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/llm-obs/v1/experiments/{experiment_id}/events"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{experiment_id}", _neturl.PathEscape(datadog.ParameterToString(experimentId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 500 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListLLMObsExperimentEventsV2 List LLM Observability experiment events (v2).
+// Retrieve spans and experiment-level summary metrics for a given experiment. Returns the full events payload without pagination. Deprecated: use `ListLLMObsExperimentEventsV3` instead.
+//
+// Deprecated: This API is deprecated.
+func (a *LLMObservabilityApi) ListLLMObsExperimentEventsV2(ctx _context.Context, experimentId string) (LLMObsExperimentEventsV2Response, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue LLMObsExperimentEventsV2Response
+	)
+
+	operationId := "v2.ListLLMObsExperimentEventsV2"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.LLMObservabilityApi.ListLLMObsExperimentEventsV2")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/llm-obs/v2/experiments/{experiment_id}/events"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{experiment_id}", _neturl.PathEscape(datadog.ParameterToString(experimentId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 500 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // ListLLMObsExperimentsOptionalParameters holds optional parameters for ListLLMObsExperiments.
 type ListLLMObsExperimentsOptionalParameters struct {
-	FilterProjectId *string
-	FilterDatasetId *string
-	FilterId        *string
-	PageCursor      *string
-	PageLimit       *int64
+	FilterProjectId          *string
+	FilterDatasetId          *string
+	FilterId                 *string
+	FilterName               *string
+	FilterExperiment         *string
+	FilterMetadata           *string
+	FilterParentExperimentId *string
+	FilterIsDeleted          *bool
+	IncludeUserData          *bool
+	IncludeDatasetNames      *bool
+	PageCursor               *string
+	PageLimit                *int64
 }
 
 // NewListLLMObsExperimentsOptionalParameters creates an empty struct for parameters.
@@ -3191,6 +3394,48 @@ func (r *ListLLMObsExperimentsOptionalParameters) WithFilterDatasetId(filterData
 // WithFilterId sets the corresponding parameter name and returns the struct.
 func (r *ListLLMObsExperimentsOptionalParameters) WithFilterId(filterId string) *ListLLMObsExperimentsOptionalParameters {
 	r.FilterId = &filterId
+	return r
+}
+
+// WithFilterName sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsExperimentsOptionalParameters) WithFilterName(filterName string) *ListLLMObsExperimentsOptionalParameters {
+	r.FilterName = &filterName
+	return r
+}
+
+// WithFilterExperiment sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsExperimentsOptionalParameters) WithFilterExperiment(filterExperiment string) *ListLLMObsExperimentsOptionalParameters {
+	r.FilterExperiment = &filterExperiment
+	return r
+}
+
+// WithFilterMetadata sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsExperimentsOptionalParameters) WithFilterMetadata(filterMetadata string) *ListLLMObsExperimentsOptionalParameters {
+	r.FilterMetadata = &filterMetadata
+	return r
+}
+
+// WithFilterParentExperimentId sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsExperimentsOptionalParameters) WithFilterParentExperimentId(filterParentExperimentId string) *ListLLMObsExperimentsOptionalParameters {
+	r.FilterParentExperimentId = &filterParentExperimentId
+	return r
+}
+
+// WithFilterIsDeleted sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsExperimentsOptionalParameters) WithFilterIsDeleted(filterIsDeleted bool) *ListLLMObsExperimentsOptionalParameters {
+	r.FilterIsDeleted = &filterIsDeleted
+	return r
+}
+
+// WithIncludeUserData sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsExperimentsOptionalParameters) WithIncludeUserData(includeUserData bool) *ListLLMObsExperimentsOptionalParameters {
+	r.IncludeUserData = &includeUserData
+	return r
+}
+
+// WithIncludeDatasetNames sets the corresponding parameter name and returns the struct.
+func (r *ListLLMObsExperimentsOptionalParameters) WithIncludeDatasetNames(includeDatasetNames bool) *ListLLMObsExperimentsOptionalParameters {
+	r.IncludeDatasetNames = &includeDatasetNames
 	return r
 }
 
@@ -3250,6 +3495,27 @@ func (a *LLMObservabilityApi) ListLLMObsExperiments(ctx _context.Context, o ...L
 	}
 	if optionalParams.FilterId != nil {
 		localVarQueryParams.Add("filter[id]", datadog.ParameterToString(*optionalParams.FilterId, ""))
+	}
+	if optionalParams.FilterName != nil {
+		localVarQueryParams.Add("filter[name]", datadog.ParameterToString(*optionalParams.FilterName, ""))
+	}
+	if optionalParams.FilterExperiment != nil {
+		localVarQueryParams.Add("filter[experiment]", datadog.ParameterToString(*optionalParams.FilterExperiment, ""))
+	}
+	if optionalParams.FilterMetadata != nil {
+		localVarQueryParams.Add("filter[metadata]", datadog.ParameterToString(*optionalParams.FilterMetadata, ""))
+	}
+	if optionalParams.FilterParentExperimentId != nil {
+		localVarQueryParams.Add("filter[parent_experiment_id]", datadog.ParameterToString(*optionalParams.FilterParentExperimentId, ""))
+	}
+	if optionalParams.FilterIsDeleted != nil {
+		localVarQueryParams.Add("filter[is_deleted]", datadog.ParameterToString(*optionalParams.FilterIsDeleted, ""))
+	}
+	if optionalParams.IncludeUserData != nil {
+		localVarQueryParams.Add("include[user_data]", datadog.ParameterToString(*optionalParams.IncludeUserData, ""))
+	}
+	if optionalParams.IncludeDatasetNames != nil {
+		localVarQueryParams.Add("include[dataset_names]", datadog.ParameterToString(*optionalParams.IncludeDatasetNames, ""))
 	}
 	if optionalParams.PageCursor != nil {
 		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*optionalParams.PageCursor, ""))
