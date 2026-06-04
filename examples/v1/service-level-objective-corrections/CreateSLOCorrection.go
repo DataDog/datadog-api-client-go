@@ -23,7 +23,7 @@ func main() {
 				Category:    datadogV1.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE,
 				Description: datadog.PtrString("Example-Service-Level-Objective-Correction"),
 				End:         datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix()),
-				SloId:       SloData0ID,
+				SloId:       datadog.PtrString(SloData0ID),
 				Start:       time.Now().Unix(),
 				Timezone:    datadog.PtrString("UTC"),
 			},
