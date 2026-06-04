@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/oauth2/.well-known/sites
+  response:
+    body: '{"data":{"id":"prod","type":"env","attributes":{"sites":["app.datadoghq.com","app.datadoghq.eu","us5.datadoghq.com","us3.datadoghq.com","ap1.datadoghq.com"]}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2
