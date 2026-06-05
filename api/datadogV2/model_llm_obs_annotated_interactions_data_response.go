@@ -14,7 +14,7 @@ import (
 type LLMObsAnnotatedInteractionsDataResponse struct {
 	// Attributes containing the list of annotated interactions.
 	Attributes LLMObsAnnotatedInteractionsDataAttributesResponse `json:"attributes"`
-	// The queue ID.
+	// The annotation queue ID.
 	Id string `json:"id"`
 	// Resource type for annotated interactions.
 	Type LLMObsAnnotatedInteractionsType `json:"type"`
