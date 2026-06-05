@@ -959,6 +959,7 @@ func NewConfiguration() *Configuration {
 			"v2.DeleteAWSAccountCCMConfig":                        false,
 			"v2.GetAWSAccountCCMConfig":                           false,
 			"v2.UpdateAWSAccountCCMConfig":                        false,
+			"v2.ValidateAWSCCMConfig":                             false,
 			"v2.CreateJiraIssueTemplate":                          false,
 			"v2.DeleteJiraAccount":                                false,
 			"v2.DeleteJiraIssueTemplate":                          false,
