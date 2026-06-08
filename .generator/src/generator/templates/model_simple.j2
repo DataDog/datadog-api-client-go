@@ -309,9 +309,18 @@ toSerialize["{{ attr }}"] = o.{{ propertyName }}
 	{%- endfor %}
 	{%- if model.type != "array" and model.additionalProperties is not false %}
 
+{%- if model.get("x-keep-typed-in-additional-properties") %}
+	typedKeys := map[string]bool{ {% for attr in model.get("properties", {}) %}"{{ attr }}": true, {% endfor %} }
+	for key, value := range o.AdditionalProperties {
+		if !typedKeys[key] {
+			toSerialize[key] = value
+		}
+	}
+{%- else %}
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
+{%- endif %}
 
 	{%- endif %}
 	return datadog.Marshal(toSerialize)
