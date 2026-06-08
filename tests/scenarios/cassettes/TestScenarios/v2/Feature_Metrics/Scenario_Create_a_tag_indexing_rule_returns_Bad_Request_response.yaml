@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"metric_name_matches":["dd.test.*"],"name":"test","options":{"data":{"manage_preexisting_metrics":true,"override_previous_rules":false},"version":99}},"type":"tag_indexing_rules"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/metrics/tag-indexing-rules
+  response:
+    body: '{"errors":["Invalid request body: options version must be 1"]}'
+    code: 400
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 400 Bad Request
+version: 2

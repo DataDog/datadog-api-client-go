@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/metrics/tag-indexing-rules
+  response:
+    body: '{"data":[],"meta":{"total":0},"links":{"self":"https://api.datadoghq.com/api/v2/metrics/tag-indexing-rules","first":"https://api.datadoghq.com/api/v2/metrics/tag-indexing-rules?page%5Blimit%5D=100\u0026page%5Boffset%5D=0"}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2
