@@ -370,7 +370,9 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	{%- if model.additionalProperties is not false %}
 	additionalProperties := make(map[string]{{ get_type(model.get("additionalProperties", True)) }})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
+		{%- if not model.get("x-keep-typed-in-additional-properties") %}
 		datadog.DeleteKeys(additionalProperties, &[]string{ {% for attr, schema in model.get("properties", {}).items()%}"{{ attr }}", {% endfor %} })
+		{%- endif %}
 	} else {
 		return err
 	}
