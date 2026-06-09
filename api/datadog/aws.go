@@ -5,14 +5,18 @@
 package datadog
 
 import (
+	"bytes"
 	"context"
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/base64"
 	"encoding/hex"
 	"encoding/json"
+	"encoding/xml"
 	"fmt"
+	"io"
 	"net/http"
+	"net/url"
 	"os"
 	"sort"
 	"strings"
@@ -41,9 +45,13 @@ const (
 	applicationForm = "application/x-www-form-urlencoded; charset=utf-8"
 
 	// AWS specific constants
-	AWSAccessKeyIdName     = "AWS_ACCESS_KEY_ID"
-	AWSSecretAccessKeyName = "AWS_SECRET_ACCESS_KEY"
-	AWSSessionTokenName    = "AWS_SESSION_TOKEN"
+	AWSAccessKeyIdName          = "AWS_ACCESS_KEY_ID"
+	AWSSecretAccessKeyName      = "AWS_SECRET_ACCESS_KEY"
+	AWSSessionTokenName         = "AWS_SESSION_TOKEN"
+	AWSWebIdentityTokenFileEnvVar = "AWS_WEB_IDENTITY_TOKEN_FILE"
+	AWSRoleARNEnvVar              = "AWS_ROLE_ARN"
+	AWSRoleSessionNameEnvVar      = "AWS_ROLE_SESSION_NAME"
+	defaultRoleSessionName        = "datadog-api-client"
 
 	amzDateHeader         = "X-Amz-Date"
 	amzTokenHeader        = "X-Amz-Security-Token"
@@ -62,6 +70,8 @@ const ProviderAWS = "aws"
 
 type AWSAuth struct {
 	AwsRegion string
+	// stsEndpointOverride overrides the STS endpoint URL; used in tests.
+	stsEndpointOverride string
 }
 
 func (a *AWSAuth) Authenticate(ctx context.Context, config *DelegatedTokenConfig) (*DelegatedTokenCredentials, error) {
@@ -100,19 +110,111 @@ func (a *AWSAuth) GetCredentials(ctx context.Context) *Credentials {
 			creds.SessionToken = sessionToken
 		}
 		return &creds
-	} else {
-		accessKey := os.Getenv(AWSAccessKeyIdName)
-		secretKey := os.Getenv(AWSSecretAccessKeyName)
-		sessionToken := os.Getenv(AWSSessionTokenName)
+	}
+
+	accessKey := os.Getenv(AWSAccessKeyIdName)
+	secretKey := os.Getenv(AWSSecretAccessKeyName)
+	sessionToken := os.Getenv(AWSSessionTokenName)
+	if sessionToken != "" {
 		return &Credentials{
 			AccessKeyID:     accessKey,
 			SecretAccessKey: secretKey,
 			SessionToken:    sessionToken,
 		}
 	}
+
+	// Fall back to web identity token exchange (covers TFE dynamic credentials, IRSA, etc.)
+	if creds, err := a.assumeRoleWithWebIdentity(ctx); err == nil {
+		return creds
+	}
+
+	return &Credentials{
+		AccessKeyID:     accessKey,
+		SecretAccessKey: secretKey,
+		SessionToken:    sessionToken,
+	}
+}
+
+type stsCredentials struct {
+	AccessKeyId     string `xml:"AccessKeyId"`
+	SecretAccessKey string `xml:"SecretAccessKey"`
+	SessionToken    string `xml:"SessionToken"`
+}
+
+type stsAssumeRoleWithWebIdentityResponse struct {
+	Result struct {
+		Credentials stsCredentials `xml:"Credentials"`
+	} `xml:"AssumeRoleWithWebIdentityResult"`
+}
+
+func (a *AWSAuth) assumeRoleWithWebIdentity(ctx context.Context) (*Credentials, error) {
+	tokenFile := os.Getenv(AWSWebIdentityTokenFileEnvVar)
+	roleARN := os.Getenv(AWSRoleARNEnvVar)
+	if tokenFile == "" || roleARN == "" {
+		return nil, fmt.Errorf("web identity env vars not set")
+	}
+
+	tokenBytes, err := os.ReadFile(tokenFile)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read web identity token file: %w", err)
+	}
+
+	sessionName := os.Getenv(AWSRoleSessionNameEnvVar)
+	if sessionName == "" {
+		sessionName = defaultRoleSessionName
+	}
+
+	stsURL, _, _ := a.getConnectionParameters()
+
+	params := url.Values{}
+	params.Set("Action", "AssumeRoleWithWebIdentity")
+	params.Set("Version", "2011-06-15")
+	params.Set("RoleArn", roleARN)
+	params.Set("WebIdentityToken", string(tokenBytes))
+	params.Set("RoleSessionName", sessionName)
+
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, stsURL, strings.NewReader(params.Encode()))
+	if err != nil {
+		return nil, fmt.Errorf("failed to create STS request: %w", err)
+	}
+	req.Header.Set(contentTypeHeader, applicationForm)
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return nil, fmt.Errorf("STS request failed: %w", err)
+	}
+	defer func() { _ = resp.Body.Close() }()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("failed to read STS response: %w", err)
+	}
+
+	if resp.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("STS AssumeRoleWithWebIdentity returned status %d", resp.StatusCode)
+	}
+
+	var result stsAssumeRoleWithWebIdentityResponse
+	if err := xml.NewDecoder(bytes.NewReader(body)).Decode(&result); err != nil {
+		return nil, fmt.Errorf("failed to parse STS response: %w", err)
+	}
+
+	creds := result.Result.Credentials
+	if creds.AccessKeyId == "" || creds.SessionToken == "" {
+		return nil, fmt.Errorf("STS response missing credentials")
+	}
+
+	return &Credentials{
+		AccessKeyID:     creds.AccessKeyId,
+		SecretAccessKey: creds.SecretAccessKey,
+		SessionToken:    creds.SessionToken,
+	}, nil
 }
 
 func (a *AWSAuth) getConnectionParameters() (string, string, string) {
+	if a.stsEndpointOverride != "" {
+		return a.stsEndpointOverride, defaultRegion, defaultStsHost
+	}
 	region := a.AwsRegion
 	var host string
 	// Default to the default global STS Host (see here: https://docs.aws.amazon.com/general/latest/gr/sts.html)
