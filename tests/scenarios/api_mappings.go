@@ -91,6 +91,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "ErrorTrackingApi": reflect.ValueOf(datadogV2.NewErrorTrackingApi),
 	    "EventsApi": reflect.ValueOf(datadogV2.NewEventsApi),
 	    "FeatureFlagsApi": reflect.ValueOf(datadogV2.NewFeatureFlagsApi),
+	    "FormsApi": reflect.ValueOf(datadogV2.NewFormsApi),
 	    "HighAvailabilityMultiRegionApi": reflect.ValueOf(datadogV2.NewHighAvailabilityMultiRegionApi),
 	    "EntityIntegrationConfigsApi": reflect.ValueOf(datadogV2.NewEntityIntegrationConfigsApi),
 	    "IncidentsApi": reflect.ValueOf(datadogV2.NewIncidentsApi),
