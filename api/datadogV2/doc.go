@@ -1049,6 +1049,7 @@
 //   - [SecurityMonitoringApi.SearchSecurityFindings]
 //   - [SecurityMonitoringApi.SearchSecurityMonitoringHistsignals]
 //   - [SecurityMonitoringApi.SearchSecurityMonitoringSignals]
+//   - [SecurityMonitoringApi.SendSecurityMonitoringNotificationPreview]
 //   - [SecurityMonitoringApi.TestExistingSecurityMonitoringRule]
 //   - [SecurityMonitoringApi.TestSecurityMonitoringRule]
 //   - [SecurityMonitoringApi.UpdateCustomFramework]
