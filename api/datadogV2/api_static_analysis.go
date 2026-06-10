@@ -2565,8 +2565,8 @@ func (a *StaticAnalysisApi) ListAiPrompts(ctx _context.Context) (AiPromptsRespon
 
 // ListCustomRuleRevisionsOptionalParameters holds optional parameters for ListCustomRuleRevisions.
 type ListCustomRuleRevisionsOptionalParameters struct {
-	PageOffset *int32
-	PageLimit  *int32
+	PageOffset *int64
+	PageLimit  *int64
 }
 
 // NewListCustomRuleRevisionsOptionalParameters creates an empty struct for parameters.
@@ -2576,13 +2576,13 @@ func NewListCustomRuleRevisionsOptionalParameters() *ListCustomRuleRevisionsOpti
 }
 
 // WithPageOffset sets the corresponding parameter name and returns the struct.
-func (r *ListCustomRuleRevisionsOptionalParameters) WithPageOffset(pageOffset int32) *ListCustomRuleRevisionsOptionalParameters {
+func (r *ListCustomRuleRevisionsOptionalParameters) WithPageOffset(pageOffset int64) *ListCustomRuleRevisionsOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }
 
 // WithPageLimit sets the corresponding parameter name and returns the struct.
-func (r *ListCustomRuleRevisionsOptionalParameters) WithPageLimit(pageLimit int32) *ListCustomRuleRevisionsOptionalParameters {
+func (r *ListCustomRuleRevisionsOptionalParameters) WithPageLimit(pageLimit int64) *ListCustomRuleRevisionsOptionalParameters {
 	r.PageLimit = &pageLimit
 	return r
 }
@@ -2692,7 +2692,7 @@ func (a *StaticAnalysisApi) ListCustomRuleRevisions(ctx _context.Context, rulese
 // ListCustomRuleRevisionsWithPagination provides a paginated version of ListCustomRuleRevisions returning a channel with all items.
 func (a *StaticAnalysisApi) ListCustomRuleRevisionsWithPagination(ctx _context.Context, rulesetName string, ruleName string, o ...ListCustomRuleRevisionsOptionalParameters) (<-chan datadog.PaginationResult[CustomRuleRevision], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
-	pageSize_ := int32(10)
+	pageSize_ := int64(10)
 	if len(o) == 0 {
 		o = append(o, ListCustomRuleRevisionsOptionalParameters{})
 	}

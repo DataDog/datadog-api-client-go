@@ -680,8 +680,8 @@ type ListModelLabProjectsOptionalParameters struct {
 	FilterOwnerId *uuid.UUID
 	FilterTags    *string
 	Sort          *string
-	PageSize      *int32
-	PageNumber    *int32
+	PageSize      *int64
+	PageNumber    *int64
 }
 
 // NewListModelLabProjectsOptionalParameters creates an empty struct for parameters.
@@ -715,13 +715,13 @@ func (r *ListModelLabProjectsOptionalParameters) WithSort(sort string) *ListMode
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListModelLabProjectsOptionalParameters) WithPageSize(pageSize int32) *ListModelLabProjectsOptionalParameters {
+func (r *ListModelLabProjectsOptionalParameters) WithPageSize(pageSize int64) *ListModelLabProjectsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListModelLabProjectsOptionalParameters) WithPageNumber(pageNumber int32) *ListModelLabProjectsOptionalParameters {
+func (r *ListModelLabProjectsOptionalParameters) WithPageNumber(pageNumber int64) *ListModelLabProjectsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
@@ -1179,8 +1179,8 @@ type ListModelLabRunsOptionalParameters struct {
 	IncludePinned            *bool
 	IncludeDescendantMatches *bool
 	Sort                     *string
-	PageSize                 *int32
-	PageNumber               *int32
+	PageSize                 *int64
+	PageNumber               *int64
 }
 
 // NewListModelLabRunsOptionalParameters creates an empty struct for parameters.
@@ -1262,13 +1262,13 @@ func (r *ListModelLabRunsOptionalParameters) WithSort(sort string) *ListModelLab
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListModelLabRunsOptionalParameters) WithPageSize(pageSize int32) *ListModelLabRunsOptionalParameters {
+func (r *ListModelLabRunsOptionalParameters) WithPageSize(pageSize int64) *ListModelLabRunsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListModelLabRunsOptionalParameters) WithPageNumber(pageNumber int32) *ListModelLabRunsOptionalParameters {
+func (r *ListModelLabRunsOptionalParameters) WithPageNumber(pageNumber int64) *ListModelLabRunsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }

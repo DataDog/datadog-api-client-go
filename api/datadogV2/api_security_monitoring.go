@@ -6760,11 +6760,11 @@ func (a *SecurityMonitoringApi) GetSignalNotificationRule(ctx _context.Context, 
 
 // GetSignalNotificationRules Get the list of signal-based notification rules.
 // Returns the list of notification rules for security signals.
-func (a *SecurityMonitoringApi) GetSignalNotificationRules(ctx _context.Context) (interface{}, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) GetSignalNotificationRules(ctx _context.Context) (NotificationRulesListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarReturnValue NotificationRulesListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.GetSignalNotificationRules")
@@ -7681,11 +7681,11 @@ func (a *SecurityMonitoringApi) GetVulnerabilityNotificationRule(ctx _context.Co
 
 // GetVulnerabilityNotificationRules Get the list of vulnerability notification rules.
 // Returns the list of notification rules for security vulnerabilities.
-func (a *SecurityMonitoringApi) GetVulnerabilityNotificationRules(ctx _context.Context) (interface{}, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) GetVulnerabilityNotificationRules(ctx _context.Context) (NotificationRulesListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarReturnValue NotificationRulesListResponse
 	)
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.GetVulnerabilityNotificationRules")

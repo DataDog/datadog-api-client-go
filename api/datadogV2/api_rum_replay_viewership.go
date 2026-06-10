@@ -166,8 +166,8 @@ func (a *RumReplayViewershipApi) DeleteRumReplaySessionWatch(ctx _context.Contex
 
 // ListRumReplaySessionWatchersOptionalParameters holds optional parameters for ListRumReplaySessionWatchers.
 type ListRumReplaySessionWatchersOptionalParameters struct {
-	PageSize   *int32
-	PageNumber *int32
+	PageSize   *int64
+	PageNumber *int64
 }
 
 // NewListRumReplaySessionWatchersOptionalParameters creates an empty struct for parameters.
@@ -177,13 +177,13 @@ func NewListRumReplaySessionWatchersOptionalParameters() *ListRumReplaySessionWa
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplaySessionWatchersOptionalParameters) WithPageSize(pageSize int32) *ListRumReplaySessionWatchersOptionalParameters {
+func (r *ListRumReplaySessionWatchersOptionalParameters) WithPageSize(pageSize int64) *ListRumReplaySessionWatchersOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplaySessionWatchersOptionalParameters) WithPageNumber(pageNumber int32) *ListRumReplaySessionWatchersOptionalParameters {
+func (r *ListRumReplaySessionWatchersOptionalParameters) WithPageNumber(pageNumber int64) *ListRumReplaySessionWatchersOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
@@ -283,11 +283,11 @@ func (a *RumReplayViewershipApi) ListRumReplaySessionWatchers(ctx _context.Conte
 // ListRumReplayViewershipHistorySessionsOptionalParameters holds optional parameters for ListRumReplayViewershipHistorySessions.
 type ListRumReplayViewershipHistorySessionsOptionalParameters struct {
 	FilterWatchedAtStart *int64
-	PageNumber           *int32
+	PageNumber           *int64
 	FilterCreatedBy      *string
 	FilterWatchedAtEnd   *int64
 	FilterSessionIds     *string
-	PageSize             *int32
+	PageSize             *int64
 	FilterApplicationId  *string
 }
 
@@ -304,7 +304,7 @@ func (r *ListRumReplayViewershipHistorySessionsOptionalParameters) WithFilterWat
 }
 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayViewershipHistorySessionsOptionalParameters) WithPageNumber(pageNumber int32) *ListRumReplayViewershipHistorySessionsOptionalParameters {
+func (r *ListRumReplayViewershipHistorySessionsOptionalParameters) WithPageNumber(pageNumber int64) *ListRumReplayViewershipHistorySessionsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
@@ -328,7 +328,7 @@ func (r *ListRumReplayViewershipHistorySessionsOptionalParameters) WithFilterSes
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayViewershipHistorySessionsOptionalParameters) WithPageSize(pageSize int32) *ListRumReplayViewershipHistorySessionsOptionalParameters {
+func (r *ListRumReplayViewershipHistorySessionsOptionalParameters) WithPageSize(pageSize int64) *ListRumReplayViewershipHistorySessionsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }

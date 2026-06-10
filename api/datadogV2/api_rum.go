@@ -1221,8 +1221,8 @@ func (a *RUMApi) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUME
 // ListSourcemapsOptionalParameters holds optional parameters for ListSourcemaps.
 type ListSourcemapsOptionalParameters struct {
 	Mapkind             *SourcemapMapKind
-	PageSize            *int32
-	PageNumber          *int32
+	PageSize            *int64
+	PageNumber          *int64
 	FilterService       *[]string
 	FilterVersion       *[]string
 	FilterVariant       *[]string
@@ -1256,13 +1256,13 @@ func (r *ListSourcemapsOptionalParameters) WithMapkind(mapkind SourcemapMapKind)
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListSourcemapsOptionalParameters) WithPageSize(pageSize int32) *ListSourcemapsOptionalParameters {
+func (r *ListSourcemapsOptionalParameters) WithPageSize(pageSize int64) *ListSourcemapsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListSourcemapsOptionalParameters) WithPageNumber(pageNumber int32) *ListSourcemapsOptionalParameters {
+func (r *ListSourcemapsOptionalParameters) WithPageNumber(pageNumber int64) *ListSourcemapsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }

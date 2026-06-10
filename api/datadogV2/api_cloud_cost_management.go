@@ -3260,8 +3260,8 @@ type ListCostAnomaliesOptionalParameters struct {
 	DismissalCause        *string
 	OrderBy               *string
 	Order                 *string
-	Limit                 *int32
-	Offset                *int32
+	Limit                 *int64
+	Offset                *int64
 	ProviderIds           *[]string
 }
 
@@ -3320,13 +3320,13 @@ func (r *ListCostAnomaliesOptionalParameters) WithOrder(order string) *ListCostA
 }
 
 // WithLimit sets the corresponding parameter name and returns the struct.
-func (r *ListCostAnomaliesOptionalParameters) WithLimit(limit int32) *ListCostAnomaliesOptionalParameters {
+func (r *ListCostAnomaliesOptionalParameters) WithLimit(limit int64) *ListCostAnomaliesOptionalParameters {
 	r.Limit = &limit
 	return r
 }
 
 // WithOffset sets the corresponding parameter name and returns the struct.
-func (r *ListCostAnomaliesOptionalParameters) WithOffset(offset int32) *ListCostAnomaliesOptionalParameters {
+func (r *ListCostAnomaliesOptionalParameters) WithOffset(offset int64) *ListCostAnomaliesOptionalParameters {
 	r.Offset = &offset
 	return r
 }

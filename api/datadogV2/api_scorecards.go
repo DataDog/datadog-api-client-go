@@ -1200,8 +1200,8 @@ type ListScorecardScoresOptionalParameters struct {
 	FilterRuleIsCustom    *bool
 	FilterRuleIsEnabled   *bool
 	Sort                  *string
-	PageOffset            *int32
-	PageLimit             *int32
+	PageOffset            *int64
+	PageLimit             *int64
 }
 
 // NewListScorecardScoresOptionalParameters creates an empty struct for parameters.
@@ -1253,13 +1253,13 @@ func (r *ListScorecardScoresOptionalParameters) WithSort(sort string) *ListScore
 }
 
 // WithPageOffset sets the corresponding parameter name and returns the struct.
-func (r *ListScorecardScoresOptionalParameters) WithPageOffset(pageOffset int32) *ListScorecardScoresOptionalParameters {
+func (r *ListScorecardScoresOptionalParameters) WithPageOffset(pageOffset int64) *ListScorecardScoresOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }
 
 // WithPageLimit sets the corresponding parameter name and returns the struct.
-func (r *ListScorecardScoresOptionalParameters) WithPageLimit(pageLimit int32) *ListScorecardScoresOptionalParameters {
+func (r *ListScorecardScoresOptionalParameters) WithPageLimit(pageLimit int64) *ListScorecardScoresOptionalParameters {
 	r.PageLimit = &pageLimit
 	return r
 }

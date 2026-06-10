@@ -1431,8 +1431,8 @@ func (a *StatusPagesApi) ListComponents(ctx _context.Context, pageId uuid.UUID, 
 // ListDegradationsOptionalParameters holds optional parameters for ListDegradations.
 type ListDegradationsOptionalParameters struct {
 	FilterPageId *string
-	PageOffset   *int32
-	PageLimit    *int32
+	PageOffset   *int64
+	PageLimit    *int64
 	Include      *string
 	FilterStatus *string
 	Sort         *string
@@ -1451,13 +1451,13 @@ func (r *ListDegradationsOptionalParameters) WithFilterPageId(filterPageId strin
 }
 
 // WithPageOffset sets the corresponding parameter name and returns the struct.
-func (r *ListDegradationsOptionalParameters) WithPageOffset(pageOffset int32) *ListDegradationsOptionalParameters {
+func (r *ListDegradationsOptionalParameters) WithPageOffset(pageOffset int64) *ListDegradationsOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }
 
 // WithPageLimit sets the corresponding parameter name and returns the struct.
-func (r *ListDegradationsOptionalParameters) WithPageLimit(pageLimit int32) *ListDegradationsOptionalParameters {
+func (r *ListDegradationsOptionalParameters) WithPageLimit(pageLimit int64) *ListDegradationsOptionalParameters {
 	r.PageLimit = &pageLimit
 	return r
 }
@@ -1586,8 +1586,8 @@ func (a *StatusPagesApi) ListDegradations(ctx _context.Context, o ...ListDegrada
 // ListMaintenancesOptionalParameters holds optional parameters for ListMaintenances.
 type ListMaintenancesOptionalParameters struct {
 	FilterPageId *string
-	PageOffset   *int32
-	PageLimit    *int32
+	PageOffset   *int64
+	PageLimit    *int64
 	Include      *string
 	FilterStatus *string
 	Sort         *string
@@ -1606,13 +1606,13 @@ func (r *ListMaintenancesOptionalParameters) WithFilterPageId(filterPageId strin
 }
 
 // WithPageOffset sets the corresponding parameter name and returns the struct.
-func (r *ListMaintenancesOptionalParameters) WithPageOffset(pageOffset int32) *ListMaintenancesOptionalParameters {
+func (r *ListMaintenancesOptionalParameters) WithPageOffset(pageOffset int64) *ListMaintenancesOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }
 
 // WithPageLimit sets the corresponding parameter name and returns the struct.
-func (r *ListMaintenancesOptionalParameters) WithPageLimit(pageLimit int32) *ListMaintenancesOptionalParameters {
+func (r *ListMaintenancesOptionalParameters) WithPageLimit(pageLimit int64) *ListMaintenancesOptionalParameters {
 	r.PageLimit = &pageLimit
 	return r
 }
@@ -1740,8 +1740,8 @@ func (a *StatusPagesApi) ListMaintenances(ctx _context.Context, o ...ListMainten
 
 // ListStatusPagesOptionalParameters holds optional parameters for ListStatusPages.
 type ListStatusPagesOptionalParameters struct {
-	PageOffset         *int32
-	PageLimit          *int32
+	PageOffset         *int64
+	PageLimit          *int64
 	FilterDomainPrefix *string
 	Include            *string
 }
@@ -1753,13 +1753,13 @@ func NewListStatusPagesOptionalParameters() *ListStatusPagesOptionalParameters {
 }
 
 // WithPageOffset sets the corresponding parameter name and returns the struct.
-func (r *ListStatusPagesOptionalParameters) WithPageOffset(pageOffset int32) *ListStatusPagesOptionalParameters {
+func (r *ListStatusPagesOptionalParameters) WithPageOffset(pageOffset int64) *ListStatusPagesOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }
 
 // WithPageLimit sets the corresponding parameter name and returns the struct.
-func (r *ListStatusPagesOptionalParameters) WithPageLimit(pageLimit int32) *ListStatusPagesOptionalParameters {
+func (r *ListStatusPagesOptionalParameters) WithPageLimit(pageLimit int64) *ListStatusPagesOptionalParameters {
 	r.PageLimit = &pageLimit
 	return r
 }
