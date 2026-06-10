@@ -34,7 +34,7 @@ func (r *AddRumReplaySessionToPlaylistOptionalParameters) WithDataSource(dataSou
 
 // AddRumReplaySessionToPlaylist Add RUM replay session to playlist.
 // Add a session to a playlist.
-func (a *RumReplayPlaylistsApi) AddRumReplaySessionToPlaylist(ctx _context.Context, ts int64, playlistId int32, sessionId string, o ...AddRumReplaySessionToPlaylistOptionalParameters) (PlaylistsSession, *_nethttp.Response, error) {
+func (a *RumReplayPlaylistsApi) AddRumReplaySessionToPlaylist(ctx _context.Context, ts int64, playlistId int64, sessionId string, o ...AddRumReplaySessionToPlaylistOptionalParameters) (PlaylistsSession, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}
@@ -125,7 +125,7 @@ func (a *RumReplayPlaylistsApi) AddRumReplaySessionToPlaylist(ctx _context.Conte
 
 // BulkRemoveRumReplayPlaylistSessions Bulk remove RUM replay playlist sessions.
 // Remove sessions from a playlist.
-func (a *RumReplayPlaylistsApi) BulkRemoveRumReplayPlaylistSessions(ctx _context.Context, playlistId int32, body SessionIdArray) (*_nethttp.Response, error) {
+func (a *RumReplayPlaylistsApi) BulkRemoveRumReplayPlaylistSessions(ctx _context.Context, playlistId int64, body SessionIdArray) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -276,7 +276,7 @@ func (a *RumReplayPlaylistsApi) CreateRumReplayPlaylist(ctx _context.Context, bo
 
 // DeleteRumReplayPlaylist Delete RUM replay playlist.
 // Delete a playlist.
-func (a *RumReplayPlaylistsApi) DeleteRumReplayPlaylist(ctx _context.Context, playlistId int32) (*_nethttp.Response, error) {
+func (a *RumReplayPlaylistsApi) DeleteRumReplayPlaylist(ctx _context.Context, playlistId int64) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -344,7 +344,7 @@ func (a *RumReplayPlaylistsApi) DeleteRumReplayPlaylist(ctx _context.Context, pl
 
 // GetRumReplayPlaylist Get RUM replay playlist.
 // Get a playlist.
-func (a *RumReplayPlaylistsApi) GetRumReplayPlaylist(ctx _context.Context, playlistId int32) (Playlist, *_nethttp.Response, error) {
+func (a *RumReplayPlaylistsApi) GetRumReplayPlaylist(ctx _context.Context, playlistId int64) (Playlist, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -422,8 +422,8 @@ func (a *RumReplayPlaylistsApi) GetRumReplayPlaylist(ctx _context.Context, playl
 
 // ListRumReplayPlaylistSessionsOptionalParameters holds optional parameters for ListRumReplayPlaylistSessions.
 type ListRumReplayPlaylistSessionsOptionalParameters struct {
-	PageNumber *int32
-	PageSize   *int32
+	PageNumber *int64
+	PageSize   *int64
 }
 
 // NewListRumReplayPlaylistSessionsOptionalParameters creates an empty struct for parameters.
@@ -433,20 +433,20 @@ func NewListRumReplayPlaylistSessionsOptionalParameters() *ListRumReplayPlaylist
 }
 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayPlaylistSessionsOptionalParameters) WithPageNumber(pageNumber int32) *ListRumReplayPlaylistSessionsOptionalParameters {
+func (r *ListRumReplayPlaylistSessionsOptionalParameters) WithPageNumber(pageNumber int64) *ListRumReplayPlaylistSessionsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayPlaylistSessionsOptionalParameters) WithPageSize(pageSize int32) *ListRumReplayPlaylistSessionsOptionalParameters {
+func (r *ListRumReplayPlaylistSessionsOptionalParameters) WithPageSize(pageSize int64) *ListRumReplayPlaylistSessionsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
 
 // ListRumReplayPlaylistSessions List RUM replay playlist sessions.
 // List sessions in a playlist.
-func (a *RumReplayPlaylistsApi) ListRumReplayPlaylistSessions(ctx _context.Context, playlistId int32, o ...ListRumReplayPlaylistSessionsOptionalParameters) (PlaylistsSessionArray, *_nethttp.Response, error) {
+func (a *RumReplayPlaylistsApi) ListRumReplayPlaylistSessions(ctx _context.Context, playlistId int64, o ...ListRumReplayPlaylistSessionsOptionalParameters) (PlaylistsSessionArray, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -540,8 +540,8 @@ func (a *RumReplayPlaylistsApi) ListRumReplayPlaylistSessions(ctx _context.Conte
 type ListRumReplayPlaylistsOptionalParameters struct {
 	FilterCreatedByUuid *string
 	FilterQuery         *string
-	PageNumber          *int32
-	PageSize            *int32
+	PageNumber          *int64
+	PageSize            *int64
 }
 
 // NewListRumReplayPlaylistsOptionalParameters creates an empty struct for parameters.
@@ -563,13 +563,13 @@ func (r *ListRumReplayPlaylistsOptionalParameters) WithFilterQuery(filterQuery s
 }
 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayPlaylistsOptionalParameters) WithPageNumber(pageNumber int32) *ListRumReplayPlaylistsOptionalParameters {
+func (r *ListRumReplayPlaylistsOptionalParameters) WithPageNumber(pageNumber int64) *ListRumReplayPlaylistsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListRumReplayPlaylistsOptionalParameters) WithPageSize(pageSize int32) *ListRumReplayPlaylistsOptionalParameters {
+func (r *ListRumReplayPlaylistsOptionalParameters) WithPageSize(pageSize int64) *ListRumReplayPlaylistsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
@@ -673,7 +673,7 @@ func (a *RumReplayPlaylistsApi) ListRumReplayPlaylists(ctx _context.Context, o .
 
 // RemoveRumReplaySessionFromPlaylist Remove RUM replay session from playlist.
 // Remove a session from a playlist.
-func (a *RumReplayPlaylistsApi) RemoveRumReplaySessionFromPlaylist(ctx _context.Context, playlistId int32, sessionId string) (*_nethttp.Response, error) {
+func (a *RumReplayPlaylistsApi) RemoveRumReplaySessionFromPlaylist(ctx _context.Context, playlistId int64, sessionId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -742,7 +742,7 @@ func (a *RumReplayPlaylistsApi) RemoveRumReplaySessionFromPlaylist(ctx _context.
 
 // UpdateRumReplayPlaylist Update RUM replay playlist.
 // Update a playlist.
-func (a *RumReplayPlaylistsApi) UpdateRumReplayPlaylist(ctx _context.Context, playlistId int32, body Playlist) (Playlist, *_nethttp.Response, error) {
+func (a *RumReplayPlaylistsApi) UpdateRumReplayPlaylist(ctx _context.Context, playlistId int64, body Playlist) (Playlist, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
 		localVarPostBody    interface{}

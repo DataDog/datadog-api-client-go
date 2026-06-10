@@ -531,7 +531,7 @@ func (a *CaseManagementApi) CommentCase(ctx _context.Context, caseId string, bod
 type CountCasesOptionalParameters struct {
 	QueryFilter *string
 	GroupBys    *string
-	Limit       *int32
+	Limit       *int64
 }
 
 // NewCountCasesOptionalParameters creates an empty struct for parameters.
@@ -553,7 +553,7 @@ func (r *CountCasesOptionalParameters) WithGroupBys(groupBys string) *CountCases
 }
 
 // WithLimit sets the corresponding parameter name and returns the struct.
-func (r *CountCasesOptionalParameters) WithLimit(limit int32) *CountCasesOptionalParameters {
+func (r *CountCasesOptionalParameters) WithLimit(limit int64) *CountCasesOptionalParameters {
 	r.Limit = &limit
 	return r
 }
@@ -3252,8 +3252,8 @@ func (a *CaseManagementApi) ListCaseLinks(ctx _context.Context, entityType strin
 
 // ListCaseTimelineOptionalParameters holds optional parameters for ListCaseTimeline.
 type ListCaseTimelineOptionalParameters struct {
-	PageSize      *int32
-	PageNumber    *int32
+	PageSize      *int64
+	PageNumber    *int64
 	SortAscending *bool
 }
 
@@ -3264,13 +3264,13 @@ func NewListCaseTimelineOptionalParameters() *ListCaseTimelineOptionalParameters
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListCaseTimelineOptionalParameters) WithPageSize(pageSize int32) *ListCaseTimelineOptionalParameters {
+func (r *ListCaseTimelineOptionalParameters) WithPageSize(pageSize int64) *ListCaseTimelineOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListCaseTimelineOptionalParameters) WithPageNumber(pageNumber int32) *ListCaseTimelineOptionalParameters {
+func (r *ListCaseTimelineOptionalParameters) WithPageNumber(pageNumber int64) *ListCaseTimelineOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }

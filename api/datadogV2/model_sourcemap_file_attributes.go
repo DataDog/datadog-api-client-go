@@ -18,7 +18,7 @@ type SourcemapFileAttributes struct {
 	// file to positions in the original source files.
 	Mappings string `json:"mappings"`
 	// List of character counts for each line in the minified file.
-	MinifiedLineLengths []int32 `json:"minifiedLineLengths"`
+	MinifiedLineLengths []int64 `json:"minifiedLineLengths"`
 	// List of symbol names referenced in the mappings.
 	Names []interface{} `json:"names"`
 	// The root path prepended to source file paths.
@@ -38,7 +38,7 @@ type SourcemapFileAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSourcemapFileAttributes(file string, mappings string, minifiedLineLengths []int32, names []interface{}, sourceRoot string, sources []string, sourcesContent []string, version int64) *SourcemapFileAttributes {
+func NewSourcemapFileAttributes(file string, mappings string, minifiedLineLengths []int64, names []interface{}, sourceRoot string, sources []string, sourcesContent []string, version int64) *SourcemapFileAttributes {
 	this := SourcemapFileAttributes{}
 	this.File = file
 	this.Mappings = mappings
@@ -106,9 +106,9 @@ func (o *SourcemapFileAttributes) SetMappings(v string) {
 }
 
 // GetMinifiedLineLengths returns the MinifiedLineLengths field value.
-func (o *SourcemapFileAttributes) GetMinifiedLineLengths() []int32 {
+func (o *SourcemapFileAttributes) GetMinifiedLineLengths() []int64 {
 	if o == nil {
-		var ret []int32
+		var ret []int64
 		return ret
 	}
 	return o.MinifiedLineLengths
@@ -116,7 +116,7 @@ func (o *SourcemapFileAttributes) GetMinifiedLineLengths() []int32 {
 
 // GetMinifiedLineLengthsOk returns a tuple with the MinifiedLineLengths field value
 // and a boolean to check if the value has been set.
-func (o *SourcemapFileAttributes) GetMinifiedLineLengthsOk() (*[]int32, bool) {
+func (o *SourcemapFileAttributes) GetMinifiedLineLengthsOk() (*[]int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -124,7 +124,7 @@ func (o *SourcemapFileAttributes) GetMinifiedLineLengthsOk() (*[]int32, bool) {
 }
 
 // SetMinifiedLineLengths sets field value.
-func (o *SourcemapFileAttributes) SetMinifiedLineLengths(v []int32) {
+func (o *SourcemapFileAttributes) SetMinifiedLineLengths(v []int64) {
 	o.MinifiedLineLengths = v
 }
 
@@ -269,7 +269,7 @@ func (o *SourcemapFileAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		File                *string        `json:"file"`
 		Mappings            *string        `json:"mappings"`
-		MinifiedLineLengths *[]int32       `json:"minifiedLineLengths"`
+		MinifiedLineLengths *[]int64       `json:"minifiedLineLengths"`
 		Names               *[]interface{} `json:"names"`
 		SourceRoot          *string        `json:"sourceRoot"`
 		Sources             *[]string      `json:"sources"`

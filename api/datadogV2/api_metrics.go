@@ -1555,8 +1555,8 @@ func (a *MetricsApi) ListTagConfigurationsWithPagination(ctx _context.Context, o
 
 // ListTagIndexingRulesOptionalParameters holds optional parameters for ListTagIndexingRules.
 type ListTagIndexingRulesOptionalParameters struct {
-	PageLimit  *int32
-	PageOffset *int32
+	PageLimit  *int64
+	PageOffset *int64
 	Search     *string
 }
 
@@ -1567,13 +1567,13 @@ func NewListTagIndexingRulesOptionalParameters() *ListTagIndexingRulesOptionalPa
 }
 
 // WithPageLimit sets the corresponding parameter name and returns the struct.
-func (r *ListTagIndexingRulesOptionalParameters) WithPageLimit(pageLimit int32) *ListTagIndexingRulesOptionalParameters {
+func (r *ListTagIndexingRulesOptionalParameters) WithPageLimit(pageLimit int64) *ListTagIndexingRulesOptionalParameters {
 	r.PageLimit = &pageLimit
 	return r
 }
 
 // WithPageOffset sets the corresponding parameter name and returns the struct.
-func (r *ListTagIndexingRulesOptionalParameters) WithPageOffset(pageOffset int32) *ListTagIndexingRulesOptionalParameters {
+func (r *ListTagIndexingRulesOptionalParameters) WithPageOffset(pageOffset int64) *ListTagIndexingRulesOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }

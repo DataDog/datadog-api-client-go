@@ -118,8 +118,8 @@ func (a *EntityRiskScoresApi) GetEntityRiskScore(ctx _context.Context, entityId 
 type ListEntityRiskScoresOptionalParameters struct {
 	From        *int64
 	To          *int64
-	PageSize    *int32
-	PageNumber  *int32
+	PageSize    *int64
+	PageNumber  *int64
 	PageQueryId *string
 	FilterSort  *string
 	FilterQuery *string
@@ -145,13 +145,13 @@ func (r *ListEntityRiskScoresOptionalParameters) WithTo(to int64) *ListEntityRis
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *ListEntityRiskScoresOptionalParameters) WithPageSize(pageSize int32) *ListEntityRiskScoresOptionalParameters {
+func (r *ListEntityRiskScoresOptionalParameters) WithPageSize(pageSize int64) *ListEntityRiskScoresOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *ListEntityRiskScoresOptionalParameters) WithPageNumber(pageNumber int32) *ListEntityRiskScoresOptionalParameters {
+func (r *ListEntityRiskScoresOptionalParameters) WithPageNumber(pageNumber int64) *ListEntityRiskScoresOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
