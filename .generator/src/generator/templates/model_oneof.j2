@@ -25,37 +25,29 @@ func {{ attributeName }}As{{ name }}(v {% if not isAdditionalPropertiesContainer
 // UnmarshalJSON turns data into one of the pointers in the struct.
 func (obj *{{ name }}) UnmarshalJSON(data []byte) error {
 	var err error
-{#-
-	{{#useOneOfDiscriminatorLookup}}
-	{{#discriminator}}
-	{{#mappedModels}}
-	{{#-first}}
+{%- if model.discriminator is defined %}
 	// use discriminator value to speed up the lookup
 	var jsonDict map[string]interface{}
 	err = datadog.Unmarshal(data, &jsonDict)
 	if err != nil {
 		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup.")
 	}
-
-	{{/-first}}
-	// check if the discriminator value is '{{{mappingName}}}'
-	if jsonDict["{{{propertyBaseName}}}"] == "{{{mappingName}}}" {
-		// try to unmarshal JSON data into {{{modelName}}}
-		err = datadog.Unmarshal(data, &obj.{{{modelName}}})
+{%- for mappingValue, ref in model.discriminator.get("mapping", {}).items() %}
+{%- set modelName = ref.split("/")[-1] %}
+	// check if the discriminator value is '{{ mappingValue }}'
+	if jsonDict["{{ model.discriminator.propertyName }}"] == "{{ mappingValue }}" {
+		// try to unmarshal JSON data into {{ modelName }}
+		err = datadog.Unmarshal(data, &obj.{{ modelName }})
 		if err == nil {
-			return nil // data stored in obj.{{{modelName}}}, return on the first match
+			return nil // data stored in obj.{{ modelName }}, return on the first match
 		} else {
-			obj.{{{modelName}}} = nil
-			return fmt.Errorf("failed to unmarshal {{ name }} as {{{modelName}}}: %s", err.Error())
+			obj.{{ modelName }} = nil
+			return fmt.Errorf("failed to unmarshal {{ name }} as {{ modelName }}: %s", err.Error())
 		}
 	}
-
-	{{/mappedModels}}
-	{{/discriminator}}
+{%- endfor %}
 	return nil
-	{{/useOneOfDiscriminatorLookup}}
--#}
-{%- if not (model.discriminator is defined) %}
+{%- else %}
 	match := 0
 {%- for oneOf in model.oneOf %}
 	{%- set dataType = get_type(oneOf) %}
@@ -87,7 +79,7 @@ func (obj *{{ name }}) UnmarshalJSON(data []byte) error {
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
-	{%- endif %}
+{%- endif %}
 }
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
