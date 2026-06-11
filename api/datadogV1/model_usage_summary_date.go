@@ -20,14 +20,19 @@ type UsageSummaryDate struct {
 	// Shows the 99th percentile of all agent hosts over all hours in the current date for all organizations.
 	AgentHostTop99p *int64 `json:"agent_host_top99p,omitempty"`
 	// Shows the sum of all AI credits used by Agent Builder over all hours in the current date for all organizations.
+	// Values are returned in micro-credits. Divide by 1,000,000 to get AI credits.
 	AiCreditsAgentBuilderAiCreditsSum *int64 `json:"ai_credits_agent_builder_ai_credits_sum,omitempty"`
 	// Shows the sum of all AI credits used by Bits AI Assistant over all hours in the current date for all organizations.
+	// Values are returned in micro-credits. Divide by 1,000,000 to get AI credits.
 	AiCreditsBitsAssistantAiCreditsSum *int64 `json:"ai_credits_bits_assistant_ai_credits_sum,omitempty"`
 	// Shows the sum of all AI credits used by Bits AI Dev over all hours in the current date for all organizations.
+	// Values are returned in micro-credits. Divide by 1,000,000 to get AI credits.
 	AiCreditsBitsDevAiCreditsSum *int64 `json:"ai_credits_bits_dev_ai_credits_sum,omitempty"`
 	// Shows the sum of all AI credits used by Bits AI SRE over all hours in the current date for all organizations.
+	// Values are returned in micro-credits. Divide by 1,000,000 to get AI credits.
 	AiCreditsBitsSreAiCreditsSum *int64 `json:"ai_credits_bits_sre_ai_credits_sum,omitempty"`
 	// Shows the sum of all AI credits over all hours in the current date for all organizations.
+	// Values are returned in micro-credits. Divide by 1,000,000 to get AI credits.
 	AiCreditsSum *int64 `json:"ai_credits_sum,omitempty"`
 	// Shows the 99th percentile of all Azure app services using APM over all hours in the current date all organizations.
 	ApmAzureAppServiceHostTop99p *int64 `json:"apm_azure_app_service_host_top99p,omitempty"`
@@ -209,6 +214,7 @@ type UsageSummaryDate struct {
 	// Shows the average of all normalized Database Monitoring queries over all hours in the current date for all organizations.
 	DbmQueriesCountAvg *int64 `json:"dbm_queries_count_avg,omitempty"`
 	// Shows the sum of all orchestrator job hours over all hours in the current date for all organizations.
+	// Values are returned in seconds. Divide by 3,600 to convert to hours.
 	DoJobsMonitoringOrchestratorsJobHoursSum *int64 `json:"do_jobs_monitoring_orchestrators_job_hours_sum,omitempty"`
 	// Shows the sum of all ephemeral infrastructure hosts with the Datadog Agent over all hours in the current date for the given org.
 	EphInfraHostAgentSum *int64 `json:"eph_infra_host_agent_sum,omitempty"`
@@ -301,64 +307,94 @@ type UsageSummaryDate struct {
 	// Shows the sum of all indexed custom metrics points over all hours in the current date for all organizations.
 	IndexedPointsSum *int64 `json:"indexed_points_sum,omitempty"`
 	// Shows the average of all Infrastructure vCPU cores over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuAvg *int64 `json:"infra_cpu_avg,omitempty"`
 	// Shows the average of all default Infrastructure host vCPU cores reported by the Datadog Agent over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuAgentAvg *int64 `json:"infra_cpu_default_infra_host_vcpu_agent_avg,omitempty"`
 	// Shows the average of all default basic Infrastructure host vCPU cores reported by the Datadog Agent over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuAgentBasicAvg *int64 `json:"infra_cpu_default_infra_host_vcpu_agent_basic_avg,omitempty"`
 	// Shows the sum of all default basic Infrastructure host vCPU cores reported by the Datadog Agent over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuAgentBasicSum *int64 `json:"infra_cpu_default_infra_host_vcpu_agent_basic_sum,omitempty"`
 	// Shows the sum of all default Infrastructure host vCPU cores reported by the Datadog Agent over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuAgentSum *int64 `json:"infra_cpu_default_infra_host_vcpu_agent_sum,omitempty"`
 	// Shows the average of all default Infrastructure host vCPU cores on AWS over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuAwsAvg *int64 `json:"infra_cpu_default_infra_host_vcpu_aws_avg,omitempty"`
 	// Shows the sum of all default Infrastructure host vCPU cores on AWS over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuAwsSum *int64 `json:"infra_cpu_default_infra_host_vcpu_aws_sum,omitempty"`
 	// Shows the average of all default Infrastructure host vCPU cores on Azure over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuAzureAvg *int64 `json:"infra_cpu_default_infra_host_vcpu_azure_avg,omitempty"`
 	// Shows the sum of all default Infrastructure host vCPU cores on Azure over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuAzureSum *int64 `json:"infra_cpu_default_infra_host_vcpu_azure_sum,omitempty"`
 	// Shows the average of all default Infrastructure host vCPU cores on GCP over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuGcpAvg *int64 `json:"infra_cpu_default_infra_host_vcpu_gcp_avg,omitempty"`
 	// Shows the sum of all default Infrastructure host vCPU cores on GCP over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuGcpSum *int64 `json:"infra_cpu_default_infra_host_vcpu_gcp_sum,omitempty"`
 	// Shows the average of all default Infrastructure host vCPU cores on Nutanix over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuNutanixAvg *int64 `json:"infra_cpu_default_infra_host_vcpu_nutanix_avg,omitempty"`
 	// Shows the average of all default basic Infrastructure host vCPU cores on Nutanix over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuNutanixBasicAvg *int64 `json:"infra_cpu_default_infra_host_vcpu_nutanix_basic_avg,omitempty"`
 	// Shows the sum of all default basic Infrastructure host vCPU cores on Nutanix over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuNutanixBasicSum *int64 `json:"infra_cpu_default_infra_host_vcpu_nutanix_basic_sum,omitempty"`
 	// Shows the sum of all default Infrastructure host vCPU cores on Nutanix over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuNutanixSum *int64 `json:"infra_cpu_default_infra_host_vcpu_nutanix_sum,omitempty"`
 	// Shows the average of all default Infrastructure host vCPU cores reported by OpenTelemetry over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuOpentelemetryAvg *int64 `json:"infra_cpu_default_infra_host_vcpu_opentelemetry_avg,omitempty"`
 	// Shows the sum of all default Infrastructure host vCPU cores reported by OpenTelemetry over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuDefaultInfraHostVcpuOpentelemetrySum *int64 `json:"infra_cpu_default_infra_host_vcpu_opentelemetry_sum,omitempty"`
 	// Shows the average of all observed Infrastructure host vCPU cores reported by the Datadog Agent over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuObservedInfraHostVcpuAgentAvg *int64 `json:"infra_cpu_observed_infra_host_vcpu_agent_avg,omitempty"`
 	// Shows the sum of all observed Infrastructure host vCPU cores reported by the Datadog Agent over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuObservedInfraHostVcpuAgentSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_agent_sum,omitempty"`
 	// Shows the average of all observed Infrastructure host vCPU cores on AWS over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuObservedInfraHostVcpuAwsAvg *int64 `json:"infra_cpu_observed_infra_host_vcpu_aws_avg,omitempty"`
 	// Shows the sum of all observed Infrastructure host vCPU cores on AWS over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuObservedInfraHostVcpuAwsSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_aws_sum,omitempty"`
 	// Shows the average of all observed Infrastructure host vCPU cores on Azure over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuObservedInfraHostVcpuAzureAvg *int64 `json:"infra_cpu_observed_infra_host_vcpu_azure_avg,omitempty"`
 	// Shows the sum of all observed Infrastructure host vCPU cores on Azure over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuObservedInfraHostVcpuAzureSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_azure_sum,omitempty"`
 	// Shows the average of all observed Infrastructure host vCPU cores on GCP over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuObservedInfraHostVcpuGcpAvg *int64 `json:"infra_cpu_observed_infra_host_vcpu_gcp_avg,omitempty"`
 	// Shows the sum of all observed Infrastructure host vCPU cores on GCP over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuObservedInfraHostVcpuGcpSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_gcp_sum,omitempty"`
 	// Shows the average of all observed Infrastructure host vCPU cores on Nutanix over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuObservedInfraHostVcpuNutanixAvg *int64 `json:"infra_cpu_observed_infra_host_vcpu_nutanix_avg,omitempty"`
 	// Shows the sum of all observed Infrastructure host vCPU cores on Nutanix over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuObservedInfraHostVcpuNutanixSum *int64 `json:"infra_cpu_observed_infra_host_vcpu_nutanix_sum,omitempty"`
 	// Shows the average of all observed Infrastructure host vCPU cores reported by OpenTelemetry over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuObservedInfraHostVcpuOpentelemetryAvg *int64 `json:"infra_cpu_observed_infra_host_vcpu_opentelemetry_avg,omitempty"`
 	// Shows the sum of all observed Infrastructure host vCPU cores reported by OpenTelemetry over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuObservedInfraHostVcpuOpentelemetrySum *int64 `json:"infra_cpu_observed_infra_host_vcpu_opentelemetry_sum,omitempty"`
 	// Shows the sum of all Infrastructure vCPU cores over all hours in the current date for all organizations.
+	// Values are returned in millicores. Divide by 1,000 to convert to cores.
 	InfraCpuSum *int64 `json:"infra_cpu_sum,omitempty"`
 	// Shows the 99th percentile of all Edge Devices Monitoring devices over all hours in the current date for all organizations.
 	InfraEdgeMonitoringDevicesTop99p *int64 `json:"infra_edge_monitoring_devices_top99p,omitempty"`
