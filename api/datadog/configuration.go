@@ -1019,6 +1019,7 @@ func NewConfiguration() *Configuration {
 			"v2.UpdateMonitorUserTemplate":                        false,
 			"v2.ValidateExistingMonitorUserTemplate":              false,
 			"v2.ValidateMonitorUserTemplate":                      false,
+			"v2.ListNetworkHealthInsights":                        false,
 			"v2.DeleteScopesRestriction":                          false,
 			"v2.GetOAuth2WellKnownSites":                          false,
 			"v2.GetScopesRestriction":                             false,
