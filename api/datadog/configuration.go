@@ -825,6 +825,7 @@ func NewConfiguration() *Configuration {
 			"v2.GetSecurityMonitoringHistsignalsByJobId":          false,
 			"v2.GetSecurityMonitoringIntegrationConfig":           false,
 			"v2.GetSignalEntities":                                false,
+			"v2.GetSingleEntityContext":                           false,
 			"v2.GetStaticAnalysisDefaultRulesets":                 false,
 			"v2.GetStaticAnalysisNodeTypes":                       false,
 			"v2.GetStaticAnalysisRuleset":                         false,
