@@ -849,6 +849,8 @@
 //   - [ReferenceTablesApi.ListTables]
 //   - [ReferenceTablesApi.UpdateReferenceTable]
 //   - [ReferenceTablesApi.UpsertRows]
+//   - [ReportSchedulesApi.CreateReportSchedule]
+//   - [ReportSchedulesApi.PatchReportSchedule]
 //   - [RestrictionPoliciesApi.DeleteRestrictionPolicy]
 //   - [RestrictionPoliciesApi.GetRestrictionPolicy]
 //   - [RestrictionPoliciesApi.UpdateRestrictionPolicy]
