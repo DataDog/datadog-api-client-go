@@ -1111,6 +1111,7 @@
 //   - [ServiceNowIntegrationApi.ListServiceNowTemplates]
 //   - [ServiceNowIntegrationApi.ListServiceNowUsers]
 //   - [ServiceNowIntegrationApi.UpdateServiceNowTemplate]
+//   - [SlackIntegrationApi.ListSlackUserBindings]
 //   - [SoftwareCatalogApi.DeleteCatalogEntity]
 //   - [SoftwareCatalogApi.DeleteCatalogKind]
 //   - [SoftwareCatalogApi.ListCatalogEntity]
