@@ -1013,6 +1013,7 @@
 //   - [SecurityMonitoringApi.GetSignalEntities]
 //   - [SecurityMonitoringApi.GetSignalNotificationRule]
 //   - [SecurityMonitoringApi.GetSignalNotificationRules]
+//   - [SecurityMonitoringApi.GetSingleEntityContext]
 //   - [SecurityMonitoringApi.GetStaticAnalysisDefaultRulesets]
 //   - [SecurityMonitoringApi.GetStaticAnalysisNodeTypes]
 //   - [SecurityMonitoringApi.GetStaticAnalysisRuleset]
