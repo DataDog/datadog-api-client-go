@@ -356,6 +356,7 @@
 //   - [DashboardSecureEmbedApi.DeleteDashboardSecureEmbed]
 //   - [DashboardSecureEmbedApi.GetDashboardSecureEmbed]
 //   - [DashboardSecureEmbedApi.UpdateDashboardSecureEmbed]
+//   - [DashboardSharingApi.ListSharedDashboardsByDashboardId]
 //   - [DashboardsApi.GetDashboardUsage]
 //   - [DashboardsApi.ListDashboardsUsage]
 //   - [DataDeletionApi.CancelDataDeletionRequest]

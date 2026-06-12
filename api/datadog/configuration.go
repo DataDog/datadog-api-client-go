@@ -882,6 +882,7 @@ func NewConfiguration() *Configuration {
 			"v2.ListCSMAgentlessHosts":                            false,
 			"v2.ListCSMUnifiedHostFacets":                         false,
 			"v2.ListCSMUnifiedHosts":                              false,
+			"v2.ListSharedDashboardsByDashboardId":                false,
 			"v2.CreateDashboardSecureEmbed":                       false,
 			"v2.DeleteDashboardSecureEmbed":                       false,
 			"v2.GetDashboardSecureEmbed":                          false,

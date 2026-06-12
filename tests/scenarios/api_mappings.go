@@ -82,6 +82,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "CSMOwnershipApi": reflect.ValueOf(datadogV2.NewCSMOwnershipApi),
 	    "CSMSettingsApi": reflect.ValueOf(datadogV2.NewCSMSettingsApi),
 	    "DashboardListsApi": reflect.ValueOf(datadogV2.NewDashboardListsApi),
+	    "DashboardSharingApi": reflect.ValueOf(datadogV2.NewDashboardSharingApi),
 	    "DashboardSecureEmbedApi": reflect.ValueOf(datadogV2.NewDashboardSecureEmbedApi),
 	    "DashboardsApi": reflect.ValueOf(datadogV2.NewDashboardsApi),
 	    "DatasetsApi": reflect.ValueOf(datadogV2.NewDatasetsApi),
