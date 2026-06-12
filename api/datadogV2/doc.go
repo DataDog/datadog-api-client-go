@@ -821,6 +821,7 @@
 //   - [OrgGroupsApi.UpdateOrgGroupPolicyOverride]
 //   - [OrganizationsApi.GetOrgConfig]
 //   - [OrganizationsApi.GetSAMLConfiguration]
+//   - [OrganizationsApi.ListGlobalOrgs]
 //   - [OrganizationsApi.ListOrgConfigs]
 //   - [OrganizationsApi.ListOrgs]
 //   - [OrganizationsApi.ListSAMLConfigurations]
