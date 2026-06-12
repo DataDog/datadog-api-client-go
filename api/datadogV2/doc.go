@@ -820,6 +820,7 @@
 //   - [OrganizationsApi.ListOrgConfigs]
 //   - [OrganizationsApi.ListOrgs]
 //   - [OrganizationsApi.ListSAMLConfigurations]
+//   - [OrganizationsApi.UpdateLoginOrgConfigsMaxSessionDuration]
 //   - [OrganizationsApi.UpdateOrgConfig]
 //   - [OrganizationsApi.UpdateOrgSamlConfigurations]
 //   - [OrganizationsApi.UpdateSAMLConfiguration]
