@@ -678,6 +678,7 @@
 //   - [MetricsApi.UpdateTagIndexingRule]
 //   - [MicrosoftTeamsIntegrationApi.CreateTenantBasedHandle]
 //   - [MicrosoftTeamsIntegrationApi.CreateWorkflowsWebhookHandle]
+//   - [MicrosoftTeamsIntegrationApi.DeleteMSTeamsUserBinding]
 //   - [MicrosoftTeamsIntegrationApi.DeleteTenantBasedHandle]
 //   - [MicrosoftTeamsIntegrationApi.DeleteWorkflowsWebhookHandle]
 //   - [MicrosoftTeamsIntegrationApi.GetChannelByName]
