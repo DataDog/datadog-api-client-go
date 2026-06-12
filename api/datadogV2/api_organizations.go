@@ -174,6 +174,180 @@ func (a *OrganizationsApi) GetSAMLConfiguration(ctx _context.Context, samlConfig
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListGlobalOrgsOptionalParameters holds optional parameters for ListGlobalOrgs.
+type ListGlobalOrgsOptionalParameters struct {
+	PageLimit  *int32
+	PageCursor *string
+}
+
+// NewListGlobalOrgsOptionalParameters creates an empty struct for parameters.
+func NewListGlobalOrgsOptionalParameters() *ListGlobalOrgsOptionalParameters {
+	this := ListGlobalOrgsOptionalParameters{}
+	return &this
+}
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListGlobalOrgsOptionalParameters) WithPageLimit(pageLimit int32) *ListGlobalOrgsOptionalParameters {
+	r.PageLimit = &pageLimit
+	return r
+}
+
+// WithPageCursor sets the corresponding parameter name and returns the struct.
+func (r *ListGlobalOrgsOptionalParameters) WithPageCursor(pageCursor string) *ListGlobalOrgsOptionalParameters {
+	r.PageCursor = &pageCursor
+	return r
+}
+
+// ListGlobalOrgs List global orgs.
+// Returns organizations across regions for the authenticated user. The `user_handle` query parameter must match the authenticated user's handle.
+func (a *OrganizationsApi) ListGlobalOrgs(ctx _context.Context, userHandle string, o ...ListGlobalOrgsOptionalParameters) (GlobalOrgsResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue GlobalOrgsResponse
+		optionalParams      ListGlobalOrgsOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListGlobalOrgsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OrganizationsApi.ListGlobalOrgs")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/global_orgs"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarQueryParams.Add("user_handle", datadog.ParameterToString(userHandle, ""))
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
+	}
+	if optionalParams.PageCursor != nil {
+		localVarQueryParams.Add("page[cursor]", datadog.ParameterToString(*optionalParams.PageCursor, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// ListGlobalOrgsWithPagination provides a paginated version of ListGlobalOrgs returning a channel with all items.
+func (a *OrganizationsApi) ListGlobalOrgsWithPagination(ctx _context.Context, userHandle string, o ...ListGlobalOrgsOptionalParameters) (<-chan datadog.PaginationResult[GlobalOrgData], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(100)
+	if len(o) == 0 {
+		o = append(o, ListGlobalOrgsOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
+	}
+	o[0].PageLimit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[GlobalOrgData], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.ListGlobalOrgs(ctx, userHandle, o...)
+			if err != nil {
+				var returnItem GlobalOrgData
+				items <- datadog.PaginationResult[GlobalOrgData]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[GlobalOrgData]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) == 0 {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageNextCursor, ok := cursorMetaPage.GetNextCursorOk()
+			if !ok {
+				break
+			}
+
+			o[0].PageCursor = cursorMetaPageNextCursor
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // ListOrgConfigs List Org Configs.
 // Returns all Org Configs (name, description, and value).
 func (a *OrganizationsApi) ListOrgConfigs(ctx _context.Context) (OrgConfigListResponse, *_nethttp.Response, error) {
