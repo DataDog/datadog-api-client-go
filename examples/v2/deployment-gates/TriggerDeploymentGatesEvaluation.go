@@ -16,6 +16,21 @@ func main() {
 	body := datadogV2.DeploymentGatesEvaluationRequest{
 		Data: datadogV2.DeploymentGatesEvaluationRequestData{
 			Attributes: datadogV2.DeploymentGatesEvaluationRequestAttributes{
+				Configuration: &datadogV2.DeploymentGatesEvaluationConfiguration{
+					DryRun: datadog.PtrBool(false),
+					Rules: []datadogV2.DeploymentGatesEvaluationRule{
+						datadogV2.DeploymentGatesEvaluationRule{
+							DeploymentGatesMonitorRule: &datadogV2.DeploymentGatesMonitorRule{
+								DryRun: datadog.PtrBool(false),
+								Name:   "error rate monitors",
+								Options: &datadogV2.DeploymentGatesMonitorRuleOptions{
+									Duration: datadog.PtrInt64(300),
+									Query:    "service:transaction-backend env:production",
+								},
+								Type: datadogV2.DEPLOYMENTGATESMONITORRULETYPE_MONITOR,
+							}},
+					},
+				},
 				Env:        "staging",
 				Identifier: datadog.PtrString("pre-deploy"),
 				PrimaryTag: datadog.PtrString("region:us-east-1"),

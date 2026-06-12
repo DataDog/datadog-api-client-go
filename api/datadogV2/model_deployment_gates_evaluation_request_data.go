@@ -13,6 +13,8 @@ import (
 // DeploymentGatesEvaluationRequestData Data for a deployment gate evaluation request.
 type DeploymentGatesEvaluationRequestData struct {
 	// Attributes for a deployment gate evaluation request.
+	// When `configuration` is provided, rules are evaluated inline from that configuration.
+	// When omitted, rules are resolved from the preconfigured gate for the given service and environment.
 	Attributes DeploymentGatesEvaluationRequestAttributes `json:"attributes"`
 	// JSON:API type for a deployment gate evaluation request.
 	Type DeploymentGatesEvaluationRequestDataType `json:"type"`
