@@ -1062,6 +1062,7 @@
 //   - [SecurityMonitoringApi.MuteSecurityFindings]
 //   - [SecurityMonitoringApi.PatchSignalNotificationRule]
 //   - [SecurityMonitoringApi.PatchVulnerabilityNotificationRule]
+//   - [SecurityMonitoringApi.RestoreSecurityMonitoringRule]
 //   - [SecurityMonitoringApi.RunHistoricalJob]
 //   - [SecurityMonitoringApi.SearchSecurityFindings]
 //   - [SecurityMonitoringApi.SearchSecurityMonitoringHistsignals]
