@@ -889,6 +889,8 @@ func NewConfiguration() *Configuration {
 			"v2.UpdateDashboardSecureEmbed":                       false,
 			"v2.GetDashboardUsage":                                false,
 			"v2.ListDashboardsUsage":                              false,
+			"v2.GetDataObservabilityMonitorRunStatus":             false,
+			"v2.RunDataObservabilityMonitor":                      false,
 			"v2.CreateDataset":                                    false,
 			"v2.DeleteDataset":                                    false,
 			"v2.GetAllDatasets":                                   false,
