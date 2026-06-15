@@ -19,6 +19,7 @@ type ObservabilityPipelineConfigProcessorItem struct {
 	ObservabilityPipelineDedupeProcessor               *ObservabilityPipelineDedupeProcessor
 	ObservabilityPipelineEnrichmentTableProcessor      *ObservabilityPipelineEnrichmentTableProcessor
 	ObservabilityPipelineGenerateMetricsProcessor      *ObservabilityPipelineGenerateMetricsProcessor
+	ObservabilityPipelineGenerateMetricsV2Processor    *ObservabilityPipelineGenerateMetricsV2Processor
 	ObservabilityPipelineOcsfMapperProcessor           *ObservabilityPipelineOcsfMapperProcessor
 	ObservabilityPipelineParseGrokProcessor            *ObservabilityPipelineParseGrokProcessor
 	ObservabilityPipelineParseJSONProcessor            *ObservabilityPipelineParseJSONProcessor
@@ -84,6 +85,11 @@ func ObservabilityPipelineEnrichmentTableProcessorAsObservabilityPipelineConfigP
 // ObservabilityPipelineGenerateMetricsProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineGenerateMetricsProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
 func ObservabilityPipelineGenerateMetricsProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineGenerateMetricsProcessor) ObservabilityPipelineConfigProcessorItem {
 	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineGenerateMetricsProcessor: v}
+}
+
+// ObservabilityPipelineGenerateMetricsV2ProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineGenerateMetricsV2Processor wrapped in ObservabilityPipelineConfigProcessorItem.
+func ObservabilityPipelineGenerateMetricsV2ProcessorAsObservabilityPipelineConfigProcessorItem(v *ObservabilityPipelineGenerateMetricsV2Processor) ObservabilityPipelineConfigProcessorItem {
+	return ObservabilityPipelineConfigProcessorItem{ObservabilityPipelineGenerateMetricsV2Processor: v}
 }
 
 // ObservabilityPipelineOcsfMapperProcessorAsObservabilityPipelineConfigProcessorItem is a convenience function that returns ObservabilityPipelineOcsfMapperProcessor wrapped in ObservabilityPipelineConfigProcessorItem.
@@ -326,6 +332,23 @@ func (obj *ObservabilityPipelineConfigProcessorItem) UnmarshalJSON(data []byte) 
 		}
 	} else {
 		obj.ObservabilityPipelineGenerateMetricsProcessor = nil
+	}
+
+	// try to unmarshal data into ObservabilityPipelineGenerateMetricsV2Processor
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelineGenerateMetricsV2Processor)
+	if err == nil {
+		if obj.ObservabilityPipelineGenerateMetricsV2Processor != nil && obj.ObservabilityPipelineGenerateMetricsV2Processor.UnparsedObject == nil {
+			jsonObservabilityPipelineGenerateMetricsV2Processor, _ := datadog.Marshal(obj.ObservabilityPipelineGenerateMetricsV2Processor)
+			if string(jsonObservabilityPipelineGenerateMetricsV2Processor) == "{}" { // empty struct
+				obj.ObservabilityPipelineGenerateMetricsV2Processor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelineGenerateMetricsV2Processor = nil
+		}
+	} else {
+		obj.ObservabilityPipelineGenerateMetricsV2Processor = nil
 	}
 
 	// try to unmarshal data into ObservabilityPipelineOcsfMapperProcessor
@@ -628,6 +651,7 @@ func (obj *ObservabilityPipelineConfigProcessorItem) UnmarshalJSON(data []byte) 
 		obj.ObservabilityPipelineDedupeProcessor = nil
 		obj.ObservabilityPipelineEnrichmentTableProcessor = nil
 		obj.ObservabilityPipelineGenerateMetricsProcessor = nil
+		obj.ObservabilityPipelineGenerateMetricsV2Processor = nil
 		obj.ObservabilityPipelineOcsfMapperProcessor = nil
 		obj.ObservabilityPipelineParseGrokProcessor = nil
 		obj.ObservabilityPipelineParseJSONProcessor = nil
@@ -686,6 +710,10 @@ func (obj ObservabilityPipelineConfigProcessorItem) MarshalJSON() ([]byte, error
 
 	if obj.ObservabilityPipelineGenerateMetricsProcessor != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineGenerateMetricsProcessor)
+	}
+
+	if obj.ObservabilityPipelineGenerateMetricsV2Processor != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelineGenerateMetricsV2Processor)
 	}
 
 	if obj.ObservabilityPipelineOcsfMapperProcessor != nil {
@@ -798,6 +826,10 @@ func (obj *ObservabilityPipelineConfigProcessorItem) GetActualInstance() interfa
 
 	if obj.ObservabilityPipelineGenerateMetricsProcessor != nil {
 		return obj.ObservabilityPipelineGenerateMetricsProcessor
+	}
+
+	if obj.ObservabilityPipelineGenerateMetricsV2Processor != nil {
+		return obj.ObservabilityPipelineGenerateMetricsV2Processor
 	}
 
 	if obj.ObservabilityPipelineOcsfMapperProcessor != nil {
