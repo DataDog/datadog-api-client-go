@@ -362,6 +362,8 @@
 //   - [DataDeletionApi.CancelDataDeletionRequest]
 //   - [DataDeletionApi.CreateDataDeletionRequest]
 //   - [DataDeletionApi.GetDataDeletionRequests]
+//   - [DataObservabilityApi.GetDataObservabilityMonitorRunStatus]
+//   - [DataObservabilityApi.RunDataObservabilityMonitor]
 //   - [DatasetsApi.CreateDataset]
 //   - [DatasetsApi.DeleteDataset]
 //   - [DatasetsApi.GetAllDatasets]
