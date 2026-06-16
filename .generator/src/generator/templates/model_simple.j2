@@ -308,10 +308,20 @@ toSerialize["{{ attr }}"] = o.{{ propertyName }}
 	{%- endif %}
 	{%- endfor %}
 	{%- if model.type != "array" and model.additionalProperties is not false %}
+{%- if model.get("x-keep-typed-in-additional-properties") %}
+
+	typedKeys := map[string]bool{ {% for attr in model.get("properties", {}) %}"{{ attr }}": true, {% endfor %} }
+	for key, value := range o.AdditionalProperties {
+		if !typedKeys[key] {
+			toSerialize[key] = value
+		}
+	}
+{%- else %}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
 	}
+{%- endif %}
 
 	{%- endif %}
 	return datadog.Marshal(toSerialize)
@@ -370,7 +380,9 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	{%- if model.additionalProperties is not false %}
 	additionalProperties := make(map[string]{{ get_type(model.get("additionalProperties", True)) }})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
+		{%- if not model.get("x-keep-typed-in-additional-properties") %}
 		datadog.DeleteKeys(additionalProperties, &[]string{ {% for attr, schema in model.get("properties", {}).items()%}"{{ attr }}", {% endfor %} })
+		{%- endif %}
 	} else {
 		return err
 	}
