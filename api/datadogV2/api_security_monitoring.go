@@ -281,6 +281,15 @@ func (a *SecurityMonitoringApi) AttachServiceNowTicket(ctx _context.Context, bod
 		localVarReturnValue FindingCaseResponse
 	)
 
+	operationId := "v2.AttachServiceNowTicket"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.AttachServiceNowTicket")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -1711,6 +1720,96 @@ func (a *SecurityMonitoringApi) CreateCustomFramework(ctx _context.Context, body
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// CreateIoCTriageState Create or update an indicator triage state.
+// Set the triage state of an indicator of compromise (IoC). This creates or
+// updates the triage state for the indicator in your organization.
+func (a *SecurityMonitoringApi) CreateIoCTriageState(ctx _context.Context, body IoCTriageWriteRequest) (IoCTriageWriteResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue IoCTriageWriteResponse
+	)
+
+	operationId := "v2.CreateIoCTriageState"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.CreateIoCTriageState")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/security/siem/ioc-explorer/triage"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // CreateJiraIssues Create Jira issues for security findings.
 // Create Jira issues for security findings.
 // This operation creates a case in Datadog and a Jira issue linked to that case for bidirectional sync between Datadog and Jira. To configure the Jira integration, see [Bidirectional ticket syncing with Jira](https://docs.datadoghq.com/security/ticketing_integrations/#bidirectional-ticket-syncing-with-jira). You can create up to 50 Jira issues per request and associate up to 50 security findings per Jira issue. Security findings that are already attached to another Jira issue will be detached from their previous Jira issue and attached to the newly created Jira issue.
@@ -2409,6 +2508,15 @@ func (a *SecurityMonitoringApi) CreateServiceNowTickets(ctx _context.Context, bo
 		localVarPostBody    interface{}
 		localVarReturnValue FindingCaseResponseArray
 	)
+
+	operationId := "v2.CreateServiceNowTickets"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.CreateServiceNowTickets")
 	if err != nil {
@@ -4861,14 +4969,60 @@ func (a *SecurityMonitoringApi) GetHistoricalJob(ctx _context.Context, jobId str
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetIndicatorOfCompromiseOptionalParameters holds optional parameters for GetIndicatorOfCompromise.
+type GetIndicatorOfCompromiseOptionalParameters struct {
+	Ocsf                 *bool
+	IncludeTriageHistory *bool
+	TriageHistoryLimit   *int32
+	TriageHistoryOffset  *int32
+}
+
+// NewGetIndicatorOfCompromiseOptionalParameters creates an empty struct for parameters.
+func NewGetIndicatorOfCompromiseOptionalParameters() *GetIndicatorOfCompromiseOptionalParameters {
+	this := GetIndicatorOfCompromiseOptionalParameters{}
+	return &this
+}
+
+// WithOcsf sets the corresponding parameter name and returns the struct.
+func (r *GetIndicatorOfCompromiseOptionalParameters) WithOcsf(ocsf bool) *GetIndicatorOfCompromiseOptionalParameters {
+	r.Ocsf = &ocsf
+	return r
+}
+
+// WithIncludeTriageHistory sets the corresponding parameter name and returns the struct.
+func (r *GetIndicatorOfCompromiseOptionalParameters) WithIncludeTriageHistory(includeTriageHistory bool) *GetIndicatorOfCompromiseOptionalParameters {
+	r.IncludeTriageHistory = &includeTriageHistory
+	return r
+}
+
+// WithTriageHistoryLimit sets the corresponding parameter name and returns the struct.
+func (r *GetIndicatorOfCompromiseOptionalParameters) WithTriageHistoryLimit(triageHistoryLimit int32) *GetIndicatorOfCompromiseOptionalParameters {
+	r.TriageHistoryLimit = &triageHistoryLimit
+	return r
+}
+
+// WithTriageHistoryOffset sets the corresponding parameter name and returns the struct.
+func (r *GetIndicatorOfCompromiseOptionalParameters) WithTriageHistoryOffset(triageHistoryOffset int32) *GetIndicatorOfCompromiseOptionalParameters {
+	r.TriageHistoryOffset = &triageHistoryOffset
+	return r
+}
+
 // GetIndicatorOfCompromise Get an indicator of compromise.
 // Get detailed information about a specific indicator of compromise (IoC).
-func (a *SecurityMonitoringApi) GetIndicatorOfCompromise(ctx _context.Context, indicator string) (GetIoCIndicatorResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) GetIndicatorOfCompromise(ctx _context.Context, indicator string, o ...GetIndicatorOfCompromiseOptionalParameters) (GetIoCIndicatorResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue GetIoCIndicatorResponse
+		optionalParams      GetIndicatorOfCompromiseOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetIndicatorOfCompromiseOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.GetIndicatorOfCompromise"
 	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
@@ -4890,6 +5044,18 @@ func (a *SecurityMonitoringApi) GetIndicatorOfCompromise(ctx _context.Context, i
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	localVarQueryParams.Add("indicator", datadog.ParameterToString(indicator, ""))
+	if optionalParams.Ocsf != nil {
+		localVarQueryParams.Add("ocsf", datadog.ParameterToString(*optionalParams.Ocsf, ""))
+	}
+	if optionalParams.IncludeTriageHistory != nil {
+		localVarQueryParams.Add("include_triage_history", datadog.ParameterToString(*optionalParams.IncludeTriageHistory, ""))
+	}
+	if optionalParams.TriageHistoryLimit != nil {
+		localVarQueryParams.Add("triage_history_limit", datadog.ParameterToString(*optionalParams.TriageHistoryLimit, ""))
+	}
+	if optionalParams.TriageHistoryOffset != nil {
+		localVarQueryParams.Add("triage_history_offset", datadog.ParameterToString(*optionalParams.TriageHistoryOffset, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {
@@ -8581,11 +8747,14 @@ func (a *SecurityMonitoringApi) ListHistoricalJobs(ctx _context.Context, o ...Li
 
 // ListIndicatorsOfCompromiseOptionalParameters holds optional parameters for ListIndicatorsOfCompromise.
 type ListIndicatorsOfCompromiseOptionalParameters struct {
-	Limit      *int32
-	Offset     *int32
-	Query      *string
-	SortColumn *string
-	SortOrder  *string
+	Limit       *int32
+	Offset      *int32
+	Query       *string
+	SortColumn  *string
+	SortOrder   *string
+	Ocsf        *bool
+	WorkedBy    *string
+	TriageState *IoCTriageState
 }
 
 // NewListIndicatorsOfCompromiseOptionalParameters creates an empty struct for parameters.
@@ -8621,6 +8790,24 @@ func (r *ListIndicatorsOfCompromiseOptionalParameters) WithSortColumn(sortColumn
 // WithSortOrder sets the corresponding parameter name and returns the struct.
 func (r *ListIndicatorsOfCompromiseOptionalParameters) WithSortOrder(sortOrder string) *ListIndicatorsOfCompromiseOptionalParameters {
 	r.SortOrder = &sortOrder
+	return r
+}
+
+// WithOcsf sets the corresponding parameter name and returns the struct.
+func (r *ListIndicatorsOfCompromiseOptionalParameters) WithOcsf(ocsf bool) *ListIndicatorsOfCompromiseOptionalParameters {
+	r.Ocsf = &ocsf
+	return r
+}
+
+// WithWorkedBy sets the corresponding parameter name and returns the struct.
+func (r *ListIndicatorsOfCompromiseOptionalParameters) WithWorkedBy(workedBy string) *ListIndicatorsOfCompromiseOptionalParameters {
+	r.WorkedBy = &workedBy
+	return r
+}
+
+// WithTriageState sets the corresponding parameter name and returns the struct.
+func (r *ListIndicatorsOfCompromiseOptionalParameters) WithTriageState(triageState IoCTriageState) *ListIndicatorsOfCompromiseOptionalParameters {
+	r.TriageState = &triageState
 	return r
 }
 
@@ -8674,6 +8861,15 @@ func (a *SecurityMonitoringApi) ListIndicatorsOfCompromise(ctx _context.Context,
 	}
 	if optionalParams.SortOrder != nil {
 		localVarQueryParams.Add("sort[order]", datadog.ParameterToString(*optionalParams.SortOrder, ""))
+	}
+	if optionalParams.Ocsf != nil {
+		localVarQueryParams.Add("ocsf", datadog.ParameterToString(*optionalParams.Ocsf, ""))
+	}
+	if optionalParams.WorkedBy != nil {
+		localVarQueryParams.Add("worked_by", datadog.ParameterToString(*optionalParams.WorkedBy, ""))
+	}
+	if optionalParams.TriageState != nil {
+		localVarQueryParams.Add("triage_state", datadog.ParameterToString(*optionalParams.TriageState, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 

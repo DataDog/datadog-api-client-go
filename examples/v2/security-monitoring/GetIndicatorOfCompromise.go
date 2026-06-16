@@ -18,7 +18,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.GetIndicatorOfCompromise", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	resp, r, err := api.GetIndicatorOfCompromise(ctx, "masscan/1.3 (https://github.com/robertdavidgraham/masscan)")
+	resp, r, err := api.GetIndicatorOfCompromise(ctx, "192.0.2.1", *datadogV2.NewGetIndicatorOfCompromiseOptionalParameters().WithIncludeTriageHistory(true))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.GetIndicatorOfCompromise`: %v\n", err)
