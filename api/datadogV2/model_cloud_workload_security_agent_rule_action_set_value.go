@@ -11,7 +11,7 @@ import (
 // CloudWorkloadSecurityAgentRuleActionSetValue - The value of the set action
 type CloudWorkloadSecurityAgentRuleActionSetValue struct {
 	String *string
-	Int64  *int64
+	Int32  *int32
 	Bool   *bool
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -23,9 +23,9 @@ func StringAsCloudWorkloadSecurityAgentRuleActionSetValue(v *string) CloudWorklo
 	return CloudWorkloadSecurityAgentRuleActionSetValue{String: v}
 }
 
-// Int64AsCloudWorkloadSecurityAgentRuleActionSetValue is a convenience function that returns int64 wrapped in CloudWorkloadSecurityAgentRuleActionSetValue.
-func Int64AsCloudWorkloadSecurityAgentRuleActionSetValue(v *int64) CloudWorkloadSecurityAgentRuleActionSetValue {
-	return CloudWorkloadSecurityAgentRuleActionSetValue{Int64: v}
+// Int32AsCloudWorkloadSecurityAgentRuleActionSetValue is a convenience function that returns int32 wrapped in CloudWorkloadSecurityAgentRuleActionSetValue.
+func Int32AsCloudWorkloadSecurityAgentRuleActionSetValue(v *int32) CloudWorkloadSecurityAgentRuleActionSetValue {
+	return CloudWorkloadSecurityAgentRuleActionSetValue{Int32: v}
 }
 
 // BoolAsCloudWorkloadSecurityAgentRuleActionSetValue is a convenience function that returns bool wrapped in CloudWorkloadSecurityAgentRuleActionSetValue.
@@ -54,21 +54,21 @@ func (obj *CloudWorkloadSecurityAgentRuleActionSetValue) UnmarshalJSON(data []by
 		obj.String = nil
 	}
 
-	// try to unmarshal data into Int64
-	err = datadog.Unmarshal(data, &obj.Int64)
+	// try to unmarshal data into Int32
+	err = datadog.Unmarshal(data, &obj.Int32)
 	if err == nil {
-		if obj.Int64 != nil {
-			jsonInt64, _ := datadog.Marshal(obj.Int64)
-			if string(jsonInt64) == "{}" { // empty struct
-				obj.Int64 = nil
+		if obj.Int32 != nil {
+			jsonInt32, _ := datadog.Marshal(obj.Int32)
+			if string(jsonInt32) == "{}" { // empty struct
+				obj.Int32 = nil
 			} else {
 				match++
 			}
 		} else {
-			obj.Int64 = nil
+			obj.Int32 = nil
 		}
 	} else {
-		obj.Int64 = nil
+		obj.Int32 = nil
 	}
 
 	// try to unmarshal data into Bool
@@ -91,7 +91,7 @@ func (obj *CloudWorkloadSecurityAgentRuleActionSetValue) UnmarshalJSON(data []by
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.String = nil
-		obj.Int64 = nil
+		obj.Int32 = nil
 		obj.Bool = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
@@ -104,8 +104,8 @@ func (obj CloudWorkloadSecurityAgentRuleActionSetValue) MarshalJSON() ([]byte, e
 		return datadog.Marshal(&obj.String)
 	}
 
-	if obj.Int64 != nil {
-		return datadog.Marshal(&obj.Int64)
+	if obj.Int32 != nil {
+		return datadog.Marshal(&obj.Int32)
 	}
 
 	if obj.Bool != nil {
@@ -124,8 +124,8 @@ func (obj *CloudWorkloadSecurityAgentRuleActionSetValue) GetActualInstance() int
 		return obj.String
 	}
 
-	if obj.Int64 != nil {
-		return obj.Int64
+	if obj.Int32 != nil {
+		return obj.Int32
 	}
 
 	if obj.Bool != nil {
