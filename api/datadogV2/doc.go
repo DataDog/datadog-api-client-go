@@ -1345,5 +1345,6 @@
 //   - [WorkflowAutomationApi.GetWorkflow]
 //   - [WorkflowAutomationApi.GetWorkflowInstance]
 //   - [WorkflowAutomationApi.ListWorkflowInstances]
+//   - [WorkflowAutomationApi.ListWorkflows]
 //   - [WorkflowAutomationApi.UpdateWorkflow]
 package datadogV2
