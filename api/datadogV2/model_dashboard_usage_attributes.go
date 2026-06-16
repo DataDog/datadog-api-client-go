@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DashboardUsageAttributes Usage statistics for a dashboard.
+// DashboardUsageAttributes Usage statistics for a dashboard. The `viewer` field and all view-count fields (`total_views`, `viewed_at`, `total_views_by_type`) are populated only when Real User Monitoring (RUM) is active for the org.
 type DashboardUsageAttributes struct {
 	// A user referenced from a dashboard usage record (author or viewer).
 	Author NullableDashboardUsageUser `json:"author,omitempty"`
@@ -27,11 +27,11 @@ type DashboardUsageAttributes struct {
 	Teams datadog.NullableList[string] `json:"teams,omitempty"`
 	// The dashboard title.
 	Title *string `json:"title,omitempty"`
-	// The total number of times the dashboard has been viewed.
+	// Total view count for the dashboard. Counts only views captured by Real User Monitoring (RUM); `0` in orgs without RUM.
 	TotalViews *int64 `json:"total_views,omitempty"`
-	// View counts keyed by view type. Possible keys are `in_app`, `embed`, `public`, `shared`, `api`, and `unknown`.
+	// View counts keyed by view type (`in_app`, `embed`, `public`, `shared`, `api`, `unknown`). Counts only views captured by Real User Monitoring (RUM); empty in orgs without RUM.
 	TotalViewsByType map[string]int64 `json:"total_views_by_type,omitempty"`
-	// When the dashboard was most recently viewed.
+	// When the dashboard was most recently viewed. Populated only when Real User Monitoring (RUM) is active for the org; `null` in orgs without RUM.
 	ViewedAt datadog.NullableTime `json:"viewed_at,omitempty"`
 	// A user referenced from a dashboard usage record (author or viewer).
 	Viewer NullableDashboardUsageUser `json:"viewer,omitempty"`

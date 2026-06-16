@@ -1,4 +1,4 @@
-// Create rum replay session watch returns "Created" response
+// Create RUM replay session watch returns "Created" response
 
 package main
 

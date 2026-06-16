@@ -3260,8 +3260,8 @@ type ListCostAnomaliesOptionalParameters struct {
 	DismissalCause        *string
 	OrderBy               *string
 	Order                 *string
-	Limit                 *int32
-	Offset                *int32
+	Limit                 *int64
+	Offset                *int64
 	ProviderIds           *[]string
 }
 
@@ -3320,13 +3320,13 @@ func (r *ListCostAnomaliesOptionalParameters) WithOrder(order string) *ListCostA
 }
 
 // WithLimit sets the corresponding parameter name and returns the struct.
-func (r *ListCostAnomaliesOptionalParameters) WithLimit(limit int32) *ListCostAnomaliesOptionalParameters {
+func (r *ListCostAnomaliesOptionalParameters) WithLimit(limit int64) *ListCostAnomaliesOptionalParameters {
 	r.Limit = &limit
 	return r
 }
 
 // WithOffset sets the corresponding parameter name and returns the struct.
-func (r *ListCostAnomaliesOptionalParameters) WithOffset(offset int32) *ListCostAnomaliesOptionalParameters {
+func (r *ListCostAnomaliesOptionalParameters) WithOffset(offset int64) *ListCostAnomaliesOptionalParameters {
 	r.Offset = &offset
 	return r
 }
@@ -3811,6 +3811,7 @@ func (a *CloudCostManagementApi) ListCostTagDescriptions(ctx _context.Context, o
 // ListCostTagKeySourcesOptionalParameters holds optional parameters for ListCostTagKeySources.
 type ListCostTagKeySourcesOptionalParameters struct {
 	FilterProvider *string
+	FilterMetric   *string
 }
 
 // NewListCostTagKeySourcesOptionalParameters creates an empty struct for parameters.
@@ -3822,6 +3823,12 @@ func NewListCostTagKeySourcesOptionalParameters() *ListCostTagKeySourcesOptional
 // WithFilterProvider sets the corresponding parameter name and returns the struct.
 func (r *ListCostTagKeySourcesOptionalParameters) WithFilterProvider(filterProvider string) *ListCostTagKeySourcesOptionalParameters {
 	r.FilterProvider = &filterProvider
+	return r
+}
+
+// WithFilterMetric sets the corresponding parameter name and returns the struct.
+func (r *ListCostTagKeySourcesOptionalParameters) WithFilterMetric(filterMetric string) *ListCostTagKeySourcesOptionalParameters {
+	r.FilterMetric = &filterMetric
 	return r
 }
 
@@ -3864,6 +3871,9 @@ func (a *CloudCostManagementApi) ListCostTagKeySources(ctx _context.Context, fil
 	localVarQueryParams.Add("filter[month]", datadog.ParameterToString(filterMonth, ""))
 	if optionalParams.FilterProvider != nil {
 		localVarQueryParams.Add("filter[provider]", datadog.ParameterToString(*optionalParams.FilterProvider, ""))
+	}
+	if optionalParams.FilterMetric != nil {
+		localVarQueryParams.Add("filter[metric]", datadog.ParameterToString(*optionalParams.FilterMetric, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 

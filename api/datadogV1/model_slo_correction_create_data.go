@@ -13,6 +13,8 @@ import (
 // SLOCorrectionCreateData The data object associated with the SLO correction to be created.
 type SLOCorrectionCreateData struct {
 	// The attribute object associated with the SLO correction to be created.
+	//
+	// Exactly one of `slo_id` or `slo_query` must be provided.
 	Attributes *SLOCorrectionCreateRequestAttributes `json:"attributes,omitempty"`
 	// SLO correction resource type.
 	Type SLOCorrectionType `json:"type"`

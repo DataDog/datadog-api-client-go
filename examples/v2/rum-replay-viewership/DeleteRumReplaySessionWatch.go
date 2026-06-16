@@ -1,4 +1,4 @@
-// Delete rum replay session watch returns "No Content" response
+// Delete RUM replay session watch returns "No Content" response
 
 package main
 

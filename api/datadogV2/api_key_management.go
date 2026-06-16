@@ -1044,6 +1044,7 @@ type ListApplicationKeysOptionalParameters struct {
 	Filter               *string
 	FilterCreatedAtStart *string
 	FilterCreatedAtEnd   *string
+	FilterOwnedBy        *string
 	Include              *string
 }
 
@@ -1086,6 +1087,12 @@ func (r *ListApplicationKeysOptionalParameters) WithFilterCreatedAtStart(filterC
 // WithFilterCreatedAtEnd sets the corresponding parameter name and returns the struct.
 func (r *ListApplicationKeysOptionalParameters) WithFilterCreatedAtEnd(filterCreatedAtEnd string) *ListApplicationKeysOptionalParameters {
 	r.FilterCreatedAtEnd = &filterCreatedAtEnd
+	return r
+}
+
+// WithFilterOwnedBy sets the corresponding parameter name and returns the struct.
+func (r *ListApplicationKeysOptionalParameters) WithFilterOwnedBy(filterOwnedBy string) *ListApplicationKeysOptionalParameters {
+	r.FilterOwnedBy = &filterOwnedBy
 	return r
 }
 
@@ -1139,6 +1146,9 @@ func (a *KeyManagementApi) ListApplicationKeys(ctx _context.Context, o ...ListAp
 	}
 	if optionalParams.FilterCreatedAtEnd != nil {
 		localVarQueryParams.Add("filter[created_at][end]", datadog.ParameterToString(*optionalParams.FilterCreatedAtEnd, ""))
+	}
+	if optionalParams.FilterOwnedBy != nil {
+		localVarQueryParams.Add("filter[owned_by]", datadog.ParameterToString(*optionalParams.FilterOwnedBy, ""))
 	}
 	if optionalParams.Include != nil {
 		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))

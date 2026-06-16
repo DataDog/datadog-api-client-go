@@ -8,11 +8,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumMetricUpdateAttributes The rum-based metric properties that will be updated.
+// RumMetricUpdateAttributes The RUM-based metric properties that will be updated.
 type RumMetricUpdateAttributes struct {
-	// The compute rule to compute the rum-based metric.
+	// The compute rule to compute the RUM-based metric.
 	Compute *RumMetricUpdateCompute `json:"compute,omitempty"`
-	// The rum-based metric filter. Events matching this filter will be aggregated in this metric.
+	// The RUM-based metric filter. Events matching this filter will be aggregated in this metric.
 	Filter *RumMetricFilter `json:"filter,omitempty"`
 	// The rules for the group by.
 	GroupBy []RumMetricGroupBy `json:"group_by,omitempty"`

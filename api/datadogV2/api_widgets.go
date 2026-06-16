@@ -253,8 +253,8 @@ type SearchWidgetsOptionalParameters struct {
 	FilterTitle         *string
 	FilterTags          *string
 	Sort                *string
-	PageNumber          *int32
-	PageSize            *int32
+	PageNumber          *int64
+	PageSize            *int64
 }
 
 // NewSearchWidgetsOptionalParameters creates an empty struct for parameters.
@@ -300,13 +300,13 @@ func (r *SearchWidgetsOptionalParameters) WithSort(sort string) *SearchWidgetsOp
 }
 
 // WithPageNumber sets the corresponding parameter name and returns the struct.
-func (r *SearchWidgetsOptionalParameters) WithPageNumber(pageNumber int32) *SearchWidgetsOptionalParameters {
+func (r *SearchWidgetsOptionalParameters) WithPageNumber(pageNumber int64) *SearchWidgetsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
 
 // WithPageSize sets the corresponding parameter name and returns the struct.
-func (r *SearchWidgetsOptionalParameters) WithPageSize(pageSize int32) *SearchWidgetsOptionalParameters {
+func (r *SearchWidgetsOptionalParameters) WithPageSize(pageSize int64) *SearchWidgetsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }

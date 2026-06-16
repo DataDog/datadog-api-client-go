@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SLOCorrectionCreateRequest An object that defines a correction to be applied to an SLO.
+// SLOCorrectionCreateRequest An object that defines a correction to be applied to one or more SLOs.
 type SLOCorrectionCreateRequest struct {
 	// The data object associated with the SLO correction to be created.
 	Data *SLOCorrectionCreateData `json:"data,omitempty"`
