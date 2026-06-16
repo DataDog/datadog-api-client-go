@@ -1076,6 +1076,7 @@ func NewConfiguration() *Configuration {
 			"v2.UpdateConnection":                                 false,
 			"v2.GetPrunedTraceByID":                               false,
 			"v2.GetTraceByID":                                     false,
+			"v2.GetAsmServiceByName":                              false,
 			"v2.CreateReportSchedule":                             false,
 			"v2.PatchReportSchedule":                              false,
 			"v2.DeleteSourcemaps":                                 false,

@@ -107,6 +107,7 @@
 //   - [ApplicationSecurityApi.GetApplicationSecurityWafCustomRule]
 //   - [ApplicationSecurityApi.GetApplicationSecurityWafExclusionFilter]
 //   - [ApplicationSecurityApi.GetApplicationSecurityWafPolicy]
+//   - [ApplicationSecurityApi.GetAsmServiceByName]
 //   - [ApplicationSecurityApi.ListApplicationSecurityWAFCustomRules]
 //   - [ApplicationSecurityApi.ListApplicationSecurityWAFPolicies]
 //   - [ApplicationSecurityApi.ListApplicationSecurityWafExclusionFilters]
