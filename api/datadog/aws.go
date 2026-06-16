@@ -68,6 +68,18 @@ const (
 
 const ProviderAWS = "aws"
 
+// AWSWebIdentityVariables holds explicit web identity token configuration for use with
+// ContextAWSWebIdentityVariables. When set, GetCredentials will call AssumeRoleWithWebIdentity
+// using these values instead of reading from AWS_WEB_IDENTITY_TOKEN_FILE / AWS_ROLE_ARN env vars.
+type AWSWebIdentityVariables struct {
+	// TokenFile is the path to the OIDC web identity token file.
+	TokenFile string
+	// RoleARN is the ARN of the IAM role to assume.
+	RoleARN string
+	// RoleSessionName is an optional session name; defaults to "datadog-api-client".
+	RoleSessionName string
+}
+
 type AWSAuth struct {
 	AwsRegion string
 	// stsEndpointOverride overrides the STS endpoint URL; used in tests.
@@ -96,8 +108,8 @@ func (a *AWSAuth) Authenticate(ctx context.Context, config *DelegatedTokenConfig
 }
 
 func (a *AWSAuth) GetCredentials(ctx context.Context) *Credentials {
-	keys := ctx.Value(ContextAWSVariables)
-	if keys != nil {
+	// 1. Explicit static credentials via context.
+	if keys := ctx.Value(ContextAWSVariables); keys != nil {
 		keysMap := keys.(map[string]string)
 		creds := Credentials{}
 		if accessKey, ok := keysMap[AWSAccessKeyIdName]; ok {
@@ -112,6 +124,15 @@ func (a *AWSAuth) GetCredentials(ctx context.Context) *Credentials {
 		return &creds
 	}
 
+	// 2. Explicit web identity config via context — authoritative; failure is terminal, not a
+	// fallthrough. Silently falling back to env-var creds when an explicit config fails would
+	// authenticate as a different identity than the caller intended.
+	if wiv, ok := ctx.Value(ContextAWSWebIdentityVariables).(AWSWebIdentityVariables); ok {
+		creds, _ := a.assumeRoleWithWebIdentity(ctx, wiv.TokenFile, wiv.RoleARN, wiv.RoleSessionName)
+		return creds
+	}
+
+	// 3. Static credentials from environment variables.
 	accessKey := os.Getenv(AWSAccessKeyIdName)
 	secretKey := os.Getenv(AWSSecretAccessKeyName)
 	sessionToken := os.Getenv(AWSSessionTokenName)
@@ -123,8 +144,8 @@ func (a *AWSAuth) GetCredentials(ctx context.Context) *Credentials {
 		}
 	}
 
-	// Fall back to web identity token exchange (covers TFE dynamic credentials, IRSA, etc.)
-	if creds, err := a.assumeRoleWithWebIdentity(ctx); err == nil {
+	// 4. Web identity token exchange from environment variables (TFE dynamic credentials, IRSA, etc.).
+	if creds, err := a.assumeRoleWithWebIdentity(ctx, os.Getenv(AWSWebIdentityTokenFileEnvVar), os.Getenv(AWSRoleARNEnvVar), os.Getenv(AWSRoleSessionNameEnvVar)); err == nil {
 		return creds
 	}
 
@@ -147,11 +168,9 @@ type stsAssumeRoleWithWebIdentityResponse struct {
 	} `xml:"AssumeRoleWithWebIdentityResult"`
 }
 
-func (a *AWSAuth) assumeRoleWithWebIdentity(ctx context.Context) (*Credentials, error) {
-	tokenFile := os.Getenv(AWSWebIdentityTokenFileEnvVar)
-	roleARN := os.Getenv(AWSRoleARNEnvVar)
+func (a *AWSAuth) assumeRoleWithWebIdentity(ctx context.Context, tokenFile, roleARN, sessionName string) (*Credentials, error) {
 	if tokenFile == "" || roleARN == "" {
-		return nil, fmt.Errorf("web identity env vars not set")
+		return nil, fmt.Errorf("web identity token file or role ARN not set")
 	}
 
 	tokenBytes, err := os.ReadFile(tokenFile)
@@ -159,7 +178,6 @@ func (a *AWSAuth) assumeRoleWithWebIdentity(ctx context.Context) (*Credentials, 
 		return nil, fmt.Errorf("failed to read web identity token file: %w", err)
 	}
 
-	sessionName := os.Getenv(AWSRoleSessionNameEnvVar)
 	if sessionName == "" {
 		sessionName = defaultRoleSessionName
 	}
