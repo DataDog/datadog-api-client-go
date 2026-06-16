@@ -1495,6 +1495,41 @@ func (a *UsageMeteringApi) GetUsageObservabilityPipelines(ctx _context.Context, 
 // dimensions and usage types added after the v1 schema freeze).
 //
 // This endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/).
+//
+// Go example:
+//
+// ```go
+// fields, _, err := api.GetUsageSummaryAvailableFields(ctx)
+// attr := fields.Data.GetAttributes()
+//
+// // resp is the *UsageSummaryResponse returned by api.GetUsageSummary(ctx, ...)
+// // Layer 1: UsageSummaryResponse
+//
+//	for _, key := range attr.GetResponseFields() {
+//	    if val, ok := resp.AdditionalProperties[key]; ok {
+//	        fmt.Println(key, val.(json.Number))
+//	    }
+//	}
+//
+// // Layer 2: UsageSummaryDate (per month)
+//
+//	for _, date := range resp.GetUsage() {
+//	    for _, key := range attr.GetDateFields() {
+//	        if val, ok := date.AdditionalProperties[key]; ok {
+//	            fmt.Println(key, val.(json.Number))
+//	        }
+//	    }
+//	    // Layer 3: UsageSummaryDateOrg (per org per month)
+//	    for _, org := range date.GetOrgs() {
+//	        for _, key := range attr.GetDateOrgFields() {
+//	            if val, ok := org.AdditionalProperties[key]; ok {
+//	                fmt.Println(key, val.(json.Number))
+//	            }
+//	        }
+//	    }
+//	}
+//
+// ```
 func (a *UsageMeteringApi) GetUsageSummaryAvailableFields(ctx _context.Context) (UsageSummaryAvailableFieldsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
