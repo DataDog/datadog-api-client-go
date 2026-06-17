@@ -19,6 +19,8 @@ type CloudAuthenticationApi datadog.Service
 
 // CreateAWSCloudAuthPersonaMapping Create an AWS cloud authentication persona mapping.
 // Create an AWS cloud authentication persona mapping. This endpoint associates an AWS IAM principal with a Datadog user.
+//
+// Deprecated: This API is deprecated.
 func (a *CloudAuthenticationApi) CreateAWSCloudAuthPersonaMapping(ctx _context.Context, body AWSCloudAuthPersonaMappingCreateRequest) (AWSCloudAuthPersonaMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -117,6 +119,8 @@ func (a *CloudAuthenticationApi) CreateAWSCloudAuthPersonaMapping(ctx _context.C
 
 // DeleteAWSCloudAuthPersonaMapping Delete an AWS cloud authentication persona mapping.
 // Delete an AWS cloud authentication persona mapping by ID. This removes the association between an AWS IAM principal and a Datadog user.
+//
+// Deprecated: This API is deprecated.
 func (a *CloudAuthenticationApi) DeleteAWSCloudAuthPersonaMapping(ctx _context.Context, personaMappingId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -203,6 +207,8 @@ func (a *CloudAuthenticationApi) DeleteAWSCloudAuthPersonaMapping(ctx _context.C
 
 // GetAWSCloudAuthPersonaMapping Get an AWS cloud authentication persona mapping.
 // Get a specific AWS cloud authentication persona mapping by ID. This endpoint retrieves a single configured persona mapping that associates an AWS IAM principal with a Datadog user.
+//
+// Deprecated: This API is deprecated.
 func (a *CloudAuthenticationApi) GetAWSCloudAuthPersonaMapping(ctx _context.Context, personaMappingId string) (AWSCloudAuthPersonaMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -299,6 +305,8 @@ func (a *CloudAuthenticationApi) GetAWSCloudAuthPersonaMapping(ctx _context.Cont
 
 // ListAWSCloudAuthPersonaMappings List AWS cloud authentication persona mappings.
 // List all AWS cloud authentication persona mappings. This endpoint retrieves all configured persona mappings that associate AWS IAM principals with Datadog users.
+//
+// Deprecated: This API is deprecated.
 func (a *CloudAuthenticationApi) ListAWSCloudAuthPersonaMappings(ctx _context.Context) (AWSCloudAuthPersonaMappingsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

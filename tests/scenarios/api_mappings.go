@@ -87,6 +87,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "DashboardsApi": reflect.ValueOf(datadogV2.NewDashboardsApi),
 	    "DataObservabilityApi": reflect.ValueOf(datadogV2.NewDataObservabilityApi),
 	    "DatasetsApi": reflect.ValueOf(datadogV2.NewDatasetsApi),
+	    "DelegatedTokenApi": reflect.ValueOf(datadogV2.NewDelegatedTokenApi),
 	    "DataDeletionApi": reflect.ValueOf(datadogV2.NewDataDeletionApi),
 	    "DeploymentGatesApi": reflect.ValueOf(datadogV2.NewDeploymentGatesApi),
 	    "DomainAllowlistApi": reflect.ValueOf(datadogV2.NewDomainAllowlistApi),
@@ -101,6 +102,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "HighAvailabilityMultiRegionApi": reflect.ValueOf(datadogV2.NewHighAvailabilityMultiRegionApi),
 	    "EntityIntegrationConfigsApi": reflect.ValueOf(datadogV2.NewEntityIntegrationConfigsApi),
 	    "IncidentsApi": reflect.ValueOf(datadogV2.NewIncidentsApi),
+	    "IntakeKeyApi": reflect.ValueOf(datadogV2.NewIntakeKeyApi),
 	    "AWSIntegrationApi": reflect.ValueOf(datadogV2.NewAWSIntegrationApi),
 	    "AWSLogsIntegrationApi": reflect.ValueOf(datadogV2.NewAWSLogsIntegrationApi),
 	    "GCPIntegrationApi": reflect.ValueOf(datadogV2.NewGCPIntegrationApi),
@@ -175,6 +177,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "TeamsApi": reflect.ValueOf(datadogV2.NewTeamsApi),
 	    "WebIntegrationsApi": reflect.ValueOf(datadogV2.NewWebIntegrationsApi),
 	    "WidgetsApi": reflect.ValueOf(datadogV2.NewWidgetsApi),
+	    "AWSWIFApi": reflect.ValueOf(datadogV2.NewAWSWIFApi),
 	    "WorkflowAutomationApi": reflect.ValueOf(datadogV2.NewWorkflowAutomationApi),
 	},
 }
