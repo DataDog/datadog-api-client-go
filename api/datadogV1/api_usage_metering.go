@@ -3577,11 +3577,12 @@ func (r *GetUsageSummaryOptionalParameters) WithIncludeConnectedAccounts(include
 // GetUsageSummary Get usage across your account.
 // Get all usage across your account.
 //
-// Newly added billing dimensions and usage types appear as untyped keys on the
-// `additionalProperties` map of `UsageSummaryResponse`, `UsageSummaryDate`, and
-// `UsageSummaryDateOrg` instead of as typed fields. Call
-// `GET /api/v2/usage/summary/available_fields` to enumerate every key returned
-// at each response level—both typed fields and `additionalProperties` keys.
+// For SDK users only: all fields on `UsageSummaryResponse`, `UsageSummaryDate`, and
+// `UsageSummaryDateOrg` are accessible through each object's `additionalProperties` map.
+// Existing typed-field getters are unchanged. New billing dimensions will not have
+// typed-field getters. Use
+// [Get available fields for usage summary](https://docs.datadoghq.com/api/latest/usage-metering/#get-usage-summary-available-fields)
+// to enumerate every available key at each response level.
 //
 // This endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/).
 func (a *UsageMeteringApi) GetUsageSummary(ctx _context.Context, startMonth time.Time, o ...GetUsageSummaryOptionalParameters) (UsageSummaryResponse, *_nethttp.Response, error) {
