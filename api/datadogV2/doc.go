@@ -981,6 +981,7 @@
 //   - [SecurityMonitoringApi.ConvertSecurityMonitoringTerraformResource]
 //   - [SecurityMonitoringApi.CreateCases]
 //   - [SecurityMonitoringApi.CreateCustomFramework]
+//   - [SecurityMonitoringApi.CreateIoCTriageState]
 //   - [SecurityMonitoringApi.CreateJiraIssues]
 //   - [SecurityMonitoringApi.CreateSampleLogGenerationSubscription]
 //   - [SecurityMonitoringApi.CreateSecurityFilter]
