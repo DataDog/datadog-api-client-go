@@ -481,6 +481,7 @@
 //   - [GoogleChatIntegrationApi.ListOrganizationHandles]
 //   - [GoogleChatIntegrationApi.UpdateGoogleChatTargetAudience]
 //   - [GoogleChatIntegrationApi.UpdateOrganizationHandle]
+//   - [GovernanceInsightsApi.ListGovernanceInsights]
 //   - [HighAvailabilityMultiRegionApi.CreateHamrOrgConnection]
 //   - [HighAvailabilityMultiRegionApi.GetHamrOrgConnection]
 //   - [IPAllowlistApi.GetIPAllowlist]

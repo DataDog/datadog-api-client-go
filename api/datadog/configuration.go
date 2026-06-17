@@ -933,6 +933,7 @@ func NewConfiguration() *Configuration {
 			"v2.UpsertAndPublishFormVersion":                      false,
 			"v2.UpsertFormVersion":                                false,
 			"v2.UpdateOrgSamlConfigurations":                      false,
+			"v2.ListGovernanceInsights":                           false,
 			"v2.CreateHamrOrgConnection":                          false,
 			"v2.GetHamrOrgConnection":                             false,
 			"v2.DeleteEntityIntegrationConfig":                    false,
