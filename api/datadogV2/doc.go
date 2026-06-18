@@ -864,6 +864,8 @@
 //   - [RUMInsightsApi.QueryAggregatedLongTasks]
 //   - [RUMInsightsApi.QueryAggregatedSignalsProblems]
 //   - [RUMInsightsApi.QueryAggregatedWaterfall]
+//   - [RUMRemoteConfigApi.GetRumSdkConfig]
+//   - [RUMRemoteConfigApi.UpdateRumSdkConfig]
 //   - [ReferenceTablesApi.BatchRowsQuery]
 //   - [ReferenceTablesApi.CreateReferenceTable]
 //   - [ReferenceTablesApi.CreateReferenceTableUpload]
