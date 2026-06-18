@@ -1,0 +1,58 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"action":{"reason":"risk_accepted"},"enabled":true,"name":"Test-Get_all_mute_rules_returns_Successfully_retrieved_the_list_of_mute_rules_response-1781624472","rule":{"finding_types":["misconfiguration"],"query":"env:staging"}},"type":"mute_rules"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security/findings/automation/mute_rules
+  response:
+    body: '{"data":{"id":"4c72a302-c7c8-42bc-986a-f196580240c3","type":"mute_rules","attributes":{"action":{"reason":"risk_accepted"},"created_at":1781624472865,"created_by":{"type":"user","id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"enabled":true,"modified_at":1781624472865,"modified_by":{"type":"user","id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"name":"Test-Get_all_mute_rules_returns_Successfully_retrieved_the_list_of_mute_rules_response-1781624472","rule":{"finding_types":["misconfiguration"],"query":"env:staging"}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 1
+    method: GET
+    url: https://api.datadoghq.com/api/v2/security/findings/automation/mute_rules
+  response:
+    body: '{"data":[{"id":"4c72a302-c7c8-42bc-986a-f196580240c3","type":"mute_rules","attributes":{"action":{"reason":"risk_accepted"},"created_at":1781624472865,"created_by":{"type":"user","id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"enabled":true,"modified_at":1781624472865,"modified_by":{"type":"user","id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"name":"Test-Get_all_mute_rules_returns_Successfully_retrieved_the_list_of_mute_rules_response-1781624472","rule":{"finding_types":["misconfiguration"],"query":"env:staging"}}}],"meta":{"page":{"total_filtered_count":1}},"links":{"first":"/api/v2/security/findings/automation/mute_rules?page[size]=1000\u0026page[number]=0","last":"/api/v2/security/findings/automation/mute_rules?page[size]=1000\u0026page[number]=0"}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security/findings/automation/mute_rules/4c72a302-c7c8-42bc-986a-f196580240c3
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
