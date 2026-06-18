@@ -18,6 +18,10 @@ type DegradationDataAttributesUpdatesItems struct {
 	ComponentsAffected []DegradationDataAttributesUpdatesItemsComponentsAffectedItems `json:"components_affected,omitempty"`
 	// Timestamp of when the update was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// The date and time the resource was deleted.
+	DeletedAt *string `json:"deleted_at,omitempty"`
+	// UUID of the user who deleted the resource.
+	DeletedByUserUuid *string `json:"deleted_by_user_uuid,omitempty"`
 	// Description of the update.
 	Description *string `json:"description,omitempty"`
 	// Identifier of the update.
@@ -106,6 +110,62 @@ func (o *DegradationDataAttributesUpdatesItems) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *DegradationDataAttributesUpdatesItems) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
+func (o *DegradationDataAttributesUpdatesItems) GetDeletedAt() string {
+	if o == nil || o.DeletedAt == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeletedAt
+}
+
+// GetDeletedAtOk returns a tuple with the DeletedAt field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DegradationDataAttributesUpdatesItems) GetDeletedAtOk() (*string, bool) {
+	if o == nil || o.DeletedAt == nil {
+		return nil, false
+	}
+	return o.DeletedAt, true
+}
+
+// HasDeletedAt returns a boolean if a field has been set.
+func (o *DegradationDataAttributesUpdatesItems) HasDeletedAt() bool {
+	return o != nil && o.DeletedAt != nil
+}
+
+// SetDeletedAt gets a reference to the given string and assigns it to the DeletedAt field.
+func (o *DegradationDataAttributesUpdatesItems) SetDeletedAt(v string) {
+	o.DeletedAt = &v
+}
+
+// GetDeletedByUserUuid returns the DeletedByUserUuid field value if set, zero value otherwise.
+func (o *DegradationDataAttributesUpdatesItems) GetDeletedByUserUuid() string {
+	if o == nil || o.DeletedByUserUuid == nil {
+		var ret string
+		return ret
+	}
+	return *o.DeletedByUserUuid
+}
+
+// GetDeletedByUserUuidOk returns a tuple with the DeletedByUserUuid field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DegradationDataAttributesUpdatesItems) GetDeletedByUserUuidOk() (*string, bool) {
+	if o == nil || o.DeletedByUserUuid == nil {
+		return nil, false
+	}
+	return o.DeletedByUserUuid, true
+}
+
+// HasDeletedByUserUuid returns a boolean if a field has been set.
+func (o *DegradationDataAttributesUpdatesItems) HasDeletedByUserUuid() bool {
+	return o != nil && o.DeletedByUserUuid != nil
+}
+
+// SetDeletedByUserUuid gets a reference to the given string and assigns it to the DeletedByUserUuid field.
+func (o *DegradationDataAttributesUpdatesItems) SetDeletedByUserUuid(v string) {
+	o.DeletedByUserUuid = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -292,6 +352,12 @@ func (o DegradationDataAttributesUpdatesItems) MarshalJSON() ([]byte, error) {
 			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
+	if o.DeletedAt != nil {
+		toSerialize["deleted_at"] = o.DeletedAt
+	}
+	if o.DeletedByUserUuid != nil {
+		toSerialize["deleted_by_user_uuid"] = o.DeletedByUserUuid
+	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
@@ -330,6 +396,8 @@ func (o *DegradationDataAttributesUpdatesItems) UnmarshalJSON(bytes []byte) (err
 	all := struct {
 		ComponentsAffected     []DegradationDataAttributesUpdatesItemsComponentsAffectedItems `json:"components_affected,omitempty"`
 		CreatedAt              *time.Time                                                     `json:"created_at,omitempty"`
+		DeletedAt              *string                                                        `json:"deleted_at,omitempty"`
+		DeletedByUserUuid      *string                                                        `json:"deleted_by_user_uuid,omitempty"`
 		Description            *string                                                        `json:"description,omitempty"`
 		Id                     *uuid.UUID                                                     `json:"id,omitempty"`
 		LastModifiedByUserUuid *string                                                        `json:"last_modified_by_user_uuid,omitempty"`
@@ -342,7 +410,7 @@ func (o *DegradationDataAttributesUpdatesItems) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"components_affected", "created_at", "description", "id", "last_modified_by_user_uuid", "modified_at", "started_at", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"components_affected", "created_at", "deleted_at", "deleted_by_user_uuid", "description", "id", "last_modified_by_user_uuid", "modified_at", "started_at", "status"})
 	} else {
 		return err
 	}
@@ -350,6 +418,8 @@ func (o *DegradationDataAttributesUpdatesItems) UnmarshalJSON(bytes []byte) (err
 	hasInvalidField := false
 	o.ComponentsAffected = all.ComponentsAffected
 	o.CreatedAt = all.CreatedAt
+	o.DeletedAt = all.DeletedAt
+	o.DeletedByUserUuid = all.DeletedByUserUuid
 	o.Description = all.Description
 	o.Id = all.Id
 	o.LastModifiedByUserUuid = all.LastModifiedByUserUuid

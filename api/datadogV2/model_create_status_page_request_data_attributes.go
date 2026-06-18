@@ -20,10 +20,16 @@ type CreateStatusPageRequestDataAttributes struct {
 	DomainPrefix string `json:"domain_prefix"`
 	// Base64-encoded image data included in email notifications sent to status page subscribers.
 	EmailHeaderImage *string `json:"email_header_image,omitempty"`
+	// Whether the status page is enabled.
+	Enabled *bool `json:"enabled,omitempty"`
 	// Base64-encoded image data displayed in the browser tab.
 	Favicon *string `json:"favicon,omitempty"`
 	// The name of the status page.
 	Name string `json:"name"`
+	// The Slack app icon URL for the status page.
+	SlackAppIcon *string `json:"slack_app_icon,omitempty"`
+	// Whether Slack subscriptions are enabled for the status page.
+	SlackSubscriptionsEnabled *bool `json:"slack_subscriptions_enabled,omitempty"`
 	// Whether users can subscribe to the status page.
 	SubscriptionsEnabled *bool `json:"subscriptions_enabled,omitempty"`
 	// The type of the status page controlling how the status page is accessed.
@@ -163,6 +169,34 @@ func (o *CreateStatusPageRequestDataAttributes) SetEmailHeaderImage(v string) {
 	o.EmailHeaderImage = &v
 }
 
+// GetEnabled returns the Enabled field value if set, zero value otherwise.
+func (o *CreateStatusPageRequestDataAttributes) GetEnabled() bool {
+	if o == nil || o.Enabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Enabled
+}
+
+// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateStatusPageRequestDataAttributes) GetEnabledOk() (*bool, bool) {
+	if o == nil || o.Enabled == nil {
+		return nil, false
+	}
+	return o.Enabled, true
+}
+
+// HasEnabled returns a boolean if a field has been set.
+func (o *CreateStatusPageRequestDataAttributes) HasEnabled() bool {
+	return o != nil && o.Enabled != nil
+}
+
+// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
+func (o *CreateStatusPageRequestDataAttributes) SetEnabled(v bool) {
+	o.Enabled = &v
+}
+
 // GetFavicon returns the Favicon field value if set, zero value otherwise.
 func (o *CreateStatusPageRequestDataAttributes) GetFavicon() string {
 	if o == nil || o.Favicon == nil {
@@ -212,6 +246,62 @@ func (o *CreateStatusPageRequestDataAttributes) GetNameOk() (*string, bool) {
 // SetName sets field value.
 func (o *CreateStatusPageRequestDataAttributes) SetName(v string) {
 	o.Name = v
+}
+
+// GetSlackAppIcon returns the SlackAppIcon field value if set, zero value otherwise.
+func (o *CreateStatusPageRequestDataAttributes) GetSlackAppIcon() string {
+	if o == nil || o.SlackAppIcon == nil {
+		var ret string
+		return ret
+	}
+	return *o.SlackAppIcon
+}
+
+// GetSlackAppIconOk returns a tuple with the SlackAppIcon field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateStatusPageRequestDataAttributes) GetSlackAppIconOk() (*string, bool) {
+	if o == nil || o.SlackAppIcon == nil {
+		return nil, false
+	}
+	return o.SlackAppIcon, true
+}
+
+// HasSlackAppIcon returns a boolean if a field has been set.
+func (o *CreateStatusPageRequestDataAttributes) HasSlackAppIcon() bool {
+	return o != nil && o.SlackAppIcon != nil
+}
+
+// SetSlackAppIcon gets a reference to the given string and assigns it to the SlackAppIcon field.
+func (o *CreateStatusPageRequestDataAttributes) SetSlackAppIcon(v string) {
+	o.SlackAppIcon = &v
+}
+
+// GetSlackSubscriptionsEnabled returns the SlackSubscriptionsEnabled field value if set, zero value otherwise.
+func (o *CreateStatusPageRequestDataAttributes) GetSlackSubscriptionsEnabled() bool {
+	if o == nil || o.SlackSubscriptionsEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.SlackSubscriptionsEnabled
+}
+
+// GetSlackSubscriptionsEnabledOk returns a tuple with the SlackSubscriptionsEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateStatusPageRequestDataAttributes) GetSlackSubscriptionsEnabledOk() (*bool, bool) {
+	if o == nil || o.SlackSubscriptionsEnabled == nil {
+		return nil, false
+	}
+	return o.SlackSubscriptionsEnabled, true
+}
+
+// HasSlackSubscriptionsEnabled returns a boolean if a field has been set.
+func (o *CreateStatusPageRequestDataAttributes) HasSlackSubscriptionsEnabled() bool {
+	return o != nil && o.SlackSubscriptionsEnabled != nil
+}
+
+// SetSlackSubscriptionsEnabled gets a reference to the given bool and assigns it to the SlackSubscriptionsEnabled field.
+func (o *CreateStatusPageRequestDataAttributes) SetSlackSubscriptionsEnabled(v bool) {
+	o.SlackSubscriptionsEnabled = &v
 }
 
 // GetSubscriptionsEnabled returns the SubscriptionsEnabled field value if set, zero value otherwise.
@@ -304,10 +394,19 @@ func (o CreateStatusPageRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.EmailHeaderImage != nil {
 		toSerialize["email_header_image"] = o.EmailHeaderImage
 	}
+	if o.Enabled != nil {
+		toSerialize["enabled"] = o.Enabled
+	}
 	if o.Favicon != nil {
 		toSerialize["favicon"] = o.Favicon
 	}
 	toSerialize["name"] = o.Name
+	if o.SlackAppIcon != nil {
+		toSerialize["slack_app_icon"] = o.SlackAppIcon
+	}
+	if o.SlackSubscriptionsEnabled != nil {
+		toSerialize["slack_subscriptions_enabled"] = o.SlackSubscriptionsEnabled
+	}
 	if o.SubscriptionsEnabled != nil {
 		toSerialize["subscriptions_enabled"] = o.SubscriptionsEnabled
 	}
@@ -323,15 +422,18 @@ func (o CreateStatusPageRequestDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateStatusPageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CompanyLogo          *string                                                 `json:"company_logo,omitempty"`
-		Components           []CreateStatusPageRequestDataAttributesComponentsItems  `json:"components,omitempty"`
-		DomainPrefix         *string                                                 `json:"domain_prefix"`
-		EmailHeaderImage     *string                                                 `json:"email_header_image,omitempty"`
-		Favicon              *string                                                 `json:"favicon,omitempty"`
-		Name                 *string                                                 `json:"name"`
-		SubscriptionsEnabled *bool                                                   `json:"subscriptions_enabled,omitempty"`
-		Type                 *CreateStatusPageRequestDataAttributesType              `json:"type"`
-		VisualizationType    *CreateStatusPageRequestDataAttributesVisualizationType `json:"visualization_type"`
+		CompanyLogo               *string                                                 `json:"company_logo,omitempty"`
+		Components                []CreateStatusPageRequestDataAttributesComponentsItems  `json:"components,omitempty"`
+		DomainPrefix              *string                                                 `json:"domain_prefix"`
+		EmailHeaderImage          *string                                                 `json:"email_header_image,omitempty"`
+		Enabled                   *bool                                                   `json:"enabled,omitempty"`
+		Favicon                   *string                                                 `json:"favicon,omitempty"`
+		Name                      *string                                                 `json:"name"`
+		SlackAppIcon              *string                                                 `json:"slack_app_icon,omitempty"`
+		SlackSubscriptionsEnabled *bool                                                   `json:"slack_subscriptions_enabled,omitempty"`
+		SubscriptionsEnabled      *bool                                                   `json:"subscriptions_enabled,omitempty"`
+		Type                      *CreateStatusPageRequestDataAttributesType              `json:"type"`
+		VisualizationType         *CreateStatusPageRequestDataAttributesVisualizationType `json:"visualization_type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -350,7 +452,7 @@ func (o *CreateStatusPageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"company_logo", "components", "domain_prefix", "email_header_image", "favicon", "name", "subscriptions_enabled", "type", "visualization_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"company_logo", "components", "domain_prefix", "email_header_image", "enabled", "favicon", "name", "slack_app_icon", "slack_subscriptions_enabled", "subscriptions_enabled", "type", "visualization_type"})
 	} else {
 		return err
 	}
@@ -360,8 +462,11 @@ func (o *CreateStatusPageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err
 	o.Components = all.Components
 	o.DomainPrefix = *all.DomainPrefix
 	o.EmailHeaderImage = all.EmailHeaderImage
+	o.Enabled = all.Enabled
 	o.Favicon = all.Favicon
 	o.Name = *all.Name
+	o.SlackAppIcon = all.SlackAppIcon
+	o.SlackSubscriptionsEnabled = all.SlackSubscriptionsEnabled
 	o.SubscriptionsEnabled = all.SubscriptionsEnabled
 	if !all.Type.IsValid() {
 		hasInvalidField = true

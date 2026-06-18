@@ -14,7 +14,7 @@ import (
 // CreateBackfilledMaintenanceRequestDataAttributesUpdatesItems A backfilled maintenance update entry.
 type CreateBackfilledMaintenanceRequestDataAttributesUpdatesItems struct {
 	// The components affected.
-	ComponentsAffected []CreateMaintenanceRequestDataAttributesComponentsAffectedItems `json:"components_affected"`
+	ComponentsAffected []CreateMaintenanceRequestDataAttributesComponentsAffectedItems `json:"components_affected,omitempty"`
 	// A description of the update.
 	Description string `json:"description"`
 	// Timestamp of when the update occurred.
@@ -30,9 +30,8 @@ type CreateBackfilledMaintenanceRequestDataAttributesUpdatesItems struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCreateBackfilledMaintenanceRequestDataAttributesUpdatesItems(componentsAffected []CreateMaintenanceRequestDataAttributesComponentsAffectedItems, description string, startedAt time.Time, status CreateMaintenanceRequestDataAttributesUpdatesItemsStatus) *CreateBackfilledMaintenanceRequestDataAttributesUpdatesItems {
+func NewCreateBackfilledMaintenanceRequestDataAttributesUpdatesItems(description string, startedAt time.Time, status CreateMaintenanceRequestDataAttributesUpdatesItemsStatus) *CreateBackfilledMaintenanceRequestDataAttributesUpdatesItems {
 	this := CreateBackfilledMaintenanceRequestDataAttributesUpdatesItems{}
-	this.ComponentsAffected = componentsAffected
 	this.Description = description
 	this.StartedAt = startedAt
 	this.Status = status
@@ -47,25 +46,30 @@ func NewCreateBackfilledMaintenanceRequestDataAttributesUpdatesItemsWithDefaults
 	return &this
 }
 
-// GetComponentsAffected returns the ComponentsAffected field value.
+// GetComponentsAffected returns the ComponentsAffected field value if set, zero value otherwise.
 func (o *CreateBackfilledMaintenanceRequestDataAttributesUpdatesItems) GetComponentsAffected() []CreateMaintenanceRequestDataAttributesComponentsAffectedItems {
-	if o == nil {
+	if o == nil || o.ComponentsAffected == nil {
 		var ret []CreateMaintenanceRequestDataAttributesComponentsAffectedItems
 		return ret
 	}
 	return o.ComponentsAffected
 }
 
-// GetComponentsAffectedOk returns a tuple with the ComponentsAffected field value
+// GetComponentsAffectedOk returns a tuple with the ComponentsAffected field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateBackfilledMaintenanceRequestDataAttributesUpdatesItems) GetComponentsAffectedOk() (*[]CreateMaintenanceRequestDataAttributesComponentsAffectedItems, bool) {
-	if o == nil {
+	if o == nil || o.ComponentsAffected == nil {
 		return nil, false
 	}
 	return &o.ComponentsAffected, true
 }
 
-// SetComponentsAffected sets field value.
+// HasComponentsAffected returns a boolean if a field has been set.
+func (o *CreateBackfilledMaintenanceRequestDataAttributesUpdatesItems) HasComponentsAffected() bool {
+	return o != nil && o.ComponentsAffected != nil
+}
+
+// SetComponentsAffected gets a reference to the given []CreateMaintenanceRequestDataAttributesComponentsAffectedItems and assigns it to the ComponentsAffected field.
 func (o *CreateBackfilledMaintenanceRequestDataAttributesUpdatesItems) SetComponentsAffected(v []CreateMaintenanceRequestDataAttributesComponentsAffectedItems) {
 	o.ComponentsAffected = v
 }
@@ -145,7 +149,9 @@ func (o CreateBackfilledMaintenanceRequestDataAttributesUpdatesItems) MarshalJSO
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["components_affected"] = o.ComponentsAffected
+	if o.ComponentsAffected != nil {
+		toSerialize["components_affected"] = o.ComponentsAffected
+	}
 	toSerialize["description"] = o.Description
 	if o.StartedAt.Nanosecond() == 0 {
 		toSerialize["started_at"] = o.StartedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -163,16 +169,13 @@ func (o CreateBackfilledMaintenanceRequestDataAttributesUpdatesItems) MarshalJSO
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateBackfilledMaintenanceRequestDataAttributesUpdatesItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ComponentsAffected *[]CreateMaintenanceRequestDataAttributesComponentsAffectedItems `json:"components_affected"`
-		Description        *string                                                          `json:"description"`
-		StartedAt          *time.Time                                                       `json:"started_at"`
-		Status             *CreateMaintenanceRequestDataAttributesUpdatesItemsStatus        `json:"status"`
+		ComponentsAffected []CreateMaintenanceRequestDataAttributesComponentsAffectedItems `json:"components_affected,omitempty"`
+		Description        *string                                                         `json:"description"`
+		StartedAt          *time.Time                                                      `json:"started_at"`
+		Status             *CreateMaintenanceRequestDataAttributesUpdatesItemsStatus       `json:"status"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.ComponentsAffected == nil {
-		return fmt.Errorf("required field components_affected missing")
 	}
 	if all.Description == nil {
 		return fmt.Errorf("required field description missing")
@@ -191,7 +194,7 @@ func (o *CreateBackfilledMaintenanceRequestDataAttributesUpdatesItems) Unmarshal
 	}
 
 	hasInvalidField := false
-	o.ComponentsAffected = *all.ComponentsAffected
+	o.ComponentsAffected = all.ComponentsAffected
 	o.Description = *all.Description
 	o.StartedAt = *all.StartedAt
 	if !all.Status.IsValid() {
