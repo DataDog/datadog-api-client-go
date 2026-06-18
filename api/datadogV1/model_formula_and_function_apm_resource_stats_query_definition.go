@@ -21,11 +21,11 @@ type FormulaAndFunctionApmResourceStatsQueryDefinition struct {
 	// APM environment.
 	Env string `json:"env"`
 	// Array of fields to group results by.
-	GroupBy []string `json:"group_by,omitempty"`
+	GroupBy []string `json:"group_by"`
 	// Name of this query to use in formulas.
 	Name string `json:"name"`
 	// Name of operation on service.
-	OperationName *string `json:"operation_name,omitempty"`
+	OperationName string `json:"operation_name"`
 	// Name of the second primary tag used within APM. Required when `primary_tag_value` is specified. See https://docs.datadoghq.com/tracing/guide/setting_primary_tags_to_scope/#add-a-second-primary-tag-in-datadog
 	PrimaryTagName *string `json:"primary_tag_name,omitempty"`
 	// Value of the second primary tag by which to filter APM data. `primary_tag_name` must also be specified.
@@ -45,11 +45,13 @@ type FormulaAndFunctionApmResourceStatsQueryDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewFormulaAndFunctionApmResourceStatsQueryDefinition(dataSource FormulaAndFunctionApmResourceStatsDataSource, env string, name string, service string, stat FormulaAndFunctionApmResourceStatName) *FormulaAndFunctionApmResourceStatsQueryDefinition {
+func NewFormulaAndFunctionApmResourceStatsQueryDefinition(dataSource FormulaAndFunctionApmResourceStatsDataSource, env string, groupBy []string, name string, operationName string, service string, stat FormulaAndFunctionApmResourceStatName) *FormulaAndFunctionApmResourceStatsQueryDefinition {
 	this := FormulaAndFunctionApmResourceStatsQueryDefinition{}
 	this.DataSource = dataSource
 	this.Env = env
+	this.GroupBy = groupBy
 	this.Name = name
+	this.OperationName = operationName
 	this.Service = service
 	this.Stat = stat
 	return &this
@@ -137,30 +139,25 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetEnv(v string) {
 	o.Env = v
 }
 
-// GetGroupBy returns the GroupBy field value if set, zero value otherwise.
+// GetGroupBy returns the GroupBy field value.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetGroupBy() []string {
-	if o == nil || o.GroupBy == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
 	return o.GroupBy
 }
 
-// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
+// GetGroupByOk returns a tuple with the GroupBy field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetGroupByOk() (*[]string, bool) {
-	if o == nil || o.GroupBy == nil {
+	if o == nil {
 		return nil, false
 	}
 	return &o.GroupBy, true
 }
 
-// HasGroupBy returns a boolean if a field has been set.
-func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) HasGroupBy() bool {
-	return o != nil && o.GroupBy != nil
-}
-
-// SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
+// SetGroupBy sets field value.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetGroupBy(v []string) {
 	o.GroupBy = v
 }
@@ -188,32 +185,27 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetName(v string) {
 	o.Name = v
 }
 
-// GetOperationName returns the OperationName field value if set, zero value otherwise.
+// GetOperationName returns the OperationName field value.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetOperationName() string {
-	if o == nil || o.OperationName == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.OperationName
+	return o.OperationName
 }
 
-// GetOperationNameOk returns a tuple with the OperationName field value if set, nil otherwise
+// GetOperationNameOk returns a tuple with the OperationName field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetOperationNameOk() (*string, bool) {
-	if o == nil || o.OperationName == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.OperationName, true
+	return &o.OperationName, true
 }
 
-// HasOperationName returns a boolean if a field has been set.
-func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) HasOperationName() bool {
-	return o != nil && o.OperationName != nil
-}
-
-// SetOperationName gets a reference to the given string and assigns it to the OperationName field.
+// SetOperationName sets field value.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetOperationName(v string) {
-	o.OperationName = &v
+	o.OperationName = v
 }
 
 // GetPrimaryTagName returns the PrimaryTagName field value if set, zero value otherwise.
@@ -357,13 +349,9 @@ func (o FormulaAndFunctionApmResourceStatsQueryDefinition) MarshalJSON() ([]byte
 	}
 	toSerialize["data_source"] = o.DataSource
 	toSerialize["env"] = o.Env
-	if o.GroupBy != nil {
-		toSerialize["group_by"] = o.GroupBy
-	}
+	toSerialize["group_by"] = o.GroupBy
 	toSerialize["name"] = o.Name
-	if o.OperationName != nil {
-		toSerialize["operation_name"] = o.OperationName
-	}
+	toSerialize["operation_name"] = o.OperationName
 	if o.PrimaryTagName != nil {
 		toSerialize["primary_tag_name"] = o.PrimaryTagName
 	}
@@ -388,9 +376,9 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 		CrossOrgUuids   []string                                      `json:"cross_org_uuids,omitempty"`
 		DataSource      *FormulaAndFunctionApmResourceStatsDataSource `json:"data_source"`
 		Env             *string                                       `json:"env"`
-		GroupBy         []string                                      `json:"group_by,omitempty"`
+		GroupBy         *[]string                                     `json:"group_by"`
 		Name            *string                                       `json:"name"`
-		OperationName   *string                                       `json:"operation_name,omitempty"`
+		OperationName   *string                                       `json:"operation_name"`
 		PrimaryTagName  *string                                       `json:"primary_tag_name,omitempty"`
 		PrimaryTagValue *string                                       `json:"primary_tag_value,omitempty"`
 		ResourceName    *string                                       `json:"resource_name,omitempty"`
@@ -406,8 +394,14 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 	if all.Env == nil {
 		return fmt.Errorf("required field env missing")
 	}
+	if all.GroupBy == nil {
+		return fmt.Errorf("required field group_by missing")
+	}
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
+	}
+	if all.OperationName == nil {
+		return fmt.Errorf("required field operation_name missing")
 	}
 	if all.Service == nil {
 		return fmt.Errorf("required field service missing")
@@ -430,9 +424,9 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 		o.DataSource = *all.DataSource
 	}
 	o.Env = *all.Env
-	o.GroupBy = all.GroupBy
+	o.GroupBy = *all.GroupBy
 	o.Name = *all.Name
-	o.OperationName = all.OperationName
+	o.OperationName = *all.OperationName
 	o.PrimaryTagName = all.PrimaryTagName
 	o.PrimaryTagValue = all.PrimaryTagValue
 	o.ResourceName = all.ResourceName
