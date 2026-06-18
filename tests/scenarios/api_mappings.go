@@ -147,6 +147,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "ReferenceTablesApi": reflect.ValueOf(datadogV2.NewReferenceTablesApi),
 	    "ApplicationSecurityApi": reflect.ValueOf(datadogV2.NewApplicationSecurityApi),
 	    "CSMThreatsApi": reflect.ValueOf(datadogV2.NewCSMThreatsApi),
+	    "RUMRemoteConfigApi": reflect.ValueOf(datadogV2.NewRUMRemoteConfigApi),
 	    "RumReplayHeatmapsApi": reflect.ValueOf(datadogV2.NewRumReplayHeatmapsApi),
 	    "ReportSchedulesApi": reflect.ValueOf(datadogV2.NewReportSchedulesApi),
 	    "RestrictionPoliciesApi": reflect.ValueOf(datadogV2.NewRestrictionPoliciesApi),
