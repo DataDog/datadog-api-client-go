@@ -1,0 +1,133 @@
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
+
+package datadogV2
+
+import (
+	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+)
+
+// RemediationExecuteRequest Request payload for executing a remediation.
+type RemediationExecuteRequest struct {
+	// The Action Platform AWS connection ID to execute through. Must carry the integration_aws connection prefix.
+	ConnectionId string `json:"connection_id"`
+	// The ID of the investigation to remediate.
+	InvestigationId string `json:"investigation_id"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject       map[string]interface{} `json:"-"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// NewRemediationExecuteRequest instantiates a new RemediationExecuteRequest object.
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed.
+func NewRemediationExecuteRequest(connectionId string, investigationId string) *RemediationExecuteRequest {
+	this := RemediationExecuteRequest{}
+	this.ConnectionId = connectionId
+	this.InvestigationId = investigationId
+	return &this
+}
+
+// NewRemediationExecuteRequestWithDefaults instantiates a new RemediationExecuteRequest object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set.
+func NewRemediationExecuteRequestWithDefaults() *RemediationExecuteRequest {
+	this := RemediationExecuteRequest{}
+	return &this
+}
+
+// GetConnectionId returns the ConnectionId field value.
+func (o *RemediationExecuteRequest) GetConnectionId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+	return o.ConnectionId
+}
+
+// GetConnectionIdOk returns a tuple with the ConnectionId field value
+// and a boolean to check if the value has been set.
+func (o *RemediationExecuteRequest) GetConnectionIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ConnectionId, true
+}
+
+// SetConnectionId sets field value.
+func (o *RemediationExecuteRequest) SetConnectionId(v string) {
+	o.ConnectionId = v
+}
+
+// GetInvestigationId returns the InvestigationId field value.
+func (o *RemediationExecuteRequest) GetInvestigationId() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+	return o.InvestigationId
+}
+
+// GetInvestigationIdOk returns a tuple with the InvestigationId field value
+// and a boolean to check if the value has been set.
+func (o *RemediationExecuteRequest) GetInvestigationIdOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.InvestigationId, true
+}
+
+// SetInvestigationId sets field value.
+func (o *RemediationExecuteRequest) SetInvestigationId(v string) {
+	o.InvestigationId = v
+}
+
+// MarshalJSON serializes the struct using spec logic.
+func (o RemediationExecuteRequest) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return datadog.Marshal(o.UnparsedObject)
+	}
+	toSerialize["connection_id"] = o.ConnectionId
+	toSerialize["investigation_id"] = o.InvestigationId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+	return datadog.Marshal(toSerialize)
+}
+
+// UnmarshalJSON deserializes the given payload.
+func (o *RemediationExecuteRequest) UnmarshalJSON(bytes []byte) (err error) {
+	all := struct {
+		ConnectionId    *string `json:"connection_id"`
+		InvestigationId *string `json:"investigation_id"`
+	}{}
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.ConnectionId == nil {
+		return fmt.Errorf("required field connection_id missing")
+	}
+	if all.InvestigationId == nil {
+		return fmt.Errorf("required field investigation_id missing")
+	}
+	additionalProperties := make(map[string]interface{})
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"connection_id", "investigation_id"})
+	} else {
+		return err
+	}
+	o.ConnectionId = *all.ConnectionId
+	o.InvestigationId = *all.InvestigationId
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return nil
+}
