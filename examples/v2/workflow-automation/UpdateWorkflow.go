@@ -27,7 +27,7 @@ func main() {
 						{
 							Connections: []datadogV2.Connection{
 								{
-									ConnectionId: "11111111-1111-1111-1111-111111111111",
+									ConnectionId: "e1e64943-c7c5-4487-aece-25aaec7d3aad",
 									Label:        "INTEGRATION_DATADOG",
 								},
 							},
