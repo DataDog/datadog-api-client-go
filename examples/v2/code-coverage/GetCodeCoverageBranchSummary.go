@@ -16,8 +16,9 @@ func main() {
 	body := datadogV2.BranchCoverageSummaryRequest{
 		Data: datadogV2.BranchCoverageSummaryRequestData{
 			Attributes: datadogV2.BranchCoverageSummaryRequestAttributes{
-				Branch:       "prod",
-				RepositoryId: "github.com/datadog/shopist",
+				Branch:        "prod",
+				RepositoryId:  datadog.PtrString("github.com/datadog/shopist"),
+				RepositoryUrl: datadog.PtrString("https://github.com/datadog/shopist"),
 			},
 			Type: datadogV2.BRANCHCOVERAGESUMMARYREQUESTTYPE_CI_APP_COVERAGE_BRANCH_SUMMARY_REQUEST,
 		},
