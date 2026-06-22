@@ -16,7 +16,7 @@ func main() {
 	body := datadogV2.CommitCoverageSummaryRequest{
 		Data: datadogV2.CommitCoverageSummaryRequestData{
 			Attributes: datadogV2.CommitCoverageSummaryRequestAttributes{
-				RepositoryId: "github.com/datadog/shopist",
+				RepositoryId: datadog.PtrString("github.com/datadog/shopist"),
 				CommitSha:    "c55b0ce584e139bde41a00002ab31bc7d75f791d",
 			},
 			Type: datadogV2.COMMITCOVERAGESUMMARYREQUESTTYPE_CI_APP_COVERAGE_COMMIT_SUMMARY_REQUEST,
