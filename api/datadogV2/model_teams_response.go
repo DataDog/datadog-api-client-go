@@ -18,6 +18,8 @@ type TeamsResponse struct {
 	Links *TeamsResponseLinks `json:"links,omitempty"`
 	// Teams response metadata.
 	Meta *TeamsResponseMeta `json:"meta,omitempty"`
+	// Indicates whether the response is from a test environment.
+	Test *bool `json:"test,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -152,6 +154,34 @@ func (o *TeamsResponse) SetMeta(v TeamsResponseMeta) {
 	o.Meta = &v
 }
 
+// GetTest returns the Test field value if set, zero value otherwise.
+func (o *TeamsResponse) GetTest() bool {
+	if o == nil || o.Test == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Test
+}
+
+// GetTestOk returns a tuple with the Test field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TeamsResponse) GetTestOk() (*bool, bool) {
+	if o == nil || o.Test == nil {
+		return nil, false
+	}
+	return o.Test, true
+}
+
+// HasTest returns a boolean if a field has been set.
+func (o *TeamsResponse) HasTest() bool {
+	return o != nil && o.Test != nil
+}
+
+// SetTest gets a reference to the given bool and assigns it to the Test field.
+func (o *TeamsResponse) SetTest(v bool) {
+	o.Test = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o TeamsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -170,6 +200,9 @@ func (o TeamsResponse) MarshalJSON() ([]byte, error) {
 	if o.Meta != nil {
 		toSerialize["meta"] = o.Meta
 	}
+	if o.Test != nil {
+		toSerialize["test"] = o.Test
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -184,13 +217,14 @@ func (o *TeamsResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Included []TeamIncluded      `json:"included,omitempty"`
 		Links    *TeamsResponseLinks `json:"links,omitempty"`
 		Meta     *TeamsResponseMeta  `json:"meta,omitempty"`
+		Test     *bool               `json:"test,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "links", "meta"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included", "links", "meta", "test"})
 	} else {
 		return err
 	}
@@ -206,6 +240,7 @@ func (o *TeamsResponse) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Meta = all.Meta
+	o.Test = all.Test
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
