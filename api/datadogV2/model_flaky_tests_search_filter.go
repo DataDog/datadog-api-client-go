@@ -25,6 +25,8 @@ type FlakyTestsSearchFilter struct {
 	// - `@git.branch`
 	// - `@test.codeowners`
 	// - `env`
+	// - `failure_rate`
+	// - `pipelines_failed`
 	Query *string `json:"query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
