@@ -31,6 +31,7 @@ type LogsProcessor struct {
 	LogsDecoderProcessor              *LogsDecoderProcessor
 	LogsSchemaProcessor               *LogsSchemaProcessor
 	LogsExcludeAttributeProcessor     *LogsExcludeAttributeProcessor
+	LogsArrayMapProcessor             *LogsArrayMapProcessor
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -139,6 +140,11 @@ func LogsSchemaProcessorAsLogsProcessor(v *LogsSchemaProcessor) LogsProcessor {
 // LogsExcludeAttributeProcessorAsLogsProcessor is a convenience function that returns LogsExcludeAttributeProcessor wrapped in LogsProcessor.
 func LogsExcludeAttributeProcessorAsLogsProcessor(v *LogsExcludeAttributeProcessor) LogsProcessor {
 	return LogsProcessor{LogsExcludeAttributeProcessor: v}
+}
+
+// LogsArrayMapProcessorAsLogsProcessor is a convenience function that returns LogsArrayMapProcessor wrapped in LogsProcessor.
+func LogsArrayMapProcessorAsLogsProcessor(v *LogsArrayMapProcessor) LogsProcessor {
+	return LogsProcessor{LogsArrayMapProcessor: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -502,6 +508,23 @@ func (obj *LogsProcessor) UnmarshalJSON(data []byte) error {
 		obj.LogsExcludeAttributeProcessor = nil
 	}
 
+	// try to unmarshal data into LogsArrayMapProcessor
+	err = datadog.Unmarshal(data, &obj.LogsArrayMapProcessor)
+	if err == nil {
+		if obj.LogsArrayMapProcessor != nil && obj.LogsArrayMapProcessor.UnparsedObject == nil {
+			jsonLogsArrayMapProcessor, _ := datadog.Marshal(obj.LogsArrayMapProcessor)
+			if string(jsonLogsArrayMapProcessor) == "{}" { // empty struct
+				obj.LogsArrayMapProcessor = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.LogsArrayMapProcessor = nil
+		}
+	} else {
+		obj.LogsArrayMapProcessor = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.LogsGrokParser = nil
@@ -525,6 +548,7 @@ func (obj *LogsProcessor) UnmarshalJSON(data []byte) error {
 		obj.LogsDecoderProcessor = nil
 		obj.LogsSchemaProcessor = nil
 		obj.LogsExcludeAttributeProcessor = nil
+		obj.LogsArrayMapProcessor = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -614,6 +638,10 @@ func (obj LogsProcessor) MarshalJSON() ([]byte, error) {
 
 	if obj.LogsExcludeAttributeProcessor != nil {
 		return datadog.Marshal(&obj.LogsExcludeAttributeProcessor)
+	}
+
+	if obj.LogsArrayMapProcessor != nil {
+		return datadog.Marshal(&obj.LogsArrayMapProcessor)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -706,6 +734,10 @@ func (obj *LogsProcessor) GetActualInstance() interface{} {
 
 	if obj.LogsExcludeAttributeProcessor != nil {
 		return obj.LogsExcludeAttributeProcessor
+	}
+
+	if obj.LogsArrayMapProcessor != nil {
+		return obj.LogsArrayMapProcessor
 	}
 
 	// all schemas are nil
