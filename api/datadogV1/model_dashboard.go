@@ -20,6 +20,8 @@ type Dashboard struct {
 	AuthorName datadog.NullableString `json:"author_name,omitempty"`
 	// Creation date of the dashboard.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
+	// The default timeframe applied when opening the dashboard. Set to `null` to clear the dashboard's default timeframe.
+	DefaultTimeframe *DashboardDefaultTimeframeSetting `json:"default_timeframe,omitempty"`
 	// Description of the dashboard.
 	Description datadog.NullableString `json:"description,omitempty"`
 	// ID of the dashboard.
@@ -173,6 +175,34 @@ func (o *Dashboard) HasCreatedAt() bool {
 // SetCreatedAt gets a reference to the given time.Time and assigns it to the CreatedAt field.
 func (o *Dashboard) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
+}
+
+// GetDefaultTimeframe returns the DefaultTimeframe field value if set, zero value otherwise.
+func (o *Dashboard) GetDefaultTimeframe() DashboardDefaultTimeframeSetting {
+	if o == nil || o.DefaultTimeframe == nil {
+		var ret DashboardDefaultTimeframeSetting
+		return ret
+	}
+	return *o.DefaultTimeframe
+}
+
+// GetDefaultTimeframeOk returns a tuple with the DefaultTimeframe field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Dashboard) GetDefaultTimeframeOk() (*DashboardDefaultTimeframeSetting, bool) {
+	if o == nil || o.DefaultTimeframe == nil {
+		return nil, false
+	}
+	return o.DefaultTimeframe, true
+}
+
+// HasDefaultTimeframe returns a boolean if a field has been set.
+func (o *Dashboard) HasDefaultTimeframe() bool {
+	return o != nil && o.DefaultTimeframe != nil
+}
+
+// SetDefaultTimeframe gets a reference to the given DashboardDefaultTimeframeSetting and assigns it to the DefaultTimeframe field.
+func (o *Dashboard) SetDefaultTimeframe(v DashboardDefaultTimeframeSetting) {
+	o.DefaultTimeframe = &v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -638,6 +668,9 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 		}
 	}
+	if o.DefaultTimeframe != nil {
+		toSerialize["default_timeframe"] = o.DefaultTimeframe
+	}
 	if o.Description.IsSet() {
 		toSerialize["description"] = o.Description.Get()
 	}
@@ -694,6 +727,7 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 		AuthorHandle            *string                           `json:"author_handle,omitempty"`
 		AuthorName              datadog.NullableString            `json:"author_name,omitempty"`
 		CreatedAt               *time.Time                        `json:"created_at,omitempty"`
+		DefaultTimeframe        *DashboardDefaultTimeframeSetting `json:"default_timeframe,omitempty"`
 		Description             datadog.NullableString            `json:"description,omitempty"`
 		Id                      *string                           `json:"id,omitempty"`
 		IsReadOnly              *bool                             `json:"is_read_only,omitempty"`
@@ -724,7 +758,7 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"author_handle", "author_name", "created_at", "description", "id", "is_read_only", "layout_type", "modified_at", "notify_list", "reflow_type", "restricted_roles", "tabs", "tags", "template_variable_presets", "template_variables", "title", "url", "widgets"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"author_handle", "author_name", "created_at", "default_timeframe", "description", "id", "is_read_only", "layout_type", "modified_at", "notify_list", "reflow_type", "restricted_roles", "tabs", "tags", "template_variable_presets", "template_variables", "title", "url", "widgets"})
 	} else {
 		return err
 	}
@@ -733,6 +767,7 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	o.AuthorHandle = all.AuthorHandle
 	o.AuthorName = all.AuthorName
 	o.CreatedAt = all.CreatedAt
+	o.DefaultTimeframe = all.DefaultTimeframe
 	o.Description = all.Description
 	o.Id = all.Id
 	o.IsReadOnly = all.IsReadOnly
