@@ -1060,8 +1060,9 @@ func (a *SecurityMonitoringApi) BulkExportSecurityMonitoringRules(ctx _context.C
 // BulkExportSecurityMonitoringTerraformResources Export security monitoring resources to Terraform.
 // Export multiple security monitoring resources to Terraform, packaged as a zip archive.
 // The `resource_type` path parameter specifies the type of resources to export
-// and must be one of `suppressions` or `critical_assets`.
+// and must be one of `suppressions`, `critical_assets`, `security_filters`, or `rules`.
 // A maximum of 1000 resources can be exported in a single request.
+// For `rules`, partner rules cannot be exported and return a 400 error.
 func (a *SecurityMonitoringApi) BulkExportSecurityMonitoringTerraformResources(ctx _context.Context, resourceType SecurityMonitoringTerraformResourceType, body SecurityMonitoringTerraformBulkExportRequest) (_io.Reader, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1471,7 +1472,7 @@ func (a *SecurityMonitoringApi) ConvertSecurityMonitoringRuleFromJSONToTerraform
 // ConvertSecurityMonitoringTerraformResource Convert security monitoring resource to Terraform.
 // Convert a security monitoring resource that doesn't (yet) exist from JSON to Terraform.
 // The `resource_type` path parameter specifies the type of resource to convert
-// and must be one of `suppressions` or `critical_assets`.
+// and must be one of `suppressions`, `critical_assets`, `security_filters`, or `rules`.
 func (a *SecurityMonitoringApi) ConvertSecurityMonitoringTerraformResource(ctx _context.Context, resourceType SecurityMonitoringTerraformResourceType, body SecurityMonitoringTerraformConvertRequest) (SecurityMonitoringTerraformExportResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -4786,7 +4787,8 @@ func (a *SecurityMonitoringApi) EditSecurityMonitoringSignalState(ctx _context.C
 // ExportSecurityMonitoringTerraformResource Export security monitoring resource to Terraform.
 // Export a security monitoring resource to a Terraform configuration.
 // The `resource_type` path parameter specifies the type of resource to export
-// and must be one of `suppressions` or `critical_assets`.
+// and must be one of `suppressions`, `critical_assets`, `security_filters`, or `rules`.
+// For `rules`, partner rules cannot be exported and return a 400 error.
 func (a *SecurityMonitoringApi) ExportSecurityMonitoringTerraformResource(ctx _context.Context, resourceType SecurityMonitoringTerraformResourceType, resourceId string) (SecurityMonitoringTerraformExportResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
