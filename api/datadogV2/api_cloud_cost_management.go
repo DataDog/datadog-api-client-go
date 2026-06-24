@@ -1157,14 +1157,60 @@ func (a *CloudCostManagementApi) GenerateCostTagDescriptionByKey(ctx _context.Co
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetBudgetOptionalParameters holds optional parameters for GetBudget.
+type GetBudgetOptionalParameters struct {
+	Actual   *bool
+	Forecast *bool
+	Start    *int64
+	End      *int64
+}
+
+// NewGetBudgetOptionalParameters creates an empty struct for parameters.
+func NewGetBudgetOptionalParameters() *GetBudgetOptionalParameters {
+	this := GetBudgetOptionalParameters{}
+	return &this
+}
+
+// WithActual sets the corresponding parameter name and returns the struct.
+func (r *GetBudgetOptionalParameters) WithActual(actual bool) *GetBudgetOptionalParameters {
+	r.Actual = &actual
+	return r
+}
+
+// WithForecast sets the corresponding parameter name and returns the struct.
+func (r *GetBudgetOptionalParameters) WithForecast(forecast bool) *GetBudgetOptionalParameters {
+	r.Forecast = &forecast
+	return r
+}
+
+// WithStart sets the corresponding parameter name and returns the struct.
+func (r *GetBudgetOptionalParameters) WithStart(start int64) *GetBudgetOptionalParameters {
+	r.Start = &start
+	return r
+}
+
+// WithEnd sets the corresponding parameter name and returns the struct.
+func (r *GetBudgetOptionalParameters) WithEnd(end int64) *GetBudgetOptionalParameters {
+	r.End = &end
+	return r
+}
+
 // GetBudget Get budget.
-// Get a budget
-func (a *CloudCostManagementApi) GetBudget(ctx _context.Context, budgetId string) (BudgetWithEntries, *_nethttp.Response, error) {
+// Get a budget by ID. Pass `actual=true` or `forecast=true` to include cost data in the response. Use `start` and `end` (millisecond epochs, both required) to set the cost window. When `forecast=true`, each entry also includes `ootb_forecast` (the ML forecast before overrides) and `custom_forecast` (`null` if no override is set, a number if one is).
+func (a *CloudCostManagementApi) GetBudget(ctx _context.Context, budgetId string, o ...GetBudgetOptionalParameters) (BudgetWithEntries, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue BudgetWithEntries
+		optionalParams      GetBudgetOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetBudgetOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.GetBudget")
 	if err != nil {
@@ -1177,6 +1223,18 @@ func (a *CloudCostManagementApi) GetBudget(ctx _context.Context, budgetId string
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.Actual != nil {
+		localVarQueryParams.Add("actual", datadog.ParameterToString(*optionalParams.Actual, ""))
+	}
+	if optionalParams.Forecast != nil {
+		localVarQueryParams.Add("forecast", datadog.ParameterToString(*optionalParams.Forecast, ""))
+	}
+	if optionalParams.Start != nil {
+		localVarQueryParams.Add("start", datadog.ParameterToString(*optionalParams.Start, ""))
+	}
+	if optionalParams.End != nil {
+		localVarQueryParams.Add("end", datadog.ParameterToString(*optionalParams.End, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {
@@ -1212,7 +1270,7 @@ func (a *CloudCostManagementApi) GetBudget(ctx _context.Context, budgetId string
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 429 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

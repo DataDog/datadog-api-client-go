@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudCostManagementApi(apiClient)
-	resp, r, err := api.GetBudget(ctx, "budget_id")
+	resp, r, err := api.GetBudget(ctx, "budget_id", *datadogV2.NewGetBudgetOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudCostManagementApi.GetBudget`: %v\n", err)
