@@ -1,4 +1,4 @@
-// List Bits AI investigations returns "OK" response
+// Get a Bits AI SRE investigation returns "OK" response
 
 package main
 
@@ -15,16 +15,16 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListInvestigations", true)
+	configuration.SetUnstableOperationEnabled("v2.GetInvestigation", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewBitsAIApi(apiClient)
-	resp, r, err := api.ListInvestigations(ctx, *datadogV2.NewListInvestigationsOptionalParameters())
+	api := datadogV2.NewBitsAISREApi(apiClient)
+	resp, r, err := api.GetInvestigation(ctx, "id")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `BitsAIApi.ListInvestigations`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `BitsAISREApi.GetInvestigation`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `BitsAIApi.ListInvestigations`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `BitsAISREApi.GetInvestigation`:\n%s\n", responseContent)
 }
