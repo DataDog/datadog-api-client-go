@@ -1299,6 +1299,7 @@ func (a *MetricsApi) ListTagConfigurationByName(ctx _context.Context, metricName
 // ListTagConfigurationsOptionalParameters holds optional parameters for ListTagConfigurations.
 type ListTagConfigurationsOptionalParameters struct {
 	FilterConfigured           *bool
+	FilterIsConfigurable       *bool
 	FilterTagsConfigured       *string
 	FilterMetricType           *MetricTagConfigurationMetricTypeCategory
 	FilterIncludePercentiles   *bool
@@ -1306,6 +1307,8 @@ type ListTagConfigurationsOptionalParameters struct {
 	FilterQueriedWindowSeconds *int64
 	FilterTags                 *string
 	FilterRelatedAssets        *bool
+	Include                    *string
+	Sort                       *string
 	WindowSeconds              *int64
 	PageSize                   *int32
 	PageCursor                 *string
@@ -1320,6 +1323,12 @@ func NewListTagConfigurationsOptionalParameters() *ListTagConfigurationsOptional
 // WithFilterConfigured sets the corresponding parameter name and returns the struct.
 func (r *ListTagConfigurationsOptionalParameters) WithFilterConfigured(filterConfigured bool) *ListTagConfigurationsOptionalParameters {
 	r.FilterConfigured = &filterConfigured
+	return r
+}
+
+// WithFilterIsConfigurable sets the corresponding parameter name and returns the struct.
+func (r *ListTagConfigurationsOptionalParameters) WithFilterIsConfigurable(filterIsConfigurable bool) *ListTagConfigurationsOptionalParameters {
+	r.FilterIsConfigurable = &filterIsConfigurable
 	return r
 }
 
@@ -1362,6 +1371,18 @@ func (r *ListTagConfigurationsOptionalParameters) WithFilterTags(filterTags stri
 // WithFilterRelatedAssets sets the corresponding parameter name and returns the struct.
 func (r *ListTagConfigurationsOptionalParameters) WithFilterRelatedAssets(filterRelatedAssets bool) *ListTagConfigurationsOptionalParameters {
 	r.FilterRelatedAssets = &filterRelatedAssets
+	return r
+}
+
+// WithInclude sets the corresponding parameter name and returns the struct.
+func (r *ListTagConfigurationsOptionalParameters) WithInclude(include string) *ListTagConfigurationsOptionalParameters {
+	r.Include = &include
+	return r
+}
+
+// WithSort sets the corresponding parameter name and returns the struct.
+func (r *ListTagConfigurationsOptionalParameters) WithSort(sort string) *ListTagConfigurationsOptionalParameters {
+	r.Sort = &sort
 	return r
 }
 
@@ -1415,6 +1436,9 @@ func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagCon
 	if optionalParams.FilterConfigured != nil {
 		localVarQueryParams.Add("filter[configured]", datadog.ParameterToString(*optionalParams.FilterConfigured, ""))
 	}
+	if optionalParams.FilterIsConfigurable != nil {
+		localVarQueryParams.Add("filter[is_configurable]", datadog.ParameterToString(*optionalParams.FilterIsConfigurable, ""))
+	}
 	if optionalParams.FilterTagsConfigured != nil {
 		localVarQueryParams.Add("filter[tags_configured]", datadog.ParameterToString(*optionalParams.FilterTagsConfigured, ""))
 	}
@@ -1435,6 +1459,12 @@ func (a *MetricsApi) ListTagConfigurations(ctx _context.Context, o ...ListTagCon
 	}
 	if optionalParams.FilterRelatedAssets != nil {
 		localVarQueryParams.Add("filter[related_assets]", datadog.ParameterToString(*optionalParams.FilterRelatedAssets, ""))
+	}
+	if optionalParams.Include != nil {
+		localVarQueryParams.Add("include", datadog.ParameterToString(*optionalParams.Include, ""))
+	}
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
 	}
 	if optionalParams.WindowSeconds != nil {
 		localVarQueryParams.Add("window[seconds]", datadog.ParameterToString(*optionalParams.WindowSeconds, ""))
