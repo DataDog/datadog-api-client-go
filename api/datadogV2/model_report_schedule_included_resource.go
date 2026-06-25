@@ -10,7 +10,8 @@ import (
 
 // ReportScheduleIncludedResource - A related resource included with a report schedule.
 type ReportScheduleIncludedResource struct {
-	ReportScheduleAuthor *ReportScheduleAuthor
+	ReportScheduleAuthor   *ReportScheduleAuthor
+	ReportScheduleResource *ReportScheduleResource
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -19,6 +20,11 @@ type ReportScheduleIncludedResource struct {
 // ReportScheduleAuthorAsReportScheduleIncludedResource is a convenience function that returns ReportScheduleAuthor wrapped in ReportScheduleIncludedResource.
 func ReportScheduleAuthorAsReportScheduleIncludedResource(v *ReportScheduleAuthor) ReportScheduleIncludedResource {
 	return ReportScheduleIncludedResource{ReportScheduleAuthor: v}
+}
+
+// ReportScheduleResourceAsReportScheduleIncludedResource is a convenience function that returns ReportScheduleResource wrapped in ReportScheduleIncludedResource.
+func ReportScheduleResourceAsReportScheduleIncludedResource(v *ReportScheduleResource) ReportScheduleIncludedResource {
+	return ReportScheduleIncludedResource{ReportScheduleResource: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -42,9 +48,27 @@ func (obj *ReportScheduleIncludedResource) UnmarshalJSON(data []byte) error {
 		obj.ReportScheduleAuthor = nil
 	}
 
+	// try to unmarshal data into ReportScheduleResource
+	err = datadog.Unmarshal(data, &obj.ReportScheduleResource)
+	if err == nil {
+		if obj.ReportScheduleResource != nil && obj.ReportScheduleResource.UnparsedObject == nil {
+			jsonReportScheduleResource, _ := datadog.Marshal(obj.ReportScheduleResource)
+			if string(jsonReportScheduleResource) == "{}" { // empty struct
+				obj.ReportScheduleResource = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ReportScheduleResource = nil
+		}
+	} else {
+		obj.ReportScheduleResource = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.ReportScheduleAuthor = nil
+		obj.ReportScheduleResource = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -54,6 +78,10 @@ func (obj *ReportScheduleIncludedResource) UnmarshalJSON(data []byte) error {
 func (obj ReportScheduleIncludedResource) MarshalJSON() ([]byte, error) {
 	if obj.ReportScheduleAuthor != nil {
 		return datadog.Marshal(&obj.ReportScheduleAuthor)
+	}
+
+	if obj.ReportScheduleResource != nil {
+		return datadog.Marshal(&obj.ReportScheduleResource)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -66,6 +94,10 @@ func (obj ReportScheduleIncludedResource) MarshalJSON() ([]byte, error) {
 func (obj *ReportScheduleIncludedResource) GetActualInstance() interface{} {
 	if obj.ReportScheduleAuthor != nil {
 		return obj.ReportScheduleAuthor
+	}
+
+	if obj.ReportScheduleResource != nil {
+		return obj.ReportScheduleResource
 	}
 
 	// all schemas are nil
