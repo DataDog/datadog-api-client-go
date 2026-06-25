@@ -22,6 +22,8 @@ type ObservabilityPipelineClickhouseDestination struct {
 	// Batch encoding configuration for the ClickHouse destination.
 	// Required when `format` is `arrow_stream`. The `codec` field must be set to `arrow_stream`.
 	BatchEncoding *ObservabilityPipelineClickhouseDestinationBatchEncoding `json:"batch_encoding,omitempty"`
+	// Configuration for buffer settings on destination components.
+	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
 	// Compression setting for outbound HTTP requests to ClickHouse.
 	// Can be specified as a shorthand string (`"gzip"` or `"none"`) or as an object
 	// with an `algorithm` field and an optional `level` (gzip only, 1–9).
@@ -162,6 +164,34 @@ func (o *ObservabilityPipelineClickhouseDestination) HasBatchEncoding() bool {
 // SetBatchEncoding gets a reference to the given ObservabilityPipelineClickhouseDestinationBatchEncoding and assigns it to the BatchEncoding field.
 func (o *ObservabilityPipelineClickhouseDestination) SetBatchEncoding(v ObservabilityPipelineClickhouseDestinationBatchEncoding) {
 	o.BatchEncoding = &v
+}
+
+// GetBuffer returns the Buffer field value if set, zero value otherwise.
+func (o *ObservabilityPipelineClickhouseDestination) GetBuffer() ObservabilityPipelineBufferOptions {
+	if o == nil || o.Buffer == nil {
+		var ret ObservabilityPipelineBufferOptions
+		return ret
+	}
+	return *o.Buffer
+}
+
+// GetBufferOk returns a tuple with the Buffer field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineClickhouseDestination) GetBufferOk() (*ObservabilityPipelineBufferOptions, bool) {
+	if o == nil || o.Buffer == nil {
+		return nil, false
+	}
+	return o.Buffer, true
+}
+
+// HasBuffer returns a boolean if a field has been set.
+func (o *ObservabilityPipelineClickhouseDestination) HasBuffer() bool {
+	return o != nil && o.Buffer != nil
+}
+
+// SetBuffer gets a reference to the given ObservabilityPipelineBufferOptions and assigns it to the Buffer field.
+func (o *ObservabilityPipelineClickhouseDestination) SetBuffer(v ObservabilityPipelineBufferOptions) {
+	o.Buffer = &v
 }
 
 // GetCompression returns the Compression field value if set, zero value otherwise.
@@ -478,6 +508,9 @@ func (o ObservabilityPipelineClickhouseDestination) MarshalJSON() ([]byte, error
 	if o.BatchEncoding != nil {
 		toSerialize["batch_encoding"] = o.BatchEncoding
 	}
+	if o.Buffer != nil {
+		toSerialize["buffer"] = o.Buffer
+	}
 	if o.Compression != nil {
 		toSerialize["compression"] = o.Compression
 	}
@@ -516,6 +549,7 @@ func (o *ObservabilityPipelineClickhouseDestination) UnmarshalJSON(bytes []byte)
 		Auth               *ObservabilityPipelineClickhouseDestinationAuth          `json:"auth,omitempty"`
 		Batch              *ObservabilityPipelineClickhouseDestinationBatch         `json:"batch,omitempty"`
 		BatchEncoding      *ObservabilityPipelineClickhouseDestinationBatchEncoding `json:"batch_encoding,omitempty"`
+		Buffer             *ObservabilityPipelineBufferOptions                      `json:"buffer,omitempty"`
 		Compression        *ObservabilityPipelineClickhouseDestinationCompression   `json:"compression,omitempty"`
 		Database           *string                                                  `json:"database,omitempty"`
 		DateTimeBestEffort *bool                                                    `json:"date_time_best_effort,omitempty"`
@@ -545,7 +579,7 @@ func (o *ObservabilityPipelineClickhouseDestination) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "batch", "batch_encoding", "compression", "database", "date_time_best_effort", "endpoint_url_key", "format", "id", "inputs", "skip_unknown_fields", "table", "tls", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "batch", "batch_encoding", "buffer", "compression", "database", "date_time_best_effort", "endpoint_url_key", "format", "id", "inputs", "skip_unknown_fields", "table", "tls", "type"})
 	} else {
 		return err
 	}
@@ -563,6 +597,7 @@ func (o *ObservabilityPipelineClickhouseDestination) UnmarshalJSON(bytes []byte)
 		hasInvalidField = true
 	}
 	o.BatchEncoding = all.BatchEncoding
+	o.Buffer = all.Buffer
 	o.Compression = all.Compression
 	o.Database = all.Database
 	o.DateTimeBestEffort = all.DateTimeBestEffort
