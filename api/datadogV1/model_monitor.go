@@ -384,6 +384,11 @@ func (o *Monitor) GetName() string {
 	return *o.Name
 }
 
+// HasName returns a boolean if a field has been set.
+func (o *Monitor) HasName() bool {
+	return o != nil && o.Name != nil
+}
+
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetNameOk() (*string, bool) {
@@ -391,11 +396,6 @@ func (o *Monitor) GetNameOk() (*string, bool) {
 		return nil, false
 	}
 	return o.Name, true
-}
-
-// HasName returns a boolean if a field has been set.
-func (o *Monitor) HasName() bool {
-	return o != nil && o.Name != nil
 }
 
 // SetName gets a reference to the given string and assigns it to the Name field.
