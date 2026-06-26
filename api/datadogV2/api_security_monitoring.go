@@ -8831,6 +8831,100 @@ func (a *SecurityMonitoringApi) GetVulnerabilityNotificationRules(ctx _context.C
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ImportSecurityVulnerabilities Import security vulnerabilities.
+// Import security vulnerabilities from an external scanner in CycloneDX 1.5 format.
+//
+// The payload is validated against the CycloneDX 1.5 JSON schema and the following
+// additional constraints:
+//
+//   - `metadata`, `metadata.component`, and `metadata.component.name` are required.
+//   - `metadata.tools.components` must contain exactly one element with a `name` field.
+//   - `components` cannot be empty. Each component requires `bom-ref`, `type`, `name`, and `version`.
+//   - When `type` is `library`, `purl` is required and must be a valid PURL.
+//   - When `type` is `operating-system`, `name` must be one of the supported OS values:
+//     `alma`, `alpine`, `amazon`, `azurelinux`, `bottlerocket`, `cbl-mariner`, `chainguard`,
+//     `centos`, `debian`, `fedora`, `opensuse`, `opensuse-leap`, `opensuse-tumbleweed`,
+//     `oracle`, `photon`, `redhat`, `rocky`, `slem`, `sles`, `ubuntu`, `wolfi`, `windows`, `macos`.
+//   - `vulnerabilities` cannot be empty. Each vulnerability requires `id`, exactly one `ratings` entry,
+//     and at least one `affects` entry.
+//   - Each `affects[].ref` must match a `bom-ref` value in `components`.
+func (a *SecurityMonitoringApi) ImportSecurityVulnerabilities(ctx _context.Context, body CycloneDXBom) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod = _nethttp.MethodPost
+		localVarPostBody   interface{}
+	)
+
+	operationId := "v2.ImportSecurityVulnerabilities"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.ImportSecurityVulnerabilities")
+	if err != nil {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/security/vulnerabilities"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "*/*"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 || localVarHTTPResponse.StatusCode == 500 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 // ListAssetsSBOMsOptionalParameters holds optional parameters for ListAssetsSBOMs.
 type ListAssetsSBOMsOptionalParameters struct {
 	PageToken            *string

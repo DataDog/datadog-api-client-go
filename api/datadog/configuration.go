@@ -850,6 +850,7 @@ func NewConfiguration() *Configuration {
 			"v2.GetStaticAnalysisNodeTypes":                           false,
 			"v2.GetStaticAnalysisRuleset":                             false,
 			"v2.GetStaticAnalysisTreeSitterWasm":                      false,
+			"v2.ImportSecurityVulnerabilities":                        false,
 			"v2.ListFindings":                                         false,
 			"v2.ListHistoricalJobs":                                   false,
 			"v2.ListIndicatorsOfCompromise":                           false,

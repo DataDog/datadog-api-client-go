@@ -1075,6 +1075,7 @@
 //   - [SecurityMonitoringApi.GetSuppressionsAffectingRule]
 //   - [SecurityMonitoringApi.GetVulnerabilityNotificationRule]
 //   - [SecurityMonitoringApi.GetVulnerabilityNotificationRules]
+//   - [SecurityMonitoringApi.ImportSecurityVulnerabilities]
 //   - [SecurityMonitoringApi.ListAssetsSBOMs]
 //   - [SecurityMonitoringApi.ListFindings]
 //   - [SecurityMonitoringApi.ListHistoricalJobs]
