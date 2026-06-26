@@ -14,7 +14,7 @@ import (
 type GovernanceInsightQueryConfig struct {
 	// The chart type the frontend should use to render the insight.
 	ChartType *string `json:"chart_type,omitempty"`
-	// The window used for the previous value comparison, for example `week` or `month`.
+	// The window used for the previous value comparison; for example, `week` or `month`.
 	ComparisonShift string `json:"comparison_shift"`
 	// The default value to display when no data is available.
 	DefaultValue *int64 `json:"default_value,omitempty"`
