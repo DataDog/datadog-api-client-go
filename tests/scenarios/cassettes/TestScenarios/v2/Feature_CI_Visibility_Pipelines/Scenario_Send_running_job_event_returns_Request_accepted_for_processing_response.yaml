@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"resource":{"id":"cf9456de-8b9e-4c27-aa79-27b1e78c1a33","level":"job","name":"Build image","pipeline_name":"Deploy to AWS","pipeline_unique_id":"3eacb6f3-ff04-4e10-8a9c-46e6d054024a","start":"2026-06-23T12:14:50.217Z","status":"running","url":"https://my-ci-provider.example/jobs/my-jobs/run/1"}},"type":"cipipeline_resource_request"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/ci/pipeline
+  response:
+    body: '{"data":null}'
+    code: 202
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 202 Accepted
+version: 2
