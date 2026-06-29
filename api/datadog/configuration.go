@@ -162,6 +162,7 @@ func NewConfiguration() *Configuration {
 							"datadoghq.eu",
 							"ddog-gov.com",
 							"us2.ddog-gov.com",
+							"uk1.datadoghq.com",
 						},
 					},
 					"subdomain": {
