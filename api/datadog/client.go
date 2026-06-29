@@ -247,8 +247,10 @@ func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) 
 	if err != nil || response.StatusCode == 429 || response.StatusCode >= 500 {
 		// Calculate the retry val (base * multiplier^retryCount)
 		retryVal := c.Cfg.RetryConfiguration.BackOffBase * math.Pow(c.Cfg.RetryConfiguration.BackOffMultiplier, float64(retryCount))
-		// retry duration shouldn't exceed default timeout period
-		retryVal = math.Min(float64(c.Cfg.HTTPClient.Timeout/time.Second), retryVal)
+		// retry duration shouldn't exceed the configured timeout period (skip cap when Timeout==0, which means no timeout)
+		if c.Cfg.HTTPClient.Timeout > 0 {
+			retryVal = math.Min(float64(c.Cfg.HTTPClient.Timeout/time.Second), retryVal)
+		}
 		retryDuration := time.Duration(retryVal) * time.Second
 		return &retryDuration, true
 	}
