@@ -13,20 +13,25 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Condition Targeting condition details.
+// Condition Targeting condition details. A condition is either an inline
+// predicate with `operator`, `attribute`, and `value`, or a reference to a
+// saved filter with `saved_filter_id`. The inline fields are omitted for saved-filter
+// references.
 type Condition struct {
-	// The user or request attribute to evaluate.
-	Attribute string `json:"attribute"`
+	// The user or request attribute to evaluate. Omitted for saved-filter references.
+	Attribute *string `json:"attribute,omitempty"`
 	// The timestamp when the condition was created.
 	CreatedAt time.Time `json:"created_at"`
 	// The unique identifier of the condition.
 	Id uuid.UUID `json:"id"`
 	// The operator used in a targeting condition.
-	Operator ConditionOperator `json:"operator"`
+	Operator *ConditionOperator `json:"operator,omitempty"`
+	// The ID of the saved filter referenced by this condition, or null for inline conditions.
+	SavedFilterId datadog.NullableUUID `json:"saved_filter_id,omitempty"`
 	// The timestamp when the condition was last updated.
 	UpdatedAt time.Time `json:"updated_at"`
-	// Values used by the selected operator.
-	Value []string `json:"value"`
+	// Values used by the selected operator. Omitted for saved-filter references.
+	Value []string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -36,14 +41,11 @@ type Condition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCondition(attribute string, createdAt time.Time, id uuid.UUID, operator ConditionOperator, updatedAt time.Time, value []string) *Condition {
+func NewCondition(createdAt time.Time, id uuid.UUID, updatedAt time.Time) *Condition {
 	this := Condition{}
-	this.Attribute = attribute
 	this.CreatedAt = createdAt
 	this.Id = id
-	this.Operator = operator
 	this.UpdatedAt = updatedAt
-	this.Value = value
 	return &this
 }
 
@@ -55,27 +57,32 @@ func NewConditionWithDefaults() *Condition {
 	return &this
 }
 
-// GetAttribute returns the Attribute field value.
+// GetAttribute returns the Attribute field value if set, zero value otherwise.
 func (o *Condition) GetAttribute() string {
-	if o == nil {
+	if o == nil || o.Attribute == nil {
 		var ret string
 		return ret
 	}
-	return o.Attribute
+	return *o.Attribute
 }
 
-// GetAttributeOk returns a tuple with the Attribute field value
+// GetAttributeOk returns a tuple with the Attribute field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Condition) GetAttributeOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Attribute == nil {
 		return nil, false
 	}
-	return &o.Attribute, true
+	return o.Attribute, true
 }
 
-// SetAttribute sets field value.
+// HasAttribute returns a boolean if a field has been set.
+func (o *Condition) HasAttribute() bool {
+	return o != nil && o.Attribute != nil
+}
+
+// SetAttribute gets a reference to the given string and assigns it to the Attribute field.
 func (o *Condition) SetAttribute(v string) {
-	o.Attribute = v
+	o.Attribute = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value.
@@ -124,27 +131,71 @@ func (o *Condition) SetId(v uuid.UUID) {
 	o.Id = v
 }
 
-// GetOperator returns the Operator field value.
+// GetOperator returns the Operator field value if set, zero value otherwise.
 func (o *Condition) GetOperator() ConditionOperator {
-	if o == nil {
+	if o == nil || o.Operator == nil {
 		var ret ConditionOperator
 		return ret
 	}
-	return o.Operator
+	return *o.Operator
 }
 
-// GetOperatorOk returns a tuple with the Operator field value
+// GetOperatorOk returns a tuple with the Operator field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Condition) GetOperatorOk() (*ConditionOperator, bool) {
+	if o == nil || o.Operator == nil {
+		return nil, false
+	}
+	return o.Operator, true
+}
+
+// HasOperator returns a boolean if a field has been set.
+func (o *Condition) HasOperator() bool {
+	return o != nil && o.Operator != nil
+}
+
+// SetOperator gets a reference to the given ConditionOperator and assigns it to the Operator field.
+func (o *Condition) SetOperator(v ConditionOperator) {
+	o.Operator = &v
+}
+
+// GetSavedFilterId returns the SavedFilterId field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *Condition) GetSavedFilterId() uuid.UUID {
+	if o == nil || o.SavedFilterId.Get() == nil {
+		var ret uuid.UUID
+		return ret
+	}
+	return *o.SavedFilterId.Get()
+}
+
+// GetSavedFilterIdOk returns a tuple with the SavedFilterId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *Condition) GetSavedFilterIdOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Operator, true
+	return o.SavedFilterId.Get(), o.SavedFilterId.IsSet()
 }
 
-// SetOperator sets field value.
-func (o *Condition) SetOperator(v ConditionOperator) {
-	o.Operator = v
+// HasSavedFilterId returns a boolean if a field has been set.
+func (o *Condition) HasSavedFilterId() bool {
+	return o != nil && o.SavedFilterId.IsSet()
+}
+
+// SetSavedFilterId gets a reference to the given datadog.NullableUUID and assigns it to the SavedFilterId field.
+func (o *Condition) SetSavedFilterId(v uuid.UUID) {
+	o.SavedFilterId.Set(&v)
+}
+
+// SetSavedFilterIdNil sets the value for SavedFilterId to be an explicit nil.
+func (o *Condition) SetSavedFilterIdNil() {
+	o.SavedFilterId.Set(nil)
+}
+
+// UnsetSavedFilterId ensures that no value is present for SavedFilterId, not even an explicit nil.
+func (o *Condition) UnsetSavedFilterId() {
+	o.SavedFilterId.Unset()
 }
 
 // GetUpdatedAt returns the UpdatedAt field value.
@@ -170,25 +221,30 @@ func (o *Condition) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = v
 }
 
-// GetValue returns the Value field value.
+// GetValue returns the Value field value if set, zero value otherwise.
 func (o *Condition) GetValue() []string {
-	if o == nil {
+	if o == nil || o.Value == nil {
 		var ret []string
 		return ret
 	}
 	return o.Value
 }
 
-// GetValueOk returns a tuple with the Value field value
+// GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *Condition) GetValueOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil || o.Value == nil {
 		return nil, false
 	}
 	return &o.Value, true
 }
 
-// SetValue sets field value.
+// HasValue returns a boolean if a field has been set.
+func (o *Condition) HasValue() bool {
+	return o != nil && o.Value != nil
+}
+
+// SetValue gets a reference to the given []string and assigns it to the Value field.
 func (o *Condition) SetValue(v []string) {
 	o.Value = v
 }
@@ -199,20 +255,29 @@ func (o Condition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["attribute"] = o.Attribute
+	if o.Attribute != nil {
+		toSerialize["attribute"] = o.Attribute
+	}
 	if o.CreatedAt.Nanosecond() == 0 {
 		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
 	} else {
 		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 	}
 	toSerialize["id"] = o.Id
-	toSerialize["operator"] = o.Operator
+	if o.Operator != nil {
+		toSerialize["operator"] = o.Operator
+	}
+	if o.SavedFilterId.IsSet() {
+		toSerialize["saved_filter_id"] = o.SavedFilterId.Get()
+	}
 	if o.UpdatedAt.Nanosecond() == 0 {
 		toSerialize["updated_at"] = o.UpdatedAt.Format("2006-01-02T15:04:05Z07:00")
 	} else {
 		toSerialize["updated_at"] = o.UpdatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 	}
-	toSerialize["value"] = o.Value
+	if o.Value != nil {
+		toSerialize["value"] = o.Value
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -223,18 +288,16 @@ func (o Condition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *Condition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attribute *string            `json:"attribute"`
-		CreatedAt *time.Time         `json:"created_at"`
-		Id        *uuid.UUID         `json:"id"`
-		Operator  *ConditionOperator `json:"operator"`
-		UpdatedAt *time.Time         `json:"updated_at"`
-		Value     *[]string          `json:"value"`
+		Attribute     *string              `json:"attribute,omitempty"`
+		CreatedAt     *time.Time           `json:"created_at"`
+		Id            *uuid.UUID           `json:"id"`
+		Operator      *ConditionOperator   `json:"operator,omitempty"`
+		SavedFilterId datadog.NullableUUID `json:"saved_filter_id,omitempty"`
+		UpdatedAt     *time.Time           `json:"updated_at"`
+		Value         []string             `json:"value,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.Attribute == nil {
-		return fmt.Errorf("required field attribute missing")
 	}
 	if all.CreatedAt == nil {
 		return fmt.Errorf("required field created_at missing")
@@ -242,33 +305,28 @@ func (o *Condition) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
 	}
-	if all.Operator == nil {
-		return fmt.Errorf("required field operator missing")
-	}
 	if all.UpdatedAt == nil {
 		return fmt.Errorf("required field updated_at missing")
 	}
-	if all.Value == nil {
-		return fmt.Errorf("required field value missing")
-	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attribute", "created_at", "id", "operator", "updated_at", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attribute", "created_at", "id", "operator", "saved_filter_id", "updated_at", "value"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	o.Attribute = *all.Attribute
+	o.Attribute = all.Attribute
 	o.CreatedAt = *all.CreatedAt
 	o.Id = *all.Id
-	if !all.Operator.IsValid() {
+	if all.Operator != nil && !all.Operator.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Operator = *all.Operator
+		o.Operator = all.Operator
 	}
+	o.SavedFilterId = all.SavedFilterId
 	o.UpdatedAt = *all.UpdatedAt
-	o.Value = *all.Value
+	o.Value = all.Value
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

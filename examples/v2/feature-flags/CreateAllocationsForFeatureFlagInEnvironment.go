@@ -52,8 +52,9 @@ func main() {
 					{
 						Conditions: []datadogV2.ConditionRequest{
 							{
-								Attribute: "user_tier",
-								Operator:  datadogV2.CONDITIONOPERATOR_ONE_OF,
+								Attribute:     datadog.PtrString("user_tier"),
+								Operator:      datadogV2.CONDITIONOPERATOR_ONE_OF.Ptr(),
+								SavedFilterId: datadog.PtrUUID(uuid.MustParse("550e8400-e29b-41d4-a716-446655440090")),
 								Value: []string{
 									"premium",
 									"enterprise",
