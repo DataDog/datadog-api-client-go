@@ -13,7 +13,7 @@ import (
 // For SDK users only: all fields at this response level are accessible through the
 // `additionalProperties` map. Existing typed-field getters are unchanged. New billing
 // dimensions will not have typed-field getters. Use
-// [Get available fields for usage summary](https://docs.datadoghq.com/api/latest/usage-metering/#get-usage-summary-available-fields)
+// [Get available fields for usage summary](https://docs.datadoghq.com/api/latest/usage-metering/get-available-fields-for-usage-summary/)
 // to enumerate every available key.
 type UsageSummaryDateOrg struct {
 	// The account name.
