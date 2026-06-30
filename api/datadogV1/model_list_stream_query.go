@@ -40,6 +40,9 @@ type ListStreamQuery struct {
 	SuspectedCauses []string `json:"suspected_causes,omitempty"`
 	// Filter by team handles. Usable only with `issue_stream`.
 	TeamHandles []string `json:"team_handles,omitempty"`
+	// Version of the query for the logs transaction stream widget. When omitted, v1 query behavior is
+	// preserved. Set to `sequential_query` to use v2 behavior. **This feature is in Preview.**
+	Version *ListStreamQueryVersion `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -448,6 +451,34 @@ func (o *ListStreamQuery) SetTeamHandles(v []string) {
 	o.TeamHandles = v
 }
 
+// GetVersion returns the Version field value if set, zero value otherwise.
+func (o *ListStreamQuery) GetVersion() ListStreamQueryVersion {
+	if o == nil || o.Version == nil {
+		var ret ListStreamQueryVersion
+		return ret
+	}
+	return *o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListStreamQuery) GetVersionOk() (*ListStreamQueryVersion, bool) {
+	if o == nil || o.Version == nil {
+		return nil, false
+	}
+	return o.Version, true
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *ListStreamQuery) HasVersion() bool {
+	return o != nil && o.Version != nil
+}
+
+// SetVersion gets a reference to the given ListStreamQueryVersion and assigns it to the Version field.
+func (o *ListStreamQuery) SetVersion(v ListStreamQueryVersion) {
+	o.Version = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -492,6 +523,9 @@ func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 	if o.TeamHandles != nil {
 		toSerialize["team_handles"] = o.TeamHandles
 	}
+	if o.Version != nil {
+		toSerialize["version"] = o.Version
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -516,6 +550,7 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 		Storage                    *string                  `json:"storage,omitempty"`
 		SuspectedCauses            []string                 `json:"suspected_causes,omitempty"`
 		TeamHandles                []string                 `json:"team_handles,omitempty"`
+		Version                    *ListStreamQueryVersion  `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -528,7 +563,7 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assignee_uuids", "clustering_pattern_field_path", "compute", "data_source", "event_size", "group_by", "indexes", "persona", "query_string", "sort", "states", "storage", "suspected_causes", "team_handles"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"assignee_uuids", "clustering_pattern_field_path", "compute", "data_source", "event_size", "group_by", "indexes", "persona", "query_string", "sort", "states", "storage", "suspected_causes", "team_handles", "version"})
 	} else {
 		return err
 	}
@@ -563,6 +598,11 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.Storage = all.Storage
 	o.SuspectedCauses = all.SuspectedCauses
 	o.TeamHandles = all.TeamHandles
+	if all.Version != nil && !all.Version.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Version = all.Version
+	}
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
