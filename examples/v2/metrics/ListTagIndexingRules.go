@@ -15,6 +15,7 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.ListTagIndexingRules", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMetricsApi(apiClient)
 	resp, r, err := api.ListTagIndexingRules(ctx, *datadogV2.NewListTagIndexingRulesOptionalParameters())

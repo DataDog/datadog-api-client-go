@@ -23,6 +23,7 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.CreateTagIndexingRuleExemption", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMetricsApi(apiClient)
 	resp, r, err := api.CreateTagIndexingRuleExemption(ctx, "metric_name", body)

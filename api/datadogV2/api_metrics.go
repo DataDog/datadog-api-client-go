@@ -6,6 +6,8 @@ package datadogV2
 
 import (
 	_context "context"
+	_fmt "fmt"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -201,6 +203,15 @@ func (a *MetricsApi) CreateTagIndexingRule(ctx _context.Context, body TagIndexin
 		localVarReturnValue TagIndexingRuleResponse
 	)
 
+	operationId := "v2.CreateTagIndexingRule"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.CreateTagIndexingRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -281,6 +292,15 @@ func (a *MetricsApi) CreateTagIndexingRuleExemption(ctx _context.Context, metric
 		localVarPostBody    interface{}
 		localVarReturnValue TagIndexingRuleExemptionResponse
 	)
+
+	operationId := "v2.CreateTagIndexingRuleExemption"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.CreateTagIndexingRuleExemption")
 	if err != nil {
@@ -521,6 +541,15 @@ func (a *MetricsApi) DeleteTagIndexingRule(ctx _context.Context, id string) (*_n
 		localVarPostBody   interface{}
 	)
 
+	operationId := "v2.DeleteTagIndexingRule"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.DeleteTagIndexingRule")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -590,6 +619,15 @@ func (a *MetricsApi) DeleteTagIndexingRuleExemption(ctx _context.Context, metric
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
+
+	operationId := "v2.DeleteTagIndexingRuleExemption"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.DeleteTagIndexingRuleExemption")
 	if err != nil {
@@ -884,6 +922,15 @@ func (a *MetricsApi) GetTagIndexingRule(ctx _context.Context, id string) (TagInd
 		localVarReturnValue TagIndexingRuleResponse
 	)
 
+	operationId := "v2.GetTagIndexingRule"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.GetTagIndexingRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -964,6 +1011,15 @@ func (a *MetricsApi) GetTagIndexingRuleExemption(ctx _context.Context, metricNam
 		localVarPostBody    interface{}
 		localVarReturnValue TagIndexingRuleExemptionResponse
 	)
+
+	operationId := "v2.GetTagIndexingRuleExemption"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.GetTagIndexingRuleExemption")
 	if err != nil {
@@ -1639,6 +1695,15 @@ func (a *MetricsApi) ListTagIndexingRules(ctx _context.Context, o ...ListTagInde
 		optionalParams = o[0]
 	}
 
+	operationId := "v2.ListTagIndexingRules"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.ListTagIndexingRules")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -1725,6 +1790,15 @@ func (a *MetricsApi) ListTagIndexingRulesForMetric(ctx _context.Context, metricN
 		localVarPostBody    interface{}
 		localVarReturnValue TagIndexingRulesResponse
 	)
+
+	operationId := "v2.ListTagIndexingRulesForMetric"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.ListTagIndexingRulesForMetric")
 	if err != nil {
@@ -2233,6 +2307,15 @@ func (a *MetricsApi) ReorderTagIndexingRules(ctx _context.Context, body TagIndex
 		localVarPostBody   interface{}
 	)
 
+	operationId := "v2.ReorderTagIndexingRules"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.ReorderTagIndexingRules")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -2503,6 +2586,15 @@ func (a *MetricsApi) UpdateTagIndexingRule(ctx _context.Context, id string, body
 		localVarPostBody    interface{}
 		localVarReturnValue TagIndexingRuleResponse
 	)
+
+	operationId := "v2.UpdateTagIndexingRule"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.UpdateTagIndexingRule")
 	if err != nil {
