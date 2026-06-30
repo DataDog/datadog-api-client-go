@@ -46,6 +46,7 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("v2.CreateTagIndexingRule", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewMetricsApi(apiClient)
 	resp, r, err := api.CreateTagIndexingRule(ctx, body)
