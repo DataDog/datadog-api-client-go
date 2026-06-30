@@ -12,6 +12,8 @@ import (
 
 // SecurityMonitoringCriticalAssetCreateAttributes Object containing the attributes of the critical asset to be created.
 type SecurityMonitoringCriticalAssetCreateAttributes struct {
+	// A description of the critical asset.
+	Description *string `json:"description,omitempty"`
 	// Whether the critical asset is enabled. Defaults to `true` if not specified.
 	Enabled *bool `json:"enabled,omitempty"`
 	// The query for the critical asset. It uses the same syntax as the queries to search signals in the Signals Explorer.
@@ -49,6 +51,34 @@ func NewSecurityMonitoringCriticalAssetCreateAttributesWithDefaults() *SecurityM
 	var enabled bool = true
 	this.Enabled = &enabled
 	return &this
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *SecurityMonitoringCriticalAssetCreateAttributes) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringCriticalAssetCreateAttributes) GetDescriptionOk() (*string, bool) {
+	if o == nil || o.Description == nil {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *SecurityMonitoringCriticalAssetCreateAttributes) HasDescription() bool {
+	return o != nil && o.Description != nil
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *SecurityMonitoringCriticalAssetCreateAttributes) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
@@ -182,6 +212,9 @@ func (o SecurityMonitoringCriticalAssetCreateAttributes) MarshalJSON() ([]byte, 
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
@@ -201,11 +234,12 @@ func (o SecurityMonitoringCriticalAssetCreateAttributes) MarshalJSON() ([]byte, 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringCriticalAssetCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enabled   *bool                                    `json:"enabled,omitempty"`
-		Query     *string                                  `json:"query"`
-		RuleQuery *string                                  `json:"rule_query"`
-		Severity  *SecurityMonitoringCriticalAssetSeverity `json:"severity"`
-		Tags      []string                                 `json:"tags,omitempty"`
+		Description *string                                  `json:"description,omitempty"`
+		Enabled     *bool                                    `json:"enabled,omitempty"`
+		Query       *string                                  `json:"query"`
+		RuleQuery   *string                                  `json:"rule_query"`
+		Severity    *SecurityMonitoringCriticalAssetSeverity `json:"severity"`
+		Tags        []string                                 `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -221,12 +255,13 @@ func (o *SecurityMonitoringCriticalAssetCreateAttributes) UnmarshalJSON(bytes []
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "query", "rule_query", "severity", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "enabled", "query", "rule_query", "severity", "tags"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Description = all.Description
 	o.Enabled = all.Enabled
 	o.Query = *all.Query
 	o.RuleQuery = *all.RuleQuery

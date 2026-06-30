@@ -16,6 +16,8 @@ type SecurityMonitoringCriticalAssetAttributes struct {
 	CreationDate *int64 `json:"creation_date,omitempty"`
 	// A user.
 	Creator *SecurityMonitoringUser `json:"creator,omitempty"`
+	// A description of the critical asset.
+	Description *string `json:"description,omitempty"`
 	// Whether the critical asset is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
 	// The query for the critical asset. It uses the same syntax as the queries to search signals in the Signals Explorer.
@@ -138,6 +140,34 @@ func (o *SecurityMonitoringCriticalAssetAttributes) HasCreator() bool {
 // SetCreator gets a reference to the given SecurityMonitoringUser and assigns it to the Creator field.
 func (o *SecurityMonitoringCriticalAssetAttributes) SetCreator(v SecurityMonitoringUser) {
 	o.Creator = &v
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *SecurityMonitoringCriticalAssetAttributes) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringCriticalAssetAttributes) GetDescriptionOk() (*string, bool) {
+	if o == nil || o.Description == nil {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *SecurityMonitoringCriticalAssetAttributes) HasDescription() bool {
+	return o != nil && o.Description != nil
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *SecurityMonitoringCriticalAssetAttributes) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
@@ -407,6 +437,9 @@ func (o SecurityMonitoringCriticalAssetAttributes) MarshalJSON() ([]byte, error)
 	if o.Creator != nil {
 		toSerialize["creator"] = o.Creator
 	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
@@ -447,6 +480,7 @@ func (o *SecurityMonitoringCriticalAssetAttributes) UnmarshalJSON(bytes []byte) 
 		CreationAuthorId *int64                                   `json:"creation_author_id,omitempty"`
 		CreationDate     *int64                                   `json:"creation_date,omitempty"`
 		Creator          *SecurityMonitoringUser                  `json:"creator,omitempty"`
+		Description      *string                                  `json:"description,omitempty"`
 		Enabled          *bool                                    `json:"enabled,omitempty"`
 		Query            *string                                  `json:"query,omitempty"`
 		RuleQuery        *string                                  `json:"rule_query,omitempty"`
@@ -462,7 +496,7 @@ func (o *SecurityMonitoringCriticalAssetAttributes) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"creation_author_id", "creation_date", "creator", "enabled", "query", "rule_query", "severity", "tags", "update_author_id", "update_date", "updater", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"creation_author_id", "creation_date", "creator", "description", "enabled", "query", "rule_query", "severity", "tags", "update_author_id", "update_date", "updater", "version"})
 	} else {
 		return err
 	}
@@ -474,6 +508,7 @@ func (o *SecurityMonitoringCriticalAssetAttributes) UnmarshalJSON(bytes []byte) 
 		hasInvalidField = true
 	}
 	o.Creator = all.Creator
+	o.Description = all.Description
 	o.Enabled = all.Enabled
 	o.Query = all.Query
 	o.RuleQuery = all.RuleQuery
