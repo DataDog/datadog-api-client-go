@@ -12,6 +12,8 @@ import (
 
 // IncidentTypeUpdateAttributes Incident type's attributes for updates.
 type IncidentTypeUpdateAttributes struct {
+	// The incident-type-scoped behavior settings. All fields are optional on update. Any field omitted from a PATCH request keeps its current value. This object is read-only on the incident type resource itself and is only mutated through the update (PATCH) endpoint.
+	Configuration *IncidentTypeConfiguration `json:"configuration,omitempty"`
 	// Timestamp when the incident type was created.
 	CreatedAt *time.Time `json:"createdAt,omitempty"`
 	// A unique identifier that represents the user that created the incident type.
@@ -48,6 +50,34 @@ func NewIncidentTypeUpdateAttributes() *IncidentTypeUpdateAttributes {
 func NewIncidentTypeUpdateAttributesWithDefaults() *IncidentTypeUpdateAttributes {
 	this := IncidentTypeUpdateAttributes{}
 	return &this
+}
+
+// GetConfiguration returns the Configuration field value if set, zero value otherwise.
+func (o *IncidentTypeUpdateAttributes) GetConfiguration() IncidentTypeConfiguration {
+	if o == nil || o.Configuration == nil {
+		var ret IncidentTypeConfiguration
+		return ret
+	}
+	return *o.Configuration
+}
+
+// GetConfigurationOk returns a tuple with the Configuration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IncidentTypeUpdateAttributes) GetConfigurationOk() (*IncidentTypeConfiguration, bool) {
+	if o == nil || o.Configuration == nil {
+		return nil, false
+	}
+	return o.Configuration, true
+}
+
+// HasConfiguration returns a boolean if a field has been set.
+func (o *IncidentTypeUpdateAttributes) HasConfiguration() bool {
+	return o != nil && o.Configuration != nil
+}
+
+// SetConfiguration gets a reference to the given IncidentTypeConfiguration and assigns it to the Configuration field.
+func (o *IncidentTypeUpdateAttributes) SetConfiguration(v IncidentTypeConfiguration) {
+	o.Configuration = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -280,6 +310,9 @@ func (o IncidentTypeUpdateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Configuration != nil {
+		toSerialize["configuration"] = o.Configuration
+	}
 	if o.CreatedAt != nil {
 		if o.CreatedAt.Nanosecond() == 0 {
 			toSerialize["createdAt"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -322,24 +355,31 @@ func (o IncidentTypeUpdateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTypeUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt      *time.Time `json:"createdAt,omitempty"`
-		CreatedBy      *string    `json:"createdBy,omitempty"`
-		Description    *string    `json:"description,omitempty"`
-		IsDefault      *bool      `json:"is_default,omitempty"`
-		LastModifiedBy *string    `json:"lastModifiedBy,omitempty"`
-		ModifiedAt     *time.Time `json:"modifiedAt,omitempty"`
-		Name           *string    `json:"name,omitempty"`
-		Prefix         *string    `json:"prefix,omitempty"`
+		Configuration  *IncidentTypeConfiguration `json:"configuration,omitempty"`
+		CreatedAt      *time.Time                 `json:"createdAt,omitempty"`
+		CreatedBy      *string                    `json:"createdBy,omitempty"`
+		Description    *string                    `json:"description,omitempty"`
+		IsDefault      *bool                      `json:"is_default,omitempty"`
+		LastModifiedBy *string                    `json:"lastModifiedBy,omitempty"`
+		ModifiedAt     *time.Time                 `json:"modifiedAt,omitempty"`
+		Name           *string                    `json:"name,omitempty"`
+		Prefix         *string                    `json:"prefix,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"createdAt", "createdBy", "description", "is_default", "lastModifiedBy", "modifiedAt", "name", "prefix"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"configuration", "createdAt", "createdBy", "description", "is_default", "lastModifiedBy", "modifiedAt", "name", "prefix"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	if all.Configuration != nil && all.Configuration.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Configuration = all.Configuration
 	o.CreatedAt = all.CreatedAt
 	o.CreatedBy = all.CreatedBy
 	o.Description = all.Description
@@ -351,6 +391,10 @@ func (o *IncidentTypeUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
