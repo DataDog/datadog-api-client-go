@@ -14,7 +14,9 @@ import (
 type UpdateFlakyTestsResponseResult struct {
 	// Error message if the update failed.
 	Error *string `json:"error,omitempty"`
-	// The ID of the flaky test from the request. This is the same ID returned by the Search flaky tests endpoint and corresponds to the test_fingerprint_fqn field in test run events.
+	// The ID of the flaky test from the request. This is the value of the `@test.fingerprint_fqn` facet
+	// on test events, the same ID accepted by the update request and returned by the Search flaky tests
+	// endpoint.
 	Id string `json:"id"`
 	// `True` if the update was successful, `False` if there were any errors.
 	Success bool `json:"success"`

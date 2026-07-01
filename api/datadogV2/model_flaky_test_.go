@@ -12,7 +12,10 @@ import (
 type FlakyTest struct {
 	// Attributes of a flaky test.
 	Attributes *FlakyTestAttributes `json:"attributes,omitempty"`
-	// Test's ID. This ID is the hash of the test's Fully Qualified Name and Git repository ID. On the Test Runs UI it is the same as the `test_fingerprint_fqn` tag.
+	// Test's ID. This ID is the hash of the test's Fully Qualified Name and Git repository ID. It is the
+	// value of the `@test.fingerprint_fqn` facet on test events, which you can search on in the Test
+	// Optimization Explorer to locate a specific test. To filter search results by this ID, use the
+	// `fingerprint_fqn` search key.
 	Id *string `json:"id,omitempty"`
 	// The type of the flaky test from Flaky Test Management.
 	Type *FlakyTestType `json:"type,omitempty"`
