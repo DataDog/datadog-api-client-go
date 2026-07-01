@@ -3581,7 +3581,7 @@ func (r *GetUsageSummaryOptionalParameters) WithIncludeConnectedAccounts(include
 // `UsageSummaryDateOrg` are accessible through each object's `additionalProperties` map.
 // Existing typed-field getters are unchanged. New billing dimensions will not have
 // typed-field getters. Use
-// [Get available fields for usage summary](https://docs.datadoghq.com/api/latest/usage-metering/#get-usage-summary-available-fields)
+// [Get available fields for usage summary](https://docs.datadoghq.com/api/latest/usage-metering/get-available-fields-for-usage-summary/)
 // to enumerate every available key at each response level.
 //
 // This endpoint is only accessible for [parent-level organizations](https://docs.datadoghq.com/account_management/multi_organization/).
