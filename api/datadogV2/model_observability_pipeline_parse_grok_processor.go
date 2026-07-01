@@ -20,12 +20,14 @@ type ObservabilityPipelineParseGrokProcessor struct {
 	DisplayName *string `json:"display_name,omitempty"`
 	// Indicates whether the processor is enabled.
 	Enabled bool `json:"enabled"`
+	// The log field to parse with the Grok rules.
+	Field *string `json:"field,omitempty"`
 	// A unique identifier for this processor.
 	Id string `json:"id"`
 	// A Datadog search query used to determine which logs this processor targets.
 	Include string `json:"include"`
-	// The list of Grok parsing rules. If multiple matching rules are provided, they are evaluated in order. The first successful match is applied.
-	Rules []ObservabilityPipelineParseGrokProcessorRule `json:"rules"`
+	// The list of Grok parsing rules selected by either source field or include query.
+	Rules []ObservabilityPipelineParseGrokProcessorRuleItem `json:"rules"`
 	// The processor type. The value should always be `parse_grok`.
 	Type ObservabilityPipelineParseGrokProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -37,11 +39,13 @@ type ObservabilityPipelineParseGrokProcessor struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineParseGrokProcessor(enabled bool, id string, include string, rules []ObservabilityPipelineParseGrokProcessorRule, typeVar ObservabilityPipelineParseGrokProcessorType) *ObservabilityPipelineParseGrokProcessor {
+func NewObservabilityPipelineParseGrokProcessor(enabled bool, id string, include string, rules []ObservabilityPipelineParseGrokProcessorRuleItem, typeVar ObservabilityPipelineParseGrokProcessorType) *ObservabilityPipelineParseGrokProcessor {
 	this := ObservabilityPipelineParseGrokProcessor{}
 	var disableLibraryRules bool = false
 	this.DisableLibraryRules = &disableLibraryRules
 	this.Enabled = enabled
+	var field string = "message"
+	this.Field = &field
 	this.Id = id
 	this.Include = include
 	this.Rules = rules
@@ -56,6 +60,8 @@ func NewObservabilityPipelineParseGrokProcessorWithDefaults() *ObservabilityPipe
 	this := ObservabilityPipelineParseGrokProcessor{}
 	var disableLibraryRules bool = false
 	this.DisableLibraryRules = &disableLibraryRules
+	var field string = "message"
+	this.Field = &field
 	var typeVar ObservabilityPipelineParseGrokProcessorType = OBSERVABILITYPIPELINEPARSEGROKPROCESSORTYPE_PARSE_GROK
 	this.Type = typeVar
 	return &this
@@ -140,6 +146,34 @@ func (o *ObservabilityPipelineParseGrokProcessor) SetEnabled(v bool) {
 	o.Enabled = v
 }
 
+// GetField returns the Field field value if set, zero value otherwise.
+func (o *ObservabilityPipelineParseGrokProcessor) GetField() string {
+	if o == nil || o.Field == nil {
+		var ret string
+		return ret
+	}
+	return *o.Field
+}
+
+// GetFieldOk returns a tuple with the Field field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineParseGrokProcessor) GetFieldOk() (*string, bool) {
+	if o == nil || o.Field == nil {
+		return nil, false
+	}
+	return o.Field, true
+}
+
+// HasField returns a boolean if a field has been set.
+func (o *ObservabilityPipelineParseGrokProcessor) HasField() bool {
+	return o != nil && o.Field != nil
+}
+
+// SetField gets a reference to the given string and assigns it to the Field field.
+func (o *ObservabilityPipelineParseGrokProcessor) SetField(v string) {
+	o.Field = &v
+}
+
 // GetId returns the Id field value.
 func (o *ObservabilityPipelineParseGrokProcessor) GetId() string {
 	if o == nil {
@@ -187,9 +221,9 @@ func (o *ObservabilityPipelineParseGrokProcessor) SetInclude(v string) {
 }
 
 // GetRules returns the Rules field value.
-func (o *ObservabilityPipelineParseGrokProcessor) GetRules() []ObservabilityPipelineParseGrokProcessorRule {
+func (o *ObservabilityPipelineParseGrokProcessor) GetRules() []ObservabilityPipelineParseGrokProcessorRuleItem {
 	if o == nil {
-		var ret []ObservabilityPipelineParseGrokProcessorRule
+		var ret []ObservabilityPipelineParseGrokProcessorRuleItem
 		return ret
 	}
 	return o.Rules
@@ -197,7 +231,7 @@ func (o *ObservabilityPipelineParseGrokProcessor) GetRules() []ObservabilityPipe
 
 // GetRulesOk returns a tuple with the Rules field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineParseGrokProcessor) GetRulesOk() (*[]ObservabilityPipelineParseGrokProcessorRule, bool) {
+func (o *ObservabilityPipelineParseGrokProcessor) GetRulesOk() (*[]ObservabilityPipelineParseGrokProcessorRuleItem, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -205,7 +239,7 @@ func (o *ObservabilityPipelineParseGrokProcessor) GetRulesOk() (*[]Observability
 }
 
 // SetRules sets field value.
-func (o *ObservabilityPipelineParseGrokProcessor) SetRules(v []ObservabilityPipelineParseGrokProcessorRule) {
+func (o *ObservabilityPipelineParseGrokProcessor) SetRules(v []ObservabilityPipelineParseGrokProcessorRuleItem) {
 	o.Rules = v
 }
 
@@ -245,6 +279,9 @@ func (o ObservabilityPipelineParseGrokProcessor) MarshalJSON() ([]byte, error) {
 		toSerialize["display_name"] = o.DisplayName
 	}
 	toSerialize["enabled"] = o.Enabled
+	if o.Field != nil {
+		toSerialize["field"] = o.Field
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["include"] = o.Include
 	toSerialize["rules"] = o.Rules
@@ -259,13 +296,14 @@ func (o ObservabilityPipelineParseGrokProcessor) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineParseGrokProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DisableLibraryRules *bool                                          `json:"disable_library_rules,omitempty"`
-		DisplayName         *string                                        `json:"display_name,omitempty"`
-		Enabled             *bool                                          `json:"enabled"`
-		Id                  *string                                        `json:"id"`
-		Include             *string                                        `json:"include"`
-		Rules               *[]ObservabilityPipelineParseGrokProcessorRule `json:"rules"`
-		Type                *ObservabilityPipelineParseGrokProcessorType   `json:"type"`
+		DisableLibraryRules *bool                                              `json:"disable_library_rules,omitempty"`
+		DisplayName         *string                                            `json:"display_name,omitempty"`
+		Enabled             *bool                                              `json:"enabled"`
+		Field               *string                                            `json:"field,omitempty"`
+		Id                  *string                                            `json:"id"`
+		Include             *string                                            `json:"include"`
+		Rules               *[]ObservabilityPipelineParseGrokProcessorRuleItem `json:"rules"`
+		Type                *ObservabilityPipelineParseGrokProcessorType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -287,7 +325,7 @@ func (o *ObservabilityPipelineParseGrokProcessor) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"disable_library_rules", "display_name", "enabled", "id", "include", "rules", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"disable_library_rules", "display_name", "enabled", "field", "id", "include", "rules", "type"})
 	} else {
 		return err
 	}
@@ -296,6 +334,7 @@ func (o *ObservabilityPipelineParseGrokProcessor) UnmarshalJSON(bytes []byte) (e
 	o.DisableLibraryRules = all.DisableLibraryRules
 	o.DisplayName = all.DisplayName
 	o.Enabled = *all.Enabled
+	o.Field = all.Field
 	o.Id = *all.Id
 	o.Include = *all.Include
 	o.Rules = *all.Rules
