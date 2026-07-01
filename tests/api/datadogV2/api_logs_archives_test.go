@@ -38,8 +38,10 @@ func TestLogsArchivesCreate(t *testing.T) {
 							LogsArchiveDestinationS3: &datadogV2.LogsArchiveDestinationS3{
 								Bucket: "dd-logs-test-datadog-api-client-go",
 								Integration: datadogV2.LogsArchiveIntegrationS3{
-									AccountId: "711111111111",
-									RoleName:  "DatadogGoClientTestIntegrationRole",
+									LogsArchiveIntegrationS3Role: &datadogV2.LogsArchiveIntegrationS3Role{
+										AccountId: "711111111111",
+										RoleName:  "DatadogGoClientTestIntegrationRole",
+									},
 								},
 								Path: datadog.PtrString("/path/blou"),
 								Type: "s3",
@@ -149,8 +151,10 @@ func TestLogsArchivesUpdate(t *testing.T) {
 					LogsArchiveDestinationS3: &datadogV2.LogsArchiveDestinationS3{
 						Bucket: "dd-logs-test-datadog-api-client-go",
 						Integration: datadogV2.LogsArchiveIntegrationS3{
-							AccountId: "711111111111",
-							RoleName:  "DatadogGoClientTestIntegrationRole",
+							LogsArchiveIntegrationS3Role: &datadogV2.LogsArchiveIntegrationS3Role{
+								AccountId: "711111111111",
+								RoleName:  "DatadogGoClientTestIntegrationRole",
+							},
 						},
 						Path: datadog.PtrString("/path/blou"),
 						Type: "s3",
