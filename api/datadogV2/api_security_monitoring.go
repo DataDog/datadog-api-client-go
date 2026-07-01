@@ -282,15 +282,6 @@ func (a *SecurityMonitoringApi) AttachServiceNowTicket(ctx _context.Context, bod
 		localVarReturnValue FindingCaseResponse
 	)
 
-	operationId := "v2.AttachServiceNowTicket"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.AttachServiceNowTicket")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -2804,15 +2795,6 @@ func (a *SecurityMonitoringApi) CreateServiceNowTickets(ctx _context.Context, bo
 		localVarPostBody    interface{}
 		localVarReturnValue FindingCaseResponseArray
 	)
-
-	operationId := "v2.CreateServiceNowTickets"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.CreateServiceNowTickets")
 	if err != nil {
