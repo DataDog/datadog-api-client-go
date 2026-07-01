@@ -12,6 +12,8 @@ import (
 type BatchRowsQueryResponse struct {
 	// Data object for a batch rows query response.
 	Data *BatchRowsQueryResponseData `json:"data,omitempty"`
+	// Full row resources matching the query, included alongside the relationship references in `data`.
+	Included []TableRowResourceData `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -62,6 +64,34 @@ func (o *BatchRowsQueryResponse) SetData(v BatchRowsQueryResponseData) {
 	o.Data = &v
 }
 
+// GetIncluded returns the Included field value if set, zero value otherwise.
+func (o *BatchRowsQueryResponse) GetIncluded() []TableRowResourceData {
+	if o == nil || o.Included == nil {
+		var ret []TableRowResourceData
+		return ret
+	}
+	return o.Included
+}
+
+// GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BatchRowsQueryResponse) GetIncludedOk() (*[]TableRowResourceData, bool) {
+	if o == nil || o.Included == nil {
+		return nil, false
+	}
+	return &o.Included, true
+}
+
+// HasIncluded returns a boolean if a field has been set.
+func (o *BatchRowsQueryResponse) HasIncluded() bool {
+	return o != nil && o.Included != nil
+}
+
+// SetIncluded gets a reference to the given []TableRowResourceData and assigns it to the Included field.
+func (o *BatchRowsQueryResponse) SetIncluded(v []TableRowResourceData) {
+	o.Included = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o BatchRowsQueryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -70,6 +100,9 @@ func (o BatchRowsQueryResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
+	}
+	if o.Included != nil {
+		toSerialize["included"] = o.Included
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -81,14 +114,15 @@ func (o BatchRowsQueryResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *BatchRowsQueryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *BatchRowsQueryResponseData `json:"data,omitempty"`
+		Data     *BatchRowsQueryResponseData `json:"data,omitempty"`
+		Included []TableRowResourceData      `json:"included,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included"})
 	} else {
 		return err
 	}
@@ -98,6 +132,7 @@ func (o *BatchRowsQueryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Data = all.Data
+	o.Included = all.Included
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
