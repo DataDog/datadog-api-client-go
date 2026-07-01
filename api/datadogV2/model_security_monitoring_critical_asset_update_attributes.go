@@ -10,6 +10,8 @@ import (
 
 // SecurityMonitoringCriticalAssetUpdateAttributes The critical asset properties to be updated.
 type SecurityMonitoringCriticalAssetUpdateAttributes struct {
+	// A description of the critical asset.
+	Description *string `json:"description,omitempty"`
 	// Whether the critical asset is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
 	// The query for the critical asset. It uses the same syntax as the queries to search signals in the Signals Explorer.
@@ -42,6 +44,34 @@ func NewSecurityMonitoringCriticalAssetUpdateAttributes() *SecurityMonitoringCri
 func NewSecurityMonitoringCriticalAssetUpdateAttributesWithDefaults() *SecurityMonitoringCriticalAssetUpdateAttributes {
 	this := SecurityMonitoringCriticalAssetUpdateAttributes{}
 	return &this
+}
+
+// GetDescription returns the Description field value if set, zero value otherwise.
+func (o *SecurityMonitoringCriticalAssetUpdateAttributes) GetDescription() string {
+	if o == nil || o.Description == nil {
+		var ret string
+		return ret
+	}
+	return *o.Description
+}
+
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringCriticalAssetUpdateAttributes) GetDescriptionOk() (*string, bool) {
+	if o == nil || o.Description == nil {
+		return nil, false
+	}
+	return o.Description, true
+}
+
+// HasDescription returns a boolean if a field has been set.
+func (o *SecurityMonitoringCriticalAssetUpdateAttributes) HasDescription() bool {
+	return o != nil && o.Description != nil
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
+func (o *SecurityMonitoringCriticalAssetUpdateAttributes) SetDescription(v string) {
+	o.Description = &v
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
@@ -218,6 +248,9 @@ func (o SecurityMonitoringCriticalAssetUpdateAttributes) MarshalJSON() ([]byte, 
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
@@ -246,24 +279,26 @@ func (o SecurityMonitoringCriticalAssetUpdateAttributes) MarshalJSON() ([]byte, 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringCriticalAssetUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Enabled   *bool                                    `json:"enabled,omitempty"`
-		Query     *string                                  `json:"query,omitempty"`
-		RuleQuery *string                                  `json:"rule_query,omitempty"`
-		Severity  *SecurityMonitoringCriticalAssetSeverity `json:"severity,omitempty"`
-		Tags      []string                                 `json:"tags,omitempty"`
-		Version   *int32                                   `json:"version,omitempty"`
+		Description *string                                  `json:"description,omitempty"`
+		Enabled     *bool                                    `json:"enabled,omitempty"`
+		Query       *string                                  `json:"query,omitempty"`
+		RuleQuery   *string                                  `json:"rule_query,omitempty"`
+		Severity    *SecurityMonitoringCriticalAssetSeverity `json:"severity,omitempty"`
+		Tags        []string                                 `json:"tags,omitempty"`
+		Version     *int32                                   `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled", "query", "rule_query", "severity", "tags", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "enabled", "query", "rule_query", "severity", "tags", "version"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Description = all.Description
 	o.Enabled = all.Enabled
 	o.Query = all.Query
 	o.RuleQuery = all.RuleQuery
