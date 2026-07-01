@@ -16,7 +16,7 @@ type LogsArchiveDestinationS3 struct {
 	Bucket string `json:"bucket"`
 	// The S3 encryption settings.
 	Encryption *LogsArchiveEncryptionS3 `json:"encryption,omitempty"`
-	// The S3 Archive's integration destination.
+	// The S3 Archive's integration destination. You must provide one of the following: `access_key_id` alone, or both `account_id` and `role_name` together.
 	Integration LogsArchiveIntegrationS3 `json:"integration"`
 	// The archive path.
 	Path *string `json:"path,omitempty"`
@@ -268,9 +268,6 @@ func (o *LogsArchiveDestinationS3) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Encryption = all.Encryption
-	if all.Integration.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Integration = *all.Integration
 	o.Path = all.Path
 	if all.StorageClass != nil && !all.StorageClass.IsValid() {

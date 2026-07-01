@@ -5,129 +5,101 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LogsArchiveIntegrationS3 The S3 Archive's integration destination.
+// LogsArchiveIntegrationS3 - The S3 Archive's integration destination. You must provide one of the following: `access_key_id` alone, or both `account_id` and `role_name` together.
 type LogsArchiveIntegrationS3 struct {
-	// The account ID for the integration.
-	AccountId string `json:"account_id"`
-	// The path of the integration.
-	RoleName string `json:"role_name"`
+	LogsArchiveIntegrationS3AccessKey *LogsArchiveIntegrationS3AccessKey
+	LogsArchiveIntegrationS3Role      *LogsArchiveIntegrationS3Role
+
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject interface{}
 }
 
-// NewLogsArchiveIntegrationS3 instantiates a new LogsArchiveIntegrationS3 object.
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed.
-func NewLogsArchiveIntegrationS3(accountId string, roleName string) *LogsArchiveIntegrationS3 {
-	this := LogsArchiveIntegrationS3{}
-	this.AccountId = accountId
-	this.RoleName = roleName
-	return &this
+// LogsArchiveIntegrationS3AccessKeyAsLogsArchiveIntegrationS3 is a convenience function that returns LogsArchiveIntegrationS3AccessKey wrapped in LogsArchiveIntegrationS3.
+func LogsArchiveIntegrationS3AccessKeyAsLogsArchiveIntegrationS3(v *LogsArchiveIntegrationS3AccessKey) LogsArchiveIntegrationS3 {
+	return LogsArchiveIntegrationS3{LogsArchiveIntegrationS3AccessKey: v}
 }
 
-// NewLogsArchiveIntegrationS3WithDefaults instantiates a new LogsArchiveIntegrationS3 object.
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set.
-func NewLogsArchiveIntegrationS3WithDefaults() *LogsArchiveIntegrationS3 {
-	this := LogsArchiveIntegrationS3{}
-	return &this
+// LogsArchiveIntegrationS3RoleAsLogsArchiveIntegrationS3 is a convenience function that returns LogsArchiveIntegrationS3Role wrapped in LogsArchiveIntegrationS3.
+func LogsArchiveIntegrationS3RoleAsLogsArchiveIntegrationS3(v *LogsArchiveIntegrationS3Role) LogsArchiveIntegrationS3 {
+	return LogsArchiveIntegrationS3{LogsArchiveIntegrationS3Role: v}
 }
 
-// GetAccountId returns the AccountId field value.
-func (o *LogsArchiveIntegrationS3) GetAccountId() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.AccountId
-}
-
-// GetAccountIdOk returns a tuple with the AccountId field value
-// and a boolean to check if the value has been set.
-func (o *LogsArchiveIntegrationS3) GetAccountIdOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AccountId, true
-}
-
-// SetAccountId sets field value.
-func (o *LogsArchiveIntegrationS3) SetAccountId(v string) {
-	o.AccountId = v
-}
-
-// GetRoleName returns the RoleName field value.
-func (o *LogsArchiveIntegrationS3) GetRoleName() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.RoleName
-}
-
-// GetRoleNameOk returns a tuple with the RoleName field value
-// and a boolean to check if the value has been set.
-func (o *LogsArchiveIntegrationS3) GetRoleNameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RoleName, true
-}
-
-// SetRoleName sets field value.
-func (o *LogsArchiveIntegrationS3) SetRoleName(v string) {
-	o.RoleName = v
-}
-
-// MarshalJSON serializes the struct using spec logic.
-func (o LogsArchiveIntegrationS3) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.UnparsedObject != nil {
-		return datadog.Marshal(o.UnparsedObject)
-	}
-	toSerialize["account_id"] = o.AccountId
-	toSerialize["role_name"] = o.RoleName
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
-	return datadog.Marshal(toSerialize)
-}
-
-// UnmarshalJSON deserializes the given payload.
-func (o *LogsArchiveIntegrationS3) UnmarshalJSON(bytes []byte) (err error) {
-	all := struct {
-		AccountId *string `json:"account_id"`
-		RoleName  *string `json:"role_name"`
-	}{}
-	if err = datadog.Unmarshal(bytes, &all); err != nil {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.AccountId == nil {
-		return fmt.Errorf("required field account_id missing")
-	}
-	if all.RoleName == nil {
-		return fmt.Errorf("required field role_name missing")
-	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "role_name"})
+// UnmarshalJSON turns data into one of the pointers in the struct.
+func (obj *LogsArchiveIntegrationS3) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into LogsArchiveIntegrationS3AccessKey
+	err = datadog.Unmarshal(data, &obj.LogsArchiveIntegrationS3AccessKey)
+	if err == nil {
+		if obj.LogsArchiveIntegrationS3AccessKey != nil && obj.LogsArchiveIntegrationS3AccessKey.UnparsedObject == nil {
+			jsonLogsArchiveIntegrationS3AccessKey, _ := datadog.Marshal(obj.LogsArchiveIntegrationS3AccessKey)
+			if string(jsonLogsArchiveIntegrationS3AccessKey) == "{}" { // empty struct
+				obj.LogsArchiveIntegrationS3AccessKey = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.LogsArchiveIntegrationS3AccessKey = nil
+		}
 	} else {
-		return err
-	}
-	o.AccountId = *all.AccountId
-	o.RoleName = *all.RoleName
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
+		obj.LogsArchiveIntegrationS3AccessKey = nil
 	}
 
+	// try to unmarshal data into LogsArchiveIntegrationS3Role
+	err = datadog.Unmarshal(data, &obj.LogsArchiveIntegrationS3Role)
+	if err == nil {
+		if obj.LogsArchiveIntegrationS3Role != nil && obj.LogsArchiveIntegrationS3Role.UnparsedObject == nil {
+			jsonLogsArchiveIntegrationS3Role, _ := datadog.Marshal(obj.LogsArchiveIntegrationS3Role)
+			if string(jsonLogsArchiveIntegrationS3Role) == "{}" { // empty struct
+				obj.LogsArchiveIntegrationS3Role = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.LogsArchiveIntegrationS3Role = nil
+		}
+	} else {
+		obj.LogsArchiveIntegrationS3Role = nil
+	}
+
+	if match != 1 { // more than 1 match
+		// reset to nil
+		obj.LogsArchiveIntegrationS3AccessKey = nil
+		obj.LogsArchiveIntegrationS3Role = nil
+		return datadog.Unmarshal(data, &obj.UnparsedObject)
+	}
+	return nil // exactly one match
+}
+
+// MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
+func (obj LogsArchiveIntegrationS3) MarshalJSON() ([]byte, error) {
+	if obj.LogsArchiveIntegrationS3AccessKey != nil {
+		return datadog.Marshal(&obj.LogsArchiveIntegrationS3AccessKey)
+	}
+
+	if obj.LogsArchiveIntegrationS3Role != nil {
+		return datadog.Marshal(&obj.LogsArchiveIntegrationS3Role)
+	}
+
+	if obj.UnparsedObject != nil {
+		return datadog.Marshal(obj.UnparsedObject)
+	}
+	return nil, nil // no data in oneOf schemas
+}
+
+// GetActualInstance returns the actual instance.
+func (obj *LogsArchiveIntegrationS3) GetActualInstance() interface{} {
+	if obj.LogsArchiveIntegrationS3AccessKey != nil {
+		return obj.LogsArchiveIntegrationS3AccessKey
+	}
+
+	if obj.LogsArchiveIntegrationS3Role != nil {
+		return obj.LogsArchiveIntegrationS3Role
+	}
+
+	// all schemas are nil
 	return nil
 }
