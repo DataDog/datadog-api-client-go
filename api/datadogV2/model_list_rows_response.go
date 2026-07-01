@@ -16,6 +16,8 @@ type ListRowsResponse struct {
 	Data []TableRowResourceData `json:"data"`
 	// Pagination links for the list rows response.
 	Links ListRowsResponseLinks `json:"links"`
+	// Contains pagination details, including the continuation token for fetching additional rows.
+	Meta *ListRowsResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -86,6 +88,34 @@ func (o *ListRowsResponse) SetLinks(v ListRowsResponseLinks) {
 	o.Links = v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *ListRowsResponse) GetMeta() ListRowsResponseMeta {
+	if o == nil || o.Meta == nil {
+		var ret ListRowsResponseMeta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ListRowsResponse) GetMetaOk() (*ListRowsResponseMeta, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *ListRowsResponse) HasMeta() bool {
+	return o != nil && o.Meta != nil
+}
+
+// SetMeta gets a reference to the given ListRowsResponseMeta and assigns it to the Meta field.
+func (o *ListRowsResponse) SetMeta(v ListRowsResponseMeta) {
+	o.Meta = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ListRowsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -94,6 +124,9 @@ func (o ListRowsResponse) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["data"] = o.Data
 	toSerialize["links"] = o.Links
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -106,6 +139,7 @@ func (o *ListRowsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data  *[]TableRowResourceData `json:"data"`
 		Links *ListRowsResponseLinks  `json:"links"`
+		Meta  *ListRowsResponseMeta   `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -118,7 +152,7 @@ func (o *ListRowsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "links"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "links", "meta"})
 	} else {
 		return err
 	}
@@ -129,6 +163,10 @@ func (o *ListRowsResponse) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Links = *all.Links
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
