@@ -892,6 +892,7 @@
 //   - [ReportSchedulesApi.ListReportSchedules]
 //   - [ReportSchedulesApi.PatchReportSchedule]
 //   - [ReportSchedulesApi.ToggleReportSchedule]
+//   - [ReportingandSharingApi.CreateSnapshot]
 //   - [RestrictionPoliciesApi.DeleteRestrictionPolicy]
 //   - [RestrictionPoliciesApi.GetRestrictionPolicy]
 //   - [RestrictionPoliciesApi.UpdateRestrictionPolicy]
