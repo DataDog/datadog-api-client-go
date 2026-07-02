@@ -15,7 +15,7 @@ import (
 // workload_security, signal_correlation, cloud_configuration and infrastructure_configuration.
 // Vulnerability-based notification rules can filter vulnerabilities based on rule types application_code_vulnerability,
 // application_library_vulnerability, attack_path, container_image_vulnerability, identity_risk, misconfiguration,
-// api_security, host_vulnerability, iac_misconfiguration, sast_vulnerability and secret_vulnerability.
+// api_security, host_vulnerability, iac_misconfiguration, sast_vulnerability, secret_vulnerability and workload_activity.
 type RuleTypesItems string
 
 // List of RuleTypesItems.
@@ -37,6 +37,7 @@ const (
 	RULETYPESITEMS_IAC_MISCONFIGURATION              RuleTypesItems = "iac_misconfiguration"
 	RULETYPESITEMS_SAST_VULNERABILITY                RuleTypesItems = "sast_vulnerability"
 	RULETYPESITEMS_SECRET_VULNERABILITY              RuleTypesItems = "secret_vulnerability"
+	RULETYPESITEMS_WORKLOAD_ACTIVITY                 RuleTypesItems = "workload_activity"
 )
 
 var allowedRuleTypesItemsEnumValues = []RuleTypesItems{
@@ -57,6 +58,7 @@ var allowedRuleTypesItemsEnumValues = []RuleTypesItems{
 	RULETYPESITEMS_IAC_MISCONFIGURATION,
 	RULETYPESITEMS_SAST_VULNERABILITY,
 	RULETYPESITEMS_SECRET_VULNERABILITY,
+	RULETYPESITEMS_WORKLOAD_ACTIVITY,
 }
 
 // GetAllowedValues reeturns the list of possible values.
