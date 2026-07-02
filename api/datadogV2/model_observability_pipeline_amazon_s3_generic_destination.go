@@ -35,6 +35,11 @@ type ObservabilityPipelineAmazonS3GenericDestination struct {
 	KeyPrefix *string `json:"key_prefix,omitempty"`
 	// AWS region of the S3 bucket.
 	Region string `json:"region"`
+	// Server-side encryption type for Amazon S3.
+	ServerSideEncryption *ObservabilityPipelineAmazonS3DestinationServerSideEncryption `json:"server_side_encryption,omitempty"`
+	// The AWS KMS key ID used for SSE-KMS encryption.
+	// Only applies when `server_side_encryption` is set to `aws:kms`.
+	SsekmsKeyId *string `json:"ssekms_key_id,omitempty"`
 	// S3 storage class.
 	StorageClass ObservabilityPipelineAmazonS3DestinationStorageClass `json:"storage_class"`
 	// The destination type. Always `amazon_s3_generic`.
@@ -321,6 +326,62 @@ func (o *ObservabilityPipelineAmazonS3GenericDestination) SetRegion(v string) {
 	o.Region = v
 }
 
+// GetServerSideEncryption returns the ServerSideEncryption field value if set, zero value otherwise.
+func (o *ObservabilityPipelineAmazonS3GenericDestination) GetServerSideEncryption() ObservabilityPipelineAmazonS3DestinationServerSideEncryption {
+	if o == nil || o.ServerSideEncryption == nil {
+		var ret ObservabilityPipelineAmazonS3DestinationServerSideEncryption
+		return ret
+	}
+	return *o.ServerSideEncryption
+}
+
+// GetServerSideEncryptionOk returns a tuple with the ServerSideEncryption field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineAmazonS3GenericDestination) GetServerSideEncryptionOk() (*ObservabilityPipelineAmazonS3DestinationServerSideEncryption, bool) {
+	if o == nil || o.ServerSideEncryption == nil {
+		return nil, false
+	}
+	return o.ServerSideEncryption, true
+}
+
+// HasServerSideEncryption returns a boolean if a field has been set.
+func (o *ObservabilityPipelineAmazonS3GenericDestination) HasServerSideEncryption() bool {
+	return o != nil && o.ServerSideEncryption != nil
+}
+
+// SetServerSideEncryption gets a reference to the given ObservabilityPipelineAmazonS3DestinationServerSideEncryption and assigns it to the ServerSideEncryption field.
+func (o *ObservabilityPipelineAmazonS3GenericDestination) SetServerSideEncryption(v ObservabilityPipelineAmazonS3DestinationServerSideEncryption) {
+	o.ServerSideEncryption = &v
+}
+
+// GetSsekmsKeyId returns the SsekmsKeyId field value if set, zero value otherwise.
+func (o *ObservabilityPipelineAmazonS3GenericDestination) GetSsekmsKeyId() string {
+	if o == nil || o.SsekmsKeyId == nil {
+		var ret string
+		return ret
+	}
+	return *o.SsekmsKeyId
+}
+
+// GetSsekmsKeyIdOk returns a tuple with the SsekmsKeyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineAmazonS3GenericDestination) GetSsekmsKeyIdOk() (*string, bool) {
+	if o == nil || o.SsekmsKeyId == nil {
+		return nil, false
+	}
+	return o.SsekmsKeyId, true
+}
+
+// HasSsekmsKeyId returns a boolean if a field has been set.
+func (o *ObservabilityPipelineAmazonS3GenericDestination) HasSsekmsKeyId() bool {
+	return o != nil && o.SsekmsKeyId != nil
+}
+
+// SetSsekmsKeyId gets a reference to the given string and assigns it to the SsekmsKeyId field.
+func (o *ObservabilityPipelineAmazonS3GenericDestination) SetSsekmsKeyId(v string) {
+	o.SsekmsKeyId = &v
+}
+
 // GetStorageClass returns the StorageClass field value.
 func (o *ObservabilityPipelineAmazonS3GenericDestination) GetStorageClass() ObservabilityPipelineAmazonS3DestinationStorageClass {
 	if o == nil {
@@ -391,6 +452,12 @@ func (o ObservabilityPipelineAmazonS3GenericDestination) MarshalJSON() ([]byte, 
 		toSerialize["key_prefix"] = o.KeyPrefix
 	}
 	toSerialize["region"] = o.Region
+	if o.ServerSideEncryption != nil {
+		toSerialize["server_side_encryption"] = o.ServerSideEncryption
+	}
+	if o.SsekmsKeyId != nil {
+		toSerialize["ssekms_key_id"] = o.SsekmsKeyId
+	}
 	toSerialize["storage_class"] = o.StorageClass
 	toSerialize["type"] = o.Type
 
@@ -403,18 +470,20 @@ func (o ObservabilityPipelineAmazonS3GenericDestination) MarshalJSON() ([]byte, 
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineAmazonS3GenericDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Auth          *ObservabilityPipelineAwsAuth                         `json:"auth,omitempty"`
-		BatchSettings *ObservabilityPipelineAmazonS3GenericBatchSettings    `json:"batch_settings,omitempty"`
-		Bucket        *string                                               `json:"bucket"`
-		Buffer        *ObservabilityPipelineBufferOptions                   `json:"buffer,omitempty"`
-		Compression   *ObservabilityPipelineAmazonS3GenericCompression      `json:"compression"`
-		Encoding      *ObservabilityPipelineAmazonS3GenericEncoding         `json:"encoding"`
-		Id            *string                                               `json:"id"`
-		Inputs        *[]string                                             `json:"inputs"`
-		KeyPrefix     *string                                               `json:"key_prefix,omitempty"`
-		Region        *string                                               `json:"region"`
-		StorageClass  *ObservabilityPipelineAmazonS3DestinationStorageClass `json:"storage_class"`
-		Type          *ObservabilityPipelineAmazonS3GenericDestinationType  `json:"type"`
+		Auth                 *ObservabilityPipelineAwsAuth                                 `json:"auth,omitempty"`
+		BatchSettings        *ObservabilityPipelineAmazonS3GenericBatchSettings            `json:"batch_settings,omitempty"`
+		Bucket               *string                                                       `json:"bucket"`
+		Buffer               *ObservabilityPipelineBufferOptions                           `json:"buffer,omitempty"`
+		Compression          *ObservabilityPipelineAmazonS3GenericCompression              `json:"compression"`
+		Encoding             *ObservabilityPipelineAmazonS3GenericEncoding                 `json:"encoding"`
+		Id                   *string                                                       `json:"id"`
+		Inputs               *[]string                                                     `json:"inputs"`
+		KeyPrefix            *string                                                       `json:"key_prefix,omitempty"`
+		Region               *string                                                       `json:"region"`
+		ServerSideEncryption *ObservabilityPipelineAmazonS3DestinationServerSideEncryption `json:"server_side_encryption,omitempty"`
+		SsekmsKeyId          *string                                                       `json:"ssekms_key_id,omitempty"`
+		StorageClass         *ObservabilityPipelineAmazonS3DestinationStorageClass         `json:"storage_class"`
+		Type                 *ObservabilityPipelineAmazonS3GenericDestinationType          `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -445,7 +514,7 @@ func (o *ObservabilityPipelineAmazonS3GenericDestination) UnmarshalJSON(bytes []
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "batch_settings", "bucket", "buffer", "compression", "encoding", "id", "inputs", "key_prefix", "region", "storage_class", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"auth", "batch_settings", "bucket", "buffer", "compression", "encoding", "id", "inputs", "key_prefix", "region", "server_side_encryption", "ssekms_key_id", "storage_class", "type"})
 	} else {
 		return err
 	}
@@ -467,6 +536,12 @@ func (o *ObservabilityPipelineAmazonS3GenericDestination) UnmarshalJSON(bytes []
 	o.Inputs = *all.Inputs
 	o.KeyPrefix = all.KeyPrefix
 	o.Region = *all.Region
+	if all.ServerSideEncryption != nil && !all.ServerSideEncryption.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.ServerSideEncryption = all.ServerSideEncryption
+	}
+	o.SsekmsKeyId = all.SsekmsKeyId
 	if !all.StorageClass.IsValid() {
 		hasInvalidField = true
 	} else {
