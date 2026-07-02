@@ -1,0 +1,524 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_model_lab_metric_summary.go - Datadog</title>
+
+<link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/datadog-api-client-go/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.25.11";</script>
+<script src="/datadog-api-client-go/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog | Datadog API client for GO</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_model_lab_metric_summary.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">github.com/DataDog/datadog-api-client-go/v2/api/datadogV2</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span><span class="comment">// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.</span>
+<span id="L2" class="ln">     2  </span><span class="comment">// This product includes software developed at Datadog (https://www.datadoghq.com/).</span>
+<span id="L3" class="ln">     3  </span><span class="comment">// Copyright 2019-Present Datadog, Inc.</span>
+<span id="L4" class="ln">     4  </span>
+<span id="L5" class="ln">     5  </span>package datadogV2
+<span id="L6" class="ln">     6  </span>
+<span id="L7" class="ln">     7  </span>import (
+<span id="L8" class="ln">     8  </span>	&#34;fmt&#34;
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
+<span id="L11" class="ln">    11  </span>)
+<span id="L12" class="ln">    12  </span>
+<span id="L13" class="ln">    13  </span><span class="comment">// ModelLabMetricSummary Summary statistics for a metric recorded during a Model Lab run.</span>
+<span id="L14" class="ln">    14  </span>type ModelLabMetricSummary struct {
+<span id="L15" class="ln">    15  </span>	<span class="comment">// The total number of recorded values.</span>
+<span id="L16" class="ln">    16  </span>	Count int64 `json:&#34;count&#34;`
+<span id="L17" class="ln">    17  </span>	<span class="comment">// The first step at which the metric was recorded.</span>
+<span id="L18" class="ln">    18  </span>	FirstStep datadog.NullableInt64 `json:&#34;first_step,omitempty&#34;`
+<span id="L19" class="ln">    19  </span>	<span class="comment">// The metric name.</span>
+<span id="L20" class="ln">    20  </span>	Key string `json:&#34;key&#34;`
+<span id="L21" class="ln">    21  </span>	<span class="comment">// The last step at which the metric was recorded.</span>
+<span id="L22" class="ln">    22  </span>	LastStep datadog.NullableInt64 `json:&#34;last_step,omitempty&#34;`
+<span id="L23" class="ln">    23  </span>	<span class="comment">// The most recently recorded value.</span>
+<span id="L24" class="ln">    24  </span>	Latest datadog.NullableFloat64 `json:&#34;latest,omitempty&#34;`
+<span id="L25" class="ln">    25  </span>	<span class="comment">// The maximum recorded value.</span>
+<span id="L26" class="ln">    26  </span>	Max datadog.NullableFloat64 `json:&#34;max,omitempty&#34;`
+<span id="L27" class="ln">    27  </span>	<span class="comment">// The mean of recorded values.</span>
+<span id="L28" class="ln">    28  </span>	Mean datadog.NullableFloat64 `json:&#34;mean,omitempty&#34;`
+<span id="L29" class="ln">    29  </span>	<span class="comment">// The minimum recorded value.</span>
+<span id="L30" class="ln">    30  </span>	Min datadog.NullableFloat64 `json:&#34;min,omitempty&#34;`
+<span id="L31" class="ln">    31  </span>	<span class="comment">// The standard deviation of recorded values.</span>
+<span id="L32" class="ln">    32  </span>	Stddev datadog.NullableFloat64 `json:&#34;stddev,omitempty&#34;`
+<span id="L33" class="ln">    33  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L34" class="ln">    34  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L35" class="ln">    35  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L36" class="ln">    36  </span>}
+<span id="L37" class="ln">    37  </span>
+<span id="L38" class="ln">    38  </span><span class="comment">// NewModelLabMetricSummary instantiates a new ModelLabMetricSummary object.</span>
+<span id="L39" class="ln">    39  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L40" class="ln">    40  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L41" class="ln">    41  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L42" class="ln">    42  </span>func NewModelLabMetricSummary(count int64, key string) *ModelLabMetricSummary {
+<span id="L43" class="ln">    43  </span>	this := ModelLabMetricSummary{}
+<span id="L44" class="ln">    44  </span>	this.Count = count
+<span id="L45" class="ln">    45  </span>	this.Key = key
+<span id="L46" class="ln">    46  </span>	return &amp;this
+<span id="L47" class="ln">    47  </span>}
+<span id="L48" class="ln">    48  </span>
+<span id="L49" class="ln">    49  </span><span class="comment">// NewModelLabMetricSummaryWithDefaults instantiates a new ModelLabMetricSummary object.</span>
+<span id="L50" class="ln">    50  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L51" class="ln">    51  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L52" class="ln">    52  </span>func NewModelLabMetricSummaryWithDefaults() *ModelLabMetricSummary {
+<span id="L53" class="ln">    53  </span>	this := ModelLabMetricSummary{}
+<span id="L54" class="ln">    54  </span>	return &amp;this
+<span id="L55" class="ln">    55  </span>}
+<span id="L56" class="ln">    56  </span>
+<span id="L57" class="ln">    57  </span><span class="comment">// GetCount returns the Count field value.</span>
+<span id="L58" class="ln">    58  </span>func (o *ModelLabMetricSummary) GetCount() int64 {
+<span id="L59" class="ln">    59  </span>	if o == nil {
+<span id="L60" class="ln">    60  </span>		var ret int64
+<span id="L61" class="ln">    61  </span>		return ret
+<span id="L62" class="ln">    62  </span>	}
+<span id="L63" class="ln">    63  </span>	return o.Count
+<span id="L64" class="ln">    64  </span>}
+<span id="L65" class="ln">    65  </span>
+<span id="L66" class="ln">    66  </span><span class="comment">// GetCountOk returns a tuple with the Count field value</span>
+<span id="L67" class="ln">    67  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L68" class="ln">    68  </span>func (o *ModelLabMetricSummary) GetCountOk() (*int64, bool) {
+<span id="L69" class="ln">    69  </span>	if o == nil {
+<span id="L70" class="ln">    70  </span>		return nil, false
+<span id="L71" class="ln">    71  </span>	}
+<span id="L72" class="ln">    72  </span>	return &amp;o.Count, true
+<span id="L73" class="ln">    73  </span>}
+<span id="L74" class="ln">    74  </span>
+<span id="L75" class="ln">    75  </span><span class="comment">// SetCount sets field value.</span>
+<span id="L76" class="ln">    76  </span>func (o *ModelLabMetricSummary) SetCount(v int64) {
+<span id="L77" class="ln">    77  </span>	o.Count = v
+<span id="L78" class="ln">    78  </span>}
+<span id="L79" class="ln">    79  </span>
+<span id="L80" class="ln">    80  </span><span class="comment">// GetFirstStep returns the FirstStep field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L81" class="ln">    81  </span>func (o *ModelLabMetricSummary) GetFirstStep() int64 {
+<span id="L82" class="ln">    82  </span>	if o == nil || o.FirstStep.Get() == nil {
+<span id="L83" class="ln">    83  </span>		var ret int64
+<span id="L84" class="ln">    84  </span>		return ret
+<span id="L85" class="ln">    85  </span>	}
+<span id="L86" class="ln">    86  </span>	return *o.FirstStep.Get()
+<span id="L87" class="ln">    87  </span>}
+<span id="L88" class="ln">    88  </span>
+<span id="L89" class="ln">    89  </span><span class="comment">// GetFirstStepOk returns a tuple with the FirstStep field value if set, nil otherwise</span>
+<span id="L90" class="ln">    90  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L91" class="ln">    91  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L92" class="ln">    92  </span>func (o *ModelLabMetricSummary) GetFirstStepOk() (*int64, bool) {
+<span id="L93" class="ln">    93  </span>	if o == nil {
+<span id="L94" class="ln">    94  </span>		return nil, false
+<span id="L95" class="ln">    95  </span>	}
+<span id="L96" class="ln">    96  </span>	return o.FirstStep.Get(), o.FirstStep.IsSet()
+<span id="L97" class="ln">    97  </span>}
+<span id="L98" class="ln">    98  </span>
+<span id="L99" class="ln">    99  </span><span class="comment">// HasFirstStep returns a boolean if a field has been set.</span>
+<span id="L100" class="ln">   100  </span>func (o *ModelLabMetricSummary) HasFirstStep() bool {
+<span id="L101" class="ln">   101  </span>	return o != nil &amp;&amp; o.FirstStep.IsSet()
+<span id="L102" class="ln">   102  </span>}
+<span id="L103" class="ln">   103  </span>
+<span id="L104" class="ln">   104  </span><span class="comment">// SetFirstStep gets a reference to the given datadog.NullableInt64 and assigns it to the FirstStep field.</span>
+<span id="L105" class="ln">   105  </span>func (o *ModelLabMetricSummary) SetFirstStep(v int64) {
+<span id="L106" class="ln">   106  </span>	o.FirstStep.Set(&amp;v)
+<span id="L107" class="ln">   107  </span>}
+<span id="L108" class="ln">   108  </span>
+<span id="L109" class="ln">   109  </span><span class="comment">// SetFirstStepNil sets the value for FirstStep to be an explicit nil.</span>
+<span id="L110" class="ln">   110  </span>func (o *ModelLabMetricSummary) SetFirstStepNil() {
+<span id="L111" class="ln">   111  </span>	o.FirstStep.Set(nil)
+<span id="L112" class="ln">   112  </span>}
+<span id="L113" class="ln">   113  </span>
+<span id="L114" class="ln">   114  </span><span class="comment">// UnsetFirstStep ensures that no value is present for FirstStep, not even an explicit nil.</span>
+<span id="L115" class="ln">   115  </span>func (o *ModelLabMetricSummary) UnsetFirstStep() {
+<span id="L116" class="ln">   116  </span>	o.FirstStep.Unset()
+<span id="L117" class="ln">   117  </span>}
+<span id="L118" class="ln">   118  </span>
+<span id="L119" class="ln">   119  </span><span class="comment">// GetKey returns the Key field value.</span>
+<span id="L120" class="ln">   120  </span>func (o *ModelLabMetricSummary) GetKey() string {
+<span id="L121" class="ln">   121  </span>	if o == nil {
+<span id="L122" class="ln">   122  </span>		var ret string
+<span id="L123" class="ln">   123  </span>		return ret
+<span id="L124" class="ln">   124  </span>	}
+<span id="L125" class="ln">   125  </span>	return o.Key
+<span id="L126" class="ln">   126  </span>}
+<span id="L127" class="ln">   127  </span>
+<span id="L128" class="ln">   128  </span><span class="comment">// GetKeyOk returns a tuple with the Key field value</span>
+<span id="L129" class="ln">   129  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L130" class="ln">   130  </span>func (o *ModelLabMetricSummary) GetKeyOk() (*string, bool) {
+<span id="L131" class="ln">   131  </span>	if o == nil {
+<span id="L132" class="ln">   132  </span>		return nil, false
+<span id="L133" class="ln">   133  </span>	}
+<span id="L134" class="ln">   134  </span>	return &amp;o.Key, true
+<span id="L135" class="ln">   135  </span>}
+<span id="L136" class="ln">   136  </span>
+<span id="L137" class="ln">   137  </span><span class="comment">// SetKey sets field value.</span>
+<span id="L138" class="ln">   138  </span>func (o *ModelLabMetricSummary) SetKey(v string) {
+<span id="L139" class="ln">   139  </span>	o.Key = v
+<span id="L140" class="ln">   140  </span>}
+<span id="L141" class="ln">   141  </span>
+<span id="L142" class="ln">   142  </span><span class="comment">// GetLastStep returns the LastStep field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L143" class="ln">   143  </span>func (o *ModelLabMetricSummary) GetLastStep() int64 {
+<span id="L144" class="ln">   144  </span>	if o == nil || o.LastStep.Get() == nil {
+<span id="L145" class="ln">   145  </span>		var ret int64
+<span id="L146" class="ln">   146  </span>		return ret
+<span id="L147" class="ln">   147  </span>	}
+<span id="L148" class="ln">   148  </span>	return *o.LastStep.Get()
+<span id="L149" class="ln">   149  </span>}
+<span id="L150" class="ln">   150  </span>
+<span id="L151" class="ln">   151  </span><span class="comment">// GetLastStepOk returns a tuple with the LastStep field value if set, nil otherwise</span>
+<span id="L152" class="ln">   152  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L153" class="ln">   153  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L154" class="ln">   154  </span>func (o *ModelLabMetricSummary) GetLastStepOk() (*int64, bool) {
+<span id="L155" class="ln">   155  </span>	if o == nil {
+<span id="L156" class="ln">   156  </span>		return nil, false
+<span id="L157" class="ln">   157  </span>	}
+<span id="L158" class="ln">   158  </span>	return o.LastStep.Get(), o.LastStep.IsSet()
+<span id="L159" class="ln">   159  </span>}
+<span id="L160" class="ln">   160  </span>
+<span id="L161" class="ln">   161  </span><span class="comment">// HasLastStep returns a boolean if a field has been set.</span>
+<span id="L162" class="ln">   162  </span>func (o *ModelLabMetricSummary) HasLastStep() bool {
+<span id="L163" class="ln">   163  </span>	return o != nil &amp;&amp; o.LastStep.IsSet()
+<span id="L164" class="ln">   164  </span>}
+<span id="L165" class="ln">   165  </span>
+<span id="L166" class="ln">   166  </span><span class="comment">// SetLastStep gets a reference to the given datadog.NullableInt64 and assigns it to the LastStep field.</span>
+<span id="L167" class="ln">   167  </span>func (o *ModelLabMetricSummary) SetLastStep(v int64) {
+<span id="L168" class="ln">   168  </span>	o.LastStep.Set(&amp;v)
+<span id="L169" class="ln">   169  </span>}
+<span id="L170" class="ln">   170  </span>
+<span id="L171" class="ln">   171  </span><span class="comment">// SetLastStepNil sets the value for LastStep to be an explicit nil.</span>
+<span id="L172" class="ln">   172  </span>func (o *ModelLabMetricSummary) SetLastStepNil() {
+<span id="L173" class="ln">   173  </span>	o.LastStep.Set(nil)
+<span id="L174" class="ln">   174  </span>}
+<span id="L175" class="ln">   175  </span>
+<span id="L176" class="ln">   176  </span><span class="comment">// UnsetLastStep ensures that no value is present for LastStep, not even an explicit nil.</span>
+<span id="L177" class="ln">   177  </span>func (o *ModelLabMetricSummary) UnsetLastStep() {
+<span id="L178" class="ln">   178  </span>	o.LastStep.Unset()
+<span id="L179" class="ln">   179  </span>}
+<span id="L180" class="ln">   180  </span>
+<span id="L181" class="ln">   181  </span><span class="comment">// GetLatest returns the Latest field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L182" class="ln">   182  </span>func (o *ModelLabMetricSummary) GetLatest() float64 {
+<span id="L183" class="ln">   183  </span>	if o == nil || o.Latest.Get() == nil {
+<span id="L184" class="ln">   184  </span>		var ret float64
+<span id="L185" class="ln">   185  </span>		return ret
+<span id="L186" class="ln">   186  </span>	}
+<span id="L187" class="ln">   187  </span>	return *o.Latest.Get()
+<span id="L188" class="ln">   188  </span>}
+<span id="L189" class="ln">   189  </span>
+<span id="L190" class="ln">   190  </span><span class="comment">// GetLatestOk returns a tuple with the Latest field value if set, nil otherwise</span>
+<span id="L191" class="ln">   191  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L192" class="ln">   192  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L193" class="ln">   193  </span>func (o *ModelLabMetricSummary) GetLatestOk() (*float64, bool) {
+<span id="L194" class="ln">   194  </span>	if o == nil {
+<span id="L195" class="ln">   195  </span>		return nil, false
+<span id="L196" class="ln">   196  </span>	}
+<span id="L197" class="ln">   197  </span>	return o.Latest.Get(), o.Latest.IsSet()
+<span id="L198" class="ln">   198  </span>}
+<span id="L199" class="ln">   199  </span>
+<span id="L200" class="ln">   200  </span><span class="comment">// HasLatest returns a boolean if a field has been set.</span>
+<span id="L201" class="ln">   201  </span>func (o *ModelLabMetricSummary) HasLatest() bool {
+<span id="L202" class="ln">   202  </span>	return o != nil &amp;&amp; o.Latest.IsSet()
+<span id="L203" class="ln">   203  </span>}
+<span id="L204" class="ln">   204  </span>
+<span id="L205" class="ln">   205  </span><span class="comment">// SetLatest gets a reference to the given datadog.NullableFloat64 and assigns it to the Latest field.</span>
+<span id="L206" class="ln">   206  </span>func (o *ModelLabMetricSummary) SetLatest(v float64) {
+<span id="L207" class="ln">   207  </span>	o.Latest.Set(&amp;v)
+<span id="L208" class="ln">   208  </span>}
+<span id="L209" class="ln">   209  </span>
+<span id="L210" class="ln">   210  </span><span class="comment">// SetLatestNil sets the value for Latest to be an explicit nil.</span>
+<span id="L211" class="ln">   211  </span>func (o *ModelLabMetricSummary) SetLatestNil() {
+<span id="L212" class="ln">   212  </span>	o.Latest.Set(nil)
+<span id="L213" class="ln">   213  </span>}
+<span id="L214" class="ln">   214  </span>
+<span id="L215" class="ln">   215  </span><span class="comment">// UnsetLatest ensures that no value is present for Latest, not even an explicit nil.</span>
+<span id="L216" class="ln">   216  </span>func (o *ModelLabMetricSummary) UnsetLatest() {
+<span id="L217" class="ln">   217  </span>	o.Latest.Unset()
+<span id="L218" class="ln">   218  </span>}
+<span id="L219" class="ln">   219  </span>
+<span id="L220" class="ln">   220  </span><span class="comment">// GetMax returns the Max field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L221" class="ln">   221  </span>func (o *ModelLabMetricSummary) GetMax() float64 {
+<span id="L222" class="ln">   222  </span>	if o == nil || o.Max.Get() == nil {
+<span id="L223" class="ln">   223  </span>		var ret float64
+<span id="L224" class="ln">   224  </span>		return ret
+<span id="L225" class="ln">   225  </span>	}
+<span id="L226" class="ln">   226  </span>	return *o.Max.Get()
+<span id="L227" class="ln">   227  </span>}
+<span id="L228" class="ln">   228  </span>
+<span id="L229" class="ln">   229  </span><span class="comment">// GetMaxOk returns a tuple with the Max field value if set, nil otherwise</span>
+<span id="L230" class="ln">   230  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L231" class="ln">   231  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L232" class="ln">   232  </span>func (o *ModelLabMetricSummary) GetMaxOk() (*float64, bool) {
+<span id="L233" class="ln">   233  </span>	if o == nil {
+<span id="L234" class="ln">   234  </span>		return nil, false
+<span id="L235" class="ln">   235  </span>	}
+<span id="L236" class="ln">   236  </span>	return o.Max.Get(), o.Max.IsSet()
+<span id="L237" class="ln">   237  </span>}
+<span id="L238" class="ln">   238  </span>
+<span id="L239" class="ln">   239  </span><span class="comment">// HasMax returns a boolean if a field has been set.</span>
+<span id="L240" class="ln">   240  </span>func (o *ModelLabMetricSummary) HasMax() bool {
+<span id="L241" class="ln">   241  </span>	return o != nil &amp;&amp; o.Max.IsSet()
+<span id="L242" class="ln">   242  </span>}
+<span id="L243" class="ln">   243  </span>
+<span id="L244" class="ln">   244  </span><span class="comment">// SetMax gets a reference to the given datadog.NullableFloat64 and assigns it to the Max field.</span>
+<span id="L245" class="ln">   245  </span>func (o *ModelLabMetricSummary) SetMax(v float64) {
+<span id="L246" class="ln">   246  </span>	o.Max.Set(&amp;v)
+<span id="L247" class="ln">   247  </span>}
+<span id="L248" class="ln">   248  </span>
+<span id="L249" class="ln">   249  </span><span class="comment">// SetMaxNil sets the value for Max to be an explicit nil.</span>
+<span id="L250" class="ln">   250  </span>func (o *ModelLabMetricSummary) SetMaxNil() {
+<span id="L251" class="ln">   251  </span>	o.Max.Set(nil)
+<span id="L252" class="ln">   252  </span>}
+<span id="L253" class="ln">   253  </span>
+<span id="L254" class="ln">   254  </span><span class="comment">// UnsetMax ensures that no value is present for Max, not even an explicit nil.</span>
+<span id="L255" class="ln">   255  </span>func (o *ModelLabMetricSummary) UnsetMax() {
+<span id="L256" class="ln">   256  </span>	o.Max.Unset()
+<span id="L257" class="ln">   257  </span>}
+<span id="L258" class="ln">   258  </span>
+<span id="L259" class="ln">   259  </span><span class="comment">// GetMean returns the Mean field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L260" class="ln">   260  </span>func (o *ModelLabMetricSummary) GetMean() float64 {
+<span id="L261" class="ln">   261  </span>	if o == nil || o.Mean.Get() == nil {
+<span id="L262" class="ln">   262  </span>		var ret float64
+<span id="L263" class="ln">   263  </span>		return ret
+<span id="L264" class="ln">   264  </span>	}
+<span id="L265" class="ln">   265  </span>	return *o.Mean.Get()
+<span id="L266" class="ln">   266  </span>}
+<span id="L267" class="ln">   267  </span>
+<span id="L268" class="ln">   268  </span><span class="comment">// GetMeanOk returns a tuple with the Mean field value if set, nil otherwise</span>
+<span id="L269" class="ln">   269  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L270" class="ln">   270  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L271" class="ln">   271  </span>func (o *ModelLabMetricSummary) GetMeanOk() (*float64, bool) {
+<span id="L272" class="ln">   272  </span>	if o == nil {
+<span id="L273" class="ln">   273  </span>		return nil, false
+<span id="L274" class="ln">   274  </span>	}
+<span id="L275" class="ln">   275  </span>	return o.Mean.Get(), o.Mean.IsSet()
+<span id="L276" class="ln">   276  </span>}
+<span id="L277" class="ln">   277  </span>
+<span id="L278" class="ln">   278  </span><span class="comment">// HasMean returns a boolean if a field has been set.</span>
+<span id="L279" class="ln">   279  </span>func (o *ModelLabMetricSummary) HasMean() bool {
+<span id="L280" class="ln">   280  </span>	return o != nil &amp;&amp; o.Mean.IsSet()
+<span id="L281" class="ln">   281  </span>}
+<span id="L282" class="ln">   282  </span>
+<span id="L283" class="ln">   283  </span><span class="comment">// SetMean gets a reference to the given datadog.NullableFloat64 and assigns it to the Mean field.</span>
+<span id="L284" class="ln">   284  </span>func (o *ModelLabMetricSummary) SetMean(v float64) {
+<span id="L285" class="ln">   285  </span>	o.Mean.Set(&amp;v)
+<span id="L286" class="ln">   286  </span>}
+<span id="L287" class="ln">   287  </span>
+<span id="L288" class="ln">   288  </span><span class="comment">// SetMeanNil sets the value for Mean to be an explicit nil.</span>
+<span id="L289" class="ln">   289  </span>func (o *ModelLabMetricSummary) SetMeanNil() {
+<span id="L290" class="ln">   290  </span>	o.Mean.Set(nil)
+<span id="L291" class="ln">   291  </span>}
+<span id="L292" class="ln">   292  </span>
+<span id="L293" class="ln">   293  </span><span class="comment">// UnsetMean ensures that no value is present for Mean, not even an explicit nil.</span>
+<span id="L294" class="ln">   294  </span>func (o *ModelLabMetricSummary) UnsetMean() {
+<span id="L295" class="ln">   295  </span>	o.Mean.Unset()
+<span id="L296" class="ln">   296  </span>}
+<span id="L297" class="ln">   297  </span>
+<span id="L298" class="ln">   298  </span><span class="comment">// GetMin returns the Min field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L299" class="ln">   299  </span>func (o *ModelLabMetricSummary) GetMin() float64 {
+<span id="L300" class="ln">   300  </span>	if o == nil || o.Min.Get() == nil {
+<span id="L301" class="ln">   301  </span>		var ret float64
+<span id="L302" class="ln">   302  </span>		return ret
+<span id="L303" class="ln">   303  </span>	}
+<span id="L304" class="ln">   304  </span>	return *o.Min.Get()
+<span id="L305" class="ln">   305  </span>}
+<span id="L306" class="ln">   306  </span>
+<span id="L307" class="ln">   307  </span><span class="comment">// GetMinOk returns a tuple with the Min field value if set, nil otherwise</span>
+<span id="L308" class="ln">   308  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L309" class="ln">   309  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L310" class="ln">   310  </span>func (o *ModelLabMetricSummary) GetMinOk() (*float64, bool) {
+<span id="L311" class="ln">   311  </span>	if o == nil {
+<span id="L312" class="ln">   312  </span>		return nil, false
+<span id="L313" class="ln">   313  </span>	}
+<span id="L314" class="ln">   314  </span>	return o.Min.Get(), o.Min.IsSet()
+<span id="L315" class="ln">   315  </span>}
+<span id="L316" class="ln">   316  </span>
+<span id="L317" class="ln">   317  </span><span class="comment">// HasMin returns a boolean if a field has been set.</span>
+<span id="L318" class="ln">   318  </span>func (o *ModelLabMetricSummary) HasMin() bool {
+<span id="L319" class="ln">   319  </span>	return o != nil &amp;&amp; o.Min.IsSet()
+<span id="L320" class="ln">   320  </span>}
+<span id="L321" class="ln">   321  </span>
+<span id="L322" class="ln">   322  </span><span class="comment">// SetMin gets a reference to the given datadog.NullableFloat64 and assigns it to the Min field.</span>
+<span id="L323" class="ln">   323  </span>func (o *ModelLabMetricSummary) SetMin(v float64) {
+<span id="L324" class="ln">   324  </span>	o.Min.Set(&amp;v)
+<span id="L325" class="ln">   325  </span>}
+<span id="L326" class="ln">   326  </span>
+<span id="L327" class="ln">   327  </span><span class="comment">// SetMinNil sets the value for Min to be an explicit nil.</span>
+<span id="L328" class="ln">   328  </span>func (o *ModelLabMetricSummary) SetMinNil() {
+<span id="L329" class="ln">   329  </span>	o.Min.Set(nil)
+<span id="L330" class="ln">   330  </span>}
+<span id="L331" class="ln">   331  </span>
+<span id="L332" class="ln">   332  </span><span class="comment">// UnsetMin ensures that no value is present for Min, not even an explicit nil.</span>
+<span id="L333" class="ln">   333  </span>func (o *ModelLabMetricSummary) UnsetMin() {
+<span id="L334" class="ln">   334  </span>	o.Min.Unset()
+<span id="L335" class="ln">   335  </span>}
+<span id="L336" class="ln">   336  </span>
+<span id="L337" class="ln">   337  </span><span class="comment">// GetStddev returns the Stddev field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L338" class="ln">   338  </span>func (o *ModelLabMetricSummary) GetStddev() float64 {
+<span id="L339" class="ln">   339  </span>	if o == nil || o.Stddev.Get() == nil {
+<span id="L340" class="ln">   340  </span>		var ret float64
+<span id="L341" class="ln">   341  </span>		return ret
+<span id="L342" class="ln">   342  </span>	}
+<span id="L343" class="ln">   343  </span>	return *o.Stddev.Get()
+<span id="L344" class="ln">   344  </span>}
+<span id="L345" class="ln">   345  </span>
+<span id="L346" class="ln">   346  </span><span class="comment">// GetStddevOk returns a tuple with the Stddev field value if set, nil otherwise</span>
+<span id="L347" class="ln">   347  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L348" class="ln">   348  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L349" class="ln">   349  </span>func (o *ModelLabMetricSummary) GetStddevOk() (*float64, bool) {
+<span id="L350" class="ln">   350  </span>	if o == nil {
+<span id="L351" class="ln">   351  </span>		return nil, false
+<span id="L352" class="ln">   352  </span>	}
+<span id="L353" class="ln">   353  </span>	return o.Stddev.Get(), o.Stddev.IsSet()
+<span id="L354" class="ln">   354  </span>}
+<span id="L355" class="ln">   355  </span>
+<span id="L356" class="ln">   356  </span><span class="comment">// HasStddev returns a boolean if a field has been set.</span>
+<span id="L357" class="ln">   357  </span>func (o *ModelLabMetricSummary) HasStddev() bool {
+<span id="L358" class="ln">   358  </span>	return o != nil &amp;&amp; o.Stddev.IsSet()
+<span id="L359" class="ln">   359  </span>}
+<span id="L360" class="ln">   360  </span>
+<span id="L361" class="ln">   361  </span><span class="comment">// SetStddev gets a reference to the given datadog.NullableFloat64 and assigns it to the Stddev field.</span>
+<span id="L362" class="ln">   362  </span>func (o *ModelLabMetricSummary) SetStddev(v float64) {
+<span id="L363" class="ln">   363  </span>	o.Stddev.Set(&amp;v)
+<span id="L364" class="ln">   364  </span>}
+<span id="L365" class="ln">   365  </span>
+<span id="L366" class="ln">   366  </span><span class="comment">// SetStddevNil sets the value for Stddev to be an explicit nil.</span>
+<span id="L367" class="ln">   367  </span>func (o *ModelLabMetricSummary) SetStddevNil() {
+<span id="L368" class="ln">   368  </span>	o.Stddev.Set(nil)
+<span id="L369" class="ln">   369  </span>}
+<span id="L370" class="ln">   370  </span>
+<span id="L371" class="ln">   371  </span><span class="comment">// UnsetStddev ensures that no value is present for Stddev, not even an explicit nil.</span>
+<span id="L372" class="ln">   372  </span>func (o *ModelLabMetricSummary) UnsetStddev() {
+<span id="L373" class="ln">   373  </span>	o.Stddev.Unset()
+<span id="L374" class="ln">   374  </span>}
+<span id="L375" class="ln">   375  </span>
+<span id="L376" class="ln">   376  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L377" class="ln">   377  </span>func (o ModelLabMetricSummary) MarshalJSON() ([]byte, error) {
+<span id="L378" class="ln">   378  </span>	toSerialize := map[string]interface{}{}
+<span id="L379" class="ln">   379  </span>	if o.UnparsedObject != nil {
+<span id="L380" class="ln">   380  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L381" class="ln">   381  </span>	}
+<span id="L382" class="ln">   382  </span>	toSerialize[&#34;count&#34;] = o.Count
+<span id="L383" class="ln">   383  </span>	if o.FirstStep.IsSet() {
+<span id="L384" class="ln">   384  </span>		toSerialize[&#34;first_step&#34;] = o.FirstStep.Get()
+<span id="L385" class="ln">   385  </span>	}
+<span id="L386" class="ln">   386  </span>	toSerialize[&#34;key&#34;] = o.Key
+<span id="L387" class="ln">   387  </span>	if o.LastStep.IsSet() {
+<span id="L388" class="ln">   388  </span>		toSerialize[&#34;last_step&#34;] = o.LastStep.Get()
+<span id="L389" class="ln">   389  </span>	}
+<span id="L390" class="ln">   390  </span>	if o.Latest.IsSet() {
+<span id="L391" class="ln">   391  </span>		toSerialize[&#34;latest&#34;] = o.Latest.Get()
+<span id="L392" class="ln">   392  </span>	}
+<span id="L393" class="ln">   393  </span>	if o.Max.IsSet() {
+<span id="L394" class="ln">   394  </span>		toSerialize[&#34;max&#34;] = o.Max.Get()
+<span id="L395" class="ln">   395  </span>	}
+<span id="L396" class="ln">   396  </span>	if o.Mean.IsSet() {
+<span id="L397" class="ln">   397  </span>		toSerialize[&#34;mean&#34;] = o.Mean.Get()
+<span id="L398" class="ln">   398  </span>	}
+<span id="L399" class="ln">   399  </span>	if o.Min.IsSet() {
+<span id="L400" class="ln">   400  </span>		toSerialize[&#34;min&#34;] = o.Min.Get()
+<span id="L401" class="ln">   401  </span>	}
+<span id="L402" class="ln">   402  </span>	if o.Stddev.IsSet() {
+<span id="L403" class="ln">   403  </span>		toSerialize[&#34;stddev&#34;] = o.Stddev.Get()
+<span id="L404" class="ln">   404  </span>	}
+<span id="L405" class="ln">   405  </span>
+<span id="L406" class="ln">   406  </span>	for key, value := range o.AdditionalProperties {
+<span id="L407" class="ln">   407  </span>		toSerialize[key] = value
+<span id="L408" class="ln">   408  </span>	}
+<span id="L409" class="ln">   409  </span>	return datadog.Marshal(toSerialize)
+<span id="L410" class="ln">   410  </span>}
+<span id="L411" class="ln">   411  </span>
+<span id="L412" class="ln">   412  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L413" class="ln">   413  </span>func (o *ModelLabMetricSummary) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L414" class="ln">   414  </span>	all := struct {
+<span id="L415" class="ln">   415  </span>		Count     *int64                  `json:&#34;count&#34;`
+<span id="L416" class="ln">   416  </span>		FirstStep datadog.NullableInt64   `json:&#34;first_step,omitempty&#34;`
+<span id="L417" class="ln">   417  </span>		Key       *string                 `json:&#34;key&#34;`
+<span id="L418" class="ln">   418  </span>		LastStep  datadog.NullableInt64   `json:&#34;last_step,omitempty&#34;`
+<span id="L419" class="ln">   419  </span>		Latest    datadog.NullableFloat64 `json:&#34;latest,omitempty&#34;`
+<span id="L420" class="ln">   420  </span>		Max       datadog.NullableFloat64 `json:&#34;max,omitempty&#34;`
+<span id="L421" class="ln">   421  </span>		Mean      datadog.NullableFloat64 `json:&#34;mean,omitempty&#34;`
+<span id="L422" class="ln">   422  </span>		Min       datadog.NullableFloat64 `json:&#34;min,omitempty&#34;`
+<span id="L423" class="ln">   423  </span>		Stddev    datadog.NullableFloat64 `json:&#34;stddev,omitempty&#34;`
+<span id="L424" class="ln">   424  </span>	}{}
+<span id="L425" class="ln">   425  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L426" class="ln">   426  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L427" class="ln">   427  </span>	}
+<span id="L428" class="ln">   428  </span>	if all.Count == nil {
+<span id="L429" class="ln">   429  </span>		return fmt.Errorf(&#34;required field count missing&#34;)
+<span id="L430" class="ln">   430  </span>	}
+<span id="L431" class="ln">   431  </span>	if all.Key == nil {
+<span id="L432" class="ln">   432  </span>		return fmt.Errorf(&#34;required field key missing&#34;)
+<span id="L433" class="ln">   433  </span>	}
+<span id="L434" class="ln">   434  </span>	additionalProperties := make(map[string]interface{})
+<span id="L435" class="ln">   435  </span>	if err = datadog.UnmarshalUseNumber(bytes, &amp;additionalProperties); err == nil {
+<span id="L436" class="ln">   436  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;count&#34;, &#34;first_step&#34;, &#34;key&#34;, &#34;last_step&#34;, &#34;latest&#34;, &#34;max&#34;, &#34;mean&#34;, &#34;min&#34;, &#34;stddev&#34;})
+<span id="L437" class="ln">   437  </span>	} else {
+<span id="L438" class="ln">   438  </span>		return err
+<span id="L439" class="ln">   439  </span>	}
+<span id="L440" class="ln">   440  </span>	o.Count = *all.Count
+<span id="L441" class="ln">   441  </span>	o.FirstStep = all.FirstStep
+<span id="L442" class="ln">   442  </span>	o.Key = *all.Key
+<span id="L443" class="ln">   443  </span>	o.LastStep = all.LastStep
+<span id="L444" class="ln">   444  </span>	o.Latest = all.Latest
+<span id="L445" class="ln">   445  </span>	o.Max = all.Max
+<span id="L446" class="ln">   446  </span>	o.Mean = all.Mean
+<span id="L447" class="ln">   447  </span>	o.Min = all.Min
+<span id="L448" class="ln">   448  </span>	o.Stddev = all.Stddev
+<span id="L449" class="ln">   449  </span>
+<span id="L450" class="ln">   450  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L451" class="ln">   451  </span>		o.AdditionalProperties = additionalProperties
+<span id="L452" class="ln">   452  </span>	}
+<span id="L453" class="ln">   453  </span>
+<span id="L454" class="ln">   454  </span>	return nil
+<span id="L455" class="ln">   455  </span>}
+<span id="L456" class="ln">   456  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.25.11.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

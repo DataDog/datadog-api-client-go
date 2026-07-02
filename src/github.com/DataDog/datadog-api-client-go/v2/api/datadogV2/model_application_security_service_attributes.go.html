@@ -1,0 +1,1190 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_application_security_service_attributes.go - Datadog</title>
+
+<link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/datadog-api-client-go/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.25.11";</script>
+<script src="/datadog-api-client-go/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog | Datadog API client for GO</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_application_security_service_attributes.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">github.com/DataDog/datadog-api-client-go/v2/api/datadogV2</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span><span class="comment">// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.</span>
+<span id="L2" class="ln">     2  </span><span class="comment">// This product includes software developed at Datadog (https://www.datadoghq.com/).</span>
+<span id="L3" class="ln">     3  </span><span class="comment">// Copyright 2019-Present Datadog, Inc.</span>
+<span id="L4" class="ln">     4  </span>
+<span id="L5" class="ln">     5  </span>package datadogV2
+<span id="L6" class="ln">     6  </span>
+<span id="L7" class="ln">     7  </span>import (
+<span id="L8" class="ln">     8  </span>	&#34;fmt&#34;
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
+<span id="L11" class="ln">    11  </span>)
+<span id="L12" class="ln">    12  </span>
+<span id="L13" class="ln">    13  </span><span class="comment">// ApplicationSecurityServiceAttributes Application Security details describing a service in a given environment.</span>
+<span id="L14" class="ln">    14  </span>type ApplicationSecurityServiceAttributes struct {
+<span id="L15" class="ln">    15  </span>	<span class="comment">// The Datadog Agent versions reporting for the service.</span>
+<span id="L16" class="ln">    16  </span>	AgentVersions []string `json:&#34;agent_versions&#34;`
+<span id="L17" class="ln">    17  </span>	<span class="comment">// The application type of the service, such as `web` or `serverless`.</span>
+<span id="L18" class="ln">    18  </span>	AppType string `json:&#34;app_type&#34;`
+<span id="L19" class="ln">    19  </span>	<span class="comment">// Whether the service is compatible with Application Security Management (Threats).</span>
+<span id="L20" class="ln">    20  </span>	AsmThreatCompatible bool `json:&#34;asm_threat_compatible&#34;`
+<span id="L21" class="ln">    21  </span>	<span class="comment">// The number of backend WAF events detected for the service.</span>
+<span id="L22" class="ln">    22  </span>	BackendWafEventCount int64 `json:&#34;backend_waf_event_count&#34;`
+<span id="L23" class="ln">    23  </span>	<span class="comment">// The enabled business logic detection rules for the service.</span>
+<span id="L24" class="ln">    24  </span>	BusinessLogic []string `json:&#34;business_logic&#34;`
+<span id="L25" class="ln">    25  </span>	<span class="comment">// Deprecated: a display color associated with the service in the UI.</span>
+<span id="L26" class="ln">    26  </span>	<span class="comment">// Deprecated</span>
+<span id="L27" class="ln">    27  </span>	Color string `json:&#34;color&#34;`
+<span id="L28" class="ln">    28  </span>	<span class="comment">// The environment the service runs in.</span>
+<span id="L29" class="ln">    29  </span>	Env string `json:&#34;env&#34;`
+<span id="L30" class="ln">    30  </span>	<span class="comment">// The number of Application Security events detected for the service.</span>
+<span id="L31" class="ln">    31  </span>	EventCount int64 `json:&#34;event_count&#34;`
+<span id="L32" class="ln">    32  </span>	<span class="comment">// Deprecated: the trend of Application Security events over time.</span>
+<span id="L33" class="ln">    33  </span>	<span class="comment">// Deprecated</span>
+<span id="L34" class="ln">    34  </span>	EventTrend []int64 `json:&#34;event_trend&#34;`
+<span id="L35" class="ln">    35  </span>	<span class="comment">// Whether Application Security Management (Threats) is enabled for the service.</span>
+<span id="L36" class="ln">    36  </span>	HasAppsecEnabled bool `json:&#34;has_appsec_enabled&#34;`
+<span id="L37" class="ln">    37  </span>	<span class="comment">// Deprecated: the number of hits for the service.</span>
+<span id="L38" class="ln">    38  </span>	<span class="comment">// Deprecated</span>
+<span id="L39" class="ln">    39  </span>	Hits int64 `json:&#34;hits&#34;`
+<span id="L40" class="ln">    40  </span>	<span class="comment">// Whether Interactive Application Security Testing (IAST) is enabled for the service.</span>
+<span id="L41" class="ln">    41  </span>	IastProductActivation bool `json:&#34;iast_product_activation&#34;`
+<span id="L42" class="ln">    42  </span>	<span class="comment">// The Interactive Application Security Testing (IAST) compatibility status of the service.</span>
+<span id="L43" class="ln">    43  </span>	IastProductCompatibility string `json:&#34;iast_product_compatibility&#34;`
+<span id="L44" class="ln">    44  </span>	<span class="comment">// The reasons explaining the Interactive Application Security Testing (IAST) compatibility status.</span>
+<span id="L45" class="ln">    45  </span>	IastProductCompatibilityReasons []string `json:&#34;iast_product_compatibility_reasons&#34;`
+<span id="L46" class="ln">    46  </span>	<span class="comment">// The programming languages detected for the service.</span>
+<span id="L47" class="ln">    47  </span>	Languages []string `json:&#34;languages&#34;`
+<span id="L48" class="ln">    48  </span>	<span class="comment">// The Unix timestamp, in seconds, of the last ingested span for the service.</span>
+<span id="L49" class="ln">    49  </span>	LastIngestedSpans int64 `json:&#34;last_ingested_spans&#34;`
+<span id="L50" class="ln">    50  </span>	<span class="comment">// The Remote Configuration capabilities reported by the service.</span>
+<span id="L51" class="ln">    51  </span>	RcCapabilities []string `json:&#34;rc_capabilities&#34;`
+<span id="L52" class="ln">    52  </span>	<span class="comment">// The recommended business logic detection rules for the service.</span>
+<span id="L53" class="ln">    53  </span>	RecommendedBusinessLogic []string `json:&#34;recommended_business_logic&#34;`
+<span id="L54" class="ln">    54  </span>	<span class="comment">// Whether Software Composition Analysis (SCA) is enabled for the service.</span>
+<span id="L55" class="ln">    55  </span>	RiskProductActivation bool `json:&#34;risk_product_activation&#34;`
+<span id="L56" class="ln">    56  </span>	<span class="comment">// The Software Composition Analysis (SCA) compatibility status of the service.</span>
+<span id="L57" class="ln">    57  </span>	RiskProductCompatibility string `json:&#34;risk_product_compatibility&#34;`
+<span id="L58" class="ln">    58  </span>	<span class="comment">// The reasons explaining the Software Composition Analysis (SCA) compatibility status.</span>
+<span id="L59" class="ln">    59  </span>	RiskProductCompatibilityReasons []string `json:&#34;risk_product_compatibility_reasons&#34;`
+<span id="L60" class="ln">    60  </span>	<span class="comment">// The WAF rules versions applied to the service.</span>
+<span id="L61" class="ln">    61  </span>	RulesVersion []string `json:&#34;rules_version&#34;`
+<span id="L62" class="ln">    62  </span>	<span class="comment">// The name of the service.</span>
+<span id="L63" class="ln">    63  </span>	Service string `json:&#34;service&#34;`
+<span id="L64" class="ln">    64  </span>	<span class="comment">// Deprecated: the number of security signals for the service.</span>
+<span id="L65" class="ln">    65  </span>	<span class="comment">// Deprecated</span>
+<span id="L66" class="ln">    66  </span>	SignalCount int64 `json:&#34;signal_count&#34;`
+<span id="L67" class="ln">    67  </span>	<span class="comment">// Deprecated: the trend of security signals over time.</span>
+<span id="L68" class="ln">    68  </span>	<span class="comment">// Deprecated</span>
+<span id="L69" class="ln">    69  </span>	SignalTrend []int64 `json:&#34;signal_trend&#34;`
+<span id="L70" class="ln">    70  </span>	<span class="comment">// The data sources that contributed information about the service.</span>
+<span id="L71" class="ln">    71  </span>	Source []string `json:&#34;source&#34;`
+<span id="L72" class="ln">    72  </span>	<span class="comment">// The teams that own the service.</span>
+<span id="L73" class="ln">    73  </span>	Teams []string `json:&#34;teams&#34;`
+<span id="L74" class="ln">    74  </span>	<span class="comment">// The Datadog tracing library versions reporting for the service.</span>
+<span id="L75" class="ln">    75  </span>	TracerVersions []string `json:&#34;tracer_versions&#34;`
+<span id="L76" class="ln">    76  </span>	<span class="comment">// The Vulnerability Management activation status of the service.</span>
+<span id="L77" class="ln">    77  </span>	VmActivation string `json:&#34;vm-activation&#34;`
+<span id="L78" class="ln">    78  </span>	<span class="comment">// Deprecated: the number of critical-severity vulnerabilities for the service.</span>
+<span id="L79" class="ln">    79  </span>	<span class="comment">// Deprecated</span>
+<span id="L80" class="ln">    80  </span>	VulnCriticalCount int64 `json:&#34;vuln_critical_count&#34;`
+<span id="L81" class="ln">    81  </span>	<span class="comment">// Deprecated: the number of high-severity vulnerabilities for the service.</span>
+<span id="L82" class="ln">    82  </span>	<span class="comment">// Deprecated</span>
+<span id="L83" class="ln">    83  </span>	VulnHighCount int64 `json:&#34;vuln_high_count&#34;`
+<span id="L84" class="ln">    84  </span>	<span class="comment">// The total number of services available without applying the service filter.</span>
+<span id="L85" class="ln">    85  </span>	WithoutFilterServices int64 `json:&#34;without_filter_services&#34;`
+<span id="L86" class="ln">    86  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L87" class="ln">    87  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L88" class="ln">    88  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L89" class="ln">    89  </span>}
+<span id="L90" class="ln">    90  </span>
+<span id="L91" class="ln">    91  </span><span class="comment">// NewApplicationSecurityServiceAttributes instantiates a new ApplicationSecurityServiceAttributes object.</span>
+<span id="L92" class="ln">    92  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L93" class="ln">    93  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L94" class="ln">    94  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L95" class="ln">    95  </span>func NewApplicationSecurityServiceAttributes(agentVersions []string, appType string, asmThreatCompatible bool, backendWafEventCount int64, businessLogic []string, color string, env string, eventCount int64, eventTrend []int64, hasAppsecEnabled bool, hits int64, iastProductActivation bool, iastProductCompatibility string, iastProductCompatibilityReasons []string, languages []string, lastIngestedSpans int64, rcCapabilities []string, recommendedBusinessLogic []string, riskProductActivation bool, riskProductCompatibility string, riskProductCompatibilityReasons []string, rulesVersion []string, service string, signalCount int64, signalTrend []int64, source []string, teams []string, tracerVersions []string, vmActivation string, vulnCriticalCount int64, vulnHighCount int64, withoutFilterServices int64) *ApplicationSecurityServiceAttributes {
+<span id="L96" class="ln">    96  </span>	this := ApplicationSecurityServiceAttributes{}
+<span id="L97" class="ln">    97  </span>	this.AgentVersions = agentVersions
+<span id="L98" class="ln">    98  </span>	this.AppType = appType
+<span id="L99" class="ln">    99  </span>	this.AsmThreatCompatible = asmThreatCompatible
+<span id="L100" class="ln">   100  </span>	this.BackendWafEventCount = backendWafEventCount
+<span id="L101" class="ln">   101  </span>	this.BusinessLogic = businessLogic
+<span id="L102" class="ln">   102  </span>	this.Color = color
+<span id="L103" class="ln">   103  </span>	this.Env = env
+<span id="L104" class="ln">   104  </span>	this.EventCount = eventCount
+<span id="L105" class="ln">   105  </span>	this.EventTrend = eventTrend
+<span id="L106" class="ln">   106  </span>	this.HasAppsecEnabled = hasAppsecEnabled
+<span id="L107" class="ln">   107  </span>	this.Hits = hits
+<span id="L108" class="ln">   108  </span>	this.IastProductActivation = iastProductActivation
+<span id="L109" class="ln">   109  </span>	this.IastProductCompatibility = iastProductCompatibility
+<span id="L110" class="ln">   110  </span>	this.IastProductCompatibilityReasons = iastProductCompatibilityReasons
+<span id="L111" class="ln">   111  </span>	this.Languages = languages
+<span id="L112" class="ln">   112  </span>	this.LastIngestedSpans = lastIngestedSpans
+<span id="L113" class="ln">   113  </span>	this.RcCapabilities = rcCapabilities
+<span id="L114" class="ln">   114  </span>	this.RecommendedBusinessLogic = recommendedBusinessLogic
+<span id="L115" class="ln">   115  </span>	this.RiskProductActivation = riskProductActivation
+<span id="L116" class="ln">   116  </span>	this.RiskProductCompatibility = riskProductCompatibility
+<span id="L117" class="ln">   117  </span>	this.RiskProductCompatibilityReasons = riskProductCompatibilityReasons
+<span id="L118" class="ln">   118  </span>	this.RulesVersion = rulesVersion
+<span id="L119" class="ln">   119  </span>	this.Service = service
+<span id="L120" class="ln">   120  </span>	this.SignalCount = signalCount
+<span id="L121" class="ln">   121  </span>	this.SignalTrend = signalTrend
+<span id="L122" class="ln">   122  </span>	this.Source = source
+<span id="L123" class="ln">   123  </span>	this.Teams = teams
+<span id="L124" class="ln">   124  </span>	this.TracerVersions = tracerVersions
+<span id="L125" class="ln">   125  </span>	this.VmActivation = vmActivation
+<span id="L126" class="ln">   126  </span>	this.VulnCriticalCount = vulnCriticalCount
+<span id="L127" class="ln">   127  </span>	this.VulnHighCount = vulnHighCount
+<span id="L128" class="ln">   128  </span>	this.WithoutFilterServices = withoutFilterServices
+<span id="L129" class="ln">   129  </span>	return &amp;this
+<span id="L130" class="ln">   130  </span>}
+<span id="L131" class="ln">   131  </span>
+<span id="L132" class="ln">   132  </span><span class="comment">// NewApplicationSecurityServiceAttributesWithDefaults instantiates a new ApplicationSecurityServiceAttributes object.</span>
+<span id="L133" class="ln">   133  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L134" class="ln">   134  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L135" class="ln">   135  </span>func NewApplicationSecurityServiceAttributesWithDefaults() *ApplicationSecurityServiceAttributes {
+<span id="L136" class="ln">   136  </span>	this := ApplicationSecurityServiceAttributes{}
+<span id="L137" class="ln">   137  </span>	return &amp;this
+<span id="L138" class="ln">   138  </span>}
+<span id="L139" class="ln">   139  </span>
+<span id="L140" class="ln">   140  </span><span class="comment">// GetAgentVersions returns the AgentVersions field value.</span>
+<span id="L141" class="ln">   141  </span>func (o *ApplicationSecurityServiceAttributes) GetAgentVersions() []string {
+<span id="L142" class="ln">   142  </span>	if o == nil {
+<span id="L143" class="ln">   143  </span>		var ret []string
+<span id="L144" class="ln">   144  </span>		return ret
+<span id="L145" class="ln">   145  </span>	}
+<span id="L146" class="ln">   146  </span>	return o.AgentVersions
+<span id="L147" class="ln">   147  </span>}
+<span id="L148" class="ln">   148  </span>
+<span id="L149" class="ln">   149  </span><span class="comment">// GetAgentVersionsOk returns a tuple with the AgentVersions field value</span>
+<span id="L150" class="ln">   150  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L151" class="ln">   151  </span>func (o *ApplicationSecurityServiceAttributes) GetAgentVersionsOk() (*[]string, bool) {
+<span id="L152" class="ln">   152  </span>	if o == nil {
+<span id="L153" class="ln">   153  </span>		return nil, false
+<span id="L154" class="ln">   154  </span>	}
+<span id="L155" class="ln">   155  </span>	return &amp;o.AgentVersions, true
+<span id="L156" class="ln">   156  </span>}
+<span id="L157" class="ln">   157  </span>
+<span id="L158" class="ln">   158  </span><span class="comment">// SetAgentVersions sets field value.</span>
+<span id="L159" class="ln">   159  </span>func (o *ApplicationSecurityServiceAttributes) SetAgentVersions(v []string) {
+<span id="L160" class="ln">   160  </span>	o.AgentVersions = v
+<span id="L161" class="ln">   161  </span>}
+<span id="L162" class="ln">   162  </span>
+<span id="L163" class="ln">   163  </span><span class="comment">// GetAppType returns the AppType field value.</span>
+<span id="L164" class="ln">   164  </span>func (o *ApplicationSecurityServiceAttributes) GetAppType() string {
+<span id="L165" class="ln">   165  </span>	if o == nil {
+<span id="L166" class="ln">   166  </span>		var ret string
+<span id="L167" class="ln">   167  </span>		return ret
+<span id="L168" class="ln">   168  </span>	}
+<span id="L169" class="ln">   169  </span>	return o.AppType
+<span id="L170" class="ln">   170  </span>}
+<span id="L171" class="ln">   171  </span>
+<span id="L172" class="ln">   172  </span><span class="comment">// GetAppTypeOk returns a tuple with the AppType field value</span>
+<span id="L173" class="ln">   173  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L174" class="ln">   174  </span>func (o *ApplicationSecurityServiceAttributes) GetAppTypeOk() (*string, bool) {
+<span id="L175" class="ln">   175  </span>	if o == nil {
+<span id="L176" class="ln">   176  </span>		return nil, false
+<span id="L177" class="ln">   177  </span>	}
+<span id="L178" class="ln">   178  </span>	return &amp;o.AppType, true
+<span id="L179" class="ln">   179  </span>}
+<span id="L180" class="ln">   180  </span>
+<span id="L181" class="ln">   181  </span><span class="comment">// SetAppType sets field value.</span>
+<span id="L182" class="ln">   182  </span>func (o *ApplicationSecurityServiceAttributes) SetAppType(v string) {
+<span id="L183" class="ln">   183  </span>	o.AppType = v
+<span id="L184" class="ln">   184  </span>}
+<span id="L185" class="ln">   185  </span>
+<span id="L186" class="ln">   186  </span><span class="comment">// GetAsmThreatCompatible returns the AsmThreatCompatible field value.</span>
+<span id="L187" class="ln">   187  </span>func (o *ApplicationSecurityServiceAttributes) GetAsmThreatCompatible() bool {
+<span id="L188" class="ln">   188  </span>	if o == nil {
+<span id="L189" class="ln">   189  </span>		var ret bool
+<span id="L190" class="ln">   190  </span>		return ret
+<span id="L191" class="ln">   191  </span>	}
+<span id="L192" class="ln">   192  </span>	return o.AsmThreatCompatible
+<span id="L193" class="ln">   193  </span>}
+<span id="L194" class="ln">   194  </span>
+<span id="L195" class="ln">   195  </span><span class="comment">// GetAsmThreatCompatibleOk returns a tuple with the AsmThreatCompatible field value</span>
+<span id="L196" class="ln">   196  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L197" class="ln">   197  </span>func (o *ApplicationSecurityServiceAttributes) GetAsmThreatCompatibleOk() (*bool, bool) {
+<span id="L198" class="ln">   198  </span>	if o == nil {
+<span id="L199" class="ln">   199  </span>		return nil, false
+<span id="L200" class="ln">   200  </span>	}
+<span id="L201" class="ln">   201  </span>	return &amp;o.AsmThreatCompatible, true
+<span id="L202" class="ln">   202  </span>}
+<span id="L203" class="ln">   203  </span>
+<span id="L204" class="ln">   204  </span><span class="comment">// SetAsmThreatCompatible sets field value.</span>
+<span id="L205" class="ln">   205  </span>func (o *ApplicationSecurityServiceAttributes) SetAsmThreatCompatible(v bool) {
+<span id="L206" class="ln">   206  </span>	o.AsmThreatCompatible = v
+<span id="L207" class="ln">   207  </span>}
+<span id="L208" class="ln">   208  </span>
+<span id="L209" class="ln">   209  </span><span class="comment">// GetBackendWafEventCount returns the BackendWafEventCount field value.</span>
+<span id="L210" class="ln">   210  </span>func (o *ApplicationSecurityServiceAttributes) GetBackendWafEventCount() int64 {
+<span id="L211" class="ln">   211  </span>	if o == nil {
+<span id="L212" class="ln">   212  </span>		var ret int64
+<span id="L213" class="ln">   213  </span>		return ret
+<span id="L214" class="ln">   214  </span>	}
+<span id="L215" class="ln">   215  </span>	return o.BackendWafEventCount
+<span id="L216" class="ln">   216  </span>}
+<span id="L217" class="ln">   217  </span>
+<span id="L218" class="ln">   218  </span><span class="comment">// GetBackendWafEventCountOk returns a tuple with the BackendWafEventCount field value</span>
+<span id="L219" class="ln">   219  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L220" class="ln">   220  </span>func (o *ApplicationSecurityServiceAttributes) GetBackendWafEventCountOk() (*int64, bool) {
+<span id="L221" class="ln">   221  </span>	if o == nil {
+<span id="L222" class="ln">   222  </span>		return nil, false
+<span id="L223" class="ln">   223  </span>	}
+<span id="L224" class="ln">   224  </span>	return &amp;o.BackendWafEventCount, true
+<span id="L225" class="ln">   225  </span>}
+<span id="L226" class="ln">   226  </span>
+<span id="L227" class="ln">   227  </span><span class="comment">// SetBackendWafEventCount sets field value.</span>
+<span id="L228" class="ln">   228  </span>func (o *ApplicationSecurityServiceAttributes) SetBackendWafEventCount(v int64) {
+<span id="L229" class="ln">   229  </span>	o.BackendWafEventCount = v
+<span id="L230" class="ln">   230  </span>}
+<span id="L231" class="ln">   231  </span>
+<span id="L232" class="ln">   232  </span><span class="comment">// GetBusinessLogic returns the BusinessLogic field value.</span>
+<span id="L233" class="ln">   233  </span>func (o *ApplicationSecurityServiceAttributes) GetBusinessLogic() []string {
+<span id="L234" class="ln">   234  </span>	if o == nil {
+<span id="L235" class="ln">   235  </span>		var ret []string
+<span id="L236" class="ln">   236  </span>		return ret
+<span id="L237" class="ln">   237  </span>	}
+<span id="L238" class="ln">   238  </span>	return o.BusinessLogic
+<span id="L239" class="ln">   239  </span>}
+<span id="L240" class="ln">   240  </span>
+<span id="L241" class="ln">   241  </span><span class="comment">// GetBusinessLogicOk returns a tuple with the BusinessLogic field value</span>
+<span id="L242" class="ln">   242  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L243" class="ln">   243  </span>func (o *ApplicationSecurityServiceAttributes) GetBusinessLogicOk() (*[]string, bool) {
+<span id="L244" class="ln">   244  </span>	if o == nil {
+<span id="L245" class="ln">   245  </span>		return nil, false
+<span id="L246" class="ln">   246  </span>	}
+<span id="L247" class="ln">   247  </span>	return &amp;o.BusinessLogic, true
+<span id="L248" class="ln">   248  </span>}
+<span id="L249" class="ln">   249  </span>
+<span id="L250" class="ln">   250  </span><span class="comment">// SetBusinessLogic sets field value.</span>
+<span id="L251" class="ln">   251  </span>func (o *ApplicationSecurityServiceAttributes) SetBusinessLogic(v []string) {
+<span id="L252" class="ln">   252  </span>	o.BusinessLogic = v
+<span id="L253" class="ln">   253  </span>}
+<span id="L254" class="ln">   254  </span>
+<span id="L255" class="ln">   255  </span><span class="comment">// GetColor returns the Color field value.</span>
+<span id="L256" class="ln">   256  </span><span class="comment">// Deprecated</span>
+<span id="L257" class="ln">   257  </span>func (o *ApplicationSecurityServiceAttributes) GetColor() string {
+<span id="L258" class="ln">   258  </span>	if o == nil {
+<span id="L259" class="ln">   259  </span>		var ret string
+<span id="L260" class="ln">   260  </span>		return ret
+<span id="L261" class="ln">   261  </span>	}
+<span id="L262" class="ln">   262  </span>	return o.Color
+<span id="L263" class="ln">   263  </span>}
+<span id="L264" class="ln">   264  </span>
+<span id="L265" class="ln">   265  </span><span class="comment">// GetColorOk returns a tuple with the Color field value</span>
+<span id="L266" class="ln">   266  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L267" class="ln">   267  </span><span class="comment">// Deprecated</span>
+<span id="L268" class="ln">   268  </span>func (o *ApplicationSecurityServiceAttributes) GetColorOk() (*string, bool) {
+<span id="L269" class="ln">   269  </span>	if o == nil {
+<span id="L270" class="ln">   270  </span>		return nil, false
+<span id="L271" class="ln">   271  </span>	}
+<span id="L272" class="ln">   272  </span>	return &amp;o.Color, true
+<span id="L273" class="ln">   273  </span>}
+<span id="L274" class="ln">   274  </span>
+<span id="L275" class="ln">   275  </span><span class="comment">// SetColor sets field value.</span>
+<span id="L276" class="ln">   276  </span><span class="comment">// Deprecated</span>
+<span id="L277" class="ln">   277  </span>func (o *ApplicationSecurityServiceAttributes) SetColor(v string) {
+<span id="L278" class="ln">   278  </span>	o.Color = v
+<span id="L279" class="ln">   279  </span>}
+<span id="L280" class="ln">   280  </span>
+<span id="L281" class="ln">   281  </span><span class="comment">// GetEnv returns the Env field value.</span>
+<span id="L282" class="ln">   282  </span>func (o *ApplicationSecurityServiceAttributes) GetEnv() string {
+<span id="L283" class="ln">   283  </span>	if o == nil {
+<span id="L284" class="ln">   284  </span>		var ret string
+<span id="L285" class="ln">   285  </span>		return ret
+<span id="L286" class="ln">   286  </span>	}
+<span id="L287" class="ln">   287  </span>	return o.Env
+<span id="L288" class="ln">   288  </span>}
+<span id="L289" class="ln">   289  </span>
+<span id="L290" class="ln">   290  </span><span class="comment">// GetEnvOk returns a tuple with the Env field value</span>
+<span id="L291" class="ln">   291  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L292" class="ln">   292  </span>func (o *ApplicationSecurityServiceAttributes) GetEnvOk() (*string, bool) {
+<span id="L293" class="ln">   293  </span>	if o == nil {
+<span id="L294" class="ln">   294  </span>		return nil, false
+<span id="L295" class="ln">   295  </span>	}
+<span id="L296" class="ln">   296  </span>	return &amp;o.Env, true
+<span id="L297" class="ln">   297  </span>}
+<span id="L298" class="ln">   298  </span>
+<span id="L299" class="ln">   299  </span><span class="comment">// SetEnv sets field value.</span>
+<span id="L300" class="ln">   300  </span>func (o *ApplicationSecurityServiceAttributes) SetEnv(v string) {
+<span id="L301" class="ln">   301  </span>	o.Env = v
+<span id="L302" class="ln">   302  </span>}
+<span id="L303" class="ln">   303  </span>
+<span id="L304" class="ln">   304  </span><span class="comment">// GetEventCount returns the EventCount field value.</span>
+<span id="L305" class="ln">   305  </span>func (o *ApplicationSecurityServiceAttributes) GetEventCount() int64 {
+<span id="L306" class="ln">   306  </span>	if o == nil {
+<span id="L307" class="ln">   307  </span>		var ret int64
+<span id="L308" class="ln">   308  </span>		return ret
+<span id="L309" class="ln">   309  </span>	}
+<span id="L310" class="ln">   310  </span>	return o.EventCount
+<span id="L311" class="ln">   311  </span>}
+<span id="L312" class="ln">   312  </span>
+<span id="L313" class="ln">   313  </span><span class="comment">// GetEventCountOk returns a tuple with the EventCount field value</span>
+<span id="L314" class="ln">   314  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L315" class="ln">   315  </span>func (o *ApplicationSecurityServiceAttributes) GetEventCountOk() (*int64, bool) {
+<span id="L316" class="ln">   316  </span>	if o == nil {
+<span id="L317" class="ln">   317  </span>		return nil, false
+<span id="L318" class="ln">   318  </span>	}
+<span id="L319" class="ln">   319  </span>	return &amp;o.EventCount, true
+<span id="L320" class="ln">   320  </span>}
+<span id="L321" class="ln">   321  </span>
+<span id="L322" class="ln">   322  </span><span class="comment">// SetEventCount sets field value.</span>
+<span id="L323" class="ln">   323  </span>func (o *ApplicationSecurityServiceAttributes) SetEventCount(v int64) {
+<span id="L324" class="ln">   324  </span>	o.EventCount = v
+<span id="L325" class="ln">   325  </span>}
+<span id="L326" class="ln">   326  </span>
+<span id="L327" class="ln">   327  </span><span class="comment">// GetEventTrend returns the EventTrend field value.</span>
+<span id="L328" class="ln">   328  </span><span class="comment">// Deprecated</span>
+<span id="L329" class="ln">   329  </span>func (o *ApplicationSecurityServiceAttributes) GetEventTrend() []int64 {
+<span id="L330" class="ln">   330  </span>	if o == nil {
+<span id="L331" class="ln">   331  </span>		var ret []int64
+<span id="L332" class="ln">   332  </span>		return ret
+<span id="L333" class="ln">   333  </span>	}
+<span id="L334" class="ln">   334  </span>	return o.EventTrend
+<span id="L335" class="ln">   335  </span>}
+<span id="L336" class="ln">   336  </span>
+<span id="L337" class="ln">   337  </span><span class="comment">// GetEventTrendOk returns a tuple with the EventTrend field value</span>
+<span id="L338" class="ln">   338  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L339" class="ln">   339  </span><span class="comment">// Deprecated</span>
+<span id="L340" class="ln">   340  </span>func (o *ApplicationSecurityServiceAttributes) GetEventTrendOk() (*[]int64, bool) {
+<span id="L341" class="ln">   341  </span>	if o == nil {
+<span id="L342" class="ln">   342  </span>		return nil, false
+<span id="L343" class="ln">   343  </span>	}
+<span id="L344" class="ln">   344  </span>	return &amp;o.EventTrend, true
+<span id="L345" class="ln">   345  </span>}
+<span id="L346" class="ln">   346  </span>
+<span id="L347" class="ln">   347  </span><span class="comment">// SetEventTrend sets field value.</span>
+<span id="L348" class="ln">   348  </span><span class="comment">// Deprecated</span>
+<span id="L349" class="ln">   349  </span>func (o *ApplicationSecurityServiceAttributes) SetEventTrend(v []int64) {
+<span id="L350" class="ln">   350  </span>	o.EventTrend = v
+<span id="L351" class="ln">   351  </span>}
+<span id="L352" class="ln">   352  </span>
+<span id="L353" class="ln">   353  </span><span class="comment">// GetHasAppsecEnabled returns the HasAppsecEnabled field value.</span>
+<span id="L354" class="ln">   354  </span>func (o *ApplicationSecurityServiceAttributes) GetHasAppsecEnabled() bool {
+<span id="L355" class="ln">   355  </span>	if o == nil {
+<span id="L356" class="ln">   356  </span>		var ret bool
+<span id="L357" class="ln">   357  </span>		return ret
+<span id="L358" class="ln">   358  </span>	}
+<span id="L359" class="ln">   359  </span>	return o.HasAppsecEnabled
+<span id="L360" class="ln">   360  </span>}
+<span id="L361" class="ln">   361  </span>
+<span id="L362" class="ln">   362  </span><span class="comment">// GetHasAppsecEnabledOk returns a tuple with the HasAppsecEnabled field value</span>
+<span id="L363" class="ln">   363  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L364" class="ln">   364  </span>func (o *ApplicationSecurityServiceAttributes) GetHasAppsecEnabledOk() (*bool, bool) {
+<span id="L365" class="ln">   365  </span>	if o == nil {
+<span id="L366" class="ln">   366  </span>		return nil, false
+<span id="L367" class="ln">   367  </span>	}
+<span id="L368" class="ln">   368  </span>	return &amp;o.HasAppsecEnabled, true
+<span id="L369" class="ln">   369  </span>}
+<span id="L370" class="ln">   370  </span>
+<span id="L371" class="ln">   371  </span><span class="comment">// SetHasAppsecEnabled sets field value.</span>
+<span id="L372" class="ln">   372  </span>func (o *ApplicationSecurityServiceAttributes) SetHasAppsecEnabled(v bool) {
+<span id="L373" class="ln">   373  </span>	o.HasAppsecEnabled = v
+<span id="L374" class="ln">   374  </span>}
+<span id="L375" class="ln">   375  </span>
+<span id="L376" class="ln">   376  </span><span class="comment">// GetHits returns the Hits field value.</span>
+<span id="L377" class="ln">   377  </span><span class="comment">// Deprecated</span>
+<span id="L378" class="ln">   378  </span>func (o *ApplicationSecurityServiceAttributes) GetHits() int64 {
+<span id="L379" class="ln">   379  </span>	if o == nil {
+<span id="L380" class="ln">   380  </span>		var ret int64
+<span id="L381" class="ln">   381  </span>		return ret
+<span id="L382" class="ln">   382  </span>	}
+<span id="L383" class="ln">   383  </span>	return o.Hits
+<span id="L384" class="ln">   384  </span>}
+<span id="L385" class="ln">   385  </span>
+<span id="L386" class="ln">   386  </span><span class="comment">// GetHitsOk returns a tuple with the Hits field value</span>
+<span id="L387" class="ln">   387  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L388" class="ln">   388  </span><span class="comment">// Deprecated</span>
+<span id="L389" class="ln">   389  </span>func (o *ApplicationSecurityServiceAttributes) GetHitsOk() (*int64, bool) {
+<span id="L390" class="ln">   390  </span>	if o == nil {
+<span id="L391" class="ln">   391  </span>		return nil, false
+<span id="L392" class="ln">   392  </span>	}
+<span id="L393" class="ln">   393  </span>	return &amp;o.Hits, true
+<span id="L394" class="ln">   394  </span>}
+<span id="L395" class="ln">   395  </span>
+<span id="L396" class="ln">   396  </span><span class="comment">// SetHits sets field value.</span>
+<span id="L397" class="ln">   397  </span><span class="comment">// Deprecated</span>
+<span id="L398" class="ln">   398  </span>func (o *ApplicationSecurityServiceAttributes) SetHits(v int64) {
+<span id="L399" class="ln">   399  </span>	o.Hits = v
+<span id="L400" class="ln">   400  </span>}
+<span id="L401" class="ln">   401  </span>
+<span id="L402" class="ln">   402  </span><span class="comment">// GetIastProductActivation returns the IastProductActivation field value.</span>
+<span id="L403" class="ln">   403  </span>func (o *ApplicationSecurityServiceAttributes) GetIastProductActivation() bool {
+<span id="L404" class="ln">   404  </span>	if o == nil {
+<span id="L405" class="ln">   405  </span>		var ret bool
+<span id="L406" class="ln">   406  </span>		return ret
+<span id="L407" class="ln">   407  </span>	}
+<span id="L408" class="ln">   408  </span>	return o.IastProductActivation
+<span id="L409" class="ln">   409  </span>}
+<span id="L410" class="ln">   410  </span>
+<span id="L411" class="ln">   411  </span><span class="comment">// GetIastProductActivationOk returns a tuple with the IastProductActivation field value</span>
+<span id="L412" class="ln">   412  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L413" class="ln">   413  </span>func (o *ApplicationSecurityServiceAttributes) GetIastProductActivationOk() (*bool, bool) {
+<span id="L414" class="ln">   414  </span>	if o == nil {
+<span id="L415" class="ln">   415  </span>		return nil, false
+<span id="L416" class="ln">   416  </span>	}
+<span id="L417" class="ln">   417  </span>	return &amp;o.IastProductActivation, true
+<span id="L418" class="ln">   418  </span>}
+<span id="L419" class="ln">   419  </span>
+<span id="L420" class="ln">   420  </span><span class="comment">// SetIastProductActivation sets field value.</span>
+<span id="L421" class="ln">   421  </span>func (o *ApplicationSecurityServiceAttributes) SetIastProductActivation(v bool) {
+<span id="L422" class="ln">   422  </span>	o.IastProductActivation = v
+<span id="L423" class="ln">   423  </span>}
+<span id="L424" class="ln">   424  </span>
+<span id="L425" class="ln">   425  </span><span class="comment">// GetIastProductCompatibility returns the IastProductCompatibility field value.</span>
+<span id="L426" class="ln">   426  </span>func (o *ApplicationSecurityServiceAttributes) GetIastProductCompatibility() string {
+<span id="L427" class="ln">   427  </span>	if o == nil {
+<span id="L428" class="ln">   428  </span>		var ret string
+<span id="L429" class="ln">   429  </span>		return ret
+<span id="L430" class="ln">   430  </span>	}
+<span id="L431" class="ln">   431  </span>	return o.IastProductCompatibility
+<span id="L432" class="ln">   432  </span>}
+<span id="L433" class="ln">   433  </span>
+<span id="L434" class="ln">   434  </span><span class="comment">// GetIastProductCompatibilityOk returns a tuple with the IastProductCompatibility field value</span>
+<span id="L435" class="ln">   435  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L436" class="ln">   436  </span>func (o *ApplicationSecurityServiceAttributes) GetIastProductCompatibilityOk() (*string, bool) {
+<span id="L437" class="ln">   437  </span>	if o == nil {
+<span id="L438" class="ln">   438  </span>		return nil, false
+<span id="L439" class="ln">   439  </span>	}
+<span id="L440" class="ln">   440  </span>	return &amp;o.IastProductCompatibility, true
+<span id="L441" class="ln">   441  </span>}
+<span id="L442" class="ln">   442  </span>
+<span id="L443" class="ln">   443  </span><span class="comment">// SetIastProductCompatibility sets field value.</span>
+<span id="L444" class="ln">   444  </span>func (o *ApplicationSecurityServiceAttributes) SetIastProductCompatibility(v string) {
+<span id="L445" class="ln">   445  </span>	o.IastProductCompatibility = v
+<span id="L446" class="ln">   446  </span>}
+<span id="L447" class="ln">   447  </span>
+<span id="L448" class="ln">   448  </span><span class="comment">// GetIastProductCompatibilityReasons returns the IastProductCompatibilityReasons field value.</span>
+<span id="L449" class="ln">   449  </span>func (o *ApplicationSecurityServiceAttributes) GetIastProductCompatibilityReasons() []string {
+<span id="L450" class="ln">   450  </span>	if o == nil {
+<span id="L451" class="ln">   451  </span>		var ret []string
+<span id="L452" class="ln">   452  </span>		return ret
+<span id="L453" class="ln">   453  </span>	}
+<span id="L454" class="ln">   454  </span>	return o.IastProductCompatibilityReasons
+<span id="L455" class="ln">   455  </span>}
+<span id="L456" class="ln">   456  </span>
+<span id="L457" class="ln">   457  </span><span class="comment">// GetIastProductCompatibilityReasonsOk returns a tuple with the IastProductCompatibilityReasons field value</span>
+<span id="L458" class="ln">   458  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L459" class="ln">   459  </span>func (o *ApplicationSecurityServiceAttributes) GetIastProductCompatibilityReasonsOk() (*[]string, bool) {
+<span id="L460" class="ln">   460  </span>	if o == nil {
+<span id="L461" class="ln">   461  </span>		return nil, false
+<span id="L462" class="ln">   462  </span>	}
+<span id="L463" class="ln">   463  </span>	return &amp;o.IastProductCompatibilityReasons, true
+<span id="L464" class="ln">   464  </span>}
+<span id="L465" class="ln">   465  </span>
+<span id="L466" class="ln">   466  </span><span class="comment">// SetIastProductCompatibilityReasons sets field value.</span>
+<span id="L467" class="ln">   467  </span>func (o *ApplicationSecurityServiceAttributes) SetIastProductCompatibilityReasons(v []string) {
+<span id="L468" class="ln">   468  </span>	o.IastProductCompatibilityReasons = v
+<span id="L469" class="ln">   469  </span>}
+<span id="L470" class="ln">   470  </span>
+<span id="L471" class="ln">   471  </span><span class="comment">// GetLanguages returns the Languages field value.</span>
+<span id="L472" class="ln">   472  </span>func (o *ApplicationSecurityServiceAttributes) GetLanguages() []string {
+<span id="L473" class="ln">   473  </span>	if o == nil {
+<span id="L474" class="ln">   474  </span>		var ret []string
+<span id="L475" class="ln">   475  </span>		return ret
+<span id="L476" class="ln">   476  </span>	}
+<span id="L477" class="ln">   477  </span>	return o.Languages
+<span id="L478" class="ln">   478  </span>}
+<span id="L479" class="ln">   479  </span>
+<span id="L480" class="ln">   480  </span><span class="comment">// GetLanguagesOk returns a tuple with the Languages field value</span>
+<span id="L481" class="ln">   481  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L482" class="ln">   482  </span>func (o *ApplicationSecurityServiceAttributes) GetLanguagesOk() (*[]string, bool) {
+<span id="L483" class="ln">   483  </span>	if o == nil {
+<span id="L484" class="ln">   484  </span>		return nil, false
+<span id="L485" class="ln">   485  </span>	}
+<span id="L486" class="ln">   486  </span>	return &amp;o.Languages, true
+<span id="L487" class="ln">   487  </span>}
+<span id="L488" class="ln">   488  </span>
+<span id="L489" class="ln">   489  </span><span class="comment">// SetLanguages sets field value.</span>
+<span id="L490" class="ln">   490  </span>func (o *ApplicationSecurityServiceAttributes) SetLanguages(v []string) {
+<span id="L491" class="ln">   491  </span>	o.Languages = v
+<span id="L492" class="ln">   492  </span>}
+<span id="L493" class="ln">   493  </span>
+<span id="L494" class="ln">   494  </span><span class="comment">// GetLastIngestedSpans returns the LastIngestedSpans field value.</span>
+<span id="L495" class="ln">   495  </span>func (o *ApplicationSecurityServiceAttributes) GetLastIngestedSpans() int64 {
+<span id="L496" class="ln">   496  </span>	if o == nil {
+<span id="L497" class="ln">   497  </span>		var ret int64
+<span id="L498" class="ln">   498  </span>		return ret
+<span id="L499" class="ln">   499  </span>	}
+<span id="L500" class="ln">   500  </span>	return o.LastIngestedSpans
+<span id="L501" class="ln">   501  </span>}
+<span id="L502" class="ln">   502  </span>
+<span id="L503" class="ln">   503  </span><span class="comment">// GetLastIngestedSpansOk returns a tuple with the LastIngestedSpans field value</span>
+<span id="L504" class="ln">   504  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L505" class="ln">   505  </span>func (o *ApplicationSecurityServiceAttributes) GetLastIngestedSpansOk() (*int64, bool) {
+<span id="L506" class="ln">   506  </span>	if o == nil {
+<span id="L507" class="ln">   507  </span>		return nil, false
+<span id="L508" class="ln">   508  </span>	}
+<span id="L509" class="ln">   509  </span>	return &amp;o.LastIngestedSpans, true
+<span id="L510" class="ln">   510  </span>}
+<span id="L511" class="ln">   511  </span>
+<span id="L512" class="ln">   512  </span><span class="comment">// SetLastIngestedSpans sets field value.</span>
+<span id="L513" class="ln">   513  </span>func (o *ApplicationSecurityServiceAttributes) SetLastIngestedSpans(v int64) {
+<span id="L514" class="ln">   514  </span>	o.LastIngestedSpans = v
+<span id="L515" class="ln">   515  </span>}
+<span id="L516" class="ln">   516  </span>
+<span id="L517" class="ln">   517  </span><span class="comment">// GetRcCapabilities returns the RcCapabilities field value.</span>
+<span id="L518" class="ln">   518  </span>func (o *ApplicationSecurityServiceAttributes) GetRcCapabilities() []string {
+<span id="L519" class="ln">   519  </span>	if o == nil {
+<span id="L520" class="ln">   520  </span>		var ret []string
+<span id="L521" class="ln">   521  </span>		return ret
+<span id="L522" class="ln">   522  </span>	}
+<span id="L523" class="ln">   523  </span>	return o.RcCapabilities
+<span id="L524" class="ln">   524  </span>}
+<span id="L525" class="ln">   525  </span>
+<span id="L526" class="ln">   526  </span><span class="comment">// GetRcCapabilitiesOk returns a tuple with the RcCapabilities field value</span>
+<span id="L527" class="ln">   527  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L528" class="ln">   528  </span>func (o *ApplicationSecurityServiceAttributes) GetRcCapabilitiesOk() (*[]string, bool) {
+<span id="L529" class="ln">   529  </span>	if o == nil {
+<span id="L530" class="ln">   530  </span>		return nil, false
+<span id="L531" class="ln">   531  </span>	}
+<span id="L532" class="ln">   532  </span>	return &amp;o.RcCapabilities, true
+<span id="L533" class="ln">   533  </span>}
+<span id="L534" class="ln">   534  </span>
+<span id="L535" class="ln">   535  </span><span class="comment">// SetRcCapabilities sets field value.</span>
+<span id="L536" class="ln">   536  </span>func (o *ApplicationSecurityServiceAttributes) SetRcCapabilities(v []string) {
+<span id="L537" class="ln">   537  </span>	o.RcCapabilities = v
+<span id="L538" class="ln">   538  </span>}
+<span id="L539" class="ln">   539  </span>
+<span id="L540" class="ln">   540  </span><span class="comment">// GetRecommendedBusinessLogic returns the RecommendedBusinessLogic field value.</span>
+<span id="L541" class="ln">   541  </span>func (o *ApplicationSecurityServiceAttributes) GetRecommendedBusinessLogic() []string {
+<span id="L542" class="ln">   542  </span>	if o == nil {
+<span id="L543" class="ln">   543  </span>		var ret []string
+<span id="L544" class="ln">   544  </span>		return ret
+<span id="L545" class="ln">   545  </span>	}
+<span id="L546" class="ln">   546  </span>	return o.RecommendedBusinessLogic
+<span id="L547" class="ln">   547  </span>}
+<span id="L548" class="ln">   548  </span>
+<span id="L549" class="ln">   549  </span><span class="comment">// GetRecommendedBusinessLogicOk returns a tuple with the RecommendedBusinessLogic field value</span>
+<span id="L550" class="ln">   550  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L551" class="ln">   551  </span>func (o *ApplicationSecurityServiceAttributes) GetRecommendedBusinessLogicOk() (*[]string, bool) {
+<span id="L552" class="ln">   552  </span>	if o == nil {
+<span id="L553" class="ln">   553  </span>		return nil, false
+<span id="L554" class="ln">   554  </span>	}
+<span id="L555" class="ln">   555  </span>	return &amp;o.RecommendedBusinessLogic, true
+<span id="L556" class="ln">   556  </span>}
+<span id="L557" class="ln">   557  </span>
+<span id="L558" class="ln">   558  </span><span class="comment">// SetRecommendedBusinessLogic sets field value.</span>
+<span id="L559" class="ln">   559  </span>func (o *ApplicationSecurityServiceAttributes) SetRecommendedBusinessLogic(v []string) {
+<span id="L560" class="ln">   560  </span>	o.RecommendedBusinessLogic = v
+<span id="L561" class="ln">   561  </span>}
+<span id="L562" class="ln">   562  </span>
+<span id="L563" class="ln">   563  </span><span class="comment">// GetRiskProductActivation returns the RiskProductActivation field value.</span>
+<span id="L564" class="ln">   564  </span>func (o *ApplicationSecurityServiceAttributes) GetRiskProductActivation() bool {
+<span id="L565" class="ln">   565  </span>	if o == nil {
+<span id="L566" class="ln">   566  </span>		var ret bool
+<span id="L567" class="ln">   567  </span>		return ret
+<span id="L568" class="ln">   568  </span>	}
+<span id="L569" class="ln">   569  </span>	return o.RiskProductActivation
+<span id="L570" class="ln">   570  </span>}
+<span id="L571" class="ln">   571  </span>
+<span id="L572" class="ln">   572  </span><span class="comment">// GetRiskProductActivationOk returns a tuple with the RiskProductActivation field value</span>
+<span id="L573" class="ln">   573  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L574" class="ln">   574  </span>func (o *ApplicationSecurityServiceAttributes) GetRiskProductActivationOk() (*bool, bool) {
+<span id="L575" class="ln">   575  </span>	if o == nil {
+<span id="L576" class="ln">   576  </span>		return nil, false
+<span id="L577" class="ln">   577  </span>	}
+<span id="L578" class="ln">   578  </span>	return &amp;o.RiskProductActivation, true
+<span id="L579" class="ln">   579  </span>}
+<span id="L580" class="ln">   580  </span>
+<span id="L581" class="ln">   581  </span><span class="comment">// SetRiskProductActivation sets field value.</span>
+<span id="L582" class="ln">   582  </span>func (o *ApplicationSecurityServiceAttributes) SetRiskProductActivation(v bool) {
+<span id="L583" class="ln">   583  </span>	o.RiskProductActivation = v
+<span id="L584" class="ln">   584  </span>}
+<span id="L585" class="ln">   585  </span>
+<span id="L586" class="ln">   586  </span><span class="comment">// GetRiskProductCompatibility returns the RiskProductCompatibility field value.</span>
+<span id="L587" class="ln">   587  </span>func (o *ApplicationSecurityServiceAttributes) GetRiskProductCompatibility() string {
+<span id="L588" class="ln">   588  </span>	if o == nil {
+<span id="L589" class="ln">   589  </span>		var ret string
+<span id="L590" class="ln">   590  </span>		return ret
+<span id="L591" class="ln">   591  </span>	}
+<span id="L592" class="ln">   592  </span>	return o.RiskProductCompatibility
+<span id="L593" class="ln">   593  </span>}
+<span id="L594" class="ln">   594  </span>
+<span id="L595" class="ln">   595  </span><span class="comment">// GetRiskProductCompatibilityOk returns a tuple with the RiskProductCompatibility field value</span>
+<span id="L596" class="ln">   596  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L597" class="ln">   597  </span>func (o *ApplicationSecurityServiceAttributes) GetRiskProductCompatibilityOk() (*string, bool) {
+<span id="L598" class="ln">   598  </span>	if o == nil {
+<span id="L599" class="ln">   599  </span>		return nil, false
+<span id="L600" class="ln">   600  </span>	}
+<span id="L601" class="ln">   601  </span>	return &amp;o.RiskProductCompatibility, true
+<span id="L602" class="ln">   602  </span>}
+<span id="L603" class="ln">   603  </span>
+<span id="L604" class="ln">   604  </span><span class="comment">// SetRiskProductCompatibility sets field value.</span>
+<span id="L605" class="ln">   605  </span>func (o *ApplicationSecurityServiceAttributes) SetRiskProductCompatibility(v string) {
+<span id="L606" class="ln">   606  </span>	o.RiskProductCompatibility = v
+<span id="L607" class="ln">   607  </span>}
+<span id="L608" class="ln">   608  </span>
+<span id="L609" class="ln">   609  </span><span class="comment">// GetRiskProductCompatibilityReasons returns the RiskProductCompatibilityReasons field value.</span>
+<span id="L610" class="ln">   610  </span>func (o *ApplicationSecurityServiceAttributes) GetRiskProductCompatibilityReasons() []string {
+<span id="L611" class="ln">   611  </span>	if o == nil {
+<span id="L612" class="ln">   612  </span>		var ret []string
+<span id="L613" class="ln">   613  </span>		return ret
+<span id="L614" class="ln">   614  </span>	}
+<span id="L615" class="ln">   615  </span>	return o.RiskProductCompatibilityReasons
+<span id="L616" class="ln">   616  </span>}
+<span id="L617" class="ln">   617  </span>
+<span id="L618" class="ln">   618  </span><span class="comment">// GetRiskProductCompatibilityReasonsOk returns a tuple with the RiskProductCompatibilityReasons field value</span>
+<span id="L619" class="ln">   619  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L620" class="ln">   620  </span>func (o *ApplicationSecurityServiceAttributes) GetRiskProductCompatibilityReasonsOk() (*[]string, bool) {
+<span id="L621" class="ln">   621  </span>	if o == nil {
+<span id="L622" class="ln">   622  </span>		return nil, false
+<span id="L623" class="ln">   623  </span>	}
+<span id="L624" class="ln">   624  </span>	return &amp;o.RiskProductCompatibilityReasons, true
+<span id="L625" class="ln">   625  </span>}
+<span id="L626" class="ln">   626  </span>
+<span id="L627" class="ln">   627  </span><span class="comment">// SetRiskProductCompatibilityReasons sets field value.</span>
+<span id="L628" class="ln">   628  </span>func (o *ApplicationSecurityServiceAttributes) SetRiskProductCompatibilityReasons(v []string) {
+<span id="L629" class="ln">   629  </span>	o.RiskProductCompatibilityReasons = v
+<span id="L630" class="ln">   630  </span>}
+<span id="L631" class="ln">   631  </span>
+<span id="L632" class="ln">   632  </span><span class="comment">// GetRulesVersion returns the RulesVersion field value.</span>
+<span id="L633" class="ln">   633  </span>func (o *ApplicationSecurityServiceAttributes) GetRulesVersion() []string {
+<span id="L634" class="ln">   634  </span>	if o == nil {
+<span id="L635" class="ln">   635  </span>		var ret []string
+<span id="L636" class="ln">   636  </span>		return ret
+<span id="L637" class="ln">   637  </span>	}
+<span id="L638" class="ln">   638  </span>	return o.RulesVersion
+<span id="L639" class="ln">   639  </span>}
+<span id="L640" class="ln">   640  </span>
+<span id="L641" class="ln">   641  </span><span class="comment">// GetRulesVersionOk returns a tuple with the RulesVersion field value</span>
+<span id="L642" class="ln">   642  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L643" class="ln">   643  </span>func (o *ApplicationSecurityServiceAttributes) GetRulesVersionOk() (*[]string, bool) {
+<span id="L644" class="ln">   644  </span>	if o == nil {
+<span id="L645" class="ln">   645  </span>		return nil, false
+<span id="L646" class="ln">   646  </span>	}
+<span id="L647" class="ln">   647  </span>	return &amp;o.RulesVersion, true
+<span id="L648" class="ln">   648  </span>}
+<span id="L649" class="ln">   649  </span>
+<span id="L650" class="ln">   650  </span><span class="comment">// SetRulesVersion sets field value.</span>
+<span id="L651" class="ln">   651  </span>func (o *ApplicationSecurityServiceAttributes) SetRulesVersion(v []string) {
+<span id="L652" class="ln">   652  </span>	o.RulesVersion = v
+<span id="L653" class="ln">   653  </span>}
+<span id="L654" class="ln">   654  </span>
+<span id="L655" class="ln">   655  </span><span class="comment">// GetService returns the Service field value.</span>
+<span id="L656" class="ln">   656  </span>func (o *ApplicationSecurityServiceAttributes) GetService() string {
+<span id="L657" class="ln">   657  </span>	if o == nil {
+<span id="L658" class="ln">   658  </span>		var ret string
+<span id="L659" class="ln">   659  </span>		return ret
+<span id="L660" class="ln">   660  </span>	}
+<span id="L661" class="ln">   661  </span>	return o.Service
+<span id="L662" class="ln">   662  </span>}
+<span id="L663" class="ln">   663  </span>
+<span id="L664" class="ln">   664  </span><span class="comment">// GetServiceOk returns a tuple with the Service field value</span>
+<span id="L665" class="ln">   665  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L666" class="ln">   666  </span>func (o *ApplicationSecurityServiceAttributes) GetServiceOk() (*string, bool) {
+<span id="L667" class="ln">   667  </span>	if o == nil {
+<span id="L668" class="ln">   668  </span>		return nil, false
+<span id="L669" class="ln">   669  </span>	}
+<span id="L670" class="ln">   670  </span>	return &amp;o.Service, true
+<span id="L671" class="ln">   671  </span>}
+<span id="L672" class="ln">   672  </span>
+<span id="L673" class="ln">   673  </span><span class="comment">// SetService sets field value.</span>
+<span id="L674" class="ln">   674  </span>func (o *ApplicationSecurityServiceAttributes) SetService(v string) {
+<span id="L675" class="ln">   675  </span>	o.Service = v
+<span id="L676" class="ln">   676  </span>}
+<span id="L677" class="ln">   677  </span>
+<span id="L678" class="ln">   678  </span><span class="comment">// GetSignalCount returns the SignalCount field value.</span>
+<span id="L679" class="ln">   679  </span><span class="comment">// Deprecated</span>
+<span id="L680" class="ln">   680  </span>func (o *ApplicationSecurityServiceAttributes) GetSignalCount() int64 {
+<span id="L681" class="ln">   681  </span>	if o == nil {
+<span id="L682" class="ln">   682  </span>		var ret int64
+<span id="L683" class="ln">   683  </span>		return ret
+<span id="L684" class="ln">   684  </span>	}
+<span id="L685" class="ln">   685  </span>	return o.SignalCount
+<span id="L686" class="ln">   686  </span>}
+<span id="L687" class="ln">   687  </span>
+<span id="L688" class="ln">   688  </span><span class="comment">// GetSignalCountOk returns a tuple with the SignalCount field value</span>
+<span id="L689" class="ln">   689  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L690" class="ln">   690  </span><span class="comment">// Deprecated</span>
+<span id="L691" class="ln">   691  </span>func (o *ApplicationSecurityServiceAttributes) GetSignalCountOk() (*int64, bool) {
+<span id="L692" class="ln">   692  </span>	if o == nil {
+<span id="L693" class="ln">   693  </span>		return nil, false
+<span id="L694" class="ln">   694  </span>	}
+<span id="L695" class="ln">   695  </span>	return &amp;o.SignalCount, true
+<span id="L696" class="ln">   696  </span>}
+<span id="L697" class="ln">   697  </span>
+<span id="L698" class="ln">   698  </span><span class="comment">// SetSignalCount sets field value.</span>
+<span id="L699" class="ln">   699  </span><span class="comment">// Deprecated</span>
+<span id="L700" class="ln">   700  </span>func (o *ApplicationSecurityServiceAttributes) SetSignalCount(v int64) {
+<span id="L701" class="ln">   701  </span>	o.SignalCount = v
+<span id="L702" class="ln">   702  </span>}
+<span id="L703" class="ln">   703  </span>
+<span id="L704" class="ln">   704  </span><span class="comment">// GetSignalTrend returns the SignalTrend field value.</span>
+<span id="L705" class="ln">   705  </span><span class="comment">// Deprecated</span>
+<span id="L706" class="ln">   706  </span>func (o *ApplicationSecurityServiceAttributes) GetSignalTrend() []int64 {
+<span id="L707" class="ln">   707  </span>	if o == nil {
+<span id="L708" class="ln">   708  </span>		var ret []int64
+<span id="L709" class="ln">   709  </span>		return ret
+<span id="L710" class="ln">   710  </span>	}
+<span id="L711" class="ln">   711  </span>	return o.SignalTrend
+<span id="L712" class="ln">   712  </span>}
+<span id="L713" class="ln">   713  </span>
+<span id="L714" class="ln">   714  </span><span class="comment">// GetSignalTrendOk returns a tuple with the SignalTrend field value</span>
+<span id="L715" class="ln">   715  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L716" class="ln">   716  </span><span class="comment">// Deprecated</span>
+<span id="L717" class="ln">   717  </span>func (o *ApplicationSecurityServiceAttributes) GetSignalTrendOk() (*[]int64, bool) {
+<span id="L718" class="ln">   718  </span>	if o == nil {
+<span id="L719" class="ln">   719  </span>		return nil, false
+<span id="L720" class="ln">   720  </span>	}
+<span id="L721" class="ln">   721  </span>	return &amp;o.SignalTrend, true
+<span id="L722" class="ln">   722  </span>}
+<span id="L723" class="ln">   723  </span>
+<span id="L724" class="ln">   724  </span><span class="comment">// SetSignalTrend sets field value.</span>
+<span id="L725" class="ln">   725  </span><span class="comment">// Deprecated</span>
+<span id="L726" class="ln">   726  </span>func (o *ApplicationSecurityServiceAttributes) SetSignalTrend(v []int64) {
+<span id="L727" class="ln">   727  </span>	o.SignalTrend = v
+<span id="L728" class="ln">   728  </span>}
+<span id="L729" class="ln">   729  </span>
+<span id="L730" class="ln">   730  </span><span class="comment">// GetSource returns the Source field value.</span>
+<span id="L731" class="ln">   731  </span>func (o *ApplicationSecurityServiceAttributes) GetSource() []string {
+<span id="L732" class="ln">   732  </span>	if o == nil {
+<span id="L733" class="ln">   733  </span>		var ret []string
+<span id="L734" class="ln">   734  </span>		return ret
+<span id="L735" class="ln">   735  </span>	}
+<span id="L736" class="ln">   736  </span>	return o.Source
+<span id="L737" class="ln">   737  </span>}
+<span id="L738" class="ln">   738  </span>
+<span id="L739" class="ln">   739  </span><span class="comment">// GetSourceOk returns a tuple with the Source field value</span>
+<span id="L740" class="ln">   740  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L741" class="ln">   741  </span>func (o *ApplicationSecurityServiceAttributes) GetSourceOk() (*[]string, bool) {
+<span id="L742" class="ln">   742  </span>	if o == nil {
+<span id="L743" class="ln">   743  </span>		return nil, false
+<span id="L744" class="ln">   744  </span>	}
+<span id="L745" class="ln">   745  </span>	return &amp;o.Source, true
+<span id="L746" class="ln">   746  </span>}
+<span id="L747" class="ln">   747  </span>
+<span id="L748" class="ln">   748  </span><span class="comment">// SetSource sets field value.</span>
+<span id="L749" class="ln">   749  </span>func (o *ApplicationSecurityServiceAttributes) SetSource(v []string) {
+<span id="L750" class="ln">   750  </span>	o.Source = v
+<span id="L751" class="ln">   751  </span>}
+<span id="L752" class="ln">   752  </span>
+<span id="L753" class="ln">   753  </span><span class="comment">// GetTeams returns the Teams field value.</span>
+<span id="L754" class="ln">   754  </span>func (o *ApplicationSecurityServiceAttributes) GetTeams() []string {
+<span id="L755" class="ln">   755  </span>	if o == nil {
+<span id="L756" class="ln">   756  </span>		var ret []string
+<span id="L757" class="ln">   757  </span>		return ret
+<span id="L758" class="ln">   758  </span>	}
+<span id="L759" class="ln">   759  </span>	return o.Teams
+<span id="L760" class="ln">   760  </span>}
+<span id="L761" class="ln">   761  </span>
+<span id="L762" class="ln">   762  </span><span class="comment">// GetTeamsOk returns a tuple with the Teams field value</span>
+<span id="L763" class="ln">   763  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L764" class="ln">   764  </span>func (o *ApplicationSecurityServiceAttributes) GetTeamsOk() (*[]string, bool) {
+<span id="L765" class="ln">   765  </span>	if o == nil {
+<span id="L766" class="ln">   766  </span>		return nil, false
+<span id="L767" class="ln">   767  </span>	}
+<span id="L768" class="ln">   768  </span>	return &amp;o.Teams, true
+<span id="L769" class="ln">   769  </span>}
+<span id="L770" class="ln">   770  </span>
+<span id="L771" class="ln">   771  </span><span class="comment">// SetTeams sets field value.</span>
+<span id="L772" class="ln">   772  </span>func (o *ApplicationSecurityServiceAttributes) SetTeams(v []string) {
+<span id="L773" class="ln">   773  </span>	o.Teams = v
+<span id="L774" class="ln">   774  </span>}
+<span id="L775" class="ln">   775  </span>
+<span id="L776" class="ln">   776  </span><span class="comment">// GetTracerVersions returns the TracerVersions field value.</span>
+<span id="L777" class="ln">   777  </span>func (o *ApplicationSecurityServiceAttributes) GetTracerVersions() []string {
+<span id="L778" class="ln">   778  </span>	if o == nil {
+<span id="L779" class="ln">   779  </span>		var ret []string
+<span id="L780" class="ln">   780  </span>		return ret
+<span id="L781" class="ln">   781  </span>	}
+<span id="L782" class="ln">   782  </span>	return o.TracerVersions
+<span id="L783" class="ln">   783  </span>}
+<span id="L784" class="ln">   784  </span>
+<span id="L785" class="ln">   785  </span><span class="comment">// GetTracerVersionsOk returns a tuple with the TracerVersions field value</span>
+<span id="L786" class="ln">   786  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L787" class="ln">   787  </span>func (o *ApplicationSecurityServiceAttributes) GetTracerVersionsOk() (*[]string, bool) {
+<span id="L788" class="ln">   788  </span>	if o == nil {
+<span id="L789" class="ln">   789  </span>		return nil, false
+<span id="L790" class="ln">   790  </span>	}
+<span id="L791" class="ln">   791  </span>	return &amp;o.TracerVersions, true
+<span id="L792" class="ln">   792  </span>}
+<span id="L793" class="ln">   793  </span>
+<span id="L794" class="ln">   794  </span><span class="comment">// SetTracerVersions sets field value.</span>
+<span id="L795" class="ln">   795  </span>func (o *ApplicationSecurityServiceAttributes) SetTracerVersions(v []string) {
+<span id="L796" class="ln">   796  </span>	o.TracerVersions = v
+<span id="L797" class="ln">   797  </span>}
+<span id="L798" class="ln">   798  </span>
+<span id="L799" class="ln">   799  </span><span class="comment">// GetVmActivation returns the VmActivation field value.</span>
+<span id="L800" class="ln">   800  </span>func (o *ApplicationSecurityServiceAttributes) GetVmActivation() string {
+<span id="L801" class="ln">   801  </span>	if o == nil {
+<span id="L802" class="ln">   802  </span>		var ret string
+<span id="L803" class="ln">   803  </span>		return ret
+<span id="L804" class="ln">   804  </span>	}
+<span id="L805" class="ln">   805  </span>	return o.VmActivation
+<span id="L806" class="ln">   806  </span>}
+<span id="L807" class="ln">   807  </span>
+<span id="L808" class="ln">   808  </span><span class="comment">// GetVmActivationOk returns a tuple with the VmActivation field value</span>
+<span id="L809" class="ln">   809  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L810" class="ln">   810  </span>func (o *ApplicationSecurityServiceAttributes) GetVmActivationOk() (*string, bool) {
+<span id="L811" class="ln">   811  </span>	if o == nil {
+<span id="L812" class="ln">   812  </span>		return nil, false
+<span id="L813" class="ln">   813  </span>	}
+<span id="L814" class="ln">   814  </span>	return &amp;o.VmActivation, true
+<span id="L815" class="ln">   815  </span>}
+<span id="L816" class="ln">   816  </span>
+<span id="L817" class="ln">   817  </span><span class="comment">// SetVmActivation sets field value.</span>
+<span id="L818" class="ln">   818  </span>func (o *ApplicationSecurityServiceAttributes) SetVmActivation(v string) {
+<span id="L819" class="ln">   819  </span>	o.VmActivation = v
+<span id="L820" class="ln">   820  </span>}
+<span id="L821" class="ln">   821  </span>
+<span id="L822" class="ln">   822  </span><span class="comment">// GetVulnCriticalCount returns the VulnCriticalCount field value.</span>
+<span id="L823" class="ln">   823  </span><span class="comment">// Deprecated</span>
+<span id="L824" class="ln">   824  </span>func (o *ApplicationSecurityServiceAttributes) GetVulnCriticalCount() int64 {
+<span id="L825" class="ln">   825  </span>	if o == nil {
+<span id="L826" class="ln">   826  </span>		var ret int64
+<span id="L827" class="ln">   827  </span>		return ret
+<span id="L828" class="ln">   828  </span>	}
+<span id="L829" class="ln">   829  </span>	return o.VulnCriticalCount
+<span id="L830" class="ln">   830  </span>}
+<span id="L831" class="ln">   831  </span>
+<span id="L832" class="ln">   832  </span><span class="comment">// GetVulnCriticalCountOk returns a tuple with the VulnCriticalCount field value</span>
+<span id="L833" class="ln">   833  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L834" class="ln">   834  </span><span class="comment">// Deprecated</span>
+<span id="L835" class="ln">   835  </span>func (o *ApplicationSecurityServiceAttributes) GetVulnCriticalCountOk() (*int64, bool) {
+<span id="L836" class="ln">   836  </span>	if o == nil {
+<span id="L837" class="ln">   837  </span>		return nil, false
+<span id="L838" class="ln">   838  </span>	}
+<span id="L839" class="ln">   839  </span>	return &amp;o.VulnCriticalCount, true
+<span id="L840" class="ln">   840  </span>}
+<span id="L841" class="ln">   841  </span>
+<span id="L842" class="ln">   842  </span><span class="comment">// SetVulnCriticalCount sets field value.</span>
+<span id="L843" class="ln">   843  </span><span class="comment">// Deprecated</span>
+<span id="L844" class="ln">   844  </span>func (o *ApplicationSecurityServiceAttributes) SetVulnCriticalCount(v int64) {
+<span id="L845" class="ln">   845  </span>	o.VulnCriticalCount = v
+<span id="L846" class="ln">   846  </span>}
+<span id="L847" class="ln">   847  </span>
+<span id="L848" class="ln">   848  </span><span class="comment">// GetVulnHighCount returns the VulnHighCount field value.</span>
+<span id="L849" class="ln">   849  </span><span class="comment">// Deprecated</span>
+<span id="L850" class="ln">   850  </span>func (o *ApplicationSecurityServiceAttributes) GetVulnHighCount() int64 {
+<span id="L851" class="ln">   851  </span>	if o == nil {
+<span id="L852" class="ln">   852  </span>		var ret int64
+<span id="L853" class="ln">   853  </span>		return ret
+<span id="L854" class="ln">   854  </span>	}
+<span id="L855" class="ln">   855  </span>	return o.VulnHighCount
+<span id="L856" class="ln">   856  </span>}
+<span id="L857" class="ln">   857  </span>
+<span id="L858" class="ln">   858  </span><span class="comment">// GetVulnHighCountOk returns a tuple with the VulnHighCount field value</span>
+<span id="L859" class="ln">   859  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L860" class="ln">   860  </span><span class="comment">// Deprecated</span>
+<span id="L861" class="ln">   861  </span>func (o *ApplicationSecurityServiceAttributes) GetVulnHighCountOk() (*int64, bool) {
+<span id="L862" class="ln">   862  </span>	if o == nil {
+<span id="L863" class="ln">   863  </span>		return nil, false
+<span id="L864" class="ln">   864  </span>	}
+<span id="L865" class="ln">   865  </span>	return &amp;o.VulnHighCount, true
+<span id="L866" class="ln">   866  </span>}
+<span id="L867" class="ln">   867  </span>
+<span id="L868" class="ln">   868  </span><span class="comment">// SetVulnHighCount sets field value.</span>
+<span id="L869" class="ln">   869  </span><span class="comment">// Deprecated</span>
+<span id="L870" class="ln">   870  </span>func (o *ApplicationSecurityServiceAttributes) SetVulnHighCount(v int64) {
+<span id="L871" class="ln">   871  </span>	o.VulnHighCount = v
+<span id="L872" class="ln">   872  </span>}
+<span id="L873" class="ln">   873  </span>
+<span id="L874" class="ln">   874  </span><span class="comment">// GetWithoutFilterServices returns the WithoutFilterServices field value.</span>
+<span id="L875" class="ln">   875  </span>func (o *ApplicationSecurityServiceAttributes) GetWithoutFilterServices() int64 {
+<span id="L876" class="ln">   876  </span>	if o == nil {
+<span id="L877" class="ln">   877  </span>		var ret int64
+<span id="L878" class="ln">   878  </span>		return ret
+<span id="L879" class="ln">   879  </span>	}
+<span id="L880" class="ln">   880  </span>	return o.WithoutFilterServices
+<span id="L881" class="ln">   881  </span>}
+<span id="L882" class="ln">   882  </span>
+<span id="L883" class="ln">   883  </span><span class="comment">// GetWithoutFilterServicesOk returns a tuple with the WithoutFilterServices field value</span>
+<span id="L884" class="ln">   884  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L885" class="ln">   885  </span>func (o *ApplicationSecurityServiceAttributes) GetWithoutFilterServicesOk() (*int64, bool) {
+<span id="L886" class="ln">   886  </span>	if o == nil {
+<span id="L887" class="ln">   887  </span>		return nil, false
+<span id="L888" class="ln">   888  </span>	}
+<span id="L889" class="ln">   889  </span>	return &amp;o.WithoutFilterServices, true
+<span id="L890" class="ln">   890  </span>}
+<span id="L891" class="ln">   891  </span>
+<span id="L892" class="ln">   892  </span><span class="comment">// SetWithoutFilterServices sets field value.</span>
+<span id="L893" class="ln">   893  </span>func (o *ApplicationSecurityServiceAttributes) SetWithoutFilterServices(v int64) {
+<span id="L894" class="ln">   894  </span>	o.WithoutFilterServices = v
+<span id="L895" class="ln">   895  </span>}
+<span id="L896" class="ln">   896  </span>
+<span id="L897" class="ln">   897  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L898" class="ln">   898  </span>func (o ApplicationSecurityServiceAttributes) MarshalJSON() ([]byte, error) {
+<span id="L899" class="ln">   899  </span>	toSerialize := map[string]interface{}{}
+<span id="L900" class="ln">   900  </span>	if o.UnparsedObject != nil {
+<span id="L901" class="ln">   901  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L902" class="ln">   902  </span>	}
+<span id="L903" class="ln">   903  </span>	toSerialize[&#34;agent_versions&#34;] = o.AgentVersions
+<span id="L904" class="ln">   904  </span>	toSerialize[&#34;app_type&#34;] = o.AppType
+<span id="L905" class="ln">   905  </span>	toSerialize[&#34;asm_threat_compatible&#34;] = o.AsmThreatCompatible
+<span id="L906" class="ln">   906  </span>	toSerialize[&#34;backend_waf_event_count&#34;] = o.BackendWafEventCount
+<span id="L907" class="ln">   907  </span>	toSerialize[&#34;business_logic&#34;] = o.BusinessLogic
+<span id="L908" class="ln">   908  </span>	toSerialize[&#34;color&#34;] = o.Color
+<span id="L909" class="ln">   909  </span>	toSerialize[&#34;env&#34;] = o.Env
+<span id="L910" class="ln">   910  </span>	toSerialize[&#34;event_count&#34;] = o.EventCount
+<span id="L911" class="ln">   911  </span>	toSerialize[&#34;event_trend&#34;] = o.EventTrend
+<span id="L912" class="ln">   912  </span>	toSerialize[&#34;has_appsec_enabled&#34;] = o.HasAppsecEnabled
+<span id="L913" class="ln">   913  </span>	toSerialize[&#34;hits&#34;] = o.Hits
+<span id="L914" class="ln">   914  </span>	toSerialize[&#34;iast_product_activation&#34;] = o.IastProductActivation
+<span id="L915" class="ln">   915  </span>	toSerialize[&#34;iast_product_compatibility&#34;] = o.IastProductCompatibility
+<span id="L916" class="ln">   916  </span>	toSerialize[&#34;iast_product_compatibility_reasons&#34;] = o.IastProductCompatibilityReasons
+<span id="L917" class="ln">   917  </span>	toSerialize[&#34;languages&#34;] = o.Languages
+<span id="L918" class="ln">   918  </span>	toSerialize[&#34;last_ingested_spans&#34;] = o.LastIngestedSpans
+<span id="L919" class="ln">   919  </span>	toSerialize[&#34;rc_capabilities&#34;] = o.RcCapabilities
+<span id="L920" class="ln">   920  </span>	toSerialize[&#34;recommended_business_logic&#34;] = o.RecommendedBusinessLogic
+<span id="L921" class="ln">   921  </span>	toSerialize[&#34;risk_product_activation&#34;] = o.RiskProductActivation
+<span id="L922" class="ln">   922  </span>	toSerialize[&#34;risk_product_compatibility&#34;] = o.RiskProductCompatibility
+<span id="L923" class="ln">   923  </span>	toSerialize[&#34;risk_product_compatibility_reasons&#34;] = o.RiskProductCompatibilityReasons
+<span id="L924" class="ln">   924  </span>	toSerialize[&#34;rules_version&#34;] = o.RulesVersion
+<span id="L925" class="ln">   925  </span>	toSerialize[&#34;service&#34;] = o.Service
+<span id="L926" class="ln">   926  </span>	toSerialize[&#34;signal_count&#34;] = o.SignalCount
+<span id="L927" class="ln">   927  </span>	toSerialize[&#34;signal_trend&#34;] = o.SignalTrend
+<span id="L928" class="ln">   928  </span>	toSerialize[&#34;source&#34;] = o.Source
+<span id="L929" class="ln">   929  </span>	toSerialize[&#34;teams&#34;] = o.Teams
+<span id="L930" class="ln">   930  </span>	toSerialize[&#34;tracer_versions&#34;] = o.TracerVersions
+<span id="L931" class="ln">   931  </span>	toSerialize[&#34;vm-activation&#34;] = o.VmActivation
+<span id="L932" class="ln">   932  </span>	toSerialize[&#34;vuln_critical_count&#34;] = o.VulnCriticalCount
+<span id="L933" class="ln">   933  </span>	toSerialize[&#34;vuln_high_count&#34;] = o.VulnHighCount
+<span id="L934" class="ln">   934  </span>	toSerialize[&#34;without_filter_services&#34;] = o.WithoutFilterServices
+<span id="L935" class="ln">   935  </span>
+<span id="L936" class="ln">   936  </span>	for key, value := range o.AdditionalProperties {
+<span id="L937" class="ln">   937  </span>		toSerialize[key] = value
+<span id="L938" class="ln">   938  </span>	}
+<span id="L939" class="ln">   939  </span>	return datadog.Marshal(toSerialize)
+<span id="L940" class="ln">   940  </span>}
+<span id="L941" class="ln">   941  </span>
+<span id="L942" class="ln">   942  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L943" class="ln">   943  </span>func (o *ApplicationSecurityServiceAttributes) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L944" class="ln">   944  </span>	all := struct {
+<span id="L945" class="ln">   945  </span>		AgentVersions                   *[]string `json:&#34;agent_versions&#34;`
+<span id="L946" class="ln">   946  </span>		AppType                         *string   `json:&#34;app_type&#34;`
+<span id="L947" class="ln">   947  </span>		AsmThreatCompatible             *bool     `json:&#34;asm_threat_compatible&#34;`
+<span id="L948" class="ln">   948  </span>		BackendWafEventCount            *int64    `json:&#34;backend_waf_event_count&#34;`
+<span id="L949" class="ln">   949  </span>		BusinessLogic                   *[]string `json:&#34;business_logic&#34;`
+<span id="L950" class="ln">   950  </span>		Color                           *string   `json:&#34;color&#34;`
+<span id="L951" class="ln">   951  </span>		Env                             *string   `json:&#34;env&#34;`
+<span id="L952" class="ln">   952  </span>		EventCount                      *int64    `json:&#34;event_count&#34;`
+<span id="L953" class="ln">   953  </span>		EventTrend                      *[]int64  `json:&#34;event_trend&#34;`
+<span id="L954" class="ln">   954  </span>		HasAppsecEnabled                *bool     `json:&#34;has_appsec_enabled&#34;`
+<span id="L955" class="ln">   955  </span>		Hits                            *int64    `json:&#34;hits&#34;`
+<span id="L956" class="ln">   956  </span>		IastProductActivation           *bool     `json:&#34;iast_product_activation&#34;`
+<span id="L957" class="ln">   957  </span>		IastProductCompatibility        *string   `json:&#34;iast_product_compatibility&#34;`
+<span id="L958" class="ln">   958  </span>		IastProductCompatibilityReasons *[]string `json:&#34;iast_product_compatibility_reasons&#34;`
+<span id="L959" class="ln">   959  </span>		Languages                       *[]string `json:&#34;languages&#34;`
+<span id="L960" class="ln">   960  </span>		LastIngestedSpans               *int64    `json:&#34;last_ingested_spans&#34;`
+<span id="L961" class="ln">   961  </span>		RcCapabilities                  *[]string `json:&#34;rc_capabilities&#34;`
+<span id="L962" class="ln">   962  </span>		RecommendedBusinessLogic        *[]string `json:&#34;recommended_business_logic&#34;`
+<span id="L963" class="ln">   963  </span>		RiskProductActivation           *bool     `json:&#34;risk_product_activation&#34;`
+<span id="L964" class="ln">   964  </span>		RiskProductCompatibility        *string   `json:&#34;risk_product_compatibility&#34;`
+<span id="L965" class="ln">   965  </span>		RiskProductCompatibilityReasons *[]string `json:&#34;risk_product_compatibility_reasons&#34;`
+<span id="L966" class="ln">   966  </span>		RulesVersion                    *[]string `json:&#34;rules_version&#34;`
+<span id="L967" class="ln">   967  </span>		Service                         *string   `json:&#34;service&#34;`
+<span id="L968" class="ln">   968  </span>		SignalCount                     *int64    `json:&#34;signal_count&#34;`
+<span id="L969" class="ln">   969  </span>		SignalTrend                     *[]int64  `json:&#34;signal_trend&#34;`
+<span id="L970" class="ln">   970  </span>		Source                          *[]string `json:&#34;source&#34;`
+<span id="L971" class="ln">   971  </span>		Teams                           *[]string `json:&#34;teams&#34;`
+<span id="L972" class="ln">   972  </span>		TracerVersions                  *[]string `json:&#34;tracer_versions&#34;`
+<span id="L973" class="ln">   973  </span>		VmActivation                    *string   `json:&#34;vm-activation&#34;`
+<span id="L974" class="ln">   974  </span>		VulnCriticalCount               *int64    `json:&#34;vuln_critical_count&#34;`
+<span id="L975" class="ln">   975  </span>		VulnHighCount                   *int64    `json:&#34;vuln_high_count&#34;`
+<span id="L976" class="ln">   976  </span>		WithoutFilterServices           *int64    `json:&#34;without_filter_services&#34;`
+<span id="L977" class="ln">   977  </span>	}{}
+<span id="L978" class="ln">   978  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L979" class="ln">   979  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L980" class="ln">   980  </span>	}
+<span id="L981" class="ln">   981  </span>	if all.AgentVersions == nil {
+<span id="L982" class="ln">   982  </span>		return fmt.Errorf(&#34;required field agent_versions missing&#34;)
+<span id="L983" class="ln">   983  </span>	}
+<span id="L984" class="ln">   984  </span>	if all.AppType == nil {
+<span id="L985" class="ln">   985  </span>		return fmt.Errorf(&#34;required field app_type missing&#34;)
+<span id="L986" class="ln">   986  </span>	}
+<span id="L987" class="ln">   987  </span>	if all.AsmThreatCompatible == nil {
+<span id="L988" class="ln">   988  </span>		return fmt.Errorf(&#34;required field asm_threat_compatible missing&#34;)
+<span id="L989" class="ln">   989  </span>	}
+<span id="L990" class="ln">   990  </span>	if all.BackendWafEventCount == nil {
+<span id="L991" class="ln">   991  </span>		return fmt.Errorf(&#34;required field backend_waf_event_count missing&#34;)
+<span id="L992" class="ln">   992  </span>	}
+<span id="L993" class="ln">   993  </span>	if all.BusinessLogic == nil {
+<span id="L994" class="ln">   994  </span>		return fmt.Errorf(&#34;required field business_logic missing&#34;)
+<span id="L995" class="ln">   995  </span>	}
+<span id="L996" class="ln">   996  </span>	if all.Color == nil {
+<span id="L997" class="ln">   997  </span>		return fmt.Errorf(&#34;required field color missing&#34;)
+<span id="L998" class="ln">   998  </span>	}
+<span id="L999" class="ln">   999  </span>	if all.Env == nil {
+<span id="L1000" class="ln">  1000  </span>		return fmt.Errorf(&#34;required field env missing&#34;)
+<span id="L1001" class="ln">  1001  </span>	}
+<span id="L1002" class="ln">  1002  </span>	if all.EventCount == nil {
+<span id="L1003" class="ln">  1003  </span>		return fmt.Errorf(&#34;required field event_count missing&#34;)
+<span id="L1004" class="ln">  1004  </span>	}
+<span id="L1005" class="ln">  1005  </span>	if all.EventTrend == nil {
+<span id="L1006" class="ln">  1006  </span>		return fmt.Errorf(&#34;required field event_trend missing&#34;)
+<span id="L1007" class="ln">  1007  </span>	}
+<span id="L1008" class="ln">  1008  </span>	if all.HasAppsecEnabled == nil {
+<span id="L1009" class="ln">  1009  </span>		return fmt.Errorf(&#34;required field has_appsec_enabled missing&#34;)
+<span id="L1010" class="ln">  1010  </span>	}
+<span id="L1011" class="ln">  1011  </span>	if all.Hits == nil {
+<span id="L1012" class="ln">  1012  </span>		return fmt.Errorf(&#34;required field hits missing&#34;)
+<span id="L1013" class="ln">  1013  </span>	}
+<span id="L1014" class="ln">  1014  </span>	if all.IastProductActivation == nil {
+<span id="L1015" class="ln">  1015  </span>		return fmt.Errorf(&#34;required field iast_product_activation missing&#34;)
+<span id="L1016" class="ln">  1016  </span>	}
+<span id="L1017" class="ln">  1017  </span>	if all.IastProductCompatibility == nil {
+<span id="L1018" class="ln">  1018  </span>		return fmt.Errorf(&#34;required field iast_product_compatibility missing&#34;)
+<span id="L1019" class="ln">  1019  </span>	}
+<span id="L1020" class="ln">  1020  </span>	if all.IastProductCompatibilityReasons == nil {
+<span id="L1021" class="ln">  1021  </span>		return fmt.Errorf(&#34;required field iast_product_compatibility_reasons missing&#34;)
+<span id="L1022" class="ln">  1022  </span>	}
+<span id="L1023" class="ln">  1023  </span>	if all.Languages == nil {
+<span id="L1024" class="ln">  1024  </span>		return fmt.Errorf(&#34;required field languages missing&#34;)
+<span id="L1025" class="ln">  1025  </span>	}
+<span id="L1026" class="ln">  1026  </span>	if all.LastIngestedSpans == nil {
+<span id="L1027" class="ln">  1027  </span>		return fmt.Errorf(&#34;required field last_ingested_spans missing&#34;)
+<span id="L1028" class="ln">  1028  </span>	}
+<span id="L1029" class="ln">  1029  </span>	if all.RcCapabilities == nil {
+<span id="L1030" class="ln">  1030  </span>		return fmt.Errorf(&#34;required field rc_capabilities missing&#34;)
+<span id="L1031" class="ln">  1031  </span>	}
+<span id="L1032" class="ln">  1032  </span>	if all.RecommendedBusinessLogic == nil {
+<span id="L1033" class="ln">  1033  </span>		return fmt.Errorf(&#34;required field recommended_business_logic missing&#34;)
+<span id="L1034" class="ln">  1034  </span>	}
+<span id="L1035" class="ln">  1035  </span>	if all.RiskProductActivation == nil {
+<span id="L1036" class="ln">  1036  </span>		return fmt.Errorf(&#34;required field risk_product_activation missing&#34;)
+<span id="L1037" class="ln">  1037  </span>	}
+<span id="L1038" class="ln">  1038  </span>	if all.RiskProductCompatibility == nil {
+<span id="L1039" class="ln">  1039  </span>		return fmt.Errorf(&#34;required field risk_product_compatibility missing&#34;)
+<span id="L1040" class="ln">  1040  </span>	}
+<span id="L1041" class="ln">  1041  </span>	if all.RiskProductCompatibilityReasons == nil {
+<span id="L1042" class="ln">  1042  </span>		return fmt.Errorf(&#34;required field risk_product_compatibility_reasons missing&#34;)
+<span id="L1043" class="ln">  1043  </span>	}
+<span id="L1044" class="ln">  1044  </span>	if all.RulesVersion == nil {
+<span id="L1045" class="ln">  1045  </span>		return fmt.Errorf(&#34;required field rules_version missing&#34;)
+<span id="L1046" class="ln">  1046  </span>	}
+<span id="L1047" class="ln">  1047  </span>	if all.Service == nil {
+<span id="L1048" class="ln">  1048  </span>		return fmt.Errorf(&#34;required field service missing&#34;)
+<span id="L1049" class="ln">  1049  </span>	}
+<span id="L1050" class="ln">  1050  </span>	if all.SignalCount == nil {
+<span id="L1051" class="ln">  1051  </span>		return fmt.Errorf(&#34;required field signal_count missing&#34;)
+<span id="L1052" class="ln">  1052  </span>	}
+<span id="L1053" class="ln">  1053  </span>	if all.SignalTrend == nil {
+<span id="L1054" class="ln">  1054  </span>		return fmt.Errorf(&#34;required field signal_trend missing&#34;)
+<span id="L1055" class="ln">  1055  </span>	}
+<span id="L1056" class="ln">  1056  </span>	if all.Source == nil {
+<span id="L1057" class="ln">  1057  </span>		return fmt.Errorf(&#34;required field source missing&#34;)
+<span id="L1058" class="ln">  1058  </span>	}
+<span id="L1059" class="ln">  1059  </span>	if all.Teams == nil {
+<span id="L1060" class="ln">  1060  </span>		return fmt.Errorf(&#34;required field teams missing&#34;)
+<span id="L1061" class="ln">  1061  </span>	}
+<span id="L1062" class="ln">  1062  </span>	if all.TracerVersions == nil {
+<span id="L1063" class="ln">  1063  </span>		return fmt.Errorf(&#34;required field tracer_versions missing&#34;)
+<span id="L1064" class="ln">  1064  </span>	}
+<span id="L1065" class="ln">  1065  </span>	if all.VmActivation == nil {
+<span id="L1066" class="ln">  1066  </span>		return fmt.Errorf(&#34;required field vm-activation missing&#34;)
+<span id="L1067" class="ln">  1067  </span>	}
+<span id="L1068" class="ln">  1068  </span>	if all.VulnCriticalCount == nil {
+<span id="L1069" class="ln">  1069  </span>		return fmt.Errorf(&#34;required field vuln_critical_count missing&#34;)
+<span id="L1070" class="ln">  1070  </span>	}
+<span id="L1071" class="ln">  1071  </span>	if all.VulnHighCount == nil {
+<span id="L1072" class="ln">  1072  </span>		return fmt.Errorf(&#34;required field vuln_high_count missing&#34;)
+<span id="L1073" class="ln">  1073  </span>	}
+<span id="L1074" class="ln">  1074  </span>	if all.WithoutFilterServices == nil {
+<span id="L1075" class="ln">  1075  </span>		return fmt.Errorf(&#34;required field without_filter_services missing&#34;)
+<span id="L1076" class="ln">  1076  </span>	}
+<span id="L1077" class="ln">  1077  </span>	additionalProperties := make(map[string]interface{})
+<span id="L1078" class="ln">  1078  </span>	if err = datadog.UnmarshalUseNumber(bytes, &amp;additionalProperties); err == nil {
+<span id="L1079" class="ln">  1079  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;agent_versions&#34;, &#34;app_type&#34;, &#34;asm_threat_compatible&#34;, &#34;backend_waf_event_count&#34;, &#34;business_logic&#34;, &#34;color&#34;, &#34;env&#34;, &#34;event_count&#34;, &#34;event_trend&#34;, &#34;has_appsec_enabled&#34;, &#34;hits&#34;, &#34;iast_product_activation&#34;, &#34;iast_product_compatibility&#34;, &#34;iast_product_compatibility_reasons&#34;, &#34;languages&#34;, &#34;last_ingested_spans&#34;, &#34;rc_capabilities&#34;, &#34;recommended_business_logic&#34;, &#34;risk_product_activation&#34;, &#34;risk_product_compatibility&#34;, &#34;risk_product_compatibility_reasons&#34;, &#34;rules_version&#34;, &#34;service&#34;, &#34;signal_count&#34;, &#34;signal_trend&#34;, &#34;source&#34;, &#34;teams&#34;, &#34;tracer_versions&#34;, &#34;vm-activation&#34;, &#34;vuln_critical_count&#34;, &#34;vuln_high_count&#34;, &#34;without_filter_services&#34;})
+<span id="L1080" class="ln">  1080  </span>	} else {
+<span id="L1081" class="ln">  1081  </span>		return err
+<span id="L1082" class="ln">  1082  </span>	}
+<span id="L1083" class="ln">  1083  </span>	o.AgentVersions = *all.AgentVersions
+<span id="L1084" class="ln">  1084  </span>	o.AppType = *all.AppType
+<span id="L1085" class="ln">  1085  </span>	o.AsmThreatCompatible = *all.AsmThreatCompatible
+<span id="L1086" class="ln">  1086  </span>	o.BackendWafEventCount = *all.BackendWafEventCount
+<span id="L1087" class="ln">  1087  </span>	o.BusinessLogic = *all.BusinessLogic
+<span id="L1088" class="ln">  1088  </span>	o.Color = *all.Color
+<span id="L1089" class="ln">  1089  </span>	o.Env = *all.Env
+<span id="L1090" class="ln">  1090  </span>	o.EventCount = *all.EventCount
+<span id="L1091" class="ln">  1091  </span>	o.EventTrend = *all.EventTrend
+<span id="L1092" class="ln">  1092  </span>	o.HasAppsecEnabled = *all.HasAppsecEnabled
+<span id="L1093" class="ln">  1093  </span>	o.Hits = *all.Hits
+<span id="L1094" class="ln">  1094  </span>	o.IastProductActivation = *all.IastProductActivation
+<span id="L1095" class="ln">  1095  </span>	o.IastProductCompatibility = *all.IastProductCompatibility
+<span id="L1096" class="ln">  1096  </span>	o.IastProductCompatibilityReasons = *all.IastProductCompatibilityReasons
+<span id="L1097" class="ln">  1097  </span>	o.Languages = *all.Languages
+<span id="L1098" class="ln">  1098  </span>	o.LastIngestedSpans = *all.LastIngestedSpans
+<span id="L1099" class="ln">  1099  </span>	o.RcCapabilities = *all.RcCapabilities
+<span id="L1100" class="ln">  1100  </span>	o.RecommendedBusinessLogic = *all.RecommendedBusinessLogic
+<span id="L1101" class="ln">  1101  </span>	o.RiskProductActivation = *all.RiskProductActivation
+<span id="L1102" class="ln">  1102  </span>	o.RiskProductCompatibility = *all.RiskProductCompatibility
+<span id="L1103" class="ln">  1103  </span>	o.RiskProductCompatibilityReasons = *all.RiskProductCompatibilityReasons
+<span id="L1104" class="ln">  1104  </span>	o.RulesVersion = *all.RulesVersion
+<span id="L1105" class="ln">  1105  </span>	o.Service = *all.Service
+<span id="L1106" class="ln">  1106  </span>	o.SignalCount = *all.SignalCount
+<span id="L1107" class="ln">  1107  </span>	o.SignalTrend = *all.SignalTrend
+<span id="L1108" class="ln">  1108  </span>	o.Source = *all.Source
+<span id="L1109" class="ln">  1109  </span>	o.Teams = *all.Teams
+<span id="L1110" class="ln">  1110  </span>	o.TracerVersions = *all.TracerVersions
+<span id="L1111" class="ln">  1111  </span>	o.VmActivation = *all.VmActivation
+<span id="L1112" class="ln">  1112  </span>	o.VulnCriticalCount = *all.VulnCriticalCount
+<span id="L1113" class="ln">  1113  </span>	o.VulnHighCount = *all.VulnHighCount
+<span id="L1114" class="ln">  1114  </span>	o.WithoutFilterServices = *all.WithoutFilterServices
+<span id="L1115" class="ln">  1115  </span>
+<span id="L1116" class="ln">  1116  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L1117" class="ln">  1117  </span>		o.AdditionalProperties = additionalProperties
+<span id="L1118" class="ln">  1118  </span>	}
+<span id="L1119" class="ln">  1119  </span>
+<span id="L1120" class="ln">  1120  </span>	return nil
+<span id="L1121" class="ln">  1121  </span>}
+<span id="L1122" class="ln">  1122  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.25.11.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

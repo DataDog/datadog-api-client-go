@@ -1,0 +1,624 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_test_optimization_update_service_settings_request_attributes.go - Datadog</title>
+
+<link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/datadog-api-client-go/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.25.11";</script>
+<script src="/datadog-api-client-go/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog | Datadog API client for GO</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_test_optimization_update_service_settings_request_attributes.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">github.com/DataDog/datadog-api-client-go/v2/api/datadogV2</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span><span class="comment">// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.</span>
+<span id="L2" class="ln">     2  </span><span class="comment">// This product includes software developed at Datadog (https://www.datadoghq.com/).</span>
+<span id="L3" class="ln">     3  </span><span class="comment">// Copyright 2019-Present Datadog, Inc.</span>
+<span id="L4" class="ln">     4  </span>
+<span id="L5" class="ln">     5  </span>package datadogV2
+<span id="L6" class="ln">     6  </span>
+<span id="L7" class="ln">     7  </span>import (
+<span id="L8" class="ln">     8  </span>	&#34;fmt&#34;
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
+<span id="L11" class="ln">    11  </span>)
+<span id="L12" class="ln">    12  </span>
+<span id="L13" class="ln">    13  </span><span class="comment">// TestOptimizationUpdateServiceSettingsRequestAttributes Attributes for updating Test Optimization service settings.</span>
+<span id="L14" class="ln">    14  </span><span class="comment">// All non-required fields are optional; only provided fields will be updated.</span>
+<span id="L15" class="ln">    15  </span><span class="comment">// Setting a field to `null` is a no-op. To reset a setting to inherit from the repository level, use the corresponding `&lt;setting&gt;_inherit` field.</span>
+<span id="L16" class="ln">    16  </span>type TestOptimizationUpdateServiceSettingsRequestAttributes struct {
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Whether Auto Test Retries are enabled for this service. Setting to `null` is a no-op; use `auto_test_retries_enabled_inherit` to reset to repository-level inheritance.</span>
+<span id="L18" class="ln">    18  </span>	AutoTestRetriesEnabled *bool `json:&#34;auto_test_retries_enabled,omitempty&#34;`
+<span id="L19" class="ln">    19  </span>	<span class="comment">// When `true`, resets the Auto Test Retries setting to inherit from the repository level.</span>
+<span id="L20" class="ln">    20  </span>	AutoTestRetriesEnabledInherit *bool `json:&#34;auto_test_retries_enabled_inherit,omitempty&#34;`
+<span id="L21" class="ln">    21  </span>	<span class="comment">// Whether Code Coverage is enabled for this service. Setting to `null` is a no-op; use `code_coverage_enabled_inherit` to reset to repository-level inheritance.</span>
+<span id="L22" class="ln">    22  </span>	CodeCoverageEnabled *bool `json:&#34;code_coverage_enabled,omitempty&#34;`
+<span id="L23" class="ln">    23  </span>	<span class="comment">// When `true`, resets the Code Coverage setting to inherit from the repository level.</span>
+<span id="L24" class="ln">    24  </span>	CodeCoverageEnabledInherit *bool `json:&#34;code_coverage_enabled_inherit,omitempty&#34;`
+<span id="L25" class="ln">    25  </span>	<span class="comment">// Whether Early Flake Detection is enabled for this service. Setting to `null` is a no-op; use `early_flake_detection_enabled_inherit` to reset to repository-level inheritance.</span>
+<span id="L26" class="ln">    26  </span>	EarlyFlakeDetectionEnabled *bool `json:&#34;early_flake_detection_enabled,omitempty&#34;`
+<span id="L27" class="ln">    27  </span>	<span class="comment">// When `true`, resets the Early Flake Detection setting to inherit from the repository level.</span>
+<span id="L28" class="ln">    28  </span>	EarlyFlakeDetectionEnabledInherit *bool `json:&#34;early_flake_detection_enabled_inherit,omitempty&#34;`
+<span id="L29" class="ln">    29  </span>	<span class="comment">// The environment name. If omitted, defaults to `none`.</span>
+<span id="L30" class="ln">    30  </span>	Env *string `json:&#34;env,omitempty&#34;`
+<span id="L31" class="ln">    31  </span>	<span class="comment">// Whether Failed Test Replay is enabled for this service. Setting to `null` is a no-op; use `failed_test_replay_enabled_inherit` to reset to repository-level inheritance.</span>
+<span id="L32" class="ln">    32  </span>	FailedTestReplayEnabled *bool `json:&#34;failed_test_replay_enabled,omitempty&#34;`
+<span id="L33" class="ln">    33  </span>	<span class="comment">// When `true`, resets the Failed Test Replay setting to inherit from the repository level.</span>
+<span id="L34" class="ln">    34  </span>	FailedTestReplayEnabledInherit *bool `json:&#34;failed_test_replay_enabled_inherit,omitempty&#34;`
+<span id="L35" class="ln">    35  </span>	<span class="comment">// This field is ignored. PR Comments cannot be overridden at the service level.</span>
+<span id="L36" class="ln">    36  </span>	PrCommentsEnabled *bool `json:&#34;pr_comments_enabled,omitempty&#34;`
+<span id="L37" class="ln">    37  </span>	<span class="comment">// The repository identifier.</span>
+<span id="L38" class="ln">    38  </span>	RepositoryId string `json:&#34;repository_id&#34;`
+<span id="L39" class="ln">    39  </span>	<span class="comment">// The service name.</span>
+<span id="L40" class="ln">    40  </span>	ServiceName string `json:&#34;service_name&#34;`
+<span id="L41" class="ln">    41  </span>	<span class="comment">// Whether Test Impact Analysis is enabled for this service. Setting to `null` is a no-op; use `test_impact_analysis_enabled_inherit` to reset to repository-level inheritance.</span>
+<span id="L42" class="ln">    42  </span>	TestImpactAnalysisEnabled *bool `json:&#34;test_impact_analysis_enabled,omitempty&#34;`
+<span id="L43" class="ln">    43  </span>	<span class="comment">// When `true`, resets the Test Impact Analysis setting to inherit from the repository level.</span>
+<span id="L44" class="ln">    44  </span>	TestImpactAnalysisEnabledInherit *bool `json:&#34;test_impact_analysis_enabled_inherit,omitempty&#34;`
+<span id="L45" class="ln">    45  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L46" class="ln">    46  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L47" class="ln">    47  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L48" class="ln">    48  </span>}
+<span id="L49" class="ln">    49  </span>
+<span id="L50" class="ln">    50  </span><span class="comment">// NewTestOptimizationUpdateServiceSettingsRequestAttributes instantiates a new TestOptimizationUpdateServiceSettingsRequestAttributes object.</span>
+<span id="L51" class="ln">    51  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L52" class="ln">    52  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L53" class="ln">    53  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L54" class="ln">    54  </span>func NewTestOptimizationUpdateServiceSettingsRequestAttributes(repositoryId string, serviceName string) *TestOptimizationUpdateServiceSettingsRequestAttributes {
+<span id="L55" class="ln">    55  </span>	this := TestOptimizationUpdateServiceSettingsRequestAttributes{}
+<span id="L56" class="ln">    56  </span>	this.RepositoryId = repositoryId
+<span id="L57" class="ln">    57  </span>	this.ServiceName = serviceName
+<span id="L58" class="ln">    58  </span>	return &amp;this
+<span id="L59" class="ln">    59  </span>}
+<span id="L60" class="ln">    60  </span>
+<span id="L61" class="ln">    61  </span><span class="comment">// NewTestOptimizationUpdateServiceSettingsRequestAttributesWithDefaults instantiates a new TestOptimizationUpdateServiceSettingsRequestAttributes object.</span>
+<span id="L62" class="ln">    62  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L63" class="ln">    63  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L64" class="ln">    64  </span>func NewTestOptimizationUpdateServiceSettingsRequestAttributesWithDefaults() *TestOptimizationUpdateServiceSettingsRequestAttributes {
+<span id="L65" class="ln">    65  </span>	this := TestOptimizationUpdateServiceSettingsRequestAttributes{}
+<span id="L66" class="ln">    66  </span>	return &amp;this
+<span id="L67" class="ln">    67  </span>}
+<span id="L68" class="ln">    68  </span>
+<span id="L69" class="ln">    69  </span><span class="comment">// GetAutoTestRetriesEnabled returns the AutoTestRetriesEnabled field value if set, zero value otherwise.</span>
+<span id="L70" class="ln">    70  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetAutoTestRetriesEnabled() bool {
+<span id="L71" class="ln">    71  </span>	if o == nil || o.AutoTestRetriesEnabled == nil {
+<span id="L72" class="ln">    72  </span>		var ret bool
+<span id="L73" class="ln">    73  </span>		return ret
+<span id="L74" class="ln">    74  </span>	}
+<span id="L75" class="ln">    75  </span>	return *o.AutoTestRetriesEnabled
+<span id="L76" class="ln">    76  </span>}
+<span id="L77" class="ln">    77  </span>
+<span id="L78" class="ln">    78  </span><span class="comment">// GetAutoTestRetriesEnabledOk returns a tuple with the AutoTestRetriesEnabled field value if set, nil otherwise</span>
+<span id="L79" class="ln">    79  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L80" class="ln">    80  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetAutoTestRetriesEnabledOk() (*bool, bool) {
+<span id="L81" class="ln">    81  </span>	if o == nil || o.AutoTestRetriesEnabled == nil {
+<span id="L82" class="ln">    82  </span>		return nil, false
+<span id="L83" class="ln">    83  </span>	}
+<span id="L84" class="ln">    84  </span>	return o.AutoTestRetriesEnabled, true
+<span id="L85" class="ln">    85  </span>}
+<span id="L86" class="ln">    86  </span>
+<span id="L87" class="ln">    87  </span><span class="comment">// HasAutoTestRetriesEnabled returns a boolean if a field has been set.</span>
+<span id="L88" class="ln">    88  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) HasAutoTestRetriesEnabled() bool {
+<span id="L89" class="ln">    89  </span>	return o != nil &amp;&amp; o.AutoTestRetriesEnabled != nil
+<span id="L90" class="ln">    90  </span>}
+<span id="L91" class="ln">    91  </span>
+<span id="L92" class="ln">    92  </span><span class="comment">// SetAutoTestRetriesEnabled gets a reference to the given bool and assigns it to the AutoTestRetriesEnabled field.</span>
+<span id="L93" class="ln">    93  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) SetAutoTestRetriesEnabled(v bool) {
+<span id="L94" class="ln">    94  </span>	o.AutoTestRetriesEnabled = &amp;v
+<span id="L95" class="ln">    95  </span>}
+<span id="L96" class="ln">    96  </span>
+<span id="L97" class="ln">    97  </span><span class="comment">// GetAutoTestRetriesEnabledInherit returns the AutoTestRetriesEnabledInherit field value if set, zero value otherwise.</span>
+<span id="L98" class="ln">    98  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetAutoTestRetriesEnabledInherit() bool {
+<span id="L99" class="ln">    99  </span>	if o == nil || o.AutoTestRetriesEnabledInherit == nil {
+<span id="L100" class="ln">   100  </span>		var ret bool
+<span id="L101" class="ln">   101  </span>		return ret
+<span id="L102" class="ln">   102  </span>	}
+<span id="L103" class="ln">   103  </span>	return *o.AutoTestRetriesEnabledInherit
+<span id="L104" class="ln">   104  </span>}
+<span id="L105" class="ln">   105  </span>
+<span id="L106" class="ln">   106  </span><span class="comment">// GetAutoTestRetriesEnabledInheritOk returns a tuple with the AutoTestRetriesEnabledInherit field value if set, nil otherwise</span>
+<span id="L107" class="ln">   107  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L108" class="ln">   108  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetAutoTestRetriesEnabledInheritOk() (*bool, bool) {
+<span id="L109" class="ln">   109  </span>	if o == nil || o.AutoTestRetriesEnabledInherit == nil {
+<span id="L110" class="ln">   110  </span>		return nil, false
+<span id="L111" class="ln">   111  </span>	}
+<span id="L112" class="ln">   112  </span>	return o.AutoTestRetriesEnabledInherit, true
+<span id="L113" class="ln">   113  </span>}
+<span id="L114" class="ln">   114  </span>
+<span id="L115" class="ln">   115  </span><span class="comment">// HasAutoTestRetriesEnabledInherit returns a boolean if a field has been set.</span>
+<span id="L116" class="ln">   116  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) HasAutoTestRetriesEnabledInherit() bool {
+<span id="L117" class="ln">   117  </span>	return o != nil &amp;&amp; o.AutoTestRetriesEnabledInherit != nil
+<span id="L118" class="ln">   118  </span>}
+<span id="L119" class="ln">   119  </span>
+<span id="L120" class="ln">   120  </span><span class="comment">// SetAutoTestRetriesEnabledInherit gets a reference to the given bool and assigns it to the AutoTestRetriesEnabledInherit field.</span>
+<span id="L121" class="ln">   121  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) SetAutoTestRetriesEnabledInherit(v bool) {
+<span id="L122" class="ln">   122  </span>	o.AutoTestRetriesEnabledInherit = &amp;v
+<span id="L123" class="ln">   123  </span>}
+<span id="L124" class="ln">   124  </span>
+<span id="L125" class="ln">   125  </span><span class="comment">// GetCodeCoverageEnabled returns the CodeCoverageEnabled field value if set, zero value otherwise.</span>
+<span id="L126" class="ln">   126  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetCodeCoverageEnabled() bool {
+<span id="L127" class="ln">   127  </span>	if o == nil || o.CodeCoverageEnabled == nil {
+<span id="L128" class="ln">   128  </span>		var ret bool
+<span id="L129" class="ln">   129  </span>		return ret
+<span id="L130" class="ln">   130  </span>	}
+<span id="L131" class="ln">   131  </span>	return *o.CodeCoverageEnabled
+<span id="L132" class="ln">   132  </span>}
+<span id="L133" class="ln">   133  </span>
+<span id="L134" class="ln">   134  </span><span class="comment">// GetCodeCoverageEnabledOk returns a tuple with the CodeCoverageEnabled field value if set, nil otherwise</span>
+<span id="L135" class="ln">   135  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L136" class="ln">   136  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetCodeCoverageEnabledOk() (*bool, bool) {
+<span id="L137" class="ln">   137  </span>	if o == nil || o.CodeCoverageEnabled == nil {
+<span id="L138" class="ln">   138  </span>		return nil, false
+<span id="L139" class="ln">   139  </span>	}
+<span id="L140" class="ln">   140  </span>	return o.CodeCoverageEnabled, true
+<span id="L141" class="ln">   141  </span>}
+<span id="L142" class="ln">   142  </span>
+<span id="L143" class="ln">   143  </span><span class="comment">// HasCodeCoverageEnabled returns a boolean if a field has been set.</span>
+<span id="L144" class="ln">   144  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) HasCodeCoverageEnabled() bool {
+<span id="L145" class="ln">   145  </span>	return o != nil &amp;&amp; o.CodeCoverageEnabled != nil
+<span id="L146" class="ln">   146  </span>}
+<span id="L147" class="ln">   147  </span>
+<span id="L148" class="ln">   148  </span><span class="comment">// SetCodeCoverageEnabled gets a reference to the given bool and assigns it to the CodeCoverageEnabled field.</span>
+<span id="L149" class="ln">   149  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) SetCodeCoverageEnabled(v bool) {
+<span id="L150" class="ln">   150  </span>	o.CodeCoverageEnabled = &amp;v
+<span id="L151" class="ln">   151  </span>}
+<span id="L152" class="ln">   152  </span>
+<span id="L153" class="ln">   153  </span><span class="comment">// GetCodeCoverageEnabledInherit returns the CodeCoverageEnabledInherit field value if set, zero value otherwise.</span>
+<span id="L154" class="ln">   154  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetCodeCoverageEnabledInherit() bool {
+<span id="L155" class="ln">   155  </span>	if o == nil || o.CodeCoverageEnabledInherit == nil {
+<span id="L156" class="ln">   156  </span>		var ret bool
+<span id="L157" class="ln">   157  </span>		return ret
+<span id="L158" class="ln">   158  </span>	}
+<span id="L159" class="ln">   159  </span>	return *o.CodeCoverageEnabledInherit
+<span id="L160" class="ln">   160  </span>}
+<span id="L161" class="ln">   161  </span>
+<span id="L162" class="ln">   162  </span><span class="comment">// GetCodeCoverageEnabledInheritOk returns a tuple with the CodeCoverageEnabledInherit field value if set, nil otherwise</span>
+<span id="L163" class="ln">   163  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L164" class="ln">   164  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetCodeCoverageEnabledInheritOk() (*bool, bool) {
+<span id="L165" class="ln">   165  </span>	if o == nil || o.CodeCoverageEnabledInherit == nil {
+<span id="L166" class="ln">   166  </span>		return nil, false
+<span id="L167" class="ln">   167  </span>	}
+<span id="L168" class="ln">   168  </span>	return o.CodeCoverageEnabledInherit, true
+<span id="L169" class="ln">   169  </span>}
+<span id="L170" class="ln">   170  </span>
+<span id="L171" class="ln">   171  </span><span class="comment">// HasCodeCoverageEnabledInherit returns a boolean if a field has been set.</span>
+<span id="L172" class="ln">   172  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) HasCodeCoverageEnabledInherit() bool {
+<span id="L173" class="ln">   173  </span>	return o != nil &amp;&amp; o.CodeCoverageEnabledInherit != nil
+<span id="L174" class="ln">   174  </span>}
+<span id="L175" class="ln">   175  </span>
+<span id="L176" class="ln">   176  </span><span class="comment">// SetCodeCoverageEnabledInherit gets a reference to the given bool and assigns it to the CodeCoverageEnabledInherit field.</span>
+<span id="L177" class="ln">   177  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) SetCodeCoverageEnabledInherit(v bool) {
+<span id="L178" class="ln">   178  </span>	o.CodeCoverageEnabledInherit = &amp;v
+<span id="L179" class="ln">   179  </span>}
+<span id="L180" class="ln">   180  </span>
+<span id="L181" class="ln">   181  </span><span class="comment">// GetEarlyFlakeDetectionEnabled returns the EarlyFlakeDetectionEnabled field value if set, zero value otherwise.</span>
+<span id="L182" class="ln">   182  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetEarlyFlakeDetectionEnabled() bool {
+<span id="L183" class="ln">   183  </span>	if o == nil || o.EarlyFlakeDetectionEnabled == nil {
+<span id="L184" class="ln">   184  </span>		var ret bool
+<span id="L185" class="ln">   185  </span>		return ret
+<span id="L186" class="ln">   186  </span>	}
+<span id="L187" class="ln">   187  </span>	return *o.EarlyFlakeDetectionEnabled
+<span id="L188" class="ln">   188  </span>}
+<span id="L189" class="ln">   189  </span>
+<span id="L190" class="ln">   190  </span><span class="comment">// GetEarlyFlakeDetectionEnabledOk returns a tuple with the EarlyFlakeDetectionEnabled field value if set, nil otherwise</span>
+<span id="L191" class="ln">   191  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L192" class="ln">   192  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetEarlyFlakeDetectionEnabledOk() (*bool, bool) {
+<span id="L193" class="ln">   193  </span>	if o == nil || o.EarlyFlakeDetectionEnabled == nil {
+<span id="L194" class="ln">   194  </span>		return nil, false
+<span id="L195" class="ln">   195  </span>	}
+<span id="L196" class="ln">   196  </span>	return o.EarlyFlakeDetectionEnabled, true
+<span id="L197" class="ln">   197  </span>}
+<span id="L198" class="ln">   198  </span>
+<span id="L199" class="ln">   199  </span><span class="comment">// HasEarlyFlakeDetectionEnabled returns a boolean if a field has been set.</span>
+<span id="L200" class="ln">   200  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) HasEarlyFlakeDetectionEnabled() bool {
+<span id="L201" class="ln">   201  </span>	return o != nil &amp;&amp; o.EarlyFlakeDetectionEnabled != nil
+<span id="L202" class="ln">   202  </span>}
+<span id="L203" class="ln">   203  </span>
+<span id="L204" class="ln">   204  </span><span class="comment">// SetEarlyFlakeDetectionEnabled gets a reference to the given bool and assigns it to the EarlyFlakeDetectionEnabled field.</span>
+<span id="L205" class="ln">   205  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) SetEarlyFlakeDetectionEnabled(v bool) {
+<span id="L206" class="ln">   206  </span>	o.EarlyFlakeDetectionEnabled = &amp;v
+<span id="L207" class="ln">   207  </span>}
+<span id="L208" class="ln">   208  </span>
+<span id="L209" class="ln">   209  </span><span class="comment">// GetEarlyFlakeDetectionEnabledInherit returns the EarlyFlakeDetectionEnabledInherit field value if set, zero value otherwise.</span>
+<span id="L210" class="ln">   210  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetEarlyFlakeDetectionEnabledInherit() bool {
+<span id="L211" class="ln">   211  </span>	if o == nil || o.EarlyFlakeDetectionEnabledInherit == nil {
+<span id="L212" class="ln">   212  </span>		var ret bool
+<span id="L213" class="ln">   213  </span>		return ret
+<span id="L214" class="ln">   214  </span>	}
+<span id="L215" class="ln">   215  </span>	return *o.EarlyFlakeDetectionEnabledInherit
+<span id="L216" class="ln">   216  </span>}
+<span id="L217" class="ln">   217  </span>
+<span id="L218" class="ln">   218  </span><span class="comment">// GetEarlyFlakeDetectionEnabledInheritOk returns a tuple with the EarlyFlakeDetectionEnabledInherit field value if set, nil otherwise</span>
+<span id="L219" class="ln">   219  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L220" class="ln">   220  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetEarlyFlakeDetectionEnabledInheritOk() (*bool, bool) {
+<span id="L221" class="ln">   221  </span>	if o == nil || o.EarlyFlakeDetectionEnabledInherit == nil {
+<span id="L222" class="ln">   222  </span>		return nil, false
+<span id="L223" class="ln">   223  </span>	}
+<span id="L224" class="ln">   224  </span>	return o.EarlyFlakeDetectionEnabledInherit, true
+<span id="L225" class="ln">   225  </span>}
+<span id="L226" class="ln">   226  </span>
+<span id="L227" class="ln">   227  </span><span class="comment">// HasEarlyFlakeDetectionEnabledInherit returns a boolean if a field has been set.</span>
+<span id="L228" class="ln">   228  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) HasEarlyFlakeDetectionEnabledInherit() bool {
+<span id="L229" class="ln">   229  </span>	return o != nil &amp;&amp; o.EarlyFlakeDetectionEnabledInherit != nil
+<span id="L230" class="ln">   230  </span>}
+<span id="L231" class="ln">   231  </span>
+<span id="L232" class="ln">   232  </span><span class="comment">// SetEarlyFlakeDetectionEnabledInherit gets a reference to the given bool and assigns it to the EarlyFlakeDetectionEnabledInherit field.</span>
+<span id="L233" class="ln">   233  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) SetEarlyFlakeDetectionEnabledInherit(v bool) {
+<span id="L234" class="ln">   234  </span>	o.EarlyFlakeDetectionEnabledInherit = &amp;v
+<span id="L235" class="ln">   235  </span>}
+<span id="L236" class="ln">   236  </span>
+<span id="L237" class="ln">   237  </span><span class="comment">// GetEnv returns the Env field value if set, zero value otherwise.</span>
+<span id="L238" class="ln">   238  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetEnv() string {
+<span id="L239" class="ln">   239  </span>	if o == nil || o.Env == nil {
+<span id="L240" class="ln">   240  </span>		var ret string
+<span id="L241" class="ln">   241  </span>		return ret
+<span id="L242" class="ln">   242  </span>	}
+<span id="L243" class="ln">   243  </span>	return *o.Env
+<span id="L244" class="ln">   244  </span>}
+<span id="L245" class="ln">   245  </span>
+<span id="L246" class="ln">   246  </span><span class="comment">// GetEnvOk returns a tuple with the Env field value if set, nil otherwise</span>
+<span id="L247" class="ln">   247  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L248" class="ln">   248  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetEnvOk() (*string, bool) {
+<span id="L249" class="ln">   249  </span>	if o == nil || o.Env == nil {
+<span id="L250" class="ln">   250  </span>		return nil, false
+<span id="L251" class="ln">   251  </span>	}
+<span id="L252" class="ln">   252  </span>	return o.Env, true
+<span id="L253" class="ln">   253  </span>}
+<span id="L254" class="ln">   254  </span>
+<span id="L255" class="ln">   255  </span><span class="comment">// HasEnv returns a boolean if a field has been set.</span>
+<span id="L256" class="ln">   256  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) HasEnv() bool {
+<span id="L257" class="ln">   257  </span>	return o != nil &amp;&amp; o.Env != nil
+<span id="L258" class="ln">   258  </span>}
+<span id="L259" class="ln">   259  </span>
+<span id="L260" class="ln">   260  </span><span class="comment">// SetEnv gets a reference to the given string and assigns it to the Env field.</span>
+<span id="L261" class="ln">   261  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) SetEnv(v string) {
+<span id="L262" class="ln">   262  </span>	o.Env = &amp;v
+<span id="L263" class="ln">   263  </span>}
+<span id="L264" class="ln">   264  </span>
+<span id="L265" class="ln">   265  </span><span class="comment">// GetFailedTestReplayEnabled returns the FailedTestReplayEnabled field value if set, zero value otherwise.</span>
+<span id="L266" class="ln">   266  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetFailedTestReplayEnabled() bool {
+<span id="L267" class="ln">   267  </span>	if o == nil || o.FailedTestReplayEnabled == nil {
+<span id="L268" class="ln">   268  </span>		var ret bool
+<span id="L269" class="ln">   269  </span>		return ret
+<span id="L270" class="ln">   270  </span>	}
+<span id="L271" class="ln">   271  </span>	return *o.FailedTestReplayEnabled
+<span id="L272" class="ln">   272  </span>}
+<span id="L273" class="ln">   273  </span>
+<span id="L274" class="ln">   274  </span><span class="comment">// GetFailedTestReplayEnabledOk returns a tuple with the FailedTestReplayEnabled field value if set, nil otherwise</span>
+<span id="L275" class="ln">   275  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L276" class="ln">   276  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetFailedTestReplayEnabledOk() (*bool, bool) {
+<span id="L277" class="ln">   277  </span>	if o == nil || o.FailedTestReplayEnabled == nil {
+<span id="L278" class="ln">   278  </span>		return nil, false
+<span id="L279" class="ln">   279  </span>	}
+<span id="L280" class="ln">   280  </span>	return o.FailedTestReplayEnabled, true
+<span id="L281" class="ln">   281  </span>}
+<span id="L282" class="ln">   282  </span>
+<span id="L283" class="ln">   283  </span><span class="comment">// HasFailedTestReplayEnabled returns a boolean if a field has been set.</span>
+<span id="L284" class="ln">   284  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) HasFailedTestReplayEnabled() bool {
+<span id="L285" class="ln">   285  </span>	return o != nil &amp;&amp; o.FailedTestReplayEnabled != nil
+<span id="L286" class="ln">   286  </span>}
+<span id="L287" class="ln">   287  </span>
+<span id="L288" class="ln">   288  </span><span class="comment">// SetFailedTestReplayEnabled gets a reference to the given bool and assigns it to the FailedTestReplayEnabled field.</span>
+<span id="L289" class="ln">   289  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) SetFailedTestReplayEnabled(v bool) {
+<span id="L290" class="ln">   290  </span>	o.FailedTestReplayEnabled = &amp;v
+<span id="L291" class="ln">   291  </span>}
+<span id="L292" class="ln">   292  </span>
+<span id="L293" class="ln">   293  </span><span class="comment">// GetFailedTestReplayEnabledInherit returns the FailedTestReplayEnabledInherit field value if set, zero value otherwise.</span>
+<span id="L294" class="ln">   294  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetFailedTestReplayEnabledInherit() bool {
+<span id="L295" class="ln">   295  </span>	if o == nil || o.FailedTestReplayEnabledInherit == nil {
+<span id="L296" class="ln">   296  </span>		var ret bool
+<span id="L297" class="ln">   297  </span>		return ret
+<span id="L298" class="ln">   298  </span>	}
+<span id="L299" class="ln">   299  </span>	return *o.FailedTestReplayEnabledInherit
+<span id="L300" class="ln">   300  </span>}
+<span id="L301" class="ln">   301  </span>
+<span id="L302" class="ln">   302  </span><span class="comment">// GetFailedTestReplayEnabledInheritOk returns a tuple with the FailedTestReplayEnabledInherit field value if set, nil otherwise</span>
+<span id="L303" class="ln">   303  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L304" class="ln">   304  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetFailedTestReplayEnabledInheritOk() (*bool, bool) {
+<span id="L305" class="ln">   305  </span>	if o == nil || o.FailedTestReplayEnabledInherit == nil {
+<span id="L306" class="ln">   306  </span>		return nil, false
+<span id="L307" class="ln">   307  </span>	}
+<span id="L308" class="ln">   308  </span>	return o.FailedTestReplayEnabledInherit, true
+<span id="L309" class="ln">   309  </span>}
+<span id="L310" class="ln">   310  </span>
+<span id="L311" class="ln">   311  </span><span class="comment">// HasFailedTestReplayEnabledInherit returns a boolean if a field has been set.</span>
+<span id="L312" class="ln">   312  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) HasFailedTestReplayEnabledInherit() bool {
+<span id="L313" class="ln">   313  </span>	return o != nil &amp;&amp; o.FailedTestReplayEnabledInherit != nil
+<span id="L314" class="ln">   314  </span>}
+<span id="L315" class="ln">   315  </span>
+<span id="L316" class="ln">   316  </span><span class="comment">// SetFailedTestReplayEnabledInherit gets a reference to the given bool and assigns it to the FailedTestReplayEnabledInherit field.</span>
+<span id="L317" class="ln">   317  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) SetFailedTestReplayEnabledInherit(v bool) {
+<span id="L318" class="ln">   318  </span>	o.FailedTestReplayEnabledInherit = &amp;v
+<span id="L319" class="ln">   319  </span>}
+<span id="L320" class="ln">   320  </span>
+<span id="L321" class="ln">   321  </span><span class="comment">// GetPrCommentsEnabled returns the PrCommentsEnabled field value if set, zero value otherwise.</span>
+<span id="L322" class="ln">   322  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetPrCommentsEnabled() bool {
+<span id="L323" class="ln">   323  </span>	if o == nil || o.PrCommentsEnabled == nil {
+<span id="L324" class="ln">   324  </span>		var ret bool
+<span id="L325" class="ln">   325  </span>		return ret
+<span id="L326" class="ln">   326  </span>	}
+<span id="L327" class="ln">   327  </span>	return *o.PrCommentsEnabled
+<span id="L328" class="ln">   328  </span>}
+<span id="L329" class="ln">   329  </span>
+<span id="L330" class="ln">   330  </span><span class="comment">// GetPrCommentsEnabledOk returns a tuple with the PrCommentsEnabled field value if set, nil otherwise</span>
+<span id="L331" class="ln">   331  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L332" class="ln">   332  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetPrCommentsEnabledOk() (*bool, bool) {
+<span id="L333" class="ln">   333  </span>	if o == nil || o.PrCommentsEnabled == nil {
+<span id="L334" class="ln">   334  </span>		return nil, false
+<span id="L335" class="ln">   335  </span>	}
+<span id="L336" class="ln">   336  </span>	return o.PrCommentsEnabled, true
+<span id="L337" class="ln">   337  </span>}
+<span id="L338" class="ln">   338  </span>
+<span id="L339" class="ln">   339  </span><span class="comment">// HasPrCommentsEnabled returns a boolean if a field has been set.</span>
+<span id="L340" class="ln">   340  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) HasPrCommentsEnabled() bool {
+<span id="L341" class="ln">   341  </span>	return o != nil &amp;&amp; o.PrCommentsEnabled != nil
+<span id="L342" class="ln">   342  </span>}
+<span id="L343" class="ln">   343  </span>
+<span id="L344" class="ln">   344  </span><span class="comment">// SetPrCommentsEnabled gets a reference to the given bool and assigns it to the PrCommentsEnabled field.</span>
+<span id="L345" class="ln">   345  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) SetPrCommentsEnabled(v bool) {
+<span id="L346" class="ln">   346  </span>	o.PrCommentsEnabled = &amp;v
+<span id="L347" class="ln">   347  </span>}
+<span id="L348" class="ln">   348  </span>
+<span id="L349" class="ln">   349  </span><span class="comment">// GetRepositoryId returns the RepositoryId field value.</span>
+<span id="L350" class="ln">   350  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetRepositoryId() string {
+<span id="L351" class="ln">   351  </span>	if o == nil {
+<span id="L352" class="ln">   352  </span>		var ret string
+<span id="L353" class="ln">   353  </span>		return ret
+<span id="L354" class="ln">   354  </span>	}
+<span id="L355" class="ln">   355  </span>	return o.RepositoryId
+<span id="L356" class="ln">   356  </span>}
+<span id="L357" class="ln">   357  </span>
+<span id="L358" class="ln">   358  </span><span class="comment">// GetRepositoryIdOk returns a tuple with the RepositoryId field value</span>
+<span id="L359" class="ln">   359  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L360" class="ln">   360  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetRepositoryIdOk() (*string, bool) {
+<span id="L361" class="ln">   361  </span>	if o == nil {
+<span id="L362" class="ln">   362  </span>		return nil, false
+<span id="L363" class="ln">   363  </span>	}
+<span id="L364" class="ln">   364  </span>	return &amp;o.RepositoryId, true
+<span id="L365" class="ln">   365  </span>}
+<span id="L366" class="ln">   366  </span>
+<span id="L367" class="ln">   367  </span><span class="comment">// SetRepositoryId sets field value.</span>
+<span id="L368" class="ln">   368  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) SetRepositoryId(v string) {
+<span id="L369" class="ln">   369  </span>	o.RepositoryId = v
+<span id="L370" class="ln">   370  </span>}
+<span id="L371" class="ln">   371  </span>
+<span id="L372" class="ln">   372  </span><span class="comment">// GetServiceName returns the ServiceName field value.</span>
+<span id="L373" class="ln">   373  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetServiceName() string {
+<span id="L374" class="ln">   374  </span>	if o == nil {
+<span id="L375" class="ln">   375  </span>		var ret string
+<span id="L376" class="ln">   376  </span>		return ret
+<span id="L377" class="ln">   377  </span>	}
+<span id="L378" class="ln">   378  </span>	return o.ServiceName
+<span id="L379" class="ln">   379  </span>}
+<span id="L380" class="ln">   380  </span>
+<span id="L381" class="ln">   381  </span><span class="comment">// GetServiceNameOk returns a tuple with the ServiceName field value</span>
+<span id="L382" class="ln">   382  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L383" class="ln">   383  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetServiceNameOk() (*string, bool) {
+<span id="L384" class="ln">   384  </span>	if o == nil {
+<span id="L385" class="ln">   385  </span>		return nil, false
+<span id="L386" class="ln">   386  </span>	}
+<span id="L387" class="ln">   387  </span>	return &amp;o.ServiceName, true
+<span id="L388" class="ln">   388  </span>}
+<span id="L389" class="ln">   389  </span>
+<span id="L390" class="ln">   390  </span><span class="comment">// SetServiceName sets field value.</span>
+<span id="L391" class="ln">   391  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) SetServiceName(v string) {
+<span id="L392" class="ln">   392  </span>	o.ServiceName = v
+<span id="L393" class="ln">   393  </span>}
+<span id="L394" class="ln">   394  </span>
+<span id="L395" class="ln">   395  </span><span class="comment">// GetTestImpactAnalysisEnabled returns the TestImpactAnalysisEnabled field value if set, zero value otherwise.</span>
+<span id="L396" class="ln">   396  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetTestImpactAnalysisEnabled() bool {
+<span id="L397" class="ln">   397  </span>	if o == nil || o.TestImpactAnalysisEnabled == nil {
+<span id="L398" class="ln">   398  </span>		var ret bool
+<span id="L399" class="ln">   399  </span>		return ret
+<span id="L400" class="ln">   400  </span>	}
+<span id="L401" class="ln">   401  </span>	return *o.TestImpactAnalysisEnabled
+<span id="L402" class="ln">   402  </span>}
+<span id="L403" class="ln">   403  </span>
+<span id="L404" class="ln">   404  </span><span class="comment">// GetTestImpactAnalysisEnabledOk returns a tuple with the TestImpactAnalysisEnabled field value if set, nil otherwise</span>
+<span id="L405" class="ln">   405  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L406" class="ln">   406  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetTestImpactAnalysisEnabledOk() (*bool, bool) {
+<span id="L407" class="ln">   407  </span>	if o == nil || o.TestImpactAnalysisEnabled == nil {
+<span id="L408" class="ln">   408  </span>		return nil, false
+<span id="L409" class="ln">   409  </span>	}
+<span id="L410" class="ln">   410  </span>	return o.TestImpactAnalysisEnabled, true
+<span id="L411" class="ln">   411  </span>}
+<span id="L412" class="ln">   412  </span>
+<span id="L413" class="ln">   413  </span><span class="comment">// HasTestImpactAnalysisEnabled returns a boolean if a field has been set.</span>
+<span id="L414" class="ln">   414  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) HasTestImpactAnalysisEnabled() bool {
+<span id="L415" class="ln">   415  </span>	return o != nil &amp;&amp; o.TestImpactAnalysisEnabled != nil
+<span id="L416" class="ln">   416  </span>}
+<span id="L417" class="ln">   417  </span>
+<span id="L418" class="ln">   418  </span><span class="comment">// SetTestImpactAnalysisEnabled gets a reference to the given bool and assigns it to the TestImpactAnalysisEnabled field.</span>
+<span id="L419" class="ln">   419  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) SetTestImpactAnalysisEnabled(v bool) {
+<span id="L420" class="ln">   420  </span>	o.TestImpactAnalysisEnabled = &amp;v
+<span id="L421" class="ln">   421  </span>}
+<span id="L422" class="ln">   422  </span>
+<span id="L423" class="ln">   423  </span><span class="comment">// GetTestImpactAnalysisEnabledInherit returns the TestImpactAnalysisEnabledInherit field value if set, zero value otherwise.</span>
+<span id="L424" class="ln">   424  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetTestImpactAnalysisEnabledInherit() bool {
+<span id="L425" class="ln">   425  </span>	if o == nil || o.TestImpactAnalysisEnabledInherit == nil {
+<span id="L426" class="ln">   426  </span>		var ret bool
+<span id="L427" class="ln">   427  </span>		return ret
+<span id="L428" class="ln">   428  </span>	}
+<span id="L429" class="ln">   429  </span>	return *o.TestImpactAnalysisEnabledInherit
+<span id="L430" class="ln">   430  </span>}
+<span id="L431" class="ln">   431  </span>
+<span id="L432" class="ln">   432  </span><span class="comment">// GetTestImpactAnalysisEnabledInheritOk returns a tuple with the TestImpactAnalysisEnabledInherit field value if set, nil otherwise</span>
+<span id="L433" class="ln">   433  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L434" class="ln">   434  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) GetTestImpactAnalysisEnabledInheritOk() (*bool, bool) {
+<span id="L435" class="ln">   435  </span>	if o == nil || o.TestImpactAnalysisEnabledInherit == nil {
+<span id="L436" class="ln">   436  </span>		return nil, false
+<span id="L437" class="ln">   437  </span>	}
+<span id="L438" class="ln">   438  </span>	return o.TestImpactAnalysisEnabledInherit, true
+<span id="L439" class="ln">   439  </span>}
+<span id="L440" class="ln">   440  </span>
+<span id="L441" class="ln">   441  </span><span class="comment">// HasTestImpactAnalysisEnabledInherit returns a boolean if a field has been set.</span>
+<span id="L442" class="ln">   442  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) HasTestImpactAnalysisEnabledInherit() bool {
+<span id="L443" class="ln">   443  </span>	return o != nil &amp;&amp; o.TestImpactAnalysisEnabledInherit != nil
+<span id="L444" class="ln">   444  </span>}
+<span id="L445" class="ln">   445  </span>
+<span id="L446" class="ln">   446  </span><span class="comment">// SetTestImpactAnalysisEnabledInherit gets a reference to the given bool and assigns it to the TestImpactAnalysisEnabledInherit field.</span>
+<span id="L447" class="ln">   447  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) SetTestImpactAnalysisEnabledInherit(v bool) {
+<span id="L448" class="ln">   448  </span>	o.TestImpactAnalysisEnabledInherit = &amp;v
+<span id="L449" class="ln">   449  </span>}
+<span id="L450" class="ln">   450  </span>
+<span id="L451" class="ln">   451  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L452" class="ln">   452  </span>func (o TestOptimizationUpdateServiceSettingsRequestAttributes) MarshalJSON() ([]byte, error) {
+<span id="L453" class="ln">   453  </span>	toSerialize := map[string]interface{}{}
+<span id="L454" class="ln">   454  </span>	if o.UnparsedObject != nil {
+<span id="L455" class="ln">   455  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L456" class="ln">   456  </span>	}
+<span id="L457" class="ln">   457  </span>	if o.AutoTestRetriesEnabled != nil {
+<span id="L458" class="ln">   458  </span>		toSerialize[&#34;auto_test_retries_enabled&#34;] = o.AutoTestRetriesEnabled
+<span id="L459" class="ln">   459  </span>	}
+<span id="L460" class="ln">   460  </span>	if o.AutoTestRetriesEnabledInherit != nil {
+<span id="L461" class="ln">   461  </span>		toSerialize[&#34;auto_test_retries_enabled_inherit&#34;] = o.AutoTestRetriesEnabledInherit
+<span id="L462" class="ln">   462  </span>	}
+<span id="L463" class="ln">   463  </span>	if o.CodeCoverageEnabled != nil {
+<span id="L464" class="ln">   464  </span>		toSerialize[&#34;code_coverage_enabled&#34;] = o.CodeCoverageEnabled
+<span id="L465" class="ln">   465  </span>	}
+<span id="L466" class="ln">   466  </span>	if o.CodeCoverageEnabledInherit != nil {
+<span id="L467" class="ln">   467  </span>		toSerialize[&#34;code_coverage_enabled_inherit&#34;] = o.CodeCoverageEnabledInherit
+<span id="L468" class="ln">   468  </span>	}
+<span id="L469" class="ln">   469  </span>	if o.EarlyFlakeDetectionEnabled != nil {
+<span id="L470" class="ln">   470  </span>		toSerialize[&#34;early_flake_detection_enabled&#34;] = o.EarlyFlakeDetectionEnabled
+<span id="L471" class="ln">   471  </span>	}
+<span id="L472" class="ln">   472  </span>	if o.EarlyFlakeDetectionEnabledInherit != nil {
+<span id="L473" class="ln">   473  </span>		toSerialize[&#34;early_flake_detection_enabled_inherit&#34;] = o.EarlyFlakeDetectionEnabledInherit
+<span id="L474" class="ln">   474  </span>	}
+<span id="L475" class="ln">   475  </span>	if o.Env != nil {
+<span id="L476" class="ln">   476  </span>		toSerialize[&#34;env&#34;] = o.Env
+<span id="L477" class="ln">   477  </span>	}
+<span id="L478" class="ln">   478  </span>	if o.FailedTestReplayEnabled != nil {
+<span id="L479" class="ln">   479  </span>		toSerialize[&#34;failed_test_replay_enabled&#34;] = o.FailedTestReplayEnabled
+<span id="L480" class="ln">   480  </span>	}
+<span id="L481" class="ln">   481  </span>	if o.FailedTestReplayEnabledInherit != nil {
+<span id="L482" class="ln">   482  </span>		toSerialize[&#34;failed_test_replay_enabled_inherit&#34;] = o.FailedTestReplayEnabledInherit
+<span id="L483" class="ln">   483  </span>	}
+<span id="L484" class="ln">   484  </span>	if o.PrCommentsEnabled != nil {
+<span id="L485" class="ln">   485  </span>		toSerialize[&#34;pr_comments_enabled&#34;] = o.PrCommentsEnabled
+<span id="L486" class="ln">   486  </span>	}
+<span id="L487" class="ln">   487  </span>	toSerialize[&#34;repository_id&#34;] = o.RepositoryId
+<span id="L488" class="ln">   488  </span>	toSerialize[&#34;service_name&#34;] = o.ServiceName
+<span id="L489" class="ln">   489  </span>	if o.TestImpactAnalysisEnabled != nil {
+<span id="L490" class="ln">   490  </span>		toSerialize[&#34;test_impact_analysis_enabled&#34;] = o.TestImpactAnalysisEnabled
+<span id="L491" class="ln">   491  </span>	}
+<span id="L492" class="ln">   492  </span>	if o.TestImpactAnalysisEnabledInherit != nil {
+<span id="L493" class="ln">   493  </span>		toSerialize[&#34;test_impact_analysis_enabled_inherit&#34;] = o.TestImpactAnalysisEnabledInherit
+<span id="L494" class="ln">   494  </span>	}
+<span id="L495" class="ln">   495  </span>
+<span id="L496" class="ln">   496  </span>	for key, value := range o.AdditionalProperties {
+<span id="L497" class="ln">   497  </span>		toSerialize[key] = value
+<span id="L498" class="ln">   498  </span>	}
+<span id="L499" class="ln">   499  </span>	return datadog.Marshal(toSerialize)
+<span id="L500" class="ln">   500  </span>}
+<span id="L501" class="ln">   501  </span>
+<span id="L502" class="ln">   502  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L503" class="ln">   503  </span>func (o *TestOptimizationUpdateServiceSettingsRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L504" class="ln">   504  </span>	all := struct {
+<span id="L505" class="ln">   505  </span>		AutoTestRetriesEnabled            *bool   `json:&#34;auto_test_retries_enabled,omitempty&#34;`
+<span id="L506" class="ln">   506  </span>		AutoTestRetriesEnabledInherit     *bool   `json:&#34;auto_test_retries_enabled_inherit,omitempty&#34;`
+<span id="L507" class="ln">   507  </span>		CodeCoverageEnabled               *bool   `json:&#34;code_coverage_enabled,omitempty&#34;`
+<span id="L508" class="ln">   508  </span>		CodeCoverageEnabledInherit        *bool   `json:&#34;code_coverage_enabled_inherit,omitempty&#34;`
+<span id="L509" class="ln">   509  </span>		EarlyFlakeDetectionEnabled        *bool   `json:&#34;early_flake_detection_enabled,omitempty&#34;`
+<span id="L510" class="ln">   510  </span>		EarlyFlakeDetectionEnabledInherit *bool   `json:&#34;early_flake_detection_enabled_inherit,omitempty&#34;`
+<span id="L511" class="ln">   511  </span>		Env                               *string `json:&#34;env,omitempty&#34;`
+<span id="L512" class="ln">   512  </span>		FailedTestReplayEnabled           *bool   `json:&#34;failed_test_replay_enabled,omitempty&#34;`
+<span id="L513" class="ln">   513  </span>		FailedTestReplayEnabledInherit    *bool   `json:&#34;failed_test_replay_enabled_inherit,omitempty&#34;`
+<span id="L514" class="ln">   514  </span>		PrCommentsEnabled                 *bool   `json:&#34;pr_comments_enabled,omitempty&#34;`
+<span id="L515" class="ln">   515  </span>		RepositoryId                      *string `json:&#34;repository_id&#34;`
+<span id="L516" class="ln">   516  </span>		ServiceName                       *string `json:&#34;service_name&#34;`
+<span id="L517" class="ln">   517  </span>		TestImpactAnalysisEnabled         *bool   `json:&#34;test_impact_analysis_enabled,omitempty&#34;`
+<span id="L518" class="ln">   518  </span>		TestImpactAnalysisEnabledInherit  *bool   `json:&#34;test_impact_analysis_enabled_inherit,omitempty&#34;`
+<span id="L519" class="ln">   519  </span>	}{}
+<span id="L520" class="ln">   520  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L521" class="ln">   521  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L522" class="ln">   522  </span>	}
+<span id="L523" class="ln">   523  </span>	if all.RepositoryId == nil {
+<span id="L524" class="ln">   524  </span>		return fmt.Errorf(&#34;required field repository_id missing&#34;)
+<span id="L525" class="ln">   525  </span>	}
+<span id="L526" class="ln">   526  </span>	if all.ServiceName == nil {
+<span id="L527" class="ln">   527  </span>		return fmt.Errorf(&#34;required field service_name missing&#34;)
+<span id="L528" class="ln">   528  </span>	}
+<span id="L529" class="ln">   529  </span>	additionalProperties := make(map[string]interface{})
+<span id="L530" class="ln">   530  </span>	if err = datadog.UnmarshalUseNumber(bytes, &amp;additionalProperties); err == nil {
+<span id="L531" class="ln">   531  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;auto_test_retries_enabled&#34;, &#34;auto_test_retries_enabled_inherit&#34;, &#34;code_coverage_enabled&#34;, &#34;code_coverage_enabled_inherit&#34;, &#34;early_flake_detection_enabled&#34;, &#34;early_flake_detection_enabled_inherit&#34;, &#34;env&#34;, &#34;failed_test_replay_enabled&#34;, &#34;failed_test_replay_enabled_inherit&#34;, &#34;pr_comments_enabled&#34;, &#34;repository_id&#34;, &#34;service_name&#34;, &#34;test_impact_analysis_enabled&#34;, &#34;test_impact_analysis_enabled_inherit&#34;})
+<span id="L532" class="ln">   532  </span>	} else {
+<span id="L533" class="ln">   533  </span>		return err
+<span id="L534" class="ln">   534  </span>	}
+<span id="L535" class="ln">   535  </span>	o.AutoTestRetriesEnabled = all.AutoTestRetriesEnabled
+<span id="L536" class="ln">   536  </span>	o.AutoTestRetriesEnabledInherit = all.AutoTestRetriesEnabledInherit
+<span id="L537" class="ln">   537  </span>	o.CodeCoverageEnabled = all.CodeCoverageEnabled
+<span id="L538" class="ln">   538  </span>	o.CodeCoverageEnabledInherit = all.CodeCoverageEnabledInherit
+<span id="L539" class="ln">   539  </span>	o.EarlyFlakeDetectionEnabled = all.EarlyFlakeDetectionEnabled
+<span id="L540" class="ln">   540  </span>	o.EarlyFlakeDetectionEnabledInherit = all.EarlyFlakeDetectionEnabledInherit
+<span id="L541" class="ln">   541  </span>	o.Env = all.Env
+<span id="L542" class="ln">   542  </span>	o.FailedTestReplayEnabled = all.FailedTestReplayEnabled
+<span id="L543" class="ln">   543  </span>	o.FailedTestReplayEnabledInherit = all.FailedTestReplayEnabledInherit
+<span id="L544" class="ln">   544  </span>	o.PrCommentsEnabled = all.PrCommentsEnabled
+<span id="L545" class="ln">   545  </span>	o.RepositoryId = *all.RepositoryId
+<span id="L546" class="ln">   546  </span>	o.ServiceName = *all.ServiceName
+<span id="L547" class="ln">   547  </span>	o.TestImpactAnalysisEnabled = all.TestImpactAnalysisEnabled
+<span id="L548" class="ln">   548  </span>	o.TestImpactAnalysisEnabledInherit = all.TestImpactAnalysisEnabledInherit
+<span id="L549" class="ln">   549  </span>
+<span id="L550" class="ln">   550  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L551" class="ln">   551  </span>		o.AdditionalProperties = additionalProperties
+<span id="L552" class="ln">   552  </span>	}
+<span id="L553" class="ln">   553  </span>
+<span id="L554" class="ln">   554  </span>	return nil
+<span id="L555" class="ln">   555  </span>}
+<span id="L556" class="ln">   556  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.25.11.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>
