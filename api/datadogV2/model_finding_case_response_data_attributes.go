@@ -34,6 +34,8 @@ type FindingCaseResponseDataAttributes struct {
 	JiraIssue *FindingJiraIssue `json:"jira_issue,omitempty"`
 	// Key of the case.
 	Key *string `json:"key,omitempty"`
+	// Linear issue associated with the case.
+	LinearIssue *FindingLinearIssue `json:"linear_issue,omitempty"`
 	// Timestamp of when the case was last modified.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// Priority of the case.
@@ -380,6 +382,34 @@ func (o *FindingCaseResponseDataAttributes) SetKey(v string) {
 	o.Key = &v
 }
 
+// GetLinearIssue returns the LinearIssue field value if set, zero value otherwise.
+func (o *FindingCaseResponseDataAttributes) GetLinearIssue() FindingLinearIssue {
+	if o == nil || o.LinearIssue == nil {
+		var ret FindingLinearIssue
+		return ret
+	}
+	return *o.LinearIssue
+}
+
+// GetLinearIssueOk returns a tuple with the LinearIssue field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FindingCaseResponseDataAttributes) GetLinearIssueOk() (*FindingLinearIssue, bool) {
+	if o == nil || o.LinearIssue == nil {
+		return nil, false
+	}
+	return o.LinearIssue, true
+}
+
+// HasLinearIssue returns a boolean if a field has been set.
+func (o *FindingCaseResponseDataAttributes) HasLinearIssue() bool {
+	return o != nil && o.LinearIssue != nil
+}
+
+// SetLinearIssue gets a reference to the given FindingLinearIssue and assigns it to the LinearIssue field.
+func (o *FindingCaseResponseDataAttributes) SetLinearIssue(v FindingLinearIssue) {
+	o.LinearIssue = &v
+}
+
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *FindingCaseResponseDataAttributes) GetModifiedAt() time.Time {
 	if o == nil || o.ModifiedAt == nil {
@@ -655,6 +685,9 @@ func (o FindingCaseResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Key != nil {
 		toSerialize["key"] = o.Key
 	}
+	if o.LinearIssue != nil {
+		toSerialize["linear_issue"] = o.LinearIssue
+	}
 	if o.ModifiedAt != nil {
 		if o.ModifiedAt.Nanosecond() == 0 {
 			toSerialize["modified_at"] = o.ModifiedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -704,6 +737,7 @@ func (o *FindingCaseResponseDataAttributes) UnmarshalJSON(bytes []byte) (err err
 		Insights         []CaseInsightsItems      `json:"insights,omitempty"`
 		JiraIssue        *FindingJiraIssue        `json:"jira_issue,omitempty"`
 		Key              *string                  `json:"key,omitempty"`
+		LinearIssue      *FindingLinearIssue      `json:"linear_issue,omitempty"`
 		ModifiedAt       *time.Time               `json:"modified_at,omitempty"`
 		Priority         *string                  `json:"priority,omitempty"`
 		ServicenowTicket *FindingServiceNowTicket `json:"servicenow_ticket,omitempty"`
@@ -718,7 +752,7 @@ func (o *FindingCaseResponseDataAttributes) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "assigned_to", "attributes", "closed_at", "created_at", "creation_source", "description", "due_date", "insights", "jira_issue", "key", "modified_at", "priority", "servicenow_ticket", "status", "status_group", "status_name", "title", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "assigned_to", "attributes", "closed_at", "created_at", "creation_source", "description", "due_date", "insights", "jira_issue", "key", "linear_issue", "modified_at", "priority", "servicenow_ticket", "status", "status_group", "status_name", "title", "type"})
 	} else {
 		return err
 	}
@@ -741,6 +775,10 @@ func (o *FindingCaseResponseDataAttributes) UnmarshalJSON(bytes []byte) (err err
 	}
 	o.JiraIssue = all.JiraIssue
 	o.Key = all.Key
+	if all.LinearIssue != nil && all.LinearIssue.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.LinearIssue = all.LinearIssue
 	o.ModifiedAt = all.ModifiedAt
 	o.Priority = all.Priority
 	if all.ServicenowTicket != nil && all.ServicenowTicket.UnparsedObject != nil && o.UnparsedObject == nil {
