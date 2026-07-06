@@ -9,11 +9,11 @@ interactions:
     method: GET
     url: https://api.datadoghq.com/api/v2/security/vulnerable-assets?page%5Btoken%5D=unknown&page%5Bnumber%5D=1
   response:
-    body: '{"errors":[{"status":"404","title":"Unexpected internal error"}]}'
-    code: 404
+    body: '{"errors":[{"status":"400","title":"Unexpected internal error"}]}'
+    code: 400
     duration: 0ms
     headers:
       Content-Type:
       - application/vnd.api+json
-    status: 404 Not Found
+    status: 400 Bad Request
 version: 2
