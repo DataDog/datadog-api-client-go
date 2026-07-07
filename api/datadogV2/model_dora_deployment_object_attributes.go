@@ -6,6 +6,7 @@ package datadogV2
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -16,14 +17,14 @@ type DORADeploymentObjectAttributes struct {
 	CustomTags datadog.NullableList[string] `json:"custom_tags,omitempty"`
 	// Environment name to where the service was deployed.
 	Env *string `json:"env,omitempty"`
-	// Unix timestamp when the deployment finished.
-	FinishedAt int64 `json:"finished_at"`
+	// The time when the deployment finished.
+	FinishedAt *time.Time `json:"finished_at,omitempty"`
 	// Git info returned by DORA Metrics events.
 	Git *DORAGitInfoResponse `json:"git,omitempty"`
 	// Service name.
 	Service string `json:"service"`
-	// Unix timestamp when the deployment started.
-	StartedAt int64 `json:"started_at"`
+	// The time when the deployment started.
+	StartedAt time.Time `json:"started_at"`
 	// Name of the team owning the deployed service.
 	Team *string `json:"team,omitempty"`
 	// Version to correlate with APM Deployment Tracking.
@@ -37,9 +38,8 @@ type DORADeploymentObjectAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDORADeploymentObjectAttributes(finishedAt int64, service string, startedAt int64) *DORADeploymentObjectAttributes {
+func NewDORADeploymentObjectAttributes(service string, startedAt time.Time) *DORADeploymentObjectAttributes {
 	this := DORADeploymentObjectAttributes{}
-	this.FinishedAt = finishedAt
 	this.Service = service
 	this.StartedAt = startedAt
 	return &this
@@ -120,27 +120,32 @@ func (o *DORADeploymentObjectAttributes) SetEnv(v string) {
 	o.Env = &v
 }
 
-// GetFinishedAt returns the FinishedAt field value.
-func (o *DORADeploymentObjectAttributes) GetFinishedAt() int64 {
-	if o == nil {
-		var ret int64
+// GetFinishedAt returns the FinishedAt field value if set, zero value otherwise.
+func (o *DORADeploymentObjectAttributes) GetFinishedAt() time.Time {
+	if o == nil || o.FinishedAt == nil {
+		var ret time.Time
 		return ret
 	}
-	return o.FinishedAt
+	return *o.FinishedAt
 }
 
-// GetFinishedAtOk returns a tuple with the FinishedAt field value
+// GetFinishedAtOk returns a tuple with the FinishedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORADeploymentObjectAttributes) GetFinishedAtOk() (*int64, bool) {
-	if o == nil {
+func (o *DORADeploymentObjectAttributes) GetFinishedAtOk() (*time.Time, bool) {
+	if o == nil || o.FinishedAt == nil {
 		return nil, false
 	}
-	return &o.FinishedAt, true
+	return o.FinishedAt, true
 }
 
-// SetFinishedAt sets field value.
-func (o *DORADeploymentObjectAttributes) SetFinishedAt(v int64) {
-	o.FinishedAt = v
+// HasFinishedAt returns a boolean if a field has been set.
+func (o *DORADeploymentObjectAttributes) HasFinishedAt() bool {
+	return o != nil && o.FinishedAt != nil
+}
+
+// SetFinishedAt gets a reference to the given time.Time and assigns it to the FinishedAt field.
+func (o *DORADeploymentObjectAttributes) SetFinishedAt(v time.Time) {
+	o.FinishedAt = &v
 }
 
 // GetGit returns the Git field value if set, zero value otherwise.
@@ -195,9 +200,9 @@ func (o *DORADeploymentObjectAttributes) SetService(v string) {
 }
 
 // GetStartedAt returns the StartedAt field value.
-func (o *DORADeploymentObjectAttributes) GetStartedAt() int64 {
+func (o *DORADeploymentObjectAttributes) GetStartedAt() time.Time {
 	if o == nil {
-		var ret int64
+		var ret time.Time
 		return ret
 	}
 	return o.StartedAt
@@ -205,7 +210,7 @@ func (o *DORADeploymentObjectAttributes) GetStartedAt() int64 {
 
 // GetStartedAtOk returns a tuple with the StartedAt field value
 // and a boolean to check if the value has been set.
-func (o *DORADeploymentObjectAttributes) GetStartedAtOk() (*int64, bool) {
+func (o *DORADeploymentObjectAttributes) GetStartedAtOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -213,7 +218,7 @@ func (o *DORADeploymentObjectAttributes) GetStartedAtOk() (*int64, bool) {
 }
 
 // SetStartedAt sets field value.
-func (o *DORADeploymentObjectAttributes) SetStartedAt(v int64) {
+func (o *DORADeploymentObjectAttributes) SetStartedAt(v time.Time) {
 	o.StartedAt = v
 }
 
@@ -285,12 +290,22 @@ func (o DORADeploymentObjectAttributes) MarshalJSON() ([]byte, error) {
 	if o.Env != nil {
 		toSerialize["env"] = o.Env
 	}
-	toSerialize["finished_at"] = o.FinishedAt
+	if o.FinishedAt != nil {
+		if o.FinishedAt.Nanosecond() == 0 {
+			toSerialize["finished_at"] = o.FinishedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["finished_at"] = o.FinishedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
+	}
 	if o.Git != nil {
 		toSerialize["git"] = o.Git
 	}
 	toSerialize["service"] = o.Service
-	toSerialize["started_at"] = o.StartedAt
+	if o.StartedAt.Nanosecond() == 0 {
+		toSerialize["started_at"] = o.StartedAt.Format("2006-01-02T15:04:05Z07:00")
+	} else {
+		toSerialize["started_at"] = o.StartedAt.Format("2006-01-02T15:04:05.000Z07:00")
+	}
 	if o.Team != nil {
 		toSerialize["team"] = o.Team
 	}
@@ -309,18 +324,15 @@ func (o *DORADeploymentObjectAttributes) UnmarshalJSON(bytes []byte) (err error)
 	all := struct {
 		CustomTags datadog.NullableList[string] `json:"custom_tags,omitempty"`
 		Env        *string                      `json:"env,omitempty"`
-		FinishedAt *int64                       `json:"finished_at"`
+		FinishedAt *time.Time                   `json:"finished_at,omitempty"`
 		Git        *DORAGitInfoResponse         `json:"git,omitempty"`
 		Service    *string                      `json:"service"`
-		StartedAt  *int64                       `json:"started_at"`
+		StartedAt  *time.Time                   `json:"started_at"`
 		Team       *string                      `json:"team,omitempty"`
 		Version    *string                      `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.FinishedAt == nil {
-		return fmt.Errorf("required field finished_at missing")
 	}
 	if all.Service == nil {
 		return fmt.Errorf("required field service missing")
@@ -338,7 +350,7 @@ func (o *DORADeploymentObjectAttributes) UnmarshalJSON(bytes []byte) (err error)
 	hasInvalidField := false
 	o.CustomTags = all.CustomTags
 	o.Env = all.Env
-	o.FinishedAt = *all.FinishedAt
+	o.FinishedAt = all.FinishedAt
 	if all.Git != nil && all.Git.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}

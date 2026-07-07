@@ -1,0 +1,22 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"from":"2023-08-31T00:00:00Z","to":"2023-09-01T00:00:00Z"},"type":"dora_deployments_list_request"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/dora/deployments
+  response:
+    body: '{"data":[{"id":"abc-123","type":"dora_deployment","attributes":{"service":"shopist","started_at":"2023-08-31T14:26:14Z","finished_at":"2023-08-31T14:26:24Z","env":"production","team":"backend","version":"v1.12.07"}}]}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2
