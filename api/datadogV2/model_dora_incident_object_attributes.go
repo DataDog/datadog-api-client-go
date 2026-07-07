@@ -5,7 +5,7 @@
 package datadogV2
 
 import (
-	"fmt"
+	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
@@ -16,8 +16,8 @@ type DORAIncidentObjectAttributes struct {
 	CustomTags datadog.NullableList[string] `json:"custom_tags,omitempty"`
 	// Environment name that was impacted by the incident.
 	Env *string `json:"env,omitempty"`
-	// Unix timestamp when the incident finished.
-	FinishedAt *int64 `json:"finished_at,omitempty"`
+	// The time when the incident finished.
+	FinishedAt *time.Time `json:"finished_at,omitempty"`
 	// Git info for DORA Metrics events.
 	Git *DORAGitInfo `json:"git,omitempty"`
 	// Incident name.
@@ -26,8 +26,8 @@ type DORAIncidentObjectAttributes struct {
 	Services []string `json:"services,omitempty"`
 	// Incident severity.
 	Severity *string `json:"severity,omitempty"`
-	// Unix timestamp when the incident started.
-	StartedAt int64 `json:"started_at"`
+	// The time when the incident started.
+	StartedAt *time.Time `json:"started_at,omitempty"`
 	// Name of the team owning the services impacted.
 	Team *string `json:"team,omitempty"`
 	// Version to correlate with APM Deployment Tracking.
@@ -41,9 +41,8 @@ type DORAIncidentObjectAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDORAIncidentObjectAttributes(startedAt int64) *DORAIncidentObjectAttributes {
+func NewDORAIncidentObjectAttributes() *DORAIncidentObjectAttributes {
 	this := DORAIncidentObjectAttributes{}
-	this.StartedAt = startedAt
 	return &this
 }
 
@@ -123,9 +122,9 @@ func (o *DORAIncidentObjectAttributes) SetEnv(v string) {
 }
 
 // GetFinishedAt returns the FinishedAt field value if set, zero value otherwise.
-func (o *DORAIncidentObjectAttributes) GetFinishedAt() int64 {
+func (o *DORAIncidentObjectAttributes) GetFinishedAt() time.Time {
 	if o == nil || o.FinishedAt == nil {
-		var ret int64
+		var ret time.Time
 		return ret
 	}
 	return *o.FinishedAt
@@ -133,7 +132,7 @@ func (o *DORAIncidentObjectAttributes) GetFinishedAt() int64 {
 
 // GetFinishedAtOk returns a tuple with the FinishedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentObjectAttributes) GetFinishedAtOk() (*int64, bool) {
+func (o *DORAIncidentObjectAttributes) GetFinishedAtOk() (*time.Time, bool) {
 	if o == nil || o.FinishedAt == nil {
 		return nil, false
 	}
@@ -145,8 +144,8 @@ func (o *DORAIncidentObjectAttributes) HasFinishedAt() bool {
 	return o != nil && o.FinishedAt != nil
 }
 
-// SetFinishedAt gets a reference to the given int64 and assigns it to the FinishedAt field.
-func (o *DORAIncidentObjectAttributes) SetFinishedAt(v int64) {
+// SetFinishedAt gets a reference to the given time.Time and assigns it to the FinishedAt field.
+func (o *DORAIncidentObjectAttributes) SetFinishedAt(v time.Time) {
 	o.FinishedAt = &v
 }
 
@@ -262,27 +261,32 @@ func (o *DORAIncidentObjectAttributes) SetSeverity(v string) {
 	o.Severity = &v
 }
 
-// GetStartedAt returns the StartedAt field value.
-func (o *DORAIncidentObjectAttributes) GetStartedAt() int64 {
-	if o == nil {
-		var ret int64
+// GetStartedAt returns the StartedAt field value if set, zero value otherwise.
+func (o *DORAIncidentObjectAttributes) GetStartedAt() time.Time {
+	if o == nil || o.StartedAt == nil {
+		var ret time.Time
 		return ret
 	}
-	return o.StartedAt
+	return *o.StartedAt
 }
 
-// GetStartedAtOk returns a tuple with the StartedAt field value
+// GetStartedAtOk returns a tuple with the StartedAt field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DORAIncidentObjectAttributes) GetStartedAtOk() (*int64, bool) {
-	if o == nil {
+func (o *DORAIncidentObjectAttributes) GetStartedAtOk() (*time.Time, bool) {
+	if o == nil || o.StartedAt == nil {
 		return nil, false
 	}
-	return &o.StartedAt, true
+	return o.StartedAt, true
 }
 
-// SetStartedAt sets field value.
-func (o *DORAIncidentObjectAttributes) SetStartedAt(v int64) {
-	o.StartedAt = v
+// HasStartedAt returns a boolean if a field has been set.
+func (o *DORAIncidentObjectAttributes) HasStartedAt() bool {
+	return o != nil && o.StartedAt != nil
+}
+
+// SetStartedAt gets a reference to the given time.Time and assigns it to the StartedAt field.
+func (o *DORAIncidentObjectAttributes) SetStartedAt(v time.Time) {
+	o.StartedAt = &v
 }
 
 // GetTeam returns the Team field value if set, zero value otherwise.
@@ -354,7 +358,11 @@ func (o DORAIncidentObjectAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["env"] = o.Env
 	}
 	if o.FinishedAt != nil {
-		toSerialize["finished_at"] = o.FinishedAt
+		if o.FinishedAt.Nanosecond() == 0 {
+			toSerialize["finished_at"] = o.FinishedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["finished_at"] = o.FinishedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Git != nil {
 		toSerialize["git"] = o.Git
@@ -368,7 +376,13 @@ func (o DORAIncidentObjectAttributes) MarshalJSON() ([]byte, error) {
 	if o.Severity != nil {
 		toSerialize["severity"] = o.Severity
 	}
-	toSerialize["started_at"] = o.StartedAt
+	if o.StartedAt != nil {
+		if o.StartedAt.Nanosecond() == 0 {
+			toSerialize["started_at"] = o.StartedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["started_at"] = o.StartedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
+	}
 	if o.Team != nil {
 		toSerialize["team"] = o.Team
 	}
@@ -387,20 +401,17 @@ func (o *DORAIncidentObjectAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CustomTags datadog.NullableList[string] `json:"custom_tags,omitempty"`
 		Env        *string                      `json:"env,omitempty"`
-		FinishedAt *int64                       `json:"finished_at,omitempty"`
+		FinishedAt *time.Time                   `json:"finished_at,omitempty"`
 		Git        *DORAGitInfo                 `json:"git,omitempty"`
 		Name       *string                      `json:"name,omitempty"`
 		Services   []string                     `json:"services,omitempty"`
 		Severity   *string                      `json:"severity,omitempty"`
-		StartedAt  *int64                       `json:"started_at"`
+		StartedAt  *time.Time                   `json:"started_at,omitempty"`
 		Team       *string                      `json:"team,omitempty"`
 		Version    *string                      `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.StartedAt == nil {
-		return fmt.Errorf("required field started_at missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -420,7 +431,7 @@ func (o *DORAIncidentObjectAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	o.Services = all.Services
 	o.Severity = all.Severity
-	o.StartedAt = *all.StartedAt
+	o.StartedAt = all.StartedAt
 	o.Team = all.Team
 	o.Version = all.Version
 
