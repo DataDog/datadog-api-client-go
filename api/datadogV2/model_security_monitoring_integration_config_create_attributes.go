@@ -18,8 +18,9 @@ type SecurityMonitoringIntegrationConfigCreateAttributes struct {
 	IntegrationType SecurityMonitoringIntegrationType `json:"integration_type"`
 	// The display name for the entity context sync configuration.
 	Name string `json:"name"`
-	// The secrets used to authenticate against the external entity source. The accepted keys depend on the source type (for example, `admin_email` for Google Workspace).
-	Secrets map[string]interface{} `json:"secrets"`
+	// The secrets used to authenticate against the external entity source. The accepted keys depend on the source type
+	// (for example, `admin_email` for Google Workspace). Not required for source types that do not use secrets (for example, `ENTRA_ID`).
+	Secrets map[string]interface{} `json:"secrets,omitempty"`
 	// Free-form, non-sensitive settings for the entity context sync. The accepted keys depend on the source type.
 	Settings map[string]interface{} `json:"settings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -31,12 +32,11 @@ type SecurityMonitoringIntegrationConfigCreateAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSecurityMonitoringIntegrationConfigCreateAttributes(domain string, integrationType SecurityMonitoringIntegrationType, name string, secrets map[string]interface{}) *SecurityMonitoringIntegrationConfigCreateAttributes {
+func NewSecurityMonitoringIntegrationConfigCreateAttributes(domain string, integrationType SecurityMonitoringIntegrationType, name string) *SecurityMonitoringIntegrationConfigCreateAttributes {
 	this := SecurityMonitoringIntegrationConfigCreateAttributes{}
 	this.Domain = domain
 	this.IntegrationType = integrationType
 	this.Name = name
-	this.Secrets = secrets
 	return &this
 }
 
@@ -117,25 +117,30 @@ func (o *SecurityMonitoringIntegrationConfigCreateAttributes) SetName(v string) 
 	o.Name = v
 }
 
-// GetSecrets returns the Secrets field value.
+// GetSecrets returns the Secrets field value if set, zero value otherwise.
 func (o *SecurityMonitoringIntegrationConfigCreateAttributes) GetSecrets() map[string]interface{} {
-	if o == nil {
+	if o == nil || o.Secrets == nil {
 		var ret map[string]interface{}
 		return ret
 	}
 	return o.Secrets
 }
 
-// GetSecretsOk returns a tuple with the Secrets field value
+// GetSecretsOk returns a tuple with the Secrets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SecurityMonitoringIntegrationConfigCreateAttributes) GetSecretsOk() (*map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil || o.Secrets == nil {
 		return nil, false
 	}
 	return &o.Secrets, true
 }
 
-// SetSecrets sets field value.
+// HasSecrets returns a boolean if a field has been set.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) HasSecrets() bool {
+	return o != nil && o.Secrets != nil
+}
+
+// SetSecrets gets a reference to the given map[string]interface{} and assigns it to the Secrets field.
 func (o *SecurityMonitoringIntegrationConfigCreateAttributes) SetSecrets(v map[string]interface{}) {
 	o.Secrets = v
 }
@@ -177,7 +182,9 @@ func (o SecurityMonitoringIntegrationConfigCreateAttributes) MarshalJSON() ([]by
 	toSerialize["domain"] = o.Domain
 	toSerialize["integration_type"] = o.IntegrationType
 	toSerialize["name"] = o.Name
-	toSerialize["secrets"] = o.Secrets
+	if o.Secrets != nil {
+		toSerialize["secrets"] = o.Secrets
+	}
 	if o.Settings != nil {
 		toSerialize["settings"] = o.Settings
 	}
@@ -194,7 +201,7 @@ func (o *SecurityMonitoringIntegrationConfigCreateAttributes) UnmarshalJSON(byte
 		Domain          *string                            `json:"domain"`
 		IntegrationType *SecurityMonitoringIntegrationType `json:"integration_type"`
 		Name            *string                            `json:"name"`
-		Secrets         *map[string]interface{}            `json:"secrets"`
+		Secrets         map[string]interface{}             `json:"secrets,omitempty"`
 		Settings        map[string]interface{}             `json:"settings,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -208,9 +215,6 @@ func (o *SecurityMonitoringIntegrationConfigCreateAttributes) UnmarshalJSON(byte
 	}
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
-	}
-	if all.Secrets == nil {
-		return fmt.Errorf("required field secrets missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -227,7 +231,7 @@ func (o *SecurityMonitoringIntegrationConfigCreateAttributes) UnmarshalJSON(byte
 		o.IntegrationType = *all.IntegrationType
 	}
 	o.Name = *all.Name
-	o.Secrets = *all.Secrets
+	o.Secrets = all.Secrets
 	o.Settings = all.Settings
 
 	if len(additionalProperties) > 0 {
