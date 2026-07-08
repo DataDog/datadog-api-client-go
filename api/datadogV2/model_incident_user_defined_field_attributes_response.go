@@ -13,8 +13,6 @@ import (
 
 // IncidentUserDefinedFieldAttributesResponse Attributes of an incident user-defined field.
 type IncidentUserDefinedFieldAttributesResponse struct {
-	// The resource type this field is attached to. Always "incidents".
-	AttachedTo string `json:"attached_to"`
 	// The section in which the field appears: "what_happened" or "why_it_happened". When null, the field appears in the Attributes section.
 	Category NullableIncidentUserDefinedFieldCategory `json:"category"`
 	// The lifecycle stage at which the app prompts users to fill out this field. Cannot be set on required fields.
@@ -35,14 +33,10 @@ type IncidentUserDefinedFieldAttributesResponse struct {
 	Name string `json:"name"`
 	// A decimal string representing the field's display order in the UI.
 	Ordinal datadog.NullableString `json:"ordinal"`
-	// Reserved for future use. Always null.
-	Prerequisite datadog.NullableString `json:"prerequisite"`
 	// When true, users must fill out this field on incidents.
 	Required bool `json:"required"`
 	// When true, this field is reserved for system use and cannot be deleted.
 	Reserved bool `json:"reserved"`
-	// Reserved for internal use. Always 0.
-	TableId int64 `json:"table_id"`
 	// For metric tag-type fields only, the metric tag key that powers the autocomplete options.
 	TagKey datadog.NullableString `json:"tag_key"`
 	// The data type of the field. 1=dropdown, 2=multiselect, 3=textbox, 4=textarray, 5=metrictag, 6=autocomplete, 7=number, 8=datetime.
@@ -58,9 +52,8 @@ type IncidentUserDefinedFieldAttributesResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewIncidentUserDefinedFieldAttributesResponse(attachedTo string, category NullableIncidentUserDefinedFieldCategory, collected NullableIncidentUserDefinedFieldCollected, created time.Time, defaultValue datadog.NullableString, deleted datadog.NullableTime, displayName string, metadata NullableIncidentUserDefinedFieldMetadata, modified datadog.NullableTime, name string, ordinal datadog.NullableString, prerequisite datadog.NullableString, required bool, reserved bool, tableId int64, tagKey datadog.NullableString, typeVar datadog.NullableInt32, validValues datadog.NullableList[IncidentUserDefinedFieldValidValue]) *IncidentUserDefinedFieldAttributesResponse {
+func NewIncidentUserDefinedFieldAttributesResponse(category NullableIncidentUserDefinedFieldCategory, collected NullableIncidentUserDefinedFieldCollected, created time.Time, defaultValue datadog.NullableString, deleted datadog.NullableTime, displayName string, metadata NullableIncidentUserDefinedFieldMetadata, modified datadog.NullableTime, name string, ordinal datadog.NullableString, required bool, reserved bool, tagKey datadog.NullableString, typeVar datadog.NullableInt32, validValues datadog.NullableList[IncidentUserDefinedFieldValidValue]) *IncidentUserDefinedFieldAttributesResponse {
 	this := IncidentUserDefinedFieldAttributesResponse{}
-	this.AttachedTo = attachedTo
 	this.Category = category
 	this.Collected = collected
 	this.Created = created
@@ -71,10 +64,8 @@ func NewIncidentUserDefinedFieldAttributesResponse(attachedTo string, category N
 	this.Modified = modified
 	this.Name = name
 	this.Ordinal = ordinal
-	this.Prerequisite = prerequisite
 	this.Required = required
 	this.Reserved = reserved
-	this.TableId = tableId
 	this.TagKey = tagKey
 	this.Type = typeVar
 	this.ValidValues = validValues
@@ -87,29 +78,6 @@ func NewIncidentUserDefinedFieldAttributesResponse(attachedTo string, category N
 func NewIncidentUserDefinedFieldAttributesResponseWithDefaults() *IncidentUserDefinedFieldAttributesResponse {
 	this := IncidentUserDefinedFieldAttributesResponse{}
 	return &this
-}
-
-// GetAttachedTo returns the AttachedTo field value.
-func (o *IncidentUserDefinedFieldAttributesResponse) GetAttachedTo() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.AttachedTo
-}
-
-// GetAttachedToOk returns a tuple with the AttachedTo field value
-// and a boolean to check if the value has been set.
-func (o *IncidentUserDefinedFieldAttributesResponse) GetAttachedToOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.AttachedTo, true
-}
-
-// SetAttachedTo sets field value.
-func (o *IncidentUserDefinedFieldAttributesResponse) SetAttachedTo(v string) {
-	o.AttachedTo = v
 }
 
 // GetCategory returns the Category field value.
@@ -356,31 +324,6 @@ func (o *IncidentUserDefinedFieldAttributesResponse) SetOrdinal(v string) {
 	o.Ordinal.Set(&v)
 }
 
-// GetPrerequisite returns the Prerequisite field value.
-// If the value is explicit nil, the zero value for string will be returned.
-func (o *IncidentUserDefinedFieldAttributesResponse) GetPrerequisite() string {
-	if o == nil || o.Prerequisite.Get() == nil {
-		var ret string
-		return ret
-	}
-	return *o.Prerequisite.Get()
-}
-
-// GetPrerequisiteOk returns a tuple with the Prerequisite field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *IncidentUserDefinedFieldAttributesResponse) GetPrerequisiteOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Prerequisite.Get(), o.Prerequisite.IsSet()
-}
-
-// SetPrerequisite sets field value.
-func (o *IncidentUserDefinedFieldAttributesResponse) SetPrerequisite(v string) {
-	o.Prerequisite.Set(&v)
-}
-
 // GetRequired returns the Required field value.
 func (o *IncidentUserDefinedFieldAttributesResponse) GetRequired() bool {
 	if o == nil {
@@ -425,29 +368,6 @@ func (o *IncidentUserDefinedFieldAttributesResponse) GetReservedOk() (*bool, boo
 // SetReserved sets field value.
 func (o *IncidentUserDefinedFieldAttributesResponse) SetReserved(v bool) {
 	o.Reserved = v
-}
-
-// GetTableId returns the TableId field value.
-func (o *IncidentUserDefinedFieldAttributesResponse) GetTableId() int64 {
-	if o == nil {
-		var ret int64
-		return ret
-	}
-	return o.TableId
-}
-
-// GetTableIdOk returns a tuple with the TableId field value
-// and a boolean to check if the value has been set.
-func (o *IncidentUserDefinedFieldAttributesResponse) GetTableIdOk() (*int64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.TableId, true
-}
-
-// SetTableId sets field value.
-func (o *IncidentUserDefinedFieldAttributesResponse) SetTableId(v int64) {
-	o.TableId = v
 }
 
 // GetTagKey returns the TagKey field value.
@@ -531,7 +451,6 @@ func (o IncidentUserDefinedFieldAttributesResponse) MarshalJSON() ([]byte, error
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["attached_to"] = o.AttachedTo
 	toSerialize["category"] = o.Category.Get()
 	toSerialize["collected"] = o.Collected.Get()
 	if o.Created.Nanosecond() == 0 {
@@ -546,10 +465,8 @@ func (o IncidentUserDefinedFieldAttributesResponse) MarshalJSON() ([]byte, error
 	toSerialize["modified"] = o.Modified.Get()
 	toSerialize["name"] = o.Name
 	toSerialize["ordinal"] = o.Ordinal.Get()
-	toSerialize["prerequisite"] = o.Prerequisite.Get()
 	toSerialize["required"] = o.Required
 	toSerialize["reserved"] = o.Reserved
-	toSerialize["table_id"] = o.TableId
 	toSerialize["tag_key"] = o.TagKey.Get()
 	toSerialize["type"] = o.Type.Get()
 	toSerialize["valid_values"] = o.ValidValues.Get()
@@ -563,7 +480,6 @@ func (o IncidentUserDefinedFieldAttributesResponse) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentUserDefinedFieldAttributesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AttachedTo   *string                                                  `json:"attached_to"`
 		Category     NullableIncidentUserDefinedFieldCategory                 `json:"category"`
 		Collected    NullableIncidentUserDefinedFieldCollected                `json:"collected"`
 		Created      *time.Time                                               `json:"created"`
@@ -574,19 +490,14 @@ func (o *IncidentUserDefinedFieldAttributesResponse) UnmarshalJSON(bytes []byte)
 		Modified     datadog.NullableTime                                     `json:"modified"`
 		Name         *string                                                  `json:"name"`
 		Ordinal      datadog.NullableString                                   `json:"ordinal"`
-		Prerequisite datadog.NullableString                                   `json:"prerequisite"`
 		Required     *bool                                                    `json:"required"`
 		Reserved     *bool                                                    `json:"reserved"`
-		TableId      *int64                                                   `json:"table_id"`
 		TagKey       datadog.NullableString                                   `json:"tag_key"`
 		Type         datadog.NullableInt32                                    `json:"type"`
 		ValidValues  datadog.NullableList[IncidentUserDefinedFieldValidValue] `json:"valid_values"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.AttachedTo == nil {
-		return fmt.Errorf("required field attached_to missing")
 	}
 	if !all.Category.IsSet() {
 		return fmt.Errorf("required field category missing")
@@ -618,17 +529,11 @@ func (o *IncidentUserDefinedFieldAttributesResponse) UnmarshalJSON(bytes []byte)
 	if !all.Ordinal.IsSet() {
 		return fmt.Errorf("required field ordinal missing")
 	}
-	if !all.Prerequisite.IsSet() {
-		return fmt.Errorf("required field prerequisite missing")
-	}
 	if all.Required == nil {
 		return fmt.Errorf("required field required missing")
 	}
 	if all.Reserved == nil {
 		return fmt.Errorf("required field reserved missing")
-	}
-	if all.TableId == nil {
-		return fmt.Errorf("required field table_id missing")
 	}
 	if !all.TagKey.IsSet() {
 		return fmt.Errorf("required field tag_key missing")
@@ -641,13 +546,12 @@ func (o *IncidentUserDefinedFieldAttributesResponse) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attached_to", "category", "collected", "created", "default_value", "deleted", "display_name", "metadata", "modified", "name", "ordinal", "prerequisite", "required", "reserved", "table_id", "tag_key", "type", "valid_values"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"category", "collected", "created", "default_value", "deleted", "display_name", "metadata", "modified", "name", "ordinal", "required", "reserved", "tag_key", "type", "valid_values"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	o.AttachedTo = *all.AttachedTo
 	if all.Category.Get() != nil && !all.Category.Get().IsValid() {
 		hasInvalidField = true
 	} else {
@@ -666,10 +570,8 @@ func (o *IncidentUserDefinedFieldAttributesResponse) UnmarshalJSON(bytes []byte)
 	o.Modified = all.Modified
 	o.Name = *all.Name
 	o.Ordinal = all.Ordinal
-	o.Prerequisite = all.Prerequisite
 	o.Required = *all.Required
 	o.Reserved = *all.Reserved
-	o.TableId = *all.TableId
 	o.TagKey = all.TagKey
 	o.Type = all.Type
 	o.ValidValues = all.ValidValues
