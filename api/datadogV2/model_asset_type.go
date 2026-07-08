@@ -15,11 +15,12 @@ type AssetType string
 
 // List of AssetType.
 const (
-	ASSETTYPE_REPOSITORY AssetType = "Repository"
-	ASSETTYPE_SERVICE    AssetType = "Service"
-	ASSETTYPE_HOST       AssetType = "Host"
-	ASSETTYPE_HOSTIMAGE  AssetType = "HostImage"
-	ASSETTYPE_IMAGE      AssetType = "Image"
+	ASSETTYPE_REPOSITORY         AssetType = "Repository"
+	ASSETTYPE_SERVICE            AssetType = "Service"
+	ASSETTYPE_HOST               AssetType = "Host"
+	ASSETTYPE_HOSTIMAGE          AssetType = "HostImage"
+	ASSETTYPE_IMAGE              AssetType = "Image"
+	ASSETTYPE_SERVERLESSFUNCTION AssetType = "ServerlessFunction"
 )
 
 var allowedAssetTypeEnumValues = []AssetType{
@@ -28,6 +29,7 @@ var allowedAssetTypeEnumValues = []AssetType{
 	ASSETTYPE_HOST,
 	ASSETTYPE_HOSTIMAGE,
 	ASSETTYPE_IMAGE,
+	ASSETTYPE_SERVERLESSFUNCTION,
 }
 
 // GetAllowedValues reeturns the list of possible values.

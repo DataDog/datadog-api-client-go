@@ -9156,6 +9156,11 @@ func (r *ListAssetsSBOMsOptionalParameters) WithFilterLicenseType(filterLicenseT
 // ListAssetsSBOMs List assets SBOMs.
 // Get a list of assets SBOMs for an organization.
 //
+// The `filter[asset_type]` parameter is required for initial requests (when no `page[token]` is provided).
+// Subsequent pages encode the asset type in the pagination token, so `filter[asset_type]` is not required
+// for paginated requests. Mixing infrastructure asset types (`Host`, `HostImage`, `Image`, `ServerlessFunction`)
+// with code asset types (`Repository`, `Service`) in the same request is not supported and returns a 400 error.
+//
 // ### Pagination
 //
 // Please review the [Pagination section](#pagination) for the "List Vulnerabilities" endpoint.
