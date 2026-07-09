@@ -8,7 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HostMapRequest Updated host map.
+// HostMapRequest Deprecated - Legacy metric-based host map request. Use the infrastructure-backed (`request_type: infrastructure_hostmap`) or DDSQL (`request_type: data_projection`) format instead.
+//
+// Deprecated: This model is deprecated.
 type HostMapRequest struct {
 	// The log query.
 	ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`

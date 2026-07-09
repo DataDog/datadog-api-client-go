@@ -16,21 +16,26 @@ type HostMapWidgetDefinition struct {
 	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// The description of the widget.
 	Description *string `json:"description,omitempty"`
-	// List of tag prefixes to group by.
+	// Deprecated - Only used by the legacy metric-based format. Use `group_by` (infrastructure) or a `group` dimension (DDSQL) inside `requests` instead.
+	// Deprecated
 	Group []string `json:"group,omitempty"`
-	// Whether to show the hosts that don’t fit in a group.
+	// Deprecated - Only used by the legacy metric-based format. Use `no_group_hosts` inside `requests` instead.
+	// Deprecated
 	NoGroupHosts *bool `json:"no_group_hosts,omitempty"`
-	// Whether to show the hosts with no metrics.
+	// Deprecated - Only used by the legacy metric-based format. Use `no_metric_hosts` inside `requests` instead.
+	// Deprecated
 	NoMetricHosts *bool `json:"no_metric_hosts,omitempty"`
 	// Which type of node to use in the map.
 	NodeType *WidgetNodeType `json:"node_type,omitempty"`
 	// Notes on the title.
 	Notes *string `json:"notes,omitempty"`
-	// Query definition for the host map widget. Supports two mutually exclusive formats distinguished by the presence of `request_type`: the legacy metric-based format (`fill`/`size`) and the infrastructure-backed format (`request_type`, `node_type`, `enrichments`).
+	// Query definition for the host map widget. Supports three mutually exclusive formats distinguished by `request_type`: the deprecated legacy metric-based format (`fill`/`size`, no `request_type`), the infrastructure-backed format (`request_type: infrastructure_hostmap`), and the DDSQL published-dataset format (`request_type: data_projection`).
 	Requests HostMapWidgetDefinitionRequests `json:"requests"`
-	// List of tags used to filter the map.
+	// Deprecated - Only used by the legacy metric-based format. Use `filter` inside `requests` instead.
+	// Deprecated
 	Scope []string `json:"scope,omitempty"`
-	// The style to apply to the widget.
+	// Deprecated - The style to apply to the legacy metric-based host map widget. Use `HostMapWidgetInfrastructureStyle` instead.
+	// Deprecated
 	Style *HostMapWidgetDefinitionStyle `json:"style,omitempty"`
 	// Title of the widget.
 	Title *string `json:"title,omitempty"`
@@ -123,6 +128,7 @@ func (o *HostMapWidgetDefinition) SetDescription(v string) {
 }
 
 // GetGroup returns the Group field value if set, zero value otherwise.
+// Deprecated
 func (o *HostMapWidgetDefinition) GetGroup() []string {
 	if o == nil || o.Group == nil {
 		var ret []string
@@ -133,6 +139,7 @@ func (o *HostMapWidgetDefinition) GetGroup() []string {
 
 // GetGroupOk returns a tuple with the Group field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *HostMapWidgetDefinition) GetGroupOk() (*[]string, bool) {
 	if o == nil || o.Group == nil {
 		return nil, false
@@ -146,11 +153,13 @@ func (o *HostMapWidgetDefinition) HasGroup() bool {
 }
 
 // SetGroup gets a reference to the given []string and assigns it to the Group field.
+// Deprecated
 func (o *HostMapWidgetDefinition) SetGroup(v []string) {
 	o.Group = v
 }
 
 // GetNoGroupHosts returns the NoGroupHosts field value if set, zero value otherwise.
+// Deprecated
 func (o *HostMapWidgetDefinition) GetNoGroupHosts() bool {
 	if o == nil || o.NoGroupHosts == nil {
 		var ret bool
@@ -161,6 +170,7 @@ func (o *HostMapWidgetDefinition) GetNoGroupHosts() bool {
 
 // GetNoGroupHostsOk returns a tuple with the NoGroupHosts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *HostMapWidgetDefinition) GetNoGroupHostsOk() (*bool, bool) {
 	if o == nil || o.NoGroupHosts == nil {
 		return nil, false
@@ -174,11 +184,13 @@ func (o *HostMapWidgetDefinition) HasNoGroupHosts() bool {
 }
 
 // SetNoGroupHosts gets a reference to the given bool and assigns it to the NoGroupHosts field.
+// Deprecated
 func (o *HostMapWidgetDefinition) SetNoGroupHosts(v bool) {
 	o.NoGroupHosts = &v
 }
 
 // GetNoMetricHosts returns the NoMetricHosts field value if set, zero value otherwise.
+// Deprecated
 func (o *HostMapWidgetDefinition) GetNoMetricHosts() bool {
 	if o == nil || o.NoMetricHosts == nil {
 		var ret bool
@@ -189,6 +201,7 @@ func (o *HostMapWidgetDefinition) GetNoMetricHosts() bool {
 
 // GetNoMetricHostsOk returns a tuple with the NoMetricHosts field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *HostMapWidgetDefinition) GetNoMetricHostsOk() (*bool, bool) {
 	if o == nil || o.NoMetricHosts == nil {
 		return nil, false
@@ -202,6 +215,7 @@ func (o *HostMapWidgetDefinition) HasNoMetricHosts() bool {
 }
 
 // SetNoMetricHosts gets a reference to the given bool and assigns it to the NoMetricHosts field.
+// Deprecated
 func (o *HostMapWidgetDefinition) SetNoMetricHosts(v bool) {
 	o.NoMetricHosts = &v
 }
@@ -286,6 +300,7 @@ func (o *HostMapWidgetDefinition) SetRequests(v HostMapWidgetDefinitionRequests)
 }
 
 // GetScope returns the Scope field value if set, zero value otherwise.
+// Deprecated
 func (o *HostMapWidgetDefinition) GetScope() []string {
 	if o == nil || o.Scope == nil {
 		var ret []string
@@ -296,6 +311,7 @@ func (o *HostMapWidgetDefinition) GetScope() []string {
 
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *HostMapWidgetDefinition) GetScopeOk() (*[]string, bool) {
 	if o == nil || o.Scope == nil {
 		return nil, false
@@ -309,11 +325,13 @@ func (o *HostMapWidgetDefinition) HasScope() bool {
 }
 
 // SetScope gets a reference to the given []string and assigns it to the Scope field.
+// Deprecated
 func (o *HostMapWidgetDefinition) SetScope(v []string) {
 	o.Scope = v
 }
 
 // GetStyle returns the Style field value if set, zero value otherwise.
+// Deprecated
 func (o *HostMapWidgetDefinition) GetStyle() HostMapWidgetDefinitionStyle {
 	if o == nil || o.Style == nil {
 		var ret HostMapWidgetDefinitionStyle
@@ -324,6 +342,7 @@ func (o *HostMapWidgetDefinition) GetStyle() HostMapWidgetDefinitionStyle {
 
 // GetStyleOk returns a tuple with the Style field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *HostMapWidgetDefinition) GetStyleOk() (*HostMapWidgetDefinitionStyle, bool) {
 	if o == nil || o.Style == nil {
 		return nil, false
@@ -337,6 +356,7 @@ func (o *HostMapWidgetDefinition) HasStyle() bool {
 }
 
 // SetStyle gets a reference to the given HostMapWidgetDefinitionStyle and assigns it to the Style field.
+// Deprecated
 func (o *HostMapWidgetDefinition) SetStyle(v HostMapWidgetDefinitionStyle) {
 	o.Style = &v
 }

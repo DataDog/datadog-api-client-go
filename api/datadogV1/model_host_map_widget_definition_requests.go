@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HostMapWidgetDefinitionRequests Query definition for the host map widget. Supports two mutually exclusive formats distinguished by the presence of `request_type`: the legacy metric-based format (`fill`/`size`) and the infrastructure-backed format (`request_type`, `node_type`, `enrichments`).
+// HostMapWidgetDefinitionRequests Query definition for the host map widget. Supports three mutually exclusive formats distinguished by `request_type`: the deprecated legacy metric-based format (`fill`/`size`, no `request_type`), the infrastructure-backed format (`request_type: infrastructure_hostmap`), and the DDSQL published-dataset format (`request_type: data_projection`).
 type HostMapWidgetDefinitionRequests struct {
 	// Infrastructure-backed request for the host map widget. Supports entity-based
 	// visualization with metric query enrichments, tag-based filtering, flexible grouping,
@@ -16,24 +16,32 @@ type HostMapWidgetDefinitionRequests struct {
 	Child *HostMapWidgetInfrastructureRequest `json:"child,omitempty"`
 	// List of conditional formatting rules applied to fill values.
 	ConditionalFormats []WidgetConditionalFormat `json:"conditional_formats,omitempty"`
-	// Metric or event queries joined to the entity set. Each formula specifies a visual dimension.
+	// Metric or event queries joined to the entity set. Each formula specifies a visual dimension. Only used by the infrastructure-backed format.
 	Enrichments []HostMapWidgetScalarRequest `json:"enrichments,omitempty"`
-	// Updated host map.
+	// Deprecated - Legacy metric-based host map request. Use the infrastructure-backed (`request_type: infrastructure_hostmap`) or DDSQL (`request_type: data_projection`) format instead.
+	// Deprecated
 	Fill *HostMapRequest `json:"fill,omitempty"`
-	// Filter string for the entity set in tag format (for example, `env:prod`).
+	// Filter string for the entity set in tag format (for example, `env:prod`). Only used by the infrastructure-backed format.
 	Filter *string `json:"filter,omitempty"`
 	// Defines how entities are grouped into tiles. The ordering of entries implies
-	// the grouping hierarchy.
+	// the grouping hierarchy. Only used by the infrastructure-backed format.
 	GroupBy []HostMapWidgetGroupBy `json:"group_by,omitempty"`
+	// Maximum number of rows to return from the dataset query. Only used by the DDSQL format.
+	Limit *int64 `json:"limit,omitempty"`
 	// Whether to hide entities that have no group assignment.
 	NoGroupHosts *bool `json:"no_group_hosts,omitempty"`
 	// Whether to hide entities that have no enrichment data.
 	NoMetricHosts *bool `json:"no_metric_hosts,omitempty"`
 	// Which type of infrastructure entity to visualize in the host map.
 	NodeType *HostMapWidgetNodeType `json:"node_type,omitempty"`
-	// Identifies this as an infrastructure-backed host map request.
-	RequestType *HostMapWidgetInfrastructureRequestRequestType `json:"request_type,omitempty"`
-	// Updated host map.
+	// Projection for the DDSQL host map request. Maps dataset columns to map dimensions: `node` identifies the entity, repeated `group` entries define the grouping hierarchy (outermost first), and `fill`/`size` drive the tile color and size.
+	Projection *HostMapWidgetProjection `json:"projection,omitempty"`
+	// Query that lists the rows of a published dataset (a DDSQL query) without aggregation.
+	Query *DatasetListQuery `json:"query,omitempty"`
+	// Identifies which host map request format the sibling fields on `HostMapWidgetDefinitionRequests` describe: an infrastructure-backed request or a DDSQL published-dataset request.
+	RequestType *HostMapWidgetDefinitionRequestType `json:"request_type,omitempty"`
+	// Deprecated - Legacy metric-based host map request. Use the infrastructure-backed (`request_type: infrastructure_hostmap`) or DDSQL (`request_type: data_projection`) format instead.
+	// Deprecated
 	Size *HostMapRequest `json:"size,omitempty"`
 	// Style configuration for the infrastructure host map.
 	Style *HostMapWidgetInfrastructureStyle `json:"style,omitempty"`
@@ -144,6 +152,7 @@ func (o *HostMapWidgetDefinitionRequests) SetEnrichments(v []HostMapWidgetScalar
 }
 
 // GetFill returns the Fill field value if set, zero value otherwise.
+// Deprecated
 func (o *HostMapWidgetDefinitionRequests) GetFill() HostMapRequest {
 	if o == nil || o.Fill == nil {
 		var ret HostMapRequest
@@ -154,6 +163,7 @@ func (o *HostMapWidgetDefinitionRequests) GetFill() HostMapRequest {
 
 // GetFillOk returns a tuple with the Fill field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *HostMapWidgetDefinitionRequests) GetFillOk() (*HostMapRequest, bool) {
 	if o == nil || o.Fill == nil {
 		return nil, false
@@ -167,6 +177,7 @@ func (o *HostMapWidgetDefinitionRequests) HasFill() bool {
 }
 
 // SetFill gets a reference to the given HostMapRequest and assigns it to the Fill field.
+// Deprecated
 func (o *HostMapWidgetDefinitionRequests) SetFill(v HostMapRequest) {
 	o.Fill = &v
 }
@@ -225,6 +236,34 @@ func (o *HostMapWidgetDefinitionRequests) HasGroupBy() bool {
 // SetGroupBy gets a reference to the given []HostMapWidgetGroupBy and assigns it to the GroupBy field.
 func (o *HostMapWidgetDefinitionRequests) SetGroupBy(v []HostMapWidgetGroupBy) {
 	o.GroupBy = v
+}
+
+// GetLimit returns the Limit field value if set, zero value otherwise.
+func (o *HostMapWidgetDefinitionRequests) GetLimit() int64 {
+	if o == nil || o.Limit == nil {
+		var ret int64
+		return ret
+	}
+	return *o.Limit
+}
+
+// GetLimitOk returns a tuple with the Limit field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HostMapWidgetDefinitionRequests) GetLimitOk() (*int64, bool) {
+	if o == nil || o.Limit == nil {
+		return nil, false
+	}
+	return o.Limit, true
+}
+
+// HasLimit returns a boolean if a field has been set.
+func (o *HostMapWidgetDefinitionRequests) HasLimit() bool {
+	return o != nil && o.Limit != nil
+}
+
+// SetLimit gets a reference to the given int64 and assigns it to the Limit field.
+func (o *HostMapWidgetDefinitionRequests) SetLimit(v int64) {
+	o.Limit = &v
 }
 
 // GetNoGroupHosts returns the NoGroupHosts field value if set, zero value otherwise.
@@ -311,10 +350,66 @@ func (o *HostMapWidgetDefinitionRequests) SetNodeType(v HostMapWidgetNodeType) {
 	o.NodeType = &v
 }
 
+// GetProjection returns the Projection field value if set, zero value otherwise.
+func (o *HostMapWidgetDefinitionRequests) GetProjection() HostMapWidgetProjection {
+	if o == nil || o.Projection == nil {
+		var ret HostMapWidgetProjection
+		return ret
+	}
+	return *o.Projection
+}
+
+// GetProjectionOk returns a tuple with the Projection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HostMapWidgetDefinitionRequests) GetProjectionOk() (*HostMapWidgetProjection, bool) {
+	if o == nil || o.Projection == nil {
+		return nil, false
+	}
+	return o.Projection, true
+}
+
+// HasProjection returns a boolean if a field has been set.
+func (o *HostMapWidgetDefinitionRequests) HasProjection() bool {
+	return o != nil && o.Projection != nil
+}
+
+// SetProjection gets a reference to the given HostMapWidgetProjection and assigns it to the Projection field.
+func (o *HostMapWidgetDefinitionRequests) SetProjection(v HostMapWidgetProjection) {
+	o.Projection = &v
+}
+
+// GetQuery returns the Query field value if set, zero value otherwise.
+func (o *HostMapWidgetDefinitionRequests) GetQuery() DatasetListQuery {
+	if o == nil || o.Query == nil {
+		var ret DatasetListQuery
+		return ret
+	}
+	return *o.Query
+}
+
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *HostMapWidgetDefinitionRequests) GetQueryOk() (*DatasetListQuery, bool) {
+	if o == nil || o.Query == nil {
+		return nil, false
+	}
+	return o.Query, true
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (o *HostMapWidgetDefinitionRequests) HasQuery() bool {
+	return o != nil && o.Query != nil
+}
+
+// SetQuery gets a reference to the given DatasetListQuery and assigns it to the Query field.
+func (o *HostMapWidgetDefinitionRequests) SetQuery(v DatasetListQuery) {
+	o.Query = &v
+}
+
 // GetRequestType returns the RequestType field value if set, zero value otherwise.
-func (o *HostMapWidgetDefinitionRequests) GetRequestType() HostMapWidgetInfrastructureRequestRequestType {
+func (o *HostMapWidgetDefinitionRequests) GetRequestType() HostMapWidgetDefinitionRequestType {
 	if o == nil || o.RequestType == nil {
-		var ret HostMapWidgetInfrastructureRequestRequestType
+		var ret HostMapWidgetDefinitionRequestType
 		return ret
 	}
 	return *o.RequestType
@@ -322,7 +417,7 @@ func (o *HostMapWidgetDefinitionRequests) GetRequestType() HostMapWidgetInfrastr
 
 // GetRequestTypeOk returns a tuple with the RequestType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *HostMapWidgetDefinitionRequests) GetRequestTypeOk() (*HostMapWidgetInfrastructureRequestRequestType, bool) {
+func (o *HostMapWidgetDefinitionRequests) GetRequestTypeOk() (*HostMapWidgetDefinitionRequestType, bool) {
 	if o == nil || o.RequestType == nil {
 		return nil, false
 	}
@@ -334,12 +429,13 @@ func (o *HostMapWidgetDefinitionRequests) HasRequestType() bool {
 	return o != nil && o.RequestType != nil
 }
 
-// SetRequestType gets a reference to the given HostMapWidgetInfrastructureRequestRequestType and assigns it to the RequestType field.
-func (o *HostMapWidgetDefinitionRequests) SetRequestType(v HostMapWidgetInfrastructureRequestRequestType) {
+// SetRequestType gets a reference to the given HostMapWidgetDefinitionRequestType and assigns it to the RequestType field.
+func (o *HostMapWidgetDefinitionRequests) SetRequestType(v HostMapWidgetDefinitionRequestType) {
 	o.RequestType = &v
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
+// Deprecated
 func (o *HostMapWidgetDefinitionRequests) GetSize() HostMapRequest {
 	if o == nil || o.Size == nil {
 		var ret HostMapRequest
@@ -350,6 +446,7 @@ func (o *HostMapWidgetDefinitionRequests) GetSize() HostMapRequest {
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *HostMapWidgetDefinitionRequests) GetSizeOk() (*HostMapRequest, bool) {
 	if o == nil || o.Size == nil {
 		return nil, false
@@ -363,6 +460,7 @@ func (o *HostMapWidgetDefinitionRequests) HasSize() bool {
 }
 
 // SetSize gets a reference to the given HostMapRequest and assigns it to the Size field.
+// Deprecated
 func (o *HostMapWidgetDefinitionRequests) SetSize(v HostMapRequest) {
 	o.Size = &v
 }
@@ -419,6 +517,9 @@ func (o HostMapWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
 	if o.GroupBy != nil {
 		toSerialize["group_by"] = o.GroupBy
 	}
+	if o.Limit != nil {
+		toSerialize["limit"] = o.Limit
+	}
 	if o.NoGroupHosts != nil {
 		toSerialize["no_group_hosts"] = o.NoGroupHosts
 	}
@@ -427,6 +528,12 @@ func (o HostMapWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
 	}
 	if o.NodeType != nil {
 		toSerialize["node_type"] = o.NodeType
+	}
+	if o.Projection != nil {
+		toSerialize["projection"] = o.Projection
+	}
+	if o.Query != nil {
+		toSerialize["query"] = o.Query
 	}
 	if o.RequestType != nil {
 		toSerialize["request_type"] = o.RequestType
@@ -447,25 +554,28 @@ func (o HostMapWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *HostMapWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Child              *HostMapWidgetInfrastructureRequest            `json:"child,omitempty"`
-		ConditionalFormats []WidgetConditionalFormat                      `json:"conditional_formats,omitempty"`
-		Enrichments        []HostMapWidgetScalarRequest                   `json:"enrichments,omitempty"`
-		Fill               *HostMapRequest                                `json:"fill,omitempty"`
-		Filter             *string                                        `json:"filter,omitempty"`
-		GroupBy            []HostMapWidgetGroupBy                         `json:"group_by,omitempty"`
-		NoGroupHosts       *bool                                          `json:"no_group_hosts,omitempty"`
-		NoMetricHosts      *bool                                          `json:"no_metric_hosts,omitempty"`
-		NodeType           *HostMapWidgetNodeType                         `json:"node_type,omitempty"`
-		RequestType        *HostMapWidgetInfrastructureRequestRequestType `json:"request_type,omitempty"`
-		Size               *HostMapRequest                                `json:"size,omitempty"`
-		Style              *HostMapWidgetInfrastructureStyle              `json:"style,omitempty"`
+		Child              *HostMapWidgetInfrastructureRequest `json:"child,omitempty"`
+		ConditionalFormats []WidgetConditionalFormat           `json:"conditional_formats,omitempty"`
+		Enrichments        []HostMapWidgetScalarRequest        `json:"enrichments,omitempty"`
+		Fill               *HostMapRequest                     `json:"fill,omitempty"`
+		Filter             *string                             `json:"filter,omitempty"`
+		GroupBy            []HostMapWidgetGroupBy              `json:"group_by,omitempty"`
+		Limit              *int64                              `json:"limit,omitempty"`
+		NoGroupHosts       *bool                               `json:"no_group_hosts,omitempty"`
+		NoMetricHosts      *bool                               `json:"no_metric_hosts,omitempty"`
+		NodeType           *HostMapWidgetNodeType              `json:"node_type,omitempty"`
+		Projection         *HostMapWidgetProjection            `json:"projection,omitempty"`
+		Query              *DatasetListQuery                   `json:"query,omitempty"`
+		RequestType        *HostMapWidgetDefinitionRequestType `json:"request_type,omitempty"`
+		Size               *HostMapRequest                     `json:"size,omitempty"`
+		Style              *HostMapWidgetInfrastructureStyle   `json:"style,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"child", "conditional_formats", "enrichments", "fill", "filter", "group_by", "no_group_hosts", "no_metric_hosts", "node_type", "request_type", "size", "style"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"child", "conditional_formats", "enrichments", "fill", "filter", "group_by", "limit", "no_group_hosts", "no_metric_hosts", "node_type", "projection", "query", "request_type", "size", "style"})
 	} else {
 		return err
 	}
@@ -483,6 +593,7 @@ func (o *HostMapWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err error
 	o.Fill = all.Fill
 	o.Filter = all.Filter
 	o.GroupBy = all.GroupBy
+	o.Limit = all.Limit
 	o.NoGroupHosts = all.NoGroupHosts
 	o.NoMetricHosts = all.NoMetricHosts
 	if all.NodeType != nil && !all.NodeType.IsValid() {
@@ -490,6 +601,14 @@ func (o *HostMapWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err error
 	} else {
 		o.NodeType = all.NodeType
 	}
+	if all.Projection != nil && all.Projection.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Projection = all.Projection
+	if all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Query = all.Query
 	if all.RequestType != nil && !all.RequestType.IsValid() {
 		hasInvalidField = true
 	} else {

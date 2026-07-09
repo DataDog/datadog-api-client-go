@@ -8,7 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HostMapWidgetDefinitionStyle The style to apply to the widget.
+// HostMapWidgetDefinitionStyle Deprecated - The style to apply to the legacy metric-based host map widget. Use `HostMapWidgetInfrastructureStyle` instead.
+//
+// Deprecated: This model is deprecated.
 type HostMapWidgetDefinitionStyle struct {
 	// Max value to use to color the map.
 	FillMax *string `json:"fill_max,omitempty"`
