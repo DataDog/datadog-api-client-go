@@ -39,6 +39,7 @@ func main() {
 			AcceptSelfSigned:               datadog.PtrBool(true),
 			CheckCertificateRevocation:     datadog.PtrBool(true),
 			DisableAiaIntermediateFetching: datadog.PtrBool(true),
+			IgnoreCertificateValidation:    datadog.PtrBool(true),
 			TickEvery:                      datadog.PtrInt64(60),
 		},
 		Subtype: datadogV1.SYNTHETICSTESTDETAILSSUBTYPE_SSL.Ptr(),
