@@ -10,20 +10,22 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// HostMapWidgetDimension Visual dimension driven by a formula in the infrastructure host map widget.
+// HostMapWidgetDimension Visual dimension for the host map widget. Used both by infrastructure-backed formulas and by DDSQL projection columns; `group` is only meaningful for DDSQL projection columns, where repeated entries define the grouping hierarchy.
 type HostMapWidgetDimension string
 
 // List of HostMapWidgetDimension.
 const (
-	HOSTMAPWIDGETDIMENSION_NODE HostMapWidgetDimension = "node"
-	HOSTMAPWIDGETDIMENSION_FILL HostMapWidgetDimension = "fill"
-	HOSTMAPWIDGETDIMENSION_SIZE HostMapWidgetDimension = "size"
+	HOSTMAPWIDGETDIMENSION_NODE  HostMapWidgetDimension = "node"
+	HOSTMAPWIDGETDIMENSION_FILL  HostMapWidgetDimension = "fill"
+	HOSTMAPWIDGETDIMENSION_SIZE  HostMapWidgetDimension = "size"
+	HOSTMAPWIDGETDIMENSION_GROUP HostMapWidgetDimension = "group"
 )
 
 var allowedHostMapWidgetDimensionEnumValues = []HostMapWidgetDimension{
 	HOSTMAPWIDGETDIMENSION_NODE,
 	HOSTMAPWIDGETDIMENSION_FILL,
 	HOSTMAPWIDGETDIMENSION_SIZE,
+	HOSTMAPWIDGETDIMENSION_GROUP,
 }
 
 // GetAllowedValues reeturns the list of possible values.

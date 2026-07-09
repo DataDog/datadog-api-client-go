@@ -1,4 +1,4 @@
-// Create a new dashboard with hostmap infra widget
+// Create a new dashboard with hostmap DDSQL widget
 
 package main
 
@@ -31,31 +31,27 @@ func main() {
 						TitleAlign: datadogV1.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadogV1.HOSTMAPWIDGETDEFINITIONTYPE_HOSTMAP,
 						Requests: datadogV1.HostMapWidgetDefinitionRequests{
-							RequestType: datadogV1.HOSTMAPWIDGETDEFINITIONREQUESTTYPE_INFRASTRUCTURE_HOSTMAP.Ptr(),
-							NodeType:    datadogV1.HOSTMAPWIDGETNODETYPE_HOST.Ptr(),
-							Filter:      datadog.PtrString("env:prod"),
-							GroupBy: []datadogV1.HostMapWidgetGroupBy{
-								{
-									Column: "tags",
-									Key:    datadog.PtrString("service"),
-								},
+							RequestType: datadogV1.HOSTMAPWIDGETDEFINITIONREQUESTTYPE_DATA_PROJECTION.Ptr(),
+							Limit:       datadog.PtrInt64(1000),
+							Query: &datadogV1.DatasetListQuery{
+								DataSource:      datadogV1.DATASETLISTQUERYDATASOURCETYPE_DATASET,
+								DatasetProvider: datadogV1.PUBLISHEDDATASETPROVIDER_DDSQL_QUERY,
+								DatasetId:       "abc-123-def",
 							},
-							Enrichments: []datadogV1.HostMapWidgetScalarRequest{
-								{
-									ResponseFormat: datadogV1.HOSTMAPWIDGETSCALARREQUESTRESPONSEFORMAT_SCALAR,
-									Queries: []datadogV1.FormulaAndFunctionQueryDefinition{
-										datadogV1.FormulaAndFunctionQueryDefinition{
-											FormulaAndFunctionMetricQueryDefinition: &datadogV1.FormulaAndFunctionMetricQueryDefinition{
-												DataSource: datadogV1.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
-												Name:       "query1",
-												Query:      "avg:system.cpu.user{*} by {host}",
-											}},
+							Projection: &datadogV1.HostMapWidgetProjection{
+								Type: datadogV1.HOSTMAPWIDGETPROJECTIONTYPE_HOSTMAP,
+								Dimensions: []datadogV1.HostMapWidgetProjectionDimensionMapping{
+									{
+										Column:    "entity_id",
+										Dimension: datadogV1.HOSTMAPWIDGETDIMENSION_NODE,
 									},
-									Formulas: []datadogV1.HostMapWidgetFormula{
-										{
-											Formula:   "query1",
-											Dimension: datadogV1.HOSTMAPWIDGETDIMENSION_FILL,
-										},
+									{
+										Column:    "parent_id",
+										Dimension: datadogV1.HOSTMAPWIDGETDIMENSION_GROUP,
+									},
+									{
+										Column:    "cpu_usage",
+										Dimension: datadogV1.HOSTMAPWIDGETDIMENSION_FILL,
 									},
 								},
 							},
