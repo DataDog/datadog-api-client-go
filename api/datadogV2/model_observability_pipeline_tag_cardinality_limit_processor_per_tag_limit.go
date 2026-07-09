@@ -12,11 +12,11 @@ import (
 
 // ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit A cardinality override for a specific tag key within a per-metric limit.
 type ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit struct {
-	// How the per-tag override is applied. `limit_override` enforces a custom limit on the tag; `excluded` skips the tag from cardinality tracking.
-	Mode ObservabilityPipelineTagCardinalityLimitProcessorPerTagMode `json:"mode"`
+	// How the override is applied. `limit_override` enforces a custom limit; `excluded` omits the metric or tag from cardinality tracking.
+	OverrideType ObservabilityPipelineTagCardinalityLimitProcessorOverrideType `json:"override_type"`
 	// The tag key this override applies to.
 	TagKey string `json:"tag_key"`
-	// The maximum number of distinct values allowed for this tag. Required when `mode` is `limit_override`. Must be omitted when `mode` is `excluded`.
+	// The maximum number of distinct values allowed for this tag. Required when `override_type` is `limit_override`. Must be omitted when `override_type` is `excluded`.
 	ValueLimit *int64 `json:"value_limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -27,9 +27,9 @@ type ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit(mode ObservabilityPipelineTagCardinalityLimitProcessorPerTagMode, tagKey string) *ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit {
+func NewObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit(overrideType ObservabilityPipelineTagCardinalityLimitProcessorOverrideType, tagKey string) *ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit {
 	this := ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit{}
-	this.Mode = mode
+	this.OverrideType = overrideType
 	this.TagKey = tagKey
 	return &this
 }
@@ -42,27 +42,27 @@ func NewObservabilityPipelineTagCardinalityLimitProcessorPerTagLimitWithDefaults
 	return &this
 }
 
-// GetMode returns the Mode field value.
-func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit) GetMode() ObservabilityPipelineTagCardinalityLimitProcessorPerTagMode {
+// GetOverrideType returns the OverrideType field value.
+func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit) GetOverrideType() ObservabilityPipelineTagCardinalityLimitProcessorOverrideType {
 	if o == nil {
-		var ret ObservabilityPipelineTagCardinalityLimitProcessorPerTagMode
+		var ret ObservabilityPipelineTagCardinalityLimitProcessorOverrideType
 		return ret
 	}
-	return o.Mode
+	return o.OverrideType
 }
 
-// GetModeOk returns a tuple with the Mode field value
+// GetOverrideTypeOk returns a tuple with the OverrideType field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit) GetModeOk() (*ObservabilityPipelineTagCardinalityLimitProcessorPerTagMode, bool) {
+func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit) GetOverrideTypeOk() (*ObservabilityPipelineTagCardinalityLimitProcessorOverrideType, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Mode, true
+	return &o.OverrideType, true
 }
 
-// SetMode sets field value.
-func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit) SetMode(v ObservabilityPipelineTagCardinalityLimitProcessorPerTagMode) {
-	o.Mode = v
+// SetOverrideType sets field value.
+func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit) SetOverrideType(v ObservabilityPipelineTagCardinalityLimitProcessorOverrideType) {
+	o.OverrideType = v
 }
 
 // GetTagKey returns the TagKey field value.
@@ -122,7 +122,7 @@ func (o ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit) MarshalJSO
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["mode"] = o.Mode
+	toSerialize["override_type"] = o.OverrideType
 	toSerialize["tag_key"] = o.TagKey
 	if o.ValueLimit != nil {
 		toSerialize["value_limit"] = o.ValueLimit
@@ -137,31 +137,31 @@ func (o ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit) MarshalJSO
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Mode       *ObservabilityPipelineTagCardinalityLimitProcessorPerTagMode `json:"mode"`
-		TagKey     *string                                                      `json:"tag_key"`
-		ValueLimit *int64                                                       `json:"value_limit,omitempty"`
+		OverrideType *ObservabilityPipelineTagCardinalityLimitProcessorOverrideType `json:"override_type"`
+		TagKey       *string                                                        `json:"tag_key"`
+		ValueLimit   *int64                                                         `json:"value_limit,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Mode == nil {
-		return fmt.Errorf("required field mode missing")
+	if all.OverrideType == nil {
+		return fmt.Errorf("required field override_type missing")
 	}
 	if all.TagKey == nil {
 		return fmt.Errorf("required field tag_key missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"mode", "tag_key", "value_limit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"override_type", "tag_key", "value_limit"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if !all.Mode.IsValid() {
+	if !all.OverrideType.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Mode = *all.Mode
+		o.OverrideType = *all.OverrideType
 	}
 	o.TagKey = *all.TagKey
 	o.ValueLimit = all.ValueLimit
