@@ -16,8 +16,9 @@ type SecurityMonitoringIntegrationCredentialsValidateAttributes struct {
 	Domain string `json:"domain"`
 	// The type of external source that provides entities to Cloud SIEM.
 	IntegrationType SecurityMonitoringIntegrationType `json:"integration_type"`
-	// The secrets used to authenticate against the external entity source. The accepted keys depend on the source type (for example, `admin_email` for Google Workspace).
-	Secrets map[string]interface{} `json:"secrets"`
+	// The secrets used to authenticate against the external entity source. The accepted keys depend on the source type
+	// (for example, `admin_email` for Google Workspace). Not required for source types that do not use secrets (for example, `ENTRA_ID`).
+	Secrets map[string]interface{} `json:"secrets,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -27,11 +28,10 @@ type SecurityMonitoringIntegrationCredentialsValidateAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSecurityMonitoringIntegrationCredentialsValidateAttributes(domain string, integrationType SecurityMonitoringIntegrationType, secrets map[string]interface{}) *SecurityMonitoringIntegrationCredentialsValidateAttributes {
+func NewSecurityMonitoringIntegrationCredentialsValidateAttributes(domain string, integrationType SecurityMonitoringIntegrationType) *SecurityMonitoringIntegrationCredentialsValidateAttributes {
 	this := SecurityMonitoringIntegrationCredentialsValidateAttributes{}
 	this.Domain = domain
 	this.IntegrationType = integrationType
-	this.Secrets = secrets
 	return &this
 }
 
@@ -89,25 +89,30 @@ func (o *SecurityMonitoringIntegrationCredentialsValidateAttributes) SetIntegrat
 	o.IntegrationType = v
 }
 
-// GetSecrets returns the Secrets field value.
+// GetSecrets returns the Secrets field value if set, zero value otherwise.
 func (o *SecurityMonitoringIntegrationCredentialsValidateAttributes) GetSecrets() map[string]interface{} {
-	if o == nil {
+	if o == nil || o.Secrets == nil {
 		var ret map[string]interface{}
 		return ret
 	}
 	return o.Secrets
 }
 
-// GetSecretsOk returns a tuple with the Secrets field value
+// GetSecretsOk returns a tuple with the Secrets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SecurityMonitoringIntegrationCredentialsValidateAttributes) GetSecretsOk() (*map[string]interface{}, bool) {
-	if o == nil {
+	if o == nil || o.Secrets == nil {
 		return nil, false
 	}
 	return &o.Secrets, true
 }
 
-// SetSecrets sets field value.
+// HasSecrets returns a boolean if a field has been set.
+func (o *SecurityMonitoringIntegrationCredentialsValidateAttributes) HasSecrets() bool {
+	return o != nil && o.Secrets != nil
+}
+
+// SetSecrets gets a reference to the given map[string]interface{} and assigns it to the Secrets field.
 func (o *SecurityMonitoringIntegrationCredentialsValidateAttributes) SetSecrets(v map[string]interface{}) {
 	o.Secrets = v
 }
@@ -120,7 +125,9 @@ func (o SecurityMonitoringIntegrationCredentialsValidateAttributes) MarshalJSON(
 	}
 	toSerialize["domain"] = o.Domain
 	toSerialize["integration_type"] = o.IntegrationType
-	toSerialize["secrets"] = o.Secrets
+	if o.Secrets != nil {
+		toSerialize["secrets"] = o.Secrets
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -133,7 +140,7 @@ func (o *SecurityMonitoringIntegrationCredentialsValidateAttributes) UnmarshalJS
 	all := struct {
 		Domain          *string                            `json:"domain"`
 		IntegrationType *SecurityMonitoringIntegrationType `json:"integration_type"`
-		Secrets         *map[string]interface{}            `json:"secrets"`
+		Secrets         map[string]interface{}             `json:"secrets,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -143,9 +150,6 @@ func (o *SecurityMonitoringIntegrationCredentialsValidateAttributes) UnmarshalJS
 	}
 	if all.IntegrationType == nil {
 		return fmt.Errorf("required field integration_type missing")
-	}
-	if all.Secrets == nil {
-		return fmt.Errorf("required field secrets missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -161,7 +165,7 @@ func (o *SecurityMonitoringIntegrationCredentialsValidateAttributes) UnmarshalJS
 	} else {
 		o.IntegrationType = *all.IntegrationType
 	}
-	o.Secrets = *all.Secrets
+	o.Secrets = all.Secrets
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
