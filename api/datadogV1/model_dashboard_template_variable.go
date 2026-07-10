@@ -14,6 +14,10 @@ import (
 type DashboardTemplateVariable struct {
 	// The list of values that the template variable drop-down is limited to.
 	AvailableValues datadog.NullableList[string] `json:"available_values,omitempty"`
+	// A query that dynamically computes the list of values available for this template variable.
+	AvailableValuesQuery *DashboardTemplateVariableAvailableValuesQuery `json:"available_values_query,omitempty"`
+	// A mapping from data source type to the variable value to use for that data source.
+	DataSourceMappings map[string]string `json:"data_source_mappings,omitempty"`
 	// (deprecated) The default value for the template variable on dashboard load. Cannot be used in conjunction with `defaults`.
 	// Deprecated
 	Default datadog.NullableString `json:"default,omitempty"`
@@ -85,6 +89,62 @@ func (o *DashboardTemplateVariable) SetAvailableValuesNil() {
 // UnsetAvailableValues ensures that no value is present for AvailableValues, not even an explicit nil.
 func (o *DashboardTemplateVariable) UnsetAvailableValues() {
 	o.AvailableValues.Unset()
+}
+
+// GetAvailableValuesQuery returns the AvailableValuesQuery field value if set, zero value otherwise.
+func (o *DashboardTemplateVariable) GetAvailableValuesQuery() DashboardTemplateVariableAvailableValuesQuery {
+	if o == nil || o.AvailableValuesQuery == nil {
+		var ret DashboardTemplateVariableAvailableValuesQuery
+		return ret
+	}
+	return *o.AvailableValuesQuery
+}
+
+// GetAvailableValuesQueryOk returns a tuple with the AvailableValuesQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DashboardTemplateVariable) GetAvailableValuesQueryOk() (*DashboardTemplateVariableAvailableValuesQuery, bool) {
+	if o == nil || o.AvailableValuesQuery == nil {
+		return nil, false
+	}
+	return o.AvailableValuesQuery, true
+}
+
+// HasAvailableValuesQuery returns a boolean if a field has been set.
+func (o *DashboardTemplateVariable) HasAvailableValuesQuery() bool {
+	return o != nil && o.AvailableValuesQuery != nil
+}
+
+// SetAvailableValuesQuery gets a reference to the given DashboardTemplateVariableAvailableValuesQuery and assigns it to the AvailableValuesQuery field.
+func (o *DashboardTemplateVariable) SetAvailableValuesQuery(v DashboardTemplateVariableAvailableValuesQuery) {
+	o.AvailableValuesQuery = &v
+}
+
+// GetDataSourceMappings returns the DataSourceMappings field value if set, zero value otherwise.
+func (o *DashboardTemplateVariable) GetDataSourceMappings() map[string]string {
+	if o == nil || o.DataSourceMappings == nil {
+		var ret map[string]string
+		return ret
+	}
+	return o.DataSourceMappings
+}
+
+// GetDataSourceMappingsOk returns a tuple with the DataSourceMappings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DashboardTemplateVariable) GetDataSourceMappingsOk() (*map[string]string, bool) {
+	if o == nil || o.DataSourceMappings == nil {
+		return nil, false
+	}
+	return &o.DataSourceMappings, true
+}
+
+// HasDataSourceMappings returns a boolean if a field has been set.
+func (o *DashboardTemplateVariable) HasDataSourceMappings() bool {
+	return o != nil && o.DataSourceMappings != nil
+}
+
+// SetDataSourceMappings gets a reference to the given map[string]string and assigns it to the DataSourceMappings field.
+func (o *DashboardTemplateVariable) SetDataSourceMappings(v map[string]string) {
+	o.DataSourceMappings = v
 }
 
 // GetDefault returns the Default field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -267,6 +327,12 @@ func (o DashboardTemplateVariable) MarshalJSON() ([]byte, error) {
 	if o.AvailableValues.IsSet() {
 		toSerialize["available_values"] = o.AvailableValues.Get()
 	}
+	if o.AvailableValuesQuery != nil {
+		toSerialize["available_values_query"] = o.AvailableValuesQuery
+	}
+	if o.DataSourceMappings != nil {
+		toSerialize["data_source_mappings"] = o.DataSourceMappings
+	}
 	if o.Default.IsSet() {
 		toSerialize["default"] = o.Default.Get()
 	}
@@ -290,12 +356,14 @@ func (o DashboardTemplateVariable) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AvailableValues datadog.NullableList[string] `json:"available_values,omitempty"`
-		Default         datadog.NullableString       `json:"default,omitempty"`
-		Defaults        []string                     `json:"defaults,omitempty"`
-		Name            *string                      `json:"name"`
-		Prefix          datadog.NullableString       `json:"prefix,omitempty"`
-		Type            datadog.NullableString       `json:"type,omitempty"`
+		AvailableValues      datadog.NullableList[string]                   `json:"available_values,omitempty"`
+		AvailableValuesQuery *DashboardTemplateVariableAvailableValuesQuery `json:"available_values_query,omitempty"`
+		DataSourceMappings   map[string]string                              `json:"data_source_mappings,omitempty"`
+		Default              datadog.NullableString                         `json:"default,omitempty"`
+		Defaults             []string                                       `json:"defaults,omitempty"`
+		Name                 *string                                        `json:"name"`
+		Prefix               datadog.NullableString                         `json:"prefix,omitempty"`
+		Type                 datadog.NullableString                         `json:"type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -305,11 +373,13 @@ func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"available_values", "default", "defaults", "name", "prefix", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"available_values", "available_values_query", "data_source_mappings", "default", "defaults", "name", "prefix", "type"})
 	} else {
 		return err
 	}
 	o.AvailableValues = all.AvailableValues
+	o.AvailableValuesQuery = all.AvailableValuesQuery
+	o.DataSourceMappings = all.DataSourceMappings
 	o.Default = all.Default
 	o.Defaults = all.Defaults
 	o.Name = *all.Name
