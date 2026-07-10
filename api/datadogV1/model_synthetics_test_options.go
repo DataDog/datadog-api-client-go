@@ -42,6 +42,8 @@ type SyntheticsTestOptions struct {
 	HttpVersion *SyntheticsTestOptionsHTTPVersion `json:"httpVersion,omitempty"`
 	// Ignore server certificate error for browser tests.
 	IgnoreServerCertificateError *bool `json:"ignoreServerCertificateError,omitempty"`
+	// For SSL tests, whether or not the test should ignore certificate validation.
+	IgnoreCertificateValidation *bool `json:"ignore_certificate_validation,omitempty"`
 	// Timeout before declaring the initial step as failed (in seconds) for browser tests.
 	InitialNavigationTimeout *int64 `json:"initialNavigationTimeout,omitempty"`
 	// Minimum amount of time in failure required to trigger an alert.
@@ -524,6 +526,34 @@ func (o *SyntheticsTestOptions) SetIgnoreServerCertificateError(v bool) {
 	o.IgnoreServerCertificateError = &v
 }
 
+// GetIgnoreCertificateValidation returns the IgnoreCertificateValidation field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetIgnoreCertificateValidation() bool {
+	if o == nil || o.IgnoreCertificateValidation == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IgnoreCertificateValidation
+}
+
+// GetIgnoreCertificateValidationOk returns a tuple with the IgnoreCertificateValidation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetIgnoreCertificateValidationOk() (*bool, bool) {
+	if o == nil || o.IgnoreCertificateValidation == nil {
+		return nil, false
+	}
+	return o.IgnoreCertificateValidation, true
+}
+
+// HasIgnoreCertificateValidation returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasIgnoreCertificateValidation() bool {
+	return o != nil && o.IgnoreCertificateValidation != nil
+}
+
+// SetIgnoreCertificateValidation gets a reference to the given bool and assigns it to the IgnoreCertificateValidation field.
+func (o *SyntheticsTestOptions) SetIgnoreCertificateValidation(v bool) {
+	o.IgnoreCertificateValidation = &v
+}
+
 // GetInitialNavigationTimeout returns the InitialNavigationTimeout field value if set, zero value otherwise.
 func (o *SyntheticsTestOptions) GetInitialNavigationTimeout() int64 {
 	if o == nil || o.InitialNavigationTimeout == nil {
@@ -914,6 +944,9 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	if o.IgnoreServerCertificateError != nil {
 		toSerialize["ignoreServerCertificateError"] = o.IgnoreServerCertificateError
 	}
+	if o.IgnoreCertificateValidation != nil {
+		toSerialize["ignore_certificate_validation"] = o.IgnoreCertificateValidation
+	}
 	if o.InitialNavigationTimeout != nil {
 		toSerialize["initialNavigationTimeout"] = o.InitialNavigationTimeout
 	}
@@ -975,6 +1008,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		FollowRedirects                *bool                                `json:"follow_redirects,omitempty"`
 		HttpVersion                    *SyntheticsTestOptionsHTTPVersion    `json:"httpVersion,omitempty"`
 		IgnoreServerCertificateError   *bool                                `json:"ignoreServerCertificateError,omitempty"`
+		IgnoreCertificateValidation    *bool                                `json:"ignore_certificate_validation,omitempty"`
 		InitialNavigationTimeout       *int64                               `json:"initialNavigationTimeout,omitempty"`
 		MinFailureDuration             *int64                               `json:"min_failure_duration,omitempty"`
 		MinLocationFailed              *int64                               `json:"min_location_failed,omitempty"`
@@ -993,7 +1027,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"accept_self_signed", "allow_insecure", "blockedRequestPatterns", "captureNetworkPayloads", "checkCertificateRevocation", "ci", "device_ids", "disableAiaIntermediateFetching", "disableCors", "disableCsp", "enableProfiling", "enableSecurityTesting", "follow_redirects", "httpVersion", "ignoreServerCertificateError", "initialNavigationTimeout", "min_failure_duration", "min_location_failed", "monitor_name", "monitor_options", "monitor_priority", "noScreenshot", "restricted_roles", "retry", "rumSettings", "scheduling", "tick_every"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"accept_self_signed", "allow_insecure", "blockedRequestPatterns", "captureNetworkPayloads", "checkCertificateRevocation", "ci", "device_ids", "disableAiaIntermediateFetching", "disableCors", "disableCsp", "enableProfiling", "enableSecurityTesting", "follow_redirects", "httpVersion", "ignoreServerCertificateError", "ignore_certificate_validation", "initialNavigationTimeout", "min_failure_duration", "min_location_failed", "monitor_name", "monitor_options", "monitor_priority", "noScreenshot", "restricted_roles", "retry", "rumSettings", "scheduling", "tick_every"})
 	} else {
 		return err
 	}
@@ -1021,6 +1055,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		o.HttpVersion = all.HttpVersion
 	}
 	o.IgnoreServerCertificateError = all.IgnoreServerCertificateError
+	o.IgnoreCertificateValidation = all.IgnoreCertificateValidation
 	o.InitialNavigationTimeout = all.InitialNavigationTimeout
 	o.MinFailureDuration = all.MinFailureDuration
 	o.MinLocationFailed = all.MinLocationFailed
