@@ -16,8 +16,6 @@ type IncidentTypeConfiguration struct {
 	AllowWorkflows *bool `json:"allow_workflows,omitempty"`
 	// An optional message shown to users when they declare an incident of this type.
 	CreateMessage *string `json:"create_message,omitempty"`
-	// Whether the out-of-the-box postmortem template is disabled for incidents of this type.
-	DisableOutOfTheBoxPostmortemTemplate *bool `json:"disable_out_of_the_box_postmortem_template,omitempty"`
 	// Whether responders can edit incident timestamps for incidents of this type.
 	EditableTimestamps *bool `json:"editable_timestamps,omitempty"`
 	// Whether responders can create private incidents of this type. This is an opt-in setting, distinct from `private_incidents_by_default`, which controls whether incidents are created private automatically.
@@ -43,8 +41,6 @@ func NewIncidentTypeConfiguration() *IncidentTypeConfiguration {
 	this.AllowIncidentDeletion = &allowIncidentDeletion
 	var allowWorkflows bool = true
 	this.AllowWorkflows = &allowWorkflows
-	var disableOutOfTheBoxPostmortemTemplate bool = false
-	this.DisableOutOfTheBoxPostmortemTemplate = &disableOutOfTheBoxPostmortemTemplate
 	var editableTimestamps bool = false
 	this.EditableTimestamps = &editableTimestamps
 	var privateIncidents bool = false
@@ -67,8 +63,6 @@ func NewIncidentTypeConfigurationWithDefaults() *IncidentTypeConfiguration {
 	this.AllowIncidentDeletion = &allowIncidentDeletion
 	var allowWorkflows bool = true
 	this.AllowWorkflows = &allowWorkflows
-	var disableOutOfTheBoxPostmortemTemplate bool = false
-	this.DisableOutOfTheBoxPostmortemTemplate = &disableOutOfTheBoxPostmortemTemplate
 	var editableTimestamps bool = false
 	this.EditableTimestamps = &editableTimestamps
 	var privateIncidents bool = false
@@ -164,34 +158,6 @@ func (o *IncidentTypeConfiguration) HasCreateMessage() bool {
 // SetCreateMessage gets a reference to the given string and assigns it to the CreateMessage field.
 func (o *IncidentTypeConfiguration) SetCreateMessage(v string) {
 	o.CreateMessage = &v
-}
-
-// GetDisableOutOfTheBoxPostmortemTemplate returns the DisableOutOfTheBoxPostmortemTemplate field value if set, zero value otherwise.
-func (o *IncidentTypeConfiguration) GetDisableOutOfTheBoxPostmortemTemplate() bool {
-	if o == nil || o.DisableOutOfTheBoxPostmortemTemplate == nil {
-		var ret bool
-		return ret
-	}
-	return *o.DisableOutOfTheBoxPostmortemTemplate
-}
-
-// GetDisableOutOfTheBoxPostmortemTemplateOk returns a tuple with the DisableOutOfTheBoxPostmortemTemplate field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *IncidentTypeConfiguration) GetDisableOutOfTheBoxPostmortemTemplateOk() (*bool, bool) {
-	if o == nil || o.DisableOutOfTheBoxPostmortemTemplate == nil {
-		return nil, false
-	}
-	return o.DisableOutOfTheBoxPostmortemTemplate, true
-}
-
-// HasDisableOutOfTheBoxPostmortemTemplate returns a boolean if a field has been set.
-func (o *IncidentTypeConfiguration) HasDisableOutOfTheBoxPostmortemTemplate() bool {
-	return o != nil && o.DisableOutOfTheBoxPostmortemTemplate != nil
-}
-
-// SetDisableOutOfTheBoxPostmortemTemplate gets a reference to the given bool and assigns it to the DisableOutOfTheBoxPostmortemTemplate field.
-func (o *IncidentTypeConfiguration) SetDisableOutOfTheBoxPostmortemTemplate(v bool) {
-	o.DisableOutOfTheBoxPostmortemTemplate = &v
 }
 
 // GetEditableTimestamps returns the EditableTimestamps field value if set, zero value otherwise.
@@ -349,9 +315,6 @@ func (o IncidentTypeConfiguration) MarshalJSON() ([]byte, error) {
 	if o.CreateMessage != nil {
 		toSerialize["create_message"] = o.CreateMessage
 	}
-	if o.DisableOutOfTheBoxPostmortemTemplate != nil {
-		toSerialize["disable_out_of_the_box_postmortem_template"] = o.DisableOutOfTheBoxPostmortemTemplate
-	}
 	if o.EditableTimestamps != nil {
 		toSerialize["editable_timestamps"] = o.EditableTimestamps
 	}
@@ -377,22 +340,21 @@ func (o IncidentTypeConfiguration) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *IncidentTypeConfiguration) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AllowIncidentDeletion                *bool                   `json:"allow_incident_deletion,omitempty"`
-		AllowWorkflows                       *bool                   `json:"allow_workflows,omitempty"`
-		CreateMessage                        *string                 `json:"create_message,omitempty"`
-		DisableOutOfTheBoxPostmortemTemplate *bool                   `json:"disable_out_of_the_box_postmortem_template,omitempty"`
-		EditableTimestamps                   *bool                   `json:"editable_timestamps,omitempty"`
-		PrivateIncidents                     *bool                   `json:"private_incidents,omitempty"`
-		PrivateIncidentsByDefault            *bool                   `json:"private_incidents_by_default,omitempty"`
-		SlugSource                           *IncidentTypeSlugSource `json:"slug_source,omitempty"`
-		TestIncidents                        *bool                   `json:"test_incidents,omitempty"`
+		AllowIncidentDeletion     *bool                   `json:"allow_incident_deletion,omitempty"`
+		AllowWorkflows            *bool                   `json:"allow_workflows,omitempty"`
+		CreateMessage             *string                 `json:"create_message,omitempty"`
+		EditableTimestamps        *bool                   `json:"editable_timestamps,omitempty"`
+		PrivateIncidents          *bool                   `json:"private_incidents,omitempty"`
+		PrivateIncidentsByDefault *bool                   `json:"private_incidents_by_default,omitempty"`
+		SlugSource                *IncidentTypeSlugSource `json:"slug_source,omitempty"`
+		TestIncidents             *bool                   `json:"test_incidents,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allow_incident_deletion", "allow_workflows", "create_message", "disable_out_of_the_box_postmortem_template", "editable_timestamps", "private_incidents", "private_incidents_by_default", "slug_source", "test_incidents"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"allow_incident_deletion", "allow_workflows", "create_message", "editable_timestamps", "private_incidents", "private_incidents_by_default", "slug_source", "test_incidents"})
 	} else {
 		return err
 	}
@@ -401,7 +363,6 @@ func (o *IncidentTypeConfiguration) UnmarshalJSON(bytes []byte) (err error) {
 	o.AllowIncidentDeletion = all.AllowIncidentDeletion
 	o.AllowWorkflows = all.AllowWorkflows
 	o.CreateMessage = all.CreateMessage
-	o.DisableOutOfTheBoxPostmortemTemplate = all.DisableOutOfTheBoxPostmortemTemplate
 	o.EditableTimestamps = all.EditableTimestamps
 	o.PrivateIncidents = all.PrivateIncidents
 	o.PrivateIncidentsByDefault = all.PrivateIncidentsByDefault
