@@ -18,6 +18,8 @@ type SecurityMonitoringCriticalAssetAttributes struct {
 	Creator *SecurityMonitoringUser `json:"creator,omitempty"`
 	// A description of the critical asset.
 	Description *string `json:"description,omitempty"`
+	// Whether the critical asset is editable.
+	Editable *bool `json:"editable,omitempty"`
 	// Whether the critical asset is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
 	// The query for the critical asset. It uses the same syntax as the queries to search signals in the Signals Explorer.
@@ -168,6 +170,34 @@ func (o *SecurityMonitoringCriticalAssetAttributes) HasDescription() bool {
 // SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *SecurityMonitoringCriticalAssetAttributes) SetDescription(v string) {
 	o.Description = &v
+}
+
+// GetEditable returns the Editable field value if set, zero value otherwise.
+func (o *SecurityMonitoringCriticalAssetAttributes) GetEditable() bool {
+	if o == nil || o.Editable == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Editable
+}
+
+// GetEditableOk returns a tuple with the Editable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringCriticalAssetAttributes) GetEditableOk() (*bool, bool) {
+	if o == nil || o.Editable == nil {
+		return nil, false
+	}
+	return o.Editable, true
+}
+
+// HasEditable returns a boolean if a field has been set.
+func (o *SecurityMonitoringCriticalAssetAttributes) HasEditable() bool {
+	return o != nil && o.Editable != nil
+}
+
+// SetEditable gets a reference to the given bool and assigns it to the Editable field.
+func (o *SecurityMonitoringCriticalAssetAttributes) SetEditable(v bool) {
+	o.Editable = &v
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
@@ -440,6 +470,9 @@ func (o SecurityMonitoringCriticalAssetAttributes) MarshalJSON() ([]byte, error)
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
+	if o.Editable != nil {
+		toSerialize["editable"] = o.Editable
+	}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
@@ -481,6 +514,7 @@ func (o *SecurityMonitoringCriticalAssetAttributes) UnmarshalJSON(bytes []byte) 
 		CreationDate     *int64                                   `json:"creation_date,omitempty"`
 		Creator          *SecurityMonitoringUser                  `json:"creator,omitempty"`
 		Description      *string                                  `json:"description,omitempty"`
+		Editable         *bool                                    `json:"editable,omitempty"`
 		Enabled          *bool                                    `json:"enabled,omitempty"`
 		Query            *string                                  `json:"query,omitempty"`
 		RuleQuery        *string                                  `json:"rule_query,omitempty"`
@@ -496,7 +530,7 @@ func (o *SecurityMonitoringCriticalAssetAttributes) UnmarshalJSON(bytes []byte) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"creation_author_id", "creation_date", "creator", "description", "enabled", "query", "rule_query", "severity", "tags", "update_author_id", "update_date", "updater", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"creation_author_id", "creation_date", "creator", "description", "editable", "enabled", "query", "rule_query", "severity", "tags", "update_author_id", "update_date", "updater", "version"})
 	} else {
 		return err
 	}
@@ -509,6 +543,7 @@ func (o *SecurityMonitoringCriticalAssetAttributes) UnmarshalJSON(bytes []byte) 
 	}
 	o.Creator = all.Creator
 	o.Description = all.Description
+	o.Editable = all.Editable
 	o.Enabled = all.Enabled
 	o.Query = all.Query
 	o.RuleQuery = all.RuleQuery
