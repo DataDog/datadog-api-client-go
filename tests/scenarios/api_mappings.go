@@ -121,6 +121,7 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "ConfluentCloudApi": reflect.ValueOf(datadogV2.NewConfluentCloudApi),
 	    "FastlyIntegrationApi": reflect.ValueOf(datadogV2.NewFastlyIntegrationApi),
 	    "OktaIntegrationApi": reflect.ValueOf(datadogV2.NewOktaIntegrationApi),
+	    "IntegrationAccountsApi": reflect.ValueOf(datadogV2.NewIntegrationAccountsApi),
 	    "IPAllowlistApi": reflect.ValueOf(datadogV2.NewIPAllowlistApi),
 	    "LogsApi": reflect.ValueOf(datadogV2.NewLogsApi),
 	    "LogsArchivesApi": reflect.ValueOf(datadogV2.NewLogsArchivesApi),
