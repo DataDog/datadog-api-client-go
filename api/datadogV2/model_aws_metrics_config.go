@@ -18,6 +18,9 @@ type AWSMetricsConfig struct {
 	CollectCustomMetrics *bool `json:"collect_custom_metrics,omitempty"`
 	// Enable AWS metrics collection. Defaults to `true`.
 	Enabled *bool `json:"enabled,omitempty"`
+	// AWS CloudWatch metric name filters. Each filter applies to a single namespace.
+	// Exactly one of `include_only` or `exclude_only` must be set on each filter.
+	MetricNameFilters []AWSMetricNameFilters `json:"metric_name_filters,omitempty"`
 	// AWS Metrics namespace filters. Defaults to `exclude_only`.
 	NamespaceFilters *AWSNamespaceFilters `json:"namespace_filters,omitempty"`
 	// AWS Metrics collection tag filters list. Defaults to `[]`.
@@ -156,6 +159,34 @@ func (o *AWSMetricsConfig) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+// GetMetricNameFilters returns the MetricNameFilters field value if set, zero value otherwise.
+func (o *AWSMetricsConfig) GetMetricNameFilters() []AWSMetricNameFilters {
+	if o == nil || o.MetricNameFilters == nil {
+		var ret []AWSMetricNameFilters
+		return ret
+	}
+	return o.MetricNameFilters
+}
+
+// GetMetricNameFiltersOk returns a tuple with the MetricNameFilters field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AWSMetricsConfig) GetMetricNameFiltersOk() (*[]AWSMetricNameFilters, bool) {
+	if o == nil || o.MetricNameFilters == nil {
+		return nil, false
+	}
+	return &o.MetricNameFilters, true
+}
+
+// HasMetricNameFilters returns a boolean if a field has been set.
+func (o *AWSMetricsConfig) HasMetricNameFilters() bool {
+	return o != nil && o.MetricNameFilters != nil
+}
+
+// SetMetricNameFilters gets a reference to the given []AWSMetricNameFilters and assigns it to the MetricNameFilters field.
+func (o *AWSMetricsConfig) SetMetricNameFilters(v []AWSMetricNameFilters) {
+	o.MetricNameFilters = v
+}
+
 // GetNamespaceFilters returns the NamespaceFilters field value if set, zero value otherwise.
 func (o *AWSMetricsConfig) GetNamespaceFilters() AWSNamespaceFilters {
 	if o == nil || o.NamespaceFilters == nil {
@@ -230,6 +261,9 @@ func (o AWSMetricsConfig) MarshalJSON() ([]byte, error) {
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
+	if o.MetricNameFilters != nil {
+		toSerialize["metric_name_filters"] = o.MetricNameFilters
+	}
 	if o.NamespaceFilters != nil {
 		toSerialize["namespace_filters"] = o.NamespaceFilters
 	}
@@ -250,6 +284,7 @@ func (o *AWSMetricsConfig) UnmarshalJSON(bytes []byte) (err error) {
 		CollectCloudwatchAlarms *bool                   `json:"collect_cloudwatch_alarms,omitempty"`
 		CollectCustomMetrics    *bool                   `json:"collect_custom_metrics,omitempty"`
 		Enabled                 *bool                   `json:"enabled,omitempty"`
+		MetricNameFilters       []AWSMetricNameFilters  `json:"metric_name_filters,omitempty"`
 		NamespaceFilters        *AWSNamespaceFilters    `json:"namespace_filters,omitempty"`
 		TagFilters              []AWSNamespaceTagFilter `json:"tag_filters,omitempty"`
 	}{}
@@ -258,7 +293,7 @@ func (o *AWSMetricsConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"automute_enabled", "collect_cloudwatch_alarms", "collect_custom_metrics", "enabled", "namespace_filters", "tag_filters"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"automute_enabled", "collect_cloudwatch_alarms", "collect_custom_metrics", "enabled", "metric_name_filters", "namespace_filters", "tag_filters"})
 	} else {
 		return err
 	}
@@ -266,6 +301,7 @@ func (o *AWSMetricsConfig) UnmarshalJSON(bytes []byte) (err error) {
 	o.CollectCloudwatchAlarms = all.CollectCloudwatchAlarms
 	o.CollectCustomMetrics = all.CollectCustomMetrics
 	o.Enabled = all.Enabled
+	o.MetricNameFilters = all.MetricNameFilters
 	o.NamespaceFilters = all.NamespaceFilters
 	o.TagFilters = all.TagFilters
 
