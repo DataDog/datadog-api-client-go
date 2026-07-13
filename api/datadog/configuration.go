@@ -1028,6 +1028,8 @@ func NewConfiguration() *Configuration {
 			"v2.CreateAWSAccountCCMConfig":                            false,
 			"v2.DeleteAWSAccountCCMConfig":                            false,
 			"v2.GetAWSAccountCCMConfig":                               false,
+			"v2.GetAWSMetricNameFilterPreview":                        false,
+			"v2.PreviewAWSMetricNameFilter":                           false,
 			"v2.UpdateAWSAccountCCMConfig":                            false,
 			"v2.ValidateAWSCCMConfig":                                 false,
 			"v2.CreateJiraIssueTemplate":                              false,
