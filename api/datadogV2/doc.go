@@ -285,6 +285,7 @@
 //   - [CloudCostManagementApi.GetCostTagMetadataCurrency]
 //   - [CloudCostManagementApi.GetCustomAllocationRule]
 //   - [CloudCostManagementApi.GetCustomCostsFile]
+//   - [CloudCostManagementApi.GetCustomForecast]
 //   - [CloudCostManagementApi.GetTagPipelinesRuleset]
 //   - [CloudCostManagementApi.ListBudgets]
 //   - [CloudCostManagementApi.ListCostAWSCURConfigs]

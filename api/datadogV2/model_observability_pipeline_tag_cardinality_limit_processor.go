@@ -26,6 +26,8 @@ type ObservabilityPipelineTagCardinalityLimitProcessor struct {
 	LimitExceededAction ObservabilityPipelineTagCardinalityLimitProcessorAction `json:"limit_exceeded_action"`
 	// A list of per-metric cardinality overrides that take precedence over the default `value_limit`.
 	PerMetricLimits []ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit `json:"per_metric_limits,omitempty"`
+	// Controls whether the processor uses exact or probabilistic tag tracking.
+	TrackingMode ObservabilityPipelineTagCardinalityLimitProcessorTrackingMode `json:"tracking_mode"`
 	// The processor type. The value must be `tag_cardinality_limit`.
 	Type ObservabilityPipelineTagCardinalityLimitProcessorType `json:"type"`
 	// The default maximum number of distinct tag value combinations allowed per metric.
@@ -39,12 +41,13 @@ type ObservabilityPipelineTagCardinalityLimitProcessor struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineTagCardinalityLimitProcessor(enabled bool, id string, include string, limitExceededAction ObservabilityPipelineTagCardinalityLimitProcessorAction, typeVar ObservabilityPipelineTagCardinalityLimitProcessorType, valueLimit int64) *ObservabilityPipelineTagCardinalityLimitProcessor {
+func NewObservabilityPipelineTagCardinalityLimitProcessor(enabled bool, id string, include string, limitExceededAction ObservabilityPipelineTagCardinalityLimitProcessorAction, trackingMode ObservabilityPipelineTagCardinalityLimitProcessorTrackingMode, typeVar ObservabilityPipelineTagCardinalityLimitProcessorType, valueLimit int64) *ObservabilityPipelineTagCardinalityLimitProcessor {
 	this := ObservabilityPipelineTagCardinalityLimitProcessor{}
 	this.Enabled = enabled
 	this.Id = id
 	this.Include = include
 	this.LimitExceededAction = limitExceededAction
+	this.TrackingMode = trackingMode
 	this.Type = typeVar
 	this.ValueLimit = valueLimit
 	return &this
@@ -208,6 +211,29 @@ func (o *ObservabilityPipelineTagCardinalityLimitProcessor) SetPerMetricLimits(v
 	o.PerMetricLimits = v
 }
 
+// GetTrackingMode returns the TrackingMode field value.
+func (o *ObservabilityPipelineTagCardinalityLimitProcessor) GetTrackingMode() ObservabilityPipelineTagCardinalityLimitProcessorTrackingMode {
+	if o == nil {
+		var ret ObservabilityPipelineTagCardinalityLimitProcessorTrackingMode
+		return ret
+	}
+	return o.TrackingMode
+}
+
+// GetTrackingModeOk returns a tuple with the TrackingMode field value
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineTagCardinalityLimitProcessor) GetTrackingModeOk() (*ObservabilityPipelineTagCardinalityLimitProcessorTrackingMode, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.TrackingMode, true
+}
+
+// SetTrackingMode sets field value.
+func (o *ObservabilityPipelineTagCardinalityLimitProcessor) SetTrackingMode(v ObservabilityPipelineTagCardinalityLimitProcessorTrackingMode) {
+	o.TrackingMode = v
+}
+
 // GetType returns the Type field value.
 func (o *ObservabilityPipelineTagCardinalityLimitProcessor) GetType() ObservabilityPipelineTagCardinalityLimitProcessorType {
 	if o == nil {
@@ -270,6 +296,7 @@ func (o ObservabilityPipelineTagCardinalityLimitProcessor) MarshalJSON() ([]byte
 	if o.PerMetricLimits != nil {
 		toSerialize["per_metric_limits"] = o.PerMetricLimits
 	}
+	toSerialize["tracking_mode"] = o.TrackingMode
 	toSerialize["type"] = o.Type
 	toSerialize["value_limit"] = o.ValueLimit
 
@@ -288,6 +315,7 @@ func (o *ObservabilityPipelineTagCardinalityLimitProcessor) UnmarshalJSON(bytes 
 		Include             *string                                                           `json:"include"`
 		LimitExceededAction *ObservabilityPipelineTagCardinalityLimitProcessorAction          `json:"limit_exceeded_action"`
 		PerMetricLimits     []ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit `json:"per_metric_limits,omitempty"`
+		TrackingMode        *ObservabilityPipelineTagCardinalityLimitProcessorTrackingMode    `json:"tracking_mode"`
 		Type                *ObservabilityPipelineTagCardinalityLimitProcessorType            `json:"type"`
 		ValueLimit          *int64                                                            `json:"value_limit"`
 	}{}
@@ -306,6 +334,9 @@ func (o *ObservabilityPipelineTagCardinalityLimitProcessor) UnmarshalJSON(bytes 
 	if all.LimitExceededAction == nil {
 		return fmt.Errorf("required field limit_exceeded_action missing")
 	}
+	if all.TrackingMode == nil {
+		return fmt.Errorf("required field tracking_mode missing")
+	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
@@ -314,7 +345,7 @@ func (o *ObservabilityPipelineTagCardinalityLimitProcessor) UnmarshalJSON(bytes 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"display_name", "enabled", "id", "include", "limit_exceeded_action", "per_metric_limits", "type", "value_limit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"display_name", "enabled", "id", "include", "limit_exceeded_action", "per_metric_limits", "tracking_mode", "type", "value_limit"})
 	} else {
 		return err
 	}
@@ -330,6 +361,10 @@ func (o *ObservabilityPipelineTagCardinalityLimitProcessor) UnmarshalJSON(bytes 
 		o.LimitExceededAction = *all.LimitExceededAction
 	}
 	o.PerMetricLimits = all.PerMetricLimits
+	if all.TrackingMode.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.TrackingMode = *all.TrackingMode
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
