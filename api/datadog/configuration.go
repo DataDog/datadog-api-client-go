@@ -903,6 +903,7 @@ func NewConfiguration() *Configuration {
 			"v2.GetCommitmentsUtilizationTimeseries":                  false,
 			"v2.GetCostAnomaly":                                       false,
 			"v2.GetCostTagMetadataCurrency":                           false,
+			"v2.GetCustomForecast":                                    false,
 			"v2.ListCostAnomalies":                                    false,
 			"v2.ListCostTagKeySources":                                false,
 			"v2.ListCostTagMetadata":                                  false,

@@ -16,11 +16,11 @@ type ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit struct {
 	LimitExceededAction *ObservabilityPipelineTagCardinalityLimitProcessorAction `json:"limit_exceeded_action,omitempty"`
 	// The name of the metric this override applies to.
 	MetricName string `json:"metric_name"`
-	// How the per-metric override is applied. `tracked` enforces a custom limit; `excluded` skips the metric entirely.
-	Mode ObservabilityPipelineTagCardinalityLimitProcessorPerMetricMode `json:"mode"`
-	// A list of per-tag cardinality overrides that apply within this metric. Must be omitted when `mode` is `excluded`.
+	// How the override is applied. `limit_override` enforces a custom limit; `excluded` omits the metric or tag from cardinality tracking.
+	OverrideType ObservabilityPipelineTagCardinalityLimitProcessorOverrideType `json:"override_type"`
+	// A list of per-tag cardinality overrides that apply within this metric. Must be omitted when `override_type` is `excluded`.
 	PerTagLimits []ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit `json:"per_tag_limits,omitempty"`
-	// The maximum number of distinct tag value combinations allowed for this metric. Required when `mode` is `tracked`. Must be omitted when `mode` is `excluded`.
+	// The maximum number of distinct tag value combinations allowed for this metric. Required when `override_type` is `limit_override`. Must be omitted when `override_type` is `excluded`.
 	ValueLimit *int64 `json:"value_limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -31,10 +31,10 @@ type ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit(metricName string, mode ObservabilityPipelineTagCardinalityLimitProcessorPerMetricMode) *ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit {
+func NewObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit(metricName string, overrideType ObservabilityPipelineTagCardinalityLimitProcessorOverrideType) *ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit {
 	this := ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit{}
 	this.MetricName = metricName
-	this.Mode = mode
+	this.OverrideType = overrideType
 	return &this
 }
 
@@ -97,27 +97,27 @@ func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit) SetMet
 	o.MetricName = v
 }
 
-// GetMode returns the Mode field value.
-func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit) GetMode() ObservabilityPipelineTagCardinalityLimitProcessorPerMetricMode {
+// GetOverrideType returns the OverrideType field value.
+func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit) GetOverrideType() ObservabilityPipelineTagCardinalityLimitProcessorOverrideType {
 	if o == nil {
-		var ret ObservabilityPipelineTagCardinalityLimitProcessorPerMetricMode
+		var ret ObservabilityPipelineTagCardinalityLimitProcessorOverrideType
 		return ret
 	}
-	return o.Mode
+	return o.OverrideType
 }
 
-// GetModeOk returns a tuple with the Mode field value
+// GetOverrideTypeOk returns a tuple with the OverrideType field value
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit) GetModeOk() (*ObservabilityPipelineTagCardinalityLimitProcessorPerMetricMode, bool) {
+func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit) GetOverrideTypeOk() (*ObservabilityPipelineTagCardinalityLimitProcessorOverrideType, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Mode, true
+	return &o.OverrideType, true
 }
 
-// SetMode sets field value.
-func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit) SetMode(v ObservabilityPipelineTagCardinalityLimitProcessorPerMetricMode) {
-	o.Mode = v
+// SetOverrideType sets field value.
+func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit) SetOverrideType(v ObservabilityPipelineTagCardinalityLimitProcessorOverrideType) {
+	o.OverrideType = v
 }
 
 // GetPerTagLimits returns the PerTagLimits field value if set, zero value otherwise.
@@ -186,7 +186,7 @@ func (o ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit) Marshal
 		toSerialize["limit_exceeded_action"] = o.LimitExceededAction
 	}
 	toSerialize["metric_name"] = o.MetricName
-	toSerialize["mode"] = o.Mode
+	toSerialize["override_type"] = o.OverrideType
 	if o.PerTagLimits != nil {
 		toSerialize["per_tag_limits"] = o.PerTagLimits
 	}
@@ -203,11 +203,11 @@ func (o ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit) Marshal
 // UnmarshalJSON deserializes the given payload.
 func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		LimitExceededAction *ObservabilityPipelineTagCardinalityLimitProcessorAction        `json:"limit_exceeded_action,omitempty"`
-		MetricName          *string                                                         `json:"metric_name"`
-		Mode                *ObservabilityPipelineTagCardinalityLimitProcessorPerMetricMode `json:"mode"`
-		PerTagLimits        []ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit  `json:"per_tag_limits,omitempty"`
-		ValueLimit          *int64                                                          `json:"value_limit,omitempty"`
+		LimitExceededAction *ObservabilityPipelineTagCardinalityLimitProcessorAction       `json:"limit_exceeded_action,omitempty"`
+		MetricName          *string                                                        `json:"metric_name"`
+		OverrideType        *ObservabilityPipelineTagCardinalityLimitProcessorOverrideType `json:"override_type"`
+		PerTagLimits        []ObservabilityPipelineTagCardinalityLimitProcessorPerTagLimit `json:"per_tag_limits,omitempty"`
+		ValueLimit          *int64                                                         `json:"value_limit,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -215,12 +215,12 @@ func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit) Unmars
 	if all.MetricName == nil {
 		return fmt.Errorf("required field metric_name missing")
 	}
-	if all.Mode == nil {
-		return fmt.Errorf("required field mode missing")
+	if all.OverrideType == nil {
+		return fmt.Errorf("required field override_type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"limit_exceeded_action", "metric_name", "mode", "per_tag_limits", "value_limit"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"limit_exceeded_action", "metric_name", "override_type", "per_tag_limits", "value_limit"})
 	} else {
 		return err
 	}
@@ -232,10 +232,10 @@ func (o *ObservabilityPipelineTagCardinalityLimitProcessorPerMetricLimit) Unmars
 		o.LimitExceededAction = all.LimitExceededAction
 	}
 	o.MetricName = *all.MetricName
-	if !all.Mode.IsValid() {
+	if !all.OverrideType.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Mode = *all.Mode
+		o.OverrideType = *all.OverrideType
 	}
 	o.PerTagLimits = all.PerTagLimits
 	o.ValueLimit = all.ValueLimit
