@@ -1113,6 +1113,7 @@ func NewConfiguration() *Configuration {
 			"v2.ListOrgGroupPolicies":                                 false,
 			"v2.ListOrgGroupPolicyConfigs":                            false,
 			"v2.ListOrgGroupPolicyOverrides":                          false,
+			"v2.ListOrgGroupPolicySuggestions":                        false,
 			"v2.ListOrgGroups":                                        false,
 			"v2.UpdateOrgGroup":                                       false,
 			"v2.UpdateOrgGroupMembership":                             false,
