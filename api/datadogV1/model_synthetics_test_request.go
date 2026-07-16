@@ -50,6 +50,8 @@ type SyntheticsTestRequest struct {
 	Host *string `json:"host,omitempty"`
 	// HTTP version to use for a Synthetic test.
 	HttpVersion *SyntheticsTestOptionsHTTPVersion `json:"httpVersion,omitempty"`
+	// For SSL tests, whether the test should ignore certificate validation.
+	IgnoreCertificateValidation *bool `json:"ignore_certificate_validation,omitempty"`
 	// Whether the message is base64 encoded.
 	IsMessageBase64Encoded *bool `json:"isMessageBase64Encoded,omitempty"`
 	// The MCP protocol version used by the step. See https://modelcontextprotocol.io/specification.
@@ -642,6 +644,34 @@ func (o *SyntheticsTestRequest) SetHttpVersion(v SyntheticsTestOptionsHTTPVersio
 	o.HttpVersion = &v
 }
 
+// GetIgnoreCertificateValidation returns the IgnoreCertificateValidation field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetIgnoreCertificateValidation() bool {
+	if o == nil || o.IgnoreCertificateValidation == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IgnoreCertificateValidation
+}
+
+// GetIgnoreCertificateValidationOk returns a tuple with the IgnoreCertificateValidation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetIgnoreCertificateValidationOk() (*bool, bool) {
+	if o == nil || o.IgnoreCertificateValidation == nil {
+		return nil, false
+	}
+	return o.IgnoreCertificateValidation, true
+}
+
+// HasIgnoreCertificateValidation returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasIgnoreCertificateValidation() bool {
+	return o != nil && o.IgnoreCertificateValidation != nil
+}
+
+// SetIgnoreCertificateValidation gets a reference to the given bool and assigns it to the IgnoreCertificateValidation field.
+func (o *SyntheticsTestRequest) SetIgnoreCertificateValidation(v bool) {
+	o.IgnoreCertificateValidation = &v
+}
+
 // GetIsMessageBase64Encoded returns the IsMessageBase64Encoded field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetIsMessageBase64Encoded() bool {
 	if o == nil || o.IsMessageBase64Encoded == nil {
@@ -1209,6 +1239,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.HttpVersion != nil {
 		toSerialize["httpVersion"] = o.HttpVersion
 	}
+	if o.IgnoreCertificateValidation != nil {
+		toSerialize["ignore_certificate_validation"] = o.IgnoreCertificateValidation
+	}
 	if o.IsMessageBase64Encoded != nil {
 		toSerialize["isMessageBase64Encoded"] = o.IsMessageBase64Encoded
 	}
@@ -1292,6 +1325,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Headers                        map[string]string                   `json:"headers,omitempty"`
 		Host                           *string                             `json:"host,omitempty"`
 		HttpVersion                    *SyntheticsTestOptionsHTTPVersion   `json:"httpVersion,omitempty"`
+		IgnoreCertificateValidation    *bool                               `json:"ignore_certificate_validation,omitempty"`
 		IsMessageBase64Encoded         *bool                               `json:"isMessageBase64Encoded,omitempty"`
 		McpProtocolVersion             *SyntheticsMCPProtocolVersion       `json:"mcpProtocolVersion,omitempty"`
 		Message                        *string                             `json:"message,omitempty"`
@@ -1316,7 +1350,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allow_insecure", "basicAuth", "body", "bodyType", "callType", "certificate", "certificateDomains", "checkCertificateRevocation", "compressedJsonDescriptor", "compressedProtoFile", "disableAiaIntermediateFetching", "dnsServer", "dnsServerPort", "files", "follow_redirects", "form", "headers", "host", "httpVersion", "isMessageBase64Encoded", "mcpProtocolVersion", "message", "metadata", "method", "noSavingResponseBody", "numberOfPackets", "persistCookies", "port", "proxy", "query", "servername", "service", "shouldTrackHops", "timeout", "toolArgs", "toolName", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"allow_insecure", "basicAuth", "body", "bodyType", "callType", "certificate", "certificateDomains", "checkCertificateRevocation", "compressedJsonDescriptor", "compressedProtoFile", "disableAiaIntermediateFetching", "dnsServer", "dnsServerPort", "files", "follow_redirects", "form", "headers", "host", "httpVersion", "ignore_certificate_validation", "isMessageBase64Encoded", "mcpProtocolVersion", "message", "metadata", "method", "noSavingResponseBody", "numberOfPackets", "persistCookies", "port", "proxy", "query", "servername", "service", "shouldTrackHops", "timeout", "toolArgs", "toolName", "url"})
 	} else {
 		return err
 	}
@@ -1356,6 +1390,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.HttpVersion = all.HttpVersion
 	}
+	o.IgnoreCertificateValidation = all.IgnoreCertificateValidation
 	o.IsMessageBase64Encoded = all.IsMessageBase64Encoded
 	if all.McpProtocolVersion != nil && !all.McpProtocolVersion.IsValid() {
 		hasInvalidField = true

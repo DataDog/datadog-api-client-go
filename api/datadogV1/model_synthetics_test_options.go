@@ -42,7 +42,7 @@ type SyntheticsTestOptions struct {
 	HttpVersion *SyntheticsTestOptionsHTTPVersion `json:"httpVersion,omitempty"`
 	// Ignore server certificate error for browser tests.
 	IgnoreServerCertificateError *bool `json:"ignoreServerCertificateError,omitempty"`
-	// For SSL tests, whether or not the test should ignore certificate validation.
+	// For SSL tests, whether the test should ignore certificate validation.
 	IgnoreCertificateValidation *bool `json:"ignore_certificate_validation,omitempty"`
 	// Timeout before declaring the initial step as failed (in seconds) for browser tests.
 	InitialNavigationTimeout *int64 `json:"initialNavigationTimeout,omitempty"`
