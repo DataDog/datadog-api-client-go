@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// GetInvestigationResponse Response for a single Bits AI investigation.
+// GetInvestigationResponse Response for a single Bits AI SRE investigation.
 type GetInvestigationResponse struct {
 	// Data for the get investigation response.
 	Data GetInvestigationResponseData `json:"data"`

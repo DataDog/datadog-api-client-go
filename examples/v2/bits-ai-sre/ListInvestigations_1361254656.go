@@ -1,4 +1,4 @@
-// List Bits AI investigations returns "OK" response with pagination
+// List Bits AI SRE investigations returns "OK" response with pagination
 
 package main
 
@@ -17,12 +17,12 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.ListInvestigations", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewBitsAIApi(apiClient)
+	api := datadogV2.NewBitsAISREApi(apiClient)
 	resp, _ := api.ListInvestigationsWithPagination(ctx, *datadogV2.NewListInvestigationsOptionalParameters())
 
 	for paginationResult := range resp {
 		if paginationResult.Error != nil {
-			fmt.Fprintf(os.Stderr, "Error when calling `BitsAIApi.ListInvestigations`: %v\n", paginationResult.Error)
+			fmt.Fprintf(os.Stderr, "Error when calling `BitsAISREApi.ListInvestigations`: %v\n", paginationResult.Error)
 		}
 		responseContent, _ := json.MarshalIndent(paginationResult.Item, "", "  ")
 		fmt.Fprintf(os.Stdout, "%s\n", responseContent)

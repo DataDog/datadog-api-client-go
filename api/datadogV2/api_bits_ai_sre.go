@@ -14,12 +14,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// BitsAIApi service type
-type BitsAIApi datadog.Service
+// BitsAISREApi service type
+type BitsAISREApi datadog.Service
 
-// GetInvestigation Get a Bits AI investigation.
-// Get a specific Bits AI investigation by ID.
-func (a *BitsAIApi) GetInvestigation(ctx _context.Context, id string) (GetInvestigationResponse, *_nethttp.Response, error) {
+// GetInvestigation Get a Bits AI SRE investigation.
+// Get a specific Bits AI SRE investigation by ID.
+func (a *BitsAISREApi) GetInvestigation(ctx _context.Context, id string) (GetInvestigationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -35,7 +35,7 @@ func (a *BitsAIApi) GetInvestigation(ctx _context.Context, id string) (GetInvest
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.BitsAIApi.GetInvestigation")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.BitsAISREApi.GetInvestigation")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -144,9 +144,9 @@ func (r *ListInvestigationsOptionalParameters) WithFilterMonitorId(filterMonitor
 	return r
 }
 
-// ListInvestigations List Bits AI investigations.
-// List all Bits AI investigations for the organization.
-func (a *BitsAIApi) ListInvestigations(ctx _context.Context, o ...ListInvestigationsOptionalParameters) (ListInvestigationsResponse, *_nethttp.Response, error) {
+// ListInvestigations List Bits AI SRE investigations.
+// List all Bits AI SRE investigations for the organization.
+func (a *BitsAISREApi) ListInvestigations(ctx _context.Context, o ...ListInvestigationsOptionalParameters) (ListInvestigationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -170,7 +170,7 @@ func (a *BitsAIApi) ListInvestigations(ctx _context.Context, o ...ListInvestigat
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.BitsAIApi.ListInvestigations")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.BitsAISREApi.ListInvestigations")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -257,7 +257,7 @@ func (a *BitsAIApi) ListInvestigations(ctx _context.Context, o ...ListInvestigat
 }
 
 // ListInvestigationsWithPagination provides a paginated version of ListInvestigations returning a channel with all items.
-func (a *BitsAIApi) ListInvestigationsWithPagination(ctx _context.Context, o ...ListInvestigationsOptionalParameters) (<-chan datadog.PaginationResult[ListInvestigationsResponseData], func()) {
+func (a *BitsAISREApi) ListInvestigationsWithPagination(ctx _context.Context, o ...ListInvestigationsOptionalParameters) (<-chan datadog.PaginationResult[ListInvestigationsResponseData], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int64(25)
 	if len(o) == 0 {
@@ -306,9 +306,9 @@ func (a *BitsAIApi) ListInvestigationsWithPagination(ctx _context.Context, o ...
 	return items, cancel
 }
 
-// TriggerInvestigation Trigger a Bits AI investigation.
-// Trigger a new Bits AI investigation based on a monitor alert.
-func (a *BitsAIApi) TriggerInvestigation(ctx _context.Context, body TriggerInvestigationRequest) (TriggerInvestigationResponse, *_nethttp.Response, error) {
+// TriggerInvestigation Trigger a Bits AI SRE investigation.
+// Trigger a new Bits AI SRE investigation based on a monitor alert.
+func (a *BitsAISREApi) TriggerInvestigation(ctx _context.Context, body TriggerInvestigationRequest) (TriggerInvestigationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -324,7 +324,7 @@ func (a *BitsAIApi) TriggerInvestigation(ctx _context.Context, body TriggerInves
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.BitsAIApi.TriggerInvestigation")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.BitsAISREApi.TriggerInvestigation")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -404,9 +404,9 @@ func (a *BitsAIApi) TriggerInvestigation(ctx _context.Context, body TriggerInves
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// NewBitsAIApi Returns NewBitsAIApi.
-func NewBitsAIApi(client *datadog.APIClient) *BitsAIApi {
-	return &BitsAIApi{
+// NewBitsAISREApi Returns NewBitsAISREApi.
+func NewBitsAISREApi(client *datadog.APIClient) *BitsAISREApi {
+	return &BitsAISREApi{
 		Client: client,
 	}
 }
