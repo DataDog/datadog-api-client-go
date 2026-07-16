@@ -36,7 +36,7 @@ func main() {
 											DataSource:      datadogV1.FORMULAANDFUNCTIONAPMRESOURCESTATSDATASOURCE_APM_RESOURCE_STATS,
 											Env:             "ci",
 											PrimaryTagName:  datadog.PtrString("datacenter"),
-											OperationName:   datadog.PtrString("cassandra.query"),
+											OperationName:   "cassandra.query",
 											GroupBy: []string{
 												"resource_name",
 											},
