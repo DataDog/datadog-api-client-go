@@ -12,6 +12,8 @@ import (
 
 // TimeseriesWidgetDefinition The timeseries visualization allows you to display the evolution of one or more metrics, log events, or Indexed Spans over time.
 type TimeseriesWidgetDefinition struct {
+	// Anomaly detection configuration for a timeseries widget.
+	AnomalyDetection *TimeseriesWidgetAnomalyDetection `json:"anomaly_detection,omitempty"`
 	// List of custom links.
 	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// The description of the widget.
@@ -69,6 +71,34 @@ func NewTimeseriesWidgetDefinitionWithDefaults() *TimeseriesWidgetDefinition {
 	var typeVar TimeseriesWidgetDefinitionType = TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES
 	this.Type = typeVar
 	return &this
+}
+
+// GetAnomalyDetection returns the AnomalyDetection field value if set, zero value otherwise.
+func (o *TimeseriesWidgetDefinition) GetAnomalyDetection() TimeseriesWidgetAnomalyDetection {
+	if o == nil || o.AnomalyDetection == nil {
+		var ret TimeseriesWidgetAnomalyDetection
+		return ret
+	}
+	return *o.AnomalyDetection
+}
+
+// GetAnomalyDetectionOk returns a tuple with the AnomalyDetection field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TimeseriesWidgetDefinition) GetAnomalyDetectionOk() (*TimeseriesWidgetAnomalyDetection, bool) {
+	if o == nil || o.AnomalyDetection == nil {
+		return nil, false
+	}
+	return o.AnomalyDetection, true
+}
+
+// HasAnomalyDetection returns a boolean if a field has been set.
+func (o *TimeseriesWidgetDefinition) HasAnomalyDetection() bool {
+	return o != nil && o.AnomalyDetection != nil
+}
+
+// SetAnomalyDetection gets a reference to the given TimeseriesWidgetAnomalyDetection and assigns it to the AnomalyDetection field.
+func (o *TimeseriesWidgetDefinition) SetAnomalyDetection(v TimeseriesWidgetAnomalyDetection) {
+	o.AnomalyDetection = &v
 }
 
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
@@ -518,6 +548,9 @@ func (o TimeseriesWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.AnomalyDetection != nil {
+		toSerialize["anomaly_detection"] = o.AnomalyDetection
+	}
 	if o.CustomLinks != nil {
 		toSerialize["custom_links"] = o.CustomLinks
 	}
@@ -572,22 +605,23 @@ func (o TimeseriesWidgetDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CustomLinks   []WidgetCustomLink              `json:"custom_links,omitempty"`
-		Description   *string                         `json:"description,omitempty"`
-		Events        []WidgetEvent                   `json:"events,omitempty"`
-		LegendColumns []TimeseriesWidgetLegendColumn  `json:"legend_columns,omitempty"`
-		LegendLayout  *TimeseriesWidgetLegendLayout   `json:"legend_layout,omitempty"`
-		LegendSize    *string                         `json:"legend_size,omitempty"`
-		Markers       []WidgetMarker                  `json:"markers,omitempty"`
-		Requests      *[]TimeseriesWidgetRequest      `json:"requests"`
-		RightYaxis    *WidgetAxis                     `json:"right_yaxis,omitempty"`
-		ShowLegend    *bool                           `json:"show_legend,omitempty"`
-		Time          *WidgetTime                     `json:"time,omitempty"`
-		Title         *string                         `json:"title,omitempty"`
-		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"`
-		TitleSize     *string                         `json:"title_size,omitempty"`
-		Type          *TimeseriesWidgetDefinitionType `json:"type"`
-		Yaxis         *WidgetAxis                     `json:"yaxis,omitempty"`
+		AnomalyDetection *TimeseriesWidgetAnomalyDetection `json:"anomaly_detection,omitempty"`
+		CustomLinks      []WidgetCustomLink                `json:"custom_links,omitempty"`
+		Description      *string                           `json:"description,omitempty"`
+		Events           []WidgetEvent                     `json:"events,omitempty"`
+		LegendColumns    []TimeseriesWidgetLegendColumn    `json:"legend_columns,omitempty"`
+		LegendLayout     *TimeseriesWidgetLegendLayout     `json:"legend_layout,omitempty"`
+		LegendSize       *string                           `json:"legend_size,omitempty"`
+		Markers          []WidgetMarker                    `json:"markers,omitempty"`
+		Requests         *[]TimeseriesWidgetRequest        `json:"requests"`
+		RightYaxis       *WidgetAxis                       `json:"right_yaxis,omitempty"`
+		ShowLegend       *bool                             `json:"show_legend,omitempty"`
+		Time             *WidgetTime                       `json:"time,omitempty"`
+		Title            *string                           `json:"title,omitempty"`
+		TitleAlign       *WidgetTextAlign                  `json:"title_align,omitempty"`
+		TitleSize        *string                           `json:"title_size,omitempty"`
+		Type             *TimeseriesWidgetDefinitionType   `json:"type"`
+		Yaxis            *WidgetAxis                       `json:"yaxis,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -600,12 +634,16 @@ func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"custom_links", "description", "events", "legend_columns", "legend_layout", "legend_size", "markers", "requests", "right_yaxis", "show_legend", "time", "title", "title_align", "title_size", "type", "yaxis"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"anomaly_detection", "custom_links", "description", "events", "legend_columns", "legend_layout", "legend_size", "markers", "requests", "right_yaxis", "show_legend", "time", "title", "title_align", "title_size", "type", "yaxis"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	if all.AnomalyDetection != nil && all.AnomalyDetection.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.AnomalyDetection = all.AnomalyDetection
 	o.CustomLinks = all.CustomLinks
 	o.Description = all.Description
 	o.Events = all.Events
