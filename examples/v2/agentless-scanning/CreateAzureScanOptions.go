@@ -16,6 +16,7 @@ func main() {
 	body := datadogV2.AzureScanOptions{
 		Data: &datadogV2.AzureScanOptionsData{
 			Attributes: &datadogV2.AzureScanOptionsDataAttributes{
+				Function:         datadog.PtrBool(true),
 				VulnContainersOs: datadog.PtrBool(true),
 				VulnHostOs:       datadog.PtrBool(true),
 			},

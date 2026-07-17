@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"vuln_containers_os":true,"vuln_host_os":true},"id":"12345678-90ab-cdef-1234-567890abcdef","type":"azure_scan_options"}}
+      {"data":{"attributes":{"function":true,"vuln_containers_os":true,"vuln_host_os":true},"id":"12345678-90ab-cdef-1234-567890abcdef","type":"azure_scan_options"}}
     form: {}
     headers:
       Accept:
@@ -12,7 +12,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/agentless_scanning/accounts/azure
   response:
-    body: '{"data":{"id":"12345678-90ab-cdef-1234-567890abcdef","type":"azure_scan_options","attributes":{"vuln_containers_os":true,"vuln_host_os":true}}}'
+    body: '{"data":{"id":"12345678-90ab-cdef-1234-567890abcdef","type":"azure_scan_options","attributes":{"compliance_host":false,"function":true,"vuln_containers_os":true,"vuln_host_os":true}}}'
     code: 201
     duration: 0ms
     headers:

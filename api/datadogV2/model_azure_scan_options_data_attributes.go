@@ -12,6 +12,8 @@ import (
 type AzureScanOptionsDataAttributes struct {
 	// Indicates whether host compliance scanning is enabled.
 	ComplianceHost *bool `json:"compliance_host,omitempty"`
+	// Indicates if scanning of Azure Functions is enabled.
+	Function *bool `json:"function,omitempty"`
 	// Indicates if scanning for vulnerabilities in containers is enabled.
 	VulnContainersOs *bool `json:"vuln_containers_os,omitempty"`
 	// Indicates if scanning for vulnerabilities in hosts is enabled.
@@ -64,6 +66,34 @@ func (o *AzureScanOptionsDataAttributes) HasComplianceHost() bool {
 // SetComplianceHost gets a reference to the given bool and assigns it to the ComplianceHost field.
 func (o *AzureScanOptionsDataAttributes) SetComplianceHost(v bool) {
 	o.ComplianceHost = &v
+}
+
+// GetFunction returns the Function field value if set, zero value otherwise.
+func (o *AzureScanOptionsDataAttributes) GetFunction() bool {
+	if o == nil || o.Function == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Function
+}
+
+// GetFunctionOk returns a tuple with the Function field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AzureScanOptionsDataAttributes) GetFunctionOk() (*bool, bool) {
+	if o == nil || o.Function == nil {
+		return nil, false
+	}
+	return o.Function, true
+}
+
+// HasFunction returns a boolean if a field has been set.
+func (o *AzureScanOptionsDataAttributes) HasFunction() bool {
+	return o != nil && o.Function != nil
+}
+
+// SetFunction gets a reference to the given bool and assigns it to the Function field.
+func (o *AzureScanOptionsDataAttributes) SetFunction(v bool) {
+	o.Function = &v
 }
 
 // GetVulnContainersOs returns the VulnContainersOs field value if set, zero value otherwise.
@@ -131,6 +161,9 @@ func (o AzureScanOptionsDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.ComplianceHost != nil {
 		toSerialize["compliance_host"] = o.ComplianceHost
 	}
+	if o.Function != nil {
+		toSerialize["function"] = o.Function
+	}
 	if o.VulnContainersOs != nil {
 		toSerialize["vuln_containers_os"] = o.VulnContainersOs
 	}
@@ -148,6 +181,7 @@ func (o AzureScanOptionsDataAttributes) MarshalJSON() ([]byte, error) {
 func (o *AzureScanOptionsDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ComplianceHost   *bool `json:"compliance_host,omitempty"`
+		Function         *bool `json:"function,omitempty"`
 		VulnContainersOs *bool `json:"vuln_containers_os,omitempty"`
 		VulnHostOs       *bool `json:"vuln_host_os,omitempty"`
 	}{}
@@ -156,11 +190,12 @@ func (o *AzureScanOptionsDataAttributes) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compliance_host", "vuln_containers_os", "vuln_host_os"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"compliance_host", "function", "vuln_containers_os", "vuln_host_os"})
 	} else {
 		return err
 	}
 	o.ComplianceHost = all.ComplianceHost
+	o.Function = all.Function
 	o.VulnContainersOs = all.VulnContainersOs
 	o.VulnHostOs = all.VulnHostOs
 
