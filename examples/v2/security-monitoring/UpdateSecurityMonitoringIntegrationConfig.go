@@ -16,17 +16,26 @@ func main() {
 	body := datadogV2.SecurityMonitoringIntegrationConfigUpdateRequest{
 		Data: datadogV2.SecurityMonitoringIntegrationConfigUpdateData{
 			Attributes: datadogV2.SecurityMonitoringIntegrationConfigUpdateAttributes{
-				Domain:          datadog.PtrString("siem-test.com"),
-				Enabled:         datadog.PtrBool(true),
-				IntegrationType: datadogV2.SECURITYMONITORINGINTEGRATIONTYPE_GOOGLE_WORKSPACE.Ptr(),
-				Name:            datadog.PtrString("My GWS Integration (renamed)"),
-				Secrets: map[string]interface{}{
-					"admin_email": "test@example.com",
-				},
-				Settings: map[string]interface{}{
-					"setting1": "value1",
-				},
-			},
+				SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes: &datadogV2.SecurityMonitoringGoogleWorkspaceIntegrationConfigUpdateAttributes{
+					Domain:          datadog.PtrString("siem-test.com"),
+					Enabled:         datadog.PtrBool(true),
+					IntegrationType: datadogV2.SECURITYMONITORINGINTEGRATIONTYPEGOOGLEWORKSPACE_GOOGLE_WORKSPACE,
+					Name:            datadog.PtrString("My GWS Integration (renamed)"),
+					Secrets: &datadogV2.SecurityMonitoringIntegrationConfigGoogleWorkspaceSecrets{
+						AdminEmail: datadog.PtrString("admin@example.com"),
+						ServiceAccountJson: datadogV2.SecurityMonitoringIntegrationConfigGoogleWorkspaceServiceAccount{
+							ClientEmail: "svc@my-project.iam.gserviceaccount.com",
+							PrivateKey: `-----BEGIN PRIVATE KEY-----
+...
+-----END PRIVATE KEY-----`,
+							ProjectId: "my-project",
+							Type:      "service_account",
+						},
+					},
+					Settings: map[string]interface{}{
+						"setting1": "value1",
+					},
+				}},
 			Type: datadogV2.SECURITYMONITORINGINTEGRATIONCONFIGRESOURCETYPE_INTEGRATION_CONFIG,
 		},
 	}

@@ -126,9 +126,6 @@ func (o *SecurityMonitoringIntegrationConfigCreateData) UnmarshalJSON(bytes []by
 	}
 
 	hasInvalidField := false
-	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Attributes = *all.Attributes
 	if !all.Type.IsValid() {
 		hasInvalidField = true
