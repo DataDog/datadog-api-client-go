@@ -10,160 +10,237 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SecurityMonitoringIntegrationConfigCreateAttributes - The attributes of the entity context sync configuration to create.
+// SecurityMonitoringIntegrationConfigCreateAttributes The attributes of the entity context sync configuration to create.
 type SecurityMonitoringIntegrationConfigCreateAttributes struct {
-	SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes *SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes
-	SecurityMonitoringOktaIntegrationConfigCreateAttributes            *SecurityMonitoringOktaIntegrationConfigCreateAttributes
-	SecurityMonitoringEntraIdIntegrationConfigCreateAttributes         *SecurityMonitoringEntraIdIntegrationConfigCreateAttributes
-	SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes     *SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes
-	SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes     *SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes
-
+	// The domain associated with the external entity source.
+	Domain string `json:"domain"`
+	// The type of external source that provides entities to Cloud SIEM.
+	IntegrationType SecurityMonitoringIntegrationType `json:"integration_type"`
+	// The display name for the entity context sync configuration.
+	Name string `json:"name"`
+	// The secrets used to authenticate against the external entity source. The accepted keys depend on the source type
+	// (for example, `admin_email` for Google Workspace). Not required for source types that do not use secrets (for example, `ENTRA_ID`).
+	Secrets map[string]interface{} `json:"secrets,omitempty"`
+	// Free-form, non-sensitive settings for the entity context sync. The accepted keys depend on the source type.
+	Settings map[string]interface{} `json:"settings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject interface{}
+	UnparsedObject       map[string]interface{} `json:"-"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributesAsSecurityMonitoringIntegrationConfigCreateAttributes is a convenience function that returns SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes wrapped in SecurityMonitoringIntegrationConfigCreateAttributes.
-func SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributesAsSecurityMonitoringIntegrationConfigCreateAttributes(v *SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes) SecurityMonitoringIntegrationConfigCreateAttributes {
-	return SecurityMonitoringIntegrationConfigCreateAttributes{SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes: v}
+// NewSecurityMonitoringIntegrationConfigCreateAttributes instantiates a new SecurityMonitoringIntegrationConfigCreateAttributes object.
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed.
+func NewSecurityMonitoringIntegrationConfigCreateAttributes(domain string, integrationType SecurityMonitoringIntegrationType, name string) *SecurityMonitoringIntegrationConfigCreateAttributes {
+	this := SecurityMonitoringIntegrationConfigCreateAttributes{}
+	this.Domain = domain
+	this.IntegrationType = integrationType
+	this.Name = name
+	return &this
 }
 
-// SecurityMonitoringOktaIntegrationConfigCreateAttributesAsSecurityMonitoringIntegrationConfigCreateAttributes is a convenience function that returns SecurityMonitoringOktaIntegrationConfigCreateAttributes wrapped in SecurityMonitoringIntegrationConfigCreateAttributes.
-func SecurityMonitoringOktaIntegrationConfigCreateAttributesAsSecurityMonitoringIntegrationConfigCreateAttributes(v *SecurityMonitoringOktaIntegrationConfigCreateAttributes) SecurityMonitoringIntegrationConfigCreateAttributes {
-	return SecurityMonitoringIntegrationConfigCreateAttributes{SecurityMonitoringOktaIntegrationConfigCreateAttributes: v}
+// NewSecurityMonitoringIntegrationConfigCreateAttributesWithDefaults instantiates a new SecurityMonitoringIntegrationConfigCreateAttributes object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set.
+func NewSecurityMonitoringIntegrationConfigCreateAttributesWithDefaults() *SecurityMonitoringIntegrationConfigCreateAttributes {
+	this := SecurityMonitoringIntegrationConfigCreateAttributes{}
+	return &this
 }
 
-// SecurityMonitoringEntraIdIntegrationConfigCreateAttributesAsSecurityMonitoringIntegrationConfigCreateAttributes is a convenience function that returns SecurityMonitoringEntraIdIntegrationConfigCreateAttributes wrapped in SecurityMonitoringIntegrationConfigCreateAttributes.
-func SecurityMonitoringEntraIdIntegrationConfigCreateAttributesAsSecurityMonitoringIntegrationConfigCreateAttributes(v *SecurityMonitoringEntraIdIntegrationConfigCreateAttributes) SecurityMonitoringIntegrationConfigCreateAttributes {
-	return SecurityMonitoringIntegrationConfigCreateAttributes{SecurityMonitoringEntraIdIntegrationConfigCreateAttributes: v}
+// GetDomain returns the Domain field value.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) GetDomain() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+	return o.Domain
 }
 
-// SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributesAsSecurityMonitoringIntegrationConfigCreateAttributes is a convenience function that returns SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes wrapped in SecurityMonitoringIntegrationConfigCreateAttributes.
-func SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributesAsSecurityMonitoringIntegrationConfigCreateAttributes(v *SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes) SecurityMonitoringIntegrationConfigCreateAttributes {
-	return SecurityMonitoringIntegrationConfigCreateAttributes{SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes: v}
+// GetDomainOk returns a tuple with the Domain field value
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) GetDomainOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Domain, true
 }
 
-// SecurityMonitoringSentinelOneIntegrationConfigCreateAttributesAsSecurityMonitoringIntegrationConfigCreateAttributes is a convenience function that returns SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes wrapped in SecurityMonitoringIntegrationConfigCreateAttributes.
-func SecurityMonitoringSentinelOneIntegrationConfigCreateAttributesAsSecurityMonitoringIntegrationConfigCreateAttributes(v *SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes) SecurityMonitoringIntegrationConfigCreateAttributes {
-	return SecurityMonitoringIntegrationConfigCreateAttributes{SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes: v}
+// SetDomain sets field value.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) SetDomain(v string) {
+	o.Domain = v
 }
 
-// UnmarshalJSON turns data into one of the pointers in the struct.
-func (obj *SecurityMonitoringIntegrationConfigCreateAttributes) UnmarshalJSON(data []byte) error {
-	var err error
-	// use discriminator value to speed up the lookup
-	var jsonDict map[string]interface{}
-	err = datadog.Unmarshal(data, &jsonDict)
-	if err != nil {
-		return fmt.Errorf("failed to unmarshal JSON into map for the discriminator lookup.")
+// GetIntegrationType returns the IntegrationType field value.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) GetIntegrationType() SecurityMonitoringIntegrationType {
+	if o == nil {
+		var ret SecurityMonitoringIntegrationType
+		return ret
 	}
-	// check if the discriminator value is 'CROWDSTRIKE'
-	if jsonDict["integration_type"] == "CROWDSTRIKE" {
-		// try to unmarshal JSON data into SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes
-		err = datadog.Unmarshal(data, &obj.SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes)
-		if err == nil {
-			return nil // data stored in obj.SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes, return on the first match
-		} else {
-			obj.SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes = nil
-			return fmt.Errorf("failed to unmarshal SecurityMonitoringIntegrationConfigCreateAttributes as SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes: %s", err.Error())
-		}
-	}
-	// check if the discriminator value is 'ENTRA_ID'
-	if jsonDict["integration_type"] == "ENTRA_ID" {
-		// try to unmarshal JSON data into SecurityMonitoringEntraIdIntegrationConfigCreateAttributes
-		err = datadog.Unmarshal(data, &obj.SecurityMonitoringEntraIdIntegrationConfigCreateAttributes)
-		if err == nil {
-			return nil // data stored in obj.SecurityMonitoringEntraIdIntegrationConfigCreateAttributes, return on the first match
-		} else {
-			obj.SecurityMonitoringEntraIdIntegrationConfigCreateAttributes = nil
-			return fmt.Errorf("failed to unmarshal SecurityMonitoringIntegrationConfigCreateAttributes as SecurityMonitoringEntraIdIntegrationConfigCreateAttributes: %s", err.Error())
-		}
-	}
-	// check if the discriminator value is 'GOOGLE_WORKSPACE'
-	if jsonDict["integration_type"] == "GOOGLE_WORKSPACE" {
-		// try to unmarshal JSON data into SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes
-		err = datadog.Unmarshal(data, &obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes)
-		if err == nil {
-			return nil // data stored in obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes, return on the first match
-		} else {
-			obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes = nil
-			return fmt.Errorf("failed to unmarshal SecurityMonitoringIntegrationConfigCreateAttributes as SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes: %s", err.Error())
-		}
-	}
-	// check if the discriminator value is 'OKTA'
-	if jsonDict["integration_type"] == "OKTA" {
-		// try to unmarshal JSON data into SecurityMonitoringOktaIntegrationConfigCreateAttributes
-		err = datadog.Unmarshal(data, &obj.SecurityMonitoringOktaIntegrationConfigCreateAttributes)
-		if err == nil {
-			return nil // data stored in obj.SecurityMonitoringOktaIntegrationConfigCreateAttributes, return on the first match
-		} else {
-			obj.SecurityMonitoringOktaIntegrationConfigCreateAttributes = nil
-			return fmt.Errorf("failed to unmarshal SecurityMonitoringIntegrationConfigCreateAttributes as SecurityMonitoringOktaIntegrationConfigCreateAttributes: %s", err.Error())
-		}
-	}
-	// check if the discriminator value is 'SENTINELONE'
-	if jsonDict["integration_type"] == "SENTINELONE" {
-		// try to unmarshal JSON data into SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes
-		err = datadog.Unmarshal(data, &obj.SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes)
-		if err == nil {
-			return nil // data stored in obj.SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes, return on the first match
-		} else {
-			obj.SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes = nil
-			return fmt.Errorf("failed to unmarshal SecurityMonitoringIntegrationConfigCreateAttributes as SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes: %s", err.Error())
-		}
-	}
-	return nil
+	return o.IntegrationType
 }
 
-// MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
-func (obj SecurityMonitoringIntegrationConfigCreateAttributes) MarshalJSON() ([]byte, error) {
-	if obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes != nil {
-		return datadog.Marshal(&obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes)
+// GetIntegrationTypeOk returns a tuple with the IntegrationType field value
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) GetIntegrationTypeOk() (*SecurityMonitoringIntegrationType, bool) {
+	if o == nil {
+		return nil, false
 	}
-
-	if obj.SecurityMonitoringOktaIntegrationConfigCreateAttributes != nil {
-		return datadog.Marshal(&obj.SecurityMonitoringOktaIntegrationConfigCreateAttributes)
-	}
-
-	if obj.SecurityMonitoringEntraIdIntegrationConfigCreateAttributes != nil {
-		return datadog.Marshal(&obj.SecurityMonitoringEntraIdIntegrationConfigCreateAttributes)
-	}
-
-	if obj.SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes != nil {
-		return datadog.Marshal(&obj.SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes)
-	}
-
-	if obj.SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes != nil {
-		return datadog.Marshal(&obj.SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes)
-	}
-
-	if obj.UnparsedObject != nil {
-		return datadog.Marshal(obj.UnparsedObject)
-	}
-	return nil, nil // no data in oneOf schemas
+	return &o.IntegrationType, true
 }
 
-// GetActualInstance returns the actual instance.
-func (obj *SecurityMonitoringIntegrationConfigCreateAttributes) GetActualInstance() interface{} {
-	if obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes != nil {
-		return obj.SecurityMonitoringGoogleWorkspaceIntegrationConfigCreateAttributes
+// SetIntegrationType sets field value.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) SetIntegrationType(v SecurityMonitoringIntegrationType) {
+	o.IntegrationType = v
+}
+
+// GetName returns the Name field value.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) SetName(v string) {
+	o.Name = v
+}
+
+// GetSecrets returns the Secrets field value if set, zero value otherwise.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) GetSecrets() map[string]interface{} {
+	if o == nil || o.Secrets == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Secrets
+}
+
+// GetSecretsOk returns a tuple with the Secrets field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) GetSecretsOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Secrets == nil {
+		return nil, false
+	}
+	return &o.Secrets, true
+}
+
+// HasSecrets returns a boolean if a field has been set.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) HasSecrets() bool {
+	return o != nil && o.Secrets != nil
+}
+
+// SetSecrets gets a reference to the given map[string]interface{} and assigns it to the Secrets field.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) SetSecrets(v map[string]interface{}) {
+	o.Secrets = v
+}
+
+// GetSettings returns the Settings field value if set, zero value otherwise.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) GetSettings() map[string]interface{} {
+	if o == nil || o.Settings == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Settings
+}
+
+// GetSettingsOk returns a tuple with the Settings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) GetSettingsOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Settings == nil {
+		return nil, false
+	}
+	return &o.Settings, true
+}
+
+// HasSettings returns a boolean if a field has been set.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) HasSettings() bool {
+	return o != nil && o.Settings != nil
+}
+
+// SetSettings gets a reference to the given map[string]interface{} and assigns it to the Settings field.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) SetSettings(v map[string]interface{}) {
+	o.Settings = v
+}
+
+// MarshalJSON serializes the struct using spec logic.
+func (o SecurityMonitoringIntegrationConfigCreateAttributes) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return datadog.Marshal(o.UnparsedObject)
+	}
+	toSerialize["domain"] = o.Domain
+	toSerialize["integration_type"] = o.IntegrationType
+	toSerialize["name"] = o.Name
+	if o.Secrets != nil {
+		toSerialize["secrets"] = o.Secrets
+	}
+	if o.Settings != nil {
+		toSerialize["settings"] = o.Settings
 	}
 
-	if obj.SecurityMonitoringOktaIntegrationConfigCreateAttributes != nil {
-		return obj.SecurityMonitoringOktaIntegrationConfigCreateAttributes
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+	return datadog.Marshal(toSerialize)
+}
+
+// UnmarshalJSON deserializes the given payload.
+func (o *SecurityMonitoringIntegrationConfigCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
+	all := struct {
+		Domain          *string                            `json:"domain"`
+		IntegrationType *SecurityMonitoringIntegrationType `json:"integration_type"`
+		Name            *string                            `json:"name"`
+		Secrets         map[string]interface{}             `json:"secrets,omitempty"`
+		Settings        map[string]interface{}             `json:"settings,omitempty"`
+	}{}
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Domain == nil {
+		return fmt.Errorf("required field domain missing")
+	}
+	if all.IntegrationType == nil {
+		return fmt.Errorf("required field integration_type missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	additionalProperties := make(map[string]interface{})
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"domain", "integration_type", "name", "secrets", "settings"})
+	} else {
+		return err
 	}
 
-	if obj.SecurityMonitoringEntraIdIntegrationConfigCreateAttributes != nil {
-		return obj.SecurityMonitoringEntraIdIntegrationConfigCreateAttributes
+	hasInvalidField := false
+	o.Domain = *all.Domain
+	if !all.IntegrationType.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.IntegrationType = *all.IntegrationType
+	}
+	o.Name = *all.Name
+	o.Secrets = all.Secrets
+	o.Settings = all.Settings
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
 	}
 
-	if obj.SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes != nil {
-		return obj.SecurityMonitoringCrowdStrikeIntegrationConfigCreateAttributes
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
-	if obj.SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes != nil {
-		return obj.SecurityMonitoringSentinelOneIntegrationConfigCreateAttributes
-	}
-
-	// all schemas are nil
 	return nil
 }
