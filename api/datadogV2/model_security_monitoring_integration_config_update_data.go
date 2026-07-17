@@ -12,7 +12,7 @@ import (
 
 // SecurityMonitoringIntegrationConfigUpdateData The entity context sync configuration fields to update.
 type SecurityMonitoringIntegrationConfigUpdateData struct {
-	// Fields to update on the entity context sync configuration. All fields are optional.
+	// Fields to update on the entity context sync configuration. All fields other than the integration type are optional.
 	Attributes SecurityMonitoringIntegrationConfigUpdateAttributes `json:"attributes"`
 	// The type of the resource. The value should always be `integration_config`.
 	Type SecurityMonitoringIntegrationConfigResourceType `json:"type"`
@@ -126,9 +126,6 @@ func (o *SecurityMonitoringIntegrationConfigUpdateData) UnmarshalJSON(bytes []by
 	}
 
 	hasInvalidField := false
-	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Attributes = *all.Attributes
 	if !all.Type.IsValid() {
 		hasInvalidField = true
