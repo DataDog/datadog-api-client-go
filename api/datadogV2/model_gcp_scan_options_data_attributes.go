@@ -10,6 +10,8 @@ import (
 
 // GcpScanOptionsDataAttributes Attributes for GCP scan options configuration.
 type GcpScanOptionsDataAttributes struct {
+	// Indicates if scanning of Cloud Functions is enabled.
+	CloudFunction *bool `json:"cloud_function,omitempty"`
 	// Indicates whether host compliance scanning is enabled.
 	ComplianceHost *bool `json:"compliance_host,omitempty"`
 	// Indicates if scanning for vulnerabilities in containers is enabled.
@@ -36,6 +38,34 @@ func NewGcpScanOptionsDataAttributes() *GcpScanOptionsDataAttributes {
 func NewGcpScanOptionsDataAttributesWithDefaults() *GcpScanOptionsDataAttributes {
 	this := GcpScanOptionsDataAttributes{}
 	return &this
+}
+
+// GetCloudFunction returns the CloudFunction field value if set, zero value otherwise.
+func (o *GcpScanOptionsDataAttributes) GetCloudFunction() bool {
+	if o == nil || o.CloudFunction == nil {
+		var ret bool
+		return ret
+	}
+	return *o.CloudFunction
+}
+
+// GetCloudFunctionOk returns a tuple with the CloudFunction field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *GcpScanOptionsDataAttributes) GetCloudFunctionOk() (*bool, bool) {
+	if o == nil || o.CloudFunction == nil {
+		return nil, false
+	}
+	return o.CloudFunction, true
+}
+
+// HasCloudFunction returns a boolean if a field has been set.
+func (o *GcpScanOptionsDataAttributes) HasCloudFunction() bool {
+	return o != nil && o.CloudFunction != nil
+}
+
+// SetCloudFunction gets a reference to the given bool and assigns it to the CloudFunction field.
+func (o *GcpScanOptionsDataAttributes) SetCloudFunction(v bool) {
+	o.CloudFunction = &v
 }
 
 // GetComplianceHost returns the ComplianceHost field value if set, zero value otherwise.
@@ -128,6 +158,9 @@ func (o GcpScanOptionsDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.CloudFunction != nil {
+		toSerialize["cloud_function"] = o.CloudFunction
+	}
 	if o.ComplianceHost != nil {
 		toSerialize["compliance_host"] = o.ComplianceHost
 	}
@@ -147,6 +180,7 @@ func (o GcpScanOptionsDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GcpScanOptionsDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		CloudFunction    *bool `json:"cloud_function,omitempty"`
 		ComplianceHost   *bool `json:"compliance_host,omitempty"`
 		VulnContainersOs *bool `json:"vuln_containers_os,omitempty"`
 		VulnHostOs       *bool `json:"vuln_host_os,omitempty"`
@@ -156,10 +190,11 @@ func (o *GcpScanOptionsDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compliance_host", "vuln_containers_os", "vuln_host_os"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cloud_function", "compliance_host", "vuln_containers_os", "vuln_host_os"})
 	} else {
 		return err
 	}
+	o.CloudFunction = all.CloudFunction
 	o.ComplianceHost = all.ComplianceHost
 	o.VulnContainersOs = all.VulnContainersOs
 	o.VulnHostOs = all.VulnHostOs

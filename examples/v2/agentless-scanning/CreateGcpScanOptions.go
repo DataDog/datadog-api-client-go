@@ -18,6 +18,7 @@ func main() {
 			Id:   "new-project",
 			Type: datadogV2.GCPSCANOPTIONSDATATYPE_GCP_SCAN_OPTIONS,
 			Attributes: &datadogV2.GcpScanOptionsDataAttributes{
+				CloudFunction:    datadog.PtrBool(true),
 				VulnHostOs:       datadog.PtrBool(true),
 				VulnContainersOs: datadog.PtrBool(true),
 			},

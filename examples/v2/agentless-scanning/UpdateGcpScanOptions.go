@@ -18,6 +18,7 @@ func main() {
 			Id:   "api-spec-test",
 			Type: datadogV2.GCPSCANOPTIONSINPUTUPDATEDATATYPE_GCP_SCAN_OPTIONS,
 			Attributes: &datadogV2.GcpScanOptionsInputUpdateDataAttributes{
+				CloudFunction:    datadog.PtrBool(true),
 				VulnContainersOs: datadog.PtrBool(false),
 			},
 		},
