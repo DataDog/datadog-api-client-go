@@ -84,6 +84,47 @@ class TestFormatDataWithSchemaArrayItems:
         assert "StringMapItem" not in result
         assert "map[string]string" in result
 
+    def test_named_array_alias_in_oneof_uses_generated_wrapper(self):
+        message_schema = SchemaWithRef(
+            {
+                "type": "object",
+                "properties": {
+                    "role": {"type": "string"},
+                    "content": {"type": "string"},
+                },
+                "required": ["role", "content"],
+            },
+            ref="#/components/schemas/LLMObsPromptChatMessage",
+        )
+        chat_schema = SchemaWithRef(
+            {
+                "type": "array",
+                "items": message_schema,
+                "x-generate-alias-as-model": True,
+            },
+            ref="#/components/schemas/LLMObsPromptChatTemplate",
+        )
+        template_schema = SchemaWithRef(
+            {"oneOf": [{"type": "string"}, chat_schema]},
+            ref="#/components/schemas/LLMObsPromptTemplate",
+        )
+
+        result = format_data_with_schema(
+            [
+                {"role": "system", "content": "You help {{company_name}} customers."},
+                {"role": "user", "content": "Answer {{question}}"},
+            ],
+            template_schema,
+            name_prefix="datadogV2.",
+            required=True,
+        )
+
+        assert (
+            "LLMObsPromptChatTemplate: &datadogV2.LLMObsPromptChatTemplate{Items: "
+            "[]datadogV2.LLMObsPromptChatMessage{" in result
+        )
+        assert "LLMObsPromptChatTemplate: &[]datadogV2.LLMObsPromptChatMessage{" not in result
+
 
 class TestNullableInlineObjectWithNullValue:
     """Nullable inline (anonymous) object schemas must return 'nil' when data is None."""
