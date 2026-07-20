@@ -963,6 +963,7 @@ func NewConfiguration() *Configuration {
 			"v2.UpdateForm":                                           false,
 			"v2.UpsertAndPublishFormVersion":                          false,
 			"v2.UpsertFormVersion":                                    false,
+			"v2.UpdateLoginOrgConfigsMcpCrossAppAccessIssuerUrl":      false,
 			"v2.UpdateOrgSamlConfigurations":                          false,
 			"v2.GetGovernanceControl":                                 false,
 			"v2.ListGovernanceControls":                               false,
