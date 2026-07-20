@@ -678,6 +678,89 @@ func (a *OrganizationsApi) UpdateLoginOrgConfigsMaxSessionDuration(ctx _context.
 	return localVarHTTPResponse, nil
 }
 
+// UpdateLoginOrgConfigsMcpCrossAppAccessIssuerUrl Update the MCP Cross-App Access issuer URL.
+// Update the Okta OIDC issuer URL used for MCP Cross-App Access (XAA)
+// for the current organization. The URL must be a bare Okta issuer such
+// as `https://your-subdomain.okta.com` (no path, port, query, or fragment).
+// Provide an empty string to unset the issuer URL and opt the organization
+// out of MCP Cross-App Access.
+func (a *OrganizationsApi) UpdateLoginOrgConfigsMcpCrossAppAccessIssuerUrl(ctx _context.Context, body McpCrossAppAccessIssuerUrlUpdateRequest) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod = _nethttp.MethodPut
+		localVarPostBody   interface{}
+	)
+
+	operationId := "v2.UpdateLoginOrgConfigsMcpCrossAppAccessIssuerUrl"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.OrganizationsApi.UpdateLoginOrgConfigsMcpCrossAppAccessIssuerUrl")
+	if err != nil {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/login/org_configs/mcp_cross_app_access_issuer_url"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "*/*"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 // UpdateOrgConfig Update a specific Org Config.
 // Update the value of a specific Org Config.
 func (a *OrganizationsApi) UpdateOrgConfig(ctx _context.Context, orgConfigName string, body OrgConfigWriteRequest) (OrgConfigGetResponse, *_nethttp.Response, error) {
