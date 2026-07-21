@@ -1,0 +1,59 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"prompt_id":"Test-Create_an_LLM_Observability_prompt_returns_Conflict_response-1784539199","template":[{"content":"Hello","role":"user"}]},"type":"prompt-templates"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/llm-obs/v1/prompts
+  response:
+    body: '{"data":{"id":"2fedf714-8445-571b-bad9-f7d4bb131524","type":"prompt-templates","attributes":{"author":"c5e19e5a-ad6b-11ed-ab4f-927130d31ef9","created_at":"2026-07-20T09:20:00.140121332Z","created_from":"sdk-registry","in_registry":true,"last_version_created_at":"2026-07-20T09:20:00.140121332Z","num_versions":1,"prompt_id":"Test-Create_an_LLM_Observability_prompt_returns_Conflict_response-1784539199","source":"registry"}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: |
+      {"data":{"attributes":{"env_ids":[],"labels":[],"prompt_id":"Test-Create_an_LLM_Observability_prompt_returns_Conflict_response-1784539199","template":[{"content":"Hello","role":"user"}]},"type":"prompt-templates"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
+    url: https://api.datadoghq.com/api/v2/llm-obs/v1/prompts
+  response:
+    body: '{"errors":[{"title":"Generic Error","detail":"prompt template already exists"}]}'
+    code: 409
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 409 Conflict
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/llm-obs/v1/prompts/Test-Create_an_LLM_Observability_prompt_returns_Conflict_response-1784539199
+  response:
+    body: '{"data":{"id":"2fedf714-8445-571b-bad9-f7d4bb131524","type":"prompt-templates","attributes":{"deleted_at":"2026-07-20T09:20:01.051306Z","prompt_id":"Test-Create_an_LLM_Observability_prompt_returns_Conflict_response-1784539199"}}}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+version: 2

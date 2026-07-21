@@ -369,7 +369,10 @@ def _format_oneof(schema, data, name, name_prefix, replace_values, required, nul
     reference = "" if required or nullable else "&"
     if name:
         if one_of_schema.get("type") == "array":
-            parameters = f"&{parameters}"
+            if one_of_schema.get("x-generate-alias-as-model"):
+                parameters = f"&{name_prefix}{one_of_schema_name}{{Items: {parameters}}}"
+            else:
+                parameters = f"&{parameters}"
         return f"{reference}{name_prefix}{name}{{\n{one_of_schema_name}: {parameters}}}"
     if one_of_schema.get("type") == "array":
         reference = "&"
