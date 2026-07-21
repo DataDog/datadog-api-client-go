@@ -19,7 +19,7 @@ func main() {
 			Attributes: datadogV2.IncidentUserDefinedRoleDataAttributesRequest{
 				Description: *datadog.NewNullableString(datadog.PtrString("The technical lead for the incident.")),
 				Name:        "Tech Lead",
-				Policy: datadogV2.IncidentUserDefinedRolePolicy{
+				Policy: &datadogV2.IncidentUserDefinedRolePolicy{
 					IsSingle: true,
 				},
 			},
