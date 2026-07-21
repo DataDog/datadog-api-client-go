@@ -1,0 +1,136 @@
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
+
+package datadogV2
+
+import (
+	"fmt"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+)
+
+// IncidentTimestampOverridesResponse Response with a list of timestamp overrides.
+type IncidentTimestampOverridesResponse struct {
+	// List of timestamp overrides.
+	Data []IncidentTimestampOverrideDataResponse `json:"data"`
+	// Included related resources.
+	Included []IncidentUserData `json:"included,omitempty"`
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject       map[string]interface{} `json:"-"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// NewIncidentTimestampOverridesResponse instantiates a new IncidentTimestampOverridesResponse object.
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed.
+func NewIncidentTimestampOverridesResponse(data []IncidentTimestampOverrideDataResponse) *IncidentTimestampOverridesResponse {
+	this := IncidentTimestampOverridesResponse{}
+	this.Data = data
+	return &this
+}
+
+// NewIncidentTimestampOverridesResponseWithDefaults instantiates a new IncidentTimestampOverridesResponse object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set.
+func NewIncidentTimestampOverridesResponseWithDefaults() *IncidentTimestampOverridesResponse {
+	this := IncidentTimestampOverridesResponse{}
+	return &this
+}
+
+// GetData returns the Data field value.
+func (o *IncidentTimestampOverridesResponse) GetData() []IncidentTimestampOverrideDataResponse {
+	if o == nil {
+		var ret []IncidentTimestampOverrideDataResponse
+		return ret
+	}
+	return o.Data
+}
+
+// GetDataOk returns a tuple with the Data field value
+// and a boolean to check if the value has been set.
+func (o *IncidentTimestampOverridesResponse) GetDataOk() (*[]IncidentTimestampOverrideDataResponse, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Data, true
+}
+
+// SetData sets field value.
+func (o *IncidentTimestampOverridesResponse) SetData(v []IncidentTimestampOverrideDataResponse) {
+	o.Data = v
+}
+
+// GetIncluded returns the Included field value if set, zero value otherwise.
+func (o *IncidentTimestampOverridesResponse) GetIncluded() []IncidentUserData {
+	if o == nil || o.Included == nil {
+		var ret []IncidentUserData
+		return ret
+	}
+	return o.Included
+}
+
+// GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *IncidentTimestampOverridesResponse) GetIncludedOk() (*[]IncidentUserData, bool) {
+	if o == nil || o.Included == nil {
+		return nil, false
+	}
+	return &o.Included, true
+}
+
+// HasIncluded returns a boolean if a field has been set.
+func (o *IncidentTimestampOverridesResponse) HasIncluded() bool {
+	return o != nil && o.Included != nil
+}
+
+// SetIncluded gets a reference to the given []IncidentUserData and assigns it to the Included field.
+func (o *IncidentTimestampOverridesResponse) SetIncluded(v []IncidentUserData) {
+	o.Included = v
+}
+
+// MarshalJSON serializes the struct using spec logic.
+func (o IncidentTimestampOverridesResponse) MarshalJSON() ([]byte, error) {
+	toSerialize := map[string]interface{}{}
+	if o.UnparsedObject != nil {
+		return datadog.Marshal(o.UnparsedObject)
+	}
+	toSerialize["data"] = o.Data
+	if o.Included != nil {
+		toSerialize["included"] = o.Included
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+	return datadog.Marshal(toSerialize)
+}
+
+// UnmarshalJSON deserializes the given payload.
+func (o *IncidentTimestampOverridesResponse) UnmarshalJSON(bytes []byte) (err error) {
+	all := struct {
+		Data     *[]IncidentTimestampOverrideDataResponse `json:"data"`
+		Included []IncidentUserData                       `json:"included,omitempty"`
+	}{}
+	if err = datadog.Unmarshal(bytes, &all); err != nil {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Data == nil {
+		return fmt.Errorf("required field data missing")
+	}
+	additionalProperties := make(map[string]interface{})
+	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included"})
+	} else {
+		return err
+	}
+	o.Data = *all.Data
+	o.Included = all.Included
+
+	if len(additionalProperties) > 0 {
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return nil
+}
