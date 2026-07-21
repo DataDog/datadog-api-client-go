@@ -938,6 +938,8 @@ func NewConfiguration() *Configuration {
 			"v2.GetAllDatasets":                                       false,
 			"v2.GetDataset":                                           false,
 			"v2.UpdateDataset":                                        false,
+			"v2.ExecuteDdsqlTabularQuery":                             false,
+			"v2.FetchDdsqlTabularQuery":                               false,
 			"v2.CancelDataDeletionRequest":                            false,
 			"v2.CreateDataDeletionRequest":                            false,
 			"v2.GetDataDeletionRequests":                              false,

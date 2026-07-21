@@ -346,6 +346,8 @@
 //   - [ContainerImagesApi.ListContainerImages]
 //   - [ContainersApi.ListContainers]
 //   - [CustomerOrgApi.DisableCustomerOrg]
+//   - [DDSQLApi.ExecuteDdsqlTabularQuery]
+//   - [DDSQLApi.FetchDdsqlTabularQuery]
 //   - [DORAMetricsApi.CreateDORADeployment]
 //   - [DORAMetricsApi.CreateDORAFailure]
 //   - [DORAMetricsApi.CreateDORAIncident]
