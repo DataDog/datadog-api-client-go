@@ -942,15 +942,6 @@ func (a *CloudCostManagementApi) DeleteCustomForecast(ctx _context.Context, budg
 		localVarPostBody   interface{}
 	)
 
-	operationId := "v2.DeleteCustomForecast"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.DeleteCustomForecast")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -3239,15 +3230,6 @@ func (a *CloudCostManagementApi) GetCustomForecast(ctx _context.Context, budgetI
 		localVarPostBody    interface{}
 		localVarReturnValue CustomForecastResponse
 	)
-
-	operationId := "v2.GetCustomForecast"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.GetCustomForecast")
 	if err != nil {
@@ -6463,15 +6445,6 @@ func (a *CloudCostManagementApi) UpsertCustomForecast(ctx _context.Context, body
 		localVarPostBody    interface{}
 		localVarReturnValue CustomForecastResponse
 	)
-
-	operationId := "v2.UpsertCustomForecast"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CloudCostManagementApi.UpsertCustomForecast")
 	if err != nil {
