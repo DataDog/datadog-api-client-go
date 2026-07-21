@@ -141,9 +141,9 @@ func (o *IncidentImpactAttributes) UnsetEndAt() {
 	o.EndAt.Unset()
 }
 
-// GetFields returns the Fields field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetFields returns the Fields field value if set, zero value otherwise.
 func (o *IncidentImpactAttributes) GetFields() map[string]interface{} {
-	if o == nil {
+	if o == nil || o.Fields == nil {
 		var ret map[string]interface{}
 		return ret
 	}
@@ -152,7 +152,6 @@ func (o *IncidentImpactAttributes) GetFields() map[string]interface{} {
 
 // GetFieldsOk returns a tuple with the Fields field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentImpactAttributes) GetFieldsOk() (*map[string]interface{}, bool) {
 	if o == nil || o.Fields == nil {
 		return nil, false
