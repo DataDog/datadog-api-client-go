@@ -14,7 +14,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.DeleteCaseLink", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCaseManagementApi(apiClient)
 	r, err := api.DeleteCaseLink(ctx, "804cd682-55f6-4541-ab00-b608b282ea7d")

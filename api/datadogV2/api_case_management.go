@@ -6,8 +6,6 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -25,15 +23,6 @@ func (a *CaseManagementApi) AddCaseInsights(ctx _context.Context, caseId string,
 		localVarPostBody    interface{}
 		localVarReturnValue CaseResponse
 	)
-
-	operationId := "v2.AddCaseInsights"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.AddCaseInsights")
 	if err != nil {
@@ -124,15 +113,6 @@ func (a *CaseManagementApi) AggregateCases(ctx _context.Context, body CaseAggreg
 		localVarPostBody    interface{}
 		localVarReturnValue CaseAggregateResponse
 	)
-
-	operationId := "v2.AggregateCases"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.AggregateCases")
 	if err != nil {
@@ -375,15 +355,6 @@ func (a *CaseManagementApi) BulkUpdateCases(ctx _context.Context, body CaseBulkU
 		localVarPostBody   interface{}
 	)
 
-	operationId := "v2.BulkUpdateCases"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.BulkUpdateCases")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -575,15 +546,6 @@ func (a *CaseManagementApi) CountCases(ctx _context.Context, o ...CountCasesOpti
 		optionalParams = o[0]
 	}
 
-	operationId := "v2.CountCases"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.CountCases")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -750,15 +712,6 @@ func (a *CaseManagementApi) CreateCaseAutomationRule(ctx _context.Context, proje
 		localVarReturnValue AutomationRuleResponse
 	)
 
-	operationId := "v2.CreateCaseAutomationRule"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.CreateCaseAutomationRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -838,15 +791,6 @@ func (a *CaseManagementApi) CreateCaseJiraIssue(ctx _context.Context, caseId str
 		localVarHTTPMethod = _nethttp.MethodPost
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.CreateCaseJiraIssue"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.CreateCaseJiraIssue")
 	if err != nil {
@@ -929,15 +873,6 @@ func (a *CaseManagementApi) CreateCaseLink(ctx _context.Context, body CaseLinkCr
 		localVarReturnValue CaseLinkResponse
 	)
 
-	operationId := "v2.CreateCaseLink"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.CreateCaseLink")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -1016,15 +951,6 @@ func (a *CaseManagementApi) CreateCaseNotebook(ctx _context.Context, caseId stri
 		localVarHTTPMethod = _nethttp.MethodPost
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.CreateCaseNotebook"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.CreateCaseNotebook")
 	if err != nil {
@@ -1105,15 +1031,6 @@ func (a *CaseManagementApi) CreateCaseServiceNowTicket(ctx _context.Context, cas
 		localVarHTTPMethod = _nethttp.MethodPost
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.CreateCaseServiceNowTicket"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.CreateCaseServiceNowTicket")
 	if err != nil {
@@ -1196,15 +1113,6 @@ func (a *CaseManagementApi) CreateCaseView(ctx _context.Context, body CaseViewCr
 		localVarReturnValue CaseViewResponse
 	)
 
-	operationId := "v2.CreateCaseView"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.CreateCaseView")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -1284,15 +1192,6 @@ func (a *CaseManagementApi) CreateMaintenanceWindow(ctx _context.Context, body M
 		localVarPostBody    interface{}
 		localVarReturnValue MaintenanceWindowResponse
 	)
-
-	operationId := "v2.CreateMaintenanceWindow"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.CreateMaintenanceWindow")
 	if err != nil {
@@ -1534,15 +1433,6 @@ func (a *CaseManagementApi) DeleteCaseAutomationRule(ctx _context.Context, proje
 		localVarPostBody   interface{}
 	)
 
-	operationId := "v2.DeleteCaseAutomationRule"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.DeleteCaseAutomationRule")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -1760,15 +1650,6 @@ func (a *CaseManagementApi) DeleteCaseLink(ctx _context.Context, linkId string) 
 		localVarPostBody   interface{}
 	)
 
-	operationId := "v2.DeleteCaseLink"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.DeleteCaseLink")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -1837,15 +1718,6 @@ func (a *CaseManagementApi) DeleteCaseView(ctx _context.Context, viewId string) 
 		localVarPostBody   interface{}
 	)
 
-	operationId := "v2.DeleteCaseView"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.DeleteCaseView")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -1913,15 +1785,6 @@ func (a *CaseManagementApi) DeleteMaintenanceWindow(ctx _context.Context, mainte
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.DeleteMaintenanceWindow"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.DeleteMaintenanceWindow")
 	if err != nil {
@@ -2129,15 +1992,6 @@ func (a *CaseManagementApi) DisableCaseAutomationRule(ctx _context.Context, proj
 		localVarReturnValue AutomationRuleResponse
 	)
 
-	operationId := "v2.DisableCaseAutomationRule"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.DisableCaseAutomationRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -2217,15 +2071,6 @@ func (a *CaseManagementApi) EnableCaseAutomationRule(ctx _context.Context, proje
 		localVarReturnValue AutomationRuleResponse
 	)
 
-	operationId := "v2.EnableCaseAutomationRule"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.EnableCaseAutomationRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -2303,15 +2148,6 @@ func (a *CaseManagementApi) FavoriteCaseProject(ctx _context.Context, projectId 
 		localVarHTTPMethod = _nethttp.MethodPost
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.FavoriteCaseProject"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.FavoriteCaseProject")
 	if err != nil {
@@ -2460,15 +2296,6 @@ func (a *CaseManagementApi) GetCaseAutomationRule(ctx _context.Context, projectI
 		localVarReturnValue AutomationRuleResponse
 	)
 
-	operationId := "v2.GetCaseAutomationRule"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.GetCaseAutomationRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -2547,15 +2374,6 @@ func (a *CaseManagementApi) GetCaseView(ctx _context.Context, viewId string) (Ca
 		localVarPostBody    interface{}
 		localVarReturnValue CaseViewResponse
 	)
-
-	operationId := "v2.GetCaseView"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.GetCaseView")
 	if err != nil {
@@ -2868,15 +2686,6 @@ func (a *CaseManagementApi) LinkIncident(ctx _context.Context, caseId string, bo
 		localVarReturnValue CaseResponse
 	)
 
-	operationId := "v2.LinkIncident"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.LinkIncident")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -2966,15 +2775,6 @@ func (a *CaseManagementApi) LinkJiraIssueToCase(ctx _context.Context, caseId str
 		localVarPostBody   interface{}
 	)
 
-	operationId := "v2.LinkJiraIssueToCase"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.LinkJiraIssueToCase")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -3055,15 +2855,6 @@ func (a *CaseManagementApi) ListCaseAutomationRules(ctx _context.Context, projec
 		localVarPostBody    interface{}
 		localVarReturnValue AutomationRulesResponse
 	)
-
-	operationId := "v2.ListCaseAutomationRules"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.ListCaseAutomationRules")
 	if err != nil {
@@ -3166,15 +2957,6 @@ func (a *CaseManagementApi) ListCaseLinks(ctx _context.Context, entityType strin
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
-	}
-
-	operationId := "v2.ListCaseLinks"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.ListCaseLinks")
@@ -3298,15 +3080,6 @@ func (a *CaseManagementApi) ListCaseTimeline(ctx _context.Context, caseId string
 		optionalParams = o[0]
 	}
 
-	operationId := "v2.ListCaseTimeline"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.ListCaseTimeline")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -3394,15 +3167,6 @@ func (a *CaseManagementApi) ListCaseViews(ctx _context.Context, projectId string
 		localVarReturnValue CaseViewsResponse
 	)
 
-	operationId := "v2.ListCaseViews"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.ListCaseViews")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -3480,15 +3244,6 @@ func (a *CaseManagementApi) ListCaseWatchers(ctx _context.Context, caseId string
 		localVarPostBody    interface{}
 		localVarReturnValue CaseWatchersResponse
 	)
-
-	operationId := "v2.ListCaseWatchers"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.ListCaseWatchers")
 	if err != nil {
@@ -3568,15 +3323,6 @@ func (a *CaseManagementApi) ListMaintenanceWindows(ctx _context.Context) (Mainte
 		localVarReturnValue MaintenanceWindowsResponse
 	)
 
-	operationId := "v2.ListMaintenanceWindows"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.ListMaintenanceWindows")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -3654,15 +3400,6 @@ func (a *CaseManagementApi) ListUserCaseProjectFavorites(ctx _context.Context) (
 		localVarReturnValue ProjectFavoritesResponse
 	)
 
-	operationId := "v2.ListUserCaseProjectFavorites"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.ListUserCaseProjectFavorites")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -3739,15 +3476,6 @@ func (a *CaseManagementApi) MoveCaseToProject(ctx _context.Context, caseId strin
 		localVarPostBody    interface{}
 		localVarReturnValue CaseResponse
 	)
-
-	operationId := "v2.MoveCaseToProject"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.MoveCaseToProject")
 	if err != nil {
@@ -3838,15 +3566,6 @@ func (a *CaseManagementApi) RemoveCaseInsights(ctx _context.Context, caseId stri
 		localVarPostBody    interface{}
 		localVarReturnValue CaseResponse
 	)
-
-	operationId := "v2.RemoveCaseInsights"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.RemoveCaseInsights")
 	if err != nil {
@@ -4292,15 +4011,6 @@ func (a *CaseManagementApi) UnfavoriteCaseProject(ctx _context.Context, projectI
 		localVarPostBody   interface{}
 	)
 
-	operationId := "v2.UnfavoriteCaseProject"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.UnfavoriteCaseProject")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -4368,15 +4078,6 @@ func (a *CaseManagementApi) UnlinkJiraIssue(ctx _context.Context, caseId string)
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.UnlinkJiraIssue"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.UnlinkJiraIssue")
 	if err != nil {
@@ -4454,15 +4155,6 @@ func (a *CaseManagementApi) UnwatchCase(ctx _context.Context, caseId string, use
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.UnwatchCase"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.UnwatchCase")
 	if err != nil {
@@ -4615,15 +4307,6 @@ func (a *CaseManagementApi) UpdateCaseAutomationRule(ctx _context.Context, proje
 		localVarReturnValue AutomationRuleResponse
 	)
 
-	operationId := "v2.UpdateCaseAutomationRule"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.UpdateCaseAutomationRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -4704,15 +4387,6 @@ func (a *CaseManagementApi) UpdateCaseComment(ctx _context.Context, caseId strin
 		localVarHTTPMethod = _nethttp.MethodPut
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.UpdateCaseComment"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.UpdateCaseComment")
 	if err != nil {
@@ -4950,15 +4624,6 @@ func (a *CaseManagementApi) UpdateCaseDueDate(ctx _context.Context, caseId strin
 		localVarReturnValue CaseResponse
 	)
 
-	operationId := "v2.UpdateCaseDueDate"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.UpdateCaseDueDate")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -5039,15 +4704,6 @@ func (a *CaseManagementApi) UpdateCaseResolvedReason(ctx _context.Context, caseI
 		localVarPostBody    interface{}
 		localVarReturnValue CaseResponse
 	)
-
-	operationId := "v2.UpdateCaseResolvedReason"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.UpdateCaseResolvedReason")
 	if err != nil {
@@ -5211,15 +4867,6 @@ func (a *CaseManagementApi) UpdateCaseView(ctx _context.Context, viewId string, 
 		localVarReturnValue CaseViewResponse
 	)
 
-	operationId := "v2.UpdateCaseView"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.UpdateCaseView")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -5300,15 +4947,6 @@ func (a *CaseManagementApi) UpdateMaintenanceWindow(ctx _context.Context, mainte
 		localVarPostBody    interface{}
 		localVarReturnValue MaintenanceWindowResponse
 	)
-
-	operationId := "v2.UpdateMaintenanceWindow"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.UpdateMaintenanceWindow")
 	if err != nil {
@@ -5704,15 +5342,6 @@ func (a *CaseManagementApi) WatchCase(ctx _context.Context, caseId string, userU
 		localVarHTTPMethod = _nethttp.MethodPost
 		localVarPostBody   interface{}
 	)
-
-	operationId := "v2.WatchCase"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.CaseManagementApi.WatchCase")
 	if err != nil {

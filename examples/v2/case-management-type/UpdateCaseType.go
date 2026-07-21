@@ -25,7 +25,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.UpdateCaseType", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCaseManagementTypeApi(apiClient)
 	resp, r, err := api.UpdateCaseType(ctx, "case_type_id", body)
