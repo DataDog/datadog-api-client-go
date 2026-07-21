@@ -1,0 +1,20 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    id: 0
+    method: GET
+    url: https://api.datadoghq.com/api/v2/llm-obs/v1/prompts/nonexistent-prompt
+  response:
+    body: '{"errors":[{"title":"Generic Error","detail":"prompt with id ''nonexistent-prompt''
+      not found"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2
