@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetCustomForecast", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCloudCostManagementApi(apiClient)
 	resp, r, err := api.GetCustomForecast(ctx, "budget_id")
