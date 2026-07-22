@@ -1097,6 +1097,7 @@ func NewConfiguration() *Configuration {
 			"v2.UpdateConnection":                                     false,
 			"v2.GetPrunedTraceByID":                                   false,
 			"v2.GetTraceByID":                                         false,
+			"v2.GetPupBumpTest":                                       false,
 			"v2.GetAsmServiceByName":                                  false,
 			"v2.GetRumSdkConfig":                                      false,
 			"v2.UpdateRumSdkConfig":                                   false,

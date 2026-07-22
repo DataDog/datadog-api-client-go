@@ -889,6 +889,7 @@
 //   - [ProductAnalyticsApi.QueryProductAnalyticsScalar]
 //   - [ProductAnalyticsApi.QueryProductAnalyticsTimeseries]
 //   - [ProductAnalyticsApi.SubmitProductAnalyticsEvent]
+//   - [PupBumpTestApi.GetPupBumpTest]
 //   - [RUMApi.AggregateRUMEvents]
 //   - [RUMApi.CreateRUMApplication]
 //   - [RUMApi.DeleteRUMApplication]
