@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.ListCaseLinks", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCaseManagementApi(apiClient)
 	resp, r, err := api.ListCaseLinks(ctx, "CASE", "bf0cbac6-4c16-4cfb-b6bf-ca5e0ec37a4f", *datadogV2.NewListCaseLinksOptionalParameters())

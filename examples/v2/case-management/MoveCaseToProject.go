@@ -21,7 +21,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.MoveCaseToProject", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCaseManagementApi(apiClient)
 	resp, r, err := api.MoveCaseToProject(ctx, "case_id", body)

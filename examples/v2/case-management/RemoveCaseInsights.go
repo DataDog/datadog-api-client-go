@@ -29,7 +29,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.RemoveCaseInsights", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCaseManagementApi(apiClient)
 	resp, r, err := api.RemoveCaseInsights(ctx, "case_id", body)

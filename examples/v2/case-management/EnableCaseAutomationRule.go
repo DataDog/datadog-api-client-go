@@ -15,7 +15,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.EnableCaseAutomationRule", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCaseManagementApi(apiClient)
 	resp, r, err := api.EnableCaseAutomationRule(ctx, "project_id", "rule_id")

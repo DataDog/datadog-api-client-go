@@ -22,7 +22,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.LinkJiraIssueToCase", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCaseManagementApi(apiClient)
 	r, err := api.LinkJiraIssueToCase(ctx, "case_id", body)

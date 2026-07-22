@@ -32,7 +32,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.UpdateCustomAttributeConfig", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCaseManagementAttributeApi(apiClient)
 	resp, r, err := api.UpdateCustomAttributeConfig(ctx, "case_type_id", "custom_attribute_id", body)
