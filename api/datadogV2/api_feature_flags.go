@@ -998,6 +998,7 @@ func (a *FeatureFlagsApi) ListFeatureFlags(ctx _context.Context, o ...ListFeatur
 type ListFeatureFlagsEnvironmentsOptionalParameters struct {
 	Name   *string
 	Key    *string
+	DdEnv  *string
 	Limit  *int64
 	Offset *int64
 }
@@ -1020,6 +1021,12 @@ func (r *ListFeatureFlagsEnvironmentsOptionalParameters) WithKey(key string) *Li
 	return r
 }
 
+// WithDdEnv sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsEnvironmentsOptionalParameters) WithDdEnv(ddEnv string) *ListFeatureFlagsEnvironmentsOptionalParameters {
+	r.DdEnv = &ddEnv
+	return r
+}
+
 // WithLimit sets the corresponding parameter name and returns the struct.
 func (r *ListFeatureFlagsEnvironmentsOptionalParameters) WithLimit(limit int64) *ListFeatureFlagsEnvironmentsOptionalParameters {
 	r.Limit = &limit
@@ -1034,7 +1041,7 @@ func (r *ListFeatureFlagsEnvironmentsOptionalParameters) WithOffset(offset int64
 
 // ListFeatureFlagsEnvironments List environments.
 // Returns a list of environments for the organization.
-// Supports filtering by name and key.
+// Supports filtering by name, key, and DD_ENV.
 func (a *FeatureFlagsApi) ListFeatureFlagsEnvironments(ctx _context.Context, o ...ListFeatureFlagsEnvironmentsOptionalParameters) (ListEnvironmentsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1065,6 +1072,9 @@ func (a *FeatureFlagsApi) ListFeatureFlagsEnvironments(ctx _context.Context, o .
 	}
 	if optionalParams.Key != nil {
 		localVarQueryParams.Add("key", datadog.ParameterToString(*optionalParams.Key, ""))
+	}
+	if optionalParams.DdEnv != nil {
+		localVarQueryParams.Add("dd_env", datadog.ParameterToString(*optionalParams.DdEnv, ""))
 	}
 	if optionalParams.Limit != nil {
 		localVarQueryParams.Add("limit", datadog.ParameterToString(*optionalParams.Limit, ""))
