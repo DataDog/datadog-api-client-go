@@ -27,7 +27,8 @@ type FormDataAttributes struct {
 	Description string `json:"description"`
 	// The date and time at which the form stops accepting responses.
 	EndDate datadog.NullableTime `json:"end_date,omitempty"`
-	// Whether the current user has already submitted this form. Only present for forms with `single_response` set to `true`.
+	// Whether the current user has already submitted this form. Only present for forms with
+	// `single_response` set to `true`.
 	HasSubmitted datadog.NullableBool `json:"has_submitted,omitempty"`
 	// Whether the form is an IDP survey.
 	IdpSurvey bool `json:"idp_survey"`
