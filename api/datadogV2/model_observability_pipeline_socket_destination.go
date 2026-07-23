@@ -29,7 +29,7 @@ type ObservabilityPipelineSocketDestination struct {
 	// Protocol used to send logs.
 	Mode ObservabilityPipelineSocketDestinationMode `json:"mode"`
 	// Configuration for enabling TLS encryption between the pipeline component and external services.
-	Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
+	Tls *ObservabilityPipelineClientTls `json:"tls,omitempty"`
 	// The destination type. The value should always be `socket`.
 	Type ObservabilityPipelineSocketDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -234,9 +234,9 @@ func (o *ObservabilityPipelineSocketDestination) SetMode(v ObservabilityPipeline
 }
 
 // GetTls returns the Tls field value if set, zero value otherwise.
-func (o *ObservabilityPipelineSocketDestination) GetTls() ObservabilityPipelineTls {
+func (o *ObservabilityPipelineSocketDestination) GetTls() ObservabilityPipelineClientTls {
 	if o == nil || o.Tls == nil {
-		var ret ObservabilityPipelineTls
+		var ret ObservabilityPipelineClientTls
 		return ret
 	}
 	return *o.Tls
@@ -244,7 +244,7 @@ func (o *ObservabilityPipelineSocketDestination) GetTls() ObservabilityPipelineT
 
 // GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineSocketDestination) GetTlsOk() (*ObservabilityPipelineTls, bool) {
+func (o *ObservabilityPipelineSocketDestination) GetTlsOk() (*ObservabilityPipelineClientTls, bool) {
 	if o == nil || o.Tls == nil {
 		return nil, false
 	}
@@ -256,8 +256,8 @@ func (o *ObservabilityPipelineSocketDestination) HasTls() bool {
 	return o != nil && o.Tls != nil
 }
 
-// SetTls gets a reference to the given ObservabilityPipelineTls and assigns it to the Tls field.
-func (o *ObservabilityPipelineSocketDestination) SetTls(v ObservabilityPipelineTls) {
+// SetTls gets a reference to the given ObservabilityPipelineClientTls and assigns it to the Tls field.
+func (o *ObservabilityPipelineSocketDestination) SetTls(v ObservabilityPipelineClientTls) {
 	o.Tls = &v
 }
 
@@ -322,7 +322,7 @@ func (o *ObservabilityPipelineSocketDestination) UnmarshalJSON(bytes []byte) (er
 		Id         *string                                         `json:"id"`
 		Inputs     *[]string                                       `json:"inputs"`
 		Mode       *ObservabilityPipelineSocketDestinationMode     `json:"mode"`
-		Tls        *ObservabilityPipelineTls                       `json:"tls,omitempty"`
+		Tls        *ObservabilityPipelineClientTls                 `json:"tls,omitempty"`
 		Type       *ObservabilityPipelineSocketDestinationType     `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {

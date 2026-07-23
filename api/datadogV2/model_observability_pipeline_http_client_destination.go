@@ -31,7 +31,7 @@ type ObservabilityPipelineHttpClientDestination struct {
 	// Name of the environment variable or secret that holds the password (used when `auth_strategy` is `basic`).
 	PasswordKey *string `json:"password_key,omitempty"`
 	// Configuration for enabling TLS encryption between the pipeline component and external services.
-	Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
+	Tls *ObservabilityPipelineClientTls `json:"tls,omitempty"`
 	// Name of the environment variable or secret that holds the bearer token (used when `auth_strategy` is `bearer`).
 	TokenKey *string `json:"token_key,omitempty"`
 	// The destination type. The value should always be `http_client`.
@@ -278,9 +278,9 @@ func (o *ObservabilityPipelineHttpClientDestination) SetPasswordKey(v string) {
 }
 
 // GetTls returns the Tls field value if set, zero value otherwise.
-func (o *ObservabilityPipelineHttpClientDestination) GetTls() ObservabilityPipelineTls {
+func (o *ObservabilityPipelineHttpClientDestination) GetTls() ObservabilityPipelineClientTls {
 	if o == nil || o.Tls == nil {
-		var ret ObservabilityPipelineTls
+		var ret ObservabilityPipelineClientTls
 		return ret
 	}
 	return *o.Tls
@@ -288,7 +288,7 @@ func (o *ObservabilityPipelineHttpClientDestination) GetTls() ObservabilityPipel
 
 // GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineHttpClientDestination) GetTlsOk() (*ObservabilityPipelineTls, bool) {
+func (o *ObservabilityPipelineHttpClientDestination) GetTlsOk() (*ObservabilityPipelineClientTls, bool) {
 	if o == nil || o.Tls == nil {
 		return nil, false
 	}
@@ -300,8 +300,8 @@ func (o *ObservabilityPipelineHttpClientDestination) HasTls() bool {
 	return o != nil && o.Tls != nil
 }
 
-// SetTls gets a reference to the given ObservabilityPipelineTls and assigns it to the Tls field.
-func (o *ObservabilityPipelineHttpClientDestination) SetTls(v ObservabilityPipelineTls) {
+// SetTls gets a reference to the given ObservabilityPipelineClientTls and assigns it to the Tls field.
+func (o *ObservabilityPipelineHttpClientDestination) SetTls(v ObservabilityPipelineClientTls) {
 	o.Tls = &v
 }
 
@@ -467,7 +467,7 @@ func (o *ObservabilityPipelineHttpClientDestination) UnmarshalJSON(bytes []byte)
 		Id           *string                                                 `json:"id"`
 		Inputs       *[]string                                               `json:"inputs"`
 		PasswordKey  *string                                                 `json:"password_key,omitempty"`
-		Tls          *ObservabilityPipelineTls                               `json:"tls,omitempty"`
+		Tls          *ObservabilityPipelineClientTls                         `json:"tls,omitempty"`
 		TokenKey     *string                                                 `json:"token_key,omitempty"`
 		Type         *ObservabilityPipelineHttpClientDestinationType         `json:"type"`
 		UriKey       *string                                                 `json:"uri_key,omitempty"`
