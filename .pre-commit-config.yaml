@@ -3,7 +3,7 @@ repos:
   hooks:
   - id: generate
     name: Generate
-    language: node
+    language: system
     entry: bash -c "./generate.sh"
     files: '^(\.generator/.*|\.pre-commit-config\.yaml|Makefile|\tests/scenarios/features/.*|api/.*)'
     pass_filenames: false
