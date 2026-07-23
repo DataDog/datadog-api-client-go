@@ -401,15 +401,6 @@ func (a *SecurityMonitoringApi) AttachLinearIssue(ctx _context.Context, body Att
 		localVarReturnValue FindingCaseResponse
 	)
 
-	operationId := "v2.AttachLinearIssue"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
-
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.AttachLinearIssue")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
@@ -2102,15 +2093,6 @@ func (a *SecurityMonitoringApi) CreateLinearIssues(ctx _context.Context, body Cr
 		localVarPostBody    interface{}
 		localVarReturnValue FindingCaseResponseArray
 	)
-
-	operationId := "v2.CreateLinearIssues"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.SecurityMonitoringApi.CreateLinearIssues")
 	if err != nil {
