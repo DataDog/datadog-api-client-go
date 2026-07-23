@@ -14,6 +14,8 @@ import (
 type CreateBackfilledMaintenanceRequestData struct {
 	// The supported attributes for creating a backfilled maintenance.
 	Attributes *CreateBackfilledMaintenanceRequestDataAttributes `json:"attributes,omitempty"`
+	// The supported relationships for creating a backfilled maintenance.
+	Relationships *CreateBackfilledMaintenanceRequestDataRelationships `json:"relationships,omitempty"`
 	// Maintenances resource type.
 	Type PatchMaintenanceRequestDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -69,6 +71,34 @@ func (o *CreateBackfilledMaintenanceRequestData) SetAttributes(v CreateBackfille
 	o.Attributes = &v
 }
 
+// GetRelationships returns the Relationships field value if set, zero value otherwise.
+func (o *CreateBackfilledMaintenanceRequestData) GetRelationships() CreateBackfilledMaintenanceRequestDataRelationships {
+	if o == nil || o.Relationships == nil {
+		var ret CreateBackfilledMaintenanceRequestDataRelationships
+		return ret
+	}
+	return *o.Relationships
+}
+
+// GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateBackfilledMaintenanceRequestData) GetRelationshipsOk() (*CreateBackfilledMaintenanceRequestDataRelationships, bool) {
+	if o == nil || o.Relationships == nil {
+		return nil, false
+	}
+	return o.Relationships, true
+}
+
+// HasRelationships returns a boolean if a field has been set.
+func (o *CreateBackfilledMaintenanceRequestData) HasRelationships() bool {
+	return o != nil && o.Relationships != nil
+}
+
+// SetRelationships gets a reference to the given CreateBackfilledMaintenanceRequestDataRelationships and assigns it to the Relationships field.
+func (o *CreateBackfilledMaintenanceRequestData) SetRelationships(v CreateBackfilledMaintenanceRequestDataRelationships) {
+	o.Relationships = &v
+}
+
 // GetType returns the Type field value.
 func (o *CreateBackfilledMaintenanceRequestData) GetType() PatchMaintenanceRequestDataType {
 	if o == nil {
@@ -101,6 +131,9 @@ func (o CreateBackfilledMaintenanceRequestData) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
+	if o.Relationships != nil {
+		toSerialize["relationships"] = o.Relationships
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -112,8 +145,9 @@ func (o CreateBackfilledMaintenanceRequestData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateBackfilledMaintenanceRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *CreateBackfilledMaintenanceRequestDataAttributes `json:"attributes,omitempty"`
-		Type       *PatchMaintenanceRequestDataType                  `json:"type"`
+		Attributes    *CreateBackfilledMaintenanceRequestDataAttributes    `json:"attributes,omitempty"`
+		Relationships *CreateBackfilledMaintenanceRequestDataRelationships `json:"relationships,omitempty"`
+		Type          *PatchMaintenanceRequestDataType                     `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -123,7 +157,7 @@ func (o *CreateBackfilledMaintenanceRequestData) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "relationships", "type"})
 	} else {
 		return err
 	}
@@ -133,6 +167,10 @@ func (o *CreateBackfilledMaintenanceRequestData) UnmarshalJSON(bytes []byte) (er
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
+	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Relationships = all.Relationships
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {

@@ -16,6 +16,8 @@ type DegradationDataRelationships struct {
 	LastModifiedByUser *DegradationDataRelationshipsLastModifiedByUser `json:"last_modified_by_user,omitempty"`
 	// The status page the degradation belongs to.
 	StatusPage *DegradationDataRelationshipsStatusPage `json:"status_page,omitempty"`
+	// The template the degradation was created from.
+	Template *DegradationDataRelationshipsTemplate `json:"template,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -122,6 +124,34 @@ func (o *DegradationDataRelationships) SetStatusPage(v DegradationDataRelationsh
 	o.StatusPage = &v
 }
 
+// GetTemplate returns the Template field value if set, zero value otherwise.
+func (o *DegradationDataRelationships) GetTemplate() DegradationDataRelationshipsTemplate {
+	if o == nil || o.Template == nil {
+		var ret DegradationDataRelationshipsTemplate
+		return ret
+	}
+	return *o.Template
+}
+
+// GetTemplateOk returns a tuple with the Template field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DegradationDataRelationships) GetTemplateOk() (*DegradationDataRelationshipsTemplate, bool) {
+	if o == nil || o.Template == nil {
+		return nil, false
+	}
+	return o.Template, true
+}
+
+// HasTemplate returns a boolean if a field has been set.
+func (o *DegradationDataRelationships) HasTemplate() bool {
+	return o != nil && o.Template != nil
+}
+
+// SetTemplate gets a reference to the given DegradationDataRelationshipsTemplate and assigns it to the Template field.
+func (o *DegradationDataRelationships) SetTemplate(v DegradationDataRelationshipsTemplate) {
+	o.Template = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o DegradationDataRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -137,6 +167,9 @@ func (o DegradationDataRelationships) MarshalJSON() ([]byte, error) {
 	if o.StatusPage != nil {
 		toSerialize["status_page"] = o.StatusPage
 	}
+	if o.Template != nil {
+		toSerialize["template"] = o.Template
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -150,13 +183,14 @@ func (o *DegradationDataRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		CreatedByUser      *DegradationDataRelationshipsCreatedByUser      `json:"created_by_user,omitempty"`
 		LastModifiedByUser *DegradationDataRelationshipsLastModifiedByUser `json:"last_modified_by_user,omitempty"`
 		StatusPage         *DegradationDataRelationshipsStatusPage         `json:"status_page,omitempty"`
+		Template           *DegradationDataRelationshipsTemplate           `json:"template,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_by_user", "last_modified_by_user", "status_page"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_by_user", "last_modified_by_user", "status_page", "template"})
 	} else {
 		return err
 	}
@@ -174,6 +208,10 @@ func (o *DegradationDataRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.StatusPage = all.StatusPage
+	if all.Template != nil && all.Template.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Template = all.Template
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
