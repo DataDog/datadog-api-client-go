@@ -31,7 +31,7 @@ type ObservabilityPipelineHttpClientSource struct {
 	// The timeout (in seconds) for each scrape request.
 	ScrapeTimeoutSecs *int64 `json:"scrape_timeout_secs,omitempty"`
 	// Configuration for enabling TLS encryption between the pipeline component and external services.
-	Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
+	Tls *ObservabilityPipelineClientTls `json:"tls,omitempty"`
 	// Name of the environment variable or secret that holds the bearer token (used when `auth_strategy` is `bearer`).
 	TokenKey *string `json:"token_key,omitempty"`
 	// The source type. The value should always be `http_client`.
@@ -280,9 +280,9 @@ func (o *ObservabilityPipelineHttpClientSource) SetScrapeTimeoutSecs(v int64) {
 }
 
 // GetTls returns the Tls field value if set, zero value otherwise.
-func (o *ObservabilityPipelineHttpClientSource) GetTls() ObservabilityPipelineTls {
+func (o *ObservabilityPipelineHttpClientSource) GetTls() ObservabilityPipelineClientTls {
 	if o == nil || o.Tls == nil {
-		var ret ObservabilityPipelineTls
+		var ret ObservabilityPipelineClientTls
 		return ret
 	}
 	return *o.Tls
@@ -290,7 +290,7 @@ func (o *ObservabilityPipelineHttpClientSource) GetTls() ObservabilityPipelineTl
 
 // GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineHttpClientSource) GetTlsOk() (*ObservabilityPipelineTls, bool) {
+func (o *ObservabilityPipelineHttpClientSource) GetTlsOk() (*ObservabilityPipelineClientTls, bool) {
 	if o == nil || o.Tls == nil {
 		return nil, false
 	}
@@ -302,8 +302,8 @@ func (o *ObservabilityPipelineHttpClientSource) HasTls() bool {
 	return o != nil && o.Tls != nil
 }
 
-// SetTls gets a reference to the given ObservabilityPipelineTls and assigns it to the Tls field.
-func (o *ObservabilityPipelineHttpClientSource) SetTls(v ObservabilityPipelineTls) {
+// SetTls gets a reference to the given ObservabilityPipelineClientTls and assigns it to the Tls field.
+func (o *ObservabilityPipelineHttpClientSource) SetTls(v ObservabilityPipelineClientTls) {
 	o.Tls = &v
 }
 
@@ -440,7 +440,7 @@ func (o *ObservabilityPipelineHttpClientSource) UnmarshalJSON(bytes []byte) (err
 		PasswordKey        *string                                            `json:"password_key,omitempty"`
 		ScrapeIntervalSecs *int64                                             `json:"scrape_interval_secs,omitempty"`
 		ScrapeTimeoutSecs  *int64                                             `json:"scrape_timeout_secs,omitempty"`
-		Tls                *ObservabilityPipelineTls                          `json:"tls,omitempty"`
+		Tls                *ObservabilityPipelineClientTls                    `json:"tls,omitempty"`
 		TokenKey           *string                                            `json:"token_key,omitempty"`
 		Type               *ObservabilityPipelineHttpClientSourceType         `json:"type"`
 		UsernameKey        *string                                            `json:"username_key,omitempty"`

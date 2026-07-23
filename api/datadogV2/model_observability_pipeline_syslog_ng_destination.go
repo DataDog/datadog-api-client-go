@@ -25,7 +25,7 @@ type ObservabilityPipelineSyslogNgDestination struct {
 	// Optional socket keepalive duration in milliseconds.
 	Keepalive *int64 `json:"keepalive,omitempty"`
 	// Configuration for enabling TLS encryption between the pipeline component and external services.
-	Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
+	Tls *ObservabilityPipelineClientTls `json:"tls,omitempty"`
 	// The destination type. The value should always be `syslog_ng`.
 	Type ObservabilityPipelineSyslogNgDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -186,9 +186,9 @@ func (o *ObservabilityPipelineSyslogNgDestination) SetKeepalive(v int64) {
 }
 
 // GetTls returns the Tls field value if set, zero value otherwise.
-func (o *ObservabilityPipelineSyslogNgDestination) GetTls() ObservabilityPipelineTls {
+func (o *ObservabilityPipelineSyslogNgDestination) GetTls() ObservabilityPipelineClientTls {
 	if o == nil || o.Tls == nil {
-		var ret ObservabilityPipelineTls
+		var ret ObservabilityPipelineClientTls
 		return ret
 	}
 	return *o.Tls
@@ -196,7 +196,7 @@ func (o *ObservabilityPipelineSyslogNgDestination) GetTls() ObservabilityPipelin
 
 // GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineSyslogNgDestination) GetTlsOk() (*ObservabilityPipelineTls, bool) {
+func (o *ObservabilityPipelineSyslogNgDestination) GetTlsOk() (*ObservabilityPipelineClientTls, bool) {
 	if o == nil || o.Tls == nil {
 		return nil, false
 	}
@@ -208,8 +208,8 @@ func (o *ObservabilityPipelineSyslogNgDestination) HasTls() bool {
 	return o != nil && o.Tls != nil
 }
 
-// SetTls gets a reference to the given ObservabilityPipelineTls and assigns it to the Tls field.
-func (o *ObservabilityPipelineSyslogNgDestination) SetTls(v ObservabilityPipelineTls) {
+// SetTls gets a reference to the given ObservabilityPipelineClientTls and assigns it to the Tls field.
+func (o *ObservabilityPipelineSyslogNgDestination) SetTls(v ObservabilityPipelineClientTls) {
 	o.Tls = &v
 }
 
@@ -272,7 +272,7 @@ func (o *ObservabilityPipelineSyslogNgDestination) UnmarshalJSON(bytes []byte) (
 		Id             *string                                       `json:"id"`
 		Inputs         *[]string                                     `json:"inputs"`
 		Keepalive      *int64                                        `json:"keepalive,omitempty"`
-		Tls            *ObservabilityPipelineTls                     `json:"tls,omitempty"`
+		Tls            *ObservabilityPipelineClientTls               `json:"tls,omitempty"`
 		Type           *ObservabilityPipelineSyslogNgDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {

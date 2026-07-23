@@ -23,7 +23,7 @@ type ObservabilityPipelineCloudPremDestination struct {
 	// A list of component IDs whose output is used as the `input` for this component.
 	Inputs []string `json:"inputs"`
 	// Configuration for enabling TLS encryption between the pipeline component and external services.
-	Tls *ObservabilityPipelineTls `json:"tls,omitempty"`
+	Tls *ObservabilityPipelineClientTls `json:"tls,omitempty"`
 	// The destination type. The value should always be `cloud_prem`.
 	Type ObservabilityPipelineCloudPremDestinationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -156,9 +156,9 @@ func (o *ObservabilityPipelineCloudPremDestination) SetInputs(v []string) {
 }
 
 // GetTls returns the Tls field value if set, zero value otherwise.
-func (o *ObservabilityPipelineCloudPremDestination) GetTls() ObservabilityPipelineTls {
+func (o *ObservabilityPipelineCloudPremDestination) GetTls() ObservabilityPipelineClientTls {
 	if o == nil || o.Tls == nil {
-		var ret ObservabilityPipelineTls
+		var ret ObservabilityPipelineClientTls
 		return ret
 	}
 	return *o.Tls
@@ -166,7 +166,7 @@ func (o *ObservabilityPipelineCloudPremDestination) GetTls() ObservabilityPipeli
 
 // GetTlsOk returns a tuple with the Tls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ObservabilityPipelineCloudPremDestination) GetTlsOk() (*ObservabilityPipelineTls, bool) {
+func (o *ObservabilityPipelineCloudPremDestination) GetTlsOk() (*ObservabilityPipelineClientTls, bool) {
 	if o == nil || o.Tls == nil {
 		return nil, false
 	}
@@ -178,8 +178,8 @@ func (o *ObservabilityPipelineCloudPremDestination) HasTls() bool {
 	return o != nil && o.Tls != nil
 }
 
-// SetTls gets a reference to the given ObservabilityPipelineTls and assigns it to the Tls field.
-func (o *ObservabilityPipelineCloudPremDestination) SetTls(v ObservabilityPipelineTls) {
+// SetTls gets a reference to the given ObservabilityPipelineClientTls and assigns it to the Tls field.
+func (o *ObservabilityPipelineCloudPremDestination) SetTls(v ObservabilityPipelineClientTls) {
 	o.Tls = &v
 }
 
@@ -238,7 +238,7 @@ func (o *ObservabilityPipelineCloudPremDestination) UnmarshalJSON(bytes []byte) 
 		EndpointUrlKey *string                                        `json:"endpoint_url_key,omitempty"`
 		Id             *string                                        `json:"id"`
 		Inputs         *[]string                                      `json:"inputs"`
-		Tls            *ObservabilityPipelineTls                      `json:"tls,omitempty"`
+		Tls            *ObservabilityPipelineClientTls                `json:"tls,omitempty"`
 		Type           *ObservabilityPipelineCloudPremDestinationType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
