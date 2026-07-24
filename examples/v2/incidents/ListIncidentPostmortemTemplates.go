@@ -18,7 +18,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.ListIncidentPostmortemTemplates", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewIncidentsApi(apiClient)
-	resp, r, err := api.ListIncidentPostmortemTemplates(ctx)
+	resp, r, err := api.ListIncidentPostmortemTemplates(ctx, *datadogV2.NewListIncidentPostmortemTemplatesOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.ListIncidentPostmortemTemplates`: %v\n", err)

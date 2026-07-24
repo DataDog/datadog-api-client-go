@@ -10,15 +10,17 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// PostmortemTemplateType Postmortem template resource type
+// PostmortemTemplateType Postmortem template resource type.
 type PostmortemTemplateType string
 
 // List of PostmortemTemplateType.
 const (
-	POSTMORTEMTEMPLATETYPE_POSTMORTEM_TEMPLATE PostmortemTemplateType = "postmortem_template"
+	POSTMORTEMTEMPLATETYPE_POSTMORTEM_TEMPLATES PostmortemTemplateType = "postmortem_templates"
+	POSTMORTEMTEMPLATETYPE_POSTMORTEM_TEMPLATE  PostmortemTemplateType = "postmortem_template"
 )
 
 var allowedPostmortemTemplateTypeEnumValues = []PostmortemTemplateType{
+	POSTMORTEMTEMPLATETYPE_POSTMORTEM_TEMPLATES,
 	POSTMORTEMTEMPLATETYPE_POSTMORTEM_TEMPLATE,
 }
 
