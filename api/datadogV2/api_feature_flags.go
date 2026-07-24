@@ -862,8 +862,8 @@ func (a *FeatureFlagsApi) GetFeatureFlagsEnvironment(ctx _context.Context, envir
 type ListFeatureFlagsOptionalParameters struct {
 	Key        *string
 	IsArchived *bool
-	Limit      *int64
-	Offset     *int64
+	PageLimit  *int64
+	PageOffset *int64
 }
 
 // NewListFeatureFlagsOptionalParameters creates an empty struct for parameters.
@@ -884,15 +884,15 @@ func (r *ListFeatureFlagsOptionalParameters) WithIsArchived(isArchived bool) *Li
 	return r
 }
 
-// WithLimit sets the corresponding parameter name and returns the struct.
-func (r *ListFeatureFlagsOptionalParameters) WithLimit(limit int64) *ListFeatureFlagsOptionalParameters {
-	r.Limit = &limit
+// WithPageLimit sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsOptionalParameters) WithPageLimit(pageLimit int64) *ListFeatureFlagsOptionalParameters {
+	r.PageLimit = &pageLimit
 	return r
 }
 
-// WithOffset sets the corresponding parameter name and returns the struct.
-func (r *ListFeatureFlagsOptionalParameters) WithOffset(offset int64) *ListFeatureFlagsOptionalParameters {
-	r.Offset = &offset
+// WithPageOffset sets the corresponding parameter name and returns the struct.
+func (r *ListFeatureFlagsOptionalParameters) WithPageOffset(pageOffset int64) *ListFeatureFlagsOptionalParameters {
+	r.PageOffset = &pageOffset
 	return r
 }
 
@@ -930,11 +930,11 @@ func (a *FeatureFlagsApi) ListFeatureFlags(ctx _context.Context, o ...ListFeatur
 	if optionalParams.IsArchived != nil {
 		localVarQueryParams.Add("is_archived", datadog.ParameterToString(*optionalParams.IsArchived, ""))
 	}
-	if optionalParams.Limit != nil {
-		localVarQueryParams.Add("limit", datadog.ParameterToString(*optionalParams.Limit, ""))
+	if optionalParams.PageLimit != nil {
+		localVarQueryParams.Add("page[limit]", datadog.ParameterToString(*optionalParams.PageLimit, ""))
 	}
-	if optionalParams.Offset != nil {
-		localVarQueryParams.Add("offset", datadog.ParameterToString(*optionalParams.Offset, ""))
+	if optionalParams.PageOffset != nil {
+		localVarQueryParams.Add("page[offset]", datadog.ParameterToString(*optionalParams.PageOffset, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
