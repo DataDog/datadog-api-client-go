@@ -18,12 +18,16 @@ const (
 	SECURITYMONITORINGSKU_PER_GB_ANALYZED              SecurityMonitoringSKU = "per_gb_analyzed"
 	SECURITYMONITORINGSKU_PER_EVENT_IN_SIEM_INDEX_2023 SecurityMonitoringSKU = "per_event_in_siem_index_2023"
 	SECURITYMONITORINGSKU_ADD_ON_2024                  SecurityMonitoringSKU = "add_on_2024"
+	SECURITYMONITORINGSKU_STANDALONE_INDEXED           SecurityMonitoringSKU = "standalone_indexed"
+	SECURITYMONITORINGSKU_UNKNOWN                      SecurityMonitoringSKU = "unknown"
 )
 
 var allowedSecurityMonitoringSKUEnumValues = []SecurityMonitoringSKU{
 	SECURITYMONITORINGSKU_PER_GB_ANALYZED,
 	SECURITYMONITORINGSKU_PER_EVENT_IN_SIEM_INDEX_2023,
 	SECURITYMONITORINGSKU_ADD_ON_2024,
+	SECURITYMONITORINGSKU_STANDALONE_INDEXED,
+	SECURITYMONITORINGSKU_UNKNOWN,
 }
 
 // GetAllowedValues reeturns the list of possible values.

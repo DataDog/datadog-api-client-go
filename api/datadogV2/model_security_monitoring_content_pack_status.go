@@ -15,12 +15,13 @@ type SecurityMonitoringContentPackStatus string
 
 // List of SecurityMonitoringContentPackStatus.
 const (
-	SECURITYMONITORINGCONTENTPACKSTATUS_INSTALL      SecurityMonitoringContentPackStatus = "install"
-	SECURITYMONITORINGCONTENTPACKSTATUS_ACTIVATE     SecurityMonitoringContentPackStatus = "activate"
-	SECURITYMONITORINGCONTENTPACKSTATUS_INITIALIZING SecurityMonitoringContentPackStatus = "initializing"
-	SECURITYMONITORINGCONTENTPACKSTATUS_ACTIVE       SecurityMonitoringContentPackStatus = "active"
-	SECURITYMONITORINGCONTENTPACKSTATUS_WARNING      SecurityMonitoringContentPackStatus = "warning"
-	SECURITYMONITORINGCONTENTPACKSTATUS_BROKEN       SecurityMonitoringContentPackStatus = "broken"
+	SECURITYMONITORINGCONTENTPACKSTATUS_INSTALL        SecurityMonitoringContentPackStatus = "install"
+	SECURITYMONITORINGCONTENTPACKSTATUS_ACTIVATE       SecurityMonitoringContentPackStatus = "activate"
+	SECURITYMONITORINGCONTENTPACKSTATUS_INITIALIZING   SecurityMonitoringContentPackStatus = "initializing"
+	SECURITYMONITORINGCONTENTPACKSTATUS_ACTIVE         SecurityMonitoringContentPackStatus = "active"
+	SECURITYMONITORINGCONTENTPACKSTATUS_WARNING        SecurityMonitoringContentPackStatus = "warning"
+	SECURITYMONITORINGCONTENTPACKSTATUS_BROKEN         SecurityMonitoringContentPackStatus = "broken"
+	SECURITYMONITORINGCONTENTPACKSTATUS_NOT_CONFIGURED SecurityMonitoringContentPackStatus = "not_configured"
 )
 
 var allowedSecurityMonitoringContentPackStatusEnumValues = []SecurityMonitoringContentPackStatus{
@@ -30,6 +31,7 @@ var allowedSecurityMonitoringContentPackStatusEnumValues = []SecurityMonitoringC
 	SECURITYMONITORINGCONTENTPACKSTATUS_ACTIVE,
 	SECURITYMONITORINGCONTENTPACKSTATUS_WARNING,
 	SECURITYMONITORINGCONTENTPACKSTATUS_BROKEN,
+	SECURITYMONITORINGCONTENTPACKSTATUS_NOT_CONFIGURED,
 }
 
 // GetAllowedValues reeturns the list of possible values.
