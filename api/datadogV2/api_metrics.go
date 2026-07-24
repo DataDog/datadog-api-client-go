@@ -2300,6 +2300,7 @@ func (a *MetricsApi) QueryTimeseriesData(ctx _context.Context, body TimeseriesFo
 // ReorderTagIndexingRules Reorder tag indexing rules.
 // Atomically re-sequence the tag indexing rules for an org to match the supplied list of rule UUIDs.
 // The server assigns `rule_order` 1, 2, … matching each rule UUID by position in the list.
+// The UUIDs of all active rules must be provided; omitting any active rule UUID returns a 400 error.
 // Requires the `Manage Tags for Metrics` permission.
 func (a *MetricsApi) ReorderTagIndexingRules(ctx _context.Context, body TagIndexingRuleOrderRequest) (*_nethttp.Response, error) {
 	var (
