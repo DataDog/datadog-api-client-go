@@ -18,7 +18,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.GetIncidentPostmortemTemplate", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewIncidentsApi(apiClient)
-	resp, r, err := api.GetIncidentPostmortemTemplate(ctx, "template-456")
+	resp, r, err := api.GetIncidentPostmortemTemplate(ctx, "template_id")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.GetIncidentPostmortemTemplate`: %v\n", err)

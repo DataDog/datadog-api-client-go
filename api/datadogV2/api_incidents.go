@@ -4215,14 +4215,46 @@ func (a *IncidentsApi) ListIncidentNotificationTemplates(ctx _context.Context, o
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListIncidentPostmortemTemplatesOptionalParameters holds optional parameters for ListIncidentPostmortemTemplates.
+type ListIncidentPostmortemTemplatesOptionalParameters struct {
+	FilterIncidentType *uuid.UUID
+	Sort               *string
+}
+
+// NewListIncidentPostmortemTemplatesOptionalParameters creates an empty struct for parameters.
+func NewListIncidentPostmortemTemplatesOptionalParameters() *ListIncidentPostmortemTemplatesOptionalParameters {
+	this := ListIncidentPostmortemTemplatesOptionalParameters{}
+	return &this
+}
+
+// WithFilterIncidentType sets the corresponding parameter name and returns the struct.
+func (r *ListIncidentPostmortemTemplatesOptionalParameters) WithFilterIncidentType(filterIncidentType uuid.UUID) *ListIncidentPostmortemTemplatesOptionalParameters {
+	r.FilterIncidentType = &filterIncidentType
+	return r
+}
+
+// WithSort sets the corresponding parameter name and returns the struct.
+func (r *ListIncidentPostmortemTemplatesOptionalParameters) WithSort(sort string) *ListIncidentPostmortemTemplatesOptionalParameters {
+	r.Sort = &sort
+	return r
+}
+
 // ListIncidentPostmortemTemplates List postmortem templates.
 // Retrieve a list of all postmortem templates for incidents.
-func (a *IncidentsApi) ListIncidentPostmortemTemplates(ctx _context.Context) (PostmortemTemplatesResponse, *_nethttp.Response, error) {
+func (a *IncidentsApi) ListIncidentPostmortemTemplates(ctx _context.Context, o ...ListIncidentPostmortemTemplatesOptionalParameters) (PostmortemTemplatesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue PostmortemTemplatesResponse
+		optionalParams      ListIncidentPostmortemTemplatesOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListIncidentPostmortemTemplatesOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	operationId := "v2.ListIncidentPostmortemTemplates"
 	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
@@ -4243,6 +4275,12 @@ func (a *IncidentsApi) ListIncidentPostmortemTemplates(ctx _context.Context) (Po
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.FilterIncidentType != nil {
+		localVarQueryParams.Add("filter[incident-type]", datadog.ParameterToString(*optionalParams.FilterIncidentType, ""))
+	}
+	if optionalParams.Sort != nil {
+		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {

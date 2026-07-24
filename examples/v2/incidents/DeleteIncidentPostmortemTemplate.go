@@ -17,7 +17,7 @@ func main() {
 	configuration.SetUnstableOperationEnabled("v2.DeleteIncidentPostmortemTemplate", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewIncidentsApi(apiClient)
-	r, err := api.DeleteIncidentPostmortemTemplate(ctx, "template-456")
+	r, err := api.DeleteIncidentPostmortemTemplate(ctx, "template_id")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.DeleteIncidentPostmortemTemplate`: %v\n", err)
