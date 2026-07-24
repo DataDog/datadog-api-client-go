@@ -1117,6 +1117,7 @@ func NewConfiguration() *Configuration {
 			"v2.CreateScorecardOutcomesBatch":                         false,
 			"v2.GetEntityRiskScore":                                   false,
 			"v2.ListEntityRiskScores":                                 false,
+			"v2.IngestStixThreatIntel":                                false,
 			"v2.CreateSLOReportJob":                                   false,
 			"v2.GetSLOReport":                                         false,
 			"v2.GetSLOReportJobStatus":                                false,

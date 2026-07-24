@@ -1379,6 +1379,7 @@
 //   - [TestOptimizationApi.UpdateFlakyTests]
 //   - [TestOptimizationApi.UpdateFlakyTestsManagementPolicies]
 //   - [TestOptimizationApi.UpdateTestOptimizationServiceSettings]
+//   - [ThreatIntelligenceApi.IngestStixThreatIntel]
 //   - [UsageMeteringApi.GetActiveBillingDimensions]
 //   - [UsageMeteringApi.GetBillingDimensionMapping]
 //   - [UsageMeteringApi.GetCostByOrg]
