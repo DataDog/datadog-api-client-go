@@ -74,6 +74,13 @@ func enableOperations(t gobdd.StepTest, ctx gobdd.Context, name string) {
 
 // newRequest sets callable operation to requestKey{}
 func newRequest(t gobdd.StepTest, ctx gobdd.Context, name string) {
+	if testRunnerEnabled() {
+		return
+	}
+	newRequestNative(t, ctx, name)
+}
+
+func newRequestNative(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	c, err := ctx.Get(apiKey{})
 	if err != nil {
 		t.Error(err)
@@ -106,6 +113,13 @@ func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
 }
 
 func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path string) {
+	if testRunnerEnabled() {
+		return
+	}
+	addParameterFromNative(t, ctx, name, path)
+}
+
+func addParameterFromNative(t gobdd.StepTest, ctx gobdd.Context, name string, path string) {
 	value, err := tests.LookupStringI(GetData(ctx), CamelToSnakeCase(path))
 	if err != nil {
 		t.Errorf("key %s in %+v: %v", path, GetData(ctx), err)
@@ -205,6 +219,13 @@ func addPathArgumentWithValue(t gobdd.StepTest, ctx gobdd.Context, param string,
 }
 
 func addParameterWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, value string) {
+	if testRunnerEnabled() {
+		return
+	}
+	addParameterWithValueNative(t, ctx, param, value)
+}
+
+func addParameterWithValueNative(t gobdd.StepTest, ctx gobdd.Context, param string, value string) {
 	// Get request builder for the current scenario
 	request, _, err := getRequestBuilder(ctx)
 	if err != nil {
@@ -215,6 +236,7 @@ func addParameterWithValue(t gobdd.StepTest, ctx gobdd.Context, param string, va
 }
 
 func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
+	applyTestRunnerPlan(t, ctx, false)
 	request, in, err := getRequestBuilder(ctx)
 	if err != nil {
 		t.Error(err)
@@ -233,6 +255,9 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	result := request.Call(in)
 
 	ctx.Set(responseKey{}, result)
+	if err := markMainRequestComplete(ctx); err != nil {
+		t.Error(err)
+	}
 
 	// Report probable serialization errors
 	if len(result) > 1 {
@@ -272,11 +297,12 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	}
 
 	if undo != nil {
-		GetCleanup(ctx)["01-undo"] = undo(result)
+		GetCleanup(ctx)[fmt.Sprintf("%03d-undo", len(GetCleanup(ctx)))] = undo(result)
 	}
 }
 
 func requestWithPaginationIsSent(t gobdd.StepTest, ctx gobdd.Context) {
+	applyTestRunnerPlan(t, ctx, true)
 	// use WithPagination method
 	newWithPagination, _ := ctx.GetString(requestNameKey{})
 	newWithPagination = newWithPagination + "WithPagination"
@@ -332,15 +358,24 @@ func requestWithPaginationIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 		}
 	}
 	ctx.Set(jsonResponseKey{}, responseJSON)
+	if err := markMainRequestComplete(ctx); err != nil {
+		t.Error(err)
+	}
 }
 
 func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
+	if testRunnerEnabled() {
+		return
+	}
 	GetRequestParameters(ctx)["body"] = Templated(t, GetData(ctx), body)
 	pathCount, _ := ctx.Get(pathParamCountKey{})
 	ctx.Set(pathParamCountKey{}, pathCount.(int)+1)
 }
 
 func bodyFromFile(t gobdd.StepTest, ctx gobdd.Context, bodyFile string) {
+	if testRunnerEnabled() {
+		return
+	}
 	version := GetVersion(ctx)
 	body, err := os.ReadFile(fmt.Sprintf("./features/%s/%s", version, bodyFile))
 	if err != nil {
