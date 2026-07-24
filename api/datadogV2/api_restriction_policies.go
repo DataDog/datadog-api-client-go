@@ -209,6 +209,7 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 // - Case Management Projects: `case-management-project`
 // - Monitor Notification Rules: `monitor-notification-rule`
 // - Status Pages: `status-page`
+// - Feature Flags: `feature-flag`
 //
 // #### Supported relations for resources
 // Resource Type               | Supported Relations
@@ -239,6 +240,7 @@ func (r *UpdateRestrictionPolicyOptionalParameters) WithAllowSelfLockout(allowSe
 // Case Management Projects    | `viewer`, `contributor`, `manager`
 // Monitor Notification Rules  | `viewer`, `editor`
 // Status Pages                | `viewer`, `responder`, `manager`
+// Feature Flags               | `viewer`, `contributor`, `editor`
 func (a *RestrictionPoliciesApi) UpdateRestrictionPolicy(ctx _context.Context, resourceId string, body RestrictionPolicyUpdateRequest, o ...UpdateRestrictionPolicyOptionalParameters) (RestrictionPolicyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
