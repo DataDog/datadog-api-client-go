@@ -21,6 +21,8 @@ type ServiceLevelObjectivesApi datadog.Service
 // Create a job to generate an SLO report. The report job is processed asynchronously and eventually results in a CSV report being available for download.
 //
 // Check the status of the job and download the CSV report using the returned `report_id`.
+//
+// Deprecated: This API is deprecated.
 func (a *ServiceLevelObjectivesApi) CreateSLOReportJob(ctx _context.Context, body SloReportCreateRequest) (SLOReportPostResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -112,6 +114,8 @@ func (a *ServiceLevelObjectivesApi) CreateSLOReportJob(ctx _context.Context, bod
 // Download an SLO report. This can only be performed after the report job has completed.
 //
 // Reports are not guaranteed to exist indefinitely. Datadog recommends that you download the report as soon as it is available.
+//
+// Deprecated: This API is deprecated.
 func (a *ServiceLevelObjectivesApi) GetSLOReport(ctx _context.Context, reportId string) (string, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -199,6 +203,8 @@ func (a *ServiceLevelObjectivesApi) GetSLOReport(ctx _context.Context, reportId 
 
 // GetSLOReportJobStatus Get SLO report status.
 // Get the status of the SLO report job.
+//
+// Deprecated: This API is deprecated.
 func (a *ServiceLevelObjectivesApi) GetSLOReportJobStatus(ctx _context.Context, reportId string) (SLOReportStatusGetResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
