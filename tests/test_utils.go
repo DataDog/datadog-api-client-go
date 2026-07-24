@@ -287,6 +287,11 @@ func WithClock(ctx context.Context, path string) (context.Context, error) {
 	return context.WithValue(ctx, clockKey, fc), nil
 }
 
+// WithClockAt sets a fixed clock in the context without reading a VCR cassette.
+func WithClockAt(ctx context.Context, now time.Time) context.Context {
+	return context.WithValue(ctx, clockKey, clockwork.NewFakeClockAt(now))
+}
+
 // UniqueEntityName will return a unique string that can be used as a title/description/summary/...
 // of an API entity.
 func UniqueEntityName(ctx context.Context, t *testing.T) *string {
