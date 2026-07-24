@@ -3,6 +3,7 @@
 // Copyright 2019-Present Datadog, Inc.
 
 // List of APIs:
+//   - [AIGuardApi.EvaluateAIGuardRequest]
 //   - [APIManagementApi.CreateOpenAPI]
 //   - [APIManagementApi.DeleteOpenAPI]
 //   - [APIManagementApi.GetOpenAPI]
