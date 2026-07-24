@@ -14,7 +14,7 @@ import (
 type SecurityMonitoringContentPackStatesResponse struct {
 	// Array of content pack states.
 	Data []SecurityMonitoringContentPackStateData `json:"data"`
-	// Metadata for content pack states
+	// Metadata for content pack states.
 	Meta SecurityMonitoringContentPackStateMeta `json:"meta"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

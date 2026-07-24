@@ -10,10 +10,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SecurityMonitoringContentPackStateMeta Metadata for content pack states
+// SecurityMonitoringContentPackStateMeta Metadata for content pack states.
 type SecurityMonitoringContentPackStateMeta struct {
-	// Whether the cloud SIEM index configuration is incorrect at the organization level
+	// Whether the Cloud SIEM index configuration is incorrect for the organization.
 	CloudSiemIndexIncorrect bool `json:"cloud_siem_index_incorrect"`
+	// The number of months that standard logs are retained for organizations on the standalone_indexed` pricing model. This field is omitted for other pricing models.
+	RetentionMonths *int32 `json:"retention_months,omitempty"`
 	// The Cloud SIEM pricing model (SKU) for the organization.
 	Sku SecurityMonitoringSKU `json:"sku"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -63,6 +65,34 @@ func (o *SecurityMonitoringContentPackStateMeta) SetCloudSiemIndexIncorrect(v bo
 	o.CloudSiemIndexIncorrect = v
 }
 
+// GetRetentionMonths returns the RetentionMonths field value if set, zero value otherwise.
+func (o *SecurityMonitoringContentPackStateMeta) GetRetentionMonths() int32 {
+	if o == nil || o.RetentionMonths == nil {
+		var ret int32
+		return ret
+	}
+	return *o.RetentionMonths
+}
+
+// GetRetentionMonthsOk returns a tuple with the RetentionMonths field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringContentPackStateMeta) GetRetentionMonthsOk() (*int32, bool) {
+	if o == nil || o.RetentionMonths == nil {
+		return nil, false
+	}
+	return o.RetentionMonths, true
+}
+
+// HasRetentionMonths returns a boolean if a field has been set.
+func (o *SecurityMonitoringContentPackStateMeta) HasRetentionMonths() bool {
+	return o != nil && o.RetentionMonths != nil
+}
+
+// SetRetentionMonths gets a reference to the given int32 and assigns it to the RetentionMonths field.
+func (o *SecurityMonitoringContentPackStateMeta) SetRetentionMonths(v int32) {
+	o.RetentionMonths = &v
+}
+
 // GetSku returns the Sku field value.
 func (o *SecurityMonitoringContentPackStateMeta) GetSku() SecurityMonitoringSKU {
 	if o == nil {
@@ -93,6 +123,9 @@ func (o SecurityMonitoringContentPackStateMeta) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["cloud_siem_index_incorrect"] = o.CloudSiemIndexIncorrect
+	if o.RetentionMonths != nil {
+		toSerialize["retention_months"] = o.RetentionMonths
+	}
 	toSerialize["sku"] = o.Sku
 
 	for key, value := range o.AdditionalProperties {
@@ -105,6 +138,7 @@ func (o SecurityMonitoringContentPackStateMeta) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringContentPackStateMeta) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		CloudSiemIndexIncorrect *bool                  `json:"cloud_siem_index_incorrect"`
+		RetentionMonths         *int32                 `json:"retention_months,omitempty"`
 		Sku                     *SecurityMonitoringSKU `json:"sku"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,13 +152,14 @@ func (o *SecurityMonitoringContentPackStateMeta) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cloud_siem_index_incorrect", "sku"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"cloud_siem_index_incorrect", "retention_months", "sku"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.CloudSiemIndexIncorrect = *all.CloudSiemIndexIncorrect
+	o.RetentionMonths = all.RetentionMonths
 	if !all.Sku.IsValid() {
 		hasInvalidField = true
 	} else {

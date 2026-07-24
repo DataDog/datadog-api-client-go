@@ -12,7 +12,7 @@ import (
 
 // SecurityMonitoringContentPackStateData Content pack state data.
 type SecurityMonitoringContentPackStateData struct {
-	// Attributes of a content pack state
+	// Attributes of a content pack state.
 	Attributes SecurityMonitoringContentPackStateAttributes `json:"attributes"`
 	// The content pack identifier.
 	Id string `json:"id"`
