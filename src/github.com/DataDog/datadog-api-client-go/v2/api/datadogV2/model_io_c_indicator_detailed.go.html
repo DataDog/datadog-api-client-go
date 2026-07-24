@@ -1,0 +1,1411 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_io_c_indicator_detailed.go - Datadog</title>
+
+<link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/datadog-api-client-go/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.25.12";</script>
+<script src="/datadog-api-client-go/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog | Datadog API client for GO</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_io_c_indicator_detailed.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">github.com/DataDog/datadog-api-client-go/v2/api/datadogV2</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span><span class="comment">// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.</span>
+<span id="L2" class="ln">     2  </span><span class="comment">// This product includes software developed at Datadog (https://www.datadoghq.com/).</span>
+<span id="L3" class="ln">     3  </span><span class="comment">// Copyright 2019-Present Datadog, Inc.</span>
+<span id="L4" class="ln">     4  </span>
+<span id="L5" class="ln">     5  </span>package datadogV2
+<span id="L6" class="ln">     6  </span>
+<span id="L7" class="ln">     7  </span>import (
+<span id="L8" class="ln">     8  </span>	&#34;time&#34;
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
+<span id="L11" class="ln">    11  </span>)
+<span id="L12" class="ln">    12  </span>
+<span id="L13" class="ln">    13  </span><span class="comment">// IoCIndicatorDetailed An indicator of compromise with extended context from your environment.</span>
+<span id="L14" class="ln">    14  </span>type IoCIndicatorDetailed struct {
+<span id="L15" class="ln">    15  </span>	<span class="comment">// Additional domain-specific context from threat intelligence sources.</span>
+<span id="L16" class="ln">    16  </span>	AdditionalData map[string]interface{} `json:&#34;additional_data,omitempty&#34;`
+<span id="L17" class="ln">    17  </span>	<span class="comment">// Autonomous system CIDR block.</span>
+<span id="L18" class="ln">    18  </span>	AsCidrBlock *string `json:&#34;as_cidr_block,omitempty&#34;`
+<span id="L19" class="ln">    19  </span>	<span class="comment">// Geographic location information for an IP indicator.</span>
+<span id="L20" class="ln">    20  </span>	AsGeo *IoCGeoLocation `json:&#34;as_geo,omitempty&#34;`
+<span id="L21" class="ln">    21  </span>	<span class="comment">// Autonomous system number.</span>
+<span id="L22" class="ln">    22  </span>	AsNumber *string `json:&#34;as_number,omitempty&#34;`
+<span id="L23" class="ln">    23  </span>	<span class="comment">// Autonomous system organization name.</span>
+<span id="L24" class="ln">    24  </span>	AsOrganization *string `json:&#34;as_organization,omitempty&#34;`
+<span id="L25" class="ln">    25  </span>	<span class="comment">// Autonomous system type.</span>
+<span id="L26" class="ln">    26  </span>	AsType *string `json:&#34;as_type,omitempty&#34;`
+<span id="L27" class="ln">    27  </span>	<span class="comment">// Threat intelligence sources that flagged this indicator as benign.</span>
+<span id="L28" class="ln">    28  </span>	BenignSources []IoCSource `json:&#34;benign_sources,omitempty&#34;`
+<span id="L29" class="ln">    29  </span>	<span class="comment">// Threat categories associated with the indicator.</span>
+<span id="L30" class="ln">    30  </span>	Categories []string `json:&#34;categories,omitempty&#34;`
+<span id="L31" class="ln">    31  </span>	<span class="comment">// Critical assets associated with this indicator.</span>
+<span id="L32" class="ln">    32  </span>	CriticalAssets []string `json:&#34;critical_assets,omitempty&#34;`
+<span id="L33" class="ln">    33  </span>	<span class="comment">// Timestamp when the indicator was first seen.</span>
+<span id="L34" class="ln">    34  </span>	FirstSeen *time.Time `json:&#34;first_seen,omitempty&#34;`
+<span id="L35" class="ln">    35  </span>	<span class="comment">// Hosts associated with this indicator.</span>
+<span id="L36" class="ln">    36  </span>	Hosts []string `json:&#34;hosts,omitempty&#34;`
+<span id="L37" class="ln">    37  </span>	<span class="comment">// Unique identifier for the indicator.</span>
+<span id="L38" class="ln">    38  </span>	Id *string `json:&#34;id,omitempty&#34;`
+<span id="L39" class="ln">    39  </span>	<span class="comment">// The indicator value (for example, an IP address or domain).</span>
+<span id="L40" class="ln">    40  </span>	Indicator *string `json:&#34;indicator,omitempty&#34;`
+<span id="L41" class="ln">    41  </span>	<span class="comment">// Type of indicator (for example, IP address or domain).</span>
+<span id="L42" class="ln">    42  </span>	IndicatorType *string `json:&#34;indicator_type,omitempty&#34;`
+<span id="L43" class="ln">    43  </span>	<span class="comment">// Timestamp when the indicator was last seen.</span>
+<span id="L44" class="ln">    44  </span>	LastSeen *time.Time `json:&#34;last_seen,omitempty&#34;`
+<span id="L45" class="ln">    45  </span>	<span class="comment">// Number of logs that matched this indicator.</span>
+<span id="L46" class="ln">    46  </span>	LogMatches *int64 `json:&#34;log_matches,omitempty&#34;`
+<span id="L47" class="ln">    47  </span>	<span class="comment">// Log sources where this indicator was observed.</span>
+<span id="L48" class="ln">    48  </span>	LogSources []string `json:&#34;log_sources,omitempty&#34;`
+<span id="L49" class="ln">    49  </span>	<span class="comment">// Effect of a scoring factor on the indicator&#39;s threat score.</span>
+<span id="L50" class="ln">    50  </span>	MAsType *IoCScoreEffect `json:&#34;m_as_type,omitempty&#34;`
+<span id="L51" class="ln">    51  </span>	<span class="comment">// Effect of a scoring factor on the indicator&#39;s threat score.</span>
+<span id="L52" class="ln">    52  </span>	MPersistence *IoCScoreEffect `json:&#34;m_persistence,omitempty&#34;`
+<span id="L53" class="ln">    53  </span>	<span class="comment">// Effect of a scoring factor on the indicator&#39;s threat score.</span>
+<span id="L54" class="ln">    54  </span>	MSignal *IoCScoreEffect `json:&#34;m_signal,omitempty&#34;`
+<span id="L55" class="ln">    55  </span>	<span class="comment">// Effect of a scoring factor on the indicator&#39;s threat score.</span>
+<span id="L56" class="ln">    56  </span>	MSources *IoCScoreEffect `json:&#34;m_sources,omitempty&#34;`
+<span id="L57" class="ln">    57  </span>	<span class="comment">// Threat intelligence sources that flagged this indicator as malicious.</span>
+<span id="L58" class="ln">    58  </span>	MaliciousSources []IoCSource `json:&#34;malicious_sources,omitempty&#34;`
+<span id="L59" class="ln">    59  </span>	<span class="comment">// Effect of a scoring factor on the indicator&#39;s threat score.</span>
+<span id="L60" class="ln">    60  </span>	MaxTrustScore *IoCScoreEffect `json:&#34;max_trust_score,omitempty&#34;`
+<span id="L61" class="ln">    61  </span>	<span class="comment">// Threat score for the indicator (0-100).</span>
+<span id="L62" class="ln">    62  </span>	Score *float64 `json:&#34;score,omitempty&#34;`
+<span id="L63" class="ln">    63  </span>	<span class="comment">// Services where this indicator was observed.</span>
+<span id="L64" class="ln">    64  </span>	Services []string `json:&#34;services,omitempty&#34;`
+<span id="L65" class="ln">    65  </span>	<span class="comment">// Number of security signals that matched this indicator.</span>
+<span id="L66" class="ln">    66  </span>	SignalMatches *int64 `json:&#34;signal_matches,omitempty&#34;`
+<span id="L67" class="ln">    67  </span>	<span class="comment">// Breakdown of security signals by severity.</span>
+<span id="L68" class="ln">    68  </span>	SignalSeverity []IoCSignalSeverityCount `json:&#34;signal_severity,omitempty&#34;`
+<span id="L69" class="ln">    69  </span>	<span class="comment">// Signal tier level.</span>
+<span id="L70" class="ln">    70  </span>	SignalTier *int64 `json:&#34;signal_tier,omitempty&#34;`
+<span id="L71" class="ln">    71  </span>	<span class="comment">// Threat intelligence sources that flagged this indicator as suspicious.</span>
+<span id="L72" class="ln">    72  </span>	SuspiciousSources []IoCSource `json:&#34;suspicious_sources,omitempty&#34;`
+<span id="L73" class="ln">    73  </span>	<span class="comment">// Tags associated with the indicator.</span>
+<span id="L74" class="ln">    74  </span>	Tags []string `json:&#34;tags,omitempty&#34;`
+<span id="L75" class="ln">    75  </span>	<span class="comment">// Full triage history timeline. Returned only when `include_triage_history` is true.</span>
+<span id="L76" class="ln">    76  </span>	TriageHistory []IoCTriageEvent `json:&#34;triage_history,omitempty&#34;`
+<span id="L77" class="ln">    77  </span>	<span class="comment">// Current triage state of the indicator.</span>
+<span id="L78" class="ln">    78  </span>	TriageState *IoCTriageState `json:&#34;triage_state,omitempty&#34;`
+<span id="L79" class="ln">    79  </span>	<span class="comment">// Timestamp when the indicator was last triaged.</span>
+<span id="L80" class="ln">    80  </span>	TriagedAt *time.Time `json:&#34;triaged_at,omitempty&#34;`
+<span id="L81" class="ln">    81  </span>	<span class="comment">// UUID of the user who last triaged the indicator.</span>
+<span id="L82" class="ln">    82  </span>	TriagedBy *string `json:&#34;triaged_by,omitempty&#34;`
+<span id="L83" class="ln">    83  </span>	<span class="comment">// Users associated with this indicator, grouped by category.</span>
+<span id="L84" class="ln">    84  </span>	Users map[string][]string `json:&#34;users,omitempty&#34;`
+<span id="L85" class="ln">    85  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L86" class="ln">    86  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L87" class="ln">    87  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L88" class="ln">    88  </span>}
+<span id="L89" class="ln">    89  </span>
+<span id="L90" class="ln">    90  </span><span class="comment">// NewIoCIndicatorDetailed instantiates a new IoCIndicatorDetailed object.</span>
+<span id="L91" class="ln">    91  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L92" class="ln">    92  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L93" class="ln">    93  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L94" class="ln">    94  </span>func NewIoCIndicatorDetailed() *IoCIndicatorDetailed {
+<span id="L95" class="ln">    95  </span>	this := IoCIndicatorDetailed{}
+<span id="L96" class="ln">    96  </span>	return &amp;this
+<span id="L97" class="ln">    97  </span>}
+<span id="L98" class="ln">    98  </span>
+<span id="L99" class="ln">    99  </span><span class="comment">// NewIoCIndicatorDetailedWithDefaults instantiates a new IoCIndicatorDetailed object.</span>
+<span id="L100" class="ln">   100  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L101" class="ln">   101  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L102" class="ln">   102  </span>func NewIoCIndicatorDetailedWithDefaults() *IoCIndicatorDetailed {
+<span id="L103" class="ln">   103  </span>	this := IoCIndicatorDetailed{}
+<span id="L104" class="ln">   104  </span>	return &amp;this
+<span id="L105" class="ln">   105  </span>}
+<span id="L106" class="ln">   106  </span>
+<span id="L107" class="ln">   107  </span><span class="comment">// GetAdditionalData returns the AdditionalData field value if set, zero value otherwise.</span>
+<span id="L108" class="ln">   108  </span>func (o *IoCIndicatorDetailed) GetAdditionalData() map[string]interface{} {
+<span id="L109" class="ln">   109  </span>	if o == nil || o.AdditionalData == nil {
+<span id="L110" class="ln">   110  </span>		var ret map[string]interface{}
+<span id="L111" class="ln">   111  </span>		return ret
+<span id="L112" class="ln">   112  </span>	}
+<span id="L113" class="ln">   113  </span>	return o.AdditionalData
+<span id="L114" class="ln">   114  </span>}
+<span id="L115" class="ln">   115  </span>
+<span id="L116" class="ln">   116  </span><span class="comment">// GetAdditionalDataOk returns a tuple with the AdditionalData field value if set, nil otherwise</span>
+<span id="L117" class="ln">   117  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L118" class="ln">   118  </span>func (o *IoCIndicatorDetailed) GetAdditionalDataOk() (*map[string]interface{}, bool) {
+<span id="L119" class="ln">   119  </span>	if o == nil || o.AdditionalData == nil {
+<span id="L120" class="ln">   120  </span>		return nil, false
+<span id="L121" class="ln">   121  </span>	}
+<span id="L122" class="ln">   122  </span>	return &amp;o.AdditionalData, true
+<span id="L123" class="ln">   123  </span>}
+<span id="L124" class="ln">   124  </span>
+<span id="L125" class="ln">   125  </span><span class="comment">// HasAdditionalData returns a boolean if a field has been set.</span>
+<span id="L126" class="ln">   126  </span>func (o *IoCIndicatorDetailed) HasAdditionalData() bool {
+<span id="L127" class="ln">   127  </span>	return o != nil &amp;&amp; o.AdditionalData != nil
+<span id="L128" class="ln">   128  </span>}
+<span id="L129" class="ln">   129  </span>
+<span id="L130" class="ln">   130  </span><span class="comment">// SetAdditionalData gets a reference to the given map[string]interface{} and assigns it to the AdditionalData field.</span>
+<span id="L131" class="ln">   131  </span>func (o *IoCIndicatorDetailed) SetAdditionalData(v map[string]interface{}) {
+<span id="L132" class="ln">   132  </span>	o.AdditionalData = v
+<span id="L133" class="ln">   133  </span>}
+<span id="L134" class="ln">   134  </span>
+<span id="L135" class="ln">   135  </span><span class="comment">// GetAsCidrBlock returns the AsCidrBlock field value if set, zero value otherwise.</span>
+<span id="L136" class="ln">   136  </span>func (o *IoCIndicatorDetailed) GetAsCidrBlock() string {
+<span id="L137" class="ln">   137  </span>	if o == nil || o.AsCidrBlock == nil {
+<span id="L138" class="ln">   138  </span>		var ret string
+<span id="L139" class="ln">   139  </span>		return ret
+<span id="L140" class="ln">   140  </span>	}
+<span id="L141" class="ln">   141  </span>	return *o.AsCidrBlock
+<span id="L142" class="ln">   142  </span>}
+<span id="L143" class="ln">   143  </span>
+<span id="L144" class="ln">   144  </span><span class="comment">// GetAsCidrBlockOk returns a tuple with the AsCidrBlock field value if set, nil otherwise</span>
+<span id="L145" class="ln">   145  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L146" class="ln">   146  </span>func (o *IoCIndicatorDetailed) GetAsCidrBlockOk() (*string, bool) {
+<span id="L147" class="ln">   147  </span>	if o == nil || o.AsCidrBlock == nil {
+<span id="L148" class="ln">   148  </span>		return nil, false
+<span id="L149" class="ln">   149  </span>	}
+<span id="L150" class="ln">   150  </span>	return o.AsCidrBlock, true
+<span id="L151" class="ln">   151  </span>}
+<span id="L152" class="ln">   152  </span>
+<span id="L153" class="ln">   153  </span><span class="comment">// HasAsCidrBlock returns a boolean if a field has been set.</span>
+<span id="L154" class="ln">   154  </span>func (o *IoCIndicatorDetailed) HasAsCidrBlock() bool {
+<span id="L155" class="ln">   155  </span>	return o != nil &amp;&amp; o.AsCidrBlock != nil
+<span id="L156" class="ln">   156  </span>}
+<span id="L157" class="ln">   157  </span>
+<span id="L158" class="ln">   158  </span><span class="comment">// SetAsCidrBlock gets a reference to the given string and assigns it to the AsCidrBlock field.</span>
+<span id="L159" class="ln">   159  </span>func (o *IoCIndicatorDetailed) SetAsCidrBlock(v string) {
+<span id="L160" class="ln">   160  </span>	o.AsCidrBlock = &amp;v
+<span id="L161" class="ln">   161  </span>}
+<span id="L162" class="ln">   162  </span>
+<span id="L163" class="ln">   163  </span><span class="comment">// GetAsGeo returns the AsGeo field value if set, zero value otherwise.</span>
+<span id="L164" class="ln">   164  </span>func (o *IoCIndicatorDetailed) GetAsGeo() IoCGeoLocation {
+<span id="L165" class="ln">   165  </span>	if o == nil || o.AsGeo == nil {
+<span id="L166" class="ln">   166  </span>		var ret IoCGeoLocation
+<span id="L167" class="ln">   167  </span>		return ret
+<span id="L168" class="ln">   168  </span>	}
+<span id="L169" class="ln">   169  </span>	return *o.AsGeo
+<span id="L170" class="ln">   170  </span>}
+<span id="L171" class="ln">   171  </span>
+<span id="L172" class="ln">   172  </span><span class="comment">// GetAsGeoOk returns a tuple with the AsGeo field value if set, nil otherwise</span>
+<span id="L173" class="ln">   173  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L174" class="ln">   174  </span>func (o *IoCIndicatorDetailed) GetAsGeoOk() (*IoCGeoLocation, bool) {
+<span id="L175" class="ln">   175  </span>	if o == nil || o.AsGeo == nil {
+<span id="L176" class="ln">   176  </span>		return nil, false
+<span id="L177" class="ln">   177  </span>	}
+<span id="L178" class="ln">   178  </span>	return o.AsGeo, true
+<span id="L179" class="ln">   179  </span>}
+<span id="L180" class="ln">   180  </span>
+<span id="L181" class="ln">   181  </span><span class="comment">// HasAsGeo returns a boolean if a field has been set.</span>
+<span id="L182" class="ln">   182  </span>func (o *IoCIndicatorDetailed) HasAsGeo() bool {
+<span id="L183" class="ln">   183  </span>	return o != nil &amp;&amp; o.AsGeo != nil
+<span id="L184" class="ln">   184  </span>}
+<span id="L185" class="ln">   185  </span>
+<span id="L186" class="ln">   186  </span><span class="comment">// SetAsGeo gets a reference to the given IoCGeoLocation and assigns it to the AsGeo field.</span>
+<span id="L187" class="ln">   187  </span>func (o *IoCIndicatorDetailed) SetAsGeo(v IoCGeoLocation) {
+<span id="L188" class="ln">   188  </span>	o.AsGeo = &amp;v
+<span id="L189" class="ln">   189  </span>}
+<span id="L190" class="ln">   190  </span>
+<span id="L191" class="ln">   191  </span><span class="comment">// GetAsNumber returns the AsNumber field value if set, zero value otherwise.</span>
+<span id="L192" class="ln">   192  </span>func (o *IoCIndicatorDetailed) GetAsNumber() string {
+<span id="L193" class="ln">   193  </span>	if o == nil || o.AsNumber == nil {
+<span id="L194" class="ln">   194  </span>		var ret string
+<span id="L195" class="ln">   195  </span>		return ret
+<span id="L196" class="ln">   196  </span>	}
+<span id="L197" class="ln">   197  </span>	return *o.AsNumber
+<span id="L198" class="ln">   198  </span>}
+<span id="L199" class="ln">   199  </span>
+<span id="L200" class="ln">   200  </span><span class="comment">// GetAsNumberOk returns a tuple with the AsNumber field value if set, nil otherwise</span>
+<span id="L201" class="ln">   201  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L202" class="ln">   202  </span>func (o *IoCIndicatorDetailed) GetAsNumberOk() (*string, bool) {
+<span id="L203" class="ln">   203  </span>	if o == nil || o.AsNumber == nil {
+<span id="L204" class="ln">   204  </span>		return nil, false
+<span id="L205" class="ln">   205  </span>	}
+<span id="L206" class="ln">   206  </span>	return o.AsNumber, true
+<span id="L207" class="ln">   207  </span>}
+<span id="L208" class="ln">   208  </span>
+<span id="L209" class="ln">   209  </span><span class="comment">// HasAsNumber returns a boolean if a field has been set.</span>
+<span id="L210" class="ln">   210  </span>func (o *IoCIndicatorDetailed) HasAsNumber() bool {
+<span id="L211" class="ln">   211  </span>	return o != nil &amp;&amp; o.AsNumber != nil
+<span id="L212" class="ln">   212  </span>}
+<span id="L213" class="ln">   213  </span>
+<span id="L214" class="ln">   214  </span><span class="comment">// SetAsNumber gets a reference to the given string and assigns it to the AsNumber field.</span>
+<span id="L215" class="ln">   215  </span>func (o *IoCIndicatorDetailed) SetAsNumber(v string) {
+<span id="L216" class="ln">   216  </span>	o.AsNumber = &amp;v
+<span id="L217" class="ln">   217  </span>}
+<span id="L218" class="ln">   218  </span>
+<span id="L219" class="ln">   219  </span><span class="comment">// GetAsOrganization returns the AsOrganization field value if set, zero value otherwise.</span>
+<span id="L220" class="ln">   220  </span>func (o *IoCIndicatorDetailed) GetAsOrganization() string {
+<span id="L221" class="ln">   221  </span>	if o == nil || o.AsOrganization == nil {
+<span id="L222" class="ln">   222  </span>		var ret string
+<span id="L223" class="ln">   223  </span>		return ret
+<span id="L224" class="ln">   224  </span>	}
+<span id="L225" class="ln">   225  </span>	return *o.AsOrganization
+<span id="L226" class="ln">   226  </span>}
+<span id="L227" class="ln">   227  </span>
+<span id="L228" class="ln">   228  </span><span class="comment">// GetAsOrganizationOk returns a tuple with the AsOrganization field value if set, nil otherwise</span>
+<span id="L229" class="ln">   229  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L230" class="ln">   230  </span>func (o *IoCIndicatorDetailed) GetAsOrganizationOk() (*string, bool) {
+<span id="L231" class="ln">   231  </span>	if o == nil || o.AsOrganization == nil {
+<span id="L232" class="ln">   232  </span>		return nil, false
+<span id="L233" class="ln">   233  </span>	}
+<span id="L234" class="ln">   234  </span>	return o.AsOrganization, true
+<span id="L235" class="ln">   235  </span>}
+<span id="L236" class="ln">   236  </span>
+<span id="L237" class="ln">   237  </span><span class="comment">// HasAsOrganization returns a boolean if a field has been set.</span>
+<span id="L238" class="ln">   238  </span>func (o *IoCIndicatorDetailed) HasAsOrganization() bool {
+<span id="L239" class="ln">   239  </span>	return o != nil &amp;&amp; o.AsOrganization != nil
+<span id="L240" class="ln">   240  </span>}
+<span id="L241" class="ln">   241  </span>
+<span id="L242" class="ln">   242  </span><span class="comment">// SetAsOrganization gets a reference to the given string and assigns it to the AsOrganization field.</span>
+<span id="L243" class="ln">   243  </span>func (o *IoCIndicatorDetailed) SetAsOrganization(v string) {
+<span id="L244" class="ln">   244  </span>	o.AsOrganization = &amp;v
+<span id="L245" class="ln">   245  </span>}
+<span id="L246" class="ln">   246  </span>
+<span id="L247" class="ln">   247  </span><span class="comment">// GetAsType returns the AsType field value if set, zero value otherwise.</span>
+<span id="L248" class="ln">   248  </span>func (o *IoCIndicatorDetailed) GetAsType() string {
+<span id="L249" class="ln">   249  </span>	if o == nil || o.AsType == nil {
+<span id="L250" class="ln">   250  </span>		var ret string
+<span id="L251" class="ln">   251  </span>		return ret
+<span id="L252" class="ln">   252  </span>	}
+<span id="L253" class="ln">   253  </span>	return *o.AsType
+<span id="L254" class="ln">   254  </span>}
+<span id="L255" class="ln">   255  </span>
+<span id="L256" class="ln">   256  </span><span class="comment">// GetAsTypeOk returns a tuple with the AsType field value if set, nil otherwise</span>
+<span id="L257" class="ln">   257  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L258" class="ln">   258  </span>func (o *IoCIndicatorDetailed) GetAsTypeOk() (*string, bool) {
+<span id="L259" class="ln">   259  </span>	if o == nil || o.AsType == nil {
+<span id="L260" class="ln">   260  </span>		return nil, false
+<span id="L261" class="ln">   261  </span>	}
+<span id="L262" class="ln">   262  </span>	return o.AsType, true
+<span id="L263" class="ln">   263  </span>}
+<span id="L264" class="ln">   264  </span>
+<span id="L265" class="ln">   265  </span><span class="comment">// HasAsType returns a boolean if a field has been set.</span>
+<span id="L266" class="ln">   266  </span>func (o *IoCIndicatorDetailed) HasAsType() bool {
+<span id="L267" class="ln">   267  </span>	return o != nil &amp;&amp; o.AsType != nil
+<span id="L268" class="ln">   268  </span>}
+<span id="L269" class="ln">   269  </span>
+<span id="L270" class="ln">   270  </span><span class="comment">// SetAsType gets a reference to the given string and assigns it to the AsType field.</span>
+<span id="L271" class="ln">   271  </span>func (o *IoCIndicatorDetailed) SetAsType(v string) {
+<span id="L272" class="ln">   272  </span>	o.AsType = &amp;v
+<span id="L273" class="ln">   273  </span>}
+<span id="L274" class="ln">   274  </span>
+<span id="L275" class="ln">   275  </span><span class="comment">// GetBenignSources returns the BenignSources field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L276" class="ln">   276  </span>func (o *IoCIndicatorDetailed) GetBenignSources() []IoCSource {
+<span id="L277" class="ln">   277  </span>	if o == nil {
+<span id="L278" class="ln">   278  </span>		var ret []IoCSource
+<span id="L279" class="ln">   279  </span>		return ret
+<span id="L280" class="ln">   280  </span>	}
+<span id="L281" class="ln">   281  </span>	return o.BenignSources
+<span id="L282" class="ln">   282  </span>}
+<span id="L283" class="ln">   283  </span>
+<span id="L284" class="ln">   284  </span><span class="comment">// GetBenignSourcesOk returns a tuple with the BenignSources field value if set, nil otherwise</span>
+<span id="L285" class="ln">   285  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L286" class="ln">   286  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L287" class="ln">   287  </span>func (o *IoCIndicatorDetailed) GetBenignSourcesOk() (*[]IoCSource, bool) {
+<span id="L288" class="ln">   288  </span>	if o == nil || o.BenignSources == nil {
+<span id="L289" class="ln">   289  </span>		return nil, false
+<span id="L290" class="ln">   290  </span>	}
+<span id="L291" class="ln">   291  </span>	return &amp;o.BenignSources, true
+<span id="L292" class="ln">   292  </span>}
+<span id="L293" class="ln">   293  </span>
+<span id="L294" class="ln">   294  </span><span class="comment">// HasBenignSources returns a boolean if a field has been set.</span>
+<span id="L295" class="ln">   295  </span>func (o *IoCIndicatorDetailed) HasBenignSources() bool {
+<span id="L296" class="ln">   296  </span>	return o != nil &amp;&amp; o.BenignSources != nil
+<span id="L297" class="ln">   297  </span>}
+<span id="L298" class="ln">   298  </span>
+<span id="L299" class="ln">   299  </span><span class="comment">// SetBenignSources gets a reference to the given []IoCSource and assigns it to the BenignSources field.</span>
+<span id="L300" class="ln">   300  </span>func (o *IoCIndicatorDetailed) SetBenignSources(v []IoCSource) {
+<span id="L301" class="ln">   301  </span>	o.BenignSources = v
+<span id="L302" class="ln">   302  </span>}
+<span id="L303" class="ln">   303  </span>
+<span id="L304" class="ln">   304  </span><span class="comment">// GetCategories returns the Categories field value if set, zero value otherwise.</span>
+<span id="L305" class="ln">   305  </span>func (o *IoCIndicatorDetailed) GetCategories() []string {
+<span id="L306" class="ln">   306  </span>	if o == nil || o.Categories == nil {
+<span id="L307" class="ln">   307  </span>		var ret []string
+<span id="L308" class="ln">   308  </span>		return ret
+<span id="L309" class="ln">   309  </span>	}
+<span id="L310" class="ln">   310  </span>	return o.Categories
+<span id="L311" class="ln">   311  </span>}
+<span id="L312" class="ln">   312  </span>
+<span id="L313" class="ln">   313  </span><span class="comment">// GetCategoriesOk returns a tuple with the Categories field value if set, nil otherwise</span>
+<span id="L314" class="ln">   314  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L315" class="ln">   315  </span>func (o *IoCIndicatorDetailed) GetCategoriesOk() (*[]string, bool) {
+<span id="L316" class="ln">   316  </span>	if o == nil || o.Categories == nil {
+<span id="L317" class="ln">   317  </span>		return nil, false
+<span id="L318" class="ln">   318  </span>	}
+<span id="L319" class="ln">   319  </span>	return &amp;o.Categories, true
+<span id="L320" class="ln">   320  </span>}
+<span id="L321" class="ln">   321  </span>
+<span id="L322" class="ln">   322  </span><span class="comment">// HasCategories returns a boolean if a field has been set.</span>
+<span id="L323" class="ln">   323  </span>func (o *IoCIndicatorDetailed) HasCategories() bool {
+<span id="L324" class="ln">   324  </span>	return o != nil &amp;&amp; o.Categories != nil
+<span id="L325" class="ln">   325  </span>}
+<span id="L326" class="ln">   326  </span>
+<span id="L327" class="ln">   327  </span><span class="comment">// SetCategories gets a reference to the given []string and assigns it to the Categories field.</span>
+<span id="L328" class="ln">   328  </span>func (o *IoCIndicatorDetailed) SetCategories(v []string) {
+<span id="L329" class="ln">   329  </span>	o.Categories = v
+<span id="L330" class="ln">   330  </span>}
+<span id="L331" class="ln">   331  </span>
+<span id="L332" class="ln">   332  </span><span class="comment">// GetCriticalAssets returns the CriticalAssets field value if set, zero value otherwise.</span>
+<span id="L333" class="ln">   333  </span>func (o *IoCIndicatorDetailed) GetCriticalAssets() []string {
+<span id="L334" class="ln">   334  </span>	if o == nil || o.CriticalAssets == nil {
+<span id="L335" class="ln">   335  </span>		var ret []string
+<span id="L336" class="ln">   336  </span>		return ret
+<span id="L337" class="ln">   337  </span>	}
+<span id="L338" class="ln">   338  </span>	return o.CriticalAssets
+<span id="L339" class="ln">   339  </span>}
+<span id="L340" class="ln">   340  </span>
+<span id="L341" class="ln">   341  </span><span class="comment">// GetCriticalAssetsOk returns a tuple with the CriticalAssets field value if set, nil otherwise</span>
+<span id="L342" class="ln">   342  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L343" class="ln">   343  </span>func (o *IoCIndicatorDetailed) GetCriticalAssetsOk() (*[]string, bool) {
+<span id="L344" class="ln">   344  </span>	if o == nil || o.CriticalAssets == nil {
+<span id="L345" class="ln">   345  </span>		return nil, false
+<span id="L346" class="ln">   346  </span>	}
+<span id="L347" class="ln">   347  </span>	return &amp;o.CriticalAssets, true
+<span id="L348" class="ln">   348  </span>}
+<span id="L349" class="ln">   349  </span>
+<span id="L350" class="ln">   350  </span><span class="comment">// HasCriticalAssets returns a boolean if a field has been set.</span>
+<span id="L351" class="ln">   351  </span>func (o *IoCIndicatorDetailed) HasCriticalAssets() bool {
+<span id="L352" class="ln">   352  </span>	return o != nil &amp;&amp; o.CriticalAssets != nil
+<span id="L353" class="ln">   353  </span>}
+<span id="L354" class="ln">   354  </span>
+<span id="L355" class="ln">   355  </span><span class="comment">// SetCriticalAssets gets a reference to the given []string and assigns it to the CriticalAssets field.</span>
+<span id="L356" class="ln">   356  </span>func (o *IoCIndicatorDetailed) SetCriticalAssets(v []string) {
+<span id="L357" class="ln">   357  </span>	o.CriticalAssets = v
+<span id="L358" class="ln">   358  </span>}
+<span id="L359" class="ln">   359  </span>
+<span id="L360" class="ln">   360  </span><span class="comment">// GetFirstSeen returns the FirstSeen field value if set, zero value otherwise.</span>
+<span id="L361" class="ln">   361  </span>func (o *IoCIndicatorDetailed) GetFirstSeen() time.Time {
+<span id="L362" class="ln">   362  </span>	if o == nil || o.FirstSeen == nil {
+<span id="L363" class="ln">   363  </span>		var ret time.Time
+<span id="L364" class="ln">   364  </span>		return ret
+<span id="L365" class="ln">   365  </span>	}
+<span id="L366" class="ln">   366  </span>	return *o.FirstSeen
+<span id="L367" class="ln">   367  </span>}
+<span id="L368" class="ln">   368  </span>
+<span id="L369" class="ln">   369  </span><span class="comment">// GetFirstSeenOk returns a tuple with the FirstSeen field value if set, nil otherwise</span>
+<span id="L370" class="ln">   370  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L371" class="ln">   371  </span>func (o *IoCIndicatorDetailed) GetFirstSeenOk() (*time.Time, bool) {
+<span id="L372" class="ln">   372  </span>	if o == nil || o.FirstSeen == nil {
+<span id="L373" class="ln">   373  </span>		return nil, false
+<span id="L374" class="ln">   374  </span>	}
+<span id="L375" class="ln">   375  </span>	return o.FirstSeen, true
+<span id="L376" class="ln">   376  </span>}
+<span id="L377" class="ln">   377  </span>
+<span id="L378" class="ln">   378  </span><span class="comment">// HasFirstSeen returns a boolean if a field has been set.</span>
+<span id="L379" class="ln">   379  </span>func (o *IoCIndicatorDetailed) HasFirstSeen() bool {
+<span id="L380" class="ln">   380  </span>	return o != nil &amp;&amp; o.FirstSeen != nil
+<span id="L381" class="ln">   381  </span>}
+<span id="L382" class="ln">   382  </span>
+<span id="L383" class="ln">   383  </span><span class="comment">// SetFirstSeen gets a reference to the given time.Time and assigns it to the FirstSeen field.</span>
+<span id="L384" class="ln">   384  </span>func (o *IoCIndicatorDetailed) SetFirstSeen(v time.Time) {
+<span id="L385" class="ln">   385  </span>	o.FirstSeen = &amp;v
+<span id="L386" class="ln">   386  </span>}
+<span id="L387" class="ln">   387  </span>
+<span id="L388" class="ln">   388  </span><span class="comment">// GetHosts returns the Hosts field value if set, zero value otherwise.</span>
+<span id="L389" class="ln">   389  </span>func (o *IoCIndicatorDetailed) GetHosts() []string {
+<span id="L390" class="ln">   390  </span>	if o == nil || o.Hosts == nil {
+<span id="L391" class="ln">   391  </span>		var ret []string
+<span id="L392" class="ln">   392  </span>		return ret
+<span id="L393" class="ln">   393  </span>	}
+<span id="L394" class="ln">   394  </span>	return o.Hosts
+<span id="L395" class="ln">   395  </span>}
+<span id="L396" class="ln">   396  </span>
+<span id="L397" class="ln">   397  </span><span class="comment">// GetHostsOk returns a tuple with the Hosts field value if set, nil otherwise</span>
+<span id="L398" class="ln">   398  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L399" class="ln">   399  </span>func (o *IoCIndicatorDetailed) GetHostsOk() (*[]string, bool) {
+<span id="L400" class="ln">   400  </span>	if o == nil || o.Hosts == nil {
+<span id="L401" class="ln">   401  </span>		return nil, false
+<span id="L402" class="ln">   402  </span>	}
+<span id="L403" class="ln">   403  </span>	return &amp;o.Hosts, true
+<span id="L404" class="ln">   404  </span>}
+<span id="L405" class="ln">   405  </span>
+<span id="L406" class="ln">   406  </span><span class="comment">// HasHosts returns a boolean if a field has been set.</span>
+<span id="L407" class="ln">   407  </span>func (o *IoCIndicatorDetailed) HasHosts() bool {
+<span id="L408" class="ln">   408  </span>	return o != nil &amp;&amp; o.Hosts != nil
+<span id="L409" class="ln">   409  </span>}
+<span id="L410" class="ln">   410  </span>
+<span id="L411" class="ln">   411  </span><span class="comment">// SetHosts gets a reference to the given []string and assigns it to the Hosts field.</span>
+<span id="L412" class="ln">   412  </span>func (o *IoCIndicatorDetailed) SetHosts(v []string) {
+<span id="L413" class="ln">   413  </span>	o.Hosts = v
+<span id="L414" class="ln">   414  </span>}
+<span id="L415" class="ln">   415  </span>
+<span id="L416" class="ln">   416  </span><span class="comment">// GetId returns the Id field value if set, zero value otherwise.</span>
+<span id="L417" class="ln">   417  </span>func (o *IoCIndicatorDetailed) GetId() string {
+<span id="L418" class="ln">   418  </span>	if o == nil || o.Id == nil {
+<span id="L419" class="ln">   419  </span>		var ret string
+<span id="L420" class="ln">   420  </span>		return ret
+<span id="L421" class="ln">   421  </span>	}
+<span id="L422" class="ln">   422  </span>	return *o.Id
+<span id="L423" class="ln">   423  </span>}
+<span id="L424" class="ln">   424  </span>
+<span id="L425" class="ln">   425  </span><span class="comment">// GetIdOk returns a tuple with the Id field value if set, nil otherwise</span>
+<span id="L426" class="ln">   426  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L427" class="ln">   427  </span>func (o *IoCIndicatorDetailed) GetIdOk() (*string, bool) {
+<span id="L428" class="ln">   428  </span>	if o == nil || o.Id == nil {
+<span id="L429" class="ln">   429  </span>		return nil, false
+<span id="L430" class="ln">   430  </span>	}
+<span id="L431" class="ln">   431  </span>	return o.Id, true
+<span id="L432" class="ln">   432  </span>}
+<span id="L433" class="ln">   433  </span>
+<span id="L434" class="ln">   434  </span><span class="comment">// HasId returns a boolean if a field has been set.</span>
+<span id="L435" class="ln">   435  </span>func (o *IoCIndicatorDetailed) HasId() bool {
+<span id="L436" class="ln">   436  </span>	return o != nil &amp;&amp; o.Id != nil
+<span id="L437" class="ln">   437  </span>}
+<span id="L438" class="ln">   438  </span>
+<span id="L439" class="ln">   439  </span><span class="comment">// SetId gets a reference to the given string and assigns it to the Id field.</span>
+<span id="L440" class="ln">   440  </span>func (o *IoCIndicatorDetailed) SetId(v string) {
+<span id="L441" class="ln">   441  </span>	o.Id = &amp;v
+<span id="L442" class="ln">   442  </span>}
+<span id="L443" class="ln">   443  </span>
+<span id="L444" class="ln">   444  </span><span class="comment">// GetIndicator returns the Indicator field value if set, zero value otherwise.</span>
+<span id="L445" class="ln">   445  </span>func (o *IoCIndicatorDetailed) GetIndicator() string {
+<span id="L446" class="ln">   446  </span>	if o == nil || o.Indicator == nil {
+<span id="L447" class="ln">   447  </span>		var ret string
+<span id="L448" class="ln">   448  </span>		return ret
+<span id="L449" class="ln">   449  </span>	}
+<span id="L450" class="ln">   450  </span>	return *o.Indicator
+<span id="L451" class="ln">   451  </span>}
+<span id="L452" class="ln">   452  </span>
+<span id="L453" class="ln">   453  </span><span class="comment">// GetIndicatorOk returns a tuple with the Indicator field value if set, nil otherwise</span>
+<span id="L454" class="ln">   454  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L455" class="ln">   455  </span>func (o *IoCIndicatorDetailed) GetIndicatorOk() (*string, bool) {
+<span id="L456" class="ln">   456  </span>	if o == nil || o.Indicator == nil {
+<span id="L457" class="ln">   457  </span>		return nil, false
+<span id="L458" class="ln">   458  </span>	}
+<span id="L459" class="ln">   459  </span>	return o.Indicator, true
+<span id="L460" class="ln">   460  </span>}
+<span id="L461" class="ln">   461  </span>
+<span id="L462" class="ln">   462  </span><span class="comment">// HasIndicator returns a boolean if a field has been set.</span>
+<span id="L463" class="ln">   463  </span>func (o *IoCIndicatorDetailed) HasIndicator() bool {
+<span id="L464" class="ln">   464  </span>	return o != nil &amp;&amp; o.Indicator != nil
+<span id="L465" class="ln">   465  </span>}
+<span id="L466" class="ln">   466  </span>
+<span id="L467" class="ln">   467  </span><span class="comment">// SetIndicator gets a reference to the given string and assigns it to the Indicator field.</span>
+<span id="L468" class="ln">   468  </span>func (o *IoCIndicatorDetailed) SetIndicator(v string) {
+<span id="L469" class="ln">   469  </span>	o.Indicator = &amp;v
+<span id="L470" class="ln">   470  </span>}
+<span id="L471" class="ln">   471  </span>
+<span id="L472" class="ln">   472  </span><span class="comment">// GetIndicatorType returns the IndicatorType field value if set, zero value otherwise.</span>
+<span id="L473" class="ln">   473  </span>func (o *IoCIndicatorDetailed) GetIndicatorType() string {
+<span id="L474" class="ln">   474  </span>	if o == nil || o.IndicatorType == nil {
+<span id="L475" class="ln">   475  </span>		var ret string
+<span id="L476" class="ln">   476  </span>		return ret
+<span id="L477" class="ln">   477  </span>	}
+<span id="L478" class="ln">   478  </span>	return *o.IndicatorType
+<span id="L479" class="ln">   479  </span>}
+<span id="L480" class="ln">   480  </span>
+<span id="L481" class="ln">   481  </span><span class="comment">// GetIndicatorTypeOk returns a tuple with the IndicatorType field value if set, nil otherwise</span>
+<span id="L482" class="ln">   482  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L483" class="ln">   483  </span>func (o *IoCIndicatorDetailed) GetIndicatorTypeOk() (*string, bool) {
+<span id="L484" class="ln">   484  </span>	if o == nil || o.IndicatorType == nil {
+<span id="L485" class="ln">   485  </span>		return nil, false
+<span id="L486" class="ln">   486  </span>	}
+<span id="L487" class="ln">   487  </span>	return o.IndicatorType, true
+<span id="L488" class="ln">   488  </span>}
+<span id="L489" class="ln">   489  </span>
+<span id="L490" class="ln">   490  </span><span class="comment">// HasIndicatorType returns a boolean if a field has been set.</span>
+<span id="L491" class="ln">   491  </span>func (o *IoCIndicatorDetailed) HasIndicatorType() bool {
+<span id="L492" class="ln">   492  </span>	return o != nil &amp;&amp; o.IndicatorType != nil
+<span id="L493" class="ln">   493  </span>}
+<span id="L494" class="ln">   494  </span>
+<span id="L495" class="ln">   495  </span><span class="comment">// SetIndicatorType gets a reference to the given string and assigns it to the IndicatorType field.</span>
+<span id="L496" class="ln">   496  </span>func (o *IoCIndicatorDetailed) SetIndicatorType(v string) {
+<span id="L497" class="ln">   497  </span>	o.IndicatorType = &amp;v
+<span id="L498" class="ln">   498  </span>}
+<span id="L499" class="ln">   499  </span>
+<span id="L500" class="ln">   500  </span><span class="comment">// GetLastSeen returns the LastSeen field value if set, zero value otherwise.</span>
+<span id="L501" class="ln">   501  </span>func (o *IoCIndicatorDetailed) GetLastSeen() time.Time {
+<span id="L502" class="ln">   502  </span>	if o == nil || o.LastSeen == nil {
+<span id="L503" class="ln">   503  </span>		var ret time.Time
+<span id="L504" class="ln">   504  </span>		return ret
+<span id="L505" class="ln">   505  </span>	}
+<span id="L506" class="ln">   506  </span>	return *o.LastSeen
+<span id="L507" class="ln">   507  </span>}
+<span id="L508" class="ln">   508  </span>
+<span id="L509" class="ln">   509  </span><span class="comment">// GetLastSeenOk returns a tuple with the LastSeen field value if set, nil otherwise</span>
+<span id="L510" class="ln">   510  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L511" class="ln">   511  </span>func (o *IoCIndicatorDetailed) GetLastSeenOk() (*time.Time, bool) {
+<span id="L512" class="ln">   512  </span>	if o == nil || o.LastSeen == nil {
+<span id="L513" class="ln">   513  </span>		return nil, false
+<span id="L514" class="ln">   514  </span>	}
+<span id="L515" class="ln">   515  </span>	return o.LastSeen, true
+<span id="L516" class="ln">   516  </span>}
+<span id="L517" class="ln">   517  </span>
+<span id="L518" class="ln">   518  </span><span class="comment">// HasLastSeen returns a boolean if a field has been set.</span>
+<span id="L519" class="ln">   519  </span>func (o *IoCIndicatorDetailed) HasLastSeen() bool {
+<span id="L520" class="ln">   520  </span>	return o != nil &amp;&amp; o.LastSeen != nil
+<span id="L521" class="ln">   521  </span>}
+<span id="L522" class="ln">   522  </span>
+<span id="L523" class="ln">   523  </span><span class="comment">// SetLastSeen gets a reference to the given time.Time and assigns it to the LastSeen field.</span>
+<span id="L524" class="ln">   524  </span>func (o *IoCIndicatorDetailed) SetLastSeen(v time.Time) {
+<span id="L525" class="ln">   525  </span>	o.LastSeen = &amp;v
+<span id="L526" class="ln">   526  </span>}
+<span id="L527" class="ln">   527  </span>
+<span id="L528" class="ln">   528  </span><span class="comment">// GetLogMatches returns the LogMatches field value if set, zero value otherwise.</span>
+<span id="L529" class="ln">   529  </span>func (o *IoCIndicatorDetailed) GetLogMatches() int64 {
+<span id="L530" class="ln">   530  </span>	if o == nil || o.LogMatches == nil {
+<span id="L531" class="ln">   531  </span>		var ret int64
+<span id="L532" class="ln">   532  </span>		return ret
+<span id="L533" class="ln">   533  </span>	}
+<span id="L534" class="ln">   534  </span>	return *o.LogMatches
+<span id="L535" class="ln">   535  </span>}
+<span id="L536" class="ln">   536  </span>
+<span id="L537" class="ln">   537  </span><span class="comment">// GetLogMatchesOk returns a tuple with the LogMatches field value if set, nil otherwise</span>
+<span id="L538" class="ln">   538  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L539" class="ln">   539  </span>func (o *IoCIndicatorDetailed) GetLogMatchesOk() (*int64, bool) {
+<span id="L540" class="ln">   540  </span>	if o == nil || o.LogMatches == nil {
+<span id="L541" class="ln">   541  </span>		return nil, false
+<span id="L542" class="ln">   542  </span>	}
+<span id="L543" class="ln">   543  </span>	return o.LogMatches, true
+<span id="L544" class="ln">   544  </span>}
+<span id="L545" class="ln">   545  </span>
+<span id="L546" class="ln">   546  </span><span class="comment">// HasLogMatches returns a boolean if a field has been set.</span>
+<span id="L547" class="ln">   547  </span>func (o *IoCIndicatorDetailed) HasLogMatches() bool {
+<span id="L548" class="ln">   548  </span>	return o != nil &amp;&amp; o.LogMatches != nil
+<span id="L549" class="ln">   549  </span>}
+<span id="L550" class="ln">   550  </span>
+<span id="L551" class="ln">   551  </span><span class="comment">// SetLogMatches gets a reference to the given int64 and assigns it to the LogMatches field.</span>
+<span id="L552" class="ln">   552  </span>func (o *IoCIndicatorDetailed) SetLogMatches(v int64) {
+<span id="L553" class="ln">   553  </span>	o.LogMatches = &amp;v
+<span id="L554" class="ln">   554  </span>}
+<span id="L555" class="ln">   555  </span>
+<span id="L556" class="ln">   556  </span><span class="comment">// GetLogSources returns the LogSources field value if set, zero value otherwise.</span>
+<span id="L557" class="ln">   557  </span>func (o *IoCIndicatorDetailed) GetLogSources() []string {
+<span id="L558" class="ln">   558  </span>	if o == nil || o.LogSources == nil {
+<span id="L559" class="ln">   559  </span>		var ret []string
+<span id="L560" class="ln">   560  </span>		return ret
+<span id="L561" class="ln">   561  </span>	}
+<span id="L562" class="ln">   562  </span>	return o.LogSources
+<span id="L563" class="ln">   563  </span>}
+<span id="L564" class="ln">   564  </span>
+<span id="L565" class="ln">   565  </span><span class="comment">// GetLogSourcesOk returns a tuple with the LogSources field value if set, nil otherwise</span>
+<span id="L566" class="ln">   566  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L567" class="ln">   567  </span>func (o *IoCIndicatorDetailed) GetLogSourcesOk() (*[]string, bool) {
+<span id="L568" class="ln">   568  </span>	if o == nil || o.LogSources == nil {
+<span id="L569" class="ln">   569  </span>		return nil, false
+<span id="L570" class="ln">   570  </span>	}
+<span id="L571" class="ln">   571  </span>	return &amp;o.LogSources, true
+<span id="L572" class="ln">   572  </span>}
+<span id="L573" class="ln">   573  </span>
+<span id="L574" class="ln">   574  </span><span class="comment">// HasLogSources returns a boolean if a field has been set.</span>
+<span id="L575" class="ln">   575  </span>func (o *IoCIndicatorDetailed) HasLogSources() bool {
+<span id="L576" class="ln">   576  </span>	return o != nil &amp;&amp; o.LogSources != nil
+<span id="L577" class="ln">   577  </span>}
+<span id="L578" class="ln">   578  </span>
+<span id="L579" class="ln">   579  </span><span class="comment">// SetLogSources gets a reference to the given []string and assigns it to the LogSources field.</span>
+<span id="L580" class="ln">   580  </span>func (o *IoCIndicatorDetailed) SetLogSources(v []string) {
+<span id="L581" class="ln">   581  </span>	o.LogSources = v
+<span id="L582" class="ln">   582  </span>}
+<span id="L583" class="ln">   583  </span>
+<span id="L584" class="ln">   584  </span><span class="comment">// GetMAsType returns the MAsType field value if set, zero value otherwise.</span>
+<span id="L585" class="ln">   585  </span>func (o *IoCIndicatorDetailed) GetMAsType() IoCScoreEffect {
+<span id="L586" class="ln">   586  </span>	if o == nil || o.MAsType == nil {
+<span id="L587" class="ln">   587  </span>		var ret IoCScoreEffect
+<span id="L588" class="ln">   588  </span>		return ret
+<span id="L589" class="ln">   589  </span>	}
+<span id="L590" class="ln">   590  </span>	return *o.MAsType
+<span id="L591" class="ln">   591  </span>}
+<span id="L592" class="ln">   592  </span>
+<span id="L593" class="ln">   593  </span><span class="comment">// GetMAsTypeOk returns a tuple with the MAsType field value if set, nil otherwise</span>
+<span id="L594" class="ln">   594  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L595" class="ln">   595  </span>func (o *IoCIndicatorDetailed) GetMAsTypeOk() (*IoCScoreEffect, bool) {
+<span id="L596" class="ln">   596  </span>	if o == nil || o.MAsType == nil {
+<span id="L597" class="ln">   597  </span>		return nil, false
+<span id="L598" class="ln">   598  </span>	}
+<span id="L599" class="ln">   599  </span>	return o.MAsType, true
+<span id="L600" class="ln">   600  </span>}
+<span id="L601" class="ln">   601  </span>
+<span id="L602" class="ln">   602  </span><span class="comment">// HasMAsType returns a boolean if a field has been set.</span>
+<span id="L603" class="ln">   603  </span>func (o *IoCIndicatorDetailed) HasMAsType() bool {
+<span id="L604" class="ln">   604  </span>	return o != nil &amp;&amp; o.MAsType != nil
+<span id="L605" class="ln">   605  </span>}
+<span id="L606" class="ln">   606  </span>
+<span id="L607" class="ln">   607  </span><span class="comment">// SetMAsType gets a reference to the given IoCScoreEffect and assigns it to the MAsType field.</span>
+<span id="L608" class="ln">   608  </span>func (o *IoCIndicatorDetailed) SetMAsType(v IoCScoreEffect) {
+<span id="L609" class="ln">   609  </span>	o.MAsType = &amp;v
+<span id="L610" class="ln">   610  </span>}
+<span id="L611" class="ln">   611  </span>
+<span id="L612" class="ln">   612  </span><span class="comment">// GetMPersistence returns the MPersistence field value if set, zero value otherwise.</span>
+<span id="L613" class="ln">   613  </span>func (o *IoCIndicatorDetailed) GetMPersistence() IoCScoreEffect {
+<span id="L614" class="ln">   614  </span>	if o == nil || o.MPersistence == nil {
+<span id="L615" class="ln">   615  </span>		var ret IoCScoreEffect
+<span id="L616" class="ln">   616  </span>		return ret
+<span id="L617" class="ln">   617  </span>	}
+<span id="L618" class="ln">   618  </span>	return *o.MPersistence
+<span id="L619" class="ln">   619  </span>}
+<span id="L620" class="ln">   620  </span>
+<span id="L621" class="ln">   621  </span><span class="comment">// GetMPersistenceOk returns a tuple with the MPersistence field value if set, nil otherwise</span>
+<span id="L622" class="ln">   622  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L623" class="ln">   623  </span>func (o *IoCIndicatorDetailed) GetMPersistenceOk() (*IoCScoreEffect, bool) {
+<span id="L624" class="ln">   624  </span>	if o == nil || o.MPersistence == nil {
+<span id="L625" class="ln">   625  </span>		return nil, false
+<span id="L626" class="ln">   626  </span>	}
+<span id="L627" class="ln">   627  </span>	return o.MPersistence, true
+<span id="L628" class="ln">   628  </span>}
+<span id="L629" class="ln">   629  </span>
+<span id="L630" class="ln">   630  </span><span class="comment">// HasMPersistence returns a boolean if a field has been set.</span>
+<span id="L631" class="ln">   631  </span>func (o *IoCIndicatorDetailed) HasMPersistence() bool {
+<span id="L632" class="ln">   632  </span>	return o != nil &amp;&amp; o.MPersistence != nil
+<span id="L633" class="ln">   633  </span>}
+<span id="L634" class="ln">   634  </span>
+<span id="L635" class="ln">   635  </span><span class="comment">// SetMPersistence gets a reference to the given IoCScoreEffect and assigns it to the MPersistence field.</span>
+<span id="L636" class="ln">   636  </span>func (o *IoCIndicatorDetailed) SetMPersistence(v IoCScoreEffect) {
+<span id="L637" class="ln">   637  </span>	o.MPersistence = &amp;v
+<span id="L638" class="ln">   638  </span>}
+<span id="L639" class="ln">   639  </span>
+<span id="L640" class="ln">   640  </span><span class="comment">// GetMSignal returns the MSignal field value if set, zero value otherwise.</span>
+<span id="L641" class="ln">   641  </span>func (o *IoCIndicatorDetailed) GetMSignal() IoCScoreEffect {
+<span id="L642" class="ln">   642  </span>	if o == nil || o.MSignal == nil {
+<span id="L643" class="ln">   643  </span>		var ret IoCScoreEffect
+<span id="L644" class="ln">   644  </span>		return ret
+<span id="L645" class="ln">   645  </span>	}
+<span id="L646" class="ln">   646  </span>	return *o.MSignal
+<span id="L647" class="ln">   647  </span>}
+<span id="L648" class="ln">   648  </span>
+<span id="L649" class="ln">   649  </span><span class="comment">// GetMSignalOk returns a tuple with the MSignal field value if set, nil otherwise</span>
+<span id="L650" class="ln">   650  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L651" class="ln">   651  </span>func (o *IoCIndicatorDetailed) GetMSignalOk() (*IoCScoreEffect, bool) {
+<span id="L652" class="ln">   652  </span>	if o == nil || o.MSignal == nil {
+<span id="L653" class="ln">   653  </span>		return nil, false
+<span id="L654" class="ln">   654  </span>	}
+<span id="L655" class="ln">   655  </span>	return o.MSignal, true
+<span id="L656" class="ln">   656  </span>}
+<span id="L657" class="ln">   657  </span>
+<span id="L658" class="ln">   658  </span><span class="comment">// HasMSignal returns a boolean if a field has been set.</span>
+<span id="L659" class="ln">   659  </span>func (o *IoCIndicatorDetailed) HasMSignal() bool {
+<span id="L660" class="ln">   660  </span>	return o != nil &amp;&amp; o.MSignal != nil
+<span id="L661" class="ln">   661  </span>}
+<span id="L662" class="ln">   662  </span>
+<span id="L663" class="ln">   663  </span><span class="comment">// SetMSignal gets a reference to the given IoCScoreEffect and assigns it to the MSignal field.</span>
+<span id="L664" class="ln">   664  </span>func (o *IoCIndicatorDetailed) SetMSignal(v IoCScoreEffect) {
+<span id="L665" class="ln">   665  </span>	o.MSignal = &amp;v
+<span id="L666" class="ln">   666  </span>}
+<span id="L667" class="ln">   667  </span>
+<span id="L668" class="ln">   668  </span><span class="comment">// GetMSources returns the MSources field value if set, zero value otherwise.</span>
+<span id="L669" class="ln">   669  </span>func (o *IoCIndicatorDetailed) GetMSources() IoCScoreEffect {
+<span id="L670" class="ln">   670  </span>	if o == nil || o.MSources == nil {
+<span id="L671" class="ln">   671  </span>		var ret IoCScoreEffect
+<span id="L672" class="ln">   672  </span>		return ret
+<span id="L673" class="ln">   673  </span>	}
+<span id="L674" class="ln">   674  </span>	return *o.MSources
+<span id="L675" class="ln">   675  </span>}
+<span id="L676" class="ln">   676  </span>
+<span id="L677" class="ln">   677  </span><span class="comment">// GetMSourcesOk returns a tuple with the MSources field value if set, nil otherwise</span>
+<span id="L678" class="ln">   678  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L679" class="ln">   679  </span>func (o *IoCIndicatorDetailed) GetMSourcesOk() (*IoCScoreEffect, bool) {
+<span id="L680" class="ln">   680  </span>	if o == nil || o.MSources == nil {
+<span id="L681" class="ln">   681  </span>		return nil, false
+<span id="L682" class="ln">   682  </span>	}
+<span id="L683" class="ln">   683  </span>	return o.MSources, true
+<span id="L684" class="ln">   684  </span>}
+<span id="L685" class="ln">   685  </span>
+<span id="L686" class="ln">   686  </span><span class="comment">// HasMSources returns a boolean if a field has been set.</span>
+<span id="L687" class="ln">   687  </span>func (o *IoCIndicatorDetailed) HasMSources() bool {
+<span id="L688" class="ln">   688  </span>	return o != nil &amp;&amp; o.MSources != nil
+<span id="L689" class="ln">   689  </span>}
+<span id="L690" class="ln">   690  </span>
+<span id="L691" class="ln">   691  </span><span class="comment">// SetMSources gets a reference to the given IoCScoreEffect and assigns it to the MSources field.</span>
+<span id="L692" class="ln">   692  </span>func (o *IoCIndicatorDetailed) SetMSources(v IoCScoreEffect) {
+<span id="L693" class="ln">   693  </span>	o.MSources = &amp;v
+<span id="L694" class="ln">   694  </span>}
+<span id="L695" class="ln">   695  </span>
+<span id="L696" class="ln">   696  </span><span class="comment">// GetMaliciousSources returns the MaliciousSources field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L697" class="ln">   697  </span>func (o *IoCIndicatorDetailed) GetMaliciousSources() []IoCSource {
+<span id="L698" class="ln">   698  </span>	if o == nil {
+<span id="L699" class="ln">   699  </span>		var ret []IoCSource
+<span id="L700" class="ln">   700  </span>		return ret
+<span id="L701" class="ln">   701  </span>	}
+<span id="L702" class="ln">   702  </span>	return o.MaliciousSources
+<span id="L703" class="ln">   703  </span>}
+<span id="L704" class="ln">   704  </span>
+<span id="L705" class="ln">   705  </span><span class="comment">// GetMaliciousSourcesOk returns a tuple with the MaliciousSources field value if set, nil otherwise</span>
+<span id="L706" class="ln">   706  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L707" class="ln">   707  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L708" class="ln">   708  </span>func (o *IoCIndicatorDetailed) GetMaliciousSourcesOk() (*[]IoCSource, bool) {
+<span id="L709" class="ln">   709  </span>	if o == nil || o.MaliciousSources == nil {
+<span id="L710" class="ln">   710  </span>		return nil, false
+<span id="L711" class="ln">   711  </span>	}
+<span id="L712" class="ln">   712  </span>	return &amp;o.MaliciousSources, true
+<span id="L713" class="ln">   713  </span>}
+<span id="L714" class="ln">   714  </span>
+<span id="L715" class="ln">   715  </span><span class="comment">// HasMaliciousSources returns a boolean if a field has been set.</span>
+<span id="L716" class="ln">   716  </span>func (o *IoCIndicatorDetailed) HasMaliciousSources() bool {
+<span id="L717" class="ln">   717  </span>	return o != nil &amp;&amp; o.MaliciousSources != nil
+<span id="L718" class="ln">   718  </span>}
+<span id="L719" class="ln">   719  </span>
+<span id="L720" class="ln">   720  </span><span class="comment">// SetMaliciousSources gets a reference to the given []IoCSource and assigns it to the MaliciousSources field.</span>
+<span id="L721" class="ln">   721  </span>func (o *IoCIndicatorDetailed) SetMaliciousSources(v []IoCSource) {
+<span id="L722" class="ln">   722  </span>	o.MaliciousSources = v
+<span id="L723" class="ln">   723  </span>}
+<span id="L724" class="ln">   724  </span>
+<span id="L725" class="ln">   725  </span><span class="comment">// GetMaxTrustScore returns the MaxTrustScore field value if set, zero value otherwise.</span>
+<span id="L726" class="ln">   726  </span>func (o *IoCIndicatorDetailed) GetMaxTrustScore() IoCScoreEffect {
+<span id="L727" class="ln">   727  </span>	if o == nil || o.MaxTrustScore == nil {
+<span id="L728" class="ln">   728  </span>		var ret IoCScoreEffect
+<span id="L729" class="ln">   729  </span>		return ret
+<span id="L730" class="ln">   730  </span>	}
+<span id="L731" class="ln">   731  </span>	return *o.MaxTrustScore
+<span id="L732" class="ln">   732  </span>}
+<span id="L733" class="ln">   733  </span>
+<span id="L734" class="ln">   734  </span><span class="comment">// GetMaxTrustScoreOk returns a tuple with the MaxTrustScore field value if set, nil otherwise</span>
+<span id="L735" class="ln">   735  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L736" class="ln">   736  </span>func (o *IoCIndicatorDetailed) GetMaxTrustScoreOk() (*IoCScoreEffect, bool) {
+<span id="L737" class="ln">   737  </span>	if o == nil || o.MaxTrustScore == nil {
+<span id="L738" class="ln">   738  </span>		return nil, false
+<span id="L739" class="ln">   739  </span>	}
+<span id="L740" class="ln">   740  </span>	return o.MaxTrustScore, true
+<span id="L741" class="ln">   741  </span>}
+<span id="L742" class="ln">   742  </span>
+<span id="L743" class="ln">   743  </span><span class="comment">// HasMaxTrustScore returns a boolean if a field has been set.</span>
+<span id="L744" class="ln">   744  </span>func (o *IoCIndicatorDetailed) HasMaxTrustScore() bool {
+<span id="L745" class="ln">   745  </span>	return o != nil &amp;&amp; o.MaxTrustScore != nil
+<span id="L746" class="ln">   746  </span>}
+<span id="L747" class="ln">   747  </span>
+<span id="L748" class="ln">   748  </span><span class="comment">// SetMaxTrustScore gets a reference to the given IoCScoreEffect and assigns it to the MaxTrustScore field.</span>
+<span id="L749" class="ln">   749  </span>func (o *IoCIndicatorDetailed) SetMaxTrustScore(v IoCScoreEffect) {
+<span id="L750" class="ln">   750  </span>	o.MaxTrustScore = &amp;v
+<span id="L751" class="ln">   751  </span>}
+<span id="L752" class="ln">   752  </span>
+<span id="L753" class="ln">   753  </span><span class="comment">// GetScore returns the Score field value if set, zero value otherwise.</span>
+<span id="L754" class="ln">   754  </span>func (o *IoCIndicatorDetailed) GetScore() float64 {
+<span id="L755" class="ln">   755  </span>	if o == nil || o.Score == nil {
+<span id="L756" class="ln">   756  </span>		var ret float64
+<span id="L757" class="ln">   757  </span>		return ret
+<span id="L758" class="ln">   758  </span>	}
+<span id="L759" class="ln">   759  </span>	return *o.Score
+<span id="L760" class="ln">   760  </span>}
+<span id="L761" class="ln">   761  </span>
+<span id="L762" class="ln">   762  </span><span class="comment">// GetScoreOk returns a tuple with the Score field value if set, nil otherwise</span>
+<span id="L763" class="ln">   763  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L764" class="ln">   764  </span>func (o *IoCIndicatorDetailed) GetScoreOk() (*float64, bool) {
+<span id="L765" class="ln">   765  </span>	if o == nil || o.Score == nil {
+<span id="L766" class="ln">   766  </span>		return nil, false
+<span id="L767" class="ln">   767  </span>	}
+<span id="L768" class="ln">   768  </span>	return o.Score, true
+<span id="L769" class="ln">   769  </span>}
+<span id="L770" class="ln">   770  </span>
+<span id="L771" class="ln">   771  </span><span class="comment">// HasScore returns a boolean if a field has been set.</span>
+<span id="L772" class="ln">   772  </span>func (o *IoCIndicatorDetailed) HasScore() bool {
+<span id="L773" class="ln">   773  </span>	return o != nil &amp;&amp; o.Score != nil
+<span id="L774" class="ln">   774  </span>}
+<span id="L775" class="ln">   775  </span>
+<span id="L776" class="ln">   776  </span><span class="comment">// SetScore gets a reference to the given float64 and assigns it to the Score field.</span>
+<span id="L777" class="ln">   777  </span>func (o *IoCIndicatorDetailed) SetScore(v float64) {
+<span id="L778" class="ln">   778  </span>	o.Score = &amp;v
+<span id="L779" class="ln">   779  </span>}
+<span id="L780" class="ln">   780  </span>
+<span id="L781" class="ln">   781  </span><span class="comment">// GetServices returns the Services field value if set, zero value otherwise.</span>
+<span id="L782" class="ln">   782  </span>func (o *IoCIndicatorDetailed) GetServices() []string {
+<span id="L783" class="ln">   783  </span>	if o == nil || o.Services == nil {
+<span id="L784" class="ln">   784  </span>		var ret []string
+<span id="L785" class="ln">   785  </span>		return ret
+<span id="L786" class="ln">   786  </span>	}
+<span id="L787" class="ln">   787  </span>	return o.Services
+<span id="L788" class="ln">   788  </span>}
+<span id="L789" class="ln">   789  </span>
+<span id="L790" class="ln">   790  </span><span class="comment">// GetServicesOk returns a tuple with the Services field value if set, nil otherwise</span>
+<span id="L791" class="ln">   791  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L792" class="ln">   792  </span>func (o *IoCIndicatorDetailed) GetServicesOk() (*[]string, bool) {
+<span id="L793" class="ln">   793  </span>	if o == nil || o.Services == nil {
+<span id="L794" class="ln">   794  </span>		return nil, false
+<span id="L795" class="ln">   795  </span>	}
+<span id="L796" class="ln">   796  </span>	return &amp;o.Services, true
+<span id="L797" class="ln">   797  </span>}
+<span id="L798" class="ln">   798  </span>
+<span id="L799" class="ln">   799  </span><span class="comment">// HasServices returns a boolean if a field has been set.</span>
+<span id="L800" class="ln">   800  </span>func (o *IoCIndicatorDetailed) HasServices() bool {
+<span id="L801" class="ln">   801  </span>	return o != nil &amp;&amp; o.Services != nil
+<span id="L802" class="ln">   802  </span>}
+<span id="L803" class="ln">   803  </span>
+<span id="L804" class="ln">   804  </span><span class="comment">// SetServices gets a reference to the given []string and assigns it to the Services field.</span>
+<span id="L805" class="ln">   805  </span>func (o *IoCIndicatorDetailed) SetServices(v []string) {
+<span id="L806" class="ln">   806  </span>	o.Services = v
+<span id="L807" class="ln">   807  </span>}
+<span id="L808" class="ln">   808  </span>
+<span id="L809" class="ln">   809  </span><span class="comment">// GetSignalMatches returns the SignalMatches field value if set, zero value otherwise.</span>
+<span id="L810" class="ln">   810  </span>func (o *IoCIndicatorDetailed) GetSignalMatches() int64 {
+<span id="L811" class="ln">   811  </span>	if o == nil || o.SignalMatches == nil {
+<span id="L812" class="ln">   812  </span>		var ret int64
+<span id="L813" class="ln">   813  </span>		return ret
+<span id="L814" class="ln">   814  </span>	}
+<span id="L815" class="ln">   815  </span>	return *o.SignalMatches
+<span id="L816" class="ln">   816  </span>}
+<span id="L817" class="ln">   817  </span>
+<span id="L818" class="ln">   818  </span><span class="comment">// GetSignalMatchesOk returns a tuple with the SignalMatches field value if set, nil otherwise</span>
+<span id="L819" class="ln">   819  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L820" class="ln">   820  </span>func (o *IoCIndicatorDetailed) GetSignalMatchesOk() (*int64, bool) {
+<span id="L821" class="ln">   821  </span>	if o == nil || o.SignalMatches == nil {
+<span id="L822" class="ln">   822  </span>		return nil, false
+<span id="L823" class="ln">   823  </span>	}
+<span id="L824" class="ln">   824  </span>	return o.SignalMatches, true
+<span id="L825" class="ln">   825  </span>}
+<span id="L826" class="ln">   826  </span>
+<span id="L827" class="ln">   827  </span><span class="comment">// HasSignalMatches returns a boolean if a field has been set.</span>
+<span id="L828" class="ln">   828  </span>func (o *IoCIndicatorDetailed) HasSignalMatches() bool {
+<span id="L829" class="ln">   829  </span>	return o != nil &amp;&amp; o.SignalMatches != nil
+<span id="L830" class="ln">   830  </span>}
+<span id="L831" class="ln">   831  </span>
+<span id="L832" class="ln">   832  </span><span class="comment">// SetSignalMatches gets a reference to the given int64 and assigns it to the SignalMatches field.</span>
+<span id="L833" class="ln">   833  </span>func (o *IoCIndicatorDetailed) SetSignalMatches(v int64) {
+<span id="L834" class="ln">   834  </span>	o.SignalMatches = &amp;v
+<span id="L835" class="ln">   835  </span>}
+<span id="L836" class="ln">   836  </span>
+<span id="L837" class="ln">   837  </span><span class="comment">// GetSignalSeverity returns the SignalSeverity field value if set, zero value otherwise.</span>
+<span id="L838" class="ln">   838  </span>func (o *IoCIndicatorDetailed) GetSignalSeverity() []IoCSignalSeverityCount {
+<span id="L839" class="ln">   839  </span>	if o == nil || o.SignalSeverity == nil {
+<span id="L840" class="ln">   840  </span>		var ret []IoCSignalSeverityCount
+<span id="L841" class="ln">   841  </span>		return ret
+<span id="L842" class="ln">   842  </span>	}
+<span id="L843" class="ln">   843  </span>	return o.SignalSeverity
+<span id="L844" class="ln">   844  </span>}
+<span id="L845" class="ln">   845  </span>
+<span id="L846" class="ln">   846  </span><span class="comment">// GetSignalSeverityOk returns a tuple with the SignalSeverity field value if set, nil otherwise</span>
+<span id="L847" class="ln">   847  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L848" class="ln">   848  </span>func (o *IoCIndicatorDetailed) GetSignalSeverityOk() (*[]IoCSignalSeverityCount, bool) {
+<span id="L849" class="ln">   849  </span>	if o == nil || o.SignalSeverity == nil {
+<span id="L850" class="ln">   850  </span>		return nil, false
+<span id="L851" class="ln">   851  </span>	}
+<span id="L852" class="ln">   852  </span>	return &amp;o.SignalSeverity, true
+<span id="L853" class="ln">   853  </span>}
+<span id="L854" class="ln">   854  </span>
+<span id="L855" class="ln">   855  </span><span class="comment">// HasSignalSeverity returns a boolean if a field has been set.</span>
+<span id="L856" class="ln">   856  </span>func (o *IoCIndicatorDetailed) HasSignalSeverity() bool {
+<span id="L857" class="ln">   857  </span>	return o != nil &amp;&amp; o.SignalSeverity != nil
+<span id="L858" class="ln">   858  </span>}
+<span id="L859" class="ln">   859  </span>
+<span id="L860" class="ln">   860  </span><span class="comment">// SetSignalSeverity gets a reference to the given []IoCSignalSeverityCount and assigns it to the SignalSeverity field.</span>
+<span id="L861" class="ln">   861  </span>func (o *IoCIndicatorDetailed) SetSignalSeverity(v []IoCSignalSeverityCount) {
+<span id="L862" class="ln">   862  </span>	o.SignalSeverity = v
+<span id="L863" class="ln">   863  </span>}
+<span id="L864" class="ln">   864  </span>
+<span id="L865" class="ln">   865  </span><span class="comment">// GetSignalTier returns the SignalTier field value if set, zero value otherwise.</span>
+<span id="L866" class="ln">   866  </span>func (o *IoCIndicatorDetailed) GetSignalTier() int64 {
+<span id="L867" class="ln">   867  </span>	if o == nil || o.SignalTier == nil {
+<span id="L868" class="ln">   868  </span>		var ret int64
+<span id="L869" class="ln">   869  </span>		return ret
+<span id="L870" class="ln">   870  </span>	}
+<span id="L871" class="ln">   871  </span>	return *o.SignalTier
+<span id="L872" class="ln">   872  </span>}
+<span id="L873" class="ln">   873  </span>
+<span id="L874" class="ln">   874  </span><span class="comment">// GetSignalTierOk returns a tuple with the SignalTier field value if set, nil otherwise</span>
+<span id="L875" class="ln">   875  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L876" class="ln">   876  </span>func (o *IoCIndicatorDetailed) GetSignalTierOk() (*int64, bool) {
+<span id="L877" class="ln">   877  </span>	if o == nil || o.SignalTier == nil {
+<span id="L878" class="ln">   878  </span>		return nil, false
+<span id="L879" class="ln">   879  </span>	}
+<span id="L880" class="ln">   880  </span>	return o.SignalTier, true
+<span id="L881" class="ln">   881  </span>}
+<span id="L882" class="ln">   882  </span>
+<span id="L883" class="ln">   883  </span><span class="comment">// HasSignalTier returns a boolean if a field has been set.</span>
+<span id="L884" class="ln">   884  </span>func (o *IoCIndicatorDetailed) HasSignalTier() bool {
+<span id="L885" class="ln">   885  </span>	return o != nil &amp;&amp; o.SignalTier != nil
+<span id="L886" class="ln">   886  </span>}
+<span id="L887" class="ln">   887  </span>
+<span id="L888" class="ln">   888  </span><span class="comment">// SetSignalTier gets a reference to the given int64 and assigns it to the SignalTier field.</span>
+<span id="L889" class="ln">   889  </span>func (o *IoCIndicatorDetailed) SetSignalTier(v int64) {
+<span id="L890" class="ln">   890  </span>	o.SignalTier = &amp;v
+<span id="L891" class="ln">   891  </span>}
+<span id="L892" class="ln">   892  </span>
+<span id="L893" class="ln">   893  </span><span class="comment">// GetSuspiciousSources returns the SuspiciousSources field value if set, zero value otherwise (both if not set or set to explicit null).</span>
+<span id="L894" class="ln">   894  </span>func (o *IoCIndicatorDetailed) GetSuspiciousSources() []IoCSource {
+<span id="L895" class="ln">   895  </span>	if o == nil {
+<span id="L896" class="ln">   896  </span>		var ret []IoCSource
+<span id="L897" class="ln">   897  </span>		return ret
+<span id="L898" class="ln">   898  </span>	}
+<span id="L899" class="ln">   899  </span>	return o.SuspiciousSources
+<span id="L900" class="ln">   900  </span>}
+<span id="L901" class="ln">   901  </span>
+<span id="L902" class="ln">   902  </span><span class="comment">// GetSuspiciousSourcesOk returns a tuple with the SuspiciousSources field value if set, nil otherwise</span>
+<span id="L903" class="ln">   903  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L904" class="ln">   904  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L905" class="ln">   905  </span>func (o *IoCIndicatorDetailed) GetSuspiciousSourcesOk() (*[]IoCSource, bool) {
+<span id="L906" class="ln">   906  </span>	if o == nil || o.SuspiciousSources == nil {
+<span id="L907" class="ln">   907  </span>		return nil, false
+<span id="L908" class="ln">   908  </span>	}
+<span id="L909" class="ln">   909  </span>	return &amp;o.SuspiciousSources, true
+<span id="L910" class="ln">   910  </span>}
+<span id="L911" class="ln">   911  </span>
+<span id="L912" class="ln">   912  </span><span class="comment">// HasSuspiciousSources returns a boolean if a field has been set.</span>
+<span id="L913" class="ln">   913  </span>func (o *IoCIndicatorDetailed) HasSuspiciousSources() bool {
+<span id="L914" class="ln">   914  </span>	return o != nil &amp;&amp; o.SuspiciousSources != nil
+<span id="L915" class="ln">   915  </span>}
+<span id="L916" class="ln">   916  </span>
+<span id="L917" class="ln">   917  </span><span class="comment">// SetSuspiciousSources gets a reference to the given []IoCSource and assigns it to the SuspiciousSources field.</span>
+<span id="L918" class="ln">   918  </span>func (o *IoCIndicatorDetailed) SetSuspiciousSources(v []IoCSource) {
+<span id="L919" class="ln">   919  </span>	o.SuspiciousSources = v
+<span id="L920" class="ln">   920  </span>}
+<span id="L921" class="ln">   921  </span>
+<span id="L922" class="ln">   922  </span><span class="comment">// GetTags returns the Tags field value if set, zero value otherwise.</span>
+<span id="L923" class="ln">   923  </span>func (o *IoCIndicatorDetailed) GetTags() []string {
+<span id="L924" class="ln">   924  </span>	if o == nil || o.Tags == nil {
+<span id="L925" class="ln">   925  </span>		var ret []string
+<span id="L926" class="ln">   926  </span>		return ret
+<span id="L927" class="ln">   927  </span>	}
+<span id="L928" class="ln">   928  </span>	return o.Tags
+<span id="L929" class="ln">   929  </span>}
+<span id="L930" class="ln">   930  </span>
+<span id="L931" class="ln">   931  </span><span class="comment">// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise</span>
+<span id="L932" class="ln">   932  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L933" class="ln">   933  </span>func (o *IoCIndicatorDetailed) GetTagsOk() (*[]string, bool) {
+<span id="L934" class="ln">   934  </span>	if o == nil || o.Tags == nil {
+<span id="L935" class="ln">   935  </span>		return nil, false
+<span id="L936" class="ln">   936  </span>	}
+<span id="L937" class="ln">   937  </span>	return &amp;o.Tags, true
+<span id="L938" class="ln">   938  </span>}
+<span id="L939" class="ln">   939  </span>
+<span id="L940" class="ln">   940  </span><span class="comment">// HasTags returns a boolean if a field has been set.</span>
+<span id="L941" class="ln">   941  </span>func (o *IoCIndicatorDetailed) HasTags() bool {
+<span id="L942" class="ln">   942  </span>	return o != nil &amp;&amp; o.Tags != nil
+<span id="L943" class="ln">   943  </span>}
+<span id="L944" class="ln">   944  </span>
+<span id="L945" class="ln">   945  </span><span class="comment">// SetTags gets a reference to the given []string and assigns it to the Tags field.</span>
+<span id="L946" class="ln">   946  </span>func (o *IoCIndicatorDetailed) SetTags(v []string) {
+<span id="L947" class="ln">   947  </span>	o.Tags = v
+<span id="L948" class="ln">   948  </span>}
+<span id="L949" class="ln">   949  </span>
+<span id="L950" class="ln">   950  </span><span class="comment">// GetTriageHistory returns the TriageHistory field value if set, zero value otherwise.</span>
+<span id="L951" class="ln">   951  </span>func (o *IoCIndicatorDetailed) GetTriageHistory() []IoCTriageEvent {
+<span id="L952" class="ln">   952  </span>	if o == nil || o.TriageHistory == nil {
+<span id="L953" class="ln">   953  </span>		var ret []IoCTriageEvent
+<span id="L954" class="ln">   954  </span>		return ret
+<span id="L955" class="ln">   955  </span>	}
+<span id="L956" class="ln">   956  </span>	return o.TriageHistory
+<span id="L957" class="ln">   957  </span>}
+<span id="L958" class="ln">   958  </span>
+<span id="L959" class="ln">   959  </span><span class="comment">// GetTriageHistoryOk returns a tuple with the TriageHistory field value if set, nil otherwise</span>
+<span id="L960" class="ln">   960  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L961" class="ln">   961  </span>func (o *IoCIndicatorDetailed) GetTriageHistoryOk() (*[]IoCTriageEvent, bool) {
+<span id="L962" class="ln">   962  </span>	if o == nil || o.TriageHistory == nil {
+<span id="L963" class="ln">   963  </span>		return nil, false
+<span id="L964" class="ln">   964  </span>	}
+<span id="L965" class="ln">   965  </span>	return &amp;o.TriageHistory, true
+<span id="L966" class="ln">   966  </span>}
+<span id="L967" class="ln">   967  </span>
+<span id="L968" class="ln">   968  </span><span class="comment">// HasTriageHistory returns a boolean if a field has been set.</span>
+<span id="L969" class="ln">   969  </span>func (o *IoCIndicatorDetailed) HasTriageHistory() bool {
+<span id="L970" class="ln">   970  </span>	return o != nil &amp;&amp; o.TriageHistory != nil
+<span id="L971" class="ln">   971  </span>}
+<span id="L972" class="ln">   972  </span>
+<span id="L973" class="ln">   973  </span><span class="comment">// SetTriageHistory gets a reference to the given []IoCTriageEvent and assigns it to the TriageHistory field.</span>
+<span id="L974" class="ln">   974  </span>func (o *IoCIndicatorDetailed) SetTriageHistory(v []IoCTriageEvent) {
+<span id="L975" class="ln">   975  </span>	o.TriageHistory = v
+<span id="L976" class="ln">   976  </span>}
+<span id="L977" class="ln">   977  </span>
+<span id="L978" class="ln">   978  </span><span class="comment">// GetTriageState returns the TriageState field value if set, zero value otherwise.</span>
+<span id="L979" class="ln">   979  </span>func (o *IoCIndicatorDetailed) GetTriageState() IoCTriageState {
+<span id="L980" class="ln">   980  </span>	if o == nil || o.TriageState == nil {
+<span id="L981" class="ln">   981  </span>		var ret IoCTriageState
+<span id="L982" class="ln">   982  </span>		return ret
+<span id="L983" class="ln">   983  </span>	}
+<span id="L984" class="ln">   984  </span>	return *o.TriageState
+<span id="L985" class="ln">   985  </span>}
+<span id="L986" class="ln">   986  </span>
+<span id="L987" class="ln">   987  </span><span class="comment">// GetTriageStateOk returns a tuple with the TriageState field value if set, nil otherwise</span>
+<span id="L988" class="ln">   988  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L989" class="ln">   989  </span>func (o *IoCIndicatorDetailed) GetTriageStateOk() (*IoCTriageState, bool) {
+<span id="L990" class="ln">   990  </span>	if o == nil || o.TriageState == nil {
+<span id="L991" class="ln">   991  </span>		return nil, false
+<span id="L992" class="ln">   992  </span>	}
+<span id="L993" class="ln">   993  </span>	return o.TriageState, true
+<span id="L994" class="ln">   994  </span>}
+<span id="L995" class="ln">   995  </span>
+<span id="L996" class="ln">   996  </span><span class="comment">// HasTriageState returns a boolean if a field has been set.</span>
+<span id="L997" class="ln">   997  </span>func (o *IoCIndicatorDetailed) HasTriageState() bool {
+<span id="L998" class="ln">   998  </span>	return o != nil &amp;&amp; o.TriageState != nil
+<span id="L999" class="ln">   999  </span>}
+<span id="L1000" class="ln">  1000  </span>
+<span id="L1001" class="ln">  1001  </span><span class="comment">// SetTriageState gets a reference to the given IoCTriageState and assigns it to the TriageState field.</span>
+<span id="L1002" class="ln">  1002  </span>func (o *IoCIndicatorDetailed) SetTriageState(v IoCTriageState) {
+<span id="L1003" class="ln">  1003  </span>	o.TriageState = &amp;v
+<span id="L1004" class="ln">  1004  </span>}
+<span id="L1005" class="ln">  1005  </span>
+<span id="L1006" class="ln">  1006  </span><span class="comment">// GetTriagedAt returns the TriagedAt field value if set, zero value otherwise.</span>
+<span id="L1007" class="ln">  1007  </span>func (o *IoCIndicatorDetailed) GetTriagedAt() time.Time {
+<span id="L1008" class="ln">  1008  </span>	if o == nil || o.TriagedAt == nil {
+<span id="L1009" class="ln">  1009  </span>		var ret time.Time
+<span id="L1010" class="ln">  1010  </span>		return ret
+<span id="L1011" class="ln">  1011  </span>	}
+<span id="L1012" class="ln">  1012  </span>	return *o.TriagedAt
+<span id="L1013" class="ln">  1013  </span>}
+<span id="L1014" class="ln">  1014  </span>
+<span id="L1015" class="ln">  1015  </span><span class="comment">// GetTriagedAtOk returns a tuple with the TriagedAt field value if set, nil otherwise</span>
+<span id="L1016" class="ln">  1016  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L1017" class="ln">  1017  </span>func (o *IoCIndicatorDetailed) GetTriagedAtOk() (*time.Time, bool) {
+<span id="L1018" class="ln">  1018  </span>	if o == nil || o.TriagedAt == nil {
+<span id="L1019" class="ln">  1019  </span>		return nil, false
+<span id="L1020" class="ln">  1020  </span>	}
+<span id="L1021" class="ln">  1021  </span>	return o.TriagedAt, true
+<span id="L1022" class="ln">  1022  </span>}
+<span id="L1023" class="ln">  1023  </span>
+<span id="L1024" class="ln">  1024  </span><span class="comment">// HasTriagedAt returns a boolean if a field has been set.</span>
+<span id="L1025" class="ln">  1025  </span>func (o *IoCIndicatorDetailed) HasTriagedAt() bool {
+<span id="L1026" class="ln">  1026  </span>	return o != nil &amp;&amp; o.TriagedAt != nil
+<span id="L1027" class="ln">  1027  </span>}
+<span id="L1028" class="ln">  1028  </span>
+<span id="L1029" class="ln">  1029  </span><span class="comment">// SetTriagedAt gets a reference to the given time.Time and assigns it to the TriagedAt field.</span>
+<span id="L1030" class="ln">  1030  </span>func (o *IoCIndicatorDetailed) SetTriagedAt(v time.Time) {
+<span id="L1031" class="ln">  1031  </span>	o.TriagedAt = &amp;v
+<span id="L1032" class="ln">  1032  </span>}
+<span id="L1033" class="ln">  1033  </span>
+<span id="L1034" class="ln">  1034  </span><span class="comment">// GetTriagedBy returns the TriagedBy field value if set, zero value otherwise.</span>
+<span id="L1035" class="ln">  1035  </span>func (o *IoCIndicatorDetailed) GetTriagedBy() string {
+<span id="L1036" class="ln">  1036  </span>	if o == nil || o.TriagedBy == nil {
+<span id="L1037" class="ln">  1037  </span>		var ret string
+<span id="L1038" class="ln">  1038  </span>		return ret
+<span id="L1039" class="ln">  1039  </span>	}
+<span id="L1040" class="ln">  1040  </span>	return *o.TriagedBy
+<span id="L1041" class="ln">  1041  </span>}
+<span id="L1042" class="ln">  1042  </span>
+<span id="L1043" class="ln">  1043  </span><span class="comment">// GetTriagedByOk returns a tuple with the TriagedBy field value if set, nil otherwise</span>
+<span id="L1044" class="ln">  1044  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L1045" class="ln">  1045  </span>func (o *IoCIndicatorDetailed) GetTriagedByOk() (*string, bool) {
+<span id="L1046" class="ln">  1046  </span>	if o == nil || o.TriagedBy == nil {
+<span id="L1047" class="ln">  1047  </span>		return nil, false
+<span id="L1048" class="ln">  1048  </span>	}
+<span id="L1049" class="ln">  1049  </span>	return o.TriagedBy, true
+<span id="L1050" class="ln">  1050  </span>}
+<span id="L1051" class="ln">  1051  </span>
+<span id="L1052" class="ln">  1052  </span><span class="comment">// HasTriagedBy returns a boolean if a field has been set.</span>
+<span id="L1053" class="ln">  1053  </span>func (o *IoCIndicatorDetailed) HasTriagedBy() bool {
+<span id="L1054" class="ln">  1054  </span>	return o != nil &amp;&amp; o.TriagedBy != nil
+<span id="L1055" class="ln">  1055  </span>}
+<span id="L1056" class="ln">  1056  </span>
+<span id="L1057" class="ln">  1057  </span><span class="comment">// SetTriagedBy gets a reference to the given string and assigns it to the TriagedBy field.</span>
+<span id="L1058" class="ln">  1058  </span>func (o *IoCIndicatorDetailed) SetTriagedBy(v string) {
+<span id="L1059" class="ln">  1059  </span>	o.TriagedBy = &amp;v
+<span id="L1060" class="ln">  1060  </span>}
+<span id="L1061" class="ln">  1061  </span>
+<span id="L1062" class="ln">  1062  </span><span class="comment">// GetUsers returns the Users field value if set, zero value otherwise.</span>
+<span id="L1063" class="ln">  1063  </span>func (o *IoCIndicatorDetailed) GetUsers() map[string][]string {
+<span id="L1064" class="ln">  1064  </span>	if o == nil || o.Users == nil {
+<span id="L1065" class="ln">  1065  </span>		var ret map[string][]string
+<span id="L1066" class="ln">  1066  </span>		return ret
+<span id="L1067" class="ln">  1067  </span>	}
+<span id="L1068" class="ln">  1068  </span>	return o.Users
+<span id="L1069" class="ln">  1069  </span>}
+<span id="L1070" class="ln">  1070  </span>
+<span id="L1071" class="ln">  1071  </span><span class="comment">// GetUsersOk returns a tuple with the Users field value if set, nil otherwise</span>
+<span id="L1072" class="ln">  1072  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L1073" class="ln">  1073  </span>func (o *IoCIndicatorDetailed) GetUsersOk() (*map[string][]string, bool) {
+<span id="L1074" class="ln">  1074  </span>	if o == nil || o.Users == nil {
+<span id="L1075" class="ln">  1075  </span>		return nil, false
+<span id="L1076" class="ln">  1076  </span>	}
+<span id="L1077" class="ln">  1077  </span>	return &amp;o.Users, true
+<span id="L1078" class="ln">  1078  </span>}
+<span id="L1079" class="ln">  1079  </span>
+<span id="L1080" class="ln">  1080  </span><span class="comment">// HasUsers returns a boolean if a field has been set.</span>
+<span id="L1081" class="ln">  1081  </span>func (o *IoCIndicatorDetailed) HasUsers() bool {
+<span id="L1082" class="ln">  1082  </span>	return o != nil &amp;&amp; o.Users != nil
+<span id="L1083" class="ln">  1083  </span>}
+<span id="L1084" class="ln">  1084  </span>
+<span id="L1085" class="ln">  1085  </span><span class="comment">// SetUsers gets a reference to the given map[string][]string and assigns it to the Users field.</span>
+<span id="L1086" class="ln">  1086  </span>func (o *IoCIndicatorDetailed) SetUsers(v map[string][]string) {
+<span id="L1087" class="ln">  1087  </span>	o.Users = v
+<span id="L1088" class="ln">  1088  </span>}
+<span id="L1089" class="ln">  1089  </span>
+<span id="L1090" class="ln">  1090  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L1091" class="ln">  1091  </span>func (o IoCIndicatorDetailed) MarshalJSON() ([]byte, error) {
+<span id="L1092" class="ln">  1092  </span>	toSerialize := map[string]interface{}{}
+<span id="L1093" class="ln">  1093  </span>	if o.UnparsedObject != nil {
+<span id="L1094" class="ln">  1094  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L1095" class="ln">  1095  </span>	}
+<span id="L1096" class="ln">  1096  </span>	if o.AdditionalData != nil {
+<span id="L1097" class="ln">  1097  </span>		toSerialize[&#34;additional_data&#34;] = o.AdditionalData
+<span id="L1098" class="ln">  1098  </span>	}
+<span id="L1099" class="ln">  1099  </span>	if o.AsCidrBlock != nil {
+<span id="L1100" class="ln">  1100  </span>		toSerialize[&#34;as_cidr_block&#34;] = o.AsCidrBlock
+<span id="L1101" class="ln">  1101  </span>	}
+<span id="L1102" class="ln">  1102  </span>	if o.AsGeo != nil {
+<span id="L1103" class="ln">  1103  </span>		toSerialize[&#34;as_geo&#34;] = o.AsGeo
+<span id="L1104" class="ln">  1104  </span>	}
+<span id="L1105" class="ln">  1105  </span>	if o.AsNumber != nil {
+<span id="L1106" class="ln">  1106  </span>		toSerialize[&#34;as_number&#34;] = o.AsNumber
+<span id="L1107" class="ln">  1107  </span>	}
+<span id="L1108" class="ln">  1108  </span>	if o.AsOrganization != nil {
+<span id="L1109" class="ln">  1109  </span>		toSerialize[&#34;as_organization&#34;] = o.AsOrganization
+<span id="L1110" class="ln">  1110  </span>	}
+<span id="L1111" class="ln">  1111  </span>	if o.AsType != nil {
+<span id="L1112" class="ln">  1112  </span>		toSerialize[&#34;as_type&#34;] = o.AsType
+<span id="L1113" class="ln">  1113  </span>	}
+<span id="L1114" class="ln">  1114  </span>	if o.BenignSources != nil {
+<span id="L1115" class="ln">  1115  </span>		toSerialize[&#34;benign_sources&#34;] = o.BenignSources
+<span id="L1116" class="ln">  1116  </span>	}
+<span id="L1117" class="ln">  1117  </span>	if o.Categories != nil {
+<span id="L1118" class="ln">  1118  </span>		toSerialize[&#34;categories&#34;] = o.Categories
+<span id="L1119" class="ln">  1119  </span>	}
+<span id="L1120" class="ln">  1120  </span>	if o.CriticalAssets != nil {
+<span id="L1121" class="ln">  1121  </span>		toSerialize[&#34;critical_assets&#34;] = o.CriticalAssets
+<span id="L1122" class="ln">  1122  </span>	}
+<span id="L1123" class="ln">  1123  </span>	if o.FirstSeen != nil {
+<span id="L1124" class="ln">  1124  </span>		if o.FirstSeen.Nanosecond() == 0 {
+<span id="L1125" class="ln">  1125  </span>			toSerialize[&#34;first_seen&#34;] = o.FirstSeen.Format(&#34;2006-01-02T15:04:05Z07:00&#34;)
+<span id="L1126" class="ln">  1126  </span>		} else {
+<span id="L1127" class="ln">  1127  </span>			toSerialize[&#34;first_seen&#34;] = o.FirstSeen.Format(&#34;2006-01-02T15:04:05.000Z07:00&#34;)
+<span id="L1128" class="ln">  1128  </span>		}
+<span id="L1129" class="ln">  1129  </span>	}
+<span id="L1130" class="ln">  1130  </span>	if o.Hosts != nil {
+<span id="L1131" class="ln">  1131  </span>		toSerialize[&#34;hosts&#34;] = o.Hosts
+<span id="L1132" class="ln">  1132  </span>	}
+<span id="L1133" class="ln">  1133  </span>	if o.Id != nil {
+<span id="L1134" class="ln">  1134  </span>		toSerialize[&#34;id&#34;] = o.Id
+<span id="L1135" class="ln">  1135  </span>	}
+<span id="L1136" class="ln">  1136  </span>	if o.Indicator != nil {
+<span id="L1137" class="ln">  1137  </span>		toSerialize[&#34;indicator&#34;] = o.Indicator
+<span id="L1138" class="ln">  1138  </span>	}
+<span id="L1139" class="ln">  1139  </span>	if o.IndicatorType != nil {
+<span id="L1140" class="ln">  1140  </span>		toSerialize[&#34;indicator_type&#34;] = o.IndicatorType
+<span id="L1141" class="ln">  1141  </span>	}
+<span id="L1142" class="ln">  1142  </span>	if o.LastSeen != nil {
+<span id="L1143" class="ln">  1143  </span>		if o.LastSeen.Nanosecond() == 0 {
+<span id="L1144" class="ln">  1144  </span>			toSerialize[&#34;last_seen&#34;] = o.LastSeen.Format(&#34;2006-01-02T15:04:05Z07:00&#34;)
+<span id="L1145" class="ln">  1145  </span>		} else {
+<span id="L1146" class="ln">  1146  </span>			toSerialize[&#34;last_seen&#34;] = o.LastSeen.Format(&#34;2006-01-02T15:04:05.000Z07:00&#34;)
+<span id="L1147" class="ln">  1147  </span>		}
+<span id="L1148" class="ln">  1148  </span>	}
+<span id="L1149" class="ln">  1149  </span>	if o.LogMatches != nil {
+<span id="L1150" class="ln">  1150  </span>		toSerialize[&#34;log_matches&#34;] = o.LogMatches
+<span id="L1151" class="ln">  1151  </span>	}
+<span id="L1152" class="ln">  1152  </span>	if o.LogSources != nil {
+<span id="L1153" class="ln">  1153  </span>		toSerialize[&#34;log_sources&#34;] = o.LogSources
+<span id="L1154" class="ln">  1154  </span>	}
+<span id="L1155" class="ln">  1155  </span>	if o.MAsType != nil {
+<span id="L1156" class="ln">  1156  </span>		toSerialize[&#34;m_as_type&#34;] = o.MAsType
+<span id="L1157" class="ln">  1157  </span>	}
+<span id="L1158" class="ln">  1158  </span>	if o.MPersistence != nil {
+<span id="L1159" class="ln">  1159  </span>		toSerialize[&#34;m_persistence&#34;] = o.MPersistence
+<span id="L1160" class="ln">  1160  </span>	}
+<span id="L1161" class="ln">  1161  </span>	if o.MSignal != nil {
+<span id="L1162" class="ln">  1162  </span>		toSerialize[&#34;m_signal&#34;] = o.MSignal
+<span id="L1163" class="ln">  1163  </span>	}
+<span id="L1164" class="ln">  1164  </span>	if o.MSources != nil {
+<span id="L1165" class="ln">  1165  </span>		toSerialize[&#34;m_sources&#34;] = o.MSources
+<span id="L1166" class="ln">  1166  </span>	}
+<span id="L1167" class="ln">  1167  </span>	if o.MaliciousSources != nil {
+<span id="L1168" class="ln">  1168  </span>		toSerialize[&#34;malicious_sources&#34;] = o.MaliciousSources
+<span id="L1169" class="ln">  1169  </span>	}
+<span id="L1170" class="ln">  1170  </span>	if o.MaxTrustScore != nil {
+<span id="L1171" class="ln">  1171  </span>		toSerialize[&#34;max_trust_score&#34;] = o.MaxTrustScore
+<span id="L1172" class="ln">  1172  </span>	}
+<span id="L1173" class="ln">  1173  </span>	if o.Score != nil {
+<span id="L1174" class="ln">  1174  </span>		toSerialize[&#34;score&#34;] = o.Score
+<span id="L1175" class="ln">  1175  </span>	}
+<span id="L1176" class="ln">  1176  </span>	if o.Services != nil {
+<span id="L1177" class="ln">  1177  </span>		toSerialize[&#34;services&#34;] = o.Services
+<span id="L1178" class="ln">  1178  </span>	}
+<span id="L1179" class="ln">  1179  </span>	if o.SignalMatches != nil {
+<span id="L1180" class="ln">  1180  </span>		toSerialize[&#34;signal_matches&#34;] = o.SignalMatches
+<span id="L1181" class="ln">  1181  </span>	}
+<span id="L1182" class="ln">  1182  </span>	if o.SignalSeverity != nil {
+<span id="L1183" class="ln">  1183  </span>		toSerialize[&#34;signal_severity&#34;] = o.SignalSeverity
+<span id="L1184" class="ln">  1184  </span>	}
+<span id="L1185" class="ln">  1185  </span>	if o.SignalTier != nil {
+<span id="L1186" class="ln">  1186  </span>		toSerialize[&#34;signal_tier&#34;] = o.SignalTier
+<span id="L1187" class="ln">  1187  </span>	}
+<span id="L1188" class="ln">  1188  </span>	if o.SuspiciousSources != nil {
+<span id="L1189" class="ln">  1189  </span>		toSerialize[&#34;suspicious_sources&#34;] = o.SuspiciousSources
+<span id="L1190" class="ln">  1190  </span>	}
+<span id="L1191" class="ln">  1191  </span>	if o.Tags != nil {
+<span id="L1192" class="ln">  1192  </span>		toSerialize[&#34;tags&#34;] = o.Tags
+<span id="L1193" class="ln">  1193  </span>	}
+<span id="L1194" class="ln">  1194  </span>	if o.TriageHistory != nil {
+<span id="L1195" class="ln">  1195  </span>		toSerialize[&#34;triage_history&#34;] = o.TriageHistory
+<span id="L1196" class="ln">  1196  </span>	}
+<span id="L1197" class="ln">  1197  </span>	if o.TriageState != nil {
+<span id="L1198" class="ln">  1198  </span>		toSerialize[&#34;triage_state&#34;] = o.TriageState
+<span id="L1199" class="ln">  1199  </span>	}
+<span id="L1200" class="ln">  1200  </span>	if o.TriagedAt != nil {
+<span id="L1201" class="ln">  1201  </span>		if o.TriagedAt.Nanosecond() == 0 {
+<span id="L1202" class="ln">  1202  </span>			toSerialize[&#34;triaged_at&#34;] = o.TriagedAt.Format(&#34;2006-01-02T15:04:05Z07:00&#34;)
+<span id="L1203" class="ln">  1203  </span>		} else {
+<span id="L1204" class="ln">  1204  </span>			toSerialize[&#34;triaged_at&#34;] = o.TriagedAt.Format(&#34;2006-01-02T15:04:05.000Z07:00&#34;)
+<span id="L1205" class="ln">  1205  </span>		}
+<span id="L1206" class="ln">  1206  </span>	}
+<span id="L1207" class="ln">  1207  </span>	if o.TriagedBy != nil {
+<span id="L1208" class="ln">  1208  </span>		toSerialize[&#34;triaged_by&#34;] = o.TriagedBy
+<span id="L1209" class="ln">  1209  </span>	}
+<span id="L1210" class="ln">  1210  </span>	if o.Users != nil {
+<span id="L1211" class="ln">  1211  </span>		toSerialize[&#34;users&#34;] = o.Users
+<span id="L1212" class="ln">  1212  </span>	}
+<span id="L1213" class="ln">  1213  </span>
+<span id="L1214" class="ln">  1214  </span>	for key, value := range o.AdditionalProperties {
+<span id="L1215" class="ln">  1215  </span>		toSerialize[key] = value
+<span id="L1216" class="ln">  1216  </span>	}
+<span id="L1217" class="ln">  1217  </span>	return datadog.Marshal(toSerialize)
+<span id="L1218" class="ln">  1218  </span>}
+<span id="L1219" class="ln">  1219  </span>
+<span id="L1220" class="ln">  1220  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L1221" class="ln">  1221  </span>func (o *IoCIndicatorDetailed) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L1222" class="ln">  1222  </span>	all := struct {
+<span id="L1223" class="ln">  1223  </span>		AdditionalData    map[string]interface{}   `json:&#34;additional_data,omitempty&#34;`
+<span id="L1224" class="ln">  1224  </span>		AsCidrBlock       *string                  `json:&#34;as_cidr_block,omitempty&#34;`
+<span id="L1225" class="ln">  1225  </span>		AsGeo             *IoCGeoLocation          `json:&#34;as_geo,omitempty&#34;`
+<span id="L1226" class="ln">  1226  </span>		AsNumber          *string                  `json:&#34;as_number,omitempty&#34;`
+<span id="L1227" class="ln">  1227  </span>		AsOrganization    *string                  `json:&#34;as_organization,omitempty&#34;`
+<span id="L1228" class="ln">  1228  </span>		AsType            *string                  `json:&#34;as_type,omitempty&#34;`
+<span id="L1229" class="ln">  1229  </span>		BenignSources     []IoCSource              `json:&#34;benign_sources,omitempty&#34;`
+<span id="L1230" class="ln">  1230  </span>		Categories        []string                 `json:&#34;categories,omitempty&#34;`
+<span id="L1231" class="ln">  1231  </span>		CriticalAssets    []string                 `json:&#34;critical_assets,omitempty&#34;`
+<span id="L1232" class="ln">  1232  </span>		FirstSeen         *time.Time               `json:&#34;first_seen,omitempty&#34;`
+<span id="L1233" class="ln">  1233  </span>		Hosts             []string                 `json:&#34;hosts,omitempty&#34;`
+<span id="L1234" class="ln">  1234  </span>		Id                *string                  `json:&#34;id,omitempty&#34;`
+<span id="L1235" class="ln">  1235  </span>		Indicator         *string                  `json:&#34;indicator,omitempty&#34;`
+<span id="L1236" class="ln">  1236  </span>		IndicatorType     *string                  `json:&#34;indicator_type,omitempty&#34;`
+<span id="L1237" class="ln">  1237  </span>		LastSeen          *time.Time               `json:&#34;last_seen,omitempty&#34;`
+<span id="L1238" class="ln">  1238  </span>		LogMatches        *int64                   `json:&#34;log_matches,omitempty&#34;`
+<span id="L1239" class="ln">  1239  </span>		LogSources        []string                 `json:&#34;log_sources,omitempty&#34;`
+<span id="L1240" class="ln">  1240  </span>		MAsType           *IoCScoreEffect          `json:&#34;m_as_type,omitempty&#34;`
+<span id="L1241" class="ln">  1241  </span>		MPersistence      *IoCScoreEffect          `json:&#34;m_persistence,omitempty&#34;`
+<span id="L1242" class="ln">  1242  </span>		MSignal           *IoCScoreEffect          `json:&#34;m_signal,omitempty&#34;`
+<span id="L1243" class="ln">  1243  </span>		MSources          *IoCScoreEffect          `json:&#34;m_sources,omitempty&#34;`
+<span id="L1244" class="ln">  1244  </span>		MaliciousSources  []IoCSource              `json:&#34;malicious_sources,omitempty&#34;`
+<span id="L1245" class="ln">  1245  </span>		MaxTrustScore     *IoCScoreEffect          `json:&#34;max_trust_score,omitempty&#34;`
+<span id="L1246" class="ln">  1246  </span>		Score             *float64                 `json:&#34;score,omitempty&#34;`
+<span id="L1247" class="ln">  1247  </span>		Services          []string                 `json:&#34;services,omitempty&#34;`
+<span id="L1248" class="ln">  1248  </span>		SignalMatches     *int64                   `json:&#34;signal_matches,omitempty&#34;`
+<span id="L1249" class="ln">  1249  </span>		SignalSeverity    []IoCSignalSeverityCount `json:&#34;signal_severity,omitempty&#34;`
+<span id="L1250" class="ln">  1250  </span>		SignalTier        *int64                   `json:&#34;signal_tier,omitempty&#34;`
+<span id="L1251" class="ln">  1251  </span>		SuspiciousSources []IoCSource              `json:&#34;suspicious_sources,omitempty&#34;`
+<span id="L1252" class="ln">  1252  </span>		Tags              []string                 `json:&#34;tags,omitempty&#34;`
+<span id="L1253" class="ln">  1253  </span>		TriageHistory     []IoCTriageEvent         `json:&#34;triage_history,omitempty&#34;`
+<span id="L1254" class="ln">  1254  </span>		TriageState       *IoCTriageState          `json:&#34;triage_state,omitempty&#34;`
+<span id="L1255" class="ln">  1255  </span>		TriagedAt         *time.Time               `json:&#34;triaged_at,omitempty&#34;`
+<span id="L1256" class="ln">  1256  </span>		TriagedBy         *string                  `json:&#34;triaged_by,omitempty&#34;`
+<span id="L1257" class="ln">  1257  </span>		Users             map[string][]string      `json:&#34;users,omitempty&#34;`
+<span id="L1258" class="ln">  1258  </span>	}{}
+<span id="L1259" class="ln">  1259  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L1260" class="ln">  1260  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L1261" class="ln">  1261  </span>	}
+<span id="L1262" class="ln">  1262  </span>	additionalProperties := make(map[string]interface{})
+<span id="L1263" class="ln">  1263  </span>	if err = datadog.UnmarshalUseNumber(bytes, &amp;additionalProperties); err == nil {
+<span id="L1264" class="ln">  1264  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;additional_data&#34;, &#34;as_cidr_block&#34;, &#34;as_geo&#34;, &#34;as_number&#34;, &#34;as_organization&#34;, &#34;as_type&#34;, &#34;benign_sources&#34;, &#34;categories&#34;, &#34;critical_assets&#34;, &#34;first_seen&#34;, &#34;hosts&#34;, &#34;id&#34;, &#34;indicator&#34;, &#34;indicator_type&#34;, &#34;last_seen&#34;, &#34;log_matches&#34;, &#34;log_sources&#34;, &#34;m_as_type&#34;, &#34;m_persistence&#34;, &#34;m_signal&#34;, &#34;m_sources&#34;, &#34;malicious_sources&#34;, &#34;max_trust_score&#34;, &#34;score&#34;, &#34;services&#34;, &#34;signal_matches&#34;, &#34;signal_severity&#34;, &#34;signal_tier&#34;, &#34;suspicious_sources&#34;, &#34;tags&#34;, &#34;triage_history&#34;, &#34;triage_state&#34;, &#34;triaged_at&#34;, &#34;triaged_by&#34;, &#34;users&#34;})
+<span id="L1265" class="ln">  1265  </span>	} else {
+<span id="L1266" class="ln">  1266  </span>		return err
+<span id="L1267" class="ln">  1267  </span>	}
+<span id="L1268" class="ln">  1268  </span>
+<span id="L1269" class="ln">  1269  </span>	hasInvalidField := false
+<span id="L1270" class="ln">  1270  </span>	o.AdditionalData = all.AdditionalData
+<span id="L1271" class="ln">  1271  </span>	o.AsCidrBlock = all.AsCidrBlock
+<span id="L1272" class="ln">  1272  </span>	if all.AsGeo != nil &amp;&amp; all.AsGeo.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L1273" class="ln">  1273  </span>		hasInvalidField = true
+<span id="L1274" class="ln">  1274  </span>	}
+<span id="L1275" class="ln">  1275  </span>	o.AsGeo = all.AsGeo
+<span id="L1276" class="ln">  1276  </span>	o.AsNumber = all.AsNumber
+<span id="L1277" class="ln">  1277  </span>	o.AsOrganization = all.AsOrganization
+<span id="L1278" class="ln">  1278  </span>	o.AsType = all.AsType
+<span id="L1279" class="ln">  1279  </span>	o.BenignSources = all.BenignSources
+<span id="L1280" class="ln">  1280  </span>	o.Categories = all.Categories
+<span id="L1281" class="ln">  1281  </span>	o.CriticalAssets = all.CriticalAssets
+<span id="L1282" class="ln">  1282  </span>	o.FirstSeen = all.FirstSeen
+<span id="L1283" class="ln">  1283  </span>	o.Hosts = all.Hosts
+<span id="L1284" class="ln">  1284  </span>	o.Id = all.Id
+<span id="L1285" class="ln">  1285  </span>	o.Indicator = all.Indicator
+<span id="L1286" class="ln">  1286  </span>	o.IndicatorType = all.IndicatorType
+<span id="L1287" class="ln">  1287  </span>	o.LastSeen = all.LastSeen
+<span id="L1288" class="ln">  1288  </span>	o.LogMatches = all.LogMatches
+<span id="L1289" class="ln">  1289  </span>	o.LogSources = all.LogSources
+<span id="L1290" class="ln">  1290  </span>	if all.MAsType != nil &amp;&amp; !all.MAsType.IsValid() {
+<span id="L1291" class="ln">  1291  </span>		hasInvalidField = true
+<span id="L1292" class="ln">  1292  </span>	} else {
+<span id="L1293" class="ln">  1293  </span>		o.MAsType = all.MAsType
+<span id="L1294" class="ln">  1294  </span>	}
+<span id="L1295" class="ln">  1295  </span>	if all.MPersistence != nil &amp;&amp; !all.MPersistence.IsValid() {
+<span id="L1296" class="ln">  1296  </span>		hasInvalidField = true
+<span id="L1297" class="ln">  1297  </span>	} else {
+<span id="L1298" class="ln">  1298  </span>		o.MPersistence = all.MPersistence
+<span id="L1299" class="ln">  1299  </span>	}
+<span id="L1300" class="ln">  1300  </span>	if all.MSignal != nil &amp;&amp; !all.MSignal.IsValid() {
+<span id="L1301" class="ln">  1301  </span>		hasInvalidField = true
+<span id="L1302" class="ln">  1302  </span>	} else {
+<span id="L1303" class="ln">  1303  </span>		o.MSignal = all.MSignal
+<span id="L1304" class="ln">  1304  </span>	}
+<span id="L1305" class="ln">  1305  </span>	if all.MSources != nil &amp;&amp; !all.MSources.IsValid() {
+<span id="L1306" class="ln">  1306  </span>		hasInvalidField = true
+<span id="L1307" class="ln">  1307  </span>	} else {
+<span id="L1308" class="ln">  1308  </span>		o.MSources = all.MSources
+<span id="L1309" class="ln">  1309  </span>	}
+<span id="L1310" class="ln">  1310  </span>	o.MaliciousSources = all.MaliciousSources
+<span id="L1311" class="ln">  1311  </span>	if all.MaxTrustScore != nil &amp;&amp; !all.MaxTrustScore.IsValid() {
+<span id="L1312" class="ln">  1312  </span>		hasInvalidField = true
+<span id="L1313" class="ln">  1313  </span>	} else {
+<span id="L1314" class="ln">  1314  </span>		o.MaxTrustScore = all.MaxTrustScore
+<span id="L1315" class="ln">  1315  </span>	}
+<span id="L1316" class="ln">  1316  </span>	o.Score = all.Score
+<span id="L1317" class="ln">  1317  </span>	o.Services = all.Services
+<span id="L1318" class="ln">  1318  </span>	o.SignalMatches = all.SignalMatches
+<span id="L1319" class="ln">  1319  </span>	o.SignalSeverity = all.SignalSeverity
+<span id="L1320" class="ln">  1320  </span>	o.SignalTier = all.SignalTier
+<span id="L1321" class="ln">  1321  </span>	o.SuspiciousSources = all.SuspiciousSources
+<span id="L1322" class="ln">  1322  </span>	o.Tags = all.Tags
+<span id="L1323" class="ln">  1323  </span>	o.TriageHistory = all.TriageHistory
+<span id="L1324" class="ln">  1324  </span>	if all.TriageState != nil &amp;&amp; !all.TriageState.IsValid() {
+<span id="L1325" class="ln">  1325  </span>		hasInvalidField = true
+<span id="L1326" class="ln">  1326  </span>	} else {
+<span id="L1327" class="ln">  1327  </span>		o.TriageState = all.TriageState
+<span id="L1328" class="ln">  1328  </span>	}
+<span id="L1329" class="ln">  1329  </span>	o.TriagedAt = all.TriagedAt
+<span id="L1330" class="ln">  1330  </span>	o.TriagedBy = all.TriagedBy
+<span id="L1331" class="ln">  1331  </span>	o.Users = all.Users
+<span id="L1332" class="ln">  1332  </span>
+<span id="L1333" class="ln">  1333  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L1334" class="ln">  1334  </span>		o.AdditionalProperties = additionalProperties
+<span id="L1335" class="ln">  1335  </span>	}
+<span id="L1336" class="ln">  1336  </span>
+<span id="L1337" class="ln">  1337  </span>	if hasInvalidField {
+<span id="L1338" class="ln">  1338  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L1339" class="ln">  1339  </span>	}
+<span id="L1340" class="ln">  1340  </span>
+<span id="L1341" class="ln">  1341  </span>	return nil
+<span id="L1342" class="ln">  1342  </span>}
+<span id="L1343" class="ln">  1343  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.25.12.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>

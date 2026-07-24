@@ -1,0 +1,754 @@
+<!DOCTYPE html><html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#375EAB"/>
+
+  <title>src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2/model_governance_insight_attributes.go - Datadog</title>
+
+<link type="text/css" rel="stylesheet" href="/datadog-api-client-go/lib/godoc/style.css"/>
+
+<script>window.initFuncs = [];</script>
+<script src="/datadog-api-client-go/lib/godoc/jquery.js" defer=""></script>
+
+
+
+
+<script>var goVersion = "go1.25.12";</script>
+<script src="/datadog-api-client-go/lib/godoc/godocs.js" defer=""></script>
+
+</head>
+<body>
+
+<div id="lowframe" style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog | Datadog API client for GO</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/">Datadog</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">▽</span></a>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Source file
+    <a href="/datadog-api-client-go/src">src</a>/<a href="/datadog-api-client-go/src/github.com">github.com</a>/<a href="/datadog-api-client-go/src/github.com/DataDog">DataDog</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go">datadog-api-client-go</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2">v2</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api">api</a>/<a href="/datadog-api-client-go/src/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">datadogV2</a>/<span class="text-muted">model_governance_insight_attributes.go</span>
+  </h1>
+
+
+
+
+
+  <h2>
+    Documentation: <a href="/datadog-api-client-go/pkg/github.com/DataDog/datadog-api-client-go/v2/api/datadogV2">github.com/DataDog/datadog-api-client-go/v2/api/datadogV2</a>
+  </h2>
+
+
+
+<div id="nav"></div>
+
+
+<script type="text/javascript">document.ANALYSIS_DATA = null;</script>
+<pre><span id="L1" class="ln">     1  </span><span class="comment">// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.</span>
+<span id="L2" class="ln">     2  </span><span class="comment">// This product includes software developed at Datadog (https://www.datadoghq.com/).</span>
+<span id="L3" class="ln">     3  </span><span class="comment">// Copyright 2019-Present Datadog, Inc.</span>
+<span id="L4" class="ln">     4  </span>
+<span id="L5" class="ln">     5  </span>package datadogV2
+<span id="L6" class="ln">     6  </span>
+<span id="L7" class="ln">     7  </span>import (
+<span id="L8" class="ln">     8  </span>	&#34;fmt&#34;
+<span id="L9" class="ln">     9  </span>
+<span id="L10" class="ln">    10  </span>	&#34;github.com/DataDog/datadog-api-client-go/v2/api/datadog&#34;
+<span id="L11" class="ln">    11  </span>)
+<span id="L12" class="ln">    12  </span>
+<span id="L13" class="ln">    13  </span><span class="comment">// GovernanceInsightAttributes The attributes of a governance insight.</span>
+<span id="L14" class="ln">    14  </span>type GovernanceInsightAttributes struct {
+<span id="L15" class="ln">    15  </span>	<span class="comment">// An audit log query used to compute an insight value.</span>
+<span id="L16" class="ln">    16  </span>	AuditQuery GovernanceInsightAuditQuery `json:&#34;audit_query&#34;`
+<span id="L17" class="ln">    17  </span>	<span class="comment">// The best practice associated with an insight. Populated with the first active best practice</span>
+<span id="L18" class="ln">    18  </span>	<span class="comment">// matched to the insight; `null` when no best practice is attached.</span>
+<span id="L19" class="ln">    19  </span>	BestPractice GovernanceBestPracticeDefinition `json:&#34;best_practice&#34;`
+<span id="L20" class="ln">    20  </span>	<span class="comment">// A relative link to the product surface where the insight can be acted upon.</span>
+<span id="L21" class="ln">    21  </span>	DeepLink string `json:&#34;deep_link&#34;`
+<span id="L22" class="ln">    22  </span>	<span class="comment">// A human-readable description of what the insight measures.</span>
+<span id="L23" class="ln">    23  </span>	Description string `json:&#34;description&#34;`
+<span id="L24" class="ln">    24  </span>	<span class="comment">// Human-readable name of the insight.</span>
+<span id="L25" class="ln">    25  </span>	DisplayName string `json:&#34;display_name&#34;`
+<span id="L26" class="ln">    26  </span>	<span class="comment">// An event query used to compute an insight value.</span>
+<span id="L27" class="ln">    27  </span>	EventQuery GovernanceInsightEventQuery `json:&#34;event_query&#34;`
+<span id="L28" class="ln">    28  </span>	<span class="comment">// A metric query used to compute an insight value.</span>
+<span id="L29" class="ln">    29  </span>	MetricQuery GovernanceInsightMetricQuery `json:&#34;metric_query&#34;`
+<span id="L30" class="ln">    30  </span>	<span class="comment">// The value of the insight over the previous comparison window. `null` when values were</span>
+<span id="L31" class="ln">    31  </span>	<span class="comment">// not requested or could not be computed.</span>
+<span id="L32" class="ln">    32  </span>	OldValue datadog.NullableFloat64 `json:&#34;old_value&#34;`
+<span id="L33" class="ln">    33  </span>	<span class="comment">// A percentage query that computes an insight value as a ratio of two metric queries.</span>
+<span id="L34" class="ln">    34  </span>	PercentageQuery GovernanceInsightPercentageQuery `json:&#34;percentage_query&#34;`
+<span id="L35" class="ln">    35  </span>	<span class="comment">// The product the insight belongs to.</span>
+<span id="L36" class="ln">    36  </span>	Product string `json:&#34;product&#34;`
+<span id="L37" class="ln">    37  </span>	<span class="comment">// Query execution context that allows the frontend to execute insight queries directly.</span>
+<span id="L38" class="ln">    38  </span>	QueryConfig *GovernanceInsightQueryConfig `json:&#34;query_config,omitempty&#34;`
+<span id="L39" class="ln">    39  </span>	<span class="comment">// The relative order in which the insight should be displayed.</span>
+<span id="L40" class="ln">    40  </span>	SortOrder *int64 `json:&#34;sort_order,omitempty&#34;`
+<span id="L41" class="ln">    41  </span>	<span class="comment">// The state of the insight. A `critical` insight receives extra UI treatment to draw</span>
+<span id="L42" class="ln">    42  </span>	<span class="comment">// attention to it.</span>
+<span id="L43" class="ln">    43  </span>	State string `json:&#34;state&#34;`
+<span id="L44" class="ln">    44  </span>	<span class="comment">// The sub-product the insight belongs to, if any.</span>
+<span id="L45" class="ln">    45  </span>	SubProduct string `json:&#34;sub_product&#34;`
+<span id="L46" class="ln">    46  </span>	<span class="comment">// The time range the insight value is computed over, if applicable.</span>
+<span id="L47" class="ln">    47  </span>	TimeRange string `json:&#34;time_range&#34;`
+<span id="L48" class="ln">    48  </span>	<span class="comment">// The unit that the insight&#39;s value is measured in.</span>
+<span id="L49" class="ln">    49  </span>	UnitName string `json:&#34;unit_name&#34;`
+<span id="L50" class="ln">    50  </span>	<span class="comment">// A usage query used to compute an insight value.</span>
+<span id="L51" class="ln">    51  </span>	UsageQuery GovernanceInsightUsageQuery `json:&#34;usage_query&#34;`
+<span id="L52" class="ln">    52  </span>	<span class="comment">// The current value of the insight. `null` when values were not requested or could not be computed.</span>
+<span id="L53" class="ln">    53  </span>	Value datadog.NullableFloat64 `json:&#34;value&#34;`
+<span id="L54" class="ln">    54  </span>	<span class="comment">// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct</span>
+<span id="L55" class="ln">    55  </span>	UnparsedObject       map[string]interface{} `json:&#34;-&#34;`
+<span id="L56" class="ln">    56  </span>	AdditionalProperties map[string]interface{} `json:&#34;-&#34;`
+<span id="L57" class="ln">    57  </span>}
+<span id="L58" class="ln">    58  </span>
+<span id="L59" class="ln">    59  </span><span class="comment">// NewGovernanceInsightAttributes instantiates a new GovernanceInsightAttributes object.</span>
+<span id="L60" class="ln">    60  </span><span class="comment">// This constructor will assign default values to properties that have it defined,</span>
+<span id="L61" class="ln">    61  </span><span class="comment">// and makes sure properties required by API are set, but the set of arguments</span>
+<span id="L62" class="ln">    62  </span><span class="comment">// will change when the set of required properties is changed.</span>
+<span id="L63" class="ln">    63  </span>func NewGovernanceInsightAttributes(auditQuery GovernanceInsightAuditQuery, bestPractice GovernanceBestPracticeDefinition, deepLink string, description string, displayName string, eventQuery GovernanceInsightEventQuery, metricQuery GovernanceInsightMetricQuery, oldValue datadog.NullableFloat64, percentageQuery GovernanceInsightPercentageQuery, product string, state string, subProduct string, timeRange string, unitName string, usageQuery GovernanceInsightUsageQuery, value datadog.NullableFloat64) *GovernanceInsightAttributes {
+<span id="L64" class="ln">    64  </span>	this := GovernanceInsightAttributes{}
+<span id="L65" class="ln">    65  </span>	this.AuditQuery = auditQuery
+<span id="L66" class="ln">    66  </span>	this.BestPractice = bestPractice
+<span id="L67" class="ln">    67  </span>	this.DeepLink = deepLink
+<span id="L68" class="ln">    68  </span>	this.Description = description
+<span id="L69" class="ln">    69  </span>	this.DisplayName = displayName
+<span id="L70" class="ln">    70  </span>	this.EventQuery = eventQuery
+<span id="L71" class="ln">    71  </span>	this.MetricQuery = metricQuery
+<span id="L72" class="ln">    72  </span>	this.OldValue = oldValue
+<span id="L73" class="ln">    73  </span>	this.PercentageQuery = percentageQuery
+<span id="L74" class="ln">    74  </span>	this.Product = product
+<span id="L75" class="ln">    75  </span>	this.State = state
+<span id="L76" class="ln">    76  </span>	this.SubProduct = subProduct
+<span id="L77" class="ln">    77  </span>	this.TimeRange = timeRange
+<span id="L78" class="ln">    78  </span>	this.UnitName = unitName
+<span id="L79" class="ln">    79  </span>	this.UsageQuery = usageQuery
+<span id="L80" class="ln">    80  </span>	this.Value = value
+<span id="L81" class="ln">    81  </span>	return &amp;this
+<span id="L82" class="ln">    82  </span>}
+<span id="L83" class="ln">    83  </span>
+<span id="L84" class="ln">    84  </span><span class="comment">// NewGovernanceInsightAttributesWithDefaults instantiates a new GovernanceInsightAttributes object.</span>
+<span id="L85" class="ln">    85  </span><span class="comment">// This constructor will only assign default values to properties that have it defined,</span>
+<span id="L86" class="ln">    86  </span><span class="comment">// but it doesn&#39;t guarantee that properties required by API are set.</span>
+<span id="L87" class="ln">    87  </span>func NewGovernanceInsightAttributesWithDefaults() *GovernanceInsightAttributes {
+<span id="L88" class="ln">    88  </span>	this := GovernanceInsightAttributes{}
+<span id="L89" class="ln">    89  </span>	return &amp;this
+<span id="L90" class="ln">    90  </span>}
+<span id="L91" class="ln">    91  </span>
+<span id="L92" class="ln">    92  </span><span class="comment">// GetAuditQuery returns the AuditQuery field value.</span>
+<span id="L93" class="ln">    93  </span>func (o *GovernanceInsightAttributes) GetAuditQuery() GovernanceInsightAuditQuery {
+<span id="L94" class="ln">    94  </span>	if o == nil {
+<span id="L95" class="ln">    95  </span>		var ret GovernanceInsightAuditQuery
+<span id="L96" class="ln">    96  </span>		return ret
+<span id="L97" class="ln">    97  </span>	}
+<span id="L98" class="ln">    98  </span>	return o.AuditQuery
+<span id="L99" class="ln">    99  </span>}
+<span id="L100" class="ln">   100  </span>
+<span id="L101" class="ln">   101  </span><span class="comment">// GetAuditQueryOk returns a tuple with the AuditQuery field value</span>
+<span id="L102" class="ln">   102  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L103" class="ln">   103  </span>func (o *GovernanceInsightAttributes) GetAuditQueryOk() (*GovernanceInsightAuditQuery, bool) {
+<span id="L104" class="ln">   104  </span>	if o == nil {
+<span id="L105" class="ln">   105  </span>		return nil, false
+<span id="L106" class="ln">   106  </span>	}
+<span id="L107" class="ln">   107  </span>	return &amp;o.AuditQuery, true
+<span id="L108" class="ln">   108  </span>}
+<span id="L109" class="ln">   109  </span>
+<span id="L110" class="ln">   110  </span><span class="comment">// SetAuditQuery sets field value.</span>
+<span id="L111" class="ln">   111  </span>func (o *GovernanceInsightAttributes) SetAuditQuery(v GovernanceInsightAuditQuery) {
+<span id="L112" class="ln">   112  </span>	o.AuditQuery = v
+<span id="L113" class="ln">   113  </span>}
+<span id="L114" class="ln">   114  </span>
+<span id="L115" class="ln">   115  </span><span class="comment">// GetBestPractice returns the BestPractice field value.</span>
+<span id="L116" class="ln">   116  </span>func (o *GovernanceInsightAttributes) GetBestPractice() GovernanceBestPracticeDefinition {
+<span id="L117" class="ln">   117  </span>	if o == nil {
+<span id="L118" class="ln">   118  </span>		var ret GovernanceBestPracticeDefinition
+<span id="L119" class="ln">   119  </span>		return ret
+<span id="L120" class="ln">   120  </span>	}
+<span id="L121" class="ln">   121  </span>	return o.BestPractice
+<span id="L122" class="ln">   122  </span>}
+<span id="L123" class="ln">   123  </span>
+<span id="L124" class="ln">   124  </span><span class="comment">// GetBestPracticeOk returns a tuple with the BestPractice field value</span>
+<span id="L125" class="ln">   125  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L126" class="ln">   126  </span>func (o *GovernanceInsightAttributes) GetBestPracticeOk() (*GovernanceBestPracticeDefinition, bool) {
+<span id="L127" class="ln">   127  </span>	if o == nil {
+<span id="L128" class="ln">   128  </span>		return nil, false
+<span id="L129" class="ln">   129  </span>	}
+<span id="L130" class="ln">   130  </span>	return &amp;o.BestPractice, true
+<span id="L131" class="ln">   131  </span>}
+<span id="L132" class="ln">   132  </span>
+<span id="L133" class="ln">   133  </span><span class="comment">// SetBestPractice sets field value.</span>
+<span id="L134" class="ln">   134  </span>func (o *GovernanceInsightAttributes) SetBestPractice(v GovernanceBestPracticeDefinition) {
+<span id="L135" class="ln">   135  </span>	o.BestPractice = v
+<span id="L136" class="ln">   136  </span>}
+<span id="L137" class="ln">   137  </span>
+<span id="L138" class="ln">   138  </span><span class="comment">// GetDeepLink returns the DeepLink field value.</span>
+<span id="L139" class="ln">   139  </span>func (o *GovernanceInsightAttributes) GetDeepLink() string {
+<span id="L140" class="ln">   140  </span>	if o == nil {
+<span id="L141" class="ln">   141  </span>		var ret string
+<span id="L142" class="ln">   142  </span>		return ret
+<span id="L143" class="ln">   143  </span>	}
+<span id="L144" class="ln">   144  </span>	return o.DeepLink
+<span id="L145" class="ln">   145  </span>}
+<span id="L146" class="ln">   146  </span>
+<span id="L147" class="ln">   147  </span><span class="comment">// GetDeepLinkOk returns a tuple with the DeepLink field value</span>
+<span id="L148" class="ln">   148  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L149" class="ln">   149  </span>func (o *GovernanceInsightAttributes) GetDeepLinkOk() (*string, bool) {
+<span id="L150" class="ln">   150  </span>	if o == nil {
+<span id="L151" class="ln">   151  </span>		return nil, false
+<span id="L152" class="ln">   152  </span>	}
+<span id="L153" class="ln">   153  </span>	return &amp;o.DeepLink, true
+<span id="L154" class="ln">   154  </span>}
+<span id="L155" class="ln">   155  </span>
+<span id="L156" class="ln">   156  </span><span class="comment">// SetDeepLink sets field value.</span>
+<span id="L157" class="ln">   157  </span>func (o *GovernanceInsightAttributes) SetDeepLink(v string) {
+<span id="L158" class="ln">   158  </span>	o.DeepLink = v
+<span id="L159" class="ln">   159  </span>}
+<span id="L160" class="ln">   160  </span>
+<span id="L161" class="ln">   161  </span><span class="comment">// GetDescription returns the Description field value.</span>
+<span id="L162" class="ln">   162  </span>func (o *GovernanceInsightAttributes) GetDescription() string {
+<span id="L163" class="ln">   163  </span>	if o == nil {
+<span id="L164" class="ln">   164  </span>		var ret string
+<span id="L165" class="ln">   165  </span>		return ret
+<span id="L166" class="ln">   166  </span>	}
+<span id="L167" class="ln">   167  </span>	return o.Description
+<span id="L168" class="ln">   168  </span>}
+<span id="L169" class="ln">   169  </span>
+<span id="L170" class="ln">   170  </span><span class="comment">// GetDescriptionOk returns a tuple with the Description field value</span>
+<span id="L171" class="ln">   171  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L172" class="ln">   172  </span>func (o *GovernanceInsightAttributes) GetDescriptionOk() (*string, bool) {
+<span id="L173" class="ln">   173  </span>	if o == nil {
+<span id="L174" class="ln">   174  </span>		return nil, false
+<span id="L175" class="ln">   175  </span>	}
+<span id="L176" class="ln">   176  </span>	return &amp;o.Description, true
+<span id="L177" class="ln">   177  </span>}
+<span id="L178" class="ln">   178  </span>
+<span id="L179" class="ln">   179  </span><span class="comment">// SetDescription sets field value.</span>
+<span id="L180" class="ln">   180  </span>func (o *GovernanceInsightAttributes) SetDescription(v string) {
+<span id="L181" class="ln">   181  </span>	o.Description = v
+<span id="L182" class="ln">   182  </span>}
+<span id="L183" class="ln">   183  </span>
+<span id="L184" class="ln">   184  </span><span class="comment">// GetDisplayName returns the DisplayName field value.</span>
+<span id="L185" class="ln">   185  </span>func (o *GovernanceInsightAttributes) GetDisplayName() string {
+<span id="L186" class="ln">   186  </span>	if o == nil {
+<span id="L187" class="ln">   187  </span>		var ret string
+<span id="L188" class="ln">   188  </span>		return ret
+<span id="L189" class="ln">   189  </span>	}
+<span id="L190" class="ln">   190  </span>	return o.DisplayName
+<span id="L191" class="ln">   191  </span>}
+<span id="L192" class="ln">   192  </span>
+<span id="L193" class="ln">   193  </span><span class="comment">// GetDisplayNameOk returns a tuple with the DisplayName field value</span>
+<span id="L194" class="ln">   194  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L195" class="ln">   195  </span>func (o *GovernanceInsightAttributes) GetDisplayNameOk() (*string, bool) {
+<span id="L196" class="ln">   196  </span>	if o == nil {
+<span id="L197" class="ln">   197  </span>		return nil, false
+<span id="L198" class="ln">   198  </span>	}
+<span id="L199" class="ln">   199  </span>	return &amp;o.DisplayName, true
+<span id="L200" class="ln">   200  </span>}
+<span id="L201" class="ln">   201  </span>
+<span id="L202" class="ln">   202  </span><span class="comment">// SetDisplayName sets field value.</span>
+<span id="L203" class="ln">   203  </span>func (o *GovernanceInsightAttributes) SetDisplayName(v string) {
+<span id="L204" class="ln">   204  </span>	o.DisplayName = v
+<span id="L205" class="ln">   205  </span>}
+<span id="L206" class="ln">   206  </span>
+<span id="L207" class="ln">   207  </span><span class="comment">// GetEventQuery returns the EventQuery field value.</span>
+<span id="L208" class="ln">   208  </span>func (o *GovernanceInsightAttributes) GetEventQuery() GovernanceInsightEventQuery {
+<span id="L209" class="ln">   209  </span>	if o == nil {
+<span id="L210" class="ln">   210  </span>		var ret GovernanceInsightEventQuery
+<span id="L211" class="ln">   211  </span>		return ret
+<span id="L212" class="ln">   212  </span>	}
+<span id="L213" class="ln">   213  </span>	return o.EventQuery
+<span id="L214" class="ln">   214  </span>}
+<span id="L215" class="ln">   215  </span>
+<span id="L216" class="ln">   216  </span><span class="comment">// GetEventQueryOk returns a tuple with the EventQuery field value</span>
+<span id="L217" class="ln">   217  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L218" class="ln">   218  </span>func (o *GovernanceInsightAttributes) GetEventQueryOk() (*GovernanceInsightEventQuery, bool) {
+<span id="L219" class="ln">   219  </span>	if o == nil {
+<span id="L220" class="ln">   220  </span>		return nil, false
+<span id="L221" class="ln">   221  </span>	}
+<span id="L222" class="ln">   222  </span>	return &amp;o.EventQuery, true
+<span id="L223" class="ln">   223  </span>}
+<span id="L224" class="ln">   224  </span>
+<span id="L225" class="ln">   225  </span><span class="comment">// SetEventQuery sets field value.</span>
+<span id="L226" class="ln">   226  </span>func (o *GovernanceInsightAttributes) SetEventQuery(v GovernanceInsightEventQuery) {
+<span id="L227" class="ln">   227  </span>	o.EventQuery = v
+<span id="L228" class="ln">   228  </span>}
+<span id="L229" class="ln">   229  </span>
+<span id="L230" class="ln">   230  </span><span class="comment">// GetMetricQuery returns the MetricQuery field value.</span>
+<span id="L231" class="ln">   231  </span>func (o *GovernanceInsightAttributes) GetMetricQuery() GovernanceInsightMetricQuery {
+<span id="L232" class="ln">   232  </span>	if o == nil {
+<span id="L233" class="ln">   233  </span>		var ret GovernanceInsightMetricQuery
+<span id="L234" class="ln">   234  </span>		return ret
+<span id="L235" class="ln">   235  </span>	}
+<span id="L236" class="ln">   236  </span>	return o.MetricQuery
+<span id="L237" class="ln">   237  </span>}
+<span id="L238" class="ln">   238  </span>
+<span id="L239" class="ln">   239  </span><span class="comment">// GetMetricQueryOk returns a tuple with the MetricQuery field value</span>
+<span id="L240" class="ln">   240  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L241" class="ln">   241  </span>func (o *GovernanceInsightAttributes) GetMetricQueryOk() (*GovernanceInsightMetricQuery, bool) {
+<span id="L242" class="ln">   242  </span>	if o == nil {
+<span id="L243" class="ln">   243  </span>		return nil, false
+<span id="L244" class="ln">   244  </span>	}
+<span id="L245" class="ln">   245  </span>	return &amp;o.MetricQuery, true
+<span id="L246" class="ln">   246  </span>}
+<span id="L247" class="ln">   247  </span>
+<span id="L248" class="ln">   248  </span><span class="comment">// SetMetricQuery sets field value.</span>
+<span id="L249" class="ln">   249  </span>func (o *GovernanceInsightAttributes) SetMetricQuery(v GovernanceInsightMetricQuery) {
+<span id="L250" class="ln">   250  </span>	o.MetricQuery = v
+<span id="L251" class="ln">   251  </span>}
+<span id="L252" class="ln">   252  </span>
+<span id="L253" class="ln">   253  </span><span class="comment">// GetOldValue returns the OldValue field value.</span>
+<span id="L254" class="ln">   254  </span><span class="comment">// If the value is explicit nil, the zero value for float64 will be returned.</span>
+<span id="L255" class="ln">   255  </span>func (o *GovernanceInsightAttributes) GetOldValue() float64 {
+<span id="L256" class="ln">   256  </span>	if o == nil || o.OldValue.Get() == nil {
+<span id="L257" class="ln">   257  </span>		var ret float64
+<span id="L258" class="ln">   258  </span>		return ret
+<span id="L259" class="ln">   259  </span>	}
+<span id="L260" class="ln">   260  </span>	return *o.OldValue.Get()
+<span id="L261" class="ln">   261  </span>}
+<span id="L262" class="ln">   262  </span>
+<span id="L263" class="ln">   263  </span><span class="comment">// GetOldValueOk returns a tuple with the OldValue field value</span>
+<span id="L264" class="ln">   264  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L265" class="ln">   265  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L266" class="ln">   266  </span>func (o *GovernanceInsightAttributes) GetOldValueOk() (*float64, bool) {
+<span id="L267" class="ln">   267  </span>	if o == nil {
+<span id="L268" class="ln">   268  </span>		return nil, false
+<span id="L269" class="ln">   269  </span>	}
+<span id="L270" class="ln">   270  </span>	return o.OldValue.Get(), o.OldValue.IsSet()
+<span id="L271" class="ln">   271  </span>}
+<span id="L272" class="ln">   272  </span>
+<span id="L273" class="ln">   273  </span><span class="comment">// SetOldValue sets field value.</span>
+<span id="L274" class="ln">   274  </span>func (o *GovernanceInsightAttributes) SetOldValue(v float64) {
+<span id="L275" class="ln">   275  </span>	o.OldValue.Set(&amp;v)
+<span id="L276" class="ln">   276  </span>}
+<span id="L277" class="ln">   277  </span>
+<span id="L278" class="ln">   278  </span><span class="comment">// GetPercentageQuery returns the PercentageQuery field value.</span>
+<span id="L279" class="ln">   279  </span>func (o *GovernanceInsightAttributes) GetPercentageQuery() GovernanceInsightPercentageQuery {
+<span id="L280" class="ln">   280  </span>	if o == nil {
+<span id="L281" class="ln">   281  </span>		var ret GovernanceInsightPercentageQuery
+<span id="L282" class="ln">   282  </span>		return ret
+<span id="L283" class="ln">   283  </span>	}
+<span id="L284" class="ln">   284  </span>	return o.PercentageQuery
+<span id="L285" class="ln">   285  </span>}
+<span id="L286" class="ln">   286  </span>
+<span id="L287" class="ln">   287  </span><span class="comment">// GetPercentageQueryOk returns a tuple with the PercentageQuery field value</span>
+<span id="L288" class="ln">   288  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L289" class="ln">   289  </span>func (o *GovernanceInsightAttributes) GetPercentageQueryOk() (*GovernanceInsightPercentageQuery, bool) {
+<span id="L290" class="ln">   290  </span>	if o == nil {
+<span id="L291" class="ln">   291  </span>		return nil, false
+<span id="L292" class="ln">   292  </span>	}
+<span id="L293" class="ln">   293  </span>	return &amp;o.PercentageQuery, true
+<span id="L294" class="ln">   294  </span>}
+<span id="L295" class="ln">   295  </span>
+<span id="L296" class="ln">   296  </span><span class="comment">// SetPercentageQuery sets field value.</span>
+<span id="L297" class="ln">   297  </span>func (o *GovernanceInsightAttributes) SetPercentageQuery(v GovernanceInsightPercentageQuery) {
+<span id="L298" class="ln">   298  </span>	o.PercentageQuery = v
+<span id="L299" class="ln">   299  </span>}
+<span id="L300" class="ln">   300  </span>
+<span id="L301" class="ln">   301  </span><span class="comment">// GetProduct returns the Product field value.</span>
+<span id="L302" class="ln">   302  </span>func (o *GovernanceInsightAttributes) GetProduct() string {
+<span id="L303" class="ln">   303  </span>	if o == nil {
+<span id="L304" class="ln">   304  </span>		var ret string
+<span id="L305" class="ln">   305  </span>		return ret
+<span id="L306" class="ln">   306  </span>	}
+<span id="L307" class="ln">   307  </span>	return o.Product
+<span id="L308" class="ln">   308  </span>}
+<span id="L309" class="ln">   309  </span>
+<span id="L310" class="ln">   310  </span><span class="comment">// GetProductOk returns a tuple with the Product field value</span>
+<span id="L311" class="ln">   311  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L312" class="ln">   312  </span>func (o *GovernanceInsightAttributes) GetProductOk() (*string, bool) {
+<span id="L313" class="ln">   313  </span>	if o == nil {
+<span id="L314" class="ln">   314  </span>		return nil, false
+<span id="L315" class="ln">   315  </span>	}
+<span id="L316" class="ln">   316  </span>	return &amp;o.Product, true
+<span id="L317" class="ln">   317  </span>}
+<span id="L318" class="ln">   318  </span>
+<span id="L319" class="ln">   319  </span><span class="comment">// SetProduct sets field value.</span>
+<span id="L320" class="ln">   320  </span>func (o *GovernanceInsightAttributes) SetProduct(v string) {
+<span id="L321" class="ln">   321  </span>	o.Product = v
+<span id="L322" class="ln">   322  </span>}
+<span id="L323" class="ln">   323  </span>
+<span id="L324" class="ln">   324  </span><span class="comment">// GetQueryConfig returns the QueryConfig field value if set, zero value otherwise.</span>
+<span id="L325" class="ln">   325  </span>func (o *GovernanceInsightAttributes) GetQueryConfig() GovernanceInsightQueryConfig {
+<span id="L326" class="ln">   326  </span>	if o == nil || o.QueryConfig == nil {
+<span id="L327" class="ln">   327  </span>		var ret GovernanceInsightQueryConfig
+<span id="L328" class="ln">   328  </span>		return ret
+<span id="L329" class="ln">   329  </span>	}
+<span id="L330" class="ln">   330  </span>	return *o.QueryConfig
+<span id="L331" class="ln">   331  </span>}
+<span id="L332" class="ln">   332  </span>
+<span id="L333" class="ln">   333  </span><span class="comment">// GetQueryConfigOk returns a tuple with the QueryConfig field value if set, nil otherwise</span>
+<span id="L334" class="ln">   334  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L335" class="ln">   335  </span>func (o *GovernanceInsightAttributes) GetQueryConfigOk() (*GovernanceInsightQueryConfig, bool) {
+<span id="L336" class="ln">   336  </span>	if o == nil || o.QueryConfig == nil {
+<span id="L337" class="ln">   337  </span>		return nil, false
+<span id="L338" class="ln">   338  </span>	}
+<span id="L339" class="ln">   339  </span>	return o.QueryConfig, true
+<span id="L340" class="ln">   340  </span>}
+<span id="L341" class="ln">   341  </span>
+<span id="L342" class="ln">   342  </span><span class="comment">// HasQueryConfig returns a boolean if a field has been set.</span>
+<span id="L343" class="ln">   343  </span>func (o *GovernanceInsightAttributes) HasQueryConfig() bool {
+<span id="L344" class="ln">   344  </span>	return o != nil &amp;&amp; o.QueryConfig != nil
+<span id="L345" class="ln">   345  </span>}
+<span id="L346" class="ln">   346  </span>
+<span id="L347" class="ln">   347  </span><span class="comment">// SetQueryConfig gets a reference to the given GovernanceInsightQueryConfig and assigns it to the QueryConfig field.</span>
+<span id="L348" class="ln">   348  </span>func (o *GovernanceInsightAttributes) SetQueryConfig(v GovernanceInsightQueryConfig) {
+<span id="L349" class="ln">   349  </span>	o.QueryConfig = &amp;v
+<span id="L350" class="ln">   350  </span>}
+<span id="L351" class="ln">   351  </span>
+<span id="L352" class="ln">   352  </span><span class="comment">// GetSortOrder returns the SortOrder field value if set, zero value otherwise.</span>
+<span id="L353" class="ln">   353  </span>func (o *GovernanceInsightAttributes) GetSortOrder() int64 {
+<span id="L354" class="ln">   354  </span>	if o == nil || o.SortOrder == nil {
+<span id="L355" class="ln">   355  </span>		var ret int64
+<span id="L356" class="ln">   356  </span>		return ret
+<span id="L357" class="ln">   357  </span>	}
+<span id="L358" class="ln">   358  </span>	return *o.SortOrder
+<span id="L359" class="ln">   359  </span>}
+<span id="L360" class="ln">   360  </span>
+<span id="L361" class="ln">   361  </span><span class="comment">// GetSortOrderOk returns a tuple with the SortOrder field value if set, nil otherwise</span>
+<span id="L362" class="ln">   362  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L363" class="ln">   363  </span>func (o *GovernanceInsightAttributes) GetSortOrderOk() (*int64, bool) {
+<span id="L364" class="ln">   364  </span>	if o == nil || o.SortOrder == nil {
+<span id="L365" class="ln">   365  </span>		return nil, false
+<span id="L366" class="ln">   366  </span>	}
+<span id="L367" class="ln">   367  </span>	return o.SortOrder, true
+<span id="L368" class="ln">   368  </span>}
+<span id="L369" class="ln">   369  </span>
+<span id="L370" class="ln">   370  </span><span class="comment">// HasSortOrder returns a boolean if a field has been set.</span>
+<span id="L371" class="ln">   371  </span>func (o *GovernanceInsightAttributes) HasSortOrder() bool {
+<span id="L372" class="ln">   372  </span>	return o != nil &amp;&amp; o.SortOrder != nil
+<span id="L373" class="ln">   373  </span>}
+<span id="L374" class="ln">   374  </span>
+<span id="L375" class="ln">   375  </span><span class="comment">// SetSortOrder gets a reference to the given int64 and assigns it to the SortOrder field.</span>
+<span id="L376" class="ln">   376  </span>func (o *GovernanceInsightAttributes) SetSortOrder(v int64) {
+<span id="L377" class="ln">   377  </span>	o.SortOrder = &amp;v
+<span id="L378" class="ln">   378  </span>}
+<span id="L379" class="ln">   379  </span>
+<span id="L380" class="ln">   380  </span><span class="comment">// GetState returns the State field value.</span>
+<span id="L381" class="ln">   381  </span>func (o *GovernanceInsightAttributes) GetState() string {
+<span id="L382" class="ln">   382  </span>	if o == nil {
+<span id="L383" class="ln">   383  </span>		var ret string
+<span id="L384" class="ln">   384  </span>		return ret
+<span id="L385" class="ln">   385  </span>	}
+<span id="L386" class="ln">   386  </span>	return o.State
+<span id="L387" class="ln">   387  </span>}
+<span id="L388" class="ln">   388  </span>
+<span id="L389" class="ln">   389  </span><span class="comment">// GetStateOk returns a tuple with the State field value</span>
+<span id="L390" class="ln">   390  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L391" class="ln">   391  </span>func (o *GovernanceInsightAttributes) GetStateOk() (*string, bool) {
+<span id="L392" class="ln">   392  </span>	if o == nil {
+<span id="L393" class="ln">   393  </span>		return nil, false
+<span id="L394" class="ln">   394  </span>	}
+<span id="L395" class="ln">   395  </span>	return &amp;o.State, true
+<span id="L396" class="ln">   396  </span>}
+<span id="L397" class="ln">   397  </span>
+<span id="L398" class="ln">   398  </span><span class="comment">// SetState sets field value.</span>
+<span id="L399" class="ln">   399  </span>func (o *GovernanceInsightAttributes) SetState(v string) {
+<span id="L400" class="ln">   400  </span>	o.State = v
+<span id="L401" class="ln">   401  </span>}
+<span id="L402" class="ln">   402  </span>
+<span id="L403" class="ln">   403  </span><span class="comment">// GetSubProduct returns the SubProduct field value.</span>
+<span id="L404" class="ln">   404  </span>func (o *GovernanceInsightAttributes) GetSubProduct() string {
+<span id="L405" class="ln">   405  </span>	if o == nil {
+<span id="L406" class="ln">   406  </span>		var ret string
+<span id="L407" class="ln">   407  </span>		return ret
+<span id="L408" class="ln">   408  </span>	}
+<span id="L409" class="ln">   409  </span>	return o.SubProduct
+<span id="L410" class="ln">   410  </span>}
+<span id="L411" class="ln">   411  </span>
+<span id="L412" class="ln">   412  </span><span class="comment">// GetSubProductOk returns a tuple with the SubProduct field value</span>
+<span id="L413" class="ln">   413  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L414" class="ln">   414  </span>func (o *GovernanceInsightAttributes) GetSubProductOk() (*string, bool) {
+<span id="L415" class="ln">   415  </span>	if o == nil {
+<span id="L416" class="ln">   416  </span>		return nil, false
+<span id="L417" class="ln">   417  </span>	}
+<span id="L418" class="ln">   418  </span>	return &amp;o.SubProduct, true
+<span id="L419" class="ln">   419  </span>}
+<span id="L420" class="ln">   420  </span>
+<span id="L421" class="ln">   421  </span><span class="comment">// SetSubProduct sets field value.</span>
+<span id="L422" class="ln">   422  </span>func (o *GovernanceInsightAttributes) SetSubProduct(v string) {
+<span id="L423" class="ln">   423  </span>	o.SubProduct = v
+<span id="L424" class="ln">   424  </span>}
+<span id="L425" class="ln">   425  </span>
+<span id="L426" class="ln">   426  </span><span class="comment">// GetTimeRange returns the TimeRange field value.</span>
+<span id="L427" class="ln">   427  </span>func (o *GovernanceInsightAttributes) GetTimeRange() string {
+<span id="L428" class="ln">   428  </span>	if o == nil {
+<span id="L429" class="ln">   429  </span>		var ret string
+<span id="L430" class="ln">   430  </span>		return ret
+<span id="L431" class="ln">   431  </span>	}
+<span id="L432" class="ln">   432  </span>	return o.TimeRange
+<span id="L433" class="ln">   433  </span>}
+<span id="L434" class="ln">   434  </span>
+<span id="L435" class="ln">   435  </span><span class="comment">// GetTimeRangeOk returns a tuple with the TimeRange field value</span>
+<span id="L436" class="ln">   436  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L437" class="ln">   437  </span>func (o *GovernanceInsightAttributes) GetTimeRangeOk() (*string, bool) {
+<span id="L438" class="ln">   438  </span>	if o == nil {
+<span id="L439" class="ln">   439  </span>		return nil, false
+<span id="L440" class="ln">   440  </span>	}
+<span id="L441" class="ln">   441  </span>	return &amp;o.TimeRange, true
+<span id="L442" class="ln">   442  </span>}
+<span id="L443" class="ln">   443  </span>
+<span id="L444" class="ln">   444  </span><span class="comment">// SetTimeRange sets field value.</span>
+<span id="L445" class="ln">   445  </span>func (o *GovernanceInsightAttributes) SetTimeRange(v string) {
+<span id="L446" class="ln">   446  </span>	o.TimeRange = v
+<span id="L447" class="ln">   447  </span>}
+<span id="L448" class="ln">   448  </span>
+<span id="L449" class="ln">   449  </span><span class="comment">// GetUnitName returns the UnitName field value.</span>
+<span id="L450" class="ln">   450  </span>func (o *GovernanceInsightAttributes) GetUnitName() string {
+<span id="L451" class="ln">   451  </span>	if o == nil {
+<span id="L452" class="ln">   452  </span>		var ret string
+<span id="L453" class="ln">   453  </span>		return ret
+<span id="L454" class="ln">   454  </span>	}
+<span id="L455" class="ln">   455  </span>	return o.UnitName
+<span id="L456" class="ln">   456  </span>}
+<span id="L457" class="ln">   457  </span>
+<span id="L458" class="ln">   458  </span><span class="comment">// GetUnitNameOk returns a tuple with the UnitName field value</span>
+<span id="L459" class="ln">   459  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L460" class="ln">   460  </span>func (o *GovernanceInsightAttributes) GetUnitNameOk() (*string, bool) {
+<span id="L461" class="ln">   461  </span>	if o == nil {
+<span id="L462" class="ln">   462  </span>		return nil, false
+<span id="L463" class="ln">   463  </span>	}
+<span id="L464" class="ln">   464  </span>	return &amp;o.UnitName, true
+<span id="L465" class="ln">   465  </span>}
+<span id="L466" class="ln">   466  </span>
+<span id="L467" class="ln">   467  </span><span class="comment">// SetUnitName sets field value.</span>
+<span id="L468" class="ln">   468  </span>func (o *GovernanceInsightAttributes) SetUnitName(v string) {
+<span id="L469" class="ln">   469  </span>	o.UnitName = v
+<span id="L470" class="ln">   470  </span>}
+<span id="L471" class="ln">   471  </span>
+<span id="L472" class="ln">   472  </span><span class="comment">// GetUsageQuery returns the UsageQuery field value.</span>
+<span id="L473" class="ln">   473  </span>func (o *GovernanceInsightAttributes) GetUsageQuery() GovernanceInsightUsageQuery {
+<span id="L474" class="ln">   474  </span>	if o == nil {
+<span id="L475" class="ln">   475  </span>		var ret GovernanceInsightUsageQuery
+<span id="L476" class="ln">   476  </span>		return ret
+<span id="L477" class="ln">   477  </span>	}
+<span id="L478" class="ln">   478  </span>	return o.UsageQuery
+<span id="L479" class="ln">   479  </span>}
+<span id="L480" class="ln">   480  </span>
+<span id="L481" class="ln">   481  </span><span class="comment">// GetUsageQueryOk returns a tuple with the UsageQuery field value</span>
+<span id="L482" class="ln">   482  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L483" class="ln">   483  </span>func (o *GovernanceInsightAttributes) GetUsageQueryOk() (*GovernanceInsightUsageQuery, bool) {
+<span id="L484" class="ln">   484  </span>	if o == nil {
+<span id="L485" class="ln">   485  </span>		return nil, false
+<span id="L486" class="ln">   486  </span>	}
+<span id="L487" class="ln">   487  </span>	return &amp;o.UsageQuery, true
+<span id="L488" class="ln">   488  </span>}
+<span id="L489" class="ln">   489  </span>
+<span id="L490" class="ln">   490  </span><span class="comment">// SetUsageQuery sets field value.</span>
+<span id="L491" class="ln">   491  </span>func (o *GovernanceInsightAttributes) SetUsageQuery(v GovernanceInsightUsageQuery) {
+<span id="L492" class="ln">   492  </span>	o.UsageQuery = v
+<span id="L493" class="ln">   493  </span>}
+<span id="L494" class="ln">   494  </span>
+<span id="L495" class="ln">   495  </span><span class="comment">// GetValue returns the Value field value.</span>
+<span id="L496" class="ln">   496  </span><span class="comment">// If the value is explicit nil, the zero value for float64 will be returned.</span>
+<span id="L497" class="ln">   497  </span>func (o *GovernanceInsightAttributes) GetValue() float64 {
+<span id="L498" class="ln">   498  </span>	if o == nil || o.Value.Get() == nil {
+<span id="L499" class="ln">   499  </span>		var ret float64
+<span id="L500" class="ln">   500  </span>		return ret
+<span id="L501" class="ln">   501  </span>	}
+<span id="L502" class="ln">   502  </span>	return *o.Value.Get()
+<span id="L503" class="ln">   503  </span>}
+<span id="L504" class="ln">   504  </span>
+<span id="L505" class="ln">   505  </span><span class="comment">// GetValueOk returns a tuple with the Value field value</span>
+<span id="L506" class="ln">   506  </span><span class="comment">// and a boolean to check if the value has been set.</span>
+<span id="L507" class="ln">   507  </span><span class="comment">// NOTE: If the value is an explicit nil, `nil, true` will be returned.</span>
+<span id="L508" class="ln">   508  </span>func (o *GovernanceInsightAttributes) GetValueOk() (*float64, bool) {
+<span id="L509" class="ln">   509  </span>	if o == nil {
+<span id="L510" class="ln">   510  </span>		return nil, false
+<span id="L511" class="ln">   511  </span>	}
+<span id="L512" class="ln">   512  </span>	return o.Value.Get(), o.Value.IsSet()
+<span id="L513" class="ln">   513  </span>}
+<span id="L514" class="ln">   514  </span>
+<span id="L515" class="ln">   515  </span><span class="comment">// SetValue sets field value.</span>
+<span id="L516" class="ln">   516  </span>func (o *GovernanceInsightAttributes) SetValue(v float64) {
+<span id="L517" class="ln">   517  </span>	o.Value.Set(&amp;v)
+<span id="L518" class="ln">   518  </span>}
+<span id="L519" class="ln">   519  </span>
+<span id="L520" class="ln">   520  </span><span class="comment">// MarshalJSON serializes the struct using spec logic.</span>
+<span id="L521" class="ln">   521  </span>func (o GovernanceInsightAttributes) MarshalJSON() ([]byte, error) {
+<span id="L522" class="ln">   522  </span>	toSerialize := map[string]interface{}{}
+<span id="L523" class="ln">   523  </span>	if o.UnparsedObject != nil {
+<span id="L524" class="ln">   524  </span>		return datadog.Marshal(o.UnparsedObject)
+<span id="L525" class="ln">   525  </span>	}
+<span id="L526" class="ln">   526  </span>	toSerialize[&#34;audit_query&#34;] = o.AuditQuery
+<span id="L527" class="ln">   527  </span>	toSerialize[&#34;best_practice&#34;] = o.BestPractice
+<span id="L528" class="ln">   528  </span>	toSerialize[&#34;deep_link&#34;] = o.DeepLink
+<span id="L529" class="ln">   529  </span>	toSerialize[&#34;description&#34;] = o.Description
+<span id="L530" class="ln">   530  </span>	toSerialize[&#34;display_name&#34;] = o.DisplayName
+<span id="L531" class="ln">   531  </span>	toSerialize[&#34;event_query&#34;] = o.EventQuery
+<span id="L532" class="ln">   532  </span>	toSerialize[&#34;metric_query&#34;] = o.MetricQuery
+<span id="L533" class="ln">   533  </span>	toSerialize[&#34;old_value&#34;] = o.OldValue.Get()
+<span id="L534" class="ln">   534  </span>	toSerialize[&#34;percentage_query&#34;] = o.PercentageQuery
+<span id="L535" class="ln">   535  </span>	toSerialize[&#34;product&#34;] = o.Product
+<span id="L536" class="ln">   536  </span>	if o.QueryConfig != nil {
+<span id="L537" class="ln">   537  </span>		toSerialize[&#34;query_config&#34;] = o.QueryConfig
+<span id="L538" class="ln">   538  </span>	}
+<span id="L539" class="ln">   539  </span>	if o.SortOrder != nil {
+<span id="L540" class="ln">   540  </span>		toSerialize[&#34;sort_order&#34;] = o.SortOrder
+<span id="L541" class="ln">   541  </span>	}
+<span id="L542" class="ln">   542  </span>	toSerialize[&#34;state&#34;] = o.State
+<span id="L543" class="ln">   543  </span>	toSerialize[&#34;sub_product&#34;] = o.SubProduct
+<span id="L544" class="ln">   544  </span>	toSerialize[&#34;time_range&#34;] = o.TimeRange
+<span id="L545" class="ln">   545  </span>	toSerialize[&#34;unit_name&#34;] = o.UnitName
+<span id="L546" class="ln">   546  </span>	toSerialize[&#34;usage_query&#34;] = o.UsageQuery
+<span id="L547" class="ln">   547  </span>	toSerialize[&#34;value&#34;] = o.Value.Get()
+<span id="L548" class="ln">   548  </span>
+<span id="L549" class="ln">   549  </span>	for key, value := range o.AdditionalProperties {
+<span id="L550" class="ln">   550  </span>		toSerialize[key] = value
+<span id="L551" class="ln">   551  </span>	}
+<span id="L552" class="ln">   552  </span>	return datadog.Marshal(toSerialize)
+<span id="L553" class="ln">   553  </span>}
+<span id="L554" class="ln">   554  </span>
+<span id="L555" class="ln">   555  </span><span class="comment">// UnmarshalJSON deserializes the given payload.</span>
+<span id="L556" class="ln">   556  </span>func (o *GovernanceInsightAttributes) UnmarshalJSON(bytes []byte) (err error) {
+<span id="L557" class="ln">   557  </span>	all := struct {
+<span id="L558" class="ln">   558  </span>		AuditQuery      *GovernanceInsightAuditQuery      `json:&#34;audit_query&#34;`
+<span id="L559" class="ln">   559  </span>		BestPractice    *GovernanceBestPracticeDefinition `json:&#34;best_practice&#34;`
+<span id="L560" class="ln">   560  </span>		DeepLink        *string                           `json:&#34;deep_link&#34;`
+<span id="L561" class="ln">   561  </span>		Description     *string                           `json:&#34;description&#34;`
+<span id="L562" class="ln">   562  </span>		DisplayName     *string                           `json:&#34;display_name&#34;`
+<span id="L563" class="ln">   563  </span>		EventQuery      *GovernanceInsightEventQuery      `json:&#34;event_query&#34;`
+<span id="L564" class="ln">   564  </span>		MetricQuery     *GovernanceInsightMetricQuery     `json:&#34;metric_query&#34;`
+<span id="L565" class="ln">   565  </span>		OldValue        datadog.NullableFloat64           `json:&#34;old_value&#34;`
+<span id="L566" class="ln">   566  </span>		PercentageQuery *GovernanceInsightPercentageQuery `json:&#34;percentage_query&#34;`
+<span id="L567" class="ln">   567  </span>		Product         *string                           `json:&#34;product&#34;`
+<span id="L568" class="ln">   568  </span>		QueryConfig     *GovernanceInsightQueryConfig     `json:&#34;query_config,omitempty&#34;`
+<span id="L569" class="ln">   569  </span>		SortOrder       *int64                            `json:&#34;sort_order,omitempty&#34;`
+<span id="L570" class="ln">   570  </span>		State           *string                           `json:&#34;state&#34;`
+<span id="L571" class="ln">   571  </span>		SubProduct      *string                           `json:&#34;sub_product&#34;`
+<span id="L572" class="ln">   572  </span>		TimeRange       *string                           `json:&#34;time_range&#34;`
+<span id="L573" class="ln">   573  </span>		UnitName        *string                           `json:&#34;unit_name&#34;`
+<span id="L574" class="ln">   574  </span>		UsageQuery      *GovernanceInsightUsageQuery      `json:&#34;usage_query&#34;`
+<span id="L575" class="ln">   575  </span>		Value           datadog.NullableFloat64           `json:&#34;value&#34;`
+<span id="L576" class="ln">   576  </span>	}{}
+<span id="L577" class="ln">   577  </span>	if err = datadog.Unmarshal(bytes, &amp;all); err != nil {
+<span id="L578" class="ln">   578  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L579" class="ln">   579  </span>	}
+<span id="L580" class="ln">   580  </span>	if all.AuditQuery == nil {
+<span id="L581" class="ln">   581  </span>		return fmt.Errorf(&#34;required field audit_query missing&#34;)
+<span id="L582" class="ln">   582  </span>	}
+<span id="L583" class="ln">   583  </span>	if all.BestPractice == nil {
+<span id="L584" class="ln">   584  </span>		return fmt.Errorf(&#34;required field best_practice missing&#34;)
+<span id="L585" class="ln">   585  </span>	}
+<span id="L586" class="ln">   586  </span>	if all.DeepLink == nil {
+<span id="L587" class="ln">   587  </span>		return fmt.Errorf(&#34;required field deep_link missing&#34;)
+<span id="L588" class="ln">   588  </span>	}
+<span id="L589" class="ln">   589  </span>	if all.Description == nil {
+<span id="L590" class="ln">   590  </span>		return fmt.Errorf(&#34;required field description missing&#34;)
+<span id="L591" class="ln">   591  </span>	}
+<span id="L592" class="ln">   592  </span>	if all.DisplayName == nil {
+<span id="L593" class="ln">   593  </span>		return fmt.Errorf(&#34;required field display_name missing&#34;)
+<span id="L594" class="ln">   594  </span>	}
+<span id="L595" class="ln">   595  </span>	if all.EventQuery == nil {
+<span id="L596" class="ln">   596  </span>		return fmt.Errorf(&#34;required field event_query missing&#34;)
+<span id="L597" class="ln">   597  </span>	}
+<span id="L598" class="ln">   598  </span>	if all.MetricQuery == nil {
+<span id="L599" class="ln">   599  </span>		return fmt.Errorf(&#34;required field metric_query missing&#34;)
+<span id="L600" class="ln">   600  </span>	}
+<span id="L601" class="ln">   601  </span>	if !all.OldValue.IsSet() {
+<span id="L602" class="ln">   602  </span>		return fmt.Errorf(&#34;required field old_value missing&#34;)
+<span id="L603" class="ln">   603  </span>	}
+<span id="L604" class="ln">   604  </span>	if all.PercentageQuery == nil {
+<span id="L605" class="ln">   605  </span>		return fmt.Errorf(&#34;required field percentage_query missing&#34;)
+<span id="L606" class="ln">   606  </span>	}
+<span id="L607" class="ln">   607  </span>	if all.Product == nil {
+<span id="L608" class="ln">   608  </span>		return fmt.Errorf(&#34;required field product missing&#34;)
+<span id="L609" class="ln">   609  </span>	}
+<span id="L610" class="ln">   610  </span>	if all.State == nil {
+<span id="L611" class="ln">   611  </span>		return fmt.Errorf(&#34;required field state missing&#34;)
+<span id="L612" class="ln">   612  </span>	}
+<span id="L613" class="ln">   613  </span>	if all.SubProduct == nil {
+<span id="L614" class="ln">   614  </span>		return fmt.Errorf(&#34;required field sub_product missing&#34;)
+<span id="L615" class="ln">   615  </span>	}
+<span id="L616" class="ln">   616  </span>	if all.TimeRange == nil {
+<span id="L617" class="ln">   617  </span>		return fmt.Errorf(&#34;required field time_range missing&#34;)
+<span id="L618" class="ln">   618  </span>	}
+<span id="L619" class="ln">   619  </span>	if all.UnitName == nil {
+<span id="L620" class="ln">   620  </span>		return fmt.Errorf(&#34;required field unit_name missing&#34;)
+<span id="L621" class="ln">   621  </span>	}
+<span id="L622" class="ln">   622  </span>	if all.UsageQuery == nil {
+<span id="L623" class="ln">   623  </span>		return fmt.Errorf(&#34;required field usage_query missing&#34;)
+<span id="L624" class="ln">   624  </span>	}
+<span id="L625" class="ln">   625  </span>	if !all.Value.IsSet() {
+<span id="L626" class="ln">   626  </span>		return fmt.Errorf(&#34;required field value missing&#34;)
+<span id="L627" class="ln">   627  </span>	}
+<span id="L628" class="ln">   628  </span>	additionalProperties := make(map[string]interface{})
+<span id="L629" class="ln">   629  </span>	if err = datadog.UnmarshalUseNumber(bytes, &amp;additionalProperties); err == nil {
+<span id="L630" class="ln">   630  </span>		datadog.DeleteKeys(additionalProperties, &amp;[]string{&#34;audit_query&#34;, &#34;best_practice&#34;, &#34;deep_link&#34;, &#34;description&#34;, &#34;display_name&#34;, &#34;event_query&#34;, &#34;metric_query&#34;, &#34;old_value&#34;, &#34;percentage_query&#34;, &#34;product&#34;, &#34;query_config&#34;, &#34;sort_order&#34;, &#34;state&#34;, &#34;sub_product&#34;, &#34;time_range&#34;, &#34;unit_name&#34;, &#34;usage_query&#34;, &#34;value&#34;})
+<span id="L631" class="ln">   631  </span>	} else {
+<span id="L632" class="ln">   632  </span>		return err
+<span id="L633" class="ln">   633  </span>	}
+<span id="L634" class="ln">   634  </span>
+<span id="L635" class="ln">   635  </span>	hasInvalidField := false
+<span id="L636" class="ln">   636  </span>	if all.AuditQuery.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L637" class="ln">   637  </span>		hasInvalidField = true
+<span id="L638" class="ln">   638  </span>	}
+<span id="L639" class="ln">   639  </span>	o.AuditQuery = *all.AuditQuery
+<span id="L640" class="ln">   640  </span>	if all.BestPractice.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L641" class="ln">   641  </span>		hasInvalidField = true
+<span id="L642" class="ln">   642  </span>	}
+<span id="L643" class="ln">   643  </span>	o.BestPractice = *all.BestPractice
+<span id="L644" class="ln">   644  </span>	o.DeepLink = *all.DeepLink
+<span id="L645" class="ln">   645  </span>	o.Description = *all.Description
+<span id="L646" class="ln">   646  </span>	o.DisplayName = *all.DisplayName
+<span id="L647" class="ln">   647  </span>	if all.EventQuery.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L648" class="ln">   648  </span>		hasInvalidField = true
+<span id="L649" class="ln">   649  </span>	}
+<span id="L650" class="ln">   650  </span>	o.EventQuery = *all.EventQuery
+<span id="L651" class="ln">   651  </span>	if all.MetricQuery.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L652" class="ln">   652  </span>		hasInvalidField = true
+<span id="L653" class="ln">   653  </span>	}
+<span id="L654" class="ln">   654  </span>	o.MetricQuery = *all.MetricQuery
+<span id="L655" class="ln">   655  </span>	o.OldValue = all.OldValue
+<span id="L656" class="ln">   656  </span>	if all.PercentageQuery.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L657" class="ln">   657  </span>		hasInvalidField = true
+<span id="L658" class="ln">   658  </span>	}
+<span id="L659" class="ln">   659  </span>	o.PercentageQuery = *all.PercentageQuery
+<span id="L660" class="ln">   660  </span>	o.Product = *all.Product
+<span id="L661" class="ln">   661  </span>	if all.QueryConfig != nil &amp;&amp; all.QueryConfig.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L662" class="ln">   662  </span>		hasInvalidField = true
+<span id="L663" class="ln">   663  </span>	}
+<span id="L664" class="ln">   664  </span>	o.QueryConfig = all.QueryConfig
+<span id="L665" class="ln">   665  </span>	o.SortOrder = all.SortOrder
+<span id="L666" class="ln">   666  </span>	o.State = *all.State
+<span id="L667" class="ln">   667  </span>	o.SubProduct = *all.SubProduct
+<span id="L668" class="ln">   668  </span>	o.TimeRange = *all.TimeRange
+<span id="L669" class="ln">   669  </span>	o.UnitName = *all.UnitName
+<span id="L670" class="ln">   670  </span>	if all.UsageQuery.UnparsedObject != nil &amp;&amp; o.UnparsedObject == nil {
+<span id="L671" class="ln">   671  </span>		hasInvalidField = true
+<span id="L672" class="ln">   672  </span>	}
+<span id="L673" class="ln">   673  </span>	o.UsageQuery = *all.UsageQuery
+<span id="L674" class="ln">   674  </span>	o.Value = all.Value
+<span id="L675" class="ln">   675  </span>
+<span id="L676" class="ln">   676  </span>	if len(additionalProperties) &gt; 0 {
+<span id="L677" class="ln">   677  </span>		o.AdditionalProperties = additionalProperties
+<span id="L678" class="ln">   678  </span>	}
+<span id="L679" class="ln">   679  </span>
+<span id="L680" class="ln">   680  </span>	if hasInvalidField {
+<span id="L681" class="ln">   681  </span>		return datadog.Unmarshal(bytes, &amp;o.UnparsedObject)
+<span id="L682" class="ln">   682  </span>	}
+<span id="L683" class="ln">   683  </span>
+<span id="L684" class="ln">   684  </span>	return nil
+<span id="L685" class="ln">   685  </span>}
+<span id="L686" class="ln">   686  </span>
+</pre><p></p>
+
+<div id="footer">
+Build version go1.25.12.<br/>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+
+</body></html>
