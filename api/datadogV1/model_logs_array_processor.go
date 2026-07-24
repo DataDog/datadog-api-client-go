@@ -15,6 +15,7 @@ import (
 // - Select value from matching element
 // - Compute array length
 // - Append a value to an array
+// - Extract key-value pairs from an array
 type LogsArrayProcessor struct {
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`

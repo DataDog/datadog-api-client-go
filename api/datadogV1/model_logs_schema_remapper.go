@@ -14,7 +14,7 @@ import (
 type LogsSchemaRemapper struct {
 	// Name of the logs schema remapper.
 	Name string `json:"name"`
-	// Override or not the target element if already set.
+	// Whether to override the target element if it's already set.
 	OverrideOnConflict *bool `json:"override_on_conflict,omitempty"`
 	// Remove or preserve the remapped source element.
 	PreserveSource *bool `json:"preserve_source,omitempty"`

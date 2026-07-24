@@ -10,9 +10,10 @@ import (
 
 // LogsArrayProcessorOperation - Configuration of the array processor operation to perform.
 type LogsArrayProcessorOperation struct {
-	LogsArrayProcessorOperationAppend *LogsArrayProcessorOperationAppend
-	LogsArrayProcessorOperationLength *LogsArrayProcessorOperationLength
-	LogsArrayProcessorOperationSelect *LogsArrayProcessorOperationSelect
+	LogsArrayProcessorOperationAppend          *LogsArrayProcessorOperationAppend
+	LogsArrayProcessorOperationLength          *LogsArrayProcessorOperationLength
+	LogsArrayProcessorOperationSelect          *LogsArrayProcessorOperationSelect
+	LogsArrayProcessorOperationExtractKeyValue *LogsArrayProcessorOperationExtractKeyValue
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -31,6 +32,11 @@ func LogsArrayProcessorOperationLengthAsLogsArrayProcessorOperation(v *LogsArray
 // LogsArrayProcessorOperationSelectAsLogsArrayProcessorOperation is a convenience function that returns LogsArrayProcessorOperationSelect wrapped in LogsArrayProcessorOperation.
 func LogsArrayProcessorOperationSelectAsLogsArrayProcessorOperation(v *LogsArrayProcessorOperationSelect) LogsArrayProcessorOperation {
 	return LogsArrayProcessorOperation{LogsArrayProcessorOperationSelect: v}
+}
+
+// LogsArrayProcessorOperationExtractKeyValueAsLogsArrayProcessorOperation is a convenience function that returns LogsArrayProcessorOperationExtractKeyValue wrapped in LogsArrayProcessorOperation.
+func LogsArrayProcessorOperationExtractKeyValueAsLogsArrayProcessorOperation(v *LogsArrayProcessorOperationExtractKeyValue) LogsArrayProcessorOperation {
+	return LogsArrayProcessorOperation{LogsArrayProcessorOperationExtractKeyValue: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -88,11 +94,29 @@ func (obj *LogsArrayProcessorOperation) UnmarshalJSON(data []byte) error {
 		obj.LogsArrayProcessorOperationSelect = nil
 	}
 
+	// try to unmarshal data into LogsArrayProcessorOperationExtractKeyValue
+	err = datadog.Unmarshal(data, &obj.LogsArrayProcessorOperationExtractKeyValue)
+	if err == nil {
+		if obj.LogsArrayProcessorOperationExtractKeyValue != nil && obj.LogsArrayProcessorOperationExtractKeyValue.UnparsedObject == nil {
+			jsonLogsArrayProcessorOperationExtractKeyValue, _ := datadog.Marshal(obj.LogsArrayProcessorOperationExtractKeyValue)
+			if string(jsonLogsArrayProcessorOperationExtractKeyValue) == "{}" { // empty struct
+				obj.LogsArrayProcessorOperationExtractKeyValue = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.LogsArrayProcessorOperationExtractKeyValue = nil
+		}
+	} else {
+		obj.LogsArrayProcessorOperationExtractKeyValue = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.LogsArrayProcessorOperationAppend = nil
 		obj.LogsArrayProcessorOperationLength = nil
 		obj.LogsArrayProcessorOperationSelect = nil
+		obj.LogsArrayProcessorOperationExtractKeyValue = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -110,6 +134,10 @@ func (obj LogsArrayProcessorOperation) MarshalJSON() ([]byte, error) {
 
 	if obj.LogsArrayProcessorOperationSelect != nil {
 		return datadog.Marshal(&obj.LogsArrayProcessorOperationSelect)
+	}
+
+	if obj.LogsArrayProcessorOperationExtractKeyValue != nil {
+		return datadog.Marshal(&obj.LogsArrayProcessorOperationExtractKeyValue)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -130,6 +158,10 @@ func (obj *LogsArrayProcessorOperation) GetActualInstance() interface{} {
 
 	if obj.LogsArrayProcessorOperationSelect != nil {
 		return obj.LogsArrayProcessorOperationSelect
+	}
+
+	if obj.LogsArrayProcessorOperationExtractKeyValue != nil {
+		return obj.LogsArrayProcessorOperationExtractKeyValue
 	}
 
 	// all schemas are nil
