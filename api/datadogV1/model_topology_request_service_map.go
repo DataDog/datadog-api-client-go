@@ -8,10 +8,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TopologyRequest Request that will return nodes and edges to be used by topology map.
-type TopologyRequest struct {
-	// Query to service-based topology data sources like the service map or data streams.
-	Query *TopologyQuery `json:"query,omitempty"`
+// TopologyRequestServiceMap Request that returns nodes and edges from the service map data source.
+type TopologyRequestServiceMap struct {
+	// Query to the service map topology data source.
+	Query *TopologyQueryServiceMap `json:"query,omitempty"`
 	// Widget request type.
 	RequestType *TopologyRequestType `json:"request_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -19,27 +19,27 @@ type TopologyRequest struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTopologyRequest instantiates a new TopologyRequest object.
+// NewTopologyRequestServiceMap instantiates a new TopologyRequestServiceMap object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTopologyRequest() *TopologyRequest {
-	this := TopologyRequest{}
+func NewTopologyRequestServiceMap() *TopologyRequestServiceMap {
+	this := TopologyRequestServiceMap{}
 	return &this
 }
 
-// NewTopologyRequestWithDefaults instantiates a new TopologyRequest object.
+// NewTopologyRequestServiceMapWithDefaults instantiates a new TopologyRequestServiceMap object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTopologyRequestWithDefaults() *TopologyRequest {
-	this := TopologyRequest{}
+func NewTopologyRequestServiceMapWithDefaults() *TopologyRequestServiceMap {
+	this := TopologyRequestServiceMap{}
 	return &this
 }
 
 // GetQuery returns the Query field value if set, zero value otherwise.
-func (o *TopologyRequest) GetQuery() TopologyQuery {
+func (o *TopologyRequestServiceMap) GetQuery() TopologyQueryServiceMap {
 	if o == nil || o.Query == nil {
-		var ret TopologyQuery
+		var ret TopologyQueryServiceMap
 		return ret
 	}
 	return *o.Query
@@ -47,7 +47,7 @@ func (o *TopologyRequest) GetQuery() TopologyQuery {
 
 // GetQueryOk returns a tuple with the Query field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TopologyRequest) GetQueryOk() (*TopologyQuery, bool) {
+func (o *TopologyRequestServiceMap) GetQueryOk() (*TopologyQueryServiceMap, bool) {
 	if o == nil || o.Query == nil {
 		return nil, false
 	}
@@ -55,17 +55,17 @@ func (o *TopologyRequest) GetQueryOk() (*TopologyQuery, bool) {
 }
 
 // HasQuery returns a boolean if a field has been set.
-func (o *TopologyRequest) HasQuery() bool {
+func (o *TopologyRequestServiceMap) HasQuery() bool {
 	return o != nil && o.Query != nil
 }
 
-// SetQuery gets a reference to the given TopologyQuery and assigns it to the Query field.
-func (o *TopologyRequest) SetQuery(v TopologyQuery) {
+// SetQuery gets a reference to the given TopologyQueryServiceMap and assigns it to the Query field.
+func (o *TopologyRequestServiceMap) SetQuery(v TopologyQueryServiceMap) {
 	o.Query = &v
 }
 
 // GetRequestType returns the RequestType field value if set, zero value otherwise.
-func (o *TopologyRequest) GetRequestType() TopologyRequestType {
+func (o *TopologyRequestServiceMap) GetRequestType() TopologyRequestType {
 	if o == nil || o.RequestType == nil {
 		var ret TopologyRequestType
 		return ret
@@ -75,7 +75,7 @@ func (o *TopologyRequest) GetRequestType() TopologyRequestType {
 
 // GetRequestTypeOk returns a tuple with the RequestType field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TopologyRequest) GetRequestTypeOk() (*TopologyRequestType, bool) {
+func (o *TopologyRequestServiceMap) GetRequestTypeOk() (*TopologyRequestType, bool) {
 	if o == nil || o.RequestType == nil {
 		return nil, false
 	}
@@ -83,17 +83,17 @@ func (o *TopologyRequest) GetRequestTypeOk() (*TopologyRequestType, bool) {
 }
 
 // HasRequestType returns a boolean if a field has been set.
-func (o *TopologyRequest) HasRequestType() bool {
+func (o *TopologyRequestServiceMap) HasRequestType() bool {
 	return o != nil && o.RequestType != nil
 }
 
 // SetRequestType gets a reference to the given TopologyRequestType and assigns it to the RequestType field.
-func (o *TopologyRequest) SetRequestType(v TopologyRequestType) {
+func (o *TopologyRequestServiceMap) SetRequestType(v TopologyRequestType) {
 	o.RequestType = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TopologyRequest) MarshalJSON() ([]byte, error) {
+func (o TopologyRequestServiceMap) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -112,10 +112,10 @@ func (o TopologyRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TopologyRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TopologyRequestServiceMap) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Query       *TopologyQuery       `json:"query,omitempty"`
-		RequestType *TopologyRequestType `json:"request_type,omitempty"`
+		Query       *TopologyQueryServiceMap `json:"query,omitempty"`
+		RequestType *TopologyRequestType     `json:"request_type,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
