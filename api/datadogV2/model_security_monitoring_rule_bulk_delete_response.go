@@ -10,10 +10,8 @@ import (
 
 // SecurityMonitoringRuleBulkDeleteResponse Response for bulk deleting security monitoring rules.
 type SecurityMonitoringRuleBulkDeleteResponse struct {
-	// List of successfully deleted rule IDs.
-	DeletedRules []string `json:"deletedRules,omitempty"`
-	// List of rule IDs that could not be deleted.
-	FailedRules []string `json:"failedRules,omitempty"`
+	// Data for the bulk delete response.
+	Data *SecurityMonitoringRuleBulkDeleteResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -36,60 +34,32 @@ func NewSecurityMonitoringRuleBulkDeleteResponseWithDefaults() *SecurityMonitori
 	return &this
 }
 
-// GetDeletedRules returns the DeletedRules field value if set, zero value otherwise.
-func (o *SecurityMonitoringRuleBulkDeleteResponse) GetDeletedRules() []string {
-	if o == nil || o.DeletedRules == nil {
-		var ret []string
+// GetData returns the Data field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleBulkDeleteResponse) GetData() SecurityMonitoringRuleBulkDeleteResponseData {
+	if o == nil || o.Data == nil {
+		var ret SecurityMonitoringRuleBulkDeleteResponseData
 		return ret
 	}
-	return o.DeletedRules
+	return *o.Data
 }
 
-// GetDeletedRulesOk returns a tuple with the DeletedRules field value if set, nil otherwise
+// GetDataOk returns a tuple with the Data field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SecurityMonitoringRuleBulkDeleteResponse) GetDeletedRulesOk() (*[]string, bool) {
-	if o == nil || o.DeletedRules == nil {
+func (o *SecurityMonitoringRuleBulkDeleteResponse) GetDataOk() (*SecurityMonitoringRuleBulkDeleteResponseData, bool) {
+	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return &o.DeletedRules, true
+	return o.Data, true
 }
 
-// HasDeletedRules returns a boolean if a field has been set.
-func (o *SecurityMonitoringRuleBulkDeleteResponse) HasDeletedRules() bool {
-	return o != nil && o.DeletedRules != nil
+// HasData returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleBulkDeleteResponse) HasData() bool {
+	return o != nil && o.Data != nil
 }
 
-// SetDeletedRules gets a reference to the given []string and assigns it to the DeletedRules field.
-func (o *SecurityMonitoringRuleBulkDeleteResponse) SetDeletedRules(v []string) {
-	o.DeletedRules = v
-}
-
-// GetFailedRules returns the FailedRules field value if set, zero value otherwise.
-func (o *SecurityMonitoringRuleBulkDeleteResponse) GetFailedRules() []string {
-	if o == nil || o.FailedRules == nil {
-		var ret []string
-		return ret
-	}
-	return o.FailedRules
-}
-
-// GetFailedRulesOk returns a tuple with the FailedRules field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SecurityMonitoringRuleBulkDeleteResponse) GetFailedRulesOk() (*[]string, bool) {
-	if o == nil || o.FailedRules == nil {
-		return nil, false
-	}
-	return &o.FailedRules, true
-}
-
-// HasFailedRules returns a boolean if a field has been set.
-func (o *SecurityMonitoringRuleBulkDeleteResponse) HasFailedRules() bool {
-	return o != nil && o.FailedRules != nil
-}
-
-// SetFailedRules gets a reference to the given []string and assigns it to the FailedRules field.
-func (o *SecurityMonitoringRuleBulkDeleteResponse) SetFailedRules(v []string) {
-	o.FailedRules = v
+// SetData gets a reference to the given SecurityMonitoringRuleBulkDeleteResponseData and assigns it to the Data field.
+func (o *SecurityMonitoringRuleBulkDeleteResponse) SetData(v SecurityMonitoringRuleBulkDeleteResponseData) {
+	o.Data = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -98,11 +68,8 @@ func (o SecurityMonitoringRuleBulkDeleteResponse) MarshalJSON() ([]byte, error) 
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.DeletedRules != nil {
-		toSerialize["deletedRules"] = o.DeletedRules
-	}
-	if o.FailedRules != nil {
-		toSerialize["failedRules"] = o.FailedRules
+	if o.Data != nil {
+		toSerialize["data"] = o.Data
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -114,23 +81,30 @@ func (o SecurityMonitoringRuleBulkDeleteResponse) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleBulkDeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DeletedRules []string `json:"deletedRules,omitempty"`
-		FailedRules  []string `json:"failedRules,omitempty"`
+		Data *SecurityMonitoringRuleBulkDeleteResponseData `json:"data,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"deletedRules", "failedRules"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}
-	o.DeletedRules = all.DeletedRules
-	o.FailedRules = all.FailedRules
+
+	hasInvalidField := false
+	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Data = all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

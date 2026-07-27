@@ -21,6 +21,7 @@ func main() {
 					"abc-000-7dd",
 				},
 			},
+			Id:   datadog.PtrString("bulk_delete"),
 			Type: datadogV2.SECURITYMONITORINGRULEBULKDELETEREQUESTDATATYPE_BULK_DELETE_RULES,
 		},
 	}

@@ -14,6 +14,8 @@ import (
 type SecurityMonitoringRuleBulkDeleteData struct {
 	// Attributes for bulk deleting security monitoring rules.
 	Attributes SecurityMonitoringRuleBulkDeleteAttributes `json:"attributes"`
+	// Request ID. This value is echoed back as the response's resource ID.
+	Id *string `json:"id,omitempty"`
 	// The resource type for a bulk delete request.
 	Type SecurityMonitoringRuleBulkDeleteRequestDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -63,6 +65,34 @@ func (o *SecurityMonitoringRuleBulkDeleteData) SetAttributes(v SecurityMonitorin
 	o.Attributes = v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleBulkDeleteData) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleBulkDeleteData) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleBulkDeleteData) HasId() bool {
+	return o != nil && o.Id != nil
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *SecurityMonitoringRuleBulkDeleteData) SetId(v string) {
+	o.Id = &v
+}
+
 // GetType returns the Type field value.
 func (o *SecurityMonitoringRuleBulkDeleteData) GetType() SecurityMonitoringRuleBulkDeleteRequestDataType {
 	if o == nil {
@@ -93,6 +123,9 @@ func (o SecurityMonitoringRuleBulkDeleteData) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["attributes"] = o.Attributes
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -105,6 +138,7 @@ func (o SecurityMonitoringRuleBulkDeleteData) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleBulkDeleteData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *SecurityMonitoringRuleBulkDeleteAttributes      `json:"attributes"`
+		Id         *string                                          `json:"id,omitempty"`
 		Type       *SecurityMonitoringRuleBulkDeleteRequestDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -118,7 +152,7 @@ func (o *SecurityMonitoringRuleBulkDeleteData) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
 	} else {
 		return err
 	}
@@ -128,6 +162,7 @@ func (o *SecurityMonitoringRuleBulkDeleteData) UnmarshalJSON(bytes []byte) (err 
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
+	o.Id = all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
