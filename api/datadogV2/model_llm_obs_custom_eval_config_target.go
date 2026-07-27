@@ -7,6 +7,8 @@ package datadogV2
 import (
 	"fmt"
 
+	"github.com/google/uuid"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -18,6 +20,8 @@ type LLMObsCustomEvalConfigTarget struct {
 	Enabled bool `json:"enabled"`
 	// Scope at which to evaluate spans.
 	EvalScope *LLMObsCustomEvalConfigEvalScope `json:"eval_scope,omitempty"`
+	// Experiment project IDs this evaluator is scoped to.
+	ExperimentProjectIds []uuid.UUID `json:"experiment_project_ids,omitempty"`
 	// Filter expression to select which spans to evaluate.
 	Filter datadog.NullableString `json:"filter,omitempty"`
 	// When true, only root spans are evaluated.
@@ -120,6 +124,34 @@ func (o *LLMObsCustomEvalConfigTarget) HasEvalScope() bool {
 // SetEvalScope gets a reference to the given LLMObsCustomEvalConfigEvalScope and assigns it to the EvalScope field.
 func (o *LLMObsCustomEvalConfigTarget) SetEvalScope(v LLMObsCustomEvalConfigEvalScope) {
 	o.EvalScope = &v
+}
+
+// GetExperimentProjectIds returns the ExperimentProjectIds field value if set, zero value otherwise.
+func (o *LLMObsCustomEvalConfigTarget) GetExperimentProjectIds() []uuid.UUID {
+	if o == nil || o.ExperimentProjectIds == nil {
+		var ret []uuid.UUID
+		return ret
+	}
+	return o.ExperimentProjectIds
+}
+
+// GetExperimentProjectIdsOk returns a tuple with the ExperimentProjectIds field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsCustomEvalConfigTarget) GetExperimentProjectIdsOk() (*[]uuid.UUID, bool) {
+	if o == nil || o.ExperimentProjectIds == nil {
+		return nil, false
+	}
+	return &o.ExperimentProjectIds, true
+}
+
+// HasExperimentProjectIds returns a boolean if a field has been set.
+func (o *LLMObsCustomEvalConfigTarget) HasExperimentProjectIds() bool {
+	return o != nil && o.ExperimentProjectIds != nil
+}
+
+// SetExperimentProjectIds gets a reference to the given []uuid.UUID and assigns it to the ExperimentProjectIds field.
+func (o *LLMObsCustomEvalConfigTarget) SetExperimentProjectIds(v []uuid.UUID) {
+	o.ExperimentProjectIds = v
 }
 
 // GetFilter returns the Filter field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -250,6 +282,9 @@ func (o LLMObsCustomEvalConfigTarget) MarshalJSON() ([]byte, error) {
 	if o.EvalScope != nil {
 		toSerialize["eval_scope"] = o.EvalScope
 	}
+	if o.ExperimentProjectIds != nil {
+		toSerialize["experiment_project_ids"] = o.ExperimentProjectIds
+	}
 	if o.Filter.IsSet() {
 		toSerialize["filter"] = o.Filter.Get()
 	}
@@ -269,12 +304,13 @@ func (o LLMObsCustomEvalConfigTarget) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsCustomEvalConfigTarget) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApplicationName    *string                          `json:"application_name"`
-		Enabled            *bool                            `json:"enabled"`
-		EvalScope          *LLMObsCustomEvalConfigEvalScope `json:"eval_scope,omitempty"`
-		Filter             datadog.NullableString           `json:"filter,omitempty"`
-		RootSpansOnly      datadog.NullableBool             `json:"root_spans_only,omitempty"`
-		SamplingPercentage datadog.NullableFloat64          `json:"sampling_percentage,omitempty"`
+		ApplicationName      *string                          `json:"application_name"`
+		Enabled              *bool                            `json:"enabled"`
+		EvalScope            *LLMObsCustomEvalConfigEvalScope `json:"eval_scope,omitempty"`
+		ExperimentProjectIds []uuid.UUID                      `json:"experiment_project_ids,omitempty"`
+		Filter               datadog.NullableString           `json:"filter,omitempty"`
+		RootSpansOnly        datadog.NullableBool             `json:"root_spans_only,omitempty"`
+		SamplingPercentage   datadog.NullableFloat64          `json:"sampling_percentage,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -287,7 +323,7 @@ func (o *LLMObsCustomEvalConfigTarget) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"application_name", "enabled", "eval_scope", "filter", "root_spans_only", "sampling_percentage"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"application_name", "enabled", "eval_scope", "experiment_project_ids", "filter", "root_spans_only", "sampling_percentage"})
 	} else {
 		return err
 	}
@@ -300,6 +336,7 @@ func (o *LLMObsCustomEvalConfigTarget) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.EvalScope = all.EvalScope
 	}
+	o.ExperimentProjectIds = all.ExperimentProjectIds
 	o.Filter = all.Filter
 	o.RootSpansOnly = all.RootSpansOnly
 	o.SamplingPercentage = all.SamplingPercentage

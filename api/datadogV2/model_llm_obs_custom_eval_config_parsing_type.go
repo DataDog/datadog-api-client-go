@@ -17,11 +17,13 @@ type LLMObsCustomEvalConfigParsingType string
 const (
 	LLMOBSCUSTOMEVALCONFIGPARSINGTYPE_STRUCTURED_OUTPUT LLMObsCustomEvalConfigParsingType = "structured_output"
 	LLMOBSCUSTOMEVALCONFIGPARSINGTYPE_JSON              LLMObsCustomEvalConfigParsingType = "json"
+	LLMOBSCUSTOMEVALCONFIGPARSINGTYPE_KEYWORD_SEARCH    LLMObsCustomEvalConfigParsingType = "keyword_search"
 )
 
 var allowedLLMObsCustomEvalConfigParsingTypeEnumValues = []LLMObsCustomEvalConfigParsingType{
 	LLMOBSCUSTOMEVALCONFIGPARSINGTYPE_STRUCTURED_OUTPUT,
 	LLMOBSCUSTOMEVALCONFIGPARSINGTYPE_JSON,
+	LLMOBSCUSTOMEVALCONFIGPARSINGTYPE_KEYWORD_SEARCH,
 }
 
 // GetAllowedValues reeturns the list of possible values.

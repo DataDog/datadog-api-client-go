@@ -14,6 +14,8 @@ import (
 type LLMObsCustomEvalConfigLLMJudgeConfig struct {
 	// Criteria used to assess the pass/fail result of a custom evaluator.
 	AssessmentCriteria *LLMObsCustomEvalConfigAssessmentCriteria `json:"assessment_criteria,omitempty"`
+	// Query used to extract additional context for the evaluation.
+	ContextQuery datadog.NullableString `json:"context_query,omitempty"`
 	// LLM inference parameters for a custom evaluator.
 	InferenceParams LLMObsCustomEvalConfigInferenceParams `json:"inference_params"`
 	// Name of the last library prompt template used.
@@ -26,6 +28,10 @@ type LLMObsCustomEvalConfigLLMJudgeConfig struct {
 	ParsingType *LLMObsCustomEvalConfigParsingType `json:"parsing_type,omitempty"`
 	// List of messages forming the LLM judge prompt template.
 	PromptTemplate []LLMObsCustomEvalConfigPromptMessage `json:"prompt_template,omitempty"`
+	// Query used to extract the target value to evaluate.
+	TargetQuery datadog.NullableString `json:"target_query,omitempty"`
+	// User-provided function applied to post-process the JSON output of the LLM judge.
+	UserSpecifiedJsonPostProcessingFunction datadog.NullableString `json:"user_specified_json_post_processing_function,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -75,6 +81,45 @@ func (o *LLMObsCustomEvalConfigLLMJudgeConfig) HasAssessmentCriteria() bool {
 // SetAssessmentCriteria gets a reference to the given LLMObsCustomEvalConfigAssessmentCriteria and assigns it to the AssessmentCriteria field.
 func (o *LLMObsCustomEvalConfigLLMJudgeConfig) SetAssessmentCriteria(v LLMObsCustomEvalConfigAssessmentCriteria) {
 	o.AssessmentCriteria = &v
+}
+
+// GetContextQuery returns the ContextQuery field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) GetContextQuery() string {
+	if o == nil || o.ContextQuery.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.ContextQuery.Get()
+}
+
+// GetContextQueryOk returns a tuple with the ContextQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) GetContextQueryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ContextQuery.Get(), o.ContextQuery.IsSet()
+}
+
+// HasContextQuery returns a boolean if a field has been set.
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) HasContextQuery() bool {
+	return o != nil && o.ContextQuery.IsSet()
+}
+
+// SetContextQuery gets a reference to the given datadog.NullableString and assigns it to the ContextQuery field.
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) SetContextQuery(v string) {
+	o.ContextQuery.Set(&v)
+}
+
+// SetContextQueryNil sets the value for ContextQuery to be an explicit nil.
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) SetContextQueryNil() {
+	o.ContextQuery.Set(nil)
+}
+
+// UnsetContextQuery ensures that no value is present for ContextQuery, not even an explicit nil.
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) UnsetContextQuery() {
+	o.ContextQuery.Unset()
 }
 
 // GetInferenceParams returns the InferenceParams field value.
@@ -263,6 +308,84 @@ func (o *LLMObsCustomEvalConfigLLMJudgeConfig) SetPromptTemplate(v []LLMObsCusto
 	o.PromptTemplate = v
 }
 
+// GetTargetQuery returns the TargetQuery field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) GetTargetQuery() string {
+	if o == nil || o.TargetQuery.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.TargetQuery.Get()
+}
+
+// GetTargetQueryOk returns a tuple with the TargetQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) GetTargetQueryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.TargetQuery.Get(), o.TargetQuery.IsSet()
+}
+
+// HasTargetQuery returns a boolean if a field has been set.
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) HasTargetQuery() bool {
+	return o != nil && o.TargetQuery.IsSet()
+}
+
+// SetTargetQuery gets a reference to the given datadog.NullableString and assigns it to the TargetQuery field.
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) SetTargetQuery(v string) {
+	o.TargetQuery.Set(&v)
+}
+
+// SetTargetQueryNil sets the value for TargetQuery to be an explicit nil.
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) SetTargetQueryNil() {
+	o.TargetQuery.Set(nil)
+}
+
+// UnsetTargetQuery ensures that no value is present for TargetQuery, not even an explicit nil.
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) UnsetTargetQuery() {
+	o.TargetQuery.Unset()
+}
+
+// GetUserSpecifiedJsonPostProcessingFunction returns the UserSpecifiedJsonPostProcessingFunction field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) GetUserSpecifiedJsonPostProcessingFunction() string {
+	if o == nil || o.UserSpecifiedJsonPostProcessingFunction.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.UserSpecifiedJsonPostProcessingFunction.Get()
+}
+
+// GetUserSpecifiedJsonPostProcessingFunctionOk returns a tuple with the UserSpecifiedJsonPostProcessingFunction field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) GetUserSpecifiedJsonPostProcessingFunctionOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.UserSpecifiedJsonPostProcessingFunction.Get(), o.UserSpecifiedJsonPostProcessingFunction.IsSet()
+}
+
+// HasUserSpecifiedJsonPostProcessingFunction returns a boolean if a field has been set.
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) HasUserSpecifiedJsonPostProcessingFunction() bool {
+	return o != nil && o.UserSpecifiedJsonPostProcessingFunction.IsSet()
+}
+
+// SetUserSpecifiedJsonPostProcessingFunction gets a reference to the given datadog.NullableString and assigns it to the UserSpecifiedJsonPostProcessingFunction field.
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) SetUserSpecifiedJsonPostProcessingFunction(v string) {
+	o.UserSpecifiedJsonPostProcessingFunction.Set(&v)
+}
+
+// SetUserSpecifiedJsonPostProcessingFunctionNil sets the value for UserSpecifiedJsonPostProcessingFunction to be an explicit nil.
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) SetUserSpecifiedJsonPostProcessingFunctionNil() {
+	o.UserSpecifiedJsonPostProcessingFunction.Set(nil)
+}
+
+// UnsetUserSpecifiedJsonPostProcessingFunction ensures that no value is present for UserSpecifiedJsonPostProcessingFunction, not even an explicit nil.
+func (o *LLMObsCustomEvalConfigLLMJudgeConfig) UnsetUserSpecifiedJsonPostProcessingFunction() {
+	o.UserSpecifiedJsonPostProcessingFunction.Unset()
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LLMObsCustomEvalConfigLLMJudgeConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -271,6 +394,9 @@ func (o LLMObsCustomEvalConfigLLMJudgeConfig) MarshalJSON() ([]byte, error) {
 	}
 	if o.AssessmentCriteria != nil {
 		toSerialize["assessment_criteria"] = o.AssessmentCriteria
+	}
+	if o.ContextQuery.IsSet() {
+		toSerialize["context_query"] = o.ContextQuery.Get()
 	}
 	toSerialize["inference_params"] = o.InferenceParams
 	if o.LastUsedLibraryPromptTemplateName.IsSet() {
@@ -288,6 +414,12 @@ func (o LLMObsCustomEvalConfigLLMJudgeConfig) MarshalJSON() ([]byte, error) {
 	if o.PromptTemplate != nil {
 		toSerialize["prompt_template"] = o.PromptTemplate
 	}
+	if o.TargetQuery.IsSet() {
+		toSerialize["target_query"] = o.TargetQuery.Get()
+	}
+	if o.UserSpecifiedJsonPostProcessingFunction.IsSet() {
+		toSerialize["user_specified_json_post_processing_function"] = o.UserSpecifiedJsonPostProcessingFunction.Get()
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -298,13 +430,16 @@ func (o LLMObsCustomEvalConfigLLMJudgeConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsCustomEvalConfigLLMJudgeConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AssessmentCriteria                *LLMObsCustomEvalConfigAssessmentCriteria `json:"assessment_criteria,omitempty"`
-		InferenceParams                   *LLMObsCustomEvalConfigInferenceParams    `json:"inference_params"`
-		LastUsedLibraryPromptTemplateName datadog.NullableString                    `json:"last_used_library_prompt_template_name,omitempty"`
-		ModifiedLibraryPromptTemplate     datadog.NullableBool                      `json:"modified_library_prompt_template,omitempty"`
-		OutputSchema                      map[string]interface{}                    `json:"output_schema,omitempty"`
-		ParsingType                       *LLMObsCustomEvalConfigParsingType        `json:"parsing_type,omitempty"`
-		PromptTemplate                    []LLMObsCustomEvalConfigPromptMessage     `json:"prompt_template,omitempty"`
+		AssessmentCriteria                      *LLMObsCustomEvalConfigAssessmentCriteria `json:"assessment_criteria,omitempty"`
+		ContextQuery                            datadog.NullableString                    `json:"context_query,omitempty"`
+		InferenceParams                         *LLMObsCustomEvalConfigInferenceParams    `json:"inference_params"`
+		LastUsedLibraryPromptTemplateName       datadog.NullableString                    `json:"last_used_library_prompt_template_name,omitempty"`
+		ModifiedLibraryPromptTemplate           datadog.NullableBool                      `json:"modified_library_prompt_template,omitempty"`
+		OutputSchema                            map[string]interface{}                    `json:"output_schema,omitempty"`
+		ParsingType                             *LLMObsCustomEvalConfigParsingType        `json:"parsing_type,omitempty"`
+		PromptTemplate                          []LLMObsCustomEvalConfigPromptMessage     `json:"prompt_template,omitempty"`
+		TargetQuery                             datadog.NullableString                    `json:"target_query,omitempty"`
+		UserSpecifiedJsonPostProcessingFunction datadog.NullableString                    `json:"user_specified_json_post_processing_function,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -314,7 +449,7 @@ func (o *LLMObsCustomEvalConfigLLMJudgeConfig) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"assessment_criteria", "inference_params", "last_used_library_prompt_template_name", "modified_library_prompt_template", "output_schema", "parsing_type", "prompt_template"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"assessment_criteria", "context_query", "inference_params", "last_used_library_prompt_template_name", "modified_library_prompt_template", "output_schema", "parsing_type", "prompt_template", "target_query", "user_specified_json_post_processing_function"})
 	} else {
 		return err
 	}
@@ -324,6 +459,7 @@ func (o *LLMObsCustomEvalConfigLLMJudgeConfig) UnmarshalJSON(bytes []byte) (err 
 		hasInvalidField = true
 	}
 	o.AssessmentCriteria = all.AssessmentCriteria
+	o.ContextQuery = all.ContextQuery
 	if all.InferenceParams.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
@@ -337,6 +473,8 @@ func (o *LLMObsCustomEvalConfigLLMJudgeConfig) UnmarshalJSON(bytes []byte) (err 
 		o.ParsingType = all.ParsingType
 	}
 	o.PromptTemplate = all.PromptTemplate
+	o.TargetQuery = all.TargetQuery
+	o.UserSpecifiedJsonPostProcessingFunction = all.UserSpecifiedJsonPostProcessingFunction
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

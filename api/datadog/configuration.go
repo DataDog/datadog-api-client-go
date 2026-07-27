@@ -711,6 +711,7 @@ func NewConfiguration() *Configuration {
 			"v2.GetLLMObsPrompt":                                      false,
 			"v2.GetLLMObsPromptVersion":                               false,
 			"v2.ListLLMObsAnnotationQueues":                           false,
+			"v2.ListLLMObsCustomEvalConfigs":                          false,
 			"v2.ListLLMObsDatasetRecords":                             false,
 			"v2.ListLLMObsDatasets":                                   false,
 			"v2.ListLLMObsDatasetVersions":                            false,
