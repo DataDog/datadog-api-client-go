@@ -916,7 +916,7 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 	if err == nil {
 		if obj.TopologyMapWidgetDefinition != nil && obj.TopologyMapWidgetDefinition.UnparsedObject == nil {
 			jsonTopologyMapWidgetDefinition, _ := datadog.Marshal(obj.TopologyMapWidgetDefinition)
-			if string(jsonTopologyMapWidgetDefinition) == "{}" { // empty struct
+			if string(jsonTopologyMapWidgetDefinition) == "{}" && string(data) != "{}" { // empty struct
 				obj.TopologyMapWidgetDefinition = nil
 			} else {
 				match++
