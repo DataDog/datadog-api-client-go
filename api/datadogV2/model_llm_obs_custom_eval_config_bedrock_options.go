@@ -10,6 +10,8 @@ import (
 
 // LLMObsCustomEvalConfigBedrockOptions AWS Bedrock-specific options for LLM provider configuration.
 type LLMObsCustomEvalConfigBedrockOptions struct {
+	// Bedrock inference profile identifier, such as an application inference profile ARN.
+	InferenceProfile *string `json:"inference_profile,omitempty"`
 	// AWS region for Bedrock.
 	Region *string `json:"region,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -32,6 +34,34 @@ func NewLLMObsCustomEvalConfigBedrockOptions() *LLMObsCustomEvalConfigBedrockOpt
 func NewLLMObsCustomEvalConfigBedrockOptionsWithDefaults() *LLMObsCustomEvalConfigBedrockOptions {
 	this := LLMObsCustomEvalConfigBedrockOptions{}
 	return &this
+}
+
+// GetInferenceProfile returns the InferenceProfile field value if set, zero value otherwise.
+func (o *LLMObsCustomEvalConfigBedrockOptions) GetInferenceProfile() string {
+	if o == nil || o.InferenceProfile == nil {
+		var ret string
+		return ret
+	}
+	return *o.InferenceProfile
+}
+
+// GetInferenceProfileOk returns a tuple with the InferenceProfile field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsCustomEvalConfigBedrockOptions) GetInferenceProfileOk() (*string, bool) {
+	if o == nil || o.InferenceProfile == nil {
+		return nil, false
+	}
+	return o.InferenceProfile, true
+}
+
+// HasInferenceProfile returns a boolean if a field has been set.
+func (o *LLMObsCustomEvalConfigBedrockOptions) HasInferenceProfile() bool {
+	return o != nil && o.InferenceProfile != nil
+}
+
+// SetInferenceProfile gets a reference to the given string and assigns it to the InferenceProfile field.
+func (o *LLMObsCustomEvalConfigBedrockOptions) SetInferenceProfile(v string) {
+	o.InferenceProfile = &v
 }
 
 // GetRegion returns the Region field value if set, zero value otherwise.
@@ -68,6 +98,9 @@ func (o LLMObsCustomEvalConfigBedrockOptions) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.InferenceProfile != nil {
+		toSerialize["inference_profile"] = o.InferenceProfile
+	}
 	if o.Region != nil {
 		toSerialize["region"] = o.Region
 	}
@@ -81,17 +114,19 @@ func (o LLMObsCustomEvalConfigBedrockOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsCustomEvalConfigBedrockOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Region *string `json:"region,omitempty"`
+		InferenceProfile *string `json:"inference_profile,omitempty"`
+		Region           *string `json:"region,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"region"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"inference_profile", "region"})
 	} else {
 		return err
 	}
+	o.InferenceProfile = all.InferenceProfile
 	o.Region = all.Region
 
 	if len(additionalProperties) > 0 {

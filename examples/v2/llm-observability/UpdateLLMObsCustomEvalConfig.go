@@ -9,6 +9,7 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
 )
 
 func main() {
@@ -27,6 +28,7 @@ func main() {
 						}),
 						PassWhen: *datadog.NewNullableBool(datadog.PtrBool(true)),
 					},
+					ContextQuery: *datadog.NewNullableString(datadog.PtrString("@input.context")),
 					InferenceParams: datadogV2.LLMObsCustomEvalConfigInferenceParams{
 						FrequencyPenalty: datadog.PtrFloat64(0.0),
 						MaxTokens:        datadog.PtrInt64(1024),
@@ -65,10 +67,13 @@ func main() {
 							Role: "user",
 						},
 					},
+					TargetQuery:                             *datadog.NewNullableString(datadog.PtrString("@output.value")),
+					UserSpecifiedJsonPostProcessingFunction: *datadog.NewNullableString(nil),
 				},
 				LlmProvider: &datadogV2.LLMObsCustomEvalConfigLLMProvider{
 					Bedrock: &datadogV2.LLMObsCustomEvalConfigBedrockOptions{
-						Region: datadog.PtrString("us-east-1"),
+						InferenceProfile: datadog.PtrString("arn:aws:bedrock:us-east-1:123456789012:application-inference-profile/abc123"),
+						Region:           datadog.PtrString("us-east-1"),
 					},
 					IntegrationAccountId: datadog.PtrString("my-account-id"),
 					IntegrationProvider:  datadogV2.LLMOBSCUSTOMEVALCONFIGINTEGRATIONPROVIDER_OPENAI.Ptr(),
@@ -79,12 +84,13 @@ func main() {
 					},
 				},
 				Target: datadogV2.LLMObsCustomEvalConfigTarget{
-					ApplicationName:    "my-llm-app",
-					Enabled:            true,
-					EvalScope:          datadogV2.LLMOBSCUSTOMEVALCONFIGEVALSCOPE_SPAN.Ptr(),
-					Filter:             *datadog.NewNullableString(datadog.PtrString("@service:my-service")),
-					RootSpansOnly:      *datadog.NewNullableBool(datadog.PtrBool(true)),
-					SamplingPercentage: *datadog.NewNullableFloat64(datadog.PtrFloat64(50.0)),
+					ApplicationName:      "my-llm-app",
+					Enabled:              true,
+					EvalScope:            datadogV2.LLMOBSCUSTOMEVALCONFIGEVALSCOPE_SPAN.Ptr(),
+					ExperimentProjectIds: []uuid.UUID{},
+					Filter:               *datadog.NewNullableString(datadog.PtrString("@service:my-service")),
+					RootSpansOnly:        *datadog.NewNullableBool(datadog.PtrBool(true)),
+					SamplingPercentage:   *datadog.NewNullableFloat64(datadog.PtrFloat64(50.0)),
 				},
 			},
 			Id:   datadog.PtrString("my-custom-evaluator"),

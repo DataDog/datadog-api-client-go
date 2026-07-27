@@ -632,6 +632,7 @@
 //   - [LLMObservabilityApi.GetLLMObsPrompt]
 //   - [LLMObservabilityApi.GetLLMObsPromptVersion]
 //   - [LLMObservabilityApi.ListLLMObsAnnotationQueues]
+//   - [LLMObservabilityApi.ListLLMObsCustomEvalConfigs]
 //   - [LLMObservabilityApi.ListLLMObsDatasetRecords]
 //   - [LLMObservabilityApi.ListLLMObsDatasetVersions]
 //   - [LLMObservabilityApi.ListLLMObsDatasets]
