@@ -136,6 +136,18 @@ func ConfigureClients(ctx context.Context, bddCTX gobdd.Context) (context.Contex
 	config := datadog.NewConfiguration()
 	config.Debug = debug
 	config.RetryConfiguration.EnableRetry = true
+	if testServerEnabled() {
+		server := datadog.ServerConfigurations{{URL: os.Getenv("DD_TEST_SERVER_URL")}}
+		config.Servers = server
+		for operation := range config.OperationServers {
+			config.OperationServers[operation] = server
+		}
+		session, _ := bddCTX.Get(testServerSessionKey{})
+		config.RetryConfiguration.EnableRetry = false
+		config.HTTPClient = &http.Client{
+			Transport: testServerTransport{session: session.(string)},
+		}
+	}
 	c := datadog.NewAPIClient(config)
 
 	ctx = context.WithValue(
@@ -144,22 +156,32 @@ func ConfigureClients(ctx context.Context, bddCTX gobdd.Context) (context.Contex
 		map[string]datadog.APIKey{},
 	)
 
-	ctx, err := tests.WithClock(ctx, tests.SecurePath(t.Name()))
-	if err != nil {
-		t.Fatalf("could not setup clock: %v", err)
-	}
+	if !testServerEnabled() {
+		var err error
+		ctx, err = tests.WithClock(ctx, tests.SecurePath(t.Name()))
+		if err != nil {
+			t.Fatalf("could not setup clock: %v", err)
+		}
 
-	r, err := tests.Recorder(ctx, tests.SecurePath(t.Name()))
-	if err != nil {
-		t.Fatalf("could not setup recorder: %v", err)
+		r, err := tests.Recorder(ctx, tests.SecurePath(t.Name()))
+		if err != nil {
+			t.Fatalf("could not setup recorder: %v", err)
+		}
+		httpClient := http.Client{Transport: tests.WrapRoundTripper(r)}
+		c.GetConfig().HTTPClient = &httpClient
+		client := reflect.ValueOf(c)
+		bddCTX.Set(clientKeys{}, client)
+		return ctx, func() {
+			r.Stop()
+		}
 	}
-	httpClient := http.Client{Transport: tests.WrapRoundTripper(r)}
-	c.GetConfig().HTTPClient = &httpClient
 
 	client := reflect.ValueOf(c)
 	bddCTX.Set(clientKeys{}, client)
 	return ctx, func() {
-		r.Stop()
+		if err := stopTestServerSession(bddCTX); err != nil {
+			t.Error(err)
+		}
 	}
 }
 
@@ -230,7 +252,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite, version string) {
 		responseJSON, _ := toJSON(result[0])
 
 		if undo != nil {
-			GetCleanup(ctx)[fmt.Sprintf("00-given-%s", s.Key)] = undo(result)
+			GetCleanup(ctx)[fmt.Sprintf("%03d-given-%s", len(GetCleanup(ctx)), s.Key)] = undo(result)
 		}
 
 		if s.Source != nil {

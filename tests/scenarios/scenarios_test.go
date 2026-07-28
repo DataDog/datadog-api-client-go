@@ -14,6 +14,7 @@ import (
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/tests"
 	ddtesting "github.com/DataDog/dd-sdk-go-testing"
 	msgs "github.com/cucumber/messages-go/v12"
 	"github.com/go-bdd/gobdd"
@@ -51,9 +52,13 @@ func TestScenarios(t *testing.T) {
 	}
 	for _, version := range []string{"v1", "v2"} {
 		t.Run(version, func(t *testing.T) {
+			featuresRoot := "features"
+			if root := os.Getenv("BDD_FEATURES_ROOT"); root != "" {
+				featuresRoot = root
+			}
 			s := gobdd.NewSuite(
 				t,
-				gobdd.WithFeaturesPath(fmt.Sprintf("features/%s/*.feature", version)),
+				gobdd.WithFeaturesPath(fmt.Sprintf("%s/%s/*.feature", featuresRoot, version)),
 				gobdd.WithTags(bddTags...),
 				gobdd.WithIgnoredTags(GetIgnoredTags()...),
 				gobdd.WithBeforeScenario(func(ctx gobdd.Context) {
@@ -90,11 +95,18 @@ func TestScenarios(t *testing.T) {
 							tracer.Tag("test.codeowners", string(testCodeowners)),
 						),
 					)
+					if testServerEnabled() {
+						session, err := startTestServerSession(ctx, feature.Name, scenario.Name)
+						if err != nil {
+							tt.Fatal(err)
+						}
+						cctx = tests.WithClockAt(cctx, session.FrozenAt)
+					}
 					cctx, closeRecorder := ConfigureClients(cctx, ctx)
 					SetCtx(cctx, ctx)
 					SetRequestsUndo(ctx, requestsUndo)
 					SetData(ctx, make(map[string]interface{}))
-					SetCleanup(ctx, map[string]func(){"99-finish": func() {
+					SetCleanup(ctx, map[string]func(){"000-finish": func() {
 						closeRecorder()
 						closeSpan()
 					}})

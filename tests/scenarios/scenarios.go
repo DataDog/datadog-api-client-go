@@ -392,6 +392,7 @@ func RunCleanup(ctx gobdd.Context) {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)
+	sort.Sort(sort.Reverse(sort.StringSlice(keys)))
 
 	for _, name := range keys {
 		cc[name]()
