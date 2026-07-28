@@ -880,6 +880,7 @@
 //   - [OrganizationsApi.ListOrgs]
 //   - [OrganizationsApi.ListSAMLConfigurations]
 //   - [OrganizationsApi.UpdateLoginOrgConfigsMaxSessionDuration]
+//   - [OrganizationsApi.UpdateLoginOrgConfigsMcpCrossAppAccessIssuerUrl]
 //   - [OrganizationsApi.UpdateOrgConfig]
 //   - [OrganizationsApi.UpdateOrgSamlConfigurations]
 //   - [OrganizationsApi.UpdateSAMLConfiguration]
