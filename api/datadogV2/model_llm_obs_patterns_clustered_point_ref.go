@@ -28,6 +28,8 @@ type LLMObsPatternsClusteredPointRef struct {
 	SpanId string `json:"span_id"`
 	// Status of the source span. Included only when metrics are requested.
 	Status *string `json:"status,omitempty"`
+	// Unix timestamp of the source span in milliseconds. Included only when metrics are requested.
+	Timestamp *int64 `json:"timestamp,omitempty"`
 	// Total number of tokens of the source span. Included only when metrics are requested.
 	TotalTokens *float64 `json:"total_tokens,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -244,6 +246,34 @@ func (o *LLMObsPatternsClusteredPointRef) SetStatus(v string) {
 	o.Status = &v
 }
 
+// GetTimestamp returns the Timestamp field value if set, zero value otherwise.
+func (o *LLMObsPatternsClusteredPointRef) GetTimestamp() int64 {
+	if o == nil || o.Timestamp == nil {
+		var ret int64
+		return ret
+	}
+	return *o.Timestamp
+}
+
+// GetTimestampOk returns a tuple with the Timestamp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsPatternsClusteredPointRef) GetTimestampOk() (*int64, bool) {
+	if o == nil || o.Timestamp == nil {
+		return nil, false
+	}
+	return o.Timestamp, true
+}
+
+// HasTimestamp returns a boolean if a field has been set.
+func (o *LLMObsPatternsClusteredPointRef) HasTimestamp() bool {
+	return o != nil && o.Timestamp != nil
+}
+
+// SetTimestamp gets a reference to the given int64 and assigns it to the Timestamp field.
+func (o *LLMObsPatternsClusteredPointRef) SetTimestamp(v int64) {
+	o.Timestamp = &v
+}
+
 // GetTotalTokens returns the TotalTokens field value if set, zero value otherwise.
 func (o *LLMObsPatternsClusteredPointRef) GetTotalTokens() float64 {
 	if o == nil || o.TotalTokens == nil {
@@ -297,6 +327,9 @@ func (o LLMObsPatternsClusteredPointRef) MarshalJSON() ([]byte, error) {
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
+	if o.Timestamp != nil {
+		toSerialize["timestamp"] = o.Timestamp
+	}
 	if o.TotalTokens != nil {
 		toSerialize["total_tokens"] = o.TotalTokens
 	}
@@ -317,6 +350,7 @@ func (o *LLMObsPatternsClusteredPointRef) UnmarshalJSON(bytes []byte) (err error
 		OutputTokens       *float64               `json:"output_tokens,omitempty"`
 		SpanId             *string                `json:"span_id"`
 		Status             *string                `json:"status,omitempty"`
+		Timestamp          *int64                 `json:"timestamp,omitempty"`
 		TotalTokens        *float64               `json:"total_tokens,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -327,7 +361,7 @@ func (o *LLMObsPatternsClusteredPointRef) UnmarshalJSON(bytes []byte) (err error
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"duration", "estimated_total_cost", "evaluation", "input_tokens", "output_tokens", "span_id", "status", "total_tokens"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"duration", "estimated_total_cost", "evaluation", "input_tokens", "output_tokens", "span_id", "status", "timestamp", "total_tokens"})
 	} else {
 		return err
 	}
@@ -338,6 +372,7 @@ func (o *LLMObsPatternsClusteredPointRef) UnmarshalJSON(bytes []byte) (err error
 	o.OutputTokens = all.OutputTokens
 	o.SpanId = *all.SpanId
 	o.Status = all.Status
+	o.Timestamp = all.Timestamp
 	o.TotalTokens = all.TotalTokens
 
 	if len(additionalProperties) > 0 {

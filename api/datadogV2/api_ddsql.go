@@ -6,8 +6,6 @@ package datadogV2
 
 import (
 	_context "context"
-	_fmt "fmt"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 
@@ -27,15 +25,6 @@ func (a *DDSQLApi) ExecuteDdsqlTabularQuery(ctx _context.Context, body DdsqlTabu
 		localVarPostBody    interface{}
 		localVarReturnValue DdsqlTabularQueryResponse
 	)
-
-	operationId := "v2.ExecuteDdsqlTabularQuery"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DDSQLApi.ExecuteDdsqlTabularQuery")
 	if err != nil {
@@ -128,15 +117,6 @@ func (a *DDSQLApi) FetchDdsqlTabularQuery(ctx _context.Context, body DdsqlTabula
 		localVarPostBody    interface{}
 		localVarReturnValue DdsqlTabularQueryResponse
 	)
-
-	operationId := "v2.FetchDdsqlTabularQuery"
-	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
-	if !isOperationEnabled {
-		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-	if isOperationEnabled && a.Client.Cfg.Debug {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.DDSQLApi.FetchDdsqlTabularQuery")
 	if err != nil {
