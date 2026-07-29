@@ -107,6 +107,107 @@ func (a *MetricsApi) CreateBulkTagsMetricsConfiguration(ctx _context.Context, bo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// CreateHistoricalMetricsConfiguration Enable historical metrics ingestion.
+// Enable historical metrics ingestion (late data ingestion) for a metric. Idempotent:
+// enabling an already-enabled metric returns 200 instead of 201. Not supported for
+// distribution metrics, metrics with an existing tag configuration, or most standard
+// (non-custom) metrics.
+func (a *MetricsApi) CreateHistoricalMetricsConfiguration(ctx _context.Context, body HistoricalMetricsConfigurationCreateRequest) (HistoricalMetricsConfigurationResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue HistoricalMetricsConfigurationResponse
+	)
+
+	operationId := "v2.CreateHistoricalMetricsConfiguration"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.CreateHistoricalMetricsConfiguration")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/metrics/historical-metrics-configurations"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json"
+
+	// body params
+	localVarPostBody = &body
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 422 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 // CreateTagConfiguration Create a tag configuration.
 // Create and define a list of queryable tag keys for an existing count/gauge/rate/distribution metric.
 // Optionally, include percentile aggregations on any distribution metric. By setting `exclude_tags_mode`
@@ -461,6 +562,94 @@ func (a *MetricsApi) DeleteBulkTagsMetricsConfiguration(ctx _context.Context, bo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// DeleteHistoricalMetricsConfiguration Delete a historical metrics configuration.
+// Disable historical metrics ingestion for a metric. Idempotent: always returns 204,
+// whether or not the configuration existed or the metric itself still exists, so that
+// Terraform destroy succeeds for a metric removed out-of-band.
+func (a *MetricsApi) DeleteHistoricalMetricsConfiguration(ctx _context.Context, metricName string) (*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
+	)
+
+	operationId := "v2.DeleteHistoricalMetricsConfiguration"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.DeleteHistoricalMetricsConfiguration")
+	if err != nil {
+		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/metrics/historical-metrics-configurations/{metric_name}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{metric_name}", _neturl.PathEscape(datadog.ParameterToString(metricName, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "*/*"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarHTTPResponse, newErr
+	}
+
+	return localVarHTTPResponse, nil
+}
+
 // DeleteTagConfiguration Delete a tag configuration.
 // Deletes a metric's tag configuration. Can only be used with application
 // keys from users with the `Manage Tags for Metrics` permission.
@@ -813,6 +1002,104 @@ func (a *MetricsApi) EstimateMetricsOutputSeries(ctx _context.Context, metricNam
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetHistoricalMetricsConfiguration Get a historical metrics configuration.
+// Get the historical metrics ingestion configuration for a metric. Existence of the
+// resource means historical metrics ingestion is enabled; returns 404 when it is not
+// enabled for the metric.
+func (a *MetricsApi) GetHistoricalMetricsConfiguration(ctx _context.Context, metricName string) (HistoricalMetricsConfigurationResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue HistoricalMetricsConfigurationResponse
+	)
+
+	operationId := "v2.GetHistoricalMetricsConfiguration"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.MetricsApi.GetHistoricalMetricsConfiguration")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/metrics/historical-metrics-configurations/{metric_name}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{metric_name}", _neturl.PathEscape(datadog.ParameterToString(metricName, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
