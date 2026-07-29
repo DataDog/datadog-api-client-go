@@ -42,7 +42,7 @@ func (a *TagPoliciesApi) CreateTagPolicy(ctx _context.Context, body TagPolicyCre
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/tag-policies"
+	localVarPath := localBasePath + "/api/v2/tag_policies"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -166,7 +166,7 @@ func (a *TagPoliciesApi) DeleteTagPolicy(ctx _context.Context, policyId string, 
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/tag-policies/{policy_id}"
+	localVarPath := localBasePath + "/api/v2/tag_policies/{policy_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{policy_id}", _neturl.PathEscape(datadog.ParameterToString(policyId, "")))
 
 	localVarHeaderParams := make(map[string]string)
@@ -297,7 +297,7 @@ func (a *TagPoliciesApi) GetTagPolicy(ctx _context.Context, policyId string, o .
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/tag-policies/{policy_id}"
+	localVarPath := localBasePath + "/api/v2/tag_policies/{policy_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{policy_id}", _neturl.PathEscape(datadog.ParameterToString(policyId, "")))
 
 	localVarHeaderParams := make(map[string]string)
@@ -437,7 +437,7 @@ func (a *TagPoliciesApi) GetTagPolicyScore(ctx _context.Context, policyId string
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/tag-policies/{policy_id}/score"
+	localVarPath := localBasePath + "/api/v2/tag_policies/{policy_id}/score"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{policy_id}", _neturl.PathEscape(datadog.ParameterToString(policyId, "")))
 
 	localVarHeaderParams := make(map[string]string)
@@ -601,7 +601,7 @@ func (a *TagPoliciesApi) ListTagPolicies(ctx _context.Context, o ...ListTagPolic
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/tag-policies"
+	localVarPath := localBasePath + "/api/v2/tag_policies"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -716,7 +716,7 @@ func (a *TagPoliciesApi) UpdateTagPolicy(ctx _context.Context, policyId string, 
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/tag-policies/{policy_id}"
+	localVarPath := localBasePath + "/api/v2/tag_policies/{policy_id}"
 	localVarPath = datadog.ReplacePathParameter(localVarPath, "{policy_id}", _neturl.PathEscape(datadog.ParameterToString(policyId, "")))
 
 	localVarHeaderParams := make(map[string]string)
