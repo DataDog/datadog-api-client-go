@@ -18,6 +18,7 @@ func main() {
 			Attributes: datadogV2.LLMObsPatternsConfigUpsertRequestAttributes{
 				AccountId:           datadog.PtrString("1000000001"),
 				ConfigId:            datadog.PtrString("a7c8d9e0-1234-5678-9abc-def012345678"),
+				CurationEnabled:     datadog.PtrBool(true),
 				EvpQuery:            "@ml_app:support-bot",
 				HierarchyDepth:      2,
 				IntegrationProvider: datadog.PtrString("openai"),
