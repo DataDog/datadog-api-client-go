@@ -32,6 +32,9 @@ const (
 	WIDGETLIVESPAN_MONTH_TO_DATE        WidgetLiveSpan = "month_to_date"
 	WIDGETLIVESPAN_PAST_ONE_YEAR        WidgetLiveSpan = "1y"
 	WIDGETLIVESPAN_ALERT                WidgetLiveSpan = "alert"
+	WIDGETLIVESPAN_FULL_WEEK            WidgetLiveSpan = "full_week"
+	WIDGETLIVESPAN_FULL_MONTH           WidgetLiveSpan = "full_month"
+	WIDGETLIVESPAN_YEAR_TO_DATE         WidgetLiveSpan = "year_to_date"
 )
 
 var allowedWidgetLiveSpanEnumValues = []WidgetLiveSpan{
@@ -52,6 +55,9 @@ var allowedWidgetLiveSpanEnumValues = []WidgetLiveSpan{
 	WIDGETLIVESPAN_MONTH_TO_DATE,
 	WIDGETLIVESPAN_PAST_ONE_YEAR,
 	WIDGETLIVESPAN_ALERT,
+	WIDGETLIVESPAN_FULL_WEEK,
+	WIDGETLIVESPAN_FULL_MONTH,
+	WIDGETLIVESPAN_YEAR_TO_DATE,
 }
 
 // GetAllowedValues reeturns the list of possible values.
