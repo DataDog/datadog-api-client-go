@@ -405,6 +405,12 @@
       "type": "safe"
     }
   },
+  "EvaluateAIGuardRequest": {
+    "tag": "AI Guard",
+    "undo": {
+      "type": "unsafe"
+    }
+  },
   "ListAnnotations": {
     "tag": "Annotations",
     "undo": {
