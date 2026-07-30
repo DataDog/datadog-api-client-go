@@ -1541,12 +1541,13 @@ func (a *StatusPagesApi) ListComponents(ctx _context.Context, pageId uuid.UUID, 
 
 // ListDegradationsOptionalParameters holds optional parameters for ListDegradations.
 type ListDegradationsOptionalParameters struct {
-	FilterPageId *string
-	PageOffset   *int64
-	PageLimit    *int64
-	Include      *string
-	FilterStatus *string
-	Sort         *string
+	FilterPageId   *string
+	PageOffset     *int64
+	PageLimit      *int64
+	Include        *string
+	FilterStatus   *string
+	FilterSourceId *string
+	Sort           *string
 }
 
 // NewListDegradationsOptionalParameters creates an empty struct for parameters.
@@ -1585,6 +1586,12 @@ func (r *ListDegradationsOptionalParameters) WithFilterStatus(filterStatus strin
 	return r
 }
 
+// WithFilterSourceId sets the corresponding parameter name and returns the struct.
+func (r *ListDegradationsOptionalParameters) WithFilterSourceId(filterSourceId string) *ListDegradationsOptionalParameters {
+	r.FilterSourceId = &filterSourceId
+	return r
+}
+
 // WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListDegradationsOptionalParameters) WithSort(sort string) *ListDegradationsOptionalParameters {
 	r.Sort = &sort
@@ -1592,7 +1599,7 @@ func (r *ListDegradationsOptionalParameters) WithSort(sort string) *ListDegradat
 }
 
 // ListDegradations List degradations.
-// Lists all degradations for the organization. Optionally filter by status and page.
+// Lists all degradations for the organization. Optionally filter by status, page, and source ID.
 func (a *StatusPagesApi) ListDegradations(ctx _context.Context, o ...ListDegradationsOptionalParameters) (DegradationArray, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1632,6 +1639,9 @@ func (a *StatusPagesApi) ListDegradations(ctx _context.Context, o ...ListDegrada
 	}
 	if optionalParams.FilterStatus != nil {
 		localVarQueryParams.Add("filter[status]", datadog.ParameterToString(*optionalParams.FilterStatus, ""))
+	}
+	if optionalParams.FilterSourceId != nil {
+		localVarQueryParams.Add("filter[source_id]", datadog.ParameterToString(*optionalParams.FilterSourceId, ""))
 	}
 	if optionalParams.Sort != nil {
 		localVarQueryParams.Add("sort", datadog.ParameterToString(*optionalParams.Sort, ""))
