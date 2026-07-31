@@ -20,6 +20,10 @@ type MonitorFormulaAndFunctionDataQualityMonitorOptions struct {
 	GroupByColumns []string `json:"group_by_columns,omitempty"`
 	// Override for the model type used in anomaly detection.
 	ModelTypeOverride *MonitorFormulaAndFunctionDataQualityModelTypeOverride `json:"model_type_override,omitempty"`
+	// Sensitivity of the anomaly detection model, expressed as a multiplier on the width
+	// of the predicted bounds. Higher values widen the bounds and produce fewer alerts;
+	// lower values tighten them and produce more alerts. Defaults to `3.0`.
+	Sensitivity *float64 `json:"sensitivity,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -182,6 +186,34 @@ func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) SetModelTypeOverrid
 	o.ModelTypeOverride = &v
 }
 
+// GetSensitivity returns the Sensitivity field value if set, zero value otherwise.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) GetSensitivity() float64 {
+	if o == nil || o.Sensitivity == nil {
+		var ret float64
+		return ret
+	}
+	return *o.Sensitivity
+}
+
+// GetSensitivityOk returns a tuple with the Sensitivity field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) GetSensitivityOk() (*float64, bool) {
+	if o == nil || o.Sensitivity == nil {
+		return nil, false
+	}
+	return o.Sensitivity, true
+}
+
+// HasSensitivity returns a boolean if a field has been set.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) HasSensitivity() bool {
+	return o != nil && o.Sensitivity != nil
+}
+
+// SetSensitivity gets a reference to the given float64 and assigns it to the Sensitivity field.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) SetSensitivity(v float64) {
+	o.Sensitivity = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorFormulaAndFunctionDataQualityMonitorOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -203,6 +235,9 @@ func (o MonitorFormulaAndFunctionDataQualityMonitorOptions) MarshalJSON() ([]byt
 	if o.ModelTypeOverride != nil {
 		toSerialize["model_type_override"] = o.ModelTypeOverride
 	}
+	if o.Sensitivity != nil {
+		toSerialize["sensitivity"] = o.Sensitivity
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -218,13 +253,14 @@ func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) UnmarshalJSON(bytes
 		CustomWhere       *string                                                `json:"custom_where,omitempty"`
 		GroupByColumns    []string                                               `json:"group_by_columns,omitempty"`
 		ModelTypeOverride *MonitorFormulaAndFunctionDataQualityModelTypeOverride `json:"model_type_override,omitempty"`
+		Sensitivity       *float64                                               `json:"sensitivity,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"crontab_override", "custom_sql", "custom_where", "group_by_columns", "model_type_override"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"crontab_override", "custom_sql", "custom_where", "group_by_columns", "model_type_override", "sensitivity"})
 	} else {
 		return err
 	}
@@ -239,6 +275,7 @@ func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) UnmarshalJSON(bytes
 	} else {
 		o.ModelTypeOverride = all.ModelTypeOverride
 	}
+	o.Sensitivity = all.Sensitivity
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
