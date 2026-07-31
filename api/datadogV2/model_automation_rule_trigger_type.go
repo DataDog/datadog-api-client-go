@@ -15,12 +15,12 @@ type AutomationRuleTriggerType string
 
 // List of AutomationRuleTriggerType.
 const (
-	AUTOMATIONRULETRIGGERTYPE_CASE_CREATED                        AutomationRuleTriggerType = "case_created"
-	AUTOMATIONRULETRIGGERTYPE_STATUS_TRANSITIONED                 AutomationRuleTriggerType = "status_transitioned"
-	AUTOMATIONRULETRIGGERTYPE_ATTRIBUTE_VALUE_CHANGED             AutomationRuleTriggerType = "attribute_value_changed"
-	AUTOMATIONRULETRIGGERTYPE_EVENT_CORRELATION_SIGNAL_CORRELATED AutomationRuleTriggerType = "event_correlation_signal_correlated"
-	AUTOMATIONRULETRIGGERTYPE_CASE_REVIEW_APPROVED                AutomationRuleTriggerType = "case_review_approved"
-	AUTOMATIONRULETRIGGERTYPE_COMMENT_ADDED                       AutomationRuleTriggerType = "comment_added"
+	AUTOMATIONRULETRIGGERTYPE_CASE_CREATED                        AutomationRuleTriggerType = "CASE_CREATED"
+	AUTOMATIONRULETRIGGERTYPE_STATUS_TRANSITIONED                 AutomationRuleTriggerType = "STATUS_TRANSITIONED"
+	AUTOMATIONRULETRIGGERTYPE_ATTRIBUTE_VALUE_CHANGED             AutomationRuleTriggerType = "ATTRIBUTE_VALUE_CHANGED"
+	AUTOMATIONRULETRIGGERTYPE_EVENT_CORRELATION_SIGNAL_CORRELATED AutomationRuleTriggerType = "EVENT_CORRELATION_SIGNAL_CORRELATED"
+	AUTOMATIONRULETRIGGERTYPE_CASE_REVIEW_APPROVED                AutomationRuleTriggerType = "CASE_REVIEW_APPROVED"
+	AUTOMATIONRULETRIGGERTYPE_COMMENT_ADDED                       AutomationRuleTriggerType = "COMMENT_ADDED"
 )
 
 var allowedAutomationRuleTriggerTypeEnumValues = []AutomationRuleTriggerType{

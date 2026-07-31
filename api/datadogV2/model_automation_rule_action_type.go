@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AutomationRuleActionType The type of automated action to perform when the rule triggers. `execute_workflow` runs a Datadog workflow; `assign_agent` assigns an AI agent to the case.
+// AutomationRuleActionType The type of automated action to perform when the rule triggers. `EXECUTE_WORKFLOW` runs a Datadog workflow; `ASSIGN_AGENT` assigns an AI agent to the case.
 type AutomationRuleActionType string
 
 // List of AutomationRuleActionType.
 const (
-	AUTOMATIONRULEACTIONTYPE_EXECUTE_WORKFLOW AutomationRuleActionType = "execute_workflow"
-	AUTOMATIONRULEACTIONTYPE_ASSIGN_AGENT     AutomationRuleActionType = "assign_agent"
+	AUTOMATIONRULEACTIONTYPE_EXECUTE_WORKFLOW AutomationRuleActionType = "EXECUTE_WORKFLOW"
+	AUTOMATIONRULEACTIONTYPE_ASSIGN_AGENT     AutomationRuleActionType = "ASSIGN_AGENT"
 )
 
 var allowedAutomationRuleActionTypeEnumValues = []AutomationRuleActionType{

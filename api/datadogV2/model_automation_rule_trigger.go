@@ -12,7 +12,7 @@ import (
 
 // AutomationRuleTrigger Defines when the rule activates. Combines a trigger type (the case event to listen for) with optional trigger data (conditions that narrow when the trigger fires).
 type AutomationRuleTrigger struct {
-	// Additional configuration for the trigger, dependent on the trigger type. For `status_transitioned` triggers, specify `from_status_name` and `to_status_name`. For `attribute_value_changed` triggers, specify `field` and `change_type`.
+	// Additional configuration for the trigger, dependent on the trigger type. For `STATUS_TRANSITIONED` triggers, specify `from_status_name` and `to_status_name`. For `ATTRIBUTE_VALUE_CHANGED` triggers, specify `field` and `change_type`.
 	Data *AutomationRuleTriggerData `json:"data,omitempty"`
 	// The case event that activates the automation rule.
 	Type AutomationRuleTriggerType `json:"type"`

@@ -10,11 +10,11 @@ import (
 
 // AutomationRuleActionData Configuration for the action to execute, dependent on the action type.
 type AutomationRuleActionData struct {
-	// The type of AI agent to assign. Required when the action type is `assign_agent`.
+	// The type of AI agent to assign. Required when the action type is `ASSIGN_AGENT`.
 	AgentType *string `json:"agent_type,omitempty"`
-	// The identifier of the AI agent to assign to the case. Required when the action type is `assign_agent`.
+	// The identifier of the AI agent to assign to the case. Required when the action type is `ASSIGN_AGENT`.
 	AssignedAgentId *string `json:"assigned_agent_id,omitempty"`
-	// The handle of the Datadog workflow to execute. Required when the action type is `execute_workflow`.
+	// The handle of the Datadog workflow to execute. Required when the action type is `EXECUTE_WORKFLOW`.
 	Handle *string `json:"handle,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
