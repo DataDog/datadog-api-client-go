@@ -32,6 +32,10 @@ type FlakyTestAttributes struct {
 	// Chronological history of status changes for this flaky test, ordered from most recent to oldest.
 	// Includes state transitions like new -> quarantined -> fixed, along with the associated commit SHA when available.
 	History []FlakyTestHistory `json:"history,omitempty"`
+	// The impact level of the flaky test, derived from its impact score.
+	ImpactLevel *FlakyTestImpactLevel `json:"impact_level,omitempty"`
+	// A score from 0 to 1 indicating the impact of this flaky test, based on factors such as how often it fails and how many pipelines it affects.
+	ImpactScore datadog.NullableFloat64 `json:"impact_score,omitempty"`
 	// The branch name where the test exhibited flakiness for the last time.
 	LastFlakedBranch *string `json:"last_flaked_branch,omitempty"`
 	// The commit SHA where the test exhibited flakiness for the last time.
@@ -343,6 +347,73 @@ func (o *FlakyTestAttributes) HasHistory() bool {
 // SetHistory gets a reference to the given []FlakyTestHistory and assigns it to the History field.
 func (o *FlakyTestAttributes) SetHistory(v []FlakyTestHistory) {
 	o.History = v
+}
+
+// GetImpactLevel returns the ImpactLevel field value if set, zero value otherwise.
+func (o *FlakyTestAttributes) GetImpactLevel() FlakyTestImpactLevel {
+	if o == nil || o.ImpactLevel == nil {
+		var ret FlakyTestImpactLevel
+		return ret
+	}
+	return *o.ImpactLevel
+}
+
+// GetImpactLevelOk returns a tuple with the ImpactLevel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FlakyTestAttributes) GetImpactLevelOk() (*FlakyTestImpactLevel, bool) {
+	if o == nil || o.ImpactLevel == nil {
+		return nil, false
+	}
+	return o.ImpactLevel, true
+}
+
+// HasImpactLevel returns a boolean if a field has been set.
+func (o *FlakyTestAttributes) HasImpactLevel() bool {
+	return o != nil && o.ImpactLevel != nil
+}
+
+// SetImpactLevel gets a reference to the given FlakyTestImpactLevel and assigns it to the ImpactLevel field.
+func (o *FlakyTestAttributes) SetImpactLevel(v FlakyTestImpactLevel) {
+	o.ImpactLevel = &v
+}
+
+// GetImpactScore returns the ImpactScore field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FlakyTestAttributes) GetImpactScore() float64 {
+	if o == nil || o.ImpactScore.Get() == nil {
+		var ret float64
+		return ret
+	}
+	return *o.ImpactScore.Get()
+}
+
+// GetImpactScoreOk returns a tuple with the ImpactScore field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *FlakyTestAttributes) GetImpactScoreOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ImpactScore.Get(), o.ImpactScore.IsSet()
+}
+
+// HasImpactScore returns a boolean if a field has been set.
+func (o *FlakyTestAttributes) HasImpactScore() bool {
+	return o != nil && o.ImpactScore.IsSet()
+}
+
+// SetImpactScore gets a reference to the given datadog.NullableFloat64 and assigns it to the ImpactScore field.
+func (o *FlakyTestAttributes) SetImpactScore(v float64) {
+	o.ImpactScore.Set(&v)
+}
+
+// SetImpactScoreNil sets the value for ImpactScore to be an explicit nil.
+func (o *FlakyTestAttributes) SetImpactScoreNil() {
+	o.ImpactScore.Set(nil)
+}
+
+// UnsetImpactScore ensures that no value is present for ImpactScore, not even an explicit nil.
+func (o *FlakyTestAttributes) UnsetImpactScore() {
+	o.ImpactScore.Unset()
 }
 
 // GetLastFlakedBranch returns the LastFlakedBranch field value if set, zero value otherwise.
@@ -669,6 +740,12 @@ func (o FlakyTestAttributes) MarshalJSON() ([]byte, error) {
 	if o.History != nil {
 		toSerialize["history"] = o.History
 	}
+	if o.ImpactLevel != nil {
+		toSerialize["impact_level"] = o.ImpactLevel
+	}
+	if o.ImpactScore.IsSet() {
+		toSerialize["impact_score"] = o.ImpactScore.Get()
+	}
 	if o.LastFlakedBranch != nil {
 		toSerialize["last_flaked_branch"] = o.LastFlakedBranch
 	}
@@ -718,6 +795,8 @@ func (o *FlakyTestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		FlakyCategory     datadog.NullableString         `json:"flaky_category,omitempty"`
 		FlakyState        *FlakyTestAttributesFlakyState `json:"flaky_state,omitempty"`
 		History           []FlakyTestHistory             `json:"history,omitempty"`
+		ImpactLevel       *FlakyTestImpactLevel          `json:"impact_level,omitempty"`
+		ImpactScore       datadog.NullableFloat64        `json:"impact_score,omitempty"`
 		LastFlakedBranch  *string                        `json:"last_flaked_branch,omitempty"`
 		LastFlakedSha     *string                        `json:"last_flaked_sha,omitempty"`
 		LastFlakedTs      *int64                         `json:"last_flaked_ts,omitempty"`
@@ -734,7 +813,7 @@ func (o *FlakyTestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attempt_to_fix_id", "codeowners", "envs", "first_flaked_branch", "first_flaked_sha", "first_flaked_ts", "flaky_category", "flaky_state", "history", "last_flaked_branch", "last_flaked_sha", "last_flaked_ts", "module", "name", "pipeline_stats", "services", "suite", "test_run_metadata", "test_stats"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attempt_to_fix_id", "codeowners", "envs", "first_flaked_branch", "first_flaked_sha", "first_flaked_ts", "flaky_category", "flaky_state", "history", "impact_level", "impact_score", "last_flaked_branch", "last_flaked_sha", "last_flaked_ts", "module", "name", "pipeline_stats", "services", "suite", "test_run_metadata", "test_stats"})
 	} else {
 		return err
 	}
@@ -753,6 +832,12 @@ func (o *FlakyTestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.FlakyState = all.FlakyState
 	}
 	o.History = all.History
+	if all.ImpactLevel != nil && !all.ImpactLevel.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.ImpactLevel = all.ImpactLevel
+	}
+	o.ImpactScore = all.ImpactScore
 	o.LastFlakedBranch = all.LastFlakedBranch
 	o.LastFlakedSha = all.LastFlakedSha
 	o.LastFlakedTs = all.LastFlakedTs
