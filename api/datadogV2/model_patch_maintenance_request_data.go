@@ -18,6 +18,8 @@ type PatchMaintenanceRequestData struct {
 	Attributes PatchMaintenanceRequestDataAttributes `json:"attributes"`
 	// The ID of the maintenance.
 	Id uuid.UUID `json:"id"`
+	// The supported relationships for updating a maintenance.
+	Relationships *PatchMaintenanceRequestDataRelationships `json:"relationships,omitempty"`
 	// Maintenances resource type.
 	Type PatchMaintenanceRequestDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -93,6 +95,34 @@ func (o *PatchMaintenanceRequestData) SetId(v uuid.UUID) {
 	o.Id = v
 }
 
+// GetRelationships returns the Relationships field value if set, zero value otherwise.
+func (o *PatchMaintenanceRequestData) GetRelationships() PatchMaintenanceRequestDataRelationships {
+	if o == nil || o.Relationships == nil {
+		var ret PatchMaintenanceRequestDataRelationships
+		return ret
+	}
+	return *o.Relationships
+}
+
+// GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *PatchMaintenanceRequestData) GetRelationshipsOk() (*PatchMaintenanceRequestDataRelationships, bool) {
+	if o == nil || o.Relationships == nil {
+		return nil, false
+	}
+	return o.Relationships, true
+}
+
+// HasRelationships returns a boolean if a field has been set.
+func (o *PatchMaintenanceRequestData) HasRelationships() bool {
+	return o != nil && o.Relationships != nil
+}
+
+// SetRelationships gets a reference to the given PatchMaintenanceRequestDataRelationships and assigns it to the Relationships field.
+func (o *PatchMaintenanceRequestData) SetRelationships(v PatchMaintenanceRequestDataRelationships) {
+	o.Relationships = &v
+}
+
 // GetType returns the Type field value.
 func (o *PatchMaintenanceRequestData) GetType() PatchMaintenanceRequestDataType {
 	if o == nil {
@@ -124,6 +154,9 @@ func (o PatchMaintenanceRequestData) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["attributes"] = o.Attributes
 	toSerialize["id"] = o.Id
+	if o.Relationships != nil {
+		toSerialize["relationships"] = o.Relationships
+	}
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -135,9 +168,10 @@ func (o PatchMaintenanceRequestData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *PatchMaintenanceRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *PatchMaintenanceRequestDataAttributes `json:"attributes"`
-		Id         *uuid.UUID                             `json:"id"`
-		Type       *PatchMaintenanceRequestDataType       `json:"type"`
+		Attributes    *PatchMaintenanceRequestDataAttributes    `json:"attributes"`
+		Id            *uuid.UUID                                `json:"id"`
+		Relationships *PatchMaintenanceRequestDataRelationships `json:"relationships,omitempty"`
+		Type          *PatchMaintenanceRequestDataType          `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -153,7 +187,7 @@ func (o *PatchMaintenanceRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
 	} else {
 		return err
 	}
@@ -164,6 +198,10 @@ func (o *PatchMaintenanceRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = *all.Attributes
 	o.Id = *all.Id
+	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Relationships = all.Relationships
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {

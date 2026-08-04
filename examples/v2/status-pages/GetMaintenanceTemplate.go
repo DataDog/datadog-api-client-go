@@ -1,0 +1,30 @@
+// Get maintenance template returns "OK" response
+
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"os"
+
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	"github.com/google/uuid"
+)
+
+func main() {
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	apiClient := datadog.NewAPIClient(configuration)
+	api := datadogV2.NewStatusPagesApi(apiClient)
+	resp, r, err := api.GetMaintenanceTemplate(ctx, uuid.MustParse("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"), uuid.MustParse("9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"), *datadogV2.NewGetMaintenanceTemplateOptionalParameters())
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `StatusPagesApi.GetMaintenanceTemplate`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+
+	responseContent, _ := json.MarshalIndent(resp, "", "  ")
+	fmt.Fprintf(os.Stdout, "Response from `StatusPagesApi.GetMaintenanceTemplate`:\n%s\n", responseContent)
+}
