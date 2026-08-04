@@ -1,0 +1,59 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"action":{"severity":"low","type":"set"},"enabled":true,"name":"Test-Reorder_severity_modifier_rules_returns_Successfully_reordered_the_severity_modifier_rules_response-1785748650","rule":{"finding_types":["misconfiguration"],"query":"env:staging"}},"type":"severity_modifier_rules"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security/findings/automation/severity_modifier_rules
+  response:
+    body: '{"data":{"id":"91bb2eb7-36d4-4b89-af25-1f5a30af5e51","type":"severity_modifier_rules","attributes":{"action":{"type":"set","severity":"low"},"created_at":1785748651040,"created_by":{"type":"user","id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"enabled":true,"modified_at":1785748651040,"modified_by":{"type":"user","id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"name":"Test-Reorder_severity_modifier_rules_returns_Successfully_reordered_the_severity_modifier_rules_response-1785748650","rule":{"finding_types":["misconfiguration"],"query":"env:staging"}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: |
+      {"data":[{"id":"91bb2eb7-36d4-4b89-af25-1f5a30af5e51","type":"severity_modifier_rules"}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 1
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security/findings/automation/severity_modifier_rules/reorder
+  response:
+    body: '{"data":[{"type":"severity_modifier_rules","id":"91bb2eb7-36d4-4b89-af25-1f5a30af5e51"}]}'
+    code: 200
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 2
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security/findings/automation/severity_modifier_rules/91bb2eb7-36d4-4b89-af25-1f5a30af5e51
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2

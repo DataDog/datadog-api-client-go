@@ -1,0 +1,41 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"action":{"description":"Lower severity for dev environment noise","severity":"low","type":"set"},"enabled":true,"name":"Downgrade misconfigurations in dev","rule":{"finding_types":["misconfiguration"],"query":"env:prod team:platform"}},"type":"severity_modifier_rules"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security/findings/automation/severity_modifier_rules
+  response:
+    body: '{"data":{"id":"0e2c6dfd-c591-4bed-a7f2-a1a44a148d61","type":"severity_modifier_rules","attributes":{"action":{"type":"set","severity":"low","description":"Lower
+      severity for dev environment noise"},"created_at":1785854818028,"created_by":{"type":"user","id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"enabled":true,"modified_at":1785854818028,"modified_by":{"type":"user","id":"9919ec9b-ebc7-49ee-8dc8-03626e717cca","name":"CI
+      Account"},"name":"Downgrade misconfigurations in dev","rule":{"finding_types":["misconfiguration"],"query":"env:prod
+      team:platform"}}}}'
+    code: 201
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    id: 1
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security/findings/automation/severity_modifier_rules/0e2c6dfd-c591-4bed-a7f2-a1a44a148d61
+  response:
+    body: ''
+    code: 204
+    duration: 0ms
+    headers: {}
+    status: 204 No Content
+version: 2
