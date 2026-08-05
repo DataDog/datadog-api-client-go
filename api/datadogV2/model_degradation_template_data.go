@@ -10,43 +10,45 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CreateBackfilledDegradationRequestData The data object for creating a backfilled degradation.
-type CreateBackfilledDegradationRequestData struct {
-	// The supported attributes for creating a backfilled degradation.
-	Attributes *CreateBackfilledDegradationRequestDataAttributes `json:"attributes,omitempty"`
-	// The supported relationships for creating a backfilled degradation.
-	Relationships *CreateBackfilledDegradationRequestDataRelationships `json:"relationships,omitempty"`
-	// Degradations resource type.
-	Type PatchDegradationRequestDataType `json:"type"`
+// DegradationTemplateData The data object for a degradation template.
+type DegradationTemplateData struct {
+	// The attributes of a degradation template.
+	Attributes *DegradationTemplateDataAttributes `json:"attributes,omitempty"`
+	// The ID of the degradation template.
+	Id *string `json:"id,omitempty"`
+	// The relationships of a degradation template.
+	Relationships *DegradationTemplateDataRelationships `json:"relationships,omitempty"`
+	// Degradation templates resource type.
+	Type PatchDegradationTemplateRequestDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewCreateBackfilledDegradationRequestData instantiates a new CreateBackfilledDegradationRequestData object.
+// NewDegradationTemplateData instantiates a new DegradationTemplateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCreateBackfilledDegradationRequestData(typeVar PatchDegradationRequestDataType) *CreateBackfilledDegradationRequestData {
-	this := CreateBackfilledDegradationRequestData{}
+func NewDegradationTemplateData(typeVar PatchDegradationTemplateRequestDataType) *DegradationTemplateData {
+	this := DegradationTemplateData{}
 	this.Type = typeVar
 	return &this
 }
 
-// NewCreateBackfilledDegradationRequestDataWithDefaults instantiates a new CreateBackfilledDegradationRequestData object.
+// NewDegradationTemplateDataWithDefaults instantiates a new DegradationTemplateData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewCreateBackfilledDegradationRequestDataWithDefaults() *CreateBackfilledDegradationRequestData {
-	this := CreateBackfilledDegradationRequestData{}
-	var typeVar PatchDegradationRequestDataType = PATCHDEGRADATIONREQUESTDATATYPE_DEGRADATIONS
+func NewDegradationTemplateDataWithDefaults() *DegradationTemplateData {
+	this := DegradationTemplateData{}
+	var typeVar PatchDegradationTemplateRequestDataType = PATCHDEGRADATIONTEMPLATEREQUESTDATATYPE_DEGRADATION_TEMPLATES
 	this.Type = typeVar
 	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *CreateBackfilledDegradationRequestData) GetAttributes() CreateBackfilledDegradationRequestDataAttributes {
+func (o *DegradationTemplateData) GetAttributes() DegradationTemplateDataAttributes {
 	if o == nil || o.Attributes == nil {
-		var ret CreateBackfilledDegradationRequestDataAttributes
+		var ret DegradationTemplateDataAttributes
 		return ret
 	}
 	return *o.Attributes
@@ -54,7 +56,7 @@ func (o *CreateBackfilledDegradationRequestData) GetAttributes() CreateBackfille
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateBackfilledDegradationRequestData) GetAttributesOk() (*CreateBackfilledDegradationRequestDataAttributes, bool) {
+func (o *DegradationTemplateData) GetAttributesOk() (*DegradationTemplateDataAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -62,19 +64,47 @@ func (o *CreateBackfilledDegradationRequestData) GetAttributesOk() (*CreateBackf
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *CreateBackfilledDegradationRequestData) HasAttributes() bool {
+func (o *DegradationTemplateData) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
-// SetAttributes gets a reference to the given CreateBackfilledDegradationRequestDataAttributes and assigns it to the Attributes field.
-func (o *CreateBackfilledDegradationRequestData) SetAttributes(v CreateBackfilledDegradationRequestDataAttributes) {
+// SetAttributes gets a reference to the given DegradationTemplateDataAttributes and assigns it to the Attributes field.
+func (o *DegradationTemplateData) SetAttributes(v DegradationTemplateDataAttributes) {
 	o.Attributes = &v
 }
 
+// GetId returns the Id field value if set, zero value otherwise.
+func (o *DegradationTemplateData) GetId() string {
+	if o == nil || o.Id == nil {
+		var ret string
+		return ret
+	}
+	return *o.Id
+}
+
+// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DegradationTemplateData) GetIdOk() (*string, bool) {
+	if o == nil || o.Id == nil {
+		return nil, false
+	}
+	return o.Id, true
+}
+
+// HasId returns a boolean if a field has been set.
+func (o *DegradationTemplateData) HasId() bool {
+	return o != nil && o.Id != nil
+}
+
+// SetId gets a reference to the given string and assigns it to the Id field.
+func (o *DegradationTemplateData) SetId(v string) {
+	o.Id = &v
+}
+
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
-func (o *CreateBackfilledDegradationRequestData) GetRelationships() CreateBackfilledDegradationRequestDataRelationships {
+func (o *DegradationTemplateData) GetRelationships() DegradationTemplateDataRelationships {
 	if o == nil || o.Relationships == nil {
-		var ret CreateBackfilledDegradationRequestDataRelationships
+		var ret DegradationTemplateDataRelationships
 		return ret
 	}
 	return *o.Relationships
@@ -82,7 +112,7 @@ func (o *CreateBackfilledDegradationRequestData) GetRelationships() CreateBackfi
 
 // GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CreateBackfilledDegradationRequestData) GetRelationshipsOk() (*CreateBackfilledDegradationRequestDataRelationships, bool) {
+func (o *DegradationTemplateData) GetRelationshipsOk() (*DegradationTemplateDataRelationships, bool) {
 	if o == nil || o.Relationships == nil {
 		return nil, false
 	}
@@ -90,19 +120,19 @@ func (o *CreateBackfilledDegradationRequestData) GetRelationshipsOk() (*CreateBa
 }
 
 // HasRelationships returns a boolean if a field has been set.
-func (o *CreateBackfilledDegradationRequestData) HasRelationships() bool {
+func (o *DegradationTemplateData) HasRelationships() bool {
 	return o != nil && o.Relationships != nil
 }
 
-// SetRelationships gets a reference to the given CreateBackfilledDegradationRequestDataRelationships and assigns it to the Relationships field.
-func (o *CreateBackfilledDegradationRequestData) SetRelationships(v CreateBackfilledDegradationRequestDataRelationships) {
+// SetRelationships gets a reference to the given DegradationTemplateDataRelationships and assigns it to the Relationships field.
+func (o *DegradationTemplateData) SetRelationships(v DegradationTemplateDataRelationships) {
 	o.Relationships = &v
 }
 
 // GetType returns the Type field value.
-func (o *CreateBackfilledDegradationRequestData) GetType() PatchDegradationRequestDataType {
+func (o *DegradationTemplateData) GetType() PatchDegradationTemplateRequestDataType {
 	if o == nil {
-		var ret PatchDegradationRequestDataType
+		var ret PatchDegradationTemplateRequestDataType
 		return ret
 	}
 	return o.Type
@@ -110,7 +140,7 @@ func (o *CreateBackfilledDegradationRequestData) GetType() PatchDegradationReque
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *CreateBackfilledDegradationRequestData) GetTypeOk() (*PatchDegradationRequestDataType, bool) {
+func (o *DegradationTemplateData) GetTypeOk() (*PatchDegradationTemplateRequestDataType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -118,18 +148,21 @@ func (o *CreateBackfilledDegradationRequestData) GetTypeOk() (*PatchDegradationR
 }
 
 // SetType sets field value.
-func (o *CreateBackfilledDegradationRequestData) SetType(v PatchDegradationRequestDataType) {
+func (o *DegradationTemplateData) SetType(v PatchDegradationTemplateRequestDataType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o CreateBackfilledDegradationRequestData) MarshalJSON() ([]byte, error) {
+func (o DegradationTemplateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
+	}
+	if o.Id != nil {
+		toSerialize["id"] = o.Id
 	}
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
@@ -143,11 +176,12 @@ func (o CreateBackfilledDegradationRequestData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *CreateBackfilledDegradationRequestData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DegradationTemplateData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *CreateBackfilledDegradationRequestDataAttributes    `json:"attributes,omitempty"`
-		Relationships *CreateBackfilledDegradationRequestDataRelationships `json:"relationships,omitempty"`
-		Type          *PatchDegradationRequestDataType                     `json:"type"`
+		Attributes    *DegradationTemplateDataAttributes       `json:"attributes,omitempty"`
+		Id            *string                                  `json:"id,omitempty"`
+		Relationships *DegradationTemplateDataRelationships    `json:"relationships,omitempty"`
+		Type          *PatchDegradationTemplateRequestDataType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -157,7 +191,7 @@ func (o *CreateBackfilledDegradationRequestData) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "relationships", "type"})
 	} else {
 		return err
 	}
@@ -167,6 +201,7 @@ func (o *CreateBackfilledDegradationRequestData) UnmarshalJSON(bytes []byte) (er
 		hasInvalidField = true
 	}
 	o.Attributes = all.Attributes
+	o.Id = all.Id
 	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
