@@ -908,6 +908,7 @@ func NewConfiguration() *Configuration {
 			"v2.TriggerDeploymentGatesEvaluation":                     false,
 			"v2.UpdateDeploymentGate":                                 false,
 			"v2.UpdateDeploymentRule":                                 false,
+			"v2.PatchDORADeploymentByVersion":                         false,
 			"v2.CloneForm":                                            false,
 			"v2.CreateAndPublishForm":                                 false,
 			"v2.CreateForm":                                           false,
