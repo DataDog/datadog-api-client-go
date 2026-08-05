@@ -10,17 +10,16 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// GovernanceInsightQueryConfig Query execution context that allows the frontend to execute insight queries directly.
+// GovernanceInsightQueryConfig Query execution context for running insight queries directly.
 type GovernanceInsightQueryConfig struct {
-	// The chart type the frontend should use to render the insight.
+	// The chart type used to render the insight.
 	ChartType *string `json:"chart_type,omitempty"`
-	// The window used for the previous value comparison, for example `week` or `month`.
+	// The window used for the previous value comparison; for example, `week` or `month`.
 	ComparisonShift string `json:"comparison_shift"`
 	// The default value to display when no data is available.
 	DefaultValue *int64 `json:"default_value,omitempty"`
-	// Whether an increase in the value is good, bad, or neutral. One of `neutral`,
-	// `increase_better`, or `decrease_better`.
-	Directionality *string `json:"directionality,omitempty"`
+	// Whether an increase in the insight's value is good, bad, or neutral.
+	Directionality *GovernanceInsightDirectionality `json:"directionality,omitempty"`
 	// The number of days the insight value is computed over.
 	EffectiveTimeWindowDays int64 `json:"effective_time_window_days"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -127,9 +126,9 @@ func (o *GovernanceInsightQueryConfig) SetDefaultValue(v int64) {
 }
 
 // GetDirectionality returns the Directionality field value if set, zero value otherwise.
-func (o *GovernanceInsightQueryConfig) GetDirectionality() string {
+func (o *GovernanceInsightQueryConfig) GetDirectionality() GovernanceInsightDirectionality {
 	if o == nil || o.Directionality == nil {
-		var ret string
+		var ret GovernanceInsightDirectionality
 		return ret
 	}
 	return *o.Directionality
@@ -137,7 +136,7 @@ func (o *GovernanceInsightQueryConfig) GetDirectionality() string {
 
 // GetDirectionalityOk returns a tuple with the Directionality field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GovernanceInsightQueryConfig) GetDirectionalityOk() (*string, bool) {
+func (o *GovernanceInsightQueryConfig) GetDirectionalityOk() (*GovernanceInsightDirectionality, bool) {
 	if o == nil || o.Directionality == nil {
 		return nil, false
 	}
@@ -149,8 +148,8 @@ func (o *GovernanceInsightQueryConfig) HasDirectionality() bool {
 	return o != nil && o.Directionality != nil
 }
 
-// SetDirectionality gets a reference to the given string and assigns it to the Directionality field.
-func (o *GovernanceInsightQueryConfig) SetDirectionality(v string) {
+// SetDirectionality gets a reference to the given GovernanceInsightDirectionality and assigns it to the Directionality field.
+func (o *GovernanceInsightQueryConfig) SetDirectionality(v GovernanceInsightDirectionality) {
 	o.Directionality = &v
 }
 
@@ -204,11 +203,11 @@ func (o GovernanceInsightQueryConfig) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GovernanceInsightQueryConfig) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ChartType               *string `json:"chart_type,omitempty"`
-		ComparisonShift         *string `json:"comparison_shift"`
-		DefaultValue            *int64  `json:"default_value,omitempty"`
-		Directionality          *string `json:"directionality,omitempty"`
-		EffectiveTimeWindowDays *int64  `json:"effective_time_window_days"`
+		ChartType               *string                          `json:"chart_type,omitempty"`
+		ComparisonShift         *string                          `json:"comparison_shift"`
+		DefaultValue            *int64                           `json:"default_value,omitempty"`
+		Directionality          *GovernanceInsightDirectionality `json:"directionality,omitempty"`
+		EffectiveTimeWindowDays *int64                           `json:"effective_time_window_days"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -225,14 +224,24 @@ func (o *GovernanceInsightQueryConfig) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.ChartType = all.ChartType
 	o.ComparisonShift = *all.ComparisonShift
 	o.DefaultValue = all.DefaultValue
-	o.Directionality = all.Directionality
+	if all.Directionality != nil && !all.Directionality.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Directionality = all.Directionality
+	}
 	o.EffectiveTimeWindowDays = *all.EffectiveTimeWindowDays
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

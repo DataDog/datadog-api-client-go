@@ -10,43 +10,43 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// GovernanceControlData A governance control resource.
-type GovernanceControlData struct {
-	// The attributes of a governance control.
-	Attributes GovernanceControlAttributes `json:"attributes"`
-	// The detection type that uniquely identifies the control.
+// GovernanceControlDetectionData A governance control detection resource.
+type GovernanceControlDetectionData struct {
+	// The attributes of a governance control detection.
+	Attributes GovernanceControlDetectionAttributes `json:"attributes"`
+	// The unique identifier of the detection.
 	Id string `json:"id"`
-	// JSON:API resource type for a governance control.
-	Type GovernanceControlResourceType `json:"type"`
+	// Governance control detection resource type.
+	Type GovernanceControlDetectionResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewGovernanceControlData instantiates a new GovernanceControlData object.
+// NewGovernanceControlDetectionData instantiates a new GovernanceControlDetectionData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGovernanceControlData(attributes GovernanceControlAttributes, id string, typeVar GovernanceControlResourceType) *GovernanceControlData {
-	this := GovernanceControlData{}
+func NewGovernanceControlDetectionData(attributes GovernanceControlDetectionAttributes, id string, typeVar GovernanceControlDetectionResourceType) *GovernanceControlDetectionData {
+	this := GovernanceControlDetectionData{}
 	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewGovernanceControlDataWithDefaults instantiates a new GovernanceControlData object.
+// NewGovernanceControlDetectionDataWithDefaults instantiates a new GovernanceControlDetectionData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewGovernanceControlDataWithDefaults() *GovernanceControlData {
-	this := GovernanceControlData{}
+func NewGovernanceControlDetectionDataWithDefaults() *GovernanceControlDetectionData {
+	this := GovernanceControlDetectionData{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *GovernanceControlData) GetAttributes() GovernanceControlAttributes {
+func (o *GovernanceControlDetectionData) GetAttributes() GovernanceControlDetectionAttributes {
 	if o == nil {
-		var ret GovernanceControlAttributes
+		var ret GovernanceControlDetectionAttributes
 		return ret
 	}
 	return o.Attributes
@@ -54,7 +54,7 @@ func (o *GovernanceControlData) GetAttributes() GovernanceControlAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *GovernanceControlData) GetAttributesOk() (*GovernanceControlAttributes, bool) {
+func (o *GovernanceControlDetectionData) GetAttributesOk() (*GovernanceControlDetectionAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,12 +62,12 @@ func (o *GovernanceControlData) GetAttributesOk() (*GovernanceControlAttributes,
 }
 
 // SetAttributes sets field value.
-func (o *GovernanceControlData) SetAttributes(v GovernanceControlAttributes) {
+func (o *GovernanceControlDetectionData) SetAttributes(v GovernanceControlDetectionAttributes) {
 	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *GovernanceControlData) GetId() string {
+func (o *GovernanceControlDetectionData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -77,7 +77,7 @@ func (o *GovernanceControlData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *GovernanceControlData) GetIdOk() (*string, bool) {
+func (o *GovernanceControlDetectionData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,14 +85,14 @@ func (o *GovernanceControlData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *GovernanceControlData) SetId(v string) {
+func (o *GovernanceControlDetectionData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *GovernanceControlData) GetType() GovernanceControlResourceType {
+func (o *GovernanceControlDetectionData) GetType() GovernanceControlDetectionResourceType {
 	if o == nil {
-		var ret GovernanceControlResourceType
+		var ret GovernanceControlDetectionResourceType
 		return ret
 	}
 	return o.Type
@@ -100,7 +100,7 @@ func (o *GovernanceControlData) GetType() GovernanceControlResourceType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *GovernanceControlData) GetTypeOk() (*GovernanceControlResourceType, bool) {
+func (o *GovernanceControlDetectionData) GetTypeOk() (*GovernanceControlDetectionResourceType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,12 +108,12 @@ func (o *GovernanceControlData) GetTypeOk() (*GovernanceControlResourceType, boo
 }
 
 // SetType sets field value.
-func (o *GovernanceControlData) SetType(v GovernanceControlResourceType) {
+func (o *GovernanceControlDetectionData) SetType(v GovernanceControlDetectionResourceType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o GovernanceControlData) MarshalJSON() ([]byte, error) {
+func (o GovernanceControlDetectionData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -129,11 +129,11 @@ func (o GovernanceControlData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *GovernanceControlData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *GovernanceControlDetectionData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *GovernanceControlAttributes   `json:"attributes"`
-		Id         *string                        `json:"id"`
-		Type       *GovernanceControlResourceType `json:"type"`
+		Attributes *GovernanceControlDetectionAttributes   `json:"attributes"`
+		Id         *string                                 `json:"id"`
+		Type       *GovernanceControlDetectionResourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

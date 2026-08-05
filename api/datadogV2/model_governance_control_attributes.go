@@ -27,10 +27,6 @@ type GovernanceControlAttributes struct {
 	DetectionFrequency string `json:"detection_frequency"`
 	// A free-form map of parameter names to their configured values.
 	DetectionParameters map[string]interface{} `json:"detection_parameters"`
-	// The detection type that uniquely identifies the control.
-	DetectionType string `json:"detection_type"`
-	// The feature flags that gate the control.
-	FeatureFlags []string `json:"feature_flags"`
 	// The insight slugs associated with the control.
 	Insights []string `json:"insights"`
 	// The time of the most recent detection for the control. `null` when there are no detections.
@@ -45,34 +41,18 @@ type GovernanceControlAttributes struct {
 	Mitigations []GovernanceControlMitigationDefinition `json:"mitigations"`
 	// Human-readable name of the control.
 	Name string `json:"name"`
-	// Guidance on the next steps to remediate detections for the control.
-	NextSteps string `json:"next_steps"`
-	// The configured notification frequency for the control. Empty when not configured.
-	NotificationFrequency string `json:"notification_frequency"`
-	// A free-form map of parameter names to their configured values.
-	NotificationParameters map[string]interface{} `json:"notification_parameters"`
-	// The configured notification type for the control. Empty when not configured.
-	NotificationType string `json:"notification_type"`
 	// The priority of the control, such as `High`.
 	Priority string `json:"priority"`
 	// The product the control belongs to.
 	Product string `json:"product"`
-	// The release status of the control, such as `prod` or `beta`.
-	ReleaseStatus string `json:"release_status"`
 	// The type of resource the control evaluates.
 	ResourceType string `json:"resource_type"`
 	// The human-readable name of the resource type.
 	ResourceTypeDisplayName string `json:"resource_type_display_name"`
 	// An array of parameter definitions.
 	SupportedDetectionParameters []GovernanceControlParameterDefinition `json:"supported_detection_parameters"`
-	// An array of parameter definitions.
-	SupportedNotificationParameters []GovernanceControlParameterDefinition `json:"supported_notification_parameters"`
-	// A short description of the remediation task for the control.
-	Task string `json:"task"`
 	// The control type, such as `Proactive` or `Detection`.
 	Type string `json:"type"`
-	// The usage concern the control addresses, such as `Security` or `Cost Optimization`.
-	UsageConcern string `json:"usage_concern"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -82,7 +62,7 @@ type GovernanceControlAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGovernanceControlAttributes(activeDetectionsCount int64, category string, createdAt time.Time, createdBy string, description string, detectionFrequency string, detectionParameters map[string]interface{}, detectionType string, featureFlags []string, insights []string, lastDetectionAt datadog.NullableTime, mitigatedDetectionsCount int64, mitigationParameters map[string]interface{}, mitigationType string, mitigations []GovernanceControlMitigationDefinition, name string, nextSteps string, notificationFrequency string, notificationParameters map[string]interface{}, notificationType string, priority string, product string, releaseStatus string, resourceType string, resourceTypeDisplayName string, supportedDetectionParameters []GovernanceControlParameterDefinition, supportedNotificationParameters []GovernanceControlParameterDefinition, task string, typeVar string, usageConcern string) *GovernanceControlAttributes {
+func NewGovernanceControlAttributes(activeDetectionsCount int64, category string, createdAt time.Time, createdBy string, description string, detectionFrequency string, detectionParameters map[string]interface{}, insights []string, lastDetectionAt datadog.NullableTime, mitigatedDetectionsCount int64, mitigationParameters map[string]interface{}, mitigationType string, mitigations []GovernanceControlMitigationDefinition, name string, priority string, product string, resourceType string, resourceTypeDisplayName string, supportedDetectionParameters []GovernanceControlParameterDefinition, typeVar string) *GovernanceControlAttributes {
 	this := GovernanceControlAttributes{}
 	this.ActiveDetectionsCount = activeDetectionsCount
 	this.Category = category
@@ -91,8 +71,6 @@ func NewGovernanceControlAttributes(activeDetectionsCount int64, category string
 	this.Description = description
 	this.DetectionFrequency = detectionFrequency
 	this.DetectionParameters = detectionParameters
-	this.DetectionType = detectionType
-	this.FeatureFlags = featureFlags
 	this.Insights = insights
 	this.LastDetectionAt = lastDetectionAt
 	this.MitigatedDetectionsCount = mitigatedDetectionsCount
@@ -100,20 +78,12 @@ func NewGovernanceControlAttributes(activeDetectionsCount int64, category string
 	this.MitigationType = mitigationType
 	this.Mitigations = mitigations
 	this.Name = name
-	this.NextSteps = nextSteps
-	this.NotificationFrequency = notificationFrequency
-	this.NotificationParameters = notificationParameters
-	this.NotificationType = notificationType
 	this.Priority = priority
 	this.Product = product
-	this.ReleaseStatus = releaseStatus
 	this.ResourceType = resourceType
 	this.ResourceTypeDisplayName = resourceTypeDisplayName
 	this.SupportedDetectionParameters = supportedDetectionParameters
-	this.SupportedNotificationParameters = supportedNotificationParameters
-	this.Task = task
 	this.Type = typeVar
-	this.UsageConcern = usageConcern
 	return &this
 }
 
@@ -286,52 +256,6 @@ func (o *GovernanceControlAttributes) SetDetectionParameters(v map[string]interf
 	o.DetectionParameters = v
 }
 
-// GetDetectionType returns the DetectionType field value.
-func (o *GovernanceControlAttributes) GetDetectionType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.DetectionType
-}
-
-// GetDetectionTypeOk returns a tuple with the DetectionType field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlAttributes) GetDetectionTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DetectionType, true
-}
-
-// SetDetectionType sets field value.
-func (o *GovernanceControlAttributes) SetDetectionType(v string) {
-	o.DetectionType = v
-}
-
-// GetFeatureFlags returns the FeatureFlags field value.
-func (o *GovernanceControlAttributes) GetFeatureFlags() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.FeatureFlags
-}
-
-// GetFeatureFlagsOk returns a tuple with the FeatureFlags field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlAttributes) GetFeatureFlagsOk() (*[]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.FeatureFlags, true
-}
-
-// SetFeatureFlags sets field value.
-func (o *GovernanceControlAttributes) SetFeatureFlags(v []string) {
-	o.FeatureFlags = v
-}
-
 // GetInsights returns the Insights field value.
 func (o *GovernanceControlAttributes) GetInsights() []string {
 	if o == nil {
@@ -495,98 +419,6 @@ func (o *GovernanceControlAttributes) SetName(v string) {
 	o.Name = v
 }
 
-// GetNextSteps returns the NextSteps field value.
-func (o *GovernanceControlAttributes) GetNextSteps() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.NextSteps
-}
-
-// GetNextStepsOk returns a tuple with the NextSteps field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlAttributes) GetNextStepsOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.NextSteps, true
-}
-
-// SetNextSteps sets field value.
-func (o *GovernanceControlAttributes) SetNextSteps(v string) {
-	o.NextSteps = v
-}
-
-// GetNotificationFrequency returns the NotificationFrequency field value.
-func (o *GovernanceControlAttributes) GetNotificationFrequency() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.NotificationFrequency
-}
-
-// GetNotificationFrequencyOk returns a tuple with the NotificationFrequency field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlAttributes) GetNotificationFrequencyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.NotificationFrequency, true
-}
-
-// SetNotificationFrequency sets field value.
-func (o *GovernanceControlAttributes) SetNotificationFrequency(v string) {
-	o.NotificationFrequency = v
-}
-
-// GetNotificationParameters returns the NotificationParameters field value.
-func (o *GovernanceControlAttributes) GetNotificationParameters() map[string]interface{} {
-	if o == nil {
-		var ret map[string]interface{}
-		return ret
-	}
-	return o.NotificationParameters
-}
-
-// GetNotificationParametersOk returns a tuple with the NotificationParameters field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlAttributes) GetNotificationParametersOk() (*map[string]interface{}, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.NotificationParameters, true
-}
-
-// SetNotificationParameters sets field value.
-func (o *GovernanceControlAttributes) SetNotificationParameters(v map[string]interface{}) {
-	o.NotificationParameters = v
-}
-
-// GetNotificationType returns the NotificationType field value.
-func (o *GovernanceControlAttributes) GetNotificationType() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.NotificationType
-}
-
-// GetNotificationTypeOk returns a tuple with the NotificationType field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlAttributes) GetNotificationTypeOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.NotificationType, true
-}
-
-// SetNotificationType sets field value.
-func (o *GovernanceControlAttributes) SetNotificationType(v string) {
-	o.NotificationType = v
-}
-
 // GetPriority returns the Priority field value.
 func (o *GovernanceControlAttributes) GetPriority() string {
 	if o == nil {
@@ -631,29 +463,6 @@ func (o *GovernanceControlAttributes) GetProductOk() (*string, bool) {
 // SetProduct sets field value.
 func (o *GovernanceControlAttributes) SetProduct(v string) {
 	o.Product = v
-}
-
-// GetReleaseStatus returns the ReleaseStatus field value.
-func (o *GovernanceControlAttributes) GetReleaseStatus() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.ReleaseStatus
-}
-
-// GetReleaseStatusOk returns a tuple with the ReleaseStatus field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlAttributes) GetReleaseStatusOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ReleaseStatus, true
-}
-
-// SetReleaseStatus sets field value.
-func (o *GovernanceControlAttributes) SetReleaseStatus(v string) {
-	o.ReleaseStatus = v
 }
 
 // GetResourceType returns the ResourceType field value.
@@ -725,52 +534,6 @@ func (o *GovernanceControlAttributes) SetSupportedDetectionParameters(v []Govern
 	o.SupportedDetectionParameters = v
 }
 
-// GetSupportedNotificationParameters returns the SupportedNotificationParameters field value.
-func (o *GovernanceControlAttributes) GetSupportedNotificationParameters() []GovernanceControlParameterDefinition {
-	if o == nil {
-		var ret []GovernanceControlParameterDefinition
-		return ret
-	}
-	return o.SupportedNotificationParameters
-}
-
-// GetSupportedNotificationParametersOk returns a tuple with the SupportedNotificationParameters field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlAttributes) GetSupportedNotificationParametersOk() (*[]GovernanceControlParameterDefinition, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.SupportedNotificationParameters, true
-}
-
-// SetSupportedNotificationParameters sets field value.
-func (o *GovernanceControlAttributes) SetSupportedNotificationParameters(v []GovernanceControlParameterDefinition) {
-	o.SupportedNotificationParameters = v
-}
-
-// GetTask returns the Task field value.
-func (o *GovernanceControlAttributes) GetTask() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.Task
-}
-
-// GetTaskOk returns a tuple with the Task field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlAttributes) GetTaskOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Task, true
-}
-
-// SetTask sets field value.
-func (o *GovernanceControlAttributes) SetTask(v string) {
-	o.Task = v
-}
-
 // GetType returns the Type field value.
 func (o *GovernanceControlAttributes) GetType() string {
 	if o == nil {
@@ -794,29 +557,6 @@ func (o *GovernanceControlAttributes) SetType(v string) {
 	o.Type = v
 }
 
-// GetUsageConcern returns the UsageConcern field value.
-func (o *GovernanceControlAttributes) GetUsageConcern() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.UsageConcern
-}
-
-// GetUsageConcernOk returns a tuple with the UsageConcern field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlAttributes) GetUsageConcernOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.UsageConcern, true
-}
-
-// SetUsageConcern sets field value.
-func (o *GovernanceControlAttributes) SetUsageConcern(v string) {
-	o.UsageConcern = v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o GovernanceControlAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -834,8 +574,6 @@ func (o GovernanceControlAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["description"] = o.Description
 	toSerialize["detection_frequency"] = o.DetectionFrequency
 	toSerialize["detection_parameters"] = o.DetectionParameters
-	toSerialize["detection_type"] = o.DetectionType
-	toSerialize["feature_flags"] = o.FeatureFlags
 	toSerialize["insights"] = o.Insights
 	toSerialize["last_detection_at"] = o.LastDetectionAt.Get()
 	toSerialize["mitigated_detections_count"] = o.MitigatedDetectionsCount
@@ -843,20 +581,12 @@ func (o GovernanceControlAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["mitigation_type"] = o.MitigationType
 	toSerialize["mitigations"] = o.Mitigations
 	toSerialize["name"] = o.Name
-	toSerialize["next_steps"] = o.NextSteps
-	toSerialize["notification_frequency"] = o.NotificationFrequency
-	toSerialize["notification_parameters"] = o.NotificationParameters
-	toSerialize["notification_type"] = o.NotificationType
 	toSerialize["priority"] = o.Priority
 	toSerialize["product"] = o.Product
-	toSerialize["release_status"] = o.ReleaseStatus
 	toSerialize["resource_type"] = o.ResourceType
 	toSerialize["resource_type_display_name"] = o.ResourceTypeDisplayName
 	toSerialize["supported_detection_parameters"] = o.SupportedDetectionParameters
-	toSerialize["supported_notification_parameters"] = o.SupportedNotificationParameters
-	toSerialize["task"] = o.Task
 	toSerialize["type"] = o.Type
-	toSerialize["usage_concern"] = o.UsageConcern
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -867,36 +597,26 @@ func (o GovernanceControlAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GovernanceControlAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ActiveDetectionsCount           *int64                                   `json:"active_detections_count"`
-		Category                        *string                                  `json:"category"`
-		CreatedAt                       *time.Time                               `json:"created_at"`
-		CreatedBy                       *string                                  `json:"created_by"`
-		Description                     *string                                  `json:"description"`
-		DetectionFrequency              *string                                  `json:"detection_frequency"`
-		DetectionParameters             *map[string]interface{}                  `json:"detection_parameters"`
-		DetectionType                   *string                                  `json:"detection_type"`
-		FeatureFlags                    *[]string                                `json:"feature_flags"`
-		Insights                        *[]string                                `json:"insights"`
-		LastDetectionAt                 datadog.NullableTime                     `json:"last_detection_at"`
-		MitigatedDetectionsCount        *int64                                   `json:"mitigated_detections_count"`
-		MitigationParameters            *map[string]interface{}                  `json:"mitigation_parameters"`
-		MitigationType                  *string                                  `json:"mitigation_type"`
-		Mitigations                     *[]GovernanceControlMitigationDefinition `json:"mitigations"`
-		Name                            *string                                  `json:"name"`
-		NextSteps                       *string                                  `json:"next_steps"`
-		NotificationFrequency           *string                                  `json:"notification_frequency"`
-		NotificationParameters          *map[string]interface{}                  `json:"notification_parameters"`
-		NotificationType                *string                                  `json:"notification_type"`
-		Priority                        *string                                  `json:"priority"`
-		Product                         *string                                  `json:"product"`
-		ReleaseStatus                   *string                                  `json:"release_status"`
-		ResourceType                    *string                                  `json:"resource_type"`
-		ResourceTypeDisplayName         *string                                  `json:"resource_type_display_name"`
-		SupportedDetectionParameters    *[]GovernanceControlParameterDefinition  `json:"supported_detection_parameters"`
-		SupportedNotificationParameters *[]GovernanceControlParameterDefinition  `json:"supported_notification_parameters"`
-		Task                            *string                                  `json:"task"`
-		Type                            *string                                  `json:"type"`
-		UsageConcern                    *string                                  `json:"usage_concern"`
+		ActiveDetectionsCount        *int64                                   `json:"active_detections_count"`
+		Category                     *string                                  `json:"category"`
+		CreatedAt                    *time.Time                               `json:"created_at"`
+		CreatedBy                    *string                                  `json:"created_by"`
+		Description                  *string                                  `json:"description"`
+		DetectionFrequency           *string                                  `json:"detection_frequency"`
+		DetectionParameters          *map[string]interface{}                  `json:"detection_parameters"`
+		Insights                     *[]string                                `json:"insights"`
+		LastDetectionAt              datadog.NullableTime                     `json:"last_detection_at"`
+		MitigatedDetectionsCount     *int64                                   `json:"mitigated_detections_count"`
+		MitigationParameters         *map[string]interface{}                  `json:"mitigation_parameters"`
+		MitigationType               *string                                  `json:"mitigation_type"`
+		Mitigations                  *[]GovernanceControlMitigationDefinition `json:"mitigations"`
+		Name                         *string                                  `json:"name"`
+		Priority                     *string                                  `json:"priority"`
+		Product                      *string                                  `json:"product"`
+		ResourceType                 *string                                  `json:"resource_type"`
+		ResourceTypeDisplayName      *string                                  `json:"resource_type_display_name"`
+		SupportedDetectionParameters *[]GovernanceControlParameterDefinition  `json:"supported_detection_parameters"`
+		Type                         *string                                  `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -922,12 +642,6 @@ func (o *GovernanceControlAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	if all.DetectionParameters == nil {
 		return fmt.Errorf("required field detection_parameters missing")
 	}
-	if all.DetectionType == nil {
-		return fmt.Errorf("required field detection_type missing")
-	}
-	if all.FeatureFlags == nil {
-		return fmt.Errorf("required field feature_flags missing")
-	}
 	if all.Insights == nil {
 		return fmt.Errorf("required field insights missing")
 	}
@@ -949,26 +663,11 @@ func (o *GovernanceControlAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
 	}
-	if all.NextSteps == nil {
-		return fmt.Errorf("required field next_steps missing")
-	}
-	if all.NotificationFrequency == nil {
-		return fmt.Errorf("required field notification_frequency missing")
-	}
-	if all.NotificationParameters == nil {
-		return fmt.Errorf("required field notification_parameters missing")
-	}
-	if all.NotificationType == nil {
-		return fmt.Errorf("required field notification_type missing")
-	}
 	if all.Priority == nil {
 		return fmt.Errorf("required field priority missing")
 	}
 	if all.Product == nil {
 		return fmt.Errorf("required field product missing")
-	}
-	if all.ReleaseStatus == nil {
-		return fmt.Errorf("required field release_status missing")
 	}
 	if all.ResourceType == nil {
 		return fmt.Errorf("required field resource_type missing")
@@ -979,21 +678,12 @@ func (o *GovernanceControlAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	if all.SupportedDetectionParameters == nil {
 		return fmt.Errorf("required field supported_detection_parameters missing")
 	}
-	if all.SupportedNotificationParameters == nil {
-		return fmt.Errorf("required field supported_notification_parameters missing")
-	}
-	if all.Task == nil {
-		return fmt.Errorf("required field task missing")
-	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
-	if all.UsageConcern == nil {
-		return fmt.Errorf("required field usage_concern missing")
-	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"active_detections_count", "category", "created_at", "created_by", "description", "detection_frequency", "detection_parameters", "detection_type", "feature_flags", "insights", "last_detection_at", "mitigated_detections_count", "mitigation_parameters", "mitigation_type", "mitigations", "name", "next_steps", "notification_frequency", "notification_parameters", "notification_type", "priority", "product", "release_status", "resource_type", "resource_type_display_name", "supported_detection_parameters", "supported_notification_parameters", "task", "type", "usage_concern"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"active_detections_count", "category", "created_at", "created_by", "description", "detection_frequency", "detection_parameters", "insights", "last_detection_at", "mitigated_detections_count", "mitigation_parameters", "mitigation_type", "mitigations", "name", "priority", "product", "resource_type", "resource_type_display_name", "supported_detection_parameters", "type"})
 	} else {
 		return err
 	}
@@ -1004,8 +694,6 @@ func (o *GovernanceControlAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Description = *all.Description
 	o.DetectionFrequency = *all.DetectionFrequency
 	o.DetectionParameters = *all.DetectionParameters
-	o.DetectionType = *all.DetectionType
-	o.FeatureFlags = *all.FeatureFlags
 	o.Insights = *all.Insights
 	o.LastDetectionAt = all.LastDetectionAt
 	o.MitigatedDetectionsCount = *all.MitigatedDetectionsCount
@@ -1013,20 +701,12 @@ func (o *GovernanceControlAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.MitigationType = *all.MitigationType
 	o.Mitigations = *all.Mitigations
 	o.Name = *all.Name
-	o.NextSteps = *all.NextSteps
-	o.NotificationFrequency = *all.NotificationFrequency
-	o.NotificationParameters = *all.NotificationParameters
-	o.NotificationType = *all.NotificationType
 	o.Priority = *all.Priority
 	o.Product = *all.Product
-	o.ReleaseStatus = *all.ReleaseStatus
 	o.ResourceType = *all.ResourceType
 	o.ResourceTypeDisplayName = *all.ResourceTypeDisplayName
 	o.SupportedDetectionParameters = *all.SupportedDetectionParameters
-	o.SupportedNotificationParameters = *all.SupportedNotificationParameters
-	o.Task = *all.Task
 	o.Type = *all.Type
-	o.UsageConcern = *all.UsageConcern
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

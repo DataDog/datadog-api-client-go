@@ -10,37 +10,26 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// GovernanceInsightAttributes The attributes of a governance insight.
+// GovernanceInsightAttributes The attributes of a governance insight. Exactly one of `metric_query`, `event_query`,
+// `usage_query`, `audit_query`, or `percentage_query` is populated, depending on the data
+// source the insight is computed from; the rest are `null`.
 type GovernanceInsightAttributes struct {
 	// An audit log query used to compute an insight value.
-	AuditQuery GovernanceInsightAuditQuery `json:"audit_query"`
-	// The best practice associated with an insight. Populated with the first active best practice
-	// matched to the insight; `null` when no best practice is attached.
-	BestPractice GovernanceBestPracticeDefinition `json:"best_practice"`
-	// A relative link to the product surface where the insight can be acted upon.
-	DeepLink string `json:"deep_link"`
+	AuditQuery *GovernanceInsightAuditQuery `json:"audit_query,omitempty"`
 	// A human-readable description of what the insight measures.
 	Description string `json:"description"`
 	// Human-readable name of the insight.
 	DisplayName string `json:"display_name"`
 	// An event query used to compute an insight value.
-	EventQuery GovernanceInsightEventQuery `json:"event_query"`
+	EventQuery *GovernanceInsightEventQuery `json:"event_query,omitempty"`
 	// A metric query used to compute an insight value.
-	MetricQuery GovernanceInsightMetricQuery `json:"metric_query"`
-	// The value of the insight over the previous comparison window. `null` when values were
-	// not requested or could not be computed.
-	OldValue datadog.NullableFloat64 `json:"old_value"`
+	MetricQuery *GovernanceInsightMetricQuery `json:"metric_query,omitempty"`
 	// A percentage query that computes an insight value as a ratio of two metric queries.
-	PercentageQuery GovernanceInsightPercentageQuery `json:"percentage_query"`
+	PercentageQuery *GovernanceInsightPercentageQuery `json:"percentage_query,omitempty"`
 	// The product the insight belongs to.
 	Product string `json:"product"`
-	// Query execution context that allows the frontend to execute insight queries directly.
+	// Query execution context for running insight queries directly.
 	QueryConfig *GovernanceInsightQueryConfig `json:"query_config,omitempty"`
-	// The relative order in which the insight should be displayed.
-	SortOrder *int64 `json:"sort_order,omitempty"`
-	// The state of the insight. A `critical` insight receives extra UI treatment to draw
-	// attention to it.
-	State string `json:"state"`
 	// The sub-product the insight belongs to, if any.
 	SubProduct string `json:"sub_product"`
 	// The time range the insight value is computed over, if applicable.
@@ -48,9 +37,7 @@ type GovernanceInsightAttributes struct {
 	// The unit that the insight's value is measured in.
 	UnitName string `json:"unit_name"`
 	// A usage query used to compute an insight value.
-	UsageQuery GovernanceInsightUsageQuery `json:"usage_query"`
-	// The current value of the insight. `null` when values were not requested or could not be computed.
-	Value datadog.NullableFloat64 `json:"value"`
+	UsageQuery *GovernanceInsightUsageQuery `json:"usage_query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -60,24 +47,14 @@ type GovernanceInsightAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGovernanceInsightAttributes(auditQuery GovernanceInsightAuditQuery, bestPractice GovernanceBestPracticeDefinition, deepLink string, description string, displayName string, eventQuery GovernanceInsightEventQuery, metricQuery GovernanceInsightMetricQuery, oldValue datadog.NullableFloat64, percentageQuery GovernanceInsightPercentageQuery, product string, state string, subProduct string, timeRange string, unitName string, usageQuery GovernanceInsightUsageQuery, value datadog.NullableFloat64) *GovernanceInsightAttributes {
+func NewGovernanceInsightAttributes(description string, displayName string, product string, subProduct string, timeRange string, unitName string) *GovernanceInsightAttributes {
 	this := GovernanceInsightAttributes{}
-	this.AuditQuery = auditQuery
-	this.BestPractice = bestPractice
-	this.DeepLink = deepLink
 	this.Description = description
 	this.DisplayName = displayName
-	this.EventQuery = eventQuery
-	this.MetricQuery = metricQuery
-	this.OldValue = oldValue
-	this.PercentageQuery = percentageQuery
 	this.Product = product
-	this.State = state
 	this.SubProduct = subProduct
 	this.TimeRange = timeRange
 	this.UnitName = unitName
-	this.UsageQuery = usageQuery
-	this.Value = value
 	return &this
 }
 
@@ -89,73 +66,32 @@ func NewGovernanceInsightAttributesWithDefaults() *GovernanceInsightAttributes {
 	return &this
 }
 
-// GetAuditQuery returns the AuditQuery field value.
+// GetAuditQuery returns the AuditQuery field value if set, zero value otherwise.
 func (o *GovernanceInsightAttributes) GetAuditQuery() GovernanceInsightAuditQuery {
-	if o == nil {
+	if o == nil || o.AuditQuery == nil {
 		var ret GovernanceInsightAuditQuery
 		return ret
 	}
-	return o.AuditQuery
+	return *o.AuditQuery
 }
 
-// GetAuditQueryOk returns a tuple with the AuditQuery field value
+// GetAuditQueryOk returns a tuple with the AuditQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GovernanceInsightAttributes) GetAuditQueryOk() (*GovernanceInsightAuditQuery, bool) {
-	if o == nil {
+	if o == nil || o.AuditQuery == nil {
 		return nil, false
 	}
-	return &o.AuditQuery, true
+	return o.AuditQuery, true
 }
 
-// SetAuditQuery sets field value.
+// HasAuditQuery returns a boolean if a field has been set.
+func (o *GovernanceInsightAttributes) HasAuditQuery() bool {
+	return o != nil && o.AuditQuery != nil
+}
+
+// SetAuditQuery gets a reference to the given GovernanceInsightAuditQuery and assigns it to the AuditQuery field.
 func (o *GovernanceInsightAttributes) SetAuditQuery(v GovernanceInsightAuditQuery) {
-	o.AuditQuery = v
-}
-
-// GetBestPractice returns the BestPractice field value.
-func (o *GovernanceInsightAttributes) GetBestPractice() GovernanceBestPracticeDefinition {
-	if o == nil {
-		var ret GovernanceBestPracticeDefinition
-		return ret
-	}
-	return o.BestPractice
-}
-
-// GetBestPracticeOk returns a tuple with the BestPractice field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceInsightAttributes) GetBestPracticeOk() (*GovernanceBestPracticeDefinition, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.BestPractice, true
-}
-
-// SetBestPractice sets field value.
-func (o *GovernanceInsightAttributes) SetBestPractice(v GovernanceBestPracticeDefinition) {
-	o.BestPractice = v
-}
-
-// GetDeepLink returns the DeepLink field value.
-func (o *GovernanceInsightAttributes) GetDeepLink() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.DeepLink
-}
-
-// GetDeepLinkOk returns a tuple with the DeepLink field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceInsightAttributes) GetDeepLinkOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DeepLink, true
-}
-
-// SetDeepLink sets field value.
-func (o *GovernanceInsightAttributes) SetDeepLink(v string) {
-	o.DeepLink = v
+	o.AuditQuery = &v
 }
 
 // GetDescription returns the Description field value.
@@ -204,98 +140,88 @@ func (o *GovernanceInsightAttributes) SetDisplayName(v string) {
 	o.DisplayName = v
 }
 
-// GetEventQuery returns the EventQuery field value.
+// GetEventQuery returns the EventQuery field value if set, zero value otherwise.
 func (o *GovernanceInsightAttributes) GetEventQuery() GovernanceInsightEventQuery {
-	if o == nil {
+	if o == nil || o.EventQuery == nil {
 		var ret GovernanceInsightEventQuery
 		return ret
 	}
-	return o.EventQuery
+	return *o.EventQuery
 }
 
-// GetEventQueryOk returns a tuple with the EventQuery field value
+// GetEventQueryOk returns a tuple with the EventQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GovernanceInsightAttributes) GetEventQueryOk() (*GovernanceInsightEventQuery, bool) {
-	if o == nil {
+	if o == nil || o.EventQuery == nil {
 		return nil, false
 	}
-	return &o.EventQuery, true
+	return o.EventQuery, true
 }
 
-// SetEventQuery sets field value.
+// HasEventQuery returns a boolean if a field has been set.
+func (o *GovernanceInsightAttributes) HasEventQuery() bool {
+	return o != nil && o.EventQuery != nil
+}
+
+// SetEventQuery gets a reference to the given GovernanceInsightEventQuery and assigns it to the EventQuery field.
 func (o *GovernanceInsightAttributes) SetEventQuery(v GovernanceInsightEventQuery) {
-	o.EventQuery = v
+	o.EventQuery = &v
 }
 
-// GetMetricQuery returns the MetricQuery field value.
+// GetMetricQuery returns the MetricQuery field value if set, zero value otherwise.
 func (o *GovernanceInsightAttributes) GetMetricQuery() GovernanceInsightMetricQuery {
-	if o == nil {
+	if o == nil || o.MetricQuery == nil {
 		var ret GovernanceInsightMetricQuery
 		return ret
 	}
-	return o.MetricQuery
+	return *o.MetricQuery
 }
 
-// GetMetricQueryOk returns a tuple with the MetricQuery field value
+// GetMetricQueryOk returns a tuple with the MetricQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GovernanceInsightAttributes) GetMetricQueryOk() (*GovernanceInsightMetricQuery, bool) {
-	if o == nil {
+	if o == nil || o.MetricQuery == nil {
 		return nil, false
 	}
-	return &o.MetricQuery, true
+	return o.MetricQuery, true
 }
 
-// SetMetricQuery sets field value.
+// HasMetricQuery returns a boolean if a field has been set.
+func (o *GovernanceInsightAttributes) HasMetricQuery() bool {
+	return o != nil && o.MetricQuery != nil
+}
+
+// SetMetricQuery gets a reference to the given GovernanceInsightMetricQuery and assigns it to the MetricQuery field.
 func (o *GovernanceInsightAttributes) SetMetricQuery(v GovernanceInsightMetricQuery) {
-	o.MetricQuery = v
+	o.MetricQuery = &v
 }
 
-// GetOldValue returns the OldValue field value.
-// If the value is explicit nil, the zero value for float64 will be returned.
-func (o *GovernanceInsightAttributes) GetOldValue() float64 {
-	if o == nil || o.OldValue.Get() == nil {
-		var ret float64
-		return ret
-	}
-	return *o.OldValue.Get()
-}
-
-// GetOldValueOk returns a tuple with the OldValue field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *GovernanceInsightAttributes) GetOldValueOk() (*float64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.OldValue.Get(), o.OldValue.IsSet()
-}
-
-// SetOldValue sets field value.
-func (o *GovernanceInsightAttributes) SetOldValue(v float64) {
-	o.OldValue.Set(&v)
-}
-
-// GetPercentageQuery returns the PercentageQuery field value.
+// GetPercentageQuery returns the PercentageQuery field value if set, zero value otherwise.
 func (o *GovernanceInsightAttributes) GetPercentageQuery() GovernanceInsightPercentageQuery {
-	if o == nil {
+	if o == nil || o.PercentageQuery == nil {
 		var ret GovernanceInsightPercentageQuery
 		return ret
 	}
-	return o.PercentageQuery
+	return *o.PercentageQuery
 }
 
-// GetPercentageQueryOk returns a tuple with the PercentageQuery field value
+// GetPercentageQueryOk returns a tuple with the PercentageQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GovernanceInsightAttributes) GetPercentageQueryOk() (*GovernanceInsightPercentageQuery, bool) {
-	if o == nil {
+	if o == nil || o.PercentageQuery == nil {
 		return nil, false
 	}
-	return &o.PercentageQuery, true
+	return o.PercentageQuery, true
 }
 
-// SetPercentageQuery sets field value.
+// HasPercentageQuery returns a boolean if a field has been set.
+func (o *GovernanceInsightAttributes) HasPercentageQuery() bool {
+	return o != nil && o.PercentageQuery != nil
+}
+
+// SetPercentageQuery gets a reference to the given GovernanceInsightPercentageQuery and assigns it to the PercentageQuery field.
 func (o *GovernanceInsightAttributes) SetPercentageQuery(v GovernanceInsightPercentageQuery) {
-	o.PercentageQuery = v
+	o.PercentageQuery = &v
 }
 
 // GetProduct returns the Product field value.
@@ -347,57 +273,6 @@ func (o *GovernanceInsightAttributes) HasQueryConfig() bool {
 // SetQueryConfig gets a reference to the given GovernanceInsightQueryConfig and assigns it to the QueryConfig field.
 func (o *GovernanceInsightAttributes) SetQueryConfig(v GovernanceInsightQueryConfig) {
 	o.QueryConfig = &v
-}
-
-// GetSortOrder returns the SortOrder field value if set, zero value otherwise.
-func (o *GovernanceInsightAttributes) GetSortOrder() int64 {
-	if o == nil || o.SortOrder == nil {
-		var ret int64
-		return ret
-	}
-	return *o.SortOrder
-}
-
-// GetSortOrderOk returns a tuple with the SortOrder field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GovernanceInsightAttributes) GetSortOrderOk() (*int64, bool) {
-	if o == nil || o.SortOrder == nil {
-		return nil, false
-	}
-	return o.SortOrder, true
-}
-
-// HasSortOrder returns a boolean if a field has been set.
-func (o *GovernanceInsightAttributes) HasSortOrder() bool {
-	return o != nil && o.SortOrder != nil
-}
-
-// SetSortOrder gets a reference to the given int64 and assigns it to the SortOrder field.
-func (o *GovernanceInsightAttributes) SetSortOrder(v int64) {
-	o.SortOrder = &v
-}
-
-// GetState returns the State field value.
-func (o *GovernanceInsightAttributes) GetState() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.State
-}
-
-// GetStateOk returns a tuple with the State field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceInsightAttributes) GetStateOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.State, true
-}
-
-// SetState sets field value.
-func (o *GovernanceInsightAttributes) SetState(v string) {
-	o.State = v
 }
 
 // GetSubProduct returns the SubProduct field value.
@@ -469,52 +344,32 @@ func (o *GovernanceInsightAttributes) SetUnitName(v string) {
 	o.UnitName = v
 }
 
-// GetUsageQuery returns the UsageQuery field value.
+// GetUsageQuery returns the UsageQuery field value if set, zero value otherwise.
 func (o *GovernanceInsightAttributes) GetUsageQuery() GovernanceInsightUsageQuery {
-	if o == nil {
+	if o == nil || o.UsageQuery == nil {
 		var ret GovernanceInsightUsageQuery
 		return ret
 	}
-	return o.UsageQuery
+	return *o.UsageQuery
 }
 
-// GetUsageQueryOk returns a tuple with the UsageQuery field value
+// GetUsageQueryOk returns a tuple with the UsageQuery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *GovernanceInsightAttributes) GetUsageQueryOk() (*GovernanceInsightUsageQuery, bool) {
-	if o == nil {
+	if o == nil || o.UsageQuery == nil {
 		return nil, false
 	}
-	return &o.UsageQuery, true
+	return o.UsageQuery, true
 }
 
-// SetUsageQuery sets field value.
+// HasUsageQuery returns a boolean if a field has been set.
+func (o *GovernanceInsightAttributes) HasUsageQuery() bool {
+	return o != nil && o.UsageQuery != nil
+}
+
+// SetUsageQuery gets a reference to the given GovernanceInsightUsageQuery and assigns it to the UsageQuery field.
 func (o *GovernanceInsightAttributes) SetUsageQuery(v GovernanceInsightUsageQuery) {
-	o.UsageQuery = v
-}
-
-// GetValue returns the Value field value.
-// If the value is explicit nil, the zero value for float64 will be returned.
-func (o *GovernanceInsightAttributes) GetValue() float64 {
-	if o == nil || o.Value.Get() == nil {
-		var ret float64
-		return ret
-	}
-	return *o.Value.Get()
-}
-
-// GetValueOk returns a tuple with the Value field value
-// and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *GovernanceInsightAttributes) GetValueOk() (*float64, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return o.Value.Get(), o.Value.IsSet()
-}
-
-// SetValue sets field value.
-func (o *GovernanceInsightAttributes) SetValue(v float64) {
-	o.Value.Set(&v)
+	o.UsageQuery = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -523,28 +378,30 @@ func (o GovernanceInsightAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["audit_query"] = o.AuditQuery
-	toSerialize["best_practice"] = o.BestPractice
-	toSerialize["deep_link"] = o.DeepLink
+	if o.AuditQuery != nil {
+		toSerialize["audit_query"] = o.AuditQuery
+	}
 	toSerialize["description"] = o.Description
 	toSerialize["display_name"] = o.DisplayName
-	toSerialize["event_query"] = o.EventQuery
-	toSerialize["metric_query"] = o.MetricQuery
-	toSerialize["old_value"] = o.OldValue.Get()
-	toSerialize["percentage_query"] = o.PercentageQuery
+	if o.EventQuery != nil {
+		toSerialize["event_query"] = o.EventQuery
+	}
+	if o.MetricQuery != nil {
+		toSerialize["metric_query"] = o.MetricQuery
+	}
+	if o.PercentageQuery != nil {
+		toSerialize["percentage_query"] = o.PercentageQuery
+	}
 	toSerialize["product"] = o.Product
 	if o.QueryConfig != nil {
 		toSerialize["query_config"] = o.QueryConfig
 	}
-	if o.SortOrder != nil {
-		toSerialize["sort_order"] = o.SortOrder
-	}
-	toSerialize["state"] = o.State
 	toSerialize["sub_product"] = o.SubProduct
 	toSerialize["time_range"] = o.TimeRange
 	toSerialize["unit_name"] = o.UnitName
-	toSerialize["usage_query"] = o.UsageQuery
-	toSerialize["value"] = o.Value.Get()
+	if o.UsageQuery != nil {
+		toSerialize["usage_query"] = o.UsageQuery
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -555,36 +412,21 @@ func (o GovernanceInsightAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GovernanceInsightAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AuditQuery      *GovernanceInsightAuditQuery      `json:"audit_query"`
-		BestPractice    *GovernanceBestPracticeDefinition `json:"best_practice"`
-		DeepLink        *string                           `json:"deep_link"`
+		AuditQuery      *GovernanceInsightAuditQuery      `json:"audit_query,omitempty"`
 		Description     *string                           `json:"description"`
 		DisplayName     *string                           `json:"display_name"`
-		EventQuery      *GovernanceInsightEventQuery      `json:"event_query"`
-		MetricQuery     *GovernanceInsightMetricQuery     `json:"metric_query"`
-		OldValue        datadog.NullableFloat64           `json:"old_value"`
-		PercentageQuery *GovernanceInsightPercentageQuery `json:"percentage_query"`
+		EventQuery      *GovernanceInsightEventQuery      `json:"event_query,omitempty"`
+		MetricQuery     *GovernanceInsightMetricQuery     `json:"metric_query,omitempty"`
+		PercentageQuery *GovernanceInsightPercentageQuery `json:"percentage_query,omitempty"`
 		Product         *string                           `json:"product"`
 		QueryConfig     *GovernanceInsightQueryConfig     `json:"query_config,omitempty"`
-		SortOrder       *int64                            `json:"sort_order,omitempty"`
-		State           *string                           `json:"state"`
 		SubProduct      *string                           `json:"sub_product"`
 		TimeRange       *string                           `json:"time_range"`
 		UnitName        *string                           `json:"unit_name"`
-		UsageQuery      *GovernanceInsightUsageQuery      `json:"usage_query"`
-		Value           datadog.NullableFloat64           `json:"value"`
+		UsageQuery      *GovernanceInsightUsageQuery      `json:"usage_query,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.AuditQuery == nil {
-		return fmt.Errorf("required field audit_query missing")
-	}
-	if all.BestPractice == nil {
-		return fmt.Errorf("required field best_practice missing")
-	}
-	if all.DeepLink == nil {
-		return fmt.Errorf("required field deep_link missing")
 	}
 	if all.Description == nil {
 		return fmt.Errorf("required field description missing")
@@ -592,23 +434,8 @@ func (o *GovernanceInsightAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	if all.DisplayName == nil {
 		return fmt.Errorf("required field display_name missing")
 	}
-	if all.EventQuery == nil {
-		return fmt.Errorf("required field event_query missing")
-	}
-	if all.MetricQuery == nil {
-		return fmt.Errorf("required field metric_query missing")
-	}
-	if !all.OldValue.IsSet() {
-		return fmt.Errorf("required field old_value missing")
-	}
-	if all.PercentageQuery == nil {
-		return fmt.Errorf("required field percentage_query missing")
-	}
 	if all.Product == nil {
 		return fmt.Errorf("required field product missing")
-	}
-	if all.State == nil {
-		return fmt.Errorf("required field state missing")
 	}
 	if all.SubProduct == nil {
 		return fmt.Errorf("required field sub_product missing")
@@ -619,59 +446,44 @@ func (o *GovernanceInsightAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	if all.UnitName == nil {
 		return fmt.Errorf("required field unit_name missing")
 	}
-	if all.UsageQuery == nil {
-		return fmt.Errorf("required field usage_query missing")
-	}
-	if !all.Value.IsSet() {
-		return fmt.Errorf("required field value missing")
-	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"audit_query", "best_practice", "deep_link", "description", "display_name", "event_query", "metric_query", "old_value", "percentage_query", "product", "query_config", "sort_order", "state", "sub_product", "time_range", "unit_name", "usage_query", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"audit_query", "description", "display_name", "event_query", "metric_query", "percentage_query", "product", "query_config", "sub_product", "time_range", "unit_name", "usage_query"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.AuditQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.AuditQuery != nil && all.AuditQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.AuditQuery = *all.AuditQuery
-	if all.BestPractice.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.BestPractice = *all.BestPractice
-	o.DeepLink = *all.DeepLink
+	o.AuditQuery = all.AuditQuery
 	o.Description = *all.Description
 	o.DisplayName = *all.DisplayName
-	if all.EventQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.EventQuery != nil && all.EventQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.EventQuery = *all.EventQuery
-	if all.MetricQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	o.EventQuery = all.EventQuery
+	if all.MetricQuery != nil && all.MetricQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.MetricQuery = *all.MetricQuery
-	o.OldValue = all.OldValue
-	if all.PercentageQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	o.MetricQuery = all.MetricQuery
+	if all.PercentageQuery != nil && all.PercentageQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.PercentageQuery = *all.PercentageQuery
+	o.PercentageQuery = all.PercentageQuery
 	o.Product = *all.Product
 	if all.QueryConfig != nil && all.QueryConfig.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.QueryConfig = all.QueryConfig
-	o.SortOrder = all.SortOrder
-	o.State = *all.State
 	o.SubProduct = *all.SubProduct
 	o.TimeRange = *all.TimeRange
 	o.UnitName = *all.UnitName
-	if all.UsageQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.UsageQuery != nil && all.UsageQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.UsageQuery = *all.UsageQuery
-	o.Value = all.Value
+	o.UsageQuery = all.UsageQuery
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

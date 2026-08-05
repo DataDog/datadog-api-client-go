@@ -18,8 +18,6 @@ type GovernanceControlParameterDefinition struct {
 	Description string `json:"description"`
 	// The human-readable name of the parameter.
 	DisplayName string `json:"display_name"`
-	// Whether the parameter is hidden from the UI.
-	Hidden bool `json:"hidden"`
 	// The machine-readable name of the parameter.
 	Name string `json:"name"`
 	// Whether the parameter must be provided.
@@ -37,12 +35,11 @@ type GovernanceControlParameterDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGovernanceControlParameterDefinition(defaultValue interface{}, description string, displayName string, hidden bool, name string, required bool, supportedValues []GovernanceControlSupportedValue, typeVar string) *GovernanceControlParameterDefinition {
+func NewGovernanceControlParameterDefinition(defaultValue interface{}, description string, displayName string, name string, required bool, supportedValues []GovernanceControlSupportedValue, typeVar string) *GovernanceControlParameterDefinition {
 	this := GovernanceControlParameterDefinition{}
 	this.DefaultValue = defaultValue
 	this.Description = description
 	this.DisplayName = displayName
-	this.Hidden = hidden
 	this.Name = name
 	this.Required = required
 	this.SupportedValues = supportedValues
@@ -125,29 +122,6 @@ func (o *GovernanceControlParameterDefinition) GetDisplayNameOk() (*string, bool
 // SetDisplayName sets field value.
 func (o *GovernanceControlParameterDefinition) SetDisplayName(v string) {
 	o.DisplayName = v
-}
-
-// GetHidden returns the Hidden field value.
-func (o *GovernanceControlParameterDefinition) GetHidden() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-	return o.Hidden
-}
-
-// GetHiddenOk returns a tuple with the Hidden field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlParameterDefinition) GetHiddenOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Hidden, true
-}
-
-// SetHidden sets field value.
-func (o *GovernanceControlParameterDefinition) SetHidden(v bool) {
-	o.Hidden = v
 }
 
 // GetName returns the Name field value.
@@ -251,7 +225,6 @@ func (o GovernanceControlParameterDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize["default_value"] = o.DefaultValue
 	toSerialize["description"] = o.Description
 	toSerialize["display_name"] = o.DisplayName
-	toSerialize["hidden"] = o.Hidden
 	toSerialize["name"] = o.Name
 	toSerialize["required"] = o.Required
 	toSerialize["supported_values"] = o.SupportedValues
@@ -269,7 +242,6 @@ func (o *GovernanceControlParameterDefinition) UnmarshalJSON(bytes []byte) (err 
 		DefaultValue    *interface{}                       `json:"default_value"`
 		Description     *string                            `json:"description"`
 		DisplayName     *string                            `json:"display_name"`
-		Hidden          *bool                              `json:"hidden"`
 		Name            *string                            `json:"name"`
 		Required        *bool                              `json:"required"`
 		SupportedValues *[]GovernanceControlSupportedValue `json:"supported_values"`
@@ -287,9 +259,6 @@ func (o *GovernanceControlParameterDefinition) UnmarshalJSON(bytes []byte) (err 
 	if all.DisplayName == nil {
 		return fmt.Errorf("required field display_name missing")
 	}
-	if all.Hidden == nil {
-		return fmt.Errorf("required field hidden missing")
-	}
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
 	}
@@ -304,14 +273,13 @@ func (o *GovernanceControlParameterDefinition) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"default_value", "description", "display_name", "hidden", "name", "required", "supported_values", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"default_value", "description", "display_name", "name", "required", "supported_values", "type"})
 	} else {
 		return err
 	}
 	o.DefaultValue = *all.DefaultValue
 	o.Description = *all.Description
 	o.DisplayName = *all.DisplayName
-	o.Hidden = *all.Hidden
 	o.Name = *all.Name
 	o.Required = *all.Required
 	o.SupportedValues = *all.SupportedValues
