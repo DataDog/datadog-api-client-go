@@ -14,7 +14,7 @@ import (
 type CaseTriggerWrapper struct {
 	// Trigger a workflow from a Case. For automatic triggering a handle must be configured and the workflow must be published.
 	CaseTrigger CaseTrigger `json:"caseTrigger"`
-	// A list of steps that run first after a trigger fires.
+	// Names of existing workflow steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
