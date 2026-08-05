@@ -14,7 +14,7 @@ type FleetDeploymentConfigureV2DryRunAttributes struct {
 	DryRun *FleetDeploymentConfigureV2DryRunResult `json:"dry_run,omitempty"`
 	// Query used to filter and select target hosts for the deployment.
 	Query *string `json:"query,omitempty"`
-	// Total number of hosts targeted by the dry run.
+	// Total number of hosts targeted by this deployment.
 	TotalHosts *int64 `json:"total_hosts,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

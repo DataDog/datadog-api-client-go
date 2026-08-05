@@ -18,7 +18,7 @@ type FleetScheduleV2RecurrenceRule struct {
 	Interval *int64 `json:"interval,omitempty"`
 	// Duration of the maintenance window in minutes.
 	MaintenanceWindowDuration *int64 `json:"maintenance_window_duration,omitempty"`
-	// Start time of the maintenance window in 24-hour clock format (HH:MM).
+	// Start time of the maintenance window in 24-hour clock format (HHMM).
 	// Deployments are triggered at this time on the specified days.
 	StartMaintenanceWindow *string `json:"start_maintenance_window,omitempty"`
 	// Timezone in IANA Time Zone Database format.

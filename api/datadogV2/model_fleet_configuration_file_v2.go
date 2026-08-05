@@ -18,8 +18,6 @@ type FleetConfigurationFileV2 struct {
 	FilePath *string `json:"file_path,omitempty"`
 	// Name of the configuration file.
 	Filename *string `json:"filename,omitempty"`
-	// Hash of the configuration file as applied by fleet management.
-	FleetHash *string `json:"fleet_hash,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -154,34 +152,6 @@ func (o *FleetConfigurationFileV2) SetFilename(v string) {
 	o.Filename = &v
 }
 
-// GetFleetHash returns the FleetHash field value if set, zero value otherwise.
-func (o *FleetConfigurationFileV2) GetFleetHash() string {
-	if o == nil || o.FleetHash == nil {
-		var ret string
-		return ret
-	}
-	return *o.FleetHash
-}
-
-// GetFleetHashOk returns a tuple with the FleetHash field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FleetConfigurationFileV2) GetFleetHashOk() (*string, bool) {
-	if o == nil || o.FleetHash == nil {
-		return nil, false
-	}
-	return o.FleetHash, true
-}
-
-// HasFleetHash returns a boolean if a field has been set.
-func (o *FleetConfigurationFileV2) HasFleetHash() bool {
-	return o != nil && o.FleetHash != nil
-}
-
-// SetFleetHash gets a reference to the given string and assigns it to the FleetHash field.
-func (o *FleetConfigurationFileV2) SetFleetHash(v string) {
-	o.FleetHash = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o FleetConfigurationFileV2) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -200,9 +170,6 @@ func (o FleetConfigurationFileV2) MarshalJSON() ([]byte, error) {
 	if o.Filename != nil {
 		toSerialize["filename"] = o.Filename
 	}
-	if o.FleetHash != nil {
-		toSerialize["fleet_hash"] = o.FleetHash
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -217,14 +184,13 @@ func (o *FleetConfigurationFileV2) UnmarshalJSON(bytes []byte) (err error) {
 		FileContent *string `json:"file_content,omitempty"`
 		FilePath    *string `json:"file_path,omitempty"`
 		Filename    *string `json:"filename,omitempty"`
-		FleetHash   *string `json:"fleet_hash,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"agent_hash", "file_content", "file_path", "filename", "fleet_hash"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"agent_hash", "file_content", "file_path", "filename"})
 	} else {
 		return err
 	}
@@ -232,7 +198,6 @@ func (o *FleetConfigurationFileV2) UnmarshalJSON(bytes []byte) (err error) {
 	o.FileContent = all.FileContent
 	o.FilePath = all.FilePath
 	o.Filename = all.Filename
-	o.FleetHash = all.FleetHash
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

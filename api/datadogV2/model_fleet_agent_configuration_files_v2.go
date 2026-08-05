@@ -14,16 +14,12 @@ type FleetAgentConfigurationFilesV2 struct {
 	AgentConfiguration *FleetConfigurationLayer `json:"agent_configuration,omitempty"`
 	// Configuration information organized by layers.
 	ApplicationMonitoringConfiguration *FleetConfigurationLayer `json:"application_monitoring_configuration,omitempty"`
-	// The unique agent key identifier.
-	DatadogAgentKey *string `json:"datadog_agent_key,omitempty"`
 	// Configuration for OpenTelemetry collectors associated with the agent. Present only when the agent has associated OpenTelemetry collectors.
 	OtelCollectorsConfiguration []FleetOtelCollectorConfigurationV2 `json:"otel_collectors_configuration,omitempty"`
 	// Configuration information organized by layers.
 	SecurityAgentConfiguration *FleetConfigurationLayer `json:"security_agent_configuration,omitempty"`
 	// Configuration information organized by layers.
 	SystemProbeConfiguration *FleetConfigurationLayer `json:"system_probe_configuration,omitempty"`
-	// The configuration version.
-	Version *string `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -100,34 +96,6 @@ func (o *FleetAgentConfigurationFilesV2) HasApplicationMonitoringConfiguration()
 // SetApplicationMonitoringConfiguration gets a reference to the given FleetConfigurationLayer and assigns it to the ApplicationMonitoringConfiguration field.
 func (o *FleetAgentConfigurationFilesV2) SetApplicationMonitoringConfiguration(v FleetConfigurationLayer) {
 	o.ApplicationMonitoringConfiguration = &v
-}
-
-// GetDatadogAgentKey returns the DatadogAgentKey field value if set, zero value otherwise.
-func (o *FleetAgentConfigurationFilesV2) GetDatadogAgentKey() string {
-	if o == nil || o.DatadogAgentKey == nil {
-		var ret string
-		return ret
-	}
-	return *o.DatadogAgentKey
-}
-
-// GetDatadogAgentKeyOk returns a tuple with the DatadogAgentKey field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FleetAgentConfigurationFilesV2) GetDatadogAgentKeyOk() (*string, bool) {
-	if o == nil || o.DatadogAgentKey == nil {
-		return nil, false
-	}
-	return o.DatadogAgentKey, true
-}
-
-// HasDatadogAgentKey returns a boolean if a field has been set.
-func (o *FleetAgentConfigurationFilesV2) HasDatadogAgentKey() bool {
-	return o != nil && o.DatadogAgentKey != nil
-}
-
-// SetDatadogAgentKey gets a reference to the given string and assigns it to the DatadogAgentKey field.
-func (o *FleetAgentConfigurationFilesV2) SetDatadogAgentKey(v string) {
-	o.DatadogAgentKey = &v
 }
 
 // GetOtelCollectorsConfiguration returns the OtelCollectorsConfiguration field value if set, zero value otherwise.
@@ -214,34 +182,6 @@ func (o *FleetAgentConfigurationFilesV2) SetSystemProbeConfiguration(v FleetConf
 	o.SystemProbeConfiguration = &v
 }
 
-// GetVersion returns the Version field value if set, zero value otherwise.
-func (o *FleetAgentConfigurationFilesV2) GetVersion() string {
-	if o == nil || o.Version == nil {
-		var ret string
-		return ret
-	}
-	return *o.Version
-}
-
-// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FleetAgentConfigurationFilesV2) GetVersionOk() (*string, bool) {
-	if o == nil || o.Version == nil {
-		return nil, false
-	}
-	return o.Version, true
-}
-
-// HasVersion returns a boolean if a field has been set.
-func (o *FleetAgentConfigurationFilesV2) HasVersion() bool {
-	return o != nil && o.Version != nil
-}
-
-// SetVersion gets a reference to the given string and assigns it to the Version field.
-func (o *FleetAgentConfigurationFilesV2) SetVersion(v string) {
-	o.Version = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o FleetAgentConfigurationFilesV2) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -254,9 +194,6 @@ func (o FleetAgentConfigurationFilesV2) MarshalJSON() ([]byte, error) {
 	if o.ApplicationMonitoringConfiguration != nil {
 		toSerialize["application_monitoring_configuration"] = o.ApplicationMonitoringConfiguration
 	}
-	if o.DatadogAgentKey != nil {
-		toSerialize["datadog_agent_key"] = o.DatadogAgentKey
-	}
 	if o.OtelCollectorsConfiguration != nil {
 		toSerialize["otel_collectors_configuration"] = o.OtelCollectorsConfiguration
 	}
@@ -265,9 +202,6 @@ func (o FleetAgentConfigurationFilesV2) MarshalJSON() ([]byte, error) {
 	}
 	if o.SystemProbeConfiguration != nil {
 		toSerialize["system_probe_configuration"] = o.SystemProbeConfiguration
-	}
-	if o.Version != nil {
-		toSerialize["version"] = o.Version
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -281,18 +215,16 @@ func (o *FleetAgentConfigurationFilesV2) UnmarshalJSON(bytes []byte) (err error)
 	all := struct {
 		AgentConfiguration                 *FleetConfigurationLayer            `json:"agent_configuration,omitempty"`
 		ApplicationMonitoringConfiguration *FleetConfigurationLayer            `json:"application_monitoring_configuration,omitempty"`
-		DatadogAgentKey                    *string                             `json:"datadog_agent_key,omitempty"`
 		OtelCollectorsConfiguration        []FleetOtelCollectorConfigurationV2 `json:"otel_collectors_configuration,omitempty"`
 		SecurityAgentConfiguration         *FleetConfigurationLayer            `json:"security_agent_configuration,omitempty"`
 		SystemProbeConfiguration           *FleetConfigurationLayer            `json:"system_probe_configuration,omitempty"`
-		Version                            *string                             `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"agent_configuration", "application_monitoring_configuration", "datadog_agent_key", "otel_collectors_configuration", "security_agent_configuration", "system_probe_configuration", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"agent_configuration", "application_monitoring_configuration", "otel_collectors_configuration", "security_agent_configuration", "system_probe_configuration"})
 	} else {
 		return err
 	}
@@ -306,7 +238,6 @@ func (o *FleetAgentConfigurationFilesV2) UnmarshalJSON(bytes []byte) (err error)
 		hasInvalidField = true
 	}
 	o.ApplicationMonitoringConfiguration = all.ApplicationMonitoringConfiguration
-	o.DatadogAgentKey = all.DatadogAgentKey
 	o.OtelCollectorsConfiguration = all.OtelCollectorsConfiguration
 	if all.SecurityAgentConfiguration != nil && all.SecurityAgentConfiguration.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
@@ -316,7 +247,6 @@ func (o *FleetAgentConfigurationFilesV2) UnmarshalJSON(bytes []byte) (err error)
 		hasInvalidField = true
 	}
 	o.SystemProbeConfiguration = all.SystemProbeConfiguration
-	o.Version = all.Version
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
