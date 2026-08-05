@@ -16,8 +16,6 @@ type FleetConfigurationLayer struct {
 	EnvConfiguration *string `json:"env_configuration,omitempty"`
 	// Configuration from files.
 	FileConfiguration *string `json:"file_configuration,omitempty"`
-	// Parsed configuration output.
-	ParsedConfiguration *string `json:"parsed_configuration,omitempty"`
 	// Remote configuration settings.
 	RemoteConfiguration *string `json:"remote_configuration,omitempty"`
 	// Runtime configuration.
@@ -128,34 +126,6 @@ func (o *FleetConfigurationLayer) SetFileConfiguration(v string) {
 	o.FileConfiguration = &v
 }
 
-// GetParsedConfiguration returns the ParsedConfiguration field value if set, zero value otherwise.
-func (o *FleetConfigurationLayer) GetParsedConfiguration() string {
-	if o == nil || o.ParsedConfiguration == nil {
-		var ret string
-		return ret
-	}
-	return *o.ParsedConfiguration
-}
-
-// GetParsedConfigurationOk returns a tuple with the ParsedConfiguration field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FleetConfigurationLayer) GetParsedConfigurationOk() (*string, bool) {
-	if o == nil || o.ParsedConfiguration == nil {
-		return nil, false
-	}
-	return o.ParsedConfiguration, true
-}
-
-// HasParsedConfiguration returns a boolean if a field has been set.
-func (o *FleetConfigurationLayer) HasParsedConfiguration() bool {
-	return o != nil && o.ParsedConfiguration != nil
-}
-
-// SetParsedConfiguration gets a reference to the given string and assigns it to the ParsedConfiguration field.
-func (o *FleetConfigurationLayer) SetParsedConfiguration(v string) {
-	o.ParsedConfiguration = &v
-}
-
 // GetRemoteConfiguration returns the RemoteConfiguration field value if set, zero value otherwise.
 func (o *FleetConfigurationLayer) GetRemoteConfiguration() string {
 	if o == nil || o.RemoteConfiguration == nil {
@@ -227,9 +197,6 @@ func (o FleetConfigurationLayer) MarshalJSON() ([]byte, error) {
 	if o.FileConfiguration != nil {
 		toSerialize["file_configuration"] = o.FileConfiguration
 	}
-	if o.ParsedConfiguration != nil {
-		toSerialize["parsed_configuration"] = o.ParsedConfiguration
-	}
 	if o.RemoteConfiguration != nil {
 		toSerialize["remote_configuration"] = o.RemoteConfiguration
 	}
@@ -249,7 +216,6 @@ func (o *FleetConfigurationLayer) UnmarshalJSON(bytes []byte) (err error) {
 		CompiledConfiguration *string `json:"compiled_configuration,omitempty"`
 		EnvConfiguration      *string `json:"env_configuration,omitempty"`
 		FileConfiguration     *string `json:"file_configuration,omitempty"`
-		ParsedConfiguration   *string `json:"parsed_configuration,omitempty"`
 		RemoteConfiguration   *string `json:"remote_configuration,omitempty"`
 		RuntimeConfiguration  *string `json:"runtime_configuration,omitempty"`
 	}{}
@@ -258,14 +224,13 @@ func (o *FleetConfigurationLayer) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"compiled_configuration", "env_configuration", "file_configuration", "parsed_configuration", "remote_configuration", "runtime_configuration"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"compiled_configuration", "env_configuration", "file_configuration", "remote_configuration", "runtime_configuration"})
 	} else {
 		return err
 	}
 	o.CompiledConfiguration = all.CompiledConfiguration
 	o.EnvConfiguration = all.EnvConfiguration
 	o.FileConfiguration = all.FileConfiguration
-	o.ParsedConfiguration = all.ParsedConfiguration
 	o.RemoteConfiguration = all.RemoteConfiguration
 	o.RuntimeConfiguration = all.RuntimeConfiguration
 

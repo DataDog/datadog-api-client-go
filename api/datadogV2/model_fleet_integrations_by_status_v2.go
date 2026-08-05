@@ -10,16 +10,10 @@ import (
 
 // FleetIntegrationsByStatusV2 Integrations organized by their status.
 type FleetIntegrationsByStatusV2 struct {
-	// The Kubernetes cluster name, if the agent runs in a cluster.
-	ClusterName *string `json:"cluster_name,omitempty"`
 	// Configuration files for integrations.
 	ConfigurationFiles []FleetConfigurationFileV2 `json:"configuration_files,omitempty"`
-	// The unique agent key identifier.
-	DatadogAgentKey *string `json:"datadog_agent_key,omitempty"`
 	// Integrations with errors.
 	ErrorIntegrations []FleetIntegrationDetailsV2 `json:"error_integrations,omitempty"`
-	// The Kubernetes cluster key, if the agent runs in a cluster.
-	K8sClusterKey *string `json:"k8s_cluster_key,omitempty"`
 	// Detected but not configured integrations.
 	MissingIntegrations []FleetDetectedIntegration `json:"missing_integrations,omitempty"`
 	// Integrations with warnings.
@@ -46,34 +40,6 @@ func NewFleetIntegrationsByStatusV2() *FleetIntegrationsByStatusV2 {
 func NewFleetIntegrationsByStatusV2WithDefaults() *FleetIntegrationsByStatusV2 {
 	this := FleetIntegrationsByStatusV2{}
 	return &this
-}
-
-// GetClusterName returns the ClusterName field value if set, zero value otherwise.
-func (o *FleetIntegrationsByStatusV2) GetClusterName() string {
-	if o == nil || o.ClusterName == nil {
-		var ret string
-		return ret
-	}
-	return *o.ClusterName
-}
-
-// GetClusterNameOk returns a tuple with the ClusterName field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FleetIntegrationsByStatusV2) GetClusterNameOk() (*string, bool) {
-	if o == nil || o.ClusterName == nil {
-		return nil, false
-	}
-	return o.ClusterName, true
-}
-
-// HasClusterName returns a boolean if a field has been set.
-func (o *FleetIntegrationsByStatusV2) HasClusterName() bool {
-	return o != nil && o.ClusterName != nil
-}
-
-// SetClusterName gets a reference to the given string and assigns it to the ClusterName field.
-func (o *FleetIntegrationsByStatusV2) SetClusterName(v string) {
-	o.ClusterName = &v
 }
 
 // GetConfigurationFiles returns the ConfigurationFiles field value if set, zero value otherwise.
@@ -104,34 +70,6 @@ func (o *FleetIntegrationsByStatusV2) SetConfigurationFiles(v []FleetConfigurati
 	o.ConfigurationFiles = v
 }
 
-// GetDatadogAgentKey returns the DatadogAgentKey field value if set, zero value otherwise.
-func (o *FleetIntegrationsByStatusV2) GetDatadogAgentKey() string {
-	if o == nil || o.DatadogAgentKey == nil {
-		var ret string
-		return ret
-	}
-	return *o.DatadogAgentKey
-}
-
-// GetDatadogAgentKeyOk returns a tuple with the DatadogAgentKey field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FleetIntegrationsByStatusV2) GetDatadogAgentKeyOk() (*string, bool) {
-	if o == nil || o.DatadogAgentKey == nil {
-		return nil, false
-	}
-	return o.DatadogAgentKey, true
-}
-
-// HasDatadogAgentKey returns a boolean if a field has been set.
-func (o *FleetIntegrationsByStatusV2) HasDatadogAgentKey() bool {
-	return o != nil && o.DatadogAgentKey != nil
-}
-
-// SetDatadogAgentKey gets a reference to the given string and assigns it to the DatadogAgentKey field.
-func (o *FleetIntegrationsByStatusV2) SetDatadogAgentKey(v string) {
-	o.DatadogAgentKey = &v
-}
-
 // GetErrorIntegrations returns the ErrorIntegrations field value if set, zero value otherwise.
 func (o *FleetIntegrationsByStatusV2) GetErrorIntegrations() []FleetIntegrationDetailsV2 {
 	if o == nil || o.ErrorIntegrations == nil {
@@ -158,34 +96,6 @@ func (o *FleetIntegrationsByStatusV2) HasErrorIntegrations() bool {
 // SetErrorIntegrations gets a reference to the given []FleetIntegrationDetailsV2 and assigns it to the ErrorIntegrations field.
 func (o *FleetIntegrationsByStatusV2) SetErrorIntegrations(v []FleetIntegrationDetailsV2) {
 	o.ErrorIntegrations = v
-}
-
-// GetK8sClusterKey returns the K8sClusterKey field value if set, zero value otherwise.
-func (o *FleetIntegrationsByStatusV2) GetK8sClusterKey() string {
-	if o == nil || o.K8sClusterKey == nil {
-		var ret string
-		return ret
-	}
-	return *o.K8sClusterKey
-}
-
-// GetK8sClusterKeyOk returns a tuple with the K8sClusterKey field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FleetIntegrationsByStatusV2) GetK8sClusterKeyOk() (*string, bool) {
-	if o == nil || o.K8sClusterKey == nil {
-		return nil, false
-	}
-	return o.K8sClusterKey, true
-}
-
-// HasK8sClusterKey returns a boolean if a field has been set.
-func (o *FleetIntegrationsByStatusV2) HasK8sClusterKey() bool {
-	return o != nil && o.K8sClusterKey != nil
-}
-
-// SetK8sClusterKey gets a reference to the given string and assigns it to the K8sClusterKey field.
-func (o *FleetIntegrationsByStatusV2) SetK8sClusterKey(v string) {
-	o.K8sClusterKey = &v
 }
 
 // GetMissingIntegrations returns the MissingIntegrations field value if set, zero value otherwise.
@@ -278,20 +188,11 @@ func (o FleetIntegrationsByStatusV2) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.ClusterName != nil {
-		toSerialize["cluster_name"] = o.ClusterName
-	}
 	if o.ConfigurationFiles != nil {
 		toSerialize["configuration_files"] = o.ConfigurationFiles
 	}
-	if o.DatadogAgentKey != nil {
-		toSerialize["datadog_agent_key"] = o.DatadogAgentKey
-	}
 	if o.ErrorIntegrations != nil {
 		toSerialize["error_integrations"] = o.ErrorIntegrations
-	}
-	if o.K8sClusterKey != nil {
-		toSerialize["k8s_cluster_key"] = o.K8sClusterKey
 	}
 	if o.MissingIntegrations != nil {
 		toSerialize["missing_integrations"] = o.MissingIntegrations
@@ -312,11 +213,8 @@ func (o FleetIntegrationsByStatusV2) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FleetIntegrationsByStatusV2) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ClusterName         *string                     `json:"cluster_name,omitempty"`
 		ConfigurationFiles  []FleetConfigurationFileV2  `json:"configuration_files,omitempty"`
-		DatadogAgentKey     *string                     `json:"datadog_agent_key,omitempty"`
 		ErrorIntegrations   []FleetIntegrationDetailsV2 `json:"error_integrations,omitempty"`
-		K8sClusterKey       *string                     `json:"k8s_cluster_key,omitempty"`
 		MissingIntegrations []FleetDetectedIntegration  `json:"missing_integrations,omitempty"`
 		WarningIntegrations []FleetIntegrationDetailsV2 `json:"warning_integrations,omitempty"`
 		WorkingIntegrations []FleetIntegrationDetailsV2 `json:"working_integrations,omitempty"`
@@ -326,15 +224,12 @@ func (o *FleetIntegrationsByStatusV2) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"cluster_name", "configuration_files", "datadog_agent_key", "error_integrations", "k8s_cluster_key", "missing_integrations", "warning_integrations", "working_integrations"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"configuration_files", "error_integrations", "missing_integrations", "warning_integrations", "working_integrations"})
 	} else {
 		return err
 	}
-	o.ClusterName = all.ClusterName
 	o.ConfigurationFiles = all.ConfigurationFiles
-	o.DatadogAgentKey = all.DatadogAgentKey
 	o.ErrorIntegrations = all.ErrorIntegrations
-	o.K8sClusterKey = all.K8sClusterKey
 	o.MissingIntegrations = all.MissingIntegrations
 	o.WarningIntegrations = all.WarningIntegrations
 	o.WorkingIntegrations = all.WorkingIntegrations

@@ -54,8 +54,6 @@ type FleetAgentV2Attributes struct {
 	OtelCollectorDeploymentTypes []string `json:"otel_collector_deployment_types,omitempty"`
 	// OpenTelemetry collector distributions associated with the agent.
 	OtelCollectorDistributions []string `json:"otel_collector_distributions,omitempty"`
-	// The primary OpenTelemetry collector version, if applicable.
-	OtelCollectorVersion *string `json:"otel_collector_version,omitempty"`
 	// All OpenTelemetry collector versions associated with the agent.
 	OtelCollectorVersions []string `json:"otel_collector_versions,omitempty"`
 	// OpenTelemetry resource attributes reported by the agent.
@@ -710,34 +708,6 @@ func (o *FleetAgentV2Attributes) SetOtelCollectorDistributions(v []string) {
 	o.OtelCollectorDistributions = v
 }
 
-// GetOtelCollectorVersion returns the OtelCollectorVersion field value if set, zero value otherwise.
-func (o *FleetAgentV2Attributes) GetOtelCollectorVersion() string {
-	if o == nil || o.OtelCollectorVersion == nil {
-		var ret string
-		return ret
-	}
-	return *o.OtelCollectorVersion
-}
-
-// GetOtelCollectorVersionOk returns a tuple with the OtelCollectorVersion field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FleetAgentV2Attributes) GetOtelCollectorVersionOk() (*string, bool) {
-	if o == nil || o.OtelCollectorVersion == nil {
-		return nil, false
-	}
-	return o.OtelCollectorVersion, true
-}
-
-// HasOtelCollectorVersion returns a boolean if a field has been set.
-func (o *FleetAgentV2Attributes) HasOtelCollectorVersion() bool {
-	return o != nil && o.OtelCollectorVersion != nil
-}
-
-// SetOtelCollectorVersion gets a reference to the given string and assigns it to the OtelCollectorVersion field.
-func (o *FleetAgentV2Attributes) SetOtelCollectorVersion(v string) {
-	o.OtelCollectorVersion = &v
-}
-
 // GetOtelCollectorVersions returns the OtelCollectorVersions field value if set, zero value otherwise.
 func (o *FleetAgentV2Attributes) GetOtelCollectorVersions() []string {
 	if o == nil || o.OtelCollectorVersions == nil {
@@ -1034,9 +1004,6 @@ func (o FleetAgentV2Attributes) MarshalJSON() ([]byte, error) {
 	if o.OtelCollectorDistributions != nil {
 		toSerialize["otel_collector_distributions"] = o.OtelCollectorDistributions
 	}
-	if o.OtelCollectorVersion != nil {
-		toSerialize["otel_collector_version"] = o.OtelCollectorVersion
-	}
 	if o.OtelCollectorVersions != nil {
 		toSerialize["otel_collector_versions"] = o.OtelCollectorVersions
 	}
@@ -1093,7 +1060,6 @@ func (o *FleetAgentV2Attributes) UnmarshalJSON(bytes []byte) (err error) {
 		Os                                 *string                                      `json:"os,omitempty"`
 		OtelCollectorDeploymentTypes       []string                                     `json:"otel_collector_deployment_types,omitempty"`
 		OtelCollectorDistributions         []string                                     `json:"otel_collector_distributions,omitempty"`
-		OtelCollectorVersion               *string                                      `json:"otel_collector_version,omitempty"`
 		OtelCollectorVersions              []string                                     `json:"otel_collector_versions,omitempty"`
 		OtelResourceAttributes             []string                                     `json:"otel_resource_attributes,omitempty"`
 		PodName                            *string                                      `json:"pod_name,omitempty"`
@@ -1108,7 +1074,7 @@ func (o *FleetAgentV2Attributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"agent_version", "api_key_name", "api_key_uuid", "cloud_provider", "cluster_name", "datadog_data_center", "ecs_fargate_cluster_name", "ecs_fargate_task_arn", "enabled_products", "env", "first_seen_at", "fleet_policies", "hostname", "instrumentation_error_counts", "instrumentation_status", "integrations", "ip_addresses", "is_single_step_instrumentation_enabled", "last_restart_at", "os", "otel_collector_deployment_types", "otel_collector_distributions", "otel_collector_version", "otel_collector_versions", "otel_resource_attributes", "pod_name", "remote_agent_management", "remote_config_status", "services", "tags", "team"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"agent_version", "api_key_name", "api_key_uuid", "cloud_provider", "cluster_name", "datadog_data_center", "ecs_fargate_cluster_name", "ecs_fargate_task_arn", "enabled_products", "env", "first_seen_at", "fleet_policies", "hostname", "instrumentation_error_counts", "instrumentation_status", "integrations", "ip_addresses", "is_single_step_instrumentation_enabled", "last_restart_at", "os", "otel_collector_deployment_types", "otel_collector_distributions", "otel_collector_versions", "otel_resource_attributes", "pod_name", "remote_agent_management", "remote_config_status", "services", "tags", "team"})
 	} else {
 		return err
 	}
@@ -1140,7 +1106,6 @@ func (o *FleetAgentV2Attributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Os = all.Os
 	o.OtelCollectorDeploymentTypes = all.OtelCollectorDeploymentTypes
 	o.OtelCollectorDistributions = all.OtelCollectorDistributions
-	o.OtelCollectorVersion = all.OtelCollectorVersion
 	o.OtelCollectorVersions = all.OtelCollectorVersions
 	o.OtelResourceAttributes = all.OtelResourceAttributes
 	o.PodName = all.PodName
