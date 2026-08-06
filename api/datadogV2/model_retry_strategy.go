@@ -15,19 +15,19 @@ type RetryStrategy struct {
 	// The definition of `RetryStrategyKind` object.
 	Kind RetryStrategyKind `json:"kind"`
 	// The definition of `RetryStrategyLinear` object.
-	Linear *RetryStrategyLinear `json:"linear,omitempty"`
+	Linear RetryStrategyLinear `json:"linear"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewRetryStrategy instantiates a new RetryStrategy object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRetryStrategy(kind RetryStrategyKind) *RetryStrategy {
+func NewRetryStrategy(kind RetryStrategyKind, linear RetryStrategyLinear) *RetryStrategy {
 	this := RetryStrategy{}
 	this.Kind = kind
+	this.Linear = linear
 	return &this
 }
 
@@ -62,32 +62,27 @@ func (o *RetryStrategy) SetKind(v RetryStrategyKind) {
 	o.Kind = v
 }
 
-// GetLinear returns the Linear field value if set, zero value otherwise.
+// GetLinear returns the Linear field value.
 func (o *RetryStrategy) GetLinear() RetryStrategyLinear {
-	if o == nil || o.Linear == nil {
+	if o == nil {
 		var ret RetryStrategyLinear
 		return ret
 	}
-	return *o.Linear
+	return o.Linear
 }
 
-// GetLinearOk returns a tuple with the Linear field value if set, nil otherwise
+// GetLinearOk returns a tuple with the Linear field value
 // and a boolean to check if the value has been set.
 func (o *RetryStrategy) GetLinearOk() (*RetryStrategyLinear, bool) {
-	if o == nil || o.Linear == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Linear, true
+	return &o.Linear, true
 }
 
-// HasLinear returns a boolean if a field has been set.
-func (o *RetryStrategy) HasLinear() bool {
-	return o != nil && o.Linear != nil
-}
-
-// SetLinear gets a reference to the given RetryStrategyLinear and assigns it to the Linear field.
+// SetLinear sets field value.
 func (o *RetryStrategy) SetLinear(v RetryStrategyLinear) {
-	o.Linear = &v
+	o.Linear = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -97,13 +92,7 @@ func (o RetryStrategy) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["kind"] = o.Kind
-	if o.Linear != nil {
-		toSerialize["linear"] = o.Linear
-	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
+	toSerialize["linear"] = o.Linear
 	return datadog.Marshal(toSerialize)
 }
 
@@ -111,7 +100,7 @@ func (o RetryStrategy) MarshalJSON() ([]byte, error) {
 func (o *RetryStrategy) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Kind   *RetryStrategyKind   `json:"kind"`
-		Linear *RetryStrategyLinear `json:"linear,omitempty"`
+		Linear *RetryStrategyLinear `json:"linear"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -119,11 +108,8 @@ func (o *RetryStrategy) UnmarshalJSON(bytes []byte) (err error) {
 	if all.Kind == nil {
 		return fmt.Errorf("required field kind missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"kind", "linear"})
-	} else {
-		return err
+	if all.Linear == nil {
+		return fmt.Errorf("required field linear missing")
 	}
 
 	hasInvalidField := false
@@ -132,14 +118,10 @@ func (o *RetryStrategy) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		o.Kind = *all.Kind
 	}
-	if all.Linear != nil && all.Linear.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Linear.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Linear = all.Linear
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
+	o.Linear = *all.Linear
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

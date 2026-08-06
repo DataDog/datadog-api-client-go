@@ -12,9 +12,9 @@ import (
 
 // WorkflowTriggerWrapper Schema for a Workflow-based trigger.
 type WorkflowTriggerWrapper struct {
-	// A list of steps that run first after a trigger fires.
+	// Names of existing workflow steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
-	// Trigger a workflow from the Datadog UI. Only required if no other trigger exists.
+	// Trigger a workflow from the Datadog UI. When present, this must be the workflow's only trigger.
 	WorkflowTrigger interface{} `json:"workflowTrigger"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

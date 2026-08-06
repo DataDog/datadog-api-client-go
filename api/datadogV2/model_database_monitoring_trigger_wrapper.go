@@ -14,7 +14,7 @@ import (
 type DatabaseMonitoringTriggerWrapper struct {
 	// Trigger a workflow from Database Monitoring.
 	DatabaseMonitoringTrigger interface{} `json:"databaseMonitoringTrigger"`
-	// A list of steps that run first after a trigger fires.
+	// Names of existing workflow steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
