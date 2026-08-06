@@ -433,6 +433,7 @@ func NewConfiguration() *Configuration {
 								"coral.oncall.datadoghq.com",
 								"teal.oncall.datadoghq.com",
 								"beige.oncall.datadoghq.eu",
+								"scarlet.oncall.datadoghq.com",
 							},
 						},
 					},
@@ -442,8 +443,17 @@ func NewConfiguration() *Configuration {
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"name": {
-							Description:  "Full site DNS name.",
-							DefaultValue: "api.datadoghq.com",
+							Description:  "The full DNS name of the On-Call paging endpoint.",
+							DefaultValue: "navy.oncall.datadoghq.com",
+							EnumValues: []string{
+								"lava.oncall.datadoghq.com",
+								"saffron.oncall.datadoghq.com",
+								"navy.oncall.datadoghq.com",
+								"coral.oncall.datadoghq.com",
+								"teal.oncall.datadoghq.com",
+								"beige.oncall.datadoghq.eu",
+								"scarlet.oncall.datadoghq.com",
+							},
 						},
 						"protocol": {
 							Description:  "The protocol for accessing the API.",
@@ -456,12 +466,25 @@ func NewConfiguration() *Configuration {
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"site": {
-							Description:  "Any Datadog deployment.",
+							Description:  "The Datadog site where the On-Call paging endpoint is deployed.",
 							DefaultValue: "datadoghq.com",
+							EnumValues: []string{
+								"datadoghq.com",
+								"datadoghq.eu",
+							},
 						},
 						"subdomain": {
-							Description:  "The subdomain where the API is deployed.",
-							DefaultValue: "api",
+							Description:  "The On-Call paging subdomain.",
+							DefaultValue: "navy.oncall",
+							EnumValues: []string{
+								"lava.oncall",
+								"saffron.oncall",
+								"navy.oncall",
+								"coral.oncall",
+								"teal.oncall",
+								"beige.oncall",
+								"scarlet.oncall",
+							},
 						},
 					},
 				},
@@ -481,6 +504,7 @@ func NewConfiguration() *Configuration {
 								"coral.oncall.datadoghq.com",
 								"teal.oncall.datadoghq.com",
 								"beige.oncall.datadoghq.eu",
+								"scarlet.oncall.datadoghq.com",
 							},
 						},
 					},
@@ -490,8 +514,17 @@ func NewConfiguration() *Configuration {
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"name": {
-							Description:  "Full site DNS name.",
-							DefaultValue: "api.datadoghq.com",
+							Description:  "The full DNS name of the On-Call paging endpoint.",
+							DefaultValue: "navy.oncall.datadoghq.com",
+							EnumValues: []string{
+								"lava.oncall.datadoghq.com",
+								"saffron.oncall.datadoghq.com",
+								"navy.oncall.datadoghq.com",
+								"coral.oncall.datadoghq.com",
+								"teal.oncall.datadoghq.com",
+								"beige.oncall.datadoghq.eu",
+								"scarlet.oncall.datadoghq.com",
+							},
 						},
 						"protocol": {
 							Description:  "The protocol for accessing the API.",
@@ -504,12 +537,25 @@ func NewConfiguration() *Configuration {
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"site": {
-							Description:  "Any Datadog deployment.",
+							Description:  "The Datadog site where the On-Call paging endpoint is deployed.",
 							DefaultValue: "datadoghq.com",
+							EnumValues: []string{
+								"datadoghq.com",
+								"datadoghq.eu",
+							},
 						},
 						"subdomain": {
-							Description:  "The subdomain where the API is deployed.",
-							DefaultValue: "api",
+							Description:  "The On-Call paging subdomain.",
+							DefaultValue: "navy.oncall",
+							EnumValues: []string{
+								"lava.oncall",
+								"saffron.oncall",
+								"navy.oncall",
+								"coral.oncall",
+								"teal.oncall",
+								"beige.oncall",
+								"scarlet.oncall",
+							},
 						},
 					},
 				},
@@ -529,6 +575,7 @@ func NewConfiguration() *Configuration {
 								"coral.oncall.datadoghq.com",
 								"teal.oncall.datadoghq.com",
 								"beige.oncall.datadoghq.eu",
+								"scarlet.oncall.datadoghq.com",
 							},
 						},
 					},
@@ -538,8 +585,17 @@ func NewConfiguration() *Configuration {
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"name": {
-							Description:  "Full site DNS name.",
-							DefaultValue: "api.datadoghq.com",
+							Description:  "The full DNS name of the On-Call paging endpoint.",
+							DefaultValue: "navy.oncall.datadoghq.com",
+							EnumValues: []string{
+								"lava.oncall.datadoghq.com",
+								"saffron.oncall.datadoghq.com",
+								"navy.oncall.datadoghq.com",
+								"coral.oncall.datadoghq.com",
+								"teal.oncall.datadoghq.com",
+								"beige.oncall.datadoghq.eu",
+								"scarlet.oncall.datadoghq.com",
+							},
 						},
 						"protocol": {
 							Description:  "The protocol for accessing the API.",
@@ -552,12 +608,25 @@ func NewConfiguration() *Configuration {
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"site": {
-							Description:  "Any Datadog deployment.",
+							Description:  "The Datadog site where the On-Call paging endpoint is deployed.",
 							DefaultValue: "datadoghq.com",
+							EnumValues: []string{
+								"datadoghq.com",
+								"datadoghq.eu",
+							},
 						},
 						"subdomain": {
-							Description:  "The subdomain where the API is deployed.",
-							DefaultValue: "api",
+							Description:  "The On-Call paging subdomain.",
+							DefaultValue: "navy.oncall",
+							EnumValues: []string{
+								"lava.oncall",
+								"saffron.oncall",
+								"navy.oncall",
+								"coral.oncall",
+								"teal.oncall",
+								"beige.oncall",
+								"scarlet.oncall",
+							},
 						},
 					},
 				},
@@ -577,6 +646,7 @@ func NewConfiguration() *Configuration {
 								"coral.oncall.datadoghq.com",
 								"teal.oncall.datadoghq.com",
 								"beige.oncall.datadoghq.eu",
+								"scarlet.oncall.datadoghq.com",
 							},
 						},
 					},
@@ -586,8 +656,17 @@ func NewConfiguration() *Configuration {
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"name": {
-							Description:  "Full site DNS name.",
-							DefaultValue: "api.datadoghq.com",
+							Description:  "The full DNS name of the On-Call paging endpoint.",
+							DefaultValue: "navy.oncall.datadoghq.com",
+							EnumValues: []string{
+								"lava.oncall.datadoghq.com",
+								"saffron.oncall.datadoghq.com",
+								"navy.oncall.datadoghq.com",
+								"coral.oncall.datadoghq.com",
+								"teal.oncall.datadoghq.com",
+								"beige.oncall.datadoghq.eu",
+								"scarlet.oncall.datadoghq.com",
+							},
 						},
 						"protocol": {
 							Description:  "The protocol for accessing the API.",
@@ -600,12 +679,25 @@ func NewConfiguration() *Configuration {
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"site": {
-							Description:  "Any Datadog deployment.",
+							Description:  "The Datadog site where the On-Call paging endpoint is deployed.",
 							DefaultValue: "datadoghq.com",
+							EnumValues: []string{
+								"datadoghq.com",
+								"datadoghq.eu",
+							},
 						},
 						"subdomain": {
-							Description:  "The subdomain where the API is deployed.",
-							DefaultValue: "api",
+							Description:  "The On-Call paging subdomain.",
+							DefaultValue: "navy.oncall",
+							EnumValues: []string{
+								"lava.oncall",
+								"saffron.oncall",
+								"navy.oncall",
+								"coral.oncall",
+								"teal.oncall",
+								"beige.oncall",
+								"scarlet.oncall",
+							},
 						},
 					},
 				},
