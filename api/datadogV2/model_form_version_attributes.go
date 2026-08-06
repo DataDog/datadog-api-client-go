@@ -23,6 +23,8 @@ type FormVersionAttributes struct {
 	DefinitionSignature string `json:"definition_signature"`
 	// The ETag for optimistic concurrency control.
 	Etag datadog.NullableString `json:"etag"`
+	// Whether this version number has ever appeared in the form's publication history.
+	HasEverBeenPublished *bool `json:"has_ever_been_published,omitempty"`
 	// The ID of the form version.
 	Id *string `json:"id,omitempty"`
 	// The time at which the version was last modified.
@@ -161,6 +163,34 @@ func (o *FormVersionAttributes) GetEtagOk() (*string, bool) {
 // SetEtag sets field value.
 func (o *FormVersionAttributes) SetEtag(v string) {
 	o.Etag.Set(&v)
+}
+
+// GetHasEverBeenPublished returns the HasEverBeenPublished field value if set, zero value otherwise.
+func (o *FormVersionAttributes) GetHasEverBeenPublished() bool {
+	if o == nil || o.HasEverBeenPublished == nil {
+		var ret bool
+		return ret
+	}
+	return *o.HasEverBeenPublished
+}
+
+// GetHasEverBeenPublishedOk returns a tuple with the HasEverBeenPublished field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FormVersionAttributes) GetHasEverBeenPublishedOk() (*bool, bool) {
+	if o == nil || o.HasEverBeenPublished == nil {
+		return nil, false
+	}
+	return o.HasEverBeenPublished, true
+}
+
+// HasHasEverBeenPublished returns a boolean if a field has been set.
+func (o *FormVersionAttributes) HasHasEverBeenPublished() bool {
+	return o != nil && o.HasEverBeenPublished != nil
+}
+
+// SetHasEverBeenPublished gets a reference to the given bool and assigns it to the HasEverBeenPublished field.
+func (o *FormVersionAttributes) SetHasEverBeenPublished(v bool) {
+	o.HasEverBeenPublished = &v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -343,6 +373,9 @@ func (o FormVersionAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["data_definition"] = o.DataDefinition
 	toSerialize["definition_signature"] = o.DefinitionSignature
 	toSerialize["etag"] = o.Etag.Get()
+	if o.HasEverBeenPublished != nil {
+		toSerialize["has_ever_been_published"] = o.HasEverBeenPublished
+	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
@@ -366,17 +399,18 @@ func (o FormVersionAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FormVersionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt           *time.Time             `json:"created_at"`
-		DataDefinition      *FormDataDefinition    `json:"data_definition"`
-		DefinitionSignature *string                `json:"definition_signature"`
-		Etag                datadog.NullableString `json:"etag"`
-		Id                  *string                `json:"id,omitempty"`
-		ModifiedAt          *time.Time             `json:"modified_at"`
-		State               *FormVersionState      `json:"state"`
-		UiDefinition        *FormUiDefinition      `json:"ui_definition"`
-		UserId              *int64                 `json:"user_id"`
-		UserUuid            *uuid.UUID             `json:"user_uuid"`
-		Version             *int64                 `json:"version"`
+		CreatedAt            *time.Time             `json:"created_at"`
+		DataDefinition       *FormDataDefinition    `json:"data_definition"`
+		DefinitionSignature  *string                `json:"definition_signature"`
+		Etag                 datadog.NullableString `json:"etag"`
+		HasEverBeenPublished *bool                  `json:"has_ever_been_published,omitempty"`
+		Id                   *string                `json:"id,omitempty"`
+		ModifiedAt           *time.Time             `json:"modified_at"`
+		State                *FormVersionState      `json:"state"`
+		UiDefinition         *FormUiDefinition      `json:"ui_definition"`
+		UserId               *int64                 `json:"user_id"`
+		UserUuid             *uuid.UUID             `json:"user_uuid"`
+		Version              *int64                 `json:"version"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -413,7 +447,7 @@ func (o *FormVersionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "data_definition", "definition_signature", "etag", "id", "modified_at", "state", "ui_definition", "user_id", "user_uuid", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"created_at", "data_definition", "definition_signature", "etag", "has_ever_been_published", "id", "modified_at", "state", "ui_definition", "user_id", "user_uuid", "version"})
 	} else {
 		return err
 	}
@@ -426,6 +460,7 @@ func (o *FormVersionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.DataDefinition = *all.DataDefinition
 	o.DefinitionSignature = *all.DefinitionSignature
 	o.Etag = all.Etag
+	o.HasEverBeenPublished = all.HasEverBeenPublished
 	o.Id = all.Id
 	o.ModifiedAt = *all.ModifiedAt
 	if !all.State.IsValid() {
