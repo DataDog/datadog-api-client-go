@@ -12,22 +12,14 @@ import (
 
 // GovernanceControlMitigationDefinition The definition of a mitigation available for a control.
 type GovernanceControlMitigationDefinition struct {
-	// The verb describing the mitigation action, such as `revoke` or `delete`.
-	ActionVerb string `json:"action_verb"`
 	// A human-readable description of the mitigation.
 	Description string `json:"description"`
 	// The execution modes the mitigation supports, such as `manual` or `automatic`.
-	ExecutionModes []string `json:"execution_modes,omitempty"`
-	// The feature flags that gate the mitigation.
-	FeatureFlags []string `json:"feature_flags"`
+	ExecutionModes []string `json:"execution_modes"`
 	// The unique identifier of the mitigation.
 	Id string `json:"id"`
-	// A warning shown to the user before applying the mitigation manually.
-	ManualMitigationWarning string `json:"manual_mitigation_warning"`
 	// The permissions required to apply the mitigation.
 	Permissions []string `json:"permissions"`
-	// Whether the mitigation requires AI to be enabled.
-	RequiresAi bool `json:"requires_ai"`
 	// An array of parameter definitions.
 	SupportedParameters []GovernanceControlParameterDefinition `json:"supported_parameters"`
 	// A short, human-readable name for the mitigation.
@@ -41,15 +33,12 @@ type GovernanceControlMitigationDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGovernanceControlMitigationDefinition(actionVerb string, description string, featureFlags []string, id string, manualMitigationWarning string, permissions []string, requiresAi bool, supportedParameters []GovernanceControlParameterDefinition, title string) *GovernanceControlMitigationDefinition {
+func NewGovernanceControlMitigationDefinition(description string, executionModes []string, id string, permissions []string, supportedParameters []GovernanceControlParameterDefinition, title string) *GovernanceControlMitigationDefinition {
 	this := GovernanceControlMitigationDefinition{}
-	this.ActionVerb = actionVerb
 	this.Description = description
-	this.FeatureFlags = featureFlags
+	this.ExecutionModes = executionModes
 	this.Id = id
-	this.ManualMitigationWarning = manualMitigationWarning
 	this.Permissions = permissions
-	this.RequiresAi = requiresAi
 	this.SupportedParameters = supportedParameters
 	this.Title = title
 	return &this
@@ -61,29 +50,6 @@ func NewGovernanceControlMitigationDefinition(actionVerb string, description str
 func NewGovernanceControlMitigationDefinitionWithDefaults() *GovernanceControlMitigationDefinition {
 	this := GovernanceControlMitigationDefinition{}
 	return &this
-}
-
-// GetActionVerb returns the ActionVerb field value.
-func (o *GovernanceControlMitigationDefinition) GetActionVerb() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.ActionVerb
-}
-
-// GetActionVerbOk returns a tuple with the ActionVerb field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlMitigationDefinition) GetActionVerbOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ActionVerb, true
-}
-
-// SetActionVerb sets field value.
-func (o *GovernanceControlMitigationDefinition) SetActionVerb(v string) {
-	o.ActionVerb = v
 }
 
 // GetDescription returns the Description field value.
@@ -109,55 +75,27 @@ func (o *GovernanceControlMitigationDefinition) SetDescription(v string) {
 	o.Description = v
 }
 
-// GetExecutionModes returns the ExecutionModes field value if set, zero value otherwise.
+// GetExecutionModes returns the ExecutionModes field value.
 func (o *GovernanceControlMitigationDefinition) GetExecutionModes() []string {
-	if o == nil || o.ExecutionModes == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
 	return o.ExecutionModes
 }
 
-// GetExecutionModesOk returns a tuple with the ExecutionModes field value if set, nil otherwise
+// GetExecutionModesOk returns a tuple with the ExecutionModes field value
 // and a boolean to check if the value has been set.
 func (o *GovernanceControlMitigationDefinition) GetExecutionModesOk() (*[]string, bool) {
-	if o == nil || o.ExecutionModes == nil {
+	if o == nil {
 		return nil, false
 	}
 	return &o.ExecutionModes, true
 }
 
-// HasExecutionModes returns a boolean if a field has been set.
-func (o *GovernanceControlMitigationDefinition) HasExecutionModes() bool {
-	return o != nil && o.ExecutionModes != nil
-}
-
-// SetExecutionModes gets a reference to the given []string and assigns it to the ExecutionModes field.
+// SetExecutionModes sets field value.
 func (o *GovernanceControlMitigationDefinition) SetExecutionModes(v []string) {
 	o.ExecutionModes = v
-}
-
-// GetFeatureFlags returns the FeatureFlags field value.
-func (o *GovernanceControlMitigationDefinition) GetFeatureFlags() []string {
-	if o == nil {
-		var ret []string
-		return ret
-	}
-	return o.FeatureFlags
-}
-
-// GetFeatureFlagsOk returns a tuple with the FeatureFlags field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlMitigationDefinition) GetFeatureFlagsOk() (*[]string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.FeatureFlags, true
-}
-
-// SetFeatureFlags sets field value.
-func (o *GovernanceControlMitigationDefinition) SetFeatureFlags(v []string) {
-	o.FeatureFlags = v
 }
 
 // GetId returns the Id field value.
@@ -183,29 +121,6 @@ func (o *GovernanceControlMitigationDefinition) SetId(v string) {
 	o.Id = v
 }
 
-// GetManualMitigationWarning returns the ManualMitigationWarning field value.
-func (o *GovernanceControlMitigationDefinition) GetManualMitigationWarning() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.ManualMitigationWarning
-}
-
-// GetManualMitigationWarningOk returns a tuple with the ManualMitigationWarning field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlMitigationDefinition) GetManualMitigationWarningOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.ManualMitigationWarning, true
-}
-
-// SetManualMitigationWarning sets field value.
-func (o *GovernanceControlMitigationDefinition) SetManualMitigationWarning(v string) {
-	o.ManualMitigationWarning = v
-}
-
 // GetPermissions returns the Permissions field value.
 func (o *GovernanceControlMitigationDefinition) GetPermissions() []string {
 	if o == nil {
@@ -227,29 +142,6 @@ func (o *GovernanceControlMitigationDefinition) GetPermissionsOk() (*[]string, b
 // SetPermissions sets field value.
 func (o *GovernanceControlMitigationDefinition) SetPermissions(v []string) {
 	o.Permissions = v
-}
-
-// GetRequiresAi returns the RequiresAi field value.
-func (o *GovernanceControlMitigationDefinition) GetRequiresAi() bool {
-	if o == nil {
-		var ret bool
-		return ret
-	}
-	return o.RequiresAi
-}
-
-// GetRequiresAiOk returns a tuple with the RequiresAi field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlMitigationDefinition) GetRequiresAiOk() (*bool, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.RequiresAi, true
-}
-
-// SetRequiresAi sets field value.
-func (o *GovernanceControlMitigationDefinition) SetRequiresAi(v bool) {
-	o.RequiresAi = v
 }
 
 // GetSupportedParameters returns the SupportedParameters field value.
@@ -304,16 +196,10 @@ func (o GovernanceControlMitigationDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["action_verb"] = o.ActionVerb
 	toSerialize["description"] = o.Description
-	if o.ExecutionModes != nil {
-		toSerialize["execution_modes"] = o.ExecutionModes
-	}
-	toSerialize["feature_flags"] = o.FeatureFlags
+	toSerialize["execution_modes"] = o.ExecutionModes
 	toSerialize["id"] = o.Id
-	toSerialize["manual_mitigation_warning"] = o.ManualMitigationWarning
 	toSerialize["permissions"] = o.Permissions
-	toSerialize["requires_ai"] = o.RequiresAi
 	toSerialize["supported_parameters"] = o.SupportedParameters
 	toSerialize["title"] = o.Title
 
@@ -326,40 +212,27 @@ func (o GovernanceControlMitigationDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GovernanceControlMitigationDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ActionVerb              *string                                 `json:"action_verb"`
-		Description             *string                                 `json:"description"`
-		ExecutionModes          []string                                `json:"execution_modes,omitempty"`
-		FeatureFlags            *[]string                               `json:"feature_flags"`
-		Id                      *string                                 `json:"id"`
-		ManualMitigationWarning *string                                 `json:"manual_mitigation_warning"`
-		Permissions             *[]string                               `json:"permissions"`
-		RequiresAi              *bool                                   `json:"requires_ai"`
-		SupportedParameters     *[]GovernanceControlParameterDefinition `json:"supported_parameters"`
-		Title                   *string                                 `json:"title"`
+		Description         *string                                 `json:"description"`
+		ExecutionModes      *[]string                               `json:"execution_modes"`
+		Id                  *string                                 `json:"id"`
+		Permissions         *[]string                               `json:"permissions"`
+		SupportedParameters *[]GovernanceControlParameterDefinition `json:"supported_parameters"`
+		Title               *string                                 `json:"title"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.ActionVerb == nil {
-		return fmt.Errorf("required field action_verb missing")
-	}
 	if all.Description == nil {
 		return fmt.Errorf("required field description missing")
 	}
-	if all.FeatureFlags == nil {
-		return fmt.Errorf("required field feature_flags missing")
+	if all.ExecutionModes == nil {
+		return fmt.Errorf("required field execution_modes missing")
 	}
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
 	}
-	if all.ManualMitigationWarning == nil {
-		return fmt.Errorf("required field manual_mitigation_warning missing")
-	}
 	if all.Permissions == nil {
 		return fmt.Errorf("required field permissions missing")
-	}
-	if all.RequiresAi == nil {
-		return fmt.Errorf("required field requires_ai missing")
 	}
 	if all.SupportedParameters == nil {
 		return fmt.Errorf("required field supported_parameters missing")
@@ -369,18 +242,14 @@ func (o *GovernanceControlMitigationDefinition) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"action_verb", "description", "execution_modes", "feature_flags", "id", "manual_mitigation_warning", "permissions", "requires_ai", "supported_parameters", "title"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "execution_modes", "id", "permissions", "supported_parameters", "title"})
 	} else {
 		return err
 	}
-	o.ActionVerb = *all.ActionVerb
 	o.Description = *all.Description
-	o.ExecutionModes = all.ExecutionModes
-	o.FeatureFlags = *all.FeatureFlags
+	o.ExecutionModes = *all.ExecutionModes
 	o.Id = *all.Id
-	o.ManualMitigationWarning = *all.ManualMitigationWarning
 	o.Permissions = *all.Permissions
-	o.RequiresAi = *all.RequiresAi
 	o.SupportedParameters = *all.SupportedParameters
 	o.Title = *all.Title
 

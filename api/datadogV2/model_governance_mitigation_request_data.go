@@ -10,39 +10,39 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// GovernanceControlUpdateData The data of a governance control update request.
-type GovernanceControlUpdateData struct {
-	// The attributes of a governance control that can be updated. Only the attributes present in the request are modified.
-	Attributes *GovernanceControlUpdateAttributes `json:"attributes,omitempty"`
-	// JSON:API resource type for a governance control.
-	Type GovernanceControlResourceType `json:"type"`
+// GovernanceMitigationRequestData The data of a governance mitigation request.
+type GovernanceMitigationRequestData struct {
+	// The attributes of a governance mitigation request.
+	Attributes *GovernanceMitigationRequestAttributes `json:"attributes,omitempty"`
+	// Governance control detection resource type.
+	Type GovernanceControlDetectionResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewGovernanceControlUpdateData instantiates a new GovernanceControlUpdateData object.
+// NewGovernanceMitigationRequestData instantiates a new GovernanceMitigationRequestData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGovernanceControlUpdateData(typeVar GovernanceControlResourceType) *GovernanceControlUpdateData {
-	this := GovernanceControlUpdateData{}
+func NewGovernanceMitigationRequestData(typeVar GovernanceControlDetectionResourceType) *GovernanceMitigationRequestData {
+	this := GovernanceMitigationRequestData{}
 	this.Type = typeVar
 	return &this
 }
 
-// NewGovernanceControlUpdateDataWithDefaults instantiates a new GovernanceControlUpdateData object.
+// NewGovernanceMitigationRequestDataWithDefaults instantiates a new GovernanceMitigationRequestData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewGovernanceControlUpdateDataWithDefaults() *GovernanceControlUpdateData {
-	this := GovernanceControlUpdateData{}
+func NewGovernanceMitigationRequestDataWithDefaults() *GovernanceMitigationRequestData {
+	this := GovernanceMitigationRequestData{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *GovernanceControlUpdateData) GetAttributes() GovernanceControlUpdateAttributes {
+func (o *GovernanceMitigationRequestData) GetAttributes() GovernanceMitigationRequestAttributes {
 	if o == nil || o.Attributes == nil {
-		var ret GovernanceControlUpdateAttributes
+		var ret GovernanceMitigationRequestAttributes
 		return ret
 	}
 	return *o.Attributes
@@ -50,7 +50,7 @@ func (o *GovernanceControlUpdateData) GetAttributes() GovernanceControlUpdateAtt
 
 // GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *GovernanceControlUpdateData) GetAttributesOk() (*GovernanceControlUpdateAttributes, bool) {
+func (o *GovernanceMitigationRequestData) GetAttributesOk() (*GovernanceMitigationRequestAttributes, bool) {
 	if o == nil || o.Attributes == nil {
 		return nil, false
 	}
@@ -58,19 +58,19 @@ func (o *GovernanceControlUpdateData) GetAttributesOk() (*GovernanceControlUpdat
 }
 
 // HasAttributes returns a boolean if a field has been set.
-func (o *GovernanceControlUpdateData) HasAttributes() bool {
+func (o *GovernanceMitigationRequestData) HasAttributes() bool {
 	return o != nil && o.Attributes != nil
 }
 
-// SetAttributes gets a reference to the given GovernanceControlUpdateAttributes and assigns it to the Attributes field.
-func (o *GovernanceControlUpdateData) SetAttributes(v GovernanceControlUpdateAttributes) {
+// SetAttributes gets a reference to the given GovernanceMitigationRequestAttributes and assigns it to the Attributes field.
+func (o *GovernanceMitigationRequestData) SetAttributes(v GovernanceMitigationRequestAttributes) {
 	o.Attributes = &v
 }
 
 // GetType returns the Type field value.
-func (o *GovernanceControlUpdateData) GetType() GovernanceControlResourceType {
+func (o *GovernanceMitigationRequestData) GetType() GovernanceControlDetectionResourceType {
 	if o == nil {
-		var ret GovernanceControlResourceType
+		var ret GovernanceControlDetectionResourceType
 		return ret
 	}
 	return o.Type
@@ -78,7 +78,7 @@ func (o *GovernanceControlUpdateData) GetType() GovernanceControlResourceType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *GovernanceControlUpdateData) GetTypeOk() (*GovernanceControlResourceType, bool) {
+func (o *GovernanceMitigationRequestData) GetTypeOk() (*GovernanceControlDetectionResourceType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -86,12 +86,12 @@ func (o *GovernanceControlUpdateData) GetTypeOk() (*GovernanceControlResourceTyp
 }
 
 // SetType sets field value.
-func (o *GovernanceControlUpdateData) SetType(v GovernanceControlResourceType) {
+func (o *GovernanceMitigationRequestData) SetType(v GovernanceControlDetectionResourceType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o GovernanceControlUpdateData) MarshalJSON() ([]byte, error) {
+func (o GovernanceMitigationRequestData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -108,10 +108,10 @@ func (o GovernanceControlUpdateData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *GovernanceControlUpdateData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *GovernanceMitigationRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *GovernanceControlUpdateAttributes `json:"attributes,omitempty"`
-		Type       *GovernanceControlResourceType     `json:"type"`
+		Attributes *GovernanceMitigationRequestAttributes  `json:"attributes,omitempty"`
+		Type       *GovernanceControlDetectionResourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

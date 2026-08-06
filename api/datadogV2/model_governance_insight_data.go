@@ -12,7 +12,9 @@ import (
 
 // GovernanceInsightData A governance insight resource.
 type GovernanceInsightData struct {
-	// The attributes of a governance insight.
+	// The attributes of a governance insight. Exactly one of `metric_query`, `event_query`,
+	// `usage_query`, `audit_query`, or `percentage_query` is populated, depending on the data
+	// source the insight is computed from; the rest are `null`.
 	Attributes GovernanceInsightAttributes `json:"attributes"`
 	// The unique identifier of the insight.
 	Id string `json:"id"`
