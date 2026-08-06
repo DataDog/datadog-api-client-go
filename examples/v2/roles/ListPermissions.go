@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRolesApi(apiClient)
-	resp, r, err := api.ListPermissions(ctx)
+	resp, r, err := api.ListPermissions(ctx, *datadogV2.NewListPermissionsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListPermissions`: %v\n", err)
