@@ -213,7 +213,11 @@ func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Assertions == nil {
-		return fmt.Errorf("required field assertions missing")
+		// The Synthetics API's spec declares assertions required with a default of [],
+		// but the backend doesn't always send it. Default rather than hard-fail so a
+		// missing assertions field doesn't cause the entire response to be treated as
+		// unparsed (SYNTH-28391).
+		all.Assertions = &[]SyntheticsAssertion{}
 	}
 	if all.Request == nil {
 		return fmt.Errorf("required field request missing")
