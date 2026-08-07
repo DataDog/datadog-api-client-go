@@ -23,8 +23,6 @@ type GovernanceControlAttributes struct {
 	CreatedBy string `json:"created_by"`
 	// A human-readable description of what the control detects.
 	Description string `json:"description"`
-	// How often detections are evaluated for the control.
-	DetectionFrequency string `json:"detection_frequency"`
 	// A free-form map of parameter names to their configured values.
 	DetectionParameters map[string]interface{} `json:"detection_parameters"`
 	// The insight slugs associated with the control.
@@ -62,14 +60,13 @@ type GovernanceControlAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGovernanceControlAttributes(activeDetectionsCount int64, category string, createdAt time.Time, createdBy string, description string, detectionFrequency string, detectionParameters map[string]interface{}, insights []string, lastDetectionAt datadog.NullableTime, mitigatedDetectionsCount int64, mitigationParameters map[string]interface{}, mitigationType string, mitigations []GovernanceControlMitigationDefinition, name string, priority string, product string, resourceType string, resourceTypeDisplayName string, supportedDetectionParameters []GovernanceControlParameterDefinition, typeVar string) *GovernanceControlAttributes {
+func NewGovernanceControlAttributes(activeDetectionsCount int64, category string, createdAt time.Time, createdBy string, description string, detectionParameters map[string]interface{}, insights []string, lastDetectionAt datadog.NullableTime, mitigatedDetectionsCount int64, mitigationParameters map[string]interface{}, mitigationType string, mitigations []GovernanceControlMitigationDefinition, name string, priority string, product string, resourceType string, resourceTypeDisplayName string, supportedDetectionParameters []GovernanceControlParameterDefinition, typeVar string) *GovernanceControlAttributes {
 	this := GovernanceControlAttributes{}
 	this.ActiveDetectionsCount = activeDetectionsCount
 	this.Category = category
 	this.CreatedAt = createdAt
 	this.CreatedBy = createdBy
 	this.Description = description
-	this.DetectionFrequency = detectionFrequency
 	this.DetectionParameters = detectionParameters
 	this.Insights = insights
 	this.LastDetectionAt = lastDetectionAt
@@ -208,29 +205,6 @@ func (o *GovernanceControlAttributes) GetDescriptionOk() (*string, bool) {
 // SetDescription sets field value.
 func (o *GovernanceControlAttributes) SetDescription(v string) {
 	o.Description = v
-}
-
-// GetDetectionFrequency returns the DetectionFrequency field value.
-func (o *GovernanceControlAttributes) GetDetectionFrequency() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.DetectionFrequency
-}
-
-// GetDetectionFrequencyOk returns a tuple with the DetectionFrequency field value
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlAttributes) GetDetectionFrequencyOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.DetectionFrequency, true
-}
-
-// SetDetectionFrequency sets field value.
-func (o *GovernanceControlAttributes) SetDetectionFrequency(v string) {
-	o.DetectionFrequency = v
 }
 
 // GetDetectionParameters returns the DetectionParameters field value.
@@ -572,7 +546,6 @@ func (o GovernanceControlAttributes) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["created_by"] = o.CreatedBy
 	toSerialize["description"] = o.Description
-	toSerialize["detection_frequency"] = o.DetectionFrequency
 	toSerialize["detection_parameters"] = o.DetectionParameters
 	toSerialize["insights"] = o.Insights
 	toSerialize["last_detection_at"] = o.LastDetectionAt.Get()
@@ -602,7 +575,6 @@ func (o *GovernanceControlAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		CreatedAt                    *time.Time                               `json:"created_at"`
 		CreatedBy                    *string                                  `json:"created_by"`
 		Description                  *string                                  `json:"description"`
-		DetectionFrequency           *string                                  `json:"detection_frequency"`
 		DetectionParameters          *map[string]interface{}                  `json:"detection_parameters"`
 		Insights                     *[]string                                `json:"insights"`
 		LastDetectionAt              datadog.NullableTime                     `json:"last_detection_at"`
@@ -635,9 +607,6 @@ func (o *GovernanceControlAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.Description == nil {
 		return fmt.Errorf("required field description missing")
-	}
-	if all.DetectionFrequency == nil {
-		return fmt.Errorf("required field detection_frequency missing")
 	}
 	if all.DetectionParameters == nil {
 		return fmt.Errorf("required field detection_parameters missing")
@@ -683,7 +652,7 @@ func (o *GovernanceControlAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"active_detections_count", "category", "created_at", "created_by", "description", "detection_frequency", "detection_parameters", "insights", "last_detection_at", "mitigated_detections_count", "mitigation_parameters", "mitigation_type", "mitigations", "name", "priority", "product", "resource_type", "resource_type_display_name", "supported_detection_parameters", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"active_detections_count", "category", "created_at", "created_by", "description", "detection_parameters", "insights", "last_detection_at", "mitigated_detections_count", "mitigation_parameters", "mitigation_type", "mitigations", "name", "priority", "product", "resource_type", "resource_type_display_name", "supported_detection_parameters", "type"})
 	} else {
 		return err
 	}
@@ -692,7 +661,6 @@ func (o *GovernanceControlAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.CreatedAt = *all.CreatedAt
 	o.CreatedBy = *all.CreatedBy
 	o.Description = *all.Description
-	o.DetectionFrequency = *all.DetectionFrequency
 	o.DetectionParameters = *all.DetectionParameters
 	o.Insights = *all.Insights
 	o.LastDetectionAt = all.LastDetectionAt

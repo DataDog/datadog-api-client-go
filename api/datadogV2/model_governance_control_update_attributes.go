@@ -10,8 +10,6 @@ import (
 
 // GovernanceControlUpdateAttributes The attributes of a governance control that can be updated. Only the attributes present in the request are modified.
 type GovernanceControlUpdateAttributes struct {
-	// How often detections should be evaluated for the control.
-	DetectionFrequency *string `json:"detection_frequency,omitempty"`
 	// A free-form map of parameter names to their configured values.
 	DetectionParameters map[string]interface{} `json:"detection_parameters,omitempty"`
 	// A free-form map of parameter names to their configured values.
@@ -38,34 +36,6 @@ func NewGovernanceControlUpdateAttributes() *GovernanceControlUpdateAttributes {
 func NewGovernanceControlUpdateAttributesWithDefaults() *GovernanceControlUpdateAttributes {
 	this := GovernanceControlUpdateAttributes{}
 	return &this
-}
-
-// GetDetectionFrequency returns the DetectionFrequency field value if set, zero value otherwise.
-func (o *GovernanceControlUpdateAttributes) GetDetectionFrequency() string {
-	if o == nil || o.DetectionFrequency == nil {
-		var ret string
-		return ret
-	}
-	return *o.DetectionFrequency
-}
-
-// GetDetectionFrequencyOk returns a tuple with the DetectionFrequency field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *GovernanceControlUpdateAttributes) GetDetectionFrequencyOk() (*string, bool) {
-	if o == nil || o.DetectionFrequency == nil {
-		return nil, false
-	}
-	return o.DetectionFrequency, true
-}
-
-// HasDetectionFrequency returns a boolean if a field has been set.
-func (o *GovernanceControlUpdateAttributes) HasDetectionFrequency() bool {
-	return o != nil && o.DetectionFrequency != nil
-}
-
-// SetDetectionFrequency gets a reference to the given string and assigns it to the DetectionFrequency field.
-func (o *GovernanceControlUpdateAttributes) SetDetectionFrequency(v string) {
-	o.DetectionFrequency = &v
 }
 
 // GetDetectionParameters returns the DetectionParameters field value if set, zero value otherwise.
@@ -158,9 +128,6 @@ func (o GovernanceControlUpdateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.DetectionFrequency != nil {
-		toSerialize["detection_frequency"] = o.DetectionFrequency
-	}
 	if o.DetectionParameters != nil {
 		toSerialize["detection_parameters"] = o.DetectionParameters
 	}
@@ -180,7 +147,6 @@ func (o GovernanceControlUpdateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GovernanceControlUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DetectionFrequency   *string                `json:"detection_frequency,omitempty"`
 		DetectionParameters  map[string]interface{} `json:"detection_parameters,omitempty"`
 		MitigationParameters map[string]interface{} `json:"mitigation_parameters,omitempty"`
 		MitigationType       *string                `json:"mitigation_type,omitempty"`
@@ -190,11 +156,10 @@ func (o *GovernanceControlUpdateAttributes) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"detection_frequency", "detection_parameters", "mitigation_parameters", "mitigation_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"detection_parameters", "mitigation_parameters", "mitigation_type"})
 	} else {
 		return err
 	}
-	o.DetectionFrequency = all.DetectionFrequency
 	o.DetectionParameters = all.DetectionParameters
 	o.MitigationParameters = all.MitigationParameters
 	o.MitigationType = all.MitigationType
