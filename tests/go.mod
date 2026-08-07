@@ -1,7 +1,6 @@
 module github.com/DataDog/datadog-api-client-go/v2/tests
 
-go 1.22
-toolchain go1.23.7
+go 1.25.0
 
 require (
 	github.com/DataDog/datadog-api-client-go/v2 v2.14.0
@@ -39,11 +38,10 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/stretchr/objx v0.1.1 // indirect
 	github.com/tinylib/msgp v1.1.6 // indirect
-	golang.org/x/oauth2 v0.10.0 // indirect
+	golang.org/x/oauth2 v0.36.0 // indirect
 	golang.org/x/sys v0.30.0 // indirect
 	golang.org/x/time v0.0.0-20210723032227-1f47c861a9ac // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
-	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
