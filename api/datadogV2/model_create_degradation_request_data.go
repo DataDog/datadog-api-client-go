@@ -14,6 +14,8 @@ import (
 type CreateDegradationRequestData struct {
 	// The supported attributes for creating a degradation.
 	Attributes CreateDegradationRequestDataAttributes `json:"attributes"`
+	// The supported metadata for a degradation request.
+	Meta *DegradationRequestDataMeta `json:"meta,omitempty"`
 	// The supported relationships for creating a degradation.
 	Relationships *CreateDegradationRequestDataRelationships `json:"relationships,omitempty"`
 	// Degradations resource type.
@@ -65,6 +67,34 @@ func (o *CreateDegradationRequestData) GetAttributesOk() (*CreateDegradationRequ
 // SetAttributes sets field value.
 func (o *CreateDegradationRequestData) SetAttributes(v CreateDegradationRequestDataAttributes) {
 	o.Attributes = v
+}
+
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *CreateDegradationRequestData) GetMeta() DegradationRequestDataMeta {
+	if o == nil || o.Meta == nil {
+		var ret DegradationRequestDataMeta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDegradationRequestData) GetMetaOk() (*DegradationRequestDataMeta, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *CreateDegradationRequestData) HasMeta() bool {
+	return o != nil && o.Meta != nil
+}
+
+// SetMeta gets a reference to the given DegradationRequestDataMeta and assigns it to the Meta field.
+func (o *CreateDegradationRequestData) SetMeta(v DegradationRequestDataMeta) {
+	o.Meta = &v
 }
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
@@ -125,6 +155,9 @@ func (o CreateDegradationRequestData) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["attributes"] = o.Attributes
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
+	}
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
@@ -140,6 +173,7 @@ func (o CreateDegradationRequestData) MarshalJSON() ([]byte, error) {
 func (o *CreateDegradationRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes    *CreateDegradationRequestDataAttributes    `json:"attributes"`
+		Meta          *DegradationRequestDataMeta                `json:"meta,omitempty"`
 		Relationships *CreateDegradationRequestDataRelationships `json:"relationships,omitempty"`
 		Type          *PatchDegradationRequestDataType           `json:"type"`
 	}{}
@@ -154,7 +188,7 @@ func (o *CreateDegradationRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "relationships", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "meta", "relationships", "type"})
 	} else {
 		return err
 	}
@@ -164,6 +198,10 @@ func (o *CreateDegradationRequestData) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Meta = all.Meta
 	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
