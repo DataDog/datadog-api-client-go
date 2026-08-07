@@ -126,6 +126,8 @@
 //   - [BitsAIApi.GetInvestigation]
 //   - [BitsAIApi.ListInvestigations]
 //   - [BitsAIApi.TriggerInvestigation]
+//   - [CIVisibilityGitHubAccountsApi.ListCIAppGitHubAccounts]
+//   - [CIVisibilityGitHubAccountsApi.UpdateCIAppGitHubAccount]
 //   - [CIVisibilityPipelinesApi.AggregateCIAppPipelineEvents]
 //   - [CIVisibilityPipelinesApi.CreateCIAppPipelineEvent]
 //   - [CIVisibilityPipelinesApi.ListCIAppPipelineEvents]
