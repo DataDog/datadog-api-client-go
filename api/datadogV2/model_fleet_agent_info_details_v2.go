@@ -60,16 +60,8 @@ type FleetAgentInfoDetailsV2 struct {
 	Os *string `json:"os,omitempty"`
 	// The operating system version.
 	OsVersion *string `json:"os_version,omitempty"`
-	// OpenTelemetry collector deployment types associated with the agent.
-	OtelCollectorDeploymentTypes []string `json:"otel_collector_deployment_types,omitempty"`
-	// OpenTelemetry collector distributions associated with the agent.
-	OtelCollectorDistributions []string `json:"otel_collector_distributions,omitempty"`
-	// List of OpenTelemetry collector versions (if applicable).
-	OtelCollectorVersions []string `json:"otel_collector_versions,omitempty"`
 	// OpenTelemetry collectors associated with the agent (if applicable).
 	OtelCollectors []map[string]interface{} `json:"otel_collectors,omitempty"`
-	// OpenTelemetry resource attributes reported by the agent.
-	OtelResourceAttributes []string `json:"otel_resource_attributes,omitempty"`
 	// Kubernetes pod name (if applicable).
 	PodName *string `json:"pod_name,omitempty"`
 	// The preferred active agent in the high-availability group.
@@ -812,90 +804,6 @@ func (o *FleetAgentInfoDetailsV2) SetOsVersion(v string) {
 	o.OsVersion = &v
 }
 
-// GetOtelCollectorDeploymentTypes returns the OtelCollectorDeploymentTypes field value if set, zero value otherwise.
-func (o *FleetAgentInfoDetailsV2) GetOtelCollectorDeploymentTypes() []string {
-	if o == nil || o.OtelCollectorDeploymentTypes == nil {
-		var ret []string
-		return ret
-	}
-	return o.OtelCollectorDeploymentTypes
-}
-
-// GetOtelCollectorDeploymentTypesOk returns a tuple with the OtelCollectorDeploymentTypes field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FleetAgentInfoDetailsV2) GetOtelCollectorDeploymentTypesOk() (*[]string, bool) {
-	if o == nil || o.OtelCollectorDeploymentTypes == nil {
-		return nil, false
-	}
-	return &o.OtelCollectorDeploymentTypes, true
-}
-
-// HasOtelCollectorDeploymentTypes returns a boolean if a field has been set.
-func (o *FleetAgentInfoDetailsV2) HasOtelCollectorDeploymentTypes() bool {
-	return o != nil && o.OtelCollectorDeploymentTypes != nil
-}
-
-// SetOtelCollectorDeploymentTypes gets a reference to the given []string and assigns it to the OtelCollectorDeploymentTypes field.
-func (o *FleetAgentInfoDetailsV2) SetOtelCollectorDeploymentTypes(v []string) {
-	o.OtelCollectorDeploymentTypes = v
-}
-
-// GetOtelCollectorDistributions returns the OtelCollectorDistributions field value if set, zero value otherwise.
-func (o *FleetAgentInfoDetailsV2) GetOtelCollectorDistributions() []string {
-	if o == nil || o.OtelCollectorDistributions == nil {
-		var ret []string
-		return ret
-	}
-	return o.OtelCollectorDistributions
-}
-
-// GetOtelCollectorDistributionsOk returns a tuple with the OtelCollectorDistributions field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FleetAgentInfoDetailsV2) GetOtelCollectorDistributionsOk() (*[]string, bool) {
-	if o == nil || o.OtelCollectorDistributions == nil {
-		return nil, false
-	}
-	return &o.OtelCollectorDistributions, true
-}
-
-// HasOtelCollectorDistributions returns a boolean if a field has been set.
-func (o *FleetAgentInfoDetailsV2) HasOtelCollectorDistributions() bool {
-	return o != nil && o.OtelCollectorDistributions != nil
-}
-
-// SetOtelCollectorDistributions gets a reference to the given []string and assigns it to the OtelCollectorDistributions field.
-func (o *FleetAgentInfoDetailsV2) SetOtelCollectorDistributions(v []string) {
-	o.OtelCollectorDistributions = v
-}
-
-// GetOtelCollectorVersions returns the OtelCollectorVersions field value if set, zero value otherwise.
-func (o *FleetAgentInfoDetailsV2) GetOtelCollectorVersions() []string {
-	if o == nil || o.OtelCollectorVersions == nil {
-		var ret []string
-		return ret
-	}
-	return o.OtelCollectorVersions
-}
-
-// GetOtelCollectorVersionsOk returns a tuple with the OtelCollectorVersions field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FleetAgentInfoDetailsV2) GetOtelCollectorVersionsOk() (*[]string, bool) {
-	if o == nil || o.OtelCollectorVersions == nil {
-		return nil, false
-	}
-	return &o.OtelCollectorVersions, true
-}
-
-// HasOtelCollectorVersions returns a boolean if a field has been set.
-func (o *FleetAgentInfoDetailsV2) HasOtelCollectorVersions() bool {
-	return o != nil && o.OtelCollectorVersions != nil
-}
-
-// SetOtelCollectorVersions gets a reference to the given []string and assigns it to the OtelCollectorVersions field.
-func (o *FleetAgentInfoDetailsV2) SetOtelCollectorVersions(v []string) {
-	o.OtelCollectorVersions = v
-}
-
 // GetOtelCollectors returns the OtelCollectors field value if set, zero value otherwise.
 func (o *FleetAgentInfoDetailsV2) GetOtelCollectors() []map[string]interface{} {
 	if o == nil || o.OtelCollectors == nil {
@@ -922,34 +830,6 @@ func (o *FleetAgentInfoDetailsV2) HasOtelCollectors() bool {
 // SetOtelCollectors gets a reference to the given []map[string]interface{} and assigns it to the OtelCollectors field.
 func (o *FleetAgentInfoDetailsV2) SetOtelCollectors(v []map[string]interface{}) {
 	o.OtelCollectors = v
-}
-
-// GetOtelResourceAttributes returns the OtelResourceAttributes field value if set, zero value otherwise.
-func (o *FleetAgentInfoDetailsV2) GetOtelResourceAttributes() []string {
-	if o == nil || o.OtelResourceAttributes == nil {
-		var ret []string
-		return ret
-	}
-	return o.OtelResourceAttributes
-}
-
-// GetOtelResourceAttributesOk returns a tuple with the OtelResourceAttributes field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *FleetAgentInfoDetailsV2) GetOtelResourceAttributesOk() (*[]string, bool) {
-	if o == nil || o.OtelResourceAttributes == nil {
-		return nil, false
-	}
-	return &o.OtelResourceAttributes, true
-}
-
-// HasOtelResourceAttributes returns a boolean if a field has been set.
-func (o *FleetAgentInfoDetailsV2) HasOtelResourceAttributes() bool {
-	return o != nil && o.OtelResourceAttributes != nil
-}
-
-// SetOtelResourceAttributes gets a reference to the given []string and assigns it to the OtelResourceAttributes field.
-func (o *FleetAgentInfoDetailsV2) SetOtelResourceAttributes(v []string) {
-	o.OtelResourceAttributes = v
 }
 
 // GetPodName returns the PodName field value if set, zero value otherwise.
@@ -1313,20 +1193,8 @@ func (o FleetAgentInfoDetailsV2) MarshalJSON() ([]byte, error) {
 	if o.OsVersion != nil {
 		toSerialize["os_version"] = o.OsVersion
 	}
-	if o.OtelCollectorDeploymentTypes != nil {
-		toSerialize["otel_collector_deployment_types"] = o.OtelCollectorDeploymentTypes
-	}
-	if o.OtelCollectorDistributions != nil {
-		toSerialize["otel_collector_distributions"] = o.OtelCollectorDistributions
-	}
-	if o.OtelCollectorVersions != nil {
-		toSerialize["otel_collector_versions"] = o.OtelCollectorVersions
-	}
 	if o.OtelCollectors != nil {
 		toSerialize["otel_collectors"] = o.OtelCollectors
-	}
-	if o.OtelResourceAttributes != nil {
-		toSerialize["otel_resource_attributes"] = o.OtelResourceAttributes
 	}
 	if o.PodName != nil {
 		toSerialize["pod_name"] = o.PodName
@@ -1393,11 +1261,7 @@ func (o *FleetAgentInfoDetailsV2) UnmarshalJSON(bytes []byte) (err error) {
 		LastRestartAt                      *int64                   `json:"last_restart_at,omitempty"`
 		Os                                 *string                  `json:"os,omitempty"`
 		OsVersion                          *string                  `json:"os_version,omitempty"`
-		OtelCollectorDeploymentTypes       []string                 `json:"otel_collector_deployment_types,omitempty"`
-		OtelCollectorDistributions         []string                 `json:"otel_collector_distributions,omitempty"`
-		OtelCollectorVersions              []string                 `json:"otel_collector_versions,omitempty"`
 		OtelCollectors                     []map[string]interface{} `json:"otel_collectors,omitempty"`
-		OtelResourceAttributes             []string                 `json:"otel_resource_attributes,omitempty"`
 		PodName                            *string                  `json:"pod_name,omitempty"`
 		PreferredHaActiveAgent             *string                  `json:"preferred_ha_active_agent,omitempty"`
 		PythonVersion                      *string                  `json:"python_version,omitempty"`
@@ -1414,7 +1278,7 @@ func (o *FleetAgentInfoDetailsV2) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"active_ha_agent", "agent_version", "api_key_name", "api_key_uuid", "cloud_provider", "cluster_name", "config_id", "datadog_agent_key", "datadog_data_center", "ecs_fargate_cluster_name", "ecs_fargate_task_arn", "enabled_products", "env", "first_seen_at", "ha_agent_hosts", "ha_agent_state", "hostname", "hostname_aliases", "install_method_installer_version", "install_method_tool", "ip_addresses", "is_single_step_instrumentation_enabled", "last_restart_at", "os", "os_version", "otel_collector_deployment_types", "otel_collector_distributions", "otel_collector_versions", "otel_collectors", "otel_resource_attributes", "pod_name", "preferred_ha_active_agent", "python_version", "region", "remote_agent_management", "remote_config_status", "services", "support_agent_upgrade", "tags", "team"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"active_ha_agent", "agent_version", "api_key_name", "api_key_uuid", "cloud_provider", "cluster_name", "config_id", "datadog_agent_key", "datadog_data_center", "ecs_fargate_cluster_name", "ecs_fargate_task_arn", "enabled_products", "env", "first_seen_at", "ha_agent_hosts", "ha_agent_state", "hostname", "hostname_aliases", "install_method_installer_version", "install_method_tool", "ip_addresses", "is_single_step_instrumentation_enabled", "last_restart_at", "os", "os_version", "otel_collectors", "pod_name", "preferred_ha_active_agent", "python_version", "region", "remote_agent_management", "remote_config_status", "services", "support_agent_upgrade", "tags", "team"})
 	} else {
 		return err
 	}
@@ -1443,11 +1307,7 @@ func (o *FleetAgentInfoDetailsV2) UnmarshalJSON(bytes []byte) (err error) {
 	o.LastRestartAt = all.LastRestartAt
 	o.Os = all.Os
 	o.OsVersion = all.OsVersion
-	o.OtelCollectorDeploymentTypes = all.OtelCollectorDeploymentTypes
-	o.OtelCollectorDistributions = all.OtelCollectorDistributions
-	o.OtelCollectorVersions = all.OtelCollectorVersions
 	o.OtelCollectors = all.OtelCollectors
-	o.OtelResourceAttributes = all.OtelResourceAttributes
 	o.PodName = all.PodName
 	o.PreferredHaActiveAgent = all.PreferredHaActiveAgent
 	o.PythonVersion = all.PythonVersion
