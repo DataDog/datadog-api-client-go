@@ -65,6 +65,36 @@ func (obj *SecurityMonitoringRuleConvertPayload) UnmarshalJSON(data []byte) erro
 		obj.SecurityMonitoringSignalRulePayload = nil
 	}
 
+	if match > 1 {
+		// more than one variant matched, so tell them apart by the items of the arrays they hold
+		if obj.SecurityMonitoringStandardRulePayload != nil {
+			allQueriesUnparsed := len(obj.SecurityMonitoringStandardRulePayload.Queries) > 0
+			for _, item := range obj.SecurityMonitoringStandardRulePayload.Queries {
+				if item.UnparsedObject == nil {
+					allQueriesUnparsed = false
+					break
+				}
+			}
+			if allQueriesUnparsed {
+				obj.SecurityMonitoringStandardRulePayload = nil
+				match--
+			}
+		}
+		if obj.SecurityMonitoringSignalRulePayload != nil {
+			allQueriesUnparsed := len(obj.SecurityMonitoringSignalRulePayload.Queries) > 0
+			for _, item := range obj.SecurityMonitoringSignalRulePayload.Queries {
+				if item.UnparsedObject == nil {
+					allQueriesUnparsed = false
+					break
+				}
+			}
+			if allQueriesUnparsed {
+				obj.SecurityMonitoringSignalRulePayload = nil
+				match--
+			}
+		}
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.SecurityMonitoringStandardRulePayload = nil

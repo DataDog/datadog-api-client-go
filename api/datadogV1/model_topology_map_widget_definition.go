@@ -65,6 +65,36 @@ func (obj *TopologyMapWidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.TopologyMapWidgetDefinitionServiceMap = nil
 	}
 
+	if match > 1 {
+		// more than one variant matched, so tell them apart by the items of the arrays they hold
+		if obj.TopologyMapWidgetDefinitionDataStreams != nil {
+			allRequestsUnparsed := len(obj.TopologyMapWidgetDefinitionDataStreams.Requests) > 0
+			for _, item := range obj.TopologyMapWidgetDefinitionDataStreams.Requests {
+				if item.UnparsedObject == nil {
+					allRequestsUnparsed = false
+					break
+				}
+			}
+			if allRequestsUnparsed {
+				obj.TopologyMapWidgetDefinitionDataStreams = nil
+				match--
+			}
+		}
+		if obj.TopologyMapWidgetDefinitionServiceMap != nil {
+			allRequestsUnparsed := len(obj.TopologyMapWidgetDefinitionServiceMap.Requests) > 0
+			for _, item := range obj.TopologyMapWidgetDefinitionServiceMap.Requests {
+				if item.UnparsedObject == nil {
+					allRequestsUnparsed = false
+					break
+				}
+			}
+			if allRequestsUnparsed {
+				obj.TopologyMapWidgetDefinitionServiceMap = nil
+				match--
+			}
+		}
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.TopologyMapWidgetDefinitionDataStreams = nil

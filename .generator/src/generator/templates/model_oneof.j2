@@ -69,6 +69,32 @@ func (obj *{{ name }}) UnmarshalJSON(data []byte) error {
 		obj.{{ attributeName }} = nil
 	}
 {% endfor %}
+	{#- Break a tie between variants that differ only in the item type of an array by rejecting a
+	    variant whose array of models failed to parse entirely, since the discriminating value hides
+	    in the items. An empty or partially parsed array is accepted. #}
+	{%- set tiebreaks = oneof_array_tiebreaks(model, models) %}
+	{%- if tiebreaks %}
+	if match > 1 {
+		// more than one variant matched, so tell them apart by the items of the arrays they hold
+	{%- for tiebreak in tiebreaks %}
+		if obj.{{ tiebreak.variant }} != nil {
+		{%- for array in tiebreak.arrays %}
+			all{{ array }}Unparsed := len(obj.{{ tiebreak.variant }}.{{ array }}) > 0
+			for _, item := range obj.{{ tiebreak.variant }}.{{ array }} {
+				if item.UnparsedObject == nil {
+					all{{ array }}Unparsed = false
+					break
+				}
+			}
+		{%- endfor %}
+			if {% for array in tiebreak.arrays %}{{ " || " if not loop.first }}all{{ array }}Unparsed{% endfor %} {
+				obj.{{ tiebreak.variant }} = nil
+				match--
+			}
+		}
+	{%- endfor %}
+	}
+	{% endif %}
 	if match != 1 { // more than 1 match
 		// reset to nil
 		{%- for oneOf in model.oneOf %}

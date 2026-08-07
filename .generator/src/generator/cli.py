@@ -58,6 +58,7 @@ def cli(specs, output):
     env.globals["get_container"] = openapi.get_container
     env.globals["get_container_type"] = openapi.get_container_type
     env.globals["get_type_at_path"] = openapi.get_type_at_path
+    env.globals["oneof_array_tiebreaks"] = openapi.oneof_array_tiebreaks
     env.globals["common_package_name"] = COMMON_PACKAGE_NAME
     env.globals["module"] = MODULE
 
