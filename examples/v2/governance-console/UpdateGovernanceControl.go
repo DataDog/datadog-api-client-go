@@ -16,8 +16,7 @@ func main() {
 	body := datadogV2.GovernanceControlUpdateRequest{
 		Data: datadogV2.GovernanceControlUpdateData{
 			Attributes: &datadogV2.GovernanceControlUpdateAttributes{
-				DetectionFrequency: datadog.PtrString("daily"),
-				MitigationType:     datadog.PtrString("revoke_api_key"),
+				MitigationType: datadog.PtrString("revoke_api_key"),
 			},
 			Type: datadogV2.GOVERNANCECONTROLRESOURCETYPE_GOVERNANCE_CONTROL,
 		},

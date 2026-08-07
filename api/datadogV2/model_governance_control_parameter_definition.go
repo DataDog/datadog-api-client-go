@@ -22,8 +22,8 @@ type GovernanceControlParameterDefinition struct {
 	Name string `json:"name"`
 	// Whether the parameter must be provided.
 	Required bool `json:"required"`
-	// The supported values for an enumerated parameter.
-	SupportedValues []GovernanceControlSupportedValue `json:"supported_values"`
+	// The supported values for an enumerated parameter. `null` when the parameter is not an enumerated type.
+	SupportedValues datadog.NullableList[GovernanceControlSupportedValue] `json:"supported_values"`
 	// The type of the parameter, such as `integer`, `string`, `boolean`, `enum`, or `pattern_list`.
 	Type string `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -35,7 +35,7 @@ type GovernanceControlParameterDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGovernanceControlParameterDefinition(defaultValue interface{}, description string, displayName string, name string, required bool, supportedValues []GovernanceControlSupportedValue, typeVar string) *GovernanceControlParameterDefinition {
+func NewGovernanceControlParameterDefinition(defaultValue interface{}, description string, displayName string, name string, required bool, supportedValues datadog.NullableList[GovernanceControlSupportedValue], typeVar string) *GovernanceControlParameterDefinition {
 	this := GovernanceControlParameterDefinition{}
 	this.DefaultValue = defaultValue
 	this.Description = description
@@ -171,26 +171,28 @@ func (o *GovernanceControlParameterDefinition) SetRequired(v bool) {
 }
 
 // GetSupportedValues returns the SupportedValues field value.
+// If the value is explicit nil, the zero value for []GovernanceControlSupportedValue will be returned.
 func (o *GovernanceControlParameterDefinition) GetSupportedValues() []GovernanceControlSupportedValue {
 	if o == nil {
 		var ret []GovernanceControlSupportedValue
 		return ret
 	}
-	return o.SupportedValues
+	return *o.SupportedValues.Get()
 }
 
 // GetSupportedValuesOk returns a tuple with the SupportedValues field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *GovernanceControlParameterDefinition) GetSupportedValuesOk() (*[]GovernanceControlSupportedValue, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SupportedValues, true
+	return o.SupportedValues.Get(), o.SupportedValues.IsSet()
 }
 
 // SetSupportedValues sets field value.
 func (o *GovernanceControlParameterDefinition) SetSupportedValues(v []GovernanceControlSupportedValue) {
-	o.SupportedValues = v
+	o.SupportedValues.Set(&v)
 }
 
 // GetType returns the Type field value.
@@ -227,7 +229,7 @@ func (o GovernanceControlParameterDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize["display_name"] = o.DisplayName
 	toSerialize["name"] = o.Name
 	toSerialize["required"] = o.Required
-	toSerialize["supported_values"] = o.SupportedValues
+	toSerialize["supported_values"] = o.SupportedValues.Get()
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -239,13 +241,13 @@ func (o GovernanceControlParameterDefinition) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GovernanceControlParameterDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DefaultValue    *interface{}                       `json:"default_value"`
-		Description     *string                            `json:"description"`
-		DisplayName     *string                            `json:"display_name"`
-		Name            *string                            `json:"name"`
-		Required        *bool                              `json:"required"`
-		SupportedValues *[]GovernanceControlSupportedValue `json:"supported_values"`
-		Type            *string                            `json:"type"`
+		DefaultValue    *interface{}                                          `json:"default_value"`
+		Description     *string                                               `json:"description"`
+		DisplayName     *string                                               `json:"display_name"`
+		Name            *string                                               `json:"name"`
+		Required        *bool                                                 `json:"required"`
+		SupportedValues datadog.NullableList[GovernanceControlSupportedValue] `json:"supported_values"`
+		Type            *string                                               `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -265,7 +267,7 @@ func (o *GovernanceControlParameterDefinition) UnmarshalJSON(bytes []byte) (err 
 	if all.Required == nil {
 		return fmt.Errorf("required field required missing")
 	}
-	if all.SupportedValues == nil {
+	if !all.SupportedValues.IsSet() {
 		return fmt.Errorf("required field supported_values missing")
 	}
 	if all.Type == nil {
@@ -282,7 +284,7 @@ func (o *GovernanceControlParameterDefinition) UnmarshalJSON(bytes []byte) (err 
 	o.DisplayName = *all.DisplayName
 	o.Name = *all.Name
 	o.Required = *all.Required
-	o.SupportedValues = *all.SupportedValues
+	o.SupportedValues = all.SupportedValues
 	o.Type = *all.Type
 
 	if len(additionalProperties) > 0 {
