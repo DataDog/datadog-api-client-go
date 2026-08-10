@@ -20415,6 +20415,11 @@ components:
         allow_insecure:
           description: Allows loading insecure content for an HTTP request in an API test.
           type: boolean
+        bindings:
+          description: Array of bindings used for the test.
+          items:
+            $ref: "#/components/schemas/SyntheticsTestRestrictionPolicyBinding"
+          type: array
         blockedRequestPatterns:
           description: Array of URL patterns to block.
           items:
