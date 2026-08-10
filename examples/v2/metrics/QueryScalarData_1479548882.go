@@ -34,7 +34,7 @@ func main() {
 							Env:           "staging",
 							Service:       "azure-bill-import",
 							Stat:          datadogV2.APMRESOURCESTATNAME_HITS,
-							OperationName: datadog.PtrString("cassandra.query"),
+							OperationName: "cassandra.query",
 							GroupBy: []string{
 								"resource_name",
 							},
