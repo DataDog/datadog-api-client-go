@@ -18,13 +18,14 @@ type Step struct {
 	CompletionGate *CompletionGate `json:"completionGate,omitempty"`
 	// The unique identifier of a connection defined in the spec.
 	ConnectionLabel *string `json:"connectionLabel,omitempty"`
-	// The definition of `StepDisplay` object.
+	// The position of a step on the workflow canvas. Omit `display` from every step to use
+	// automatic layout, or provide it for every step to preserve a manual layout.
 	Display *StepDisplay `json:"display,omitempty"`
 	// The `Step` `errorHandlers`.
 	ErrorHandlers []ErrorHandler `json:"errorHandlers,omitempty"`
 	// Name of the step.
 	Name string `json:"name"`
-	// A list of subsequent actions to run.
+	// A list of subsequent actions to run. This list is empty for a terminal step.
 	OutboundEdges []OutboundEdge `json:"outboundEdges,omitempty"`
 	// A list of inputs for an action.
 	Parameters []Parameter `json:"parameters,omitempty"`

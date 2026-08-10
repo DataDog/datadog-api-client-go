@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// Spec The spec defines what the workflow does.
+// Spec A complete Workflow Automation definition, including its triggers, steps, and connections.
 type Spec struct {
 	// A list of annotations used in the workflow. These are like sticky notes for your workflow!
 	Annotations []Annotation `json:"annotations,omitempty"`
