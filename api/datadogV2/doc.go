@@ -1341,6 +1341,7 @@
 //   - [StatusPagesApi.ListMaintenanceTemplates]
 //   - [StatusPagesApi.ListMaintenances]
 //   - [StatusPagesApi.ListStatusPages]
+//   - [StatusPagesApi.PatchMaintenanceUpdate]
 //   - [StatusPagesApi.PublishStatusPage]
 //   - [StatusPagesApi.SoftDeleteDegradationUpdate]
 //   - [StatusPagesApi.UnpublishStatusPage]
