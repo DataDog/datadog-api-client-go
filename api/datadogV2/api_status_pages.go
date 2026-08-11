@@ -3660,7 +3660,7 @@ func (r *UpdateStatusPageOptionalParameters) WithInclude(include string) *Update
 }
 
 // UpdateStatusPage Update status page.
-// Updates an existing status page's attributes. **Note**: Publishing and unpublishing via the `enabled` property will be deprecated on this endpoint. Use the dedicated [publish](#publish-status-page) and [unpublish](#unpublish-status-page) status page endpoints instead.
+// Updates an existing status page's attributes. To publish and unpublish status pages, use the dedicated [publish](#publish-status-page) and [unpublish](#unpublish-status-page) status page endpoints.
 func (a *StatusPagesApi) UpdateStatusPage(ctx _context.Context, pageId uuid.UUID, body PatchStatusPageRequest, o ...UpdateStatusPageOptionalParameters) (StatusPage, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
