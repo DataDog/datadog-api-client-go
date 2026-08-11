@@ -137,8 +137,14 @@ def _variant_name(variant):
     return utils.upperfirst(get_name(variant) or type_to_go(variant))
 
 
-def _model_arrays(variant, models):
-    """Return {property name: Go type} for the properties a variant declares as arrays of models."""
+def _reports_unparsed_items(go_type, models):
+    """Whether the items of the Go array type each have an UnparsedObject field."""
+    item = models.get(go_type[2:])
+    return item is not None and "enum" not in item
+
+
+def _arrays(variant):
+    """Return {property name: Go type} for the properties a variant declares as arrays."""
     result = {}
     for name, spec in variant.get("properties", {}).items():
         go_type = type_to_go(
@@ -147,7 +153,7 @@ def _model_arrays(variant, models):
             render_nullable=True,
             required=name in variant.get("required", []),
         )
-        if go_type.startswith("[]") and go_type[2:] in models:
+        if go_type.startswith("[]"):
             result[name] = go_type
     return result
 
@@ -179,7 +185,7 @@ def oneof_array_tiebreaks(model, models):
     arrays that a confusable variant declares with a different item type.
     """
     variants = model.get("oneOf", [])
-    arrays = [_model_arrays(variant, models) for variant in variants]
+    arrays = [_arrays(variant) for variant in variants]
     tiebreaks = []
     for index, variant in enumerate(variants):
         confusable = [
@@ -190,7 +196,8 @@ def oneof_array_tiebreaks(model, models):
         distinguishing = [
             formatter.attribute_name(name)
             for name, go_type in arrays[index].items()
-            if any(arrays[other].get(name, go_type) != go_type for other in confusable)
+            if _reports_unparsed_items(go_type, models)
+            and any(arrays[other].get(name, go_type) != go_type for other in confusable)
         ]
         if distinguishing:
             tiebreaks.append(OneOfArrayTiebreak(_variant_name(variant), distinguishing))
