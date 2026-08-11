@@ -10,6 +10,8 @@ import (
 
 // DeploymentRuleOptionsFaultyDeploymentDetection Faulty deployment detection options for deployment rules.
 type DeploymentRuleOptionsFaultyDeploymentDetection struct {
+	// Resources to include in faulty deployment detection. Mutually exclusive with `excluded_resources`.
+	AllowedResources []string `json:"allowed_resources,omitempty"`
 	// The duration for faulty deployment detection.
 	Duration *int64 `json:"duration,omitempty"`
 	// Resources to exclude from faulty deployment detection.
@@ -33,6 +35,34 @@ func NewDeploymentRuleOptionsFaultyDeploymentDetection() *DeploymentRuleOptionsF
 func NewDeploymentRuleOptionsFaultyDeploymentDetectionWithDefaults() *DeploymentRuleOptionsFaultyDeploymentDetection {
 	this := DeploymentRuleOptionsFaultyDeploymentDetection{}
 	return &this
+}
+
+// GetAllowedResources returns the AllowedResources field value if set, zero value otherwise.
+func (o *DeploymentRuleOptionsFaultyDeploymentDetection) GetAllowedResources() []string {
+	if o == nil || o.AllowedResources == nil {
+		var ret []string
+		return ret
+	}
+	return o.AllowedResources
+}
+
+// GetAllowedResourcesOk returns a tuple with the AllowedResources field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DeploymentRuleOptionsFaultyDeploymentDetection) GetAllowedResourcesOk() (*[]string, bool) {
+	if o == nil || o.AllowedResources == nil {
+		return nil, false
+	}
+	return &o.AllowedResources, true
+}
+
+// HasAllowedResources returns a boolean if a field has been set.
+func (o *DeploymentRuleOptionsFaultyDeploymentDetection) HasAllowedResources() bool {
+	return o != nil && o.AllowedResources != nil
+}
+
+// SetAllowedResources gets a reference to the given []string and assigns it to the AllowedResources field.
+func (o *DeploymentRuleOptionsFaultyDeploymentDetection) SetAllowedResources(v []string) {
+	o.AllowedResources = v
 }
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
@@ -97,6 +127,9 @@ func (o DeploymentRuleOptionsFaultyDeploymentDetection) MarshalJSON() ([]byte, e
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.AllowedResources != nil {
+		toSerialize["allowed_resources"] = o.AllowedResources
+	}
 	if o.Duration != nil {
 		toSerialize["duration"] = o.Duration
 	}
@@ -109,12 +142,14 @@ func (o DeploymentRuleOptionsFaultyDeploymentDetection) MarshalJSON() ([]byte, e
 // UnmarshalJSON deserializes the given payload.
 func (o *DeploymentRuleOptionsFaultyDeploymentDetection) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		AllowedResources  []string `json:"allowed_resources,omitempty"`
 		Duration          *int64   `json:"duration,omitempty"`
 		ExcludedResources []string `json:"excluded_resources,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
+	o.AllowedResources = all.AllowedResources
 	o.Duration = all.Duration
 	o.ExcludedResources = all.ExcludedResources
 
