@@ -962,6 +962,36 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.WildcardWidgetDefinition = nil
 	}
 
+	if match > 1 {
+		// more than one variant matched, so tell them apart by the items of the arrays they hold
+		if obj.FunnelWidgetDefinition != nil {
+			allRequestsUnparsed := len(obj.FunnelWidgetDefinition.Requests) > 0
+			for _, item := range obj.FunnelWidgetDefinition.Requests {
+				if item.UnparsedObject == nil {
+					allRequestsUnparsed = false
+					break
+				}
+			}
+			if allRequestsUnparsed {
+				obj.FunnelWidgetDefinition = nil
+				match--
+			}
+		}
+		if obj.ProductAnalyticsFunnelWidgetDefinition != nil {
+			allRequestsUnparsed := len(obj.ProductAnalyticsFunnelWidgetDefinition.Requests) > 0
+			for _, item := range obj.ProductAnalyticsFunnelWidgetDefinition.Requests {
+				if item.UnparsedObject == nil {
+					allRequestsUnparsed = false
+					break
+				}
+			}
+			if allRequestsUnparsed {
+				obj.ProductAnalyticsFunnelWidgetDefinition = nil
+				match--
+			}
+		}
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.AlertGraphWidgetDefinition = nil

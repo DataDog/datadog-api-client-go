@@ -1,3 +1,4 @@
+import collections
 import hashlib
 import json
 import pathlib
@@ -11,6 +12,7 @@ from urllib.parse import urlparse
 from yaml import CSafeLoader
 
 from . import formatter
+from . import utils
 
 
 def load(filename):
@@ -125,6 +127,81 @@ def responses_by_types(operation):
         else:
             result[response_type] = [response, [response_code]]
     return result.items()
+
+
+OneOfArrayTiebreak = collections.namedtuple("OneOfArrayTiebreak", ["variant", "arrays"])
+
+
+def _variant_name(variant):
+    """Return the Go field name a oneOf gives the variant."""
+    return utils.upperfirst(get_name(variant) or type_to_go(variant))
+
+
+def _reports_unparsed_items(go_type, models):
+    """Whether the items of the Go array type each have an UnparsedObject field."""
+    item = models.get(go_type[2:])
+    return item is not None and "enum" not in item
+
+
+def _arrays(variant):
+    """Return {property name: Go type} for the properties a variant declares as arrays."""
+    result = {}
+    for name, spec in variant.get("properties", {}).items():
+        go_type = type_to_go(
+            spec,
+            alternative_name=_variant_name(variant) + formatter.attribute_name(name),
+            render_nullable=True,
+            required=name in variant.get("required", []),
+        )
+        if go_type.startswith("[]"):
+            result[name] = go_type
+    return result
+
+
+def _confusable(first, second):
+    """Whether one payload can satisfy both variants.
+
+    The generated code ignores additionalProperties, so a property tells two variants apart
+    only when both declare it, one requires it, and their values cannot overlap.
+    """
+    shared = set(first.get("properties", {})) & set(second.get("properties", {}))
+    required = set(first.get("required", [])) | set(second.get("required", []))
+    for name in shared & required:
+        one, other = first["properties"][name], second["properties"][name]
+        enums = set(one.get("enum") or []), set(other.get("enum") or [])
+        if all(enums) and not enums[0] & enums[1]:
+            return False
+        types = one.get("type"), other.get("type")
+        if all(types) and types[0] != types[1]:
+            return False
+    return True
+
+
+def oneof_array_tiebreaks(model, models):
+    """Return the variants a payload can confuse, with the arrays of models that tell them apart.
+
+    A variant reports its own UnparsedObject, never that of the items it holds, so variants that
+    differ only in the item type of an array all match. Report, per variant, the Go names of the
+    arrays that a confusable variant declares with a different item type.
+    """
+    variants = model.get("oneOf", [])
+    arrays = [_arrays(variant) for variant in variants]
+    tiebreaks = []
+    for index, variant in enumerate(variants):
+        confusable = [
+            other
+            for other, candidate in enumerate(variants)
+            if other != index and _confusable(variant, candidate)
+        ]
+        distinguishing = [
+            formatter.attribute_name(name)
+            for name, go_type in arrays[index].items()
+            if _reports_unparsed_items(go_type, models)
+            and any(arrays[other].get(name, go_type) != go_type for other in confusable)
+        ]
+        if distinguishing:
+            tiebreaks.append(OneOfArrayTiebreak(_variant_name(variant), distinguishing))
+    return tiebreaks
 
 
 def child_models(schema, alternative_name=None, seen=None, parent=None):
