@@ -16,8 +16,6 @@ type PatchStatusPageRequestDataAttributes struct {
 	DomainPrefix *string `json:"domain_prefix,omitempty"`
 	// The base64-encoded image data displayed in email notifications sent to status page subscribers.
 	EmailHeaderImage *string `json:"email_header_image,omitempty"`
-	// Whether the status page is enabled.
-	Enabled *bool `json:"enabled,omitempty"`
 	// The base64-encoded image data displayed in the browser tab.
 	Favicon *string `json:"favicon,omitempty"`
 	// The name of the status page.
@@ -136,34 +134,6 @@ func (o *PatchStatusPageRequestDataAttributes) HasEmailHeaderImage() bool {
 // SetEmailHeaderImage gets a reference to the given string and assigns it to the EmailHeaderImage field.
 func (o *PatchStatusPageRequestDataAttributes) SetEmailHeaderImage(v string) {
 	o.EmailHeaderImage = &v
-}
-
-// GetEnabled returns the Enabled field value if set, zero value otherwise.
-func (o *PatchStatusPageRequestDataAttributes) GetEnabled() bool {
-	if o == nil || o.Enabled == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Enabled
-}
-
-// GetEnabledOk returns a tuple with the Enabled field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *PatchStatusPageRequestDataAttributes) GetEnabledOk() (*bool, bool) {
-	if o == nil || o.Enabled == nil {
-		return nil, false
-	}
-	return o.Enabled, true
-}
-
-// HasEnabled returns a boolean if a field has been set.
-func (o *PatchStatusPageRequestDataAttributes) HasEnabled() bool {
-	return o != nil && o.Enabled != nil
-}
-
-// SetEnabled gets a reference to the given bool and assigns it to the Enabled field.
-func (o *PatchStatusPageRequestDataAttributes) SetEnabled(v bool) {
-	o.Enabled = &v
 }
 
 // GetFavicon returns the Favicon field value if set, zero value otherwise.
@@ -377,9 +347,6 @@ func (o PatchStatusPageRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.EmailHeaderImage != nil {
 		toSerialize["email_header_image"] = o.EmailHeaderImage
 	}
-	if o.Enabled != nil {
-		toSerialize["enabled"] = o.Enabled
-	}
 	if o.Favicon != nil {
 		toSerialize["favicon"] = o.Favicon
 	}
@@ -414,7 +381,6 @@ func (o *PatchStatusPageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err 
 		CompanyLogo               *string                                                 `json:"company_logo,omitempty"`
 		DomainPrefix              *string                                                 `json:"domain_prefix,omitempty"`
 		EmailHeaderImage          *string                                                 `json:"email_header_image,omitempty"`
-		Enabled                   *bool                                                   `json:"enabled,omitempty"`
 		Favicon                   *string                                                 `json:"favicon,omitempty"`
 		Name                      *string                                                 `json:"name,omitempty"`
 		SlackAppIcon              *string                                                 `json:"slack_app_icon,omitempty"`
@@ -428,7 +394,7 @@ func (o *PatchStatusPageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"company_logo", "domain_prefix", "email_header_image", "enabled", "favicon", "name", "slack_app_icon", "slack_subscriptions_enabled", "subscriptions_enabled", "type", "visualization_type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"company_logo", "domain_prefix", "email_header_image", "favicon", "name", "slack_app_icon", "slack_subscriptions_enabled", "subscriptions_enabled", "type", "visualization_type"})
 	} else {
 		return err
 	}
@@ -437,7 +403,6 @@ func (o *PatchStatusPageRequestDataAttributes) UnmarshalJSON(bytes []byte) (err 
 	o.CompanyLogo = all.CompanyLogo
 	o.DomainPrefix = all.DomainPrefix
 	o.EmailHeaderImage = all.EmailHeaderImage
-	o.Enabled = all.Enabled
 	o.Favicon = all.Favicon
 	o.Name = all.Name
 	o.SlackAppIcon = all.SlackAppIcon
