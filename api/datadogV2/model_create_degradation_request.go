@@ -12,6 +12,8 @@ import (
 type CreateDegradationRequest struct {
 	// The data object for creating a degradation.
 	Data *CreateDegradationRequestData `json:"data,omitempty"`
+	// The supported metadata for a degradation request.
+	Meta *DegradationRequestMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -62,6 +64,34 @@ func (o *CreateDegradationRequest) SetData(v CreateDegradationRequestData) {
 	o.Data = &v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *CreateDegradationRequest) GetMeta() DegradationRequestMeta {
+	if o == nil || o.Meta == nil {
+		var ret DegradationRequestMeta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateDegradationRequest) GetMetaOk() (*DegradationRequestMeta, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *CreateDegradationRequest) HasMeta() bool {
+	return o != nil && o.Meta != nil
+}
+
+// SetMeta gets a reference to the given DegradationRequestMeta and assigns it to the Meta field.
+func (o *CreateDegradationRequest) SetMeta(v DegradationRequestMeta) {
+	o.Meta = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CreateDegradationRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -70,6 +100,9 @@ func (o CreateDegradationRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -82,13 +115,14 @@ func (o CreateDegradationRequest) MarshalJSON() ([]byte, error) {
 func (o *CreateDegradationRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data *CreateDegradationRequestData `json:"data,omitempty"`
+		Meta *DegradationRequestMeta       `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
 	} else {
 		return err
 	}
@@ -98,6 +132,10 @@ func (o *CreateDegradationRequest) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Data = all.Data
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
