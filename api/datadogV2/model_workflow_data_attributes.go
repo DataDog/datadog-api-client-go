@@ -21,7 +21,7 @@ type WorkflowDataAttributes struct {
 	Name string `json:"name"`
 	// Set the workflow to published or unpublished. Workflows in an unpublished state will only be executable via manual runs. Automatic triggers such as Schedule will not execute the workflow until it is published.
 	Published *bool `json:"published,omitempty"`
-	// The spec defines what the workflow does.
+	// A complete Workflow Automation definition, including its triggers, steps, and connections.
 	Spec Spec `json:"spec"`
 	// Tags of the workflow.
 	Tags []string `json:"tags,omitempty"`
