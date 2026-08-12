@@ -37,6 +37,7 @@ const (
 	MONITORTYPE_DATA_QUALITY_ALERT        MonitorType = "data-quality alert"
 	MONITORTYPE_NETWORK_PATH_ALERT        MonitorType = "network-path alert"
 	MONITORTYPE_DATA_JOBS_ALERT           MonitorType = "data-jobs alert"
+	MONITORTYPE_LLM_OBSERVABILITY_ALERT   MonitorType = "llm-observability alert"
 )
 
 var allowedMonitorTypeEnumValues = []MonitorType{
@@ -62,6 +63,7 @@ var allowedMonitorTypeEnumValues = []MonitorType{
 	MONITORTYPE_DATA_QUALITY_ALERT,
 	MONITORTYPE_NETWORK_PATH_ALERT,
 	MONITORTYPE_DATA_JOBS_ALERT,
+	MONITORTYPE_LLM_OBSERVABILITY_ALERT,
 }
 
 // GetAllowedValues reeturns the list of possible values.
