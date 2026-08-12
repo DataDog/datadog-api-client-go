@@ -12,7 +12,7 @@ import (
 
 // CreateUploadRequestDataAttributes Upload configuration specifying how data is uploaded by the user, and properties of the table to associate the upload with.
 type CreateUploadRequestDataAttributes struct {
-	// The CSV file headers that define the schema fields, provided in the same order as the columns in the uploaded file.
+	// The CSV file headers that define the schema fields, provided in the same order as the columns in the uploaded file. Maximum of 200 columns.
 	Headers []string `json:"headers"`
 	// Number of parts to split the file into for multipart upload.
 	PartCount int32 `json:"part_count"`
