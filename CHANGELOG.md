@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 2.64.0/2026-08-12
+
+### Changed
+* 200 col lim explicit in api docs [#4437](https://github.com/DataDog/datadog-api-client-go/pull/4437)
+* Add GET/PATCH /api/v2/ci/github/accounts to CI Visibility spec [#4423](https://github.com/DataDog/datadog-api-client-go/pull/4423)
+* Mark supported_values as nullable and remove unused detection_frequency in Governance Console API [#4420](https://github.com/DataDog/datadog-api-client-go/pull/4420)
+
+### Added
+* Add llm-observability alert monitor type [#4436](https://github.com/DataDog/datadog-api-client-go/pull/4436)
+* Add allowed_resources to Deployment Gates FDD rule options [#4435](https://github.com/DataDog/datadog-api-client-go/pull/4435)
+* Document meta.idempotency_key in CreateDegradation and UpdateDegradation [#4426](https://github.com/DataDog/datadog-api-client-go/pull/4426)
+*  Add spec for maintenance update edit endpoint [#4417](https://github.com/DataDog/datadog-api-client-go/pull/4417)
+* Document PATCH /api/v2/dora/deployments [#4412](https://github.com/DataDog/datadog-api-client-go/pull/4412)
+
+### Removed
+* Update Status Pages UpdateStatusPage documentation to reflect enabled attribute deprecation [#4433](https://github.com/DataDog/datadog-api-client-go/pull/4433)
+* Make RUM rate limit config API private pending rename [#4424](https://github.com/DataDog/datadog-api-client-go/pull/4424)
+
+### Fixed
+* Parse topology_map and funnel widgets [#4431](https://github.com/DataDog/datadog-api-client-go/pull/4431)
+* Remove redundant otel fields from Fleet Automation v2 agent detail endpoint [#4422](https://github.com/DataDog/datadog-api-client-go/pull/4422)
+
 ## 2.63.0/2026-08-06
 
 ### Fixed
