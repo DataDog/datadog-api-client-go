@@ -10,6 +10,7 @@ import (
 
 // Trigger - One of the triggers that can start the execution of a workflow.
 type Trigger struct {
+	AgentTriggerWrapper              *AgentTriggerWrapper
 	APITriggerWrapper                *APITriggerWrapper
 	AppTriggerWrapper                *AppTriggerWrapper
 	CaseTriggerWrapper               *CaseTriggerWrapper
@@ -32,6 +33,11 @@ type Trigger struct {
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
+}
+
+// AgentTriggerWrapperAsTrigger is a convenience function that returns AgentTriggerWrapper wrapped in Trigger.
+func AgentTriggerWrapperAsTrigger(v *AgentTriggerWrapper) Trigger {
+	return Trigger{AgentTriggerWrapper: v}
 }
 
 // APITriggerWrapperAsTrigger is a convenience function that returns APITriggerWrapper wrapped in Trigger.
@@ -133,6 +139,23 @@ func WorkflowTriggerWrapperAsTrigger(v *WorkflowTriggerWrapper) Trigger {
 func (obj *Trigger) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
+	// try to unmarshal data into AgentTriggerWrapper
+	err = datadog.Unmarshal(data, &obj.AgentTriggerWrapper)
+	if err == nil {
+		if obj.AgentTriggerWrapper != nil && obj.AgentTriggerWrapper.UnparsedObject == nil {
+			jsonAgentTriggerWrapper, _ := datadog.Marshal(obj.AgentTriggerWrapper)
+			if string(jsonAgentTriggerWrapper) == "{}" { // empty struct
+				obj.AgentTriggerWrapper = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.AgentTriggerWrapper = nil
+		}
+	} else {
+		obj.AgentTriggerWrapper = nil
+	}
+
 	// try to unmarshal data into APITriggerWrapper
 	err = datadog.Unmarshal(data, &obj.APITriggerWrapper)
 	if err == nil {
@@ -458,6 +481,7 @@ func (obj *Trigger) UnmarshalJSON(data []byte) error {
 
 	if match != 1 { // more than 1 match
 		// reset to nil
+		obj.AgentTriggerWrapper = nil
 		obj.APITriggerWrapper = nil
 		obj.AppTriggerWrapper = nil
 		obj.CaseTriggerWrapper = nil
@@ -484,6 +508,10 @@ func (obj *Trigger) UnmarshalJSON(data []byte) error {
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj Trigger) MarshalJSON() ([]byte, error) {
+	if obj.AgentTriggerWrapper != nil {
+		return datadog.Marshal(&obj.AgentTriggerWrapper)
+	}
+
 	if obj.APITriggerWrapper != nil {
 		return datadog.Marshal(&obj.APITriggerWrapper)
 	}
@@ -568,6 +596,10 @@ func (obj Trigger) MarshalJSON() ([]byte, error) {
 
 // GetActualInstance returns the actual instance.
 func (obj *Trigger) GetActualInstance() interface{} {
+	if obj.AgentTriggerWrapper != nil {
+		return obj.AgentTriggerWrapper
+	}
+
 	if obj.APITriggerWrapper != nil {
 		return obj.APITriggerWrapper
 	}
