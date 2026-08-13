@@ -702,7 +702,6 @@ type ListSLOsOptionalParameters struct {
 	MetricsQuery *string
 	Limit        *int64
 	Offset       *int64
-	IsDeleted    *bool
 }
 
 // NewListSLOsOptionalParameters creates an empty struct for parameters.
@@ -744,12 +743,6 @@ func (r *ListSLOsOptionalParameters) WithLimit(limit int64) *ListSLOsOptionalPar
 // WithOffset sets the corresponding parameter name and returns the struct.
 func (r *ListSLOsOptionalParameters) WithOffset(offset int64) *ListSLOsOptionalParameters {
 	r.Offset = &offset
-	return r
-}
-
-// WithIsDeleted sets the corresponding parameter name and returns the struct.
-func (r *ListSLOsOptionalParameters) WithIsDeleted(isDeleted bool) *ListSLOsOptionalParameters {
-	r.IsDeleted = &isDeleted
 	return r
 }
 
@@ -797,9 +790,6 @@ func (a *ServiceLevelObjectivesApi) ListSLOs(ctx _context.Context, o ...ListSLOs
 	}
 	if optionalParams.Offset != nil {
 		localVarQueryParams.Add("offset", datadog.ParameterToString(*optionalParams.Offset, ""))
-	}
-	if optionalParams.IsDeleted != nil {
-		localVarQueryParams.Add("is_deleted", datadog.ParameterToString(*optionalParams.IsDeleted, ""))
 	}
 	localVarHeaderParams["Accept"] = "application/json"
 
