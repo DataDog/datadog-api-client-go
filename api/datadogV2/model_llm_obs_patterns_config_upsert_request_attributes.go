@@ -16,6 +16,10 @@ type LLMObsPatternsConfigUpsertRequestAttributes struct {
 	AccountId *string `json:"account_id,omitempty"`
 	// The ID of an existing configuration to update. If omitted, a new configuration is created.
 	ConfigId *string `json:"config_id,omitempty"`
+	// When true, Datadog automatically provisions a managed project and dataset
+	// (`{pattern-name}-pattern-curated`) to receive suggested interactions after
+	// each run. Defaults to true for new patterns.
+	CurationEnabled *bool `json:"curation_enabled,omitempty"`
 	// Query that selects the spans the patterns run analyzes.
 	EvpQuery string `json:"evp_query"`
 	// Depth of the topic hierarchy to generate.
@@ -115,6 +119,34 @@ func (o *LLMObsPatternsConfigUpsertRequestAttributes) HasConfigId() bool {
 // SetConfigId gets a reference to the given string and assigns it to the ConfigId field.
 func (o *LLMObsPatternsConfigUpsertRequestAttributes) SetConfigId(v string) {
 	o.ConfigId = &v
+}
+
+// GetCurationEnabled returns the CurationEnabled field value if set, zero value otherwise.
+func (o *LLMObsPatternsConfigUpsertRequestAttributes) GetCurationEnabled() bool {
+	if o == nil || o.CurationEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.CurationEnabled
+}
+
+// GetCurationEnabledOk returns a tuple with the CurationEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsPatternsConfigUpsertRequestAttributes) GetCurationEnabledOk() (*bool, bool) {
+	if o == nil || o.CurationEnabled == nil {
+		return nil, false
+	}
+	return o.CurationEnabled, true
+}
+
+// HasCurationEnabled returns a boolean if a field has been set.
+func (o *LLMObsPatternsConfigUpsertRequestAttributes) HasCurationEnabled() bool {
+	return o != nil && o.CurationEnabled != nil
+}
+
+// SetCurationEnabled gets a reference to the given bool and assigns it to the CurationEnabled field.
+func (o *LLMObsPatternsConfigUpsertRequestAttributes) SetCurationEnabled(v bool) {
+	o.CurationEnabled = &v
 }
 
 // GetEvpQuery returns the EvpQuery field value.
@@ -356,6 +388,9 @@ func (o LLMObsPatternsConfigUpsertRequestAttributes) MarshalJSON() ([]byte, erro
 	if o.ConfigId != nil {
 		toSerialize["config_id"] = o.ConfigId
 	}
+	if o.CurationEnabled != nil {
+		toSerialize["curation_enabled"] = o.CurationEnabled
+	}
 	toSerialize["evp_query"] = o.EvpQuery
 	toSerialize["hierarchy_depth"] = o.HierarchyDepth
 	if o.IntegrationProvider != nil {
@@ -385,6 +420,7 @@ func (o *LLMObsPatternsConfigUpsertRequestAttributes) UnmarshalJSON(bytes []byte
 	all := struct {
 		AccountId           *string  `json:"account_id,omitempty"`
 		ConfigId            *string  `json:"config_id,omitempty"`
+		CurationEnabled     *bool    `json:"curation_enabled,omitempty"`
 		EvpQuery            *string  `json:"evp_query"`
 		HierarchyDepth      *int32   `json:"hierarchy_depth"`
 		IntegrationProvider *string  `json:"integration_provider,omitempty"`
@@ -415,12 +451,13 @@ func (o *LLMObsPatternsConfigUpsertRequestAttributes) UnmarshalJSON(bytes []byte
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "config_id", "evp_query", "hierarchy_depth", "integration_provider", "model_name", "name", "num_records", "sampling_ratio", "scope", "template"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "config_id", "curation_enabled", "evp_query", "hierarchy_depth", "integration_provider", "model_name", "name", "num_records", "sampling_ratio", "scope", "template"})
 	} else {
 		return err
 	}
 	o.AccountId = all.AccountId
 	o.ConfigId = all.ConfigId
+	o.CurationEnabled = all.CurationEnabled
 	o.EvpQuery = *all.EvpQuery
 	o.HierarchyDepth = *all.HierarchyDepth
 	o.IntegrationProvider = all.IntegrationProvider

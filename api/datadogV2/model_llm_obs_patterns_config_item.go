@@ -17,6 +17,8 @@ type LLMObsPatternsConfigItem struct {
 	AccountId datadog.NullableString `json:"account_id,omitempty"`
 	// Timestamp when the configuration was created.
 	CreatedAt time.Time `json:"created_at"`
+	// Whether automatic dataset curation is enabled for this configuration.
+	CurationEnabled *bool `json:"curation_enabled,omitempty"`
 	// Query that selects the spans the patterns run analyzes.
 	EvpQuery string `json:"evp_query"`
 	// Depth of the topic hierarchy to generate.
@@ -130,6 +132,34 @@ func (o *LLMObsPatternsConfigItem) GetCreatedAtOk() (*time.Time, bool) {
 // SetCreatedAt sets field value.
 func (o *LLMObsPatternsConfigItem) SetCreatedAt(v time.Time) {
 	o.CreatedAt = v
+}
+
+// GetCurationEnabled returns the CurationEnabled field value if set, zero value otherwise.
+func (o *LLMObsPatternsConfigItem) GetCurationEnabled() bool {
+	if o == nil || o.CurationEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.CurationEnabled
+}
+
+// GetCurationEnabledOk returns a tuple with the CurationEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsPatternsConfigItem) GetCurationEnabledOk() (*bool, bool) {
+	if o == nil || o.CurationEnabled == nil {
+		return nil, false
+	}
+	return o.CurationEnabled, true
+}
+
+// HasCurationEnabled returns a boolean if a field has been set.
+func (o *LLMObsPatternsConfigItem) HasCurationEnabled() bool {
+	return o != nil && o.CurationEnabled != nil
+}
+
+// SetCurationEnabled gets a reference to the given bool and assigns it to the CurationEnabled field.
+func (o *LLMObsPatternsConfigItem) SetCurationEnabled(v bool) {
+	o.CurationEnabled = &v
 }
 
 // GetEvpQuery returns the EvpQuery field value.
@@ -447,6 +477,9 @@ func (o LLMObsPatternsConfigItem) MarshalJSON() ([]byte, error) {
 	} else {
 		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
 	}
+	if o.CurationEnabled != nil {
+		toSerialize["curation_enabled"] = o.CurationEnabled
+	}
 	toSerialize["evp_query"] = o.EvpQuery
 	toSerialize["hierarchy_depth"] = o.HierarchyDepth
 	toSerialize["id"] = o.Id
@@ -480,6 +513,7 @@ func (o *LLMObsPatternsConfigItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AccountId           datadog.NullableString `json:"account_id,omitempty"`
 		CreatedAt           *time.Time             `json:"created_at"`
+		CurationEnabled     *bool                  `json:"curation_enabled,omitempty"`
 		EvpQuery            *string                `json:"evp_query"`
 		HierarchyDepth      *int32                 `json:"hierarchy_depth"`
 		Id                  *string                `json:"id"`
@@ -524,12 +558,13 @@ func (o *LLMObsPatternsConfigItem) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "created_at", "evp_query", "hierarchy_depth", "id", "integration_provider", "model_name", "name", "num_records", "sampling_ratio", "scope", "template", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "created_at", "curation_enabled", "evp_query", "hierarchy_depth", "id", "integration_provider", "model_name", "name", "num_records", "sampling_ratio", "scope", "template", "updated_at"})
 	} else {
 		return err
 	}
 	o.AccountId = all.AccountId
 	o.CreatedAt = *all.CreatedAt
+	o.CurationEnabled = all.CurationEnabled
 	o.EvpQuery = *all.EvpQuery
 	o.HierarchyDepth = *all.HierarchyDepth
 	o.Id = *all.Id
