@@ -48,6 +48,12 @@ var (
 	// ContextAWSVariables takes AWS credentials as authentication for the request.
 	ContextAWSVariables = contextKey("awsVariables")
 
+	// ContextAWSWebIdentityVariables takes an AWSWebIdentityVariables to authenticate
+	// via web identity token exchange (AssumeRoleWithWebIdentity) rather than static credentials.
+	// Takes precedence over AWS_WEB_IDENTITY_TOKEN_FILE / AWS_ROLE_ARN environment variables
+	// but is lower priority than ContextAWSVariables.
+	ContextAWSWebIdentityVariables = contextKey("awsWebIdentityVariables")
+
 	// ContextHttpSignatureAuth takes HttpSignatureAuth as authentication for the request.
 	ContextHttpSignatureAuth = contextKey("httpsignature")
 
