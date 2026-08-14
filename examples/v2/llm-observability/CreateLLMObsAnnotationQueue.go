@@ -40,7 +40,7 @@ func main() {
 				},
 				Description: datadog.PtrString("Queue for annotating customer support traces"),
 				Name:        "My annotation queue",
-				ProjectId:   "00000000-0000-0000-0000-000000000002",
+				ProjectId:   datadog.PtrString("00000000-0000-0000-0000-000000000002"),
 			},
 			Type: datadogV2.LLMOBSANNOTATIONQUEUETYPE_QUEUES,
 		},

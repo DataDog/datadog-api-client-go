@@ -19,7 +19,7 @@ type LLMObsAnnotationQueueDataAttributesRequest struct {
 	// Name of the annotation queue.
 	Name string `json:"name"`
 	// Identifier of the project this queue belongs to.
-	ProjectId string `json:"project_id"`
+	ProjectId *string `json:"project_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -29,10 +29,9 @@ type LLMObsAnnotationQueueDataAttributesRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsAnnotationQueueDataAttributesRequest(name string, projectId string) *LLMObsAnnotationQueueDataAttributesRequest {
+func NewLLMObsAnnotationQueueDataAttributesRequest(name string) *LLMObsAnnotationQueueDataAttributesRequest {
 	this := LLMObsAnnotationQueueDataAttributesRequest{}
 	this.Name = name
-	this.ProjectId = projectId
 	return &this
 }
 
@@ -123,27 +122,32 @@ func (o *LLMObsAnnotationQueueDataAttributesRequest) SetName(v string) {
 	o.Name = v
 }
 
-// GetProjectId returns the ProjectId field value.
+// GetProjectId returns the ProjectId field value if set, zero value otherwise.
 func (o *LLMObsAnnotationQueueDataAttributesRequest) GetProjectId() string {
-	if o == nil {
+	if o == nil || o.ProjectId == nil {
 		var ret string
 		return ret
 	}
-	return o.ProjectId
+	return *o.ProjectId
 }
 
-// GetProjectIdOk returns a tuple with the ProjectId field value
+// GetProjectIdOk returns a tuple with the ProjectId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *LLMObsAnnotationQueueDataAttributesRequest) GetProjectIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.ProjectId == nil {
 		return nil, false
 	}
-	return &o.ProjectId, true
+	return o.ProjectId, true
 }
 
-// SetProjectId sets field value.
+// HasProjectId returns a boolean if a field has been set.
+func (o *LLMObsAnnotationQueueDataAttributesRequest) HasProjectId() bool {
+	return o != nil && o.ProjectId != nil
+}
+
+// SetProjectId gets a reference to the given string and assigns it to the ProjectId field.
 func (o *LLMObsAnnotationQueueDataAttributesRequest) SetProjectId(v string) {
-	o.ProjectId = v
+	o.ProjectId = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -159,7 +163,9 @@ func (o LLMObsAnnotationQueueDataAttributesRequest) MarshalJSON() ([]byte, error
 		toSerialize["description"] = o.Description
 	}
 	toSerialize["name"] = o.Name
-	toSerialize["project_id"] = o.ProjectId
+	if o.ProjectId != nil {
+		toSerialize["project_id"] = o.ProjectId
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -173,16 +179,13 @@ func (o *LLMObsAnnotationQueueDataAttributesRequest) UnmarshalJSON(bytes []byte)
 		AnnotationSchema *LLMObsAnnotationSchema `json:"annotation_schema,omitempty"`
 		Description      *string                 `json:"description,omitempty"`
 		Name             *string                 `json:"name"`
-		ProjectId        *string                 `json:"project_id"`
+		ProjectId        *string                 `json:"project_id,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.Name == nil {
 		return fmt.Errorf("required field name missing")
-	}
-	if all.ProjectId == nil {
-		return fmt.Errorf("required field project_id missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -198,7 +201,7 @@ func (o *LLMObsAnnotationQueueDataAttributesRequest) UnmarshalJSON(bytes []byte)
 	o.AnnotationSchema = all.AnnotationSchema
 	o.Description = all.Description
 	o.Name = *all.Name
-	o.ProjectId = *all.ProjectId
+	o.ProjectId = all.ProjectId
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

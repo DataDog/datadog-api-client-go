@@ -321,7 +321,8 @@ func (a *LLMObservabilityApi) CloneLLMObsDataset(ctx _context.Context, projectId
 }
 
 // CreateLLMObsAnnotationQueue Create an LLM Observability annotation queue.
-// Create an annotation queue. The `name` and `project_id` fields are required.
+// Create an annotation queue. The `name` field is required.
+// Optionally associate the queue with a project by providing `project_id`.
 // An optional `annotation_schema` can be provided to define the labels for the queue.
 // Fields such as `created_by`, `owned_by`, `created_at`, `modified_by`,
 // and `modified_at` are inferred by the backend.
