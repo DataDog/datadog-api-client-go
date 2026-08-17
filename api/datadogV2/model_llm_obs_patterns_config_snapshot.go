@@ -12,6 +12,8 @@ import (
 type LLMObsPatternsConfigSnapshot struct {
 	// Integration account ID used for a bring-your-own-model run.
 	AccountId *string `json:"account_id,omitempty"`
+	// Whether automatic dataset curation was enabled for the run.
+	CurationEnabled *bool `json:"curation_enabled,omitempty"`
 	// Query that selected the spans for the run.
 	EvpQuery *string `json:"evp_query,omitempty"`
 	// Depth of the topic hierarchy generated.
@@ -72,6 +74,34 @@ func (o *LLMObsPatternsConfigSnapshot) HasAccountId() bool {
 // SetAccountId gets a reference to the given string and assigns it to the AccountId field.
 func (o *LLMObsPatternsConfigSnapshot) SetAccountId(v string) {
 	o.AccountId = &v
+}
+
+// GetCurationEnabled returns the CurationEnabled field value if set, zero value otherwise.
+func (o *LLMObsPatternsConfigSnapshot) GetCurationEnabled() bool {
+	if o == nil || o.CurationEnabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.CurationEnabled
+}
+
+// GetCurationEnabledOk returns a tuple with the CurationEnabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsPatternsConfigSnapshot) GetCurationEnabledOk() (*bool, bool) {
+	if o == nil || o.CurationEnabled == nil {
+		return nil, false
+	}
+	return o.CurationEnabled, true
+}
+
+// HasCurationEnabled returns a boolean if a field has been set.
+func (o *LLMObsPatternsConfigSnapshot) HasCurationEnabled() bool {
+	return o != nil && o.CurationEnabled != nil
+}
+
+// SetCurationEnabled gets a reference to the given bool and assigns it to the CurationEnabled field.
+func (o *LLMObsPatternsConfigSnapshot) SetCurationEnabled(v bool) {
+	o.CurationEnabled = &v
 }
 
 // GetEvpQuery returns the EvpQuery field value if set, zero value otherwise.
@@ -251,6 +281,9 @@ func (o LLMObsPatternsConfigSnapshot) MarshalJSON() ([]byte, error) {
 	if o.AccountId != nil {
 		toSerialize["account_id"] = o.AccountId
 	}
+	if o.CurationEnabled != nil {
+		toSerialize["curation_enabled"] = o.CurationEnabled
+	}
 	if o.EvpQuery != nil {
 		toSerialize["evp_query"] = o.EvpQuery
 	}
@@ -280,6 +313,7 @@ func (o LLMObsPatternsConfigSnapshot) MarshalJSON() ([]byte, error) {
 func (o *LLMObsPatternsConfigSnapshot) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AccountId           *string  `json:"account_id,omitempty"`
+		CurationEnabled     *bool    `json:"curation_enabled,omitempty"`
 		EvpQuery            *string  `json:"evp_query,omitempty"`
 		HierarchyDepth      *int32   `json:"hierarchy_depth,omitempty"`
 		IntegrationProvider *string  `json:"integration_provider,omitempty"`
@@ -292,11 +326,12 @@ func (o *LLMObsPatternsConfigSnapshot) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "evp_query", "hierarchy_depth", "integration_provider", "model_name", "num_records", "sampling_ratio"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"account_id", "curation_enabled", "evp_query", "hierarchy_depth", "integration_provider", "model_name", "num_records", "sampling_ratio"})
 	} else {
 		return err
 	}
 	o.AccountId = all.AccountId
+	o.CurationEnabled = all.CurationEnabled
 	o.EvpQuery = all.EvpQuery
 	o.HierarchyDepth = all.HierarchyDepth
 	o.IntegrationProvider = all.IntegrationProvider

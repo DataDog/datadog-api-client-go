@@ -15,10 +15,16 @@ import (
 type LLMObsPatternsActivityProgress struct {
 	// Name of the step.
 	Name string `json:"name"`
+	// Number of completed work items.
+	NbCompleted *int64 `json:"nb_completed,omitempty"`
 	// Timestamp when the step started. Null if the step has not started.
 	StartedAt datadog.NullableTime `json:"started_at,omitempty"`
 	// Status of the step.
 	Status string `json:"status"`
+	// Label of the current sub-step.
+	SubStep *string `json:"sub_step,omitempty"`
+	// Total number of work items.
+	Target *int64 `json:"target,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -64,6 +70,34 @@ func (o *LLMObsPatternsActivityProgress) GetNameOk() (*string, bool) {
 // SetName sets field value.
 func (o *LLMObsPatternsActivityProgress) SetName(v string) {
 	o.Name = v
+}
+
+// GetNbCompleted returns the NbCompleted field value if set, zero value otherwise.
+func (o *LLMObsPatternsActivityProgress) GetNbCompleted() int64 {
+	if o == nil || o.NbCompleted == nil {
+		var ret int64
+		return ret
+	}
+	return *o.NbCompleted
+}
+
+// GetNbCompletedOk returns a tuple with the NbCompleted field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsPatternsActivityProgress) GetNbCompletedOk() (*int64, bool) {
+	if o == nil || o.NbCompleted == nil {
+		return nil, false
+	}
+	return o.NbCompleted, true
+}
+
+// HasNbCompleted returns a boolean if a field has been set.
+func (o *LLMObsPatternsActivityProgress) HasNbCompleted() bool {
+	return o != nil && o.NbCompleted != nil
+}
+
+// SetNbCompleted gets a reference to the given int64 and assigns it to the NbCompleted field.
+func (o *LLMObsPatternsActivityProgress) SetNbCompleted(v int64) {
+	o.NbCompleted = &v
 }
 
 // GetStartedAt returns the StartedAt field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -128,6 +162,62 @@ func (o *LLMObsPatternsActivityProgress) SetStatus(v string) {
 	o.Status = v
 }
 
+// GetSubStep returns the SubStep field value if set, zero value otherwise.
+func (o *LLMObsPatternsActivityProgress) GetSubStep() string {
+	if o == nil || o.SubStep == nil {
+		var ret string
+		return ret
+	}
+	return *o.SubStep
+}
+
+// GetSubStepOk returns a tuple with the SubStep field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsPatternsActivityProgress) GetSubStepOk() (*string, bool) {
+	if o == nil || o.SubStep == nil {
+		return nil, false
+	}
+	return o.SubStep, true
+}
+
+// HasSubStep returns a boolean if a field has been set.
+func (o *LLMObsPatternsActivityProgress) HasSubStep() bool {
+	return o != nil && o.SubStep != nil
+}
+
+// SetSubStep gets a reference to the given string and assigns it to the SubStep field.
+func (o *LLMObsPatternsActivityProgress) SetSubStep(v string) {
+	o.SubStep = &v
+}
+
+// GetTarget returns the Target field value if set, zero value otherwise.
+func (o *LLMObsPatternsActivityProgress) GetTarget() int64 {
+	if o == nil || o.Target == nil {
+		var ret int64
+		return ret
+	}
+	return *o.Target
+}
+
+// GetTargetOk returns a tuple with the Target field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsPatternsActivityProgress) GetTargetOk() (*int64, bool) {
+	if o == nil || o.Target == nil {
+		return nil, false
+	}
+	return o.Target, true
+}
+
+// HasTarget returns a boolean if a field has been set.
+func (o *LLMObsPatternsActivityProgress) HasTarget() bool {
+	return o != nil && o.Target != nil
+}
+
+// SetTarget gets a reference to the given int64 and assigns it to the Target field.
+func (o *LLMObsPatternsActivityProgress) SetTarget(v int64) {
+	o.Target = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LLMObsPatternsActivityProgress) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -135,10 +225,19 @@ func (o LLMObsPatternsActivityProgress) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["name"] = o.Name
+	if o.NbCompleted != nil {
+		toSerialize["nb_completed"] = o.NbCompleted
+	}
 	if o.StartedAt.IsSet() {
 		toSerialize["started_at"] = o.StartedAt.Get()
 	}
 	toSerialize["status"] = o.Status
+	if o.SubStep != nil {
+		toSerialize["sub_step"] = o.SubStep
+	}
+	if o.Target != nil {
+		toSerialize["target"] = o.Target
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -149,9 +248,12 @@ func (o LLMObsPatternsActivityProgress) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsPatternsActivityProgress) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Name      *string              `json:"name"`
-		StartedAt datadog.NullableTime `json:"started_at,omitempty"`
-		Status    *string              `json:"status"`
+		Name        *string              `json:"name"`
+		NbCompleted *int64               `json:"nb_completed,omitempty"`
+		StartedAt   datadog.NullableTime `json:"started_at,omitempty"`
+		Status      *string              `json:"status"`
+		SubStep     *string              `json:"sub_step,omitempty"`
+		Target      *int64               `json:"target,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -164,13 +266,16 @@ func (o *LLMObsPatternsActivityProgress) UnmarshalJSON(bytes []byte) (err error)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"name", "started_at", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"name", "nb_completed", "started_at", "status", "sub_step", "target"})
 	} else {
 		return err
 	}
 	o.Name = *all.Name
+	o.NbCompleted = all.NbCompleted
 	o.StartedAt = all.StartedAt
 	o.Status = *all.Status
+	o.SubStep = all.SubStep
+	o.Target = all.Target
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
