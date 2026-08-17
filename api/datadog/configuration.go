@@ -936,8 +936,6 @@ func NewConfiguration() *Configuration {
 			"v2.UpdateSecurityMonitoringIntegrationConfig":            false,
 			"v2.ValidateSecurityMonitoringIntegrationConfig":          false,
 			"v2.ValidateSecurityMonitoringIntegrationCredentials":     false,
-			"v2.GetCodeCoverageBranchSummary":                         false,
-			"v2.GetCodeCoverageCommitSummary":                         false,
 			"v2.GetRuleBasedView":                                     false,
 			"v2.GetCommitmentsCommitmentList":                         false,
 			"v2.GetCommitmentsCoverageScalar":                         false,
