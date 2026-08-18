@@ -20,7 +20,7 @@ func main() {
 		Data: &datadogV2.PatchNotificationRuleParametersData{
 			Attributes: datadogV2.PatchNotificationRuleParametersDataAttributes{
 				Enabled: datadog.PtrBool(true),
-				Name:    datadog.PtrString("Rule 1"),
+				Name:    datadog.PtrString("Rule 9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d"),
 				Selectors: &datadogV2.Selectors{
 					Query: datadog.PtrString("(source:production_service OR env:prod)"),
 					RuleTypes: []datadogV2.RuleTypesItems{
