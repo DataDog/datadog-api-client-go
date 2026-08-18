@@ -375,6 +375,7 @@
 //   - [DashboardSharingApi.ListSharedDashboardsByDashboardId]
 //   - [DashboardsApi.GetDashboardUsage]
 //   - [DashboardsApi.ListDashboardsUsage]
+//   - [DashboardsApi.ValidateDashboardWidgets]
 //   - [DataDeletionApi.CancelDataDeletionRequest]
 //   - [DataDeletionApi.CreateDataDeletionRequest]
 //   - [DataDeletionApi.GetDataDeletionRequests]
