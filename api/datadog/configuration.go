@@ -775,6 +775,7 @@ func NewConfiguration() *Configuration {
 			"v2.DeleteLLMObsAnnotationQueueInteractions":              false,
 			"v2.DeleteLLMObsAnnotations":                              false,
 			"v2.DeleteLLMObsCustomEvalConfig":                         false,
+			"v2.DeleteLLMObsData":                                     false,
 			"v2.DeleteLLMObsDatasetRecords":                           false,
 			"v2.DeleteLLMObsDatasets":                                 false,
 			"v2.DeleteLLMObsExperiments":                              false,

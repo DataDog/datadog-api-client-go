@@ -657,6 +657,7 @@
 //   - [LLMObservabilityApi.DeleteLLMObsAnnotationQueueInteractions]
 //   - [LLMObservabilityApi.DeleteLLMObsAnnotations]
 //   - [LLMObservabilityApi.DeleteLLMObsCustomEvalConfig]
+//   - [LLMObservabilityApi.DeleteLLMObsData]
 //   - [LLMObservabilityApi.DeleteLLMObsDatasetRecords]
 //   - [LLMObservabilityApi.DeleteLLMObsDatasets]
 //   - [LLMObservabilityApi.DeleteLLMObsExperiments]
