@@ -6,12 +6,12 @@ repos:
     language: system
     entry: bash -c "./generate.sh"
     files: '^(\.generator/.*|\.pre-commit-config\.yaml|Makefile|\tests/scenarios/features/.*|api/.*)'
+    stages: [manual]
     pass_filenames: false
   - id: lint
     name: Lint
     language: golang
     entry: goimports -w api examples
-    stages: [manual]
     # files: '^api/.*\.go'
     # types: ["file", "go"]
     pass_filenames: false
