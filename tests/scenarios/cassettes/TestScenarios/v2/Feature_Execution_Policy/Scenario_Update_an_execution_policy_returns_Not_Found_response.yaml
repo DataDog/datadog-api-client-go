@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"action_pattern":{"action_fqns":["com.datadoghq.script.*"],"integration":"INTEGRATION_SCRIPT"},"effect":"allow","name":"Cassette Execution Policy Updated"},"id":"aaa11111-aa11-aa11-aaaa-aaaaaa111111","type":"execution_policy"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    id: 0
+    method: PUT
+    url: https://api.datadoghq.com/api/v2/actions/execution-policies/aaa11111-aa11-aa11-aaaa-aaaaaa111111
+  response:
+    body: '{"errors":[{"title":"Generic Error","detail":"error updating execution
+      policy"}]}'
+    code: 404
+    duration: 0ms
+    headers:
+      Content-Type:
+      - application/vnd.api+json
+    status: 404 Not Found
+version: 2
