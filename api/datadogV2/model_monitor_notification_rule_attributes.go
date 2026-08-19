@@ -12,6 +12,9 @@ import (
 
 // MonitorNotificationRuleAttributes Attributes of the monitor notification rule.
 type MonitorNotificationRuleAttributes struct {
+	// Use bundle config to enable alert bundling to reduce monitor signal noises. **Note**: This feature is in preview and is subject to change.
+	// If you have any feedback, contact [Datadog support](https://docs.datadoghq.com/help/).
+	BundleConfig *MonitorNotificationRuleBundleConfig `json:"bundle_config,omitempty"`
 	// Use conditional recipients to define different recipients for different situations. Cannot be used with `recipients`.
 	ConditionalRecipients *MonitorNotificationRuleConditionalRecipients `json:"conditional_recipients,omitempty"`
 	// Specifies the matching criteria for monitor notifications.
@@ -40,6 +43,34 @@ func NewMonitorNotificationRuleAttributes(name string) *MonitorNotificationRuleA
 func NewMonitorNotificationRuleAttributesWithDefaults() *MonitorNotificationRuleAttributes {
 	this := MonitorNotificationRuleAttributes{}
 	return &this
+}
+
+// GetBundleConfig returns the BundleConfig field value if set, zero value otherwise.
+func (o *MonitorNotificationRuleAttributes) GetBundleConfig() MonitorNotificationRuleBundleConfig {
+	if o == nil || o.BundleConfig == nil {
+		var ret MonitorNotificationRuleBundleConfig
+		return ret
+	}
+	return *o.BundleConfig
+}
+
+// GetBundleConfigOk returns a tuple with the BundleConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorNotificationRuleAttributes) GetBundleConfigOk() (*MonitorNotificationRuleBundleConfig, bool) {
+	if o == nil || o.BundleConfig == nil {
+		return nil, false
+	}
+	return o.BundleConfig, true
+}
+
+// HasBundleConfig returns a boolean if a field has been set.
+func (o *MonitorNotificationRuleAttributes) HasBundleConfig() bool {
+	return o != nil && o.BundleConfig != nil
+}
+
+// SetBundleConfig gets a reference to the given MonitorNotificationRuleBundleConfig and assigns it to the BundleConfig field.
+func (o *MonitorNotificationRuleAttributes) SetBundleConfig(v MonitorNotificationRuleBundleConfig) {
+	o.BundleConfig = &v
 }
 
 // GetConditionalRecipients returns the ConditionalRecipients field value if set, zero value otherwise.
@@ -155,6 +186,9 @@ func (o MonitorNotificationRuleAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.BundleConfig != nil {
+		toSerialize["bundle_config"] = o.BundleConfig
+	}
 	if o.ConditionalRecipients != nil {
 		toSerialize["conditional_recipients"] = o.ConditionalRecipients
 	}
@@ -171,6 +205,7 @@ func (o MonitorNotificationRuleAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorNotificationRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		BundleConfig          *MonitorNotificationRuleBundleConfig          `json:"bundle_config,omitempty"`
 		ConditionalRecipients *MonitorNotificationRuleConditionalRecipients `json:"conditional_recipients,omitempty"`
 		Filter                *MonitorNotificationRuleFilter                `json:"filter,omitempty"`
 		Name                  *string                                       `json:"name"`
@@ -184,6 +219,10 @@ func (o *MonitorNotificationRuleAttributes) UnmarshalJSON(bytes []byte) (err err
 	}
 
 	hasInvalidField := false
+	if all.BundleConfig != nil && all.BundleConfig.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.BundleConfig = all.BundleConfig
 	if all.ConditionalRecipients != nil && all.ConditionalRecipients.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
