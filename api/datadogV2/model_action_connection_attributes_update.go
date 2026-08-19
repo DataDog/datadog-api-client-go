@@ -14,6 +14,9 @@ type ActionConnectionAttributesUpdate struct {
 	Integration *ActionConnectionIntegrationUpdate `json:"integration,omitempty"`
 	// Name of the connection
 	Name *string `json:"name,omitempty"`
+	// Tags associated with the connection. Each tag must follow the `key:value` format.
+	// The `default` tag key is reserved.
+	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -92,6 +95,34 @@ func (o *ActionConnectionAttributesUpdate) SetName(v string) {
 	o.Name = &v
 }
 
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *ActionConnectionAttributesUpdate) GetTags() []string {
+	if o == nil || o.Tags == nil {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ActionConnectionAttributesUpdate) GetTagsOk() (*[]string, bool) {
+	if o == nil || o.Tags == nil {
+		return nil, false
+	}
+	return &o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *ActionConnectionAttributesUpdate) HasTags() bool {
+	return o != nil && o.Tags != nil
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *ActionConnectionAttributesUpdate) SetTags(v []string) {
+	o.Tags = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o ActionConnectionAttributesUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -103,6 +134,9 @@ func (o ActionConnectionAttributesUpdate) MarshalJSON() ([]byte, error) {
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
+	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -116,18 +150,20 @@ func (o *ActionConnectionAttributesUpdate) UnmarshalJSON(bytes []byte) (err erro
 	all := struct {
 		Integration *ActionConnectionIntegrationUpdate `json:"integration,omitempty"`
 		Name        *string                            `json:"name,omitempty"`
+		Tags        []string                           `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"integration", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"integration", "name", "tags"})
 	} else {
 		return err
 	}
 	o.Integration = all.Integration
 	o.Name = all.Name
+	o.Tags = all.Tags
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
