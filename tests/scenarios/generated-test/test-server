@@ -22,12 +22,13 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError
-from urllib.parse import parse_qsl, urlsplit
+from urllib.parse import parse_qsl, quote_from_bytes, unquote_to_bytes, urlsplit
 from urllib.request import Request, urlopen
 
 CONTROL_ROOT = "/__openapi_transformer__"
 SESSION_HEADER = "x-openapi-test-session"
 SCHEMA_VERSION = 1
+PATH_SEGMENT_SAFE = ":@!$&'()*+,;=-._~"
 HOP_BY_HOP_HEADERS = {
     "connection",
     "keep-alive",
@@ -351,7 +352,7 @@ def _normalise_request(method: str, raw_path: str, content_type: str, body: byte
     parsed = urlsplit(raw_path)
     return {
         "method": method.upper(),
-        "path": parsed.path or "/",
+        "path": _normalise_path(parsed.path),
         "query": sorted([list(pair) for pair in parse_qsl(parsed.query, keep_blank_values=True)]),
         "content_type": _media_type(content_type),
         "body": _normalise_body(body, content_type),
@@ -377,6 +378,13 @@ def _normalise_body(body: bytes, content_type: str) -> dict[str, Any]:
 
 def _media_type(value: str) -> str:
     return value.partition(";")[0].strip().lower()
+
+
+def _normalise_path(path: str) -> str:
+    normalised = "/".join(
+        quote_from_bytes(unquote_to_bytes(segment), safe=PATH_SEGMENT_SAFE) for segment in path.split("/")
+    )
+    return normalised or "/"
 
 
 def _slug(value: str) -> str:
