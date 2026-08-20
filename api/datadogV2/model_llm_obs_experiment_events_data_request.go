@@ -14,7 +14,7 @@ import (
 type LLMObsExperimentEventsDataRequest struct {
 	// Attributes for pushing experiment events including spans and metrics.
 	Attributes LLMObsExperimentEventsDataAttributesRequest `json:"attributes"`
-	// Resource type for LLM Observability experiment events.
+	// Resource type for Agent Observability experiment events.
 	Type LLMObsEventType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

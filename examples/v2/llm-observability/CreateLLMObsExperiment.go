@@ -1,4 +1,4 @@
-// Create an LLM Observability experiment returns "OK" response
+// Create an Agent Observability experiment returns "OK" response
 
 package main
 

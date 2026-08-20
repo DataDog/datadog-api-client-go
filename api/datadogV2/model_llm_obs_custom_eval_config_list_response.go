@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsCustomEvalConfigListResponse Response containing a list of custom LLM Observability evaluator configurations.
+// LLMObsCustomEvalConfigListResponse Response containing a list of custom Agent Observability evaluator configurations.
 type LLMObsCustomEvalConfigListResponse struct {
 	// List of custom evaluator configuration data objects.
 	Data []LLMObsCustomEvalConfigData `json:"data"`

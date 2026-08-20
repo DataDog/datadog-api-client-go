@@ -1,4 +1,4 @@
-// Create a new LLM Observability prompt version returns "OK" response
+// Create a new Agent Observability prompt version returns "OK" response
 
 package main
 

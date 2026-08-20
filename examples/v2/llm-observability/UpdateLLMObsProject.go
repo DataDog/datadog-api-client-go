@@ -1,4 +1,4 @@
-// Update an LLM Observability project returns "OK" response
+// Update an Agent Observability project returns "OK" response
 
 package main
 

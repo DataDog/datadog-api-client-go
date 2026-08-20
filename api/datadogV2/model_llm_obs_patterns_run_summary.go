@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsRunSummary Summary of an LLM Observability patterns run.
+// LLMObsPatternsRunSummary Summary of an Agent Observability patterns run.
 type LLMObsPatternsRunSummary struct {
 	// Timestamp when the run completed. Null if the run has not completed.
 	CompletedAt datadog.NullableTime `json:"completed_at,omitempty"`

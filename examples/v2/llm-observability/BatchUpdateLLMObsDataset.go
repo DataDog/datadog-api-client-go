@@ -1,4 +1,4 @@
-// Batch update LLM Observability dataset records returns "OK" response
+// Batch update Agent Observability dataset records returns "OK" response
 
 package main
 

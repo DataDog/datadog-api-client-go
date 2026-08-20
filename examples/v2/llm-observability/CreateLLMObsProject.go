@@ -1,4 +1,4 @@
-// Create an LLM Observability project returns "OK" response
+// Create an Agent Observability project returns "OK" response
 
 package main
 

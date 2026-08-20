@@ -1,4 +1,4 @@
-// List LLM Observability experiments returns "OK" response
+// List Agent Observability experiments returns "OK" response
 
 package main
 

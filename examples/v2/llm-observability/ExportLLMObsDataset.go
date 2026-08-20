@@ -1,4 +1,4 @@
-// Export an LLM Observability dataset returns "OK" response
+// Export an Agent Observability dataset returns "OK" response
 
 package main
 

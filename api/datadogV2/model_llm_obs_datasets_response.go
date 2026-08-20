@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetsResponse Response containing a list of LLM Observability datasets.
+// LLMObsDatasetsResponse Response containing a list of Agent Observability datasets.
 type LLMObsDatasetsResponse struct {
 	// List of datasets.
 	Data []LLMObsDatasetDataResponse `json:"data"`

@@ -1,4 +1,4 @@
-// Get LLM Observability dataset draft state returns "OK" response
+// Get Agent Observability dataset draft state returns "OK" response
 
 package main
 

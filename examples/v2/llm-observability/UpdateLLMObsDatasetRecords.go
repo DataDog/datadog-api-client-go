@@ -1,4 +1,4 @@
-// Update LLM Observability dataset records returns "OK" response
+// Update Agent Observability dataset records returns "OK" response
 
 package main
 

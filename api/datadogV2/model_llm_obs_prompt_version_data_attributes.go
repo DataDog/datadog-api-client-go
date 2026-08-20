@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPromptVersionDataAttributes Attributes of a specific version of an LLM Observability prompt.
+// LLMObsPromptVersionDataAttributes Attributes of a specific version of an Agent Observability prompt.
 type LLMObsPromptVersionDataAttributes struct {
 	// UUID of the user who authored this version.
 	Author *string `json:"author,omitempty"`

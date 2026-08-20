@@ -1,4 +1,4 @@
-// Append records to an LLM Observability dataset returns "OK" response
+// Append records to an Agent Observability dataset returns "OK" response
 
 package main
 

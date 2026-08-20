@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsMetricAssessment Assessment result for an LLM Observability experiment metric.
+// LLMObsMetricAssessment Assessment result for an Agent Observability experiment metric.
 type LLMObsMetricAssessment string
 
 // List of LLMObsMetricAssessment.

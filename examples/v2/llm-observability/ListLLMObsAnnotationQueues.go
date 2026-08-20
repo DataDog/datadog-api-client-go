@@ -1,4 +1,4 @@
-// List LLM Observability annotation queues returns "OK" response
+// List Agent Observability annotation queues returns "OK" response
 
 package main
 

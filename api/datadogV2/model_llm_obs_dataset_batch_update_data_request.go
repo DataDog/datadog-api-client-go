@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetBatchUpdateDataRequest Data object for batch-updating records in an LLM Observability dataset.
+// LLMObsDatasetBatchUpdateDataRequest Data object for batch-updating records in an Agent Observability dataset.
 type LLMObsDatasetBatchUpdateDataRequest struct {
-	// Attributes for batch-updating records in an LLM Observability dataset.
+	// Attributes for batch-updating records in an Agent Observability dataset.
 	Attributes LLMObsDatasetBatchUpdateDataAttributesRequest `json:"attributes"`
 	// Unique identifier of the dataset.
 	Id string `json:"id"`
-	// Resource type of an LLM Observability dataset.
+	// Resource type of an Agent Observability dataset.
 	Type LLMObsDatasetType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

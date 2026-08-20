@@ -1,4 +1,4 @@
-// Update an LLM Observability experiment returns "OK" response
+// Update an Agent Observability experiment returns "OK" response
 
 package main
 

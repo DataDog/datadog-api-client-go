@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetBatchUpdateDataAttributesRequest Attributes for batch-updating records in an LLM Observability dataset.
+// LLMObsDatasetBatchUpdateDataAttributesRequest Attributes for batch-updating records in an Agent Observability dataset.
 type LLMObsDatasetBatchUpdateDataAttributesRequest struct {
 	// Whether to create a new dataset version when applying the batch update. Defaults to `true`.
 	CreateNewVersion *bool `json:"create_new_version,omitempty"`

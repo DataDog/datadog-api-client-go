@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsCustomEvalConfigUpdateAttributes Attributes for creating or updating a custom LLM Observability evaluator configuration.
+// LLMObsCustomEvalConfigUpdateAttributes Attributes for creating or updating a custom Agent Observability evaluator configuration.
 type LLMObsCustomEvalConfigUpdateAttributes struct {
 	// Category of the evaluator.
 	Category *string `json:"category,omitempty"`

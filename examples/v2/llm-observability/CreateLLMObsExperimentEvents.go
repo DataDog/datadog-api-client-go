@@ -1,4 +1,4 @@
-// Push events for an LLM Observability experiment returns "Accepted" response
+// Push events for an Agent Observability experiment returns "Accepted" response
 
 package main
 

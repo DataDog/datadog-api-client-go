@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPromptDataAttributes Attributes of an LLM Observability prompt registry entry.
+// LLMObsPromptDataAttributes Attributes of an Agent Observability prompt registry entry.
 type LLMObsPromptDataAttributes struct {
 	// UUID of the user who authored the prompt.
 	Author *string `json:"author,omitempty"`

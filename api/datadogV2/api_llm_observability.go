@@ -19,8 +19,8 @@ import (
 // LLMObservabilityApi service type
 type LLMObservabilityApi datadog.Service
 
-// AggregateLLMObsExperimentation Aggregate LLM Observability experimentation.
-// Execute an analytics aggregation over LLM Observability experimentation data.
+// AggregateLLMObsExperimentation Aggregate Agent Observability experimentation.
+// Execute an analytics aggregation over Agent Observability experimentation data.
 // Use this endpoint to compute metrics (for example average eval scores) grouped by fields such as `span_id` or `experiment_id`.
 //
 // At least one `compute` definition and one `index` must be provided.
@@ -120,7 +120,7 @@ func (a *LLMObservabilityApi) AggregateLLMObsExperimentation(ctx _context.Contex
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// BatchUpdateLLMObsDataset Batch update LLM Observability dataset records.
+// BatchUpdateLLMObsDataset Batch update Agent Observability dataset records.
 // Insert, update, and delete records in a single dataset operation. By default, a new dataset version is created when the batch is applied.
 func (a *LLMObservabilityApi) BatchUpdateLLMObsDataset(ctx _context.Context, projectId string, datasetId string, body LLMObsDatasetBatchUpdateRequest) (LLMObsDatasetRecordsMutationResponse, *_nethttp.Response, error) {
 	var (
@@ -220,7 +220,7 @@ func (a *LLMObservabilityApi) BatchUpdateLLMObsDataset(ctx _context.Context, pro
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CloneLLMObsDataset Clone an LLM Observability dataset.
+// CloneLLMObsDataset Clone an Agent Observability dataset.
 // Clone a dataset, copying its current records into a new dataset within the same project.
 func (a *LLMObservabilityApi) CloneLLMObsDataset(ctx _context.Context, projectId string, datasetId string, body LLMObsDatasetCloneRequest) (LLMObsDatasetResponse, *_nethttp.Response, error) {
 	var (
@@ -320,7 +320,7 @@ func (a *LLMObservabilityApi) CloneLLMObsDataset(ctx _context.Context, projectId
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateLLMObsAnnotationQueue Create an LLM Observability annotation queue.
+// CreateLLMObsAnnotationQueue Create an Agent Observability annotation queue.
 // Create an annotation queue. The `name` and `project_id` fields are required.
 // An optional `annotation_schema` can be provided to define the labels for the queue.
 // Fields such as `created_by`, `owned_by`, `created_at`, `modified_by`,
@@ -529,8 +529,8 @@ func (a *LLMObservabilityApi) CreateLLMObsAnnotationQueueInteractions(ctx _conte
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateLLMObsDataset Create an LLM Observability dataset.
-// Create a new LLM Observability dataset within the specified project.
+// CreateLLMObsDataset Create an Agent Observability dataset.
+// Create a new Agent Observability dataset within the specified project.
 func (a *LLMObservabilityApi) CreateLLMObsDataset(ctx _context.Context, projectId string, body LLMObsDatasetRequest) (LLMObsDatasetResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -628,8 +628,8 @@ func (a *LLMObservabilityApi) CreateLLMObsDataset(ctx _context.Context, projectI
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateLLMObsDatasetRecords Append records to an LLM Observability dataset.
-// Append one or more records to an LLM Observability dataset.
+// CreateLLMObsDatasetRecords Append records to an Agent Observability dataset.
+// Append one or more records to an Agent Observability dataset.
 func (a *LLMObservabilityApi) CreateLLMObsDatasetRecords(ctx _context.Context, projectId string, datasetId string, body LLMObsDatasetRecordsRequest) (LLMObsDatasetRecordsMutationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -728,8 +728,8 @@ func (a *LLMObservabilityApi) CreateLLMObsDatasetRecords(ctx _context.Context, p
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateLLMObsExperiment Create an LLM Observability experiment.
-// Create a new LLM Observability experiment.
+// CreateLLMObsExperiment Create an Agent Observability experiment.
+// Create a new Agent Observability experiment.
 func (a *LLMObservabilityApi) CreateLLMObsExperiment(ctx _context.Context, body LLMObsExperimentRequest) (LLMObsExperimentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -826,8 +826,8 @@ func (a *LLMObservabilityApi) CreateLLMObsExperiment(ctx _context.Context, body 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateLLMObsExperimentEvents Push events for an LLM Observability experiment.
-// Push spans and metrics for an LLM Observability experiment.
+// CreateLLMObsExperimentEvents Push events for an Agent Observability experiment.
+// Push spans and metrics for an Agent Observability experiment.
 func (a *LLMObservabilityApi) CreateLLMObsExperimentEvents(ctx _context.Context, experimentId string, body LLMObsExperimentEventsRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
@@ -1015,8 +1015,8 @@ func (a *LLMObservabilityApi) CreateLLMObsIntegrationInference(ctx _context.Cont
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateLLMObsProject Create an LLM Observability project.
-// Create a new LLM Observability project. Returns the existing project if a name conflict occurs.
+// CreateLLMObsProject Create an Agent Observability project.
+// Create a new Agent Observability project. Returns the existing project if a name conflict occurs.
 func (a *LLMObservabilityApi) CreateLLMObsProject(ctx _context.Context, body LLMObsProjectRequest) (LLMObsProjectResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1113,8 +1113,8 @@ func (a *LLMObservabilityApi) CreateLLMObsProject(ctx _context.Context, body LLM
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateLLMObsPrompt Create an LLM Observability prompt.
-// Create a new prompt (and its first version) in the LLM Observability prompt registry.
+// CreateLLMObsPrompt Create an Agent Observability prompt.
+// Create a new prompt (and its first version) in the Agent Observability prompt registry.
 func (a *LLMObservabilityApi) CreateLLMObsPrompt(ctx _context.Context, body LLMObsCreatePromptRequest) (LLMObsPromptResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1211,8 +1211,8 @@ func (a *LLMObservabilityApi) CreateLLMObsPrompt(ctx _context.Context, body LLMO
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateLLMObsPromptVersion Create a new LLM Observability prompt version.
-// Create a new version of an existing LLM Observability prompt.
+// CreateLLMObsPromptVersion Create a new Agent Observability prompt version.
+// Create a new version of an existing Agent Observability prompt.
 func (a *LLMObservabilityApi) CreateLLMObsPromptVersion(ctx _context.Context, promptId string, body LLMObsCreatePromptVersionRequest) (LLMObsPromptVersionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1310,7 +1310,7 @@ func (a *LLMObservabilityApi) CreateLLMObsPromptVersion(ctx _context.Context, pr
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// DeleteLLMObsAnnotationQueue Delete an LLM Observability annotation queue.
+// DeleteLLMObsAnnotationQueue Delete an Agent Observability annotation queue.
 // Delete an annotation queue by its ID.
 func (a *LLMObservabilityApi) DeleteLLMObsAnnotationQueue(ctx _context.Context, queueId string) (*_nethttp.Response, error) {
 	var (
@@ -1585,7 +1585,7 @@ func (a *LLMObservabilityApi) DeleteLLMObsAnnotations(ctx _context.Context, queu
 }
 
 // DeleteLLMObsCustomEvalConfig Delete a custom evaluator configuration.
-// Delete a custom LLM Observability evaluator configuration by its name.
+// Delete a custom Agent Observability evaluator configuration by its name.
 func (a *LLMObservabilityApi) DeleteLLMObsCustomEvalConfig(ctx _context.Context, evalName string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -1670,8 +1670,8 @@ func (a *LLMObservabilityApi) DeleteLLMObsCustomEvalConfig(ctx _context.Context,
 	return localVarHTTPResponse, nil
 }
 
-// DeleteLLMObsDatasetRecords Delete LLM Observability dataset records.
-// Delete one or more records from an LLM Observability dataset.
+// DeleteLLMObsDatasetRecords Delete Agent Observability dataset records.
+// Delete one or more records from an Agent Observability dataset.
 func (a *LLMObservabilityApi) DeleteLLMObsDatasetRecords(ctx _context.Context, projectId string, datasetId string, body LLMObsDeleteDatasetRecordsRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
@@ -1760,8 +1760,8 @@ func (a *LLMObservabilityApi) DeleteLLMObsDatasetRecords(ctx _context.Context, p
 	return localVarHTTPResponse, nil
 }
 
-// DeleteLLMObsDatasets Delete LLM Observability datasets.
-// Delete one or more LLM Observability datasets within the specified project.
+// DeleteLLMObsDatasets Delete Agent Observability datasets.
+// Delete one or more Agent Observability datasets within the specified project.
 func (a *LLMObservabilityApi) DeleteLLMObsDatasets(ctx _context.Context, projectId string, body LLMObsDeleteDatasetsRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
@@ -1849,8 +1849,8 @@ func (a *LLMObservabilityApi) DeleteLLMObsDatasets(ctx _context.Context, project
 	return localVarHTTPResponse, nil
 }
 
-// DeleteLLMObsExperiments Delete LLM Observability experiments.
-// Delete one or more LLM Observability experiments.
+// DeleteLLMObsExperiments Delete Agent Observability experiments.
+// Delete one or more Agent Observability experiments.
 func (a *LLMObservabilityApi) DeleteLLMObsExperiments(ctx _context.Context, body LLMObsDeleteExperimentsRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
@@ -2023,8 +2023,8 @@ func (a *LLMObservabilityApi) DeleteLLMObsPatternsConfig(ctx _context.Context, c
 	return localVarHTTPResponse, nil
 }
 
-// DeleteLLMObsProjects Delete LLM Observability projects.
-// Delete one or more LLM Observability projects.
+// DeleteLLMObsProjects Delete Agent Observability projects.
+// Delete one or more Agent Observability projects.
 func (a *LLMObservabilityApi) DeleteLLMObsProjects(ctx _context.Context, body LLMObsDeleteProjectsRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost
@@ -2111,8 +2111,8 @@ func (a *LLMObservabilityApi) DeleteLLMObsProjects(ctx _context.Context, body LL
 	return localVarHTTPResponse, nil
 }
 
-// DeleteLLMObsPrompt Delete an LLM Observability prompt.
-// Soft-delete an LLM Observability prompt. The prompt's version rows are retained, but they are no longer accessible through the public prompt registry endpoints.
+// DeleteLLMObsPrompt Delete an Agent Observability prompt.
+// Soft-delete an Agent Observability prompt. The prompt's version rows are retained, but they are no longer accessible through the public prompt registry endpoints.
 func (a *LLMObservabilityApi) DeleteLLMObsPrompt(ctx _context.Context, promptId string) (LLMObsDeletedPromptResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -2231,7 +2231,7 @@ func (r *ExportLLMObsDatasetOptionalParameters) WithVersion(version int64) *Expo
 	return r
 }
 
-// ExportLLMObsDataset Export an LLM Observability dataset.
+// ExportLLMObsDataset Export an Agent Observability dataset.
 // Download the contents of a dataset as a CSV file. The download is streamed and includes one row per dataset record.
 func (a *LLMObservabilityApi) ExportLLMObsDataset(ctx _context.Context, projectId string, datasetId string, o ...ExportLLMObsDatasetOptionalParameters) (string, *_nethttp.Response, error) {
 	var (
@@ -2678,7 +2678,7 @@ func (a *LLMObservabilityApi) GetLLMObsAnnotationQueueLabelSchema(ctx _context.C
 }
 
 // GetLLMObsCustomEvalConfig Get a custom evaluator configuration.
-// Retrieve a custom LLM Observability evaluator configuration by its name.
+// Retrieve a custom Agent Observability evaluator configuration by its name.
 func (a *LLMObservabilityApi) GetLLMObsCustomEvalConfig(ctx _context.Context, evalName string) (LLMObsCustomEvalConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2773,7 +2773,7 @@ func (a *LLMObservabilityApi) GetLLMObsCustomEvalConfig(ctx _context.Context, ev
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetLLMObsDatasetDraftState Get LLM Observability dataset draft state.
+// GetLLMObsDatasetDraftState Get Agent Observability dataset draft state.
 // Retrieve the draft state of a dataset, including whether it is currently locked for editing and which user holds the lock.
 func (a *LLMObservabilityApi) GetLLMObsDatasetDraftState(ctx _context.Context, projectId string, datasetId string) (LLMObsDatasetDraftStateResponse, *_nethttp.Response, error) {
 	var (
@@ -3079,8 +3079,8 @@ func (r *GetLLMObsPromptOptionalParameters) WithLabel(label string) *GetLLMObsPr
 	return r
 }
 
-// GetLLMObsPrompt Get an LLM Observability prompt.
-// Get the latest version of an LLM Observability prompt by prompt ID.
+// GetLLMObsPrompt Get an Agent Observability prompt.
+// Get the latest version of an Agent Observability prompt by prompt ID.
 func (a *LLMObservabilityApi) GetLLMObsPrompt(ctx _context.Context, promptId string, o ...GetLLMObsPromptOptionalParameters) (LLMObsPromptSDKResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3186,8 +3186,8 @@ func (a *LLMObservabilityApi) GetLLMObsPrompt(ctx _context.Context, promptId str
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetLLMObsPromptVersion Get a specific LLM Observability prompt version.
-// Get the full template of a single, specific version of an LLM Observability prompt.
+// GetLLMObsPromptVersion Get a specific Agent Observability prompt version.
+// Get the full template of a single, specific version of an Agent Observability prompt.
 func (a *LLMObservabilityApi) GetLLMObsPromptVersion(ctx _context.Context, promptId string, version int64) (LLMObsPromptVersionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3310,7 +3310,7 @@ func (r *ListLLMObsAnnotationQueuesOptionalParameters) WithQueueIds(queueIds []s
 	return r
 }
 
-// ListLLMObsAnnotationQueues List LLM Observability annotation queues.
+// ListLLMObsAnnotationQueues List Agent Observability annotation queues.
 // List annotation queues. Optionally filter by project ID or queue IDs. These parameters are mutually exclusive.
 // If neither is provided, all queues in the organization are returned.
 func (a *LLMObservabilityApi) ListLLMObsAnnotationQueues(ctx _context.Context, o ...ListLLMObsAnnotationQueuesOptionalParameters) (LLMObsAnnotationQueuesResponse, *_nethttp.Response, error) {
@@ -3429,7 +3429,7 @@ func (a *LLMObservabilityApi) ListLLMObsAnnotationQueues(ctx _context.Context, o
 }
 
 // ListLLMObsCustomEvalConfigs List custom evaluator configurations.
-// List all custom LLM Observability evaluator configurations for the organization.
+// List all custom Agent Observability evaluator configurations for the organization.
 func (a *LLMObservabilityApi) ListLLMObsCustomEvalConfigs(ctx _context.Context) (LLMObsCustomEvalConfigListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3554,8 +3554,8 @@ func (r *ListLLMObsDatasetRecordsOptionalParameters) WithPageLimit(pageLimit int
 	return r
 }
 
-// ListLLMObsDatasetRecords List LLM Observability dataset records.
-// List all records in an LLM Observability dataset, sorted by creation date, newest first.
+// ListLLMObsDatasetRecords List Agent Observability dataset records.
+// List all records in an Agent Observability dataset, sorted by creation date, newest first.
 func (a *LLMObservabilityApi) ListLLMObsDatasetRecords(ctx _context.Context, projectId string, datasetId string, o ...ListLLMObsDatasetRecordsOptionalParameters) (LLMObsDatasetRecordsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3668,7 +3668,7 @@ func (a *LLMObservabilityApi) ListLLMObsDatasetRecords(ctx _context.Context, pro
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListLLMObsDatasetVersions List LLM Observability dataset versions.
+// ListLLMObsDatasetVersions List Agent Observability dataset versions.
 // List the active versions of a dataset. A version is created each time a dataset is referenced by an experiment run.
 func (a *LLMObservabilityApi) ListLLMObsDatasetVersions(ctx _context.Context, projectId string, datasetId string) (LLMObsDatasetVersionsResponse, *_nethttp.Response, error) {
 	var (
@@ -3803,8 +3803,8 @@ func (r *ListLLMObsDatasetsOptionalParameters) WithPageLimit(pageLimit int64) *L
 	return r
 }
 
-// ListLLMObsDatasets List LLM Observability datasets.
-// List all LLM Observability datasets for a project, sorted by creation date, newest first.
+// ListLLMObsDatasets List Agent Observability datasets.
+// List all Agent Observability datasets for a project, sorted by creation date, newest first.
 func (a *LLMObservabilityApi) ListLLMObsDatasets(ctx _context.Context, projectId string, o ...ListLLMObsDatasetsOptionalParameters) (LLMObsDatasetsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3943,7 +3943,7 @@ func (r *ListLLMObsExperimentEventsOptionalParameters) WithPageCursor(pageCursor
 	return r
 }
 
-// ListLLMObsExperimentEvents List events for an LLM Observability experiment.
+// ListLLMObsExperimentEvents List events for an Agent Observability experiment.
 // Retrieve spans and experiment-level summary metrics for a given experiment with cursor-based pagination.
 func (a *LLMObservabilityApi) ListLLMObsExperimentEvents(ctx _context.Context, experimentId string, o ...ListLLMObsExperimentEventsOptionalParameters) (LLMObsExperimentEventsV2Response, *_nethttp.Response, error) {
 	var (
@@ -4053,7 +4053,7 @@ func (a *LLMObservabilityApi) ListLLMObsExperimentEvents(ctx _context.Context, e
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListLLMObsExperimentEventsV1 List LLM Observability experiment spans (v1).
+// ListLLMObsExperimentEventsV1 List Agent Observability experiment spans (v1).
 // Retrieve spans with their evaluation metrics for a given experiment. Returns spans only, with no summary metrics and no pagination. Deprecated in favor of `ListLLMObsExperimentEventsV3`.
 //
 // Deprecated: This API is deprecated.
@@ -4151,7 +4151,7 @@ func (a *LLMObservabilityApi) ListLLMObsExperimentEventsV1(ctx _context.Context,
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListLLMObsExperimentEventsV2 List LLM Observability experiment events (v2).
+// ListLLMObsExperimentEventsV2 List Agent Observability experiment events (v2).
 // Retrieve spans and experiment-level summary metrics for a given experiment. Returns the full events payload without pagination. Deprecated: use `ListLLMObsExperimentEventsV3` instead.
 //
 // Deprecated: This API is deprecated.
@@ -4343,8 +4343,8 @@ func (r *ListLLMObsExperimentsOptionalParameters) WithPageLimit(pageLimit int64)
 	return r
 }
 
-// ListLLMObsExperiments List LLM Observability experiments.
-// List all LLM Observability experiments sorted by creation date, newest first.
+// ListLLMObsExperiments List Agent Observability experiments.
+// List all Agent Observability experiments sorted by creation date, newest first.
 func (a *LLMObservabilityApi) ListLLMObsExperiments(ctx _context.Context, o ...ListLLMObsExperimentsOptionalParameters) (LLMObsExperimentsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -5300,8 +5300,8 @@ func (r *ListLLMObsProjectsOptionalParameters) WithPageLimit(pageLimit int64) *L
 	return r
 }
 
-// ListLLMObsProjects List LLM Observability projects.
-// List all LLM Observability projects sorted by creation date, newest first.
+// ListLLMObsProjects List Agent Observability projects.
+// List all Agent Observability projects sorted by creation date, newest first.
 func (a *LLMObservabilityApi) ListLLMObsProjects(ctx _context.Context, o ...ListLLMObsProjectsOptionalParameters) (LLMObsProjectsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -5415,8 +5415,8 @@ func (a *LLMObservabilityApi) ListLLMObsProjects(ctx _context.Context, o ...List
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListLLMObsPromptVersions List versions of an LLM Observability prompt.
-// List all versions of an LLM Observability prompt, ordered newest to oldest. If the prompt does not exist, is not registered, or is archived, the response contains an empty list.
+// ListLLMObsPromptVersions List versions of an Agent Observability prompt.
+// List all versions of an Agent Observability prompt, ordered newest to oldest. If the prompt does not exist, is not registered, or is archived, the response contains an empty list.
 func (a *LLMObservabilityApi) ListLLMObsPromptVersions(ctx _context.Context, promptId string) (LLMObsPromptVersionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -5528,8 +5528,8 @@ func (r *ListLLMObsPromptsOptionalParameters) WithFilterPromptId(filterPromptId 
 	return r
 }
 
-// ListLLMObsPrompts List LLM Observability prompts.
-// List all LLM Observability prompts in the prompt registry for the organization.
+// ListLLMObsPrompts List Agent Observability prompts.
+// List all Agent Observability prompts in the prompt registry for the organization.
 func (a *LLMObservabilityApi) ListLLMObsPrompts(ctx _context.Context, o ...ListLLMObsPromptsOptionalParameters) (LLMObsPromptsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -5728,8 +5728,8 @@ func (r *ListLLMObsSpansOptionalParameters) WithIncludeAttachments(includeAttach
 	return r
 }
 
-// ListLLMObsSpans List LLM Observability spans.
-// List LLM Observability spans matching the specified filters.
+// ListLLMObsSpans List Agent Observability spans.
+// List Agent Observability spans matching the specified filters.
 func (a *LLMObservabilityApi) ListLLMObsSpans(ctx _context.Context, o ...ListLLMObsSpansOptionalParameters) (LLMObsSpansResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -5867,7 +5867,7 @@ func (a *LLMObservabilityApi) ListLLMObsSpans(ctx _context.Context, o ...ListLLM
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// LockLLMObsDatasetDraftState Lock LLM Observability dataset draft state.
+// LockLLMObsDatasetDraftState Lock Agent Observability dataset draft state.
 // Acquire the draft lock on a dataset for the calling user. The lock prevents other users from concurrently editing the dataset draft.
 func (a *LLMObservabilityApi) LockLLMObsDatasetDraftState(ctx _context.Context, projectId string, datasetId string) (LLMObsDatasetDraftStateResponse, *_nethttp.Response, error) {
 	var (
@@ -5964,7 +5964,7 @@ func (a *LLMObservabilityApi) LockLLMObsDatasetDraftState(ctx _context.Context, 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// RestoreLLMObsDatasetVersion Restore an LLM Observability dataset version.
+// RestoreLLMObsDatasetVersion Restore an Agent Observability dataset version.
 // Restore a dataset to a previous version. The dataset's current version is bumped, and its records are replaced with the records from the specified prior version.
 func (a *LLMObservabilityApi) RestoreLLMObsDatasetVersion(ctx _context.Context, projectId string, datasetId string, body LLMObsDatasetRestoreVersionRequest) (*_nethttp.Response, error) {
 	var (
@@ -6054,8 +6054,8 @@ func (a *LLMObservabilityApi) RestoreLLMObsDatasetVersion(ctx _context.Context, 
 	return localVarHTTPResponse, nil
 }
 
-// SearchLLMObsExperimentation Search LLM Observability experimentation entities.
-// Search across LLM Observability experimentation entities — projects, datasets, dataset records, experiments, and experiment runs — using cursor-based pagination.
+// SearchLLMObsExperimentation Search Agent Observability experimentation.
+// Search across Agent Observability experimentation entities — projects, datasets, dataset records, experiments, and experiment runs — using cursor-based pagination.
 //
 // The `filter.scope` field controls which entity types are returned. At least one valid scope must be provided.
 //
@@ -6156,8 +6156,8 @@ func (a *LLMObservabilityApi) SearchLLMObsExperimentation(ctx _context.Context, 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// SearchLLMObsSpans Search LLM Observability spans.
-// Search LLM Observability spans using structured filters in the request body.
+// SearchLLMObsSpans Search Agent Observability spans.
+// Search Agent Observability spans using structured filters in the request body.
 func (a *LLMObservabilityApi) SearchLLMObsSpans(ctx _context.Context, body LLMObsSearchSpansRequest) (LLMObsSpansResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -6255,7 +6255,7 @@ func (a *LLMObservabilityApi) SearchLLMObsSpans(ctx _context.Context, body LLMOb
 }
 
 // SimpleSearchLLMObsExperimentation Simple search experimentation entities.
-// Search across LLM Observability experimentation entities using offset-based (page-number) pagination.
+// Search across Agent Observability experimentation entities using offset-based (page-number) pagination.
 // Use this endpoint when you need total page count or want to navigate to a specific page number.
 //
 // The `filter.scope` field controls which entity types are returned. At least one valid scope must be provided.
@@ -6453,7 +6453,7 @@ func (a *LLMObservabilityApi) TriggerLLMObsPatterns(ctx _context.Context, body L
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UnlockLLMObsDatasetDraftState Unlock LLM Observability dataset draft state.
+// UnlockLLMObsDatasetDraftState Unlock Agent Observability dataset draft state.
 // Release the draft lock on a dataset held by the calling user, allowing other users to edit the dataset draft.
 func (a *LLMObservabilityApi) UnlockLLMObsDatasetDraftState(ctx _context.Context, projectId string, datasetId string) (*_nethttp.Response, error) {
 	var (
@@ -6540,7 +6540,7 @@ func (a *LLMObservabilityApi) UnlockLLMObsDatasetDraftState(ctx _context.Context
 	return localVarHTTPResponse, nil
 }
 
-// UpdateLLMObsAnnotationQueue Update an LLM Observability annotation queue.
+// UpdateLLMObsAnnotationQueue Update an Agent Observability annotation queue.
 // Partially update an annotation queue. The `name`, `description`, and `annotation_schema` fields can be updated.
 func (a *LLMObservabilityApi) UpdateLLMObsAnnotationQueue(ctx _context.Context, queueId string, body LLMObsAnnotationQueueUpdateRequest) (LLMObsAnnotationQueueResponse, *_nethttp.Response, error) {
 	var (
@@ -6742,7 +6742,7 @@ func (a *LLMObservabilityApi) UpdateLLMObsAnnotationQueueLabelSchema(ctx _contex
 }
 
 // UpdateLLMObsCustomEvalConfig Create or update a custom evaluator configuration.
-// Create or update a custom LLM Observability evaluator configuration by its name.
+// Create or update a custom Agent Observability evaluator configuration by its name.
 func (a *LLMObservabilityApi) UpdateLLMObsCustomEvalConfig(ctx _context.Context, evalName string, body LLMObsCustomEvalConfigUpdateRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPut
@@ -6830,8 +6830,8 @@ func (a *LLMObservabilityApi) UpdateLLMObsCustomEvalConfig(ctx _context.Context,
 	return localVarHTTPResponse, nil
 }
 
-// UpdateLLMObsDataset Update an LLM Observability dataset.
-// Partially update an existing LLM Observability dataset within the specified project.
+// UpdateLLMObsDataset Update an Agent Observability dataset.
+// Partially update an existing Agent Observability dataset within the specified project.
 func (a *LLMObservabilityApi) UpdateLLMObsDataset(ctx _context.Context, projectId string, datasetId string, body LLMObsDatasetUpdateRequest) (LLMObsDatasetResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -6930,8 +6930,8 @@ func (a *LLMObservabilityApi) UpdateLLMObsDataset(ctx _context.Context, projectI
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateLLMObsDatasetRecords Update LLM Observability dataset records.
-// Update one or more existing records in an LLM Observability dataset.
+// UpdateLLMObsDatasetRecords Update Agent Observability dataset records.
+// Update one or more existing records in an Agent Observability dataset.
 func (a *LLMObservabilityApi) UpdateLLMObsDatasetRecords(ctx _context.Context, projectId string, datasetId string, body LLMObsDatasetRecordsUpdateRequest) (LLMObsDatasetRecordsMutationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -7030,8 +7030,8 @@ func (a *LLMObservabilityApi) UpdateLLMObsDatasetRecords(ctx _context.Context, p
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateLLMObsExperiment Update an LLM Observability experiment.
-// Partially update an existing LLM Observability experiment.
+// UpdateLLMObsExperiment Update an Agent Observability experiment.
+// Partially update an existing Agent Observability experiment.
 func (a *LLMObservabilityApi) UpdateLLMObsExperiment(ctx _context.Context, experimentId string, body LLMObsExperimentUpdateRequest) (LLMObsExperimentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -7129,8 +7129,8 @@ func (a *LLMObservabilityApi) UpdateLLMObsExperiment(ctx _context.Context, exper
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateLLMObsProject Update an LLM Observability project.
-// Partially update an existing LLM Observability project.
+// UpdateLLMObsProject Update an Agent Observability project.
+// Partially update an existing Agent Observability project.
 func (a *LLMObservabilityApi) UpdateLLMObsProject(ctx _context.Context, projectId string, body LLMObsProjectUpdateRequest) (LLMObsProjectResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -7228,8 +7228,8 @@ func (a *LLMObservabilityApi) UpdateLLMObsProject(ctx _context.Context, projectI
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateLLMObsPrompt Update an LLM Observability prompt.
-// Update the title, the description, or both, for an LLM Observability prompt.
+// UpdateLLMObsPrompt Update an Agent Observability prompt.
+// Update the title, the description, or both, for an Agent Observability prompt.
 func (a *LLMObservabilityApi) UpdateLLMObsPrompt(ctx _context.Context, promptId string, body LLMObsUpdatePromptRequest) (LLMObsPromptResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -7327,8 +7327,8 @@ func (a *LLMObservabilityApi) UpdateLLMObsPrompt(ctx _context.Context, promptId 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateLLMObsPromptVersion Update a specific LLM Observability prompt version.
-// Update the description, the feature-flag environments, or both, for a specific version of an LLM Observability prompt.
+// UpdateLLMObsPromptVersion Update an Agent Observability prompt version.
+// Update the description, the feature-flag environments, or both, for a specific version of an Agent Observability prompt.
 func (a *LLMObservabilityApi) UpdateLLMObsPromptVersion(ctx _context.Context, promptId string, version int64, body LLMObsUpdatePromptVersionRequest) (LLMObsPromptVersionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -7475,7 +7475,7 @@ func (r *UploadLLMObsDatasetRecordsFileOptionalParameters) WithIncludeUserData(i
 	return r
 }
 
-// UploadLLMObsDatasetRecordsFile Upload records to an LLM Observability dataset.
+// UploadLLMObsDatasetRecordsFile Upload records to an Agent Observability dataset.
 // Upload records to a dataset from a file. The request is a `multipart/form-data` upload containing a single `file` part.
 // Currently only CSV is supported. The CSV must include an `input` column. Optional columns are `id`, `expected_output`, `metadata`, and `tags`.
 //

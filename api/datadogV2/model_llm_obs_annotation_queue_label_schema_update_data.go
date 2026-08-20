@@ -14,7 +14,7 @@ import (
 type LLMObsAnnotationQueueLabelSchemaUpdateData struct {
 	// Attributes for updating an annotation queue label schema.
 	Attributes LLMObsAnnotationQueueLabelSchemaUpdateAttributes `json:"attributes"`
-	// Resource type of an LLM Observability annotation queue.
+	// Resource type of an Agent Observability annotation queue.
 	Type LLMObsAnnotationQueueType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

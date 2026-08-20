@@ -16,7 +16,7 @@ type LLMObsDeleteAnnotationsDataResponse struct {
 	Attributes LLMObsDeleteAnnotationsDataAttributesResponse `json:"attributes"`
 	// The annotation queue ID.
 	Id string `json:"id"`
-	// Resource type for LLM Observability annotations.
+	// Resource type for Agent Observability annotations.
 	Type LLMObsAnnotationsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -1,4 +1,4 @@
-// Delete LLM Observability projects returns "No Content" response
+// Delete Agent Observability projects returns "No Content" response
 
 package main
 

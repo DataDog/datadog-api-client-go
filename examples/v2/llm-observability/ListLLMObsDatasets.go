@@ -1,4 +1,4 @@
-// List LLM Observability datasets returns "OK" response
+// List Agent Observability datasets returns "OK" response
 
 package main
 

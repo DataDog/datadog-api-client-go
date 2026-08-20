@@ -1,4 +1,4 @@
-// Create an LLM Observability annotation queue returns "Created" response
+// Create an Agent Observability annotation queue returns "Created" response
 
 package main
 

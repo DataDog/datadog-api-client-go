@@ -1,4 +1,4 @@
-// List LLM Observability spans returns "OK" response
+// List Agent Observability spans returns "OK" response
 
 package main
 

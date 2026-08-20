@@ -1,4 +1,4 @@
-// Get a specific LLM Observability prompt version returns "OK" response
+// Get a specific Agent Observability prompt version returns "OK" response
 
 package main
 
