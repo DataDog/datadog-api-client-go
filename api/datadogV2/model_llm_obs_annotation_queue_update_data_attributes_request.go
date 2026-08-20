@@ -16,6 +16,12 @@ type LLMObsAnnotationQueueUpdateDataAttributesRequest struct {
 	Description *string `json:"description,omitempty"`
 	// Updated name of the annotation queue.
 	Name *string `json:"name,omitempty"`
+	// Whether annotation access is restricted to assigned users.
+	RestrictToAssignees *bool `json:"restrict_to_assignees,omitempty"`
+	// Whether annotation access is restricted to queue reviewers.
+	RestrictToReviewers *bool `json:"restrict_to_reviewers,omitempty"`
+	// Updated email addresses of reviewers who can access the annotation queue.
+	ReviewerEmails []string `json:"reviewer_emails,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -122,6 +128,90 @@ func (o *LLMObsAnnotationQueueUpdateDataAttributesRequest) SetName(v string) {
 	o.Name = &v
 }
 
+// GetRestrictToAssignees returns the RestrictToAssignees field value if set, zero value otherwise.
+func (o *LLMObsAnnotationQueueUpdateDataAttributesRequest) GetRestrictToAssignees() bool {
+	if o == nil || o.RestrictToAssignees == nil {
+		var ret bool
+		return ret
+	}
+	return *o.RestrictToAssignees
+}
+
+// GetRestrictToAssigneesOk returns a tuple with the RestrictToAssignees field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsAnnotationQueueUpdateDataAttributesRequest) GetRestrictToAssigneesOk() (*bool, bool) {
+	if o == nil || o.RestrictToAssignees == nil {
+		return nil, false
+	}
+	return o.RestrictToAssignees, true
+}
+
+// HasRestrictToAssignees returns a boolean if a field has been set.
+func (o *LLMObsAnnotationQueueUpdateDataAttributesRequest) HasRestrictToAssignees() bool {
+	return o != nil && o.RestrictToAssignees != nil
+}
+
+// SetRestrictToAssignees gets a reference to the given bool and assigns it to the RestrictToAssignees field.
+func (o *LLMObsAnnotationQueueUpdateDataAttributesRequest) SetRestrictToAssignees(v bool) {
+	o.RestrictToAssignees = &v
+}
+
+// GetRestrictToReviewers returns the RestrictToReviewers field value if set, zero value otherwise.
+func (o *LLMObsAnnotationQueueUpdateDataAttributesRequest) GetRestrictToReviewers() bool {
+	if o == nil || o.RestrictToReviewers == nil {
+		var ret bool
+		return ret
+	}
+	return *o.RestrictToReviewers
+}
+
+// GetRestrictToReviewersOk returns a tuple with the RestrictToReviewers field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsAnnotationQueueUpdateDataAttributesRequest) GetRestrictToReviewersOk() (*bool, bool) {
+	if o == nil || o.RestrictToReviewers == nil {
+		return nil, false
+	}
+	return o.RestrictToReviewers, true
+}
+
+// HasRestrictToReviewers returns a boolean if a field has been set.
+func (o *LLMObsAnnotationQueueUpdateDataAttributesRequest) HasRestrictToReviewers() bool {
+	return o != nil && o.RestrictToReviewers != nil
+}
+
+// SetRestrictToReviewers gets a reference to the given bool and assigns it to the RestrictToReviewers field.
+func (o *LLMObsAnnotationQueueUpdateDataAttributesRequest) SetRestrictToReviewers(v bool) {
+	o.RestrictToReviewers = &v
+}
+
+// GetReviewerEmails returns the ReviewerEmails field value if set, zero value otherwise.
+func (o *LLMObsAnnotationQueueUpdateDataAttributesRequest) GetReviewerEmails() []string {
+	if o == nil || o.ReviewerEmails == nil {
+		var ret []string
+		return ret
+	}
+	return o.ReviewerEmails
+}
+
+// GetReviewerEmailsOk returns a tuple with the ReviewerEmails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsAnnotationQueueUpdateDataAttributesRequest) GetReviewerEmailsOk() (*[]string, bool) {
+	if o == nil || o.ReviewerEmails == nil {
+		return nil, false
+	}
+	return &o.ReviewerEmails, true
+}
+
+// HasReviewerEmails returns a boolean if a field has been set.
+func (o *LLMObsAnnotationQueueUpdateDataAttributesRequest) HasReviewerEmails() bool {
+	return o != nil && o.ReviewerEmails != nil
+}
+
+// SetReviewerEmails gets a reference to the given []string and assigns it to the ReviewerEmails field.
+func (o *LLMObsAnnotationQueueUpdateDataAttributesRequest) SetReviewerEmails(v []string) {
+	o.ReviewerEmails = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LLMObsAnnotationQueueUpdateDataAttributesRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -137,6 +227,15 @@ func (o LLMObsAnnotationQueueUpdateDataAttributesRequest) MarshalJSON() ([]byte,
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
+	if o.RestrictToAssignees != nil {
+		toSerialize["restrict_to_assignees"] = o.RestrictToAssignees
+	}
+	if o.RestrictToReviewers != nil {
+		toSerialize["restrict_to_reviewers"] = o.RestrictToReviewers
+	}
+	if o.ReviewerEmails != nil {
+		toSerialize["reviewer_emails"] = o.ReviewerEmails
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -147,16 +246,19 @@ func (o LLMObsAnnotationQueueUpdateDataAttributesRequest) MarshalJSON() ([]byte,
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsAnnotationQueueUpdateDataAttributesRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AnnotationSchema *LLMObsAnnotationSchema `json:"annotation_schema,omitempty"`
-		Description      *string                 `json:"description,omitempty"`
-		Name             *string                 `json:"name,omitempty"`
+		AnnotationSchema    *LLMObsAnnotationSchema `json:"annotation_schema,omitempty"`
+		Description         *string                 `json:"description,omitempty"`
+		Name                *string                 `json:"name,omitempty"`
+		RestrictToAssignees *bool                   `json:"restrict_to_assignees,omitempty"`
+		RestrictToReviewers *bool                   `json:"restrict_to_reviewers,omitempty"`
+		ReviewerEmails      []string                `json:"reviewer_emails,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"annotation_schema", "description", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"annotation_schema", "description", "name", "restrict_to_assignees", "restrict_to_reviewers", "reviewer_emails"})
 	} else {
 		return err
 	}
@@ -168,6 +270,9 @@ func (o *LLMObsAnnotationQueueUpdateDataAttributesRequest) UnmarshalJSON(bytes [
 	o.AnnotationSchema = all.AnnotationSchema
 	o.Description = all.Description
 	o.Name = all.Name
+	o.RestrictToAssignees = all.RestrictToAssignees
+	o.RestrictToReviewers = all.RestrictToReviewers
+	o.ReviewerEmails = all.ReviewerEmails
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

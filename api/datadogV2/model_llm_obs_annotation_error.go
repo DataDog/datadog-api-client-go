@@ -14,6 +14,8 @@ import (
 type LLMObsAnnotationError struct {
 	// ID of the annotation that failed, if applicable.
 	AnnotationId *string `json:"annotation_id,omitempty"`
+	// Stable error code. `permission_denied` indicates the item was rejected by queue access rules.
+	Code *LLMObsAnnotationErrorCode `json:"code,omitempty"`
 	// Error message.
 	Error string `json:"error"`
 	// ID of the interaction that failed.
@@ -68,6 +70,34 @@ func (o *LLMObsAnnotationError) HasAnnotationId() bool {
 // SetAnnotationId gets a reference to the given string and assigns it to the AnnotationId field.
 func (o *LLMObsAnnotationError) SetAnnotationId(v string) {
 	o.AnnotationId = &v
+}
+
+// GetCode returns the Code field value if set, zero value otherwise.
+func (o *LLMObsAnnotationError) GetCode() LLMObsAnnotationErrorCode {
+	if o == nil || o.Code == nil {
+		var ret LLMObsAnnotationErrorCode
+		return ret
+	}
+	return *o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsAnnotationError) GetCodeOk() (*LLMObsAnnotationErrorCode, bool) {
+	if o == nil || o.Code == nil {
+		return nil, false
+	}
+	return o.Code, true
+}
+
+// HasCode returns a boolean if a field has been set.
+func (o *LLMObsAnnotationError) HasCode() bool {
+	return o != nil && o.Code != nil
+}
+
+// SetCode gets a reference to the given LLMObsAnnotationErrorCode and assigns it to the Code field.
+func (o *LLMObsAnnotationError) SetCode(v LLMObsAnnotationErrorCode) {
+	o.Code = &v
 }
 
 // GetError returns the Error field value.
@@ -125,6 +155,9 @@ func (o LLMObsAnnotationError) MarshalJSON() ([]byte, error) {
 	if o.AnnotationId != nil {
 		toSerialize["annotation_id"] = o.AnnotationId
 	}
+	if o.Code != nil {
+		toSerialize["code"] = o.Code
+	}
 	toSerialize["error"] = o.Error
 	toSerialize["interaction_id"] = o.InteractionId
 
@@ -137,9 +170,10 @@ func (o LLMObsAnnotationError) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsAnnotationError) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AnnotationId  *string `json:"annotation_id,omitempty"`
-		Error         *string `json:"error"`
-		InteractionId *string `json:"interaction_id"`
+		AnnotationId  *string                    `json:"annotation_id,omitempty"`
+		Code          *LLMObsAnnotationErrorCode `json:"code,omitempty"`
+		Error         *string                    `json:"error"`
+		InteractionId *string                    `json:"interaction_id"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -152,16 +186,27 @@ func (o *LLMObsAnnotationError) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"annotation_id", "error", "interaction_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"annotation_id", "code", "error", "interaction_id"})
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
 	o.AnnotationId = all.AnnotationId
+	if all.Code != nil && !all.Code.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.Code = all.Code
+	}
 	o.Error = *all.Error
 	o.InteractionId = *all.InteractionId
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
