@@ -10,7 +10,7 @@ import (
 
 // ProductAnalyticsResponseMeta Metadata for a Product Analytics query response.
 type ProductAnalyticsResponseMeta struct {
-	// Unique identifier for the request, used for multi-step query continuation.
+	// Unique identifier of the query.
 	RequestId *string `json:"request_id,omitempty"`
 	// The execution status of a Product Analytics query.
 	Status *ProductAnalyticsResponseMetaStatus `json:"status,omitempty"`

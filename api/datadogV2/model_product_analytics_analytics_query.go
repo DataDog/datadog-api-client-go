@@ -18,7 +18,9 @@ type ProductAnalyticsAnalyticsQuery struct {
 	Compute ProductAnalyticsCompute `json:"compute"`
 	// Group-by rules for segmenting results.
 	GroupBy []ProductAnalyticsGroupBy `json:"group_by,omitempty"`
-	// Restrict the query to specific indexes. Max 1 entry.
+	// Deprecated. Index selection is a rollout detail and will be removed.
+	// Do not set this field.
+	// Deprecated
 	Indexes []string `json:"indexes,omitempty"`
 	// A query definition discriminated by the `data_source` field.
 	// Use `product_analytics` for standard event queries, or
@@ -128,6 +130,7 @@ func (o *ProductAnalyticsAnalyticsQuery) SetGroupBy(v []ProductAnalyticsGroupBy)
 }
 
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
+// Deprecated
 func (o *ProductAnalyticsAnalyticsQuery) GetIndexes() []string {
 	if o == nil || o.Indexes == nil {
 		var ret []string
@@ -138,6 +141,7 @@ func (o *ProductAnalyticsAnalyticsQuery) GetIndexes() []string {
 
 // GetIndexesOk returns a tuple with the Indexes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *ProductAnalyticsAnalyticsQuery) GetIndexesOk() (*[]string, bool) {
 	if o == nil || o.Indexes == nil {
 		return nil, false
@@ -151,6 +155,7 @@ func (o *ProductAnalyticsAnalyticsQuery) HasIndexes() bool {
 }
 
 // SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
+// Deprecated
 func (o *ProductAnalyticsAnalyticsQuery) SetIndexes(v []string) {
 	o.Indexes = v
 }
