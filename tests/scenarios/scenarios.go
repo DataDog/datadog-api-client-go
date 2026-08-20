@@ -13,6 +13,7 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"path/filepath"
 	"reflect"
 	"regexp"
 	"sort"
@@ -84,6 +85,14 @@ type dataKey struct{}
 type cleanupKey struct{}
 type pathParamCountKey struct{}
 type pathParametersKey struct{}
+
+func featureDataRoot() string {
+	return "features"
+}
+
+func featureDataPath(version string, parts ...string) string {
+	return filepath.Join(append([]string{featureDataRoot(), version}, parts...)...)
+}
 
 // GetIgnoredTags returns list of ignored tags.
 func GetIgnoredTags() []string {
@@ -392,6 +401,7 @@ func RunCleanup(ctx gobdd.Context) {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)
+	sort.Sort(sort.Reverse(sort.StringSlice(keys)))
 
 	for _, name := range keys {
 		cc[name]()
