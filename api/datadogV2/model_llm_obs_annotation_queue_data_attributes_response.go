@@ -15,6 +15,8 @@ import (
 type LLMObsAnnotationQueueDataAttributesResponse struct {
 	// Schema defining the labels for an annotation queue.
 	AnnotationSchema *LLMObsAnnotationSchema `json:"annotation_schema,omitempty"`
+	// Whether the current caller can manage access for the annotation queue.
+	CanManageAccess bool `json:"can_manage_access"`
 	// Timestamp when the queue was created.
 	CreatedAt time.Time `json:"created_at"`
 	// Identifier of the user who created the queue.
@@ -31,6 +33,12 @@ type LLMObsAnnotationQueueDataAttributesResponse struct {
 	OwnedBy string `json:"owned_by"`
 	// Identifier of the project this queue belongs to.
 	ProjectId string `json:"project_id"`
+	// Whether annotation access is restricted to assigned users.
+	RestrictToAssignees bool `json:"restrict_to_assignees"`
+	// Whether annotation access is restricted to queue reviewers.
+	RestrictToReviewers bool `json:"restrict_to_reviewers"`
+	// Email addresses of reviewers for the annotation queue. Returned only when the caller can manage queue access.
+	ReviewerEmails []string `json:"reviewer_emails,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -40,8 +48,9 @@ type LLMObsAnnotationQueueDataAttributesResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsAnnotationQueueDataAttributesResponse(createdAt time.Time, createdBy string, description string, modifiedAt time.Time, modifiedBy string, name string, ownedBy string, projectId string) *LLMObsAnnotationQueueDataAttributesResponse {
+func NewLLMObsAnnotationQueueDataAttributesResponse(canManageAccess bool, createdAt time.Time, createdBy string, description string, modifiedAt time.Time, modifiedBy string, name string, ownedBy string, projectId string, restrictToAssignees bool, restrictToReviewers bool) *LLMObsAnnotationQueueDataAttributesResponse {
 	this := LLMObsAnnotationQueueDataAttributesResponse{}
+	this.CanManageAccess = canManageAccess
 	this.CreatedAt = createdAt
 	this.CreatedBy = createdBy
 	this.Description = description
@@ -50,6 +59,8 @@ func NewLLMObsAnnotationQueueDataAttributesResponse(createdAt time.Time, created
 	this.Name = name
 	this.OwnedBy = ownedBy
 	this.ProjectId = projectId
+	this.RestrictToAssignees = restrictToAssignees
+	this.RestrictToReviewers = restrictToReviewers
 	return &this
 }
 
@@ -87,6 +98,29 @@ func (o *LLMObsAnnotationQueueDataAttributesResponse) HasAnnotationSchema() bool
 // SetAnnotationSchema gets a reference to the given LLMObsAnnotationSchema and assigns it to the AnnotationSchema field.
 func (o *LLMObsAnnotationQueueDataAttributesResponse) SetAnnotationSchema(v LLMObsAnnotationSchema) {
 	o.AnnotationSchema = &v
+}
+
+// GetCanManageAccess returns the CanManageAccess field value.
+func (o *LLMObsAnnotationQueueDataAttributesResponse) GetCanManageAccess() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+	return o.CanManageAccess
+}
+
+// GetCanManageAccessOk returns a tuple with the CanManageAccess field value
+// and a boolean to check if the value has been set.
+func (o *LLMObsAnnotationQueueDataAttributesResponse) GetCanManageAccessOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.CanManageAccess, true
+}
+
+// SetCanManageAccess sets field value.
+func (o *LLMObsAnnotationQueueDataAttributesResponse) SetCanManageAccess(v bool) {
+	o.CanManageAccess = v
 }
 
 // GetCreatedAt returns the CreatedAt field value.
@@ -273,6 +307,80 @@ func (o *LLMObsAnnotationQueueDataAttributesResponse) SetProjectId(v string) {
 	o.ProjectId = v
 }
 
+// GetRestrictToAssignees returns the RestrictToAssignees field value.
+func (o *LLMObsAnnotationQueueDataAttributesResponse) GetRestrictToAssignees() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+	return o.RestrictToAssignees
+}
+
+// GetRestrictToAssigneesOk returns a tuple with the RestrictToAssignees field value
+// and a boolean to check if the value has been set.
+func (o *LLMObsAnnotationQueueDataAttributesResponse) GetRestrictToAssigneesOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RestrictToAssignees, true
+}
+
+// SetRestrictToAssignees sets field value.
+func (o *LLMObsAnnotationQueueDataAttributesResponse) SetRestrictToAssignees(v bool) {
+	o.RestrictToAssignees = v
+}
+
+// GetRestrictToReviewers returns the RestrictToReviewers field value.
+func (o *LLMObsAnnotationQueueDataAttributesResponse) GetRestrictToReviewers() bool {
+	if o == nil {
+		var ret bool
+		return ret
+	}
+	return o.RestrictToReviewers
+}
+
+// GetRestrictToReviewersOk returns a tuple with the RestrictToReviewers field value
+// and a boolean to check if the value has been set.
+func (o *LLMObsAnnotationQueueDataAttributesResponse) GetRestrictToReviewersOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RestrictToReviewers, true
+}
+
+// SetRestrictToReviewers sets field value.
+func (o *LLMObsAnnotationQueueDataAttributesResponse) SetRestrictToReviewers(v bool) {
+	o.RestrictToReviewers = v
+}
+
+// GetReviewerEmails returns the ReviewerEmails field value if set, zero value otherwise.
+func (o *LLMObsAnnotationQueueDataAttributesResponse) GetReviewerEmails() []string {
+	if o == nil || o.ReviewerEmails == nil {
+		var ret []string
+		return ret
+	}
+	return o.ReviewerEmails
+}
+
+// GetReviewerEmailsOk returns a tuple with the ReviewerEmails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsAnnotationQueueDataAttributesResponse) GetReviewerEmailsOk() (*[]string, bool) {
+	if o == nil || o.ReviewerEmails == nil {
+		return nil, false
+	}
+	return &o.ReviewerEmails, true
+}
+
+// HasReviewerEmails returns a boolean if a field has been set.
+func (o *LLMObsAnnotationQueueDataAttributesResponse) HasReviewerEmails() bool {
+	return o != nil && o.ReviewerEmails != nil
+}
+
+// SetReviewerEmails gets a reference to the given []string and assigns it to the ReviewerEmails field.
+func (o *LLMObsAnnotationQueueDataAttributesResponse) SetReviewerEmails(v []string) {
+	o.ReviewerEmails = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o LLMObsAnnotationQueueDataAttributesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -282,6 +390,7 @@ func (o LLMObsAnnotationQueueDataAttributesResponse) MarshalJSON() ([]byte, erro
 	if o.AnnotationSchema != nil {
 		toSerialize["annotation_schema"] = o.AnnotationSchema
 	}
+	toSerialize["can_manage_access"] = o.CanManageAccess
 	if o.CreatedAt.Nanosecond() == 0 {
 		toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
 	} else {
@@ -298,6 +407,11 @@ func (o LLMObsAnnotationQueueDataAttributesResponse) MarshalJSON() ([]byte, erro
 	toSerialize["name"] = o.Name
 	toSerialize["owned_by"] = o.OwnedBy
 	toSerialize["project_id"] = o.ProjectId
+	toSerialize["restrict_to_assignees"] = o.RestrictToAssignees
+	toSerialize["restrict_to_reviewers"] = o.RestrictToReviewers
+	if o.ReviewerEmails != nil {
+		toSerialize["reviewer_emails"] = o.ReviewerEmails
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -308,18 +422,25 @@ func (o LLMObsAnnotationQueueDataAttributesResponse) MarshalJSON() ([]byte, erro
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsAnnotationQueueDataAttributesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AnnotationSchema *LLMObsAnnotationSchema `json:"annotation_schema,omitempty"`
-		CreatedAt        *time.Time              `json:"created_at"`
-		CreatedBy        *string                 `json:"created_by"`
-		Description      *string                 `json:"description"`
-		ModifiedAt       *time.Time              `json:"modified_at"`
-		ModifiedBy       *string                 `json:"modified_by"`
-		Name             *string                 `json:"name"`
-		OwnedBy          *string                 `json:"owned_by"`
-		ProjectId        *string                 `json:"project_id"`
+		AnnotationSchema    *LLMObsAnnotationSchema `json:"annotation_schema,omitempty"`
+		CanManageAccess     *bool                   `json:"can_manage_access"`
+		CreatedAt           *time.Time              `json:"created_at"`
+		CreatedBy           *string                 `json:"created_by"`
+		Description         *string                 `json:"description"`
+		ModifiedAt          *time.Time              `json:"modified_at"`
+		ModifiedBy          *string                 `json:"modified_by"`
+		Name                *string                 `json:"name"`
+		OwnedBy             *string                 `json:"owned_by"`
+		ProjectId           *string                 `json:"project_id"`
+		RestrictToAssignees *bool                   `json:"restrict_to_assignees"`
+		RestrictToReviewers *bool                   `json:"restrict_to_reviewers"`
+		ReviewerEmails      []string                `json:"reviewer_emails,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.CanManageAccess == nil {
+		return fmt.Errorf("required field can_manage_access missing")
 	}
 	if all.CreatedAt == nil {
 		return fmt.Errorf("required field created_at missing")
@@ -345,9 +466,15 @@ func (o *LLMObsAnnotationQueueDataAttributesResponse) UnmarshalJSON(bytes []byte
 	if all.ProjectId == nil {
 		return fmt.Errorf("required field project_id missing")
 	}
+	if all.RestrictToAssignees == nil {
+		return fmt.Errorf("required field restrict_to_assignees missing")
+	}
+	if all.RestrictToReviewers == nil {
+		return fmt.Errorf("required field restrict_to_reviewers missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"annotation_schema", "created_at", "created_by", "description", "modified_at", "modified_by", "name", "owned_by", "project_id"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"annotation_schema", "can_manage_access", "created_at", "created_by", "description", "modified_at", "modified_by", "name", "owned_by", "project_id", "restrict_to_assignees", "restrict_to_reviewers", "reviewer_emails"})
 	} else {
 		return err
 	}
@@ -357,6 +484,7 @@ func (o *LLMObsAnnotationQueueDataAttributesResponse) UnmarshalJSON(bytes []byte
 		hasInvalidField = true
 	}
 	o.AnnotationSchema = all.AnnotationSchema
+	o.CanManageAccess = *all.CanManageAccess
 	o.CreatedAt = *all.CreatedAt
 	o.CreatedBy = *all.CreatedBy
 	o.Description = *all.Description
@@ -365,6 +493,9 @@ func (o *LLMObsAnnotationQueueDataAttributesResponse) UnmarshalJSON(bytes []byte
 	o.Name = *all.Name
 	o.OwnedBy = *all.OwnedBy
 	o.ProjectId = *all.ProjectId
+	o.RestrictToAssignees = *all.RestrictToAssignees
+	o.RestrictToReviewers = *all.RestrictToReviewers
+	o.ReviewerEmails = all.ReviewerEmails
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

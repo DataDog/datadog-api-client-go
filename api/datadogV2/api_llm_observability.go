@@ -323,6 +323,7 @@ func (a *LLMObservabilityApi) CloneLLMObsDataset(ctx _context.Context, projectId
 // CreateLLMObsAnnotationQueue Create an LLM Observability annotation queue.
 // Create an annotation queue. The `name` and `project_id` fields are required.
 // An optional `annotation_schema` can be provided to define the labels for the queue.
+// Optional access-control fields can restrict annotation access to reviewers or assignees.
 // Fields such as `created_by`, `owned_by`, `created_at`, `modified_by`,
 // and `modified_at` are inferred by the backend.
 func (a *LLMObservabilityApi) CreateLLMObsAnnotationQueue(ctx _context.Context, body LLMObsAnnotationQueueRequest) (LLMObsAnnotationQueueResponse, *_nethttp.Response, error) {
@@ -6541,7 +6542,7 @@ func (a *LLMObservabilityApi) UnlockLLMObsDatasetDraftState(ctx _context.Context
 }
 
 // UpdateLLMObsAnnotationQueue Update an LLM Observability annotation queue.
-// Partially update an annotation queue. The `name`, `description`, and `annotation_schema` fields can be updated.
+// Partially update an annotation queue. The `name`, `description`, `annotation_schema`, `reviewer_emails`, `restrict_to_reviewers`, and `restrict_to_assignees` fields can be updated.
 func (a *LLMObservabilityApi) UpdateLLMObsAnnotationQueue(ctx _context.Context, queueId string, body LLMObsAnnotationQueueUpdateRequest) (LLMObsAnnotationQueueResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -7612,6 +7613,7 @@ func (a *LLMObservabilityApi) UploadLLMObsDatasetRecordsFile(ctx _context.Contex
 // by `interaction_id` and the requesting user's identity.
 // Results and errors in the response are linked to request items by `interaction_id`.
 // Errors for individual items are returned in the `errors` field without blocking the rest of the batch.
+// Requests where every item is denied by queue access rules return `403`.
 func (a *LLMObservabilityApi) UpsertLLMObsAnnotations(ctx _context.Context, queueId string, body LLMObsAnnotationsRequest) (LLMObsAnnotationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
