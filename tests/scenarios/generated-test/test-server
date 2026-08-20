@@ -29,6 +29,7 @@ CONTROL_ROOT = "/__openapi_transformer__"
 SESSION_HEADER = "x-openapi-test-session"
 SCHEMA_VERSION = 1
 PATH_SEGMENT_SAFE = ":@!$&'()*+,;=-._~"
+UTC_DATE_TIME_RE = re.compile(r"^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?)(?:Z|\+00:00)$")
 HOP_BY_HOP_HEADERS = {
     "connection",
     "keep-alive",
@@ -108,7 +109,7 @@ class RecordingDatabase:
                 if cursor >= len(interactions):
                     raise LookupError(f"Recording has no interaction #{cursor + 1}")
                 expected = interactions[cursor]
-                if expected["request"] != actual:
+                if not _requests_match(expected["request"], actual):
                     raise RequestMismatchError(expected["request"], actual, cursor)
                 session["cursor"] += 1
                 return expected["response"]
@@ -117,10 +118,26 @@ class RecordingDatabase:
                 for recording in shard["recordings"]:
                     for index, interaction in enumerate(recording["interactions"]):
                         consumed_key = (version, feature, recording["scenario"], index)
-                        if consumed_key not in self.fallback_consumed and interaction["request"] == actual:
+                        if consumed_key not in self.fallback_consumed and _requests_match(
+                            interaction["request"], actual
+                        ):
                             self.fallback_consumed.add(consumed_key)
                             return interaction["response"]
             raise LookupError("No unconsumed interaction matches this request")
+
+    def next_request(self, session_id: str) -> dict[str, Any]:
+        """Return the next recorded request without advancing the session."""
+        with self.lock:
+            session = self.sessions.get(session_id)
+            if session is None:
+                raise LookupError(f"Unknown session: {session_id}")
+            if session["mode"] != "replay":
+                raise ValueError("Next-request inspection is only available in replay mode")
+
+            interactions = session["recording"]["interactions"]
+            cursor = session["cursor"]
+            request = interactions[cursor]["request"] if cursor < len(interactions) else None
+            return {"request": request}
 
     def capture(
         self,
@@ -242,6 +259,11 @@ class TestRequestHandler(BaseHTTPRequestHandler):
             if self.path == f"{CONTROL_ROOT}/sessions" and self.command == "POST":
                 self._start_session()
                 return
+            next_match = re.fullmatch(rf"{re.escape(CONTROL_ROOT)}/sessions/([a-f0-9]+)/next-request", self.path)
+            if next_match and self.command == "GET":
+                result = self.server.database.next_request(next_match.group(1))
+                self._send_json(HTTPStatus.OK, result)
+                return
             stop_match = re.fullmatch(rf"{re.escape(CONTROL_ROOT)}/sessions/([a-f0-9]+)/stop", self.path)
             if stop_match and self.command == "POST":
                 result = self.server.database.stop(stop_match.group(1))
@@ -325,15 +347,17 @@ class TestRequestHandler(BaseHTTPRequestHandler):
             body = base64.b64decode(body_data.get("value", ""))
         else:
             body = body_data.get("value", "").encode("utf-8")
-        self.send_response(response["status"], response.get("reason"))
+        status = response["status"]
+        self.send_response(status, response.get("reason"))
         for key, value in response.get("headers", {}).items():
             if key.lower() not in HOP_BY_HOP_HEADERS | {"content-length"} | SAFE_BROWSER_HEADERS.keys():
                 self.send_header(key, value)
         for key, value in SAFE_BROWSER_HEADERS.items():
             self.send_header(key, value)
-        self.send_header("content-length", str(len(body)))
+        if _status_allows_message_content(status):
+            self.send_header("content-length", str(len(body)))
         self.end_headers()
-        if self.command != "HEAD":
+        if self.command != "HEAD" and _status_allows_message_content(status):
             self.wfile.write(body)
 
     def _send_json(self, status: HTTPStatus, value: dict[str, Any], *, error: str | None = None) -> None:
@@ -350,12 +374,13 @@ class TestRequestHandler(BaseHTTPRequestHandler):
 
 def _normalise_request(method: str, raw_path: str, content_type: str, body: bytes) -> dict[str, Any]:
     parsed = urlsplit(raw_path)
+    normalised_body = _normalise_body(body, content_type)
     return {
         "method": method.upper(),
         "path": _normalise_path(parsed.path),
         "query": sorted([list(pair) for pair in parse_qsl(parsed.query, keep_blank_values=True)]),
-        "content_type": _media_type(content_type),
-        "body": _normalise_body(body, content_type),
+        "content_type": _normalise_content_type(content_type, normalised_body),
+        "body": normalised_body,
     }
 
 
@@ -366,7 +391,7 @@ def _normalise_body(body: bytes, content_type: str) -> dict[str, Any]:
     text = body.decode("utf-8", errors="surrogateescape")
     if media_type.endswith("json"):
         try:
-            return {"type": "json", "value": json.loads(text)}
+            return {"type": "json", "value": _normalise_json(json.loads(text))}
         except json.JSONDecodeError:
             pass
     if media_type == "multipart/form-data":
@@ -376,8 +401,51 @@ def _normalise_body(body: bytes, content_type: str) -> dict[str, Any]:
     return {"type": "text", "value": text}
 
 
+def _normalise_json(value: Any) -> Any:
+    if isinstance(value, dict):
+        return {key: _normalise_json(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_normalise_json(item) for item in value]
+    if isinstance(value, str) and (match := UTC_DATE_TIME_RE.fullmatch(value)):
+        return f"{match.group(1)}Z"
+    return value
+
+
+def _normalise_content_type(content_type: str, body: dict[str, Any]) -> str:
+    return "" if body["type"] == "empty" else _media_type(content_type)
+
+
+def _requests_match(expected: dict[str, Any], actual: dict[str, Any]) -> bool:
+    comparable_fields = ("method", "path", "query", "content_type")
+    if any(expected[field] != actual[field] for field in comparable_fields):
+        return False
+    return _bodies_match(expected["body"], actual["body"])
+
+
+def _bodies_match(expected: dict[str, Any], actual: dict[str, Any]) -> bool:
+    if expected == actual:
+        return True
+    if expected["type"] != "json" or actual["type"] != "json":
+        return False
+    return _json_contains(actual["value"], expected["value"])
+
+
+def _json_contains(actual: Any, expected: Any) -> bool:
+    if isinstance(expected, dict) and isinstance(actual, dict):
+        return all(key in actual and _json_contains(actual[key], value) for key, value in expected.items())
+    if isinstance(expected, list) and isinstance(actual, list):
+        return len(expected) == len(actual) and all(
+            _json_contains(actual_item, expected_item) for actual_item, expected_item in zip(actual, expected)
+        )
+    return actual == expected
+
+
 def _media_type(value: str) -> str:
     return value.partition(";")[0].strip().lower()
+
+
+def _status_allows_message_content(status: int) -> bool:
+    return status >= HTTPStatus.OK and status not in {HTTPStatus.NO_CONTENT, HTTPStatus.NOT_MODIFIED}
 
 
 def _normalise_path(path: str) -> str:
