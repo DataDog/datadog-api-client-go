@@ -65,6 +65,7 @@ jobs:
       - name: Test
         run: ./scripts/run-tests.sh
         env:
+          DD_USE_GENERATED_TESTS: "true"
           TESTARGS: ${{ matrix.go-build-tags }}
           GOTOOLCHAIN: auto
 
