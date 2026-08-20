@@ -1,4 +1,4 @@
-// List LLM Observability projects returns "OK" response
+// List Agent Observability projects returns "OK" response
 
 package main
 

@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsConfigItem A single LLM Observability patterns configuration in a list response.
+// LLMObsPatternsConfigItem A single Agent Observability patterns configuration in a list response.
 type LLMObsPatternsConfigItem struct {
 	// Integration account ID for a bring-your-own-model configuration.
 	AccountId datadog.NullableString `json:"account_id,omitempty"`

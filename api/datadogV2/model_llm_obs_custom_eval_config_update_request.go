@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsCustomEvalConfigUpdateRequest Request to create or update a custom LLM Observability evaluator configuration.
+// LLMObsCustomEvalConfigUpdateRequest Request to create or update a custom Agent Observability evaluator configuration.
 type LLMObsCustomEvalConfigUpdateRequest struct {
-	// Data object for creating or updating a custom LLM Observability evaluator configuration.
+	// Data object for creating or updating a custom Agent Observability evaluator configuration.
 	Data LLMObsCustomEvalConfigUpdateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

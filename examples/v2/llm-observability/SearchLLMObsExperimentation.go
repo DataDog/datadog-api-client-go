@@ -1,5 +1,5 @@
-// Search LLM Observability experimentation entities returns "Partial Content — more results are available. Use
-// `meta.after` as the next `page.cursor`." response
+// Search Agent Observability experimentation returns "Partial Content — more results are available. Use `meta.after` as
+// the next `page.cursor`." response
 
 package main
 

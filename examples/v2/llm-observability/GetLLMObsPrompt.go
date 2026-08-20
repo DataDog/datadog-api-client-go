@@ -1,4 +1,4 @@
-// Get an LLM Observability prompt returns "OK" response
+// Get an Agent Observability prompt returns "OK" response
 
 package main
 

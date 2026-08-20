@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsTriggerRequestAttributes Attributes for triggering an LLM Observability patterns run.
+// LLMObsPatternsTriggerRequestAttributes Attributes for triggering an Agent Observability patterns run.
 type LLMObsPatternsTriggerRequestAttributes struct {
 	// The ID of the patterns configuration to run.
 	ConfigId string `json:"config_id"`

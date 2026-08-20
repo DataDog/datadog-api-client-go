@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPromptVersionResponse Response containing a specific version of an LLM Observability prompt.
+// LLMObsPromptVersionResponse Response containing a specific version of an Agent Observability prompt.
 type LLMObsPromptVersionResponse struct {
-	// Data object for a specific version of an LLM Observability prompt.
+	// Data object for a specific version of an Agent Observability prompt.
 	Data LLMObsPromptVersionData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

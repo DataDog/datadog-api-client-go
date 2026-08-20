@@ -10,7 +10,7 @@ import (
 
 // LLMObsExperimentEvalMetricEvent An evaluation metric event associated with an experiment span.
 type LLMObsExperimentEvalMetricEvent struct {
-	// Assessment result for an LLM Observability experiment metric.
+	// Assessment result for an Agent Observability experiment metric.
 	Assessment *LLMObsMetricAssessment `json:"assessment,omitempty"`
 	// Boolean value. Present when `metric_type` is `boolean`.
 	BooleanValue datadog.NullableBool `json:"boolean_value,omitempty"`
@@ -28,7 +28,7 @@ type LLMObsExperimentEvalMetricEvent struct {
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// Source of the metric. Either `custom` (user-submitted) or `summary` (experiment-level aggregate).
 	MetricSource *string `json:"metric_source,omitempty"`
-	// Type of metric recorded for an LLM Observability experiment.
+	// Type of metric recorded for an Agent Observability experiment.
 	MetricType *LLMObsMetricScoreType `json:"metric_type,omitempty"`
 	// Human-readable reasoning for the metric value.
 	Reasoning datadog.NullableString `json:"reasoning,omitempty"`

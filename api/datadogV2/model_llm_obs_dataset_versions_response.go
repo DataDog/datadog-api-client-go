@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetVersionsResponse Response containing the active versions of an LLM Observability dataset.
+// LLMObsDatasetVersionsResponse Response containing the active versions of an Agent Observability dataset.
 type LLMObsDatasetVersionsResponse struct {
 	// List of dataset versions.
 	Data []LLMObsDatasetVersionData `json:"data"`

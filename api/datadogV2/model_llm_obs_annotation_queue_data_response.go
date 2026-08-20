@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsAnnotationQueueDataResponse Data object for an LLM Observability annotation queue.
+// LLMObsAnnotationQueueDataResponse Data object for an Agent Observability annotation queue.
 type LLMObsAnnotationQueueDataResponse struct {
-	// Attributes of an LLM Observability annotation queue.
+	// Attributes of an Agent Observability annotation queue.
 	Attributes LLMObsAnnotationQueueDataAttributesResponse `json:"attributes"`
 	// Unique identifier of the annotation queue.
 	Id string `json:"id"`
-	// Resource type of an LLM Observability annotation queue.
+	// Resource type of an Agent Observability annotation queue.
 	Type LLMObsAnnotationQueueType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

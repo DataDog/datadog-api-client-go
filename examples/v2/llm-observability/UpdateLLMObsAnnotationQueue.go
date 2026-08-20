@@ -1,4 +1,4 @@
-// Update an LLM Observability annotation queue returns "OK" response
+// Update an Agent Observability annotation queue returns "OK" response
 
 package main
 

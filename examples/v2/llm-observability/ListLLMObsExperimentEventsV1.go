@@ -1,4 +1,4 @@
-// List LLM Observability experiment spans (v1) returns "OK" response
+// List Agent Observability experiment spans (v1) returns "OK" response
 
 package main
 

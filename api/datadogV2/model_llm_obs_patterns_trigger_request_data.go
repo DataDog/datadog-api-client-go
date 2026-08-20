@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsTriggerRequestData Data object for triggering an LLM Observability patterns run.
+// LLMObsPatternsTriggerRequestData Data object for triggering an Agent Observability patterns run.
 type LLMObsPatternsTriggerRequestData struct {
-	// Attributes for triggering an LLM Observability patterns run.
+	// Attributes for triggering an Agent Observability patterns run.
 	Attributes LLMObsPatternsTriggerRequestAttributes `json:"attributes"`
-	// Resource type for triggering an LLM Observability patterns run.
+	// Resource type for triggering an Agent Observability patterns run.
 	Type LLMObsPatternsRequestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

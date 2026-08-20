@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetRecordDataResponse A single LLM Observability dataset record.
+// LLMObsDatasetRecordDataResponse A single Agent Observability dataset record.
 type LLMObsDatasetRecordDataResponse struct {
 	// Timestamp when the record was created.
 	CreatedAt time.Time `json:"created_at"`

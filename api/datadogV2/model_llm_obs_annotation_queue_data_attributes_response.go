@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsAnnotationQueueDataAttributesResponse Attributes of an LLM Observability annotation queue.
+// LLMObsAnnotationQueueDataAttributesResponse Attributes of an Agent Observability annotation queue.
 type LLMObsAnnotationQueueDataAttributesResponse struct {
 	// Schema defining the labels for an annotation queue.
 	AnnotationSchema *LLMObsAnnotationSchema `json:"annotation_schema,omitempty"`

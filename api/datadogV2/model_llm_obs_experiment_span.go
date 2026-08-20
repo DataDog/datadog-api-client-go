@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsExperimentSpan A span associated with an LLM Observability experiment.
+// LLMObsExperimentSpan A span associated with an Agent Observability experiment.
 type LLMObsExperimentSpan struct {
 	// Dataset ID associated with this span.
 	DatasetId string `json:"dataset_id"`

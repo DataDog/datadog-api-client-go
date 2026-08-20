@@ -1,4 +1,4 @@
-// Clone an LLM Observability dataset returns "OK" response
+// Clone an Agent Observability dataset returns "OK" response
 
 package main
 

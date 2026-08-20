@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDeleteExperimentsDataAttributesRequest Attributes for deleting LLM Observability experiments.
+// LLMObsDeleteExperimentsDataAttributesRequest Attributes for deleting Agent Observability experiments.
 type LLMObsDeleteExperimentsDataAttributesRequest struct {
 	// List of experiment IDs to delete.
 	ExperimentIds []string `json:"experiment_ids"`

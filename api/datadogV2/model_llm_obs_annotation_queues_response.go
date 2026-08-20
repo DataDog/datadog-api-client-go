@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsAnnotationQueuesResponse Response containing a list of LLM Observability annotation queues.
+// LLMObsAnnotationQueuesResponse Response containing a list of Agent Observability annotation queues.
 type LLMObsAnnotationQueuesResponse struct {
 	// List of annotation queues.
 	Data []LLMObsAnnotationQueueDataResponse `json:"data"`

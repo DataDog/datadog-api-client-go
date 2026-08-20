@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsExperimentType Resource type of an LLM Observability experiment.
+// LLMObsExperimentType Resource type of an Agent Observability experiment.
 type LLMObsExperimentType string
 
 // List of LLMObsExperimentType.

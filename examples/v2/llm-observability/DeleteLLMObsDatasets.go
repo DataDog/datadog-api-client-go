@@ -1,4 +1,4 @@
-// Delete LLM Observability datasets returns "No Content" response
+// Delete Agent Observability datasets returns "No Content" response
 
 package main
 

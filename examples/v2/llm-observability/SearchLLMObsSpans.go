@@ -1,4 +1,4 @@
-// Search LLM Observability spans returns "OK" response
+// Search Agent Observability spans returns "OK" response
 
 package main
 
