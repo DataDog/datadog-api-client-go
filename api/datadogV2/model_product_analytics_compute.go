@@ -14,7 +14,8 @@ import (
 type ProductAnalyticsCompute struct {
 	// The aggregation function (count, cardinality, avg, sum, min, max, etc.).
 	Aggregation string `json:"aggregation"`
-	// Time bucket size in milliseconds. Required for timeseries queries.
+	// Time bucket size in milliseconds. Required for timeseries queries; ignored by the
+	// scalar endpoint, which returns a single value.
 	Interval *int64 `json:"interval,omitempty"`
 	// The metric to aggregate on. Required for non-count aggregations.
 	Metric *string `json:"metric,omitempty"`
