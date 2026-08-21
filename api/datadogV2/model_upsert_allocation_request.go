@@ -14,7 +14,9 @@ import (
 
 // UpsertAllocationRequest Request to create or update a targeting rule (allocation) for a feature flag environment.
 type UpsertAllocationRequest struct {
-	// The experiment ID for experiment-linked allocations.
+	// The experiment ID linked to the allocation. For `FEATURE_GATE` allocations,
+	// a non-null value denotes a standard experiment. For `CANARY` allocations,
+	// Datadog manages this value. Omit it when creating a canary allocation.
 	ExperimentId datadog.NullableString `json:"experiment_id,omitempty"`
 	// Progressive release request payload.
 	ExposureSchedule *ExposureScheduleRequest `json:"exposure_schedule,omitempty"`
