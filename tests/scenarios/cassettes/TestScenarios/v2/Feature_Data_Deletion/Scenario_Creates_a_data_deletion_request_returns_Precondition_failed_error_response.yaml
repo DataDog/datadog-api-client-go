@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"from":1672527600000,"indexes":["test-index","test-index-2"],"query":{},"to":1704063600000},"type":"create_deletion_req"}}
+      {"data":{"attributes":{"displayed_total":100,"from":1672527600000,"indexes":["test-index","test-index-2"],"query":{},"to":1704063600000},"type":"create_deletion_req"}}
     form: {}
     headers:
       Accept:
@@ -12,7 +12,8 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/deletion/data/logs
   response:
-    body: '{"errors":[{"status":"412","code":"INVALID_BODY","title":"INVALID_BODY","detail":"INVALID_BODY"}]}'
+    body: '{"errors":[{"status":"412","code":"INVALID_BODY","title":"INVALID_BODY","detail":"query
+      is required and cannot be empty"}]}'
     code: 412
     duration: 0ms
     headers:
