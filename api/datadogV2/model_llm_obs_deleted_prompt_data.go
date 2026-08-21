@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDeletedPromptData Data object confirming that an LLM Observability prompt was deleted.
+// LLMObsDeletedPromptData Data object confirming that an Agent Observability prompt was deleted.
 type LLMObsDeletedPromptData struct {
-	// Attributes confirming that an LLM Observability prompt was deleted.
+	// Attributes confirming that an Agent Observability prompt was deleted.
 	Attributes LLMObsDeletedPromptDataAttributes `json:"attributes"`
 	// Unique identifier of the deleted prompt.
 	Id string `json:"id"`
-	// Resource type of an LLM Observability prompt.
+	// Resource type of an Agent Observability prompt.
 	Type LLMObsPromptType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

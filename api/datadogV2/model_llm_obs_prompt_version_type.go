@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPromptVersionType Resource type of an LLM Observability prompt version.
+// LLMObsPromptVersionType Resource type of an Agent Observability prompt version.
 type LLMObsPromptVersionType string
 
 // List of LLMObsPromptVersionType.

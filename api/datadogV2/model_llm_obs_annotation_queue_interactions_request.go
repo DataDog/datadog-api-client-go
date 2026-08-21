@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsAnnotationQueueInteractionsRequest Request to add interactions to an LLM Observability annotation queue.
+// LLMObsAnnotationQueueInteractionsRequest Request to add interactions to an Agent Observability annotation queue.
 type LLMObsAnnotationQueueInteractionsRequest struct {
 	// Data object for adding interactions to an annotation queue.
 	Data LLMObsAnnotationQueueInteractionsDataRequest `json:"data"`

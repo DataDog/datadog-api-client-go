@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsExperimentationSimpleSearchRequest Request to search across LLM Observability experimentation entities using offset-based pagination.
+// LLMObsExperimentationSimpleSearchRequest Request to search across Agent Observability experimentation entities using offset-based pagination.
 type LLMObsExperimentationSimpleSearchRequest struct {
 	// Data object for an experimentation simple search request.
 	Data LLMObsExperimentationSimpleSearchDataRequest `json:"data"`

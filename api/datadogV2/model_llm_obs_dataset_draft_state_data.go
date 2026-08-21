@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetDraftStateData Data object for an LLM Observability dataset draft state.
+// LLMObsDatasetDraftStateData Data object for an Agent Observability dataset draft state.
 type LLMObsDatasetDraftStateData struct {
-	// Attributes of an LLM Observability dataset draft state.
+	// Attributes of an Agent Observability dataset draft state.
 	Attributes LLMObsDatasetDraftStateDataAttributes `json:"attributes"`
 	// Unique identifier of the dataset draft state. Matches the dataset ID.
 	Id string `json:"id"`
-	// Resource type of an LLM Observability dataset draft state.
+	// Resource type of an Agent Observability dataset draft state.
 	Type LLMObsDatasetDraftStateType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

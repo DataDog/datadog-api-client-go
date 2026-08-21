@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetBatchUpdateUpdateRecord A record update payload as part of a batch update on an LLM Observability dataset.
+// LLMObsDatasetBatchUpdateUpdateRecord A record update payload as part of a batch update on an Agent Observability dataset.
 type LLMObsDatasetBatchUpdateUpdateRecord struct {
 	// Represents any valid JSON value.
 	ExpectedOutput NullableAnyValue `json:"expected_output,omitempty"`

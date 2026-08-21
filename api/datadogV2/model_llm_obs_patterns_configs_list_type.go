@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsConfigsListType Resource type of a list of LLM Observability patterns configurations.
+// LLMObsPatternsConfigsListType Resource type of a list of Agent Observability patterns configurations.
 type LLMObsPatternsConfigsListType string
 
 // List of LLMObsPatternsConfigsListType.

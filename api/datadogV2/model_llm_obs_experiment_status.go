@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsExperimentStatus Execution status of an LLM Observability experiment.
+// LLMObsExperimentStatus Execution status of an Agent Observability experiment.
 type LLMObsExperimentStatus string
 
 // List of LLMObsExperimentStatus.

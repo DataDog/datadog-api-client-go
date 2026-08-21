@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsConfigsResponseAttributes Attributes of a list of LLM Observability patterns configurations.
+// LLMObsPatternsConfigsResponseAttributes Attributes of a list of Agent Observability patterns configurations.
 type LLMObsPatternsConfigsResponseAttributes struct {
 	// List of patterns configurations.
 	Configs []LLMObsPatternsConfigItem `json:"configs"`

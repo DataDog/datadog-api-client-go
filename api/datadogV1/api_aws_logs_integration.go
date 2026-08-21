@@ -16,7 +16,7 @@ import (
 type AWSLogsIntegrationApi datadog.Service
 
 // CheckAWSLogsLambdaAsync Check that an AWS Lambda Function exists.
-// Test if permissions are present to add a log-forwarding triggers for the given services and AWS account. The input
+// **This endpoint is deprecated.** Test if permissions are present to add a log-forwarding triggers for the given services and AWS account. The input
 // is the same as for Enable an AWS service log collection. Subsequent requests will always repeat the above, so this
 // endpoint can be polled intermittently instead of blocking.
 //
@@ -24,6 +24,8 @@ type AWSLogsIntegrationApi datadog.Service
 // - Returns a status of 'waiting' while checking.
 // - Returns a status of 'checked and ok' if the Lambda exists.
 // - Returns a status of 'error' if the Lambda does not exist.
+//
+// Deprecated: This API is deprecated.
 func (a *AWSLogsIntegrationApi) CheckAWSLogsLambdaAsync(ctx _context.Context, body AWSAccountAndLambdaRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -103,7 +105,7 @@ func (a *AWSLogsIntegrationApi) CheckAWSLogsLambdaAsync(ctx _context.Context, bo
 }
 
 // CheckAWSLogsServicesAsync Check permissions for log services.
-// Test if permissions are present to add log-forwarding triggers for the
+// **This endpoint is deprecated.** Test if permissions are present to add log-forwarding triggers for the
 // given services and AWS account. Input is the same as for `EnableAWSLogServices`.
 // Done async, so can be repeatedly polled in a non-blocking fashion until
 // the async request completes.
@@ -113,6 +115,8 @@ func (a *AWSLogsIntegrationApi) CheckAWSLogsLambdaAsync(ctx _context.Context, bo
 //   - Returns a status of `waiting` while checking.
 //   - Returns a status of `checked and ok` if the Lambda exists.
 //   - Returns a status of `error` if the Lambda does not exist.
+//
+// Deprecated: This API is deprecated.
 func (a *AWSLogsIntegrationApi) CheckAWSLogsServicesAsync(ctx _context.Context, body AWSLogsServicesRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -192,7 +196,9 @@ func (a *AWSLogsIntegrationApi) CheckAWSLogsServicesAsync(ctx _context.Context, 
 }
 
 // CreateAWSLambdaARN Add AWS Log Lambda ARN.
-// Attach the Lambda ARN of the Lambda created for the Datadog-AWS log collection to your AWS account ID to enable log collection.
+// **This endpoint is deprecated.** Attach the Lambda ARN of the Lambda created for the Datadog-AWS log collection to your AWS account ID to enable log collection.
+//
+// Deprecated: This API is deprecated.
 func (a *AWSLogsIntegrationApi) CreateAWSLambdaARN(ctx _context.Context, body AWSAccountAndLambdaRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -272,7 +278,9 @@ func (a *AWSLogsIntegrationApi) CreateAWSLambdaARN(ctx _context.Context, body AW
 }
 
 // DeleteAWSLambdaARN Delete an AWS Logs integration.
-// Delete a Datadog-AWS logs configuration by removing the specific Lambda ARN associated with a given AWS account.
+// **This endpoint is deprecated.** Delete a Datadog-AWS logs configuration by removing the specific Lambda ARN associated with a given AWS account.
+//
+// Deprecated: This API is deprecated.
 func (a *AWSLogsIntegrationApi) DeleteAWSLambdaARN(ctx _context.Context, body AWSAccountAndLambdaRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete

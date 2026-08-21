@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetDraftStateResponse Response containing the draft state of an LLM Observability dataset.
+// LLMObsDatasetDraftStateResponse Response containing the draft state of an Agent Observability dataset.
 type LLMObsDatasetDraftStateResponse struct {
-	// Data object for an LLM Observability dataset draft state.
+	// Data object for an Agent Observability dataset draft state.
 	Data LLMObsDatasetDraftStateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

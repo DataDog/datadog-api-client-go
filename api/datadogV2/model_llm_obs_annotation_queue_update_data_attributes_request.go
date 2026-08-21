@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsAnnotationQueueUpdateDataAttributesRequest Attributes for updating an LLM Observability annotation queue. All fields are optional.
+// LLMObsAnnotationQueueUpdateDataAttributesRequest Attributes for updating an Agent Observability annotation queue. All fields are optional.
 type LLMObsAnnotationQueueUpdateDataAttributesRequest struct {
 	// Schema defining the labels for an annotation queue.
 	AnnotationSchema *LLMObsAnnotationSchema `json:"annotation_schema,omitempty"`

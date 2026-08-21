@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsAnnotationQueueType Resource type of an LLM Observability annotation queue.
+// LLMObsAnnotationQueueType Resource type of an Agent Observability annotation queue.
 type LLMObsAnnotationQueueType string
 
 // List of LLMObsAnnotationQueueType.

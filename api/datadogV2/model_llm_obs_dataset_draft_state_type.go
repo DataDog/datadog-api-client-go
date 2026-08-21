@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetDraftStateType Resource type of an LLM Observability dataset draft state.
+// LLMObsDatasetDraftStateType Resource type of an Agent Observability dataset draft state.
 type LLMObsDatasetDraftStateType string
 
 // List of LLMObsDatasetDraftStateType.

@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsProjectDataAttributesRequest Attributes for creating an LLM Observability project.
+// LLMObsProjectDataAttributesRequest Attributes for creating an Agent Observability project.
 type LLMObsProjectDataAttributesRequest struct {
 	// Description of the project.
 	Description *string `json:"description,omitempty"`

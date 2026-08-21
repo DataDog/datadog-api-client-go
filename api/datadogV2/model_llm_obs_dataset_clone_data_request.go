@@ -10,13 +10,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetCloneDataRequest Data object for cloning an LLM Observability dataset.
+// LLMObsDatasetCloneDataRequest Data object for cloning an Agent Observability dataset.
 type LLMObsDatasetCloneDataRequest struct {
-	// Attributes for cloning an LLM Observability dataset.
+	// Attributes for cloning an Agent Observability dataset.
 	Attributes LLMObsDatasetCloneDataAttributesRequest `json:"attributes"`
 	// Identifier of the source dataset to clone.
 	Id string `json:"id"`
-	// Resource type of an LLM Observability dataset.
+	// Resource type of an Agent Observability dataset.
 	Type LLMObsDatasetType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsSpanFilter Filter criteria for an LLM Observability span search.
+// LLMObsSpanFilter Filter criteria for an Agent Observability span search.
 type LLMObsSpanFilter struct {
 	// Start of the time range. Accepts ISO 8601 or relative format (e.g., `now-15m`). Defaults to `now-15m`.
 	From *string `json:"from,omitempty"`
 	// Filter by ML application name.
 	MlApp *string `json:"ml_app,omitempty"`
-	// Search query using LLM Observability query syntax. Supports attribute filters using the field:value syntax (e.g. session_id, trace_id, ml_app, meta.span.kind). When provided, structured field filters (`span_id`, `trace_id`, etc.) are ignored.
+	// Search query using Agent Observability query syntax. Supports attribute filters using the field:value syntax (e.g. session_id, trace_id, ml_app, meta.span.kind). When provided, structured field filters (`span_id`, `trace_id`, etc.) are ignored.
 	Query *string `json:"query,omitempty"`
 	// Filter by exact span ID.
 	SpanId *string `json:"span_id,omitempty"`

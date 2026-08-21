@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsExperimentUpdateDataRequest Data object for updating an LLM Observability experiment.
+// LLMObsExperimentUpdateDataRequest Data object for updating an Agent Observability experiment.
 type LLMObsExperimentUpdateDataRequest struct {
-	// Attributes for updating an LLM Observability experiment.
+	// Attributes for updating an Agent Observability experiment.
 	Attributes LLMObsExperimentUpdateDataAttributesRequest `json:"attributes"`
-	// Resource type of an LLM Observability experiment.
+	// Resource type of an Agent Observability experiment.
 	Type LLMObsExperimentType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

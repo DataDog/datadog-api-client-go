@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPatternsTopicsResponseAttributes Attributes of an LLM Observability patterns topics response.
+// LLMObsPatternsTopicsResponseAttributes Attributes of an Agent Observability patterns topics response.
 type LLMObsPatternsTopicsResponseAttributes struct {
 	// Timestamp when the run completed. Null if the run has not completed.
 	CompletedAt datadog.NullableTime `json:"completed_at,omitempty"`

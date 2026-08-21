@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsAnnotationQueueUpdateRequest Request to update an LLM Observability annotation queue.
+// LLMObsAnnotationQueueUpdateRequest Request to update an Agent Observability annotation queue.
 type LLMObsAnnotationQueueUpdateRequest struct {
-	// Data object for updating an LLM Observability annotation queue.
+	// Data object for updating an Agent Observability annotation queue.
 	Data LLMObsAnnotationQueueUpdateDataRequest `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

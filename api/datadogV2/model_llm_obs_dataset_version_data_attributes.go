@@ -11,7 +11,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetVersionDataAttributes Attributes of an LLM Observability dataset version.
+// LLMObsDatasetVersionDataAttributes Attributes of an Agent Observability dataset version.
 type LLMObsDatasetVersionDataAttributes struct {
 	// Unique identifier of the dataset this version belongs to.
 	DatasetId string `json:"dataset_id"`

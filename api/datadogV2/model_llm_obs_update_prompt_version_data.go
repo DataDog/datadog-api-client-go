@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsUpdatePromptVersionData Data object for updating an LLM Observability prompt version.
+// LLMObsUpdatePromptVersionData Data object for updating an Agent Observability prompt version.
 type LLMObsUpdatePromptVersionData struct {
-	// Attributes for updating an LLM Observability prompt version. At least one of `description`, `labels`, or `env_ids` must be provided; all three attributes are optional individually.
+	// Attributes for updating an Agent Observability prompt version. At least one of `description`, `labels`, or `env_ids` must be provided; all three attributes are optional individually.
 	Attributes LLMObsUpdatePromptVersionDataAttributes `json:"attributes"`
-	// Resource type of an LLM Observability prompt version.
+	// Resource type of an Agent Observability prompt version.
 	Type LLMObsPromptVersionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

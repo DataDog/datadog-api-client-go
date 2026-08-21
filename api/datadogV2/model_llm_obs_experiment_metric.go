@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsExperimentMetric A metric associated with an LLM Observability experiment span.
+// LLMObsExperimentMetric A metric associated with an Agent Observability experiment span.
 type LLMObsExperimentMetric struct {
-	// Assessment result for an LLM Observability experiment metric.
+	// Assessment result for an Agent Observability experiment metric.
 	Assessment *LLMObsMetricAssessment `json:"assessment,omitempty"`
 	// Boolean value. Used when `metric_type` is `boolean`.
 	BooleanValue *bool `json:"boolean_value,omitempty"`
@@ -26,7 +26,7 @@ type LLMObsExperimentMetric struct {
 	Label string `json:"label"`
 	// Arbitrary metadata associated with the metric.
 	Metadata map[string]interface{} `json:"metadata,omitempty"`
-	// Type of metric recorded for an LLM Observability experiment.
+	// Type of metric recorded for an Agent Observability experiment.
 	MetricType LLMObsMetricScoreType `json:"metric_type"`
 	// Human-readable reasoning for the metric value.
 	Reasoning *string `json:"reasoning,omitempty"`

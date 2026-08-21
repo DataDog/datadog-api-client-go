@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDatasetRestoreVersionDataAttributesRequest Attributes for restoring an LLM Observability dataset to a previous version.
+// LLMObsDatasetRestoreVersionDataAttributesRequest Attributes for restoring an Agent Observability dataset to a previous version.
 type LLMObsDatasetRestoreVersionDataAttributesRequest struct {
 	// Version number of the dataset to restore. Must be between 0 and the current version of the dataset, inclusive.
 	DatasetVersion int32 `json:"dataset_version"`

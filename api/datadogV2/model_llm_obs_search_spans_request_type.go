@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsSearchSpansRequestType Resource type for an LLM Observability spans search request.
+// LLMObsSearchSpansRequestType Resource type for an Agent Observability spans search request.
 type LLMObsSearchSpansRequestType string
 
 // List of LLMObsSearchSpansRequestType.
