@@ -8,15 +8,15 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// AnnotationDisplayBounds The definition of `AnnotationDisplayBounds` object.
+// AnnotationDisplayBounds Canvas coordinates and dimensions for an annotation on the workflow canvas.
 type AnnotationDisplayBounds struct {
-	// The `bounds` `height`.
+	// The annotation's height on the canvas.
 	Height *float64 `json:"height,omitempty"`
-	// The `bounds` `width`.
+	// The annotation's width on the canvas.
 	Width *float64 `json:"width,omitempty"`
-	// The `bounds` `x`.
+	// The annotation's horizontal canvas coordinate.
 	X *float64 `json:"x,omitempty"`
-	// The `bounds` `y`.
+	// The annotation's vertical canvas coordinate.
 	Y *float64 `json:"y,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
