@@ -23,6 +23,9 @@ type ObservabilityPipelineGoogleCloudStorageDestination struct {
 	Bucket string `json:"bucket"`
 	// Configuration for buffer settings on destination components.
 	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
+	// Compression configuration for archived logs. When omitted, logs are compressed with gzip
+	// for backward compatibility.
+	Compression *ObservabilityPipelineGoogleCloudStorageDestinationCompression `json:"compression,omitempty"`
 	// Unique identifier for the destination component.
 	Id string `json:"id"`
 	// A list of component IDs whose output is used as the `input` for this component.
@@ -169,6 +172,34 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) HasBuffer() bool {
 // SetBuffer gets a reference to the given ObservabilityPipelineBufferOptions and assigns it to the Buffer field.
 func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetBuffer(v ObservabilityPipelineBufferOptions) {
 	o.Buffer = &v
+}
+
+// GetCompression returns the Compression field value if set, zero value otherwise.
+func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetCompression() ObservabilityPipelineGoogleCloudStorageDestinationCompression {
+	if o == nil || o.Compression == nil {
+		var ret ObservabilityPipelineGoogleCloudStorageDestinationCompression
+		return ret
+	}
+	return *o.Compression
+}
+
+// GetCompressionOk returns a tuple with the Compression field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ObservabilityPipelineGoogleCloudStorageDestination) GetCompressionOk() (*ObservabilityPipelineGoogleCloudStorageDestinationCompression, bool) {
+	if o == nil || o.Compression == nil {
+		return nil, false
+	}
+	return o.Compression, true
+}
+
+// HasCompression returns a boolean if a field has been set.
+func (o *ObservabilityPipelineGoogleCloudStorageDestination) HasCompression() bool {
+	return o != nil && o.Compression != nil
+}
+
+// SetCompression gets a reference to the given ObservabilityPipelineGoogleCloudStorageDestinationCompression and assigns it to the Compression field.
+func (o *ObservabilityPipelineGoogleCloudStorageDestination) SetCompression(v ObservabilityPipelineGoogleCloudStorageDestinationCompression) {
+	o.Compression = &v
 }
 
 // GetId returns the Id field value.
@@ -335,6 +366,9 @@ func (o ObservabilityPipelineGoogleCloudStorageDestination) MarshalJSON() ([]byt
 	if o.Buffer != nil {
 		toSerialize["buffer"] = o.Buffer
 	}
+	if o.Compression != nil {
+		toSerialize["compression"] = o.Compression
+	}
 	toSerialize["id"] = o.Id
 	toSerialize["inputs"] = o.Inputs
 	if o.KeyPrefix != nil {
@@ -359,6 +393,7 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) UnmarshalJSON(bytes
 		Auth         *ObservabilityPipelineGcpAuth                                   `json:"auth,omitempty"`
 		Bucket       *string                                                         `json:"bucket"`
 		Buffer       *ObservabilityPipelineBufferOptions                             `json:"buffer,omitempty"`
+		Compression  *ObservabilityPipelineGoogleCloudStorageDestinationCompression  `json:"compression,omitempty"`
 		Id           *string                                                         `json:"id"`
 		Inputs       *[]string                                                       `json:"inputs"`
 		KeyPrefix    *string                                                         `json:"key_prefix,omitempty"`
@@ -386,7 +421,7 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) UnmarshalJSON(bytes
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"acl", "auth", "bucket", "buffer", "id", "inputs", "key_prefix", "metadata", "storage_class", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"acl", "auth", "bucket", "buffer", "compression", "id", "inputs", "key_prefix", "metadata", "storage_class", "type"})
 	} else {
 		return err
 	}
@@ -403,6 +438,7 @@ func (o *ObservabilityPipelineGoogleCloudStorageDestination) UnmarshalJSON(bytes
 	o.Auth = all.Auth
 	o.Bucket = *all.Bucket
 	o.Buffer = all.Buffer
+	o.Compression = all.Compression
 	o.Id = *all.Id
 	o.Inputs = *all.Inputs
 	o.KeyPrefix = all.KeyPrefix

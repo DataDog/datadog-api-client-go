@@ -18,6 +18,9 @@ type AzureStorageDestination struct {
 	BlobPrefix *string `json:"blob_prefix,omitempty"`
 	// Configuration for buffer settings on destination components.
 	Buffer *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
+	// Compression configuration for archived logs. When omitted, logs are compressed with gzip
+	// for backward compatibility.
+	Compression *ObservabilityPipelineAzureStorageDestinationCompression `json:"compression,omitempty"`
 	// Name of the environment variable or secret that holds the Azure Storage connection string.
 	ConnectionStringKey *string `json:"connection_string_key,omitempty"`
 	// The name of the Azure Blob Storage container to store logs in.
@@ -110,6 +113,34 @@ func (o *AzureStorageDestination) HasBuffer() bool {
 // SetBuffer gets a reference to the given ObservabilityPipelineBufferOptions and assigns it to the Buffer field.
 func (o *AzureStorageDestination) SetBuffer(v ObservabilityPipelineBufferOptions) {
 	o.Buffer = &v
+}
+
+// GetCompression returns the Compression field value if set, zero value otherwise.
+func (o *AzureStorageDestination) GetCompression() ObservabilityPipelineAzureStorageDestinationCompression {
+	if o == nil || o.Compression == nil {
+		var ret ObservabilityPipelineAzureStorageDestinationCompression
+		return ret
+	}
+	return *o.Compression
+}
+
+// GetCompressionOk returns a tuple with the Compression field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AzureStorageDestination) GetCompressionOk() (*ObservabilityPipelineAzureStorageDestinationCompression, bool) {
+	if o == nil || o.Compression == nil {
+		return nil, false
+	}
+	return o.Compression, true
+}
+
+// HasCompression returns a boolean if a field has been set.
+func (o *AzureStorageDestination) HasCompression() bool {
+	return o != nil && o.Compression != nil
+}
+
+// SetCompression gets a reference to the given ObservabilityPipelineAzureStorageDestinationCompression and assigns it to the Compression field.
+func (o *AzureStorageDestination) SetCompression(v ObservabilityPipelineAzureStorageDestinationCompression) {
+	o.Compression = &v
 }
 
 // GetConnectionStringKey returns the ConnectionStringKey field value if set, zero value otherwise.
@@ -244,6 +275,9 @@ func (o AzureStorageDestination) MarshalJSON() ([]byte, error) {
 	if o.Buffer != nil {
 		toSerialize["buffer"] = o.Buffer
 	}
+	if o.Compression != nil {
+		toSerialize["compression"] = o.Compression
+	}
 	if o.ConnectionStringKey != nil {
 		toSerialize["connection_string_key"] = o.ConnectionStringKey
 	}
@@ -261,13 +295,14 @@ func (o AzureStorageDestination) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AzureStorageDestination) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BlobPrefix          *string                             `json:"blob_prefix,omitempty"`
-		Buffer              *ObservabilityPipelineBufferOptions `json:"buffer,omitempty"`
-		ConnectionStringKey *string                             `json:"connection_string_key,omitempty"`
-		ContainerName       *string                             `json:"container_name"`
-		Id                  *string                             `json:"id"`
-		Inputs              *[]string                           `json:"inputs"`
-		Type                *AzureStorageDestinationType        `json:"type"`
+		BlobPrefix          *string                                                  `json:"blob_prefix,omitempty"`
+		Buffer              *ObservabilityPipelineBufferOptions                      `json:"buffer,omitempty"`
+		Compression         *ObservabilityPipelineAzureStorageDestinationCompression `json:"compression,omitempty"`
+		ConnectionStringKey *string                                                  `json:"connection_string_key,omitempty"`
+		ContainerName       *string                                                  `json:"container_name"`
+		Id                  *string                                                  `json:"id"`
+		Inputs              *[]string                                                `json:"inputs"`
+		Type                *AzureStorageDestinationType                             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -286,7 +321,7 @@ func (o *AzureStorageDestination) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"blob_prefix", "buffer", "connection_string_key", "container_name", "id", "inputs", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"blob_prefix", "buffer", "compression", "connection_string_key", "container_name", "id", "inputs", "type"})
 	} else {
 		return err
 	}
@@ -294,6 +329,7 @@ func (o *AzureStorageDestination) UnmarshalJSON(bytes []byte) (err error) {
 	hasInvalidField := false
 	o.BlobPrefix = all.BlobPrefix
 	o.Buffer = all.Buffer
+	o.Compression = all.Compression
 	o.ConnectionStringKey = all.ConnectionStringKey
 	o.ContainerName = *all.ContainerName
 	o.Id = *all.Id
