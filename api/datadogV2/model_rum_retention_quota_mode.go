@@ -10,19 +10,17 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RumRetentionQuotaMode The retention quota mode. `custom` enforces a fixed session limit, while
-// `adaptive` dynamically adjusts retention.
+// RumRetentionQuotaMode The retention quota mode. `custom` enforces a fixed session limit.
+// `custom` is the only supported mode.
 type RumRetentionQuotaMode string
 
 // List of RumRetentionQuotaMode.
 const (
-	RUMRETENTIONQUOTAMODE_CUSTOM   RumRetentionQuotaMode = "custom"
-	RUMRETENTIONQUOTAMODE_ADAPTIVE RumRetentionQuotaMode = "adaptive"
+	RUMRETENTIONQUOTAMODE_CUSTOM RumRetentionQuotaMode = "custom"
 )
 
 var allowedRumRetentionQuotaModeEnumValues = []RumRetentionQuotaMode{
 	RUMRETENTIONQUOTAMODE_CUSTOM,
-	RUMRETENTIONQUOTAMODE_ADAPTIVE,
 }
 
 // GetAllowedValues reeturns the list of possible values.
