@@ -16,14 +16,14 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewRUMRetentionQuotaApi(apiClient)
-	resp, r, err := api.GetRumQuotaConfig(ctx, datadogV2.RUMRETENTIONQUOTASCOPETYPE_APPLICATION, "ced16651-97b6-4e67-8590-8caec3af0695")
+	api := datadogV2.NewRUMRetentionQuotasApi(apiClient)
+	resp, r, err := api.GetRumQuotaConfig(ctx, datadogV2.RUMRETENTIONQUOTASCOPETYPE_APPLICATION, "cd73a516-a481-4af5-8352-9b577465c77b")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `RUMRetentionQuotaApi.GetRumQuotaConfig`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `RUMRetentionQuotasApi.GetRumQuotaConfig`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `RUMRetentionQuotaApi.GetRumQuotaConfig`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `RUMRetentionQuotasApi.GetRumQuotaConfig`:\n%s\n", responseContent)
 }

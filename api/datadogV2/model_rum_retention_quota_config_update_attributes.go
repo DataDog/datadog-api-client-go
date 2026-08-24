@@ -12,12 +12,10 @@ import (
 
 // RumRetentionQuotaConfigUpdateAttributes The RUM retention quota configuration properties to create or update.
 type RumRetentionQuotaConfigUpdateAttributes struct {
-	// The configuration used when `mode` is `adaptive`.
-	Adaptive *RumRetentionQuotaAdaptiveConfig `json:"adaptive,omitempty"`
 	// The configuration used when `mode` is `custom`.
 	Custom *RumRetentionQuotaCustomConfig `json:"custom,omitempty"`
-	// The retention quota mode. `custom` enforces a fixed session limit, while
-	// `adaptive` dynamically adjusts retention.
+	// The retention quota mode. `custom` enforces a fixed session limit.
+	// `custom` is the only supported mode.
 	Mode RumRetentionQuotaMode `json:"mode"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
@@ -40,34 +38,6 @@ func NewRumRetentionQuotaConfigUpdateAttributes(mode RumRetentionQuotaMode) *Rum
 func NewRumRetentionQuotaConfigUpdateAttributesWithDefaults() *RumRetentionQuotaConfigUpdateAttributes {
 	this := RumRetentionQuotaConfigUpdateAttributes{}
 	return &this
-}
-
-// GetAdaptive returns the Adaptive field value if set, zero value otherwise.
-func (o *RumRetentionQuotaConfigUpdateAttributes) GetAdaptive() RumRetentionQuotaAdaptiveConfig {
-	if o == nil || o.Adaptive == nil {
-		var ret RumRetentionQuotaAdaptiveConfig
-		return ret
-	}
-	return *o.Adaptive
-}
-
-// GetAdaptiveOk returns a tuple with the Adaptive field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RumRetentionQuotaConfigUpdateAttributes) GetAdaptiveOk() (*RumRetentionQuotaAdaptiveConfig, bool) {
-	if o == nil || o.Adaptive == nil {
-		return nil, false
-	}
-	return o.Adaptive, true
-}
-
-// HasAdaptive returns a boolean if a field has been set.
-func (o *RumRetentionQuotaConfigUpdateAttributes) HasAdaptive() bool {
-	return o != nil && o.Adaptive != nil
-}
-
-// SetAdaptive gets a reference to the given RumRetentionQuotaAdaptiveConfig and assigns it to the Adaptive field.
-func (o *RumRetentionQuotaConfigUpdateAttributes) SetAdaptive(v RumRetentionQuotaAdaptiveConfig) {
-	o.Adaptive = &v
 }
 
 // GetCustom returns the Custom field value if set, zero value otherwise.
@@ -127,9 +97,6 @@ func (o RumRetentionQuotaConfigUpdateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Adaptive != nil {
-		toSerialize["adaptive"] = o.Adaptive
-	}
 	if o.Custom != nil {
 		toSerialize["custom"] = o.Custom
 	}
@@ -144,9 +111,8 @@ func (o RumRetentionQuotaConfigUpdateAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RumRetentionQuotaConfigUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Adaptive *RumRetentionQuotaAdaptiveConfig `json:"adaptive,omitempty"`
-		Custom   *RumRetentionQuotaCustomConfig   `json:"custom,omitempty"`
-		Mode     *RumRetentionQuotaMode           `json:"mode"`
+		Custom *RumRetentionQuotaCustomConfig `json:"custom,omitempty"`
+		Mode   *RumRetentionQuotaMode         `json:"mode"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -156,16 +122,12 @@ func (o *RumRetentionQuotaConfigUpdateAttributes) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"adaptive", "custom", "mode"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"custom", "mode"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Adaptive != nil && all.Adaptive.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.Adaptive = all.Adaptive
 	if all.Custom != nil && all.Custom.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
