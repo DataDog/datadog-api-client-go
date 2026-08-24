@@ -11,6 +11,7 @@ import (
 )
 
 // RumRetentionQuotaScopeType The type of scope the retention quota configuration applies to.
+// `application` is the only supported scope type.
 type RumRetentionQuotaScopeType string
 
 // List of RumRetentionQuotaScopeType.
