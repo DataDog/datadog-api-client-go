@@ -21,6 +21,7 @@ const (
 	SPECVERSION_ONE_THREE SpecVersion = "1.3"
 	SPECVERSION_ONE_FOUR  SpecVersion = "1.4"
 	SPECVERSION_ONE_FIVE  SpecVersion = "1.5"
+	SPECVERSION_ONE_SIX   SpecVersion = "1.6"
 )
 
 var allowedSpecVersionEnumValues = []SpecVersion{
@@ -30,6 +31,7 @@ var allowedSpecVersionEnumValues = []SpecVersion{
 	SPECVERSION_ONE_THREE,
 	SPECVERSION_ONE_FOUR,
 	SPECVERSION_ONE_FIVE,
+	SPECVERSION_ONE_SIX,
 }
 
 // GetAllowedValues reeturns the list of possible values.

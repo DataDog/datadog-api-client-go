@@ -16,6 +16,8 @@ type AssetOperatingSystem struct {
 	Description *string `json:"description,omitempty"`
 	// Operating system name.
 	Name string `json:"name"`
+	// Operating system version.
+	Version *string `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -90,6 +92,34 @@ func (o *AssetOperatingSystem) SetName(v string) {
 	o.Name = v
 }
 
+// GetVersion returns the Version field value if set, zero value otherwise.
+func (o *AssetOperatingSystem) GetVersion() string {
+	if o == nil || o.Version == nil {
+		var ret string
+		return ret
+	}
+	return *o.Version
+}
+
+// GetVersionOk returns a tuple with the Version field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AssetOperatingSystem) GetVersionOk() (*string, bool) {
+	if o == nil || o.Version == nil {
+		return nil, false
+	}
+	return o.Version, true
+}
+
+// HasVersion returns a boolean if a field has been set.
+func (o *AssetOperatingSystem) HasVersion() bool {
+	return o != nil && o.Version != nil
+}
+
+// SetVersion gets a reference to the given string and assigns it to the Version field.
+func (o *AssetOperatingSystem) SetVersion(v string) {
+	o.Version = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o AssetOperatingSystem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -100,6 +130,9 @@ func (o AssetOperatingSystem) MarshalJSON() ([]byte, error) {
 		toSerialize["description"] = o.Description
 	}
 	toSerialize["name"] = o.Name
+	if o.Version != nil {
+		toSerialize["version"] = o.Version
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -112,6 +145,7 @@ func (o *AssetOperatingSystem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Description *string `json:"description,omitempty"`
 		Name        *string `json:"name"`
+		Version     *string `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -121,12 +155,13 @@ func (o *AssetOperatingSystem) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "name"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "name", "version"})
 	} else {
 		return err
 	}
 	o.Description = all.Description
 	o.Name = *all.Name
+	o.Version = all.Version
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
