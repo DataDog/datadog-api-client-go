@@ -105,6 +105,8 @@ var apiMappings = map[string]map[string]reflect.Value{
 	    "IdentityProvidersApi": reflect.ValueOf(datadogV2.NewIdentityProvidersApi),
 	    "EntityIntegrationConfigsApi": reflect.ValueOf(datadogV2.NewEntityIntegrationConfigsApi),
 	    "IncidentsApi": reflect.ValueOf(datadogV2.NewIncidentsApi),
+	    "ElasticCloudIntegrationAccountsApi": reflect.ValueOf(datadogV2.NewElasticCloudIntegrationAccountsApi),
+	    "TwilioIntegrationAccountsApi": reflect.ValueOf(datadogV2.NewTwilioIntegrationAccountsApi),
 	    "AWSIntegrationApi": reflect.ValueOf(datadogV2.NewAWSIntegrationApi),
 	    "AWSLogsIntegrationApi": reflect.ValueOf(datadogV2.NewAWSLogsIntegrationApi),
 	    "GCPIntegrationApi": reflect.ValueOf(datadogV2.NewGCPIntegrationApi),
