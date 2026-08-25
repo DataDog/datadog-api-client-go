@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TagPolicyCreateRequest Payload for creating a new tag policy.
-type TagPolicyCreateRequest struct {
-	// Data object for creating a tag policy.
-	Data TagPolicyCreateData `json:"data"`
+// TagRuleUpdateRequest Payload for updating an existing tag rule. Only the supplied fields are modified.
+type TagRuleUpdateRequest struct {
+	// Data object for updating a tag rule.
+	Data TagRuleUpdateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTagPolicyCreateRequest instantiates a new TagPolicyCreateRequest object.
+// NewTagRuleUpdateRequest instantiates a new TagRuleUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTagPolicyCreateRequest(data TagPolicyCreateData) *TagPolicyCreateRequest {
-	this := TagPolicyCreateRequest{}
+func NewTagRuleUpdateRequest(data TagRuleUpdateData) *TagRuleUpdateRequest {
+	this := TagRuleUpdateRequest{}
 	this.Data = data
 	return &this
 }
 
-// NewTagPolicyCreateRequestWithDefaults instantiates a new TagPolicyCreateRequest object.
+// NewTagRuleUpdateRequestWithDefaults instantiates a new TagRuleUpdateRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTagPolicyCreateRequestWithDefaults() *TagPolicyCreateRequest {
-	this := TagPolicyCreateRequest{}
+func NewTagRuleUpdateRequestWithDefaults() *TagRuleUpdateRequest {
+	this := TagRuleUpdateRequest{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *TagPolicyCreateRequest) GetData() TagPolicyCreateData {
+func (o *TagRuleUpdateRequest) GetData() TagRuleUpdateData {
 	if o == nil {
-		var ret TagPolicyCreateData
+		var ret TagRuleUpdateData
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *TagPolicyCreateRequest) GetData() TagPolicyCreateData {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *TagPolicyCreateRequest) GetDataOk() (*TagPolicyCreateData, bool) {
+func (o *TagRuleUpdateRequest) GetDataOk() (*TagRuleUpdateData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *TagPolicyCreateRequest) GetDataOk() (*TagPolicyCreateData, bool) {
 }
 
 // SetData sets field value.
-func (o *TagPolicyCreateRequest) SetData(v TagPolicyCreateData) {
+func (o *TagRuleUpdateRequest) SetData(v TagRuleUpdateData) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TagPolicyCreateRequest) MarshalJSON() ([]byte, error) {
+func (o TagRuleUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o TagPolicyCreateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TagPolicyCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TagRuleUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *TagPolicyCreateData `json:"data"`
+		Data *TagRuleUpdateData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

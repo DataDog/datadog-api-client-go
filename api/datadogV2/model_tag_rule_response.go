@@ -10,37 +10,39 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TagPolicyScoreResponse A tag policy compliance score.
-type TagPolicyScoreResponse struct {
-	// A compliance score resource for a tag policy.
-	Data TagPolicyScoreData `json:"data"`
+// TagRuleResponse A single tag rule.
+type TagRuleResponse struct {
+	// A tag rule resource.
+	Data TagRuleData `json:"data"`
+	// Related resources fetched alongside the primary tag rules. Populated when an `include` query parameter is supplied.
+	Included []TagRuleScoreData `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTagPolicyScoreResponse instantiates a new TagPolicyScoreResponse object.
+// NewTagRuleResponse instantiates a new TagRuleResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTagPolicyScoreResponse(data TagPolicyScoreData) *TagPolicyScoreResponse {
-	this := TagPolicyScoreResponse{}
+func NewTagRuleResponse(data TagRuleData) *TagRuleResponse {
+	this := TagRuleResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewTagPolicyScoreResponseWithDefaults instantiates a new TagPolicyScoreResponse object.
+// NewTagRuleResponseWithDefaults instantiates a new TagRuleResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTagPolicyScoreResponseWithDefaults() *TagPolicyScoreResponse {
-	this := TagPolicyScoreResponse{}
+func NewTagRuleResponseWithDefaults() *TagRuleResponse {
+	this := TagRuleResponse{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *TagPolicyScoreResponse) GetData() TagPolicyScoreData {
+func (o *TagRuleResponse) GetData() TagRuleData {
 	if o == nil {
-		var ret TagPolicyScoreData
+		var ret TagRuleData
 		return ret
 	}
 	return o.Data
@@ -48,7 +50,7 @@ func (o *TagPolicyScoreResponse) GetData() TagPolicyScoreData {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *TagPolicyScoreResponse) GetDataOk() (*TagPolicyScoreData, bool) {
+func (o *TagRuleResponse) GetDataOk() (*TagRuleData, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,17 +58,48 @@ func (o *TagPolicyScoreResponse) GetDataOk() (*TagPolicyScoreData, bool) {
 }
 
 // SetData sets field value.
-func (o *TagPolicyScoreResponse) SetData(v TagPolicyScoreData) {
+func (o *TagRuleResponse) SetData(v TagRuleData) {
 	o.Data = v
 }
 
+// GetIncluded returns the Included field value if set, zero value otherwise.
+func (o *TagRuleResponse) GetIncluded() []TagRuleScoreData {
+	if o == nil || o.Included == nil {
+		var ret []TagRuleScoreData
+		return ret
+	}
+	return o.Included
+}
+
+// GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *TagRuleResponse) GetIncludedOk() (*[]TagRuleScoreData, bool) {
+	if o == nil || o.Included == nil {
+		return nil, false
+	}
+	return &o.Included, true
+}
+
+// HasIncluded returns a boolean if a field has been set.
+func (o *TagRuleResponse) HasIncluded() bool {
+	return o != nil && o.Included != nil
+}
+
+// SetIncluded gets a reference to the given []TagRuleScoreData and assigns it to the Included field.
+func (o *TagRuleResponse) SetIncluded(v []TagRuleScoreData) {
+	o.Included = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
-func (o TagPolicyScoreResponse) MarshalJSON() ([]byte, error) {
+func (o TagRuleResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["data"] = o.Data
+	if o.Included != nil {
+		toSerialize["included"] = o.Included
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,9 +108,10 @@ func (o TagPolicyScoreResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TagPolicyScoreResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TagRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *TagPolicyScoreData `json:"data"`
+		Data     *TagRuleData       `json:"data"`
+		Included []TagRuleScoreData `json:"included,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -87,7 +121,7 @@ func (o *TagPolicyScoreResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "included"})
 	} else {
 		return err
 	}
@@ -97,6 +131,7 @@ func (o *TagPolicyScoreResponse) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Data = *all.Data
+	o.Included = all.Included
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

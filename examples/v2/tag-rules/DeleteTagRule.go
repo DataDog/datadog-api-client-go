@@ -1,4 +1,4 @@
-// Delete a tag policy returns "No Content" response
+// Delete a tag rule returns "No Content" response
 
 package main
 
@@ -14,13 +14,13 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.DeleteTagPolicy", true)
+	configuration.SetUnstableOperationEnabled("v2.DeleteTagRule", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewTagPoliciesApi(apiClient)
-	r, err := api.DeleteTagPolicy(ctx, "policy_id", *datadogV2.NewDeleteTagPolicyOptionalParameters())
+	api := datadogV2.NewTagRulesApi(apiClient)
+	r, err := api.DeleteTagRule(ctx, "rule_id", *datadogV2.NewDeleteTagRuleOptionalParameters())
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TagPoliciesApi.DeleteTagPolicy`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `TagRulesApi.DeleteTagRule`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

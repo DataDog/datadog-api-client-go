@@ -1,4 +1,4 @@
-// Get a tag policy compliance score returns "OK" response
+// Get a tag rule returns "OK" response
 
 package main
 
@@ -15,16 +15,16 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetTagPolicyScore", true)
+	configuration.SetUnstableOperationEnabled("v2.GetTagRule", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewTagPoliciesApi(apiClient)
-	resp, r, err := api.GetTagPolicyScore(ctx, "policy_id", *datadogV2.NewGetTagPolicyScoreOptionalParameters())
+	api := datadogV2.NewTagRulesApi(apiClient)
+	resp, r, err := api.GetTagRule(ctx, "rule_id", *datadogV2.NewGetTagRuleOptionalParameters())
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TagPoliciesApi.GetTagPolicyScore`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `TagRulesApi.GetTagRule`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `TagPoliciesApi.GetTagPolicyScore`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `TagRulesApi.GetTagRule`:\n%s\n", responseContent)
 }
