@@ -10,69 +10,64 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TagPolicyUpdateData Data object for updating a tag policy.
-type TagPolicyUpdateData struct {
-	// Mutable attributes of a tag policy. Each field is optional; omitting a field leaves its
-	// current value unchanged. The `source` of a policy cannot be changed.
-	Attributes *TagPolicyUpdateAttributes `json:"attributes,omitempty"`
-	// The unique identifier of the tag policy being updated.
+// TagRuleScoreData A compliance score resource for a tag rule.
+type TagRuleScoreData struct {
+	// Attributes of a tag rule compliance score.
+	Attributes TagRuleScoreAttributes `json:"attributes"`
+	// The unique identifier of the compliance score resource.
 	Id string `json:"id"`
-	// JSON:API resource type for a tag policy.
-	Type TagPolicyResourceType `json:"type"`
+	// JSON:API resource type for a tag rule compliance score.
+	Type TagRuleScoreResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTagPolicyUpdateData instantiates a new TagPolicyUpdateData object.
+// NewTagRuleScoreData instantiates a new TagRuleScoreData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTagPolicyUpdateData(id string, typeVar TagPolicyResourceType) *TagPolicyUpdateData {
-	this := TagPolicyUpdateData{}
+func NewTagRuleScoreData(attributes TagRuleScoreAttributes, id string, typeVar TagRuleScoreResourceType) *TagRuleScoreData {
+	this := TagRuleScoreData{}
+	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewTagPolicyUpdateDataWithDefaults instantiates a new TagPolicyUpdateData object.
+// NewTagRuleScoreDataWithDefaults instantiates a new TagRuleScoreData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTagPolicyUpdateDataWithDefaults() *TagPolicyUpdateData {
-	this := TagPolicyUpdateData{}
+func NewTagRuleScoreDataWithDefaults() *TagRuleScoreData {
+	this := TagRuleScoreData{}
 	return &this
 }
 
-// GetAttributes returns the Attributes field value if set, zero value otherwise.
-func (o *TagPolicyUpdateData) GetAttributes() TagPolicyUpdateAttributes {
-	if o == nil || o.Attributes == nil {
-		var ret TagPolicyUpdateAttributes
+// GetAttributes returns the Attributes field value.
+func (o *TagRuleScoreData) GetAttributes() TagRuleScoreAttributes {
+	if o == nil {
+		var ret TagRuleScoreAttributes
 		return ret
 	}
-	return *o.Attributes
+	return o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *TagPolicyUpdateData) GetAttributesOk() (*TagPolicyUpdateAttributes, bool) {
-	if o == nil || o.Attributes == nil {
+func (o *TagRuleScoreData) GetAttributesOk() (*TagRuleScoreAttributes, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Attributes, true
+	return &o.Attributes, true
 }
 
-// HasAttributes returns a boolean if a field has been set.
-func (o *TagPolicyUpdateData) HasAttributes() bool {
-	return o != nil && o.Attributes != nil
-}
-
-// SetAttributes gets a reference to the given TagPolicyUpdateAttributes and assigns it to the Attributes field.
-func (o *TagPolicyUpdateData) SetAttributes(v TagPolicyUpdateAttributes) {
-	o.Attributes = &v
+// SetAttributes sets field value.
+func (o *TagRuleScoreData) SetAttributes(v TagRuleScoreAttributes) {
+	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *TagPolicyUpdateData) GetId() string {
+func (o *TagRuleScoreData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -82,7 +77,7 @@ func (o *TagPolicyUpdateData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *TagPolicyUpdateData) GetIdOk() (*string, bool) {
+func (o *TagRuleScoreData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -90,14 +85,14 @@ func (o *TagPolicyUpdateData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *TagPolicyUpdateData) SetId(v string) {
+func (o *TagRuleScoreData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *TagPolicyUpdateData) GetType() TagPolicyResourceType {
+func (o *TagRuleScoreData) GetType() TagRuleScoreResourceType {
 	if o == nil {
-		var ret TagPolicyResourceType
+		var ret TagRuleScoreResourceType
 		return ret
 	}
 	return o.Type
@@ -105,7 +100,7 @@ func (o *TagPolicyUpdateData) GetType() TagPolicyResourceType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *TagPolicyUpdateData) GetTypeOk() (*TagPolicyResourceType, bool) {
+func (o *TagRuleScoreData) GetTypeOk() (*TagRuleScoreResourceType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -113,19 +108,17 @@ func (o *TagPolicyUpdateData) GetTypeOk() (*TagPolicyResourceType, bool) {
 }
 
 // SetType sets field value.
-func (o *TagPolicyUpdateData) SetType(v TagPolicyResourceType) {
+func (o *TagRuleScoreData) SetType(v TagRuleScoreResourceType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TagPolicyUpdateData) MarshalJSON() ([]byte, error) {
+func (o TagRuleScoreData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Attributes != nil {
-		toSerialize["attributes"] = o.Attributes
-	}
+	toSerialize["attributes"] = o.Attributes
 	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
 
@@ -136,14 +129,17 @@ func (o TagPolicyUpdateData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TagPolicyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TagRuleScoreData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *TagPolicyUpdateAttributes `json:"attributes,omitempty"`
-		Id         *string                    `json:"id"`
-		Type       *TagPolicyResourceType     `json:"type"`
+		Attributes *TagRuleScoreAttributes   `json:"attributes"`
+		Id         *string                   `json:"id"`
+		Type       *TagRuleScoreResourceType `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
 	}
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
@@ -159,10 +155,10 @@ func (o *TagPolicyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Attributes = all.Attributes
+	o.Attributes = *all.Attributes
 	o.Id = *all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true

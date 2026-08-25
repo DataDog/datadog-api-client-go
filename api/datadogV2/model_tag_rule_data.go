@@ -10,45 +10,45 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TagPolicyData A tag policy resource.
-type TagPolicyData struct {
-	// The attributes of a tag policy resource.
-	Attributes TagPolicyAttributes `json:"attributes"`
-	// The unique identifier of the tag policy.
+// TagRuleData A tag rule resource.
+type TagRuleData struct {
+	// The attributes of a tag rule resource.
+	Attributes TagRuleAttributes `json:"attributes"`
+	// The unique identifier of the tag rule.
 	Id string `json:"id"`
-	// Related resources for a tag policy. Only present when the corresponding `include` query parameter is supplied.
-	Relationships *TagPolicyRelationships `json:"relationships,omitempty"`
-	// JSON:API resource type for a tag policy.
-	Type TagPolicyResourceType `json:"type"`
+	// Related resources for a tag rule. Only present when the corresponding `include` query parameter is supplied.
+	Relationships *TagRuleRelationships `json:"relationships,omitempty"`
+	// JSON:API resource type for a tag rule.
+	Type TagRuleResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTagPolicyData instantiates a new TagPolicyData object.
+// NewTagRuleData instantiates a new TagRuleData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTagPolicyData(attributes TagPolicyAttributes, id string, typeVar TagPolicyResourceType) *TagPolicyData {
-	this := TagPolicyData{}
+func NewTagRuleData(attributes TagRuleAttributes, id string, typeVar TagRuleResourceType) *TagRuleData {
+	this := TagRuleData{}
 	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewTagPolicyDataWithDefaults instantiates a new TagPolicyData object.
+// NewTagRuleDataWithDefaults instantiates a new TagRuleData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTagPolicyDataWithDefaults() *TagPolicyData {
-	this := TagPolicyData{}
+func NewTagRuleDataWithDefaults() *TagRuleData {
+	this := TagRuleData{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *TagPolicyData) GetAttributes() TagPolicyAttributes {
+func (o *TagRuleData) GetAttributes() TagRuleAttributes {
 	if o == nil {
-		var ret TagPolicyAttributes
+		var ret TagRuleAttributes
 		return ret
 	}
 	return o.Attributes
@@ -56,7 +56,7 @@ func (o *TagPolicyData) GetAttributes() TagPolicyAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *TagPolicyData) GetAttributesOk() (*TagPolicyAttributes, bool) {
+func (o *TagRuleData) GetAttributesOk() (*TagRuleAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,12 +64,12 @@ func (o *TagPolicyData) GetAttributesOk() (*TagPolicyAttributes, bool) {
 }
 
 // SetAttributes sets field value.
-func (o *TagPolicyData) SetAttributes(v TagPolicyAttributes) {
+func (o *TagRuleData) SetAttributes(v TagRuleAttributes) {
 	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *TagPolicyData) GetId() string {
+func (o *TagRuleData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -79,7 +79,7 @@ func (o *TagPolicyData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *TagPolicyData) GetIdOk() (*string, bool) {
+func (o *TagRuleData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -87,14 +87,14 @@ func (o *TagPolicyData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *TagPolicyData) SetId(v string) {
+func (o *TagRuleData) SetId(v string) {
 	o.Id = v
 }
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
-func (o *TagPolicyData) GetRelationships() TagPolicyRelationships {
+func (o *TagRuleData) GetRelationships() TagRuleRelationships {
 	if o == nil || o.Relationships == nil {
-		var ret TagPolicyRelationships
+		var ret TagRuleRelationships
 		return ret
 	}
 	return *o.Relationships
@@ -102,7 +102,7 @@ func (o *TagPolicyData) GetRelationships() TagPolicyRelationships {
 
 // GetRelationshipsOk returns a tuple with the Relationships field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TagPolicyData) GetRelationshipsOk() (*TagPolicyRelationships, bool) {
+func (o *TagRuleData) GetRelationshipsOk() (*TagRuleRelationships, bool) {
 	if o == nil || o.Relationships == nil {
 		return nil, false
 	}
@@ -110,19 +110,19 @@ func (o *TagPolicyData) GetRelationshipsOk() (*TagPolicyRelationships, bool) {
 }
 
 // HasRelationships returns a boolean if a field has been set.
-func (o *TagPolicyData) HasRelationships() bool {
+func (o *TagRuleData) HasRelationships() bool {
 	return o != nil && o.Relationships != nil
 }
 
-// SetRelationships gets a reference to the given TagPolicyRelationships and assigns it to the Relationships field.
-func (o *TagPolicyData) SetRelationships(v TagPolicyRelationships) {
+// SetRelationships gets a reference to the given TagRuleRelationships and assigns it to the Relationships field.
+func (o *TagRuleData) SetRelationships(v TagRuleRelationships) {
 	o.Relationships = &v
 }
 
 // GetType returns the Type field value.
-func (o *TagPolicyData) GetType() TagPolicyResourceType {
+func (o *TagRuleData) GetType() TagRuleResourceType {
 	if o == nil {
-		var ret TagPolicyResourceType
+		var ret TagRuleResourceType
 		return ret
 	}
 	return o.Type
@@ -130,7 +130,7 @@ func (o *TagPolicyData) GetType() TagPolicyResourceType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *TagPolicyData) GetTypeOk() (*TagPolicyResourceType, bool) {
+func (o *TagRuleData) GetTypeOk() (*TagRuleResourceType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -138,12 +138,12 @@ func (o *TagPolicyData) GetTypeOk() (*TagPolicyResourceType, bool) {
 }
 
 // SetType sets field value.
-func (o *TagPolicyData) SetType(v TagPolicyResourceType) {
+func (o *TagRuleData) SetType(v TagRuleResourceType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TagPolicyData) MarshalJSON() ([]byte, error) {
+func (o TagRuleData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -162,12 +162,12 @@ func (o TagPolicyData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TagPolicyData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TagRuleData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes    *TagPolicyAttributes    `json:"attributes"`
-		Id            *string                 `json:"id"`
-		Relationships *TagPolicyRelationships `json:"relationships,omitempty"`
-		Type          *TagPolicyResourceType  `json:"type"`
+		Attributes    *TagRuleAttributes    `json:"attributes"`
+		Id            *string               `json:"id"`
+		Relationships *TagRuleRelationships `json:"relationships,omitempty"`
+		Type          *TagRuleResourceType  `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

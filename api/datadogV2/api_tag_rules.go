@@ -14,21 +14,21 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TagPoliciesApi service type
-type TagPoliciesApi datadog.Service
+// TagRulesApi service type
+type TagRulesApi datadog.Service
 
-// CreateTagPolicy Create a tag policy.
-// Create a new tag policy for the organization. The caller's organization is derived from
+// CreateTagRule Create a tag rule.
+// Create a new tag rule for the organization. The caller's organization is derived from
 // the authenticated user; cross-organization creation is not supported. Fields such as
-// `policy_id`, `version`, and the timestamp/audit fields are assigned by the server.
-func (a *TagPoliciesApi) CreateTagPolicy(ctx _context.Context, body TagPolicyCreateRequest) (TagPolicyResponse, *_nethttp.Response, error) {
+// `rule_id`, `version`, and the timestamp/audit fields are assigned by the server.
+func (a *TagRulesApi) CreateTagRule(ctx _context.Context, body TagRuleCreateRequest) (TagRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue TagPolicyResponse
+		localVarReturnValue TagRuleResponse
 	)
 
-	operationId := "v2.CreateTagPolicy"
+	operationId := "v2.CreateTagRule"
 	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
 	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -37,12 +37,12 @@ func (a *TagPoliciesApi) CreateTagPolicy(ctx _context.Context, body TagPolicyCre
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TagPoliciesApi.CreateTagPolicy")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TagRulesApi.CreateTagRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/tag_policies"
+	localVarPath := localBasePath + "/api/v2/governance/tag_rules"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -117,42 +117,42 @@ func (a *TagPoliciesApi) CreateTagPolicy(ctx _context.Context, body TagPolicyCre
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// DeleteTagPolicyOptionalParameters holds optional parameters for DeleteTagPolicy.
-type DeleteTagPolicyOptionalParameters struct {
+// DeleteTagRuleOptionalParameters holds optional parameters for DeleteTagRule.
+type DeleteTagRuleOptionalParameters struct {
 	HardDelete *bool
 }
 
-// NewDeleteTagPolicyOptionalParameters creates an empty struct for parameters.
-func NewDeleteTagPolicyOptionalParameters() *DeleteTagPolicyOptionalParameters {
-	this := DeleteTagPolicyOptionalParameters{}
+// NewDeleteTagRuleOptionalParameters creates an empty struct for parameters.
+func NewDeleteTagRuleOptionalParameters() *DeleteTagRuleOptionalParameters {
+	this := DeleteTagRuleOptionalParameters{}
 	return &this
 }
 
 // WithHardDelete sets the corresponding parameter name and returns the struct.
-func (r *DeleteTagPolicyOptionalParameters) WithHardDelete(hardDelete bool) *DeleteTagPolicyOptionalParameters {
+func (r *DeleteTagRuleOptionalParameters) WithHardDelete(hardDelete bool) *DeleteTagRuleOptionalParameters {
 	r.HardDelete = &hardDelete
 	return r
 }
 
-// DeleteTagPolicy Delete a tag policy.
-// Delete a tag policy. By default the policy is soft-deleted so it can be recovered later
+// DeleteTagRule Delete a tag rule.
+// Delete a tag rule. By default the rule is soft-deleted so it can be recovered later
 // and so that historical score data remains queryable. Pass `hard_delete=true` to remove
-// the policy permanently.
-func (a *TagPoliciesApi) DeleteTagPolicy(ctx _context.Context, policyId string, o ...DeleteTagPolicyOptionalParameters) (*_nethttp.Response, error) {
+// the rule permanently.
+func (a *TagRulesApi) DeleteTagRule(ctx _context.Context, ruleId string, o ...DeleteTagRuleOptionalParameters) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
-		optionalParams     DeleteTagPolicyOptionalParameters
+		optionalParams     DeleteTagRuleOptionalParameters
 	)
 
 	if len(o) > 1 {
-		return nil, datadog.ReportError("only one argument of type DeleteTagPolicyOptionalParameters is allowed")
+		return nil, datadog.ReportError("only one argument of type DeleteTagRuleOptionalParameters is allowed")
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
 	}
 
-	operationId := "v2.DeleteTagPolicy"
+	operationId := "v2.DeleteTagRule"
 	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
 	if !isOperationEnabled {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -161,13 +161,13 @@ func (a *TagPoliciesApi) DeleteTagPolicy(ctx _context.Context, policyId string, 
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TagPoliciesApi.DeleteTagPolicy")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TagRulesApi.DeleteTagRule")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/tag_policies/{policy_id}"
-	localVarPath = datadog.ReplacePathParameter(localVarPath, "{policy_id}", _neturl.PathEscape(datadog.ParameterToString(policyId, "")))
+	localVarPath := localBasePath + "/api/v2/governance/tag_rules/{rule_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{rule_id}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -233,57 +233,57 @@ func (a *TagPoliciesApi) DeleteTagPolicy(ctx _context.Context, policyId string, 
 	return localVarHTTPResponse, nil
 }
 
-// GetTagPolicyOptionalParameters holds optional parameters for GetTagPolicy.
-type GetTagPolicyOptionalParameters struct {
-	Include *TagPolicyInclude
+// GetTagRuleOptionalParameters holds optional parameters for GetTagRule.
+type GetTagRuleOptionalParameters struct {
+	Include *TagRuleInclude
 	TsStart *int64
 	TsEnd   *int64
 }
 
-// NewGetTagPolicyOptionalParameters creates an empty struct for parameters.
-func NewGetTagPolicyOptionalParameters() *GetTagPolicyOptionalParameters {
-	this := GetTagPolicyOptionalParameters{}
+// NewGetTagRuleOptionalParameters creates an empty struct for parameters.
+func NewGetTagRuleOptionalParameters() *GetTagRuleOptionalParameters {
+	this := GetTagRuleOptionalParameters{}
 	return &this
 }
 
 // WithInclude sets the corresponding parameter name and returns the struct.
-func (r *GetTagPolicyOptionalParameters) WithInclude(include TagPolicyInclude) *GetTagPolicyOptionalParameters {
+func (r *GetTagRuleOptionalParameters) WithInclude(include TagRuleInclude) *GetTagRuleOptionalParameters {
 	r.Include = &include
 	return r
 }
 
 // WithTsStart sets the corresponding parameter name and returns the struct.
-func (r *GetTagPolicyOptionalParameters) WithTsStart(tsStart int64) *GetTagPolicyOptionalParameters {
+func (r *GetTagRuleOptionalParameters) WithTsStart(tsStart int64) *GetTagRuleOptionalParameters {
 	r.TsStart = &tsStart
 	return r
 }
 
 // WithTsEnd sets the corresponding parameter name and returns the struct.
-func (r *GetTagPolicyOptionalParameters) WithTsEnd(tsEnd int64) *GetTagPolicyOptionalParameters {
+func (r *GetTagRuleOptionalParameters) WithTsEnd(tsEnd int64) *GetTagRuleOptionalParameters {
 	r.TsEnd = &tsEnd
 	return r
 }
 
-// GetTagPolicy Get a tag policy.
-// Retrieve a single tag policy by ID. Optionally include the policy's current compliance
-// score via the `include=score` query parameter. Policies belonging to other organizations
+// GetTagRule Get a tag rule.
+// Retrieve a single tag rule by ID. Optionally include the rule's current compliance
+// score via the `include=score` query parameter. Rules belonging to other organizations
 // cannot be retrieved.
-func (a *TagPoliciesApi) GetTagPolicy(ctx _context.Context, policyId string, o ...GetTagPolicyOptionalParameters) (TagPolicyResponse, *_nethttp.Response, error) {
+func (a *TagRulesApi) GetTagRule(ctx _context.Context, ruleId string, o ...GetTagRuleOptionalParameters) (TagRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue TagPolicyResponse
-		optionalParams      GetTagPolicyOptionalParameters
+		localVarReturnValue TagRuleResponse
+		optionalParams      GetTagRuleOptionalParameters
 	)
 
 	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetTagPolicyOptionalParameters is allowed")
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetTagRuleOptionalParameters is allowed")
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
 	}
 
-	operationId := "v2.GetTagPolicy"
+	operationId := "v2.GetTagRule"
 	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
 	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -292,13 +292,13 @@ func (a *TagPoliciesApi) GetTagPolicy(ctx _context.Context, policyId string, o .
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TagPoliciesApi.GetTagPolicy")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TagRulesApi.GetTagRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/tag_policies/{policy_id}"
-	localVarPath = datadog.ReplacePathParameter(localVarPath, "{policy_id}", _neturl.PathEscape(datadog.ParameterToString(policyId, "")))
+	localVarPath := localBasePath + "/api/v2/governance/tag_rules/{rule_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{rule_id}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -379,51 +379,51 @@ func (a *TagPoliciesApi) GetTagPolicy(ctx _context.Context, policyId string, o .
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// GetTagPolicyScoreOptionalParameters holds optional parameters for GetTagPolicyScore.
-type GetTagPolicyScoreOptionalParameters struct {
+// GetTagRuleScoreOptionalParameters holds optional parameters for GetTagRuleScore.
+type GetTagRuleScoreOptionalParameters struct {
 	TsStart *int64
 	TsEnd   *int64
 }
 
-// NewGetTagPolicyScoreOptionalParameters creates an empty struct for parameters.
-func NewGetTagPolicyScoreOptionalParameters() *GetTagPolicyScoreOptionalParameters {
-	this := GetTagPolicyScoreOptionalParameters{}
+// NewGetTagRuleScoreOptionalParameters creates an empty struct for parameters.
+func NewGetTagRuleScoreOptionalParameters() *GetTagRuleScoreOptionalParameters {
+	this := GetTagRuleScoreOptionalParameters{}
 	return &this
 }
 
 // WithTsStart sets the corresponding parameter name and returns the struct.
-func (r *GetTagPolicyScoreOptionalParameters) WithTsStart(tsStart int64) *GetTagPolicyScoreOptionalParameters {
+func (r *GetTagRuleScoreOptionalParameters) WithTsStart(tsStart int64) *GetTagRuleScoreOptionalParameters {
 	r.TsStart = &tsStart
 	return r
 }
 
 // WithTsEnd sets the corresponding parameter name and returns the struct.
-func (r *GetTagPolicyScoreOptionalParameters) WithTsEnd(tsEnd int64) *GetTagPolicyScoreOptionalParameters {
+func (r *GetTagRuleScoreOptionalParameters) WithTsEnd(tsEnd int64) *GetTagRuleScoreOptionalParameters {
 	r.TsEnd = &tsEnd
 	return r
 }
 
-// GetTagPolicyScore Get a tag policy compliance score.
-// Retrieve the compliance score for a single tag policy. The score is computed over the
+// GetTagRuleScore Get a tag rule compliance score.
+// Retrieve the compliance score for a single tag rule. The score is computed over the
 // requested time window (or a source-appropriate default) and represents the percentage of
-// telemetry within that window that conforms to the policy. A `null` score indicates that
+// telemetry within that window that conforms to the rule. A `null` score indicates that
 // no relevant telemetry was found.
-func (a *TagPoliciesApi) GetTagPolicyScore(ctx _context.Context, policyId string, o ...GetTagPolicyScoreOptionalParameters) (TagPolicyScoreResponse, *_nethttp.Response, error) {
+func (a *TagRulesApi) GetTagRuleScore(ctx _context.Context, ruleId string, o ...GetTagRuleScoreOptionalParameters) (TagRuleScoreResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue TagPolicyScoreResponse
-		optionalParams      GetTagPolicyScoreOptionalParameters
+		localVarReturnValue TagRuleScoreResponse
+		optionalParams      GetTagRuleScoreOptionalParameters
 	)
 
 	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetTagPolicyScoreOptionalParameters is allowed")
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetTagRuleScoreOptionalParameters is allowed")
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
 	}
 
-	operationId := "v2.GetTagPolicyScore"
+	operationId := "v2.GetTagRuleScore"
 	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
 	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -432,13 +432,13 @@ func (a *TagPoliciesApi) GetTagPolicyScore(ctx _context.Context, policyId string
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TagPoliciesApi.GetTagPolicyScore")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TagRulesApi.GetTagRuleScore")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/tag_policies/{policy_id}/score"
-	localVarPath = datadog.ReplacePathParameter(localVarPath, "{policy_id}", _neturl.PathEscape(datadog.ParameterToString(policyId, "")))
+	localVarPath := localBasePath + "/api/v2/governance/tag_rules/{rule_id}/score"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{rule_id}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -516,78 +516,78 @@ func (a *TagPoliciesApi) GetTagPolicyScore(ctx _context.Context, policyId string
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// ListTagPoliciesOptionalParameters holds optional parameters for ListTagPolicies.
-type ListTagPoliciesOptionalParameters struct {
+// ListTagRulesOptionalParameters holds optional parameters for ListTagRules.
+type ListTagRulesOptionalParameters struct {
 	IncludeDisabled *bool
 	IncludeDeleted  *bool
-	Include         *TagPolicyInclude
-	FilterSource    *TagPolicySource
+	Include         *TagRuleInclude
+	FilterSource    *TagRuleSource
 	TsStart         *int64
 	TsEnd           *int64
 }
 
-// NewListTagPoliciesOptionalParameters creates an empty struct for parameters.
-func NewListTagPoliciesOptionalParameters() *ListTagPoliciesOptionalParameters {
-	this := ListTagPoliciesOptionalParameters{}
+// NewListTagRulesOptionalParameters creates an empty struct for parameters.
+func NewListTagRulesOptionalParameters() *ListTagRulesOptionalParameters {
+	this := ListTagRulesOptionalParameters{}
 	return &this
 }
 
 // WithIncludeDisabled sets the corresponding parameter name and returns the struct.
-func (r *ListTagPoliciesOptionalParameters) WithIncludeDisabled(includeDisabled bool) *ListTagPoliciesOptionalParameters {
+func (r *ListTagRulesOptionalParameters) WithIncludeDisabled(includeDisabled bool) *ListTagRulesOptionalParameters {
 	r.IncludeDisabled = &includeDisabled
 	return r
 }
 
 // WithIncludeDeleted sets the corresponding parameter name and returns the struct.
-func (r *ListTagPoliciesOptionalParameters) WithIncludeDeleted(includeDeleted bool) *ListTagPoliciesOptionalParameters {
+func (r *ListTagRulesOptionalParameters) WithIncludeDeleted(includeDeleted bool) *ListTagRulesOptionalParameters {
 	r.IncludeDeleted = &includeDeleted
 	return r
 }
 
 // WithInclude sets the corresponding parameter name and returns the struct.
-func (r *ListTagPoliciesOptionalParameters) WithInclude(include TagPolicyInclude) *ListTagPoliciesOptionalParameters {
+func (r *ListTagRulesOptionalParameters) WithInclude(include TagRuleInclude) *ListTagRulesOptionalParameters {
 	r.Include = &include
 	return r
 }
 
 // WithFilterSource sets the corresponding parameter name and returns the struct.
-func (r *ListTagPoliciesOptionalParameters) WithFilterSource(filterSource TagPolicySource) *ListTagPoliciesOptionalParameters {
+func (r *ListTagRulesOptionalParameters) WithFilterSource(filterSource TagRuleSource) *ListTagRulesOptionalParameters {
 	r.FilterSource = &filterSource
 	return r
 }
 
 // WithTsStart sets the corresponding parameter name and returns the struct.
-func (r *ListTagPoliciesOptionalParameters) WithTsStart(tsStart int64) *ListTagPoliciesOptionalParameters {
+func (r *ListTagRulesOptionalParameters) WithTsStart(tsStart int64) *ListTagRulesOptionalParameters {
 	r.TsStart = &tsStart
 	return r
 }
 
 // WithTsEnd sets the corresponding parameter name and returns the struct.
-func (r *ListTagPoliciesOptionalParameters) WithTsEnd(tsEnd int64) *ListTagPoliciesOptionalParameters {
+func (r *ListTagRulesOptionalParameters) WithTsEnd(tsEnd int64) *ListTagRulesOptionalParameters {
 	r.TsEnd = &tsEnd
 	return r
 }
 
-// ListTagPolicies List tag policies.
-// Retrieve all tag policies for the organization. Optionally include disabled or deleted
-// policies, filter by telemetry source, and include each policy's current compliance score
+// ListTagRules List tag rules.
+// Retrieve all tag rules for the organization. Optionally include disabled or deleted
+// rules, filter by telemetry source, and include each rule's current compliance score
 // via the `include=score` query parameter.
-func (a *TagPoliciesApi) ListTagPolicies(ctx _context.Context, o ...ListTagPoliciesOptionalParameters) (TagPoliciesListResponse, *_nethttp.Response, error) {
+func (a *TagRulesApi) ListTagRules(ctx _context.Context, o ...ListTagRulesOptionalParameters) (TagRulesListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
-		localVarReturnValue TagPoliciesListResponse
-		optionalParams      ListTagPoliciesOptionalParameters
+		localVarReturnValue TagRulesListResponse
+		optionalParams      ListTagRulesOptionalParameters
 	)
 
 	if len(o) > 1 {
-		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListTagPoliciesOptionalParameters is allowed")
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListTagRulesOptionalParameters is allowed")
 	}
 	if len(o) == 1 {
 		optionalParams = o[0]
 	}
 
-	operationId := "v2.ListTagPolicies"
+	operationId := "v2.ListTagRules"
 	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
 	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -596,12 +596,12 @@ func (a *TagPoliciesApi) ListTagPolicies(ctx _context.Context, o ...ListTagPolic
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TagPoliciesApi.ListTagPolicies")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TagRulesApi.ListTagRules")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/tag_policies"
+	localVarPath := localBasePath + "/api/v2/governance/tag_rules"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -691,18 +691,18 @@ func (a *TagPoliciesApi) ListTagPolicies(ctx _context.Context, o ...ListTagPolic
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateTagPolicy Update a tag policy.
-// Update one or more attributes of an existing tag policy. Only the fields supplied in the
-// request body are modified; omitted fields retain their current values. The policy's
+// UpdateTagRule Update a tag rule.
+// Update one or more attributes of an existing tag rule. Only the fields supplied in the
+// request body are modified; omitted fields retain their current values. The rule's
 // `source` cannot be changed after creation.
-func (a *TagPoliciesApi) UpdateTagPolicy(ctx _context.Context, policyId string, body TagPolicyUpdateRequest) (TagPolicyResponse, *_nethttp.Response, error) {
+func (a *TagRulesApi) UpdateTagRule(ctx _context.Context, ruleId string, body TagRuleUpdateRequest) (TagRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
-		localVarReturnValue TagPolicyResponse
+		localVarReturnValue TagRuleResponse
 	)
 
-	operationId := "v2.UpdateTagPolicy"
+	operationId := "v2.UpdateTagRule"
 	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
 	if !isOperationEnabled {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
@@ -711,13 +711,13 @@ func (a *TagPoliciesApi) UpdateTagPolicy(ctx _context.Context, policyId string, 
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TagPoliciesApi.UpdateTagPolicy")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TagRulesApi.UpdateTagRule")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/api/v2/tag_policies/{policy_id}"
-	localVarPath = datadog.ReplacePathParameter(localVarPath, "{policy_id}", _neturl.PathEscape(datadog.ParameterToString(policyId, "")))
+	localVarPath := localBasePath + "/api/v2/governance/tag_rules/{rule_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{rule_id}", _neturl.PathEscape(datadog.ParameterToString(ruleId, "")))
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
@@ -792,9 +792,9 @@ func (a *TagPoliciesApi) UpdateTagPolicy(ctx _context.Context, policyId string, 
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// NewTagPoliciesApi Returns NewTagPoliciesApi.
-func NewTagPoliciesApi(client *datadog.APIClient) *TagPoliciesApi {
-	return &TagPoliciesApi{
+// NewTagRulesApi Returns NewTagRulesApi.
+func NewTagRulesApi(client *datadog.APIClient) *TagRulesApi {
+	return &TagRulesApi{
 		Client: client,
 	}
 }

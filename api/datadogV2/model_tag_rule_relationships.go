@@ -5,68 +5,72 @@
 package datadogV2
 
 import (
-	"fmt"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TagPolicyUpdateRequest Payload for updating an existing tag policy. Only the supplied fields are modified.
-type TagPolicyUpdateRequest struct {
-	// Data object for updating a tag policy.
-	Data TagPolicyUpdateData `json:"data"`
+// TagRuleRelationships Related resources for a tag rule. Only present when the corresponding `include` query parameter is supplied.
+type TagRuleRelationships struct {
+	// A relationship to the compliance score resource for this rule.
+	Score *TagRuleScoreRelationship `json:"score,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTagPolicyUpdateRequest instantiates a new TagPolicyUpdateRequest object.
+// NewTagRuleRelationships instantiates a new TagRuleRelationships object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTagPolicyUpdateRequest(data TagPolicyUpdateData) *TagPolicyUpdateRequest {
-	this := TagPolicyUpdateRequest{}
-	this.Data = data
+func NewTagRuleRelationships() *TagRuleRelationships {
+	this := TagRuleRelationships{}
 	return &this
 }
 
-// NewTagPolicyUpdateRequestWithDefaults instantiates a new TagPolicyUpdateRequest object.
+// NewTagRuleRelationshipsWithDefaults instantiates a new TagRuleRelationships object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTagPolicyUpdateRequestWithDefaults() *TagPolicyUpdateRequest {
-	this := TagPolicyUpdateRequest{}
+func NewTagRuleRelationshipsWithDefaults() *TagRuleRelationships {
+	this := TagRuleRelationships{}
 	return &this
 }
 
-// GetData returns the Data field value.
-func (o *TagPolicyUpdateRequest) GetData() TagPolicyUpdateData {
-	if o == nil {
-		var ret TagPolicyUpdateData
+// GetScore returns the Score field value if set, zero value otherwise.
+func (o *TagRuleRelationships) GetScore() TagRuleScoreRelationship {
+	if o == nil || o.Score == nil {
+		var ret TagRuleScoreRelationship
 		return ret
 	}
-	return o.Data
+	return *o.Score
 }
 
-// GetDataOk returns a tuple with the Data field value
+// GetScoreOk returns a tuple with the Score field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *TagPolicyUpdateRequest) GetDataOk() (*TagPolicyUpdateData, bool) {
-	if o == nil {
+func (o *TagRuleRelationships) GetScoreOk() (*TagRuleScoreRelationship, bool) {
+	if o == nil || o.Score == nil {
 		return nil, false
 	}
-	return &o.Data, true
+	return o.Score, true
 }
 
-// SetData sets field value.
-func (o *TagPolicyUpdateRequest) SetData(v TagPolicyUpdateData) {
-	o.Data = v
+// HasScore returns a boolean if a field has been set.
+func (o *TagRuleRelationships) HasScore() bool {
+	return o != nil && o.Score != nil
+}
+
+// SetScore gets a reference to the given TagRuleScoreRelationship and assigns it to the Score field.
+func (o *TagRuleRelationships) SetScore(v TagRuleScoreRelationship) {
+	o.Score = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TagPolicyUpdateRequest) MarshalJSON() ([]byte, error) {
+func (o TagRuleRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["data"] = o.Data
+	if o.Score != nil {
+		toSerialize["score"] = o.Score
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -75,28 +79,25 @@ func (o TagPolicyUpdateRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TagPolicyUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TagRuleRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *TagPolicyUpdateData `json:"data"`
+		Score *TagRuleScoreRelationship `json:"score,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Data == nil {
-		return fmt.Errorf("required field data missing")
-	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"score"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Score != nil && all.Score.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Data = *all.Data
+	o.Score = all.Score
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

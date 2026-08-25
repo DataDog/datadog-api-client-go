@@ -10,28 +10,28 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TagPolicyScoreAttributes Attributes of a tag policy compliance score.
-type TagPolicyScoreAttributes struct {
-	// The compliance score for the policy over the requested time window, as a percentage
+// TagRuleScoreAttributes Attributes of a tag rule compliance score.
+type TagRuleScoreAttributes struct {
+	// The compliance score for the rule over the requested time window, as a percentage
 	// between 0 and 100. `null` indicates that no relevant telemetry was found.
 	Score datadog.NullableFloat64 `json:"score"`
 	// End of the time window the score was computed over, as a Unix timestamp in milliseconds.
 	TsEnd int64 `json:"ts_end"`
 	// Start of the time window the score was computed over, as a Unix timestamp in milliseconds.
 	TsStart int64 `json:"ts_start"`
-	// The version of the tag policy that the score was computed against.
+	// The version of the tag rule that the score was computed against.
 	Version int64 `json:"version"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewTagPolicyScoreAttributes instantiates a new TagPolicyScoreAttributes object.
+// NewTagRuleScoreAttributes instantiates a new TagRuleScoreAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewTagPolicyScoreAttributes(score datadog.NullableFloat64, tsEnd int64, tsStart int64, version int64) *TagPolicyScoreAttributes {
-	this := TagPolicyScoreAttributes{}
+func NewTagRuleScoreAttributes(score datadog.NullableFloat64, tsEnd int64, tsStart int64, version int64) *TagRuleScoreAttributes {
+	this := TagRuleScoreAttributes{}
 	this.Score = score
 	this.TsEnd = tsEnd
 	this.TsStart = tsStart
@@ -39,17 +39,17 @@ func NewTagPolicyScoreAttributes(score datadog.NullableFloat64, tsEnd int64, tsS
 	return &this
 }
 
-// NewTagPolicyScoreAttributesWithDefaults instantiates a new TagPolicyScoreAttributes object.
+// NewTagRuleScoreAttributesWithDefaults instantiates a new TagRuleScoreAttributes object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewTagPolicyScoreAttributesWithDefaults() *TagPolicyScoreAttributes {
-	this := TagPolicyScoreAttributes{}
+func NewTagRuleScoreAttributesWithDefaults() *TagRuleScoreAttributes {
+	this := TagRuleScoreAttributes{}
 	return &this
 }
 
 // GetScore returns the Score field value.
 // If the value is explicit nil, the zero value for float64 will be returned.
-func (o *TagPolicyScoreAttributes) GetScore() float64 {
+func (o *TagRuleScoreAttributes) GetScore() float64 {
 	if o == nil || o.Score.Get() == nil {
 		var ret float64
 		return ret
@@ -60,7 +60,7 @@ func (o *TagPolicyScoreAttributes) GetScore() float64 {
 // GetScoreOk returns a tuple with the Score field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *TagPolicyScoreAttributes) GetScoreOk() (*float64, bool) {
+func (o *TagRuleScoreAttributes) GetScoreOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -68,12 +68,12 @@ func (o *TagPolicyScoreAttributes) GetScoreOk() (*float64, bool) {
 }
 
 // SetScore sets field value.
-func (o *TagPolicyScoreAttributes) SetScore(v float64) {
+func (o *TagRuleScoreAttributes) SetScore(v float64) {
 	o.Score.Set(&v)
 }
 
 // GetTsEnd returns the TsEnd field value.
-func (o *TagPolicyScoreAttributes) GetTsEnd() int64 {
+func (o *TagRuleScoreAttributes) GetTsEnd() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -83,7 +83,7 @@ func (o *TagPolicyScoreAttributes) GetTsEnd() int64 {
 
 // GetTsEndOk returns a tuple with the TsEnd field value
 // and a boolean to check if the value has been set.
-func (o *TagPolicyScoreAttributes) GetTsEndOk() (*int64, bool) {
+func (o *TagRuleScoreAttributes) GetTsEndOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -91,12 +91,12 @@ func (o *TagPolicyScoreAttributes) GetTsEndOk() (*int64, bool) {
 }
 
 // SetTsEnd sets field value.
-func (o *TagPolicyScoreAttributes) SetTsEnd(v int64) {
+func (o *TagRuleScoreAttributes) SetTsEnd(v int64) {
 	o.TsEnd = v
 }
 
 // GetTsStart returns the TsStart field value.
-func (o *TagPolicyScoreAttributes) GetTsStart() int64 {
+func (o *TagRuleScoreAttributes) GetTsStart() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -106,7 +106,7 @@ func (o *TagPolicyScoreAttributes) GetTsStart() int64 {
 
 // GetTsStartOk returns a tuple with the TsStart field value
 // and a boolean to check if the value has been set.
-func (o *TagPolicyScoreAttributes) GetTsStartOk() (*int64, bool) {
+func (o *TagRuleScoreAttributes) GetTsStartOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -114,12 +114,12 @@ func (o *TagPolicyScoreAttributes) GetTsStartOk() (*int64, bool) {
 }
 
 // SetTsStart sets field value.
-func (o *TagPolicyScoreAttributes) SetTsStart(v int64) {
+func (o *TagRuleScoreAttributes) SetTsStart(v int64) {
 	o.TsStart = v
 }
 
 // GetVersion returns the Version field value.
-func (o *TagPolicyScoreAttributes) GetVersion() int64 {
+func (o *TagRuleScoreAttributes) GetVersion() int64 {
 	if o == nil {
 		var ret int64
 		return ret
@@ -129,7 +129,7 @@ func (o *TagPolicyScoreAttributes) GetVersion() int64 {
 
 // GetVersionOk returns a tuple with the Version field value
 // and a boolean to check if the value has been set.
-func (o *TagPolicyScoreAttributes) GetVersionOk() (*int64, bool) {
+func (o *TagRuleScoreAttributes) GetVersionOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -137,12 +137,12 @@ func (o *TagPolicyScoreAttributes) GetVersionOk() (*int64, bool) {
 }
 
 // SetVersion sets field value.
-func (o *TagPolicyScoreAttributes) SetVersion(v int64) {
+func (o *TagRuleScoreAttributes) SetVersion(v int64) {
 	o.Version = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o TagPolicyScoreAttributes) MarshalJSON() ([]byte, error) {
+func (o TagRuleScoreAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -159,7 +159,7 @@ func (o TagPolicyScoreAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *TagPolicyScoreAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TagRuleScoreAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Score   datadog.NullableFloat64 `json:"score"`
 		TsEnd   *int64                  `json:"ts_end"`
