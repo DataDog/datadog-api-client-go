@@ -1359,6 +1359,21 @@ func (c *Configuration) AddDefaultHeader(key string, value string) {
 	c.DefaultHeader[key] = value
 }
 
+// managedByIaCHeader is the HTTP header used to signal that requests originate
+// from infrastructure-as-code tooling.
+const managedByIaCHeader = "X-Datadog-Managed-By"
+
+// SetIsIaC marks whether requests made through this client originate from
+// infrastructure-as-code tooling. When enabled, every request sent using this
+// configuration includes the `X-Datadog-Managed-By: iac` header.
+func (c *Configuration) SetIsIaC(enabled bool) {
+	if enabled {
+		c.DefaultHeader[managedByIaCHeader] = "iac"
+	} else {
+		delete(c.DefaultHeader, managedByIaCHeader)
+	}
+}
+
 // URL formats template on a index using given variables.
 func (sc ServerConfigurations) URL(index int, variables map[string]string) (string, error) {
 	if index < 0 || len(sc) <= index {
