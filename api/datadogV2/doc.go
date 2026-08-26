@@ -1486,6 +1486,7 @@
 //   - [TestOptimizationApi.UpdateFlakyTests]
 //   - [TestOptimizationApi.UpdateFlakyTestsManagementPolicies]
 //   - [TestOptimizationApi.UpdateTestOptimizationServiceSettings]
+//   - [ThreatIntelligenceApi.SubmitStixThreatIntel]
 //   - [TwilioIntegrationAccountsApi.CreateTwilioIntegrationAccount]
 //   - [TwilioIntegrationAccountsApi.DeleteTwilioIntegrationAccount]
 //   - [TwilioIntegrationAccountsApi.GetTwilioIntegrationAccount]
