@@ -22,6 +22,8 @@ type ScaRequestDataAttributes struct {
 	Relations []ScaRequestDataAttributesRelationsItems `json:"relations,omitempty"`
 	// Information about the source code repository being analyzed.
 	Repository *ScaRequestDataAttributesRepository `json:"repository,omitempty"`
+	// The time when the SCA scan started.
+	ScanStartTimestamp NullableScaRequestDataAttributesScanStartTimestamp `json:"scan_start_timestamp,omitempty"`
 	// The name of the service or application being analyzed.
 	Service *string `json:"service,omitempty"`
 	// A map of key-value tags providing additional metadata for the SCA scan.
@@ -218,6 +220,45 @@ func (o *ScaRequestDataAttributes) SetRepository(v ScaRequestDataAttributesRepos
 	o.Repository = &v
 }
 
+// GetScanStartTimestamp returns the ScanStartTimestamp field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ScaRequestDataAttributes) GetScanStartTimestamp() ScaRequestDataAttributesScanStartTimestamp {
+	if o == nil || o.ScanStartTimestamp.Get() == nil {
+		var ret ScaRequestDataAttributesScanStartTimestamp
+		return ret
+	}
+	return *o.ScanStartTimestamp.Get()
+}
+
+// GetScanStartTimestampOk returns a tuple with the ScanStartTimestamp field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *ScaRequestDataAttributes) GetScanStartTimestampOk() (*ScaRequestDataAttributesScanStartTimestamp, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ScanStartTimestamp.Get(), o.ScanStartTimestamp.IsSet()
+}
+
+// HasScanStartTimestamp returns a boolean if a field has been set.
+func (o *ScaRequestDataAttributes) HasScanStartTimestamp() bool {
+	return o != nil && o.ScanStartTimestamp.IsSet()
+}
+
+// SetScanStartTimestamp gets a reference to the given NullableScaRequestDataAttributesScanStartTimestamp and assigns it to the ScanStartTimestamp field.
+func (o *ScaRequestDataAttributes) SetScanStartTimestamp(v ScaRequestDataAttributesScanStartTimestamp) {
+	o.ScanStartTimestamp.Set(&v)
+}
+
+// SetScanStartTimestampNil sets the value for ScanStartTimestamp to be an explicit nil.
+func (o *ScaRequestDataAttributes) SetScanStartTimestampNil() {
+	o.ScanStartTimestamp.Set(nil)
+}
+
+// UnsetScanStartTimestamp ensures that no value is present for ScanStartTimestamp, not even an explicit nil.
+func (o *ScaRequestDataAttributes) UnsetScanStartTimestamp() {
+	o.ScanStartTimestamp.Unset()
+}
+
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *ScaRequestDataAttributes) GetService() string {
 	if o == nil || o.Service == nil {
@@ -326,6 +367,9 @@ func (o ScaRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Repository != nil {
 		toSerialize["repository"] = o.Repository
 	}
+	if o.ScanStartTimestamp.IsSet() {
+		toSerialize["scan_start_timestamp"] = o.ScanStartTimestamp.Get()
+	}
 	if o.Service != nil {
 		toSerialize["service"] = o.Service
 	}
@@ -345,22 +389,23 @@ func (o ScaRequestDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *ScaRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Commit          *ScaRequestDataAttributesCommit                `json:"commit,omitempty"`
-		Dependencies    []ScaRequestDataAttributesDependenciesItems    `json:"dependencies,omitempty"`
-		Env             *string                                        `json:"env,omitempty"`
-		Files           []ScaRequestDataAttributesFilesItems           `json:"files,omitempty"`
-		Relations       []ScaRequestDataAttributesRelationsItems       `json:"relations,omitempty"`
-		Repository      *ScaRequestDataAttributesRepository            `json:"repository,omitempty"`
-		Service         *string                                        `json:"service,omitempty"`
-		Tags            map[string]string                              `json:"tags,omitempty"`
-		Vulnerabilities []ScaRequestDataAttributesVulnerabilitiesItems `json:"vulnerabilities,omitempty"`
+		Commit             *ScaRequestDataAttributesCommit                    `json:"commit,omitempty"`
+		Dependencies       []ScaRequestDataAttributesDependenciesItems        `json:"dependencies,omitempty"`
+		Env                *string                                            `json:"env,omitempty"`
+		Files              []ScaRequestDataAttributesFilesItems               `json:"files,omitempty"`
+		Relations          []ScaRequestDataAttributesRelationsItems           `json:"relations,omitempty"`
+		Repository         *ScaRequestDataAttributesRepository                `json:"repository,omitempty"`
+		ScanStartTimestamp NullableScaRequestDataAttributesScanStartTimestamp `json:"scan_start_timestamp,omitempty"`
+		Service            *string                                            `json:"service,omitempty"`
+		Tags               map[string]string                                  `json:"tags,omitempty"`
+		Vulnerabilities    []ScaRequestDataAttributesVulnerabilitiesItems     `json:"vulnerabilities,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"commit", "dependencies", "env", "files", "relations", "repository", "service", "tags", "vulnerabilities"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"commit", "dependencies", "env", "files", "relations", "repository", "scan_start_timestamp", "service", "tags", "vulnerabilities"})
 	} else {
 		return err
 	}
@@ -378,6 +423,7 @@ func (o *ScaRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Repository = all.Repository
+	o.ScanStartTimestamp = all.ScanStartTimestamp
 	o.Service = all.Service
 	o.Tags = all.Tags
 	o.Vulnerabilities = all.Vulnerabilities

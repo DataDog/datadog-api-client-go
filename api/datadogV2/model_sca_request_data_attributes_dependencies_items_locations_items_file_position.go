@@ -14,6 +14,8 @@ type ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition struct 
 	End *ScaRequestDataAttributesDependenciesItemsLocationsItemsPosition `json:"end,omitempty"`
 	// The name or path of the file containing this location.
 	FileName *string `json:"file_name,omitempty"`
+	// The semantic role associated with this file location.
+	Role *string `json:"role,omitempty"`
 	// A specific position (line and column) within a source file.
 	Start *ScaRequestDataAttributesDependenciesItemsLocationsItemsPosition `json:"start,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -94,6 +96,34 @@ func (o *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition) Se
 	o.FileName = &v
 }
 
+// GetRole returns the Role field value if set, zero value otherwise.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition) GetRole() string {
+	if o == nil || o.Role == nil {
+		var ret string
+		return ret
+	}
+	return *o.Role
+}
+
+// GetRoleOk returns a tuple with the Role field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition) GetRoleOk() (*string, bool) {
+	if o == nil || o.Role == nil {
+		return nil, false
+	}
+	return o.Role, true
+}
+
+// HasRole returns a boolean if a field has been set.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition) HasRole() bool {
+	return o != nil && o.Role != nil
+}
+
+// SetRole gets a reference to the given string and assigns it to the Role field.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition) SetRole(v string) {
+	o.Role = &v
+}
+
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition) GetStart() ScaRequestDataAttributesDependenciesItemsLocationsItemsPosition {
 	if o == nil || o.Start == nil {
@@ -134,6 +164,9 @@ func (o ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition) Mar
 	if o.FileName != nil {
 		toSerialize["file_name"] = o.FileName
 	}
+	if o.Role != nil {
+		toSerialize["role"] = o.Role
+	}
 	if o.Start != nil {
 		toSerialize["start"] = o.Start
 	}
@@ -149,6 +182,7 @@ func (o *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition) Un
 	all := struct {
 		End      *ScaRequestDataAttributesDependenciesItemsLocationsItemsPosition `json:"end,omitempty"`
 		FileName *string                                                          `json:"file_name,omitempty"`
+		Role     *string                                                          `json:"role,omitempty"`
 		Start    *ScaRequestDataAttributesDependenciesItemsLocationsItemsPosition `json:"start,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -156,7 +190,7 @@ func (o *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition) Un
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"end", "file_name", "start"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"end", "file_name", "role", "start"})
 	} else {
 		return err
 	}
@@ -167,6 +201,7 @@ func (o *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition) Un
 	}
 	o.End = all.End
 	o.FileName = all.FileName
+	o.Role = all.Role
 	if all.Start != nil && all.Start.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
