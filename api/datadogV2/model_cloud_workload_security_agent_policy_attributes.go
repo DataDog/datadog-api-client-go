@@ -12,6 +12,8 @@ import (
 type CloudWorkloadSecurityAgentPolicyAttributes struct {
 	// The number of rules with the blocking feature in this policy
 	BlockingRulesCount *int32 `json:"blockingRulesCount,omitempty"`
+	// Whether a content pack update is available for the policy.
+	ContentPackUpdateAvailable datadog.NullableBool `json:"contentPackUpdateAvailable,omitempty"`
 	// Whether the policy is managed by Datadog
 	DatadogManaged *bool `json:"datadogManaged,omitempty"`
 	// The description of the policy
@@ -38,6 +40,8 @@ type CloudWorkloadSecurityAgentPolicyAttributes struct {
 	Priority *int64 `json:"priority,omitempty"`
 	// The number of rules in this policy
 	RuleCount *int32 `json:"ruleCount,omitempty"`
+	// The ID of the Datadog-managed default policy this policy is sourced from.
+	SourceDefaultPolicyId *string `json:"sourceDefaultPolicyId,omitempty"`
 	// Timestamp in milliseconds when the policy was last updated
 	UpdateDate *int64 `json:"updateDate,omitempty"`
 	// When the policy was last updated, timestamp in milliseconds
@@ -94,6 +98,45 @@ func (o *CloudWorkloadSecurityAgentPolicyAttributes) HasBlockingRulesCount() boo
 // SetBlockingRulesCount gets a reference to the given int32 and assigns it to the BlockingRulesCount field.
 func (o *CloudWorkloadSecurityAgentPolicyAttributes) SetBlockingRulesCount(v int32) {
 	o.BlockingRulesCount = &v
+}
+
+// GetContentPackUpdateAvailable returns the ContentPackUpdateAvailable field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CloudWorkloadSecurityAgentPolicyAttributes) GetContentPackUpdateAvailable() bool {
+	if o == nil || o.ContentPackUpdateAvailable.Get() == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ContentPackUpdateAvailable.Get()
+}
+
+// GetContentPackUpdateAvailableOk returns a tuple with the ContentPackUpdateAvailable field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *CloudWorkloadSecurityAgentPolicyAttributes) GetContentPackUpdateAvailableOk() (*bool, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ContentPackUpdateAvailable.Get(), o.ContentPackUpdateAvailable.IsSet()
+}
+
+// HasContentPackUpdateAvailable returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentPolicyAttributes) HasContentPackUpdateAvailable() bool {
+	return o != nil && o.ContentPackUpdateAvailable.IsSet()
+}
+
+// SetContentPackUpdateAvailable gets a reference to the given datadog.NullableBool and assigns it to the ContentPackUpdateAvailable field.
+func (o *CloudWorkloadSecurityAgentPolicyAttributes) SetContentPackUpdateAvailable(v bool) {
+	o.ContentPackUpdateAvailable.Set(&v)
+}
+
+// SetContentPackUpdateAvailableNil sets the value for ContentPackUpdateAvailable to be an explicit nil.
+func (o *CloudWorkloadSecurityAgentPolicyAttributes) SetContentPackUpdateAvailableNil() {
+	o.ContentPackUpdateAvailable.Set(nil)
+}
+
+// UnsetContentPackUpdateAvailable ensures that no value is present for ContentPackUpdateAvailable, not even an explicit nil.
+func (o *CloudWorkloadSecurityAgentPolicyAttributes) UnsetContentPackUpdateAvailable() {
+	o.ContentPackUpdateAvailable.Unset()
 }
 
 // GetDatadogManaged returns the DatadogManaged field value if set, zero value otherwise.
@@ -460,6 +503,34 @@ func (o *CloudWorkloadSecurityAgentPolicyAttributes) SetRuleCount(v int32) {
 	o.RuleCount = &v
 }
 
+// GetSourceDefaultPolicyId returns the SourceDefaultPolicyId field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentPolicyAttributes) GetSourceDefaultPolicyId() string {
+	if o == nil || o.SourceDefaultPolicyId == nil {
+		var ret string
+		return ret
+	}
+	return *o.SourceDefaultPolicyId
+}
+
+// GetSourceDefaultPolicyIdOk returns a tuple with the SourceDefaultPolicyId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentPolicyAttributes) GetSourceDefaultPolicyIdOk() (*string, bool) {
+	if o == nil || o.SourceDefaultPolicyId == nil {
+		return nil, false
+	}
+	return o.SourceDefaultPolicyId, true
+}
+
+// HasSourceDefaultPolicyId returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentPolicyAttributes) HasSourceDefaultPolicyId() bool {
+	return o != nil && o.SourceDefaultPolicyId != nil
+}
+
+// SetSourceDefaultPolicyId gets a reference to the given string and assigns it to the SourceDefaultPolicyId field.
+func (o *CloudWorkloadSecurityAgentPolicyAttributes) SetSourceDefaultPolicyId(v string) {
+	o.SourceDefaultPolicyId = &v
+}
+
 // GetUpdateDate returns the UpdateDate field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentPolicyAttributes) GetUpdateDate() int64 {
 	if o == nil || o.UpdateDate == nil {
@@ -581,6 +652,9 @@ func (o CloudWorkloadSecurityAgentPolicyAttributes) MarshalJSON() ([]byte, error
 	if o.BlockingRulesCount != nil {
 		toSerialize["blockingRulesCount"] = o.BlockingRulesCount
 	}
+	if o.ContentPackUpdateAvailable.IsSet() {
+		toSerialize["contentPackUpdateAvailable"] = o.ContentPackUpdateAvailable.Get()
+	}
 	if o.DatadogManaged != nil {
 		toSerialize["datadogManaged"] = o.DatadogManaged
 	}
@@ -620,6 +694,9 @@ func (o CloudWorkloadSecurityAgentPolicyAttributes) MarshalJSON() ([]byte, error
 	if o.RuleCount != nil {
 		toSerialize["ruleCount"] = o.RuleCount
 	}
+	if o.SourceDefaultPolicyId != nil {
+		toSerialize["sourceDefaultPolicyId"] = o.SourceDefaultPolicyId
+	}
 	if o.UpdateDate != nil {
 		toSerialize["updateDate"] = o.UpdateDate
 	}
@@ -642,37 +719,40 @@ func (o CloudWorkloadSecurityAgentPolicyAttributes) MarshalJSON() ([]byte, error
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentPolicyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BlockingRulesCount   *int32                                             `json:"blockingRulesCount,omitempty"`
-		DatadogManaged       *bool                                              `json:"datadogManaged,omitempty"`
-		Description          *string                                            `json:"description,omitempty"`
-		DisabledRulesCount   *int32                                             `json:"disabledRulesCount,omitempty"`
-		Enabled              *bool                                              `json:"enabled,omitempty"`
-		HostTags             []string                                           `json:"hostTags,omitempty"`
-		HostTagsLists        [][]string                                         `json:"hostTagsLists,omitempty"`
-		MonitoringRulesCount *int32                                             `json:"monitoringRulesCount,omitempty"`
-		Name                 *string                                            `json:"name,omitempty"`
-		Pinned               *bool                                              `json:"pinned,omitempty"`
-		PolicyType           *string                                            `json:"policyType,omitempty"`
-		PolicyVersion        *string                                            `json:"policyVersion,omitempty"`
-		Priority             *int64                                             `json:"priority,omitempty"`
-		RuleCount            *int32                                             `json:"ruleCount,omitempty"`
-		UpdateDate           *int64                                             `json:"updateDate,omitempty"`
-		UpdatedAt            *int64                                             `json:"updatedAt,omitempty"`
-		Updater              *CloudWorkloadSecurityAgentPolicyUpdaterAttributes `json:"updater,omitempty"`
-		Versions             []CloudWorkloadSecurityAgentPolicyVersion          `json:"versions,omitempty"`
+		BlockingRulesCount         *int32                                             `json:"blockingRulesCount,omitempty"`
+		ContentPackUpdateAvailable datadog.NullableBool                               `json:"contentPackUpdateAvailable,omitempty"`
+		DatadogManaged             *bool                                              `json:"datadogManaged,omitempty"`
+		Description                *string                                            `json:"description,omitempty"`
+		DisabledRulesCount         *int32                                             `json:"disabledRulesCount,omitempty"`
+		Enabled                    *bool                                              `json:"enabled,omitempty"`
+		HostTags                   []string                                           `json:"hostTags,omitempty"`
+		HostTagsLists              [][]string                                         `json:"hostTagsLists,omitempty"`
+		MonitoringRulesCount       *int32                                             `json:"monitoringRulesCount,omitempty"`
+		Name                       *string                                            `json:"name,omitempty"`
+		Pinned                     *bool                                              `json:"pinned,omitempty"`
+		PolicyType                 *string                                            `json:"policyType,omitempty"`
+		PolicyVersion              *string                                            `json:"policyVersion,omitempty"`
+		Priority                   *int64                                             `json:"priority,omitempty"`
+		RuleCount                  *int32                                             `json:"ruleCount,omitempty"`
+		SourceDefaultPolicyId      *string                                            `json:"sourceDefaultPolicyId,omitempty"`
+		UpdateDate                 *int64                                             `json:"updateDate,omitempty"`
+		UpdatedAt                  *int64                                             `json:"updatedAt,omitempty"`
+		Updater                    *CloudWorkloadSecurityAgentPolicyUpdaterAttributes `json:"updater,omitempty"`
+		Versions                   []CloudWorkloadSecurityAgentPolicyVersion          `json:"versions,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"blockingRulesCount", "datadogManaged", "description", "disabledRulesCount", "enabled", "hostTags", "hostTagsLists", "monitoringRulesCount", "name", "pinned", "policyType", "policyVersion", "priority", "ruleCount", "updateDate", "updatedAt", "updater", "versions"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"blockingRulesCount", "contentPackUpdateAvailable", "datadogManaged", "description", "disabledRulesCount", "enabled", "hostTags", "hostTagsLists", "monitoringRulesCount", "name", "pinned", "policyType", "policyVersion", "priority", "ruleCount", "sourceDefaultPolicyId", "updateDate", "updatedAt", "updater", "versions"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.BlockingRulesCount = all.BlockingRulesCount
+	o.ContentPackUpdateAvailable = all.ContentPackUpdateAvailable
 	o.DatadogManaged = all.DatadogManaged
 	o.Description = all.Description
 	o.DisabledRulesCount = all.DisabledRulesCount
@@ -686,6 +766,7 @@ func (o *CloudWorkloadSecurityAgentPolicyAttributes) UnmarshalJSON(bytes []byte)
 	o.PolicyVersion = all.PolicyVersion
 	o.Priority = all.Priority
 	o.RuleCount = all.RuleCount
+	o.SourceDefaultPolicyId = all.SourceDefaultPolicyId
 	o.UpdateDate = all.UpdateDate
 	o.UpdatedAt = all.UpdatedAt
 	if all.Updater != nil && all.Updater.UnparsedObject != nil && o.UnparsedObject == nil {

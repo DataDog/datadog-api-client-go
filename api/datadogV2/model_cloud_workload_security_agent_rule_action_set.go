@@ -24,6 +24,8 @@ type CloudWorkloadSecurityAgentRuleActionSet struct {
 	Name *string `json:"name,omitempty"`
 	// The scope of the set action.
 	Scope *string `json:"scope,omitempty"`
+	// The scope field of the set action.
+	ScopeField *string `json:"scope_field,omitempty"`
 	// The size of the set action.
 	Size *int64 `json:"size,omitempty"`
 	// The time to live of the set action.
@@ -248,6 +250,34 @@ func (o *CloudWorkloadSecurityAgentRuleActionSet) SetScope(v string) {
 	o.Scope = &v
 }
 
+// GetScopeField returns the ScopeField field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentRuleActionSet) GetScopeField() string {
+	if o == nil || o.ScopeField == nil {
+		var ret string
+		return ret
+	}
+	return *o.ScopeField
+}
+
+// GetScopeFieldOk returns a tuple with the ScopeField field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentRuleActionSet) GetScopeFieldOk() (*string, bool) {
+	if o == nil || o.ScopeField == nil {
+		return nil, false
+	}
+	return o.ScopeField, true
+}
+
+// HasScopeField returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleActionSet) HasScopeField() bool {
+	return o != nil && o.ScopeField != nil
+}
+
+// SetScopeField gets a reference to the given string and assigns it to the ScopeField field.
+func (o *CloudWorkloadSecurityAgentRuleActionSet) SetScopeField(v string) {
+	o.ScopeField = &v
+}
+
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleActionSet) GetSize() int64 {
 	if o == nil || o.Size == nil {
@@ -359,6 +389,9 @@ func (o CloudWorkloadSecurityAgentRuleActionSet) MarshalJSON() ([]byte, error) {
 	if o.Scope != nil {
 		toSerialize["scope"] = o.Scope
 	}
+	if o.ScopeField != nil {
+		toSerialize["scope_field"] = o.ScopeField
+	}
 	if o.Size != nil {
 		toSerialize["size"] = o.Size
 	}
@@ -385,6 +418,7 @@ func (o *CloudWorkloadSecurityAgentRuleActionSet) UnmarshalJSON(bytes []byte) (e
 		Inherited    *bool                                         `json:"inherited,omitempty"`
 		Name         *string                                       `json:"name,omitempty"`
 		Scope        *string                                       `json:"scope,omitempty"`
+		ScopeField   *string                                       `json:"scope_field,omitempty"`
 		Size         *int64                                        `json:"size,omitempty"`
 		Ttl          *int64                                        `json:"ttl,omitempty"`
 		Value        *CloudWorkloadSecurityAgentRuleActionSetValue `json:"value,omitempty"`
@@ -394,7 +428,7 @@ func (o *CloudWorkloadSecurityAgentRuleActionSet) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"append", "default_value", "expression", "field", "inherited", "name", "scope", "size", "ttl", "value"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"append", "default_value", "expression", "field", "inherited", "name", "scope", "scope_field", "size", "ttl", "value"})
 	} else {
 		return err
 	}
@@ -405,6 +439,7 @@ func (o *CloudWorkloadSecurityAgentRuleActionSet) UnmarshalJSON(bytes []byte) (e
 	o.Inherited = all.Inherited
 	o.Name = all.Name
 	o.Scope = all.Scope
+	o.ScopeField = all.ScopeField
 	o.Size = all.Size
 	o.Ttl = all.Ttl
 	o.Value = all.Value

@@ -10,6 +10,8 @@ import (
 
 // CloudWorkloadSecurityAgentRuleAction The action the rule can perform if triggered
 type CloudWorkloadSecurityAgentRuleAction struct {
+	// Whether the action is disabled.
+	Disabled *bool `json:"disabled,omitempty"`
 	// SECL expression used to target the container to apply the action on
 	Filter *string `json:"filter,omitempty"`
 	// Hash file specified by the field attribute
@@ -40,6 +42,34 @@ func NewCloudWorkloadSecurityAgentRuleAction() *CloudWorkloadSecurityAgentRuleAc
 func NewCloudWorkloadSecurityAgentRuleActionWithDefaults() *CloudWorkloadSecurityAgentRuleAction {
 	this := CloudWorkloadSecurityAgentRuleAction{}
 	return &this
+}
+
+// GetDisabled returns the Disabled field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentRuleAction) GetDisabled() bool {
+	if o == nil || o.Disabled == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Disabled
+}
+
+// GetDisabledOk returns a tuple with the Disabled field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentRuleAction) GetDisabledOk() (*bool, bool) {
+	if o == nil || o.Disabled == nil {
+		return nil, false
+	}
+	return o.Disabled, true
+}
+
+// HasDisabled returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleAction) HasDisabled() bool {
+	return o != nil && o.Disabled != nil
+}
+
+// SetDisabled gets a reference to the given bool and assigns it to the Disabled field.
+func (o *CloudWorkloadSecurityAgentRuleAction) SetDisabled(v bool) {
+	o.Disabled = &v
 }
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
@@ -188,6 +218,9 @@ func (o CloudWorkloadSecurityAgentRuleAction) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Disabled != nil {
+		toSerialize["disabled"] = o.Disabled
+	}
 	if o.Filter != nil {
 		toSerialize["filter"] = o.Filter
 	}
@@ -213,6 +246,7 @@ func (o CloudWorkloadSecurityAgentRuleAction) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRuleAction) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Disabled *bool                                         `json:"disabled,omitempty"`
 		Filter   *string                                       `json:"filter,omitempty"`
 		Hash     *CloudWorkloadSecurityAgentRuleActionHash     `json:"hash,omitempty"`
 		Kill     *CloudWorkloadSecurityAgentRuleKill           `json:"kill,omitempty"`
@@ -224,12 +258,13 @@ func (o *CloudWorkloadSecurityAgentRuleAction) UnmarshalJSON(bytes []byte) (err 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "hash", "kill", "metadata", "set"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"disabled", "filter", "hash", "kill", "metadata", "set"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Disabled = all.Disabled
 	o.Filter = all.Filter
 	if all.Hash != nil && all.Hash.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
