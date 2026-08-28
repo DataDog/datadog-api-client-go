@@ -136,6 +136,7 @@ type RetryConfiguration struct {
 	BackOffBase       float64
 	HTTPRetryTimeout  time.Duration
 	MaxRetries        int
+	RetryJitter       time.Duration
 }
 
 // NewConfiguration returns a new Configuration object.

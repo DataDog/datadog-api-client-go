@@ -12,6 +12,7 @@ import (
 	"io"
 	"log"
 	"math"
+	"math/rand"
 	"mime/multipart"
 	"net/http"
 	"net/http/httputil"
@@ -236,7 +237,7 @@ func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) 
 	if v := response.Header.Get(rateLimitResetHeader); response.StatusCode == 429 && v != "" {
 		vInt, err := strconv.ParseInt(v, 10, 64)
 		if err == nil {
-			retryDuration := time.Duration(vInt) * time.Second
+			retryDuration := time.Duration(vInt)*time.Second + c.retryJitter()
 			return &retryDuration, true
 		}
 	}
@@ -250,10 +251,18 @@ func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) 
 		if c.Cfg.HTTPClient.Timeout > 0 {
 			retryVal = math.Min(float64(c.Cfg.HTTPClient.Timeout/time.Second), retryVal)
 		}
-		retryDuration := time.Duration(retryVal) * time.Second
+		retryDuration := time.Duration(retryVal)*time.Second + c.retryJitter()
 		return &retryDuration, true
 	}
 	return nil, false
+}
+
+func (c *APIClient) retryJitter() time.Duration {
+	max := c.Cfg.RetryConfiguration.RetryJitter
+	if max <= 0 {
+		return 0
+	}
+	return time.Duration(rand.Int63n(int64(max)))
 }
 
 // GetConfig allows modification of underlying config for alternate implementations and testing.

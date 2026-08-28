@@ -140,6 +140,7 @@ type RetryConfiguration struct {
 	BackOffBase       float64
 	HTTPRetryTimeout  time.Duration
 	MaxRetries        int
+	RetryJitter       time.Duration
 }
 
 {%- macro server_configuration(server) -%}
