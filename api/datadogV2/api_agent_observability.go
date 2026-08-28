@@ -3064,7 +3064,8 @@ func (a *AgentObservabilityApi) GetLLMObsPatternsRunStatus(ctx _context.Context,
 
 // GetLLMObsPromptOptionalParameters holds optional parameters for GetLLMObsPrompt.
 type GetLLMObsPromptOptionalParameters struct {
-	Label *string
+	Label       *string
+	Environment *string
 }
 
 // NewGetLLMObsPromptOptionalParameters creates an empty struct for parameters.
@@ -3079,8 +3080,14 @@ func (r *GetLLMObsPromptOptionalParameters) WithLabel(label string) *GetLLMObsPr
 	return r
 }
 
+// WithEnvironment sets the corresponding parameter name and returns the struct.
+func (r *GetLLMObsPromptOptionalParameters) WithEnvironment(environment string) *GetLLMObsPromptOptionalParameters {
+	r.Environment = &environment
+	return r
+}
+
 // GetLLMObsPrompt Get an Agent Observability prompt.
-// Get the latest version of an Agent Observability prompt by prompt ID.
+// Get an Agent Observability prompt by prompt ID. When `environment` is omitted, this returns the latest version or uses the deprecated `label` behavior and requires `llm_observability_read`. When `environment` is supplied, it must be a nonempty `DD_ENV` value, cannot be combined with `label`, and additionally requires `feature_flag_config_read` and `feature_flag_environment_config_read`. An empty environment or combining it with `label` returns 400, and missing either additional permission returns 403. A missing prompt or deployment returns 404 without falling back to the latest version. An environment resolution failure returns 500.
 func (a *AgentObservabilityApi) GetLLMObsPrompt(ctx _context.Context, promptId string, o ...GetLLMObsPromptOptionalParameters) (LLMObsPromptSDKResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3119,6 +3126,9 @@ func (a *AgentObservabilityApi) GetLLMObsPrompt(ctx _context.Context, promptId s
 	if optionalParams.Label != nil {
 		localVarQueryParams.Add("label", datadog.ParameterToString(*optionalParams.Label, ""))
 	}
+	if optionalParams.Environment != nil {
+		localVarQueryParams.Add("environment", datadog.ParameterToString(*optionalParams.Environment, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {
@@ -3154,7 +3164,7 @@ func (a *AgentObservabilityApi) GetLLMObsPrompt(ctx _context.Context, promptId s
 			ErrorBody:    localVarBody,
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
-		if localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 {
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 500 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
