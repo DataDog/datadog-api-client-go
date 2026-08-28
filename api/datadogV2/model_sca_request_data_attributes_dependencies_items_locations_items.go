@@ -12,12 +12,12 @@ import (
 type ScaRequestDataAttributesDependenciesItemsLocationsItems struct {
 	// A range within a file defined by a start and end position, along with the file name.
 	Block *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition `json:"block,omitempty"`
-	// A range within a file defined by a start and end position, along with the file name.
-	Name *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition `json:"name,omitempty"`
-	// A range within a file defined by a start and end position, along with the file name.
-	Namespace *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition `json:"namespace,omitempty"`
-	// A range within a file defined by a start and end position, along with the file name.
-	Version *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition `json:"version,omitempty"`
+	// A nullable range within a file defined by a start and end position, along with the file name.
+	Name NullableScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition `json:"name,omitempty"`
+	// A nullable range within a file defined by a start and end position, along with the file name.
+	Namespace NullableScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition `json:"namespace,omitempty"`
+	// A nullable range within a file defined by a start and end position, along with the file name.
+	Version NullableScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -68,88 +68,121 @@ func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) SetBlock(v Sca
 	o.Block = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) GetName() ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition {
-	if o == nil || o.Name == nil {
-		var ret ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition
+// GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) GetName() ScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition {
+	if o == nil || o.Name.Get() == nil {
+		var ret ScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition
 		return ret
 	}
-	return *o.Name
+	return *o.Name.Get()
 }
 
 // GetNameOk returns a tuple with the Name field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) GetNameOk() (*ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition, bool) {
-	if o == nil || o.Name == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) GetNameOk() (*ScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return o.Name.Get(), o.Name.IsSet()
 }
 
 // HasName returns a boolean if a field has been set.
 func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) HasName() bool {
-	return o != nil && o.Name != nil
+	return o != nil && o.Name.IsSet()
 }
 
-// SetName gets a reference to the given ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition and assigns it to the Name field.
-func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) SetName(v ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition) {
-	o.Name = &v
+// SetName gets a reference to the given NullableScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition and assigns it to the Name field.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) SetName(v ScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition) {
+	o.Name.Set(&v)
 }
 
-// GetNamespace returns the Namespace field value if set, zero value otherwise.
-func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) GetNamespace() ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition {
-	if o == nil || o.Namespace == nil {
-		var ret ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition
+// SetNameNil sets the value for Name to be an explicit nil.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) SetNameNil() {
+	o.Name.Set(nil)
+}
+
+// UnsetName ensures that no value is present for Name, not even an explicit nil.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) UnsetName() {
+	o.Name.Unset()
+}
+
+// GetNamespace returns the Namespace field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) GetNamespace() ScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition {
+	if o == nil || o.Namespace.Get() == nil {
+		var ret ScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition
 		return ret
 	}
-	return *o.Namespace
+	return *o.Namespace.Get()
 }
 
 // GetNamespaceOk returns a tuple with the Namespace field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) GetNamespaceOk() (*ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition, bool) {
-	if o == nil || o.Namespace == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) GetNamespaceOk() (*ScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Namespace, true
+	return o.Namespace.Get(), o.Namespace.IsSet()
 }
 
 // HasNamespace returns a boolean if a field has been set.
 func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) HasNamespace() bool {
-	return o != nil && o.Namespace != nil
+	return o != nil && o.Namespace.IsSet()
 }
 
-// SetNamespace gets a reference to the given ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition and assigns it to the Namespace field.
-func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) SetNamespace(v ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition) {
-	o.Namespace = &v
+// SetNamespace gets a reference to the given NullableScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition and assigns it to the Namespace field.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) SetNamespace(v ScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition) {
+	o.Namespace.Set(&v)
 }
 
-// GetVersion returns the Version field value if set, zero value otherwise.
-func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) GetVersion() ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition {
-	if o == nil || o.Version == nil {
-		var ret ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition
+// SetNamespaceNil sets the value for Namespace to be an explicit nil.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) SetNamespaceNil() {
+	o.Namespace.Set(nil)
+}
+
+// UnsetNamespace ensures that no value is present for Namespace, not even an explicit nil.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) UnsetNamespace() {
+	o.Namespace.Unset()
+}
+
+// GetVersion returns the Version field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) GetVersion() ScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition {
+	if o == nil || o.Version.Get() == nil {
+		var ret ScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition
 		return ret
 	}
-	return *o.Version
+	return *o.Version.Get()
 }
 
 // GetVersionOk returns a tuple with the Version field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) GetVersionOk() (*ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition, bool) {
-	if o == nil || o.Version == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) GetVersionOk() (*ScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Version, true
+	return o.Version.Get(), o.Version.IsSet()
 }
 
 // HasVersion returns a boolean if a field has been set.
 func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) HasVersion() bool {
-	return o != nil && o.Version != nil
+	return o != nil && o.Version.IsSet()
 }
 
-// SetVersion gets a reference to the given ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition and assigns it to the Version field.
-func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) SetVersion(v ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition) {
-	o.Version = &v
+// SetVersion gets a reference to the given NullableScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition and assigns it to the Version field.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) SetVersion(v ScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition) {
+	o.Version.Set(&v)
+}
+
+// SetVersionNil sets the value for Version to be an explicit nil.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) SetVersionNil() {
+	o.Version.Set(nil)
+}
+
+// UnsetVersion ensures that no value is present for Version, not even an explicit nil.
+func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) UnsetVersion() {
+	o.Version.Unset()
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -161,14 +194,14 @@ func (o ScaRequestDataAttributesDependenciesItemsLocationsItems) MarshalJSON() (
 	if o.Block != nil {
 		toSerialize["block"] = o.Block
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
+	if o.Name.IsSet() {
+		toSerialize["name"] = o.Name.Get()
 	}
-	if o.Namespace != nil {
-		toSerialize["namespace"] = o.Namespace
+	if o.Namespace.IsSet() {
+		toSerialize["namespace"] = o.Namespace.Get()
 	}
-	if o.Version != nil {
-		toSerialize["version"] = o.Version
+	if o.Version.IsSet() {
+		toSerialize["version"] = o.Version.Get()
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -180,10 +213,10 @@ func (o ScaRequestDataAttributesDependenciesItemsLocationsItems) MarshalJSON() (
 // UnmarshalJSON deserializes the given payload.
 func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Block     *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition `json:"block,omitempty"`
-		Name      *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition `json:"name,omitempty"`
-		Namespace *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition `json:"namespace,omitempty"`
-		Version   *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition `json:"version,omitempty"`
+		Block     *ScaRequestDataAttributesDependenciesItemsLocationsItemsFilePosition                `json:"block,omitempty"`
+		Name      NullableScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition `json:"name,omitempty"`
+		Namespace NullableScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition `json:"namespace,omitempty"`
+		Version   NullableScaRequestDataAttributesDependenciesItemsLocationsItemsNullableFilePosition `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -200,17 +233,8 @@ func (o *ScaRequestDataAttributesDependenciesItemsLocationsItems) UnmarshalJSON(
 		hasInvalidField = true
 	}
 	o.Block = all.Block
-	if all.Name != nil && all.Name.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Name = all.Name
-	if all.Namespace != nil && all.Namespace.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Namespace = all.Namespace
-	if all.Version != nil && all.Version.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Version = all.Version
 
 	if len(additionalProperties) > 0 {
