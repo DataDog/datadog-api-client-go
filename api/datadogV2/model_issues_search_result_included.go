@@ -11,7 +11,7 @@ import (
 // IssuesSearchResultIncluded - An array of related resources, returned when the `include` query parameter is used.
 type IssuesSearchResultIncluded struct {
 	Issue     *Issue
-	Case      *Case
+	IssueCase *IssueCase
 	IssueUser *IssueUser
 	IssueTeam *IssueTeam
 
@@ -24,9 +24,9 @@ func IssueAsIssuesSearchResultIncluded(v *Issue) IssuesSearchResultIncluded {
 	return IssuesSearchResultIncluded{Issue: v}
 }
 
-// CaseAsIssuesSearchResultIncluded is a convenience function that returns Case wrapped in IssuesSearchResultIncluded.
-func CaseAsIssuesSearchResultIncluded(v *Case) IssuesSearchResultIncluded {
-	return IssuesSearchResultIncluded{Case: v}
+// IssueCaseAsIssuesSearchResultIncluded is a convenience function that returns IssueCase wrapped in IssuesSearchResultIncluded.
+func IssueCaseAsIssuesSearchResultIncluded(v *IssueCase) IssuesSearchResultIncluded {
+	return IssuesSearchResultIncluded{IssueCase: v}
 }
 
 // IssueUserAsIssuesSearchResultIncluded is a convenience function that returns IssueUser wrapped in IssuesSearchResultIncluded.
@@ -60,21 +60,21 @@ func (obj *IssuesSearchResultIncluded) UnmarshalJSON(data []byte) error {
 		obj.Issue = nil
 	}
 
-	// try to unmarshal data into Case
-	err = datadog.Unmarshal(data, &obj.Case)
+	// try to unmarshal data into IssueCase
+	err = datadog.Unmarshal(data, &obj.IssueCase)
 	if err == nil {
-		if obj.Case != nil && obj.Case.UnparsedObject == nil {
-			jsonCase, _ := datadog.Marshal(obj.Case)
-			if string(jsonCase) == "{}" { // empty struct
-				obj.Case = nil
+		if obj.IssueCase != nil && obj.IssueCase.UnparsedObject == nil {
+			jsonIssueCase, _ := datadog.Marshal(obj.IssueCase)
+			if string(jsonIssueCase) == "{}" { // empty struct
+				obj.IssueCase = nil
 			} else {
 				match++
 			}
 		} else {
-			obj.Case = nil
+			obj.IssueCase = nil
 		}
 	} else {
-		obj.Case = nil
+		obj.IssueCase = nil
 	}
 
 	// try to unmarshal data into IssueUser
@@ -114,7 +114,7 @@ func (obj *IssuesSearchResultIncluded) UnmarshalJSON(data []byte) error {
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.Issue = nil
-		obj.Case = nil
+		obj.IssueCase = nil
 		obj.IssueUser = nil
 		obj.IssueTeam = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
@@ -128,8 +128,8 @@ func (obj IssuesSearchResultIncluded) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(&obj.Issue)
 	}
 
-	if obj.Case != nil {
-		return datadog.Marshal(&obj.Case)
+	if obj.IssueCase != nil {
+		return datadog.Marshal(&obj.IssueCase)
 	}
 
 	if obj.IssueUser != nil {
@@ -152,8 +152,8 @@ func (obj *IssuesSearchResultIncluded) GetActualInstance() interface{} {
 		return obj.Issue
 	}
 
-	if obj.Case != nil {
-		return obj.Case
+	if obj.IssueCase != nil {
+		return obj.IssueCase
 	}
 
 	if obj.IssueUser != nil {
