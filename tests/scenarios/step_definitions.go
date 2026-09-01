@@ -54,18 +54,19 @@ func aValidAppKeyAuth(t gobdd.StepTest, ctx gobdd.Context) {
 // anInstanceOf sets API callable to apiKey{}
 func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	ct := GetClient(ctx)
-	version := GetVersion(ctx)
+	version := GetOperationVersion(ctx)
 
 	api := GetApiByVersionAndName(ctx, version, name+"Api")
 	f := api.Call([]reflect.Value{ct})[0]
 
+	ctx.Set(apiNameKey{}, name)
 	SetAPI(ctx, f)
 }
 
 // enableOperations sets unstable operations specific in this clause to enabled
 func enableOperations(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	ct := GetClient(ctx)
-	version := GetVersion(ctx)
+	version := GetOperationVersion(ctx)
 	// client.GetConfig().SetUnstableOperationEnabled(name, true)
 	config := ct.MethodByName("GetConfig").Call([]reflect.Value{})
 	enable := config[0].MethodByName("SetUnstableOperationEnabled")
@@ -78,6 +79,14 @@ func newRequest(t gobdd.StepTest, ctx gobdd.Context, name string) {
 		return
 	}
 	newRequestNative(t, ctx, name)
+}
+
+func newVersionedRequest(t gobdd.StepTest, ctx gobdd.Context, name string, version string) {
+	SetOperationVersion(ctx, version)
+	if apiName, err := ctx.GetString(apiNameKey{}); err == nil {
+		anInstanceOf(t, ctx, apiName)
+	}
+	newRequest(t, ctx, name)
 }
 
 func newRequestNative(t gobdd.StepTest, ctx gobdd.Context, name string) {
@@ -550,6 +559,7 @@ func ConfigureSteps(s *gobdd.Suite) {
 		`a valid "appKeyAuth" key in the system`:                               aValidAppKeyAuth,
 		`an instance of "([^"]+)" API`:                                         anInstanceOf,
 		`operation "([^"]+)" enabled`:                                          enableOperations,
+		`new "([^"]+)" with version "([^"]+)" request`:                         newVersionedRequest,
 		`new "([^"]+)" request`:                                                newRequest,
 		`request contains "([^"]+)" parameter from "([^"]+)"`:                  addParameterFrom,
 		`request contains "([^"]+)" parameter with value (.+)`:                 addParameterWithValue,
