@@ -10,10 +10,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SlackTriggerWrapper Schema for a Slack-based trigger.
-type SlackTriggerWrapper struct {
-	// Trigger a workflow from Slack. The workflow must be published.
-	SlackTrigger SlackTrigger `json:"slackTrigger"`
+// IncidentCreatedTriggerWrapper Schema for an incident declared trigger.
+type IncidentCreatedTriggerWrapper struct {
+	// Trigger a workflow when an incident is declared.
+	IncidentCreatedTrigger IncidentCreatedTrigger `json:"incidentCreatedTrigger"`
 	// Names of existing workflow steps that run first after a trigger fires.
 	StartStepNames []string `json:"startStepNames,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -21,49 +21,49 @@ type SlackTriggerWrapper struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewSlackTriggerWrapper instantiates a new SlackTriggerWrapper object.
+// NewIncidentCreatedTriggerWrapper instantiates a new IncidentCreatedTriggerWrapper object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSlackTriggerWrapper(slackTrigger SlackTrigger) *SlackTriggerWrapper {
-	this := SlackTriggerWrapper{}
-	this.SlackTrigger = slackTrigger
+func NewIncidentCreatedTriggerWrapper(incidentCreatedTrigger IncidentCreatedTrigger) *IncidentCreatedTriggerWrapper {
+	this := IncidentCreatedTriggerWrapper{}
+	this.IncidentCreatedTrigger = incidentCreatedTrigger
 	return &this
 }
 
-// NewSlackTriggerWrapperWithDefaults instantiates a new SlackTriggerWrapper object.
+// NewIncidentCreatedTriggerWrapperWithDefaults instantiates a new IncidentCreatedTriggerWrapper object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewSlackTriggerWrapperWithDefaults() *SlackTriggerWrapper {
-	this := SlackTriggerWrapper{}
+func NewIncidentCreatedTriggerWrapperWithDefaults() *IncidentCreatedTriggerWrapper {
+	this := IncidentCreatedTriggerWrapper{}
 	return &this
 }
 
-// GetSlackTrigger returns the SlackTrigger field value.
-func (o *SlackTriggerWrapper) GetSlackTrigger() SlackTrigger {
+// GetIncidentCreatedTrigger returns the IncidentCreatedTrigger field value.
+func (o *IncidentCreatedTriggerWrapper) GetIncidentCreatedTrigger() IncidentCreatedTrigger {
 	if o == nil {
-		var ret SlackTrigger
+		var ret IncidentCreatedTrigger
 		return ret
 	}
-	return o.SlackTrigger
+	return o.IncidentCreatedTrigger
 }
 
-// GetSlackTriggerOk returns a tuple with the SlackTrigger field value
+// GetIncidentCreatedTriggerOk returns a tuple with the IncidentCreatedTrigger field value
 // and a boolean to check if the value has been set.
-func (o *SlackTriggerWrapper) GetSlackTriggerOk() (*SlackTrigger, bool) {
+func (o *IncidentCreatedTriggerWrapper) GetIncidentCreatedTriggerOk() (*IncidentCreatedTrigger, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.SlackTrigger, true
+	return &o.IncidentCreatedTrigger, true
 }
 
-// SetSlackTrigger sets field value.
-func (o *SlackTriggerWrapper) SetSlackTrigger(v SlackTrigger) {
-	o.SlackTrigger = v
+// SetIncidentCreatedTrigger sets field value.
+func (o *IncidentCreatedTriggerWrapper) SetIncidentCreatedTrigger(v IncidentCreatedTrigger) {
+	o.IncidentCreatedTrigger = v
 }
 
 // GetStartStepNames returns the StartStepNames field value if set, zero value otherwise.
-func (o *SlackTriggerWrapper) GetStartStepNames() []string {
+func (o *IncidentCreatedTriggerWrapper) GetStartStepNames() []string {
 	if o == nil || o.StartStepNames == nil {
 		var ret []string
 		return ret
@@ -73,7 +73,7 @@ func (o *SlackTriggerWrapper) GetStartStepNames() []string {
 
 // GetStartStepNamesOk returns a tuple with the StartStepNames field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SlackTriggerWrapper) GetStartStepNamesOk() (*[]string, bool) {
+func (o *IncidentCreatedTriggerWrapper) GetStartStepNamesOk() (*[]string, bool) {
 	if o == nil || o.StartStepNames == nil {
 		return nil, false
 	}
@@ -81,22 +81,22 @@ func (o *SlackTriggerWrapper) GetStartStepNamesOk() (*[]string, bool) {
 }
 
 // HasStartStepNames returns a boolean if a field has been set.
-func (o *SlackTriggerWrapper) HasStartStepNames() bool {
+func (o *IncidentCreatedTriggerWrapper) HasStartStepNames() bool {
 	return o != nil && o.StartStepNames != nil
 }
 
 // SetStartStepNames gets a reference to the given []string and assigns it to the StartStepNames field.
-func (o *SlackTriggerWrapper) SetStartStepNames(v []string) {
+func (o *IncidentCreatedTriggerWrapper) SetStartStepNames(v []string) {
 	o.StartStepNames = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o SlackTriggerWrapper) MarshalJSON() ([]byte, error) {
+func (o IncidentCreatedTriggerWrapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["slackTrigger"] = o.SlackTrigger
+	toSerialize["incidentCreatedTrigger"] = o.IncidentCreatedTrigger
 	if o.StartStepNames != nil {
 		toSerialize["startStepNames"] = o.StartStepNames
 	}
@@ -108,29 +108,29 @@ func (o SlackTriggerWrapper) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *SlackTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
+func (o *IncidentCreatedTriggerWrapper) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		SlackTrigger   *SlackTrigger `json:"slackTrigger"`
-		StartStepNames []string      `json:"startStepNames,omitempty"`
+		IncidentCreatedTrigger *IncidentCreatedTrigger `json:"incidentCreatedTrigger"`
+		StartStepNames         []string                `json:"startStepNames,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.SlackTrigger == nil {
-		return fmt.Errorf("required field slackTrigger missing")
+	if all.IncidentCreatedTrigger == nil {
+		return fmt.Errorf("required field incidentCreatedTrigger missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"slackTrigger", "startStepNames"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"incidentCreatedTrigger", "startStepNames"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	if all.SlackTrigger.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.IncidentCreatedTrigger.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.SlackTrigger = *all.SlackTrigger
+	o.IncidentCreatedTrigger = *all.IncidentCreatedTrigger
 	o.StartStepNames = all.StartStepNames
 
 	if len(additionalProperties) > 0 {
