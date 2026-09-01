@@ -1,5 +1,51 @@
 # CHANGELOG
 
+## 2.65.0/2026-09-01
+
+### Added
+* Add opentelemetry metrics destination to observability pipelines public api spec [#4514](https://github.com/DataDog/datadog-api-client-go/pull/4514)
+* Add incident and Slack reaction triggers to Workflow Automation [#4513](https://github.com/DataDog/datadog-api-client-go/pull/4513)
+* Publish unstable STIX ingestion API [#4512](https://github.com/DataDog/datadog-api-client-go/pull/4512)
+* [AGV-1599] Add is_iac support to send X-Datadog-Managed-By header [#4503](https://github.com/DataDog/datadog-api-client-go/pull/4503)
+* Add warmup, fail_on_no_groups_found, and fail_on_no_data to Deployment Gates monitor rule options [#4502](https://github.com/DataDog/datadog-api-client-go/pull/4502)
+* Add server.response.body.raw WAF address [#4487](https://github.com/DataDog/datadog-api-client-go/pull/4487)
+* Fix estimate endpoint query params to match live schema [#4482](https://github.com/DataDog/datadog-api-client-go/pull/4482)
+* Add zstd/compression to archive destinations [#4480](https://github.com/DataDog/datadog-api-client-go/pull/4480)
+* Sync LLM Obs annotation access docs [#4475](https://github.com/DataDog/datadog-api-client-go/pull/4475)
+* RUM - Make exclusion filter operations public [#4473](https://github.com/DataDog/datadog-api-client-go/pull/4473)
+* Add OpenAPI docs for usage quotas admin [#4472](https://github.com/DataDog/datadog-api-client-go/pull/4472)
+* API spec for severity modifiers automation pipelines [#4463](https://github.com/DataDog/datadog-api-client-go/pull/4463)
+* Add bundle_config to Monitor Notification Rule [#4462](https://github.com/DataDog/datadog-api-client-go/pull/4462)
+* Document RUM retention quota config API [#4461](https://github.com/DataDog/datadog-api-client-go/pull/4461)
+* Add Integration Accounts v2 API for Twilio and Elastic Cloud [#4454](https://github.com/DataDog/datadog-api-client-go/pull/4454)
+* Add endpoint_target field to Splunk HEC destination [#4453](https://github.com/DataDog/datadog-api-client-go/pull/4453)
+* Add public Execution Policies endpoints [#4450](https://github.com/DataDog/datadog-api-client-go/pull/4450)
+* Add OpenAPI spec for RUM Teams Ownership public API [#4445](https://github.com/DataDog/datadog-api-client-go/pull/4445)
+* Add tags to Action Connection API spec [#4444](https://github.com/DataDog/datadog-api-client-go/pull/4444)
+* Add Work Management note to Case Management API tag description [#4442](https://github.com/DataDog/datadog-api-client-go/pull/4442)
+* Add OAuth support for v2 Logs queries [#4440](https://github.com/DataDog/datadog-api-client-go/pull/4440)
+* Declare OAuth support for Events Search [#4438](https://github.com/DataDog/datadog-api-client-go/pull/4438)
+
+### Changed
+* Promote usage quotas admin endpoints to public unstable [#4508](https://github.com/DataDog/datadog-api-client-go/pull/4508)
+* AI Gateway - Fully type private beta control plane API [#4498](https://github.com/DataDog/datadog-api-client-go/pull/4498)
+* Fix SCA OpenAPI drift [#4492](https://github.com/DataDog/datadog-api-client-go/pull/4492)
+* Mark Data Deletion API as GA and update documentation [#4478](https://github.com/DataDog/datadog-api-client-go/pull/4478)
+* Update CODEOWNERS to IDP pack [#4460](https://github.com/DataDog/datadog-api-client-go/pull/4460)
+* Remove status_pages_settings_write as an accepted permission from Status Pages publishing APIs [#4452](https://github.com/DataDog/datadog-api-client-go/pull/4452)
+* Rename Tag Policies to Tag Rules and move to /api/v2/governance/tag_rules [#4421](https://github.com/DataDog/datadog-api-client-go/pull/4421)
+
+### Fixed
+* Fix CreateTeamConnections example missing required type fields [#4497](https://github.com/DataDog/datadog-api-client-go/pull/4497)
+* Fix ARM API security spec drift [#4485](https://github.com/DataDog/datadog-api-client-go/pull/4485)
+
+### Removed
+* Rename spec to RUM Retention Quotas and remove unsupported mode [#4481](https://github.com/DataDog/datadog-api-client-go/pull/4481)
+* Make LLM Observability data deletion endpoint private [#4449](https://github.com/DataDog/datadog-api-client-go/pull/4449)
+
+### Deprecated
+* Mark unused AWS logs v1 endpoints as deprecated [#4267](https://github.com/DataDog/datadog-api-client-go/pull/4267)
+
 ## 2.64.0/2026-08-12
 
 ### Changed
