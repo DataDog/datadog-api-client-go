@@ -243,14 +243,15 @@ func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) 
 	if !enableRetry || retryCount >= maxRetries {
 		return nil, false
 	}
-	if response.StatusCode != 429 && response.StatusCode < 500 {
+	isRetryableStatusCode := response.StatusCode == http.StatusTooManyRequests || response.StatusCode >= http.StatusInternalServerError
+	if !isRetryableStatusCode {
 		return nil, false
 	}
 
 	retryVal := c.Cfg.RetryConfiguration.BackOffBase * math.Pow(c.Cfg.RetryConfiguration.BackOffMultiplier, float64(retryCount))
 	retryDuration := time.Duration(retryVal) * time.Second
 
-	if response.StatusCode == 429 {
+	if response.StatusCode == http.StatusTooManyRequests {
 		if reset, err := strconv.ParseInt(response.Header.Get(rateLimitResetHeader), 10, 64); err == nil && reset >= 0 && reset <= int64((1<<63-1)/time.Second) {
 			resetDuration := time.Duration(reset) * time.Second
 			if resetDuration > retryDuration {
