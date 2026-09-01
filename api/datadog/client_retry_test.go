@@ -2,7 +2,6 @@ package datadog
 
 import (
 	"context"
-	"errors"
 	"net/http"
 	"net/http/httptest"
 	"sync/atomic"
@@ -163,16 +162,15 @@ func TestRetryMaxAttempts(t *testing.T) {
 	}
 }
 
-func TestRetryDeadlineCancelsInFlightAttempt(t *testing.T) {
+func TestRetryDeadlineAllowsInFlightAttemptToFinish(t *testing.T) {
 	var calls atomic.Int32
-	canceled := make(chan struct{}, 1)
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 		if calls.Add(1) == 1 {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
-		<-r.Context().Done()
-		canceled <- struct{}{}
+		time.Sleep(100 * time.Millisecond)
+		w.WriteHeader(http.StatusOK)
 	}))
 	defer server.Close()
 
@@ -186,17 +184,16 @@ func TestRetryDeadlineCancelsInFlightAttempt(t *testing.T) {
 		t.Fatal(err)
 	}
 
-	_, err = client.CallAPI(request)
-	if !errors.Is(err, context.DeadlineExceeded) {
-		t.Fatalf("error = %v; want context deadline exceeded", err)
+	response, err := client.CallAPI(request)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer response.Body.Close()
+	if response.StatusCode != http.StatusOK {
+		t.Fatalf("status = %d; want %d", response.StatusCode, http.StatusOK)
 	}
 	if calls.Load() != 2 {
 		t.Fatalf("calls = %d; want 2", calls.Load())
-	}
-	select {
-	case <-canceled:
-	case <-time.After(time.Second):
-		t.Fatal("retry request context was not canceled")
 	}
 }
 

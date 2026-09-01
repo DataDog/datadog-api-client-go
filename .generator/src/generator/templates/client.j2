@@ -168,9 +168,6 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 	retryCount := 0
 	for {
 		newRequest := copyRequest(request, &rawBody)
-		if retryCount > 0 {
-			newRequest = newRequest.WithContext(ctx)
-		}
 		if c.Cfg.Debug {
 			dump, err := httputil.DumpRequestOut(newRequest, true)
 			if err != nil {
