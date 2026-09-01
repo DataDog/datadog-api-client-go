@@ -49,7 +49,10 @@ jobs:
 
           declare -A versions
           for package in $CHANGED_VERSION_GO_FILES; do
-            base_version=$(git show $BASE_SHA:$package/version.go | grep "Version =" | sed 's/.*"\(.*\)".*/\1/')
+            base_version=""
+            if git cat-file -e "$BASE_SHA:$package/version.go" 2>/dev/null; then
+              base_version=$(git show $BASE_SHA:$package/version.go | grep "Version =" | sed 's/.*"\(.*\)".*/\1/')
+            fi
             head_version=$(git show $HEAD_SHA:$package/version.go | grep "Version =" | sed 's/.*"\(.*\)".*/\1/')
 
             if [ "$base_version" != "$head_version" ]; then
@@ -66,7 +69,7 @@ jobs:
               tag_name="v${versions[$package]}"
             else
               # If the package is not the root, use the package name and version as the tag name
-              tag_name="$package/${versions[$package]}"
+              tag_name="$package/v${versions[$package]}"
             fi
 
             # Get the changelog entries since last release
