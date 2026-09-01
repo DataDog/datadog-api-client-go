@@ -431,6 +431,9 @@ func (a *AgentObservabilityApi) CreateLLMObsAnnotationQueue(ctx _context.Context
 //   - `display_block`: omit `content_id` and provide the rendered content
 //     in `display_block`. The server generates `content_id` as a
 //     deterministic hash of the block list.
+//   - `frontend`: omit `content_id` and provide the web content in
+//     `frontend`. The server returns a deterministic `content_id` for the
+//     content.
 //
 // Items of different types can be mixed in a single request.
 func (a *AgentObservabilityApi) CreateLLMObsAnnotationQueueInteractions(ctx _context.Context, queueId string, body LLMObsAnnotationQueueInteractionsRequest) (LLMObsAnnotationQueueInteractionsResponse, *_nethttp.Response, error) {
@@ -2312,6 +2315,103 @@ func (a *AgentObservabilityApi) ExportLLMObsDataset(ctx _context.Context, projec
 			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 || localVarHTTPResponse.StatusCode == 500 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetLLMObsAnnotatedInteraction Get an annotated queue interaction.
+// Retrieve a single interaction (trace, session, display block, or frontend content) and its annotations for a given annotation queue.
+func (a *AgentObservabilityApi) GetLLMObsAnnotatedInteraction(ctx _context.Context, queueId string, interactionId string) (LLMObsAnnotatedInteractionResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue LLMObsAnnotatedInteractionResponse
+	)
+
+	operationId := "v2.GetLLMObsAnnotatedInteraction"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.AgentObservabilityApi.GetLLMObsAnnotatedInteraction")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/llm-obs/v1/annotation-queues/{queue_id}/annotated-interactions/{interaction_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{queue_id}", _neturl.PathEscape(datadog.ParameterToString(queueId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{interaction_id}", _neturl.PathEscape(datadog.ParameterToString(interactionId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 {
 			var v JSONAPIErrorResponse
 			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {

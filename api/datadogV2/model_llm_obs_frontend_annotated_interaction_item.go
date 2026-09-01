@@ -10,51 +10,50 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsDisplayBlockAnnotatedInteractionItem A display_block interaction with its associated annotations.
-type LLMObsDisplayBlockAnnotatedInteractionItem struct {
+// LLMObsFrontendAnnotatedInteractionItem A frontend interaction with its associated annotations.
+type LLMObsFrontendAnnotatedInteractionItem struct {
 	// List of annotations for this interaction.
 	Annotations []LLMObsAnnotationItemResponse `json:"annotations"`
 	// Whether the current caller can annotate this interaction.
 	CanAnnotate bool `json:"can_annotate"`
-	// Server-generated deterministic identifier derived from the block list.
+	// Server-generated deterministic identifier derived from the content.
 	ContentId string `json:"content_id"`
-	// List of content blocks that make up a `display_block` interaction.
-	// Must contain at least one block.
-	DisplayBlock []LLMObsContentBlock `json:"display_block"`
+	// Web content that makes up a `frontend` interaction.
+	Frontend LLMObsFrontendContent `json:"frontend"`
 	// Unique identifier of the interaction.
 	Id string `json:"id"`
-	// Type discriminator for a `display_block` interaction.
-	Type LLMObsDisplayBlockInteractionType `json:"type"`
+	// Type discriminator for a `frontend` interaction.
+	Type LLMObsFrontendInteractionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewLLMObsDisplayBlockAnnotatedInteractionItem instantiates a new LLMObsDisplayBlockAnnotatedInteractionItem object.
+// NewLLMObsFrontendAnnotatedInteractionItem instantiates a new LLMObsFrontendAnnotatedInteractionItem object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsDisplayBlockAnnotatedInteractionItem(annotations []LLMObsAnnotationItemResponse, canAnnotate bool, contentId string, displayBlock []LLMObsContentBlock, id string, typeVar LLMObsDisplayBlockInteractionType) *LLMObsDisplayBlockAnnotatedInteractionItem {
-	this := LLMObsDisplayBlockAnnotatedInteractionItem{}
+func NewLLMObsFrontendAnnotatedInteractionItem(annotations []LLMObsAnnotationItemResponse, canAnnotate bool, contentId string, frontend LLMObsFrontendContent, id string, typeVar LLMObsFrontendInteractionType) *LLMObsFrontendAnnotatedInteractionItem {
+	this := LLMObsFrontendAnnotatedInteractionItem{}
 	this.Annotations = annotations
 	this.CanAnnotate = canAnnotate
 	this.ContentId = contentId
-	this.DisplayBlock = displayBlock
+	this.Frontend = frontend
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewLLMObsDisplayBlockAnnotatedInteractionItemWithDefaults instantiates a new LLMObsDisplayBlockAnnotatedInteractionItem object.
+// NewLLMObsFrontendAnnotatedInteractionItemWithDefaults instantiates a new LLMObsFrontendAnnotatedInteractionItem object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewLLMObsDisplayBlockAnnotatedInteractionItemWithDefaults() *LLMObsDisplayBlockAnnotatedInteractionItem {
-	this := LLMObsDisplayBlockAnnotatedInteractionItem{}
+func NewLLMObsFrontendAnnotatedInteractionItemWithDefaults() *LLMObsFrontendAnnotatedInteractionItem {
+	this := LLMObsFrontendAnnotatedInteractionItem{}
 	return &this
 }
 
 // GetAnnotations returns the Annotations field value.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetAnnotations() []LLMObsAnnotationItemResponse {
+func (o *LLMObsFrontendAnnotatedInteractionItem) GetAnnotations() []LLMObsAnnotationItemResponse {
 	if o == nil {
 		var ret []LLMObsAnnotationItemResponse
 		return ret
@@ -64,7 +63,7 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetAnnotations() []LLMObsAn
 
 // GetAnnotationsOk returns a tuple with the Annotations field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetAnnotationsOk() (*[]LLMObsAnnotationItemResponse, bool) {
+func (o *LLMObsFrontendAnnotatedInteractionItem) GetAnnotationsOk() (*[]LLMObsAnnotationItemResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -72,12 +71,12 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetAnnotationsOk() (*[]LLMO
 }
 
 // SetAnnotations sets field value.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) SetAnnotations(v []LLMObsAnnotationItemResponse) {
+func (o *LLMObsFrontendAnnotatedInteractionItem) SetAnnotations(v []LLMObsAnnotationItemResponse) {
 	o.Annotations = v
 }
 
 // GetCanAnnotate returns the CanAnnotate field value.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetCanAnnotate() bool {
+func (o *LLMObsFrontendAnnotatedInteractionItem) GetCanAnnotate() bool {
 	if o == nil {
 		var ret bool
 		return ret
@@ -87,7 +86,7 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetCanAnnotate() bool {
 
 // GetCanAnnotateOk returns a tuple with the CanAnnotate field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetCanAnnotateOk() (*bool, bool) {
+func (o *LLMObsFrontendAnnotatedInteractionItem) GetCanAnnotateOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -95,12 +94,12 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetCanAnnotateOk() (*bool, 
 }
 
 // SetCanAnnotate sets field value.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) SetCanAnnotate(v bool) {
+func (o *LLMObsFrontendAnnotatedInteractionItem) SetCanAnnotate(v bool) {
 	o.CanAnnotate = v
 }
 
 // GetContentId returns the ContentId field value.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetContentId() string {
+func (o *LLMObsFrontendAnnotatedInteractionItem) GetContentId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -110,7 +109,7 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetContentId() string {
 
 // GetContentIdOk returns a tuple with the ContentId field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetContentIdOk() (*string, bool) {
+func (o *LLMObsFrontendAnnotatedInteractionItem) GetContentIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -118,35 +117,35 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetContentIdOk() (*string, 
 }
 
 // SetContentId sets field value.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) SetContentId(v string) {
+func (o *LLMObsFrontendAnnotatedInteractionItem) SetContentId(v string) {
 	o.ContentId = v
 }
 
-// GetDisplayBlock returns the DisplayBlock field value.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetDisplayBlock() []LLMObsContentBlock {
+// GetFrontend returns the Frontend field value.
+func (o *LLMObsFrontendAnnotatedInteractionItem) GetFrontend() LLMObsFrontendContent {
 	if o == nil {
-		var ret []LLMObsContentBlock
+		var ret LLMObsFrontendContent
 		return ret
 	}
-	return o.DisplayBlock
+	return o.Frontend
 }
 
-// GetDisplayBlockOk returns a tuple with the DisplayBlock field value
+// GetFrontendOk returns a tuple with the Frontend field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetDisplayBlockOk() (*[]LLMObsContentBlock, bool) {
+func (o *LLMObsFrontendAnnotatedInteractionItem) GetFrontendOk() (*LLMObsFrontendContent, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.DisplayBlock, true
+	return &o.Frontend, true
 }
 
-// SetDisplayBlock sets field value.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) SetDisplayBlock(v []LLMObsContentBlock) {
-	o.DisplayBlock = v
+// SetFrontend sets field value.
+func (o *LLMObsFrontendAnnotatedInteractionItem) SetFrontend(v LLMObsFrontendContent) {
+	o.Frontend = v
 }
 
 // GetId returns the Id field value.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetId() string {
+func (o *LLMObsFrontendAnnotatedInteractionItem) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -156,7 +155,7 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetIdOk() (*string, bool) {
+func (o *LLMObsFrontendAnnotatedInteractionItem) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -164,14 +163,14 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) SetId(v string) {
+func (o *LLMObsFrontendAnnotatedInteractionItem) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetType() LLMObsDisplayBlockInteractionType {
+func (o *LLMObsFrontendAnnotatedInteractionItem) GetType() LLMObsFrontendInteractionType {
 	if o == nil {
-		var ret LLMObsDisplayBlockInteractionType
+		var ret LLMObsFrontendInteractionType
 		return ret
 	}
 	return o.Type
@@ -179,7 +178,7 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetType() LLMObsDisplayBloc
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetTypeOk() (*LLMObsDisplayBlockInteractionType, bool) {
+func (o *LLMObsFrontendAnnotatedInteractionItem) GetTypeOk() (*LLMObsFrontendInteractionType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -187,12 +186,12 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) GetTypeOk() (*LLMObsDisplay
 }
 
 // SetType sets field value.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) SetType(v LLMObsDisplayBlockInteractionType) {
+func (o *LLMObsFrontendAnnotatedInteractionItem) SetType(v LLMObsFrontendInteractionType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o LLMObsDisplayBlockAnnotatedInteractionItem) MarshalJSON() ([]byte, error) {
+func (o LLMObsFrontendAnnotatedInteractionItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -200,7 +199,7 @@ func (o LLMObsDisplayBlockAnnotatedInteractionItem) MarshalJSON() ([]byte, error
 	toSerialize["annotations"] = o.Annotations
 	toSerialize["can_annotate"] = o.CanAnnotate
 	toSerialize["content_id"] = o.ContentId
-	toSerialize["display_block"] = o.DisplayBlock
+	toSerialize["frontend"] = o.Frontend
 	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
 
@@ -211,14 +210,14 @@ func (o LLMObsDisplayBlockAnnotatedInteractionItem) MarshalJSON() ([]byte, error
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *LLMObsDisplayBlockAnnotatedInteractionItem) UnmarshalJSON(bytes []byte) (err error) {
+func (o *LLMObsFrontendAnnotatedInteractionItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Annotations  *[]LLMObsAnnotationItemResponse    `json:"annotations"`
-		CanAnnotate  *bool                              `json:"can_annotate"`
-		ContentId    *string                            `json:"content_id"`
-		DisplayBlock *[]LLMObsContentBlock              `json:"display_block"`
-		Id           *string                            `json:"id"`
-		Type         *LLMObsDisplayBlockInteractionType `json:"type"`
+		Annotations *[]LLMObsAnnotationItemResponse `json:"annotations"`
+		CanAnnotate *bool                           `json:"can_annotate"`
+		ContentId   *string                         `json:"content_id"`
+		Frontend    *LLMObsFrontendContent          `json:"frontend"`
+		Id          *string                         `json:"id"`
+		Type        *LLMObsFrontendInteractionType  `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -232,8 +231,8 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) UnmarshalJSON(bytes []byte)
 	if all.ContentId == nil {
 		return fmt.Errorf("required field content_id missing")
 	}
-	if all.DisplayBlock == nil {
-		return fmt.Errorf("required field display_block missing")
+	if all.Frontend == nil {
+		return fmt.Errorf("required field frontend missing")
 	}
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
@@ -243,7 +242,7 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) UnmarshalJSON(bytes []byte)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"annotations", "can_annotate", "content_id", "display_block", "id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"annotations", "can_annotate", "content_id", "frontend", "id", "type"})
 	} else {
 		return err
 	}
@@ -252,7 +251,10 @@ func (o *LLMObsDisplayBlockAnnotatedInteractionItem) UnmarshalJSON(bytes []byte)
 	o.Annotations = *all.Annotations
 	o.CanAnnotate = *all.CanAnnotate
 	o.ContentId = *all.ContentId
-	o.DisplayBlock = *all.DisplayBlock
+	if all.Frontend.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Frontend = *all.Frontend
 	o.Id = *all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true

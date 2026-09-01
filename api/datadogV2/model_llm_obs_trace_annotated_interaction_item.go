@@ -14,7 +14,7 @@ import (
 // LLMObsTraceAnnotatedInteractionItem A trace, experiment trace, or session interaction with its associated annotations.
 type LLMObsTraceAnnotatedInteractionItem struct {
 	// List of annotations for this interaction.
-	Annotations []LLMObsAnnotationItem `json:"annotations"`
+	Annotations []LLMObsAnnotationItemResponse `json:"annotations"`
 	// Whether the current caller can annotate this interaction.
 	CanAnnotate bool `json:"can_annotate"`
 	// Upstream entity identifier supplied by the caller.
@@ -36,7 +36,7 @@ type LLMObsTraceAnnotatedInteractionItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsTraceAnnotatedInteractionItem(annotations []LLMObsAnnotationItem, canAnnotate bool, contentId string, createdAt time.Time, id string, modifiedAt time.Time, typeVar LLMObsTraceInteractionType) *LLMObsTraceAnnotatedInteractionItem {
+func NewLLMObsTraceAnnotatedInteractionItem(annotations []LLMObsAnnotationItemResponse, canAnnotate bool, contentId string, createdAt time.Time, id string, modifiedAt time.Time, typeVar LLMObsTraceInteractionType) *LLMObsTraceAnnotatedInteractionItem {
 	this := LLMObsTraceAnnotatedInteractionItem{}
 	this.Annotations = annotations
 	this.CanAnnotate = canAnnotate
@@ -57,9 +57,9 @@ func NewLLMObsTraceAnnotatedInteractionItemWithDefaults() *LLMObsTraceAnnotatedI
 }
 
 // GetAnnotations returns the Annotations field value.
-func (o *LLMObsTraceAnnotatedInteractionItem) GetAnnotations() []LLMObsAnnotationItem {
+func (o *LLMObsTraceAnnotatedInteractionItem) GetAnnotations() []LLMObsAnnotationItemResponse {
 	if o == nil {
-		var ret []LLMObsAnnotationItem
+		var ret []LLMObsAnnotationItemResponse
 		return ret
 	}
 	return o.Annotations
@@ -67,7 +67,7 @@ func (o *LLMObsTraceAnnotatedInteractionItem) GetAnnotations() []LLMObsAnnotatio
 
 // GetAnnotationsOk returns a tuple with the Annotations field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsTraceAnnotatedInteractionItem) GetAnnotationsOk() (*[]LLMObsAnnotationItem, bool) {
+func (o *LLMObsTraceAnnotatedInteractionItem) GetAnnotationsOk() (*[]LLMObsAnnotationItemResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -75,7 +75,7 @@ func (o *LLMObsTraceAnnotatedInteractionItem) GetAnnotationsOk() (*[]LLMObsAnnot
 }
 
 // SetAnnotations sets field value.
-func (o *LLMObsTraceAnnotatedInteractionItem) SetAnnotations(v []LLMObsAnnotationItem) {
+func (o *LLMObsTraceAnnotatedInteractionItem) SetAnnotations(v []LLMObsAnnotationItemResponse) {
 	o.Annotations = v
 }
 
@@ -248,13 +248,13 @@ func (o LLMObsTraceAnnotatedInteractionItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsTraceAnnotatedInteractionItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Annotations *[]LLMObsAnnotationItem     `json:"annotations"`
-		CanAnnotate *bool                       `json:"can_annotate"`
-		ContentId   *string                     `json:"content_id"`
-		CreatedAt   *time.Time                  `json:"created_at"`
-		Id          *string                     `json:"id"`
-		ModifiedAt  *time.Time                  `json:"modified_at"`
-		Type        *LLMObsTraceInteractionType `json:"type"`
+		Annotations *[]LLMObsAnnotationItemResponse `json:"annotations"`
+		CanAnnotate *bool                           `json:"can_annotate"`
+		ContentId   *string                         `json:"content_id"`
+		CreatedAt   *time.Time                      `json:"created_at"`
+		Id          *string                         `json:"id"`
+		ModifiedAt  *time.Time                      `json:"modified_at"`
+		Type        *LLMObsTraceInteractionType     `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
