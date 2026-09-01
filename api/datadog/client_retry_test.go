@@ -54,6 +54,25 @@ func TestRetryBackoffIsMinimum(t *testing.T) {
 	})
 }
 
+func TestRetryNegativeOrOverflowingResetUsesBackoff(t *testing.T) {
+	cfg := NewConfiguration()
+	cfg.RetryConfiguration.EnableRetry = true
+	cfg.RetryConfiguration.BackOffBase = 5
+	client := NewAPIClient(cfg)
+
+	for name, reset := range map[string]string{
+		"negative": "-1",
+		"overflow": "9223372037",
+	} {
+		t.Run(name, func(t *testing.T) {
+			delay, retry := client.shouldRetryRequest(retryResponse(http.StatusTooManyRequests, reset), 0)
+			if !retry || *delay != 5*time.Second {
+				t.Fatalf("delay, retry = %v, %t; want 5s, true", *delay, retry)
+			}
+		})
+	}
+}
+
 func TestRetryJitter(t *testing.T) {
 	tests := []struct {
 		name     string
