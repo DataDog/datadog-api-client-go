@@ -782,6 +782,7 @@ func NewConfiguration() *Configuration {
 			"v2.DeleteLLMObsProjects":                                   false,
 			"v2.DeleteLLMObsPrompt":                                     false,
 			"v2.ExportLLMObsDataset":                                    false,
+			"v2.GetLLMObsAnnotatedInteraction":                          false,
 			"v2.GetLLMObsAnnotatedInteractions":                         false,
 			"v2.GetLLMObsAnnotatedInteractionsByTraceIDs":               false,
 			"v2.GetLLMObsAnnotationQueueLabelSchema":                    false,

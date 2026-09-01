@@ -14,16 +14,18 @@ import (
 // LLMObsAnnotatedInteractionByTraceItem An annotated interaction returned by the cross-queue lookup, including the source queue metadata.
 type LLMObsAnnotatedInteractionByTraceItem struct {
 	// List of annotations for this interaction.
-	Annotations []LLMObsAnnotationItem `json:"annotations"`
+	Annotations []LLMObsAnnotationItemResponse `json:"annotations"`
 	// Whether the current caller can annotate this interaction.
 	CanAnnotate bool `json:"can_annotate"`
-	// Upstream entity identifier (trace ID, session ID, or deterministic display_block ID).
+	// Upstream entity identifier (trace ID, session ID, or deterministic display_block or frontend ID).
 	ContentId string `json:"content_id"`
 	// Timestamp when the interaction was added to the queue.
 	CreatedAt time.Time `json:"created_at"`
 	// List of content blocks that make up a `display_block` interaction.
 	// Must contain at least one block.
 	DisplayBlock []LLMObsContentBlock `json:"display_block,omitempty"`
+	// Web content that makes up a `frontend` interaction.
+	Frontend *LLMObsFrontendContent `json:"frontend,omitempty"`
 	// Unique identifier of the interaction.
 	Id string `json:"id"`
 	// Timestamp when the interaction was last updated.
@@ -43,7 +45,7 @@ type LLMObsAnnotatedInteractionByTraceItem struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsAnnotatedInteractionByTraceItem(annotations []LLMObsAnnotationItem, canAnnotate bool, contentId string, createdAt time.Time, id string, modifiedAt time.Time, queueId string, queueName string, typeVar LLMObsAnyInteractionType) *LLMObsAnnotatedInteractionByTraceItem {
+func NewLLMObsAnnotatedInteractionByTraceItem(annotations []LLMObsAnnotationItemResponse, canAnnotate bool, contentId string, createdAt time.Time, id string, modifiedAt time.Time, queueId string, queueName string, typeVar LLMObsAnyInteractionType) *LLMObsAnnotatedInteractionByTraceItem {
 	this := LLMObsAnnotatedInteractionByTraceItem{}
 	this.Annotations = annotations
 	this.CanAnnotate = canAnnotate
@@ -66,9 +68,9 @@ func NewLLMObsAnnotatedInteractionByTraceItemWithDefaults() *LLMObsAnnotatedInte
 }
 
 // GetAnnotations returns the Annotations field value.
-func (o *LLMObsAnnotatedInteractionByTraceItem) GetAnnotations() []LLMObsAnnotationItem {
+func (o *LLMObsAnnotatedInteractionByTraceItem) GetAnnotations() []LLMObsAnnotationItemResponse {
 	if o == nil {
-		var ret []LLMObsAnnotationItem
+		var ret []LLMObsAnnotationItemResponse
 		return ret
 	}
 	return o.Annotations
@@ -76,7 +78,7 @@ func (o *LLMObsAnnotatedInteractionByTraceItem) GetAnnotations() []LLMObsAnnotat
 
 // GetAnnotationsOk returns a tuple with the Annotations field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsAnnotatedInteractionByTraceItem) GetAnnotationsOk() (*[]LLMObsAnnotationItem, bool) {
+func (o *LLMObsAnnotatedInteractionByTraceItem) GetAnnotationsOk() (*[]LLMObsAnnotationItemResponse, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,7 +86,7 @@ func (o *LLMObsAnnotatedInteractionByTraceItem) GetAnnotationsOk() (*[]LLMObsAnn
 }
 
 // SetAnnotations sets field value.
-func (o *LLMObsAnnotatedInteractionByTraceItem) SetAnnotations(v []LLMObsAnnotationItem) {
+func (o *LLMObsAnnotatedInteractionByTraceItem) SetAnnotations(v []LLMObsAnnotationItemResponse) {
 	o.Annotations = v
 }
 
@@ -183,6 +185,34 @@ func (o *LLMObsAnnotatedInteractionByTraceItem) HasDisplayBlock() bool {
 // SetDisplayBlock gets a reference to the given []LLMObsContentBlock and assigns it to the DisplayBlock field.
 func (o *LLMObsAnnotatedInteractionByTraceItem) SetDisplayBlock(v []LLMObsContentBlock) {
 	o.DisplayBlock = v
+}
+
+// GetFrontend returns the Frontend field value if set, zero value otherwise.
+func (o *LLMObsAnnotatedInteractionByTraceItem) GetFrontend() LLMObsFrontendContent {
+	if o == nil || o.Frontend == nil {
+		var ret LLMObsFrontendContent
+		return ret
+	}
+	return *o.Frontend
+}
+
+// GetFrontendOk returns a tuple with the Frontend field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsAnnotatedInteractionByTraceItem) GetFrontendOk() (*LLMObsFrontendContent, bool) {
+	if o == nil || o.Frontend == nil {
+		return nil, false
+	}
+	return o.Frontend, true
+}
+
+// HasFrontend returns a boolean if a field has been set.
+func (o *LLMObsAnnotatedInteractionByTraceItem) HasFrontend() bool {
+	return o != nil && o.Frontend != nil
+}
+
+// SetFrontend gets a reference to the given LLMObsFrontendContent and assigns it to the Frontend field.
+func (o *LLMObsAnnotatedInteractionByTraceItem) SetFrontend(v LLMObsFrontendContent) {
+	o.Frontend = &v
 }
 
 // GetId returns the Id field value.
@@ -317,6 +347,9 @@ func (o LLMObsAnnotatedInteractionByTraceItem) MarshalJSON() ([]byte, error) {
 	if o.DisplayBlock != nil {
 		toSerialize["display_block"] = o.DisplayBlock
 	}
+	if o.Frontend != nil {
+		toSerialize["frontend"] = o.Frontend
+	}
 	toSerialize["id"] = o.Id
 	if o.ModifiedAt.Nanosecond() == 0 {
 		toSerialize["modified_at"] = o.ModifiedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -336,16 +369,17 @@ func (o LLMObsAnnotatedInteractionByTraceItem) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsAnnotatedInteractionByTraceItem) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Annotations  *[]LLMObsAnnotationItem   `json:"annotations"`
-		CanAnnotate  *bool                     `json:"can_annotate"`
-		ContentId    *string                   `json:"content_id"`
-		CreatedAt    *time.Time                `json:"created_at"`
-		DisplayBlock []LLMObsContentBlock      `json:"display_block,omitempty"`
-		Id           *string                   `json:"id"`
-		ModifiedAt   *time.Time                `json:"modified_at"`
-		QueueId      *string                   `json:"queue_id"`
-		QueueName    *string                   `json:"queue_name"`
-		Type         *LLMObsAnyInteractionType `json:"type"`
+		Annotations  *[]LLMObsAnnotationItemResponse `json:"annotations"`
+		CanAnnotate  *bool                           `json:"can_annotate"`
+		ContentId    *string                         `json:"content_id"`
+		CreatedAt    *time.Time                      `json:"created_at"`
+		DisplayBlock []LLMObsContentBlock            `json:"display_block,omitempty"`
+		Frontend     *LLMObsFrontendContent          `json:"frontend,omitempty"`
+		Id           *string                         `json:"id"`
+		ModifiedAt   *time.Time                      `json:"modified_at"`
+		QueueId      *string                         `json:"queue_id"`
+		QueueName    *string                         `json:"queue_name"`
+		Type         *LLMObsAnyInteractionType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -379,7 +413,7 @@ func (o *LLMObsAnnotatedInteractionByTraceItem) UnmarshalJSON(bytes []byte) (err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"annotations", "can_annotate", "content_id", "created_at", "display_block", "id", "modified_at", "queue_id", "queue_name", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"annotations", "can_annotate", "content_id", "created_at", "display_block", "frontend", "id", "modified_at", "queue_id", "queue_name", "type"})
 	} else {
 		return err
 	}
@@ -390,6 +424,10 @@ func (o *LLMObsAnnotatedInteractionByTraceItem) UnmarshalJSON(bytes []byte) (err
 	o.ContentId = *all.ContentId
 	o.CreatedAt = *all.CreatedAt
 	o.DisplayBlock = all.DisplayBlock
+	if all.Frontend != nil && all.Frontend.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Frontend = all.Frontend
 	o.Id = *all.Id
 	o.ModifiedAt = *all.ModifiedAt
 	o.QueueId = *all.QueueId

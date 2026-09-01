@@ -12,6 +12,7 @@ import (
 type LLMObsAnnotatedInteractionItem struct {
 	LLMObsTraceAnnotatedInteractionItem        *LLMObsTraceAnnotatedInteractionItem
 	LLMObsDisplayBlockAnnotatedInteractionItem *LLMObsDisplayBlockAnnotatedInteractionItem
+	LLMObsFrontendAnnotatedInteractionItem     *LLMObsFrontendAnnotatedInteractionItem
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -25,6 +26,11 @@ func LLMObsTraceAnnotatedInteractionItemAsLLMObsAnnotatedInteractionItem(v *LLMO
 // LLMObsDisplayBlockAnnotatedInteractionItemAsLLMObsAnnotatedInteractionItem is a convenience function that returns LLMObsDisplayBlockAnnotatedInteractionItem wrapped in LLMObsAnnotatedInteractionItem.
 func LLMObsDisplayBlockAnnotatedInteractionItemAsLLMObsAnnotatedInteractionItem(v *LLMObsDisplayBlockAnnotatedInteractionItem) LLMObsAnnotatedInteractionItem {
 	return LLMObsAnnotatedInteractionItem{LLMObsDisplayBlockAnnotatedInteractionItem: v}
+}
+
+// LLMObsFrontendAnnotatedInteractionItemAsLLMObsAnnotatedInteractionItem is a convenience function that returns LLMObsFrontendAnnotatedInteractionItem wrapped in LLMObsAnnotatedInteractionItem.
+func LLMObsFrontendAnnotatedInteractionItemAsLLMObsAnnotatedInteractionItem(v *LLMObsFrontendAnnotatedInteractionItem) LLMObsAnnotatedInteractionItem {
+	return LLMObsAnnotatedInteractionItem{LLMObsFrontendAnnotatedInteractionItem: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -65,10 +71,28 @@ func (obj *LLMObsAnnotatedInteractionItem) UnmarshalJSON(data []byte) error {
 		obj.LLMObsDisplayBlockAnnotatedInteractionItem = nil
 	}
 
+	// try to unmarshal data into LLMObsFrontendAnnotatedInteractionItem
+	err = datadog.Unmarshal(data, &obj.LLMObsFrontendAnnotatedInteractionItem)
+	if err == nil {
+		if obj.LLMObsFrontendAnnotatedInteractionItem != nil && obj.LLMObsFrontendAnnotatedInteractionItem.UnparsedObject == nil {
+			jsonLLMObsFrontendAnnotatedInteractionItem, _ := datadog.Marshal(obj.LLMObsFrontendAnnotatedInteractionItem)
+			if string(jsonLLMObsFrontendAnnotatedInteractionItem) == "{}" { // empty struct
+				obj.LLMObsFrontendAnnotatedInteractionItem = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.LLMObsFrontendAnnotatedInteractionItem = nil
+		}
+	} else {
+		obj.LLMObsFrontendAnnotatedInteractionItem = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.LLMObsTraceAnnotatedInteractionItem = nil
 		obj.LLMObsDisplayBlockAnnotatedInteractionItem = nil
+		obj.LLMObsFrontendAnnotatedInteractionItem = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -82,6 +106,10 @@ func (obj LLMObsAnnotatedInteractionItem) MarshalJSON() ([]byte, error) {
 
 	if obj.LLMObsDisplayBlockAnnotatedInteractionItem != nil {
 		return datadog.Marshal(&obj.LLMObsDisplayBlockAnnotatedInteractionItem)
+	}
+
+	if obj.LLMObsFrontendAnnotatedInteractionItem != nil {
+		return datadog.Marshal(&obj.LLMObsFrontendAnnotatedInteractionItem)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -98,6 +126,10 @@ func (obj *LLMObsAnnotatedInteractionItem) GetActualInstance() interface{} {
 
 	if obj.LLMObsDisplayBlockAnnotatedInteractionItem != nil {
 		return obj.LLMObsDisplayBlockAnnotatedInteractionItem
+	}
+
+	if obj.LLMObsFrontendAnnotatedInteractionItem != nil {
+		return obj.LLMObsFrontendAnnotatedInteractionItem
 	}
 
 	// all schemas are nil

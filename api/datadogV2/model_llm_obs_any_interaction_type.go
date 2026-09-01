@@ -19,6 +19,7 @@ const (
 	LLMOBSANYINTERACTIONTYPE_EXPERIMENT_TRACE LLMObsAnyInteractionType = "experiment_trace"
 	LLMOBSANYINTERACTIONTYPE_SESSION          LLMObsAnyInteractionType = "session"
 	LLMOBSANYINTERACTIONTYPE_DISPLAY_BLOCK    LLMObsAnyInteractionType = "display_block"
+	LLMOBSANYINTERACTIONTYPE_FRONTEND         LLMObsAnyInteractionType = "frontend"
 )
 
 var allowedLLMObsAnyInteractionTypeEnumValues = []LLMObsAnyInteractionType{
@@ -26,6 +27,7 @@ var allowedLLMObsAnyInteractionTypeEnumValues = []LLMObsAnyInteractionType{
 	LLMOBSANYINTERACTIONTYPE_EXPERIMENT_TRACE,
 	LLMOBSANYINTERACTIONTYPE_SESSION,
 	LLMOBSANYINTERACTIONTYPE_DISPLAY_BLOCK,
+	LLMOBSANYINTERACTIONTYPE_FRONTEND,
 }
 
 // GetAllowedValues reeturns the list of possible values.
