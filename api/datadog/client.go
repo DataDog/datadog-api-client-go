@@ -169,6 +169,9 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 	retryCount := 0
 	for {
 		newRequest := copyRequest(request, &rawBody)
+		if retryCount > 0 {
+			newRequest = newRequest.WithContext(ctx)
+		}
 		if c.Cfg.Debug {
 			dump, err := httputil.DumpRequestOut(newRequest, true)
 			if err != nil {
@@ -215,11 +218,17 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 		if !shouldRetry {
 			return resp, requestErr
 		}
+		if deadline, ok := ctx.Deadline(); ok && *retryDuration >= time.Until(deadline) {
+			return resp, requestErr
+		}
 
 		select {
 		case <-ctx.Done():
 			return resp, requestErr
 		case <-time.After(*retryDuration):
+			if resp.Body != nil {
+				resp.Body.Close()
+			}
 			retryCount++
 			continue
 		}
@@ -231,31 +240,27 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) (*time.Duration, bool) {
 	enableRetry := c.Cfg.RetryConfiguration.EnableRetry
 	maxRetries := c.Cfg.RetryConfiguration.MaxRetries
-	if !enableRetry || retryCount == maxRetries {
+	if !enableRetry || retryCount >= maxRetries {
 		return nil, false
 	}
-	var err error
-	if v := response.Header.Get(rateLimitResetHeader); response.StatusCode == 429 && v != "" {
-		vInt, err := strconv.ParseInt(v, 10, 64)
-		if err == nil {
-			retryDuration := time.Duration(vInt)*time.Second + c.retryJitter()
-			return &retryDuration, true
+	if response.StatusCode != 429 && response.StatusCode < 500 {
+		return nil, false
+	}
+
+	retryVal := c.Cfg.RetryConfiguration.BackOffBase * math.Pow(c.Cfg.RetryConfiguration.BackOffMultiplier, float64(retryCount))
+	retryDuration := time.Duration(retryVal) * time.Second
+
+	if response.StatusCode == 429 {
+		if reset, err := strconv.ParseInt(response.Header.Get(rateLimitResetHeader), 10, 64); err == nil && reset >= 0 && reset <= int64((1<<63-1)/time.Second) {
+			resetDuration := time.Duration(reset) * time.Second
+			if resetDuration > retryDuration {
+				retryDuration = resetDuration
+			}
 		}
 	}
 
-	// Calculate retry for 5xx errors or if unable to parse value of rateLimitResetHeader
-	// or if the `rateLimitResetHeader` header is missing or if status code >= 500.
-	if err != nil || response.StatusCode == 429 || response.StatusCode >= 500 {
-		// Calculate the retry val (base * multiplier^retryCount)
-		retryVal := c.Cfg.RetryConfiguration.BackOffBase * math.Pow(c.Cfg.RetryConfiguration.BackOffMultiplier, float64(retryCount))
-		// retry duration shouldn't exceed the configured timeout period (skip cap when Timeout==0, which means no timeout)
-		if c.Cfg.HTTPClient.Timeout > 0 {
-			retryVal = math.Min(float64(c.Cfg.HTTPClient.Timeout/time.Second), retryVal)
-		}
-		retryDuration := time.Duration(retryVal)*time.Second + c.retryJitter()
-		return &retryDuration, true
-	}
-	return nil, false
+	retryDuration += c.retryJitter()
+	return &retryDuration, true
 }
 
 func (c *APIClient) retryJitter() time.Duration {
