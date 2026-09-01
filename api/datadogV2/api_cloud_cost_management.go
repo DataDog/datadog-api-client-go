@@ -3909,7 +3909,11 @@ func (a *CloudCostManagementApi) ListCostGCPUsageCostConfigs(ctx _context.Contex
 }
 
 // ListCostOCIConfigs List Cloud Cost Management OCI configs.
+// **Note**: This endpoint is deprecated. View OCI accounts in Cloud Cost Settings in the Datadog web application instead.
+//
 // List the OCI configs.
+//
+// Deprecated: This API is deprecated.
 func (a *CloudCostManagementApi) ListCostOCIConfigs(ctx _context.Context) (OCIConfigsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
