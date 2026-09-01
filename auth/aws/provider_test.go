@@ -11,7 +11,6 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
-	"sync"
 	"sync/atomic"
 	"testing"
 	"time"
@@ -123,31 +122,6 @@ func TestAuthenticateUsesSharedConfigurationProfile(t *testing.T) {
 	}
 }
 
-func TestAuthenticateUsesLocalAWSProfileIntegration(t *testing.T) {
-	if os.Getenv("DD_RUN_AWS_INTEGRATION_TEST") == "" {
-		t.Skip("set DD_RUN_AWS_INTEGRATION_TEST and AWS_PROFILE to test a real local credential chain")
-	}
-
-	var proof string
-	server := newDelegatedTokenServer(t, func(request *http.Request) {
-		proof = strings.TrimPrefix(request.Header.Get("Authorization"), "Delegated ")
-	})
-	defer server.Close()
-
-	provider, err := New()
-	if err != nil {
-		t.Fatalf("creating provider: %v", err)
-	}
-	if _, err := provider.Authenticate(delegatedTokenContext(server.URL), delegatedTokenConfig()); err != nil {
-		t.Fatalf("authenticating from local AWS profile: %v", err)
-	}
-
-	headers, _ := decodeProof(t, proof)
-	if !strings.Contains(firstHeader(headers, "Authorization"), "Credential=") {
-		t.Fatalf("AWS authorization header does not contain a credential: %q", firstHeader(headers, "Authorization"))
-	}
-}
-
 func TestAuthenticateAgainstDatadogIntegration(t *testing.T) {
 	apiURL := os.Getenv("DD_TEST_WIF_API_URL")
 	orgUUID := os.Getenv("DD_ORG_UUID")
@@ -177,103 +151,6 @@ func TestAuthenticateAgainstDatadogIntegration(t *testing.T) {
 	}
 }
 
-func TestAuthenticateCachesDelegatedToken(t *testing.T) {
-	var requests atomic.Int32
-	server := newDelegatedTokenServer(t, func(_ *http.Request) {
-		requests.Add(1)
-	})
-	defer server.Close()
-
-	provider, err := New(
-		WithRegion("us-east-1"),
-		WithStaticCredentials("access-key", "secret-key", ""),
-	)
-	if err != nil {
-		t.Fatalf("creating provider: %v", err)
-	}
-	ctx := delegatedTokenContext(server.URL)
-	for i := 0; i < 2; i++ {
-		credentials, err := provider.Authenticate(ctx, delegatedTokenConfig())
-		if err != nil {
-			t.Fatalf("authentication %d: %v", i+1, err)
-		}
-		credentials.DelegatedToken = "mutated-by-caller"
-	}
-	if got := requests.Load(); got != 1 {
-		t.Fatalf("delegated token requests = %d, want 1", got)
-	}
-}
-
-func TestAuthenticateCoalescesConcurrentTokenRequests(t *testing.T) {
-	var requests atomic.Int32
-	server := newDelegatedTokenServer(t, func(_ *http.Request) {
-		requests.Add(1)
-	})
-	defer server.Close()
-
-	provider, err := New(
-		WithRegion("us-east-1"),
-		WithStaticCredentials("access-key", "secret-key", ""),
-	)
-	if err != nil {
-		t.Fatalf("creating provider: %v", err)
-	}
-
-	const goroutines = 16
-	start := make(chan struct{})
-	errors := make(chan error, goroutines)
-	var waitGroup sync.WaitGroup
-	for i := 0; i < goroutines; i++ {
-		waitGroup.Add(1)
-		go func() {
-			defer waitGroup.Done()
-			<-start
-			_, err := provider.Authenticate(delegatedTokenContext(server.URL), delegatedTokenConfig())
-			errors <- err
-		}()
-	}
-	close(start)
-	waitGroup.Wait()
-	close(errors)
-
-	for err := range errors {
-		if err != nil {
-			t.Errorf("authenticating: %v", err)
-		}
-	}
-	if got := requests.Load(); got != 1 {
-		t.Fatalf("delegated token requests = %d, want 1", got)
-	}
-}
-
-func TestAuthenticateRefreshesExpiringDelegatedToken(t *testing.T) {
-	var requests atomic.Int32
-	server := httptest.NewServer(http.HandlerFunc(func(response http.ResponseWriter, request *http.Request) {
-		requestNumber := requests.Add(1)
-		response.Header().Set("Content-Type", "application/json")
-		_, _ = fmt.Fprintf(response, `{"data":{"attributes":{"access_token":"delegated-token-%d","expires":"%d"}}}`, requestNumber, time.Now().Add(30*time.Second).Unix())
-	}))
-	defer server.Close()
-
-	provider, err := New(
-		WithRegion("us-east-1"),
-		WithStaticCredentials("access-key", "secret-key", ""),
-		WithDelegatedTokenRefreshWindow(time.Minute),
-	)
-	if err != nil {
-		t.Fatalf("creating provider: %v", err)
-	}
-	ctx := delegatedTokenContext(server.URL)
-	for i := 0; i < 2; i++ {
-		if _, err := provider.Authenticate(ctx, delegatedTokenConfig()); err != nil {
-			t.Fatalf("authentication %d: %v", i+1, err)
-		}
-	}
-	if got := requests.Load(); got != 2 {
-		t.Fatalf("delegated token requests = %d, want 2", got)
-	}
-}
-
 func TestWithStaticCredentialsRejectsPartialCredentials(t *testing.T) {
 	if _, err := New(WithStaticCredentials("access-key", "", "")); err == nil {
 		t.Fatal("expected partial static credentials to be rejected")
@@ -285,8 +162,6 @@ func TestGenerateProofResolvesAWSPartitions(t *testing.T) {
 	if err != nil {
 		t.Fatalf("creating provider: %v", err)
 	}
-	provider.now = func() time.Time { return time.Unix(1_700_000_000, 0) }
-
 	proof, err := provider.generateProof(context.Background(), testOrgUUID, aws.Config{Region: "cn-north-1"}, aws.Credentials{
 		AccessKeyID:     "access-key",
 		SecretAccessKey: "secret-key",

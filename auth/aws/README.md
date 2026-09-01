@@ -30,6 +30,6 @@ configuration.DelegatedTokenConfig = &datadog.DelegatedTokenConfig{
 
 The default chain honors standard AWS settings such as `AWS_PROFILE`,
 `AWS_CONFIG_FILE`, and `AWS_SHARED_CREDENTIALS_FILE`. Library callers that do
-not want to use environment selection can pass
-`awsauth.WithSharedConfigProfile("sandbox")`. Explicit credentials remain
-available through `awsauth.WithStaticCredentials`.
+not want to use environment selection can pass AWS SDK load options through
+`awsauth.WithConfigOptions`. Explicit credentials remain available through
+`awsauth.WithStaticCredentials`.

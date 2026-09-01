@@ -28,21 +28,19 @@ import (
 )
 
 const (
-	defaultRegion      = "us-east-1"
-	delegatedTokenSkew = 2 * time.Minute
-	getCallerIdentity  = "Action=GetCallerIdentity&Version=2011-06-15"
-	orgIDHeader        = "x-ddog-org-id"
-	stsService         = "sts"
-	formContentType    = "application/x-www-form-urlencoded; charset=utf-8"
+	defaultRegion     = "us-east-1"
+	getCallerIdentity = "Action=GetCallerIdentity&Version=2011-06-15"
+	orgIDHeader       = "x-ddog-org-id"
+	stsService        = "sts"
+	formContentType   = "application/x-www-form-urlencoded; charset=utf-8"
 )
 
 // Option configures a Provider.
 type Option func(*providerOptions) error
 
 type providerOptions struct {
-	loadOptions   []func(*awsconfig.LoadOptions) error
-	refreshWindow time.Duration
-	httpClient    *http.Client
+	loadOptions []func(*awsconfig.LoadOptions) error
+	httpClient  *http.Client
 }
 
 // WithConfigOptions adds options passed to awsconfig.LoadDefaultConfig.
@@ -67,29 +65,6 @@ func WithRegion(region string) Option {
 	}
 }
 
-// WithSharedConfigProfile selects a named AWS shared-configuration profile.
-func WithSharedConfigProfile(profile string) Option {
-	return func(config *providerOptions) error {
-		if profile != "" {
-			config.loadOptions = append(config.loadOptions, awsconfig.WithSharedConfigProfile(profile))
-		}
-		return nil
-	}
-}
-
-// WithCredentialsProvider overrides the AWS SDK default credential chain.
-// The AWS SDK automatically wraps providers supplied to LoadDefaultConfig in a
-// concurrency-safe credential cache.
-func WithCredentialsProvider(provider aws.CredentialsProvider) Option {
-	return func(config *providerOptions) error {
-		if provider == nil {
-			return errors.New("AWS credentials provider must not be nil")
-		}
-		config.loadOptions = append(config.loadOptions, awsconfig.WithCredentialsProvider(provider))
-		return nil
-	}
-}
-
 // WithStaticCredentials uses explicitly supplied AWS credentials instead of
 // the default credential chain. A session token is optional.
 func WithStaticCredentials(accessKeyID, secretAccessKey, sessionToken string) Option {
@@ -99,18 +74,6 @@ func WithStaticCredentials(accessKeyID, secretAccessKey, sessionToken string) Op
 		}
 		provider := credentials.NewStaticCredentialsProvider(accessKeyID, secretAccessKey, sessionToken)
 		config.loadOptions = append(config.loadOptions, awsconfig.WithCredentialsProvider(provider))
-		return nil
-	}
-}
-
-// WithDelegatedTokenRefreshWindow refreshes Datadog delegated tokens before
-// their expiration. The default is two minutes.
-func WithDelegatedTokenRefreshWindow(window time.Duration) Option {
-	return func(config *providerOptions) error {
-		if window < 0 {
-			return errors.New("delegated token refresh window must not be negative")
-		}
-		config.refreshWindow = window
 		return nil
 	}
 }
@@ -133,18 +96,11 @@ func WithHTTPClient(client *http.Client) Option {
 // credential chain. Configuration and credential retrieval are lazy so clients
 // that disable validation do not contact AWS during construction.
 type Provider struct {
-	loadOptions   []func(*awsconfig.LoadOptions) error
-	refreshWindow time.Duration
-	httpClient    *http.Client
+	loadOptions []func(*awsconfig.LoadOptions) error
+	httpClient  *http.Client
 
 	configMu  sync.Mutex
 	awsConfig *aws.Config
-
-	tokenMu  sync.Mutex
-	token    *datadog.DelegatedTokenCredentials
-	tokenKey string
-
-	now func() time.Time
 }
 
 var _ datadog.DelegatedTokenProvider = (*Provider)(nil)
@@ -152,8 +108,7 @@ var _ datadog.DelegatedTokenProvider = (*Provider)(nil)
 // New creates an AWS delegated-token provider.
 func New(options ...Option) (*Provider, error) {
 	config := providerOptions{
-		refreshWindow: delegatedTokenSkew,
-		httpClient:    http.DefaultClient,
+		httpClient: http.DefaultClient,
 	}
 	for _, option := range options {
 		if option == nil {
@@ -165,10 +120,8 @@ func New(options ...Option) (*Provider, error) {
 	}
 
 	return &Provider{
-		loadOptions:   config.loadOptions,
-		refreshWindow: config.refreshWindow,
-		httpClient:    config.httpClient,
-		now:           time.Now,
+		loadOptions: config.loadOptions,
+		httpClient:  config.httpClient,
 	}, nil
 }
 
@@ -177,19 +130,6 @@ func New(options ...Option) (*Provider, error) {
 func (provider *Provider) Authenticate(ctx context.Context, config *datadog.DelegatedTokenConfig) (*datadog.DelegatedTokenCredentials, error) {
 	if config == nil || config.OrgUUID == "" {
 		return nil, errors.New("missing org UUID in delegated token configuration")
-	}
-
-	tokenURL, err := datadog.GetDelegatedTokenUrl(ctx)
-	if err != nil {
-		return nil, fmt.Errorf("resolving Datadog delegated token URL: %w", err)
-	}
-	tokenKey := config.OrgUUID + "\x00" + tokenURL
-
-	provider.tokenMu.Lock()
-	defer provider.tokenMu.Unlock()
-
-	if provider.token != nil && provider.tokenKey == tokenKey && provider.now().Add(provider.refreshWindow).Before(provider.token.Expiration) {
-		return cloneCredentials(provider.token), nil
 	}
 
 	awsConfig, err := provider.loadAWSConfig(ctx)
@@ -205,6 +145,10 @@ func (provider *Provider) Authenticate(ctx context.Context, config *datadog.Dele
 	if err != nil {
 		return nil, err
 	}
+	tokenURL, err := datadog.GetDelegatedTokenUrl(ctx)
+	if err != nil {
+		return nil, fmt.Errorf("resolving Datadog delegated token URL: %w", err)
+	}
 	token, err := provider.exchangeDelegatedToken(ctx, tokenURL, config.OrgUUID, proof)
 	if err != nil {
 		return nil, fmt.Errorf("exchanging AWS identity proof for Datadog delegated token: %w", err)
@@ -213,9 +157,7 @@ func (provider *Provider) Authenticate(ctx context.Context, config *datadog.Dele
 		return nil, errors.New("Datadog delegated token endpoint returned no credentials")
 	}
 
-	provider.token = cloneCredentials(token)
-	provider.tokenKey = tokenKey
-	return cloneCredentials(token), nil
+	return token, nil
 }
 
 func (provider *Provider) exchangeDelegatedToken(ctx context.Context, tokenURL, orgUUID, proof string) (*datadog.DelegatedTokenCredentials, error) {
@@ -302,7 +244,7 @@ func (provider *Provider) generateProof(ctx context.Context, orgUUID string, con
 		hex.EncodeToString(payloadHash[:]),
 		stsService,
 		stsOptions.Region,
-		provider.now(),
+		time.Now(),
 	); err != nil {
 		return "", fmt.Errorf("signing AWS STS identity request: %w", err)
 	}
@@ -322,12 +264,4 @@ func (provider *Provider) generateProof(ctx context.Context, orgUUID string, con
 		base64.StdEncoding.EncodeToString([]byte(request.URL.String())),
 	}
 	return strings.Join(parts, "|"), nil
-}
-
-func cloneCredentials(credentials *datadog.DelegatedTokenCredentials) *datadog.DelegatedTokenCredentials {
-	if credentials == nil {
-		return nil
-	}
-	cloned := *credentials
-	return &cloned
 }
