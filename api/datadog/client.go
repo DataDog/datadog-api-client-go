@@ -243,25 +243,31 @@ func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) 
 	if !enableRetry || retryCount >= maxRetries {
 		return nil, false
 	}
-	isRetryableStatusCode := response.StatusCode == http.StatusTooManyRequests || response.StatusCode >= http.StatusInternalServerError
-	if !isRetryableStatusCode {
+	isRateLimited := response.StatusCode == http.StatusTooManyRequests
+	isServerError := response.StatusCode >= http.StatusInternalServerError
+	if !isRateLimited && !isServerError {
 		return nil, false
 	}
 
 	retryVal := c.Cfg.RetryConfiguration.BackOffBase * math.Pow(c.Cfg.RetryConfiguration.BackOffMultiplier, float64(retryCount))
 	retryDuration := time.Duration(retryVal) * time.Second
 
-	if response.StatusCode == http.StatusTooManyRequests {
-		if reset, err := strconv.ParseInt(response.Header.Get(rateLimitResetHeader), 10, 64); err == nil && reset >= 0 && reset <= int64((1<<63-1)/time.Second) {
-			resetDuration := time.Duration(reset) * time.Second
-			if resetDuration > retryDuration {
-				retryDuration = resetDuration
-			}
-		}
+	if isRateLimited {
+		retryDuration = max(retryDuration, parseRateLimitReset(response.Header.Get(rateLimitResetHeader)))
 	}
 
 	retryDuration += c.retryJitter()
 	return &retryDuration, true
+}
+
+func parseRateLimitReset(value string) time.Duration {
+	const maxResetSeconds = math.MaxInt64 / int64(time.Second)
+
+	seconds, err := strconv.ParseInt(value, 10, 64)
+	if err != nil || seconds < 0 || seconds > maxResetSeconds {
+		return 0
+	}
+	return time.Duration(seconds) * time.Second
 }
 
 func (c *APIClient) retryJitter() time.Duration {

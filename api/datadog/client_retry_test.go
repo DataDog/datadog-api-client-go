@@ -37,6 +37,7 @@ func TestRetryBackoffIsMinimum(t *testing.T) {
 		"missing":   "",
 		"malformed": "later",
 		"negative":  "-1",
+		"overflow":  "9223372037",
 	} {
 		t.Run(name+" reset uses backoff", func(t *testing.T) {
 			delay, retry := client.shouldRetryRequest(retryResponse(http.StatusTooManyRequests, reset), 0)
