@@ -245,7 +245,8 @@ func (c *APIClient) shouldRetryRequest(response *http.Response, retryCount int) 
 	}
 	isRateLimited := response.StatusCode == http.StatusTooManyRequests
 	isServerError := response.StatusCode >= http.StatusInternalServerError
-	if !isRateLimited && !isServerError {
+	isRetryableStatusCode := isRateLimited || isServerError
+	if !isRetryableStatusCode {
 		return nil, false
 	}
 
