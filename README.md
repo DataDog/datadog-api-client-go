@@ -138,6 +138,14 @@ The default max retry is `3`, you can change it with `MaxRetries`
     configuration.RetryConfiguration.MaxRetries = 3
 ```
 
+Retry delays use `BackOffBase * BackOffMultiplier^retryCount`. For `429`
+responses, `X-Ratelimit-Reset` can extend that delay but cannot shorten it.
+`RetryJitter` adds a random duration up to the configured value.
+
+`HTTPRetryTimeout` is the window after a call starts during which a retry may
+begin; it does not cancel an HTTP request already in progress. Use
+`HTTPClient.Timeout` to limit each individual HTTP request.
+
 ### Configure proxy
 
 If you want to configure proxy, set env var `HTTP_PROXY`, and `HTTPS_PROXY` or set custom
