@@ -1218,6 +1218,7 @@ func (a *OrgGroupsApi) ListOrgGroupMemberships(ctx _context.Context, o ...ListOr
 // ListOrgGroupPoliciesOptionalParameters holds optional parameters for ListOrgGroupPolicies.
 type ListOrgGroupPoliciesOptionalParameters struct {
 	FilterPolicyName *string
+	FilterPolicyType *OrgGroupPolicyFilterPolicyTypeValue
 	PageNumber       *int64
 	PageSize         *int64
 	Sort             *OrgGroupPolicySortOption
@@ -1232,6 +1233,12 @@ func NewListOrgGroupPoliciesOptionalParameters() *ListOrgGroupPoliciesOptionalPa
 // WithFilterPolicyName sets the corresponding parameter name and returns the struct.
 func (r *ListOrgGroupPoliciesOptionalParameters) WithFilterPolicyName(filterPolicyName string) *ListOrgGroupPoliciesOptionalParameters {
 	r.FilterPolicyName = &filterPolicyName
+	return r
+}
+
+// WithFilterPolicyType sets the corresponding parameter name and returns the struct.
+func (r *ListOrgGroupPoliciesOptionalParameters) WithFilterPolicyType(filterPolicyType OrgGroupPolicyFilterPolicyTypeValue) *ListOrgGroupPoliciesOptionalParameters {
+	r.FilterPolicyType = &filterPolicyType
 	return r
 }
 
@@ -1292,6 +1299,9 @@ func (a *OrgGroupsApi) ListOrgGroupPolicies(ctx _context.Context, filterOrgGroup
 	localVarQueryParams.Add("filter[org_group_id]", datadog.ParameterToString(filterOrgGroupId, ""))
 	if optionalParams.FilterPolicyName != nil {
 		localVarQueryParams.Add("filter[policy_name]", datadog.ParameterToString(*optionalParams.FilterPolicyName, ""))
+	}
+	if optionalParams.FilterPolicyType != nil {
+		localVarQueryParams.Add("filter[policy_type]", datadog.ParameterToString(*optionalParams.FilterPolicyType, ""))
 	}
 	if optionalParams.PageNumber != nil {
 		localVarQueryParams.Add("page[number]", datadog.ParameterToString(*optionalParams.PageNumber, ""))
