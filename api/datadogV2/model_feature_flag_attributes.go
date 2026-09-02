@@ -27,6 +27,8 @@ type FeatureFlagAttributes struct {
 	DistributionChannel *string `json:"distribution_channel,omitempty"`
 	// Environment-specific settings for the feature flag.
 	FeatureFlagEnvironments []FeatureFlagEnvironment `json:"feature_flag_environments,omitempty"`
+	// Indicates whether the feature flag is marked as a favorite by the current user.
+	IsFavorite *bool `json:"is_favorite,omitempty"`
 	// JSON schema for validation when value_type is JSON.
 	JsonSchema datadog.NullableString `json:"json_schema,omitempty"`
 	// The unique key of the feature flag.
@@ -37,6 +39,8 @@ type FeatureFlagAttributes struct {
 	Name string `json:"name"`
 	// Indicates whether this feature flag requires approval for changes.
 	RequireApproval *bool `json:"require_approval,omitempty"`
+	// Details about the feature flag's staleness status.
+	StalenessDetails NullableFeatureFlagAttributesStalenessDetails `json:"staleness_details,omitempty"`
 	// Indicates the whether a feature flag is stale or not.
 	StalenessStatus *string `json:"staleness_status,omitempty"`
 	// Tags associated with the feature flag.
@@ -248,6 +252,34 @@ func (o *FeatureFlagAttributes) SetFeatureFlagEnvironments(v []FeatureFlagEnviro
 	o.FeatureFlagEnvironments = v
 }
 
+// GetIsFavorite returns the IsFavorite field value if set, zero value otherwise.
+func (o *FeatureFlagAttributes) GetIsFavorite() bool {
+	if o == nil || o.IsFavorite == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsFavorite
+}
+
+// GetIsFavoriteOk returns a tuple with the IsFavorite field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FeatureFlagAttributes) GetIsFavoriteOk() (*bool, bool) {
+	if o == nil || o.IsFavorite == nil {
+		return nil, false
+	}
+	return o.IsFavorite, true
+}
+
+// HasIsFavorite returns a boolean if a field has been set.
+func (o *FeatureFlagAttributes) HasIsFavorite() bool {
+	return o != nil && o.IsFavorite != nil
+}
+
+// SetIsFavorite gets a reference to the given bool and assigns it to the IsFavorite field.
+func (o *FeatureFlagAttributes) SetIsFavorite(v bool) {
+	o.IsFavorite = &v
+}
+
 // GetJsonSchema returns the JsonSchema field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FeatureFlagAttributes) GetJsonSchema() string {
 	if o == nil || o.JsonSchema.Get() == nil {
@@ -387,6 +419,45 @@ func (o *FeatureFlagAttributes) HasRequireApproval() bool {
 // SetRequireApproval gets a reference to the given bool and assigns it to the RequireApproval field.
 func (o *FeatureFlagAttributes) SetRequireApproval(v bool) {
 	o.RequireApproval = &v
+}
+
+// GetStalenessDetails returns the StalenessDetails field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *FeatureFlagAttributes) GetStalenessDetails() FeatureFlagAttributesStalenessDetails {
+	if o == nil || o.StalenessDetails.Get() == nil {
+		var ret FeatureFlagAttributesStalenessDetails
+		return ret
+	}
+	return *o.StalenessDetails.Get()
+}
+
+// GetStalenessDetailsOk returns a tuple with the StalenessDetails field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *FeatureFlagAttributes) GetStalenessDetailsOk() (*FeatureFlagAttributesStalenessDetails, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.StalenessDetails.Get(), o.StalenessDetails.IsSet()
+}
+
+// HasStalenessDetails returns a boolean if a field has been set.
+func (o *FeatureFlagAttributes) HasStalenessDetails() bool {
+	return o != nil && o.StalenessDetails.IsSet()
+}
+
+// SetStalenessDetails gets a reference to the given NullableFeatureFlagAttributesStalenessDetails and assigns it to the StalenessDetails field.
+func (o *FeatureFlagAttributes) SetStalenessDetails(v FeatureFlagAttributesStalenessDetails) {
+	o.StalenessDetails.Set(&v)
+}
+
+// SetStalenessDetailsNil sets the value for StalenessDetails to be an explicit nil.
+func (o *FeatureFlagAttributes) SetStalenessDetailsNil() {
+	o.StalenessDetails.Set(nil)
+}
+
+// UnsetStalenessDetails ensures that no value is present for StalenessDetails, not even an explicit nil.
+func (o *FeatureFlagAttributes) UnsetStalenessDetails() {
+	o.StalenessDetails.Unset()
 }
 
 // GetStalenessStatus returns the StalenessStatus field value if set, zero value otherwise.
@@ -545,6 +616,9 @@ func (o FeatureFlagAttributes) MarshalJSON() ([]byte, error) {
 	if o.FeatureFlagEnvironments != nil {
 		toSerialize["feature_flag_environments"] = o.FeatureFlagEnvironments
 	}
+	if o.IsFavorite != nil {
+		toSerialize["is_favorite"] = o.IsFavorite
+	}
 	if o.JsonSchema.IsSet() {
 		toSerialize["json_schema"] = o.JsonSchema.Get()
 	}
@@ -555,6 +629,9 @@ func (o FeatureFlagAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize["name"] = o.Name
 	if o.RequireApproval != nil {
 		toSerialize["require_approval"] = o.RequireApproval
+	}
+	if o.StalenessDetails.IsSet() {
+		toSerialize["staleness_details"] = o.StalenessDetails.Get()
 	}
 	if o.StalenessStatus != nil {
 		toSerialize["staleness_status"] = o.StalenessStatus
@@ -581,22 +658,24 @@ func (o FeatureFlagAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *FeatureFlagAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ArchivedAt              datadog.NullableTime     `json:"archived_at,omitempty"`
-		CreatedAt               *time.Time               `json:"created_at,omitempty"`
-		CreatedBy               *uuid.UUID               `json:"created_by,omitempty"`
-		Description             *string                  `json:"description"`
-		DistributionChannel     *string                  `json:"distribution_channel,omitempty"`
-		FeatureFlagEnvironments []FeatureFlagEnvironment `json:"feature_flag_environments,omitempty"`
-		JsonSchema              datadog.NullableString   `json:"json_schema,omitempty"`
-		Key                     *string                  `json:"key"`
-		LastUpdatedBy           *uuid.UUID               `json:"last_updated_by,omitempty"`
-		Name                    *string                  `json:"name"`
-		RequireApproval         *bool                    `json:"require_approval,omitempty"`
-		StalenessStatus         *string                  `json:"staleness_status,omitempty"`
-		Tags                    []string                 `json:"tags,omitempty"`
-		UpdatedAt               *time.Time               `json:"updated_at,omitempty"`
-		ValueType               *ValueType               `json:"value_type"`
-		Variants                *[]Variant               `json:"variants"`
+		ArchivedAt              datadog.NullableTime                          `json:"archived_at,omitempty"`
+		CreatedAt               *time.Time                                    `json:"created_at,omitempty"`
+		CreatedBy               *uuid.UUID                                    `json:"created_by,omitempty"`
+		Description             *string                                       `json:"description"`
+		DistributionChannel     *string                                       `json:"distribution_channel,omitempty"`
+		FeatureFlagEnvironments []FeatureFlagEnvironment                      `json:"feature_flag_environments,omitempty"`
+		IsFavorite              *bool                                         `json:"is_favorite,omitempty"`
+		JsonSchema              datadog.NullableString                        `json:"json_schema,omitempty"`
+		Key                     *string                                       `json:"key"`
+		LastUpdatedBy           *uuid.UUID                                    `json:"last_updated_by,omitempty"`
+		Name                    *string                                       `json:"name"`
+		RequireApproval         *bool                                         `json:"require_approval,omitempty"`
+		StalenessDetails        NullableFeatureFlagAttributesStalenessDetails `json:"staleness_details,omitempty"`
+		StalenessStatus         *string                                       `json:"staleness_status,omitempty"`
+		Tags                    []string                                      `json:"tags,omitempty"`
+		UpdatedAt               *time.Time                                    `json:"updated_at,omitempty"`
+		ValueType               *ValueType                                    `json:"value_type"`
+		Variants                *[]Variant                                    `json:"variants"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -618,7 +697,7 @@ func (o *FeatureFlagAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "created_at", "created_by", "description", "distribution_channel", "feature_flag_environments", "json_schema", "key", "last_updated_by", "name", "require_approval", "staleness_status", "tags", "updated_at", "value_type", "variants"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"archived_at", "created_at", "created_by", "description", "distribution_channel", "feature_flag_environments", "is_favorite", "json_schema", "key", "last_updated_by", "name", "require_approval", "staleness_details", "staleness_status", "tags", "updated_at", "value_type", "variants"})
 	} else {
 		return err
 	}
@@ -630,11 +709,13 @@ func (o *FeatureFlagAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Description = *all.Description
 	o.DistributionChannel = all.DistributionChannel
 	o.FeatureFlagEnvironments = all.FeatureFlagEnvironments
+	o.IsFavorite = all.IsFavorite
 	o.JsonSchema = all.JsonSchema
 	o.Key = *all.Key
 	o.LastUpdatedBy = all.LastUpdatedBy
 	o.Name = *all.Name
 	o.RequireApproval = all.RequireApproval
+	o.StalenessDetails = all.StalenessDetails
 	o.StalenessStatus = all.StalenessStatus
 	o.Tags = all.Tags
 	o.UpdatedAt = all.UpdatedAt

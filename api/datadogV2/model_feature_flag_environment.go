@@ -28,6 +28,8 @@ type FeatureFlagEnvironment struct {
 	EnvironmentQueries []string `json:"environment_queries,omitempty"`
 	// Indicates whether the environment is production.
 	IsProduction *bool `json:"is_production,omitempty"`
+	// Indicates whether full evaluation data is observed for this environment.
+	ObserveFullEvaluationData *bool `json:"observe_full_evaluation_data,omitempty"`
 	// The allocation key used for the override variant.
 	OverrideAllocationKey *string `json:"override_allocation_key,omitempty"`
 	// The ID of the override variant for this environment.
@@ -265,6 +267,34 @@ func (o *FeatureFlagEnvironment) SetIsProduction(v bool) {
 	o.IsProduction = &v
 }
 
+// GetObserveFullEvaluationData returns the ObserveFullEvaluationData field value if set, zero value otherwise.
+func (o *FeatureFlagEnvironment) GetObserveFullEvaluationData() bool {
+	if o == nil || o.ObserveFullEvaluationData == nil {
+		var ret bool
+		return ret
+	}
+	return *o.ObserveFullEvaluationData
+}
+
+// GetObserveFullEvaluationDataOk returns a tuple with the ObserveFullEvaluationData field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FeatureFlagEnvironment) GetObserveFullEvaluationDataOk() (*bool, bool) {
+	if o == nil || o.ObserveFullEvaluationData == nil {
+		return nil, false
+	}
+	return o.ObserveFullEvaluationData, true
+}
+
+// HasObserveFullEvaluationData returns a boolean if a field has been set.
+func (o *FeatureFlagEnvironment) HasObserveFullEvaluationData() bool {
+	return o != nil && o.ObserveFullEvaluationData != nil
+}
+
+// SetObserveFullEvaluationData gets a reference to the given bool and assigns it to the ObserveFullEvaluationData field.
+func (o *FeatureFlagEnvironment) SetObserveFullEvaluationData(v bool) {
+	o.ObserveFullEvaluationData = &v
+}
+
 // GetOverrideAllocationKey returns the OverrideAllocationKey field value if set, zero value otherwise.
 func (o *FeatureFlagEnvironment) GetOverrideAllocationKey() string {
 	if o == nil || o.OverrideAllocationKey == nil {
@@ -447,6 +477,9 @@ func (o FeatureFlagEnvironment) MarshalJSON() ([]byte, error) {
 	if o.IsProduction != nil {
 		toSerialize["is_production"] = o.IsProduction
 	}
+	if o.ObserveFullEvaluationData != nil {
+		toSerialize["observe_full_evaluation_data"] = o.ObserveFullEvaluationData
+	}
 	if o.OverrideAllocationKey != nil {
 		toSerialize["override_allocation_key"] = o.OverrideAllocationKey
 	}
@@ -477,6 +510,7 @@ func (o *FeatureFlagEnvironment) UnmarshalJSON(bytes []byte) (err error) {
 		EnvironmentName            *string                `json:"environment_name,omitempty"`
 		EnvironmentQueries         []string               `json:"environment_queries,omitempty"`
 		IsProduction               *bool                  `json:"is_production,omitempty"`
+		ObserveFullEvaluationData  *bool                  `json:"observe_full_evaluation_data,omitempty"`
 		OverrideAllocationKey      *string                `json:"override_allocation_key,omitempty"`
 		OverrideVariantId          datadog.NullableString `json:"override_variant_id,omitempty"`
 		PendingSuggestionId        datadog.NullableString `json:"pending_suggestion_id,omitempty"`
@@ -494,7 +528,7 @@ func (o *FeatureFlagEnvironment) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"allocations", "default_allocation_key", "default_variant_id", "environment_id", "environment_name", "environment_queries", "is_production", "override_allocation_key", "override_variant_id", "pending_suggestion_id", "require_feature_flag_approval", "status"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"allocations", "default_allocation_key", "default_variant_id", "environment_id", "environment_name", "environment_queries", "is_production", "observe_full_evaluation_data", "override_allocation_key", "override_variant_id", "pending_suggestion_id", "require_feature_flag_approval", "status"})
 	} else {
 		return err
 	}
@@ -507,6 +541,7 @@ func (o *FeatureFlagEnvironment) UnmarshalJSON(bytes []byte) (err error) {
 	o.EnvironmentName = all.EnvironmentName
 	o.EnvironmentQueries = all.EnvironmentQueries
 	o.IsProduction = all.IsProduction
+	o.ObserveFullEvaluationData = all.ObserveFullEvaluationData
 	o.OverrideAllocationKey = all.OverrideAllocationKey
 	o.OverrideVariantId = all.OverrideVariantId
 	o.PendingSuggestionId = all.PendingSuggestionId

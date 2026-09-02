@@ -33,6 +33,9 @@ type AllocationExposureSchedule struct {
 	RolloutOptions RolloutOptions `json:"rollout_options"`
 	// Ordered progression steps for exposure.
 	RolloutSteps []AllocationExposureRolloutStep `json:"rollout_steps"`
+	// The resolved UTC start time computed from `scheduled_start`. This field is
+	// read-only and cannot be set directly.
+	ScheduledStartTime datadog.NullableTime `json:"scheduled_start_time,omitempty"`
 	// The timestamp when the schedule was last updated.
 	UpdatedAt time.Time `json:"updated_at"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -323,6 +326,45 @@ func (o *AllocationExposureSchedule) SetRolloutSteps(v []AllocationExposureRollo
 	o.RolloutSteps = v
 }
 
+// GetScheduledStartTime returns the ScheduledStartTime field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *AllocationExposureSchedule) GetScheduledStartTime() time.Time {
+	if o == nil || o.ScheduledStartTime.Get() == nil {
+		var ret time.Time
+		return ret
+	}
+	return *o.ScheduledStartTime.Get()
+}
+
+// GetScheduledStartTimeOk returns a tuple with the ScheduledStartTime field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *AllocationExposureSchedule) GetScheduledStartTimeOk() (*time.Time, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.ScheduledStartTime.Get(), o.ScheduledStartTime.IsSet()
+}
+
+// HasScheduledStartTime returns a boolean if a field has been set.
+func (o *AllocationExposureSchedule) HasScheduledStartTime() bool {
+	return o != nil && o.ScheduledStartTime.IsSet()
+}
+
+// SetScheduledStartTime gets a reference to the given datadog.NullableTime and assigns it to the ScheduledStartTime field.
+func (o *AllocationExposureSchedule) SetScheduledStartTime(v time.Time) {
+	o.ScheduledStartTime.Set(&v)
+}
+
+// SetScheduledStartTimeNil sets the value for ScheduledStartTime to be an explicit nil.
+func (o *AllocationExposureSchedule) SetScheduledStartTimeNil() {
+	o.ScheduledStartTime.Set(nil)
+}
+
+// UnsetScheduledStartTime ensures that no value is present for ScheduledStartTime, not even an explicit nil.
+func (o *AllocationExposureSchedule) UnsetScheduledStartTime() {
+	o.ScheduledStartTime.Unset()
+}
+
 // GetUpdatedAt returns the UpdatedAt field value.
 func (o *AllocationExposureSchedule) GetUpdatedAt() time.Time {
 	if o == nil {
@@ -373,6 +415,9 @@ func (o AllocationExposureSchedule) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["rollout_options"] = o.RolloutOptions
 	toSerialize["rollout_steps"] = o.RolloutSteps
+	if o.ScheduledStartTime.IsSet() {
+		toSerialize["scheduled_start_time"] = o.ScheduledStartTime.Get()
+	}
 	if o.UpdatedAt.Nanosecond() == 0 {
 		toSerialize["updated_at"] = o.UpdatedAt.Format("2006-01-02T15:04:05Z07:00")
 	} else {
@@ -397,6 +442,7 @@ func (o *AllocationExposureSchedule) UnmarshalJSON(bytes []byte) (err error) {
 		Id                       *uuid.UUID                            `json:"id,omitempty"`
 		RolloutOptions           *RolloutOptions                       `json:"rollout_options"`
 		RolloutSteps             *[]AllocationExposureRolloutStep      `json:"rollout_steps"`
+		ScheduledStartTime       datadog.NullableTime                  `json:"scheduled_start_time,omitempty"`
 		UpdatedAt                *time.Time                            `json:"updated_at"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -422,7 +468,7 @@ func (o *AllocationExposureSchedule) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"absolute_start_time", "allocation_id", "control_variant_id", "created_at", "guardrail_triggered_action", "guardrail_triggers", "id", "rollout_options", "rollout_steps", "updated_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"absolute_start_time", "allocation_id", "control_variant_id", "created_at", "guardrail_triggered_action", "guardrail_triggers", "id", "rollout_options", "rollout_steps", "scheduled_start_time", "updated_at"})
 	} else {
 		return err
 	}
@@ -440,6 +486,7 @@ func (o *AllocationExposureSchedule) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.RolloutOptions = *all.RolloutOptions
 	o.RolloutSteps = *all.RolloutSteps
+	o.ScheduledStartTime = all.ScheduledStartTime
 	o.UpdatedAt = *all.UpdatedAt
 
 	if len(additionalProperties) > 0 {
