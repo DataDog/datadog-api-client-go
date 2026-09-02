@@ -10,18 +10,29 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// EventPriority The priority of the event's monitor. For example, `normal` or `low`.
+// EventPriority The priority of the event alert. Legacy events use `normal` or `low`.
+// Alert events use `1` (highest priority) through `5` (lowest priority).
 type EventPriority string
 
 // List of EventPriority.
 const (
-	EVENTPRIORITY_NORMAL EventPriority = "normal"
-	EVENTPRIORITY_LOW    EventPriority = "low"
+	EVENTPRIORITY_NORMAL         EventPriority = "normal"
+	EVENTPRIORITY_LOW            EventPriority = "low"
+	EVENTPRIORITY_PRIORITY_ONE   EventPriority = "1"
+	EVENTPRIORITY_PRIORITY_TWO   EventPriority = "2"
+	EVENTPRIORITY_PRIORITY_THREE EventPriority = "3"
+	EVENTPRIORITY_PRIORITY_FOUR  EventPriority = "4"
+	EVENTPRIORITY_PRIORITY_FIVE  EventPriority = "5"
 )
 
 var allowedEventPriorityEnumValues = []EventPriority{
 	EVENTPRIORITY_NORMAL,
 	EVENTPRIORITY_LOW,
+	EVENTPRIORITY_PRIORITY_ONE,
+	EVENTPRIORITY_PRIORITY_TWO,
+	EVENTPRIORITY_PRIORITY_THREE,
+	EVENTPRIORITY_PRIORITY_FOUR,
+	EVENTPRIORITY_PRIORITY_FIVE,
 }
 
 // GetAllowedValues reeturns the list of possible values.

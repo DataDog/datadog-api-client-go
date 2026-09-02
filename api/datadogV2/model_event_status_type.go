@@ -10,16 +10,18 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// EventStatusType If an alert event is enabled, its status is one of the following:
-// `failure`, `error`, `warning`, `info`, `success`, `user_update`,
-// `recommendation`, or `snapshot`.
+// EventStatusType The event status. Legacy events can use `failure`, `error`, `warning`,
+// `info`, `success`, `user_update`, `recommendation`, or `snapshot`.
+// Alert events can use `error`, `warn`, or `ok`.
 type EventStatusType string
 
 // List of EventStatusType.
 const (
 	EVENTSTATUSTYPE_FAILURE        EventStatusType = "failure"
 	EVENTSTATUSTYPE_ERROR          EventStatusType = "error"
+	EVENTSTATUSTYPE_WARN           EventStatusType = "warn"
 	EVENTSTATUSTYPE_WARNING        EventStatusType = "warning"
+	EVENTSTATUSTYPE_OK             EventStatusType = "ok"
 	EVENTSTATUSTYPE_INFO           EventStatusType = "info"
 	EVENTSTATUSTYPE_SUCCESS        EventStatusType = "success"
 	EVENTSTATUSTYPE_USER_UPDATE    EventStatusType = "user_update"
@@ -30,7 +32,9 @@ const (
 var allowedEventStatusTypeEnumValues = []EventStatusType{
 	EVENTSTATUSTYPE_FAILURE,
 	EVENTSTATUSTYPE_ERROR,
+	EVENTSTATUSTYPE_WARN,
 	EVENTSTATUSTYPE_WARNING,
+	EVENTSTATUSTYPE_OK,
 	EVENTSTATUSTYPE_INFO,
 	EVENTSTATUSTYPE_SUCCESS,
 	EVENTSTATUSTYPE_USER_UPDATE,
