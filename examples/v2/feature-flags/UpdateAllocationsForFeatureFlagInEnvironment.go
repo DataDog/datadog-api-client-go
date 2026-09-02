@@ -27,6 +27,7 @@ func main() {
 						Id:                datadog.PtrUUID(uuid.MustParse("550e8400-e29b-41d4-a716-446655440010")),
 						RolloutOptions: datadogV2.RolloutOptionsRequest{
 							Autostart:           *datadog.NewNullableBool(datadog.PtrBool(false)),
+							ScheduledStart:      datadog.PtrString("absolute:2025-06-13T12:00:00Z"),
 							SelectionIntervalMs: datadog.PtrInt64(3600000),
 							Strategy:            datadogV2.ROLLOUTSTRATEGY_UNIFORM_INTERVALS,
 						},

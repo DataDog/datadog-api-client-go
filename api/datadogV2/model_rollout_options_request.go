@@ -12,8 +12,20 @@ import (
 
 // RolloutOptionsRequest Rollout options request payload.
 type RolloutOptionsRequest struct {
-	// Whether the schedule should begin automatically.
+	// Whether the schedule should begin automatically. Deprecated in favor of
+	// `scheduled_start`, which takes precedence when both are set.
+	// Deprecated
 	Autostart datadog.NullableBool `json:"autostart,omitempty"`
+	// Controls when the schedule starts. Supersedes `autostart`. One of:
+	//
+	// - `none`: create the schedule without starting it.
+	// - `now`: start the schedule immediately.
+	// - `relative:<duration>`: start after a duration (for example `relative:2h`).
+	// - `absolute:<RFC3339 timestamp>`: start at a specific time (for example `absolute:2025-06-13T12:00:00Z`).
+	//
+	// An `absolute` timestamp in the past or present is treated as `now`. A future start time
+	// is not supported for allocations linked to a standard experiment.
+	ScheduledStart *string `json:"scheduled_start,omitempty"`
 	// Interval in milliseconds for uniform interval strategies.
 	SelectionIntervalMs *int64 `json:"selection_interval_ms,omitempty"`
 	// The progression strategy used by a progressive rollout.
@@ -42,6 +54,7 @@ func NewRolloutOptionsRequestWithDefaults() *RolloutOptionsRequest {
 }
 
 // GetAutostart returns the Autostart field value if set, zero value otherwise (both if not set or set to explicit null).
+// Deprecated
 func (o *RolloutOptionsRequest) GetAutostart() bool {
 	if o == nil || o.Autostart.Get() == nil {
 		var ret bool
@@ -53,6 +66,7 @@ func (o *RolloutOptionsRequest) GetAutostart() bool {
 // GetAutostartOk returns a tuple with the Autostart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
+// Deprecated
 func (o *RolloutOptionsRequest) GetAutostartOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
@@ -66,6 +80,7 @@ func (o *RolloutOptionsRequest) HasAutostart() bool {
 }
 
 // SetAutostart gets a reference to the given datadog.NullableBool and assigns it to the Autostart field.
+// Deprecated
 func (o *RolloutOptionsRequest) SetAutostart(v bool) {
 	o.Autostart.Set(&v)
 }
@@ -78,6 +93,34 @@ func (o *RolloutOptionsRequest) SetAutostartNil() {
 // UnsetAutostart ensures that no value is present for Autostart, not even an explicit nil.
 func (o *RolloutOptionsRequest) UnsetAutostart() {
 	o.Autostart.Unset()
+}
+
+// GetScheduledStart returns the ScheduledStart field value if set, zero value otherwise.
+func (o *RolloutOptionsRequest) GetScheduledStart() string {
+	if o == nil || o.ScheduledStart == nil {
+		var ret string
+		return ret
+	}
+	return *o.ScheduledStart
+}
+
+// GetScheduledStartOk returns a tuple with the ScheduledStart field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *RolloutOptionsRequest) GetScheduledStartOk() (*string, bool) {
+	if o == nil || o.ScheduledStart == nil {
+		return nil, false
+	}
+	return o.ScheduledStart, true
+}
+
+// HasScheduledStart returns a boolean if a field has been set.
+func (o *RolloutOptionsRequest) HasScheduledStart() bool {
+	return o != nil && o.ScheduledStart != nil
+}
+
+// SetScheduledStart gets a reference to the given string and assigns it to the ScheduledStart field.
+func (o *RolloutOptionsRequest) SetScheduledStart(v string) {
+	o.ScheduledStart = &v
 }
 
 // GetSelectionIntervalMs returns the SelectionIntervalMs field value if set, zero value otherwise.
@@ -140,6 +183,9 @@ func (o RolloutOptionsRequest) MarshalJSON() ([]byte, error) {
 	if o.Autostart.IsSet() {
 		toSerialize["autostart"] = o.Autostart.Get()
 	}
+	if o.ScheduledStart != nil {
+		toSerialize["scheduled_start"] = o.ScheduledStart
+	}
 	if o.SelectionIntervalMs != nil {
 		toSerialize["selection_interval_ms"] = o.SelectionIntervalMs
 	}
@@ -155,6 +201,7 @@ func (o RolloutOptionsRequest) MarshalJSON() ([]byte, error) {
 func (o *RolloutOptionsRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Autostart           datadog.NullableBool `json:"autostart,omitempty"`
+		ScheduledStart      *string              `json:"scheduled_start,omitempty"`
 		SelectionIntervalMs *int64               `json:"selection_interval_ms,omitempty"`
 		Strategy            *RolloutStrategy     `json:"strategy"`
 	}{}
@@ -166,13 +213,14 @@ func (o *RolloutOptionsRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"autostart", "selection_interval_ms", "strategy"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"autostart", "scheduled_start", "selection_interval_ms", "strategy"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Autostart = all.Autostart
+	o.ScheduledStart = all.ScheduledStart
 	o.SelectionIntervalMs = all.SelectionIntervalMs
 	if !all.Strategy.IsValid() {
 		hasInvalidField = true
