@@ -958,6 +958,7 @@
 //   - [ProductAnalyticsApi.QueryProductAnalyticsScalar]
 //   - [ProductAnalyticsApi.QueryProductAnalyticsTimeseries]
 //   - [ProductAnalyticsApi.SubmitProductAnalyticsEvent]
+//   - [ProductCatalogApi.ListProductCatalogSKUs]
 //   - [RUMApi.AggregateRUMEvents]
 //   - [RUMApi.CreateRUMApplication]
 //   - [RUMApi.DeleteRUMApplication]
