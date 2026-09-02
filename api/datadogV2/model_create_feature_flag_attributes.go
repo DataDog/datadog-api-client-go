@@ -22,6 +22,19 @@ type CreateFeatureFlagAttributes struct {
 	Key string `json:"key"`
 	// The name of the feature flag.
 	Name string `json:"name"`
+	// Query used to determine which change events on this feature flag trigger notifications
+	// to `rule_targets`. Uses Datadog log search syntax (`AND`, `OR`, `NOT`, parentheses) to
+	// match against the `notification_type` facet.
+	//
+	// Supported `notification_type` values for a feature flag are: `flag_enabled_disabled`,
+	// `flag_archived`, `flag_approval_required`, `rollout_started`, `rollout_scheduled`,
+	// `rollout_step_started`, `rollout_paused_guardrail`, `rollout_paused_user`,
+	// `rollout_aborted_guardrail`, `rollout_aborted_user`, `targeting_rule_created`,
+	// `targeting_rule_updated`, `targeting_rule_updated_via_filter`, and
+	// `targeting_rule_deleted`.
+	NotificationRuleQuery datadog.NullableString `json:"notification_rule_query,omitempty"`
+	// Targets to notify about changes to this feature flag that match `notification_rule_query`.
+	RuleTargets []NotificationRuleTarget `json:"rule_targets,omitempty"`
 	// The type of values for the feature flag variants.
 	ValueType ValueType `json:"value_type"`
 	// The variants of the feature flag.
@@ -200,6 +213,73 @@ func (o *CreateFeatureFlagAttributes) SetName(v string) {
 	o.Name = v
 }
 
+// GetNotificationRuleQuery returns the NotificationRuleQuery field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *CreateFeatureFlagAttributes) GetNotificationRuleQuery() string {
+	if o == nil || o.NotificationRuleQuery.Get() == nil {
+		var ret string
+		return ret
+	}
+	return *o.NotificationRuleQuery.Get()
+}
+
+// GetNotificationRuleQueryOk returns a tuple with the NotificationRuleQuery field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *CreateFeatureFlagAttributes) GetNotificationRuleQueryOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.NotificationRuleQuery.Get(), o.NotificationRuleQuery.IsSet()
+}
+
+// HasNotificationRuleQuery returns a boolean if a field has been set.
+func (o *CreateFeatureFlagAttributes) HasNotificationRuleQuery() bool {
+	return o != nil && o.NotificationRuleQuery.IsSet()
+}
+
+// SetNotificationRuleQuery gets a reference to the given datadog.NullableString and assigns it to the NotificationRuleQuery field.
+func (o *CreateFeatureFlagAttributes) SetNotificationRuleQuery(v string) {
+	o.NotificationRuleQuery.Set(&v)
+}
+
+// SetNotificationRuleQueryNil sets the value for NotificationRuleQuery to be an explicit nil.
+func (o *CreateFeatureFlagAttributes) SetNotificationRuleQueryNil() {
+	o.NotificationRuleQuery.Set(nil)
+}
+
+// UnsetNotificationRuleQuery ensures that no value is present for NotificationRuleQuery, not even an explicit nil.
+func (o *CreateFeatureFlagAttributes) UnsetNotificationRuleQuery() {
+	o.NotificationRuleQuery.Unset()
+}
+
+// GetRuleTargets returns the RuleTargets field value if set, zero value otherwise.
+func (o *CreateFeatureFlagAttributes) GetRuleTargets() []NotificationRuleTarget {
+	if o == nil || o.RuleTargets == nil {
+		var ret []NotificationRuleTarget
+		return ret
+	}
+	return o.RuleTargets
+}
+
+// GetRuleTargetsOk returns a tuple with the RuleTargets field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateFeatureFlagAttributes) GetRuleTargetsOk() (*[]NotificationRuleTarget, bool) {
+	if o == nil || o.RuleTargets == nil {
+		return nil, false
+	}
+	return &o.RuleTargets, true
+}
+
+// HasRuleTargets returns a boolean if a field has been set.
+func (o *CreateFeatureFlagAttributes) HasRuleTargets() bool {
+	return o != nil && o.RuleTargets != nil
+}
+
+// SetRuleTargets gets a reference to the given []NotificationRuleTarget and assigns it to the RuleTargets field.
+func (o *CreateFeatureFlagAttributes) SetRuleTargets(v []NotificationRuleTarget) {
+	o.RuleTargets = v
+}
+
 // GetValueType returns the ValueType field value.
 func (o *CreateFeatureFlagAttributes) GetValueType() ValueType {
 	if o == nil {
@@ -261,6 +341,12 @@ func (o CreateFeatureFlagAttributes) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["key"] = o.Key
 	toSerialize["name"] = o.Name
+	if o.NotificationRuleQuery.IsSet() {
+		toSerialize["notification_rule_query"] = o.NotificationRuleQuery.Get()
+	}
+	if o.RuleTargets != nil {
+		toSerialize["rule_targets"] = o.RuleTargets
+	}
 	toSerialize["value_type"] = o.ValueType
 	toSerialize["variants"] = o.Variants
 
@@ -273,13 +359,15 @@ func (o CreateFeatureFlagAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateFeatureFlagAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DefaultVariantKey datadog.NullableString `json:"default_variant_key,omitempty"`
-		Description       *string                `json:"description"`
-		JsonSchema        datadog.NullableString `json:"json_schema,omitempty"`
-		Key               *string                `json:"key"`
-		Name              *string                `json:"name"`
-		ValueType         *ValueType             `json:"value_type"`
-		Variants          *[]CreateVariant       `json:"variants"`
+		DefaultVariantKey     datadog.NullableString   `json:"default_variant_key,omitempty"`
+		Description           *string                  `json:"description"`
+		JsonSchema            datadog.NullableString   `json:"json_schema,omitempty"`
+		Key                   *string                  `json:"key"`
+		Name                  *string                  `json:"name"`
+		NotificationRuleQuery datadog.NullableString   `json:"notification_rule_query,omitempty"`
+		RuleTargets           []NotificationRuleTarget `json:"rule_targets,omitempty"`
+		ValueType             *ValueType               `json:"value_type"`
+		Variants              *[]CreateVariant         `json:"variants"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -301,7 +389,7 @@ func (o *CreateFeatureFlagAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"default_variant_key", "description", "json_schema", "key", "name", "value_type", "variants"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"default_variant_key", "description", "json_schema", "key", "name", "notification_rule_query", "rule_targets", "value_type", "variants"})
 	} else {
 		return err
 	}
@@ -312,6 +400,8 @@ func (o *CreateFeatureFlagAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.JsonSchema = all.JsonSchema
 	o.Key = *all.Key
 	o.Name = *all.Name
+	o.NotificationRuleQuery = all.NotificationRuleQuery
+	o.RuleTargets = all.RuleTargets
 	if !all.ValueType.IsValid() {
 		hasInvalidField = true
 	} else {
