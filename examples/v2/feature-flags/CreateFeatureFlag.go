@@ -17,11 +17,16 @@ func main() {
 		Data: datadogV2.CreateFeatureFlagData{
 			Type: datadogV2.CREATEFEATUREFLAGDATATYPE_FEATURE_FLAGS,
 			Attributes: datadogV2.CreateFeatureFlagAttributes{
-				DefaultVariantKey: *datadog.NewNullableString(datadog.PtrString("variant-Example-Feature-Flag-1")),
-				Description:       "Test feature flag for BDD scenarios",
-				Key:               "test-feature-flag-Example-Feature-Flag",
-				Name:              "Test Feature Flag Example-Feature-Flag",
-				ValueType:         datadogV2.VALUETYPE_BOOLEAN,
+				DefaultVariantKey:   *datadog.NewNullableString(datadog.PtrString("variant-Example-Feature-Flag-1")),
+				DistributionChannel: datadogV2.FEATUREFLAGDISTRIBUTIONCHANNEL_SERVER.Ptr(),
+				Key:                 "test-feature-flag-Example-Feature-Flag",
+				Name:                "Test Feature Flag Example-Feature-Flag",
+				RequireApproval:     datadog.PtrBool(false),
+				StalenessStatus:     datadogV2.CREATEFEATUREFLAGSTALENESSSTATUS_PERMANENT.Ptr(),
+				Tags: []string{
+					"env:api-client-test",
+				},
+				ValueType: datadogV2.VALUETYPE_BOOLEAN,
 				Variants: []datadogV2.CreateVariant{
 					{
 						Key:   "variant-Example-Feature-Flag-1",
