@@ -1258,6 +1258,7 @@ func NewConfiguration() *Configuration {
 			"v2.QueryEventFilteredUsers":                                false,
 			"v2.QueryUsers":                                             false,
 			"v2.UpdateConnection":                                       false,
+			"v2.ListProductCatalogSKUs":                                 false,
 			"v2.GetPrunedTraceByID":                                     false,
 			"v2.GetTraceByID":                                           false,
 			"v2.GetAsmServiceByName":                                    false,
