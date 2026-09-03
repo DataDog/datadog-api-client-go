@@ -13,6 +13,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log"
 	"net/http"
 	"strconv"
 	"strings"
@@ -140,6 +141,7 @@ func (provider *Provider) Authenticate(ctx context.Context, config *datadog.Dele
 	if err != nil {
 		return nil, fmt.Errorf("retrieving AWS credentials: %w", err)
 	}
+	log.Printf("[INFO] Datadog AWS delegated auth using credential source %q in region %q", credentials.Source, awsConfig.Region)
 
 	proof, err := provider.generateProof(ctx, config.OrgUUID, *awsConfig, credentials)
 	if err != nil {
