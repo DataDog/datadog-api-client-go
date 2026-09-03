@@ -1,4 +1,4 @@
-// List RUM operation strong links returns "OK" response
+// List RUM operation links returns "OK" response
 
 package main
 

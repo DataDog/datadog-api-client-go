@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMOperationStrongLinkStatus The status of a RUM operation strong link.
+// RUMOperationStrongLinkStatus The status of a RUM operation link.
 type RUMOperationStrongLinkStatus string
 
 // List of RUMOperationStrongLinkStatus.

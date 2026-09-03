@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMOperationStrongLinkResponse The response for a single RUM operation strong link.
+// RUMOperationStrongLinkResponse The response for a single RUM operation link.
 type RUMOperationStrongLinkResponse struct {
-	// The data object in a RUM operation strong link response.
+	// The data object in a RUM operation link response.
 	Data RUMOperationStrongLinkResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

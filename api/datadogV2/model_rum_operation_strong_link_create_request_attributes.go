@@ -12,13 +12,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMOperationStrongLinkCreateRequestAttributes Attributes for creating a RUM operation strong link.
+// RUMOperationStrongLinkCreateRequestAttributes Attributes for creating a RUM operation link.
 type RUMOperationStrongLinkCreateRequestAttributes struct {
 	// The RUM application ID used when creating a stub operation from `operation_name`.
 	ApplicationId *uuid.UUID `json:"application_id,omitempty"`
-	// A description of the strong link.
+	// A description of the link.
 	Description datadog.NullableString `json:"description,omitempty"`
-	// The unique identifier of the feature to link.
+	// The unique identifier of the journey to link.
 	FeatureId string `json:"feature_id"`
 	// The unique identifier of the RUM operation to link. Either `operation_id` or
 	// `operation_name` is required.
@@ -26,9 +26,9 @@ type RUMOperationStrongLinkCreateRequestAttributes struct {
 	// The name of the RUM operation to link. Either `operation_id` or `operation_name` is
 	// required. If no operation with this name exists, a stub operation is created.
 	OperationName *string `json:"operation_name,omitempty"`
-	// The status of a RUM operation strong link.
+	// The status of a RUM operation link.
 	Status *RUMOperationStrongLinkStatus `json:"status,omitempty"`
-	// A list of tags associated with the strong link.
+	// A list of tags associated with the link.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

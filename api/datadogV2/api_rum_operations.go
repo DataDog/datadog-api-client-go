@@ -116,8 +116,8 @@ func (a *RUMOperationsApi) CreateRUMOperation(ctx _context.Context, body RUMOper
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// CreateRUMOperationStrongLink Create a RUM operation strong link.
-// Create a strong link between a RUM operation and a feature, confirming that the feature
+// CreateRUMOperationStrongLink Create a RUM operation link.
+// Create a link between a RUM operation and a journey, confirming that the journey
 // belongs to the operation. The operation can be identified by `operation_id` or `operation_name`;
 // if `operation_name` does not match an existing operation, a stub operation is created.
 func (a *RUMOperationsApi) CreateRUMOperationStrongLink(ctx _context.Context, body RUMOperationStrongLinkCreateRequest) (RUMOperationStrongLinkResponse, *_nethttp.Response, error) {
@@ -302,8 +302,8 @@ func (a *RUMOperationsApi) DeleteRUMOperation(ctx _context.Context, rumOperation
 	return localVarHTTPResponse, nil
 }
 
-// DeleteRUMOperationStrongLink Delete a RUM operation strong link.
-// Delete the strong link between a RUM operation and a feature.
+// DeleteRUMOperationStrongLink Delete a RUM operation link.
+// Delete the link between a RUM operation and a journey.
 func (a *RUMOperationsApi) DeleteRUMOperationStrongLink(ctx _context.Context, rumOperationId string, featureId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -619,9 +619,9 @@ func (r *ListRUMOperationStrongLinksOptionalParameters) WithPageLimit(pageLimit 
 	return r
 }
 
-// ListRUMOperationStrongLinks List RUM operation strong links.
-// List strong links between RUM operations and features. A strong link confirms that a feature
-// belongs to an operation. Provide `operation_id`, `feature_id`, or both to filter results;
+// ListRUMOperationStrongLinks List RUM operation links.
+// List links between RUM operations and journeys. A link confirms that a journey
+// belongs to an operation. Provide `operation_id`, `feature_id` (journey ID), or both to filter results;
 // at least one is required.
 func (a *RUMOperationsApi) ListRUMOperationStrongLinks(ctx _context.Context, o ...ListRUMOperationStrongLinksOptionalParameters) (RUMOperationStrongLinksListResponse, *_nethttp.Response, error) {
 	var (
@@ -787,7 +787,8 @@ func (r *ListRUMOperationsOptionalParameters) WithApplicationId(applicationId uu
 }
 
 // ListRUMOperations Search RUM operations.
-// Search RUM operations for your organization. Supports filtering by query, creator, team, feature, and application.
+// Search RUM operations for your organization. Supports filtering by query, creator, team,
+// journey, and application.
 func (a *RUMOperationsApi) ListRUMOperations(ctx _context.Context, o ...ListRUMOperationsOptionalParameters) (RUMOperationsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1010,8 +1011,8 @@ func (a *RUMOperationsApi) UpdateRUMOperation(ctx _context.Context, rumOperation
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// UpdateRUMOperationStrongLink Update a RUM operation strong link.
-// Update the status of a strong link between a RUM operation and a feature.
+// UpdateRUMOperationStrongLink Update a RUM operation link.
+// Update the status of a link between a RUM operation and a journey.
 func (a *RUMOperationsApi) UpdateRUMOperationStrongLink(ctx _context.Context, rumOperationId string, featureId string, body RUMOperationStrongLinkUpdateRequest) (RUMOperationStrongLinkResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
