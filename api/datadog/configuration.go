@@ -134,8 +134,11 @@ type RetryConfiguration struct {
 	EnableRetry       bool
 	BackOffMultiplier float64
 	BackOffBase       float64
-	HTTPRetryTimeout  time.Duration
-	MaxRetries        int
+	// HTTPRetryTimeout is the time after CallAPI starts during which retries may begin.
+	// It does not cancel an HTTP request that has already started.
+	HTTPRetryTimeout time.Duration
+	MaxRetries       int
+	RetryJitter      time.Duration
 }
 
 // NewConfiguration returns a new Configuration object.
@@ -1136,6 +1139,11 @@ func NewConfiguration() *Configuration {
 			"v2.UpdateIncidentUserDefinedField":                         false,
 			"v2.UpdateIncidentUserDefinedRole":                          false,
 			"v2.UpdateTimestampOverride":                                false,
+			"v2.CreateDatabricksIntegrationAccount":                     false,
+			"v2.DeleteDatabricksIntegrationAccount":                     false,
+			"v2.GetDatabricksIntegrationAccount":                        false,
+			"v2.ListDatabricksIntegrationAccounts":                      false,
+			"v2.UpdateDatabricksIntegrationAccount":                     false,
 			"v2.CreateElasticCloudIntegrationAccount":                   false,
 			"v2.DeleteElasticCloudIntegrationAccount":                   false,
 			"v2.GetElasticCloudIntegrationAccount":                      false,
