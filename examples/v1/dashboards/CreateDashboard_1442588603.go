@@ -51,7 +51,7 @@ func main() {
 										},
 										Env:            "staging",
 										PrimaryTagName: datadog.PtrString("datacenter"),
-										OperationName:  datadog.PtrString("universal.http.client"),
+										OperationName:  "universal.http.client",
 									}},
 								RequestType: datadogV1.WIDGETHISTOGRAMREQUESTTYPE_HISTOGRAM.Ptr(),
 								Style: &datadogV1.WidgetStyle{
