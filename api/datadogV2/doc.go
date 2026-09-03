@@ -80,6 +80,7 @@
 //   - [AgentObservabilityApi.DeleteLLMObsProjects]
 //   - [AgentObservabilityApi.DeleteLLMObsPrompt]
 //   - [AgentObservabilityApi.ExportLLMObsDataset]
+//   - [AgentObservabilityApi.GetLLMObsAnnotatedInteraction]
 //   - [AgentObservabilityApi.GetLLMObsAnnotatedInteractions]
 //   - [AgentObservabilityApi.GetLLMObsAnnotatedInteractionsByTraceIDs]
 //   - [AgentObservabilityApi.GetLLMObsAnnotationQueueLabelSchema]
