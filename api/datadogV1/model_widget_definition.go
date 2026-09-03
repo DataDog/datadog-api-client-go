@@ -15,6 +15,7 @@ type WidgetDefinition struct {
 	BarChartWidgetDefinition               *BarChartWidgetDefinition
 	ChangeWidgetDefinition                 *ChangeWidgetDefinition
 	CheckStatusWidgetDefinition            *CheckStatusWidgetDefinition
+	CloudcraftWidgetDefinition             *CloudcraftWidgetDefinition
 	CohortWidgetDefinition                 *CohortWidgetDefinition
 	DistributionWidgetDefinition           *DistributionWidgetDefinition
 	EventStreamWidgetDefinition            *EventStreamWidgetDefinition
@@ -79,6 +80,11 @@ func ChangeWidgetDefinitionAsWidgetDefinition(v *ChangeWidgetDefinition) WidgetD
 // CheckStatusWidgetDefinitionAsWidgetDefinition is a convenience function that returns CheckStatusWidgetDefinition wrapped in WidgetDefinition.
 func CheckStatusWidgetDefinitionAsWidgetDefinition(v *CheckStatusWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{CheckStatusWidgetDefinition: v}
+}
+
+// CloudcraftWidgetDefinitionAsWidgetDefinition is a convenience function that returns CloudcraftWidgetDefinition wrapped in WidgetDefinition.
+func CloudcraftWidgetDefinitionAsWidgetDefinition(v *CloudcraftWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{CloudcraftWidgetDefinition: v}
 }
 
 // CohortWidgetDefinitionAsWidgetDefinition is a convenience function that returns CohortWidgetDefinition wrapped in WidgetDefinition.
@@ -348,6 +354,23 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		}
 	} else {
 		obj.CheckStatusWidgetDefinition = nil
+	}
+
+	// try to unmarshal data into CloudcraftWidgetDefinition
+	err = datadog.Unmarshal(data, &obj.CloudcraftWidgetDefinition)
+	if err == nil {
+		if obj.CloudcraftWidgetDefinition != nil && obj.CloudcraftWidgetDefinition.UnparsedObject == nil {
+			jsonCloudcraftWidgetDefinition, _ := datadog.Marshal(obj.CloudcraftWidgetDefinition)
+			if string(jsonCloudcraftWidgetDefinition) == "{}" { // empty struct
+				obj.CloudcraftWidgetDefinition = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.CloudcraftWidgetDefinition = nil
+		}
+	} else {
+		obj.CloudcraftWidgetDefinition = nil
 	}
 
 	// try to unmarshal data into CohortWidgetDefinition
@@ -999,6 +1022,7 @@ func (obj *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		obj.BarChartWidgetDefinition = nil
 		obj.ChangeWidgetDefinition = nil
 		obj.CheckStatusWidgetDefinition = nil
+		obj.CloudcraftWidgetDefinition = nil
 		obj.CohortWidgetDefinition = nil
 		obj.DistributionWidgetDefinition = nil
 		obj.EventStreamWidgetDefinition = nil
@@ -1060,6 +1084,10 @@ func (obj WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if obj.CheckStatusWidgetDefinition != nil {
 		return datadog.Marshal(&obj.CheckStatusWidgetDefinition)
+	}
+
+	if obj.CloudcraftWidgetDefinition != nil {
+		return datadog.Marshal(&obj.CloudcraftWidgetDefinition)
 	}
 
 	if obj.CohortWidgetDefinition != nil {
@@ -1232,6 +1260,10 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.CheckStatusWidgetDefinition != nil {
 		return obj.CheckStatusWidgetDefinition
+	}
+
+	if obj.CloudcraftWidgetDefinition != nil {
+		return obj.CloudcraftWidgetDefinition
 	}
 
 	if obj.CohortWidgetDefinition != nil {
