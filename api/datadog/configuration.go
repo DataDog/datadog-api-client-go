@@ -134,8 +134,11 @@ type RetryConfiguration struct {
 	EnableRetry       bool
 	BackOffMultiplier float64
 	BackOffBase       float64
-	HTTPRetryTimeout  time.Duration
-	MaxRetries        int
+	// HTTPRetryTimeout is the time after CallAPI starts during which retries may begin.
+	// It does not cancel an HTTP request that has already started.
+	HTTPRetryTimeout time.Duration
+	MaxRetries       int
+	RetryJitter      time.Duration
 }
 
 // NewConfiguration returns a new Configuration object.
@@ -782,6 +785,7 @@ func NewConfiguration() *Configuration {
 			"v2.DeleteLLMObsProjects":                                   false,
 			"v2.DeleteLLMObsPrompt":                                     false,
 			"v2.ExportLLMObsDataset":                                    false,
+			"v2.GetLLMObsAnnotatedInteraction":                          false,
 			"v2.GetLLMObsAnnotatedInteractions":                         false,
 			"v2.GetLLMObsAnnotatedInteractionsByTraceIDs":               false,
 			"v2.GetLLMObsAnnotationQueueLabelSchema":                    false,

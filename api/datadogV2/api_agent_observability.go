@@ -2343,6 +2343,207 @@ func (a *AgentObservabilityApi) ExportLLMObsDataset(ctx _context.Context, projec
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// GetLLMObsAnnotatedInteractionOptionalParameters holds optional parameters for GetLLMObsAnnotatedInteraction.
+type GetLLMObsAnnotatedInteractionOptionalParameters struct {
+	Limit  *int32
+	Cursor *string
+}
+
+// NewGetLLMObsAnnotatedInteractionOptionalParameters creates an empty struct for parameters.
+func NewGetLLMObsAnnotatedInteractionOptionalParameters() *GetLLMObsAnnotatedInteractionOptionalParameters {
+	this := GetLLMObsAnnotatedInteractionOptionalParameters{}
+	return &this
+}
+
+// WithLimit sets the corresponding parameter name and returns the struct.
+func (r *GetLLMObsAnnotatedInteractionOptionalParameters) WithLimit(limit int32) *GetLLMObsAnnotatedInteractionOptionalParameters {
+	r.Limit = &limit
+	return r
+}
+
+// WithCursor sets the corresponding parameter name and returns the struct.
+func (r *GetLLMObsAnnotatedInteractionOptionalParameters) WithCursor(cursor string) *GetLLMObsAnnotatedInteractionOptionalParameters {
+	r.Cursor = &cursor
+	return r
+}
+
+// GetLLMObsAnnotatedInteraction Get an annotated queue interaction.
+// Retrieve an interaction, its annotations, and a page of related events from an annotation queue.
+func (a *AgentObservabilityApi) GetLLMObsAnnotatedInteraction(ctx _context.Context, queueId string, interactionId string, o ...GetLLMObsAnnotatedInteractionOptionalParameters) (LLMObsAnnotatedInteractionResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue LLMObsAnnotatedInteractionResponse
+		optionalParams      GetLLMObsAnnotatedInteractionOptionalParameters
+	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type GetLLMObsAnnotatedInteractionOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
+
+	operationId := "v2.GetLLMObsAnnotatedInteraction"
+	isOperationEnabled := a.Client.Cfg.IsUnstableOperationEnabled(operationId)
+	if !isOperationEnabled {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	if isOperationEnabled && a.Client.Cfg.Debug {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	}
+
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.AgentObservabilityApi.GetLLMObsAnnotatedInteraction")
+	if err != nil {
+		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/llm-obs/v1/annotation-queues/{queue_id}/annotated-interactions/{interaction_id}"
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{queue_id}", _neturl.PathEscape(datadog.ParameterToString(queueId, "")))
+	localVarPath = datadog.ReplacePathParameter(localVarPath, "{interaction_id}", _neturl.PathEscape(datadog.ParameterToString(interactionId, "")))
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if optionalParams.Limit != nil {
+		localVarQueryParams.Add("limit", datadog.ParameterToString(*optionalParams.Limit, ""))
+	}
+	if optionalParams.Cursor != nil {
+		localVarQueryParams.Add("cursor", datadog.ParameterToString(*optionalParams.Cursor, ""))
+	}
+	localVarHeaderParams["Accept"] = "application/json"
+
+	if a.Client.Cfg.DelegatedTokenConfig != nil {
+		err = datadog.UseDelegatedTokenAuth(ctx, &localVarHeaderParams, a.Client.Cfg.DelegatedTokenConfig)
+		if err != nil {
+			return localVarReturnValue, nil, err
+		}
+	} else {
+		datadog.SetAuthKeys(
+			ctx,
+			&localVarHeaderParams,
+			[2]string{"apiKeyAuth", "DD-API-KEY"},
+			[2]string{"appKeyAuth", "DD-APPLICATION-KEY"},
+		)
+	}
+	req, err := a.Client.PrepareRequest(ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := datadog.ReadBody(localVarHTTPResponse)
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 || localVarHTTPResponse.StatusCode == 401 || localVarHTTPResponse.StatusCode == 403 || localVarHTTPResponse.StatusCode == 404 {
+			var v JSONAPIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.ErrorModel = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := datadog.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// GetLLMObsAnnotatedInteractionWithPagination provides a paginated version of GetLLMObsAnnotatedInteraction returning a channel with all items.
+func (a *AgentObservabilityApi) GetLLMObsAnnotatedInteractionWithPagination(ctx _context.Context, queueId string, interactionId string, o ...GetLLMObsAnnotatedInteractionOptionalParameters) (<-chan datadog.PaginationResult[LLMObsAnnotatedInteractionEvent], func()) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(10)
+	if len(o) == 0 {
+		o = append(o, GetLLMObsAnnotatedInteractionOptionalParameters{})
+	}
+	if o[0].Limit != nil {
+		pageSize_ = *o[0].Limit
+	}
+	o[0].Limit = &pageSize_
+
+	items := make(chan datadog.PaginationResult[LLMObsAnnotatedInteractionEvent], pageSize_)
+	go func() {
+		for {
+			resp, _, err := a.GetLLMObsAnnotatedInteraction(ctx, queueId, interactionId, o...)
+			if err != nil {
+				var returnItem LLMObsAnnotatedInteractionEvent
+				items <- datadog.PaginationResult[LLMObsAnnotatedInteractionEvent]{Item: returnItem, Error: err}
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			respDataAttributes, ok := respData.GetAttributesOk()
+			if !ok {
+				break
+			}
+			respDataAttributesEvents, ok := respDataAttributes.GetEventsOk()
+			if !ok {
+				break
+			}
+			results := *respDataAttributesEvents
+
+			for _, item := range results {
+				select {
+				case items <- datadog.PaginationResult[LLMObsAnnotatedInteractionEvent]{Item: item, Error: nil}:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) == 0 {
+				break
+			}
+			cursorData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			cursorDataAttributes, ok := cursorData.GetAttributesOk()
+			if !ok {
+				break
+			}
+			cursorDataAttributesNextCursor, ok := cursorDataAttributes.GetNextCursorOk()
+			if !ok {
+				break
+			}
+
+			o[0].Cursor = cursorDataAttributesNextCursor
+		}
+		close(items)
+	}()
+	return items, cancel
+}
+
 // GetLLMObsAnnotatedInteractions Get annotated queue interactions.
 // Retrieve all interactions (traces and sessions) and their annotations for a given annotation queue.
 func (a *AgentObservabilityApi) GetLLMObsAnnotatedInteractions(ctx _context.Context, queueId string) (LLMObsAnnotatedInteractionsResponse, *_nethttp.Response, error) {
