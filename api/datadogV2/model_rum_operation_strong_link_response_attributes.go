@@ -11,21 +11,21 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMOperationStrongLinkResponseAttributes Attributes of a RUM operation strong link response.
+// RUMOperationStrongLinkResponseAttributes Attributes of a RUM operation link response.
 type RUMOperationStrongLinkResponseAttributes struct {
-	// The timestamp when the strong link was created.
+	// The timestamp when the link was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
-	// A description of the strong link.
+	// A description of the link.
 	Description datadog.NullableString `json:"description,omitempty"`
-	// The unique identifier of the linked feature.
+	// The unique identifier of the linked journey.
 	FeatureId string `json:"feature_id"`
 	// The unique identifier of the linked RUM operation.
 	OperationId string `json:"operation_id"`
-	// The status of a RUM operation strong link.
+	// The status of a RUM operation link.
 	Status RUMOperationStrongLinkStatus `json:"status"`
-	// A list of tags associated with the strong link.
+	// A list of tags associated with the link.
 	Tags []string `json:"tags,omitempty"`
-	// The timestamp when the strong link was last updated.
+	// The timestamp when the link was last updated.
 	UpdatedAt datadog.NullableTime `json:"updated_at,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -10,11 +10,11 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMOperationStrongLinkUpdateRequestData The data object for updating a RUM operation strong link.
+// RUMOperationStrongLinkUpdateRequestData The data object for updating a RUM operation link.
 type RUMOperationStrongLinkUpdateRequestData struct {
-	// Attributes for updating a RUM operation strong link.
+	// Attributes for updating a RUM operation link.
 	Attributes RUMOperationStrongLinkUpdateRequestAttributes `json:"attributes"`
-	// The JSON:API type for RUM operation strong link resources.
+	// The JSON:API type for RUM operation link resources.
 	Type RUMOperationStrongLinkType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

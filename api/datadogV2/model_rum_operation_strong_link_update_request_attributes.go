@@ -10,9 +10,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMOperationStrongLinkUpdateRequestAttributes Attributes for updating a RUM operation strong link.
+// RUMOperationStrongLinkUpdateRequestAttributes Attributes for updating a RUM operation link.
 type RUMOperationStrongLinkUpdateRequestAttributes struct {
-	// The status of a RUM operation strong link. Can only be set to `CONFIRMED` or `REJECTED`.
+	// The status of a RUM operation link. Can only be set to `CONFIRMED` or `REJECTED`.
 	Status RUMOperationStrongLinkUpdateStatus `json:"status"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

@@ -8,13 +8,13 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMOperationStrongLinksListResponseMeta Metadata for a list of RUM operation strong links.
+// RUMOperationStrongLinksListResponseMeta Metadata for a list of RUM operation links.
 type RUMOperationStrongLinksListResponseMeta struct {
 	// The pagination limit.
 	Limit *int64 `json:"limit,omitempty"`
 	// The current offset.
 	Offset *int64 `json:"offset,omitempty"`
-	// The total number of strong links matching the request.
+	// The total number of links matching the request.
 	Total *int64 `json:"total,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

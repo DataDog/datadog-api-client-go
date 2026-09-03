@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RUMOperationStrongLinkUpdateStatus The status of a RUM operation strong link. Can only be set to `CONFIRMED` or `REJECTED`.
+// RUMOperationStrongLinkUpdateStatus The status of a RUM operation link. Can only be set to `CONFIRMED` or `REJECTED`.
 type RUMOperationStrongLinkUpdateStatus string
 
 // List of RUMOperationStrongLinkUpdateStatus.
