@@ -14,6 +14,8 @@ type WorkflowDataRelationships struct {
 	Creator *WorkflowUserRelationship `json:"creator,omitempty"`
 	// The definition of `WorkflowUserRelationship` object.
 	Owner *WorkflowUserRelationship `json:"owner,omitempty"`
+	// The definition of `WorkflowUserRelationship` object.
+	RunAs *WorkflowUserRelationship `json:"runAs,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -92,6 +94,34 @@ func (o *WorkflowDataRelationships) SetOwner(v WorkflowUserRelationship) {
 	o.Owner = &v
 }
 
+// GetRunAs returns the RunAs field value if set, zero value otherwise.
+func (o *WorkflowDataRelationships) GetRunAs() WorkflowUserRelationship {
+	if o == nil || o.RunAs == nil {
+		var ret WorkflowUserRelationship
+		return ret
+	}
+	return *o.RunAs
+}
+
+// GetRunAsOk returns a tuple with the RunAs field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *WorkflowDataRelationships) GetRunAsOk() (*WorkflowUserRelationship, bool) {
+	if o == nil || o.RunAs == nil {
+		return nil, false
+	}
+	return o.RunAs, true
+}
+
+// HasRunAs returns a boolean if a field has been set.
+func (o *WorkflowDataRelationships) HasRunAs() bool {
+	return o != nil && o.RunAs != nil
+}
+
+// SetRunAs gets a reference to the given WorkflowUserRelationship and assigns it to the RunAs field.
+func (o *WorkflowDataRelationships) SetRunAs(v WorkflowUserRelationship) {
+	o.RunAs = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o WorkflowDataRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -103,6 +133,9 @@ func (o WorkflowDataRelationships) MarshalJSON() ([]byte, error) {
 	}
 	if o.Owner != nil {
 		toSerialize["owner"] = o.Owner
+	}
+	if o.RunAs != nil {
+		toSerialize["runAs"] = o.RunAs
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -116,13 +149,14 @@ func (o *WorkflowDataRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Creator *WorkflowUserRelationship `json:"creator,omitempty"`
 		Owner   *WorkflowUserRelationship `json:"owner,omitempty"`
+		RunAs   *WorkflowUserRelationship `json:"runAs,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"creator", "owner"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"creator", "owner", "runAs"})
 	} else {
 		return err
 	}
@@ -136,6 +170,10 @@ func (o *WorkflowDataRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Owner = all.Owner
+	if all.RunAs != nil && all.RunAs.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.RunAs = all.RunAs
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

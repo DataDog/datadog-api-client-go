@@ -18,12 +18,17 @@ type MonitorFormulaAndFunctionDataQualityMonitorOptions struct {
 	CustomWhere *string `json:"custom_where,omitempty"`
 	// Columns to group results by.
 	GroupByColumns []string `json:"group_by_columns,omitempty"`
+	// Tuning options for the anomaly detection model used by the monitor.
+	ModelConfiguration *MonitorFormulaAndFunctionDataQualityModelConfiguration `json:"model_configuration,omitempty"`
 	// Override for the model type used in anomaly detection.
 	ModelTypeOverride *MonitorFormulaAndFunctionDataQualityModelTypeOverride `json:"model_type_override,omitempty"`
 	// Sensitivity of the anomaly detection model, expressed as a multiplier on the width
 	// of the predicted bounds. Higher values widen the bounds and produce fewer alerts;
 	// lower values tighten them and produce more alerts. Defaults to `3.0`.
 	Sensitivity *float64 `json:"sensitivity,omitempty"`
+	// Configuration for a source to target monitor, which compares the same measure
+	// across two data entities and alerts on the difference between them.
+	SourceToTargetConfig *MonitorFormulaAndFunctionDataQualitySourceToTargetConfig `json:"source_to_target_config,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -158,6 +163,34 @@ func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) SetGroupByColumns(v
 	o.GroupByColumns = v
 }
 
+// GetModelConfiguration returns the ModelConfiguration field value if set, zero value otherwise.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) GetModelConfiguration() MonitorFormulaAndFunctionDataQualityModelConfiguration {
+	if o == nil || o.ModelConfiguration == nil {
+		var ret MonitorFormulaAndFunctionDataQualityModelConfiguration
+		return ret
+	}
+	return *o.ModelConfiguration
+}
+
+// GetModelConfigurationOk returns a tuple with the ModelConfiguration field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) GetModelConfigurationOk() (*MonitorFormulaAndFunctionDataQualityModelConfiguration, bool) {
+	if o == nil || o.ModelConfiguration == nil {
+		return nil, false
+	}
+	return o.ModelConfiguration, true
+}
+
+// HasModelConfiguration returns a boolean if a field has been set.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) HasModelConfiguration() bool {
+	return o != nil && o.ModelConfiguration != nil
+}
+
+// SetModelConfiguration gets a reference to the given MonitorFormulaAndFunctionDataQualityModelConfiguration and assigns it to the ModelConfiguration field.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) SetModelConfiguration(v MonitorFormulaAndFunctionDataQualityModelConfiguration) {
+	o.ModelConfiguration = &v
+}
+
 // GetModelTypeOverride returns the ModelTypeOverride field value if set, zero value otherwise.
 func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) GetModelTypeOverride() MonitorFormulaAndFunctionDataQualityModelTypeOverride {
 	if o == nil || o.ModelTypeOverride == nil {
@@ -214,6 +247,34 @@ func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) SetSensitivity(v fl
 	o.Sensitivity = &v
 }
 
+// GetSourceToTargetConfig returns the SourceToTargetConfig field value if set, zero value otherwise.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) GetSourceToTargetConfig() MonitorFormulaAndFunctionDataQualitySourceToTargetConfig {
+	if o == nil || o.SourceToTargetConfig == nil {
+		var ret MonitorFormulaAndFunctionDataQualitySourceToTargetConfig
+		return ret
+	}
+	return *o.SourceToTargetConfig
+}
+
+// GetSourceToTargetConfigOk returns a tuple with the SourceToTargetConfig field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) GetSourceToTargetConfigOk() (*MonitorFormulaAndFunctionDataQualitySourceToTargetConfig, bool) {
+	if o == nil || o.SourceToTargetConfig == nil {
+		return nil, false
+	}
+	return o.SourceToTargetConfig, true
+}
+
+// HasSourceToTargetConfig returns a boolean if a field has been set.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) HasSourceToTargetConfig() bool {
+	return o != nil && o.SourceToTargetConfig != nil
+}
+
+// SetSourceToTargetConfig gets a reference to the given MonitorFormulaAndFunctionDataQualitySourceToTargetConfig and assigns it to the SourceToTargetConfig field.
+func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) SetSourceToTargetConfig(v MonitorFormulaAndFunctionDataQualitySourceToTargetConfig) {
+	o.SourceToTargetConfig = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o MonitorFormulaAndFunctionDataQualityMonitorOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -232,11 +293,17 @@ func (o MonitorFormulaAndFunctionDataQualityMonitorOptions) MarshalJSON() ([]byt
 	if o.GroupByColumns != nil {
 		toSerialize["group_by_columns"] = o.GroupByColumns
 	}
+	if o.ModelConfiguration != nil {
+		toSerialize["model_configuration"] = o.ModelConfiguration
+	}
 	if o.ModelTypeOverride != nil {
 		toSerialize["model_type_override"] = o.ModelTypeOverride
 	}
 	if o.Sensitivity != nil {
 		toSerialize["sensitivity"] = o.Sensitivity
+	}
+	if o.SourceToTargetConfig != nil {
+		toSerialize["source_to_target_config"] = o.SourceToTargetConfig
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -248,19 +315,21 @@ func (o MonitorFormulaAndFunctionDataQualityMonitorOptions) MarshalJSON() ([]byt
 // UnmarshalJSON deserializes the given payload.
 func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CrontabOverride   *string                                                `json:"crontab_override,omitempty"`
-		CustomSql         *string                                                `json:"custom_sql,omitempty"`
-		CustomWhere       *string                                                `json:"custom_where,omitempty"`
-		GroupByColumns    []string                                               `json:"group_by_columns,omitempty"`
-		ModelTypeOverride *MonitorFormulaAndFunctionDataQualityModelTypeOverride `json:"model_type_override,omitempty"`
-		Sensitivity       *float64                                               `json:"sensitivity,omitempty"`
+		CrontabOverride      *string                                                   `json:"crontab_override,omitempty"`
+		CustomSql            *string                                                   `json:"custom_sql,omitempty"`
+		CustomWhere          *string                                                   `json:"custom_where,omitempty"`
+		GroupByColumns       []string                                                  `json:"group_by_columns,omitempty"`
+		ModelConfiguration   *MonitorFormulaAndFunctionDataQualityModelConfiguration   `json:"model_configuration,omitempty"`
+		ModelTypeOverride    *MonitorFormulaAndFunctionDataQualityModelTypeOverride    `json:"model_type_override,omitempty"`
+		Sensitivity          *float64                                                  `json:"sensitivity,omitempty"`
+		SourceToTargetConfig *MonitorFormulaAndFunctionDataQualitySourceToTargetConfig `json:"source_to_target_config,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"crontab_override", "custom_sql", "custom_where", "group_by_columns", "model_type_override", "sensitivity"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"crontab_override", "custom_sql", "custom_where", "group_by_columns", "model_configuration", "model_type_override", "sensitivity", "source_to_target_config"})
 	} else {
 		return err
 	}
@@ -270,12 +339,20 @@ func (o *MonitorFormulaAndFunctionDataQualityMonitorOptions) UnmarshalJSON(bytes
 	o.CustomSql = all.CustomSql
 	o.CustomWhere = all.CustomWhere
 	o.GroupByColumns = all.GroupByColumns
+	if all.ModelConfiguration != nil && all.ModelConfiguration.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.ModelConfiguration = all.ModelConfiguration
 	if all.ModelTypeOverride != nil && !all.ModelTypeOverride.IsValid() {
 		hasInvalidField = true
 	} else {
 		o.ModelTypeOverride = all.ModelTypeOverride
 	}
 	o.Sensitivity = all.Sensitivity
+	if all.SourceToTargetConfig != nil && all.SourceToTargetConfig.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.SourceToTargetConfig = all.SourceToTargetConfig
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

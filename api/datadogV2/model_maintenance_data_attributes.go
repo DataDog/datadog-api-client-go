@@ -12,6 +12,8 @@ import (
 
 // MaintenanceDataAttributes The attributes of a maintenance.
 type MaintenanceDataAttributes struct {
+	// The description shown when the maintenance is canceled.
+	CanceledDescription *string `json:"canceled_description,omitempty"`
 	// Timestamp of when the maintenance was completed.
 	CompletedDate *time.Time `json:"completed_date,omitempty"`
 	// The description shown when the maintenance is completed.
@@ -56,6 +58,34 @@ func NewMaintenanceDataAttributes() *MaintenanceDataAttributes {
 func NewMaintenanceDataAttributesWithDefaults() *MaintenanceDataAttributes {
 	this := MaintenanceDataAttributes{}
 	return &this
+}
+
+// GetCanceledDescription returns the CanceledDescription field value if set, zero value otherwise.
+func (o *MaintenanceDataAttributes) GetCanceledDescription() string {
+	if o == nil || o.CanceledDescription == nil {
+		var ret string
+		return ret
+	}
+	return *o.CanceledDescription
+}
+
+// GetCanceledDescriptionOk returns a tuple with the CanceledDescription field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MaintenanceDataAttributes) GetCanceledDescriptionOk() (*string, bool) {
+	if o == nil || o.CanceledDescription == nil {
+		return nil, false
+	}
+	return o.CanceledDescription, true
+}
+
+// HasCanceledDescription returns a boolean if a field has been set.
+func (o *MaintenanceDataAttributes) HasCanceledDescription() bool {
+	return o != nil && o.CanceledDescription != nil
+}
+
+// SetCanceledDescription gets a reference to the given string and assigns it to the CanceledDescription field.
+func (o *MaintenanceDataAttributes) SetCanceledDescription(v string) {
+	o.CanceledDescription = &v
 }
 
 // GetCompletedDate returns the CompletedDate field value if set, zero value otherwise.
@@ -400,6 +430,9 @@ func (o MaintenanceDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.CanceledDescription != nil {
+		toSerialize["canceled_description"] = o.CanceledDescription
+	}
 	if o.CompletedDate != nil {
 		if o.CompletedDate.Nanosecond() == 0 {
 			toSerialize["completed_date"] = o.CompletedDate.Format("2006-01-02T15:04:05Z07:00")
@@ -462,6 +495,7 @@ func (o MaintenanceDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *MaintenanceDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		CanceledDescription   *string                                            `json:"canceled_description,omitempty"`
 		CompletedDate         *time.Time                                         `json:"completed_date,omitempty"`
 		CompletedDescription  *string                                            `json:"completed_description,omitempty"`
 		ComponentsAffected    []MaintenanceDataAttributesComponentsAffectedItems `json:"components_affected,omitempty"`
@@ -480,12 +514,13 @@ func (o *MaintenanceDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"completed_date", "completed_description", "components_affected", "in_progress_description", "is_backfilled", "modified_at", "published_date", "scheduled_description", "start_date", "status", "title", "updates"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"canceled_description", "completed_date", "completed_description", "components_affected", "in_progress_description", "is_backfilled", "modified_at", "published_date", "scheduled_description", "start_date", "status", "title", "updates"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.CanceledDescription = all.CanceledDescription
 	o.CompletedDate = all.CompletedDate
 	o.CompletedDescription = all.CompletedDescription
 	o.ComponentsAffected = all.ComponentsAffected

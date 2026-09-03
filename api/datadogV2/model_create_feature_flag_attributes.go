@@ -15,13 +15,21 @@ type CreateFeatureFlagAttributes struct {
 	// The key of the default variant.
 	DefaultVariantKey datadog.NullableString `json:"default_variant_key,omitempty"`
 	// The description of the feature flag.
-	Description string `json:"description"`
+	Description *string `json:"description,omitempty"`
+	// The distribution channel for the feature flag.
+	DistributionChannel *FeatureFlagDistributionChannel `json:"distribution_channel,omitempty"`
 	// JSON schema for validation when value_type is JSON.
 	JsonSchema datadog.NullableString `json:"json_schema,omitempty"`
 	// The unique key of the feature flag.
 	Key string `json:"key"`
 	// The name of the feature flag.
 	Name string `json:"name"`
+	// Indicates whether this feature flag requires approval for changes.
+	RequireApproval *bool `json:"require_approval,omitempty"`
+	// The staleness status for the feature flag at creation.
+	StalenessStatus *CreateFeatureFlagStalenessStatus `json:"staleness_status,omitempty"`
+	// Tags associated with the feature flag.
+	Tags []string `json:"tags,omitempty"`
 	// The type of values for the feature flag variants.
 	ValueType ValueType `json:"value_type"`
 	// The variants of the feature flag.
@@ -35,9 +43,8 @@ type CreateFeatureFlagAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCreateFeatureFlagAttributes(description string, key string, name string, valueType ValueType, variants []CreateVariant) *CreateFeatureFlagAttributes {
+func NewCreateFeatureFlagAttributes(key string, name string, valueType ValueType, variants []CreateVariant) *CreateFeatureFlagAttributes {
 	this := CreateFeatureFlagAttributes{}
-	this.Description = description
 	this.Key = key
 	this.Name = name
 	this.ValueType = valueType
@@ -92,27 +99,60 @@ func (o *CreateFeatureFlagAttributes) UnsetDefaultVariantKey() {
 	o.DefaultVariantKey.Unset()
 }
 
-// GetDescription returns the Description field value.
+// GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CreateFeatureFlagAttributes) GetDescription() string {
-	if o == nil {
+	if o == nil || o.Description == nil {
 		var ret string
 		return ret
 	}
-	return o.Description
+	return *o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value
+// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *CreateFeatureFlagAttributes) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.Description == nil {
 		return nil, false
 	}
-	return &o.Description, true
+	return o.Description, true
 }
 
-// SetDescription sets field value.
+// HasDescription returns a boolean if a field has been set.
+func (o *CreateFeatureFlagAttributes) HasDescription() bool {
+	return o != nil && o.Description != nil
+}
+
+// SetDescription gets a reference to the given string and assigns it to the Description field.
 func (o *CreateFeatureFlagAttributes) SetDescription(v string) {
-	o.Description = v
+	o.Description = &v
+}
+
+// GetDistributionChannel returns the DistributionChannel field value if set, zero value otherwise.
+func (o *CreateFeatureFlagAttributes) GetDistributionChannel() FeatureFlagDistributionChannel {
+	if o == nil || o.DistributionChannel == nil {
+		var ret FeatureFlagDistributionChannel
+		return ret
+	}
+	return *o.DistributionChannel
+}
+
+// GetDistributionChannelOk returns a tuple with the DistributionChannel field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateFeatureFlagAttributes) GetDistributionChannelOk() (*FeatureFlagDistributionChannel, bool) {
+	if o == nil || o.DistributionChannel == nil {
+		return nil, false
+	}
+	return o.DistributionChannel, true
+}
+
+// HasDistributionChannel returns a boolean if a field has been set.
+func (o *CreateFeatureFlagAttributes) HasDistributionChannel() bool {
+	return o != nil && o.DistributionChannel != nil
+}
+
+// SetDistributionChannel gets a reference to the given FeatureFlagDistributionChannel and assigns it to the DistributionChannel field.
+func (o *CreateFeatureFlagAttributes) SetDistributionChannel(v FeatureFlagDistributionChannel) {
+	o.DistributionChannel = &v
 }
 
 // GetJsonSchema returns the JsonSchema field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -200,6 +240,90 @@ func (o *CreateFeatureFlagAttributes) SetName(v string) {
 	o.Name = v
 }
 
+// GetRequireApproval returns the RequireApproval field value if set, zero value otherwise.
+func (o *CreateFeatureFlagAttributes) GetRequireApproval() bool {
+	if o == nil || o.RequireApproval == nil {
+		var ret bool
+		return ret
+	}
+	return *o.RequireApproval
+}
+
+// GetRequireApprovalOk returns a tuple with the RequireApproval field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateFeatureFlagAttributes) GetRequireApprovalOk() (*bool, bool) {
+	if o == nil || o.RequireApproval == nil {
+		return nil, false
+	}
+	return o.RequireApproval, true
+}
+
+// HasRequireApproval returns a boolean if a field has been set.
+func (o *CreateFeatureFlagAttributes) HasRequireApproval() bool {
+	return o != nil && o.RequireApproval != nil
+}
+
+// SetRequireApproval gets a reference to the given bool and assigns it to the RequireApproval field.
+func (o *CreateFeatureFlagAttributes) SetRequireApproval(v bool) {
+	o.RequireApproval = &v
+}
+
+// GetStalenessStatus returns the StalenessStatus field value if set, zero value otherwise.
+func (o *CreateFeatureFlagAttributes) GetStalenessStatus() CreateFeatureFlagStalenessStatus {
+	if o == nil || o.StalenessStatus == nil {
+		var ret CreateFeatureFlagStalenessStatus
+		return ret
+	}
+	return *o.StalenessStatus
+}
+
+// GetStalenessStatusOk returns a tuple with the StalenessStatus field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateFeatureFlagAttributes) GetStalenessStatusOk() (*CreateFeatureFlagStalenessStatus, bool) {
+	if o == nil || o.StalenessStatus == nil {
+		return nil, false
+	}
+	return o.StalenessStatus, true
+}
+
+// HasStalenessStatus returns a boolean if a field has been set.
+func (o *CreateFeatureFlagAttributes) HasStalenessStatus() bool {
+	return o != nil && o.StalenessStatus != nil
+}
+
+// SetStalenessStatus gets a reference to the given CreateFeatureFlagStalenessStatus and assigns it to the StalenessStatus field.
+func (o *CreateFeatureFlagAttributes) SetStalenessStatus(v CreateFeatureFlagStalenessStatus) {
+	o.StalenessStatus = &v
+}
+
+// GetTags returns the Tags field value if set, zero value otherwise.
+func (o *CreateFeatureFlagAttributes) GetTags() []string {
+	if o == nil || o.Tags == nil {
+		var ret []string
+		return ret
+	}
+	return o.Tags
+}
+
+// GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CreateFeatureFlagAttributes) GetTagsOk() (*[]string, bool) {
+	if o == nil || o.Tags == nil {
+		return nil, false
+	}
+	return &o.Tags, true
+}
+
+// HasTags returns a boolean if a field has been set.
+func (o *CreateFeatureFlagAttributes) HasTags() bool {
+	return o != nil && o.Tags != nil
+}
+
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *CreateFeatureFlagAttributes) SetTags(v []string) {
+	o.Tags = v
+}
+
 // GetValueType returns the ValueType field value.
 func (o *CreateFeatureFlagAttributes) GetValueType() ValueType {
 	if o == nil {
@@ -255,12 +379,26 @@ func (o CreateFeatureFlagAttributes) MarshalJSON() ([]byte, error) {
 	if o.DefaultVariantKey.IsSet() {
 		toSerialize["default_variant_key"] = o.DefaultVariantKey.Get()
 	}
-	toSerialize["description"] = o.Description
+	if o.Description != nil {
+		toSerialize["description"] = o.Description
+	}
+	if o.DistributionChannel != nil {
+		toSerialize["distribution_channel"] = o.DistributionChannel
+	}
 	if o.JsonSchema.IsSet() {
 		toSerialize["json_schema"] = o.JsonSchema.Get()
 	}
 	toSerialize["key"] = o.Key
 	toSerialize["name"] = o.Name
+	if o.RequireApproval != nil {
+		toSerialize["require_approval"] = o.RequireApproval
+	}
+	if o.StalenessStatus != nil {
+		toSerialize["staleness_status"] = o.StalenessStatus
+	}
+	if o.Tags != nil {
+		toSerialize["tags"] = o.Tags
+	}
 	toSerialize["value_type"] = o.ValueType
 	toSerialize["variants"] = o.Variants
 
@@ -273,19 +411,20 @@ func (o CreateFeatureFlagAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CreateFeatureFlagAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		DefaultVariantKey datadog.NullableString `json:"default_variant_key,omitempty"`
-		Description       *string                `json:"description"`
-		JsonSchema        datadog.NullableString `json:"json_schema,omitempty"`
-		Key               *string                `json:"key"`
-		Name              *string                `json:"name"`
-		ValueType         *ValueType             `json:"value_type"`
-		Variants          *[]CreateVariant       `json:"variants"`
+		DefaultVariantKey   datadog.NullableString            `json:"default_variant_key,omitempty"`
+		Description         *string                           `json:"description,omitempty"`
+		DistributionChannel *FeatureFlagDistributionChannel   `json:"distribution_channel,omitempty"`
+		JsonSchema          datadog.NullableString            `json:"json_schema,omitempty"`
+		Key                 *string                           `json:"key"`
+		Name                *string                           `json:"name"`
+		RequireApproval     *bool                             `json:"require_approval,omitempty"`
+		StalenessStatus     *CreateFeatureFlagStalenessStatus `json:"staleness_status,omitempty"`
+		Tags                []string                          `json:"tags,omitempty"`
+		ValueType           *ValueType                        `json:"value_type"`
+		Variants            *[]CreateVariant                  `json:"variants"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
-	}
-	if all.Description == nil {
-		return fmt.Errorf("required field description missing")
 	}
 	if all.Key == nil {
 		return fmt.Errorf("required field key missing")
@@ -301,17 +440,29 @@ func (o *CreateFeatureFlagAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"default_variant_key", "description", "json_schema", "key", "name", "value_type", "variants"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"default_variant_key", "description", "distribution_channel", "json_schema", "key", "name", "require_approval", "staleness_status", "tags", "value_type", "variants"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.DefaultVariantKey = all.DefaultVariantKey
-	o.Description = *all.Description
+	o.Description = all.Description
+	if all.DistributionChannel != nil && !all.DistributionChannel.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.DistributionChannel = all.DistributionChannel
+	}
 	o.JsonSchema = all.JsonSchema
 	o.Key = *all.Key
 	o.Name = *all.Name
+	o.RequireApproval = all.RequireApproval
+	if all.StalenessStatus != nil && !all.StalenessStatus.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.StalenessStatus = all.StalenessStatus
+	}
+	o.Tags = all.Tags
 	if !all.ValueType.IsValid() {
 		hasInvalidField = true
 	} else {
