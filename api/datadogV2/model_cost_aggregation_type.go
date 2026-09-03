@@ -10,7 +10,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CostAggregationType Controls how costs are aggregated when using `start_date`. The `cumulative` option returns month-to-date running totals.
+// CostAggregationType Controls how costs are aggregated when using `start_date`.
+// The `cumulative` option returns month-to-date running totals.
 type CostAggregationType string
 
 // List of CostAggregationType.
