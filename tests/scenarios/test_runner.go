@@ -32,9 +32,10 @@ type testRunnerManifest struct {
 }
 
 type testRunnerPlan struct {
-	API         string `json:"api"`
-	OperationID string `json:"operation_id"`
-	Request     struct {
+	API              string `json:"api"`
+	OperationID      string `json:"operation_id"`
+	OperationVersion string `json:"operation_version"`
+	Request          struct {
 		Body *struct {
 			Value interface{} `json:"value"`
 		} `json:"body"`
@@ -217,6 +218,9 @@ func applyTestRunnerPlan(t gobdd.StepTest, ctx gobdd.Context, pagination bool) {
 	}
 	if plan.Request.Pagination != pagination {
 		t.Fatalf("generated request plan pagination mismatch")
+	}
+	if plan.OperationVersion != "" {
+		SetOperationVersion(ctx, plan.OperationVersion)
 	}
 	anInstanceOf(t, ctx, plan.API)
 	newRequestNative(t, ctx, plan.OperationID)
