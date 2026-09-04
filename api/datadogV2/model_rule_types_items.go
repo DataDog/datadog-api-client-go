@@ -15,29 +15,32 @@ import (
 // workload_security, signal_correlation, cloud_configuration and infrastructure_configuration.
 // Vulnerability-based notification rules can filter vulnerabilities based on rule types application_code_vulnerability,
 // application_library_vulnerability, attack_path, container_image_vulnerability, identity_risk, misconfiguration,
-// api_security, host_vulnerability, iac_misconfiguration, sast_vulnerability, secret_vulnerability and workload_activity.
+// api_security, host_vulnerability, iac_misconfiguration, sast_vulnerability, secret_vulnerability, workload_activity,
+// sensitive_data and serverless_function_code_vulnerability.
 type RuleTypesItems string
 
 // List of RuleTypesItems.
 const (
-	RULETYPESITEMS_APPLICATION_SECURITY              RuleTypesItems = "application_security"
-	RULETYPESITEMS_LOG_DETECTION                     RuleTypesItems = "log_detection"
-	RULETYPESITEMS_WORKLOAD_SECURITY                 RuleTypesItems = "workload_security"
-	RULETYPESITEMS_SIGNAL_CORRELATION                RuleTypesItems = "signal_correlation"
-	RULETYPESITEMS_CLOUD_CONFIGURATION               RuleTypesItems = "cloud_configuration"
-	RULETYPESITEMS_INFRASTRUCTURE_CONFIGURATION      RuleTypesItems = "infrastructure_configuration"
-	RULETYPESITEMS_APPLICATION_CODE_VULNERABILITY    RuleTypesItems = "application_code_vulnerability"
-	RULETYPESITEMS_APPLICATION_LIBRARY_VULNERABILITY RuleTypesItems = "application_library_vulnerability"
-	RULETYPESITEMS_ATTACK_PATH                       RuleTypesItems = "attack_path"
-	RULETYPESITEMS_CONTAINER_IMAGE_VULNERABILITY     RuleTypesItems = "container_image_vulnerability"
-	RULETYPESITEMS_IDENTITY_RISK                     RuleTypesItems = "identity_risk"
-	RULETYPESITEMS_MISCONFIGURATION                  RuleTypesItems = "misconfiguration"
-	RULETYPESITEMS_API_SECURITY                      RuleTypesItems = "api_security"
-	RULETYPESITEMS_HOST_VULNERABILITY                RuleTypesItems = "host_vulnerability"
-	RULETYPESITEMS_IAC_MISCONFIGURATION              RuleTypesItems = "iac_misconfiguration"
-	RULETYPESITEMS_SAST_VULNERABILITY                RuleTypesItems = "sast_vulnerability"
-	RULETYPESITEMS_SECRET_VULNERABILITY              RuleTypesItems = "secret_vulnerability"
-	RULETYPESITEMS_WORKLOAD_ACTIVITY                 RuleTypesItems = "workload_activity"
+	RULETYPESITEMS_APPLICATION_SECURITY                   RuleTypesItems = "application_security"
+	RULETYPESITEMS_LOG_DETECTION                          RuleTypesItems = "log_detection"
+	RULETYPESITEMS_WORKLOAD_SECURITY                      RuleTypesItems = "workload_security"
+	RULETYPESITEMS_SIGNAL_CORRELATION                     RuleTypesItems = "signal_correlation"
+	RULETYPESITEMS_CLOUD_CONFIGURATION                    RuleTypesItems = "cloud_configuration"
+	RULETYPESITEMS_INFRASTRUCTURE_CONFIGURATION           RuleTypesItems = "infrastructure_configuration"
+	RULETYPESITEMS_APPLICATION_CODE_VULNERABILITY         RuleTypesItems = "application_code_vulnerability"
+	RULETYPESITEMS_APPLICATION_LIBRARY_VULNERABILITY      RuleTypesItems = "application_library_vulnerability"
+	RULETYPESITEMS_ATTACK_PATH                            RuleTypesItems = "attack_path"
+	RULETYPESITEMS_CONTAINER_IMAGE_VULNERABILITY          RuleTypesItems = "container_image_vulnerability"
+	RULETYPESITEMS_IDENTITY_RISK                          RuleTypesItems = "identity_risk"
+	RULETYPESITEMS_MISCONFIGURATION                       RuleTypesItems = "misconfiguration"
+	RULETYPESITEMS_API_SECURITY                           RuleTypesItems = "api_security"
+	RULETYPESITEMS_HOST_VULNERABILITY                     RuleTypesItems = "host_vulnerability"
+	RULETYPESITEMS_IAC_MISCONFIGURATION                   RuleTypesItems = "iac_misconfiguration"
+	RULETYPESITEMS_SAST_VULNERABILITY                     RuleTypesItems = "sast_vulnerability"
+	RULETYPESITEMS_SECRET_VULNERABILITY                   RuleTypesItems = "secret_vulnerability"
+	RULETYPESITEMS_WORKLOAD_ACTIVITY                      RuleTypesItems = "workload_activity"
+	RULETYPESITEMS_SENSITIVE_DATA                         RuleTypesItems = "sensitive_data"
+	RULETYPESITEMS_SERVERLESS_FUNCTION_CODE_VULNERABILITY RuleTypesItems = "serverless_function_code_vulnerability"
 )
 
 var allowedRuleTypesItemsEnumValues = []RuleTypesItems{
@@ -59,6 +62,8 @@ var allowedRuleTypesItemsEnumValues = []RuleTypesItems{
 	RULETYPESITEMS_SAST_VULNERABILITY,
 	RULETYPESITEMS_SECRET_VULNERABILITY,
 	RULETYPESITEMS_WORKLOAD_ACTIVITY,
+	RULETYPESITEMS_SENSITIVE_DATA,
+	RULETYPESITEMS_SERVERLESS_FUNCTION_CODE_VULNERABILITY,
 }
 
 // GetAllowedValues reeturns the list of possible values.
