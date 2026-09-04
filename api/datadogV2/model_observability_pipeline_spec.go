@@ -12,7 +12,7 @@ import (
 
 // ObservabilityPipelineSpec Input schema representing an observability pipeline configuration. Used in create and validate requests.
 type ObservabilityPipelineSpec struct {
-	// Contains the the pipeline configuration.
+	// Contains the pipeline configuration.
 	Data ObservabilityPipelineSpecData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
