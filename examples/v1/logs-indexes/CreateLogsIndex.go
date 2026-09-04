@@ -20,6 +20,7 @@ func main() {
 			ResetUtcOffset: datadog.PtrString("+02:00"),
 		},
 		DailyLimitWarningThresholdPercentage: datadog.PtrFloat64(70),
+		Description:                          datadog.PtrString("Contains logs matching the criteria defined by the filter."),
 		ExclusionFilters: []datadogV1.LogsExclusion{
 			{
 				Filter: &datadogV1.LogsExclusionFilter{
