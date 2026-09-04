@@ -499,14 +499,39 @@ func (a *RolesApi) GetRole(ctx _context.Context, roleId string) (RoleResponse, *
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+// ListPermissionsOptionalParameters holds optional parameters for ListPermissions.
+type ListPermissionsOptionalParameters struct {
+	IncludeScopes *bool
+}
+
+// NewListPermissionsOptionalParameters creates an empty struct for parameters.
+func NewListPermissionsOptionalParameters() *ListPermissionsOptionalParameters {
+	this := ListPermissionsOptionalParameters{}
+	return &this
+}
+
+// WithIncludeScopes sets the corresponding parameter name and returns the struct.
+func (r *ListPermissionsOptionalParameters) WithIncludeScopes(includeScopes bool) *ListPermissionsOptionalParameters {
+	r.IncludeScopes = &includeScopes
+	return r
+}
+
 // ListPermissions List permissions.
 // Returns a list of all permissions, including name, description, and ID.
-func (a *RolesApi) ListPermissions(ctx _context.Context) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *RolesApi) ListPermissions(ctx _context.Context, o ...ListPermissionsOptionalParameters) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
 		localVarReturnValue PermissionsResponse
+		optionalParams      ListPermissionsOptionalParameters
 	)
+
+	if len(o) > 1 {
+		return localVarReturnValue, nil, datadog.ReportError("only one argument of type ListPermissionsOptionalParameters is allowed")
+	}
+	if len(o) == 1 {
+		optionalParams = o[0]
+	}
 
 	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.RolesApi.ListPermissions")
 	if err != nil {
@@ -518,6 +543,9 @@ func (a *RolesApi) ListPermissions(ctx _context.Context) (PermissionsResponse, *
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
+	if optionalParams.IncludeScopes != nil {
+		localVarQueryParams.Add("include_scopes", datadog.ParameterToString(*optionalParams.IncludeScopes, ""))
+	}
 	localVarHeaderParams["Accept"] = "application/json"
 
 	if a.Client.Cfg.DelegatedTokenConfig != nil {
