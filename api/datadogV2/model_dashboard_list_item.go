@@ -33,7 +33,7 @@ type DashboardListItem struct {
 	Modified *time.Time `json:"modified,omitempty"`
 	// Popularity of the dashboard.
 	Popularity *int32 `json:"popularity,omitempty"`
-	// List of team names representing ownership of a dashboard.
+	// Tags associated with the dashboard. Supports up to five team tags and two AI tags.
 	Tags datadog.NullableList[string] `json:"tags,omitempty"`
 	// Title of the dashboard.
 	Title *string `json:"title,omitempty"`
