@@ -14126,11 +14126,11 @@ func (a *SecurityMonitoringApi) PatchVulnerabilityNotificationRule(ctx _context.
 
 // ReorderSecurityFindingsAutomationDueDateRules Reorder due date rules.
 // Reorder the list of due date rules for the current organization.
-func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationDueDateRules(ctx _context.Context, body DueDateRuleReorderRequest) (DueDateRuleReorderRequest, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationDueDateRules(ctx _context.Context, body DueDateRuleReorderRequest) (DueDateRuleReorderResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue DueDateRuleReorderRequest
+		localVarReturnValue DueDateRuleReorderResponse
 	)
 
 	operationId := "v2.ReorderSecurityFindingsAutomationDueDateRules"
@@ -14224,11 +14224,11 @@ func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationDueDateRules(ct
 
 // ReorderSecurityFindingsAutomationMuteRules Reorder mute rules.
 // Reorder the list of mute rules for the current organization.
-func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationMuteRules(ctx _context.Context, body MuteRuleReorderRequest) (MuteRuleReorderRequest, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationMuteRules(ctx _context.Context, body MuteRuleReorderRequest) (MuteRuleReorderResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue MuteRuleReorderRequest
+		localVarReturnValue MuteRuleReorderResponse
 	)
 
 	operationId := "v2.ReorderSecurityFindingsAutomationMuteRules"
@@ -14420,11 +14420,11 @@ func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationSeverityModifie
 
 // ReorderSecurityFindingsAutomationTicketCreationRules Reorder ticket creation rules.
 // Reorder the list of ticket creation rules for the current organization.
-func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationTicketCreationRules(ctx _context.Context, body TicketCreationRuleReorderRequest) (TicketCreationRuleReorderRequest, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApi) ReorderSecurityFindingsAutomationTicketCreationRules(ctx _context.Context, body TicketCreationRuleReorderRequest) (TicketCreationRuleReorderResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
-		localVarReturnValue TicketCreationRuleReorderRequest
+		localVarReturnValue TicketCreationRuleReorderResponse
 	)
 
 	operationId := "v2.ReorderSecurityFindingsAutomationTicketCreationRules"
