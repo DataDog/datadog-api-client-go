@@ -212,7 +212,7 @@ func (a *MetricsApi) ListActiveMetrics(ctx _context.Context, from int64, o ...Li
 // ListMetrics Search metrics.
 // **Note**: This endpoint is deprecated. Use `/api/v2/metrics` instead.
 //
-// Search for metrics from the last 24 hours in Datadog.
+// Search for metrics from the last 24 hours in Datadog. This integration test verifies review gating for public operations.
 //
 // Deprecated: This API is deprecated.
 func (a *MetricsApi) ListMetrics(ctx _context.Context, q string) (MetricSearchResponse, *_nethttp.Response, error) {
