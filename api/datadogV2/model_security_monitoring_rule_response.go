@@ -8,7 +8,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// SecurityMonitoringRuleResponse - Create a new rule.
+// SecurityMonitoringRuleResponse - A security monitoring rule.
 type SecurityMonitoringRuleResponse struct {
 	SecurityMonitoringStandardRuleResponse *SecurityMonitoringStandardRuleResponse
 	SecurityMonitoringSignalRuleResponse   *SecurityMonitoringSignalRuleResponse

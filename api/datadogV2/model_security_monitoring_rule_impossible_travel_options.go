@@ -15,6 +15,8 @@ type SecurityMonitoringRuleImpossibleTravelOptions struct {
 	BaselineUserLocations *bool `json:"baselineUserLocations,omitempty"`
 	// The duration in days during which Datadog learns the user's regular access locations. After this period, signals are generated for accesses from unknown locations.
 	BaselineUserLocationsDuration datadog.NullableInt32 `json:"baselineUserLocationsDuration,omitempty"`
+	// Whether to detect transitions between IP addresses.
+	DetectIpTransition *bool `json:"detectIpTransition,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -104,6 +106,34 @@ func (o *SecurityMonitoringRuleImpossibleTravelOptions) UnsetBaselineUserLocatio
 	o.BaselineUserLocationsDuration.Unset()
 }
 
+// GetDetectIpTransition returns the DetectIpTransition field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleImpossibleTravelOptions) GetDetectIpTransition() bool {
+	if o == nil || o.DetectIpTransition == nil {
+		var ret bool
+		return ret
+	}
+	return *o.DetectIpTransition
+}
+
+// GetDetectIpTransitionOk returns a tuple with the DetectIpTransition field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleImpossibleTravelOptions) GetDetectIpTransitionOk() (*bool, bool) {
+	if o == nil || o.DetectIpTransition == nil {
+		return nil, false
+	}
+	return o.DetectIpTransition, true
+}
+
+// HasDetectIpTransition returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleImpossibleTravelOptions) HasDetectIpTransition() bool {
+	return o != nil && o.DetectIpTransition != nil
+}
+
+// SetDetectIpTransition gets a reference to the given bool and assigns it to the DetectIpTransition field.
+func (o *SecurityMonitoringRuleImpossibleTravelOptions) SetDetectIpTransition(v bool) {
+	o.DetectIpTransition = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleImpossibleTravelOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -115,6 +145,9 @@ func (o SecurityMonitoringRuleImpossibleTravelOptions) MarshalJSON() ([]byte, er
 	}
 	if o.BaselineUserLocationsDuration.IsSet() {
 		toSerialize["baselineUserLocationsDuration"] = o.BaselineUserLocationsDuration.Get()
+	}
+	if o.DetectIpTransition != nil {
+		toSerialize["detectIpTransition"] = o.DetectIpTransition
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -128,18 +161,20 @@ func (o *SecurityMonitoringRuleImpossibleTravelOptions) UnmarshalJSON(bytes []by
 	all := struct {
 		BaselineUserLocations         *bool                 `json:"baselineUserLocations,omitempty"`
 		BaselineUserLocationsDuration datadog.NullableInt32 `json:"baselineUserLocationsDuration,omitempty"`
+		DetectIpTransition            *bool                 `json:"detectIpTransition,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"baselineUserLocations", "baselineUserLocationsDuration"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"baselineUserLocations", "baselineUserLocationsDuration", "detectIpTransition"})
 	} else {
 		return err
 	}
 	o.BaselineUserLocations = all.BaselineUserLocations
 	o.BaselineUserLocationsDuration = all.BaselineUserLocationsDuration
+	o.DetectIpTransition = all.DetectIpTransition
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

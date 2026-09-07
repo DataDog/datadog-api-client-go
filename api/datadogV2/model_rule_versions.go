@@ -12,7 +12,7 @@ import (
 type RuleVersions struct {
 	// A list of changes.
 	Changes []VersionHistoryUpdate `json:"changes,omitempty"`
-	// Create a new rule.
+	// A security monitoring rule.
 	Rule *SecurityMonitoringRuleResponse `json:"rule,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
