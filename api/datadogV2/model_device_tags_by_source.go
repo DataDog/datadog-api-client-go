@@ -8,64 +8,64 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ListTagsResponseDataAttributes The definition of ListTagsResponseDataAttributes object.
-type ListTagsResponseDataAttributes struct {
-	// The list of device tags grouped by source.
-	BySource []DeviceTagsBySource `json:"by_source,omitempty"`
-	// The list of tags
+// DeviceTagsBySource Tags associated with a device from a specific source.
+type DeviceTagsBySource struct {
+	// The source of the tags.
+	Source *string `json:"source,omitempty"`
+	// The list of tags for the source.
 	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewListTagsResponseDataAttributes instantiates a new ListTagsResponseDataAttributes object.
+// NewDeviceTagsBySource instantiates a new DeviceTagsBySource object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewListTagsResponseDataAttributes() *ListTagsResponseDataAttributes {
-	this := ListTagsResponseDataAttributes{}
+func NewDeviceTagsBySource() *DeviceTagsBySource {
+	this := DeviceTagsBySource{}
 	return &this
 }
 
-// NewListTagsResponseDataAttributesWithDefaults instantiates a new ListTagsResponseDataAttributes object.
+// NewDeviceTagsBySourceWithDefaults instantiates a new DeviceTagsBySource object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewListTagsResponseDataAttributesWithDefaults() *ListTagsResponseDataAttributes {
-	this := ListTagsResponseDataAttributes{}
+func NewDeviceTagsBySourceWithDefaults() *DeviceTagsBySource {
+	this := DeviceTagsBySource{}
 	return &this
 }
 
-// GetBySource returns the BySource field value if set, zero value otherwise.
-func (o *ListTagsResponseDataAttributes) GetBySource() []DeviceTagsBySource {
-	if o == nil || o.BySource == nil {
-		var ret []DeviceTagsBySource
+// GetSource returns the Source field value if set, zero value otherwise.
+func (o *DeviceTagsBySource) GetSource() string {
+	if o == nil || o.Source == nil {
+		var ret string
 		return ret
 	}
-	return o.BySource
+	return *o.Source
 }
 
-// GetBySourceOk returns a tuple with the BySource field value if set, nil otherwise
+// GetSourceOk returns a tuple with the Source field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListTagsResponseDataAttributes) GetBySourceOk() (*[]DeviceTagsBySource, bool) {
-	if o == nil || o.BySource == nil {
+func (o *DeviceTagsBySource) GetSourceOk() (*string, bool) {
+	if o == nil || o.Source == nil {
 		return nil, false
 	}
-	return &o.BySource, true
+	return o.Source, true
 }
 
-// HasBySource returns a boolean if a field has been set.
-func (o *ListTagsResponseDataAttributes) HasBySource() bool {
-	return o != nil && o.BySource != nil
+// HasSource returns a boolean if a field has been set.
+func (o *DeviceTagsBySource) HasSource() bool {
+	return o != nil && o.Source != nil
 }
 
-// SetBySource gets a reference to the given []DeviceTagsBySource and assigns it to the BySource field.
-func (o *ListTagsResponseDataAttributes) SetBySource(v []DeviceTagsBySource) {
-	o.BySource = v
+// SetSource gets a reference to the given string and assigns it to the Source field.
+func (o *DeviceTagsBySource) SetSource(v string) {
+	o.Source = &v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *ListTagsResponseDataAttributes) GetTags() []string {
+func (o *DeviceTagsBySource) GetTags() []string {
 	if o == nil || o.Tags == nil {
 		var ret []string
 		return ret
@@ -75,7 +75,7 @@ func (o *ListTagsResponseDataAttributes) GetTags() []string {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *ListTagsResponseDataAttributes) GetTagsOk() (*[]string, bool) {
+func (o *DeviceTagsBySource) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -83,23 +83,23 @@ func (o *ListTagsResponseDataAttributes) GetTagsOk() (*[]string, bool) {
 }
 
 // HasTags returns a boolean if a field has been set.
-func (o *ListTagsResponseDataAttributes) HasTags() bool {
+func (o *DeviceTagsBySource) HasTags() bool {
 	return o != nil && o.Tags != nil
 }
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
-func (o *ListTagsResponseDataAttributes) SetTags(v []string) {
+func (o *DeviceTagsBySource) SetTags(v []string) {
 	o.Tags = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o ListTagsResponseDataAttributes) MarshalJSON() ([]byte, error) {
+func (o DeviceTagsBySource) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.BySource != nil {
-		toSerialize["by_source"] = o.BySource
+	if o.Source != nil {
+		toSerialize["source"] = o.Source
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
@@ -112,21 +112,21 @@ func (o ListTagsResponseDataAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *ListTagsResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DeviceTagsBySource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		BySource []DeviceTagsBySource `json:"by_source,omitempty"`
-		Tags     []string             `json:"tags,omitempty"`
+		Source *string  `json:"source,omitempty"`
+		Tags   []string `json:"tags,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"by_source", "tags"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"source", "tags"})
 	} else {
 		return err
 	}
-	o.BySource = all.BySource
+	o.Source = all.Source
 	o.Tags = all.Tags
 
 	if len(additionalProperties) > 0 {
