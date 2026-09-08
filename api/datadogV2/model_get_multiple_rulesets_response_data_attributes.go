@@ -5,13 +5,15 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // GetMultipleRulesetsResponseDataAttributes The attributes of the get-multiple-rulesets response, containing the list of requested rulesets.
 type GetMultipleRulesetsResponseDataAttributes struct {
 	// The list of rulesets returned in response to the batch request.
-	Rulesets []GetMultipleRulesetsResponseDataAttributesRulesetsItems `json:"rulesets,omitempty"`
+	Rulesets []GetMultipleRulesetsResponseDataAttributesRulesetsItems `json:"rulesets"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -21,8 +23,9 @@ type GetMultipleRulesetsResponseDataAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGetMultipleRulesetsResponseDataAttributes() *GetMultipleRulesetsResponseDataAttributes {
+func NewGetMultipleRulesetsResponseDataAttributes(rulesets []GetMultipleRulesetsResponseDataAttributesRulesetsItems) *GetMultipleRulesetsResponseDataAttributes {
 	this := GetMultipleRulesetsResponseDataAttributes{}
+	this.Rulesets = rulesets
 	return &this
 }
 
@@ -34,30 +37,25 @@ func NewGetMultipleRulesetsResponseDataAttributesWithDefaults() *GetMultipleRule
 	return &this
 }
 
-// GetRulesets returns the Rulesets field value if set, zero value otherwise.
+// GetRulesets returns the Rulesets field value.
 func (o *GetMultipleRulesetsResponseDataAttributes) GetRulesets() []GetMultipleRulesetsResponseDataAttributesRulesetsItems {
-	if o == nil || o.Rulesets == nil {
+	if o == nil {
 		var ret []GetMultipleRulesetsResponseDataAttributesRulesetsItems
 		return ret
 	}
 	return o.Rulesets
 }
 
-// GetRulesetsOk returns a tuple with the Rulesets field value if set, nil otherwise
+// GetRulesetsOk returns a tuple with the Rulesets field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributes) GetRulesetsOk() (*[]GetMultipleRulesetsResponseDataAttributesRulesetsItems, bool) {
-	if o == nil || o.Rulesets == nil {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Rulesets, true
 }
 
-// HasRulesets returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributes) HasRulesets() bool {
-	return o != nil && o.Rulesets != nil
-}
-
-// SetRulesets gets a reference to the given []GetMultipleRulesetsResponseDataAttributesRulesetsItems and assigns it to the Rulesets field.
+// SetRulesets sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributes) SetRulesets(v []GetMultipleRulesetsResponseDataAttributesRulesetsItems) {
 	o.Rulesets = v
 }
@@ -68,9 +66,7 @@ func (o GetMultipleRulesetsResponseDataAttributes) MarshalJSON() ([]byte, error)
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Rulesets != nil {
-		toSerialize["rulesets"] = o.Rulesets
-	}
+	toSerialize["rulesets"] = o.Rulesets
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -81,10 +77,13 @@ func (o GetMultipleRulesetsResponseDataAttributes) MarshalJSON() ([]byte, error)
 // UnmarshalJSON deserializes the given payload.
 func (o *GetMultipleRulesetsResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Rulesets []GetMultipleRulesetsResponseDataAttributesRulesetsItems `json:"rulesets,omitempty"`
+		Rulesets *[]GetMultipleRulesetsResponseDataAttributesRulesetsItems `json:"rulesets"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Rulesets == nil {
+		return fmt.Errorf("required field rulesets missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -92,7 +91,7 @@ func (o *GetMultipleRulesetsResponseDataAttributes) UnmarshalJSON(bytes []byte) 
 	} else {
 		return err
 	}
-	o.Rulesets = all.Rulesets
+	o.Rulesets = *all.Rulesets
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

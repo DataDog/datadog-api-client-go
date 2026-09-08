@@ -5,15 +5,18 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRulesetRequestDataAttributes Attributes for creating or updating a custom ruleset.
+// CustomRulesetRequestDataAttributes Attributes for creating or updating a custom ruleset. `name` is required and must
+// equal the resource `id`; the server rejects a mismatch with a 412 response.
 type CustomRulesetRequestDataAttributes struct {
 	// Base64-encoded full description
 	Description *string `json:"description,omitempty"`
-	// Ruleset name
-	Name *string `json:"name,omitempty"`
+	// Ruleset name, which must be the same as the resource identifier.
+	Name string `json:"name"`
 	// Rules in the ruleset
 	Rules []CustomRule `json:"rules,omitempty"`
 	// Base64-encoded short description
@@ -27,8 +30,9 @@ type CustomRulesetRequestDataAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCustomRulesetRequestDataAttributes() *CustomRulesetRequestDataAttributes {
+func NewCustomRulesetRequestDataAttributes(name string) *CustomRulesetRequestDataAttributes {
 	this := CustomRulesetRequestDataAttributes{}
+	this.Name = name
 	return &this
 }
 
@@ -68,32 +72,27 @@ func (o *CustomRulesetRequestDataAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value.
 func (o *CustomRulesetRequestDataAttributes) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CustomRulesetRequestDataAttributes) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *CustomRulesetRequestDataAttributes) HasName() bool {
-	return o != nil && o.Name != nil
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value.
 func (o *CustomRulesetRequestDataAttributes) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
 // GetRules returns the Rules field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -162,9 +161,7 @@ func (o CustomRulesetRequestDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if o.Rules != nil {
 		toSerialize["rules"] = o.Rules
 	}
@@ -182,12 +179,15 @@ func (o CustomRulesetRequestDataAttributes) MarshalJSON() ([]byte, error) {
 func (o *CustomRulesetRequestDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Description      *string      `json:"description,omitempty"`
-		Name             *string      `json:"name,omitempty"`
+		Name             *string      `json:"name"`
 		Rules            []CustomRule `json:"rules,omitempty"`
 		ShortDescription *string      `json:"short_description,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -196,7 +196,7 @@ func (o *CustomRulesetRequestDataAttributes) UnmarshalJSON(bytes []byte) (err er
 		return err
 	}
 	o.Description = all.Description
-	o.Name = all.Name
+	o.Name = *all.Name
 	o.Rules = all.Rules
 	o.ShortDescription = all.ShortDescription
 

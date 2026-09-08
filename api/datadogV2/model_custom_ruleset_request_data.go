@@ -5,17 +5,23 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// CustomRulesetRequestData Data object for a custom ruleset create or update request.
+// CustomRulesetRequestData Data object for a custom ruleset create or update request. The resource `id` is
+// required and must equal both `attributes.name` and, on update, the `ruleset_name`
+// path parameter; a request that omits it or supplies a different value is rejected
+// with a 412 response.
 type CustomRulesetRequestData struct {
-	// Attributes for creating or updating a custom ruleset.
-	Attributes *CustomRulesetRequestDataAttributes `json:"attributes,omitempty"`
-	// Ruleset identifier
-	Id *string `json:"id,omitempty"`
+	// Attributes for creating or updating a custom ruleset. `name` is required and must
+	// equal the resource `id`; the server rejects a mismatch with a 412 response.
+	Attributes CustomRulesetRequestDataAttributes `json:"attributes"`
+	// Ruleset identifier, which is the same as the ruleset name.
+	Id string `json:"id"`
 	// Resource type
-	Type *CustomRulesetDataType `json:"type,omitempty"`
+	Type CustomRulesetDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -25,8 +31,11 @@ type CustomRulesetRequestData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCustomRulesetRequestData() *CustomRulesetRequestData {
+func NewCustomRulesetRequestData(attributes CustomRulesetRequestDataAttributes, id string, typeVar CustomRulesetDataType) *CustomRulesetRequestData {
 	this := CustomRulesetRequestData{}
+	this.Attributes = attributes
+	this.Id = id
+	this.Type = typeVar
 	return &this
 }
 
@@ -38,88 +47,73 @@ func NewCustomRulesetRequestDataWithDefaults() *CustomRulesetRequestData {
 	return &this
 }
 
-// GetAttributes returns the Attributes field value if set, zero value otherwise.
+// GetAttributes returns the Attributes field value.
 func (o *CustomRulesetRequestData) GetAttributes() CustomRulesetRequestDataAttributes {
-	if o == nil || o.Attributes == nil {
+	if o == nil {
 		var ret CustomRulesetRequestDataAttributes
 		return ret
 	}
-	return *o.Attributes
+	return o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *CustomRulesetRequestData) GetAttributesOk() (*CustomRulesetRequestDataAttributes, bool) {
-	if o == nil || o.Attributes == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Attributes, true
+	return &o.Attributes, true
 }
 
-// HasAttributes returns a boolean if a field has been set.
-func (o *CustomRulesetRequestData) HasAttributes() bool {
-	return o != nil && o.Attributes != nil
-}
-
-// SetAttributes gets a reference to the given CustomRulesetRequestDataAttributes and assigns it to the Attributes field.
+// SetAttributes sets field value.
 func (o *CustomRulesetRequestData) SetAttributes(v CustomRulesetRequestDataAttributes) {
-	o.Attributes = &v
+	o.Attributes = v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value.
 func (o *CustomRulesetRequestData) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *CustomRulesetRequestData) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *CustomRulesetRequestData) HasId() bool {
-	return o != nil && o.Id != nil
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value.
 func (o *CustomRulesetRequestData) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value.
 func (o *CustomRulesetRequestData) GetType() CustomRulesetDataType {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret CustomRulesetDataType
 		return ret
 	}
-	return *o.Type
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *CustomRulesetRequestData) GetTypeOk() (*CustomRulesetDataType, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *CustomRulesetRequestData) HasType() bool {
-	return o != nil && o.Type != nil
-}
-
-// SetType gets a reference to the given CustomRulesetDataType and assigns it to the Type field.
+// SetType sets field value.
 func (o *CustomRulesetRequestData) SetType(v CustomRulesetDataType) {
-	o.Type = &v
+	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -128,15 +122,9 @@ func (o CustomRulesetRequestData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Attributes != nil {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Type != nil {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -147,12 +135,21 @@ func (o CustomRulesetRequestData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomRulesetRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *CustomRulesetRequestDataAttributes `json:"attributes,omitempty"`
-		Id         *string                             `json:"id,omitempty"`
-		Type       *CustomRulesetDataType              `json:"type,omitempty"`
+		Attributes *CustomRulesetRequestDataAttributes `json:"attributes"`
+		Id         *string                             `json:"id"`
+		Type       *CustomRulesetDataType              `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
+	}
+	if all.Type == nil {
+		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -162,15 +159,15 @@ func (o *CustomRulesetRequestData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Attributes = all.Attributes
-	o.Id = all.Id
-	if all.Type != nil && !all.Type.IsValid() {
+	o.Attributes = *all.Attributes
+	o.Id = *all.Id
+	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
-		o.Type = all.Type
+		o.Type = *all.Type
 	}
 
 	if len(additionalProperties) > 0 {

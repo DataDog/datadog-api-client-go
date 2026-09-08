@@ -13,9 +13,9 @@ import (
 // GetMultipleRulesetsResponseData The primary data object in the get-multiple-rulesets response, containing the response attributes and resource type.
 type GetMultipleRulesetsResponseData struct {
 	// The attributes of the get-multiple-rulesets response, containing the list of requested rulesets.
-	Attributes *GetMultipleRulesetsResponseDataAttributes `json:"attributes,omitempty"`
-	// The unique identifier of the get-multiple-rulesets response resource.
-	Id *string `json:"id,omitempty"`
+	Attributes GetMultipleRulesetsResponseDataAttributes `json:"attributes"`
+	// The unique identifier of the get-multiple-rulesets response resource, echoed from the request.
+	Id string `json:"id"`
 	// Get multiple rulesets response resource type.
 	Type GetMultipleRulesetsResponseDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -27,8 +27,10 @@ type GetMultipleRulesetsResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGetMultipleRulesetsResponseData(typeVar GetMultipleRulesetsResponseDataType) *GetMultipleRulesetsResponseData {
+func NewGetMultipleRulesetsResponseData(attributes GetMultipleRulesetsResponseDataAttributes, id string, typeVar GetMultipleRulesetsResponseDataType) *GetMultipleRulesetsResponseData {
 	this := GetMultipleRulesetsResponseData{}
+	this.Attributes = attributes
+	this.Id = id
 	this.Type = typeVar
 	return &this
 }
@@ -43,60 +45,50 @@ func NewGetMultipleRulesetsResponseDataWithDefaults() *GetMultipleRulesetsRespon
 	return &this
 }
 
-// GetAttributes returns the Attributes field value if set, zero value otherwise.
+// GetAttributes returns the Attributes field value.
 func (o *GetMultipleRulesetsResponseData) GetAttributes() GetMultipleRulesetsResponseDataAttributes {
-	if o == nil || o.Attributes == nil {
+	if o == nil {
 		var ret GetMultipleRulesetsResponseDataAttributes
 		return ret
 	}
-	return *o.Attributes
+	return o.Attributes
 }
 
-// GetAttributesOk returns a tuple with the Attributes field value if set, nil otherwise
+// GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseData) GetAttributesOk() (*GetMultipleRulesetsResponseDataAttributes, bool) {
-	if o == nil || o.Attributes == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Attributes, true
+	return &o.Attributes, true
 }
 
-// HasAttributes returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseData) HasAttributes() bool {
-	return o != nil && o.Attributes != nil
-}
-
-// SetAttributes gets a reference to the given GetMultipleRulesetsResponseDataAttributes and assigns it to the Attributes field.
+// SetAttributes sets field value.
 func (o *GetMultipleRulesetsResponseData) SetAttributes(v GetMultipleRulesetsResponseDataAttributes) {
-	o.Attributes = &v
+	o.Attributes = v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value.
 func (o *GetMultipleRulesetsResponseData) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseData) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseData) HasId() bool {
-	return o != nil && o.Id != nil
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value.
 func (o *GetMultipleRulesetsResponseData) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetType returns the Type field value.
@@ -128,12 +120,8 @@ func (o GetMultipleRulesetsResponseData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Attributes != nil {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -145,12 +133,18 @@ func (o GetMultipleRulesetsResponseData) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GetMultipleRulesetsResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *GetMultipleRulesetsResponseDataAttributes `json:"attributes,omitempty"`
-		Id         *string                                    `json:"id,omitempty"`
+		Attributes *GetMultipleRulesetsResponseDataAttributes `json:"attributes"`
+		Id         *string                                    `json:"id"`
 		Type       *GetMultipleRulesetsResponseDataType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
 	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
@@ -163,11 +157,11 @@ func (o *GetMultipleRulesetsResponseData) UnmarshalJSON(bytes []byte) (err error
 	}
 
 	hasInvalidField := false
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Attributes = all.Attributes
-	o.Id = all.Id
+	o.Attributes = *all.Attributes
+	o.Id = *all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {

@@ -12,16 +12,16 @@ import (
 
 // GetMultipleRulesetsResponseDataAttributesRulesetsItems A ruleset returned in the response, containing its metadata and associated rules.
 type GetMultipleRulesetsResponseDataAttributesRulesetsItems struct {
-	// The resource identifier and type for a ruleset.
-	Data GetMultipleRulesetsResponseDataAttributesRulesetsItemsData `json:"data"`
 	// A detailed description of the ruleset's purpose and the types of issues it targets.
-	Description *string `json:"description,omitempty"`
+	Description string `json:"description"`
+	// The unique identifier of the ruleset, which is the same as its name.
+	Id string `json:"id"`
 	// The unique name of the ruleset.
-	Name *string `json:"name,omitempty"`
+	Name string `json:"name"`
 	// The list of static analysis rules included in this ruleset.
-	Rules []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems `json:"rules,omitempty"`
+	Rules []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems `json:"rules"`
 	// A brief summary of the ruleset, suitable for display in listings.
-	ShortDescription *string `json:"short_description,omitempty"`
+	ShortDescription string `json:"short_description"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -31,9 +31,13 @@ type GetMultipleRulesetsResponseDataAttributesRulesetsItems struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGetMultipleRulesetsResponseDataAttributesRulesetsItems(data GetMultipleRulesetsResponseDataAttributesRulesetsItemsData) *GetMultipleRulesetsResponseDataAttributesRulesetsItems {
+func NewGetMultipleRulesetsResponseDataAttributesRulesetsItems(description string, id string, name string, rules []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems, shortDescription string) *GetMultipleRulesetsResponseDataAttributesRulesetsItems {
 	this := GetMultipleRulesetsResponseDataAttributesRulesetsItems{}
-	this.Data = data
+	this.Description = description
+	this.Id = id
+	this.Name = name
+	this.Rules = rules
+	this.ShortDescription = shortDescription
 	return &this
 }
 
@@ -45,139 +49,119 @@ func NewGetMultipleRulesetsResponseDataAttributesRulesetsItemsWithDefaults() *Ge
 	return &this
 }
 
-// GetData returns the Data field value.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) GetData() GetMultipleRulesetsResponseDataAttributesRulesetsItemsData {
-	if o == nil {
-		var ret GetMultipleRulesetsResponseDataAttributesRulesetsItemsData
-		return ret
-	}
-	return o.Data
-}
-
-// GetDataOk returns a tuple with the Data field value
-// and a boolean to check if the value has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) GetDataOk() (*GetMultipleRulesetsResponseDataAttributesRulesetsItemsData, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Data, true
-}
-
-// SetData sets field value.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) SetData(v GetMultipleRulesetsResponseDataAttributesRulesetsItemsData) {
-	o.Data = v
-}
-
-// GetDescription returns the Description field value if set, zero value otherwise.
+// GetDescription returns the Description field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) GetDescription() string {
-	if o == nil || o.Description == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Description
+	return o.Description
 }
 
-// GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
+// GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) GetDescriptionOk() (*string, bool) {
-	if o == nil || o.Description == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Description, true
+	return &o.Description, true
 }
 
-// HasDescription returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) HasDescription() bool {
-	return o != nil && o.Description != nil
-}
-
-// SetDescription gets a reference to the given string and assigns it to the Description field.
+// SetDescription sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) SetDescription(v string) {
-	o.Description = &v
+	o.Description = v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) GetName() string {
-	if o == nil || o.Name == nil {
+// GetId returns the Id field value.
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) GetId() string {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+	return o.Id
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) GetIdOk() (*string, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Id, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) HasName() bool {
-	return o != nil && o.Name != nil
+// SetId sets field value.
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) SetId(v string) {
+	o.Id = v
 }
 
-// SetName gets a reference to the given string and assigns it to the Name field.
+// GetName returns the Name field value.
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) GetName() string {
+	if o == nil {
+		var ret string
+		return ret
+	}
+	return o.Name
+}
+
+// GetNameOk returns a tuple with the Name field value
+// and a boolean to check if the value has been set.
+func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) GetNameOk() (*string, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Name, true
+}
+
+// SetName sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetRules returns the Rules field value if set, zero value otherwise.
+// GetRules returns the Rules field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) GetRules() []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems {
-	if o == nil || o.Rules == nil {
+	if o == nil {
 		var ret []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems
 		return ret
 	}
 	return o.Rules
 }
 
-// GetRulesOk returns a tuple with the Rules field value if set, nil otherwise
+// GetRulesOk returns a tuple with the Rules field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) GetRulesOk() (*[]GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems, bool) {
-	if o == nil || o.Rules == nil {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Rules, true
 }
 
-// HasRules returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) HasRules() bool {
-	return o != nil && o.Rules != nil
-}
-
-// SetRules gets a reference to the given []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems and assigns it to the Rules field.
+// SetRules sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) SetRules(v []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems) {
 	o.Rules = v
 }
 
-// GetShortDescription returns the ShortDescription field value if set, zero value otherwise.
+// GetShortDescription returns the ShortDescription field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) GetShortDescription() string {
-	if o == nil || o.ShortDescription == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.ShortDescription
+	return o.ShortDescription
 }
 
-// GetShortDescriptionOk returns a tuple with the ShortDescription field value if set, nil otherwise
+// GetShortDescriptionOk returns a tuple with the ShortDescription field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) GetShortDescriptionOk() (*string, bool) {
-	if o == nil || o.ShortDescription == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.ShortDescription, true
+	return &o.ShortDescription, true
 }
 
-// HasShortDescription returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) HasShortDescription() bool {
-	return o != nil && o.ShortDescription != nil
-}
-
-// SetShortDescription gets a reference to the given string and assigns it to the ShortDescription field.
+// SetShortDescription sets field value.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) SetShortDescription(v string) {
-	o.ShortDescription = &v
+	o.ShortDescription = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -186,19 +170,11 @@ func (o GetMultipleRulesetsResponseDataAttributesRulesetsItems) MarshalJSON() ([
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["data"] = o.Data
-	if o.Description != nil {
-		toSerialize["description"] = o.Description
-	}
-	if o.Name != nil {
-		toSerialize["name"] = o.Name
-	}
-	if o.Rules != nil {
-		toSerialize["rules"] = o.Rules
-	}
-	if o.ShortDescription != nil {
-		toSerialize["short_description"] = o.ShortDescription
-	}
+	toSerialize["description"] = o.Description
+	toSerialize["id"] = o.Id
+	toSerialize["name"] = o.Name
+	toSerialize["rules"] = o.Rules
+	toSerialize["short_description"] = o.ShortDescription
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -209,41 +185,44 @@ func (o GetMultipleRulesetsResponseDataAttributesRulesetsItems) MarshalJSON() ([
 // UnmarshalJSON deserializes the given payload.
 func (o *GetMultipleRulesetsResponseDataAttributesRulesetsItems) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data             *GetMultipleRulesetsResponseDataAttributesRulesetsItemsData        `json:"data"`
-		Description      *string                                                            `json:"description,omitempty"`
-		Name             *string                                                            `json:"name,omitempty"`
-		Rules            []GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems `json:"rules,omitempty"`
-		ShortDescription *string                                                            `json:"short_description,omitempty"`
+		Description      *string                                                             `json:"description"`
+		Id               *string                                                             `json:"id"`
+		Name             *string                                                             `json:"name"`
+		Rules            *[]GetMultipleRulesetsResponseDataAttributesRulesetsItemsRulesItems `json:"rules"`
+		ShortDescription *string                                                             `json:"short_description"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Data == nil {
-		return fmt.Errorf("required field data missing")
+	if all.Description == nil {
+		return fmt.Errorf("required field description missing")
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
+	}
+	if all.Name == nil {
+		return fmt.Errorf("required field name missing")
+	}
+	if all.Rules == nil {
+		return fmt.Errorf("required field rules missing")
+	}
+	if all.ShortDescription == nil {
+		return fmt.Errorf("required field short_description missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data", "description", "name", "rules", "short_description"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"description", "id", "name", "rules", "short_description"})
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
-	o.Data = *all.Data
-	o.Description = all.Description
-	o.Name = all.Name
-	o.Rules = all.Rules
-	o.ShortDescription = all.ShortDescription
+	o.Description = *all.Description
+	o.Id = *all.Id
+	o.Name = *all.Name
+	o.Rules = *all.Rules
+	o.ShortDescription = *all.ShortDescription
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
