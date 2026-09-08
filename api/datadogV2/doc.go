@@ -1508,6 +1508,7 @@
 //   - [TestOptimizationApi.UpdateFlakyTestsManagementPolicies]
 //   - [TestOptimizationApi.UpdateTestOptimizationServiceSettings]
 //   - [ThreatIntelligenceApi.AddSTIXThreatIntel]
+//   - [TimeseriesAnomalyInvestigationsApi.CreateTimeseriesAnomalyInvestigation]
 //   - [TwilioIntegrationAccountsApi.CreateTwilioIntegrationAccount]
 //   - [TwilioIntegrationAccountsApi.DeleteTwilioIntegrationAccount]
 //   - [TwilioIntegrationAccountsApi.GetTwilioIntegrationAccount]
