@@ -1,4 +1,4 @@
-// List permissions returns "OK" response
+// List permissions including scopes returns "OK" response
 
 package main
 
@@ -17,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewRolesApi(apiClient)
-	resp, r, err := api.ListPermissions(ctx, *datadogV2.NewListPermissionsOptionalParameters())
+	resp, r, err := api.ListPermissions(ctx, *datadogV2.NewListPermissionsOptionalParameters().WithIncludeScopes(true))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListPermissions`: %v\n", err)
