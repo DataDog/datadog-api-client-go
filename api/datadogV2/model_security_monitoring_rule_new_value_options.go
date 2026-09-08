@@ -14,6 +14,8 @@ type SecurityMonitoringRuleNewValueOptions struct {
 	ForgetAfter *int32 `json:"forgetAfter,omitempty"`
 	// When set to true, Datadog uses previous values that fall within the defined learning window to construct the baseline, enabling the system to establish an accurate baseline more rapidly rather than relying solely on gradual learning over time.
 	InstantaneousBaseline *bool `json:"instantaneousBaseline,omitempty"`
+	// Timeout in minutes for constructing the instantaneous baseline.
+	InstantaneousBaselineTimeoutMinutes *int32 `json:"instantaneousBaselineTimeoutMinutes,omitempty"`
 	// The duration in days during which values are learned, and after which signals will be generated for values that
 	// weren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.
 	LearningDuration *int32 `json:"learningDuration,omitempty"`
@@ -109,6 +111,34 @@ func (o *SecurityMonitoringRuleNewValueOptions) HasInstantaneousBaseline() bool 
 // SetInstantaneousBaseline gets a reference to the given bool and assigns it to the InstantaneousBaseline field.
 func (o *SecurityMonitoringRuleNewValueOptions) SetInstantaneousBaseline(v bool) {
 	o.InstantaneousBaseline = &v
+}
+
+// GetInstantaneousBaselineTimeoutMinutes returns the InstantaneousBaselineTimeoutMinutes field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleNewValueOptions) GetInstantaneousBaselineTimeoutMinutes() int32 {
+	if o == nil || o.InstantaneousBaselineTimeoutMinutes == nil {
+		var ret int32
+		return ret
+	}
+	return *o.InstantaneousBaselineTimeoutMinutes
+}
+
+// GetInstantaneousBaselineTimeoutMinutesOk returns a tuple with the InstantaneousBaselineTimeoutMinutes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleNewValueOptions) GetInstantaneousBaselineTimeoutMinutesOk() (*int32, bool) {
+	if o == nil || o.InstantaneousBaselineTimeoutMinutes == nil {
+		return nil, false
+	}
+	return o.InstantaneousBaselineTimeoutMinutes, true
+}
+
+// HasInstantaneousBaselineTimeoutMinutes returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleNewValueOptions) HasInstantaneousBaselineTimeoutMinutes() bool {
+	return o != nil && o.InstantaneousBaselineTimeoutMinutes != nil
+}
+
+// SetInstantaneousBaselineTimeoutMinutes gets a reference to the given int32 and assigns it to the InstantaneousBaselineTimeoutMinutes field.
+func (o *SecurityMonitoringRuleNewValueOptions) SetInstantaneousBaselineTimeoutMinutes(v int32) {
+	o.InstantaneousBaselineTimeoutMinutes = &v
 }
 
 // GetLearningDuration returns the LearningDuration field value if set, zero value otherwise.
@@ -207,6 +237,9 @@ func (o SecurityMonitoringRuleNewValueOptions) MarshalJSON() ([]byte, error) {
 	if o.InstantaneousBaseline != nil {
 		toSerialize["instantaneousBaseline"] = o.InstantaneousBaseline
 	}
+	if o.InstantaneousBaselineTimeoutMinutes != nil {
+		toSerialize["instantaneousBaselineTimeoutMinutes"] = o.InstantaneousBaselineTimeoutMinutes
+	}
 	if o.LearningDuration != nil {
 		toSerialize["learningDuration"] = o.LearningDuration
 	}
@@ -226,18 +259,19 @@ func (o SecurityMonitoringRuleNewValueOptions) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringRuleNewValueOptions) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ForgetAfter           *int32                                                  `json:"forgetAfter,omitempty"`
-		InstantaneousBaseline *bool                                                   `json:"instantaneousBaseline,omitempty"`
-		LearningDuration      *int32                                                  `json:"learningDuration,omitempty"`
-		LearningMethod        *SecurityMonitoringRuleNewValueOptionsLearningMethod    `json:"learningMethod,omitempty"`
-		LearningThreshold     *SecurityMonitoringRuleNewValueOptionsLearningThreshold `json:"learningThreshold,omitempty"`
+		ForgetAfter                         *int32                                                  `json:"forgetAfter,omitempty"`
+		InstantaneousBaseline               *bool                                                   `json:"instantaneousBaseline,omitempty"`
+		InstantaneousBaselineTimeoutMinutes *int32                                                  `json:"instantaneousBaselineTimeoutMinutes,omitempty"`
+		LearningDuration                    *int32                                                  `json:"learningDuration,omitempty"`
+		LearningMethod                      *SecurityMonitoringRuleNewValueOptionsLearningMethod    `json:"learningMethod,omitempty"`
+		LearningThreshold                   *SecurityMonitoringRuleNewValueOptionsLearningThreshold `json:"learningThreshold,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"forgetAfter", "instantaneousBaseline", "learningDuration", "learningMethod", "learningThreshold"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"forgetAfter", "instantaneousBaseline", "instantaneousBaselineTimeoutMinutes", "learningDuration", "learningMethod", "learningThreshold"})
 	} else {
 		return err
 	}
@@ -245,6 +279,7 @@ func (o *SecurityMonitoringRuleNewValueOptions) UnmarshalJSON(bytes []byte) (err
 	hasInvalidField := false
 	o.ForgetAfter = all.ForgetAfter
 	o.InstantaneousBaseline = all.InstantaneousBaseline
+	o.InstantaneousBaselineTimeoutMinutes = all.InstantaneousBaselineTimeoutMinutes
 	o.LearningDuration = all.LearningDuration
 	if all.LearningMethod != nil && !all.LearningMethod.IsValid() {
 		hasInvalidField = true

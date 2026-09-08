@@ -36,8 +36,12 @@ type SecurityMonitoringRuleOptions struct {
 	MaxSignalDuration *SecurityMonitoringRuleMaxSignalDuration `json:"maxSignalDuration,omitempty"`
 	// Options on new value detection method.
 	NewValueOptions *SecurityMonitoringRuleNewValueOptions `json:"newValueOptions,omitempty"`
+	// Fields used to identify related signals.
+	RelatedSignalsFields []string `json:"relatedSignalsFields,omitempty"`
 	// Options on sequence detection method.
 	SequenceDetectionOptions *SecurityMonitoringRuleSequenceDetectionOptions `json:"sequenceDetectionOptions,omitempty"`
+	// A template for the signal title.
+	SignalTitleTemplate *string `json:"signalTitleTemplate,omitempty"`
 	// Options on third party detection method.
 	ThirdPartyRuleOptions *SecurityMonitoringRuleThirdPartyOptions `json:"thirdPartyRuleOptions,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -342,6 +346,34 @@ func (o *SecurityMonitoringRuleOptions) SetNewValueOptions(v SecurityMonitoringR
 	o.NewValueOptions = &v
 }
 
+// GetRelatedSignalsFields returns the RelatedSignalsFields field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleOptions) GetRelatedSignalsFields() []string {
+	if o == nil || o.RelatedSignalsFields == nil {
+		var ret []string
+		return ret
+	}
+	return o.RelatedSignalsFields
+}
+
+// GetRelatedSignalsFieldsOk returns a tuple with the RelatedSignalsFields field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleOptions) GetRelatedSignalsFieldsOk() (*[]string, bool) {
+	if o == nil || o.RelatedSignalsFields == nil {
+		return nil, false
+	}
+	return &o.RelatedSignalsFields, true
+}
+
+// HasRelatedSignalsFields returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleOptions) HasRelatedSignalsFields() bool {
+	return o != nil && o.RelatedSignalsFields != nil
+}
+
+// SetRelatedSignalsFields gets a reference to the given []string and assigns it to the RelatedSignalsFields field.
+func (o *SecurityMonitoringRuleOptions) SetRelatedSignalsFields(v []string) {
+	o.RelatedSignalsFields = v
+}
+
 // GetSequenceDetectionOptions returns the SequenceDetectionOptions field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetSequenceDetectionOptions() SecurityMonitoringRuleSequenceDetectionOptions {
 	if o == nil || o.SequenceDetectionOptions == nil {
@@ -368,6 +400,34 @@ func (o *SecurityMonitoringRuleOptions) HasSequenceDetectionOptions() bool {
 // SetSequenceDetectionOptions gets a reference to the given SecurityMonitoringRuleSequenceDetectionOptions and assigns it to the SequenceDetectionOptions field.
 func (o *SecurityMonitoringRuleOptions) SetSequenceDetectionOptions(v SecurityMonitoringRuleSequenceDetectionOptions) {
 	o.SequenceDetectionOptions = &v
+}
+
+// GetSignalTitleTemplate returns the SignalTitleTemplate field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleOptions) GetSignalTitleTemplate() string {
+	if o == nil || o.SignalTitleTemplate == nil {
+		var ret string
+		return ret
+	}
+	return *o.SignalTitleTemplate
+}
+
+// GetSignalTitleTemplateOk returns a tuple with the SignalTitleTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleOptions) GetSignalTitleTemplateOk() (*string, bool) {
+	if o == nil || o.SignalTitleTemplate == nil {
+		return nil, false
+	}
+	return o.SignalTitleTemplate, true
+}
+
+// HasSignalTitleTemplate returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleOptions) HasSignalTitleTemplate() bool {
+	return o != nil && o.SignalTitleTemplate != nil
+}
+
+// SetSignalTitleTemplate gets a reference to the given string and assigns it to the SignalTitleTemplate field.
+func (o *SecurityMonitoringRuleOptions) SetSignalTitleTemplate(v string) {
+	o.SignalTitleTemplate = &v
 }
 
 // GetThirdPartyRuleOptions returns the ThirdPartyRuleOptions field value if set, zero value otherwise.
@@ -434,8 +494,14 @@ func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 	if o.NewValueOptions != nil {
 		toSerialize["newValueOptions"] = o.NewValueOptions
 	}
+	if o.RelatedSignalsFields != nil {
+		toSerialize["relatedSignalsFields"] = o.RelatedSignalsFields
+	}
 	if o.SequenceDetectionOptions != nil {
 		toSerialize["sequenceDetectionOptions"] = o.SequenceDetectionOptions
+	}
+	if o.SignalTitleTemplate != nil {
+		toSerialize["signalTitleTemplate"] = o.SignalTitleTemplate
 	}
 	if o.ThirdPartyRuleOptions != nil {
 		toSerialize["thirdPartyRuleOptions"] = o.ThirdPartyRuleOptions
@@ -460,7 +526,9 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 		KeepAlive                     *SecurityMonitoringRuleKeepAlive                `json:"keepAlive,omitempty"`
 		MaxSignalDuration             *SecurityMonitoringRuleMaxSignalDuration        `json:"maxSignalDuration,omitempty"`
 		NewValueOptions               *SecurityMonitoringRuleNewValueOptions          `json:"newValueOptions,omitempty"`
+		RelatedSignalsFields          []string                                        `json:"relatedSignalsFields,omitempty"`
 		SequenceDetectionOptions      *SecurityMonitoringRuleSequenceDetectionOptions `json:"sequenceDetectionOptions,omitempty"`
+		SignalTitleTemplate           *string                                         `json:"signalTitleTemplate,omitempty"`
 		ThirdPartyRuleOptions         *SecurityMonitoringRuleThirdPartyOptions        `json:"thirdPartyRuleOptions,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -468,7 +536,7 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"anomalyDetectionOptions", "complianceRuleOptions", "decreaseCriticalityBasedOnEnv", "detectionMethod", "evaluationWindow", "hardcodedEvaluatorType", "impossibleTravelOptions", "keepAlive", "maxSignalDuration", "newValueOptions", "sequenceDetectionOptions", "thirdPartyRuleOptions"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"anomalyDetectionOptions", "complianceRuleOptions", "decreaseCriticalityBasedOnEnv", "detectionMethod", "evaluationWindow", "hardcodedEvaluatorType", "impossibleTravelOptions", "keepAlive", "maxSignalDuration", "newValueOptions", "relatedSignalsFields", "sequenceDetectionOptions", "signalTitleTemplate", "thirdPartyRuleOptions"})
 	} else {
 		return err
 	}
@@ -516,10 +584,12 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 		hasInvalidField = true
 	}
 	o.NewValueOptions = all.NewValueOptions
+	o.RelatedSignalsFields = all.RelatedSignalsFields
 	if all.SequenceDetectionOptions != nil && all.SequenceDetectionOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
 	o.SequenceDetectionOptions = all.SequenceDetectionOptions
+	o.SignalTitleTemplate = all.SignalTitleTemplate
 	if all.ThirdPartyRuleOptions != nil && all.ThirdPartyRuleOptions.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
