@@ -10,7 +10,8 @@ import (
 
 // MonitorConfigPolicyPolicyCreateRequest - Configuration for the policy.
 type MonitorConfigPolicyPolicyCreateRequest struct {
-	MonitorConfigPolicyTagPolicyCreateRequest *MonitorConfigPolicyTagPolicyCreateRequest
+	MonitorConfigPolicyTagPolicyCreateRequest      *MonitorConfigPolicyTagPolicyCreateRequest
+	MonitorConfigPolicyDowntimePolicyCreateRequest *MonitorConfigPolicyDowntimePolicyCreateRequest
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -19,6 +20,11 @@ type MonitorConfigPolicyPolicyCreateRequest struct {
 // MonitorConfigPolicyTagPolicyCreateRequestAsMonitorConfigPolicyPolicyCreateRequest is a convenience function that returns MonitorConfigPolicyTagPolicyCreateRequest wrapped in MonitorConfigPolicyPolicyCreateRequest.
 func MonitorConfigPolicyTagPolicyCreateRequestAsMonitorConfigPolicyPolicyCreateRequest(v *MonitorConfigPolicyTagPolicyCreateRequest) MonitorConfigPolicyPolicyCreateRequest {
 	return MonitorConfigPolicyPolicyCreateRequest{MonitorConfigPolicyTagPolicyCreateRequest: v}
+}
+
+// MonitorConfigPolicyDowntimePolicyCreateRequestAsMonitorConfigPolicyPolicyCreateRequest is a convenience function that returns MonitorConfigPolicyDowntimePolicyCreateRequest wrapped in MonitorConfigPolicyPolicyCreateRequest.
+func MonitorConfigPolicyDowntimePolicyCreateRequestAsMonitorConfigPolicyPolicyCreateRequest(v *MonitorConfigPolicyDowntimePolicyCreateRequest) MonitorConfigPolicyPolicyCreateRequest {
+	return MonitorConfigPolicyPolicyCreateRequest{MonitorConfigPolicyDowntimePolicyCreateRequest: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -42,9 +48,27 @@ func (obj *MonitorConfigPolicyPolicyCreateRequest) UnmarshalJSON(data []byte) er
 		obj.MonitorConfigPolicyTagPolicyCreateRequest = nil
 	}
 
+	// try to unmarshal data into MonitorConfigPolicyDowntimePolicyCreateRequest
+	err = datadog.Unmarshal(data, &obj.MonitorConfigPolicyDowntimePolicyCreateRequest)
+	if err == nil {
+		if obj.MonitorConfigPolicyDowntimePolicyCreateRequest != nil && obj.MonitorConfigPolicyDowntimePolicyCreateRequest.UnparsedObject == nil {
+			jsonMonitorConfigPolicyDowntimePolicyCreateRequest, _ := datadog.Marshal(obj.MonitorConfigPolicyDowntimePolicyCreateRequest)
+			if string(jsonMonitorConfigPolicyDowntimePolicyCreateRequest) == "{}" { // empty struct
+				obj.MonitorConfigPolicyDowntimePolicyCreateRequest = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.MonitorConfigPolicyDowntimePolicyCreateRequest = nil
+		}
+	} else {
+		obj.MonitorConfigPolicyDowntimePolicyCreateRequest = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.MonitorConfigPolicyTagPolicyCreateRequest = nil
+		obj.MonitorConfigPolicyDowntimePolicyCreateRequest = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -54,6 +78,10 @@ func (obj *MonitorConfigPolicyPolicyCreateRequest) UnmarshalJSON(data []byte) er
 func (obj MonitorConfigPolicyPolicyCreateRequest) MarshalJSON() ([]byte, error) {
 	if obj.MonitorConfigPolicyTagPolicyCreateRequest != nil {
 		return datadog.Marshal(&obj.MonitorConfigPolicyTagPolicyCreateRequest)
+	}
+
+	if obj.MonitorConfigPolicyDowntimePolicyCreateRequest != nil {
+		return datadog.Marshal(&obj.MonitorConfigPolicyDowntimePolicyCreateRequest)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -66,6 +94,10 @@ func (obj MonitorConfigPolicyPolicyCreateRequest) MarshalJSON() ([]byte, error) 
 func (obj *MonitorConfigPolicyPolicyCreateRequest) GetActualInstance() interface{} {
 	if obj.MonitorConfigPolicyTagPolicyCreateRequest != nil {
 		return obj.MonitorConfigPolicyTagPolicyCreateRequest
+	}
+
+	if obj.MonitorConfigPolicyDowntimePolicyCreateRequest != nil {
+		return obj.MonitorConfigPolicyDowntimePolicyCreateRequest
 	}
 
 	// all schemas are nil

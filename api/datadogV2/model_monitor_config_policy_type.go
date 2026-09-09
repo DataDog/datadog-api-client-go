@@ -11,15 +11,19 @@ import (
 )
 
 // MonitorConfigPolicyType The monitor configuration policy type.
+// `tag` enforces required tags on monitors.
+// `downtime` sets a maximum downtime duration for the organization.
 type MonitorConfigPolicyType string
 
 // List of MonitorConfigPolicyType.
 const (
-	MONITORCONFIGPOLICYTYPE_TAG MonitorConfigPolicyType = "tag"
+	MONITORCONFIGPOLICYTYPE_TAG      MonitorConfigPolicyType = "tag"
+	MONITORCONFIGPOLICYTYPE_DOWNTIME MonitorConfigPolicyType = "downtime"
 )
 
 var allowedMonitorConfigPolicyTypeEnumValues = []MonitorConfigPolicyType{
 	MONITORCONFIGPOLICYTYPE_TAG,
+	MONITORCONFIGPOLICYTYPE_DOWNTIME,
 }
 
 // GetAllowedValues reeturns the list of possible values.
