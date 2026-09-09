@@ -58480,8 +58480,8 @@ components:
       type: object
     LLMObsContentBlock:
       anyOf:
-        - $ref: '#/components/schemas/LLMObsFrontendContentBlock'
-        - $ref: '#/components/schemas/LLMObsLegacyContentBlock'
+        - $ref: "#/components/schemas/LLMObsFrontendContentBlock"
+        - $ref: "#/components/schemas/LLMObsLegacyContentBlock"
       description: |-
         A single content block rendered inside a `display_block` interaction.
         `type` discriminates which other fields are meaningful:
@@ -58501,7 +58501,7 @@ components:
           example: "Example image"
           type: string
         code:
-          $ref: '#/components/schemas/LLMObsFrontendContentBlockCode'
+          $ref: "#/components/schemas/LLMObsFrontendContentBlockCode"
         content:
           description: |-
             Block payload. A string for `markdown`, `header`, and `text`; an
@@ -61444,9 +61444,9 @@ components:
       description: Validation requirements for a `frontend` display block.
       properties:
         code:
-          $ref: '#/components/schemas/LLMObsFrontendContentBlockCode'
+          $ref: "#/components/schemas/LLMObsFrontendContentBlockCode"
         type:
-          $ref: '#/components/schemas/LLMObsFrontendContentBlockType'
+          $ref: "#/components/schemas/LLMObsFrontendContentBlockType"
       required:
         - code
       type: object
@@ -62072,7 +62072,7 @@ components:
       description: Validation requirements for an existing non-frontend display block.
       properties:
         type:
-          $ref: '#/components/schemas/LLMObsLegacyContentBlockType'
+          $ref: "#/components/schemas/LLMObsLegacyContentBlockType"
       type: object
     LLMObsLegacyContentBlockType:
       description: Type discriminator for an existing non-frontend display block.
@@ -90808,7 +90808,7 @@ components:
           description: Filter expression applied to the recommendations.
           type: string
         scope:
-          $ref: '#/components/schemas/RecommendationsFilterRequestScope'
+          $ref: "#/components/schemas/RecommendationsFilterRequestScope"
         sort:
           description: Ordered list of sort clauses applied to the result set.
           items:
@@ -215821,6 +215821,11 @@ paths:
         - description: Filter status pages by exact domain prefix match. Returns at most one result.
           in: query
           name: filter[domain_prefix]
+          schema:
+            type: string
+        - description: Filter status pages by name with case-insensitive substring matching.
+          in: query
+          name: filter[name]
           schema:
             type: string
         - description: "Comma-separated list of resources to include. Supported values: created_by_user, last_modified_by_user."
