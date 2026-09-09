@@ -14,8 +14,8 @@ import (
 type AggregatedLongTasksResponseAttributes struct {
 	// The RUM application ID that was analyzed.
 	ApplicationId string `json:"application_id"`
-	// Performance criteria to filter view instances by a metric threshold.
-	Criteria *AggregatedWaterfallPerformanceCriteria `json:"criteria,omitempty"`
+	// Performance criteria used to filter view instances by a metric threshold, or null if no criteria were applied.
+	Criteria NullableAggregatedLongTasksResponseAttributesCriteria `json:"criteria"`
 	// Start of the analyzed time range as a Unix timestamp in seconds.
 	From int64 `json:"from"`
 	// Long task statistics grouped by invoker type, sorted by impact score descending.
@@ -37,9 +37,10 @@ type AggregatedLongTasksResponseAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAggregatedLongTasksResponseAttributes(applicationId string, from int64, longTasksByInvokerType []AggregatedLongTasksByInvokerType, sampledViewIds []string, to int64, viewCount int32, viewName string) *AggregatedLongTasksResponseAttributes {
+func NewAggregatedLongTasksResponseAttributes(applicationId string, criteria NullableAggregatedLongTasksResponseAttributesCriteria, from int64, longTasksByInvokerType []AggregatedLongTasksByInvokerType, sampledViewIds []string, to int64, viewCount int32, viewName string) *AggregatedLongTasksResponseAttributes {
 	this := AggregatedLongTasksResponseAttributes{}
 	this.ApplicationId = applicationId
+	this.Criteria = criteria
 	this.From = from
 	this.LongTasksByInvokerType = longTasksByInvokerType
 	this.SampledViewIds = sampledViewIds
@@ -80,32 +81,29 @@ func (o *AggregatedLongTasksResponseAttributes) SetApplicationId(v string) {
 	o.ApplicationId = v
 }
 
-// GetCriteria returns the Criteria field value if set, zero value otherwise.
-func (o *AggregatedLongTasksResponseAttributes) GetCriteria() AggregatedWaterfallPerformanceCriteria {
-	if o == nil || o.Criteria == nil {
-		var ret AggregatedWaterfallPerformanceCriteria
+// GetCriteria returns the Criteria field value.
+// If the value is explicit nil, the zero value for AggregatedLongTasksResponseAttributesCriteria will be returned.
+func (o *AggregatedLongTasksResponseAttributes) GetCriteria() AggregatedLongTasksResponseAttributesCriteria {
+	if o == nil || o.Criteria.Get() == nil {
+		var ret AggregatedLongTasksResponseAttributesCriteria
 		return ret
 	}
-	return *o.Criteria
+	return *o.Criteria.Get()
 }
 
-// GetCriteriaOk returns a tuple with the Criteria field value if set, nil otherwise
+// GetCriteriaOk returns a tuple with the Criteria field value
 // and a boolean to check if the value has been set.
-func (o *AggregatedLongTasksResponseAttributes) GetCriteriaOk() (*AggregatedWaterfallPerformanceCriteria, bool) {
-	if o == nil || o.Criteria == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *AggregatedLongTasksResponseAttributes) GetCriteriaOk() (*AggregatedLongTasksResponseAttributesCriteria, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Criteria, true
+	return o.Criteria.Get(), o.Criteria.IsSet()
 }
 
-// HasCriteria returns a boolean if a field has been set.
-func (o *AggregatedLongTasksResponseAttributes) HasCriteria() bool {
-	return o != nil && o.Criteria != nil
-}
-
-// SetCriteria gets a reference to the given AggregatedWaterfallPerformanceCriteria and assigns it to the Criteria field.
-func (o *AggregatedLongTasksResponseAttributes) SetCriteria(v AggregatedWaterfallPerformanceCriteria) {
-	o.Criteria = &v
+// SetCriteria sets field value.
+func (o *AggregatedLongTasksResponseAttributes) SetCriteria(v AggregatedLongTasksResponseAttributesCriteria) {
+	o.Criteria.Set(&v)
 }
 
 // GetFrom returns the From field value.
@@ -253,9 +251,7 @@ func (o AggregatedLongTasksResponseAttributes) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["application_id"] = o.ApplicationId
-	if o.Criteria != nil {
-		toSerialize["criteria"] = o.Criteria
-	}
+	toSerialize["criteria"] = o.Criteria.Get()
 	toSerialize["from"] = o.From
 	toSerialize["long_tasks_by_invoker_type"] = o.LongTasksByInvokerType
 	toSerialize["sampled_view_ids"] = o.SampledViewIds
@@ -272,20 +268,23 @@ func (o AggregatedLongTasksResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AggregatedLongTasksResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApplicationId          *string                                 `json:"application_id"`
-		Criteria               *AggregatedWaterfallPerformanceCriteria `json:"criteria,omitempty"`
-		From                   *int64                                  `json:"from"`
-		LongTasksByInvokerType *[]AggregatedLongTasksByInvokerType     `json:"long_tasks_by_invoker_type"`
-		SampledViewIds         *[]string                               `json:"sampled_view_ids"`
-		To                     *int64                                  `json:"to"`
-		ViewCount              *int32                                  `json:"view_count"`
-		ViewName               *string                                 `json:"view_name"`
+		ApplicationId          *string                                               `json:"application_id"`
+		Criteria               NullableAggregatedLongTasksResponseAttributesCriteria `json:"criteria"`
+		From                   *int64                                                `json:"from"`
+		LongTasksByInvokerType *[]AggregatedLongTasksByInvokerType                   `json:"long_tasks_by_invoker_type"`
+		SampledViewIds         *[]string                                             `json:"sampled_view_ids"`
+		To                     *int64                                                `json:"to"`
+		ViewCount              *int32                                                `json:"view_count"`
+		ViewName               *string                                               `json:"view_name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.ApplicationId == nil {
 		return fmt.Errorf("required field application_id missing")
+	}
+	if !all.Criteria.IsSet() {
+		return fmt.Errorf("required field criteria missing")
 	}
 	if all.From == nil {
 		return fmt.Errorf("required field from missing")
@@ -311,12 +310,7 @@ func (o *AggregatedLongTasksResponseAttributes) UnmarshalJSON(bytes []byte) (err
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
 	o.ApplicationId = *all.ApplicationId
-	if all.Criteria != nil && all.Criteria.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Criteria = all.Criteria
 	o.From = *all.From
 	o.LongTasksByInvokerType = *all.LongTasksByInvokerType
@@ -327,10 +321,6 @@ func (o *AggregatedLongTasksResponseAttributes) UnmarshalJSON(bytes []byte) (err
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
