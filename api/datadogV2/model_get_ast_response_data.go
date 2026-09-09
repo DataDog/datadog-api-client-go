@@ -14,8 +14,8 @@ import (
 type GetAstResponseData struct {
 	// The attributes of the get-AST response, containing the parsed abstract syntax tree.
 	Attributes GetAstResponseDataAttributes `json:"attributes"`
-	// The identifier of the get-AST response resource.
-	Id *string `json:"id,omitempty"`
+	// The identifier of the get-AST response resource, echoed from the request.
+	Id string `json:"id"`
 	// Get AST response resource type.
 	Type GetAstResponseDataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -27,9 +27,10 @@ type GetAstResponseData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGetAstResponseData(attributes GetAstResponseDataAttributes, typeVar GetAstResponseDataType) *GetAstResponseData {
+func NewGetAstResponseData(attributes GetAstResponseDataAttributes, id string, typeVar GetAstResponseDataType) *GetAstResponseData {
 	this := GetAstResponseData{}
 	this.Attributes = attributes
+	this.Id = id
 	this.Type = typeVar
 	return &this
 }
@@ -67,32 +68,27 @@ func (o *GetAstResponseData) SetAttributes(v GetAstResponseDataAttributes) {
 	o.Attributes = v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
+// GetId returns the Id field value.
 func (o *GetAstResponseData) GetId() string {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Id
+	return o.Id
 }
 
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
+// GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *GetAstResponseData) GetIdOk() (*string, bool) {
-	if o == nil || o.Id == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Id, true
+	return &o.Id, true
 }
 
-// HasId returns a boolean if a field has been set.
-func (o *GetAstResponseData) HasId() bool {
-	return o != nil && o.Id != nil
-}
-
-// SetId gets a reference to the given string and assigns it to the Id field.
+// SetId sets field value.
 func (o *GetAstResponseData) SetId(v string) {
-	o.Id = &v
+	o.Id = v
 }
 
 // GetType returns the Type field value.
@@ -125,9 +121,7 @@ func (o GetAstResponseData) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["attributes"] = o.Attributes
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -140,7 +134,7 @@ func (o GetAstResponseData) MarshalJSON() ([]byte, error) {
 func (o *GetAstResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes *GetAstResponseDataAttributes `json:"attributes"`
-		Id         *string                       `json:"id,omitempty"`
+		Id         *string                       `json:"id"`
 		Type       *GetAstResponseDataType       `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -148,6 +142,9 @@ func (o *GetAstResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if all.Attributes == nil {
 		return fmt.Errorf("required field attributes missing")
+	}
+	if all.Id == nil {
+		return fmt.Errorf("required field id missing")
 	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
@@ -164,7 +161,7 @@ func (o *GetAstResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Attributes = *all.Attributes
-	o.Id = all.Id
+	o.Id = *all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {
