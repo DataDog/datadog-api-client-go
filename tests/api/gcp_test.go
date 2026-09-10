@@ -124,3 +124,82 @@ func TestGCPContextOverride(t *testing.T) {
 		t.Errorf("token = %q, want ctx.jwt.sig (context override wins over env)", token)
 	}
 }
+
+// writeGcloudShim installs a fake `gcloud` executable that records its argv to
+// argvFile and prints token on stdout, returning a directory to prepend to
+// PATH. This exercises the real mint path (mintIdentityToken, argument
+// construction, output handling) without requiring the gcloud CLI.
+func writeGcloudShim(t *testing.T, argvFile, token string) string {
+	t.Helper()
+	dir := t.TempDir()
+	script := "#!/bin/sh\n" +
+		"printf '%s\\n' \"$@\" >> " + argvFile + "\n" +
+		"echo " + token + "\n"
+	path := dir + "/gcloud"
+	if err := os.WriteFile(path, []byte(script), 0o755); err != nil {
+		t.Fatalf("write gcloud shim: %v", err)
+	}
+	return dir
+}
+
+// TestGCPMintIdentityTokenViaShim drives the real mint path through a fake
+// gcloud and pins the invocation that builds the GCP audience contract: the
+// identity token must carry the datadog/<org-uuid> audience, the
+// impersonated service account, and --include-email so the email claim
+// identifies the SA.
+func TestGCPMintIdentityTokenViaShim(t *testing.T) {
+	argvFile := t.TempDir() + "/argv"
+	const token = "shim.jwt.sig"
+	shimDir := writeGcloudShim(t, argvFile, token)
+	t.Setenv("PATH", shimDir)
+
+	auth := datadog.GCPAuth{ImpersonateServiceAccount: "sa@project.iam.gserviceaccount.com"}
+	got, err := auth.GetIdentityToken(context.Background(), "org-9")
+	if err != nil {
+		t.Fatalf("GetIdentityToken: %v", err)
+	}
+	if got != token {
+		t.Errorf("token = %q, want %q", got, token)
+	}
+
+	argv, err := os.ReadFile(argvFile)
+	if err != nil {
+		t.Fatalf("read shim argv: %v", err)
+	}
+	wantArgs := []string{
+		"auth",
+		"print-identity-token",
+		"--audiences=datadog/org-9",
+		"--impersonate-service-account=sa@project.iam.gserviceaccount.com",
+		"--include-email",
+	}
+	gotArgs := strings.Split(strings.TrimSpace(string(argv)), "\n")
+	if len(gotArgs) != len(wantArgs) {
+		t.Fatalf("gcloud argv = %v, want %v", gotArgs, wantArgs)
+	}
+	for i := range wantArgs {
+		if gotArgs[i] != wantArgs[i] {
+			t.Errorf("gcloud argv[%d] = %q, want %q", i, gotArgs[i], wantArgs[i])
+		}
+	}
+}
+
+// TestGCPMintIdentityTokenShimError pins the error path: a failing gcloud
+// surfaces its stderr in the wrapped error.
+func TestGCPMintIdentityTokenShimError(t *testing.T) {
+	dir := t.TempDir()
+	script := "#!/bin/sh\necho 'permission denied' >&2\nexit 1\n"
+	if err := os.WriteFile(dir+"/gcloud", []byte(script), 0o755); err != nil {
+		t.Fatalf("write gcloud shim: %v", err)
+	}
+	t.Setenv("PATH", dir)
+
+	auth := datadog.GCPAuth{ImpersonateServiceAccount: "sa@project.iam.gserviceaccount.com"}
+	_, err := auth.GetIdentityToken(context.Background(), "org-9")
+	if err == nil {
+		t.Fatal("expected error from failing gcloud shim")
+	}
+	if !strings.Contains(err.Error(), "permission denied") {
+		t.Errorf("err = %v, want it to carry the CLI stderr", err)
+	}
+}
