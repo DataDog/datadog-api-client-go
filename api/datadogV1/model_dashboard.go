@@ -45,7 +45,7 @@ type Dashboard struct {
 	RestrictedRoles []string `json:"restricted_roles,omitempty"`
 	// List of tabs for organizing dashboard widgets into groups.
 	Tabs []DashboardTab `json:"tabs,omitempty"`
-	// List of team names representing ownership of a dashboard.
+	// Tags associated with the dashboard. Supports up to five team tags and two AI tags.
 	Tags datadog.NullableList[string] `json:"tags,omitempty"`
 	// Array of template variables saved views.
 	TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
