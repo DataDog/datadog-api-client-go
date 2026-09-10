@@ -33,6 +33,15 @@ func TestAzureAuthenticate(t *testing.T) {
 			envToken:      "env.jwt.sig",
 			expectedProof: "env.jwt.sig:12345678-1234-1234-1234-123456789012",
 		},
+		{
+			// No token anywhere: with PATH emptied below,
+			// mintAccessToken's exec.LookPath fails deterministically
+			// without invoking a real `az` binary, so the case is hermetic.
+			name:           "No token and no az CLI fails",
+			auth:           datadog.AzureAuth{},
+			expectErr:      true,
+			expectErrParts: []string{"`az` not found on PATH"},
+		},
 	}
 
 	for _, tc := range testCases {
@@ -42,6 +51,11 @@ func TestAzureAuthenticate(t *testing.T) {
 			} else {
 				t.Setenv(datadog.AzureAccessTokenName, "")
 				os.Unsetenv(datadog.AzureAccessTokenName)
+			}
+			if tc.expectErr {
+				// Empty PATH so exec.LookPath("az") fails deterministically
+				// on machines with the Azure CLI installed.
+				t.Setenv("PATH", "")
 			}
 
 			server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

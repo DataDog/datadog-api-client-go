@@ -7,9 +7,11 @@ package datadog
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
 )
 
 const ProviderAzure = "azure"
@@ -77,6 +79,10 @@ func (a *AzureAuth) mintAccessToken(ctx context.Context) (string, error) {
 	}
 	out, err := exec.CommandContext(ctx, "az", azAccessTokenArgs(a.Resource)...).Output()
 	if err != nil {
+		var exitErr *exec.ExitError
+		if errors.As(err, &exitErr) && len(exitErr.Stderr) > 0 {
+			return "", fmt.Errorf("az account get-access-token: %w: %s", err, strings.TrimSpace(string(exitErr.Stderr)))
+		}
 		return "", fmt.Errorf("az account get-access-token: %w (run `az login` first)", err)
 	}
 	var result struct {
