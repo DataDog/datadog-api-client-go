@@ -15,6 +15,8 @@ type MonitorConfigPolicyAttributeEditRequest struct {
 	// Configuration for the policy.
 	Policy MonitorConfigPolicyPolicy `json:"policy"`
 	// The monitor configuration policy type.
+	// `tag` enforces required tags on monitors.
+	// `downtime` sets a maximum downtime duration for the organization.
 	PolicyType MonitorConfigPolicyType `json:"policy_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
