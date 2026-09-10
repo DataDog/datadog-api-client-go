@@ -155,3 +155,101 @@ func TestAzureAuthenticateMissingOrgUUID(t *testing.T) {
 		t.Errorf("err = %v, want missing org UUID error", err)
 	}
 }
+
+// writeAzShim installs a fake `az` executable that records its argv to
+// argvFile and prints a JSON access-token response on stdout, returning a
+// directory to prepend to PATH. This exercises the real mint path
+// (mintAccessToken, argument construction, output parsing) without requiring
+// the az CLI.
+func writeAzShim(t *testing.T, argvFile, token string) string {
+	t.Helper()
+	dir := t.TempDir()
+	script := "#!/bin/sh\n" +
+		"printf '%s\\n' \"$@\" >> " + argvFile + "\n" +
+		`echo '{"accessToken":"` + token + `"}'` + "\n"
+	path := dir + "/az"
+	if err := os.WriteFile(path, []byte(script), 0o755); err != nil {
+		t.Fatalf("write az shim: %v", err)
+	}
+	return dir
+}
+
+// TestAzureMintAccessTokenViaShim drives the real mint path through a fake az
+// and pins the invocation: JSON output (token extracted without depending on
+// JMESPath behavior across az versions) and no --resource when Resource is
+// unset.
+func TestAzureMintAccessTokenViaShim(t *testing.T) {
+	argvFile := t.TempDir() + "/argv"
+	const token = "shim.jwt.sig"
+	shimDir := writeAzShim(t, argvFile, token)
+	t.Setenv("PATH", shimDir)
+	t.Setenv(datadog.AzureAccessTokenName, "")
+	os.Unsetenv(datadog.AzureAccessTokenName)
+
+	auth := datadog.AzureAuth{}
+	got, err := auth.GetAccessToken(context.Background())
+	if err != nil {
+		t.Fatalf("GetAccessToken: %v", err)
+	}
+	if got != token {
+		t.Errorf("token = %q, want %q", got, token)
+	}
+
+	argv, err := os.ReadFile(argvFile)
+	if err != nil {
+		t.Fatalf("read shim argv: %v", err)
+	}
+	wantArgs := []string{"account", "get-access-token", "--output", "json"}
+	gotArgs := strings.Split(strings.TrimSpace(string(argv)), "\n")
+	if len(gotArgs) != len(wantArgs) {
+		t.Fatalf("az argv = %v, want %v", gotArgs, wantArgs)
+	}
+	for i := range wantArgs {
+		if gotArgs[i] != wantArgs[i] {
+			t.Errorf("az argv[%d] = %q, want %q", i, gotArgs[i], wantArgs[i])
+		}
+	}
+}
+
+// TestAzureMintAccessTokenResourceArg pins the --resource passthrough.
+func TestAzureMintAccessTokenResourceArg(t *testing.T) {
+	argvFile := t.TempDir() + "/argv"
+	shimDir := writeAzShim(t, argvFile, "shim.jwt.sig")
+	t.Setenv("PATH", shimDir)
+	t.Setenv(datadog.AzureAccessTokenName, "")
+	os.Unsetenv(datadog.AzureAccessTokenName)
+
+	auth := datadog.AzureAuth{Resource: "https://management.azure.com/"}
+	if _, err := auth.GetAccessToken(context.Background()); err != nil {
+		t.Fatalf("GetAccessToken: %v", err)
+	}
+	argv, err := os.ReadFile(argvFile)
+	if err != nil {
+		t.Fatalf("read shim argv: %v", err)
+	}
+	if !strings.Contains(string(argv), "--resource") || !strings.Contains(string(argv), "https://management.azure.com/") {
+		t.Errorf("az argv = %q, want it to carry --resource with its value", string(argv))
+	}
+}
+
+// TestAzureMintAccessTokenShimError pins the error path: a failing az
+// surfaces its stderr in the wrapped error.
+func TestAzureMintAccessTokenShimError(t *testing.T) {
+	dir := t.TempDir()
+	script := "#!/bin/sh\necho 'run az login' >&2\nexit 1\n"
+	if err := os.WriteFile(dir+"/az", []byte(script), 0o755); err != nil {
+		t.Fatalf("write az shim: %v", err)
+	}
+	t.Setenv("PATH", dir)
+	t.Setenv(datadog.AzureAccessTokenName, "")
+	os.Unsetenv(datadog.AzureAccessTokenName)
+
+	auth := datadog.AzureAuth{}
+	_, err := auth.GetAccessToken(context.Background())
+	if err == nil {
+		t.Fatal("expected error from failing az shim")
+	}
+	if !strings.Contains(err.Error(), "run az login") {
+		t.Errorf("err = %v, want it to carry the CLI stderr", err)
+	}
+}
