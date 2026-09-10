@@ -68,6 +68,7 @@ def cli(specs, output):
 
     extra_files = {
         "aws.go": env.get_template("aws.j2"),
+        "azure.go": env.get_template("azure.j2"),
         "client.go": env.get_template("client.j2"),
         "configuration.go": env.get_template("configuration.j2"),
         "delegated_auth.go": env.get_template("delegated_auth.j2"),

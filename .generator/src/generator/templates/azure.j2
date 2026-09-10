@@ -1,0 +1,111 @@
+{% include "partial_header.j2" %}
+package {{ common_package_name }}
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"os"
+	"os/exec"
+)
+
+const ProviderAzure = "azure"
+
+// AzureAccessTokenName is the environment variable carrying a pre-minted
+// Azure/Entra ID access token, used instead of invoking `az`.
+const AzureAccessTokenName = "DD_AZURE_ACCESS_TOKEN"
+
+// AzureAuth exchanges a Microsoft Entra ID (Azure) access token for a Datadog
+// delegated token.
+type AzureAuth struct {
+	// Resource is the optional resource/audience passed to
+	// `az account get-access-token --resource`. When empty, `az` uses its
+	// default resource.
+	Resource string
+
+	// AccessToken is an optional pre-minted access token used verbatim as the
+	// exchange proof, bypassing the `az` invocation. When empty, the token is
+	// sourced from the DD_AZURE_ACCESS_TOKEN environment variable (or its
+	// context override) before falling back to `az`.
+	AccessToken string
+}
+
+func (a *AzureAuth) Authenticate(ctx context.Context, config *DelegatedTokenConfig) (*DelegatedTokenCredentials, error) {
+	if config == nil || config.OrgUUID == "" {
+		return nil, fmt.Errorf("missing org UUID in config")
+	}
+
+	accessToken, err := a.GetAccessToken(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	// Org routing: the delegated-token servicer splits the proof on the last
+	// ":" (JWTs contain no colons) and treats the suffix as the org UUID.
+	proof := azureDelegatedProof(accessToken, config.OrgUUID)
+
+	return GetDelegatedToken(ctx, config.OrgUUID, proof)
+}
+
+// azureDelegatedProof appends the org-UUID routing suffix to the access token.
+// Factored out for testing.
+func azureDelegatedProof(accessToken, orgUUID string) string {
+	return accessToken + ":" + orgUUID
+}
+
+// GetAccessToken resolves the Azure access token serving as the exchange
+// proof: the AccessToken field, then the DD_AZURE_ACCESS_TOKEN environment
+// variable (with its context override), then `az`.
+func (a *AzureAuth) GetAccessToken(ctx context.Context) (string, error) {
+	if a.AccessToken != "" {
+		return a.AccessToken, nil
+	}
+	if token := azureTokenFromContextOrEnv(ctx); token != "" {
+		return token, nil
+	}
+	return a.mintAccessToken(ctx)
+}
+
+// mintAccessToken invokes `az account get-access-token` and extracts the raw
+// access token from the JSON output.
+func (a *AzureAuth) mintAccessToken(ctx context.Context) (string, error) {
+	if _, err := exec.LookPath("az"); err != nil {
+		return "", fmt.Errorf("`az` not found on PATH (install the Azure CLI and run `az login`), or provide a pre-minted access token via AzureAuth.AccessToken or %s", AzureAccessTokenName)
+	}
+	out, err := exec.CommandContext(ctx, "az", azAccessTokenArgs(a.Resource)...).Output()
+	if err != nil {
+		return "", fmt.Errorf("az account get-access-token: %w (run `az login` first)", err)
+	}
+	var result struct {
+		AccessToken string `json:"accessToken"`
+	}
+	if err := json.Unmarshal(out, &result); err != nil {
+		return "", fmt.Errorf("parse az account get-access-token output: %w", err)
+	}
+	if result.AccessToken == "" {
+		return "", fmt.Errorf("az account get-access-token returned no accessToken")
+	}
+	return result.AccessToken, nil
+}
+
+// azAccessTokenArgs builds the `az` invocation for minting an access token.
+// JSON output is requested so the token is extracted without depending on the
+// JMESPath `--query` behavior across `az` versions. Factored out for testing.
+func azAccessTokenArgs(resource string) []string {
+	args := []string{"account", "get-access-token", "--output", "json"}
+	if resource != "" {
+		args = append(args, "--resource", resource)
+	}
+	return args
+}
+
+// azureTokenFromContextOrEnv reads a pre-minted access token from the context
+// override (mirroring ContextAWSVariables), falling back to the environment.
+func azureTokenFromContextOrEnv(ctx context.Context) string {
+	if keys, ok := ctx.Value(ContextAzureVariables).(map[string]string); ok {
+		if token, ok := keys[AzureAccessTokenName]; ok {
+			return token
+		}
+	}
+	return os.Getenv(AzureAccessTokenName)
+}
