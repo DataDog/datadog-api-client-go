@@ -897,6 +897,7 @@
 //   - [On-CallApi.GetTeamOnCallUsers]
 //   - [On-CallApi.GetUserNotificationChannel]
 //   - [On-CallApi.GetUserNotificationRule]
+//   - [On-CallApi.ListOnCallSchedules]
 //   - [On-CallApi.ListUserNotificationChannels]
 //   - [On-CallApi.ListUserNotificationRules]
 //   - [On-CallApi.SetOnCallTeamRoutingRules]
