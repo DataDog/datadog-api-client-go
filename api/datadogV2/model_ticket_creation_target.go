@@ -17,11 +17,13 @@ type TicketCreationTarget string
 const (
 	TICKETCREATIONTARGET_JIRA            TicketCreationTarget = "jira"
 	TICKETCREATIONTARGET_CASE_MANAGEMENT TicketCreationTarget = "case_management"
+	TICKETCREATIONTARGET_LINEAR          TicketCreationTarget = "linear"
 )
 
 var allowedTicketCreationTargetEnumValues = []TicketCreationTarget{
 	TICKETCREATIONTARGET_JIRA,
 	TICKETCREATIONTARGET_CASE_MANAGEMENT,
+	TICKETCREATIONTARGET_LINEAR,
 }
 
 // GetAllowedValues reeturns the list of possible values.
