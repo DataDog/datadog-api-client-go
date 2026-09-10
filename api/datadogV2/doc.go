@@ -415,6 +415,8 @@
 //   - [CloudflareIntegrationApi.UpdateCloudflareAccount]
 //   - [CodeCoverageApi.GetCodeCoverageBranchSummary]
 //   - [CodeCoverageApi.GetCodeCoverageCommitSummary]
+//   - [CodeCoverageApi.GetCodeCoverageFiles]
+//   - [CodeCoverageApi.GetCodeCoveragePRSummary]
 //   - [ComplianceApi.GetRuleBasedView]
 //   - [ConfluentCloudApi.CreateConfluentAccount]
 //   - [ConfluentCloudApi.CreateConfluentResource]

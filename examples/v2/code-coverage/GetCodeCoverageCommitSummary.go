@@ -25,7 +25,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetCodeCoverageCommitSummary", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCodeCoverageApi(apiClient)
 	resp, r, err := api.GetCodeCoverageCommitSummary(ctx, body)

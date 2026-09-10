@@ -25,7 +25,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.GetCodeCoverageBranchSummary", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewCodeCoverageApi(apiClient)
 	resp, r, err := api.GetCodeCoverageBranchSummary(ctx, body)
