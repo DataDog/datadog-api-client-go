@@ -6,6 +6,7 @@ package datadog
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"os"
 	"os/exec"
@@ -77,6 +78,10 @@ func (g *GCPAuth) mintIdentityToken(ctx context.Context, orgUUID string) (string
 	args := gcloudIdentityTokenArgs(g.ImpersonateServiceAccount, gcpAudiencePrefix+orgUUID)
 	out, err := exec.CommandContext(ctx, "gcloud", args...).Output()
 	if err != nil {
+		var exitErr *exec.ExitError
+		if errors.As(err, &exitErr) && len(exitErr.Stderr) > 0 {
+			return "", fmt.Errorf("gcloud auth print-identity-token: %w: %s", err, strings.TrimSpace(string(exitErr.Stderr)))
+		}
 		return "", fmt.Errorf("gcloud auth print-identity-token: %w (run `gcloud auth login` first)", err)
 	}
 	token := strings.TrimSpace(string(out))
@@ -88,7 +93,7 @@ func (g *GCPAuth) mintIdentityToken(ctx context.Context, orgUUID string) (string
 
 // gcloudIdentityTokenArgs builds the `gcloud` invocation for minting an
 // identity token with the Datadog org audience and the service-account email
-// in the `email` claim. Factored out for testing.
+// in the `email` claim.
 func gcloudIdentityTokenArgs(impersonate, audience string) []string {
 	return []string{
 		"auth", "print-identity-token",
