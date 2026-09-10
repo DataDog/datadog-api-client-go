@@ -53,7 +53,6 @@ func (a *AzureAuth) Authenticate(ctx context.Context, config *DelegatedTokenConf
 }
 
 // azureDelegatedProof appends the org-UUID routing suffix to the access token.
-// Factored out for testing.
 func azureDelegatedProof(accessToken, orgUUID string) string {
 	return accessToken + ":" + orgUUID
 }
@@ -99,7 +98,7 @@ func (a *AzureAuth) mintAccessToken(ctx context.Context) (string, error) {
 
 // azAccessTokenArgs builds the `az` invocation for minting an access token.
 // JSON output is requested so the token is extracted without depending on the
-// JMESPath `--query` behavior across `az` versions. Factored out for testing.
+// JMESPath `--query` behavior across `az` versions.
 func azAccessTokenArgs(resource string) []string {
 	args := []string{"account", "get-access-token", "--output", "json"}
 	if resource != "" {
