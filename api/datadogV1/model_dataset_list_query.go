@@ -18,7 +18,7 @@ type DatasetListQuery struct {
 	DatasetId string `json:"dataset_id"`
 	// Product page that published the dataset queried by a `DatasetListQuery`. `ddsql_query` is the only provider currently supported for host map widgets.
 	DatasetProvider PublishedDatasetProvider `json:"dataset_provider"`
-	// Filter applied to the dataset's rows, using events-style search syntax.
+	// Filter applied to the rows of the dataset, using events-style search syntax.
 	Filter *string `json:"filter,omitempty"`
 	// Maximum number of rows to return from the dataset query.
 	Limit *int64 `json:"limit,omitempty"`
