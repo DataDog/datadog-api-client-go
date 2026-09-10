@@ -20,7 +20,7 @@ type RumRetentionFilterUpdateAttributes struct {
 	Name *string `json:"name,omitempty"`
 	// The query string for a RUM retention filter.
 	Query *string `json:"query,omitempty"`
-	// The sample rate for a RUM retention filter, between 0.1 and 100.
+	// The sample rate for a RUM retention filter, between 0.1 and 100. Values are truncated to one decimal place.
 	SampleRate *float64 `json:"sample_rate,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
