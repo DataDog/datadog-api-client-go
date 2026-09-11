@@ -10,9 +10,10 @@ import (
 
 // WidgetTime - Time setting for the widget.
 type WidgetTime struct {
-	WidgetLegacyLiveSpan *WidgetLegacyLiveSpan
-	WidgetNewLiveSpan    *WidgetNewLiveSpan
-	WidgetNewFixedSpan   *WidgetNewFixedSpan
+	WidgetLegacyLiveSpan      *WidgetLegacyLiveSpan
+	WidgetNewLiveSpan         *WidgetNewLiveSpan
+	WidgetNewFixedSpan        *WidgetNewFixedSpan
+	WidgetCalendarAlignedSpan *WidgetCalendarAlignedSpan
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -31,6 +32,11 @@ func WidgetNewLiveSpanAsWidgetTime(v *WidgetNewLiveSpan) WidgetTime {
 // WidgetNewFixedSpanAsWidgetTime is a convenience function that returns WidgetNewFixedSpan wrapped in WidgetTime.
 func WidgetNewFixedSpanAsWidgetTime(v *WidgetNewFixedSpan) WidgetTime {
 	return WidgetTime{WidgetNewFixedSpan: v}
+}
+
+// WidgetCalendarAlignedSpanAsWidgetTime is a convenience function that returns WidgetCalendarAlignedSpan wrapped in WidgetTime.
+func WidgetCalendarAlignedSpanAsWidgetTime(v *WidgetCalendarAlignedSpan) WidgetTime {
+	return WidgetTime{WidgetCalendarAlignedSpan: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -88,11 +94,29 @@ func (obj *WidgetTime) UnmarshalJSON(data []byte) error {
 		obj.WidgetNewFixedSpan = nil
 	}
 
+	// try to unmarshal data into WidgetCalendarAlignedSpan
+	err = datadog.Unmarshal(data, &obj.WidgetCalendarAlignedSpan)
+	if err == nil {
+		if obj.WidgetCalendarAlignedSpan != nil && obj.WidgetCalendarAlignedSpan.UnparsedObject == nil {
+			jsonWidgetCalendarAlignedSpan, _ := datadog.Marshal(obj.WidgetCalendarAlignedSpan)
+			if string(jsonWidgetCalendarAlignedSpan) == "{}" { // empty struct
+				obj.WidgetCalendarAlignedSpan = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.WidgetCalendarAlignedSpan = nil
+		}
+	} else {
+		obj.WidgetCalendarAlignedSpan = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.WidgetLegacyLiveSpan = nil
 		obj.WidgetNewLiveSpan = nil
 		obj.WidgetNewFixedSpan = nil
+		obj.WidgetCalendarAlignedSpan = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -110,6 +134,10 @@ func (obj WidgetTime) MarshalJSON() ([]byte, error) {
 
 	if obj.WidgetNewFixedSpan != nil {
 		return datadog.Marshal(&obj.WidgetNewFixedSpan)
+	}
+
+	if obj.WidgetCalendarAlignedSpan != nil {
+		return datadog.Marshal(&obj.WidgetCalendarAlignedSpan)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -130,6 +158,10 @@ func (obj *WidgetTime) GetActualInstance() interface{} {
 
 	if obj.WidgetNewFixedSpan != nil {
 		return obj.WidgetNewFixedSpan
+	}
+
+	if obj.WidgetCalendarAlignedSpan != nil {
+		return obj.WidgetCalendarAlignedSpan
 	}
 
 	// all schemas are nil
