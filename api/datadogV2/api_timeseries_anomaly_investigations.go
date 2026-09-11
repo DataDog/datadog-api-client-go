@@ -18,8 +18,9 @@ import (
 type TimeseriesAnomalyInvestigationsApi datadog.Service
 
 // CreateTimeseriesAnomalyInvestigation Investigate a timeseries anomaly.
-// Investigates a metrics timeseries request for its most significant anomaly and returns deterministic findings.
-// Metrics queries with or without grouping are supported. This API version accepts exactly one request and returns at most one anomaly.
+// Investigates a metrics timeseries request for its most significant anomalies and returns
+// deterministic findings. Metrics queries with or without grouping are supported. This
+// API version accepts exactly one request and returns at most three anomalies.
 func (a *TimeseriesAnomalyInvestigationsApi) CreateTimeseriesAnomalyInvestigation(ctx _context.Context, body TimeseriesAnomalyInvestigationRequest) (TimeseriesAnomalyInvestigationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost

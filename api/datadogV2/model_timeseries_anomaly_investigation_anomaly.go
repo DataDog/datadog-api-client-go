@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TimeseriesAnomalyInvestigationAnomaly Most significant anomaly detected in the request.
+// TimeseriesAnomalyInvestigationAnomaly One of the most significant anomalies detected in the request.
 type TimeseriesAnomalyInvestigationAnomaly struct {
 	// Anomaly detection configuration used for the result.
 	AnomalyDetection TimeseriesAnomalyInvestigationDetection `json:"anomaly_detection"`
