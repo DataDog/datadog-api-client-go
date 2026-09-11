@@ -20,7 +20,7 @@ func main() {
 					{
 						Formulas: []datadogV2.TimeseriesAnomalyInvestigationFormula{
 							{
-								Formula: "anomalies(query1, 'agile', 3)",
+								Formula: "query1",
 							},
 						},
 						From: 1754406000000,

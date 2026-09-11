@@ -13,6 +13,8 @@ import (
 // TimeseriesAnomalyInvestigationFormula Formula evaluated by the timeseries request.
 type TimeseriesAnomalyInvestigationFormula struct {
 	// Formula expression referencing one or more named queries.
+	// When the expression does not contain an explicit `anomalies()` call,
+	// the endpoint applies the default Watchdog Explains anomaly detection configuration.
 	Formula string `json:"formula"`
 	// Optional formula limit accepted for compatibility with Timeseries API requests. Formula limits have no effect on timeseries queries.
 	Limit *TimeseriesAnomalyInvestigationFormulaLimit `json:"limit,omitempty"`

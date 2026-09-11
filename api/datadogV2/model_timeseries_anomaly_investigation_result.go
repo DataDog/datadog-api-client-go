@@ -12,7 +12,8 @@ import (
 
 // TimeseriesAnomalyInvestigationResult Completed result for one timeseries request. The anomalies array is empty when no qualifying anomaly is found.
 type TimeseriesAnomalyInvestigationResult struct {
-	// Detected anomalies. This API version returns at most one anomaly.
+	// Detected anomalies, ordered by significance. This API version returns at most
+	// three anomalies across the submitted request.
 	Anomalies []TimeseriesAnomalyInvestigationAnomaly `json:"anomalies"`
 	// Status value indicating successful completion.
 	Status TimeseriesAnomalyInvestigationCompleteStatus `json:"status"`
