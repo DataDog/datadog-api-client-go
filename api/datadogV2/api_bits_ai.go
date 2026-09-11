@@ -308,6 +308,7 @@ func (a *BitsAIApi) ListInvestigationsWithPagination(ctx _context.Context, o ...
 
 // TriggerInvestigation Trigger a Bits AI investigation.
 // Trigger a new Bits AI investigation based on a monitor alert.
+// The `monitors_read` permission is also required when the trigger type is `monitor_alert_trigger`.
 func (a *BitsAIApi) TriggerInvestigation(ctx _context.Context, body TriggerInvestigationRequest) (TriggerInvestigationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
