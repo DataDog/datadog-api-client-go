@@ -14,6 +14,10 @@ import (
 // Metrics can be counters, gauges, or distributions and optionally grouped by log fields.
 //
 // **Supported pipeline types:** logs
+//
+// **Deprecated:** This processor is deprecated. Use the `generate_metrics` processor instead.
+//
+// Deprecated: This model is deprecated.
 type ObservabilityPipelineGenerateMetricsProcessor struct {
 	// The display name for a component.
 	DisplayName *string `json:"display_name,omitempty"`
