@@ -1,4 +1,4 @@
-// Delete a ticket creation rule returns "Successfully deleted the ticket creation rule" response
+// Delete a ticket creation rule returns "Rule successfully deleted." response
 
 package main
 
@@ -13,12 +13,15 @@ import (
 )
 
 func main() {
+	// there is a valid "valid_ticket_creation_rule" in the system
+	ValidTicketCreationRuleDataID := uuid.MustParse(os.Getenv("VALID_TICKET_CREATION_RULE_DATA_ID"))
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.DeleteSecurityFindingsAutomationTicketCreationRule", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	r, err := api.DeleteSecurityFindingsAutomationTicketCreationRule(ctx, uuid.MustParse("00000000-0000-0000-0000-000000000000"))
+	r, err := api.DeleteSecurityFindingsAutomationTicketCreationRule(ctx, ValidTicketCreationRuleDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityFindingsAutomationTicketCreationRule`: %v\n", err)

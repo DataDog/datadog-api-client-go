@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DueDateRuleReorderRequest The body of the due date rule reorder request.
-type DueDateRuleReorderRequest struct {
-	// The ordered list of all due date rules. Every rule must be included.
-	Data []DueDateRuleReorderItem `json:"data"`
+// InboxRuleUpdateRequest The body of an inbox rule update request.
+type InboxRuleUpdateRequest struct {
+	// The data object for an inbox rule update request. The `id` must match the `rule_id` path parameter.
+	Data InboxRuleDataUpdate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewDueDateRuleReorderRequest instantiates a new DueDateRuleReorderRequest object.
+// NewInboxRuleUpdateRequest instantiates a new InboxRuleUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDueDateRuleReorderRequest(data []DueDateRuleReorderItem) *DueDateRuleReorderRequest {
-	this := DueDateRuleReorderRequest{}
+func NewInboxRuleUpdateRequest(data InboxRuleDataUpdate) *InboxRuleUpdateRequest {
+	this := InboxRuleUpdateRequest{}
 	this.Data = data
 	return &this
 }
 
-// NewDueDateRuleReorderRequestWithDefaults instantiates a new DueDateRuleReorderRequest object.
+// NewInboxRuleUpdateRequestWithDefaults instantiates a new InboxRuleUpdateRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDueDateRuleReorderRequestWithDefaults() *DueDateRuleReorderRequest {
-	this := DueDateRuleReorderRequest{}
+func NewInboxRuleUpdateRequestWithDefaults() *InboxRuleUpdateRequest {
+	this := InboxRuleUpdateRequest{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *DueDateRuleReorderRequest) GetData() []DueDateRuleReorderItem {
+func (o *InboxRuleUpdateRequest) GetData() InboxRuleDataUpdate {
 	if o == nil {
-		var ret []DueDateRuleReorderItem
+		var ret InboxRuleDataUpdate
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *DueDateRuleReorderRequest) GetData() []DueDateRuleReorderItem {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *DueDateRuleReorderRequest) GetDataOk() (*[]DueDateRuleReorderItem, bool) {
+func (o *InboxRuleUpdateRequest) GetDataOk() (*InboxRuleDataUpdate, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *DueDateRuleReorderRequest) GetDataOk() (*[]DueDateRuleReorderItem, bool
 }
 
 // SetData sets field value.
-func (o *DueDateRuleReorderRequest) SetData(v []DueDateRuleReorderItem) {
+func (o *InboxRuleUpdateRequest) SetData(v InboxRuleDataUpdate) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DueDateRuleReorderRequest) MarshalJSON() ([]byte, error) {
+func (o InboxRuleUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o DueDateRuleReorderRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DueDateRuleReorderRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *InboxRuleUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *[]DueDateRuleReorderItem `json:"data"`
+		Data *InboxRuleDataUpdate `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -91,10 +91,19 @@ func (o *DueDateRuleReorderRequest) UnmarshalJSON(bytes []byte) (err error) {
 	} else {
 		return err
 	}
+
+	hasInvalidField := false
+	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
 	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil
