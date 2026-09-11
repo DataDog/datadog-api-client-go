@@ -1229,6 +1229,7 @@ func NewConfiguration() *Configuration {
 			"v2.ListNetworkHealthInsights":                              false,
 			"v2.DeleteScopesRestriction":                                false,
 			"v2.GetOAuth2WellKnownSites":                                false,
+			"v2.GetOIDCDiscoveryDocument":                               false,
 			"v2.GetScopesRestriction":                                   false,
 			"v2.RegisterOAuthClient":                                    false,
 			"v2.UpsertScopesRestriction":                                false,
