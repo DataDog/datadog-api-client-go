@@ -14,7 +14,7 @@ import (
 
 // TicketCreationRuleReorderItem A reference to a ticket creation rule used for reordering.
 type TicketCreationRuleReorderItem struct {
-	// The ID of the automation rule.
+	// The ID of the ticket creation rule.
 	Id uuid.UUID `json:"id"`
 	// The JSON:API type for ticket creation rules.
 	Type TicketCreationRuleType `json:"type"`

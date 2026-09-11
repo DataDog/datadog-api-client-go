@@ -12,38 +12,64 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MuteRuleReorderItem A reference to a mute rule used for reordering.
-type MuteRuleReorderItem struct {
-	// The ID of the mute rule.
+// InboxRuleDataResponse The data object for an inbox rule returned by the API.
+type InboxRuleDataResponse struct {
+	// Attributes of an inbox rule returned by the API.
+	Attributes InboxRuleAttributesResponse `json:"attributes"`
+	// The ID of the inbox rule.
 	Id uuid.UUID `json:"id"`
-	// The JSON:API type for mute rules.
-	Type MuteRuleType `json:"type"`
+	// The JSON:API type for inbox rules.
+	Type InboxRuleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewMuteRuleReorderItem instantiates a new MuteRuleReorderItem object.
+// NewInboxRuleDataResponse instantiates a new InboxRuleDataResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMuteRuleReorderItem(id uuid.UUID, typeVar MuteRuleType) *MuteRuleReorderItem {
-	this := MuteRuleReorderItem{}
+func NewInboxRuleDataResponse(attributes InboxRuleAttributesResponse, id uuid.UUID, typeVar InboxRuleType) *InboxRuleDataResponse {
+	this := InboxRuleDataResponse{}
+	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewMuteRuleReorderItemWithDefaults instantiates a new MuteRuleReorderItem object.
+// NewInboxRuleDataResponseWithDefaults instantiates a new InboxRuleDataResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewMuteRuleReorderItemWithDefaults() *MuteRuleReorderItem {
-	this := MuteRuleReorderItem{}
+func NewInboxRuleDataResponseWithDefaults() *InboxRuleDataResponse {
+	this := InboxRuleDataResponse{}
 	return &this
 }
 
+// GetAttributes returns the Attributes field value.
+func (o *InboxRuleDataResponse) GetAttributes() InboxRuleAttributesResponse {
+	if o == nil {
+		var ret InboxRuleAttributesResponse
+		return ret
+	}
+	return o.Attributes
+}
+
+// GetAttributesOk returns a tuple with the Attributes field value
+// and a boolean to check if the value has been set.
+func (o *InboxRuleDataResponse) GetAttributesOk() (*InboxRuleAttributesResponse, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Attributes, true
+}
+
+// SetAttributes sets field value.
+func (o *InboxRuleDataResponse) SetAttributes(v InboxRuleAttributesResponse) {
+	o.Attributes = v
+}
+
 // GetId returns the Id field value.
-func (o *MuteRuleReorderItem) GetId() uuid.UUID {
+func (o *InboxRuleDataResponse) GetId() uuid.UUID {
 	if o == nil {
 		var ret uuid.UUID
 		return ret
@@ -53,7 +79,7 @@ func (o *MuteRuleReorderItem) GetId() uuid.UUID {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *MuteRuleReorderItem) GetIdOk() (*uuid.UUID, bool) {
+func (o *InboxRuleDataResponse) GetIdOk() (*uuid.UUID, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,14 +87,14 @@ func (o *MuteRuleReorderItem) GetIdOk() (*uuid.UUID, bool) {
 }
 
 // SetId sets field value.
-func (o *MuteRuleReorderItem) SetId(v uuid.UUID) {
+func (o *InboxRuleDataResponse) SetId(v uuid.UUID) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *MuteRuleReorderItem) GetType() MuteRuleType {
+func (o *InboxRuleDataResponse) GetType() InboxRuleType {
 	if o == nil {
-		var ret MuteRuleType
+		var ret InboxRuleType
 		return ret
 	}
 	return o.Type
@@ -76,7 +102,7 @@ func (o *MuteRuleReorderItem) GetType() MuteRuleType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *MuteRuleReorderItem) GetTypeOk() (*MuteRuleType, bool) {
+func (o *InboxRuleDataResponse) GetTypeOk() (*InboxRuleType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,16 +110,17 @@ func (o *MuteRuleReorderItem) GetTypeOk() (*MuteRuleType, bool) {
 }
 
 // SetType sets field value.
-func (o *MuteRuleReorderItem) SetType(v MuteRuleType) {
+func (o *InboxRuleDataResponse) SetType(v InboxRuleType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o MuteRuleReorderItem) MarshalJSON() ([]byte, error) {
+func (o InboxRuleDataResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	toSerialize["attributes"] = o.Attributes
 	toSerialize["id"] = o.Id
 	toSerialize["type"] = o.Type
 
@@ -104,13 +131,17 @@ func (o MuteRuleReorderItem) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *MuteRuleReorderItem) UnmarshalJSON(bytes []byte) (err error) {
+func (o *InboxRuleDataResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *uuid.UUID    `json:"id"`
-		Type *MuteRuleType `json:"type"`
+		Attributes *InboxRuleAttributesResponse `json:"attributes"`
+		Id         *uuid.UUID                   `json:"id"`
+		Type       *InboxRuleType               `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
 	}
 	if all.Id == nil {
 		return fmt.Errorf("required field id missing")
@@ -120,12 +151,16 @@ func (o *MuteRuleReorderItem) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "id", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Attributes = *all.Attributes
 	o.Id = *all.Id
 	if !all.Type.IsValid() {
 		hasInvalidField = true

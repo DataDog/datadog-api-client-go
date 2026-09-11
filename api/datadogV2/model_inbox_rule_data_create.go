@@ -7,68 +7,66 @@ package datadogV2
 import (
 	"fmt"
 
-	"github.com/google/uuid"
-
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// MuteRuleReorderItem A reference to a mute rule used for reordering.
-type MuteRuleReorderItem struct {
-	// The ID of the mute rule.
-	Id uuid.UUID `json:"id"`
-	// The JSON:API type for mute rules.
-	Type MuteRuleType `json:"type"`
+// InboxRuleDataCreate The data object for an inbox rule create request.
+type InboxRuleDataCreate struct {
+	// Attributes for creating or updating an inbox rule.
+	Attributes InboxRuleAttributesCreate `json:"attributes"`
+	// The JSON:API type for inbox rules.
+	Type InboxRuleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewMuteRuleReorderItem instantiates a new MuteRuleReorderItem object.
+// NewInboxRuleDataCreate instantiates a new InboxRuleDataCreate object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewMuteRuleReorderItem(id uuid.UUID, typeVar MuteRuleType) *MuteRuleReorderItem {
-	this := MuteRuleReorderItem{}
-	this.Id = id
+func NewInboxRuleDataCreate(attributes InboxRuleAttributesCreate, typeVar InboxRuleType) *InboxRuleDataCreate {
+	this := InboxRuleDataCreate{}
+	this.Attributes = attributes
 	this.Type = typeVar
 	return &this
 }
 
-// NewMuteRuleReorderItemWithDefaults instantiates a new MuteRuleReorderItem object.
+// NewInboxRuleDataCreateWithDefaults instantiates a new InboxRuleDataCreate object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewMuteRuleReorderItemWithDefaults() *MuteRuleReorderItem {
-	this := MuteRuleReorderItem{}
+func NewInboxRuleDataCreateWithDefaults() *InboxRuleDataCreate {
+	this := InboxRuleDataCreate{}
 	return &this
 }
 
-// GetId returns the Id field value.
-func (o *MuteRuleReorderItem) GetId() uuid.UUID {
+// GetAttributes returns the Attributes field value.
+func (o *InboxRuleDataCreate) GetAttributes() InboxRuleAttributesCreate {
 	if o == nil {
-		var ret uuid.UUID
+		var ret InboxRuleAttributesCreate
 		return ret
 	}
-	return o.Id
+	return o.Attributes
 }
 
-// GetIdOk returns a tuple with the Id field value
+// GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *MuteRuleReorderItem) GetIdOk() (*uuid.UUID, bool) {
+func (o *InboxRuleDataCreate) GetAttributesOk() (*InboxRuleAttributesCreate, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Id, true
+	return &o.Attributes, true
 }
 
-// SetId sets field value.
-func (o *MuteRuleReorderItem) SetId(v uuid.UUID) {
-	o.Id = v
+// SetAttributes sets field value.
+func (o *InboxRuleDataCreate) SetAttributes(v InboxRuleAttributesCreate) {
+	o.Attributes = v
 }
 
 // GetType returns the Type field value.
-func (o *MuteRuleReorderItem) GetType() MuteRuleType {
+func (o *InboxRuleDataCreate) GetType() InboxRuleType {
 	if o == nil {
-		var ret MuteRuleType
+		var ret InboxRuleType
 		return ret
 	}
 	return o.Type
@@ -76,7 +74,7 @@ func (o *MuteRuleReorderItem) GetType() MuteRuleType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *MuteRuleReorderItem) GetTypeOk() (*MuteRuleType, bool) {
+func (o *InboxRuleDataCreate) GetTypeOk() (*InboxRuleType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,17 +82,17 @@ func (o *MuteRuleReorderItem) GetTypeOk() (*MuteRuleType, bool) {
 }
 
 // SetType sets field value.
-func (o *MuteRuleReorderItem) SetType(v MuteRuleType) {
+func (o *InboxRuleDataCreate) SetType(v InboxRuleType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o MuteRuleReorderItem) MarshalJSON() ([]byte, error) {
+func (o InboxRuleDataCreate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["id"] = o.Id
+	toSerialize["attributes"] = o.Attributes
 	toSerialize["type"] = o.Type
 
 	for key, value := range o.AdditionalProperties {
@@ -104,29 +102,32 @@ func (o MuteRuleReorderItem) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *MuteRuleReorderItem) UnmarshalJSON(bytes []byte) (err error) {
+func (o *InboxRuleDataCreate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Id   *uuid.UUID    `json:"id"`
-		Type *MuteRuleType `json:"type"`
+		Attributes *InboxRuleAttributesCreate `json:"attributes"`
+		Type       *InboxRuleType             `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Id == nil {
-		return fmt.Errorf("required field id missing")
+	if all.Attributes == nil {
+		return fmt.Errorf("required field attributes missing")
 	}
 	if all.Type == nil {
 		return fmt.Errorf("required field type missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"id", "type"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attributes", "type"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	o.Id = *all.Id
+	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Attributes = *all.Attributes
 	if !all.Type.IsValid() {
 		hasInvalidField = true
 	} else {

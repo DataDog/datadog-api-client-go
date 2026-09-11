@@ -1,4 +1,4 @@
-// Delete a due date rule returns "Successfully deleted the due date rule" response
+// Delete a due date rule returns "Rule successfully deleted." response
 
 package main
 
@@ -13,12 +13,15 @@ import (
 )
 
 func main() {
+	// there is a valid "valid_due_date_rule" in the system
+	ValidDueDateRuleDataID := uuid.MustParse(os.Getenv("VALID_DUE_DATE_RULE_DATA_ID"))
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.DeleteSecurityFindingsAutomationDueDateRule", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	r, err := api.DeleteSecurityFindingsAutomationDueDateRule(ctx, uuid.MustParse("00000000-0000-0000-0000-000000000000"))
+	r, err := api.DeleteSecurityFindingsAutomationDueDateRule(ctx, ValidDueDateRuleDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityFindingsAutomationDueDateRule`: %v\n", err)

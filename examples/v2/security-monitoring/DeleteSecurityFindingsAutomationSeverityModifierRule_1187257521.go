@@ -1,4 +1,4 @@
-// Delete a severity modifier rule returns "Successfully deleted the severity modifier rule" response
+// Delete a severity modifier rule returns "Rule successfully deleted" response
 
 package main
 
@@ -13,12 +13,15 @@ import (
 )
 
 func main() {
+	// there is a valid "valid_severity_modifier_rule" in the system
+	ValidSeverityModifierRuleDataID := uuid.MustParse(os.Getenv("VALID_SEVERITY_MODIFIER_RULE_DATA_ID"))
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.DeleteSecurityFindingsAutomationSeverityModifierRule", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	api := datadogV2.NewSecurityMonitoringApi(apiClient)
-	r, err := api.DeleteSecurityFindingsAutomationSeverityModifierRule(ctx, uuid.MustParse("00000000-0000-0000-0000-000000000000"))
+	r, err := api.DeleteSecurityFindingsAutomationSeverityModifierRule(ctx, ValidSeverityModifierRuleDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityFindingsAutomationSeverityModifierRule`: %v\n", err)

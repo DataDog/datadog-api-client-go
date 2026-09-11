@@ -10,37 +10,37 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DueDateRuleReorderRequest The body of the due date rule reorder request.
-type DueDateRuleReorderRequest struct {
-	// The ordered list of all due date rules. Every rule must be included.
-	Data []DueDateRuleReorderItem `json:"data"`
+// InboxRuleReorderRequest The body of an inbox rule reorder request.
+type InboxRuleReorderRequest struct {
+	// The ordered list of all inbox rules. Every rule must be included.
+	Data []InboxRuleReorderItem `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewDueDateRuleReorderRequest instantiates a new DueDateRuleReorderRequest object.
+// NewInboxRuleReorderRequest instantiates a new InboxRuleReorderRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDueDateRuleReorderRequest(data []DueDateRuleReorderItem) *DueDateRuleReorderRequest {
-	this := DueDateRuleReorderRequest{}
+func NewInboxRuleReorderRequest(data []InboxRuleReorderItem) *InboxRuleReorderRequest {
+	this := InboxRuleReorderRequest{}
 	this.Data = data
 	return &this
 }
 
-// NewDueDateRuleReorderRequestWithDefaults instantiates a new DueDateRuleReorderRequest object.
+// NewInboxRuleReorderRequestWithDefaults instantiates a new InboxRuleReorderRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDueDateRuleReorderRequestWithDefaults() *DueDateRuleReorderRequest {
-	this := DueDateRuleReorderRequest{}
+func NewInboxRuleReorderRequestWithDefaults() *InboxRuleReorderRequest {
+	this := InboxRuleReorderRequest{}
 	return &this
 }
 
 // GetData returns the Data field value.
-func (o *DueDateRuleReorderRequest) GetData() []DueDateRuleReorderItem {
+func (o *InboxRuleReorderRequest) GetData() []InboxRuleReorderItem {
 	if o == nil {
-		var ret []DueDateRuleReorderItem
+		var ret []InboxRuleReorderItem
 		return ret
 	}
 	return o.Data
@@ -48,7 +48,7 @@ func (o *DueDateRuleReorderRequest) GetData() []DueDateRuleReorderItem {
 
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *DueDateRuleReorderRequest) GetDataOk() (*[]DueDateRuleReorderItem, bool) {
+func (o *InboxRuleReorderRequest) GetDataOk() (*[]InboxRuleReorderItem, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -56,12 +56,12 @@ func (o *DueDateRuleReorderRequest) GetDataOk() (*[]DueDateRuleReorderItem, bool
 }
 
 // SetData sets field value.
-func (o *DueDateRuleReorderRequest) SetData(v []DueDateRuleReorderItem) {
+func (o *InboxRuleReorderRequest) SetData(v []InboxRuleReorderItem) {
 	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DueDateRuleReorderRequest) MarshalJSON() ([]byte, error) {
+func (o InboxRuleReorderRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -75,9 +75,9 @@ func (o DueDateRuleReorderRequest) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DueDateRuleReorderRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *InboxRuleReorderRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *[]DueDateRuleReorderItem `json:"data"`
+		Data *[]InboxRuleReorderItem `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
