@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ObservabilityPipelineSpecData Contains the the pipeline configuration.
+// ObservabilityPipelineSpecData Contains the pipeline configuration.
 type ObservabilityPipelineSpecData struct {
 	// Defines the pipeline’s name and its components (sources, processors, and destinations).
 	Attributes ObservabilityPipelineDataAttributes `json:"attributes"`
