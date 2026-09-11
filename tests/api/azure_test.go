@@ -85,9 +85,8 @@ func TestAzureAuthenticate(t *testing.T) {
 	}
 }
 
-// TestAzureDelegatedProofSuffix pins the org-routing contract end to end: the
-// delegated-token endpoint receives `Authorization: Delegated <token>:<org-uuid>`
-// (the servicer splits on the last colon).
+// TestAzureDelegatedProofSuffix verifies the organization UUID is included in
+// the delegated authentication proof sent in the Authorization header.
 func TestAzureDelegatedProofSuffix(t *testing.T) {
 	t.Setenv(datadog.AzureAccessTokenName, "")
 

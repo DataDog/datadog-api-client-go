@@ -44,8 +44,7 @@ func (a *AzureAuth) Authenticate(ctx context.Context, config *DelegatedTokenConf
 		return nil, err
 	}
 
-	// Org routing: the delegated-token servicer splits the proof on the last
-	// ":" (JWTs contain no colons) and treats the suffix as the org UUID.
+	// Include the organization UUID required by Azure delegated authentication.
 	proof := azureDelegatedProof(accessToken, config.OrgUUID)
 
 	return GetDelegatedToken(ctx, config.OrgUUID, proof)
