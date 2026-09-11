@@ -3,11 +3,11 @@ set -e
 
 echo "Ensuring all dependencies are present in LICENSE-3rdparty.csv ..."
 go mod tidy
-ALL_DEPS=$(cat go.sum tests/go.sum | awk '{print $1}' | uniq | sort | sed "s|^\(.*\)|go.sum,\1,|")
+ALL_DEPS=$(awk '{print "," $1 ","}' go.sum tests/go.sum auth/aws/go.sum | sort -u)
 DEPS_NOT_FOUND=""
 set +e
 for one_dep in $ALL_DEPS; do
-    cat LICENSE-3rdparty.csv | grep "$one_dep" > /dev/null 2>&1
+    grep -Fq "$one_dep" LICENSE-3rdparty.csv
     if [ $? -ne 0 ]; then
         DEPS_NOT_FOUND="${DEPS_NOT_FOUND}\n${one_dep}<LICENSE>,<COPYRIGHT>"
     fi
