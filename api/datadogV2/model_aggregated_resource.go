@@ -32,20 +32,30 @@ type AggregatedResource struct {
 	HttpMethod datadog.NullableString `json:"http_method"`
 	// Percentage of sampled view instances that loaded this resource.
 	LoadFrequencyPct float64 `json:"load_frequency_pct"`
+	// Number of requests served from the local browser cache without a network round trip.
+	LocalCacheCount int32 `json:"local_cache_count"`
 	// Maximum duration in milliseconds.
 	MaxDurationMs float64 `json:"max_duration_ms"`
 	// Median duration in milliseconds.
 	MedianDurationMs float64 `json:"median_duration_ms"`
 	// Minimum duration in milliseconds.
 	MinDurationMs float64 `json:"min_duration_ms"`
+	// Number of requests reported by the browser as non-render-blocking.
+	NonBlockingCount int32 `json:"non_blocking_count"`
 	// 75th percentile duration in milliseconds.
 	P75DurationMs float64 `json:"p75_duration_ms"`
 	// 95th percentile duration in milliseconds.
 	P95DurationMs float64 `json:"p95_duration_ms"`
+	// Number of requests reported by the browser as render-blocking.
+	RenderBlockingCount int32 `json:"render_blocking_count"`
+	// Percentage of render-blocking requests among those reporting a render-blocking status.
+	RenderBlockingPct float64 `json:"render_blocking_pct"`
 	// Resource type (JS, CSS, image, fetch, XHR, document, and so on).
 	ResourceType datadog.NullableString `json:"resource_type"`
 	// URL path group used to aggregate similar resources.
 	ResourceUrlPathGroup string `json:"resource_url_path_group"`
+	// Number of cached requests revalidated by the server with a 304 response.
+	ServerValidatedCacheCount int32 `json:"server_validated_cache_count"`
 	// Average timing breakdown per network phase for a resource.
 	TimingBreakdown AggregatedResourceTimingBreakdown `json:"timing_breakdown"`
 	// Total number of requests for this resource across all sampled views.
@@ -61,7 +71,7 @@ type AggregatedResource struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAggregatedResource(avgDurationMs float64, avgStartTimeMs float64, cacheHitRatePct float64, cachedCount int32, downloadedCount int32, httpMethod datadog.NullableString, loadFrequencyPct float64, maxDurationMs float64, medianDurationMs float64, minDurationMs float64, p75DurationMs float64, p95DurationMs float64, resourceType datadog.NullableString, resourceUrlPathGroup string, timingBreakdown AggregatedResourceTimingBreakdown, totalRequests int32, viewsWithResource int32) *AggregatedResource {
+func NewAggregatedResource(avgDurationMs float64, avgStartTimeMs float64, cacheHitRatePct float64, cachedCount int32, downloadedCount int32, httpMethod datadog.NullableString, loadFrequencyPct float64, localCacheCount int32, maxDurationMs float64, medianDurationMs float64, minDurationMs float64, nonBlockingCount int32, p75DurationMs float64, p95DurationMs float64, renderBlockingCount int32, renderBlockingPct float64, resourceType datadog.NullableString, resourceUrlPathGroup string, serverValidatedCacheCount int32, timingBreakdown AggregatedResourceTimingBreakdown, totalRequests int32, viewsWithResource int32) *AggregatedResource {
 	this := AggregatedResource{}
 	this.AvgDurationMs = avgDurationMs
 	this.AvgStartTimeMs = avgStartTimeMs
@@ -70,13 +80,18 @@ func NewAggregatedResource(avgDurationMs float64, avgStartTimeMs float64, cacheH
 	this.DownloadedCount = downloadedCount
 	this.HttpMethod = httpMethod
 	this.LoadFrequencyPct = loadFrequencyPct
+	this.LocalCacheCount = localCacheCount
 	this.MaxDurationMs = maxDurationMs
 	this.MedianDurationMs = medianDurationMs
 	this.MinDurationMs = minDurationMs
+	this.NonBlockingCount = nonBlockingCount
 	this.P75DurationMs = p75DurationMs
 	this.P95DurationMs = p95DurationMs
+	this.RenderBlockingCount = renderBlockingCount
+	this.RenderBlockingPct = renderBlockingPct
 	this.ResourceType = resourceType
 	this.ResourceUrlPathGroup = resourceUrlPathGroup
+	this.ServerValidatedCacheCount = serverValidatedCacheCount
 	this.TimingBreakdown = timingBreakdown
 	this.TotalRequests = totalRequests
 	this.ViewsWithResource = viewsWithResource
@@ -338,6 +353,29 @@ func (o *AggregatedResource) SetLoadFrequencyPct(v float64) {
 	o.LoadFrequencyPct = v
 }
 
+// GetLocalCacheCount returns the LocalCacheCount field value.
+func (o *AggregatedResource) GetLocalCacheCount() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+	return o.LocalCacheCount
+}
+
+// GetLocalCacheCountOk returns a tuple with the LocalCacheCount field value
+// and a boolean to check if the value has been set.
+func (o *AggregatedResource) GetLocalCacheCountOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.LocalCacheCount, true
+}
+
+// SetLocalCacheCount sets field value.
+func (o *AggregatedResource) SetLocalCacheCount(v int32) {
+	o.LocalCacheCount = v
+}
+
 // GetMaxDurationMs returns the MaxDurationMs field value.
 func (o *AggregatedResource) GetMaxDurationMs() float64 {
 	if o == nil {
@@ -407,6 +445,29 @@ func (o *AggregatedResource) SetMinDurationMs(v float64) {
 	o.MinDurationMs = v
 }
 
+// GetNonBlockingCount returns the NonBlockingCount field value.
+func (o *AggregatedResource) GetNonBlockingCount() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+	return o.NonBlockingCount
+}
+
+// GetNonBlockingCountOk returns a tuple with the NonBlockingCount field value
+// and a boolean to check if the value has been set.
+func (o *AggregatedResource) GetNonBlockingCountOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.NonBlockingCount, true
+}
+
+// SetNonBlockingCount sets field value.
+func (o *AggregatedResource) SetNonBlockingCount(v int32) {
+	o.NonBlockingCount = v
+}
+
 // GetP75DurationMs returns the P75DurationMs field value.
 func (o *AggregatedResource) GetP75DurationMs() float64 {
 	if o == nil {
@@ -451,6 +512,52 @@ func (o *AggregatedResource) GetP95DurationMsOk() (*float64, bool) {
 // SetP95DurationMs sets field value.
 func (o *AggregatedResource) SetP95DurationMs(v float64) {
 	o.P95DurationMs = v
+}
+
+// GetRenderBlockingCount returns the RenderBlockingCount field value.
+func (o *AggregatedResource) GetRenderBlockingCount() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+	return o.RenderBlockingCount
+}
+
+// GetRenderBlockingCountOk returns a tuple with the RenderBlockingCount field value
+// and a boolean to check if the value has been set.
+func (o *AggregatedResource) GetRenderBlockingCountOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RenderBlockingCount, true
+}
+
+// SetRenderBlockingCount sets field value.
+func (o *AggregatedResource) SetRenderBlockingCount(v int32) {
+	o.RenderBlockingCount = v
+}
+
+// GetRenderBlockingPct returns the RenderBlockingPct field value.
+func (o *AggregatedResource) GetRenderBlockingPct() float64 {
+	if o == nil {
+		var ret float64
+		return ret
+	}
+	return o.RenderBlockingPct
+}
+
+// GetRenderBlockingPctOk returns a tuple with the RenderBlockingPct field value
+// and a boolean to check if the value has been set.
+func (o *AggregatedResource) GetRenderBlockingPctOk() (*float64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.RenderBlockingPct, true
+}
+
+// SetRenderBlockingPct sets field value.
+func (o *AggregatedResource) SetRenderBlockingPct(v float64) {
+	o.RenderBlockingPct = v
 }
 
 // GetResourceType returns the ResourceType field value.
@@ -499,6 +606,29 @@ func (o *AggregatedResource) GetResourceUrlPathGroupOk() (*string, bool) {
 // SetResourceUrlPathGroup sets field value.
 func (o *AggregatedResource) SetResourceUrlPathGroup(v string) {
 	o.ResourceUrlPathGroup = v
+}
+
+// GetServerValidatedCacheCount returns the ServerValidatedCacheCount field value.
+func (o *AggregatedResource) GetServerValidatedCacheCount() int32 {
+	if o == nil {
+		var ret int32
+		return ret
+	}
+	return o.ServerValidatedCacheCount
+}
+
+// GetServerValidatedCacheCountOk returns a tuple with the ServerValidatedCacheCount field value
+// and a boolean to check if the value has been set.
+func (o *AggregatedResource) GetServerValidatedCacheCountOk() (*int32, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.ServerValidatedCacheCount, true
+}
+
+// SetServerValidatedCacheCount sets field value.
+func (o *AggregatedResource) SetServerValidatedCacheCount(v int32) {
+	o.ServerValidatedCacheCount = v
 }
 
 // GetTimingBreakdown returns the TimingBreakdown field value.
@@ -592,13 +722,18 @@ func (o AggregatedResource) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["http_method"] = o.HttpMethod.Get()
 	toSerialize["load_frequency_pct"] = o.LoadFrequencyPct
+	toSerialize["local_cache_count"] = o.LocalCacheCount
 	toSerialize["max_duration_ms"] = o.MaxDurationMs
 	toSerialize["median_duration_ms"] = o.MedianDurationMs
 	toSerialize["min_duration_ms"] = o.MinDurationMs
+	toSerialize["non_blocking_count"] = o.NonBlockingCount
 	toSerialize["p75_duration_ms"] = o.P75DurationMs
 	toSerialize["p95_duration_ms"] = o.P95DurationMs
+	toSerialize["render_blocking_count"] = o.RenderBlockingCount
+	toSerialize["render_blocking_pct"] = o.RenderBlockingPct
 	toSerialize["resource_type"] = o.ResourceType.Get()
 	toSerialize["resource_url_path_group"] = o.ResourceUrlPathGroup
+	toSerialize["server_validated_cache_count"] = o.ServerValidatedCacheCount
 	toSerialize["timing_breakdown"] = o.TimingBreakdown
 	toSerialize["total_requests"] = o.TotalRequests
 	toSerialize["views_with_resource"] = o.ViewsWithResource
@@ -612,26 +747,31 @@ func (o AggregatedResource) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AggregatedResource) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AvgDurationMs        *float64                           `json:"avg_duration_ms"`
-		AvgStartTimeMs       *float64                           `json:"avg_start_time_ms"`
-		CacheHitRatePct      *float64                           `json:"cache_hit_rate_pct"`
-		CachedCount          *int32                             `json:"cached_count"`
-		DownloadedCount      *int32                             `json:"downloaded_count"`
-		GlobalP75DurationMs  *float64                           `json:"global_p75_duration_ms,omitempty"`
-		GlobalViewNameCount  *int32                             `json:"global_view_name_count,omitempty"`
-		GlobalViewNamePct    *float64                           `json:"global_view_name_pct,omitempty"`
-		HttpMethod           datadog.NullableString             `json:"http_method"`
-		LoadFrequencyPct     *float64                           `json:"load_frequency_pct"`
-		MaxDurationMs        *float64                           `json:"max_duration_ms"`
-		MedianDurationMs     *float64                           `json:"median_duration_ms"`
-		MinDurationMs        *float64                           `json:"min_duration_ms"`
-		P75DurationMs        *float64                           `json:"p75_duration_ms"`
-		P95DurationMs        *float64                           `json:"p95_duration_ms"`
-		ResourceType         datadog.NullableString             `json:"resource_type"`
-		ResourceUrlPathGroup *string                            `json:"resource_url_path_group"`
-		TimingBreakdown      *AggregatedResourceTimingBreakdown `json:"timing_breakdown"`
-		TotalRequests        *int32                             `json:"total_requests"`
-		ViewsWithResource    *int32                             `json:"views_with_resource"`
+		AvgDurationMs             *float64                           `json:"avg_duration_ms"`
+		AvgStartTimeMs            *float64                           `json:"avg_start_time_ms"`
+		CacheHitRatePct           *float64                           `json:"cache_hit_rate_pct"`
+		CachedCount               *int32                             `json:"cached_count"`
+		DownloadedCount           *int32                             `json:"downloaded_count"`
+		GlobalP75DurationMs       *float64                           `json:"global_p75_duration_ms,omitempty"`
+		GlobalViewNameCount       *int32                             `json:"global_view_name_count,omitempty"`
+		GlobalViewNamePct         *float64                           `json:"global_view_name_pct,omitempty"`
+		HttpMethod                datadog.NullableString             `json:"http_method"`
+		LoadFrequencyPct          *float64                           `json:"load_frequency_pct"`
+		LocalCacheCount           *int32                             `json:"local_cache_count"`
+		MaxDurationMs             *float64                           `json:"max_duration_ms"`
+		MedianDurationMs          *float64                           `json:"median_duration_ms"`
+		MinDurationMs             *float64                           `json:"min_duration_ms"`
+		NonBlockingCount          *int32                             `json:"non_blocking_count"`
+		P75DurationMs             *float64                           `json:"p75_duration_ms"`
+		P95DurationMs             *float64                           `json:"p95_duration_ms"`
+		RenderBlockingCount       *int32                             `json:"render_blocking_count"`
+		RenderBlockingPct         *float64                           `json:"render_blocking_pct"`
+		ResourceType              datadog.NullableString             `json:"resource_type"`
+		ResourceUrlPathGroup      *string                            `json:"resource_url_path_group"`
+		ServerValidatedCacheCount *int32                             `json:"server_validated_cache_count"`
+		TimingBreakdown           *AggregatedResourceTimingBreakdown `json:"timing_breakdown"`
+		TotalRequests             *int32                             `json:"total_requests"`
+		ViewsWithResource         *int32                             `json:"views_with_resource"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -657,6 +797,9 @@ func (o *AggregatedResource) UnmarshalJSON(bytes []byte) (err error) {
 	if all.LoadFrequencyPct == nil {
 		return fmt.Errorf("required field load_frequency_pct missing")
 	}
+	if all.LocalCacheCount == nil {
+		return fmt.Errorf("required field local_cache_count missing")
+	}
 	if all.MaxDurationMs == nil {
 		return fmt.Errorf("required field max_duration_ms missing")
 	}
@@ -666,17 +809,29 @@ func (o *AggregatedResource) UnmarshalJSON(bytes []byte) (err error) {
 	if all.MinDurationMs == nil {
 		return fmt.Errorf("required field min_duration_ms missing")
 	}
+	if all.NonBlockingCount == nil {
+		return fmt.Errorf("required field non_blocking_count missing")
+	}
 	if all.P75DurationMs == nil {
 		return fmt.Errorf("required field p75_duration_ms missing")
 	}
 	if all.P95DurationMs == nil {
 		return fmt.Errorf("required field p95_duration_ms missing")
 	}
+	if all.RenderBlockingCount == nil {
+		return fmt.Errorf("required field render_blocking_count missing")
+	}
+	if all.RenderBlockingPct == nil {
+		return fmt.Errorf("required field render_blocking_pct missing")
+	}
 	if !all.ResourceType.IsSet() {
 		return fmt.Errorf("required field resource_type missing")
 	}
 	if all.ResourceUrlPathGroup == nil {
 		return fmt.Errorf("required field resource_url_path_group missing")
+	}
+	if all.ServerValidatedCacheCount == nil {
+		return fmt.Errorf("required field server_validated_cache_count missing")
 	}
 	if all.TimingBreakdown == nil {
 		return fmt.Errorf("required field timing_breakdown missing")
@@ -689,7 +844,7 @@ func (o *AggregatedResource) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"avg_duration_ms", "avg_start_time_ms", "cache_hit_rate_pct", "cached_count", "downloaded_count", "global_p75_duration_ms", "global_view_name_count", "global_view_name_pct", "http_method", "load_frequency_pct", "max_duration_ms", "median_duration_ms", "min_duration_ms", "p75_duration_ms", "p95_duration_ms", "resource_type", "resource_url_path_group", "timing_breakdown", "total_requests", "views_with_resource"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"avg_duration_ms", "avg_start_time_ms", "cache_hit_rate_pct", "cached_count", "downloaded_count", "global_p75_duration_ms", "global_view_name_count", "global_view_name_pct", "http_method", "load_frequency_pct", "local_cache_count", "max_duration_ms", "median_duration_ms", "min_duration_ms", "non_blocking_count", "p75_duration_ms", "p95_duration_ms", "render_blocking_count", "render_blocking_pct", "resource_type", "resource_url_path_group", "server_validated_cache_count", "timing_breakdown", "total_requests", "views_with_resource"})
 	} else {
 		return err
 	}
@@ -705,13 +860,18 @@ func (o *AggregatedResource) UnmarshalJSON(bytes []byte) (err error) {
 	o.GlobalViewNamePct = all.GlobalViewNamePct
 	o.HttpMethod = all.HttpMethod
 	o.LoadFrequencyPct = *all.LoadFrequencyPct
+	o.LocalCacheCount = *all.LocalCacheCount
 	o.MaxDurationMs = *all.MaxDurationMs
 	o.MedianDurationMs = *all.MedianDurationMs
 	o.MinDurationMs = *all.MinDurationMs
+	o.NonBlockingCount = *all.NonBlockingCount
 	o.P75DurationMs = *all.P75DurationMs
 	o.P95DurationMs = *all.P95DurationMs
+	o.RenderBlockingCount = *all.RenderBlockingCount
+	o.RenderBlockingPct = *all.RenderBlockingPct
 	o.ResourceType = all.ResourceType
 	o.ResourceUrlPathGroup = *all.ResourceUrlPathGroup
+	o.ServerValidatedCacheCount = *all.ServerValidatedCacheCount
 	if all.TimingBreakdown.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
