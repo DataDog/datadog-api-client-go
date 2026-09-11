@@ -2,9 +2,9 @@ package api
 
 import (
 	"context"
+	"errors"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"strings"
 	"testing"
 
@@ -17,7 +17,6 @@ func TestAzureAuthenticate(t *testing.T) {
 		auth           datadog.AzureAuth
 		envToken       string
 		expectedProof  string
-		expectErr      bool
 		expectErrParts []string
 	}
 
@@ -34,29 +33,17 @@ func TestAzureAuthenticate(t *testing.T) {
 			expectedProof: "env.jwt.sig:12345678-1234-1234-1234-123456789012",
 		},
 		{
-			// No token anywhere: with PATH emptied below,
-			// mintAccessToken's exec.LookPath fails deterministically
-			// without invoking a real `az` binary, so the case is hermetic.
-			name:           "No token and no az CLI fails",
-			auth:           datadog.AzureAuth{},
-			expectErr:      true,
-			expectErrParts: []string{"`az` not found on PATH"},
+			name: "Token source fallback",
+			auth: datadog.AzureAuth{TokenSource: func(context.Context) (string, error) {
+				return "source.jwt.sig", nil
+			}},
+			expectedProof: "source.jwt.sig:12345678-1234-1234-1234-123456789012",
 		},
 	}
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			if tc.envToken != "" {
-				t.Setenv(datadog.AzureAccessTokenName, tc.envToken)
-			} else {
-				t.Setenv(datadog.AzureAccessTokenName, "")
-				os.Unsetenv(datadog.AzureAccessTokenName)
-			}
-			if tc.expectErr {
-				// Empty PATH so exec.LookPath("az") fails deterministically
-				// on machines with the Azure CLI installed.
-				t.Setenv("PATH", "")
-			}
+			t.Setenv(datadog.AzureAccessTokenName, tc.envToken)
 
 			server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 				if r.URL.Path != "/api/v2/delegated-token" {
@@ -74,7 +61,7 @@ func TestAzureAuthenticate(t *testing.T) {
 			cfg.ProviderAuth = &tc.auth
 
 			creds, err := cfg.ProviderAuth.Authenticate(ctx, cfg)
-			if tc.expectErr {
+			if len(tc.expectErrParts) > 0 {
 				if err == nil {
 					t.Fatalf("expected error containing %v, got nil", tc.expectErrParts)
 				}
@@ -84,6 +71,9 @@ func TestAzureAuthenticate(t *testing.T) {
 					}
 				}
 				return
+			}
+			if err != nil {
+				t.Fatalf("Authenticate: %v", err)
 			}
 			if creds.DelegatedToken != "delegated.jwt.sig" {
 				t.Errorf("DelegatedToken = %q, want delegated.jwt.sig", creds.DelegatedToken)
@@ -100,7 +90,6 @@ func TestAzureAuthenticate(t *testing.T) {
 // (the servicer splits on the last colon).
 func TestAzureDelegatedProofSuffix(t *testing.T) {
 	t.Setenv(datadog.AzureAccessTokenName, "")
-	os.Unsetenv(datadog.AzureAccessTokenName)
 
 	var gotAuth string
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -121,30 +110,46 @@ func TestAzureDelegatedProofSuffix(t *testing.T) {
 	}
 }
 
-func TestAzureAccessTokenPrefersFieldOverEnv(t *testing.T) {
-	t.Setenv(datadog.AzureAccessTokenName, "env.jwt.sig")
-	auth := datadog.AzureAuth{AccessToken: "field.jwt.sig"}
-	token, err := auth.GetAccessToken(context.Background())
-	if err != nil {
-		t.Fatalf("GetAccessToken: %v", err)
-	}
-	if token != "field.jwt.sig" {
-		t.Errorf("token = %q, want field.jwt.sig", token)
-	}
-}
-
-func TestAzureContextOverride(t *testing.T) {
+func TestAzureAccessTokenPrecedence(t *testing.T) {
 	t.Setenv(datadog.AzureAccessTokenName, "env.jwt.sig")
 	ctx := context.WithValue(context.Background(), datadog.ContextAzureVariables, map[string]string{
 		datadog.AzureAccessTokenName: "ctx.jwt.sig",
 	})
-	auth := datadog.AzureAuth{}
+	tokenSourceCalled := false
+	auth := datadog.AzureAuth{
+		AccessToken: "field.jwt.sig",
+		TokenSource: func(context.Context) (string, error) {
+			tokenSourceCalled = true
+			return "source.jwt.sig", nil
+		},
+	}
+
 	token, err := auth.GetAccessToken(ctx)
 	if err != nil {
-		t.Fatalf("GetAccessToken: %v", err)
+		t.Fatalf("GetAccessToken with field: %v", err)
+	}
+	if token != "field.jwt.sig" {
+		t.Errorf("token = %q, want field.jwt.sig", token)
+	}
+
+	auth.AccessToken = ""
+	token, err = auth.GetAccessToken(ctx)
+	if err != nil {
+		t.Fatalf("GetAccessToken with context token: %v", err)
 	}
 	if token != "ctx.jwt.sig" {
-		t.Errorf("token = %q, want ctx.jwt.sig (context override wins over env)", token)
+		t.Errorf("token = %q, want ctx.jwt.sig", token)
+	}
+
+	token, err = auth.GetAccessToken(context.Background())
+	if err != nil {
+		t.Fatalf("GetAccessToken with environment token: %v", err)
+	}
+	if token != "env.jwt.sig" {
+		t.Errorf("token = %q, want env.jwt.sig", token)
+	}
+	if tokenSourceCalled {
+		t.Error("TokenSource called before higher-precedence sources were exhausted")
 	}
 }
 
@@ -156,100 +161,63 @@ func TestAzureAuthenticateMissingOrgUUID(t *testing.T) {
 	}
 }
 
-// writeAzShim installs a fake `az` executable that records its argv to
-// argvFile and prints a JSON access-token response on stdout, returning a
-// directory to prepend to PATH. This exercises the real mint path
-// (mintAccessToken, argument construction, output parsing) without requiring
-// the az CLI.
-func writeAzShim(t *testing.T, argvFile, token string) string {
-	t.Helper()
-	dir := t.TempDir()
-	script := "#!/bin/sh\n" +
-		"printf '%s\\n' \"$@\" >> " + argvFile + "\n" +
-		`echo '{"accessToken":"` + token + `"}'` + "\n"
-	path := dir + "/az"
-	if err := os.WriteFile(path, []byte(script), 0o755); err != nil {
-		t.Fatalf("write az shim: %v", err)
-	}
-	return dir
-}
-
-// TestAzureMintAccessTokenViaShim drives the real mint path through a fake az
-// and pins the invocation: JSON output (token extracted without depending on
-// JMESPath behavior across az versions) and no --resource when Resource is
-// unset.
-func TestAzureMintAccessTokenViaShim(t *testing.T) {
-	argvFile := t.TempDir() + "/argv"
-	const token = "shim.jwt.sig"
-	shimDir := writeAzShim(t, argvFile, token)
-	t.Setenv("PATH", shimDir)
+func TestAzureTokenSourceFallback(t *testing.T) {
 	t.Setenv(datadog.AzureAccessTokenName, "")
-	os.Unsetenv(datadog.AzureAccessTokenName)
-
-	auth := datadog.AzureAuth{}
-	got, err := auth.GetAccessToken(context.Background())
-	if err != nil {
-		t.Fatalf("GetAccessToken: %v", err)
-	}
-	if got != token {
-		t.Errorf("token = %q, want %q", got, token)
-	}
-
-	argv, err := os.ReadFile(argvFile)
-	if err != nil {
-		t.Fatalf("read shim argv: %v", err)
-	}
-	wantArgs := []string{"account", "get-access-token", "--output", "json"}
-	gotArgs := strings.Split(strings.TrimSpace(string(argv)), "\n")
-	if len(gotArgs) != len(wantArgs) {
-		t.Fatalf("az argv = %v, want %v", gotArgs, wantArgs)
-	}
-	for i := range wantArgs {
-		if gotArgs[i] != wantArgs[i] {
-			t.Errorf("az argv[%d] = %q, want %q", i, gotArgs[i], wantArgs[i])
+	type contextKey struct{}
+	ctx := context.WithValue(context.Background(), contextKey{}, "context value")
+	auth := datadog.AzureAuth{TokenSource: func(sourceCtx context.Context) (string, error) {
+		if got := sourceCtx.Value(contextKey{}); got != "context value" {
+			t.Errorf("TokenSource context value = %v, want context value", got)
 		}
-	}
-}
+		return "source.jwt.sig", nil
+	}}
 
-// TestAzureMintAccessTokenResourceArg pins the --resource passthrough.
-func TestAzureMintAccessTokenResourceArg(t *testing.T) {
-	argvFile := t.TempDir() + "/argv"
-	shimDir := writeAzShim(t, argvFile, "shim.jwt.sig")
-	t.Setenv("PATH", shimDir)
-	t.Setenv(datadog.AzureAccessTokenName, "")
-	os.Unsetenv(datadog.AzureAccessTokenName)
-
-	auth := datadog.AzureAuth{Resource: "https://management.azure.com/"}
-	if _, err := auth.GetAccessToken(context.Background()); err != nil {
+	token, err := auth.GetAccessToken(ctx)
+	if err != nil {
 		t.Fatalf("GetAccessToken: %v", err)
 	}
-	argv, err := os.ReadFile(argvFile)
-	if err != nil {
-		t.Fatalf("read shim argv: %v", err)
-	}
-	if !strings.Contains(string(argv), "--resource") || !strings.Contains(string(argv), "https://management.azure.com/") {
-		t.Errorf("az argv = %q, want it to carry --resource with its value", string(argv))
+	if token != "source.jwt.sig" {
+		t.Errorf("token = %q, want source.jwt.sig", token)
 	}
 }
 
-// TestAzureMintAccessTokenShimError pins the error path: a failing az
-// surfaces its stderr in the wrapped error.
-func TestAzureMintAccessTokenShimError(t *testing.T) {
-	dir := t.TempDir()
-	script := "#!/bin/sh\necho 'run az login' >&2\nexit 1\n"
-	if err := os.WriteFile(dir+"/az", []byte(script), 0o755); err != nil {
-		t.Fatalf("write az shim: %v", err)
-	}
-	t.Setenv("PATH", dir)
+func TestAzureTokenSourceError(t *testing.T) {
 	t.Setenv(datadog.AzureAccessTokenName, "")
-	os.Unsetenv(datadog.AzureAccessTokenName)
+	sourceErr := errors.New("credential unavailable")
+	auth := datadog.AzureAuth{TokenSource: func(context.Context) (string, error) {
+		return "", sourceErr
+	}}
 
-	auth := datadog.AzureAuth{}
 	_, err := auth.GetAccessToken(context.Background())
-	if err == nil {
-		t.Fatal("expected error from failing az shim")
+	if !errors.Is(err, sourceErr) {
+		t.Fatalf("error = %v, want wrapped token source error", err)
 	}
-	if !strings.Contains(err.Error(), "run az login") {
-		t.Errorf("err = %v, want it to carry the CLI stderr", err)
+	if !strings.Contains(err.Error(), "azure token source") {
+		t.Errorf("error = %q, want TokenSource context", err.Error())
+	}
+}
+
+func TestAzureTokenSourceRejectsEmptyToken(t *testing.T) {
+	t.Setenv(datadog.AzureAccessTokenName, "")
+	auth := datadog.AzureAuth{TokenSource: func(context.Context) (string, error) {
+		return "", nil
+	}}
+
+	_, err := auth.GetAccessToken(context.Background())
+	if err == nil || !strings.Contains(err.Error(), "empty access token") {
+		t.Fatalf("error = %v, want empty access token error", err)
+	}
+}
+
+func TestAzureAccessTokenRequiresSource(t *testing.T) {
+	t.Setenv(datadog.AzureAccessTokenName, "")
+	_, err := (&datadog.AzureAuth{}).GetAccessToken(context.Background())
+	if err == nil {
+		t.Fatal("expected missing Azure access token error")
+	}
+	for _, part := range []string{"AzureAuth.AccessToken", datadog.AzureAccessTokenName, "AzureAuth.TokenSource"} {
+		if !strings.Contains(err.Error(), part) {
+			t.Errorf("error = %q, want it to contain %q", err.Error(), part)
+		}
 	}
 }

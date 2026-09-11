@@ -13,15 +13,20 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	azureAuth := &datadog.AzureAuth{}
+	// Set AzureAuth.AccessToken or DD_AZURE_ACCESS_TOKEN for a pre-minted token.
+	// To delegate acquisition and renewal to the application's Azure credential
+	// provider, assign AzureAuth.TokenSource to a function with the signature
+	// func(context.Context) (string, error).
+	//
+	// The token source chooses the credential, tenant, and audience or scope. It
+	// may adapt Managed Identity, Workload Identity, or an explicitly configured
+	// Azure CLI credential; AzureAuth does not select or invoke one.
 	configuration.DelegatedTokenConfig = &datadog.DelegatedTokenConfig{
 		OrgUUID:      os.Getenv("DD_TEST_ORG_UUID"),
-		ProviderAuth: &datadog.AzureAuth{},
+		ProviderAuth: azureAuth,
 		Provider:     datadog.ProviderAzure,
 	}
-	// AzureAuth pulls the access token from `az account get-access-token`.
-	// To skip the `az` invocation, pass a pre-minted token via
-	// AzureAuth.AccessToken or the DD_AZURE_ACCESS_TOKEN environment variable,
-	// and optionally set Resource for a non-default `az --resource`.
 	apiClient := datadog.NewAPIClient(configuration)
 
 	// Make example API call using the DelegatedTokenConfig
