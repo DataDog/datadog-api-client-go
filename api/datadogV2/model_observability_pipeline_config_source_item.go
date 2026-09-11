@@ -10,24 +10,25 @@ import (
 
 // ObservabilityPipelineConfigSourceItem - A data source for the pipeline.
 type ObservabilityPipelineConfigSourceItem struct {
-	ObservabilityPipelineDatadogAgentSource       *ObservabilityPipelineDatadogAgentSource
-	ObservabilityPipelineAmazonDataFirehoseSource *ObservabilityPipelineAmazonDataFirehoseSource
-	ObservabilityPipelineAmazonS3Source           *ObservabilityPipelineAmazonS3Source
-	ObservabilityPipelineFluentBitSource          *ObservabilityPipelineFluentBitSource
-	ObservabilityPipelineFluentdSource            *ObservabilityPipelineFluentdSource
-	ObservabilityPipelineGooglePubSubSource       *ObservabilityPipelineGooglePubSubSource
-	ObservabilityPipelineHttpClientSource         *ObservabilityPipelineHttpClientSource
-	ObservabilityPipelineHttpServerSource         *ObservabilityPipelineHttpServerSource
-	ObservabilityPipelineKafkaSource              *ObservabilityPipelineKafkaSource
-	ObservabilityPipelineLogstashSource           *ObservabilityPipelineLogstashSource
-	ObservabilityPipelineRsyslogSource            *ObservabilityPipelineRsyslogSource
-	ObservabilityPipelineSocketSource             *ObservabilityPipelineSocketSource
-	ObservabilityPipelineSplunkHecSource          *ObservabilityPipelineSplunkHecSource
-	ObservabilityPipelineSplunkTcpSource          *ObservabilityPipelineSplunkTcpSource
-	ObservabilityPipelineSumoLogicSource          *ObservabilityPipelineSumoLogicSource
-	ObservabilityPipelineSyslogNgSource           *ObservabilityPipelineSyslogNgSource
-	ObservabilityPipelineWebsocketSource          *ObservabilityPipelineWebsocketSource
-	ObservabilityPipelineOpentelemetrySource      *ObservabilityPipelineOpentelemetrySource
+	ObservabilityPipelineDatadogAgentSource          *ObservabilityPipelineDatadogAgentSource
+	ObservabilityPipelineAmazonDataFirehoseSource    *ObservabilityPipelineAmazonDataFirehoseSource
+	ObservabilityPipelineAmazonS3Source              *ObservabilityPipelineAmazonS3Source
+	ObservabilityPipelineFluentBitSource             *ObservabilityPipelineFluentBitSource
+	ObservabilityPipelineFluentdSource               *ObservabilityPipelineFluentdSource
+	ObservabilityPipelineGooglePubSubSource          *ObservabilityPipelineGooglePubSubSource
+	ObservabilityPipelineHttpClientSource            *ObservabilityPipelineHttpClientSource
+	ObservabilityPipelineHttpServerSource            *ObservabilityPipelineHttpServerSource
+	ObservabilityPipelineKafkaSource                 *ObservabilityPipelineKafkaSource
+	ObservabilityPipelineLogstashSource              *ObservabilityPipelineLogstashSource
+	ObservabilityPipelineRsyslogSource               *ObservabilityPipelineRsyslogSource
+	ObservabilityPipelineSocketSource                *ObservabilityPipelineSocketSource
+	ObservabilityPipelineSplunkHecSource             *ObservabilityPipelineSplunkHecSource
+	ObservabilityPipelineSplunkTcpSource             *ObservabilityPipelineSplunkTcpSource
+	ObservabilityPipelineSumoLogicSource             *ObservabilityPipelineSumoLogicSource
+	ObservabilityPipelineSyslogNgSource              *ObservabilityPipelineSyslogNgSource
+	ObservabilityPipelineWebsocketSource             *ObservabilityPipelineWebsocketSource
+	ObservabilityPipelineOpentelemetrySource         *ObservabilityPipelineOpentelemetrySource
+	ObservabilityPipelinePrometheusRemoteWriteSource *ObservabilityPipelinePrometheusRemoteWriteSource
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -121,6 +122,11 @@ func ObservabilityPipelineWebsocketSourceAsObservabilityPipelineConfigSourceItem
 // ObservabilityPipelineOpentelemetrySourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelineOpentelemetrySource wrapped in ObservabilityPipelineConfigSourceItem.
 func ObservabilityPipelineOpentelemetrySourceAsObservabilityPipelineConfigSourceItem(v *ObservabilityPipelineOpentelemetrySource) ObservabilityPipelineConfigSourceItem {
 	return ObservabilityPipelineConfigSourceItem{ObservabilityPipelineOpentelemetrySource: v}
+}
+
+// ObservabilityPipelinePrometheusRemoteWriteSourceAsObservabilityPipelineConfigSourceItem is a convenience function that returns ObservabilityPipelinePrometheusRemoteWriteSource wrapped in ObservabilityPipelineConfigSourceItem.
+func ObservabilityPipelinePrometheusRemoteWriteSourceAsObservabilityPipelineConfigSourceItem(v *ObservabilityPipelinePrometheusRemoteWriteSource) ObservabilityPipelineConfigSourceItem {
+	return ObservabilityPipelineConfigSourceItem{ObservabilityPipelinePrometheusRemoteWriteSource: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
@@ -433,6 +439,23 @@ func (obj *ObservabilityPipelineConfigSourceItem) UnmarshalJSON(data []byte) err
 		obj.ObservabilityPipelineOpentelemetrySource = nil
 	}
 
+	// try to unmarshal data into ObservabilityPipelinePrometheusRemoteWriteSource
+	err = datadog.Unmarshal(data, &obj.ObservabilityPipelinePrometheusRemoteWriteSource)
+	if err == nil {
+		if obj.ObservabilityPipelinePrometheusRemoteWriteSource != nil && obj.ObservabilityPipelinePrometheusRemoteWriteSource.UnparsedObject == nil {
+			jsonObservabilityPipelinePrometheusRemoteWriteSource, _ := datadog.Marshal(obj.ObservabilityPipelinePrometheusRemoteWriteSource)
+			if string(jsonObservabilityPipelinePrometheusRemoteWriteSource) == "{}" { // empty struct
+				obj.ObservabilityPipelinePrometheusRemoteWriteSource = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.ObservabilityPipelinePrometheusRemoteWriteSource = nil
+		}
+	} else {
+		obj.ObservabilityPipelinePrometheusRemoteWriteSource = nil
+	}
+
 	if match != 1 { // more than 1 match
 		// reset to nil
 		obj.ObservabilityPipelineDatadogAgentSource = nil
@@ -453,6 +476,7 @@ func (obj *ObservabilityPipelineConfigSourceItem) UnmarshalJSON(data []byte) err
 		obj.ObservabilityPipelineSyslogNgSource = nil
 		obj.ObservabilityPipelineWebsocketSource = nil
 		obj.ObservabilityPipelineOpentelemetrySource = nil
+		obj.ObservabilityPipelinePrometheusRemoteWriteSource = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -530,6 +554,10 @@ func (obj ObservabilityPipelineConfigSourceItem) MarshalJSON() ([]byte, error) {
 
 	if obj.ObservabilityPipelineOpentelemetrySource != nil {
 		return datadog.Marshal(&obj.ObservabilityPipelineOpentelemetrySource)
+	}
+
+	if obj.ObservabilityPipelinePrometheusRemoteWriteSource != nil {
+		return datadog.Marshal(&obj.ObservabilityPipelinePrometheusRemoteWriteSource)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -610,6 +638,10 @@ func (obj *ObservabilityPipelineConfigSourceItem) GetActualInstance() interface{
 
 	if obj.ObservabilityPipelineOpentelemetrySource != nil {
 		return obj.ObservabilityPipelineOpentelemetrySource
+	}
+
+	if obj.ObservabilityPipelinePrometheusRemoteWriteSource != nil {
+		return obj.ObservabilityPipelinePrometheusRemoteWriteSource
 	}
 
 	// all schemas are nil
