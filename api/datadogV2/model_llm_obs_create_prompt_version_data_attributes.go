@@ -19,7 +19,7 @@ type LLMObsCreatePromptVersionDataAttributes struct {
 	// Optional labels to attach to this version. Do not use this attribute for new integrations.
 	// Deprecated
 	Labels []LLMObsPromptVersionLabel `json:"labels,omitempty"`
-	// A text template or a list of chat messages.
+	// A text template, a list of chat messages, or an authored chat object. Text can include an exact prompt version with `{{>prompt-id version=N}}`. Use an authored chat object when including prompts as chat messages.
 	Template LLMObsPromptTemplate `json:"template"`
 	// Optional user-supplied version identifier for this version.
 	UserVersion *string `json:"user_version,omitempty"`

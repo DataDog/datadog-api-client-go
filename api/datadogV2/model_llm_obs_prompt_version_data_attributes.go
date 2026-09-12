@@ -11,10 +11,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPromptVersionDataAttributes Attributes of a specific version of an Agent Observability prompt.
+// LLMObsPromptVersionDataAttributes Attributes of a specific version of an Agent Observability prompt. For a composed version, `authoring_template` contains its pinned include-bearing source; ordinary versions omit that attribute.
 type LLMObsPromptVersionDataAttributes struct {
 	// UUID of the user who authored this version.
 	Author *string `json:"author,omitempty"`
+	// A text template, a list of chat messages, or an authored chat object. Text can include an exact prompt version with `{{>prompt-id version=N}}`. Use an authored chat object when including prompts as chat messages.
+	AuthoringTemplate *LLMObsPromptTemplate `json:"authoring_template,omitempty"`
 	// Timestamp stored on this prompt version.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Datasets observed in runs associated with this prompt version.
@@ -36,7 +38,7 @@ type LLMObsPromptVersionDataAttributes struct {
 	PromptUuid string `json:"prompt_uuid"`
 	// Tags observed on runs of this prompt version.
 	Tags []string `json:"tags,omitempty"`
-	// A text template or a list of chat messages.
+	// A text template, a list of chat messages, or an authored chat object. Text can include an exact prompt version with `{{>prompt-id version=N}}`. Use an authored chat object when including prompts as chat messages.
 	Template LLMObsPromptTemplate `json:"template"`
 	// User-supplied identifier for this version.
 	UserVersion *string `json:"user_version,omitempty"`
@@ -96,6 +98,34 @@ func (o *LLMObsPromptVersionDataAttributes) HasAuthor() bool {
 // SetAuthor gets a reference to the given string and assigns it to the Author field.
 func (o *LLMObsPromptVersionDataAttributes) SetAuthor(v string) {
 	o.Author = &v
+}
+
+// GetAuthoringTemplate returns the AuthoringTemplate field value if set, zero value otherwise.
+func (o *LLMObsPromptVersionDataAttributes) GetAuthoringTemplate() LLMObsPromptTemplate {
+	if o == nil || o.AuthoringTemplate == nil {
+		var ret LLMObsPromptTemplate
+		return ret
+	}
+	return *o.AuthoringTemplate
+}
+
+// GetAuthoringTemplateOk returns a tuple with the AuthoringTemplate field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsPromptVersionDataAttributes) GetAuthoringTemplateOk() (*LLMObsPromptTemplate, bool) {
+	if o == nil || o.AuthoringTemplate == nil {
+		return nil, false
+	}
+	return o.AuthoringTemplate, true
+}
+
+// HasAuthoringTemplate returns a boolean if a field has been set.
+func (o *LLMObsPromptVersionDataAttributes) HasAuthoringTemplate() bool {
+	return o != nil && o.AuthoringTemplate != nil
+}
+
+// SetAuthoringTemplate gets a reference to the given LLMObsPromptTemplate and assigns it to the AuthoringTemplate field.
+func (o *LLMObsPromptVersionDataAttributes) SetAuthoringTemplate(v LLMObsPromptTemplate) {
+	o.AuthoringTemplate = &v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -482,6 +512,9 @@ func (o LLMObsPromptVersionDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Author != nil {
 		toSerialize["author"] = o.Author
 	}
+	if o.AuthoringTemplate != nil {
+		toSerialize["authoring_template"] = o.AuthoringTemplate
+	}
 	if o.CreatedAt != nil {
 		if o.CreatedAt.Nanosecond() == 0 {
 			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -538,21 +571,22 @@ func (o LLMObsPromptVersionDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsPromptVersionDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Author           *string               `json:"author,omitempty"`
-		CreatedAt        *time.Time            `json:"created_at,omitempty"`
-		Datasets         []LLMObsPromptDataset `json:"datasets,omitempty"`
-		Description      *string               `json:"description,omitempty"`
-		Labels           []string              `json:"labels,omitempty"`
-		LastSeenAt       *time.Time            `json:"last_seen_at,omitempty"`
-		MlApp            *string               `json:"ml_app,omitempty"`
-		MlApps           []string              `json:"ml_apps,omitempty"`
-		PromptId         *string               `json:"prompt_id"`
-		PromptUuid       *string               `json:"prompt_uuid"`
-		Tags             []string              `json:"tags,omitempty"`
-		Template         *LLMObsPromptTemplate `json:"template"`
-		UserVersion      *string               `json:"user_version,omitempty"`
-		Version          *int64                `json:"version"`
-		VersionCreatedAt *time.Time            `json:"version_created_at,omitempty"`
+		Author            *string               `json:"author,omitempty"`
+		AuthoringTemplate *LLMObsPromptTemplate `json:"authoring_template,omitempty"`
+		CreatedAt         *time.Time            `json:"created_at,omitempty"`
+		Datasets          []LLMObsPromptDataset `json:"datasets,omitempty"`
+		Description       *string               `json:"description,omitempty"`
+		Labels            []string              `json:"labels,omitempty"`
+		LastSeenAt        *time.Time            `json:"last_seen_at,omitempty"`
+		MlApp             *string               `json:"ml_app,omitempty"`
+		MlApps            []string              `json:"ml_apps,omitempty"`
+		PromptId          *string               `json:"prompt_id"`
+		PromptUuid        *string               `json:"prompt_uuid"`
+		Tags              []string              `json:"tags,omitempty"`
+		Template          *LLMObsPromptTemplate `json:"template"`
+		UserVersion       *string               `json:"user_version,omitempty"`
+		Version           *int64                `json:"version"`
+		VersionCreatedAt  *time.Time            `json:"version_created_at,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -571,11 +605,12 @@ func (o *LLMObsPromptVersionDataAttributes) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"author", "created_at", "datasets", "description", "labels", "last_seen_at", "ml_app", "ml_apps", "prompt_id", "prompt_uuid", "tags", "template", "user_version", "version", "version_created_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"author", "authoring_template", "created_at", "datasets", "description", "labels", "last_seen_at", "ml_app", "ml_apps", "prompt_id", "prompt_uuid", "tags", "template", "user_version", "version", "version_created_at"})
 	} else {
 		return err
 	}
 	o.Author = all.Author
+	o.AuthoringTemplate = all.AuthoringTemplate
 	o.CreatedAt = all.CreatedAt
 	o.Datasets = all.Datasets
 	o.Description = all.Description
