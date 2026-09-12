@@ -10,8 +10,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsCreatePromptVersionDataAttributes Attributes for creating a new version of an Agent Observability prompt. `template` is required; all other attributes are optional.
+// LLMObsCreatePromptVersionDataAttributes Attributes for creating a new version of an Agent Observability prompt. `template` is required; all other attributes are optional. If `config` is omitted, the latest version's configuration is carried forward. An explicit empty object clears it.
 type LLMObsCreatePromptVersionDataAttributes struct {
+	// Customer-owned configuration delivered with a prompt version. Datadog stores and returns the object without interpolating it, validating provider-specific keys, or applying it to model calls. Do not include secrets.
+	Config map[string]interface{} `json:"config,omitempty"`
 	// Optional description of this version.
 	Description *string `json:"description,omitempty"`
 	// Optional feature-flag environment UUIDs the service attempts to enable and configure to use this version as their default after creation.
@@ -44,6 +46,34 @@ func NewLLMObsCreatePromptVersionDataAttributes(template LLMObsPromptTemplate) *
 func NewLLMObsCreatePromptVersionDataAttributesWithDefaults() *LLMObsCreatePromptVersionDataAttributes {
 	this := LLMObsCreatePromptVersionDataAttributes{}
 	return &this
+}
+
+// GetConfig returns the Config field value if set, zero value otherwise.
+func (o *LLMObsCreatePromptVersionDataAttributes) GetConfig() map[string]interface{} {
+	if o == nil || o.Config == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsCreatePromptVersionDataAttributes) GetConfigOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Config == nil {
+		return nil, false
+	}
+	return &o.Config, true
+}
+
+// HasConfig returns a boolean if a field has been set.
+func (o *LLMObsCreatePromptVersionDataAttributes) HasConfig() bool {
+	return o != nil && o.Config != nil
+}
+
+// SetConfig gets a reference to the given map[string]interface{} and assigns it to the Config field.
+func (o *LLMObsCreatePromptVersionDataAttributes) SetConfig(v map[string]interface{}) {
+	o.Config = v
 }
 
 // GetDescription returns the Description field value if set, zero value otherwise.
@@ -190,6 +220,9 @@ func (o LLMObsCreatePromptVersionDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Config != nil {
+		toSerialize["config"] = o.Config
+	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
@@ -213,6 +246,7 @@ func (o LLMObsCreatePromptVersionDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsCreatePromptVersionDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Config      map[string]interface{}     `json:"config,omitempty"`
 		Description *string                    `json:"description,omitempty"`
 		EnvIds      []string                   `json:"env_ids,omitempty"`
 		Labels      []LLMObsPromptVersionLabel `json:"labels,omitempty"`
@@ -227,10 +261,11 @@ func (o *LLMObsCreatePromptVersionDataAttributes) UnmarshalJSON(bytes []byte) (e
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"description", "env_ids", "labels", "template", "user_version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"config", "description", "env_ids", "labels", "template", "user_version"})
 	} else {
 		return err
 	}
+	o.Config = all.Config
 	o.Description = all.Description
 	o.EnvIds = all.EnvIds
 	o.Labels = all.Labels
