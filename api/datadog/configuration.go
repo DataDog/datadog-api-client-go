@@ -48,6 +48,11 @@ var (
 	// ContextAWSVariables takes AWS credentials as authentication for the request.
 	ContextAWSVariables = contextKey("awsVariables")
 
+	// ContextGCPVariables takes GCP credentials (pre-minted identity tokens) as
+	// authentication for the request. Keys use the provider-specific name
+	// constants, e.g. datadog.GCPIdentityTokenName.
+	ContextGCPVariables = contextKey("gcpVariables")
+
 	// ContextHttpSignatureAuth takes HttpSignatureAuth as authentication for the request.
 	ContextHttpSignatureAuth = contextKey("httpsignature")
 
@@ -1597,6 +1602,16 @@ func NewDefaultContext(ctx context.Context) context.Context {
 		ctx,
 		ContextAWSVariables,
 		awsKeys,
+	)
+
+	gcpKeys := make(map[string]string)
+	if gcpToken, ok := os.LookupEnv(GCPIdentityTokenName); ok {
+		gcpKeys[GCPIdentityTokenName] = gcpToken
+	}
+	ctx = context.WithValue(
+		ctx,
+		ContextGCPVariables,
+		gcpKeys,
 	)
 
 	ctx = context.WithValue(
