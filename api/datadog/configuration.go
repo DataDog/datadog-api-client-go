@@ -48,6 +48,11 @@ var (
 	// ContextAWSVariables takes AWS credentials as authentication for the request.
 	ContextAWSVariables = contextKey("awsVariables")
 
+	// ContextAzureVariables takes Azure credentials (pre-minted access tokens)
+	// as authentication for the request. Keys use the provider-specific name
+	// constants, e.g. datadog.AzureAccessTokenName.
+	ContextAzureVariables = contextKey("azureVariables")
+
 	// ContextHttpSignatureAuth takes HttpSignatureAuth as authentication for the request.
 	ContextHttpSignatureAuth = contextKey("httpsignature")
 
@@ -1597,6 +1602,16 @@ func NewDefaultContext(ctx context.Context) context.Context {
 		ctx,
 		ContextAWSVariables,
 		awsKeys,
+	)
+
+	azureKeys := make(map[string]string)
+	if azureToken, ok := os.LookupEnv(AzureAccessTokenName); ok {
+		azureKeys[AzureAccessTokenName] = azureToken
+	}
+	ctx = context.WithValue(
+		ctx,
+		ContextAzureVariables,
+		azureKeys,
 	)
 
 	ctx = context.WithValue(

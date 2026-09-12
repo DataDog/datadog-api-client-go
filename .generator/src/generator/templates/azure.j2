@@ -1,0 +1,88 @@
+{% include "partial_header.j2" %}
+package {{ common_package_name }}
+
+import (
+	"context"
+	"fmt"
+	"os"
+)
+
+const ProviderAzure = "azure"
+
+// AzureAccessTokenName is the environment variable carrying a pre-minted
+// Azure/Entra ID access token.
+const AzureAccessTokenName = "DD_AZURE_ACCESS_TOKEN"
+
+// AzureTokenSource returns a current Microsoft Entra ID access token.
+type AzureTokenSource func(context.Context) (string, error)
+
+// AzureAuth exchanges a Microsoft Entra ID (Azure) access token for a Datadog
+// delegated token.
+type AzureAuth struct {
+	// AccessToken is an optional pre-minted access token used verbatim as the
+	// exchange proof. When empty, the token is sourced from the
+	// DD_AZURE_ACCESS_TOKEN environment variable (or its context override)
+	// before falling back to TokenSource.
+	AccessToken string
+
+	// TokenSource optionally acquires Azure access tokens when no explicit token
+	// is configured. It owns credential selection, tenant, audience or scope,
+	// and token renewal.
+	TokenSource AzureTokenSource
+}
+
+func (a *AzureAuth) Authenticate(ctx context.Context, config *DelegatedTokenConfig) (*DelegatedTokenCredentials, error) {
+	if config == nil || config.OrgUUID == "" {
+		return nil, fmt.Errorf("missing org UUID in config")
+	}
+
+	accessToken, err := a.GetAccessToken(ctx)
+	if err != nil {
+		return nil, err
+	}
+
+	// Include the organization UUID required by Azure delegated authentication.
+	proof := azureDelegatedProof(accessToken, config.OrgUUID)
+
+	return GetDelegatedToken(ctx, config.OrgUUID, proof)
+}
+
+// azureDelegatedProof appends the org-UUID routing suffix to the access token.
+func azureDelegatedProof(accessToken, orgUUID string) string {
+	return accessToken + ":" + orgUUID
+}
+
+// GetAccessToken resolves the Azure access token serving as the exchange
+// proof: the AccessToken field, then the DD_AZURE_ACCESS_TOKEN environment
+// variable (with its context override), then TokenSource.
+func (a *AzureAuth) GetAccessToken(ctx context.Context) (string, error) {
+	if a.AccessToken != "" {
+		return a.AccessToken, nil
+	}
+	if token := azureTokenFromContextOrEnv(ctx); token != "" {
+		return token, nil
+	}
+	if a.TokenSource == nil {
+		return "", fmt.Errorf("azure access token is not configured: set AzureAuth.AccessToken, %s, or AzureAuth.TokenSource", AzureAccessTokenName)
+	}
+
+	token, err := a.TokenSource(ctx)
+	if err != nil {
+		return "", fmt.Errorf("azure token source: %w", err)
+	}
+	if token == "" {
+		return "", fmt.Errorf("azure token source returned an empty access token")
+	}
+	return token, nil
+}
+
+// azureTokenFromContextOrEnv reads a pre-minted access token from the context
+// override (mirroring ContextAWSVariables), falling back to the environment.
+func azureTokenFromContextOrEnv(ctx context.Context) string {
+	if keys, ok := ctx.Value(ContextAzureVariables).(map[string]string); ok {
+		if token, ok := keys[AzureAccessTokenName]; ok {
+			return token
+		}
+	}
+	return os.Getenv(AzureAccessTokenName)
+}

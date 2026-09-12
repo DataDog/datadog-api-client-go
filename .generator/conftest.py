@@ -71,7 +71,8 @@ JINJA_ENV.globals["given_variables"] = given_variables
 
 GO_EXAMPLE_J2 = JINJA_ENV.get_template("example.j2")
 DATADOG_EXAMPLES_J2 = {
-    "aws.go": JINJA_ENV.get_template("example_aws.j2")
+    "aws.go": JINJA_ENV.get_template("example_aws.j2"),
+    "azure/main.go": JINJA_ENV.get_template("example_azure.j2")
 }
 
 
