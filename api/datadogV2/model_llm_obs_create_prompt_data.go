@@ -12,7 +12,7 @@ import (
 
 // LLMObsCreatePromptData Data object for creating an Agent Observability prompt.
 type LLMObsCreatePromptData struct {
-	// Attributes for creating an Agent Observability prompt and its first version. `prompt_id` and `template` are required; all other attributes are optional.
+	// Attributes for creating an Agent Observability prompt and its first version. `prompt_id` and `template` are required; all other attributes are optional. If `config` is omitted, the first version stores an empty object.
 	Attributes LLMObsCreatePromptDataAttributes `json:"attributes"`
 	// Resource type of an Agent Observability prompt.
 	Type LLMObsPromptType `json:"type"`
