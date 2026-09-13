@@ -12,7 +12,7 @@ import (
 
 // LLMObsPromptVersionData Data object for a specific version of an Agent Observability prompt.
 type LLMObsPromptVersionData struct {
-	// Attributes of a specific version of an Agent Observability prompt.
+	// Attributes of a specific version of an Agent Observability prompt. For a composed version, `authoring_template` contains its pinned include-bearing source; ordinary versions omit that attribute.
 	Attributes LLMObsPromptVersionDataAttributes `json:"attributes"`
 	// Unique identifier of the prompt version.
 	Id string `json:"id"`

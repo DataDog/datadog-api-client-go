@@ -21,7 +21,7 @@ type LLMObsCreatePromptDataAttributes struct {
 	Labels []LLMObsPromptVersionLabel `json:"labels,omitempty"`
 	// Customer-provided identifier for the new prompt.
 	PromptId string `json:"prompt_id"`
-	// A text template or a list of chat messages.
+	// A text template, a list of chat messages, or an authored chat object. Text can include an exact prompt version with `{{>prompt-id version=N}}`. Use an authored chat object when including prompts as chat messages.
 	Template LLMObsPromptTemplate `json:"template"`
 	// Optional title of the prompt.
 	Title *string `json:"title,omitempty"`
