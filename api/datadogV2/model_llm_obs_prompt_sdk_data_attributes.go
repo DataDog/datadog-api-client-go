@@ -5,6 +5,8 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
@@ -12,6 +14,8 @@ import (
 type LLMObsPromptSDKDataAttributes struct {
 	// Chat template for this prompt version, as a list of role and content messages. Omitted for text templates.
 	ChatTemplate []LLMObsPromptChatMessage `json:"chat_template,omitempty"`
+	// Customer-owned configuration delivered with a prompt version. Datadog stores and returns the object without interpolating it, validating provider-specific keys, or applying it to model calls. Do not include secrets.
+	Config map[string]interface{} `json:"config"`
 	// Labels attached to the selected version.
 	// Deprecated
 	Labels []string `json:"labels,omitempty"`
@@ -32,8 +36,9 @@ type LLMObsPromptSDKDataAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsPromptSDKDataAttributes() *LLMObsPromptSDKDataAttributes {
+func NewLLMObsPromptSDKDataAttributes(config map[string]interface{}) *LLMObsPromptSDKDataAttributes {
 	this := LLMObsPromptSDKDataAttributes{}
+	this.Config = config
 	return &this
 }
 
@@ -71,6 +76,29 @@ func (o *LLMObsPromptSDKDataAttributes) HasChatTemplate() bool {
 // SetChatTemplate gets a reference to the given []LLMObsPromptChatMessage and assigns it to the ChatTemplate field.
 func (o *LLMObsPromptSDKDataAttributes) SetChatTemplate(v []LLMObsPromptChatMessage) {
 	o.ChatTemplate = v
+}
+
+// GetConfig returns the Config field value.
+func (o *LLMObsPromptSDKDataAttributes) GetConfig() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value
+// and a boolean to check if the value has been set.
+func (o *LLMObsPromptSDKDataAttributes) GetConfigOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Config, true
+}
+
+// SetConfig sets field value.
+func (o *LLMObsPromptSDKDataAttributes) SetConfig(v map[string]interface{}) {
+	o.Config = v
 }
 
 // GetLabels returns the Labels field value if set, zero value otherwise.
@@ -225,6 +253,7 @@ func (o LLMObsPromptSDKDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.ChatTemplate != nil {
 		toSerialize["chat_template"] = o.ChatTemplate
 	}
+	toSerialize["config"] = o.Config
 	if o.Labels != nil {
 		toSerialize["labels"] = o.Labels
 	}
@@ -251,6 +280,7 @@ func (o LLMObsPromptSDKDataAttributes) MarshalJSON() ([]byte, error) {
 func (o *LLMObsPromptSDKDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		ChatTemplate      []LLMObsPromptChatMessage `json:"chat_template,omitempty"`
+		Config            *map[string]interface{}   `json:"config"`
 		Labels            []string                  `json:"labels,omitempty"`
 		PromptId          *string                   `json:"prompt_id,omitempty"`
 		PromptVersionUuid *string                   `json:"prompt_version_uuid,omitempty"`
@@ -260,13 +290,17 @@ func (o *LLMObsPromptSDKDataAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
+	if all.Config == nil {
+		return fmt.Errorf("required field config missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"chat_template", "labels", "prompt_id", "prompt_version_uuid", "template", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"chat_template", "config", "labels", "prompt_id", "prompt_version_uuid", "template", "version"})
 	} else {
 		return err
 	}
 	o.ChatTemplate = all.ChatTemplate
+	o.Config = *all.Config
 	o.Labels = all.Labels
 	o.PromptId = all.PromptId
 	o.PromptVersionUuid = all.PromptVersionUuid

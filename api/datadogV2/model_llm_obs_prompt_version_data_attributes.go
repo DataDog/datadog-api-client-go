@@ -15,6 +15,8 @@ import (
 type LLMObsPromptVersionDataAttributes struct {
 	// UUID of the user who authored this version.
 	Author *string `json:"author,omitempty"`
+	// Customer-owned configuration delivered with a prompt version. Datadog stores and returns the object without interpolating it, validating provider-specific keys, or applying it to model calls. Do not include secrets.
+	Config map[string]interface{} `json:"config"`
 	// Timestamp stored on this prompt version.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Datasets observed in runs associated with this prompt version.
@@ -53,8 +55,9 @@ type LLMObsPromptVersionDataAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsPromptVersionDataAttributes(promptId string, promptUuid string, template LLMObsPromptTemplate, version int64) *LLMObsPromptVersionDataAttributes {
+func NewLLMObsPromptVersionDataAttributes(config map[string]interface{}, promptId string, promptUuid string, template LLMObsPromptTemplate, version int64) *LLMObsPromptVersionDataAttributes {
 	this := LLMObsPromptVersionDataAttributes{}
+	this.Config = config
 	this.PromptId = promptId
 	this.PromptUuid = promptUuid
 	this.Template = template
@@ -96,6 +99,29 @@ func (o *LLMObsPromptVersionDataAttributes) HasAuthor() bool {
 // SetAuthor gets a reference to the given string and assigns it to the Author field.
 func (o *LLMObsPromptVersionDataAttributes) SetAuthor(v string) {
 	o.Author = &v
+}
+
+// GetConfig returns the Config field value.
+func (o *LLMObsPromptVersionDataAttributes) GetConfig() map[string]interface{} {
+	if o == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Config
+}
+
+// GetConfigOk returns a tuple with the Config field value
+// and a boolean to check if the value has been set.
+func (o *LLMObsPromptVersionDataAttributes) GetConfigOk() (*map[string]interface{}, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.Config, true
+}
+
+// SetConfig sets field value.
+func (o *LLMObsPromptVersionDataAttributes) SetConfig(v map[string]interface{}) {
+	o.Config = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -482,6 +508,7 @@ func (o LLMObsPromptVersionDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Author != nil {
 		toSerialize["author"] = o.Author
 	}
+	toSerialize["config"] = o.Config
 	if o.CreatedAt != nil {
 		if o.CreatedAt.Nanosecond() == 0 {
 			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
@@ -538,24 +565,28 @@ func (o LLMObsPromptVersionDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *LLMObsPromptVersionDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Author           *string               `json:"author,omitempty"`
-		CreatedAt        *time.Time            `json:"created_at,omitempty"`
-		Datasets         []LLMObsPromptDataset `json:"datasets,omitempty"`
-		Description      *string               `json:"description,omitempty"`
-		Labels           []string              `json:"labels,omitempty"`
-		LastSeenAt       *time.Time            `json:"last_seen_at,omitempty"`
-		MlApp            *string               `json:"ml_app,omitempty"`
-		MlApps           []string              `json:"ml_apps,omitempty"`
-		PromptId         *string               `json:"prompt_id"`
-		PromptUuid       *string               `json:"prompt_uuid"`
-		Tags             []string              `json:"tags,omitempty"`
-		Template         *LLMObsPromptTemplate `json:"template"`
-		UserVersion      *string               `json:"user_version,omitempty"`
-		Version          *int64                `json:"version"`
-		VersionCreatedAt *time.Time            `json:"version_created_at,omitempty"`
+		Author           *string                 `json:"author,omitempty"`
+		Config           *map[string]interface{} `json:"config"`
+		CreatedAt        *time.Time              `json:"created_at,omitempty"`
+		Datasets         []LLMObsPromptDataset   `json:"datasets,omitempty"`
+		Description      *string                 `json:"description,omitempty"`
+		Labels           []string                `json:"labels,omitempty"`
+		LastSeenAt       *time.Time              `json:"last_seen_at,omitempty"`
+		MlApp            *string                 `json:"ml_app,omitempty"`
+		MlApps           []string                `json:"ml_apps,omitempty"`
+		PromptId         *string                 `json:"prompt_id"`
+		PromptUuid       *string                 `json:"prompt_uuid"`
+		Tags             []string                `json:"tags,omitempty"`
+		Template         *LLMObsPromptTemplate   `json:"template"`
+		UserVersion      *string                 `json:"user_version,omitempty"`
+		Version          *int64                  `json:"version"`
+		VersionCreatedAt *time.Time              `json:"version_created_at,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Config == nil {
+		return fmt.Errorf("required field config missing")
 	}
 	if all.PromptId == nil {
 		return fmt.Errorf("required field prompt_id missing")
@@ -571,11 +602,12 @@ func (o *LLMObsPromptVersionDataAttributes) UnmarshalJSON(bytes []byte) (err err
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"author", "created_at", "datasets", "description", "labels", "last_seen_at", "ml_app", "ml_apps", "prompt_id", "prompt_uuid", "tags", "template", "user_version", "version", "version_created_at"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"author", "config", "created_at", "datasets", "description", "labels", "last_seen_at", "ml_app", "ml_apps", "prompt_id", "prompt_uuid", "tags", "template", "user_version", "version", "version_created_at"})
 	} else {
 		return err
 	}
 	o.Author = all.Author
+	o.Config = *all.Config
 	o.CreatedAt = all.CreatedAt
 	o.Datasets = all.Datasets
 	o.Description = all.Description

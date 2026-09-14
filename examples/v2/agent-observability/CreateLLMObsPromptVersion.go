@@ -16,6 +16,11 @@ func main() {
 	body := datadogV2.LLMObsCreatePromptVersionRequest{
 		Data: datadogV2.LLMObsCreatePromptVersionData{
 			Attributes: datadogV2.LLMObsCreatePromptVersionDataAttributes{
+				Config: map[string]interface{}{
+					"model":           "provider-model",
+					"response_format": "{'type': 'json_object'}",
+					"temperature":     0.2,
+				},
 				EnvIds: []string{},
 				Labels: []datadogV2.LLMObsPromptVersionLabel{
 					datadogV2.LLMOBSPROMPTVERSIONLABEL_PRODUCTION,

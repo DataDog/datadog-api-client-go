@@ -10,10 +10,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// LLMObsPromptData Data object for an Agent Observability prompt.
-type LLMObsPromptData struct {
-	// Attributes of an Agent Observability prompt registry entry. Prompt list and metadata-update responses omit complete template and configuration data.
-	Attributes LLMObsPromptDataAttributes `json:"attributes"`
+// LLMObsCreatePromptResponseData Data object returned after creating an Agent Observability prompt.
+type LLMObsCreatePromptResponseData struct {
+	// Attributes returned after creating an Agent Observability prompt and its first version.
+	Attributes LLMObsCreatePromptResponseDataAttributes `json:"attributes"`
 	// Unique identifier of the prompt.
 	Id string `json:"id"`
 	// Resource type of an Agent Observability prompt.
@@ -23,30 +23,30 @@ type LLMObsPromptData struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewLLMObsPromptData instantiates a new LLMObsPromptData object.
+// NewLLMObsCreatePromptResponseData instantiates a new LLMObsCreatePromptResponseData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewLLMObsPromptData(attributes LLMObsPromptDataAttributes, id string, typeVar LLMObsPromptType) *LLMObsPromptData {
-	this := LLMObsPromptData{}
+func NewLLMObsCreatePromptResponseData(attributes LLMObsCreatePromptResponseDataAttributes, id string, typeVar LLMObsPromptType) *LLMObsCreatePromptResponseData {
+	this := LLMObsCreatePromptResponseData{}
 	this.Attributes = attributes
 	this.Id = id
 	this.Type = typeVar
 	return &this
 }
 
-// NewLLMObsPromptDataWithDefaults instantiates a new LLMObsPromptData object.
+// NewLLMObsCreatePromptResponseDataWithDefaults instantiates a new LLMObsCreatePromptResponseData object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewLLMObsPromptDataWithDefaults() *LLMObsPromptData {
-	this := LLMObsPromptData{}
+func NewLLMObsCreatePromptResponseDataWithDefaults() *LLMObsCreatePromptResponseData {
+	this := LLMObsCreatePromptResponseData{}
 	return &this
 }
 
 // GetAttributes returns the Attributes field value.
-func (o *LLMObsPromptData) GetAttributes() LLMObsPromptDataAttributes {
+func (o *LLMObsCreatePromptResponseData) GetAttributes() LLMObsCreatePromptResponseDataAttributes {
 	if o == nil {
-		var ret LLMObsPromptDataAttributes
+		var ret LLMObsCreatePromptResponseDataAttributes
 		return ret
 	}
 	return o.Attributes
@@ -54,7 +54,7 @@ func (o *LLMObsPromptData) GetAttributes() LLMObsPromptDataAttributes {
 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptData) GetAttributesOk() (*LLMObsPromptDataAttributes, bool) {
+func (o *LLMObsCreatePromptResponseData) GetAttributesOk() (*LLMObsCreatePromptResponseDataAttributes, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,12 +62,12 @@ func (o *LLMObsPromptData) GetAttributesOk() (*LLMObsPromptDataAttributes, bool)
 }
 
 // SetAttributes sets field value.
-func (o *LLMObsPromptData) SetAttributes(v LLMObsPromptDataAttributes) {
+func (o *LLMObsCreatePromptResponseData) SetAttributes(v LLMObsCreatePromptResponseDataAttributes) {
 	o.Attributes = v
 }
 
 // GetId returns the Id field value.
-func (o *LLMObsPromptData) GetId() string {
+func (o *LLMObsCreatePromptResponseData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -77,7 +77,7 @@ func (o *LLMObsPromptData) GetId() string {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptData) GetIdOk() (*string, bool) {
+func (o *LLMObsCreatePromptResponseData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -85,12 +85,12 @@ func (o *LLMObsPromptData) GetIdOk() (*string, bool) {
 }
 
 // SetId sets field value.
-func (o *LLMObsPromptData) SetId(v string) {
+func (o *LLMObsCreatePromptResponseData) SetId(v string) {
 	o.Id = v
 }
 
 // GetType returns the Type field value.
-func (o *LLMObsPromptData) GetType() LLMObsPromptType {
+func (o *LLMObsCreatePromptResponseData) GetType() LLMObsPromptType {
 	if o == nil {
 		var ret LLMObsPromptType
 		return ret
@@ -100,7 +100,7 @@ func (o *LLMObsPromptData) GetType() LLMObsPromptType {
 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
-func (o *LLMObsPromptData) GetTypeOk() (*LLMObsPromptType, bool) {
+func (o *LLMObsCreatePromptResponseData) GetTypeOk() (*LLMObsPromptType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -108,12 +108,12 @@ func (o *LLMObsPromptData) GetTypeOk() (*LLMObsPromptType, bool) {
 }
 
 // SetType sets field value.
-func (o *LLMObsPromptData) SetType(v LLMObsPromptType) {
+func (o *LLMObsCreatePromptResponseData) SetType(v LLMObsPromptType) {
 	o.Type = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o LLMObsPromptData) MarshalJSON() ([]byte, error) {
+func (o LLMObsCreatePromptResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -129,11 +129,11 @@ func (o LLMObsPromptData) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *LLMObsPromptData) UnmarshalJSON(bytes []byte) (err error) {
+func (o *LLMObsCreatePromptResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Attributes *LLMObsPromptDataAttributes `json:"attributes"`
-		Id         *string                     `json:"id"`
-		Type       *LLMObsPromptType           `json:"type"`
+		Attributes *LLMObsCreatePromptResponseDataAttributes `json:"attributes"`
+		Id         *string                                   `json:"id"`
+		Type       *LLMObsPromptType                         `json:"type"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
