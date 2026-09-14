@@ -10,6 +10,8 @@ import (
 
 // SecurityMonitoringStandardRuleResponse Rule.
 type SecurityMonitoringStandardRuleResponse struct {
+	// Whether the rule blocks requests.
+	Blocking *bool `json:"blocking,omitempty"`
 	// Calculated fields. Only allowed for scheduled rules - in other words, when schedulingOptions is also defined.
 	CalculatedFields []CalculatedField `json:"calculatedFields,omitempty"`
 	// Cases for generating signals.
@@ -20,12 +22,18 @@ type SecurityMonitoringStandardRuleResponse struct {
 	CreatedAt *int64 `json:"createdAt,omitempty"`
 	// User ID of the user who created the rule.
 	CreationAuthorId *int64 `json:"creationAuthorId,omitempty"`
+	// A user.
+	Creator *SecurityMonitoringUser `json:"creator,omitempty"`
 	// Custom/Overridden message for generated signals (used in case of Default rule update).
 	CustomMessage *string `json:"customMessage,omitempty"`
 	// Custom/Overridden name of the rule (used in case of Default rule update).
 	CustomName *string `json:"customName,omitempty"`
+	// Source of events, either logs, audit trail, security signals, or Datadog events. `app_sec_spans` is deprecated in favor of `spans`.
+	DataSource *SecurityMonitoringStandardDataSource `json:"dataSource,omitempty"`
 	// Default Tags for default rules (included in tags)
 	DefaultTags []string `json:"defaultTags,omitempty"`
+	// Dependencies used by the rule.
+	Dependencies []string `json:"dependencies,omitempty"`
 	// When the rule will be deprecated, timestamp in milliseconds.
 	DeprecationDate *int64 `json:"deprecationDate,omitempty"`
 	// Additional queries to filter matched events before they are processed. This field is deprecated for log detection, signal correlation, and workload security rules.
@@ -36,14 +44,22 @@ type SecurityMonitoringStandardRuleResponse struct {
 	HasExtendedTitle *bool `json:"hasExtendedTitle,omitempty"`
 	// The ID of the rule.
 	Id *string `json:"id,omitempty"`
+	// Whether the rule is in beta.
+	IsBeta *bool `json:"isBeta,omitempty"`
 	// Whether the rule is included by default.
 	IsDefault *bool `json:"isDefault,omitempty"`
 	// Whether the rule has been deleted.
 	IsDeleted *bool `json:"isDeleted,omitempty"`
+	// Whether the rule is deprecated.
+	IsDeprecated *bool `json:"isDeprecated,omitempty"`
 	// Whether the rule is enabled.
 	IsEnabled *bool `json:"isEnabled,omitempty"`
+	// Whether the rule is provided by a partner.
+	IsPartner *bool `json:"isPartner,omitempty"`
 	// Message for generated signals.
 	Message *string `json:"message,omitempty"`
+	// Additional metadata about the rule.
+	Metadata map[string]interface{} `json:"metadata,omitempty"`
 	// The name of the rule.
 	Name *string `json:"name,omitempty"`
 	// Options.
@@ -64,6 +80,8 @@ type SecurityMonitoringStandardRuleResponse struct {
 	UpdateAuthorId *int64 `json:"updateAuthorId,omitempty"`
 	// The date the rule was last updated, in milliseconds.
 	UpdatedAt *int64 `json:"updatedAt,omitempty"`
+	// A user.
+	Updater *SecurityMonitoringUser `json:"updater,omitempty"`
 	// The version of the rule.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -77,6 +95,8 @@ type SecurityMonitoringStandardRuleResponse struct {
 // will change when the set of required properties is changed.
 func NewSecurityMonitoringStandardRuleResponse() *SecurityMonitoringStandardRuleResponse {
 	this := SecurityMonitoringStandardRuleResponse{}
+	var dataSource SecurityMonitoringStandardDataSource = SECURITYMONITORINGSTANDARDDATASOURCE_LOGS
+	this.DataSource = &dataSource
 	return &this
 }
 
@@ -85,7 +105,37 @@ func NewSecurityMonitoringStandardRuleResponse() *SecurityMonitoringStandardRule
 // but it doesn't guarantee that properties required by API are set.
 func NewSecurityMonitoringStandardRuleResponseWithDefaults() *SecurityMonitoringStandardRuleResponse {
 	this := SecurityMonitoringStandardRuleResponse{}
+	var dataSource SecurityMonitoringStandardDataSource = SECURITYMONITORINGSTANDARDDATASOURCE_LOGS
+	this.DataSource = &dataSource
 	return &this
+}
+
+// GetBlocking returns the Blocking field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleResponse) GetBlocking() bool {
+	if o == nil || o.Blocking == nil {
+		var ret bool
+		return ret
+	}
+	return *o.Blocking
+}
+
+// GetBlockingOk returns a tuple with the Blocking field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleResponse) GetBlockingOk() (*bool, bool) {
+	if o == nil || o.Blocking == nil {
+		return nil, false
+	}
+	return o.Blocking, true
+}
+
+// HasBlocking returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleResponse) HasBlocking() bool {
+	return o != nil && o.Blocking != nil
+}
+
+// SetBlocking gets a reference to the given bool and assigns it to the Blocking field.
+func (o *SecurityMonitoringStandardRuleResponse) SetBlocking(v bool) {
+	o.Blocking = &v
 }
 
 // GetCalculatedFields returns the CalculatedFields field value if set, zero value otherwise.
@@ -228,6 +278,34 @@ func (o *SecurityMonitoringStandardRuleResponse) SetCreationAuthorId(v int64) {
 	o.CreationAuthorId = &v
 }
 
+// GetCreator returns the Creator field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleResponse) GetCreator() SecurityMonitoringUser {
+	if o == nil || o.Creator == nil {
+		var ret SecurityMonitoringUser
+		return ret
+	}
+	return *o.Creator
+}
+
+// GetCreatorOk returns a tuple with the Creator field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleResponse) GetCreatorOk() (*SecurityMonitoringUser, bool) {
+	if o == nil || o.Creator == nil {
+		return nil, false
+	}
+	return o.Creator, true
+}
+
+// HasCreator returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleResponse) HasCreator() bool {
+	return o != nil && o.Creator != nil
+}
+
+// SetCreator gets a reference to the given SecurityMonitoringUser and assigns it to the Creator field.
+func (o *SecurityMonitoringStandardRuleResponse) SetCreator(v SecurityMonitoringUser) {
+	o.Creator = &v
+}
+
 // GetCustomMessage returns the CustomMessage field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleResponse) GetCustomMessage() string {
 	if o == nil || o.CustomMessage == nil {
@@ -284,6 +362,34 @@ func (o *SecurityMonitoringStandardRuleResponse) SetCustomName(v string) {
 	o.CustomName = &v
 }
 
+// GetDataSource returns the DataSource field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleResponse) GetDataSource() SecurityMonitoringStandardDataSource {
+	if o == nil || o.DataSource == nil {
+		var ret SecurityMonitoringStandardDataSource
+		return ret
+	}
+	return *o.DataSource
+}
+
+// GetDataSourceOk returns a tuple with the DataSource field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleResponse) GetDataSourceOk() (*SecurityMonitoringStandardDataSource, bool) {
+	if o == nil || o.DataSource == nil {
+		return nil, false
+	}
+	return o.DataSource, true
+}
+
+// HasDataSource returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleResponse) HasDataSource() bool {
+	return o != nil && o.DataSource != nil
+}
+
+// SetDataSource gets a reference to the given SecurityMonitoringStandardDataSource and assigns it to the DataSource field.
+func (o *SecurityMonitoringStandardRuleResponse) SetDataSource(v SecurityMonitoringStandardDataSource) {
+	o.DataSource = &v
+}
+
 // GetDefaultTags returns the DefaultTags field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleResponse) GetDefaultTags() []string {
 	if o == nil || o.DefaultTags == nil {
@@ -310,6 +416,34 @@ func (o *SecurityMonitoringStandardRuleResponse) HasDefaultTags() bool {
 // SetDefaultTags gets a reference to the given []string and assigns it to the DefaultTags field.
 func (o *SecurityMonitoringStandardRuleResponse) SetDefaultTags(v []string) {
 	o.DefaultTags = v
+}
+
+// GetDependencies returns the Dependencies field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleResponse) GetDependencies() []string {
+	if o == nil || o.Dependencies == nil {
+		var ret []string
+		return ret
+	}
+	return o.Dependencies
+}
+
+// GetDependenciesOk returns a tuple with the Dependencies field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleResponse) GetDependenciesOk() (*[]string, bool) {
+	if o == nil || o.Dependencies == nil {
+		return nil, false
+	}
+	return &o.Dependencies, true
+}
+
+// HasDependencies returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleResponse) HasDependencies() bool {
+	return o != nil && o.Dependencies != nil
+}
+
+// SetDependencies gets a reference to the given []string and assigns it to the Dependencies field.
+func (o *SecurityMonitoringStandardRuleResponse) SetDependencies(v []string) {
+	o.Dependencies = v
 }
 
 // GetDeprecationDate returns the DeprecationDate field value if set, zero value otherwise.
@@ -452,6 +586,34 @@ func (o *SecurityMonitoringStandardRuleResponse) SetId(v string) {
 	o.Id = &v
 }
 
+// GetIsBeta returns the IsBeta field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleResponse) GetIsBeta() bool {
+	if o == nil || o.IsBeta == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsBeta
+}
+
+// GetIsBetaOk returns a tuple with the IsBeta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleResponse) GetIsBetaOk() (*bool, bool) {
+	if o == nil || o.IsBeta == nil {
+		return nil, false
+	}
+	return o.IsBeta, true
+}
+
+// HasIsBeta returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleResponse) HasIsBeta() bool {
+	return o != nil && o.IsBeta != nil
+}
+
+// SetIsBeta gets a reference to the given bool and assigns it to the IsBeta field.
+func (o *SecurityMonitoringStandardRuleResponse) SetIsBeta(v bool) {
+	o.IsBeta = &v
+}
+
 // GetIsDefault returns the IsDefault field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleResponse) GetIsDefault() bool {
 	if o == nil || o.IsDefault == nil {
@@ -508,6 +670,34 @@ func (o *SecurityMonitoringStandardRuleResponse) SetIsDeleted(v bool) {
 	o.IsDeleted = &v
 }
 
+// GetIsDeprecated returns the IsDeprecated field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleResponse) GetIsDeprecated() bool {
+	if o == nil || o.IsDeprecated == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsDeprecated
+}
+
+// GetIsDeprecatedOk returns a tuple with the IsDeprecated field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleResponse) GetIsDeprecatedOk() (*bool, bool) {
+	if o == nil || o.IsDeprecated == nil {
+		return nil, false
+	}
+	return o.IsDeprecated, true
+}
+
+// HasIsDeprecated returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleResponse) HasIsDeprecated() bool {
+	return o != nil && o.IsDeprecated != nil
+}
+
+// SetIsDeprecated gets a reference to the given bool and assigns it to the IsDeprecated field.
+func (o *SecurityMonitoringStandardRuleResponse) SetIsDeprecated(v bool) {
+	o.IsDeprecated = &v
+}
+
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleResponse) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -536,6 +726,34 @@ func (o *SecurityMonitoringStandardRuleResponse) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
+// GetIsPartner returns the IsPartner field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleResponse) GetIsPartner() bool {
+	if o == nil || o.IsPartner == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsPartner
+}
+
+// GetIsPartnerOk returns a tuple with the IsPartner field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleResponse) GetIsPartnerOk() (*bool, bool) {
+	if o == nil || o.IsPartner == nil {
+		return nil, false
+	}
+	return o.IsPartner, true
+}
+
+// HasIsPartner returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleResponse) HasIsPartner() bool {
+	return o != nil && o.IsPartner != nil
+}
+
+// SetIsPartner gets a reference to the given bool and assigns it to the IsPartner field.
+func (o *SecurityMonitoringStandardRuleResponse) SetIsPartner(v bool) {
+	o.IsPartner = &v
+}
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleResponse) GetMessage() string {
 	if o == nil || o.Message == nil {
@@ -562,6 +780,34 @@ func (o *SecurityMonitoringStandardRuleResponse) HasMessage() bool {
 // SetMessage gets a reference to the given string and assigns it to the Message field.
 func (o *SecurityMonitoringStandardRuleResponse) SetMessage(v string) {
 	o.Message = &v
+}
+
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleResponse) GetMetadata() map[string]interface{} {
+	if o == nil || o.Metadata == nil {
+		var ret map[string]interface{}
+		return ret
+	}
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleResponse) GetMetadataOk() (*map[string]interface{}, bool) {
+	if o == nil || o.Metadata == nil {
+		return nil, false
+	}
+	return &o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleResponse) HasMetadata() bool {
+	return o != nil && o.Metadata != nil
+}
+
+// SetMetadata gets a reference to the given map[string]interface{} and assigns it to the Metadata field.
+func (o *SecurityMonitoringStandardRuleResponse) SetMetadata(v map[string]interface{}) {
+	o.Metadata = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -855,6 +1101,34 @@ func (o *SecurityMonitoringStandardRuleResponse) SetUpdatedAt(v int64) {
 	o.UpdatedAt = &v
 }
 
+// GetUpdater returns the Updater field value if set, zero value otherwise.
+func (o *SecurityMonitoringStandardRuleResponse) GetUpdater() SecurityMonitoringUser {
+	if o == nil || o.Updater == nil {
+		var ret SecurityMonitoringUser
+		return ret
+	}
+	return *o.Updater
+}
+
+// GetUpdaterOk returns a tuple with the Updater field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringStandardRuleResponse) GetUpdaterOk() (*SecurityMonitoringUser, bool) {
+	if o == nil || o.Updater == nil {
+		return nil, false
+	}
+	return o.Updater, true
+}
+
+// HasUpdater returns a boolean if a field has been set.
+func (o *SecurityMonitoringStandardRuleResponse) HasUpdater() bool {
+	return o != nil && o.Updater != nil
+}
+
+// SetUpdater gets a reference to the given SecurityMonitoringUser and assigns it to the Updater field.
+func (o *SecurityMonitoringStandardRuleResponse) SetUpdater(v SecurityMonitoringUser) {
+	o.Updater = &v
+}
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *SecurityMonitoringStandardRuleResponse) GetVersion() int64 {
 	if o == nil || o.Version == nil {
@@ -889,6 +1163,9 @@ func (o SecurityMonitoringStandardRuleResponse) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
+	if o.Blocking != nil {
+		toSerialize["blocking"] = o.Blocking
+	}
 	if o.CalculatedFields != nil {
 		toSerialize["calculatedFields"] = o.CalculatedFields
 	}
@@ -904,14 +1181,23 @@ func (o SecurityMonitoringStandardRuleResponse) MarshalJSON() ([]byte, error) {
 	if o.CreationAuthorId != nil {
 		toSerialize["creationAuthorId"] = o.CreationAuthorId
 	}
+	if o.Creator != nil {
+		toSerialize["creator"] = o.Creator
+	}
 	if o.CustomMessage != nil {
 		toSerialize["customMessage"] = o.CustomMessage
 	}
 	if o.CustomName != nil {
 		toSerialize["customName"] = o.CustomName
 	}
+	if o.DataSource != nil {
+		toSerialize["dataSource"] = o.DataSource
+	}
 	if o.DefaultTags != nil {
 		toSerialize["defaultTags"] = o.DefaultTags
+	}
+	if o.Dependencies != nil {
+		toSerialize["dependencies"] = o.Dependencies
 	}
 	if o.DeprecationDate != nil {
 		toSerialize["deprecationDate"] = o.DeprecationDate
@@ -928,17 +1214,29 @@ func (o SecurityMonitoringStandardRuleResponse) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
+	if o.IsBeta != nil {
+		toSerialize["isBeta"] = o.IsBeta
+	}
 	if o.IsDefault != nil {
 		toSerialize["isDefault"] = o.IsDefault
 	}
 	if o.IsDeleted != nil {
 		toSerialize["isDeleted"] = o.IsDeleted
 	}
+	if o.IsDeprecated != nil {
+		toSerialize["isDeprecated"] = o.IsDeprecated
+	}
 	if o.IsEnabled != nil {
 		toSerialize["isEnabled"] = o.IsEnabled
 	}
+	if o.IsPartner != nil {
+		toSerialize["isPartner"] = o.IsPartner
+	}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
+	}
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
@@ -970,6 +1268,9 @@ func (o SecurityMonitoringStandardRuleResponse) MarshalJSON() ([]byte, error) {
 	if o.UpdatedAt != nil {
 		toSerialize["updatedAt"] = o.UpdatedAt
 	}
+	if o.Updater != nil {
+		toSerialize["updater"] = o.Updater
+	}
 	if o.Version != nil {
 		toSerialize["version"] = o.Version
 	}
@@ -983,23 +1284,31 @@ func (o SecurityMonitoringStandardRuleResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
+		Blocking                *bool                                          `json:"blocking,omitempty"`
 		CalculatedFields        []CalculatedField                              `json:"calculatedFields,omitempty"`
 		Cases                   []SecurityMonitoringRuleCase                   `json:"cases,omitempty"`
 		ComplianceSignalOptions *CloudConfigurationRuleComplianceSignalOptions `json:"complianceSignalOptions,omitempty"`
 		CreatedAt               *int64                                         `json:"createdAt,omitempty"`
 		CreationAuthorId        *int64                                         `json:"creationAuthorId,omitempty"`
+		Creator                 *SecurityMonitoringUser                        `json:"creator,omitempty"`
 		CustomMessage           *string                                        `json:"customMessage,omitempty"`
 		CustomName              *string                                        `json:"customName,omitempty"`
+		DataSource              *SecurityMonitoringStandardDataSource          `json:"dataSource,omitempty"`
 		DefaultTags             []string                                       `json:"defaultTags,omitempty"`
+		Dependencies            []string                                       `json:"dependencies,omitempty"`
 		DeprecationDate         *int64                                         `json:"deprecationDate,omitempty"`
 		Filters                 []SecurityMonitoringFilter                     `json:"filters,omitempty"`
 		GroupSignalsBy          []string                                       `json:"groupSignalsBy,omitempty"`
 		HasExtendedTitle        *bool                                          `json:"hasExtendedTitle,omitempty"`
 		Id                      *string                                        `json:"id,omitempty"`
+		IsBeta                  *bool                                          `json:"isBeta,omitempty"`
 		IsDefault               *bool                                          `json:"isDefault,omitempty"`
 		IsDeleted               *bool                                          `json:"isDeleted,omitempty"`
+		IsDeprecated            *bool                                          `json:"isDeprecated,omitempty"`
 		IsEnabled               *bool                                          `json:"isEnabled,omitempty"`
+		IsPartner               *bool                                          `json:"isPartner,omitempty"`
 		Message                 *string                                        `json:"message,omitempty"`
+		Metadata                map[string]interface{}                         `json:"metadata,omitempty"`
 		Name                    *string                                        `json:"name,omitempty"`
 		Options                 *SecurityMonitoringRuleOptions                 `json:"options,omitempty"`
 		Queries                 []SecurityMonitoringStandardRuleQuery          `json:"queries,omitempty"`
@@ -1010,6 +1319,7 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 		Type                    *SecurityMonitoringRuleTypeRead                `json:"type,omitempty"`
 		UpdateAuthorId          *int64                                         `json:"updateAuthorId,omitempty"`
 		UpdatedAt               *int64                                         `json:"updatedAt,omitempty"`
+		Updater                 *SecurityMonitoringUser                        `json:"updater,omitempty"`
 		Version                 *int64                                         `json:"version,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
@@ -1017,12 +1327,13 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"calculatedFields", "cases", "complianceSignalOptions", "createdAt", "creationAuthorId", "customMessage", "customName", "defaultTags", "deprecationDate", "filters", "groupSignalsBy", "hasExtendedTitle", "id", "isDefault", "isDeleted", "isEnabled", "message", "name", "options", "queries", "referenceTables", "schedulingOptions", "tags", "thirdPartyCases", "type", "updateAuthorId", "updatedAt", "version"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"blocking", "calculatedFields", "cases", "complianceSignalOptions", "createdAt", "creationAuthorId", "creator", "customMessage", "customName", "dataSource", "defaultTags", "dependencies", "deprecationDate", "filters", "groupSignalsBy", "hasExtendedTitle", "id", "isBeta", "isDefault", "isDeleted", "isDeprecated", "isEnabled", "isPartner", "message", "metadata", "name", "options", "queries", "referenceTables", "schedulingOptions", "tags", "thirdPartyCases", "type", "updateAuthorId", "updatedAt", "updater", "version"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
+	o.Blocking = all.Blocking
 	o.CalculatedFields = all.CalculatedFields
 	o.Cases = all.Cases
 	if all.ComplianceSignalOptions != nil && all.ComplianceSignalOptions.UnparsedObject != nil && o.UnparsedObject == nil {
@@ -1031,18 +1342,32 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 	o.ComplianceSignalOptions = all.ComplianceSignalOptions
 	o.CreatedAt = all.CreatedAt
 	o.CreationAuthorId = all.CreationAuthorId
+	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Creator = all.Creator
 	o.CustomMessage = all.CustomMessage
 	o.CustomName = all.CustomName
+	if all.DataSource != nil && !all.DataSource.IsValid() {
+		hasInvalidField = true
+	} else {
+		o.DataSource = all.DataSource
+	}
 	o.DefaultTags = all.DefaultTags
+	o.Dependencies = all.Dependencies
 	o.DeprecationDate = all.DeprecationDate
 	o.Filters = all.Filters
 	o.GroupSignalsBy = all.GroupSignalsBy
 	o.HasExtendedTitle = all.HasExtendedTitle
 	o.Id = all.Id
+	o.IsBeta = all.IsBeta
 	o.IsDefault = all.IsDefault
 	o.IsDeleted = all.IsDeleted
+	o.IsDeprecated = all.IsDeprecated
 	o.IsEnabled = all.IsEnabled
+	o.IsPartner = all.IsPartner
 	o.Message = all.Message
+	o.Metadata = all.Metadata
 	o.Name = all.Name
 	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
@@ -1060,6 +1385,10 @@ func (o *SecurityMonitoringStandardRuleResponse) UnmarshalJSON(bytes []byte) (er
 	}
 	o.UpdateAuthorId = all.UpdateAuthorId
 	o.UpdatedAt = all.UpdatedAt
+	if all.Updater != nil && all.Updater.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Updater = all.Updater
 	o.Version = all.Version
 
 	if len(additionalProperties) > 0 {
