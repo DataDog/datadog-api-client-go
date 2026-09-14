@@ -19,8 +19,9 @@ func main() {
 			Query: datadog.PtrString("@test.status:pass AND -@language:python"),
 			To:    datadog.PtrString("now"),
 		},
-		Page: &datadogV2.CIAppQueryPageOptions{
-			Limit: datadog.PtrInt32(2),
+		Page: &datadogV2.CIAppTestQueryPageOptions{
+			Limit: &datadogV2.CIAppTestQueryPageLimit{
+				Int32: datadog.PtrInt32(2)},
 		},
 		Sort: datadogV2.CIAPPSORT_TIMESTAMP_ASCENDING.Ptr(),
 	}

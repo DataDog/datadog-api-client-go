@@ -425,7 +425,7 @@ func (a *CIVisibilityTestsApi) SearchCIAppTestEvents(ctx _context.Context, o ...
 // SearchCIAppTestEventsWithPagination provides a paginated version of SearchCIAppTestEvents returning a channel with all items.
 func (a *CIVisibilityTestsApi) SearchCIAppTestEventsWithPagination(ctx _context.Context, o ...SearchCIAppTestEventsOptionalParameters) (<-chan datadog.PaginationResult[CIAppTestEvent], func()) {
 	ctx, cancel := _context.WithCancel(ctx)
-	pageSize_ := int32(10)
+	pageSize_ := CIAppTestQueryPageLimit(10)
 	if len(o) == 0 {
 		o = append(o, SearchCIAppTestEventsOptionalParameters{})
 	}
@@ -433,7 +433,7 @@ func (a *CIVisibilityTestsApi) SearchCIAppTestEventsWithPagination(ctx _context.
 		o[0].Body = NewCIAppTestEventsRequest()
 	}
 	if o[0].Body.Page == nil {
-		o[0].Body.Page = NewCIAppQueryPageOptions()
+		o[0].Body.Page = NewCIAppTestQueryPageOptions()
 	}
 	if o[0].Body.Page.Limit != nil {
 		pageSize_ = *o[0].Body.Page.Limit

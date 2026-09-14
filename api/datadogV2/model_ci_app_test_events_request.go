@@ -15,8 +15,8 @@ type CIAppTestEventsRequest struct {
 	// Global query options that are used during the query.
 	// Only supply timezone or time offset, not both. Otherwise, the query fails.
 	Options *CIAppQueryOptions `json:"options,omitempty"`
-	// Paging attributes for listing events.
-	Page *CIAppQueryPageOptions `json:"page,omitempty"`
+	// Paging attributes for listing test events.
+	Page *CIAppTestQueryPageOptions `json:"page,omitempty"`
 	// Sort parameters when querying events.
 	Sort *CIAppSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -98,9 +98,9 @@ func (o *CIAppTestEventsRequest) SetOptions(v CIAppQueryOptions) {
 }
 
 // GetPage returns the Page field value if set, zero value otherwise.
-func (o *CIAppTestEventsRequest) GetPage() CIAppQueryPageOptions {
+func (o *CIAppTestEventsRequest) GetPage() CIAppTestQueryPageOptions {
 	if o == nil || o.Page == nil {
-		var ret CIAppQueryPageOptions
+		var ret CIAppTestQueryPageOptions
 		return ret
 	}
 	return *o.Page
@@ -108,7 +108,7 @@ func (o *CIAppTestEventsRequest) GetPage() CIAppQueryPageOptions {
 
 // GetPageOk returns a tuple with the Page field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *CIAppTestEventsRequest) GetPageOk() (*CIAppQueryPageOptions, bool) {
+func (o *CIAppTestEventsRequest) GetPageOk() (*CIAppTestQueryPageOptions, bool) {
 	if o == nil || o.Page == nil {
 		return nil, false
 	}
@@ -120,8 +120,8 @@ func (o *CIAppTestEventsRequest) HasPage() bool {
 	return o != nil && o.Page != nil
 }
 
-// SetPage gets a reference to the given CIAppQueryPageOptions and assigns it to the Page field.
-func (o *CIAppTestEventsRequest) SetPage(v CIAppQueryPageOptions) {
+// SetPage gets a reference to the given CIAppTestQueryPageOptions and assigns it to the Page field.
+func (o *CIAppTestEventsRequest) SetPage(v CIAppTestQueryPageOptions) {
 	o.Page = &v
 }
 
@@ -181,10 +181,10 @@ func (o CIAppTestEventsRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CIAppTestEventsRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Filter  *CIAppTestsQueryFilter `json:"filter,omitempty"`
-		Options *CIAppQueryOptions     `json:"options,omitempty"`
-		Page    *CIAppQueryPageOptions `json:"page,omitempty"`
-		Sort    *CIAppSort             `json:"sort,omitempty"`
+		Filter  *CIAppTestsQueryFilter     `json:"filter,omitempty"`
+		Options *CIAppQueryOptions         `json:"options,omitempty"`
+		Page    *CIAppTestQueryPageOptions `json:"page,omitempty"`
+		Sort    *CIAppSort                 `json:"sort,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

@@ -22,8 +22,9 @@ func main() {
 		Options: &datadogV2.CIAppQueryOptions{
 			Timezone: datadog.PtrString("GMT"),
 		},
-		Page: &datadogV2.CIAppQueryPageOptions{
-			Limit: datadog.PtrInt32(25),
+		Page: &datadogV2.CIAppTestQueryPageOptions{
+			Limit: &datadogV2.CIAppTestQueryPageLimit{
+				Int32: datadog.PtrInt32(25)},
 		},
 		Sort: datadogV2.CIAPPSORT_TIMESTAMP_ASCENDING.Ptr(),
 	}
