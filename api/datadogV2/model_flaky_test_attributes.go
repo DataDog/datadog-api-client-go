@@ -15,6 +15,8 @@ type FlakyTestAttributes struct {
 	// When the workflow is triggered the test is automatically retried by the tracer a certain number of configurable times. When all retries pass, the test is automatically marked as fixed in Flaky Test Management.
 	// Test runs are tagged with @test.test_management.attempt_to_fix_passed and @test.test_management.is_attempt_to_fix when the attempt to fix workflow is triggered.
 	AttemptToFixId *string `json:"attempt_to_fix_id,omitempty"`
+	// Whether every non-skipped run of the test failed over the last 7 days.
+	BrokenTest *bool `json:"broken_test,omitempty"`
 	// The name of the test's code owners as inferred from the repository configuration.
 	Codeowners []string `json:"codeowners,omitempty"`
 	// List of environments where this test has been flaky.
@@ -112,6 +114,34 @@ func (o *FlakyTestAttributes) HasAttemptToFixId() bool {
 // SetAttemptToFixId gets a reference to the given string and assigns it to the AttemptToFixId field.
 func (o *FlakyTestAttributes) SetAttemptToFixId(v string) {
 	o.AttemptToFixId = &v
+}
+
+// GetBrokenTest returns the BrokenTest field value if set, zero value otherwise.
+func (o *FlakyTestAttributes) GetBrokenTest() bool {
+	if o == nil || o.BrokenTest == nil {
+		var ret bool
+		return ret
+	}
+	return *o.BrokenTest
+}
+
+// GetBrokenTestOk returns a tuple with the BrokenTest field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *FlakyTestAttributes) GetBrokenTestOk() (*bool, bool) {
+	if o == nil || o.BrokenTest == nil {
+		return nil, false
+	}
+	return o.BrokenTest, true
+}
+
+// HasBrokenTest returns a boolean if a field has been set.
+func (o *FlakyTestAttributes) HasBrokenTest() bool {
+	return o != nil && o.BrokenTest != nil
+}
+
+// SetBrokenTest gets a reference to the given bool and assigns it to the BrokenTest field.
+func (o *FlakyTestAttributes) SetBrokenTest(v bool) {
+	o.BrokenTest = &v
 }
 
 // GetCodeowners returns the Codeowners field value if set, zero value otherwise.
@@ -716,6 +746,9 @@ func (o FlakyTestAttributes) MarshalJSON() ([]byte, error) {
 	if o.AttemptToFixId != nil {
 		toSerialize["attempt_to_fix_id"] = o.AttemptToFixId
 	}
+	if o.BrokenTest != nil {
+		toSerialize["broken_test"] = o.BrokenTest
+	}
 	if o.Codeowners != nil {
 		toSerialize["codeowners"] = o.Codeowners
 	}
@@ -787,6 +820,7 @@ func (o FlakyTestAttributes) MarshalJSON() ([]byte, error) {
 func (o *FlakyTestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AttemptToFixId    *string                        `json:"attempt_to_fix_id,omitempty"`
+		BrokenTest        *bool                          `json:"broken_test,omitempty"`
 		Codeowners        []string                       `json:"codeowners,omitempty"`
 		Envs              []string                       `json:"envs,omitempty"`
 		FirstFlakedBranch *string                        `json:"first_flaked_branch,omitempty"`
@@ -813,13 +847,14 @@ func (o *FlakyTestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"attempt_to_fix_id", "codeowners", "envs", "first_flaked_branch", "first_flaked_sha", "first_flaked_ts", "flaky_category", "flaky_state", "history", "impact_level", "impact_score", "last_flaked_branch", "last_flaked_sha", "last_flaked_ts", "module", "name", "pipeline_stats", "services", "suite", "test_run_metadata", "test_stats"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"attempt_to_fix_id", "broken_test", "codeowners", "envs", "first_flaked_branch", "first_flaked_sha", "first_flaked_ts", "flaky_category", "flaky_state", "history", "impact_level", "impact_score", "last_flaked_branch", "last_flaked_sha", "last_flaked_ts", "module", "name", "pipeline_stats", "services", "suite", "test_run_metadata", "test_stats"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.AttemptToFixId = all.AttemptToFixId
+	o.BrokenTest = all.BrokenTest
 	o.Codeowners = all.Codeowners
 	o.Envs = all.Envs
 	o.FirstFlakedBranch = all.FirstFlakedBranch
