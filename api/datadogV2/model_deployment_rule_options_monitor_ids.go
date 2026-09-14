@@ -10,43 +10,43 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DeploymentRuleOptionsMonitor Monitor query options for deployment rules.
-type DeploymentRuleOptionsMonitor struct {
-	// Seconds the monitor needs to stay in OK status for the rule to pass.
+// DeploymentRuleOptionsMonitorIds Specific monitor options for deployment rules.
+type DeploymentRuleOptionsMonitorIds struct {
+	// Seconds the monitors need to stay in OK status for the rule to pass.
 	Duration *int64 `json:"duration,omitempty"`
-	// Whether the rule should fail if a matching monitor group is in a NO DATA state.
+	// Whether the rule should fail if a selected monitor group is in a NO DATA state.
 	FailOnNoData *bool `json:"fail_on_no_data,omitempty"`
-	// Whether the rule should fail if no monitor groups are found for the query.
+	// Whether the rule should fail if no monitor groups are found for the selected monitors.
 	FailOnNoGroupsFound *bool `json:"fail_on_no_groups_found,omitempty"`
-	// A query that selects the monitors to evaluate.
-	Query string `json:"query"`
-	// Seconds to wait after a deployment starts before evaluating the monitor's status.
+	// A non-empty list of specific monitors to evaluate.
+	MonitorIds []DeploymentRuleOptionsMonitorId `json:"monitor_ids"`
+	// Seconds to wait after a deployment starts before evaluating the monitors' statuses.
 	Warmup *int64 `json:"warmup,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:"-"`
 }
 
-// NewDeploymentRuleOptionsMonitor instantiates a new DeploymentRuleOptionsMonitor object.
+// NewDeploymentRuleOptionsMonitorIds instantiates a new DeploymentRuleOptionsMonitorIds object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewDeploymentRuleOptionsMonitor(query string) *DeploymentRuleOptionsMonitor {
-	this := DeploymentRuleOptionsMonitor{}
+func NewDeploymentRuleOptionsMonitorIds(monitorIds []DeploymentRuleOptionsMonitorId) *DeploymentRuleOptionsMonitorIds {
+	this := DeploymentRuleOptionsMonitorIds{}
 	var failOnNoData bool = true
 	this.FailOnNoData = &failOnNoData
 	var failOnNoGroupsFound bool = false
 	this.FailOnNoGroupsFound = &failOnNoGroupsFound
-	this.Query = query
+	this.MonitorIds = monitorIds
 	var warmup int64 = 0
 	this.Warmup = &warmup
 	return &this
 }
 
-// NewDeploymentRuleOptionsMonitorWithDefaults instantiates a new DeploymentRuleOptionsMonitor object.
+// NewDeploymentRuleOptionsMonitorIdsWithDefaults instantiates a new DeploymentRuleOptionsMonitorIds object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewDeploymentRuleOptionsMonitorWithDefaults() *DeploymentRuleOptionsMonitor {
-	this := DeploymentRuleOptionsMonitor{}
+func NewDeploymentRuleOptionsMonitorIdsWithDefaults() *DeploymentRuleOptionsMonitorIds {
+	this := DeploymentRuleOptionsMonitorIds{}
 	var failOnNoData bool = true
 	this.FailOnNoData = &failOnNoData
 	var failOnNoGroupsFound bool = false
@@ -57,7 +57,7 @@ func NewDeploymentRuleOptionsMonitorWithDefaults() *DeploymentRuleOptionsMonitor
 }
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
-func (o *DeploymentRuleOptionsMonitor) GetDuration() int64 {
+func (o *DeploymentRuleOptionsMonitorIds) GetDuration() int64 {
 	if o == nil || o.Duration == nil {
 		var ret int64
 		return ret
@@ -67,7 +67,7 @@ func (o *DeploymentRuleOptionsMonitor) GetDuration() int64 {
 
 // GetDurationOk returns a tuple with the Duration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeploymentRuleOptionsMonitor) GetDurationOk() (*int64, bool) {
+func (o *DeploymentRuleOptionsMonitorIds) GetDurationOk() (*int64, bool) {
 	if o == nil || o.Duration == nil {
 		return nil, false
 	}
@@ -75,17 +75,17 @@ func (o *DeploymentRuleOptionsMonitor) GetDurationOk() (*int64, bool) {
 }
 
 // HasDuration returns a boolean if a field has been set.
-func (o *DeploymentRuleOptionsMonitor) HasDuration() bool {
+func (o *DeploymentRuleOptionsMonitorIds) HasDuration() bool {
 	return o != nil && o.Duration != nil
 }
 
 // SetDuration gets a reference to the given int64 and assigns it to the Duration field.
-func (o *DeploymentRuleOptionsMonitor) SetDuration(v int64) {
+func (o *DeploymentRuleOptionsMonitorIds) SetDuration(v int64) {
 	o.Duration = &v
 }
 
 // GetFailOnNoData returns the FailOnNoData field value if set, zero value otherwise.
-func (o *DeploymentRuleOptionsMonitor) GetFailOnNoData() bool {
+func (o *DeploymentRuleOptionsMonitorIds) GetFailOnNoData() bool {
 	if o == nil || o.FailOnNoData == nil {
 		var ret bool
 		return ret
@@ -95,7 +95,7 @@ func (o *DeploymentRuleOptionsMonitor) GetFailOnNoData() bool {
 
 // GetFailOnNoDataOk returns a tuple with the FailOnNoData field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeploymentRuleOptionsMonitor) GetFailOnNoDataOk() (*bool, bool) {
+func (o *DeploymentRuleOptionsMonitorIds) GetFailOnNoDataOk() (*bool, bool) {
 	if o == nil || o.FailOnNoData == nil {
 		return nil, false
 	}
@@ -103,17 +103,17 @@ func (o *DeploymentRuleOptionsMonitor) GetFailOnNoDataOk() (*bool, bool) {
 }
 
 // HasFailOnNoData returns a boolean if a field has been set.
-func (o *DeploymentRuleOptionsMonitor) HasFailOnNoData() bool {
+func (o *DeploymentRuleOptionsMonitorIds) HasFailOnNoData() bool {
 	return o != nil && o.FailOnNoData != nil
 }
 
 // SetFailOnNoData gets a reference to the given bool and assigns it to the FailOnNoData field.
-func (o *DeploymentRuleOptionsMonitor) SetFailOnNoData(v bool) {
+func (o *DeploymentRuleOptionsMonitorIds) SetFailOnNoData(v bool) {
 	o.FailOnNoData = &v
 }
 
 // GetFailOnNoGroupsFound returns the FailOnNoGroupsFound field value if set, zero value otherwise.
-func (o *DeploymentRuleOptionsMonitor) GetFailOnNoGroupsFound() bool {
+func (o *DeploymentRuleOptionsMonitorIds) GetFailOnNoGroupsFound() bool {
 	if o == nil || o.FailOnNoGroupsFound == nil {
 		var ret bool
 		return ret
@@ -123,7 +123,7 @@ func (o *DeploymentRuleOptionsMonitor) GetFailOnNoGroupsFound() bool {
 
 // GetFailOnNoGroupsFoundOk returns a tuple with the FailOnNoGroupsFound field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeploymentRuleOptionsMonitor) GetFailOnNoGroupsFoundOk() (*bool, bool) {
+func (o *DeploymentRuleOptionsMonitorIds) GetFailOnNoGroupsFoundOk() (*bool, bool) {
 	if o == nil || o.FailOnNoGroupsFound == nil {
 		return nil, false
 	}
@@ -131,40 +131,40 @@ func (o *DeploymentRuleOptionsMonitor) GetFailOnNoGroupsFoundOk() (*bool, bool) 
 }
 
 // HasFailOnNoGroupsFound returns a boolean if a field has been set.
-func (o *DeploymentRuleOptionsMonitor) HasFailOnNoGroupsFound() bool {
+func (o *DeploymentRuleOptionsMonitorIds) HasFailOnNoGroupsFound() bool {
 	return o != nil && o.FailOnNoGroupsFound != nil
 }
 
 // SetFailOnNoGroupsFound gets a reference to the given bool and assigns it to the FailOnNoGroupsFound field.
-func (o *DeploymentRuleOptionsMonitor) SetFailOnNoGroupsFound(v bool) {
+func (o *DeploymentRuleOptionsMonitorIds) SetFailOnNoGroupsFound(v bool) {
 	o.FailOnNoGroupsFound = &v
 }
 
-// GetQuery returns the Query field value.
-func (o *DeploymentRuleOptionsMonitor) GetQuery() string {
+// GetMonitorIds returns the MonitorIds field value.
+func (o *DeploymentRuleOptionsMonitorIds) GetMonitorIds() []DeploymentRuleOptionsMonitorId {
 	if o == nil {
-		var ret string
+		var ret []DeploymentRuleOptionsMonitorId
 		return ret
 	}
-	return o.Query
+	return o.MonitorIds
 }
 
-// GetQueryOk returns a tuple with the Query field value
+// GetMonitorIdsOk returns a tuple with the MonitorIds field value
 // and a boolean to check if the value has been set.
-func (o *DeploymentRuleOptionsMonitor) GetQueryOk() (*string, bool) {
+func (o *DeploymentRuleOptionsMonitorIds) GetMonitorIdsOk() (*[]DeploymentRuleOptionsMonitorId, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Query, true
+	return &o.MonitorIds, true
 }
 
-// SetQuery sets field value.
-func (o *DeploymentRuleOptionsMonitor) SetQuery(v string) {
-	o.Query = v
+// SetMonitorIds sets field value.
+func (o *DeploymentRuleOptionsMonitorIds) SetMonitorIds(v []DeploymentRuleOptionsMonitorId) {
+	o.MonitorIds = v
 }
 
 // GetWarmup returns the Warmup field value if set, zero value otherwise.
-func (o *DeploymentRuleOptionsMonitor) GetWarmup() int64 {
+func (o *DeploymentRuleOptionsMonitorIds) GetWarmup() int64 {
 	if o == nil || o.Warmup == nil {
 		var ret int64
 		return ret
@@ -174,7 +174,7 @@ func (o *DeploymentRuleOptionsMonitor) GetWarmup() int64 {
 
 // GetWarmupOk returns a tuple with the Warmup field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *DeploymentRuleOptionsMonitor) GetWarmupOk() (*int64, bool) {
+func (o *DeploymentRuleOptionsMonitorIds) GetWarmupOk() (*int64, bool) {
 	if o == nil || o.Warmup == nil {
 		return nil, false
 	}
@@ -182,17 +182,17 @@ func (o *DeploymentRuleOptionsMonitor) GetWarmupOk() (*int64, bool) {
 }
 
 // HasWarmup returns a boolean if a field has been set.
-func (o *DeploymentRuleOptionsMonitor) HasWarmup() bool {
+func (o *DeploymentRuleOptionsMonitorIds) HasWarmup() bool {
 	return o != nil && o.Warmup != nil
 }
 
 // SetWarmup gets a reference to the given int64 and assigns it to the Warmup field.
-func (o *DeploymentRuleOptionsMonitor) SetWarmup(v int64) {
+func (o *DeploymentRuleOptionsMonitorIds) SetWarmup(v int64) {
 	o.Warmup = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o DeploymentRuleOptionsMonitor) MarshalJSON() ([]byte, error) {
+func (o DeploymentRuleOptionsMonitorIds) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -206,7 +206,7 @@ func (o DeploymentRuleOptionsMonitor) MarshalJSON() ([]byte, error) {
 	if o.FailOnNoGroupsFound != nil {
 		toSerialize["fail_on_no_groups_found"] = o.FailOnNoGroupsFound
 	}
-	toSerialize["query"] = o.Query
+	toSerialize["monitor_ids"] = o.MonitorIds
 	if o.Warmup != nil {
 		toSerialize["warmup"] = o.Warmup
 	}
@@ -214,24 +214,24 @@ func (o DeploymentRuleOptionsMonitor) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *DeploymentRuleOptionsMonitor) UnmarshalJSON(bytes []byte) (err error) {
+func (o *DeploymentRuleOptionsMonitorIds) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Duration            *int64  `json:"duration,omitempty"`
-		FailOnNoData        *bool   `json:"fail_on_no_data,omitempty"`
-		FailOnNoGroupsFound *bool   `json:"fail_on_no_groups_found,omitempty"`
-		Query               *string `json:"query"`
-		Warmup              *int64  `json:"warmup,omitempty"`
+		Duration            *int64                            `json:"duration,omitempty"`
+		FailOnNoData        *bool                             `json:"fail_on_no_data,omitempty"`
+		FailOnNoGroupsFound *bool                             `json:"fail_on_no_groups_found,omitempty"`
+		MonitorIds          *[]DeploymentRuleOptionsMonitorId `json:"monitor_ids"`
+		Warmup              *int64                            `json:"warmup,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Query == nil {
-		return fmt.Errorf("required field query missing")
+	if all.MonitorIds == nil {
+		return fmt.Errorf("required field monitor_ids missing")
 	}
 	o.Duration = all.Duration
 	o.FailOnNoData = all.FailOnNoData
 	o.FailOnNoGroupsFound = all.FailOnNoGroupsFound
-	o.Query = *all.Query
+	o.MonitorIds = *all.MonitorIds
 	o.Warmup = all.Warmup
 
 	return nil
