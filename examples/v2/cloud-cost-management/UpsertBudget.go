@@ -51,6 +51,9 @@ func main() {
 			Id:   datadog.PtrString("00000000-0a0a-0a0a-aaa0-00000000000a"),
 			Type: datadog.PtrString(""),
 		},
+		Meta: &datadogV2.BudgetWithEntriesMeta{
+			Error: "",
+		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
