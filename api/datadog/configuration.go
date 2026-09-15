@@ -421,6 +421,61 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
+			"v2.OAuth2ClientPublicApi.GetOIDCDiscoveryDocument": {
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "The regional site for Datadog customers.",
+							DefaultValue: "datadoghq.com",
+							EnumValues: []string{
+								"datadoghq.com",
+								"us3.datadoghq.com",
+								"us5.datadoghq.com",
+								"ap1.datadoghq.com",
+								"ap2.datadoghq.com",
+								"uk1.datadoghq.com",
+								"datadoghq.eu",
+								"ddog-gov.com",
+								"us2.ddog-gov.com",
+							},
+						},
+						"subdomain": {
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "app",
+						},
+					},
+				},
+				{
+					URL:         "{protocol}://{name}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"name": {
+							Description:  "Full site DNS name.",
+							DefaultValue: "app.datadoghq.com",
+						},
+						"protocol": {
+							Description:  "The protocol for accessing the API.",
+							DefaultValue: "https",
+						},
+					},
+				},
+				{
+					URL:         "https://{subdomain}.{site}",
+					Description: "No description provided",
+					Variables: map[string]ServerVariable{
+						"site": {
+							Description:  "Any Datadog deployment.",
+							DefaultValue: "datadoghq.com",
+						},
+						"subdomain": {
+							Description:  "The subdomain where the API is deployed.",
+							DefaultValue: "app",
+						},
+					},
+				},
+			},
 			"v2.OnCallPagingApi.CreateOnCallPage": {
 				{
 					URL:         "https://{site}",
@@ -1229,6 +1284,7 @@ func NewConfiguration() *Configuration {
 			"v2.ListNetworkHealthInsights":                              false,
 			"v2.DeleteScopesRestriction":                                false,
 			"v2.GetOAuth2WellKnownSites":                                false,
+			"v2.GetOIDCDiscoveryDocument":                               false,
 			"v2.GetScopesRestriction":                                   false,
 			"v2.RegisterOAuthClient":                                    false,
 			"v2.UpsertScopesRestriction":                                false,
