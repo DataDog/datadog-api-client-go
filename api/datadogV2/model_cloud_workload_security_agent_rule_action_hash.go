@@ -12,6 +12,8 @@ import (
 type CloudWorkloadSecurityAgentRuleActionHash struct {
 	// The field of the hash action
 	Field *string `json:"field,omitempty"`
+	// The maximum size of the files to hash, in bytes.
+	MaxFileSize *int64 `json:"max_file_size,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -62,6 +64,34 @@ func (o *CloudWorkloadSecurityAgentRuleActionHash) SetField(v string) {
 	o.Field = &v
 }
 
+// GetMaxFileSize returns the MaxFileSize field value if set, zero value otherwise.
+func (o *CloudWorkloadSecurityAgentRuleActionHash) GetMaxFileSize() int64 {
+	if o == nil || o.MaxFileSize == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MaxFileSize
+}
+
+// GetMaxFileSizeOk returns a tuple with the MaxFileSize field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *CloudWorkloadSecurityAgentRuleActionHash) GetMaxFileSizeOk() (*int64, bool) {
+	if o == nil || o.MaxFileSize == nil {
+		return nil, false
+	}
+	return o.MaxFileSize, true
+}
+
+// HasMaxFileSize returns a boolean if a field has been set.
+func (o *CloudWorkloadSecurityAgentRuleActionHash) HasMaxFileSize() bool {
+	return o != nil && o.MaxFileSize != nil
+}
+
+// SetMaxFileSize gets a reference to the given int64 and assigns it to the MaxFileSize field.
+func (o *CloudWorkloadSecurityAgentRuleActionHash) SetMaxFileSize(v int64) {
+	o.MaxFileSize = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CloudWorkloadSecurityAgentRuleActionHash) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -70,6 +100,9 @@ func (o CloudWorkloadSecurityAgentRuleActionHash) MarshalJSON() ([]byte, error) 
 	}
 	if o.Field != nil {
 		toSerialize["field"] = o.Field
+	}
+	if o.MaxFileSize != nil {
+		toSerialize["max_file_size"] = o.MaxFileSize
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -81,18 +114,20 @@ func (o CloudWorkloadSecurityAgentRuleActionHash) MarshalJSON() ([]byte, error) 
 // UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRuleActionHash) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Field *string `json:"field,omitempty"`
+		Field       *string `json:"field,omitempty"`
+		MaxFileSize *int64  `json:"max_file_size,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"field"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"field", "max_file_size"})
 	} else {
 		return err
 	}
 	o.Field = all.Field
+	o.MaxFileSize = all.MaxFileSize
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
