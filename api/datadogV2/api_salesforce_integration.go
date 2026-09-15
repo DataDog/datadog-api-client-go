@@ -18,6 +18,8 @@ type SalesforceIntegrationApi datadog.Service
 // CreateIncidentTemplate Create a Salesforce incident template.
 // Create a new Salesforce incident template for your organization. Template
 // names must be unique within an organization.
+//
+// Deprecated: This API is deprecated.
 func (a *SalesforceIntegrationApi) CreateIncidentTemplate(ctx _context.Context, body SalesforceIncidentsTemplateCreateRequest) (SalesforceIncidentsTemplateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -98,6 +100,8 @@ func (a *SalesforceIntegrationApi) CreateIncidentTemplate(ctx _context.Context, 
 
 // DeleteIncidentTemplate Delete a Salesforce incident template.
 // Delete a single Salesforce incident template from your organization.
+//
+// Deprecated: This API is deprecated.
 func (a *SalesforceIntegrationApi) DeleteIncidentTemplate(ctx _context.Context, incidentTemplateId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -167,6 +171,8 @@ func (a *SalesforceIntegrationApi) DeleteIncidentTemplate(ctx _context.Context, 
 // DeleteSalesforceOrganization Delete a connected Salesforce organization.
 // Disconnect a Salesforce organization from your Datadog organization.
 // This also deletes any incident templates referencing the organization.
+//
+// Deprecated: This API is deprecated.
 func (a *SalesforceIntegrationApi) DeleteSalesforceOrganization(ctx _context.Context, salesforceOrgId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -235,6 +241,8 @@ func (a *SalesforceIntegrationApi) DeleteSalesforceOrganization(ctx _context.Con
 
 // GetIncidentTemplates Get all Salesforce incident templates.
 // Get all Salesforce incident templates configured for your organization.
+//
+// Deprecated: This API is deprecated.
 func (a *SalesforceIntegrationApi) GetIncidentTemplates(ctx _context.Context) (SalesforceIncidentsTemplatesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -314,6 +322,8 @@ func (a *SalesforceIntegrationApi) GetIncidentTemplates(ctx _context.Context) (S
 // Get all Salesforce organizations connected to your Datadog organization
 // through the Salesforce integration. Salesforce organizations are connected
 // through the OAuth setup flow in the Datadog Salesforce integration page.
+//
+// Deprecated: This API is deprecated.
 func (a *SalesforceIntegrationApi) GetSalesforceOrganizations(ctx _context.Context) (SalesforceIncidentsOrganizationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -391,6 +401,8 @@ func (a *SalesforceIntegrationApi) GetSalesforceOrganizations(ctx _context.Conte
 
 // UpdateIncidentTemplate Update a Salesforce incident template.
 // Update a single Salesforce incident template in your organization.
+//
+// Deprecated: This API is deprecated.
 func (a *SalesforceIntegrationApi) UpdateIncidentTemplate(ctx _context.Context, incidentTemplateId string, body SalesforceIncidentsTemplateUpdateRequest) (SalesforceIncidentsTemplateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
