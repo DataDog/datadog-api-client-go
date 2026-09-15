@@ -23,6 +23,7 @@ func main() {
 					WorkflowRunAsOwner: &datadogV2.WorkflowRunAsOwner{
 						Type: datadogV2.WORKFLOWRUNASOWNERTYPE_OWNER,
 					}},
+				SensitivePrivileges: datadog.PtrBool(true),
 				Spec: datadogV2.Spec{
 					ConnectionEnvs: []datadogV2.ConnectionEnv{
 						{
