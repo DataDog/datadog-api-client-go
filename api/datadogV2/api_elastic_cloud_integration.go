@@ -14,12 +14,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ElasticCloudIntegrationAccountsApi service type
-type ElasticCloudIntegrationAccountsApi datadog.Service
+// ElasticCloudIntegrationApi service type
+type ElasticCloudIntegrationApi datadog.Service
 
 // CreateElasticCloudIntegrationAccount Create an Elastic Cloud integration account.
 // Create an Elastic Cloud integration account.
-func (a *ElasticCloudIntegrationAccountsApi) CreateElasticCloudIntegrationAccount(ctx _context.Context, body ElasticCloudIntegrationAccountCreateRequest) (ElasticCloudIntegrationAccountResponse, *_nethttp.Response, error) {
+func (a *ElasticCloudIntegrationApi) CreateElasticCloudIntegrationAccount(ctx _context.Context, body ElasticCloudIntegrationAccountCreateRequest) (ElasticCloudIntegrationAccountResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -35,7 +35,7 @@ func (a *ElasticCloudIntegrationAccountsApi) CreateElasticCloudIntegrationAccoun
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ElasticCloudIntegrationAccountsApi.CreateElasticCloudIntegrationAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ElasticCloudIntegrationApi.CreateElasticCloudIntegrationAccount")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -117,7 +117,7 @@ func (a *ElasticCloudIntegrationAccountsApi) CreateElasticCloudIntegrationAccoun
 
 // DeleteElasticCloudIntegrationAccount Delete an Elastic Cloud integration account.
 // Delete an Elastic Cloud integration account.
-func (a *ElasticCloudIntegrationAccountsApi) DeleteElasticCloudIntegrationAccount(ctx _context.Context, accountId string) (*_nethttp.Response, error) {
+func (a *ElasticCloudIntegrationApi) DeleteElasticCloudIntegrationAccount(ctx _context.Context, accountId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -132,7 +132,7 @@ func (a *ElasticCloudIntegrationAccountsApi) DeleteElasticCloudIntegrationAccoun
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ElasticCloudIntegrationAccountsApi.DeleteElasticCloudIntegrationAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ElasticCloudIntegrationApi.DeleteElasticCloudIntegrationAccount")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -194,7 +194,7 @@ func (a *ElasticCloudIntegrationAccountsApi) DeleteElasticCloudIntegrationAccoun
 
 // GetElasticCloudIntegrationAccount Get an Elastic Cloud integration account.
 // Get an Elastic Cloud integration account.
-func (a *ElasticCloudIntegrationAccountsApi) GetElasticCloudIntegrationAccount(ctx _context.Context, accountId string) (ElasticCloudIntegrationAccountResponse, *_nethttp.Response, error) {
+func (a *ElasticCloudIntegrationApi) GetElasticCloudIntegrationAccount(ctx _context.Context, accountId string) (ElasticCloudIntegrationAccountResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -210,7 +210,7 @@ func (a *ElasticCloudIntegrationAccountsApi) GetElasticCloudIntegrationAccount(c
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ElasticCloudIntegrationAccountsApi.GetElasticCloudIntegrationAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ElasticCloudIntegrationApi.GetElasticCloudIntegrationAccount")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -281,7 +281,7 @@ func (a *ElasticCloudIntegrationAccountsApi) GetElasticCloudIntegrationAccount(c
 
 // ListElasticCloudIntegrationAccounts List Elastic Cloud integration accounts.
 // List Elastic Cloud integration accounts.
-func (a *ElasticCloudIntegrationAccountsApi) ListElasticCloudIntegrationAccounts(ctx _context.Context) (ElasticCloudIntegrationAccountsResponse, *_nethttp.Response, error) {
+func (a *ElasticCloudIntegrationApi) ListElasticCloudIntegrationAccounts(ctx _context.Context) (ElasticCloudIntegrationAccountsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -297,7 +297,7 @@ func (a *ElasticCloudIntegrationAccountsApi) ListElasticCloudIntegrationAccounts
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ElasticCloudIntegrationAccountsApi.ListElasticCloudIntegrationAccounts")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ElasticCloudIntegrationApi.ListElasticCloudIntegrationAccounts")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -367,7 +367,7 @@ func (a *ElasticCloudIntegrationAccountsApi) ListElasticCloudIntegrationAccounts
 
 // UpdateElasticCloudIntegrationAccount Update an Elastic Cloud integration account.
 // Update an Elastic Cloud integration account. Only the fields provided are changed.
-func (a *ElasticCloudIntegrationAccountsApi) UpdateElasticCloudIntegrationAccount(ctx _context.Context, accountId string, body ElasticCloudIntegrationAccountUpdateRequest) (ElasticCloudIntegrationAccountResponse, *_nethttp.Response, error) {
+func (a *ElasticCloudIntegrationApi) UpdateElasticCloudIntegrationAccount(ctx _context.Context, accountId string, body ElasticCloudIntegrationAccountUpdateRequest) (ElasticCloudIntegrationAccountResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
@@ -383,7 +383,7 @@ func (a *ElasticCloudIntegrationAccountsApi) UpdateElasticCloudIntegrationAccoun
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ElasticCloudIntegrationAccountsApi.UpdateElasticCloudIntegrationAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.ElasticCloudIntegrationApi.UpdateElasticCloudIntegrationAccount")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -464,9 +464,9 @@ func (a *ElasticCloudIntegrationAccountsApi) UpdateElasticCloudIntegrationAccoun
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// NewElasticCloudIntegrationAccountsApi Returns NewElasticCloudIntegrationAccountsApi.
-func NewElasticCloudIntegrationAccountsApi(client *datadog.APIClient) *ElasticCloudIntegrationAccountsApi {
-	return &ElasticCloudIntegrationAccountsApi{
+// NewElasticCloudIntegrationApi Returns NewElasticCloudIntegrationApi.
+func NewElasticCloudIntegrationApi(client *datadog.APIClient) *ElasticCloudIntegrationApi {
+	return &ElasticCloudIntegrationApi{
 		Client: client,
 	}
 }

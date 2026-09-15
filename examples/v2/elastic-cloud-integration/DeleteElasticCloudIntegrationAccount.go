@@ -16,11 +16,11 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.DeleteElasticCloudIntegrationAccount", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewElasticCloudIntegrationAccountsApi(apiClient)
+	api := datadogV2.NewElasticCloudIntegrationApi(apiClient)
 	r, err := api.DeleteElasticCloudIntegrationAccount(ctx, "account_id")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ElasticCloudIntegrationAccountsApi.DeleteElasticCloudIntegrationAccount`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ElasticCloudIntegrationApi.DeleteElasticCloudIntegrationAccount`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

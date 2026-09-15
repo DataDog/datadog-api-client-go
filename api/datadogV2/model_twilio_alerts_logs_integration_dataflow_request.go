@@ -8,13 +8,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TwilioAlertsLogsIntegrationDataflowRequest The Twilio alerts logs dataflow.
+// TwilioAlertsLogsIntegrationDataflowRequest Twilio Alert resource logs, which detail the errors and warnings raised when Twilio makes a webhook request to your server or when your application calls the Twilio REST API. This is the one kind of data the integration collects by default.
 type TwilioAlertsLogsIntegrationDataflowRequest struct {
-	// Whether the Twilio dataflow is enabled.
+	// Whether Datadog collects this data. Defaults to `true`; set to `false` to stop collection.
 	Enabled *bool `json:"enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewTwilioAlertsLogsIntegrationDataflowRequest instantiates a new TwilioAlertsLogsIntegrationDataflowRequest object.
@@ -71,10 +70,6 @@ func (o TwilioAlertsLogsIntegrationDataflowRequest) MarshalJSON() ([]byte, error
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -86,17 +81,7 @@ func (o *TwilioAlertsLogsIntegrationDataflowRequest) UnmarshalJSON(bytes []byte)
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled"})
-	} else {
-		return err
-	}
 	o.Enabled = all.Enabled
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }
