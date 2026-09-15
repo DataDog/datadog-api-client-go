@@ -22,7 +22,9 @@ func main() {
 					Forecast:     *datadog.NewNullableFloat64(nil),
 					OotbForecast: *datadog.NewNullableFloat64(nil),
 				},
-				CostsUnit: &datadogV2.BudgetAttributesCostsUnit{},
+				CostsUnit: &datadogV2.BudgetAttributesCostsUnit{
+					Id: datadog.PtrInt64(42),
+				},
 				CreatedAt: datadog.PtrInt64(1738258683590),
 				CreatedBy: datadog.PtrString("00000000-0a0a-0a0a-aaa0-00000000000a"),
 				EndMonth:  datadog.PtrInt64(202502),
