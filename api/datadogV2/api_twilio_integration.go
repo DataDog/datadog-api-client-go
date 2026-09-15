@@ -14,12 +14,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TwilioIntegrationAccountsApi service type
-type TwilioIntegrationAccountsApi datadog.Service
+// TwilioIntegrationApi service type
+type TwilioIntegrationApi datadog.Service
 
 // CreateTwilioIntegrationAccount Create a Twilio integration account.
 // Create a Twilio integration account.
-func (a *TwilioIntegrationAccountsApi) CreateTwilioIntegrationAccount(ctx _context.Context, body TwilioIntegrationAccountCreateRequest) (TwilioIntegrationAccountResponse, *_nethttp.Response, error) {
+func (a *TwilioIntegrationApi) CreateTwilioIntegrationAccount(ctx _context.Context, body TwilioIntegrationAccountCreateRequest) (TwilioIntegrationAccountResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
 		localVarPostBody    interface{}
@@ -35,7 +35,7 @@ func (a *TwilioIntegrationAccountsApi) CreateTwilioIntegrationAccount(ctx _conte
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TwilioIntegrationAccountsApi.CreateTwilioIntegrationAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TwilioIntegrationApi.CreateTwilioIntegrationAccount")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -117,7 +117,7 @@ func (a *TwilioIntegrationAccountsApi) CreateTwilioIntegrationAccount(ctx _conte
 
 // DeleteTwilioIntegrationAccount Delete a Twilio integration account.
 // Delete a Twilio integration account.
-func (a *TwilioIntegrationAccountsApi) DeleteTwilioIntegrationAccount(ctx _context.Context, accountId string) (*_nethttp.Response, error) {
+func (a *TwilioIntegrationApi) DeleteTwilioIntegrationAccount(ctx _context.Context, accountId string) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
@@ -132,7 +132,7 @@ func (a *TwilioIntegrationAccountsApi) DeleteTwilioIntegrationAccount(ctx _conte
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TwilioIntegrationAccountsApi.DeleteTwilioIntegrationAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TwilioIntegrationApi.DeleteTwilioIntegrationAccount")
 	if err != nil {
 		return nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -194,7 +194,7 @@ func (a *TwilioIntegrationAccountsApi) DeleteTwilioIntegrationAccount(ctx _conte
 
 // GetTwilioIntegrationAccount Get a Twilio integration account.
 // Get a Twilio integration account.
-func (a *TwilioIntegrationAccountsApi) GetTwilioIntegrationAccount(ctx _context.Context, accountId string) (TwilioIntegrationAccountResponse, *_nethttp.Response, error) {
+func (a *TwilioIntegrationApi) GetTwilioIntegrationAccount(ctx _context.Context, accountId string) (TwilioIntegrationAccountResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -210,7 +210,7 @@ func (a *TwilioIntegrationAccountsApi) GetTwilioIntegrationAccount(ctx _context.
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TwilioIntegrationAccountsApi.GetTwilioIntegrationAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TwilioIntegrationApi.GetTwilioIntegrationAccount")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -281,7 +281,7 @@ func (a *TwilioIntegrationAccountsApi) GetTwilioIntegrationAccount(ctx _context.
 
 // ListTwilioIntegrationAccounts List Twilio integration accounts.
 // List Twilio integration accounts.
-func (a *TwilioIntegrationAccountsApi) ListTwilioIntegrationAccounts(ctx _context.Context) (TwilioIntegrationAccountsResponse, *_nethttp.Response, error) {
+func (a *TwilioIntegrationApi) ListTwilioIntegrationAccounts(ctx _context.Context) (TwilioIntegrationAccountsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
 		localVarPostBody    interface{}
@@ -297,7 +297,7 @@ func (a *TwilioIntegrationAccountsApi) ListTwilioIntegrationAccounts(ctx _contex
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TwilioIntegrationAccountsApi.ListTwilioIntegrationAccounts")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TwilioIntegrationApi.ListTwilioIntegrationAccounts")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -367,7 +367,7 @@ func (a *TwilioIntegrationAccountsApi) ListTwilioIntegrationAccounts(ctx _contex
 
 // UpdateTwilioIntegrationAccount Update a Twilio integration account.
 // Update a Twilio integration account. Only the fields provided are changed.
-func (a *TwilioIntegrationAccountsApi) UpdateTwilioIntegrationAccount(ctx _context.Context, accountId string, body TwilioIntegrationAccountUpdateRequest) (TwilioIntegrationAccountResponse, *_nethttp.Response, error) {
+func (a *TwilioIntegrationApi) UpdateTwilioIntegrationAccount(ctx _context.Context, accountId string, body TwilioIntegrationAccountUpdateRequest) (TwilioIntegrationAccountResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
 		localVarPostBody    interface{}
@@ -383,7 +383,7 @@ func (a *TwilioIntegrationAccountsApi) UpdateTwilioIntegrationAccount(ctx _conte
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TwilioIntegrationAccountsApi.UpdateTwilioIntegrationAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(ctx, "v2.TwilioIntegrationApi.UpdateTwilioIntegrationAccount")
 	if err != nil {
 		return localVarReturnValue, nil, datadog.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -464,9 +464,9 @@ func (a *TwilioIntegrationAccountsApi) UpdateTwilioIntegrationAccount(ctx _conte
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
-// NewTwilioIntegrationAccountsApi Returns NewTwilioIntegrationAccountsApi.
-func NewTwilioIntegrationAccountsApi(client *datadog.APIClient) *TwilioIntegrationAccountsApi {
-	return &TwilioIntegrationAccountsApi{
+// NewTwilioIntegrationApi Returns NewTwilioIntegrationApi.
+func NewTwilioIntegrationApi(client *datadog.APIClient) *TwilioIntegrationApi {
+	return &TwilioIntegrationApi{
 		Client: client,
 	}
 }

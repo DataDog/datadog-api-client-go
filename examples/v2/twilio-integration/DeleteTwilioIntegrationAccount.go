@@ -16,11 +16,11 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.DeleteTwilioIntegrationAccount", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewTwilioIntegrationAccountsApi(apiClient)
+	api := datadogV2.NewTwilioIntegrationApi(apiClient)
 	r, err := api.DeleteTwilioIntegrationAccount(ctx, "account_id")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TwilioIntegrationAccountsApi.DeleteTwilioIntegrationAccount`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `TwilioIntegrationApi.DeleteTwilioIntegrationAccount`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
