@@ -42,7 +42,7 @@ type SecurityEntityRiskScoreAttributes struct {
 	RiskScoreEvolution int64 `json:"riskScoreEvolution"`
 	// Severity level based on risk score
 	Severity SecurityEntityRiskScoreAttributesSeverity `json:"severity"`
-	// Number of security signals detected for this entity.
+	// Number of risk-contributing security signals detected for this entity.
 	SignalsDetected int64 `json:"signalsDetected"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
