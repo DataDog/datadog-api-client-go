@@ -12,6 +12,8 @@ import (
 type BudgetWithEntries struct {
 	// A budget and all its entries.
 	Data *BudgetWithEntriesData `json:"data,omitempty"`
+	// Additional information about errors encountered while retrieving budget cost data.
+	Meta *BudgetWithEntriesMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -62,6 +64,34 @@ func (o *BudgetWithEntries) SetData(v BudgetWithEntriesData) {
 	o.Data = &v
 }
 
+// GetMeta returns the Meta field value if set, zero value otherwise.
+func (o *BudgetWithEntries) GetMeta() BudgetWithEntriesMeta {
+	if o == nil || o.Meta == nil {
+		var ret BudgetWithEntriesMeta
+		return ret
+	}
+	return *o.Meta
+}
+
+// GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *BudgetWithEntries) GetMetaOk() (*BudgetWithEntriesMeta, bool) {
+	if o == nil || o.Meta == nil {
+		return nil, false
+	}
+	return o.Meta, true
+}
+
+// HasMeta returns a boolean if a field has been set.
+func (o *BudgetWithEntries) HasMeta() bool {
+	return o != nil && o.Meta != nil
+}
+
+// SetMeta gets a reference to the given BudgetWithEntriesMeta and assigns it to the Meta field.
+func (o *BudgetWithEntries) SetMeta(v BudgetWithEntriesMeta) {
+	o.Meta = &v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o BudgetWithEntries) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -70,6 +100,9 @@ func (o BudgetWithEntries) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
+	}
+	if o.Meta != nil {
+		toSerialize["meta"] = o.Meta
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -82,13 +115,14 @@ func (o BudgetWithEntries) MarshalJSON() ([]byte, error) {
 func (o *BudgetWithEntries) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data *BudgetWithEntriesData `json:"data,omitempty"`
+		Meta *BudgetWithEntriesMeta `json:"meta,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data", "meta"})
 	} else {
 		return err
 	}
@@ -98,6 +132,10 @@ func (o *BudgetWithEntries) UnmarshalJSON(bytes []byte) (err error) {
 		hasInvalidField = true
 	}
 	o.Data = all.Data
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Meta = all.Meta
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
