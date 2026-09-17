@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/base64"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"net/http/httptest"
@@ -18,6 +19,8 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
 	awsauth "github.com/DataDog/datadog-api-client-go/v2/auth/aws"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	awsconfig "github.com/aws/aws-sdk-go-v2/config"
 )
 
 const orgIDHeader = "x-ddog-org-id"
@@ -239,6 +242,69 @@ func TestAWSProviderUsesResolvedSTSEndpointAndSigningRegion(t *testing.T) {
 				t.Errorf("AWS authorization = %q, want signing region %q", authorization, test.signingRegion)
 			}
 		})
+	}
+}
+
+func TestAWSProviderHonorsLegacySTSEndpointResolvers(t *testing.T) {
+	resolverError := errors.New("test endpoint resolver failure")
+	cases := []struct {
+		name         string
+		endpoint     aws.Endpoint
+		err          error
+		wantEndpoint string
+		wantScope    string
+	}{
+		{name: "custom signing scope", endpoint: aws.Endpoint{URL: "https://custom-sts.example.com/identity", SigningRegion: "us-west-2", SigningName: "custom-sts"}, wantEndpoint: "https://custom-sts.example.com/identity", wantScope: "/us-west-2/custom-sts/aws4_request"},
+		{name: "default signing scope", endpoint: aws.Endpoint{URL: "https://custom-sts.example.com"}, wantEndpoint: "https://custom-sts.example.com", wantScope: "/us-east-2/sts/aws4_request"},
+		{name: "fallback", err: fmt.Errorf("not handled: %w", &aws.EndpointNotFoundError{}), wantEndpoint: "https://sts.us-east-2.amazonaws.com", wantScope: "/us-east-2/sts/aws4_request"},
+		{name: "resolver failure", err: resolverError},
+	}
+	for _, withOptions := range []bool{false, true} {
+		for _, test := range cases {
+			t.Run(fmt.Sprintf("with_options=%t/%s", withOptions, test.name), func(t *testing.T) {
+				isolateAWSAuthEnvironment(t)
+				calls := 0
+				resolve := func(service, region string) (aws.Endpoint, error) {
+					calls++
+					if service != "STS" || region != "us-east-2" {
+						t.Errorf("resolver called with service %q and region %q", service, region)
+					}
+					return test.endpoint, test.err
+				}
+				loadOption := awsconfig.WithEndpointResolver(aws.EndpointResolverFunc(resolve))
+				if withOptions {
+					loadOption = awsconfig.WithEndpointResolverWithOptions(aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
+						return resolve(service, region)
+					}))
+				}
+				var proof string
+				server := newDelegatedTokenServer(t, func(request *http.Request) {
+					proof = strings.TrimPrefix(request.Header.Get("Authorization"), "Delegated ")
+				})
+				defer server.Close()
+				provider, err := awsauth.New(awsauth.WithRegion("us-east-2"), awsauth.WithStaticCredentials("access-key", "secret-key", ""), awsauth.WithConfigOptions(loadOption))
+				if err != nil {
+					t.Fatal(err)
+				}
+				_, err = provider.Authenticate(delegatedTokenContext(server.URL), delegatedTokenConfig())
+				if calls != 1 {
+					t.Errorf("resolver calls = %d, want 1", calls)
+				}
+				if test.err == resolverError {
+					if !errors.Is(err, resolverError) || proof != "" {
+						t.Fatalf("resolver error was not propagated before exchange: err=%v, proof present=%t", err, proof != "")
+					}
+					return
+				}
+				if err != nil {
+					t.Fatal(err)
+				}
+				headers, endpoint := decodeProof(t, proof)
+				if endpoint != test.wantEndpoint || !strings.Contains(firstHeader(headers, "Authorization"), test.wantScope) {
+					t.Errorf("proof endpoint = %q, scope = %q; want endpoint %q, scope %q", endpoint, firstHeader(headers, "Authorization"), test.wantEndpoint, test.wantScope)
+				}
+			})
+		}
 	}
 }
 
