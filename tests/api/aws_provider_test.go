@@ -195,26 +195,50 @@ func TestWithStaticCredentialsRejectsPartialCredentials(t *testing.T) {
 	}
 }
 
-func TestGenerateProofResolvesAWSPartitions(t *testing.T) {
-	isolateAWSAuthEnvironment(t)
-	var proof string
-	server := newDelegatedTokenServer(t, func(request *http.Request) {
-		proof = strings.TrimPrefix(request.Header.Get("Authorization"), "Delegated ")
-	})
-	defer server.Close()
-	provider, err := awsauth.New(
-		awsauth.WithRegion("cn-north-1"),
-		awsauth.WithStaticCredentials("access-key", "secret-key", ""),
-	)
-	if err != nil {
-		t.Fatal(err)
+func TestAWSProviderUsesResolvedSTSEndpointAndSigningRegion(t *testing.T) {
+	tests := []struct {
+		name          string
+		region        string
+		endpoint      string
+		signingRegion string
+		useFIPS       bool
+	}{
+		{name: "regional", region: "us-east-2", endpoint: "https://sts.us-east-2.amazonaws.com", signingRegion: "us-east-2"},
+		{name: "global", region: "aws-global", endpoint: "https://sts.amazonaws.com", signingRegion: "us-east-1"},
+		{name: "FIPS prefix", region: "fips-us-east-2", endpoint: "https://sts-fips.us-east-2.amazonaws.com", signingRegion: "us-east-2"},
+		{name: "FIPS suffix", region: "us-east-2-fips", endpoint: "https://sts-fips.us-east-2.amazonaws.com", signingRegion: "us-east-2"},
+		{name: "FIPS setting", region: "us-east-2", endpoint: "https://sts-fips.us-east-2.amazonaws.com", signingRegion: "us-east-2", useFIPS: true},
+		{name: "China", region: "cn-north-1", endpoint: "https://sts.cn-north-1.amazonaws.com.cn", signingRegion: "cn-north-1"},
+		{name: "GovCloud", region: "us-gov-west-1", endpoint: "https://sts.us-gov-west-1.amazonaws.com", signingRegion: "us-gov-west-1"},
 	}
-	if _, err := provider.Authenticate(delegatedTokenContext(server.URL), delegatedTokenConfig()); err != nil {
-		t.Fatal(err)
-	}
-	_, endpoint := decodeProof(t, proof)
-	if endpoint != "https://sts.cn-north-1.amazonaws.com.cn" {
-		t.Fatalf("STS endpoint = %q, want China partition endpoint", endpoint)
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			isolateAWSAuthEnvironment(t)
+			t.Setenv("AWS_USE_FIPS_ENDPOINT", fmt.Sprint(test.useFIPS))
+			var proof string
+			server := newDelegatedTokenServer(t, func(request *http.Request) {
+				proof = strings.TrimPrefix(request.Header.Get("Authorization"), "Delegated ")
+			})
+			defer server.Close()
+			provider, err := awsauth.New(
+				awsauth.WithRegion(test.region),
+				awsauth.WithStaticCredentials("access-key", "secret-key", ""),
+			)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if _, err := provider.Authenticate(delegatedTokenContext(server.URL), delegatedTokenConfig()); err != nil {
+				t.Fatal(err)
+			}
+			headers, endpoint := decodeProof(t, proof)
+			if endpoint != test.endpoint {
+				t.Errorf("STS endpoint = %q, want %q", endpoint, test.endpoint)
+			}
+			authorization := firstHeader(headers, "Authorization")
+			if !strings.Contains(authorization, "/"+test.signingRegion+"/sts/aws4_request") {
+				t.Errorf("AWS authorization = %q, want signing region %q", authorization, test.signingRegion)
+			}
+		})
 	}
 }
 
