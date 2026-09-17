@@ -10,45 +10,44 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationAccountBasicAuthRequest Username and password authentication.
-type IntegrationAccountBasicAuthRequest struct {
+// ElasticCloudIntegrationAccountBasicAuthRequest Username and password authentication.
+type ElasticCloudIntegrationAccountBasicAuthRequest struct {
 	// The authentication method type.
-	AuthType IntegrationAccountBasicAuthType `json:"auth_type"`
+	AuthType ElasticCloudIntegrationAccountBasicAuthType `json:"auth_type"`
 	// Secret password or private key.
 	Password string `json:"password"`
 	// Non-secret username or public identifier for the credential pair.
 	Username string `json:"username"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
-// NewIntegrationAccountBasicAuthRequest instantiates a new IntegrationAccountBasicAuthRequest object.
+// NewElasticCloudIntegrationAccountBasicAuthRequest instantiates a new ElasticCloudIntegrationAccountBasicAuthRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewIntegrationAccountBasicAuthRequest(authType IntegrationAccountBasicAuthType, password string, username string) *IntegrationAccountBasicAuthRequest {
-	this := IntegrationAccountBasicAuthRequest{}
+func NewElasticCloudIntegrationAccountBasicAuthRequest(authType ElasticCloudIntegrationAccountBasicAuthType, password string, username string) *ElasticCloudIntegrationAccountBasicAuthRequest {
+	this := ElasticCloudIntegrationAccountBasicAuthRequest{}
 	this.AuthType = authType
 	this.Password = password
 	this.Username = username
 	return &this
 }
 
-// NewIntegrationAccountBasicAuthRequestWithDefaults instantiates a new IntegrationAccountBasicAuthRequest object.
+// NewElasticCloudIntegrationAccountBasicAuthRequestWithDefaults instantiates a new ElasticCloudIntegrationAccountBasicAuthRequest object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewIntegrationAccountBasicAuthRequestWithDefaults() *IntegrationAccountBasicAuthRequest {
-	this := IntegrationAccountBasicAuthRequest{}
-	var authType IntegrationAccountBasicAuthType = INTEGRATIONACCOUNTBASICAUTHTYPE_BASIC
+func NewElasticCloudIntegrationAccountBasicAuthRequestWithDefaults() *ElasticCloudIntegrationAccountBasicAuthRequest {
+	this := ElasticCloudIntegrationAccountBasicAuthRequest{}
+	var authType ElasticCloudIntegrationAccountBasicAuthType = ELASTICCLOUDINTEGRATIONACCOUNTBASICAUTHTYPE_BASIC
 	this.AuthType = authType
 	return &this
 }
 
 // GetAuthType returns the AuthType field value.
-func (o *IntegrationAccountBasicAuthRequest) GetAuthType() IntegrationAccountBasicAuthType {
+func (o *ElasticCloudIntegrationAccountBasicAuthRequest) GetAuthType() ElasticCloudIntegrationAccountBasicAuthType {
 	if o == nil {
-		var ret IntegrationAccountBasicAuthType
+		var ret ElasticCloudIntegrationAccountBasicAuthType
 		return ret
 	}
 	return o.AuthType
@@ -56,7 +55,7 @@ func (o *IntegrationAccountBasicAuthRequest) GetAuthType() IntegrationAccountBas
 
 // GetAuthTypeOk returns a tuple with the AuthType field value
 // and a boolean to check if the value has been set.
-func (o *IntegrationAccountBasicAuthRequest) GetAuthTypeOk() (*IntegrationAccountBasicAuthType, bool) {
+func (o *ElasticCloudIntegrationAccountBasicAuthRequest) GetAuthTypeOk() (*ElasticCloudIntegrationAccountBasicAuthType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -64,12 +63,12 @@ func (o *IntegrationAccountBasicAuthRequest) GetAuthTypeOk() (*IntegrationAccoun
 }
 
 // SetAuthType sets field value.
-func (o *IntegrationAccountBasicAuthRequest) SetAuthType(v IntegrationAccountBasicAuthType) {
+func (o *ElasticCloudIntegrationAccountBasicAuthRequest) SetAuthType(v ElasticCloudIntegrationAccountBasicAuthType) {
 	o.AuthType = v
 }
 
 // GetPassword returns the Password field value.
-func (o *IntegrationAccountBasicAuthRequest) GetPassword() string {
+func (o *ElasticCloudIntegrationAccountBasicAuthRequest) GetPassword() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -79,7 +78,7 @@ func (o *IntegrationAccountBasicAuthRequest) GetPassword() string {
 
 // GetPasswordOk returns a tuple with the Password field value
 // and a boolean to check if the value has been set.
-func (o *IntegrationAccountBasicAuthRequest) GetPasswordOk() (*string, bool) {
+func (o *ElasticCloudIntegrationAccountBasicAuthRequest) GetPasswordOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -87,12 +86,12 @@ func (o *IntegrationAccountBasicAuthRequest) GetPasswordOk() (*string, bool) {
 }
 
 // SetPassword sets field value.
-func (o *IntegrationAccountBasicAuthRequest) SetPassword(v string) {
+func (o *ElasticCloudIntegrationAccountBasicAuthRequest) SetPassword(v string) {
 	o.Password = v
 }
 
 // GetUsername returns the Username field value.
-func (o *IntegrationAccountBasicAuthRequest) GetUsername() string {
+func (o *ElasticCloudIntegrationAccountBasicAuthRequest) GetUsername() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -102,7 +101,7 @@ func (o *IntegrationAccountBasicAuthRequest) GetUsername() string {
 
 // GetUsernameOk returns a tuple with the Username field value
 // and a boolean to check if the value has been set.
-func (o *IntegrationAccountBasicAuthRequest) GetUsernameOk() (*string, bool) {
+func (o *ElasticCloudIntegrationAccountBasicAuthRequest) GetUsernameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -110,12 +109,12 @@ func (o *IntegrationAccountBasicAuthRequest) GetUsernameOk() (*string, bool) {
 }
 
 // SetUsername sets field value.
-func (o *IntegrationAccountBasicAuthRequest) SetUsername(v string) {
+func (o *ElasticCloudIntegrationAccountBasicAuthRequest) SetUsername(v string) {
 	o.Username = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o IntegrationAccountBasicAuthRequest) MarshalJSON() ([]byte, error) {
+func (o ElasticCloudIntegrationAccountBasicAuthRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -123,19 +122,15 @@ func (o IntegrationAccountBasicAuthRequest) MarshalJSON() ([]byte, error) {
 	toSerialize["auth_type"] = o.AuthType
 	toSerialize["password"] = o.Password
 	toSerialize["username"] = o.Username
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *IntegrationAccountBasicAuthRequest) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ElasticCloudIntegrationAccountBasicAuthRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AuthType *IntegrationAccountBasicAuthType `json:"auth_type"`
-		Password *string                          `json:"password"`
-		Username *string                          `json:"username"`
+		AuthType *ElasticCloudIntegrationAccountBasicAuthType `json:"auth_type"`
+		Password *string                                      `json:"password"`
+		Username *string                                      `json:"username"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
@@ -149,12 +144,6 @@ func (o *IntegrationAccountBasicAuthRequest) UnmarshalJSON(bytes []byte) (err er
 	if all.Username == nil {
 		return fmt.Errorf("required field username missing")
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth_type", "password", "username"})
-	} else {
-		return err
-	}
 
 	hasInvalidField := false
 	if !all.AuthType.IsValid() {
@@ -164,10 +153,6 @@ func (o *IntegrationAccountBasicAuthRequest) UnmarshalJSON(bytes []byte) (err er
 	}
 	o.Password = *all.Password
 	o.Username = *all.Username
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

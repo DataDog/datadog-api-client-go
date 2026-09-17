@@ -8,13 +8,12 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TwilioCallSummariesLogsIntegrationDataflowRequest The Twilio call summaries logs dataflow.
+// TwilioCallSummariesLogsIntegrationDataflowRequest Twilio Call Summary resource logs, covering the metadata and performance of the calls made from your Twilio account. Requires Voice Insights Advanced Features to be enabled on the Twilio account; without it this dataflow collects no data.
 type TwilioCallSummariesLogsIntegrationDataflowRequest struct {
-	// Whether the Twilio dataflow is enabled.
+	// Whether Datadog collects this data. Defaults to `false`; set to `true` to start collection.
 	Enabled *bool `json:"enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewTwilioCallSummariesLogsIntegrationDataflowRequest instantiates a new TwilioCallSummariesLogsIntegrationDataflowRequest object.
@@ -71,10 +70,6 @@ func (o TwilioCallSummariesLogsIntegrationDataflowRequest) MarshalJSON() ([]byte
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -86,17 +81,7 @@ func (o *TwilioCallSummariesLogsIntegrationDataflowRequest) UnmarshalJSON(bytes 
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"enabled"})
-	} else {
-		return err
-	}
 	o.Enabled = all.Enabled
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

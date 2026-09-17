@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// TwilioMessagesLogsIntegrationDataflowResponse The Twilio messages logs dataflow.
+// TwilioMessagesLogsIntegrationDataflowResponse Twilio Message resource logs for inbound and outbound messages, used to track delivery and troubleshoot message errors. A log is produced when you send a message through the REST API, when Twilio executes a TwiML instruction, and when someone messages one of your Twilio numbers or channel addresses. Message bodies are never collected.
 type TwilioMessagesLogsIntegrationDataflowResponse struct {
-	// Whether the Twilio dataflow is enabled.
+	// Whether Datadog collects this data.
 	Enabled *bool `json:"enabled,omitempty"`
 	// Read-only collection status of a dataflow.
 	Status *IntegrationAccountDataflowStatus `json:"status,omitempty"`

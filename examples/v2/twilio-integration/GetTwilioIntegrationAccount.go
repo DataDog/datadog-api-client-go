@@ -17,14 +17,14 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("v2.GetTwilioIntegrationAccount", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewTwilioIntegrationAccountsApi(apiClient)
+	api := datadogV2.NewTwilioIntegrationApi(apiClient)
 	resp, r, err := api.GetTwilioIntegrationAccount(ctx, "account_id")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TwilioIntegrationAccountsApi.GetTwilioIntegrationAccount`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `TwilioIntegrationApi.GetTwilioIntegrationAccount`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `TwilioIntegrationAccountsApi.GetTwilioIntegrationAccount`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `TwilioIntegrationApi.GetTwilioIntegrationAccount`:\n%s\n", responseContent)
 }
