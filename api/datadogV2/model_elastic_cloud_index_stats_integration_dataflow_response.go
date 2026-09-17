@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ElasticCloudIndexStatsIntegrationDataflowResponse The Elastic Cloud index stats dataflow.
+// ElasticCloudIndexStatsIntegrationDataflowResponse Metrics for individual indices. Only the indices granted to the role of the user in `authentication` are collected.
 type ElasticCloudIndexStatsIntegrationDataflowResponse struct {
-	// Whether the Elastic Cloud dataflow is enabled.
+	// Whether Datadog collects this data.
 	Enabled *bool `json:"enabled,omitempty"`
 	// Read-only collection status of a dataflow.
 	Status *IntegrationAccountDataflowStatus `json:"status,omitempty"`

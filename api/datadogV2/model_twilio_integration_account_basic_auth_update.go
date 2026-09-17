@@ -10,43 +10,42 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationAccountBasicAuthUpdate Username and password authentication. Only the fields provided are changed; omit `password` to keep the stored one.
-type IntegrationAccountBasicAuthUpdate struct {
+// TwilioIntegrationAccountBasicAuthUpdate Username and password authentication. Only the fields provided are changed; omit `password` to keep the stored one.
+type TwilioIntegrationAccountBasicAuthUpdate struct {
 	// The authentication method type.
-	AuthType IntegrationAccountBasicAuthType `json:"auth_type"`
+	AuthType TwilioIntegrationAccountBasicAuthType `json:"auth_type"`
 	// Secret password or private key.
 	Password *string `json:"password,omitempty"`
 	// Non-secret username or public identifier for the credential pair.
 	Username *string `json:"username,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
-// NewIntegrationAccountBasicAuthUpdate instantiates a new IntegrationAccountBasicAuthUpdate object.
+// NewTwilioIntegrationAccountBasicAuthUpdate instantiates a new TwilioIntegrationAccountBasicAuthUpdate object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewIntegrationAccountBasicAuthUpdate(authType IntegrationAccountBasicAuthType) *IntegrationAccountBasicAuthUpdate {
-	this := IntegrationAccountBasicAuthUpdate{}
+func NewTwilioIntegrationAccountBasicAuthUpdate(authType TwilioIntegrationAccountBasicAuthType) *TwilioIntegrationAccountBasicAuthUpdate {
+	this := TwilioIntegrationAccountBasicAuthUpdate{}
 	this.AuthType = authType
 	return &this
 }
 
-// NewIntegrationAccountBasicAuthUpdateWithDefaults instantiates a new IntegrationAccountBasicAuthUpdate object.
+// NewTwilioIntegrationAccountBasicAuthUpdateWithDefaults instantiates a new TwilioIntegrationAccountBasicAuthUpdate object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewIntegrationAccountBasicAuthUpdateWithDefaults() *IntegrationAccountBasicAuthUpdate {
-	this := IntegrationAccountBasicAuthUpdate{}
-	var authType IntegrationAccountBasicAuthType = INTEGRATIONACCOUNTBASICAUTHTYPE_BASIC
+func NewTwilioIntegrationAccountBasicAuthUpdateWithDefaults() *TwilioIntegrationAccountBasicAuthUpdate {
+	this := TwilioIntegrationAccountBasicAuthUpdate{}
+	var authType TwilioIntegrationAccountBasicAuthType = TWILIOINTEGRATIONACCOUNTBASICAUTHTYPE_BASIC
 	this.AuthType = authType
 	return &this
 }
 
 // GetAuthType returns the AuthType field value.
-func (o *IntegrationAccountBasicAuthUpdate) GetAuthType() IntegrationAccountBasicAuthType {
+func (o *TwilioIntegrationAccountBasicAuthUpdate) GetAuthType() TwilioIntegrationAccountBasicAuthType {
 	if o == nil {
-		var ret IntegrationAccountBasicAuthType
+		var ret TwilioIntegrationAccountBasicAuthType
 		return ret
 	}
 	return o.AuthType
@@ -54,7 +53,7 @@ func (o *IntegrationAccountBasicAuthUpdate) GetAuthType() IntegrationAccountBasi
 
 // GetAuthTypeOk returns a tuple with the AuthType field value
 // and a boolean to check if the value has been set.
-func (o *IntegrationAccountBasicAuthUpdate) GetAuthTypeOk() (*IntegrationAccountBasicAuthType, bool) {
+func (o *TwilioIntegrationAccountBasicAuthUpdate) GetAuthTypeOk() (*TwilioIntegrationAccountBasicAuthType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,12 +61,12 @@ func (o *IntegrationAccountBasicAuthUpdate) GetAuthTypeOk() (*IntegrationAccount
 }
 
 // SetAuthType sets field value.
-func (o *IntegrationAccountBasicAuthUpdate) SetAuthType(v IntegrationAccountBasicAuthType) {
+func (o *TwilioIntegrationAccountBasicAuthUpdate) SetAuthType(v TwilioIntegrationAccountBasicAuthType) {
 	o.AuthType = v
 }
 
 // GetPassword returns the Password field value if set, zero value otherwise.
-func (o *IntegrationAccountBasicAuthUpdate) GetPassword() string {
+func (o *TwilioIntegrationAccountBasicAuthUpdate) GetPassword() string {
 	if o == nil || o.Password == nil {
 		var ret string
 		return ret
@@ -77,7 +76,7 @@ func (o *IntegrationAccountBasicAuthUpdate) GetPassword() string {
 
 // GetPasswordOk returns a tuple with the Password field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationAccountBasicAuthUpdate) GetPasswordOk() (*string, bool) {
+func (o *TwilioIntegrationAccountBasicAuthUpdate) GetPasswordOk() (*string, bool) {
 	if o == nil || o.Password == nil {
 		return nil, false
 	}
@@ -85,17 +84,17 @@ func (o *IntegrationAccountBasicAuthUpdate) GetPasswordOk() (*string, bool) {
 }
 
 // HasPassword returns a boolean if a field has been set.
-func (o *IntegrationAccountBasicAuthUpdate) HasPassword() bool {
+func (o *TwilioIntegrationAccountBasicAuthUpdate) HasPassword() bool {
 	return o != nil && o.Password != nil
 }
 
 // SetPassword gets a reference to the given string and assigns it to the Password field.
-func (o *IntegrationAccountBasicAuthUpdate) SetPassword(v string) {
+func (o *TwilioIntegrationAccountBasicAuthUpdate) SetPassword(v string) {
 	o.Password = &v
 }
 
 // GetUsername returns the Username field value if set, zero value otherwise.
-func (o *IntegrationAccountBasicAuthUpdate) GetUsername() string {
+func (o *TwilioIntegrationAccountBasicAuthUpdate) GetUsername() string {
 	if o == nil || o.Username == nil {
 		var ret string
 		return ret
@@ -105,7 +104,7 @@ func (o *IntegrationAccountBasicAuthUpdate) GetUsername() string {
 
 // GetUsernameOk returns a tuple with the Username field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntegrationAccountBasicAuthUpdate) GetUsernameOk() (*string, bool) {
+func (o *TwilioIntegrationAccountBasicAuthUpdate) GetUsernameOk() (*string, bool) {
 	if o == nil || o.Username == nil {
 		return nil, false
 	}
@@ -113,17 +112,17 @@ func (o *IntegrationAccountBasicAuthUpdate) GetUsernameOk() (*string, bool) {
 }
 
 // HasUsername returns a boolean if a field has been set.
-func (o *IntegrationAccountBasicAuthUpdate) HasUsername() bool {
+func (o *TwilioIntegrationAccountBasicAuthUpdate) HasUsername() bool {
 	return o != nil && o.Username != nil
 }
 
 // SetUsername gets a reference to the given string and assigns it to the Username field.
-func (o *IntegrationAccountBasicAuthUpdate) SetUsername(v string) {
+func (o *TwilioIntegrationAccountBasicAuthUpdate) SetUsername(v string) {
 	o.Username = &v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o IntegrationAccountBasicAuthUpdate) MarshalJSON() ([]byte, error) {
+func (o TwilioIntegrationAccountBasicAuthUpdate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -135,31 +134,21 @@ func (o IntegrationAccountBasicAuthUpdate) MarshalJSON() ([]byte, error) {
 	if o.Username != nil {
 		toSerialize["username"] = o.Username
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *IntegrationAccountBasicAuthUpdate) UnmarshalJSON(bytes []byte) (err error) {
+func (o *TwilioIntegrationAccountBasicAuthUpdate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AuthType *IntegrationAccountBasicAuthType `json:"auth_type"`
-		Password *string                          `json:"password,omitempty"`
-		Username *string                          `json:"username,omitempty"`
+		AuthType *TwilioIntegrationAccountBasicAuthType `json:"auth_type"`
+		Password *string                                `json:"password,omitempty"`
+		Username *string                                `json:"username,omitempty"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.AuthType == nil {
 		return fmt.Errorf("required field auth_type missing")
-	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"auth_type", "password", "username"})
-	} else {
-		return err
 	}
 
 	hasInvalidField := false
@@ -170,10 +159,6 @@ func (o *IntegrationAccountBasicAuthUpdate) UnmarshalJSON(bytes []byte) (err err
 	}
 	o.Password = all.Password
 	o.Username = all.Username
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	if hasInvalidField {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

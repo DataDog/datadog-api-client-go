@@ -1,4 +1,4 @@
-// Create an Elastic Cloud integration account returns "Created" response
+// Update an Elastic Cloud integration account returns "OK" response
 
 package main
 
@@ -13,14 +13,14 @@ import (
 )
 
 func main() {
-	body := datadogV2.ElasticCloudIntegrationAccountCreateRequest{
-		Data: datadogV2.ElasticCloudIntegrationAccountCreateData{
-			Attributes: datadogV2.ElasticCloudIntegrationAccountCreateAttributes{
-				Authentication: datadogV2.ElasticCloudIntegrationAccountAuthenticationRequest{
-					IntegrationAccountBasicAuthRequest: &datadogV2.IntegrationAccountBasicAuthRequest{
-						AuthType: datadogV2.INTEGRATIONACCOUNTBASICAUTHTYPE_BASIC,
-						Password: "your-password",
-						Username: "datadog",
+	body := datadogV2.ElasticCloudIntegrationAccountUpdateRequest{
+		Data: datadogV2.ElasticCloudIntegrationAccountUpdateData{
+			Attributes: datadogV2.ElasticCloudIntegrationAccountUpdateAttributes{
+				Authentication: &datadogV2.ElasticCloudIntegrationAccountAuthenticationUpdate{
+					ElasticCloudIntegrationAccountBasicAuthUpdate: &datadogV2.ElasticCloudIntegrationAccountBasicAuthUpdate{
+						AuthType: datadogV2.ELASTICCLOUDINTEGRATIONACCOUNTBASICAUTHTYPE_BASIC,
+						Password: datadog.PtrString("your-password"),
+						Username: datadog.PtrString("datadog"),
 					}},
 				Dataflows: &datadogV2.ElasticCloudIntegrationDataflowsRequest{
 					ElasticCloudDetailedIndexStats: &datadogV2.ElasticCloudDetailedIndexStatsIntegrationDataflowRequest{
@@ -45,27 +45,28 @@ func main() {
 						Enabled: datadog.PtrBool(true),
 					},
 				},
-				Name: "elastic-cloud-prod",
-				Settings: datadogV2.ElasticCloudIntegrationAccountSettingsRequest{
+				Name: datadog.PtrString("elastic-cloud-prod"),
+				Settings: &datadogV2.ElasticCloudIntegrationAccountSettingsUpdate{
 					Tags: datadog.PtrString("env:prod,team:saasint"),
-					Url:  "https://example.es.us-central1.gcp.cloud.es.io:9243",
+					Url:  datadog.PtrString("https://example.es.us-central1.gcp.cloud.es.io:9243"),
 				},
 			},
+			Id:   "953a0060-81ec-4221-aed4-d4733b59cd96",
 			Type: datadogV2.INTEGRATIONACCOUNTTYPE_INTEGRATION_ACCOUNT,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.CreateElasticCloudIntegrationAccount", true)
+	configuration.SetUnstableOperationEnabled("v2.UpdateElasticCloudIntegrationAccount", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewElasticCloudIntegrationAccountsApi(apiClient)
-	resp, r, err := api.CreateElasticCloudIntegrationAccount(ctx, body)
+	api := datadogV2.NewElasticCloudIntegrationApi(apiClient)
+	resp, r, err := api.UpdateElasticCloudIntegrationAccount(ctx, "account_id", body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `ElasticCloudIntegrationAccountsApi.CreateElasticCloudIntegrationAccount`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `ElasticCloudIntegrationApi.UpdateElasticCloudIntegrationAccount`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `ElasticCloudIntegrationAccountsApi.CreateElasticCloudIntegrationAccount`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `ElasticCloudIntegrationApi.UpdateElasticCloudIntegrationAccount`:\n%s\n", responseContent)
 }

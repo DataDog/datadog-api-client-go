@@ -10,41 +10,41 @@ import (
 
 // ElasticCloudIntegrationAccountAuthenticationResponse - Authentication configured on the Elastic Cloud integration account.
 type ElasticCloudIntegrationAccountAuthenticationResponse struct {
-	IntegrationAccountBasicAuthResponse *IntegrationAccountBasicAuthResponse
+	ElasticCloudIntegrationAccountBasicAuthResponse *ElasticCloudIntegrationAccountBasicAuthResponse
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
 }
 
-// IntegrationAccountBasicAuthResponseAsElasticCloudIntegrationAccountAuthenticationResponse is a convenience function that returns IntegrationAccountBasicAuthResponse wrapped in ElasticCloudIntegrationAccountAuthenticationResponse.
-func IntegrationAccountBasicAuthResponseAsElasticCloudIntegrationAccountAuthenticationResponse(v *IntegrationAccountBasicAuthResponse) ElasticCloudIntegrationAccountAuthenticationResponse {
-	return ElasticCloudIntegrationAccountAuthenticationResponse{IntegrationAccountBasicAuthResponse: v}
+// ElasticCloudIntegrationAccountBasicAuthResponseAsElasticCloudIntegrationAccountAuthenticationResponse is a convenience function that returns ElasticCloudIntegrationAccountBasicAuthResponse wrapped in ElasticCloudIntegrationAccountAuthenticationResponse.
+func ElasticCloudIntegrationAccountBasicAuthResponseAsElasticCloudIntegrationAccountAuthenticationResponse(v *ElasticCloudIntegrationAccountBasicAuthResponse) ElasticCloudIntegrationAccountAuthenticationResponse {
+	return ElasticCloudIntegrationAccountAuthenticationResponse{ElasticCloudIntegrationAccountBasicAuthResponse: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
 func (obj *ElasticCloudIntegrationAccountAuthenticationResponse) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into IntegrationAccountBasicAuthResponse
-	err = datadog.Unmarshal(data, &obj.IntegrationAccountBasicAuthResponse)
+	// try to unmarshal data into ElasticCloudIntegrationAccountBasicAuthResponse
+	err = datadog.Unmarshal(data, &obj.ElasticCloudIntegrationAccountBasicAuthResponse)
 	if err == nil {
-		if obj.IntegrationAccountBasicAuthResponse != nil && obj.IntegrationAccountBasicAuthResponse.UnparsedObject == nil {
-			jsonIntegrationAccountBasicAuthResponse, _ := datadog.Marshal(obj.IntegrationAccountBasicAuthResponse)
-			if string(jsonIntegrationAccountBasicAuthResponse) == "{}" { // empty struct
-				obj.IntegrationAccountBasicAuthResponse = nil
+		if obj.ElasticCloudIntegrationAccountBasicAuthResponse != nil && obj.ElasticCloudIntegrationAccountBasicAuthResponse.UnparsedObject == nil {
+			jsonElasticCloudIntegrationAccountBasicAuthResponse, _ := datadog.Marshal(obj.ElasticCloudIntegrationAccountBasicAuthResponse)
+			if string(jsonElasticCloudIntegrationAccountBasicAuthResponse) == "{}" { // empty struct
+				obj.ElasticCloudIntegrationAccountBasicAuthResponse = nil
 			} else {
 				match++
 			}
 		} else {
-			obj.IntegrationAccountBasicAuthResponse = nil
+			obj.ElasticCloudIntegrationAccountBasicAuthResponse = nil
 		}
 	} else {
-		obj.IntegrationAccountBasicAuthResponse = nil
+		obj.ElasticCloudIntegrationAccountBasicAuthResponse = nil
 	}
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		obj.IntegrationAccountBasicAuthResponse = nil
+		obj.ElasticCloudIntegrationAccountBasicAuthResponse = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -52,8 +52,8 @@ func (obj *ElasticCloudIntegrationAccountAuthenticationResponse) UnmarshalJSON(d
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj ElasticCloudIntegrationAccountAuthenticationResponse) MarshalJSON() ([]byte, error) {
-	if obj.IntegrationAccountBasicAuthResponse != nil {
-		return datadog.Marshal(&obj.IntegrationAccountBasicAuthResponse)
+	if obj.ElasticCloudIntegrationAccountBasicAuthResponse != nil {
+		return datadog.Marshal(&obj.ElasticCloudIntegrationAccountBasicAuthResponse)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -64,8 +64,8 @@ func (obj ElasticCloudIntegrationAccountAuthenticationResponse) MarshalJSON() ([
 
 // GetActualInstance returns the actual instance.
 func (obj *ElasticCloudIntegrationAccountAuthenticationResponse) GetActualInstance() interface{} {
-	if obj.IntegrationAccountBasicAuthResponse != nil {
-		return obj.IntegrationAccountBasicAuthResponse
+	if obj.ElasticCloudIntegrationAccountBasicAuthResponse != nil {
+		return obj.ElasticCloudIntegrationAccountBasicAuthResponse
 	}
 
 	// all schemas are nil

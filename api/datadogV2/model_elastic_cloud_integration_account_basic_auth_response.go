@@ -10,10 +10,10 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// IntegrationAccountBasicAuthResponse The basic authentication method and username configured on the account.
-type IntegrationAccountBasicAuthResponse struct {
+// ElasticCloudIntegrationAccountBasicAuthResponse The basic authentication method and username configured on the account.
+type ElasticCloudIntegrationAccountBasicAuthResponse struct {
 	// The authentication method type.
-	AuthType IntegrationAccountBasicAuthType `json:"auth_type"`
+	AuthType ElasticCloudIntegrationAccountBasicAuthType `json:"auth_type"`
 	// Non-secret username or public identifier for the credential pair.
 	Username string `json:"username"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -21,31 +21,31 @@ type IntegrationAccountBasicAuthResponse struct {
 	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// NewIntegrationAccountBasicAuthResponse instantiates a new IntegrationAccountBasicAuthResponse object.
+// NewElasticCloudIntegrationAccountBasicAuthResponse instantiates a new ElasticCloudIntegrationAccountBasicAuthResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewIntegrationAccountBasicAuthResponse(authType IntegrationAccountBasicAuthType, username string) *IntegrationAccountBasicAuthResponse {
-	this := IntegrationAccountBasicAuthResponse{}
+func NewElasticCloudIntegrationAccountBasicAuthResponse(authType ElasticCloudIntegrationAccountBasicAuthType, username string) *ElasticCloudIntegrationAccountBasicAuthResponse {
+	this := ElasticCloudIntegrationAccountBasicAuthResponse{}
 	this.AuthType = authType
 	this.Username = username
 	return &this
 }
 
-// NewIntegrationAccountBasicAuthResponseWithDefaults instantiates a new IntegrationAccountBasicAuthResponse object.
+// NewElasticCloudIntegrationAccountBasicAuthResponseWithDefaults instantiates a new ElasticCloudIntegrationAccountBasicAuthResponse object.
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set.
-func NewIntegrationAccountBasicAuthResponseWithDefaults() *IntegrationAccountBasicAuthResponse {
-	this := IntegrationAccountBasicAuthResponse{}
-	var authType IntegrationAccountBasicAuthType = INTEGRATIONACCOUNTBASICAUTHTYPE_BASIC
+func NewElasticCloudIntegrationAccountBasicAuthResponseWithDefaults() *ElasticCloudIntegrationAccountBasicAuthResponse {
+	this := ElasticCloudIntegrationAccountBasicAuthResponse{}
+	var authType ElasticCloudIntegrationAccountBasicAuthType = ELASTICCLOUDINTEGRATIONACCOUNTBASICAUTHTYPE_BASIC
 	this.AuthType = authType
 	return &this
 }
 
 // GetAuthType returns the AuthType field value.
-func (o *IntegrationAccountBasicAuthResponse) GetAuthType() IntegrationAccountBasicAuthType {
+func (o *ElasticCloudIntegrationAccountBasicAuthResponse) GetAuthType() ElasticCloudIntegrationAccountBasicAuthType {
 	if o == nil {
-		var ret IntegrationAccountBasicAuthType
+		var ret ElasticCloudIntegrationAccountBasicAuthType
 		return ret
 	}
 	return o.AuthType
@@ -53,7 +53,7 @@ func (o *IntegrationAccountBasicAuthResponse) GetAuthType() IntegrationAccountBa
 
 // GetAuthTypeOk returns a tuple with the AuthType field value
 // and a boolean to check if the value has been set.
-func (o *IntegrationAccountBasicAuthResponse) GetAuthTypeOk() (*IntegrationAccountBasicAuthType, bool) {
+func (o *ElasticCloudIntegrationAccountBasicAuthResponse) GetAuthTypeOk() (*ElasticCloudIntegrationAccountBasicAuthType, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -61,12 +61,12 @@ func (o *IntegrationAccountBasicAuthResponse) GetAuthTypeOk() (*IntegrationAccou
 }
 
 // SetAuthType sets field value.
-func (o *IntegrationAccountBasicAuthResponse) SetAuthType(v IntegrationAccountBasicAuthType) {
+func (o *ElasticCloudIntegrationAccountBasicAuthResponse) SetAuthType(v ElasticCloudIntegrationAccountBasicAuthType) {
 	o.AuthType = v
 }
 
 // GetUsername returns the Username field value.
-func (o *IntegrationAccountBasicAuthResponse) GetUsername() string {
+func (o *ElasticCloudIntegrationAccountBasicAuthResponse) GetUsername() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -76,7 +76,7 @@ func (o *IntegrationAccountBasicAuthResponse) GetUsername() string {
 
 // GetUsernameOk returns a tuple with the Username field value
 // and a boolean to check if the value has been set.
-func (o *IntegrationAccountBasicAuthResponse) GetUsernameOk() (*string, bool) {
+func (o *ElasticCloudIntegrationAccountBasicAuthResponse) GetUsernameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -84,12 +84,12 @@ func (o *IntegrationAccountBasicAuthResponse) GetUsernameOk() (*string, bool) {
 }
 
 // SetUsername sets field value.
-func (o *IntegrationAccountBasicAuthResponse) SetUsername(v string) {
+func (o *ElasticCloudIntegrationAccountBasicAuthResponse) SetUsername(v string) {
 	o.Username = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
-func (o IntegrationAccountBasicAuthResponse) MarshalJSON() ([]byte, error) {
+func (o ElasticCloudIntegrationAccountBasicAuthResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
@@ -104,10 +104,10 @@ func (o IntegrationAccountBasicAuthResponse) MarshalJSON() ([]byte, error) {
 }
 
 // UnmarshalJSON deserializes the given payload.
-func (o *IntegrationAccountBasicAuthResponse) UnmarshalJSON(bytes []byte) (err error) {
+func (o *ElasticCloudIntegrationAccountBasicAuthResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		AuthType *IntegrationAccountBasicAuthType `json:"auth_type"`
-		Username *string                          `json:"username"`
+		AuthType *ElasticCloudIntegrationAccountBasicAuthType `json:"auth_type"`
+		Username *string                                      `json:"username"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

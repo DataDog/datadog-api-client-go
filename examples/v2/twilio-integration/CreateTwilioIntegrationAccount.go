@@ -1,4 +1,4 @@
-// Update a Twilio integration account returns "OK" response
+// Create a Twilio integration account returns "Created" response
 
 package main
 
@@ -13,14 +13,14 @@ import (
 )
 
 func main() {
-	body := datadogV2.TwilioIntegrationAccountUpdateRequest{
-		Data: datadogV2.TwilioIntegrationAccountUpdateData{
-			Attributes: datadogV2.TwilioIntegrationAccountUpdateAttributes{
-				Authentication: &datadogV2.TwilioIntegrationAccountAuthenticationUpdate{
-					IntegrationAccountBasicAuthUpdate: &datadogV2.IntegrationAccountBasicAuthUpdate{
-						AuthType: datadogV2.INTEGRATIONACCOUNTBASICAUTHTYPE_BASIC,
-						Password: datadog.PtrString("your-password"),
-						Username: datadog.PtrString("datadog"),
+	body := datadogV2.TwilioIntegrationAccountCreateRequest{
+		Data: datadogV2.TwilioIntegrationAccountCreateData{
+			Attributes: datadogV2.TwilioIntegrationAccountCreateAttributes{
+				Authentication: datadogV2.TwilioIntegrationAccountAuthenticationRequest{
+					TwilioIntegrationAccountBasicAuthRequest: &datadogV2.TwilioIntegrationAccountBasicAuthRequest{
+						AuthType: datadogV2.TWILIOINTEGRATIONACCOUNTBASICAUTHTYPE_BASIC,
+						Password: "your-password",
+						Username: "datadog",
 					}},
 				Dataflows: &datadogV2.TwilioIntegrationDataflowsRequest{
 					TwilioAlertsLogs: &datadogV2.TwilioAlertsLogsIntegrationDataflowRequest{
@@ -39,28 +39,27 @@ func main() {
 						Enabled: datadog.PtrBool(true),
 					},
 				},
-				Name: datadog.PtrString("twilio-prod"),
-				Settings: &datadogV2.TwilioIntegrationAccountSettingsUpdate{
-					AccountSid: datadog.PtrString("ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+				Name: "twilio-prod",
+				Settings: datadogV2.TwilioIntegrationAccountSettingsRequest{
+					AccountSid: "ACxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
 					CensorLogs: datadog.PtrBool(true),
 				},
 			},
-			Id:   "953a0060-81ec-4221-aed4-d4733b59cd96",
 			Type: datadogV2.INTEGRATIONACCOUNTTYPE_INTEGRATION_ACCOUNT,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("v2.UpdateTwilioIntegrationAccount", true)
+	configuration.SetUnstableOperationEnabled("v2.CreateTwilioIntegrationAccount", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	api := datadogV2.NewTwilioIntegrationAccountsApi(apiClient)
-	resp, r, err := api.UpdateTwilioIntegrationAccount(ctx, "account_id", body)
+	api := datadogV2.NewTwilioIntegrationApi(apiClient)
+	resp, r, err := api.CreateTwilioIntegrationAccount(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `TwilioIntegrationAccountsApi.UpdateTwilioIntegrationAccount`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `TwilioIntegrationApi.CreateTwilioIntegrationAccount`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `TwilioIntegrationAccountsApi.UpdateTwilioIntegrationAccount`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `TwilioIntegrationApi.CreateTwilioIntegrationAccount`:\n%s\n", responseContent)
 }

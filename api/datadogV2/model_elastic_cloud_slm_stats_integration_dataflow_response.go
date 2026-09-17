@@ -8,9 +8,9 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// ElasticCloudSlmStatsIntegrationDataflowResponse The Elastic Cloud snapshot lifecycle management stats dataflow.
+// ElasticCloudSlmStatsIntegrationDataflowResponse Metrics about the actions taken by snapshot lifecycle management. Requires the `read_slm` Elasticsearch cluster privilege on the role of the user in `authentication`; without it this dataflow collects no data.
 type ElasticCloudSlmStatsIntegrationDataflowResponse struct {
-	// Whether the Elastic Cloud dataflow is enabled.
+	// Whether Datadog collects this data.
 	Enabled *bool `json:"enabled,omitempty"`
 	// Read-only collection status of a dataflow.
 	Status *IntegrationAccountDataflowStatus `json:"status,omitempty"`
