@@ -16,7 +16,7 @@ import (
 type IPRangesApi datadog.Service
 
 // GetIPRanges List IP Ranges.
-// Get information about Datadog IP ranges.
+// Get information about Datadog IP ranges, including service-specific prefixes.
 func (a *IPRangesApi) GetIPRanges(ctx _context.Context) (IPRanges, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
