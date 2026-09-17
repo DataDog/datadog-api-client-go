@@ -14,12 +14,18 @@ import (
 
 func main() {
 	body := datadogV2.RecommendationsFilterRequest{
-		Filter: datadog.PtrString("@resource_table:aws_ec2_instance"),
-		Sort: []datadogV2.RecommendationsFilterRequestSortItems{
-			{
-				Expression: datadog.PtrString("potential_daily_savings.amount"),
-				Order:      datadog.PtrString("DESC"),
+		Data: datadogV2.RecommendationsFilterRequestData{
+			Attributes: &datadogV2.RecommendationsFilterRequestDataAttributes{
+				Scope: datadogV2.RECOMMENDATIONSFILTERREQUESTSCOPE_CCM.Ptr(),
+				Sort: []datadogV2.RecommendationsFilterRequestSortItems{
+					{
+						Expression: datadog.PtrString("potential_daily_savings.amount"),
+						Order:      datadog.PtrString("DESC"),
+					},
+				},
 			},
+			Id:   datadog.PtrString("@resource_table:aws_ec2_instance"),
+			Type: datadogV2.RECOMMENDATIONSFILTERREQUESTDATATYPE_RECOMMENDATIONS_FILTER,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
