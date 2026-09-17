@@ -12,7 +12,7 @@ import (
 
 // DueDateRuleReorderRequest The body of the due date rule reorder request.
 type DueDateRuleReorderRequest struct {
-	// The ordered list of all due date rules; every rule must be included.
+	// The ordered list of all due date rules. Every rule must be included.
 	Data []DueDateRuleReorderItem `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

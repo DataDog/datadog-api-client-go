@@ -22,7 +22,7 @@ type CustomRulesetAttributes struct {
 	// Ruleset name
 	Name string `json:"name"`
 	// Rules in the ruleset
-	Rules datadog.NullableList[CustomRule] `json:"rules"`
+	Rules datadog.NullableList[CustomRulesetRuleEmbedded] `json:"rules"`
 	// Base64-encoded short description
 	ShortDescription string `json:"short_description"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -34,7 +34,7 @@ type CustomRulesetAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCustomRulesetAttributes(createdAt time.Time, createdBy string, description string, name string, rules datadog.NullableList[CustomRule], shortDescription string) *CustomRulesetAttributes {
+func NewCustomRulesetAttributes(createdAt time.Time, createdBy string, description string, name string, rules datadog.NullableList[CustomRulesetRuleEmbedded], shortDescription string) *CustomRulesetAttributes {
 	this := CustomRulesetAttributes{}
 	this.CreatedAt = createdAt
 	this.CreatedBy = createdBy
@@ -146,10 +146,10 @@ func (o *CustomRulesetAttributes) SetName(v string) {
 }
 
 // GetRules returns the Rules field value.
-// If the value is explicit nil, the zero value for []CustomRule will be returned.
-func (o *CustomRulesetAttributes) GetRules() []CustomRule {
+// If the value is explicit nil, the zero value for []CustomRulesetRuleEmbedded will be returned.
+func (o *CustomRulesetAttributes) GetRules() []CustomRulesetRuleEmbedded {
 	if o == nil {
-		var ret []CustomRule
+		var ret []CustomRulesetRuleEmbedded
 		return ret
 	}
 	return *o.Rules.Get()
@@ -158,7 +158,7 @@ func (o *CustomRulesetAttributes) GetRules() []CustomRule {
 // GetRulesOk returns a tuple with the Rules field value
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
-func (o *CustomRulesetAttributes) GetRulesOk() (*[]CustomRule, bool) {
+func (o *CustomRulesetAttributes) GetRulesOk() (*[]CustomRulesetRuleEmbedded, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -166,7 +166,7 @@ func (o *CustomRulesetAttributes) GetRulesOk() (*[]CustomRule, bool) {
 }
 
 // SetRules sets field value.
-func (o *CustomRulesetAttributes) SetRules(v []CustomRule) {
+func (o *CustomRulesetAttributes) SetRules(v []CustomRulesetRuleEmbedded) {
 	o.Rules.Set(&v)
 }
 
@@ -219,12 +219,12 @@ func (o CustomRulesetAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomRulesetAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		CreatedAt        *time.Time                       `json:"created_at"`
-		CreatedBy        *string                          `json:"created_by"`
-		Description      *string                          `json:"description"`
-		Name             *string                          `json:"name"`
-		Rules            datadog.NullableList[CustomRule] `json:"rules"`
-		ShortDescription *string                          `json:"short_description"`
+		CreatedAt        *time.Time                                      `json:"created_at"`
+		CreatedBy        *string                                         `json:"created_by"`
+		Description      *string                                         `json:"description"`
+		Name             *string                                         `json:"name"`
+		Rules            datadog.NullableList[CustomRulesetRuleEmbedded] `json:"rules"`
+		ShortDescription *string                                         `json:"short_description"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)

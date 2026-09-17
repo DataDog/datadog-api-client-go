@@ -19,21 +19,24 @@ import (
 // - `image`: `url` is required.
 // - `widget`: `tileDef` is required (any well-formed JSON; the frontend owns the renderable schema).
 // - `llmobs_trace`: `traceId` is required; `interactionType`, when set, must be `trace` or `experiment_trace`.
+// - `frontend`: `code` is required and must be a non-empty string; `label` is optional.
 //
 // `height`, when set, must be positive.
 type LLMObsContentBlock struct {
 	// Alternative text for an `image` block.
 	Alt *string `json:"alt,omitempty"`
+	// HTML code rendered by a `frontend` block. Required for `frontend` blocks.
+	Code *string `json:"code,omitempty"`
 	// Block payload. A string for `markdown`, `header`, and `text`; an
 	// arbitrary JSON value (object, array, or scalar) for `json`. Omitted
-	// for `image`, `widget`, and `llmobs_trace`.
+	// for `image`, `widget`, `llmobs_trace`, and `frontend`.
 	Content interface{} `json:"content,omitempty"`
 	// Optional rendered height. Must be positive when set.
 	Height *int64 `json:"height,omitempty"`
 	// Upstream interaction type referenced by an `llmobs_trace` block.
 	// Restricted to `trace` or `experiment_trace`.
 	InteractionType *LLMObsContentBlockLLMObsTraceInteractionType `json:"interactionType,omitempty"`
-	// Optional label rendered alongside the block.
+	// Optional label rendered alongside a `frontend` block.
 	Label *string `json:"label,omitempty"`
 	// Visual size for a `header` block.
 	Level *LLMObsContentBlockHeaderLevel `json:"level,omitempty"`
@@ -98,6 +101,34 @@ func (o *LLMObsContentBlock) HasAlt() bool {
 // SetAlt gets a reference to the given string and assigns it to the Alt field.
 func (o *LLMObsContentBlock) SetAlt(v string) {
 	o.Alt = &v
+}
+
+// GetCode returns the Code field value if set, zero value otherwise.
+func (o *LLMObsContentBlock) GetCode() string {
+	if o == nil || o.Code == nil {
+		var ret string
+		return ret
+	}
+	return *o.Code
+}
+
+// GetCodeOk returns a tuple with the Code field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *LLMObsContentBlock) GetCodeOk() (*string, bool) {
+	if o == nil || o.Code == nil {
+		return nil, false
+	}
+	return o.Code, true
+}
+
+// HasCode returns a boolean if a field has been set.
+func (o *LLMObsContentBlock) HasCode() bool {
+	return o != nil && o.Code != nil
+}
+
+// SetCode gets a reference to the given string and assigns it to the Code field.
+func (o *LLMObsContentBlock) SetCode(v string) {
+	o.Code = &v
 }
 
 // GetContent returns the Content field value if set, zero value otherwise.
@@ -384,6 +415,9 @@ func (o LLMObsContentBlock) MarshalJSON() ([]byte, error) {
 	if o.Alt != nil {
 		toSerialize["alt"] = o.Alt
 	}
+	if o.Code != nil {
+		toSerialize["code"] = o.Code
+	}
 	if o.Content != nil {
 		toSerialize["content"] = o.Content
 	}
@@ -423,6 +457,7 @@ func (o LLMObsContentBlock) MarshalJSON() ([]byte, error) {
 func (o *LLMObsContentBlock) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Alt             *string                                       `json:"alt,omitempty"`
+		Code            *string                                       `json:"code,omitempty"`
 		Content         interface{}                                   `json:"content,omitempty"`
 		Height          *int64                                        `json:"height,omitempty"`
 		InteractionType *LLMObsContentBlockLLMObsTraceInteractionType `json:"interactionType,omitempty"`
@@ -442,13 +477,14 @@ func (o *LLMObsContentBlock) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"alt", "content", "height", "interactionType", "label", "level", "tileDef", "timeFrame", "traceId", "type", "url"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"alt", "code", "content", "height", "interactionType", "label", "level", "tileDef", "timeFrame", "traceId", "type", "url"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
 	o.Alt = all.Alt
+	o.Code = all.Code
 	o.Content = all.Content
 	o.Height = all.Height
 	if all.InteractionType != nil && !all.InteractionType.IsValid() {

@@ -14,7 +14,7 @@ import (
 
 // DueDateRuleReorderItem A reference to a due date rule used for reordering.
 type DueDateRuleReorderItem struct {
-	// The ID of the automation rule.
+	// The ID of the due date rule.
 	Id uuid.UUID `json:"id"`
 	// The JSON:API type for due date rules.
 	Type DueDateRuleType `json:"type"`

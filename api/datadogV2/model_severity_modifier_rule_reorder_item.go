@@ -14,7 +14,7 @@ import (
 
 // SeverityModifierRuleReorderItem A reference to a severity modifier rule used for reordering.
 type SeverityModifierRuleReorderItem struct {
-	// The ID of the automation rule.
+	// The ID of the severity modifier rule.
 	Id uuid.UUID `json:"id"`
 	// The JSON:API type for severity modifier rules.
 	Type SeverityModifierRuleType `json:"type"`

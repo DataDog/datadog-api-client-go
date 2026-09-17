@@ -17,8 +17,6 @@ func main() {
 		Data: datadogV2.OwnershipFeedbackRequestData{
 			Attributes: datadogV2.OwnershipFeedbackRequestAttributes{
 				Action:               datadogV2.OWNERSHIPFEEDBACKACTION_CONFIRM,
-				ActorHandle:          "user@example.com",
-				ActorType:            "user",
 				CorrectedOwnerHandle: *datadog.NewNullableString(datadog.PtrString("team-b")),
 				CorrectedOwnerType:   *datadog.NewNullableString(datadog.PtrString("team")),
 				InferenceChecksum:    "abc123",

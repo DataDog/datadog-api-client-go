@@ -12,7 +12,7 @@ import (
 
 // TicketCreationRuleReorderRequest The body of the ticket creation rule reorder request.
 type TicketCreationRuleReorderRequest struct {
-	// The ordered list of all ticket creation rules; every rule must be included.
+	// The ordered list of all ticket creation rules. Every rule must be included.
 	Data []TicketCreationRuleReorderItem `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

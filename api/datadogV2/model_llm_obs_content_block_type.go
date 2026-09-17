@@ -23,6 +23,7 @@ const (
 	LLMOBSCONTENTBLOCKTYPE_IMAGE        LLMObsContentBlockType = "image"
 	LLMOBSCONTENTBLOCKTYPE_WIDGET       LLMObsContentBlockType = "widget"
 	LLMOBSCONTENTBLOCKTYPE_LLMOBS_TRACE LLMObsContentBlockType = "llmobs_trace"
+	LLMOBSCONTENTBLOCKTYPE_FRONTEND     LLMObsContentBlockType = "frontend"
 )
 
 var allowedLLMObsContentBlockTypeEnumValues = []LLMObsContentBlockType{
@@ -33,6 +34,7 @@ var allowedLLMObsContentBlockTypeEnumValues = []LLMObsContentBlockType{
 	LLMOBSCONTENTBLOCKTYPE_IMAGE,
 	LLMOBSCONTENTBLOCKTYPE_WIDGET,
 	LLMOBSCONTENTBLOCKTYPE_LLMOBS_TRACE,
+	LLMOBSCONTENTBLOCKTYPE_FRONTEND,
 }
 
 // GetAllowedValues reeturns the list of possible values.

@@ -4896,6 +4896,27 @@
     {
       "feature": "Deployment Gates",
       "feature_file": "../../features/v2/deployment_gates.feature",
+      "file": "v2/deployment-gates/create-monitor-deployment-rule-with-monitor-ids-returns-ok-response.json",
+      "scenario": "Create monitor deployment rule with monitor IDs returns \"OK\" response",
+      "version": "v2"
+    },
+    {
+      "feature": "Deployment Gates",
+      "feature_file": "../../features/v2/deployment_gates.feature",
+      "file": "v2/deployment-gates/create-monitor-deployment-rule-with-query-and-monitor-ids-returns-bad-request-response.json",
+      "scenario": "Create monitor deployment rule with query and monitor IDs returns \"Bad Request\" response",
+      "version": "v2"
+    },
+    {
+      "feature": "Deployment Gates",
+      "feature_file": "../../features/v2/deployment_gates.feature",
+      "file": "v2/deployment-gates/create-monitor-deployment-rule-with-query-returns-ok-response.json",
+      "scenario": "Create monitor deployment rule with query returns \"OK\" response",
+      "version": "v2"
+    },
+    {
+      "feature": "Deployment Gates",
+      "feature_file": "../../features/v2/deployment_gates.feature",
       "file": "v2/deployment-gates/delete-deployment-gate-returns-bad-request-response.json",
       "scenario": "Delete deployment gate returns \"Bad Request\" response",
       "version": "v2"
@@ -7416,6 +7437,13 @@
     {
       "feature": "Monitors",
       "feature_file": "../../features/v2/monitors.feature",
+      "file": "v2/monitors/create-a-downtime-duration-monitor-configuration-policy-returns-ok-response.json",
+      "scenario": "Create a downtime duration monitor configuration policy returns \"OK\" response",
+      "version": "v2"
+    },
+    {
+      "feature": "Monitors",
+      "feature_file": "../../features/v2/monitors.feature",
       "file": "v2/monitors/create-a-monitor-configuration-policy-returns-bad-request-response.json",
       "scenario": "Create a monitor configuration policy returns \"Bad Request\" response",
       "version": "v2"
@@ -8186,6 +8214,13 @@
     {
       "feature": "On-Call",
       "feature_file": "../../features/v2/on-call.feature",
+      "file": "v2/on-call/list-on-call-schedules-returns-ok-response.json",
+      "scenario": "List On-Call schedules returns \"OK\" response",
+      "version": "v2"
+    },
+    {
+      "feature": "On-Call",
+      "feature_file": "../../features/v2/on-call.feature",
       "file": "v2/on-call/set-on-call-team-routing-rules-returns-ok-response.json",
       "scenario": "Set On-Call team routing rules returns \"OK\" response",
       "version": "v2"
@@ -8594,6 +8629,13 @@
       "feature_file": "../../features/v2/roles.feature",
       "file": "v2/roles/list-permissions-for-a-role-returns-ok-response.json",
       "scenario": "List permissions for a role returns \"OK\" response",
+      "version": "v2"
+    },
+    {
+      "feature": "Roles",
+      "feature_file": "../../features/v2/roles.feature",
+      "file": "v2/roles/list-permissions-including-scopes-returns-ok-response.json",
+      "scenario": "List permissions including scopes returns \"OK\" response",
       "version": "v2"
     },
     {
@@ -9362,13 +9404,6 @@
     {
       "feature": "Security Monitoring",
       "feature_file": "../../features/v2/security_monitoring.feature",
-      "file": "v2/security-monitoring/create-a-detection-rule-with-type-signal-correlation-returns-ok-response.json",
-      "scenario": "Create a detection rule with type 'signal_correlation' returns \"OK\" response",
-      "version": "v2"
-    },
-    {
-      "feature": "Security Monitoring",
-      "feature_file": "../../features/v2/security_monitoring.feature",
       "file": "v2/security-monitoring/create-a-detection-rule-with-type-workload-security-returns-ok-response.json",
       "scenario": "Create a detection rule with type 'workload_security' returns \"OK\" response",
       "version": "v2"
@@ -9735,6 +9770,13 @@
       "feature_file": "../../features/v2/security_monitoring.feature",
       "file": "v2/security-monitoring/get-a-job-s-details-returns-ok-response.json",
       "scenario": "Get a job's details returns \"OK\" response",
+      "version": "v2"
+    },
+    {
+      "feature": "Security Monitoring",
+      "feature_file": "../../features/v2/security_monitoring.feature",
+      "file": "v2/security-monitoring/get-a-list-of-security-signals-returns-ok-response.json",
+      "scenario": "Get a list of security signals returns \"OK\" response",
       "version": "v2"
     },
     {

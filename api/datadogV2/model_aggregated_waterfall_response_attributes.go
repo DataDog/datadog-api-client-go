@@ -14,8 +14,8 @@ import (
 type AggregatedWaterfallResponseAttributes struct {
 	// The RUM application ID that was analyzed.
 	ApplicationId string `json:"application_id"`
-	// Performance criteria to filter view instances by a metric threshold.
-	Criteria *AggregatedWaterfallPerformanceCriteria `json:"criteria,omitempty"`
+	// Performance criteria used to filter view instances by a metric threshold, or null if no criteria were applied.
+	Criteria NullableAggregatedWaterfallResponseAttributesCriteria `json:"criteria"`
 	// Start of the analyzed time range as a Unix timestamp in seconds.
 	From int64 `json:"from"`
 	// Network resources in chronological waterfall order.
@@ -39,9 +39,10 @@ type AggregatedWaterfallResponseAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewAggregatedWaterfallResponseAttributes(applicationId string, from int64, resources []AggregatedResource, sampledViewIds []string, to int64, totalCacheHitRatePct float64, viewCount int32, viewName string) *AggregatedWaterfallResponseAttributes {
+func NewAggregatedWaterfallResponseAttributes(applicationId string, criteria NullableAggregatedWaterfallResponseAttributesCriteria, from int64, resources []AggregatedResource, sampledViewIds []string, to int64, totalCacheHitRatePct float64, viewCount int32, viewName string) *AggregatedWaterfallResponseAttributes {
 	this := AggregatedWaterfallResponseAttributes{}
 	this.ApplicationId = applicationId
+	this.Criteria = criteria
 	this.From = from
 	this.Resources = resources
 	this.SampledViewIds = sampledViewIds
@@ -83,32 +84,29 @@ func (o *AggregatedWaterfallResponseAttributes) SetApplicationId(v string) {
 	o.ApplicationId = v
 }
 
-// GetCriteria returns the Criteria field value if set, zero value otherwise.
-func (o *AggregatedWaterfallResponseAttributes) GetCriteria() AggregatedWaterfallPerformanceCriteria {
-	if o == nil || o.Criteria == nil {
-		var ret AggregatedWaterfallPerformanceCriteria
+// GetCriteria returns the Criteria field value.
+// If the value is explicit nil, the zero value for AggregatedWaterfallResponseAttributesCriteria will be returned.
+func (o *AggregatedWaterfallResponseAttributes) GetCriteria() AggregatedWaterfallResponseAttributesCriteria {
+	if o == nil || o.Criteria.Get() == nil {
+		var ret AggregatedWaterfallResponseAttributesCriteria
 		return ret
 	}
-	return *o.Criteria
+	return *o.Criteria.Get()
 }
 
-// GetCriteriaOk returns a tuple with the Criteria field value if set, nil otherwise
+// GetCriteriaOk returns a tuple with the Criteria field value
 // and a boolean to check if the value has been set.
-func (o *AggregatedWaterfallResponseAttributes) GetCriteriaOk() (*AggregatedWaterfallPerformanceCriteria, bool) {
-	if o == nil || o.Criteria == nil {
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+func (o *AggregatedWaterfallResponseAttributes) GetCriteriaOk() (*AggregatedWaterfallResponseAttributesCriteria, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Criteria, true
+	return o.Criteria.Get(), o.Criteria.IsSet()
 }
 
-// HasCriteria returns a boolean if a field has been set.
-func (o *AggregatedWaterfallResponseAttributes) HasCriteria() bool {
-	return o != nil && o.Criteria != nil
-}
-
-// SetCriteria gets a reference to the given AggregatedWaterfallPerformanceCriteria and assigns it to the Criteria field.
-func (o *AggregatedWaterfallResponseAttributes) SetCriteria(v AggregatedWaterfallPerformanceCriteria) {
-	o.Criteria = &v
+// SetCriteria sets field value.
+func (o *AggregatedWaterfallResponseAttributes) SetCriteria(v AggregatedWaterfallResponseAttributesCriteria) {
+	o.Criteria.Set(&v)
 }
 
 // GetFrom returns the From field value.
@@ -279,9 +277,7 @@ func (o AggregatedWaterfallResponseAttributes) MarshalJSON() ([]byte, error) {
 		return datadog.Marshal(o.UnparsedObject)
 	}
 	toSerialize["application_id"] = o.ApplicationId
-	if o.Criteria != nil {
-		toSerialize["criteria"] = o.Criteria
-	}
+	toSerialize["criteria"] = o.Criteria.Get()
 	toSerialize["from"] = o.From
 	toSerialize["resources"] = o.Resources
 	toSerialize["sampled_view_ids"] = o.SampledViewIds
@@ -299,21 +295,24 @@ func (o AggregatedWaterfallResponseAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *AggregatedWaterfallResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		ApplicationId        *string                                 `json:"application_id"`
-		Criteria             *AggregatedWaterfallPerformanceCriteria `json:"criteria,omitempty"`
-		From                 *int64                                  `json:"from"`
-		Resources            *[]AggregatedResource                   `json:"resources"`
-		SampledViewIds       *[]string                               `json:"sampled_view_ids"`
-		To                   *int64                                  `json:"to"`
-		TotalCacheHitRatePct *float64                                `json:"total_cache_hit_rate_pct"`
-		ViewCount            *int32                                  `json:"view_count"`
-		ViewName             *string                                 `json:"view_name"`
+		ApplicationId        *string                                               `json:"application_id"`
+		Criteria             NullableAggregatedWaterfallResponseAttributesCriteria `json:"criteria"`
+		From                 *int64                                                `json:"from"`
+		Resources            *[]AggregatedResource                                 `json:"resources"`
+		SampledViewIds       *[]string                                             `json:"sampled_view_ids"`
+		To                   *int64                                                `json:"to"`
+		TotalCacheHitRatePct *float64                                              `json:"total_cache_hit_rate_pct"`
+		ViewCount            *int32                                                `json:"view_count"`
+		ViewName             *string                                               `json:"view_name"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 	if all.ApplicationId == nil {
 		return fmt.Errorf("required field application_id missing")
+	}
+	if !all.Criteria.IsSet() {
+		return fmt.Errorf("required field criteria missing")
 	}
 	if all.From == nil {
 		return fmt.Errorf("required field from missing")
@@ -342,12 +341,7 @@ func (o *AggregatedWaterfallResponseAttributes) UnmarshalJSON(bytes []byte) (err
 	} else {
 		return err
 	}
-
-	hasInvalidField := false
 	o.ApplicationId = *all.ApplicationId
-	if all.Criteria != nil && all.Criteria.UnparsedObject != nil && o.UnparsedObject == nil {
-		hasInvalidField = true
-	}
 	o.Criteria = all.Criteria
 	o.From = *all.From
 	o.Resources = *all.Resources
@@ -359,10 +353,6 @@ func (o *AggregatedWaterfallResponseAttributes) UnmarshalJSON(bytes []byte) (err
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
-	}
-
-	if hasInvalidField {
-		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

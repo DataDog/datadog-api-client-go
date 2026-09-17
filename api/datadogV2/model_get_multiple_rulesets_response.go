@@ -5,13 +5,15 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
 // GetMultipleRulesetsResponse The response payload for the get-multiple-rulesets endpoint, containing the requested rulesets and their rules.
 type GetMultipleRulesetsResponse struct {
 	// The primary data object in the get-multiple-rulesets response, containing the response attributes and resource type.
-	Data *GetMultipleRulesetsResponseData `json:"data,omitempty"`
+	Data GetMultipleRulesetsResponseData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -21,8 +23,9 @@ type GetMultipleRulesetsResponse struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGetMultipleRulesetsResponse() *GetMultipleRulesetsResponse {
+func NewGetMultipleRulesetsResponse(data GetMultipleRulesetsResponseData) *GetMultipleRulesetsResponse {
 	this := GetMultipleRulesetsResponse{}
+	this.Data = data
 	return &this
 }
 
@@ -34,32 +37,27 @@ func NewGetMultipleRulesetsResponseWithDefaults() *GetMultipleRulesetsResponse {
 	return &this
 }
 
-// GetData returns the Data field value if set, zero value otherwise.
+// GetData returns the Data field value.
 func (o *GetMultipleRulesetsResponse) GetData() GetMultipleRulesetsResponseData {
-	if o == nil || o.Data == nil {
+	if o == nil {
 		var ret GetMultipleRulesetsResponseData
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
-// GetDataOk returns a tuple with the Data field value if set, nil otherwise
+// GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *GetMultipleRulesetsResponse) GetDataOk() (*GetMultipleRulesetsResponseData, bool) {
-	if o == nil || o.Data == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
-// HasData returns a boolean if a field has been set.
-func (o *GetMultipleRulesetsResponse) HasData() bool {
-	return o != nil && o.Data != nil
-}
-
-// SetData gets a reference to the given GetMultipleRulesetsResponseData and assigns it to the Data field.
+// SetData sets field value.
 func (o *GetMultipleRulesetsResponse) SetData(v GetMultipleRulesetsResponseData) {
-	o.Data = &v
+	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -68,9 +66,7 @@ func (o GetMultipleRulesetsResponse) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Data != nil {
-		toSerialize["data"] = o.Data
-	}
+	toSerialize["data"] = o.Data
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -81,10 +77,13 @@ func (o GetMultipleRulesetsResponse) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GetMultipleRulesetsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Data *GetMultipleRulesetsResponseData `json:"data,omitempty"`
+		Data *GetMultipleRulesetsResponseData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
+	}
+	if all.Data == nil {
+		return fmt.Errorf("required field data missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
@@ -94,10 +93,10 @@ func (o *GetMultipleRulesetsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 
 	hasInvalidField := false
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		hasInvalidField = true
 	}
-	o.Data = all.Data
+	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

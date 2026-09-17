@@ -15,12 +15,12 @@ func main() {
 	body := datadogV2.CustomRuleRevisionRequest{
 		Data: &datadogV2.CustomRuleRevisionRequestData{
 			Attributes: &datadogV2.CustomRuleRevisionInputAttributes{
-				Arguments: []datadogV2.Argument{
+				Arguments: *datadog.NewNullableList(&[]datadogV2.Argument{
 					{
 						Description: "YXJndW1lbnQgZGVzY3JpcHRpb24=",
 						Name:        "YXJndW1lbnRfbmFtZQ==",
 					},
-				},
+				}),
 				Category:         datadogV2.CUSTOMRULEREVISIONATTRIBUTESCATEGORY_SECURITY,
 				Code:             "Y29uZHVjdG9yOgogICAgLSBkZXBsb3lfb25seTogdHJ1ZQ==",
 				CreationMessage:  "Initial revision",
@@ -34,17 +34,17 @@ func main() {
 				Severity:         datadogV2.CUSTOMRULEREVISIONATTRIBUTESSEVERITY_ERROR,
 				ShortDescription: "c2hvcnQgZGVzY3JpcHRpb24=",
 				ShouldUseAiFix:   false,
-				Tags: []string{
+				Tags: *datadog.NewNullableList(&[]string{
 					"security",
 					"custom",
-				},
-				Tests: []datadogV2.CustomRuleRevisionTest{
+				}),
+				Tests: *datadog.NewNullableList(&[]datadogV2.CustomRuleRevisionTest{
 					{
 						AnnotationCount: 1,
 						Code:            "Y29uZHVjdG9yOgogICAgLSBkZXBsb3lfb25seTogdHJ1ZQ==",
 						Filename:        "test.yaml",
 					},
-				},
+				}),
 				TreeSitterQuery: "Y29uZHVjdG9yOgogICAgLSBkZXBsb3lfb25seTogdHJ1ZQ==",
 			},
 			Type: datadogV2.CUSTOMRULEREVISIONDATATYPE_CUSTOM_RULE_REVISION.Ptr(),

@@ -12,8 +12,8 @@ import (
 
 // GetAstResponseDataAttributes The attributes of the get-AST response, containing the parsed abstract syntax tree.
 type GetAstResponseDataAttributes struct {
-	// The parsed abstract syntax tree as a JSON object.
-	Ast map[string]interface{} `json:"ast"`
+	// A node in the abstract syntax tree of the parsed source code.
+	Result AstNode `json:"result"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -23,9 +23,9 @@ type GetAstResponseDataAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewGetAstResponseDataAttributes(ast map[string]interface{}) *GetAstResponseDataAttributes {
+func NewGetAstResponseDataAttributes(result AstNode) *GetAstResponseDataAttributes {
 	this := GetAstResponseDataAttributes{}
-	this.Ast = ast
+	this.Result = result
 	return &this
 }
 
@@ -37,27 +37,27 @@ func NewGetAstResponseDataAttributesWithDefaults() *GetAstResponseDataAttributes
 	return &this
 }
 
-// GetAst returns the Ast field value.
-func (o *GetAstResponseDataAttributes) GetAst() map[string]interface{} {
+// GetResult returns the Result field value.
+func (o *GetAstResponseDataAttributes) GetResult() AstNode {
 	if o == nil {
-		var ret map[string]interface{}
+		var ret AstNode
 		return ret
 	}
-	return o.Ast
+	return o.Result
 }
 
-// GetAstOk returns a tuple with the Ast field value
+// GetResultOk returns a tuple with the Result field value
 // and a boolean to check if the value has been set.
-func (o *GetAstResponseDataAttributes) GetAstOk() (*map[string]interface{}, bool) {
+func (o *GetAstResponseDataAttributes) GetResultOk() (*AstNode, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Ast, true
+	return &o.Result, true
 }
 
-// SetAst sets field value.
-func (o *GetAstResponseDataAttributes) SetAst(v map[string]interface{}) {
-	o.Ast = v
+// SetResult sets field value.
+func (o *GetAstResponseDataAttributes) SetResult(v AstNode) {
+	o.Result = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -66,7 +66,7 @@ func (o GetAstResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["ast"] = o.Ast
+	toSerialize["result"] = o.Result
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -77,24 +77,33 @@ func (o GetAstResponseDataAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *GetAstResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Ast *map[string]interface{} `json:"ast"`
+		Result *AstNode `json:"result"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Ast == nil {
-		return fmt.Errorf("required field ast missing")
+	if all.Result == nil {
+		return fmt.Errorf("required field result missing")
 	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"ast"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"result"})
 	} else {
 		return err
 	}
-	o.Ast = *all.Ast
+
+	hasInvalidField := false
+	if all.Result.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Result = *all.Result
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

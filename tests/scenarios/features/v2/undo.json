@@ -1585,6 +1585,18 @@
       "type": "safe"
     }
   },
+  "GetCodeCoverageFiles": {
+    "tag": "Code Coverage",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetCodeCoveragePRSummary": {
+    "tag": "Code Coverage",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "GetRuleBasedView": {
     "tag": "Compliance",
     "undo": {
@@ -1988,6 +2000,43 @@
       "type": "safe"
     }
   },
+  "ListUnitCosts": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateUnitCost": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "operationId": "DeleteUnitCost",
+      "parameters": [
+        {
+          "name": "unit_cost_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteUnitCost": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetUnitCost": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateUnitCost": {
+    "tag": "Cloud Cost Management",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "GetActiveBillingDimensions": {
     "tag": "Usage Metering",
     "undo": {
@@ -2307,6 +2356,112 @@
     "tag": "Data Deletion",
     "undo": {
       "type": "idempotent"
+    }
+  },
+  "CreateJourney": {
+    "tag": "DEM",
+    "undo": {
+      "operationId": "DeleteJourney",
+      "parameters": [
+        {
+          "name": "journey_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteIgnoredInferredJourney": {
+    "tag": "DEM",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "SearchInferredJourneys": {
+    "tag": "DEM",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "IgnoreInferredJourney": {
+    "tag": "DEM",
+    "undo": {
+      "operationId": "DeleteIgnoredInferredJourney",
+      "parameters": [
+        {
+          "name": "journey_id",
+          "origin": "path",
+          "source": "journey_id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "SearchJourneys": {
+    "tag": "DEM",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "BatchGetJourneysByTestSuiteIDs": {
+    "tag": "DEM",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "DeleteJourneyVariant": {
+    "tag": "DEM",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "UpdateJourneyVariant": {
+    "tag": "DEM",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "DeleteJourney": {
+    "tag": "DEM",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetJourney": {
+    "tag": "DEM",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateJourney": {
+    "tag": "DEM",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetJourneyRecommendedTests": {
+    "tag": "DEM",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateJourneyVariant": {
+    "tag": "DEM",
+    "undo": {
+      "operationId": "DeleteJourneyVariant",
+      "parameters": [
+        {
+          "name": "variant_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "CreateTestSuiteForJourney": {
+    "tag": "DEM",
+    "undo": {
+      "type": "safe"
     }
   },
   "ListDeploymentGates": {
@@ -3538,13 +3693,13 @@
     }
   },
   "ListElasticCloudIntegrationAccounts": {
-    "tag": "Elastic Cloud Integration Accounts",
+    "tag": "Elastic Cloud Integration",
     "undo": {
       "type": "safe"
     }
   },
   "CreateElasticCloudIntegrationAccount": {
-    "tag": "Elastic Cloud Integration Accounts",
+    "tag": "Elastic Cloud Integration",
     "undo": {
       "operationId": "DeleteElasticCloudIntegrationAccount",
       "parameters": [
@@ -3557,31 +3712,31 @@
     }
   },
   "DeleteElasticCloudIntegrationAccount": {
-    "tag": "Elastic Cloud Integration Accounts",
+    "tag": "Elastic Cloud Integration",
     "undo": {
       "type": "idempotent"
     }
   },
   "GetElasticCloudIntegrationAccount": {
-    "tag": "Elastic Cloud Integration Accounts",
+    "tag": "Elastic Cloud Integration",
     "undo": {
       "type": "safe"
     }
   },
   "UpdateElasticCloudIntegrationAccount": {
-    "tag": "Elastic Cloud Integration Accounts",
+    "tag": "Elastic Cloud Integration",
     "undo": {
       "type": "idempotent"
     }
   },
   "ListTwilioIntegrationAccounts": {
-    "tag": "Twilio Integration Accounts",
+    "tag": "Twilio Integration",
     "undo": {
       "type": "safe"
     }
   },
   "CreateTwilioIntegrationAccount": {
-    "tag": "Twilio Integration Accounts",
+    "tag": "Twilio Integration",
     "undo": {
       "operationId": "DeleteTwilioIntegrationAccount",
       "parameters": [
@@ -3594,19 +3749,19 @@
     }
   },
   "DeleteTwilioIntegrationAccount": {
-    "tag": "Twilio Integration Accounts",
+    "tag": "Twilio Integration",
     "undo": {
       "type": "idempotent"
     }
   },
   "GetTwilioIntegrationAccount": {
-    "tag": "Twilio Integration Accounts",
+    "tag": "Twilio Integration",
     "undo": {
       "type": "safe"
     }
   },
   "UpdateTwilioIntegrationAccount": {
-    "tag": "Twilio Integration Accounts",
+    "tag": "Twilio Integration",
     "undo": {
       "type": "idempotent"
     }
@@ -5977,6 +6132,12 @@
       "type": "unsafe"
     }
   },
+  "ListOnCallSchedules": {
+    "tag": "On-Call",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "CreateOnCallSchedule": {
     "tag": "On-Call",
     "undo": {
@@ -7738,6 +7899,30 @@
       "type": "idempotent"
     }
   },
+  "ListSecurityFindingsAutomationDefaultInboxRules": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetSecurityFindingsAutomationDefaultInboxRule": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "DisableSecurityFindingsAutomationDefaultInboxRule": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "EnableSecurityFindingsAutomationDefaultInboxRule": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
   "ListSecurityFindingsAutomationDueDateRules": {
     "tag": "Security Monitoring",
     "undo": {
@@ -7776,6 +7961,49 @@
     }
   },
   "UpdateSecurityFindingsAutomationDueDateRule": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "ListSecurityFindingsAutomationInboxRules": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateSecurityFindingsAutomationInboxRule": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "operationId": "DeleteSecurityFindingsAutomationInboxRule",
+      "parameters": [
+        {
+          "name": "rule_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "ReorderSecurityFindingsAutomationInboxRules": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "DeleteSecurityFindingsAutomationInboxRule": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetSecurityFindingsAutomationInboxRule": {
+    "tag": "Security Monitoring",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateSecurityFindingsAutomationInboxRule": {
     "tag": "Security Monitoring",
     "undo": {
       "type": "idempotent"
@@ -10112,6 +10340,12 @@
   },
   "SearchFlakyTests": {
     "tag": "Test Optimization",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateTimeseriesAnomalyInvestigation": {
+    "tag": "Timeseries Anomaly Investigations",
     "undo": {
       "type": "safe"
     }

@@ -14,7 +14,7 @@ import (
 // CustomRuleRevisionAttributes Attributes of a custom rule revision, including code, metadata, and test cases.
 type CustomRuleRevisionAttributes struct {
 	// Rule arguments
-	Arguments []Argument `json:"arguments"`
+	Arguments datadog.NullableList[Argument] `json:"arguments"`
 	// Rule category
 	Category CustomRuleRevisionAttributesCategory `json:"category"`
 	// Code checksum
@@ -28,13 +28,13 @@ type CustomRuleRevisionAttributes struct {
 	// Revision creation message
 	CreationMessage string `json:"creation_message"`
 	// Associated CVE
-	Cve datadog.NullableString `json:"cve"`
+	Cve datadog.NullableString `json:"cve,omitempty"`
 	// Associated CWE
-	Cwe datadog.NullableString `json:"cwe"`
+	Cwe datadog.NullableString `json:"cwe,omitempty"`
 	// Full description
 	Description string `json:"description"`
 	// Documentation URL
-	DocumentationUrl datadog.NullableString `json:"documentation_url"`
+	DocumentationUrl datadog.NullableString `json:"documentation_url,omitempty"`
 	// Whether the revision is published
 	IsPublished bool `json:"is_published"`
 	// Whether this is a testing revision
@@ -48,11 +48,13 @@ type CustomRuleRevisionAttributes struct {
 	// Whether to use AI for fixes
 	ShouldUseAiFix bool `json:"should_use_ai_fix"`
 	// Rule tags
-	Tags []string `json:"tags"`
+	Tags datadog.NullableList[string] `json:"tags"`
 	// Rule tests
-	Tests []CustomRuleRevisionTest `json:"tests"`
+	Tests datadog.NullableList[CustomRuleRevisionTest] `json:"tests"`
 	// Tree-sitter query
 	TreeSitterQuery string `json:"tree_sitter_query"`
+	// Monotonically increasing version number of the revision.
+	VersionId int64 `json:"version_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -62,7 +64,7 @@ type CustomRuleRevisionAttributes struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewCustomRuleRevisionAttributes(arguments []Argument, category CustomRuleRevisionAttributesCategory, checksum string, code string, createdAt time.Time, createdBy string, creationMessage string, cve datadog.NullableString, cwe datadog.NullableString, description string, documentationUrl datadog.NullableString, isPublished bool, isTesting bool, language Language, severity CustomRuleRevisionAttributesSeverity, shortDescription string, shouldUseAiFix bool, tags []string, tests []CustomRuleRevisionTest, treeSitterQuery string) *CustomRuleRevisionAttributes {
+func NewCustomRuleRevisionAttributes(arguments datadog.NullableList[Argument], category CustomRuleRevisionAttributesCategory, checksum string, code string, createdAt time.Time, createdBy string, creationMessage string, description string, isPublished bool, isTesting bool, language Language, severity CustomRuleRevisionAttributesSeverity, shortDescription string, shouldUseAiFix bool, tags datadog.NullableList[string], tests datadog.NullableList[CustomRuleRevisionTest], treeSitterQuery string, versionId int64) *CustomRuleRevisionAttributes {
 	this := CustomRuleRevisionAttributes{}
 	this.Arguments = arguments
 	this.Category = category
@@ -71,10 +73,7 @@ func NewCustomRuleRevisionAttributes(arguments []Argument, category CustomRuleRe
 	this.CreatedAt = createdAt
 	this.CreatedBy = createdBy
 	this.CreationMessage = creationMessage
-	this.Cve = cve
-	this.Cwe = cwe
 	this.Description = description
-	this.DocumentationUrl = documentationUrl
 	this.IsPublished = isPublished
 	this.IsTesting = isTesting
 	this.Language = language
@@ -84,6 +83,7 @@ func NewCustomRuleRevisionAttributes(arguments []Argument, category CustomRuleRe
 	this.Tags = tags
 	this.Tests = tests
 	this.TreeSitterQuery = treeSitterQuery
+	this.VersionId = versionId
 	return &this
 }
 
@@ -96,26 +96,28 @@ func NewCustomRuleRevisionAttributesWithDefaults() *CustomRuleRevisionAttributes
 }
 
 // GetArguments returns the Arguments field value.
+// If the value is explicit nil, the zero value for []Argument will be returned.
 func (o *CustomRuleRevisionAttributes) GetArguments() []Argument {
 	if o == nil {
 		var ret []Argument
 		return ret
 	}
-	return o.Arguments
+	return *o.Arguments.Get()
 }
 
 // GetArgumentsOk returns a tuple with the Arguments field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CustomRuleRevisionAttributes) GetArgumentsOk() (*[]Argument, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Arguments, true
+	return o.Arguments.Get(), o.Arguments.IsSet()
 }
 
 // SetArguments sets field value.
 func (o *CustomRuleRevisionAttributes) SetArguments(v []Argument) {
-	o.Arguments = v
+	o.Arguments.Set(&v)
 }
 
 // GetCategory returns the Category field value.
@@ -256,8 +258,7 @@ func (o *CustomRuleRevisionAttributes) SetCreationMessage(v string) {
 	o.CreationMessage = v
 }
 
-// GetCve returns the Cve field value.
-// If the value is explicit nil, the zero value for string will be returned.
+// GetCve returns the Cve field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CustomRuleRevisionAttributes) GetCve() string {
 	if o == nil || o.Cve.Get() == nil {
 		var ret string
@@ -266,7 +267,7 @@ func (o *CustomRuleRevisionAttributes) GetCve() string {
 	return *o.Cve.Get()
 }
 
-// GetCveOk returns a tuple with the Cve field value
+// GetCveOk returns a tuple with the Cve field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CustomRuleRevisionAttributes) GetCveOk() (*string, bool) {
@@ -276,13 +277,27 @@ func (o *CustomRuleRevisionAttributes) GetCveOk() (*string, bool) {
 	return o.Cve.Get(), o.Cve.IsSet()
 }
 
-// SetCve sets field value.
+// HasCve returns a boolean if a field has been set.
+func (o *CustomRuleRevisionAttributes) HasCve() bool {
+	return o != nil && o.Cve.IsSet()
+}
+
+// SetCve gets a reference to the given datadog.NullableString and assigns it to the Cve field.
 func (o *CustomRuleRevisionAttributes) SetCve(v string) {
 	o.Cve.Set(&v)
 }
 
-// GetCwe returns the Cwe field value.
-// If the value is explicit nil, the zero value for string will be returned.
+// SetCveNil sets the value for Cve to be an explicit nil.
+func (o *CustomRuleRevisionAttributes) SetCveNil() {
+	o.Cve.Set(nil)
+}
+
+// UnsetCve ensures that no value is present for Cve, not even an explicit nil.
+func (o *CustomRuleRevisionAttributes) UnsetCve() {
+	o.Cve.Unset()
+}
+
+// GetCwe returns the Cwe field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CustomRuleRevisionAttributes) GetCwe() string {
 	if o == nil || o.Cwe.Get() == nil {
 		var ret string
@@ -291,7 +306,7 @@ func (o *CustomRuleRevisionAttributes) GetCwe() string {
 	return *o.Cwe.Get()
 }
 
-// GetCweOk returns a tuple with the Cwe field value
+// GetCweOk returns a tuple with the Cwe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CustomRuleRevisionAttributes) GetCweOk() (*string, bool) {
@@ -301,9 +316,24 @@ func (o *CustomRuleRevisionAttributes) GetCweOk() (*string, bool) {
 	return o.Cwe.Get(), o.Cwe.IsSet()
 }
 
-// SetCwe sets field value.
+// HasCwe returns a boolean if a field has been set.
+func (o *CustomRuleRevisionAttributes) HasCwe() bool {
+	return o != nil && o.Cwe.IsSet()
+}
+
+// SetCwe gets a reference to the given datadog.NullableString and assigns it to the Cwe field.
 func (o *CustomRuleRevisionAttributes) SetCwe(v string) {
 	o.Cwe.Set(&v)
+}
+
+// SetCweNil sets the value for Cwe to be an explicit nil.
+func (o *CustomRuleRevisionAttributes) SetCweNil() {
+	o.Cwe.Set(nil)
+}
+
+// UnsetCwe ensures that no value is present for Cwe, not even an explicit nil.
+func (o *CustomRuleRevisionAttributes) UnsetCwe() {
+	o.Cwe.Unset()
 }
 
 // GetDescription returns the Description field value.
@@ -329,8 +359,7 @@ func (o *CustomRuleRevisionAttributes) SetDescription(v string) {
 	o.Description = v
 }
 
-// GetDocumentationUrl returns the DocumentationUrl field value.
-// If the value is explicit nil, the zero value for string will be returned.
+// GetDocumentationUrl returns the DocumentationUrl field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *CustomRuleRevisionAttributes) GetDocumentationUrl() string {
 	if o == nil || o.DocumentationUrl.Get() == nil {
 		var ret string
@@ -339,7 +368,7 @@ func (o *CustomRuleRevisionAttributes) GetDocumentationUrl() string {
 	return *o.DocumentationUrl.Get()
 }
 
-// GetDocumentationUrlOk returns a tuple with the DocumentationUrl field value
+// GetDocumentationUrlOk returns a tuple with the DocumentationUrl field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CustomRuleRevisionAttributes) GetDocumentationUrlOk() (*string, bool) {
@@ -349,9 +378,24 @@ func (o *CustomRuleRevisionAttributes) GetDocumentationUrlOk() (*string, bool) {
 	return o.DocumentationUrl.Get(), o.DocumentationUrl.IsSet()
 }
 
-// SetDocumentationUrl sets field value.
+// HasDocumentationUrl returns a boolean if a field has been set.
+func (o *CustomRuleRevisionAttributes) HasDocumentationUrl() bool {
+	return o != nil && o.DocumentationUrl.IsSet()
+}
+
+// SetDocumentationUrl gets a reference to the given datadog.NullableString and assigns it to the DocumentationUrl field.
 func (o *CustomRuleRevisionAttributes) SetDocumentationUrl(v string) {
 	o.DocumentationUrl.Set(&v)
+}
+
+// SetDocumentationUrlNil sets the value for DocumentationUrl to be an explicit nil.
+func (o *CustomRuleRevisionAttributes) SetDocumentationUrlNil() {
+	o.DocumentationUrl.Set(nil)
+}
+
+// UnsetDocumentationUrl ensures that no value is present for DocumentationUrl, not even an explicit nil.
+func (o *CustomRuleRevisionAttributes) UnsetDocumentationUrl() {
+	o.DocumentationUrl.Unset()
 }
 
 // GetIsPublished returns the IsPublished field value.
@@ -493,49 +537,53 @@ func (o *CustomRuleRevisionAttributes) SetShouldUseAiFix(v bool) {
 }
 
 // GetTags returns the Tags field value.
+// If the value is explicit nil, the zero value for []string will be returned.
 func (o *CustomRuleRevisionAttributes) GetTags() []string {
-	if o == nil {
+	if o == nil || o.Tags.Get() == nil {
 		var ret []string
 		return ret
 	}
-	return o.Tags
+	return *o.Tags.Get()
 }
 
 // GetTagsOk returns a tuple with the Tags field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CustomRuleRevisionAttributes) GetTagsOk() (*[]string, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Tags, true
+	return o.Tags.Get(), o.Tags.IsSet()
 }
 
 // SetTags sets field value.
 func (o *CustomRuleRevisionAttributes) SetTags(v []string) {
-	o.Tags = v
+	o.Tags.Set(&v)
 }
 
 // GetTests returns the Tests field value.
+// If the value is explicit nil, the zero value for []CustomRuleRevisionTest will be returned.
 func (o *CustomRuleRevisionAttributes) GetTests() []CustomRuleRevisionTest {
 	if o == nil {
 		var ret []CustomRuleRevisionTest
 		return ret
 	}
-	return o.Tests
+	return *o.Tests.Get()
 }
 
 // GetTestsOk returns a tuple with the Tests field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *CustomRuleRevisionAttributes) GetTestsOk() (*[]CustomRuleRevisionTest, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Tests, true
+	return o.Tests.Get(), o.Tests.IsSet()
 }
 
 // SetTests sets field value.
 func (o *CustomRuleRevisionAttributes) SetTests(v []CustomRuleRevisionTest) {
-	o.Tests = v
+	o.Tests.Set(&v)
 }
 
 // GetTreeSitterQuery returns the TreeSitterQuery field value.
@@ -561,13 +609,36 @@ func (o *CustomRuleRevisionAttributes) SetTreeSitterQuery(v string) {
 	o.TreeSitterQuery = v
 }
 
+// GetVersionId returns the VersionId field value.
+func (o *CustomRuleRevisionAttributes) GetVersionId() int64 {
+	if o == nil {
+		var ret int64
+		return ret
+	}
+	return o.VersionId
+}
+
+// GetVersionIdOk returns a tuple with the VersionId field value
+// and a boolean to check if the value has been set.
+func (o *CustomRuleRevisionAttributes) GetVersionIdOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return &o.VersionId, true
+}
+
+// SetVersionId sets field value.
+func (o *CustomRuleRevisionAttributes) SetVersionId(v int64) {
+	o.VersionId = v
+}
+
 // MarshalJSON serializes the struct using spec logic.
 func (o CustomRuleRevisionAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	toSerialize["arguments"] = o.Arguments
+	toSerialize["arguments"] = o.Arguments.Get()
 	toSerialize["category"] = o.Category
 	toSerialize["checksum"] = o.Checksum
 	toSerialize["code"] = o.Code
@@ -578,19 +649,26 @@ func (o CustomRuleRevisionAttributes) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["created_by"] = o.CreatedBy
 	toSerialize["creation_message"] = o.CreationMessage
-	toSerialize["cve"] = o.Cve.Get()
-	toSerialize["cwe"] = o.Cwe.Get()
+	if o.Cve.IsSet() {
+		toSerialize["cve"] = o.Cve.Get()
+	}
+	if o.Cwe.IsSet() {
+		toSerialize["cwe"] = o.Cwe.Get()
+	}
 	toSerialize["description"] = o.Description
-	toSerialize["documentation_url"] = o.DocumentationUrl.Get()
+	if o.DocumentationUrl.IsSet() {
+		toSerialize["documentation_url"] = o.DocumentationUrl.Get()
+	}
 	toSerialize["is_published"] = o.IsPublished
 	toSerialize["is_testing"] = o.IsTesting
 	toSerialize["language"] = o.Language
 	toSerialize["severity"] = o.Severity
 	toSerialize["short_description"] = o.ShortDescription
 	toSerialize["should_use_ai_fix"] = o.ShouldUseAiFix
-	toSerialize["tags"] = o.Tags
-	toSerialize["tests"] = o.Tests
+	toSerialize["tags"] = o.Tags.Get()
+	toSerialize["tests"] = o.Tests.Get()
 	toSerialize["tree_sitter_query"] = o.TreeSitterQuery
+	toSerialize["version_id"] = o.VersionId
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -601,31 +679,32 @@ func (o CustomRuleRevisionAttributes) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *CustomRuleRevisionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Arguments        *[]Argument                           `json:"arguments"`
-		Category         *CustomRuleRevisionAttributesCategory `json:"category"`
-		Checksum         *string                               `json:"checksum"`
-		Code             *string                               `json:"code"`
-		CreatedAt        *time.Time                            `json:"created_at"`
-		CreatedBy        *string                               `json:"created_by"`
-		CreationMessage  *string                               `json:"creation_message"`
-		Cve              datadog.NullableString                `json:"cve"`
-		Cwe              datadog.NullableString                `json:"cwe"`
-		Description      *string                               `json:"description"`
-		DocumentationUrl datadog.NullableString                `json:"documentation_url"`
-		IsPublished      *bool                                 `json:"is_published"`
-		IsTesting        *bool                                 `json:"is_testing"`
-		Language         *Language                             `json:"language"`
-		Severity         *CustomRuleRevisionAttributesSeverity `json:"severity"`
-		ShortDescription *string                               `json:"short_description"`
-		ShouldUseAiFix   *bool                                 `json:"should_use_ai_fix"`
-		Tags             *[]string                             `json:"tags"`
-		Tests            *[]CustomRuleRevisionTest             `json:"tests"`
-		TreeSitterQuery  *string                               `json:"tree_sitter_query"`
+		Arguments        datadog.NullableList[Argument]               `json:"arguments"`
+		Category         *CustomRuleRevisionAttributesCategory        `json:"category"`
+		Checksum         *string                                      `json:"checksum"`
+		Code             *string                                      `json:"code"`
+		CreatedAt        *time.Time                                   `json:"created_at"`
+		CreatedBy        *string                                      `json:"created_by"`
+		CreationMessage  *string                                      `json:"creation_message"`
+		Cve              datadog.NullableString                       `json:"cve,omitempty"`
+		Cwe              datadog.NullableString                       `json:"cwe,omitempty"`
+		Description      *string                                      `json:"description"`
+		DocumentationUrl datadog.NullableString                       `json:"documentation_url,omitempty"`
+		IsPublished      *bool                                        `json:"is_published"`
+		IsTesting        *bool                                        `json:"is_testing"`
+		Language         *Language                                    `json:"language"`
+		Severity         *CustomRuleRevisionAttributesSeverity        `json:"severity"`
+		ShortDescription *string                                      `json:"short_description"`
+		ShouldUseAiFix   *bool                                        `json:"should_use_ai_fix"`
+		Tags             datadog.NullableList[string]                 `json:"tags"`
+		Tests            datadog.NullableList[CustomRuleRevisionTest] `json:"tests"`
+		TreeSitterQuery  *string                                      `json:"tree_sitter_query"`
+		VersionId        *int64                                       `json:"version_id"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	if all.Arguments == nil {
+	if !all.Arguments.IsSet() {
 		return fmt.Errorf("required field arguments missing")
 	}
 	if all.Category == nil {
@@ -646,17 +725,8 @@ func (o *CustomRuleRevisionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	if all.CreationMessage == nil {
 		return fmt.Errorf("required field creation_message missing")
 	}
-	if !all.Cve.IsSet() {
-		return fmt.Errorf("required field cve missing")
-	}
-	if !all.Cwe.IsSet() {
-		return fmt.Errorf("required field cwe missing")
-	}
 	if all.Description == nil {
 		return fmt.Errorf("required field description missing")
-	}
-	if !all.DocumentationUrl.IsSet() {
-		return fmt.Errorf("required field documentation_url missing")
 	}
 	if all.IsPublished == nil {
 		return fmt.Errorf("required field is_published missing")
@@ -676,24 +746,27 @@ func (o *CustomRuleRevisionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	if all.ShouldUseAiFix == nil {
 		return fmt.Errorf("required field should_use_ai_fix missing")
 	}
-	if all.Tags == nil {
+	if !all.Tags.IsSet() {
 		return fmt.Errorf("required field tags missing")
 	}
-	if all.Tests == nil {
+	if !all.Tests.IsSet() {
 		return fmt.Errorf("required field tests missing")
 	}
 	if all.TreeSitterQuery == nil {
 		return fmt.Errorf("required field tree_sitter_query missing")
 	}
+	if all.VersionId == nil {
+		return fmt.Errorf("required field version_id missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"arguments", "category", "checksum", "code", "created_at", "created_by", "creation_message", "cve", "cwe", "description", "documentation_url", "is_published", "is_testing", "language", "severity", "short_description", "should_use_ai_fix", "tags", "tests", "tree_sitter_query"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"arguments", "category", "checksum", "code", "created_at", "created_by", "creation_message", "cve", "cwe", "description", "documentation_url", "is_published", "is_testing", "language", "severity", "short_description", "should_use_ai_fix", "tags", "tests", "tree_sitter_query", "version_id"})
 	} else {
 		return err
 	}
 
 	hasInvalidField := false
-	o.Arguments = *all.Arguments
+	o.Arguments = all.Arguments
 	if !all.Category.IsValid() {
 		hasInvalidField = true
 	} else {
@@ -722,9 +795,10 @@ func (o *CustomRuleRevisionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.ShortDescription = *all.ShortDescription
 	o.ShouldUseAiFix = *all.ShouldUseAiFix
-	o.Tags = *all.Tags
-	o.Tests = *all.Tests
+	o.Tags = all.Tags
+	o.Tests = all.Tests
 	o.TreeSitterQuery = *all.TreeSitterQuery
+	o.VersionId = *all.VersionId
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties

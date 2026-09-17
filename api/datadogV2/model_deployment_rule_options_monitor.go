@@ -10,7 +10,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// DeploymentRuleOptionsMonitor Monitor options for deployment rules.
+// DeploymentRuleOptionsMonitor Monitor query options for deployment rules.
 type DeploymentRuleOptionsMonitor struct {
 	// Seconds the monitor needs to stay in OK status for the rule to pass.
 	Duration *int64 `json:"duration,omitempty"`
@@ -18,7 +18,7 @@ type DeploymentRuleOptionsMonitor struct {
 	FailOnNoData *bool `json:"fail_on_no_data,omitempty"`
 	// Whether the rule should fail if no monitor groups are found for the query.
 	FailOnNoGroupsFound *bool `json:"fail_on_no_groups_found,omitempty"`
-	// Monitors that match this query are evaluated.
+	// A query that selects the monitors to evaluate.
 	Query string `json:"query"`
 	// Seconds to wait after a deployment starts before evaluating the monitor's status.
 	Warmup *int64 `json:"warmup,omitempty"`

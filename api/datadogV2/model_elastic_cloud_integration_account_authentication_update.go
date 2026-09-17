@@ -10,41 +10,41 @@ import (
 
 // ElasticCloudIntegrationAccountAuthenticationUpdate - Authentication for updating the Elastic Cloud integration account. Exactly one method is set.
 type ElasticCloudIntegrationAccountAuthenticationUpdate struct {
-	IntegrationAccountBasicAuthUpdate *IntegrationAccountBasicAuthUpdate
+	ElasticCloudIntegrationAccountBasicAuthUpdate *ElasticCloudIntegrationAccountBasicAuthUpdate
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
 }
 
-// IntegrationAccountBasicAuthUpdateAsElasticCloudIntegrationAccountAuthenticationUpdate is a convenience function that returns IntegrationAccountBasicAuthUpdate wrapped in ElasticCloudIntegrationAccountAuthenticationUpdate.
-func IntegrationAccountBasicAuthUpdateAsElasticCloudIntegrationAccountAuthenticationUpdate(v *IntegrationAccountBasicAuthUpdate) ElasticCloudIntegrationAccountAuthenticationUpdate {
-	return ElasticCloudIntegrationAccountAuthenticationUpdate{IntegrationAccountBasicAuthUpdate: v}
+// ElasticCloudIntegrationAccountBasicAuthUpdateAsElasticCloudIntegrationAccountAuthenticationUpdate is a convenience function that returns ElasticCloudIntegrationAccountBasicAuthUpdate wrapped in ElasticCloudIntegrationAccountAuthenticationUpdate.
+func ElasticCloudIntegrationAccountBasicAuthUpdateAsElasticCloudIntegrationAccountAuthenticationUpdate(v *ElasticCloudIntegrationAccountBasicAuthUpdate) ElasticCloudIntegrationAccountAuthenticationUpdate {
+	return ElasticCloudIntegrationAccountAuthenticationUpdate{ElasticCloudIntegrationAccountBasicAuthUpdate: v}
 }
 
 // UnmarshalJSON turns data into one of the pointers in the struct.
 func (obj *ElasticCloudIntegrationAccountAuthenticationUpdate) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
-	// try to unmarshal data into IntegrationAccountBasicAuthUpdate
-	err = datadog.Unmarshal(data, &obj.IntegrationAccountBasicAuthUpdate)
+	// try to unmarshal data into ElasticCloudIntegrationAccountBasicAuthUpdate
+	err = datadog.Unmarshal(data, &obj.ElasticCloudIntegrationAccountBasicAuthUpdate)
 	if err == nil {
-		if obj.IntegrationAccountBasicAuthUpdate != nil && obj.IntegrationAccountBasicAuthUpdate.UnparsedObject == nil {
-			jsonIntegrationAccountBasicAuthUpdate, _ := datadog.Marshal(obj.IntegrationAccountBasicAuthUpdate)
-			if string(jsonIntegrationAccountBasicAuthUpdate) == "{}" { // empty struct
-				obj.IntegrationAccountBasicAuthUpdate = nil
+		if obj.ElasticCloudIntegrationAccountBasicAuthUpdate != nil && obj.ElasticCloudIntegrationAccountBasicAuthUpdate.UnparsedObject == nil {
+			jsonElasticCloudIntegrationAccountBasicAuthUpdate, _ := datadog.Marshal(obj.ElasticCloudIntegrationAccountBasicAuthUpdate)
+			if string(jsonElasticCloudIntegrationAccountBasicAuthUpdate) == "{}" { // empty struct
+				obj.ElasticCloudIntegrationAccountBasicAuthUpdate = nil
 			} else {
 				match++
 			}
 		} else {
-			obj.IntegrationAccountBasicAuthUpdate = nil
+			obj.ElasticCloudIntegrationAccountBasicAuthUpdate = nil
 		}
 	} else {
-		obj.IntegrationAccountBasicAuthUpdate = nil
+		obj.ElasticCloudIntegrationAccountBasicAuthUpdate = nil
 	}
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		obj.IntegrationAccountBasicAuthUpdate = nil
+		obj.ElasticCloudIntegrationAccountBasicAuthUpdate = nil
 		return datadog.Unmarshal(data, &obj.UnparsedObject)
 	}
 	return nil // exactly one match
@@ -52,8 +52,8 @@ func (obj *ElasticCloudIntegrationAccountAuthenticationUpdate) UnmarshalJSON(dat
 
 // MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
 func (obj ElasticCloudIntegrationAccountAuthenticationUpdate) MarshalJSON() ([]byte, error) {
-	if obj.IntegrationAccountBasicAuthUpdate != nil {
-		return datadog.Marshal(&obj.IntegrationAccountBasicAuthUpdate)
+	if obj.ElasticCloudIntegrationAccountBasicAuthUpdate != nil {
+		return datadog.Marshal(&obj.ElasticCloudIntegrationAccountBasicAuthUpdate)
 	}
 
 	if obj.UnparsedObject != nil {
@@ -64,8 +64,8 @@ func (obj ElasticCloudIntegrationAccountAuthenticationUpdate) MarshalJSON() ([]b
 
 // GetActualInstance returns the actual instance.
 func (obj *ElasticCloudIntegrationAccountAuthenticationUpdate) GetActualInstance() interface{} {
-	if obj.IntegrationAccountBasicAuthUpdate != nil {
-		return obj.IntegrationAccountBasicAuthUpdate
+	if obj.ElasticCloudIntegrationAccountBasicAuthUpdate != nil {
+		return obj.ElasticCloudIntegrationAccountBasicAuthUpdate
 	}
 
 	// all schemas are nil

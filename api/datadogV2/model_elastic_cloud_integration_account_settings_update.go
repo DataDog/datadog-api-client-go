@@ -15,8 +15,7 @@ type ElasticCloudIntegrationAccountSettingsUpdate struct {
 	// Elastic Cloud deployment URL.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:"-"`
-	AdditionalProperties map[string]interface{} `json:"-"`
+	UnparsedObject map[string]interface{} `json:"-"`
 }
 
 // NewElasticCloudIntegrationAccountSettingsUpdate instantiates a new ElasticCloudIntegrationAccountSettingsUpdate object.
@@ -104,10 +103,6 @@ func (o ElasticCloudIntegrationAccountSettingsUpdate) MarshalJSON() ([]byte, err
 	if o.Url != nil {
 		toSerialize["url"] = o.Url
 	}
-
-	for key, value := range o.AdditionalProperties {
-		toSerialize[key] = value
-	}
 	return datadog.Marshal(toSerialize)
 }
 
@@ -120,18 +115,8 @@ func (o *ElasticCloudIntegrationAccountSettingsUpdate) UnmarshalJSON(bytes []byt
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
-	additionalProperties := make(map[string]interface{})
-	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"tags", "url"})
-	} else {
-		return err
-	}
 	o.Tags = all.Tags
 	o.Url = all.Url
-
-	if len(additionalProperties) > 0 {
-		o.AdditionalProperties = additionalProperties
-	}
 
 	return nil
 }

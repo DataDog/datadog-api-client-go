@@ -12,7 +12,7 @@ import (
 
 // SeverityModifierRuleReorderResponse The response of a severity modifier rule reorder request.
 type SeverityModifierRuleReorderResponse struct {
-	// The ordered list of severity modifier rules; every rule must be included.
+	// The ordered list of all severity modifier rules. Every rule must be included.
 	Data []SeverityModifierRuleReorderItem `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`

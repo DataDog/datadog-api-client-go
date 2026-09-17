@@ -5,17 +5,16 @@
 package datadogV2
 
 import (
+	"fmt"
+
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
-// RecommendationsFilterRequest Request body for filtering cost recommendations.
+// RecommendationsFilterRequest JSON:API request body for filtering cost recommendations.
 type RecommendationsFilterRequest struct {
-	// Filter expression applied to the recommendations.
-	Filter *string `json:"filter,omitempty"`
-	// Ordered list of sort clauses applied to the result set.
-	Sort []RecommendationsFilterRequestSortItems `json:"sort,omitempty"`
-	// Active view name (for example, `active`, `dismissed`, `open`, `in-progress`, or `completed`).
-	View *string `json:"view,omitempty"`
+	// JSON:API resource containing the cost recommendations filter. This legacy search contract
+	// uses the resource ID for the filter expression rather than as a persistent resource identifier.
+	Data RecommendationsFilterRequestData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
 	AdditionalProperties map[string]interface{} `json:"-"`
@@ -25,8 +24,9 @@ type RecommendationsFilterRequest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewRecommendationsFilterRequest() *RecommendationsFilterRequest {
+func NewRecommendationsFilterRequest(data RecommendationsFilterRequestData) *RecommendationsFilterRequest {
 	this := RecommendationsFilterRequest{}
+	this.Data = data
 	return &this
 }
 
@@ -38,88 +38,27 @@ func NewRecommendationsFilterRequestWithDefaults() *RecommendationsFilterRequest
 	return &this
 }
 
-// GetFilter returns the Filter field value if set, zero value otherwise.
-func (o *RecommendationsFilterRequest) GetFilter() string {
-	if o == nil || o.Filter == nil {
-		var ret string
+// GetData returns the Data field value.
+func (o *RecommendationsFilterRequest) GetData() RecommendationsFilterRequestData {
+	if o == nil {
+		var ret RecommendationsFilterRequestData
 		return ret
 	}
-	return *o.Filter
+	return o.Data
 }
 
-// GetFilterOk returns a tuple with the Filter field value if set, nil otherwise
+// GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
-func (o *RecommendationsFilterRequest) GetFilterOk() (*string, bool) {
-	if o == nil || o.Filter == nil {
+func (o *RecommendationsFilterRequest) GetDataOk() (*RecommendationsFilterRequestData, bool) {
+	if o == nil {
 		return nil, false
 	}
-	return o.Filter, true
+	return &o.Data, true
 }
 
-// HasFilter returns a boolean if a field has been set.
-func (o *RecommendationsFilterRequest) HasFilter() bool {
-	return o != nil && o.Filter != nil
-}
-
-// SetFilter gets a reference to the given string and assigns it to the Filter field.
-func (o *RecommendationsFilterRequest) SetFilter(v string) {
-	o.Filter = &v
-}
-
-// GetSort returns the Sort field value if set, zero value otherwise.
-func (o *RecommendationsFilterRequest) GetSort() []RecommendationsFilterRequestSortItems {
-	if o == nil || o.Sort == nil {
-		var ret []RecommendationsFilterRequestSortItems
-		return ret
-	}
-	return o.Sort
-}
-
-// GetSortOk returns a tuple with the Sort field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RecommendationsFilterRequest) GetSortOk() (*[]RecommendationsFilterRequestSortItems, bool) {
-	if o == nil || o.Sort == nil {
-		return nil, false
-	}
-	return &o.Sort, true
-}
-
-// HasSort returns a boolean if a field has been set.
-func (o *RecommendationsFilterRequest) HasSort() bool {
-	return o != nil && o.Sort != nil
-}
-
-// SetSort gets a reference to the given []RecommendationsFilterRequestSortItems and assigns it to the Sort field.
-func (o *RecommendationsFilterRequest) SetSort(v []RecommendationsFilterRequestSortItems) {
-	o.Sort = v
-}
-
-// GetView returns the View field value if set, zero value otherwise.
-func (o *RecommendationsFilterRequest) GetView() string {
-	if o == nil || o.View == nil {
-		var ret string
-		return ret
-	}
-	return *o.View
-}
-
-// GetViewOk returns a tuple with the View field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *RecommendationsFilterRequest) GetViewOk() (*string, bool) {
-	if o == nil || o.View == nil {
-		return nil, false
-	}
-	return o.View, true
-}
-
-// HasView returns a boolean if a field has been set.
-func (o *RecommendationsFilterRequest) HasView() bool {
-	return o != nil && o.View != nil
-}
-
-// SetView gets a reference to the given string and assigns it to the View field.
-func (o *RecommendationsFilterRequest) SetView(v string) {
-	o.View = &v
+// SetData sets field value.
+func (o *RecommendationsFilterRequest) SetData(v RecommendationsFilterRequestData) {
+	o.Data = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -128,15 +67,7 @@ func (o RecommendationsFilterRequest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return datadog.Marshal(o.UnparsedObject)
 	}
-	if o.Filter != nil {
-		toSerialize["filter"] = o.Filter
-	}
-	if o.Sort != nil {
-		toSerialize["sort"] = o.Sort
-	}
-	if o.View != nil {
-		toSerialize["view"] = o.View
-	}
+	toSerialize["data"] = o.Data
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -147,25 +78,33 @@ func (o RecommendationsFilterRequest) MarshalJSON() ([]byte, error) {
 // UnmarshalJSON deserializes the given payload.
 func (o *RecommendationsFilterRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
-		Filter *string                                 `json:"filter,omitempty"`
-		Sort   []RecommendationsFilterRequestSortItems `json:"sort,omitempty"`
-		View   *string                                 `json:"view,omitempty"`
+		Data *RecommendationsFilterRequestData `json:"data"`
 	}{}
 	if err = datadog.Unmarshal(bytes, &all); err != nil {
 		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
+	if all.Data == nil {
+		return fmt.Errorf("required field data missing")
+	}
 	additionalProperties := make(map[string]interface{})
 	if err = datadog.UnmarshalUseNumber(bytes, &additionalProperties); err == nil {
-		datadog.DeleteKeys(additionalProperties, &[]string{"filter", "sort", "view"})
+		datadog.DeleteKeys(additionalProperties, &[]string{"data"})
 	} else {
 		return err
 	}
-	o.Filter = all.Filter
-	o.Sort = all.Sort
-	o.View = all.View
+
+	hasInvalidField := false
+	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+		hasInvalidField = true
+	}
+	o.Data = *all.Data
 
 	if len(additionalProperties) > 0 {
 		o.AdditionalProperties = additionalProperties
+	}
+
+	if hasInvalidField {
+		return datadog.Unmarshal(bytes, &o.UnparsedObject)
 	}
 
 	return nil

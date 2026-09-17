@@ -12,7 +12,7 @@ import (
 
 // MuteRuleReorderRequest The body of the mute rule reorder request.
 type MuteRuleReorderRequest struct {
-	// The ordered list of all mute rules; every rule must be included.
+	// The ordered list of all mute rules. Every rule must be included.
 	Data []MuteRuleReorderItem `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:"-"`
