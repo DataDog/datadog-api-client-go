@@ -97,6 +97,8 @@ jobs:
       - name: Test authentication and credential refresh
         working-directory: tests
         run: go test -race ./api -run 'AWS|Authenticate|WithStaticCredentials|GenerateProof'
+        env:
+          GOTOOLCHAIN: auto
 
   build-terraform-provider:
     if: false # temporarily disabled
