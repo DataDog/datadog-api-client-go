@@ -2461,6 +2461,7 @@ func (r *ListTeamsOptionalParameters) WithFieldsTeam(fieldsTeam []TeamsField) *L
 // ListTeams Get all teams.
 // Get all teams.
 // Can be used to search for teams using the `filter[keyword]` and `filter[me]` query parameters.
+// This temporary description change exercises SDK generation.
 func (a *TeamsApi) ListTeams(ctx _context.Context, o ...ListTeamsOptionalParameters) (TeamsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
