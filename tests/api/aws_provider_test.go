@@ -1,4 +1,4 @@
-package awsauth
+package api
 
 import (
 	"context"
@@ -16,12 +16,16 @@ import (
 	"time"
 
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
-	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/DataDog/datadog-api-client-go/v2/api/datadogV2"
+	awsauth "github.com/DataDog/datadog-api-client-go/v2/auth/aws"
 )
+
+const orgIDHeader = "x-ddog-org-id"
 
 const testOrgUUID = "00000000-0000-0000-0000-000000000000"
 
 func TestAuthenticateWithStaticCredentials(t *testing.T) {
+	isolateAWSAuthEnvironment(t)
 	tests := []struct {
 		name         string
 		sessionToken string
@@ -39,9 +43,9 @@ func TestAuthenticateWithStaticCredentials(t *testing.T) {
 			})
 			defer server.Close()
 
-			provider, err := New(
-				WithRegion("us-east-2"),
-				WithStaticCredentials("test-access-key", "test-secret-key", test.sessionToken),
+			provider, err := awsauth.New(
+				awsauth.WithRegion("us-east-2"),
+				awsauth.WithStaticCredentials("test-access-key", "test-secret-key", test.sessionToken),
 			)
 			if err != nil {
 				t.Fatalf("creating provider: %v", err)
@@ -82,6 +86,7 @@ func TestAuthenticateWithStaticCredentials(t *testing.T) {
 }
 
 func TestAuthenticateUsesSharedConfigurationProfile(t *testing.T) {
+	isolateAWSAuthEnvironment(t)
 	directory := t.TempDir()
 	credentialsFile := filepath.Join(directory, "credentials")
 	configFile := filepath.Join(directory, "config")
@@ -105,7 +110,7 @@ func TestAuthenticateUsesSharedConfigurationProfile(t *testing.T) {
 	})
 	defer server.Close()
 
-	provider, err := New()
+	provider, err := awsauth.New()
 	if err != nil {
 		t.Fatalf("creating provider: %v", err)
 	}
@@ -129,7 +134,7 @@ func TestAuthenticateAgainstDatadogIntegration(t *testing.T) {
 		t.Skip("set DD_TEST_WIF_API_URL, DD_ORG_UUID, and AWS_PROFILE to test a live Datadog token exchange")
 	}
 
-	provider, err := New()
+	provider, err := awsauth.New()
 	if err != nil {
 		t.Fatalf("creating provider: %v", err)
 	}
@@ -149,25 +154,63 @@ func TestAuthenticateAgainstDatadogIntegration(t *testing.T) {
 	if !credentials.Expiration.After(time.Now()) {
 		t.Fatalf("delegated token expiration = %s, want a future time", credentials.Expiration)
 	}
+
+	// Exercise a real authenticated read, then force local expiry to exercise
+	// the core client's refresh path without waiting for the server's TTL.
+	countingProvider := &awsAuthCountingProvider{DelegatedTokenProvider: provider}
+	config := datadog.NewConfiguration()
+	config.DelegatedTokenConfig = &datadog.DelegatedTokenConfig{
+		OrgUUID: orgUUID, Provider: datadog.ProviderAWS, ProviderAuth: countingProvider,
+	}
+	ctx := context.WithValue(delegatedTokenContext(apiURL), datadog.ContextDelegatedToken, credentials)
+	users := datadogV2.NewUsersApi(datadog.NewAPIClient(config))
+	if _, _, err := users.GetCurrentUser(ctx); err != nil {
+		t.Fatalf("reading current user: %v", err)
+	}
+	if countingProvider.calls != 0 {
+		t.Fatal("unexpired token was not reused")
+	}
+	credentials.Expiration = time.Now().Add(-time.Second)
+	if _, _, err := users.GetCurrentUser(ctx); err != nil {
+		t.Fatalf("reading current user after token refresh: %v", err)
+	}
+	if countingProvider.calls != 1 || !credentials.Expiration.After(time.Now()) {
+		t.Fatal("expired token was not refreshed")
+	}
+}
+
+type awsAuthCountingProvider struct {
+	datadog.DelegatedTokenProvider
+	calls int
+}
+
+func (p *awsAuthCountingProvider) Authenticate(ctx context.Context, config *datadog.DelegatedTokenConfig) (*datadog.DelegatedTokenCredentials, error) {
+	p.calls++
+	return p.DelegatedTokenProvider.Authenticate(ctx, config)
 }
 
 func TestWithStaticCredentialsRejectsPartialCredentials(t *testing.T) {
-	if _, err := New(WithStaticCredentials("access-key", "", "")); err == nil {
+	if _, err := awsauth.New(awsauth.WithStaticCredentials("access-key", "", "")); err == nil {
 		t.Fatal("expected partial static credentials to be rejected")
 	}
 }
 
 func TestGenerateProofResolvesAWSPartitions(t *testing.T) {
-	provider, err := New()
-	if err != nil {
-		t.Fatalf("creating provider: %v", err)
-	}
-	proof, err := provider.generateProof(context.Background(), testOrgUUID, aws.Config{Region: "cn-north-1"}, aws.Credentials{
-		AccessKeyID:     "access-key",
-		SecretAccessKey: "secret-key",
+	isolateAWSAuthEnvironment(t)
+	var proof string
+	server := newDelegatedTokenServer(t, func(request *http.Request) {
+		proof = strings.TrimPrefix(request.Header.Get("Authorization"), "Delegated ")
 	})
+	defer server.Close()
+	provider, err := awsauth.New(
+		awsauth.WithRegion("cn-north-1"),
+		awsauth.WithStaticCredentials("access-key", "secret-key", ""),
+	)
 	if err != nil {
-		t.Fatalf("generating proof: %v", err)
+		t.Fatal(err)
+	}
+	if _, err := provider.Authenticate(delegatedTokenContext(server.URL), delegatedTokenConfig()); err != nil {
+		t.Fatal(err)
 	}
 	_, endpoint := decodeProof(t, proof)
 	if endpoint != "https://sts.cn-north-1.amazonaws.com.cn" {

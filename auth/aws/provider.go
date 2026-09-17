@@ -25,6 +25,7 @@ import (
 	v4 "github.com/aws/aws-sdk-go-v2/aws/signer/v4"
 	awsconfig "github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/credentials"
+	"github.com/aws/aws-sdk-go-v2/credentials/endpointcreds"
 	"github.com/aws/aws-sdk-go-v2/service/sts"
 )
 
@@ -88,7 +89,14 @@ func WithHTTPClient(client *http.Client) Option {
 			return errors.New("HTTP client must not be nil")
 		}
 		config.httpClient = client
-		config.loadOptions = append(config.loadOptions, awsconfig.WithHTTPClient(client))
+		config.loadOptions = append(config.loadOptions,
+			awsconfig.WithHTTPClient(client),
+			// The SDK's container credential provider does not inherit the
+			// global HTTP client; it has a separate configuration hook.
+			awsconfig.WithEndpointCredentialOptions(func(options *endpointcreds.Options) {
+				options.HTTPClient = client
+			}),
+		)
 		return nil
 	}
 }
@@ -190,7 +198,12 @@ func (provider *Provider) exchangeDelegatedToken(ctx context.Context, tokenURL, 
 
 	credentials, err := datadog.ParseDelegatedTokenResponse(body, orgUUID, proof)
 	if err != nil {
-		return nil, fmt.Errorf("parsing Datadog delegated token response: %w", err)
+		// The core parser may include the response body in its error. Never expose
+		// token material from a malformed response in logs or diagnostics.
+		return nil, errors.New("parsing Datadog delegated token response: invalid response")
+	}
+	if credentials.DelegatedToken == "" {
+		return nil, errors.New("Datadog delegated token endpoint returned an empty token")
 	}
 	return credentials, nil
 }

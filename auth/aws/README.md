@@ -1,8 +1,9 @@
 # Datadog API client AWS authentication
 
-This optional module adds AWS Workload Identity Federation authentication to
-`datadog-api-client-go` without adding the AWS SDK to the core client's module
-graph.
+This opt-in package adds AWS Workload Identity Federation authentication to
+`datadog-api-client-go`. It ships with the client's normal v2 releases. AWS SDK
+dependencies are declared in the shared module, but applications importing only
+`api/datadog` do not compile or link this package or the AWS SDK.
 
 It uses the AWS SDK for Go v2 default configuration and credential chain,
 including environment credentials, shared configuration and credential files,
@@ -11,7 +12,7 @@ role profiles, and process credentials supported by the SDK.
 
 ```go
 import (
-	awsauth "github.com/DataDog/datadog-api-client-go/auth/aws"
+	awsauth "github.com/DataDog/datadog-api-client-go/v2/auth/aws"
 	"github.com/DataDog/datadog-api-client-go/v2/api/datadog"
 )
 
