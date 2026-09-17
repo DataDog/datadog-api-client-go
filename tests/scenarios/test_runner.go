@@ -269,7 +269,7 @@ func applyTestRunnerPlan(t gobdd.StepTest, ctx gobdd.Context, pagination bool) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		addParameterWithValueNative(t, ctx, "Content-Encoding", string(encoded))
+		addParameterWithValueNative(t, ctx, "content_encoding", string(encoded))
 	}
 	for _, parameter := range plan.Request.Parameters {
 		if parameter.In != "path" && !parameter.Required {
